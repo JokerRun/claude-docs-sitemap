@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import json
 import os
 import re
 import sys
 import urllib.request
 import urllib.parse
 import xml.etree.ElementTree as ET
+
+try:
+    import yaml
+except ImportError:
+    print("✗ PyYAML not found. Installing...", file=sys.stderr)
+    import subprocess
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "-q", "pyyaml"])
+    import yaml
 
 CODE_SITEMAP_URL = "https://code.claude.com/docs/sitemap.xml"
 PLATFORM_SITEMAP_URL = "https://platform.claude.com/sitemap.xml"
@@ -56,9 +63,10 @@ def fetch_bytes(url: str, retries: int = 3) -> bytes:
 
 def parse_sitemap(xml_bytes: bytes):
     """
-    支持标准 sitemap urlset:
-      <url><loc>...</loc><lastmod>...</lastmod><priority>...</priority></url>
+    支持标准 sitemap urlset：
+      <url><loc>...</loc><lastmod>...</lastmod><priority>...</priority><changefreq>...</changefreq></url>
     注意 namespace：用通配匹配 { * }loc 等。
+    保留所有XML中出现的子元素。
     """
     root = ET.fromstring(xml_bytes)
     urls = []
@@ -66,15 +74,17 @@ def parse_sitemap(xml_bytes: bytes):
         loc = url_node.findtext("{*}loc")
         if not loc:
             continue
-        lastmod = url_node.findtext("{*}lastmod")
-        priority = url_node.findtext("{*}priority")
-        urls.append(
-            {
-                "loc": loc.strip(),
-                "lastmod": (lastmod.strip() if lastmod else None),
-                "priority": (priority.strip() if priority else None),
-            }
-        )
+        
+        # 收集该 <url> 元素的所有子元素
+        entry = {}
+        for child in url_node:
+            # 去掉namespace前缀
+            tag = child.tag.split("}")[-1] if "}" in child.tag else child.tag
+            text = child.text.strip() if child.text else None
+            if text:
+                entry[tag] = text
+        
+        urls.append(entry)
     return urls
 
 
@@ -130,7 +140,7 @@ def is_platform_en(url: str) -> bool:
     return True
 
 
-def main(out_path: str) -> int:
+def main(output_dir: str = "data/sitemaps") -> int:
     # 抓取并解析
     code_xml = fetch_bytes(CODE_SITEMAP_URL)
     platform_xml = fetch_bytes(PLATFORM_SITEMAP_URL)
@@ -138,48 +148,55 @@ def main(out_path: str) -> int:
     code_items = parse_sitemap(code_xml)
     platform_items = parse_sitemap(platform_xml)
 
+    os.makedirs(output_dir, exist_ok=True)
+
+    # 存档源XML
+    with open(os.path.join(output_dir, "code.xml"), "wb") as f:
+        f.write(code_xml)
+    with open(os.path.join(output_dir, "platform.xml"), "wb") as f:
+        f.write(platform_xml)
+
     rows = []
 
-    # code：输出 lastmod（如有），priority 置 null
+    # code：保留所有XML字段
     for it in code_items:
-        loc = it["loc"]
+        loc = it.get("loc", "")
         if not is_code_en(loc):
             continue
-        rows.append(
-            {
-                "source": "code",
-                "url": loc,
-                "lastmod": it["lastmod"],
-                "priority": None,
-            }
-        )
+        entry = {"source": "code"}
+        entry.update(it)
+        rows.append(entry)
 
-    # platform：输出 priority（如有），lastmod 置 null
+    # platform：保留所有XML字段
     for it in platform_items:
-        loc = it["loc"]
+        loc = it.get("loc", "")
         if not is_platform_en(loc):
             continue
-        rows.append(
-            {
-                "source": "platform",
-                "url": loc,
-                "lastmod": None,
-                "priority": it["priority"],
-            }
-        )
+        entry = {"source": "platform"}
+        entry.update(it)
+        rows.append(entry)
 
     # 稳定排序：避免无意义 diff
-    rows.sort(key=lambda r: (r["source"], r["url"]))
+    rows.sort(key=lambda r: (r["source"], r.get("loc", "")))
 
-    os.makedirs(os.path.dirname(out_path), exist_ok=True)
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(rows, f, ensure_ascii=False, indent=2)
-        f.write("\n")
+    # 输出YAML
+    yaml_path = os.path.join(output_dir, "en.yaml")
+    with open(yaml_path, "w", encoding="utf-8") as f:
+        yaml.dump(
+            rows,
+            f,
+            allow_unicode=True,
+            default_flow_style=False,
+            sort_keys=False,
+            explicit_start=True,
+        )
+
+    print(f"✓ Generated {yaml_path} ({len(rows)} URLs)", file=sys.stderr)
+    print(f"✓ Archived {os.path.join(output_dir, 'code.xml')} ({len(code_items)} URLs)", file=sys.stderr)
+    print(f"✓ Archived {os.path.join(output_dir, 'platform.xml')} ({len(platform_items)} URLs)", file=sys.stderr)
 
     return 0
 
 
 if __name__ == "__main__":
-    # 固定输出位置（简单可控）；如需参数化可扩展 argparse
-    OUT = "data/sitemaps/en.json"
-    sys.exit(main(OUT))
+    sys.exit(main())

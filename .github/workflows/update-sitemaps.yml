@@ -28,6 +28,10 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install dependencies
+        run: |
+          pip install -q pyyaml
+
       - name: Generate sitemap dataset
         run: |
           bash scripts/update_sitemaps.sh
@@ -44,7 +48,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add data/sitemaps/en.json
+          git add data/sitemaps/
 
           # 提交信息模板：含日期（UTC）
           git commit -m "chore(sitemap): update EN sitemap dataset ($(date -u +%F))"
