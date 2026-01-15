@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Activate uv venv if available
+if [ -d ".venv" ]; then
+  source .venv/bin/activate
+fi
+
 # Step 1: Fetch and parse sitemaps
 python3 scripts/fetch_sitemaps.py
 

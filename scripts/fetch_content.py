@@ -10,13 +10,7 @@ import urllib.parse
 from datetime import datetime
 from pathlib import Path
 
-try:
-    import yaml
-except ImportError:
-    print("✗ PyYAML not found. Installing...", file=sys.stderr)
-    import subprocess
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "-q", "pyyaml"])
-    import yaml
+import yaml
 
 
 def fetch_bytes(url: str, retries: int = 3) -> bytes:

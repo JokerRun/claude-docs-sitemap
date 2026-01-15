@@ -1,0 +1,12 @@
+[project]
+name = "claude-docs-sitemap"
+version = "0.1.0"
+description = "Daily English sitemap collection from Claude documentation sources"
+requires-python = ">=3.11"
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

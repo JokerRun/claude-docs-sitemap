@@ -8,13 +8,7 @@ import urllib.request
 import urllib.parse
 import xml.etree.ElementTree as ET
 
-try:
-    import yaml
-except ImportError:
-    print("✗ PyYAML not found. Installing...", file=sys.stderr)
-    import subprocess
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "-q", "pyyaml"])
-    import yaml
+import yaml
 
 CODE_SITEMAP_URL = "https://code.claude.com/docs/sitemap.xml"
 PLATFORM_SITEMAP_URL = "https://platform.claude.com/sitemap.xml"
