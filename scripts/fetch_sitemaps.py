@@ -141,14 +141,38 @@ def is_platform_en(url: str) -> bool:
 
 
 def main(output_dir: str = "data/sitemaps") -> int:
-    # 抓取并解析
-    code_xml = fetch_bytes(CODE_SITEMAP_URL)
-    platform_xml = fetch_bytes(PLATFORM_SITEMAP_URL)
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # 抓取并解析（失败时尝试使用缓存）
+    code_xml = None
+    platform_xml = None
+    
+    try:
+        code_xml = fetch_bytes(CODE_SITEMAP_URL)
+    except Exception as e:
+        print(f"⚠ Failed to fetch code.xml, trying cached version: {e}", file=sys.stderr)
+        cached_code = os.path.join(output_dir, "code.xml")
+        if os.path.exists(cached_code):
+            print(f"✓ Using cached {cached_code}", file=sys.stderr)
+            with open(cached_code, "rb") as f:
+                code_xml = f.read()
+        else:
+            raise RuntimeError("No cached code.xml available")
+    
+    try:
+        platform_xml = fetch_bytes(PLATFORM_SITEMAP_URL)
+    except Exception as e:
+        print(f"⚠ Failed to fetch platform.xml, trying cached version: {e}", file=sys.stderr)
+        cached_platform = os.path.join(output_dir, "platform.xml")
+        if os.path.exists(cached_platform):
+            print(f"✓ Using cached {cached_platform}", file=sys.stderr)
+            with open(cached_platform, "rb") as f:
+                platform_xml = f.read()
+        else:
+            raise RuntimeError("No cached platform.xml available")
 
     code_items = parse_sitemap(code_xml)
     platform_items = parse_sitemap(platform_xml)
-
-    os.makedirs(output_dir, exist_ok=True)
 
     # 存档源XML
     with open(os.path.join(output_dir, "code.xml"), "wb") as f:
