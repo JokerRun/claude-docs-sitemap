@@ -27,20 +27,49 @@
 
 ---
 
+### T-019bbfa6-ed35-76eb-8802-c79dd996064c
+**Title**: 添加文档内容采集功能及目录结构规范  
+**Summary**: Document content collection system with directory structure design  
+**Key Deliverables**:
+- `fetch_content.py`: Download markdown docs from all URLs with frontmatter injection
+- Manifest generation: `docs.en.json` for URL → local_path mapping
+- Directory structure: `content/claude-docs/{host}/path/*.md`
+- Oracle consultation: Recommended domain-based isolation + git storage strategy
+- YAML frontmatter per document: source, url, fetched_at, sha256
+- GitHub Actions integration: Extended workflow to include content fetch step
+- `DIRECTORY_STRUCTURE.md`: Complete documentation with mapping rules and design rationale
+
+**Technical Details**:
+- URL mapping: Preserve source domain + URL path structure in local filesystem
+- Frontmatter fields: source, url, fetched_at (ISO 8601), sha256 (for change detection)
+- Storage: Git-tracked markdown files (762 documents, ~10-50 MB scale)
+- Manifest use cases: Fast lookups, change detection, CI/API integration
+- Resilience: Inherits 3-retry exponential backoff from fetch_sitemaps.py
+
+---
+
 ## Status Summary
 
 | Component | Status | File(s) |
 |-----------|--------|---------|
 | Workflow Definition | ✓ | `.github/workflows/update-sitemaps.yml` |
-| Python Script | ✓ | `scripts/fetch_sitemaps.py` |
+| Sitemap Fetcher | ✓ | `scripts/fetch_sitemaps.py` |
+| Content Fetcher | ✓ | `scripts/fetch_content.py` |
 | Shell Entrypoint | ✓ | `scripts/update_sitemaps.sh` |
-| YAML Output | ✓ | `data/sitemaps/en.yaml` |
-| TSV Output | ✓ | `data/sitemaps/en.tsv` |
+| YAML Sitemap | ✓ | `data/sitemaps/en.yaml` |
+| TSV Export | ✓ | `data/sitemaps/en.tsv` |
+| Manifest Index | ✓ | `data/manifests/docs.en.json` |
+| Content Mirror | ✓ | `content/claude-docs/{host}/path/*.md` |
 | Source Archives | ✓ | `data/sitemaps/code.xml`, `data/sitemaps/platform.xml` |
-| Documentation | ✓ | `README.md` |
+| Documentation | ✓ | `README.md`, `DIRECTORY_STRUCTURE.md` |
 | .gitignore | ✓ | `.gitignore` |
 
 ## Next Steps (if any)
-- Monitor first automated run at 02:00 UTC
-- Verify PR formatting/commit messages
-- Consider additional formats (CSV as alternative to TSV) if demand arises
+- **First run**: Monitor automated workflow execution at 02:00 UTC
+- **Verify outputs**: Check manifest generation, content directory structure
+- **Git scaling**: Monitor repo size growth; consider Git LFS if >1 GB
+- **Change detection**: Implement ETag/Last-Modified caching to reduce daily commits
+- **Future extensions**: 
+  - Full-text search index (if needed)
+  - Rendered HTML pipeline (if distributing beyond Git)
+  - Multi-language support (extend filters for zh, ja, etc.)

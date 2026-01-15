@@ -44,23 +44,41 @@ Automated daily English sitemap collection from Claude documentation sources.
 
 ---
 
-## 📦 Available Formats
+## 📦 Data Outputs
 
-- **`en.tsv`** — Tab-separated table (GitHub-friendly, Excel/Sheets import ready)
+### Sitemap & Index
+- **`en.tsv`** — Tab-separated table of all URLs (GitHub-friendly, Excel/Sheets import ready)
 - **`en.yaml`** — Complete YAML with all sitemap fields
-- **`code.xml`** — Full sitemap from code.claude.com (all languages)
-- **`platform.xml`** — Full sitemap from platform.claude.com (all languages)
+- **`docs.en.json`** — Manifest: URL → local path + metadata (for navigation & CI)
+- **`code.xml`** — Full sitemap from code.claude.com (all languages, archived)
+- **`platform.xml`** — Full sitemap from platform.claude.com (all languages, archived)
 
-All files in: [`data/sitemaps/`](data/sitemaps/)
+Sitemaps & manifests: [`data/sitemaps/`](data/sitemaps/) • [`data/manifests/`](data/manifests/)
+
+### Content Mirror
+- **`content/claude-docs/<host>/<path>/*.md`** — Full markdown documents with frontmatter
+  - Example: `content/claude-docs/platform.claude.com/docs/en/agent-sdk/overview.md`
+  - Example: `content/claude-docs/code.claude.com/docs/en/amazon-bedrock.md`
+  - Each file includes YAML frontmatter: `source`, `url`, `fetched_at`, `sha256`
+
+Directory structure: [`content/claude-docs/`](content/claude-docs/)
 
 ---
 
-## 🔄 Automation
+## 🔄 Automation Pipeline
 
-- **Schedule**: Every day at **02:00 UTC** (cron: `0 2 * * *`)
-- **Trigger**: Manual: `gh workflow run update-sitemaps.yml`
-- **Auto-commit**: Only when data changes (no empty commits)
-- **Resilience**: 3-retry with exponential backoff for network failures
+Daily workflow at **02:00 UTC** (cron: `0 2 * * *`):
+
+1. **Fetch sitemaps** from code.claude.com & platform.claude.com
+2. **Parse & filter** English URLs (code: `/docs/en/`, platform: non-EN exclusion)
+3. **Generate indexes**: en.yaml, en.tsv, docs.en.json manifest
+4. **Fetch document content**: Download `.md` from each URL with frontmatter
+5. **Organize locally**: Mirror directory structure under `content/claude-docs/`
+6. **Auto-commit**: Only on data changes (no empty commits)
+
+**Resilience**: 3-retry with exponential backoff for network failures; graceful cache fallback.
+
+**Manual trigger**: `gh workflow run update-sitemaps.yml`
 
 ---
 
