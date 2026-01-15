@@ -25,17 +25,33 @@ NON_EN_LANG_SEGMENTS = ("zh", "ja", "ko", "fr", "de", "es", "pt", "it", "ru")
 NON_EN_SEGMENT_RE = re.compile(r"^/(" + "|".join(NON_EN_LANG_SEGMENTS) + r")(/|$)", re.IGNORECASE)
 
 
-def fetch_bytes(url: str) -> bytes:
-    req = urllib.request.Request(
-        url,
-        headers={
-            "User-Agent": "claude-docs-sitemap-bot/1.0 (+GitHub Actions)",
-            "Accept": "application/xml,text/xml,*/*",
-        },
-        method="GET",
-    )
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        return resp.read()
+def fetch_bytes(url: str, retries: int = 3) -> bytes:
+    """
+    Fetch URL with retry logic for transient network failures.
+    """
+    last_error = None
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={
+                    "User-Agent": "claude-docs-sitemap-bot/1.0 (+GitHub Actions)",
+                    "Accept": "application/xml,text/xml,*/*",
+                },
+                method="GET",
+            )
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                return resp.read()
+        except Exception as e:
+            last_error = e
+            if attempt < retries - 1:
+                import time
+                wait = 2 ** attempt  # exponential backoff: 1, 2, 4 seconds
+                print(f"⚠ Attempt {attempt + 1} failed for {url}: {e}. Retrying in {wait}s...", file=sys.stderr)
+                time.sleep(wait)
+            else:
+                print(f"✗ All {retries} attempts failed for {url}", file=sys.stderr)
+    raise last_error
 
 
 def parse_sitemap(xml_bytes: bytes):
@@ -70,10 +86,17 @@ def is_code_en(url: str) -> bool:
 def is_platform_en(url: str) -> bool:
     """
     英文判定规则：
-    1) 若 path 以 /{非英文语言}/ 开头 => 排除
+    1) 若 path 中第一个路径段是非英文语言 => 排除
     2) 若 query 有 lang=xx 且 xx != en => 排除；若 lang=en => 包含
-    3) 若 path 包含 /en/ => 包含
-    4) 其他情况默认包含（常见：默认语言即英文）
+    3) 若 path 中任何地方包含 /en/ => 包含
+    4) 若 path 后半段包含语言代码（如 /zh-TW/）=> 排除
+    5) 其他情况默认包含（常见：默认语言即英文）
+    
+    实例：
+    - /docs => EN (默认) ✓
+    - /docs/en/... => EN ✓
+    - /docs/zh-TW/... => 非EN ✗
+    - /de/... => 非EN ✗
     """
     if not url.startswith("https://platform.claude.com/"):
         return False
@@ -81,7 +104,7 @@ def is_platform_en(url: str) -> bool:
     parsed = urllib.parse.urlparse(url)
     path = parsed.path or "/"
 
-    # 排除明显的非英文语言路径
+    # 排除明显的非英文语言路径（语言在path开头）
     if NON_EN_SEGMENT_RE.match(path):
         return False
 
@@ -94,8 +117,15 @@ def is_platform_en(url: str) -> bool:
         # 指定了 lang 但不是 en，则排除
         return False
 
+    # 显式包含 /en/
     if "/en/" in path.lower() or path.lower().endswith("/en"):
         return True
+
+    # 排除其他语言标记（如 zh-TW, zh-CN, ja-JP, pt-BR, etc）
+    # 这些通常出现在path中间如 /docs/zh-TW/...
+    # 支持两字母或地区变体如 pt, pt-BR, zh, zh-TW 等
+    if re.search(r"/(zh(-[A-Z]{2})?|ja|ko|fr|de|es|pt(-[A-Z]{2})?|it|ru)(?:/|$)", path, re.IGNORECASE):
+        return False
 
     return True
 
