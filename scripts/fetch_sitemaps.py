@@ -191,7 +191,32 @@ def main(output_dir: str = "data/sitemaps") -> int:
             explicit_start=True,
         )
 
+    # 输出TSV表格（GitHub友好）
+    tsv_path = os.path.join(output_dir, "en.tsv")
+    with open(tsv_path, "w", encoding="utf-8", newline="") as f:
+        # 提取所有可能的字段名
+        all_keys = set()
+        for row in rows:
+            all_keys.update(row.keys())
+        
+        # 固定列顺序
+        ordered_keys = ["source", "loc", "lastmod", "priority", "changefreq"]
+        header = [k for k in ordered_keys if k in all_keys]
+        
+        # 写表头
+        f.write("\t".join(header) + "\n")
+        
+        # 写数据行（TSV格式，tab分隔，空值为空字符串）
+        for row in rows:
+            values = []
+            for key in header:
+                val = row.get(key, "")
+                # TSV中不需要quoting（除非字段包含tab/换行，但我们的数据里没有）
+                values.append(str(val) if val is not None else "")
+            f.write("\t".join(values) + "\n")
+
     print(f"✓ Generated {yaml_path} ({len(rows)} URLs)", file=sys.stderr)
+    print(f"✓ Generated {tsv_path} ({len(rows)} URLs, {len(header)} columns)", file=sys.stderr)
     print(f"✓ Archived {os.path.join(output_dir, 'code.xml')} ({len(code_items)} URLs)", file=sys.stderr)
     print(f"✓ Archived {os.path.join(output_dir, 'platform.xml')} ({len(platform_items)} URLs)", file=sys.stderr)
 
