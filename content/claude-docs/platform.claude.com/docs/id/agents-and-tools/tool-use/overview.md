@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: c8b60cbdf642dfa5eca3eee7722bb41aaf2d522a74f8fa7ce04976990321c9ec
 ---
 

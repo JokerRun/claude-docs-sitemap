@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 63b3c3ca2aa258df916f208582a742a4a6f8d70624f2c1ad9afb06bc6f64c645
 ---
 

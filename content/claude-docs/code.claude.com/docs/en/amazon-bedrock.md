@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: b57f9a2687ef34c9156a873bda76416093af0a9faa70a44a0c862a50d6dadce1
 ---
 

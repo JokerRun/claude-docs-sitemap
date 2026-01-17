@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 74a37014c4f2dbcdaabe182b2e26c29bd7a53a519e382f98ddc03c772c7b7deb
 ---
 

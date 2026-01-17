@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 8358c82264ff6000e15309bfba94cba8fc886f49e84d848bfbbc9c905c2cd024
 ---
 

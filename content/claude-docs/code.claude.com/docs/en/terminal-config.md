@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 32266d5df37b014f004e21c199c15a3ca03576ca62eeaf28fb6d7f25769be3fd
 ---
 

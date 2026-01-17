@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: b5cab260614f400bb37ee06d9a61c74df41ab9855e764d297fb536bf8d069088
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: 26284344113f769b110115c1531bfc6a5625b579c51fd645a7016c193121941b
 ---
 
 # Hooks reference
@@ -816,6 +816,10 @@ Additionally, hooks can modify tool inputs before execution using `updatedInput`
 * Combine with `"permissionDecision": "allow"` to modify the input and auto-approve the tool call
 * Combine with `"permissionDecision": "ask"` to modify the input and show it to the user for confirmation
 
+Hooks can also provide context to Claude using `additionalContext`:
+
+* `"hookSpecificOutput.additionalContext"` adds a string to Claude's context before the tool executes.
+
 ```json  theme={null}
 {
   "hookSpecificOutput": {
@@ -824,7 +828,8 @@ Additionally, hooks can modify tool inputs before execution using `updatedInput`
     "permissionDecisionReason": "My reason here",
     "updatedInput": {
       "field_to_modify": "new value"
-    }
+    },
+    "additionalContext": "Current environment: production. Proceed with caution."
   }
 }
 ```

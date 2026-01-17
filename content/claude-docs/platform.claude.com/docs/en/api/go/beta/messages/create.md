@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/create
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 8369c8c8716e6d718390d8db7dec38523f6af8a1bf74da6e52f57178cfd86d39
 ---
 

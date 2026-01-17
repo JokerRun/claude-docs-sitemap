@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: ea887a07b8d65289da0b435b9d416a612cebeaf0f47871eee3fde4ddf020e033
 ---
 

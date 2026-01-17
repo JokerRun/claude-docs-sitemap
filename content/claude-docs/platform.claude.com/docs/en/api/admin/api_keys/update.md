@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/update
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 71971622e0d9d3e3fcb7ae2615ebb9d08785b73f9d7105790585664a8cb011b8
 ---
 

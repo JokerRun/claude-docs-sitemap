@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions/create
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 1dd18910d955d2089b5adfda3405ac03f27669245342d797d45a419a6776fc78
 ---
 

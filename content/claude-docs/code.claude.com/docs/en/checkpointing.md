@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/checkpointing
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 3412893eca2d799ac0f53886b7672e996a9e86126d353bfdbbc9240e639c957b
 ---
 

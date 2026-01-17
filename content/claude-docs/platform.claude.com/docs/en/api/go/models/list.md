@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/models/list
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 5e8443b29e40e20588ecaf36ccc8262d3db26c59e8560aa18fb495bb78957d8d
 ---
 

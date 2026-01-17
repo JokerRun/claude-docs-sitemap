@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/models/retrieve
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: abe671e8e9dc0a0dd1ad52448cad87f1722d05f97324bba2f925617722eeb7b8
 ---
 

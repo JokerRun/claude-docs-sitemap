@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/delete
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 83f38b9bed0b82d0ecbdbd3a453d9709bb50214c6673984d7efcc3855e9ac201
 ---
 

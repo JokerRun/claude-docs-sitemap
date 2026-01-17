@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/migration-guide
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: 04a58d4175b43def18fab1bc0c7072c2c0b6cf54865e545f76d7925f476e7958
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: 83a55fafb1c7551306d456410ddcacd082e6188c6b8ffdbee259fffac0a9ed2d
 ---
 
 # Migrate to Claude Agent SDK
@@ -175,7 +175,7 @@ options = ClaudeAgentOptions(
 // BEFORE (v0.0.x) - Used Claude Code's system prompt by default
 const result = query({ prompt: "Hello" });
 
-// AFTER (v0.1.0) - Uses empty system prompt by default
+// AFTER (v0.1.0) - Uses minimal system prompt by default
 // To get the old behavior, explicitly request Claude Code's preset:
 const result = query({
   prompt: "Hello",
@@ -198,7 +198,7 @@ const result = query({
 async for message in query(prompt="Hello"):
     print(message)
 
-# AFTER (v0.1.0) - Uses empty system prompt by default
+# AFTER (v0.1.0) - Uses minimal system prompt by default
 # To get the old behavior, explicitly request Claude Code's preset:
 from claude_agent_sdk import query, ClaudeAgentOptions
 

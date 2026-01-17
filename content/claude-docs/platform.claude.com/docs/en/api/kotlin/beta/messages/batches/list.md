@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/kotlin/beta/messages/batches/list
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: ff97df7b4b10a1a44842dc72f5f27034cee3387395b616767b5f42bb3102d1f0
 ---
 

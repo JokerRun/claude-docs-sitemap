@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/data-usage
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 11b7a032425fea5b4cc12a3da655908137337976c53ca45614aa46719adb1fb0
 ---
 

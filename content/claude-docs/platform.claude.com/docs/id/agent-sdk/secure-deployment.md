@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/secure-deployment
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 0574c6fc9fa1db6d002fbeea18ea32ef034aea526805a777c6021ff0cbb316ba
 ---
 

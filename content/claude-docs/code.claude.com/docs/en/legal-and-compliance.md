@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/legal-and-compliance
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 03294e16a35d0a3f07b01cd61bd393a6a7691e800dba114e88ec889ab04f5c35
 ---
 

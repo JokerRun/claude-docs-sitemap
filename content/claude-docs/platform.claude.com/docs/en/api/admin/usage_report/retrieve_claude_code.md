@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_claude_code
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 944a24c13b791f8283a2c487a67571653a2843698656a139429294b605d0e325
 ---
 

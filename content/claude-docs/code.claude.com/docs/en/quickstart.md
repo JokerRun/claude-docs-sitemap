@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: f9ac73f2396c90ffab40b44b3712376c1ead266fb0939a744907327e1a212e56
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: c0e8b76074ff6ff7fae495574ffeb010f7acce19662657a18ab135c179309845
 ---
 
 # Quickstart
@@ -42,18 +42,30 @@ To install Claude Code, use one of the following methods:
     ```batch  theme={null}
     curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
     ```
+
+    <Info>
+      Native installations automatically update in the background to keep you on the latest version.
+    </Info>
   </Tab>
 
   <Tab title="Homebrew">
     ```sh  theme={null}
     brew install --cask claude-code
     ```
+
+    <Info>
+      Homebrew installations do not auto-update. Run `brew upgrade claude-code` periodically to get the latest features and security fixes.
+    </Info>
   </Tab>
 
   <Tab title="WinGet">
     ```powershell  theme={null}
     winget install Anthropic.ClaudeCode
     ```
+
+    <Info>
+      WinGet installations do not auto-update. Run `winget upgrade Anthropic.ClaudeCode` periodically to get the latest features and security fixes.
+    </Info>
   </Tab>
 </Tabs>
 

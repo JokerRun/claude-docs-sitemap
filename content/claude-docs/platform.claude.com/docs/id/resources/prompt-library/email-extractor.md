@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/email-extractor
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: cc0e19d4009426589448c6f0ca5f58709d582fcfd4c8b3278e03c9647c8e85a7
 ---
 

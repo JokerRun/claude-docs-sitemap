@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/memo-maestro
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: bb3f121190b2e1cbe0a60a29697e36d2da9a4b49d6fe48e15356a392bcf37f77
 ---
 

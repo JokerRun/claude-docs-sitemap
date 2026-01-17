@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 6e005de5ae53e2e38503aa118bf4c343c40655f2a7f0761c577faa3d5c495f20
 ---
 

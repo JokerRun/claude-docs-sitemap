@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/remote-mcp-servers
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 42aeab377e3bd764a9661a58119f60b92a3da01cdcd96feefd935df1c4b47c98
 ---
 

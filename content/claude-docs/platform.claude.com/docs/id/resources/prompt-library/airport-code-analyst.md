@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/airport-code-analyst
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 2881a0ffd11810702d8bf057922e2ebfe4185abb8616505a14d421ae19309338
 ---
 

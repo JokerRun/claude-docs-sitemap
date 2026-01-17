@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 9c621682d1ef8e8090e187281d5342e594f675bc3ecaaf34a3c114ec1940c021
 ---
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/modifying-system-prompts
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: 9c9d87fbfd8e7c6bc7a4be28462d1527fdcaa4267c124b09d4096677c05ff54a
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: 7004f45a515bf7df8bab61659d9ef52b6d94ccbb555a14f807fae9d51c0c81e7
 ---
 
 # Modifying system prompts
@@ -18,7 +18,7 @@ System prompts define Claude's behavior, capabilities, and response style. The C
 A system prompt is the initial instruction set that shapes how Claude behaves throughout a conversation.
 
 <Note>
-**Default behavior:** The Agent SDK uses an **empty system prompt** by default for maximum flexibility. To use Claude Code's system prompt (tool instructions, code guidelines, etc.), specify `systemPrompt: { preset: "claude_code" }` in TypeScript or `system_prompt="claude_code"` in Python.
+**Default behavior:** The Agent SDK uses a **minimal system prompt** by default. It contains only essential tool instructions but omits Claude Code's coding guidelines, response style, and project context. To include the full Claude Code system prompt, specify `systemPrompt: { preset: "claude_code" }` in TypeScript or `system_prompt="claude_code"` in Python.
 </Note>
 
 Claude Code's system prompt includes:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: 57c4a48f382725017a8d721b07c46d1af294542ff26804f0eabb7e79b4919711
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: 4ca6d80a3ba7621966f3e764eee7091fa6a8795c97ebb0982d6a1755171e8a83
 ---
 
 # Agent SDK reference - TypeScript
@@ -135,7 +135,7 @@ Configuration object for the `query()` function.
 | `settingSources` | [`SettingSource`](#settingsource)`[]` | `[]` (no settings) | Control which filesystem settings to load. When omitted, no settings are loaded. **Note:** Must include `'project'` to load CLAUDE.md files |
 | `stderr` | `(data: string) => void` | `undefined` | Callback for stderr output |
 | `strictMcpConfig` | `boolean` | `false` | Enforce strict MCP validation |
-| `systemPrompt` | `string \| { type: 'preset'; preset: 'claude_code'; append?: string }` | `undefined` (empty prompt) | System prompt configuration. Pass a string for custom prompt, or `{ type: 'preset', preset: 'claude_code' }` to use Claude Code's system prompt. When using the preset object form, add `append` to extend the system prompt with additional instructions |
+| `systemPrompt` | `string \| { type: 'preset'; preset: 'claude_code'; append?: string }` | `undefined` (minimal prompt) | System prompt configuration. Pass a string for custom prompt, or `{ type: 'preset', preset: 'claude_code' }` to use Claude Code's system prompt. When using the preset object form, add `append` to extend the system prompt with additional instructions |
 | `tools` | `string[] \| { type: 'preset'; preset: 'claude_code' }` | `undefined` | Tool configuration. Pass an array of tool names or use the preset to get Claude Code's default tools |
 
 ### `Query`
@@ -2078,15 +2078,17 @@ const result = await query({
     sandbox: {
       enabled: true,
       autoAllowBashIfSandboxed: true,
-      excludedCommands: ["docker"],
       network: {
-        allowLocalBinding: true,
-        allowUnixSockets: ["/var/run/docker.sock"]
+        allowLocalBinding: true
       }
     }
   }
 });
 ```
+
+<Warning>
+**Unix socket security**: The `allowUnixSockets` option can grant access to powerful system services. For example, allowing `/var/run/docker.sock` effectively grants full host system access through the Docker API, bypassing sandbox isolation. Only allow Unix sockets that are strictly necessary and understand the security implications of each.
+</Warning>
 
 ### `NetworkSandboxSettings`
 
@@ -2170,6 +2172,8 @@ This pattern enables you to:
 
 <Warning>
 Commands running with `dangerouslyDisableSandbox: true` have full system access. Ensure your `canUseTool` handler validates these requests carefully.
+
+If `permissionMode` is set to `bypassPermissions` and `allowUnsandboxedCommands` is enabled, the model can autonomously execute commands outside the sandbox without any approval prompts. This combination effectively allows the model to escape sandbox isolation silently.
 </Warning>
 
 ## See also

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 235ba8921de605efaf1577722d9787d4f2c9c9e3367cbbc848fc7a4115576069
 ---
 

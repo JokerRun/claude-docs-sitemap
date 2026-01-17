@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: b18ae45d53ca3c929bfe71a2318e5d975422fab467bb7421972208b1f46ab4a5
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/overview
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: b124f038c91d9148e41164189672258fe80f0cd5cfc4f97ea484125fdb06a01e
 ---
 

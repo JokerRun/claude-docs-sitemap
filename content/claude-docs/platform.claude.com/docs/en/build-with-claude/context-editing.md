@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: c3d46d46b585f5b3bdc80e66b132af3091735f6703c0b19207a523c263a15801
 ---
 

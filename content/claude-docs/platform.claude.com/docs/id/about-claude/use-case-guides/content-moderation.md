@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: a9d018a5fd2cc5576209cf56014f510e99b22dfb56367c82a26b74a9fbaa0061
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/delete
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: b918388e2737dc08c9a3f7f92950eb89783ca8423e3a893d9c8e453ec13f864e
 ---
 

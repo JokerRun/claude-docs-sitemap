@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/cosmic-keystrokes
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: b31dd963298fc352bf2f39eb2c1fe1c9485fe9a974dd6c09f0b57ebf993bedbd
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: c0d7a0ae9520ecba44e46b446cb25479b8379b1c46fdcab290941f2f1267ea33
 ---
 

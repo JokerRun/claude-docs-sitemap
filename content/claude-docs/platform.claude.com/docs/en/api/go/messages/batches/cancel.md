@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/cancel
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 6a096b0fc9b9b960628e7930aa2196cb7b7145e55a77b008a554f0c28afc1358
 ---
 

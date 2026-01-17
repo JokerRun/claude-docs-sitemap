@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/choosing-a-model
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 84fa0e507ea5aec3597aadffe278e8fbc4f0dc19ebcb3d00a2491068382271d0
 ---
 

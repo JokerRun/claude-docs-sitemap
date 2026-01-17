@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompt-improver
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: f2a3ce20f8f04f2a2b09215abf9ec0bded3787f82019e4a71bb97e353e2c22dd
 ---
 

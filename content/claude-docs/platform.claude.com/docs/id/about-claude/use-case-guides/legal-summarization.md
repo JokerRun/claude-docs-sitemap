@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: c48c21e14d33ba04c8da53282042b95b4630928d20b5bbfc37da5e4ca7011027
 ---
 

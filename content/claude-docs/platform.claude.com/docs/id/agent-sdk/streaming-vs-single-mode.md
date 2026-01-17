@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/streaming-vs-single-mode
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: b39590d02a0abde6850eb2064fc016439ee7374206be84abd1c89773abe3e3cf
 ---
 

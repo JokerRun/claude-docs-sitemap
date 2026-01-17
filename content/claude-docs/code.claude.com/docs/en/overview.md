@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: 14e9d2c59beb8c3065d200bdba78b2c668b1acf20be1f0205d25298c0f58b945
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: ec2cbea72843f4927a6472041bbcc0e02af29e6fc977de8ee67169c815e27f81
 ---
 
 # Claude Code overview
@@ -38,18 +38,30 @@ To install Claude Code, use one of the following methods:
     ```batch  theme={null}
     curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
     ```
+
+    <Info>
+      Native installations automatically update in the background to keep you on the latest version.
+    </Info>
   </Tab>
 
   <Tab title="Homebrew">
     ```sh  theme={null}
     brew install --cask claude-code
     ```
+
+    <Info>
+      Homebrew installations do not auto-update. Run `brew upgrade claude-code` periodically to get the latest features and security fixes.
+    </Info>
   </Tab>
 
   <Tab title="WinGet">
     ```powershell  theme={null}
     winget install Anthropic.ClaudeCode
     ```
+
+    <Info>
+      WinGet installations do not auto-update. Run `winget upgrade Anthropic.ClaudeCode` periodically to get the latest features and security fixes.
+    </Info>
   </Tab>
 </Tabs>
 
@@ -63,7 +75,7 @@ claude
 You'll be prompted to log in on first use. That's it! [Continue with Quickstart (5 minutes) →](/en/quickstart)
 
 <Tip>
-  Claude Code automatically keeps itself up to date. See [advanced setup](/en/setup) for installation options, manual updates, or uninstallation instructions. Visit [troubleshooting](/en/troubleshooting) if you hit issues.
+  See [advanced setup](/en/setup) for installation options, manual updates, or uninstallation instructions. Visit [troubleshooting](/en/troubleshooting) if you hit issues.
 </Tip>
 
 ## What Claude Code does for you

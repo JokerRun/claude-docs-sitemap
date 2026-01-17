@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/migration-guide
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: dab25db499dce4b854e2fa82862613b3e21f41f362f7f2cc9d2dfe23e878a8d8
 ---
 

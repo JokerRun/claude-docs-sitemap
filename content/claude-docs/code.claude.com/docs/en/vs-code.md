@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 2310c6cb972f83069bac9a52e1130b52486e1cd2f29c5adabd128cfcc403c415
 ---
 

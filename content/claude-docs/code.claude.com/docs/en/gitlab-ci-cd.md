@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/gitlab-ci-cd
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: ced93c6b11589b1537f66690e9955d80717d2de642800b76d904c8fe7a697b4f
 ---
 

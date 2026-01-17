@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/list
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 2b11ee318a7308d058584a622b2bbf818f727a5b456b27d253d4bc9c6e8b6cd2
 ---
 

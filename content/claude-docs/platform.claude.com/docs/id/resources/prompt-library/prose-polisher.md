@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/prose-polisher
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 98571fcbd04ecf7aa39e7efd6721bc1e3862517bae5272775e8dc771ca1dff8e
 ---
 

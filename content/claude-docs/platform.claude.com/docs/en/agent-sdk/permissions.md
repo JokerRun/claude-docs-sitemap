@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/permissions
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: 64f39d9b65ff7bbe84be353d5d65833257c0d010703b830e7ff4d10d4ecb73a7
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: 315d4bce6385b762e97793f474d92b77fad8254fac1b0831309a111d54fd3246
 ---
 
 # Configure permissions
@@ -58,6 +58,10 @@ The SDK supports these permission modes:
 | `acceptEdits` | Auto-accept file edits | File edits and [filesystem operations](#accept-edits-mode-acceptedits) (`mkdir`, `rm`, `mv`, etc.) are automatically approved |
 | `dontAsk` | Skip approval prompts | Auto-deny tools unless explicitly allowed by an [allow rule](https://code.claude.com/docs/en/settings#permission-settings) |
 | `bypassPermissions` | Bypass all permission checks | All tools run without permission prompts (use with caution) |
+
+<Warning>
+**Subagent inheritance**: When using `bypassPermissions`, all subagents inherit this mode and it cannot be overridden. Subagents may have different system prompts and less constrained behavior than your main agent. Enabling `bypassPermissions` grants them full, autonomous system access without any approval prompts.
+</Warning>
 
 <Note>
 `plan` mode is not currently supported in the SDK.

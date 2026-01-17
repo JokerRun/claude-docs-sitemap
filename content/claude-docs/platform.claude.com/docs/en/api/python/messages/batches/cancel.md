@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/batches/cancel
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 17492c90948f23ad1f8ad17d33ab20e32d1bf14c9b65da102827a8e31ce7f79c
 ---
 

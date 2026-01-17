@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: f1653b21d899a1654ed81f08854be9856812dc75299b975df83645a16b179005
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: c1288bd6b8f039cfb35827da1a248061fc1d6f96c807896dfdd731b733cb971e
 ---
 
 # Intercept and control agent behavior with hooks
@@ -333,7 +333,7 @@ Your callback function returns an object that tells the SDK how to proceed. Retu
 | `permissionDecision` | `'allow'` \| `'deny'` \| `'ask'` | PreToolUse | Controls whether the tool executes |
 | `permissionDecisionReason` | `string` | PreToolUse | Explanation shown to Claude for the decision |
 | `updatedInput` | `object` | PreToolUse | Modified tool input (requires `permissionDecision: 'allow'`) |
-| `additionalContext` | `string` | PostToolUse, UserPromptSubmit, SessionStart<sup>TS</sup>, SubagentStart<sup>TS</sup> | Context added to the conversation |
+| `additionalContext` | `string` | PreToolUse, PostToolUse, UserPromptSubmit, SessionStart<sup>TS</sup>, SubagentStart<sup>TS</sup> | Context added to the conversation |
 
 This example blocks write operations to the `/etc` directory while injecting a system message to remind Claude about safe file practices:
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/typescript-v2-preview
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 2323b1b0ab1aa93ff5ad28c49982f5273f5fc166080b1a2c74c9443b272d89d6
 ---
 

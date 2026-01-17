@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/kotlin/models/retrieve
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 8d4f6189c20376ecae6e62478cecadc1050d1f57de4c9565b4a0f9236b69bd13
 ---
 

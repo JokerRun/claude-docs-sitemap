@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/list
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: f41584f07b2f5c1d351fc2d24f40f0c7424b56355f8e98f594dc5e8747e6c053
 ---
 

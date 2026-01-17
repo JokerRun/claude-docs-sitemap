@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/file-checkpointing
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 8faeda13d3a8f505ad5bb7c1e00b9547903967249f0804b24174a2b4a79c8576
 ---
 

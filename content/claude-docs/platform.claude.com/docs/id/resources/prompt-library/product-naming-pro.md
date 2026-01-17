@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/product-naming-pro
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: d9b2584d7e38ab7583ba5bd58cf2c15d6164b3ced2da56b5bdfdc0f6fba1b8c9
 ---
 

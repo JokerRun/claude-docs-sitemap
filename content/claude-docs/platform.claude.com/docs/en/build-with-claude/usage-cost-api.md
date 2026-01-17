@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/usage-cost-api
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 6bc8603218e96329db5375c98aaa76154562022175f3d631262899abbca0ebcc
 ---
 

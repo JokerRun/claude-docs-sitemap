@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/delete
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 9e050ff54283e63ba1770d22f0df7cc6e98098a78f34c55f1cef0bdd336c10c2
 ---
 

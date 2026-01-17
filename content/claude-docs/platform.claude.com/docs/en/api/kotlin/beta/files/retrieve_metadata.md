@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/kotlin/beta/files/retrieve_metadata
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 622e120183552c5489e4d01b9ffd2b4d1bf71acc3c16317771ec9111fdefe3e9
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/ethical-dilemma-navigator
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: f7f35449c3cb47f8d6f518a162432adfccd55ecc74ea989a11076f6e2610f02b
 ---
 

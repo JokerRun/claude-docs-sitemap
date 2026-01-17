@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/philosophical-musings
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: f3a69942bddbacf58c54c38622d70a701fa534a096864dab73817a76329a268e
 ---
 

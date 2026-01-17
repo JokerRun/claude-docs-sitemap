@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/chain-of-thought
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 1d2ad0236a71e978afcf18e38e991fadee9cfd222dbf44de518da168a8b21625
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/chain-prompts
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: cdff0513a7afbe971524ae88e255258fc1d37d1b12710b48b1a7e69277c1e747
 ---
 

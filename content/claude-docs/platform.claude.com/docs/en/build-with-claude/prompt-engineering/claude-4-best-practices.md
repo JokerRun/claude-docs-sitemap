@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-4-best-practices
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 5945216cb8f4dc746276ada5b7fbf2a61b180c3ff32abc0a7c786e5774d52857
 ---
 

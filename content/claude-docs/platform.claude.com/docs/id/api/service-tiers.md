@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: c095feb7a70373afa19a5652fb8aeb61a7e3ba74c3388eef6b54684ef21d630f
 ---
 

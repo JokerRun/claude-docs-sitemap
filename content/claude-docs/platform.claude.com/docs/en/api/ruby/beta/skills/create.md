@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/create
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: a239c71abb685b069d4e68eb90dbd8e40fbb2ee97b2c2705a03e7a2bcdee3bf5
 ---
 

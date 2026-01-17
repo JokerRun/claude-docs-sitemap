@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/second-grade-simplifier
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 5badbeb93c624b5904c84c680c6f68c641f5d357074a35772ab87fa696e1426c
 ---
 

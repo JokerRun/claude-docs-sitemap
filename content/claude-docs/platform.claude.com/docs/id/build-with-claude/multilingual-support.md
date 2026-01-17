@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: f21ccc154bd454e8c732c12dbc8fa15c61586dcd078e83a4a589e5550689c7da
 ---
 

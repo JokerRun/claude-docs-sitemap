@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/multishot-prompting
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 047ad98a2804b34b2cb2d3ce54f8997a8bad936d5785496b33e18900512c07cf
 ---
 

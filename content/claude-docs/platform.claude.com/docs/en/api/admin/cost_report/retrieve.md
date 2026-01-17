@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/cost_report/retrieve
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: c19ae9c0d0ea3395e90719f10214a416be6222e0d78e7dab4e2ae3a8c0781657
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/mindfulness-mentor
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 305835ec3957eb655f9a551373bf2d26f793e232d14dadb4b204cb611f2f7991
 ---
 

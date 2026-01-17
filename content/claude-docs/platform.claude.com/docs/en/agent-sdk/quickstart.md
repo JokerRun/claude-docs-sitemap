@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 29ad0ebe2e501040f08764a0860b2be2feefd505247bafdc508cadeabb11235f
 ---
 

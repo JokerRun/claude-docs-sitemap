@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 10ff0662d19e978bfc8667f46d20185a332cb8c1d89f45ce9efbd4a4fa0b879b
 ---
 

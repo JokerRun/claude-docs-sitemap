@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 3cb1580a4d0867fc993e6d2bfd061e4b8eb1b6f5db27c8cbfee6c36e3847f1bc
 ---
 

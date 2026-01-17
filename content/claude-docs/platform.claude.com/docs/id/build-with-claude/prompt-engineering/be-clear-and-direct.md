@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/be-clear-and-direct
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 489e075081cdecf832cb55510d65039855022a0028d124d9964a0faf9ce975ac
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/google-apps-scripter
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 4d949abdade2bcbc3f2931874384ec619177fb048a9c1a826ccbe58af976c47f
 ---
 

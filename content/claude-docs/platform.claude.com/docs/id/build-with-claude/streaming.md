@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 33c489823d1d87cdea279086dcb1b2d4a8d782613c4d16e36f48c4f4b4bda97c
 ---
 

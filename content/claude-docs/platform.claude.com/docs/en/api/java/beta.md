@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: a239fe3c1108155600bc289e0f7902d0c9d40bb13346ec86ed00ca716bcbda2e
 ---
 

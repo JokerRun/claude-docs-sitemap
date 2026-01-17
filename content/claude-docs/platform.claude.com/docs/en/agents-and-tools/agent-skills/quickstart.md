@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 28e54e937f6cb2ac3af754dd2861fdbbc1e79d82b7a9e7d943a435bd8a94a887
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: c31a3c759ebc7d15aca097b7fa22758ecc43a59fe9acdff0f123f9cfcd3505bf
 ---
 

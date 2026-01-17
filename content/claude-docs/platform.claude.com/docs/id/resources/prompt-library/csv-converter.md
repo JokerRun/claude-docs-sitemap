@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/csv-converter
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: de6cd611f1f528364194324cd058d48d9efdb1ed62af42131953a726547bced1
 ---
 

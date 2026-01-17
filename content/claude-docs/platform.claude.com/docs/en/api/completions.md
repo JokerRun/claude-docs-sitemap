@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 6511a1f3a0b96088be771980ae4ff1beea96334eae48c961e1c4c8e8c59f9291
 ---
 

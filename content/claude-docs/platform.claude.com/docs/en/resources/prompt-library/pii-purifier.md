@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/pii-purifier
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: ceaa43de11244bfc0e9b65c7fba7f94192be340e1060b7e39ce739ef5db8572e
 ---
 

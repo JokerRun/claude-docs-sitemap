@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/cancel
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: a9b39fec2334f9cf14a3a68dff436006b889ecaf9b3f5b4d9252276422e8af90
 ---
 

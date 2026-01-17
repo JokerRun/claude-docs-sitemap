@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: 69433dbc0b51edde2ac81e7e83bb31329c37cefad2501931b321dd504f8d5c99
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: 5ae89bc6b5755e5095b38f4981fcdfc54f897980a2d9490ea05d3deb6a10230d
 ---
 
 # Claude Code on the web
@@ -323,6 +323,7 @@ When using "Limited" network access, the following domains are allowed by defaul
 * ghcr.io
 * mcr.microsoft.com
 * \*.data.mcr.microsoft.com
+* public.ecr.aws
 
 #### Cloud Platforms
 
@@ -343,6 +344,8 @@ When using "Limited" network access, the following domains are allowed by defaul
 * dot.net
 * visualstudio.com
 * dev.azure.com
+* \*.amazonaws.com
+* \*.api.aws
 * oracle.com
 * [www.oracle.com](http://www.oracle.com)
 * java.com

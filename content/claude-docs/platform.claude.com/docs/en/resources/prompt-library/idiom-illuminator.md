@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/idiom-illuminator
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 994f3e2f01b98cbaa06d34731a652163ad8dba1514c603f4822e1d9c419fb1d5
 ---
 

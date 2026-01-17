@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/grammar-genie
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 0361230010e12af198e96a7c3c0aba3a9f3556917fb2fe70cd92041162ffcbc4
 ---
 

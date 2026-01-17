@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/retrieve_metadata
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 2afa8fb5d2d47dd6e16ebfb793fa3ef295c49f9d13d0fe2bb98fcc47e199335d
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 19e6d30899036fabcb1a04c936943b50fdfbacc18e27c6c841a369c867a28cd2
 ---
 

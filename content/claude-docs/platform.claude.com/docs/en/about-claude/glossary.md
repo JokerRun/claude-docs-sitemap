@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/glossary
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 037dd0422caf650ad78a5da637d66e7835f811c205e8697ee45cd9896f8f5b0a
 ---
 

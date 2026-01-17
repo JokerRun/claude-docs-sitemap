@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/versioning
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 26f5ad63098388a174cdce9235ed20c5f291d87c365f4693ecb2c11e5a229645
 ---
 

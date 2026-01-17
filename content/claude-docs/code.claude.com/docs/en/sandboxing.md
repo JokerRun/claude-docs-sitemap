@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: bcdc06de16c420371e610419230b3f8a6039df5f60b54b8a31a7f5c0a9dbdbec
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: 023a1ce2739bb9ceb04c1a51e4267a32c429fcd2c9d620d8a56d240de4bc00f8
 ---
 
 # Sandboxing
@@ -223,7 +223,7 @@ For implementation details and source code, visit the [GitHub repository](https:
 * [Security](/en/security) - Comprehensive security features and best practices
 * [IAM](/en/iam) - Permission configuration and access control
 * [Settings](/en/settings) - Complete configuration reference
-* [CLI reference](/en/cli-reference) - Command-line options including `-sb`
+* [CLI reference](/en/cli-reference) - Command-line options
 
 
 ---

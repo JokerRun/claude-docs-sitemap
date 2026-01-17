@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/user-input
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: ef53f611dc727b2bca5498a7ae35d2ed4c613d3549ae1b9d3df49064f94c1ec3
 ---
 

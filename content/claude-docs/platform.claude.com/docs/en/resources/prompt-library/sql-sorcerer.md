@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/sql-sorcerer
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: e8d6950cc14862fe142b6f8eafb13b6a4a2b74fcaf7b10a7e7a64a62a2974a9d
 ---
 

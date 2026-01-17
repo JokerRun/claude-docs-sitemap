@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/hosting
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 3d8ace620a89841bef4edbffd6e656393a00efec625b4aa59bd244cd988f2923
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 2bab695738a2715a6a06823b45793d1d0877924721b6c31f51ff70bcc7a67273
 ---
 

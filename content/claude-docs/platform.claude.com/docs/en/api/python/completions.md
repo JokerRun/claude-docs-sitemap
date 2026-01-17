@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/completions
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 5dfb2fb1ce93b7e55817492541a23edb1340e3efbc8c5184e8cc15cbaffec3ed
 ---
 

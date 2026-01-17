@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: e85843505f63cd66968e0b6b8b58141436b28ef3da3332cdf2243f5edf2e98b0
 ---
 

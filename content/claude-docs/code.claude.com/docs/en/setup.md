@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: 7ac12558871eef8323113e593dd7c6cb88c2a118e0cfad09537ebde8a3f438ad
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: 2ca4cfb9d8ace8332b7ea005279e63ddaaa615449943c2de6a18bcc2673991a1
 ---
 
 # Set up Claude Code
@@ -11,7 +11,7 @@ sha256: 7ac12558871eef8323113e593dd7c6cb88c2a118e0cfad09537ebde8a3f438ad
 
 ## System requirements
 
-* **Operating Systems**: macOS 10.15+, Ubuntu 20.04+/Debian 10+, or Windows 10+ (with WSL 1, WSL 2, or Git for Windows)
+* **Operating Systems**: macOS 13.0+, Ubuntu 20.04+/Debian 10+, or Windows 10+ (with WSL 1, WSL 2, or Git for Windows)
 * **Hardware**: 4 GB+ RAM
 * **Network**: Internet connection required (see [network configuration](/en/network-config#network-access-requirements))
 * **Shell**: Works best in Bash or Zsh
@@ -45,18 +45,30 @@ To install Claude Code, use one of the following methods:
     ```batch  theme={null}
     curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
     ```
+
+    <Info>
+      Native installations automatically update in the background to keep you on the latest version.
+    </Info>
   </Tab>
 
   <Tab title="Homebrew">
     ```sh  theme={null}
     brew install --cask claude-code
     ```
+
+    <Info>
+      Homebrew installations do not auto-update. Run `brew upgrade claude-code` periodically to get the latest features and security fixes.
+    </Info>
   </Tab>
 
   <Tab title="WinGet">
     ```powershell  theme={null}
     winget install Anthropic.ClaudeCode
     ```
+
+    <Info>
+      WinGet installations do not auto-update. Run `winget upgrade Anthropic.ClaudeCode` periodically to get the latest features and security fixes.
+    </Info>
   </Tab>
 </Tabs>
 

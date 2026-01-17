@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/retrieve
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 3cc27fd4adf2561df0c49d29f8b4b0ea9b5449d8c9876e665d1103dc324a3347
 ---
 

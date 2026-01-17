@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/models/list
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: d31df7f4a2e659bfdd8aa4fcbc1ee3844cdbcf84d3000318276f7234743b3364
 ---
 

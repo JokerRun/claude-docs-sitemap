@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: a5a13e85921e891a29bc6f2cbca321bca2b602b03294dd76975bd9dd60584c1c
 ---
 

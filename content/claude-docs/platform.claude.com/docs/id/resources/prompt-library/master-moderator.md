@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/master-moderator
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: a2e544015ff10812d4c8c4ae5e3da86a70a04d5ae876518df81abe84dbde7d1e
 ---
 

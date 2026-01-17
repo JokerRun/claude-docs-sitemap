@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/define-success
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: f1641e2d15bf30563ce45c37eb16001d63d45581aace7ed4625ff2bc0f815f45
 ---
 

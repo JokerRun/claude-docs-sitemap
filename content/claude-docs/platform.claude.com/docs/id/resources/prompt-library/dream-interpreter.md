@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/dream-interpreter
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 576b42a116459d9dd160b77dacb7099603f1279f010afa4b642afc107e67efe9
 ---
 

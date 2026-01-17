@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: 3db0bc9f8a388b36d31423523ea108b84c179cc282ba49478bc3038fc123a956
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: cab882cf51123b40cad5df17f8690658995237eeaab43339f4645684ba5e9289
 ---
 
 # Create custom subagents
@@ -506,7 +506,7 @@ Subagent transcripts persist independently of the main conversation:
 
 #### Auto-compaction
 
-Subagents support automatic compaction using the same logic as the main conversation. When a subagent's context approaches its limit, Claude Code summarizes older messages to free up space while preserving important context.
+Subagents support automatic compaction using the same logic as the main conversation. By default, auto-compaction triggers at approximately 95% capacity. To trigger compaction earlier, set `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` to a lower percentage (for example, `50`). See [environment variables](/en/settings#environment-variables) for details.
 
 Compaction events are logged in subagent transcript files:
 

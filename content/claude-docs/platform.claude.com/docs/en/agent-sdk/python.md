@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: cadba2eab4f8d3054c4c69d1259a8d5956fa9663cf2479406c1444e4c7c0d813
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: 482e71c2b3f3ced7fbfeb52a41471c465b84e0d6795dc776124dd61bbf4ad96a
 ---
 
 # Agent SDK reference - Python
@@ -1957,10 +1957,8 @@ from claude_agent_sdk import query, ClaudeAgentOptions, SandboxSettings
 sandbox_settings: SandboxSettings = {
     "enabled": True,
     "autoAllowBashIfSandboxed": True,
-    "excludedCommands": ["docker"],
     "network": {
-        "allowLocalBinding": True,
-        "allowUnixSockets": ["/var/run/docker.sock"]
+        "allowLocalBinding": True
     }
 }
 
@@ -1970,6 +1968,10 @@ async for message in query(
 ):
     print(message)
 ```
+
+<Warning>
+**Unix socket security**: The `allowUnixSockets` option can grant access to powerful system services. For example, allowing `/var/run/docker.sock` effectively grants full host system access through the Docker API, bypassing sandbox isolation. Only allow Unix sockets that are strictly necessary and understand the security implications of each.
+</Warning>
 
 ### `SandboxNetworkConfig`
 
@@ -2053,6 +2055,8 @@ This pattern enables you to:
 
 <Warning>
 Commands running with `dangerouslyDisableSandbox: True` have full system access. Ensure your `can_use_tool` handler validates these requests carefully.
+
+If `permission_mode` is set to `bypassPermissions` and `allow_unsandboxed_commands` is enabled, the model can autonomously execute commands outside the sandbox without any approval prompts. This combination effectively allows the model to escape sandbox isolation silently.
 </Warning>
 
 ## See also

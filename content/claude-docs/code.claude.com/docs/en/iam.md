@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/iam
-fetched_at: 2026-01-15T03:34:24.959152Z
-sha256: 2659ea0966d72331d6fe5553d1a668bf65c862d18f6c4af266db9865b4cfcddc
+fetched_at: 2026-01-17T03:25:45.160390Z
+sha256: b74910e8b6d74e9bbc2ba7b3bf61aa3574db4f20198b84657bc37b6643fc085e
 ---
 
 # Identity and Access Management
@@ -141,9 +141,11 @@ Bash permission rules support both prefix matching with `:*` and wildcard matchi
 
   For more reliable URL filtering, consider:
 
-  * Using the WebFetch tool with `WebFetch(domain:github.com)` permission
+  * **Restrict Bash network tools**: Use deny rules to block `curl`, `wget`, and similar commands, then use the WebFetch tool with `WebFetch(domain:github.com)` permission for allowed domains
+  * **Use PreToolUse hooks**: Implement a hook that validates URLs in Bash commands and blocks disallowed domains
   * Instructing Claude Code about your allowed curl patterns via CLAUDE.md
-  * Using hooks for custom permission validation
+
+  Note that using WebFetch alone does not prevent network access. If Bash is allowed, Claude can still use `curl`, `wget`, or other tools to reach any URL.
 </Warning>
 
 **Read & Edit**

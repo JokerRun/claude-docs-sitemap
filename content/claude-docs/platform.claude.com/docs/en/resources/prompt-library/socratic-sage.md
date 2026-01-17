@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/socratic-sage
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: cc087343bc073b87bdebb1a89b6cd53b9e39d18f9b8c1dff6b50a341f38ac1ae
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/results
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 26be9b32f9b274503082b83b7774bfb44518c5808e5b7997526e8b0c7bacc0ab
 ---
 

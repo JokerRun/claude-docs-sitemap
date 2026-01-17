@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/polyglot-superpowers
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: c12166daa61ba1fcc099fe22544d6919658275cfe5238c8c0624dc3f820ed128
 ---
 

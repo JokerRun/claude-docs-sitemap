@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/career-coach
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 7ef94e2351a0248651cb4c73b4df9fafd55d8a91cbd5bd4d4fbe37518f7a8466
 ---
 

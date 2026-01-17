@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 5f1da5e48750d4321eb836b4969c2a09b56bca61c576c0f6c9b801e8282b31b2
 ---
 

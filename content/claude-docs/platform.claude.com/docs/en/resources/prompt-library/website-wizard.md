@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/website-wizard
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 05c237680a811543dfc672ec4fa0cdd802b8c25a915b8632fa22579223c17f34
 ---
 

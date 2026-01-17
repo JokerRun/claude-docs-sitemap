@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/brand-builder
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 2a7d51e58c0673e29e8c4ed884f16dfde6f615ae3f91246f5e3db9ab2bd69ee1
 ---
 

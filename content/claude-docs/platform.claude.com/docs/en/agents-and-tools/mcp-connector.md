@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: b2d7ee7957131e6cf7fa3eb7479174457ef28ca2ab9d47ded666aa239c5d308d
 ---
 

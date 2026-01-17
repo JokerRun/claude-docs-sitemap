@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/extended-thinking-tips
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: b1d836e66b772beaae7d3b8feda261820c1cf47d89aa5ec068d7dcd61a3d5543
 ---
 

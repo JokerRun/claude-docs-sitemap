@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/git-gud
-fetched_at: 2026-01-15T03:34:24.959152Z
+fetched_at: 2026-01-17T03:25:45.160390Z
 sha256: 654d2324247b8528b9eb6bce2ae06ad1cd1d41f373eac6f51a5906b6797fe74d
 ---
 
