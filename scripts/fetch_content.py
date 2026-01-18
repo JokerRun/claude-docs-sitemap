@@ -164,8 +164,8 @@ def main(sitemap_path: str = "data/sitemaps/en.yaml", content_base: str = ".") -
             # Create directory
             os.makedirs(local_dir, exist_ok=True)
             
-            existing_meta = read_frontmatter(local_path)
-            existing_sha256 = existing_meta.get("sha256") if isinstance(existing_meta, dict) else None
+            existing_meta = read_frontmatter(local_path) or {}
+            existing_sha256 = existing_meta.get("sha256")
             if existing_sha256 != sha256:
                 # Add frontmatter and write only when content changes
                 text_with_fm = add_frontmatter(content, url, source, now)
@@ -173,7 +173,7 @@ def main(sitemap_path: str = "data/sitemaps/en.yaml", content_base: str = ".") -
                     f.write(text_with_fm)
                 fetched_at = now
             else:
-                fetched_at = existing_meta.get("fetched_at", now) if existing_meta else now
+                fetched_at = existing_meta.get("fetched_at", now)
             
             # Record in manifest
             manifest.append({
