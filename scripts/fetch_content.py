@@ -76,6 +76,31 @@ def compute_sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def read_frontmatter(path: str) -> dict | None:
+    """Read YAML frontmatter metadata from an existing markdown file."""
+    if not os.path.exists(path):
+        return None
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            lines = f.read().splitlines()
+    except OSError:
+        return None
+    if not lines or lines[0] != "---":
+        return None
+    end_index = None
+    for i in range(1, len(lines)):
+        if lines[i] == "---":
+            end_index = i
+            break
+    if end_index is None:
+        return None
+    fm_text = "\n".join(lines[1:end_index]).strip()
+    if not fm_text:
+        return None
+    metadata = yaml.safe_load(fm_text)
+    return metadata if isinstance(metadata, dict) else None
+
+
 def add_frontmatter(content: bytes, url: str, source: str, fetched_at: str) -> str:
     """
     Add YAML frontmatter to markdown content.
@@ -130,6 +155,7 @@ def main(sitemap_path: str = "data/sitemaps/en.yaml", content_base: str = ".") -
         try:
             # Fetch content
             content = fetch_bytes(url + ".md")
+            sha256 = compute_sha256(content)
             
             # Determine local path
             local_path = url_to_local_path(url + ".md", content_base)
@@ -138,18 +164,23 @@ def main(sitemap_path: str = "data/sitemaps/en.yaml", content_base: str = ".") -
             # Create directory
             os.makedirs(local_dir, exist_ok=True)
             
-            # Add frontmatter and write
-            text_with_fm = add_frontmatter(content, url, source, now)
-            with open(local_path, "w", encoding="utf-8") as f:
-                f.write(text_with_fm)
+            existing_meta = read_frontmatter(local_path)
+            existing_sha256 = existing_meta.get("sha256") if isinstance(existing_meta, dict) else None
+            if existing_sha256 != sha256:
+                # Add frontmatter and write only when content changes
+                text_with_fm = add_frontmatter(content, url, source, now)
+                with open(local_path, "w", encoding="utf-8") as f:
+                    f.write(text_with_fm)
+                fetched_at = now
+            else:
+                fetched_at = existing_meta.get("fetched_at", now) if existing_meta else now
             
             # Record in manifest
-            sha256 = compute_sha256(content)
             manifest.append({
                 "source": source,
                 "url": url,
                 "local_path": os.path.relpath(local_path, content_base),
-                "fetched_at": now,
+                "fetched_at": fetched_at,
                 "sha256": sha256,
             })
             
