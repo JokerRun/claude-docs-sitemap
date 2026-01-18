@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: ba664ccfd78c71d1c750f508f790baca3a15247f011fe019c8e55627ab4327cf
 ---
 

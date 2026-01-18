@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/corporate-clairvoyant
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: a5a6a0f1f837cac9809405cc4c9b721c89acf560d2257ae60be64119a001dd6d
 ---
 

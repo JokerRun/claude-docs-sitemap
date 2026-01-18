@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: a4eef5d3e8548b042365882143d069fc7b460e44a4b4b02c0f9a827da83a767d
 ---
 

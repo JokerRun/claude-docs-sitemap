@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 5f03f9fb80f4261360bf453c4eecd79f4b7bdff61df0aa018aa678c345ac53ca
 ---
 

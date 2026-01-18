@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/list
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 4999593c8620585dd131d715b54cb234aa0ae0760d86d8e93b57865ed816fc3f
 ---
 

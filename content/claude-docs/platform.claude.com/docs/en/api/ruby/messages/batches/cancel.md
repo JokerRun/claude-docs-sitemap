@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/cancel
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c95b6e6aab5e4af187c2e0060fdcfecc71acd179499bf1b56c8e0c3b78db9b1f
 ---
 

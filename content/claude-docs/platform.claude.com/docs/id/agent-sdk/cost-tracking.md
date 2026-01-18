@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/cost-tracking
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 30db8cbada18f6b5cb2a8376f6730e0c0c596fa34474e2709c3ceccd34cc22bb
 ---
 

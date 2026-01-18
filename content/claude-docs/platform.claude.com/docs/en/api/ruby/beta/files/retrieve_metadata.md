@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/retrieve_metadata
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 595585d35f1dd1c5b9070ed15cbdd8c9e57a0fdec1658c06fb3a6968956f9fa6
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: fabb7627f1d6404a6983fc2e0d3c1582d05f1444a032b086a4db8e4bd2ef13fe
 ---
 

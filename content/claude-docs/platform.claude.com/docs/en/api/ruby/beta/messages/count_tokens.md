@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/count_tokens
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: e5c422acf9c85170bc443714f3ba0f82c23ffde9035e712ee9786998fe41ea37
 ---
 

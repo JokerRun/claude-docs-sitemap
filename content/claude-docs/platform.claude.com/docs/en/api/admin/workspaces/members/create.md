@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/create
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 8d9c751a0ef4e74e05653ed6a152d508e362cf508e896db1ed6f028148d38316
 ---
 

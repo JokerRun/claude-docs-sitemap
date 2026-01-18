@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/efficiency-estimator
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c30ed9735ee4b6651981dcd5391c325ea9a8acae81803bbf9913b55e2ae6ed34
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 33d4f02d183d8637d264d948fdf4a690fa9a41dfbda01f8cdadbcc4f1e712220
 ---
 

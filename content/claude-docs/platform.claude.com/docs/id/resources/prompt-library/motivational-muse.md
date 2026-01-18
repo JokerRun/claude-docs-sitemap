@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/motivational-muse
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 1f80f3bc89d6048ab8dba1896a885f1f2fd08e4d77cd41e6ed8be4d831679b5e
 ---
 

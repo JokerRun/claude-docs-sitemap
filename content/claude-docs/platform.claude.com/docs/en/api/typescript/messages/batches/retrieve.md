@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/retrieve
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: a46e305636c3469ef0de4772ddbf94a7047b36ff62dde8ea939b0d65e8f43634
 ---
 

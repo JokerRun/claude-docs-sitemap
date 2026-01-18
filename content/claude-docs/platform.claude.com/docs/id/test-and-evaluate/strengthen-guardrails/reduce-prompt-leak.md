@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 6449bf0463398265884d662911750afb48ee9131fb5e9f06b96f3718731c18bb
 ---
 

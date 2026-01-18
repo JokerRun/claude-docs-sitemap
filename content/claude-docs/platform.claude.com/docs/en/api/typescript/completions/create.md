@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions/create
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 3f828b174afceabaf39c6f028065c384ad9991c1f0a1442847b4ed0e7adc200a
 ---
 

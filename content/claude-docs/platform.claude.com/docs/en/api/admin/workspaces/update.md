@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/update
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: d4fe0af0e6c91cc24860a59f3618756f6bda718c6ee967bdb6996f799ce0d3c6
 ---
 

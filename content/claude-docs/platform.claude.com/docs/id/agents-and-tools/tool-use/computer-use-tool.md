@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: f1b7e0106c55fbb419c07affd4950b31780c7a61fd12a3bee6d1ff9c48b45c71
 ---
 

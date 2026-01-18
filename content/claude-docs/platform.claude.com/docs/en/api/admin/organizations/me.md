@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/organizations/me
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: a47a10fa9717fd30e259e2d3278ed601ec43702ae770f823b037827956cf1bb0
 ---
 

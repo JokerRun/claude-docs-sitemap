@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 4a524a4a75728ade37942a093aef6069863083e54e18f53cf444188109606ae4
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: f6ee7cd6ea5427c57cd6b5e83a2dcc136d7b4b41153309c5300e15328d955c7d
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c4cea2f99e6d73094797a36641e18351050b1bdf96bad9f41a00d6a189772ea4
 ---
 

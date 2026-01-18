@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ip-addresses
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 76826b85a3a62f49c8275b90a0ad9deae561dcc6ed0d4b14eb0543a603f43ce8
 ---
 

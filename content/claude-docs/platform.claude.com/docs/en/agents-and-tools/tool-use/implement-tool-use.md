@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 4592aa5a3f33e9983923e929932b45fc00806c5d8f595ff78963818573070d84
 ---
 

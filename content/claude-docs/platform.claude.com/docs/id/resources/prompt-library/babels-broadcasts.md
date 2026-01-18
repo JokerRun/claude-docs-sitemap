@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/babels-broadcasts
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 8ac95206998db01985d2dc92cd3c9fd203b524fe95084a1bedd9556c3ad8edd3
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompt-generator
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 44449eca034bcfd37cbfa0c18b39c09728db31726af604900ef62d2845d12a0d
 ---
 

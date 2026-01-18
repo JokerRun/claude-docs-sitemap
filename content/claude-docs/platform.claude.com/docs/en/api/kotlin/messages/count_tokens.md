@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/kotlin/messages/count_tokens
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c96e01d242c4b646a88539417a2b32136bdd0c247e5316823858acd819eebff6
 ---
 

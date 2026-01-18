@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 78e4bbc36d23a0734abf3a894bef0f5fb6d3c9aa3e47076b8521b2330846f0dc
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/meeting-scribe
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 3d01ff87241ddf746139b1b62a7f64fddde6a43594f539caebf948d24ed56175
 ---
 

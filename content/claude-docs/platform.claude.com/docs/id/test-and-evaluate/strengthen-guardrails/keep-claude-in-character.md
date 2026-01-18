@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/keep-claude-in-character
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 1994cc69238c10d72d6c65b2f112d5cada4ec7b471455db25dde056c2e23be7c
 ---
 

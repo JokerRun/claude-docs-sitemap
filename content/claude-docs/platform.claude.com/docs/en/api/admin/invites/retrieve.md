@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/retrieve
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 26b8356da643be5196db42c0e9073edce3f19e11351f3eb3b8accb67b2078265
 ---
 

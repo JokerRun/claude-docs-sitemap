@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/custom-tools
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: dd283aaf41897660644cdec10ee48dc61c29a7b5ce9268bf1f6578f2c9961484
 ---
 

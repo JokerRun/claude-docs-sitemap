@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c8b3fb2a5182c25d58eebca099671bf53976c9889419056df53c63ee55f27180
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/modifying-system-prompts
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 7004f45a515bf7df8bab61659d9ef52b6d94ccbb555a14f807fae9d51c0c81e7
 ---
 

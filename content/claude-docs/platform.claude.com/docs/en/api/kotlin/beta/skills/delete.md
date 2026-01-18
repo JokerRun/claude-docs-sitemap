@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/kotlin/beta/skills/delete
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c95c2a148975f907f271b9c9b3b6971e0c67d162e76b1212194fd3dc4903e028
 ---
 

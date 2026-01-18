@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/python-bug-buster
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 38d0e17577b9957b24dff5ab1268b0d9f24f5834d20ce4da5d7683b3895116cc
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/tongue-twister
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: e4e260c9ea4d4bc425453a30841f35d655fc234ddf3fddca7e17cd4b3a038395
 ---
 

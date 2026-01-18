@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-code-analytics-api
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 65b65e2d21fe9b0a176869ba1af9ec48ed96dcef69127ffe790eb77846288134
 ---
 

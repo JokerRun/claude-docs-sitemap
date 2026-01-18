@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 870df2bde03301d96c87fe1d343de173304b26f1a82796d9a57c33a44a57292b
 ---
 

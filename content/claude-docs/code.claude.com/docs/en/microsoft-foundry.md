@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/microsoft-foundry
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: e0567f4c00c37f0b8393864cefe3796fca8d6396f749e5a5e1977cd14d179616
 ---
 

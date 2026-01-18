@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/review-classifier
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: ff59112daa0fa13008a64a23d5cd2e96fbf29e60f7f3263acc27d05bcd432341
 ---
 

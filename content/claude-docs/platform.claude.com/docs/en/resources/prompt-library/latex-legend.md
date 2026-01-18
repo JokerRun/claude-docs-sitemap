@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/latex-legend
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c5557c90ac24ec89d5f32208d5e26439c605239224b53b03d1f560fce67b0d2f
 ---
 

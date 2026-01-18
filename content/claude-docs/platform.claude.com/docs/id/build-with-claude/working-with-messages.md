@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 875d89592ac72203dd2edaca1fe802513cb947ac4539748d6480cd838b0a7a89
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 14943d2ee43211736fae184082bd16e5604e29ed2b0cac223f68c3d65d0c5ef5
 ---
 

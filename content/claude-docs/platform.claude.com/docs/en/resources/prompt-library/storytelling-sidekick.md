@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/storytelling-sidekick
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 2f4c95512b075b080d3ab5572932d4416446438b95caf5ee63ff42ae4a73baac
 ---
 

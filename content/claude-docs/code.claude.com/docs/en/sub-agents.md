@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: cab882cf51123b40cad5df17f8690658995237eeaab43339f4645684ba5e9289
 ---
 

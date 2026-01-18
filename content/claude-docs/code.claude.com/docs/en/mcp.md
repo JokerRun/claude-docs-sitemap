@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: df428cfcc67fe3eb6a503025069b5ef67e9291d049ba8af42596ed0302e63aea
 ---
 

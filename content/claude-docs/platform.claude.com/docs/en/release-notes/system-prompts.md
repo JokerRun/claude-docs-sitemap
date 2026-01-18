@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/system-prompts
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 8377ee2de42da290b8e675e67a2e434c1d79ba39a5cf41d47459555160f8e4fc
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/create
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 98580bbaa60819c4894deb57464bc10245ba080d12b6f41d0c93d91ffdfc1acc
 ---
 

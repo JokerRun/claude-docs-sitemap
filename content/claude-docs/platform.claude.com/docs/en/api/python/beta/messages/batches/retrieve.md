@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/retrieve
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 65b7fa91b9fe047e5a165a371331929a79437bd5de562c5965fb322d95512971
 ---
 

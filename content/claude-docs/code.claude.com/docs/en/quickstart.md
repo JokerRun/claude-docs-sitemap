@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c0e8b76074ff6ff7fae495574ffeb010f7acce19662657a18ab135c179309845
 ---
 

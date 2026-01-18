@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: e7253a64bf365520c6482e9c4bd9529d03d97423ae604a8e7f5433835d543f9a
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 135cc18b87007811dca084180ce944f1d6f27c7e04513167fcb8a9d1c9d5586a
 ---
 

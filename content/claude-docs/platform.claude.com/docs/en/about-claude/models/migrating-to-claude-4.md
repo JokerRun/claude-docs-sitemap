@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/migrating-to-claude-4
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 5387e55786276e761eab224961baf384ea744499569f79f1056b49717519d695
 ---
 

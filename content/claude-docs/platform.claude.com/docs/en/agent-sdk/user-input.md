@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/user-input
-fetched_at: 2026-01-17T03:25:45.160390Z
-sha256: ef53f611dc727b2bca5498a7ae35d2ed4c613d3549ae1b9d3df49064f94c1ec3
+fetched_at: 2026-01-18T03:48:37.713242Z
+sha256: acb3bc16d2fa2683fe2f7bda4ba1e074ad8e185caaf0d39c8ed0450dbee64554
 ---
 
 # Handle approvals and user input
@@ -367,6 +367,10 @@ Beyond allowing or denying, you can modify the tool's input or provide context t
 ## Handle clarifying questions
 
 When Claude needs more direction on a task with multiple valid approaches, it calls the `AskUserQuestion` tool. This triggers your `canUseTool` callback with `toolName` set to `AskUserQuestion`. The input contains Claude's questions as multiple-choice options, which you display to the user and return their selections.
+
+<Tip>
+Clarifying questions are especially common in [`plan` mode](/docs/en/agent-sdk/permissions#plan-mode-plan), where Claude explores the codebase and asks questions before proposing a plan. This makes plan mode ideal for interactive workflows where you want Claude to gather requirements before making changes.
+</Tip>
 
 The following steps show how to handle clarifying questions:
 

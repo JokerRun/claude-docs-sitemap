@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: a9126ea7d4a6242c9c34bd267ddf8ed002cc972f177605f1222b02e7276a78a8
 ---
 

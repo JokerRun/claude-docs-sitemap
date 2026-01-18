@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/kotlin/beta/files/upload
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: dda6755cfd5765c938b362a6f59bd592150e958a1410633177bb7972f9104156
 ---
 

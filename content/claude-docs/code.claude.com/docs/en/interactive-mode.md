@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: de34f95a52d6d531c579d06c160455f53d08137b83b4a618a9e59b3a12ab7190
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/kotlin/messages/batches/delete
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 7d2e8d0d7155e3268818063857d7dd65683c58cc10416c4876656441daac8787
 ---
 

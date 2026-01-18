@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: f3c3c6a00ec0499f673ebc25ed81a81f0aba9905640f2b20591f37a914e9e5ae
 ---
 

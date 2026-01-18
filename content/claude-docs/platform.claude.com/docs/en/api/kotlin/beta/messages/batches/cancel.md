@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/kotlin/beta/messages/batches/cancel
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 5fa1c8396cad810e5f0aad3c3238c38b3d967766717cffdb627dbf66838d1e4a
 ---
 

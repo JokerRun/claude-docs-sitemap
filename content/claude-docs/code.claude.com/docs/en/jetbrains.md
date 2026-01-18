@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/jetbrains
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 5b6e45265742bff4966b949b2f17615dbe76ebf6e4fd9b3918eb07dc19354b18
 ---
 

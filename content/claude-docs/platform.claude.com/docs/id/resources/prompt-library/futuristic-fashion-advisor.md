@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/futuristic-fashion-advisor
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 113444cf81738ed9690246830b885bca07526b305120ffe6e3d4f423b07839f3
 ---
 

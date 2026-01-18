@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/portmanteau-poet
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: ad28c77d72fe6bb0abd18ce9b3041e074e4a27a729dba95c5f40a96d3aeea6eb
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/code-consultant
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 23e7d3757144aa9b0c4acc562fabfe714fb3c45c15befaa0cd43e998bc468fd8
 ---
 

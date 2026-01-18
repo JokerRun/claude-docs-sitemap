@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/data-organizer
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c494635e2e1fa576be6c793936dd839f528fe7f5051c1b6d8153b01d4d90149e
 ---
 

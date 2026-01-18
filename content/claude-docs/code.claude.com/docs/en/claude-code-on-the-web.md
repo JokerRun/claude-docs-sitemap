@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 5ae89bc6b5755e5095b38f4981fcdfc54f897980a2d9490ea05d3deb6a10230d
 ---
 

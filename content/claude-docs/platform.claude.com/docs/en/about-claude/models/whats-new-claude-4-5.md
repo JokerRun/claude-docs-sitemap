@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-5
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 4b5be0e9e17eac4da2015079092f79d5742dc2659a2de72efbaeb01361ed6223
 ---
 

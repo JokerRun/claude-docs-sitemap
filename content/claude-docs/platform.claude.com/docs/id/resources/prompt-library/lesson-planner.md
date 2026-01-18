@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/lesson-planner
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 7f419a2f5fd5a54342c13e9ab0255bf658d7f819c2e3ce7597ee384a92f0544b
 ---
 

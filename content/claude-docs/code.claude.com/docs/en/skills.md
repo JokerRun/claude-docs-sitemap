@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: f1b7577f6fc33b5e6c2fc853dce36c784dde2c6ff0a5044212b6842d11ca3ab8
 ---
 

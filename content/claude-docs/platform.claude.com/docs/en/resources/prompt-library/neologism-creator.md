@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/neologism-creator
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 5e11f424b118022acba486bde861736f4c8f49b38aadc88c60fbf19b31dd61f4
 ---
 

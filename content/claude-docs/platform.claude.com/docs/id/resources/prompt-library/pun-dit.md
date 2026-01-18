@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/pun-dit
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 6c40464cd0f5783daaf8e9103a81fe571e6c3e206f81e890336a0efb7a16e785
 ---
 

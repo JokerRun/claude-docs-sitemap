@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/openai-sdk
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 2f7e8ba53c036b709893f7437b3b4ac8644e3dbb24b240b5e657125804329dff
 ---
 

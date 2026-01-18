@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/direction-decoder
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 812e70944e38694299acb706a1fa4d34293d6cf1dd9b8c0ca802c061671014fc
 ---
 

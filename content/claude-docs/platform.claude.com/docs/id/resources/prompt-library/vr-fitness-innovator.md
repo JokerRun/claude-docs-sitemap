@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/vr-fitness-innovator
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 30a3d2014b9f8c5f763d25bb7553bc9b87658383b95467470a25e43f94963fd8
 ---
 

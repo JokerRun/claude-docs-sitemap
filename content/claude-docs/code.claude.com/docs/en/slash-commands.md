@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/slash-commands
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 8efaff3de9abbb5233b776a90c3591d827eb33a00e5e594a01acd30278228cae
 ---
 

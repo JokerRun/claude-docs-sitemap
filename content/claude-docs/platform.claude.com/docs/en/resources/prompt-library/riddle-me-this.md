@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/riddle-me-this
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 4a27d327cc9266d595131e4e9ef50e34289802bc7d4820db735d72ff5b931956
 ---
 

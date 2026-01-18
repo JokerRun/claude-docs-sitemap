@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/devcontainer
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c36b41dda235ca4c6e7c8edcd809832ab3b2d9de926a8df5037028c68f94150a
 ---
 

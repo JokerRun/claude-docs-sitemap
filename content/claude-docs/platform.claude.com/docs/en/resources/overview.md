@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/overview
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 4ea082805b435e3fcbaaf93c9c953f66cab60b1d4579cb6dd7acb609a72ac88f
 ---
 

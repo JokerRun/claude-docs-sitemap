@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/delete
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: d9865d39451f30d1a17616988de333a272ff74ee3c604b890c7a4a431b9a2bed
 ---
 

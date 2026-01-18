@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 2e3d03bcc25b07bc1de2799e09f57ac8e35810341c5d1d53626afc26ae91df88
 ---
 

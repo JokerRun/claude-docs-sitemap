@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/embeddings
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: d6e0883e25f216a86f2b20736c172bf66b79387412955b1cc9ed2a68bf0dc03d
 ---
 

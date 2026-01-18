@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/use-xml-tags
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 3ac65b4781071ccdb21d970473e72fb0d8e046d92a40c4e88835ba01409d71a5
 ---
 

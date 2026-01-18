@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/function-fabricator
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 1df206c12424f8f7cd33de9816d110755e5a30c11d9236a361fc1cb497ea4fc8
 ---
 

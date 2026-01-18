@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/delete
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: bd41ccfa5f609a4ec546d572e6b60b3fc241aaeb6534c6f81548ebd3d1e7010d
 ---
 

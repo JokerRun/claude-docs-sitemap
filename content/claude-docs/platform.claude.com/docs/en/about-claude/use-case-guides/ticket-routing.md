@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 87a3f9c185af138b05a97082a08f71dfb3bad2bc78b673109fc5f756a271d551
 ---
 

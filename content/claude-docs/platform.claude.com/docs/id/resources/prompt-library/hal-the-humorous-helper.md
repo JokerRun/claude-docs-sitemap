@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/hal-the-humorous-helper
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: e8038cb70863029474900b5af9c6999c5b6233352e34aa6f5bb79d8ceaebbd0f
 ---
 

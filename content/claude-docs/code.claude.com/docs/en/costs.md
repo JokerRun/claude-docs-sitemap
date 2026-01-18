@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: f8583fcd049cab798804a6cdf8b7c78fbe6f65db3d6e5271738b8d45686ab8f8
 ---
 

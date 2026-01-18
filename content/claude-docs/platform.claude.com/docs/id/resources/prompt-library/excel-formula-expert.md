@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/excel-formula-expert
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: be4623cf65df1cb74144794c9dfa1de12a9ba00735d3072696e7fae5b6413695
 ---
 

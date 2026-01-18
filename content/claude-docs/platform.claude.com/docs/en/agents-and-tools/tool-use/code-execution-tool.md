@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 7057516f007fb118e8857c3fe8e47323a8a3ac00d708ad94d274acfcd92c9788
 ---
 

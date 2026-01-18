@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/tweet-tone-detector
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 96dc45947a4883fbb85e574680fcb41c72d6eb1cc40b689df9d81907f49fab2a
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c94403c7b7a2f376ab3a7afc40462acbd5cdf20c8122f5fffdeef7c37ecdb5a0
 ---
 

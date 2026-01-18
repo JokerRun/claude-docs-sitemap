@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/perspectives-ponderer
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: a639098e0b4ca88ff4411f848cc115bbc59e370c3b80eb19ff15185dcc42b437
 ---
 

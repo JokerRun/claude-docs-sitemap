@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: a7d38399b2ea7caaa54ffa486f8a636791aee5f20429df972044158e55c0a349
 ---
 

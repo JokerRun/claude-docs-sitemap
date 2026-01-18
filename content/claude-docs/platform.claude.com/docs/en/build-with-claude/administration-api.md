@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/administration-api
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 637019c5d004eb3cb7df2205920f66dfa84ed6c3c41cd795bad46c90f55580ec
 ---
 

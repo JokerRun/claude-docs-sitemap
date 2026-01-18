@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: ab07a72566c76b49a96e82a67d97354721ce74a3ccc80225f451c04cfd5fed72
 ---
 

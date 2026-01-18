@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/slash-commands
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 59f22d4c2a7d66fed5c3b21fab62e66e02e65ce7dbc3faaf0c67cd0c38c7fa6c
 ---
 

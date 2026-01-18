@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/culinary-creator
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: dfee3d65344f73716f1906a5792524fa5a642013d52608e2620f4866f95d0867
 ---
 

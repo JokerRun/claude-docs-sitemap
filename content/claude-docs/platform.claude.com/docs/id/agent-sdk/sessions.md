@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/sessions
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 418217ce402a34d058c08e2891ad36fd09754cdf158674dcf54020a9fb0a82a2
 ---
 

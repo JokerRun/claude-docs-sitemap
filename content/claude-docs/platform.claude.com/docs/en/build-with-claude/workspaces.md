@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/workspaces
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: d731a44ec6bf35387568d19f4d1134ddc983c8a0c15ccaf5914edd254edbee27
 ---
 

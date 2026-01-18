@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/kotlin/beta/skills
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: ddd2affccc18aab9fcf376806a2326cf002d36c357b7c5daa2fd748bceec93a6
 ---
 

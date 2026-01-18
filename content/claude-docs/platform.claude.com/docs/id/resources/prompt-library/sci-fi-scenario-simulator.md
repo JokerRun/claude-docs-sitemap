@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/sci-fi-scenario-simulator
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: e2e0e5fbc255335725bc338ee2b4a1a9c6059c61f8b75a48243092ba00eb2944
 ---
 

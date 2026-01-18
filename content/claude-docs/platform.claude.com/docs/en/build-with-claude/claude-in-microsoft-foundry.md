@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: aad3913f1f600a909cef1af0aed65cbb74b616d3847ddb95e18f0fd1d698942a
 ---
 

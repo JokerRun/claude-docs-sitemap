@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/subagents
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 49422feec26ed84594de641f6ad47768c3a9f0491db0d0791a84d23d28d3004f
 ---
 

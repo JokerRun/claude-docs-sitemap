@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/delete
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 81dfae08c140091ffc93cc928d024ad9edd9b018dc6793235fc67c628361f69e
 ---
 

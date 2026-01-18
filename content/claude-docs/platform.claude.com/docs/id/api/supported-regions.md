@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/supported-regions
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: b2f286819d937b082549324ee61802bec7d79adf66fa49ee6425278ee7ae8c93
 ---
 

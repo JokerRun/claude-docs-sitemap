@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/iam
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: b74910e8b6d74e9bbc2ba7b3bf61aa3574db4f20198b84657bc37b6643fc085e
 ---
 

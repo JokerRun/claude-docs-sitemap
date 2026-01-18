@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c1288bd6b8f039cfb35827da1a248061fc1d6f96c807896dfdd731b733cb971e
 ---
 

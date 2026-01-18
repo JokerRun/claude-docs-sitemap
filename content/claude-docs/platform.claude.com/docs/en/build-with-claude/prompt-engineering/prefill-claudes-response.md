@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prefill-claudes-response
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 2c5aa179428c3bf057f2cd7754b37f830948f9a5aea3fe8d24a38ad974e9f8bb
 ---
 

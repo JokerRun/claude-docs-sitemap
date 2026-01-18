@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/trivia-generator
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 70b6f2a6daa81dc2e6051a8e48cf23522f11ad19a538ba1cb415a002836e15aa
 ---
 

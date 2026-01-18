@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/adaptive-editor
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c3164603a2b0d92a7fd0a3079eea255ef8a1ed9288c345dc5b9d5780cbebd889
 ---
 

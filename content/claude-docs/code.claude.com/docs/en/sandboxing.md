@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 023a1ce2739bb9ceb04c1a51e4267a32c429fcd2c9d620d8a56d240de4bc00f8
 ---
 

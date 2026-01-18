@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/kotlin/completions
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: abba88ccf52a899daf8ae13d4aff21d03badaddaa40a099db444fd0ea9b08533
 ---
 

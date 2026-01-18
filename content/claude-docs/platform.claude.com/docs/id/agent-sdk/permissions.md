@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/permissions
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 30998dd01cf7e90d88bf0b108f9f78588ab70f1d20173def69890234670ca30b
 ---
 

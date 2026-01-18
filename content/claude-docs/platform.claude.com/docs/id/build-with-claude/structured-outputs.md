@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 9fcda8f71cb2cd8c2a52b7cfd82936977aa4947d5da9d3506a63cdf6f6bc6e72
 ---
 

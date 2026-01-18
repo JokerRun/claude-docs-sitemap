@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/alien-anthropologist
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 5b7ccd58ca317103ea57ac11ae212a741bf022011a89a13acc2f078675d2ff7c
 ---
 

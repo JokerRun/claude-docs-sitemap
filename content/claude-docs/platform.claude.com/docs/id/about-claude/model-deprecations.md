@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 562158c2daa19466e12b716db040246ac708eb65ea8cdd7ad68f17c4fb0382e6
 ---
 

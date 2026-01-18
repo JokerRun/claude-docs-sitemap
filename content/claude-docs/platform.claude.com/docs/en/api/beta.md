@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 41795c7e4eeb3acc4540a94c357c55cb216a24070e4f9dfb42ca156c2416345e
 ---
 

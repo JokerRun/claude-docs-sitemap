@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/code-clarifier
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 2aafb9324ad6cc481d4861301ee0701a7c906f5ad389572da27627cc5098037e
 ---
 

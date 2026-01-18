@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/time-travel-consultant
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 37ab985312ed12f36317839b74209dd6f4c26f85c34ca7fbb42bb7c21ab9e44a
 ---
 

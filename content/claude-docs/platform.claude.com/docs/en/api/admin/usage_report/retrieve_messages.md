@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_messages
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 293931fb7e52e1a644a19920430834fdb81ba7a8f839f2567a9ae3c3743d8716
 ---
 

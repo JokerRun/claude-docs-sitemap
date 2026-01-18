@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/grading-guru
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 355db06d9fa8f4f541bcfa96731404081383456fb7f043f29fa72af66c75b862
 ---
 

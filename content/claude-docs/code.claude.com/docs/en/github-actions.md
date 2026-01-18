@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 89634a8c16ccd2660b390d7261285e511895452a3eedb9fa6d90d63f1e100ec5
 ---
 

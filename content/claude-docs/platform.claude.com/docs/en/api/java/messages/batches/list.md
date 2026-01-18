@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/list
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 4c72371fbbc0ea3a4862f11ad8557966466adb6dd7385e02e0f6740e0bae0e0e
 ---
 

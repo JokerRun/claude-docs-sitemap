@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: f7d422dbd191f3a4e71f131459fd560baa54f10ac87c7e13ac376bdcccc1cc77
 ---
 

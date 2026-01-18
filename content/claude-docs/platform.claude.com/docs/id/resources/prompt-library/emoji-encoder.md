@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/emoji-encoder
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 2e487d19fe04d4d30af40a3612ecb2e8a4b3b6c7b9cfadec83c740bd41ad8da6
 ---
 

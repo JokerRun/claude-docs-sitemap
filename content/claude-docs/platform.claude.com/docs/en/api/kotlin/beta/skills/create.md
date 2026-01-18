@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/kotlin/beta/skills/create
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 61c69180431059d2528865ac77e2bb8c0e4714b5cb9543cf26b32b5bab5e512f
 ---
 

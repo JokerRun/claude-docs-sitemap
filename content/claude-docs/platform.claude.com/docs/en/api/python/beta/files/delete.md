@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/delete
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 66da4fcf6d4ce758843d1ec1726e6e19fadea00bbceeba0229a02f33a0dc9824
 ---
 

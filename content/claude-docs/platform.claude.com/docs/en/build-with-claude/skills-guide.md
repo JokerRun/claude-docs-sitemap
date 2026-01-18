@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 4d2947772f3669989ab33d46a7194041c4a55f130dbedfaf566c94be72ad3581
 ---
 

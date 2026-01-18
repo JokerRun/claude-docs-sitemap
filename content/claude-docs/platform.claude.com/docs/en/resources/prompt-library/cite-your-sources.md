@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/cite-your-sources
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: ca53b8c83d1f727f65c18c1a4e587e738de3f761eeb469c028b580e5cec9dd63
 ---
 

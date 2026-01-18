@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: ba19a4a1cad941f0606c5d7094c8eeeaee054f67072dc715e086e4d3d77ea8b7
 ---
 

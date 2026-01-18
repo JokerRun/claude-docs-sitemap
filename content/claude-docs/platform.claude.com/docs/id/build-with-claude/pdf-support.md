@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 882893c81acfcf3ef280ec6fb51fecfd708a29b47bb07a08a91c2509b788a754
 ---
 

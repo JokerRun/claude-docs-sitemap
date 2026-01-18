@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/interview-question-crafter
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 4faf15545a0c944434e102a2184c9b69fd36a7674b057b47c97a6c302896e5ea
 ---
 

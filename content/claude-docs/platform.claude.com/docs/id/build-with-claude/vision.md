@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 6d8aa1c98a980c33d2f85cb5d1647400a7e89faa2a7397080db0921a797aa75a
 ---
 

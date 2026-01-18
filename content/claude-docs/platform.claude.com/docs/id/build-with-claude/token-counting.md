@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 9a1abe38665c6d90ebea54dd2c204b4ea55129c394bb9827747535e78ff00617
 ---
 

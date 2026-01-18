@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: d888d6e2a77568e23a47bf8daf1f50c0ff5145bc4c6f6b046cc786b732298e87
 ---
 

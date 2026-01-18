@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/mood-colorizer
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 0d25fa39d685c1e5bb23ad3f441508d50f9375be05a1b4ace5d4e155ce481309
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 8349bd3cae905112958e901a06738f915e88599217fbef489cab152fa14d4213
 ---
 

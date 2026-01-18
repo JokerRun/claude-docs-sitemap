@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/completions
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 2f34c8603de6277ff49bb6afaf7e9e319e3de73489479bd213c285b8d1f09457
 ---
 

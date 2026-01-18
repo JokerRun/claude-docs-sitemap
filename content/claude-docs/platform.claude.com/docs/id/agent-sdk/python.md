@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/python
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 1dddb198cec12b31b1ddfc250d73a4d1785745161408d347825c7fc4c0b166c7
 ---
 

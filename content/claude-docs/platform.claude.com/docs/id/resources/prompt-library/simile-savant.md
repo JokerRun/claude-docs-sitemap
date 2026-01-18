@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/simile-savant
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 8364bb69fa9fe58007cf0a5de4686f48f940d3af3a587b295dda2c1ce52f6290
 ---
 

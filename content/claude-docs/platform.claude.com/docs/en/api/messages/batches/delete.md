@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/delete
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: fe9c8a3d0bd2aefdbe5a086a2e45db2e835609b2055871c74bfff6586032031e
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/models
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: c948bbec78a599903aab2cd66021861abf4e6bb0d0d74b20e79ad587c1295b72
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 6b8e76139edd5d40ea0ed97171d5a8057224261a6456e1d6c039b69c431724f5
 ---
 

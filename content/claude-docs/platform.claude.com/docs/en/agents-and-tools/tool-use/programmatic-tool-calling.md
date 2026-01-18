@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 60c986eea6845468d20eefbe8c5353fe54a554395c8cb1e35110b7159bea8d58
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompt-templates-and-variables
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: f941b92a10776cb71114bfdba5124b9e29eabb8072c277eda12817bf28bd4697
 ---
 

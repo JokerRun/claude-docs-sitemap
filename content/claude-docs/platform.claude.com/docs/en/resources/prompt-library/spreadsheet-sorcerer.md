@@ -1,7 +1,7 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/spreadsheet-sorcerer
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: ba7bd8e338a281672b3b61f17283688e5f315fb0221447739dc04fd55f25397d
 ---
 

@@ -1,7 +1,7 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-01-17T03:25:45.160390Z
+fetched_at: 2026-01-18T03:48:37.713242Z
 sha256: 3b3fd5b137d4bb74e004c205b98d0720fccf0e8269bc6ce8621fee6da3c85be1
 ---
 
