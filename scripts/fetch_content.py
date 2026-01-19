@@ -174,6 +174,11 @@ def main(sitemap_path: str = "data/sitemaps/en.yaml", content_base: str = ".") -
                 fetched_at = now
             else:
                 fetched_at = existing_meta.get("fetched_at", now)
+                # Convert datetime object to ISO string if needed
+                if isinstance(fetched_at, datetime):
+                    fetched_at = fetched_at.isoformat() + "Z"
+                elif not isinstance(fetched_at, str):
+                    fetched_at = now
             
             # Record in manifest
             manifest.append({
