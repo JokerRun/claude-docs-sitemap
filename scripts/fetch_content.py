@@ -187,6 +187,7 @@ def main(sitemap_path: str = "data/sitemaps/en.yaml", content_base: str = ".") -
                         fetched_at = iso_str
                 else:
                     fetched_at = existing_fetched
+                fetched_at = existing_meta.get("fetched_at", now)
             
             # Record in manifest
             manifest.append({
