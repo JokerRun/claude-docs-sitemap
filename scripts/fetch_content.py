@@ -173,6 +173,20 @@ def main(sitemap_path: str = "data/sitemaps/en.yaml", content_base: str = ".") -
                     f.write(text_with_fm)
                 fetched_at = now
             else:
+                # Preserve existing fetched_at, converting datetime to string if needed
+                existing_fetched = existing_meta.get("fetched_at", now)
+                if isinstance(existing_fetched, datetime):
+                    # Convert datetime to ISO format string, removing timezone suffix if present
+                    iso_str = existing_fetched.isoformat()
+                    # Remove +00:00 and ensure it ends with Z
+                    if iso_str.endswith('+00:00'):
+                        fetched_at = iso_str[:-6] + 'Z'
+                    elif not iso_str.endswith('Z'):
+                        fetched_at = iso_str + 'Z'
+                    else:
+                        fetched_at = iso_str
+                else:
+                    fetched_at = existing_fetched
                 fetched_at = existing_meta.get("fetched_at", now)
             
             # Record in manifest
