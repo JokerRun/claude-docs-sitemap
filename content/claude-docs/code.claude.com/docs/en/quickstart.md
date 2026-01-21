@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c0e8b76074ff6ff7fae495574ffeb010f7acce19662657a18ab135c179309845
+fetched_at: 2026-01-21T01:15:37.014170Z
+sha256: 5ef952ea867580abb735ec33baf8b8a59196508cd19b57a0e32d8e15a1598eda
 ---
 
 # Quickstart
@@ -142,7 +142,7 @@ You can also ask Claude about its own capabilities:
 ```
 
 ```
-> how do I use slash commands in Claude Code?
+> how do I create custom skills in Claude Code?
 ```
 
 ```
@@ -312,7 +312,7 @@ See the [CLI reference](/en/cli-reference) for a complete list of commands.
     * Press `?` to see all available keyboard shortcuts
     * Use Tab for command completion
     * Press ↑ for command history
-    * Type `/` to see all slash commands
+    * Type `/` to see all commands and skills
   </Accordion>
 </AccordionGroup>
 

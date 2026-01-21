@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 320c14eed27950fec877d98e16977f7981bd72ca56ad78fb4c6b51619167f9fc
+fetched_at: 2026-01-21T01:15:37.014170Z
+sha256: f0ede2e541e907543b8a34142c719dec8a1e7b8a53e8a100348c0fd8bdefc5ac
 ---
 
 # Tool search tool
@@ -25,7 +25,7 @@ The tool search tool is currently in public beta. Include the appropriate [beta 
 | ------------------------ | ------------------------------ | -------------------------------------- |
 | Claude API<br/>Microsoft Foundry  | `advanced-tool-use-2025-11-20` | Claude Opus 4.5<br />Claude Sonnet 4.5 |
 | Google Cloud's Vertex AI | `tool-search-tool-2025-10-19`  | Claude Opus 4.5<br />Claude Sonnet 4.5 |
-| Amazon Bedrock           | `tool-search-tool-2025-10-19`  | Claude Opus 4.5                        |
+| Amazon Bedrock           | `tool-search-tool-2025-10-19`  | Claude Opus 4.5<br />Claude Sonnet 4.5 |
 
 Please reach out through our [feedback form](https://forms.gle/MhcGFFwLxuwnWTkYA) to share your feedback on this feature.
 </Note>

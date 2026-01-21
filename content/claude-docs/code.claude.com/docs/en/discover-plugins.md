@@ -1,15 +1,15 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c4cea2f99e6d73094797a36641e18351050b1bdf96bad9f41a00d6a189772ea4
+fetched_at: 2026-01-21T01:15:37.014170Z
+sha256: 4b1e890d66804b241224bfaa9866b9b909423894e4821db026e085163394f00c
 ---
 
 # Discover and install prebuilt plugins through marketplaces
 
 > Find and install plugins from marketplaces to extend Claude Code with new commands, agents, and capabilities.
 
-Plugins extend Claude Code with custom commands, agents, hooks, and MCP servers. Plugin marketplaces are catalogs that help you discover and install these extensions without building them yourself.
+Plugins extend Claude Code with skills, agents, hooks, and MCP servers. Plugin marketplaces are catalogs that help you discover and install these extensions without building them yourself.
 
 Looking to create and distribute your own marketplace? See [Create and distribute a plugin marketplace](/en/plugin-marketplaces).
 
@@ -369,13 +369,13 @@ If you see "unknown command" or the `/plugin` command doesn't appear:
 * **Marketplace not loading**: Verify the URL is accessible and that `.claude-plugin/marketplace.json` exists at the path
 * **Plugin installation failures**: Check that plugin source URLs are accessible and repositories are public (or you have access)
 * **Files not found after installation**: Plugins are copied to a cache, so paths referencing files outside the plugin directory won't work
-* **Plugin Skills not appearing**: Clear the cache with `rm -rf ~/.claude/plugins/cache`, restart Claude Code, and reinstall the plugin. See [Plugin Skills not appearing](/en/skills#plugin-skills-not-appearing-after-installation) for details.
+* **Plugin skills not appearing**: Clear the cache with `rm -rf ~/.claude/plugins/cache`, restart Claude Code, and reinstall the plugin.
 
 For detailed troubleshooting with solutions, see [Troubleshooting](/en/plugin-marketplaces#troubleshooting) in the marketplace guide. For debugging tools, see [Debugging and development tools](/en/plugins-reference#debugging-and-development-tools).
 
 ## Next steps
 
-* **Build your own plugins**: See [Plugins](/en/plugins) to create custom commands, agents, and hooks
+* **Build your own plugins**: See [Plugins](/en/plugins) to create skills, agents, and hooks
 * **Create a marketplace**: See [Create a plugin marketplace](/en/plugin-marketplaces) to distribute plugins to your team or community
 * **Technical reference**: See [Plugins reference](/en/plugins-reference) for complete specifications
 

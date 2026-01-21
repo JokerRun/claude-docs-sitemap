@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/output-styles
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 6457f8e1cffbbcb0a09d1623c044c5db9a442ed23f7ac64e06844bea0f149eca
+fetched_at: 2026-01-21T01:15:37.014170Z
+sha256: f9c50b784d4d0971bad81ba469ad3b99bb9bc76de2c9bde960459ea5e8bfa4e7
 ---
 
 # Output styles
@@ -110,10 +110,9 @@ prompt. Agents are invoked to handle specific tasks and can include additional
 settings like the model to use, the tools they have available, and some context
 about when to use the agent.
 
-### Output Styles vs. [Custom Slash Commands](/en/slash-commands)
+### Output Styles vs. [Skills](/en/skills)
 
-You can think of output styles as "stored system prompts" and custom slash
-commands as "stored prompts".
+Output styles modify how Claude responds (formatting, tone, structure) and are always active once selected. Skills are task-specific prompts that you invoke with `/skill-name` or that Claude loads automatically when relevant. Use output styles for consistent formatting preferences; use skills for reusable workflows and tasks.
 
 
 ---

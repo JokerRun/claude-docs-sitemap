@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 0b5470585497c8ece8021d03385dde73d51f7c3755c4c86af844c4e03229a81e
+fetched_at: 2026-01-21T01:15:37.014170Z
+sha256: 7a44bc5d94ba23a5d4c9d34d765b56fc3a67be1c536dc8353856c935439a61b7
 ---
 
 # Use Claude Code with Chrome (beta)
@@ -35,7 +35,7 @@ Before using Claude Code with Chrome, you need:
 
 * [Google Chrome](https://www.google.com/chrome/) browser
 * [Claude in Chrome extension](https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn) version 1.0.36 or higher
-* [Claude Code CLI](/en/quickstart#step-1:-install-claude-code) version 2.0.73 or higher
+* [Claude Code CLI](/en/quickstart#step-1-install-claude-code) version 2.0.73 or higher
 * A paid Claude plan (Pro, Team, or Enterprise)
 
 ## How the integration works
@@ -54,7 +54,7 @@ Claude opens new tabs for browser tasks rather than taking over existing ones. H
 
 <Steps>
   <Step title="Update Claude Code">
-    Chrome integration requires a recent version of Claude Code. If you installed using the [native installer](/en/quickstart#step-1:-install-claude-code), updates happen automatically. Otherwise, run:
+    Chrome integration requires a recent version of Claude Code. If you installed using the [native installer](/en/quickstart#step-1-install-claude-code), updates happen automatically. Otherwise, run:
 
     ```bash  theme={null}
     claude update
@@ -74,7 +74,7 @@ Claude opens new tabs for browser tasks rather than taking over existing ones. H
   </Step>
 </Steps>
 
-You can also enable Chrome integration from within an existing session using the `/chrome` slash command.
+You can also enable Chrome integration from within an existing session using the `/chrome` command.
 
 ## Try it out
 

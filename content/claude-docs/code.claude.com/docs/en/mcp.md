@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: df428cfcc67fe3eb6a503025069b5ef67e9291d049ba8af42596ed0302e63aea
+fetched_at: 2026-01-21T01:15:37.014170Z
+sha256: 281389b3747fe34c31cb04c618e8c36ff9543b0fbfdc55e310bc73504ee08c22
 ---
 
 # Connect Claude Code to tools via MCP
@@ -44,8 +44,12 @@ export const MCPServersTable = ({platform = "all"}) => {
             mcpConnector: worksWith.includes('claude-api'),
             claudeDesktop: worksWith.includes('claude-desktop')
           };
-          const remoteUrl = server.remotes?.[0]?.url || meta.url;
-          const remoteType = server.remotes?.[0]?.type;
+          const remotes = server.remotes || [];
+          const httpRemote = remotes.find(r => r.type === 'streamable-http');
+          const sseRemote = remotes.find(r => r.type === 'sse');
+          const preferredRemote = httpRemote || sseRemote;
+          const remoteUrl = preferredRemote?.url || meta.url;
+          const remoteType = preferredRemote?.type;
           const isTemplatedUrl = remoteUrl?.includes('{');
           let setupUrl;
           if (isTemplatedUrl && meta.requiredFields) {
@@ -860,9 +864,9 @@ You can also disable the MCPSearch tool specifically using the `disallowedTools`
 }
 ```
 
-## Use MCP prompts as slash commands
+## Use MCP prompts as commands
 
-MCP servers can expose prompts that become available as slash commands in Claude Code.
+MCP servers can expose prompts that become available as commands in Claude Code.
 
 ### Execute MCP prompts
 

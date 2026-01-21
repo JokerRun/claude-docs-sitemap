@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 1e841a080d9656cc2959293b224ae7fdadf69219b36cbe8faabfe462ea7940b0
+fetched_at: 2026-01-21T01:15:37.014170Z
+sha256: b83194cef72334c8261a24388cf7666913dc68eedad93fc9886509e811ffb66d
 ---
 
 # Manage Claude's memory
@@ -63,7 +63,7 @@ Claude will also discover CLAUDE.md nested in subtrees under your current workin
 
 ## Directly edit memories with `/memory`
 
-Use the `/memory` slash command during a session to open any memory file in your system editor for more extensive additions or organization.
+Use the `/memory` command during a session to open any memory file in your system editor for more extensive additions or organization.
 
 ## Set up project memory
 

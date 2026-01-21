@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 2ca4cfb9d8ace8332b7ea005279e63ddaaa615449943c2de6a18bcc2673991a1
+fetched_at: 2026-01-21T01:15:37.014170Z
+sha256: 8375ba26f7501386ba85f71a55aaecd1a59f061cbea92a6e1a63ad8ac567a1ee
 ---
 
 # Set up Claude Code
@@ -191,7 +191,7 @@ npm install -g @anthropic-ai/claude-code
 
 <Warning>
   Do NOT use `sudo npm install -g` as this can lead to permission issues and security risks.
-  If you encounter permission errors, see [configure Claude Code](/en/troubleshooting#linux-permission-issues) for recommended solutions.
+  If you encounter permission errors, see [troubleshooting permission errors](/en/troubleshooting#command-not-found-claude-or-permission-errors) for recommended solutions.
 </Warning>
 
 ## Windows setup

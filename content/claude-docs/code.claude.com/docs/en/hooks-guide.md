@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 19e6d30899036fabcb1a04c936943b50fdfbacc18e27c6c841a369c867a28cd2
+fetched_at: 2026-01-21T01:15:37.014170Z
+sha256: 7af12ae0aaa82b7a1834e314664348c2aa6c64281b5336a935d110fd7c98dff8
 ---
 
 # Get started with Claude Code hooks
@@ -54,6 +54,7 @@ workflow:
 * **Stop**: Runs when Claude Code finishes responding
 * **SubagentStop**: Runs when subagent tasks complete
 * **PreCompact**: Runs before Claude Code is about to run a compact operation
+* **Setup**: Runs when Claude Code is invoked with `--init`, `--init-only`, or `--maintenance` flags
 * **SessionStart**: Runs when Claude Code starts a new session or resumes an existing session
 * **SessionEnd**: Runs when Claude Code session ends
 
@@ -71,7 +72,7 @@ Install `jq` for JSON processing in the command line.
 
 ### Step 1: Open hooks configuration
 
-Run the `/hooks` [slash command](/en/slash-commands) and select
+Run the `/hooks` command and select
 the `PreToolUse` hook event.
 
 `PreToolUse` hooks run before tool calls and can block them while providing

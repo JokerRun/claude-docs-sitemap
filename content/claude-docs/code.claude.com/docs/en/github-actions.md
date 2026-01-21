@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 89634a8c16ccd2660b390d7261285e511895452a3eedb9fa6d90d63f1e100ec5
+fetched_at: 2026-01-21T01:15:37.014170Z
+sha256: b64e23368162a9ff1624def8f0740ffe4d9ef3fd3e67254668c2370183bdeb81
 ---
 
 # Claude Code GitHub Actions
@@ -163,7 +163,7 @@ jobs:
           # Responds to @claude mentions in comments
 ```
 
-### Using slash commands
+### Using skills
 
 ```yaml  theme={null}
 name: Code Review
@@ -273,7 +273,7 @@ The Claude Code Action v1 simplifies configuration with unified parameters:
 Key features:
 
 * **Unified prompt interface** - Use `prompt` for all instructions
-* **Slash commands** - Pre-built prompts like `/review` or `/fix`
+* **Commands** - Prebuilt prompts like `/review` or `/fix`
 * **CLI passthrough** - Any Claude Code CLI argument via `claude_args`
 * **Flexible triggers** - Works with any GitHub event
 
@@ -630,15 +630,15 @@ Confirm API key is valid and has sufficient permissions. For Bedrock/Vertex, che
 
 The Claude Code Action v1 uses a simplified configuration:
 
-| Parameter           | Description                                     | Required |
-| ------------------- | ----------------------------------------------- | -------- |
-| `prompt`            | Instructions for Claude (text or slash command) | No\*     |
-| `claude_args`       | CLI arguments passed to Claude Code             | No       |
-| `anthropic_api_key` | Claude API key                                  | Yes\*\*  |
-| `github_token`      | GitHub token for API access                     | No       |
-| `trigger_phrase`    | Custom trigger phrase (default: "@claude")      | No       |
-| `use_bedrock`       | Use AWS Bedrock instead of Claude API           | No       |
-| `use_vertex`        | Use Google Vertex AI instead of Claude API      | No       |
+| Parameter           | Description                                            | Required |
+| ------------------- | ------------------------------------------------------ | -------- |
+| `prompt`            | Instructions for Claude (text or skill like `/review`) | No\*     |
+| `claude_args`       | CLI arguments passed to Claude Code                    | No       |
+| `anthropic_api_key` | Claude API key                                         | Yes\*\*  |
+| `github_token`      | GitHub token for API access                            | No       |
+| `trigger_phrase`    | Custom trigger phrase (default: "@claude")             | No       |
+| `use_bedrock`       | Use AWS Bedrock instead of Claude API                  | No       |
+| `use_vertex`        | Use Google Vertex AI instead of Claude API             | No       |
 
 \*Prompt is optional - when omitted for issue/PR comments, Claude responds to trigger phrase\
 \*\*Required for direct Claude API, not for Bedrock/Vertex

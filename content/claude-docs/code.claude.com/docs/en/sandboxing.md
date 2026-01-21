@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 023a1ce2739bb9ceb04c1a51e4267a32c429fcd2c9d620d8a56d240de4bc00f8
+fetched_at: 2026-01-21T01:15:37.014170Z
+sha256: 1d27d0a2e69bbf5fcbd6a18946a0cd4c7c841c120ad7077ce13332797812f012
 ---
 
 # Sandboxing
@@ -67,7 +67,7 @@ These OS-level restrictions ensure that all child processes spawned by Claude Co
 
 ### Enable sandboxing
 
-You can enable sandboxing by running the `/sandbox` slash command:
+You can enable sandboxing by running the `/sandbox` command:
 
 ```
 > /sandbox
