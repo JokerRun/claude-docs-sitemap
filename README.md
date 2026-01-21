@@ -23,7 +23,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 <!-- tsv_preview_start -->
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
-| code | https://code.claude.com/docs/en/amazon-bedrock | 2025-12-16 |  |
+| code | https://code.claude.com/docs/en/amazon-bedrock | 2026-01-21 |  |
 | code | https://code.claude.com/docs/en/analytics | 2025-11-06 |  |
 | code | https://code.claude.com/docs/en/checkpointing | 2026-01-20 |  |
 | code | https://code.claude.com/docs/en/chrome | 2026-01-20 |  |

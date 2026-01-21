@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: b57f9a2687ef34c9156a873bda76416093af0a9faa70a44a0c862a50d6dadce1
+fetched_at: 2026-01-21T03:46:50.306000Z
+sha256: 9e1e5fdf9568233edfb0b3423c197903f771e1e2d62bbfb12281a2ad1571e243
 ---
 
 # Claude Code on Amazon Bedrock
@@ -215,6 +215,20 @@ For details, see [Bedrock IAM documentation](https://docs.aws.amazon.com/bedrock
 <Note>
   We recommend creating a dedicated AWS account for Claude Code to simplify cost tracking and access control.
 </Note>
+
+## AWS Guardrails
+
+[Amazon Bedrock Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) let you implement content filtering for Claude Code. Create a Guardrail in the [Amazon Bedrock console](https://console.aws.amazon.com/bedrock/), publish a version, then add the Guardrail headers to your [settings file](/en/settings). Enable Cross-Region inference on your Guardrail if you're using cross-region inference profiles.
+
+Example configuration:
+
+```json  theme={null}
+{
+  "env": {
+    "ANTHROPIC_CUSTOM_HEADERS": "X-Amzn-Bedrock-GuardrailIdentifier: your-guardrail-id\nX-Amzn-Bedrock-GuardrailVersion: 1"
+  }
+}
+```
 
 ## Troubleshooting
 
