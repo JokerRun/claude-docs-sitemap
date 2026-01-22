@@ -1,15 +1,15 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 29c3d6b8d725d1b201199edb2142ee77182ba16546d64cbb22cb18023a7d87e7
+fetched_at: 2026-01-22T03:50:41.891478Z
+sha256: 446b4f3e9c595756853be3fa979bb02b55bdc52095f134bd00f001a864877cca
 ---
 
 # Common workflows
 
-> Learn about common workflows with Claude Code.
+> Step-by-step guides for exploring codebases, fixing bugs, refactoring, testing, and other everyday tasks with Claude Code.
 
-Each task in this document includes clear instructions, example commands, and best practices to help you get the most from Claude Code.
+This page covers practical workflows for everyday development: exploring unfamiliar code, debugging, refactoring, writing tests, creating PRs, and managing sessions. Each section includes example prompts you can adapt to your own projects.
 
 ## Understand new codebases
 

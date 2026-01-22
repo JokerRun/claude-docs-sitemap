@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: a9126ea7d4a6242c9c34bd267ddf8ed002cc972f177605f1222b02e7276a78a8
+fetched_at: 2026-01-22T03:50:41.891478Z
+sha256: 72a2aea4f86206a8d1eb5107c9a726982af6d60602234a64534ffcf06ed0c9f4
 ---
 
 # Claude Code on desktop
@@ -39,9 +39,20 @@ For Windows ARM64, [download here](https://claude.ai/api/desktop/win32/arm64/exe
 
 Claude Code on desktop provides:
 
+* **Diff view**: Review Claude's changes file by file before creating a pull request, and comment on specific lines to iterate further
 * **Parallel local sessions with `git` worktrees**: Run multiple Claude Code sessions simultaneously in the same repository, each with its own isolated `git` worktree
 * **Include files listed in your `.gitignore` in your worktrees**: Automatically copy files in your `.gitignore`, like `.env`, to new worktrees using `.worktreeinclude`
 * **Launch Claude Code on the web**: Kick off secure cloud sessions directly from the desktop app
+
+## Review changes with diff view
+
+After Claude makes changes to your code, the diff view lets you review modifications file by file before creating a pull request.
+
+When Claude makes changes to files, a diff stats indicator appears showing the number of lines added and removed (for example, `+12 -1`). Click this indicator to open the diff viewer, which displays a file list on the left and the changes for each file on the right.
+
+### Comment on specific lines
+
+Click on any line in the diff to open a comment box. Type your feedback and press **Enter** to send. In the full diff view, press **Enter** to accept each comment, then **Cmd+Enter** to send them all. Claude reads your comments and makes the requested changes, which appear as a new diff you can review.
 
 ## Using Git worktrees
 

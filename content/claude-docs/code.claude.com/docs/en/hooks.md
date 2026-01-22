@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: cc8a592939ed5fd5fa997f38ee811d46dd570a5758528c1e4723ff566bc0037b
+fetched_at: 2026-01-22T03:50:41.891478Z
+sha256: b9ba59f894609c490627e7336ec76638642247122e839705732d4ca86f6f6aab
 ---
 
 # Hooks reference
@@ -12,6 +12,31 @@ sha256: cc8a592939ed5fd5fa997f38ee811d46dd570a5758528c1e4723ff566bc0037b
 <Tip>
   For a quickstart guide with examples, see [Get started with Claude Code hooks](/en/hooks-guide).
 </Tip>
+
+## Hook lifecycle
+
+Hooks fire at specific points during a Claude Code session.
+
+<div style={{maxWidth: "500px", margin: "0 auto"}}>
+  <Frame>
+    <img src="https://mintcdn.com/claude-code/z2YM37Ycg6eMbID3/images/hooks-lifecycle.png?fit=max&auto=format&n=z2YM37Ycg6eMbID3&q=85&s=5c25fedbc3db6f8882af50c3cc478c32" alt="Hook lifecycle diagram showing the sequence of hooks from SessionStart through the agentic loop to SessionEnd" data-og-width="8876" width="8876" data-og-height="12492" height="12492" data-path="images/hooks-lifecycle.png" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/claude-code/z2YM37Ycg6eMbID3/images/hooks-lifecycle.png?w=280&fit=max&auto=format&n=z2YM37Ycg6eMbID3&q=85&s=62406fcd5d4a189cc8842ee1bd946b84 280w, https://mintcdn.com/claude-code/z2YM37Ycg6eMbID3/images/hooks-lifecycle.png?w=560&fit=max&auto=format&n=z2YM37Ycg6eMbID3&q=85&s=fa3049022a6973c5f974e0f95b28169d 560w, https://mintcdn.com/claude-code/z2YM37Ycg6eMbID3/images/hooks-lifecycle.png?w=840&fit=max&auto=format&n=z2YM37Ycg6eMbID3&q=85&s=bd2890897db61a03160b93d4f972ff8e 840w, https://mintcdn.com/claude-code/z2YM37Ycg6eMbID3/images/hooks-lifecycle.png?w=1100&fit=max&auto=format&n=z2YM37Ycg6eMbID3&q=85&s=7ae8e098340479347135e39df4a13454 1100w, https://mintcdn.com/claude-code/z2YM37Ycg6eMbID3/images/hooks-lifecycle.png?w=1650&fit=max&auto=format&n=z2YM37Ycg6eMbID3&q=85&s=848a8606aab22c2ccaa16b6a18431e32 1650w, https://mintcdn.com/claude-code/z2YM37Ycg6eMbID3/images/hooks-lifecycle.png?w=2500&fit=max&auto=format&n=z2YM37Ycg6eMbID3&q=85&s=f3a9ef7feb61fa8fe362005aa185efbc 2500w" />
+  </Frame>
+</div>
+
+| Hook                 | When it fires                   |
+| :------------------- | :------------------------------ |
+| `SessionStart`       | Session begins or resumes       |
+| `UserPromptSubmit`   | User submits a prompt           |
+| `PreToolUse`         | Before tool execution           |
+| `PermissionRequest`  | When permission dialog appears  |
+| `PostToolUse`        | After tool succeeds             |
+| `PostToolUseFailure` | After tool fails                |
+| `SubagentStart`      | When spawning a subagent        |
+| `SubagentStop`       | When subagent finishes          |
+| `Stop`               | Claude finishes responding      |
+| `PreCompact`         | Before context compaction       |
+| `SessionEnd`         | Session terminates              |
+| `Notification`       | Claude Code sends notifications |
 
 ## Configuration
 

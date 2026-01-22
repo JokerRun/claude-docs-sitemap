@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 7403af498ba3763804d328cd2e927be0f6752c04b6b2f28d04febcda5788f6d3
+fetched_at: 2026-01-22T03:50:41.891478Z
+sha256: a75b95d682f56860070cab7cf3d120b2d1ae52e0400c8dfab8701da8255f89bc
 ---
 
 # Create and distribute a plugin marketplace
@@ -245,6 +245,26 @@ For plugins in the same repository:
 }
 ```
 
+You can pin to a specific branch, tag, or commit:
+
+```json  theme={null}
+{
+  "name": "github-plugin",
+  "source": {
+    "source": "github",
+    "repo": "owner/plugin-repo",
+    "ref": "v2.0.0",
+    "sha": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0"
+  }
+}
+```
+
+| Field  | Type   | Description                                                           |
+| :----- | :----- | :-------------------------------------------------------------------- |
+| `repo` | string | Required. GitHub repository in `owner/repo` format                    |
+| `ref`  | string | Optional. Git branch or tag (defaults to repository default branch)   |
+| `sha`  | string | Optional. Full 40-character git commit SHA to pin to an exact version |
+
 ### Git repositories
 
 ```json  theme={null}
@@ -256,6 +276,26 @@ For plugins in the same repository:
   }
 }
 ```
+
+You can pin to a specific branch, tag, or commit:
+
+```json  theme={null}
+{
+  "name": "git-plugin",
+  "source": {
+    "source": "url",
+    "url": "https://gitlab.com/team/plugin.git",
+    "ref": "main",
+    "sha": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0"
+  }
+}
+```
+
+| Field | Type   | Description                                                           |
+| :---- | :----- | :-------------------------------------------------------------------- |
+| `url` | string | Required. Full git repository URL (must end with `.git`)              |
+| `ref` | string | Optional. Git branch or tag (defaults to repository default branch)   |
+| `sha` | string | Optional. Full 40-character git commit SHA to pin to an exact version |
 
 ### Advanced plugin entries
 

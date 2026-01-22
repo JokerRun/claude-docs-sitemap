@@ -23,22 +23,22 @@ Automated daily English sitemap collection from Claude documentation sources.
 <!-- tsv_preview_start -->
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
-| code | https://code.claude.com/docs/en/amazon-bedrock | 2026-01-21 |  |
-| code | https://code.claude.com/docs/en/analytics | 2025-11-06 |  |
-| code | https://code.claude.com/docs/en/checkpointing | 2026-01-20 |  |
-| code | https://code.claude.com/docs/en/chrome | 2026-01-20 |  |
-| code | https://code.claude.com/docs/en/claude-code-on-the-web | 2026-01-15 |  |
-| code | https://code.claude.com/docs/en/cli-reference | 2026-01-20 |  |
-| code | https://code.claude.com/docs/en/common-workflows | 2026-01-20 |  |
-| code | https://code.claude.com/docs/en/costs | 2026-01-20 |  |
-| code | https://code.claude.com/docs/en/data-usage | 2026-01-07 |  |
-| code | https://code.claude.com/docs/en/desktop | 2026-01-11 |  |
-| code | https://code.claude.com/docs/en/devcontainer | 2025-12-08 |  |
-| code | https://code.claude.com/docs/en/discover-plugins | 2026-01-20 |  |
-| code | https://code.claude.com/docs/en/github-actions | 2026-01-20 |  |
-| code | https://code.claude.com/docs/en/gitlab-ci-cd | 2026-01-12 |  |
-| code | https://code.claude.com/docs/en/google-vertex-ai | 2025-12-07 |  |
-| ... | _(~746 more rows)_ | | |
+| code | https://code.claude.com/docs/en/amazon-bedrock | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/analytics | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/best-practices | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/checkpointing | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/chrome | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/claude-code-on-the-web | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/cli-reference | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/common-workflows | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/costs | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/data-usage | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/desktop | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/devcontainer | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/discover-plugins | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/features-overview | 2026-01-22 |  |
+| code | https://code.claude.com/docs/en/github-actions | 2026-01-22 |  |
+| ... | _(~749 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 24bc18fd0fac5e5b418d5db271f3edfa292f63e03469bfe26b1b6d891cd36c7a
+fetched_at: 2026-01-22T03:50:41.891478Z
+sha256: b1072a031672bec2a9c89eb0df4e691df089a130466ea790bc3fd0c42df33951
 ---
 
 # Interactive mode
@@ -264,6 +264,7 @@ Bash mode:
 * Shows real-time progress and output
 * Supports the same `Ctrl+B` backgrounding for long-running commands
 * Does not require Claude to interpret or approve the command
+* Supports history-based autocomplete: type a partial command and press **Tab** to complete from previous `!` commands in the current project
 
 This is useful for quick shell operations while maintaining conversation context.
 

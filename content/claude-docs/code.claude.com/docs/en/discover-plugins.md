@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 4b1e890d66804b241224bfaa9866b9b909423894e4821db026e085163394f00c
+fetched_at: 2026-01-22T03:50:41.891478Z
+sha256: 8195b4562319b4815b6cd882769868dddb9eb7f60f0f940f219eec51d0a429e8
 ---
 
 # Discover and install prebuilt plugins through marketplaces
@@ -253,7 +253,7 @@ Run `/plugin` and go to the **Installed** tab to see your plugins grouped by sco
 
 ## Manage installed plugins
 
-Run `/plugin` and go to the **Installed** tab to view, enable, disable, or uninstall your plugins.
+Run `/plugin` and go to the **Installed** tab to view, enable, disable, or uninstall your plugins. Type to filter the list by plugin name or description.
 
 You can also manage plugins with direct commands.
 
