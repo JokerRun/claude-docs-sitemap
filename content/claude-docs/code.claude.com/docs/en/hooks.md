@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-01-22T03:50:41.891478Z
-sha256: b9ba59f894609c490627e7336ec76638642247122e839705732d4ca86f6f6aab
+fetched_at: 2026-01-23T03:45:17.894555Z
+sha256: 9f5d67288f159e912444b2428096536cfbb8c188c8a47a2b5759392a72db8979
 ---
 
 # Hooks reference
@@ -705,7 +705,7 @@ The exact schema for `tool_input` and `tool_response` depends on the tool.
 }
 ```
 
-### Stop and SubagentStop Input
+### Stop Input
 
 `stop_hook_active` is true when Claude Code is already continuing as a result of
 a stop hook. Check this value or process the transcript to prevent Claude Code
@@ -715,9 +715,27 @@ from running indefinitely.
 {
   "session_id": "abc123",
   "transcript_path": "~/.claude/projects/.../00893aaf-19fa-41d2-8238-13269b9b3ca0.jsonl",
+  "cwd": "/Users/...",
   "permission_mode": "default",
   "hook_event_name": "Stop",
   "stop_hook_active": true
+}
+```
+
+### SubagentStop Input
+
+Triggered when a subagent finishes. The `transcript_path` is the main session's transcript, while `agent_transcript_path` is the subagent's own transcript stored in a nested `subagents/` folder.
+
+```json  theme={null}
+{
+  "session_id": "abc123",
+  "transcript_path": "~/.claude/projects/.../abc123.jsonl",
+  "cwd": "/Users/...",
+  "permission_mode": "default",
+  "hook_event_name": "SubagentStop",
+  "stop_hook_active": false,
+  "agent_id": "def456",
+  "agent_transcript_path": "~/.claude/projects/.../abc123/subagents/agent-def456.jsonl"
 }
 ```
 
@@ -758,11 +776,31 @@ The `trigger` field will be either `"init"` (from `--init` or `--init-only`) or 
 {
   "session_id": "abc123",
   "transcript_path": "~/.claude/projects/.../00893aaf-19fa-41d2-8238-13269b9b3ca0.jsonl",
+  "cwd": "/Users/...",
   "permission_mode": "default",
   "hook_event_name": "SessionStart",
-  "source": "startup"
+  "source": "startup",
+  "model": "claude-sonnet-4-20250514"
 }
 ```
+
+The `source` field indicates how the session started: `"startup"` for new sessions, `"resume"` for resumed sessions, `"clear"` after `/clear`, or `"compact"` after compaction. The `model` field contains the model identifier when available. If you start Claude Code with `claude --agent <name>`, an `agent_type` field contains the agent name.
+
+### SubagentStart Input
+
+```json  theme={null}
+{
+  "session_id": "abc123",
+  "transcript_path": "~/.claude/projects/.../00893aaf-19fa-41d2-8238-13269b9b3ca0.jsonl",
+  "cwd": "/Users/...",
+  "permission_mode": "default",
+  "hook_event_name": "SubagentStart",
+  "agent_id": "agent-abc123",
+  "agent_type": "Explore"
+}
+```
+
+Triggered when a subagent is spawned. The `agent_id` field contains the unique identifier for the subagent, and `agent_type` contains the agent name (built-in agents like `"Bash"`, `"Explore"`, `"Plan"`, or custom agent names).
 
 ### SessionEnd Input
 

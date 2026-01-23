@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 8375ba26f7501386ba85f71a55aaecd1a59f061cbea92a6e1a63ad8ac567a1ee
+fetched_at: 2026-01-23T03:45:17.894555Z
+sha256: 6a9f37dab569ce53bf5dd255f0ad55dce9ed8ecb77dd31e60552787c72773317
 ---
 
 # Set up Claude Code
@@ -199,6 +199,7 @@ npm install -g @anthropic-ai/claude-code
 **Option 1: Claude Code within WSL**
 
 * Both WSL 1 and WSL 2 are supported
+* WSL 2 supports [sandboxing](/en/sandboxing) for enhanced security. WSL 1 does not support sandboxing.
 
 **Option 2: Claude Code on native Windows with Git Bash**
 

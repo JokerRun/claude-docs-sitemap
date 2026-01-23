@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 4d153986fa89b4b4b09f7a65c79f3e2cc60d0e79a984f56890d1109cb7d4b797
+fetched_at: 2026-01-23T03:45:17.894555Z
+sha256: 54dc2888177e3bcaca01521fd5bb1e385f1888026ab7fee9392fb315f94519bf
 ---
 
 # Extend Claude with skills
@@ -86,7 +86,7 @@ Where you store a skill determines who can use it:
 | Project    | `.claude/skills/<skill-name>/SKILL.md`           | This project only              |
 | Plugin     | `<plugin>/skills/<skill-name>/SKILL.md`          | Where plugin is enabled        |
 
-Project skills override personal skills with the same name. If you have files in `.claude/commands/`, those work the same way but a skill takes precedence over a command with the same name.
+When skills share the same name across levels, higher-priority locations win: enterprise > personal > project. Plugin skills use a `plugin-name:skill-name` namespace, so they cannot conflict with other levels. If you have files in `.claude/commands/`, those work the same way, but if a skill and a command share the same name, the skill takes precedence.
 
 #### Automatic discovery from nested directories
 

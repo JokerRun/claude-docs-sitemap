@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: f7539d9c7b5cd1a0d4fd2dc79d57976243f0545d67c4a539230c5c3ed09451a4
+fetched_at: 2026-01-23T03:45:17.894555Z
+sha256: a33f7cc7ece529d8530b366f1734d37a0e352804a1d6946ac0254c6dedcc62ea
 ---
 
 # Troubleshooting
@@ -59,6 +59,26 @@ export PATH="$HOME/.nvm/versions/node/$(node -v)/bin:$PATH"
 <Warning>
   Avoid disabling Windows PATH importing (`appendWindowsPath = false`) as this breaks the ability to call Windows executables from WSL. Similarly, avoid uninstalling Node.js from Windows if you use it for Windows development.
 </Warning>
+
+### WSL2 sandbox setup
+
+[Sandboxing](/en/sandboxing) is supported on WSL2 but requires installing additional packages. If you see an error like "Sandbox requires socat and bubblewrap" when running `/sandbox`, install the dependencies:
+
+<Tabs>
+  <Tab title="Ubuntu/Debian">
+    ```bash  theme={null}
+    sudo apt-get install bubblewrap socat
+    ```
+  </Tab>
+
+  <Tab title="Fedora">
+    ```bash  theme={null}
+    sudo dnf install bubblewrap socat
+    ```
+  </Tab>
+</Tabs>
+
+WSL1 does not support sandboxing. If you see "Sandboxing requires WSL2", you need to upgrade to WSL2 or run Claude Code without sandboxing.
 
 ### Linux and Mac installation issues: permission or command not found errors
 
@@ -180,7 +200,7 @@ Claude Code stores configuration in several locations:
 | `~/.claude/settings.json`     | User settings (permissions, hooks, model overrides)      |
 | `.claude/settings.json`       | Project settings (checked into source control)           |
 | `.claude/settings.local.json` | Local project settings (not committed)                   |
-| `~/.claude.json`              | Global state (theme, OAuth, MCP servers, allowed tools)  |
+| `~/.claude.json`              | Global state (theme, OAuth, MCP servers)                 |
 | `.mcp.json`                   | Project MCP servers (checked into source control)        |
 | `managed-settings.json`       | [Managed settings](/en/settings#settings-files)          |
 | `managed-mcp.json`            | [Managed MCP servers](/en/mcp#managed-mcp-configuration) |
@@ -210,7 +230,7 @@ rm .mcp.json
 ```
 
 <Warning>
-  This will remove all your settings, allowed tools, MCP server configurations, and session history.
+  This will remove all your settings, MCP server configurations, and session history.
 </Warning>
 
 ## Performance and stability

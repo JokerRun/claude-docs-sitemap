@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 1d27d0a2e69bbf5fcbd6a18946a0cd4c7c841c120ad7077ce13332797812f012
+fetched_at: 2026-01-23T03:45:17.894555Z
+sha256: fb73b1ff84515b29a371fc6a53ff562bcb6168c4c8fd401e743d079669d8f546
 ---
 
 # Sandboxing
@@ -58,12 +58,35 @@ Network access is controlled through a proxy server running outside the sandbox:
 
 The sandboxed bash tool leverages operating system security primitives:
 
-* **Linux**: Uses [bubblewrap](https://github.com/containers/bubblewrap) for isolation
 * **macOS**: Uses Seatbelt for sandbox enforcement
+* **Linux**: Uses [bubblewrap](https://github.com/containers/bubblewrap) for isolation
+* **WSL2**: Uses bubblewrap, same as Linux
+
+WSL1 is not supported because bubblewrap requires kernel features only available in WSL2.
 
 These OS-level restrictions ensure that all child processes spawned by Claude Code's commands inherit the same security boundaries.
 
 ## Getting started
+
+### Prerequisites
+
+On **macOS**, sandboxing works out of the box using the built-in Seatbelt framework.
+
+On **Linux and WSL2**, install the required packages first:
+
+<Tabs>
+  <Tab title="Ubuntu/Debian">
+    ```bash  theme={null}
+    sudo apt-get install bubblewrap socat
+    ```
+  </Tab>
+
+  <Tab title="Fedora">
+    ```bash  theme={null}
+    sudo dnf install bubblewrap socat
+    ```
+  </Tab>
+</Tabs>
 
 ### Enable sandboxing
 
@@ -216,7 +239,7 @@ For implementation details and source code, visit the [GitHub repository](https:
 
 * **Performance overhead**: Minimal, but some filesystem operations may be slightly slower
 * **Compatibility**: Some tools that require specific system access patterns may need configuration adjustments, or may even need to be run outside of the sandbox
-* **Platform support**: Currently supports Linux and macOS; Windows support planned
+* **Platform support**: Supports macOS, Linux, and WSL2. WSL1 is not supported. Native Windows support is planned.
 
 ## See also
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-01-22T03:50:41.891478Z
-sha256: 75b6558f43454220b7ed12d495ab88e0138660cc79d7289dbfb2b0e9940f6304
+fetched_at: 2026-01-23T03:45:17.894555Z
+sha256: 940cc7ad2acddf954f24c51654c60530001c8d0525929d87e0a508fedcd61994
 ---
 
 # Claude Code on the web
@@ -304,6 +304,8 @@ When using "Limited" network access, the following domains are allowed by defaul
 
 * api.anthropic.com
 * statsig.anthropic.com
+* docs.claude.com
+* code.claude.com
 * claude.ai
 
 #### Version Control
@@ -311,7 +313,9 @@ When using "Limited" network access, the following domains are allowed by defaul
 * github.com
 * [www.github.com](http://www.github.com)
 * api.github.com
+* npm.pkg.github.com
 * raw\.githubusercontent.com
+* pkg-npm.githubusercontent.com
 * objects.githubusercontent.com
 * codeload.github.com
 * avatars.githubusercontent.com
@@ -333,6 +337,7 @@ When using "Limited" network access, the following domains are allowed by defaul
 * [www.docker.com](http://www.docker.com)
 * production.cloudflare.docker.com
 * download.docker.com
+* gcr.io
 * \*.gcr.io
 * ghcr.io
 * mcr.microsoft.com
@@ -409,6 +414,7 @@ When using "Limited" network access, the following domains are allowed by defaul
 
 * crates.io
 * [www.crates.io](http://www.crates.io)
+* index.crates.io
 * static.crates.io
 * rustup.rs
 * static.rust-lang.org
@@ -507,10 +513,15 @@ When using "Limited" network access, the following domains are allowed by defaul
 * statsig.com
 * [www.statsig.com](http://www.statsig.com)
 * api.statsig.com
+* sentry.io
 * \*.sentry.io
+* http-intake.logs.datadoghq.com
+* \*.datadoghq.com
+* \*.datadoghq.eu
 
 #### Content Delivery & Mirrors
 
+* sourceforge.net
 * \*.sourceforge.net
 * packagecloud.io
 * \*.packagecloud.io
@@ -521,6 +532,10 @@ When using "Limited" network access, the following domains are allowed by defaul
 * [www.json-schema.org](http://www.json-schema.org)
 * json.schemastore.org
 * [www.schemastore.org](http://www.schemastore.org)
+
+#### Model Context Protocol
+
+* \*.modelcontextprotocol.io
 
 <Note>
   Domains marked with `*` indicate wildcard subdomain matching. For example, `*.gcr.io` allows access to any subdomain of `gcr.io`.

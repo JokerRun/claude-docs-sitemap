@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-01-22T03:50:41.891478Z
-sha256: b1072a031672bec2a9c89eb0df4e691df089a130466ea790bc3fd0c42df33951
+fetched_at: 2026-01-23T03:45:17.894555Z
+sha256: ad58f5b8c2743257cf5f2a0754bd61064471166a2b41c5a78cd0e134aa48b678
 ---
 
 # Interactive mode
@@ -267,6 +267,15 @@ Bash mode:
 * Supports history-based autocomplete: type a partial command and press **Tab** to complete from previous `!` commands in the current project
 
 This is useful for quick shell operations while maintaining conversation context.
+
+## Task list
+
+When working on complex, multi-step work, Claude creates a task list to track progress. Tasks appear in the status area of your terminal with indicators showing what's pending, in progress, or complete.
+
+* Press `Ctrl+T` to toggle the task list view. The display shows up to 10 tasks at a time
+* To see all tasks or clear them, ask Claude directly: "show me all tasks" or "clear all tasks"
+* Tasks persist across context compactions, helping Claude stay organized on larger projects
+* To share a task list across sessions, set `CLAUDE_CODE_TASK_LIST_ID` to use a named directory in `~/.claude/tasks/`: `CLAUDE_CODE_TASK_LIST_ID=my-project claude`
 
 ## See also
 

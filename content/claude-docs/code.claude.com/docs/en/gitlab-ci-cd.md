@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/gitlab-ci-cd
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: ced93c6b11589b1537f66690e9955d80717d2de642800b76d904c8fe7a697b4f
+fetched_at: 2026-01-23T03:45:17.894555Z
+sha256: b15228089881a67f42a066126a344707f334fe158a217257362c097bc8ca4da2
 ---
 
 # Claude Code GitLab CI/CD
@@ -94,7 +94,7 @@ claude:
       claude
       -p "${AI_FLOW_INPUT:-'Review this MR and implement the requested changes'}"
       --permission-mode acceptEdits
-      --allowedTools "Bash(*) Read(*) Edit(*) Write(*) mcp__gitlab"
+      --allowedTools "Bash Read Edit Write mcp__gitlab"
       --debug
 ```
 
@@ -269,7 +269,7 @@ claude:
       claude
       -p "${AI_FLOW_INPUT:-'Summarize recent changes and suggest improvements'}"
       --permission-mode acceptEdits
-      --allowedTools "Bash(*) Read(*) Edit(*) Write(*) mcp__gitlab"
+      --allowedTools "Bash Read Edit Write mcp__gitlab"
       --debug
   # Claude Code will use ANTHROPIC_API_KEY from CI/CD variables
 ```
@@ -315,7 +315,7 @@ claude-bedrock:
       claude
       -p "${AI_FLOW_INPUT:-'Implement the requested changes and open an MR'}"
       --permission-mode acceptEdits
-      --allowedTools "Bash(*) Read(*) Edit(*) Write(*) mcp__gitlab"
+      --allowedTools "Bash Read Edit Write mcp__gitlab"
       --debug
   variables:
     AWS_REGION: "us-west-2"
@@ -368,7 +368,7 @@ claude-vertex:
       claude
       -p "${AI_FLOW_INPUT:-'Review and update code as requested'}"
       --permission-mode acceptEdits
-      --allowedTools "Bash(*) Read(*) Edit(*) Write(*) mcp__gitlab"
+      --allowedTools "Bash Read Edit Write mcp__gitlab"
       --debug
   variables:
     CLOUD_ML_REGION: "us-east5"

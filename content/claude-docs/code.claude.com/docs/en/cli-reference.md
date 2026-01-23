@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 6f9f4c8b5fabc4cd7cb28237a0b9828642f066fd3ea3ca9b87077ccdce43f77f
+fetched_at: 2026-01-23T03:45:17.894555Z
+sha256: 9c36204b040aff24f60428c64c76ea8e072bddec97d1e98897bb36673e7150e1
 ---
 
 # CLI reference
@@ -85,12 +85,12 @@ Customize Claude Code's behavior with these command-line flags:
 
 The `--agents` flag accepts a JSON object that defines one or more custom subagents. Each subagent requires a unique name (as the key) and a definition object with the following fields:
 
-| Field         | Required | Description                                                                                                            |
-| :------------ | :------- | :--------------------------------------------------------------------------------------------------------------------- |
-| `description` | Yes      | Natural language description of when the subagent should be invoked                                                    |
-| `prompt`      | Yes      | The system prompt that guides the subagent's behavior                                                                  |
-| `tools`       | No       | Array of specific tools the subagent can use (for example, `["Read", "Edit", "Bash"]`). If omitted, inherits all tools |
-| `model`       | No       | Model alias to use: `sonnet`, `opus`, or `haiku`. If omitted, uses the default subagent model                          |
+| Field         | Required | Description                                                                                                                         |
+| :------------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| `description` | Yes      | Natural language description of when the subagent should be invoked                                                                 |
+| `prompt`      | Yes      | The system prompt that guides the subagent's behavior                                                                               |
+| `tools`       | No       | Array of specific tools the subagent can use (for example, `["Read", "Edit", "Bash"]`). If omitted, inherits all tools              |
+| `model`       | No       | Model alias to use: `sonnet`, `opus`, `haiku`, or `inherit`. If omitted, defaults to `inherit` (uses the main conversation's model) |
 
 Example:
 

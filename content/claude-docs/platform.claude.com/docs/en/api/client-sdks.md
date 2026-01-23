@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/client-sdks
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 53157cb6a5595c07174b3938daba2034c4f0b5563bb03823990c660ace6d0790
+fetched_at: 2026-01-23T03:45:17.894555Z
+sha256: 547e0e8a44741f655f657cfb667ed045548da1e35267cd74ab1bc4653d72ef5a
 ---
 
 # Client SDKs
@@ -23,6 +23,8 @@ Additional configuration is needed to use Anthropic's Client SDKs through a part
 
 **Requirements:** Python 3.8+
 
+**Minimum SDK version:** 0.22.0
+
 **Installation:**
 
 ```bash
@@ -38,6 +40,8 @@ pip install anthropic
 <Info>
 While this library is in TypeScript, it can also be used in JavaScript libraries.
 </Info>
+
+**Minimum SDK version:** 0.37.0
 
 **Installation:**
 

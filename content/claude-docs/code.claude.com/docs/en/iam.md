@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/iam
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: dded26671124e407fa34f245f4eb5c169c77bb064c72e33d5cc55f24c737f8c3
+fetched_at: 2026-01-23T03:45:17.894555Z
+sha256: b406e61c6bde409490b7f8177cae1329e799667efefca81ed1875622c601ad3c
 ---
 
 # Identity and Access Management
@@ -178,6 +178,10 @@ Read & Edit rules both follow the [gitignore](https://git-scm.com/docs/gitignore
 * `Read(~/.zshrc)` - Reads your home directory's `.zshrc`
 * `Edit(//tmp/scratch.txt)` - Edits the absolute path `/tmp/scratch.txt`
 * `Read(src/**)` - Reads from `<current-directory>/src/`
+
+<Note>
+  In gitignore patterns, `*` matches files in a single directory while `**` matches recursively across directories. To allow all file access, use just the tool name without parentheses: `Read`, `Edit`, or `Write`.
+</Note>
 
 **WebFetch**
 

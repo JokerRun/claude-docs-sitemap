@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/workspaces
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: d731a44ec6bf35387568d19f4d1134ddc983c8a0c15ccaf5914edd254edbee27
+fetched_at: 2026-01-23T03:45:17.894555Z
+sha256: 7196ce596dea74eac1c5f58c9f9a14ef6184c777b4ea97657c131dda34e9f15a
 ---
 
 # Workspaces
@@ -183,6 +183,10 @@ Resources scoped to workspaces include:
 - **Files** created via the [Files API](/docs/en/build-with-claude/files)
 - **Message Batches** created via the [Batch API](/docs/en/build-with-claude/batch-processing)
 - **Skills** created via the [Skills API](/docs/en/build-with-claude/skills-guide)
+
+<Note>
+Starting February 5, 2026, [prompt caches](/docs/en/build-with-claude/prompt-caching) will also be isolated per workspace (applies to the Claude API and Azure only).
+</Note>
 
 <Tip>
 To retrieve your organization's workspace IDs, use the [List Workspaces](/docs/en/api/admin-api/workspaces/list-workspaces) endpoint, or find them in the [Claude Console](/settings/workspaces).
