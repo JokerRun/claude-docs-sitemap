@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: ad58f5b8c2743257cf5f2a0754bd61064471166a2b41c5a78cd0e134aa48b678
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: df3d0aab7aed717ccd42db9bdaeb65cd469f9e60ef4de10ad303db30fa8d0c50
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Interactive mode
 
@@ -284,8 +288,3 @@ When working on complex, multi-step work, Claude creates a task list to track pr
 * [CLI reference](/en/cli-reference) - Command-line flags and options
 * [Settings](/en/settings) - Configuration options
 * [Memory management](/en/memory) - Managing CLAUDE.md files
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

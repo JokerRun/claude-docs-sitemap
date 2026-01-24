@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c8b3fb2a5182c25d58eebca099671bf53976c9889419056df53c63ee55f27180
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 6af9e76d8ee4e03f8a790cd918b34cbcd31cbac8c0863939ce6a022aab179953
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # LLM gateway configuration
 
@@ -175,8 +179,3 @@ For more detailed information, refer to the [LiteLLM documentation](https://docs
 * [Claude Code settings](/en/settings)
 * [Enterprise network configuration](/en/network-config)
 * [Third-party integrations overview](/en/third-party-integrations)
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

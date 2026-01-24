@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 9024e9f000eae32010edb41e58215d558229c84adfeba1d8e5dd724389043758
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 133f0a875c614419f41c0f03b6296696ab338e2490c092726514b0677d6ee5b9
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Enterprise network configuration
 
@@ -95,8 +99,3 @@ Ensure these URLs are allowlisted in your proxy configuration and firewall rules
 * [Claude Code settings](/en/settings)
 * [Environment variables reference](/en/settings#environment-variables)
 * [Troubleshooting guide](/en/troubleshooting)
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

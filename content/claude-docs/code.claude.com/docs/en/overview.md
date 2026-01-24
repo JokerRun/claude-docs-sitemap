@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: ec2cbea72843f4927a6472041bbcc0e02af29e6fc977de8ee67169c815e27f81
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: dfd8df588d493728cbb251e79f03a7e5b5ad21122b9eacf807f15d2aef5bb060
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Claude Code overview
 
@@ -147,8 +151,3 @@ You'll be prompted to log in on first use. That's it! [Continue with Quickstart 
     Understand how Claude Code handles your data
   </Card>
 </CardGroup>
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

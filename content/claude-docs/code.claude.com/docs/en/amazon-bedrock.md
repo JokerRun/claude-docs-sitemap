@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-01-21T03:46:50.306000Z
-sha256: 9e1e5fdf9568233edfb0b3423c197903f771e1e2d62bbfb12281a2ad1571e243
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 35d135909a864653a39f1fa5b2f606453332ac12ea49c5cafdf99c754cc9f7a2
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Claude Code on Amazon Bedrock
 
@@ -250,8 +254,3 @@ Claude Code uses the Bedrock [Invoke API](https://docs.aws.amazon.com/bedrock/la
 * [Bedrock pricing](https://aws.amazon.com/bedrock/pricing/)
 * [Bedrock inference profiles](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html)
 * [Claude Code on Amazon Bedrock: Quick Setup Guide](https://community.aws/content/2tXkZKrZzlrlu0KfH8gST5Dkppq/claude-code-on-amazon-bedrock-quick-setup-guide)- [Claude Code Monitoring Implementation (Bedrock)](https://github.com/aws-solutions-library-samples/guidance-for-claude-code-with-amazon-bedrock/blob/main/assets/docs/MONITORING.md)
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

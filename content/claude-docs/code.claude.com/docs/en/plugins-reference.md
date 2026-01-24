@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 03b84ead9d53e2d9b6fdf3c821f5157f70e98e2227e7a6fbcc4018935fd9119b
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 7131f8cb7aa7464ab0bbfd2620b4d327a7f23b3671c8a2ab1c4a7b4e8bdc6f47
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Plugins reference
 
@@ -735,8 +739,3 @@ Follow semantic versioning for plugin releases:
 * [Hooks](/en/hooks) - Event handling and automation
 * [MCP](/en/mcp) - External tool integration
 * [Settings](/en/settings) - Configuration options for plugins
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

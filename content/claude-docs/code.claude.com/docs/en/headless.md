@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: d8474c2faf1d92f4b60189cc22b1afb8448e3f99ca601edd1b74818b44afc0dd
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 3e7f51c5f6619d0d957121a8460e9a0c48fd26bc366cbc4fda757ab452caf7d2
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Run Claude Code programmatically
 
@@ -155,8 +159,3 @@ claude -p "Continue that review" --resume "$session_id"
     Use the Agent SDK in GitLab pipelines
   </Card>
 </CardGroup>
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

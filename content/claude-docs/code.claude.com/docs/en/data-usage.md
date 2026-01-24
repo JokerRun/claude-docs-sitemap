@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/data-usage
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 11b7a032425fea5b4cc12a3da655908137337976c53ca45614aa46719adb1fb0
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 64670fc2f2be58616d2a4e39e9396efa949be45903c38f87879bb41e1f06d739
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Data usage
 
@@ -94,8 +98,3 @@ By default, we disable all non-essential traffic (including error reporting, tel
 | **Claude API (`/bug` reports)** | Default on.<br />`DISABLE_BUG_COMMAND=1` to disable.     | Default off.<br />`CLAUDE_CODE_USE_VERTEX` must be 1. | Default off.<br />`CLAUDE_CODE_USE_BEDROCK` must be 1. |
 
 All environment variables can be checked into `settings.json` ([read more](/en/settings)).
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

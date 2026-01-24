@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/slack
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 5ee26ba61c0f38fd4fc0753163927d5952862e915790d053aa35b75b1ba656cd
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: fce376497c94df90bf91574dd1c7f356f32ce465ddf20e1d725f44636b717e7d
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Claude Code in Slack
 
@@ -211,8 +215,3 @@ Slack workspace administrators control whether the Claude app can be installed i
     Get additional support
   </Card>
 </CardGroup>
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

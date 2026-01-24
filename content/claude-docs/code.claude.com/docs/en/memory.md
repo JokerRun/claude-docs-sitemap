@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-01-22T03:50:41.891478Z
-sha256: 579bf4c6609db387f6644a1c4b7a9fb579f798d50f439970d1d256b4dca4a582
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 6027b005e0f01c6dda657f6a21750965f520e4fb6621621340d64888dd243993
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Manage Claude's memory
 
@@ -226,8 +230,3 @@ To set up organization-level memory management:
 * **Be specific**: "Use 2-space indentation" is better than "Format code properly".
 * **Use structure to organize**: Format each individual memory as a bullet point and group related memories under descriptive markdown headings.
 * **Review periodically**: Update memories as your project evolves to ensure Claude is always using the most up to date information and context.
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

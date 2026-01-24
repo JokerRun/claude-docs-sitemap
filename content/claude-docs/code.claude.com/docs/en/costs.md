@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-01-22T03:50:41.891478Z
-sha256: c7f0b537687d53d11896e408f64b2c7923429c47aa8c0e5eb881af9b53a9baf6
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: d54ce21d179ffd5afbc3a3180b87871db141e594d173471b693f621cb5424486
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Manage costs effectively
 
@@ -96,6 +100,10 @@ Each MCP server adds tool definitions to your context, even when idle. Run `/con
 * **Disable unused servers**: Run `/mcp` to see configured servers and disable any you're not actively using.
 * **Tool search is automatic**: When MCP tool descriptions exceed 10% of your context window, Claude Code automatically defers them and loads tools on-demand via [tool search](/en/mcp#scale-with-mcp-tool-search). Since deferred tools only enter context when actually used, a lower threshold means fewer idle tool definitions consuming space. Set a lower threshold with `ENABLE_TOOL_SEARCH=auto:<N>` (for example, `auto:5` triggers when tools exceed 5% of your context window).
 
+### Install code intelligence plugins for typed languages
+
+[Code intelligence plugins](/en/discover-plugins#code-intelligence) give Claude precise symbol navigation instead of text-based search, reducing unnecessary file reads when exploring unfamiliar code. A single "go to definition" call replaces what might otherwise be a grep followed by reading multiple candidate files. Installed language servers also report type errors automatically after edits, so Claude catches mistakes without running a compiler.
+
 ### Offload processing to hooks and skills
 
 Custom [hooks](/en/hooks) can preprocess data before Claude sees it. Instead of Claude reading a 10,000-line log file to find errors, a hook can grep for `ERROR` and return only matching lines, reducing context from tens of thousands of tokens to hundreds.
@@ -183,8 +191,3 @@ These background processes consume a small amount of tokens (typically under \$0
 ## Understanding changes in Claude Code behavior
 
 Claude Code regularly receives updates that may change how features work, including cost reporting. Run `claude --version` to check your current version. For specific billing questions, contact Anthropic support through your [Console account](https://platform.claude.com/login). For team deployments, start with a small pilot group to establish usage patterns before wider rollout.
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: 54dc2888177e3bcaca01521fd5bb1e385f1888026ab7fee9392fb315f94519bf
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: e41fbe7a793909edc7b6ee63986830fbac4fcd70fb0fb02dba3d45386626d394
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Extend Claude with skills
 
@@ -645,8 +649,3 @@ To increase the limit, set the `SLASH_COMMAND_TOOL_CHAR_BUDGET` environment vari
 * **[Memory](/en/memory)**: manage CLAUDE.md files for persistent context
 * **[Interactive mode](/en/interactive-mode#built-in-commands)**: built-in commands and shortcuts
 * **[Permissions](/en/iam)**: control tool and skill access
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

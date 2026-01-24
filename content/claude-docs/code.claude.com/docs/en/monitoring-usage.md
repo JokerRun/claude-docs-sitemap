@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: d80c5d71e9924d890236601a01e9d6cea79d43ed9e8c41c36e106747bed83d80
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 0ad9be34223032eb3da093e8fb17f7bc223e2707a051c17a3605c355ab28669f
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Monitoring
 
@@ -501,8 +505,3 @@ For a comprehensive guide on measuring return on investment for Claude Code, inc
 ## Monitoring Claude Code on Amazon Bedrock
 
 For detailed Claude Code usage monitoring guidance for Amazon Bedrock, see [Claude Code Monitoring Implementation (Bedrock)](https://github.com/aws-solutions-library-samples/guidance-for-claude-code-with-amazon-bedrock/blob/main/assets/docs/MONITORING.md).
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

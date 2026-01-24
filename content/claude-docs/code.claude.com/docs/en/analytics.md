@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/analytics
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c1bbe8037696252d5a14ba900eb2c68f95bb92ca3a38b3ab9d5a00b5d77072e0
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 1798fbaad53714049f4f18c8874454557d2cbbbbfc6df8ac4b30d372a910cada
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Analytics
 
@@ -92,8 +96,3 @@ Tool acceptance rates and code metrics help you:
 
 * [Monitoring usage with OpenTelemetry](/en/monitoring-usage) for custom metrics and alerting
 * [Identity and access management](/en/iam) for role configuration
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

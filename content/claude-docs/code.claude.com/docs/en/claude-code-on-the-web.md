@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: 940cc7ad2acddf954f24c51654c60530001c8d0525929d87e0a508fedcd61994
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: ad019c54d39fe1b7aa8de470bc82bb6b115fe83d445d663a6d706ba044743dab
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Claude Code on the web
 
@@ -581,8 +585,3 @@ Claude Code on the web shares rate limits with all other Claude and Claude Code 
 * [Settings reference](/en/settings)
 * [Security](/en/security)
 * [Data usage](/en/data-usage)
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

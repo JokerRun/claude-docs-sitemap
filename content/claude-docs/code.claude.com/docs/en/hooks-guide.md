@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 7af12ae0aaa82b7a1834e314664348c2aa6c64281b5336a935d110fd7c98dff8
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 22840088f17755edbc745443762358f0a8428d38204b68c18eb8a74cffeb848e
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Get started with Claude Code hooks
 
@@ -339,8 +343,3 @@ Block edits to sensitive files:
 * For comprehensive security best practices and safety guidelines, see [Security Considerations](/en/hooks#security-considerations) in the hooks reference documentation.
 * For troubleshooting steps and debugging techniques, see [Debugging](/en/hooks#debugging) in the hooks reference
   documentation.
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/checkpointing
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: fc66856a30d314c8da4be3f809175bdbc2c85aaee724e44414826629367b2c8a
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 4cf5e22c4d83cc8ff0b697b2ed3f8ee2b71f1b962d460e6a9b09a9e1a0a80df3
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Checkpointing
 
@@ -70,8 +74,3 @@ Checkpoints are designed for quick, session-level recovery. For permanent versio
 * [Interactive mode](/en/interactive-mode) - Keyboard shortcuts and session controls
 * [Built-in commands](/en/interactive-mode#built-in-commands) - Accessing checkpoints using `/rewind`
 * [CLI reference](/en/cli-reference) - Command-line options
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 135cc18b87007811dca084180ce944f1d6f27c7e04513167fcb8a9d1c9d5586a
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: df02e3bfee1f82973a62b98cbd7d9fff1d2809a6969397d34c4496eb76919065
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Status line configuration
 
@@ -270,8 +274,3 @@ fi
 
 * If your status line doesn't appear, check that your script is executable (`chmod +x`)
 * Ensure your script outputs to stdout (not stderr)
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-01-22T03:50:41.891478Z
-sha256: b2a5c5838bcff80207bca176f3f990e49a467eb93d12e25cfaf015886c2500a7
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: a2cd7c186959121726d57f035e7bd7e94e50c629fbce3307d3a221aab5858602
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # How Claude Code works
 
@@ -39,12 +43,13 @@ Tools are what make Claude Code agentic. Without tools, Claude can only respond 
 
 The built-in tools generally fall into four categories, each representing a different kind of agency.
 
-| Category            | What Claude can do                                                  |
-| ------------------- | ------------------------------------------------------------------- |
-| **File operations** | Read files, edit code, create new files, rename and reorganize      |
-| **Search**          | Find files by pattern, search content with regex, explore codebases |
-| **Execution**       | Run shell commands, start servers, run tests, use git               |
-| **Web**             | Search the web, fetch documentation, look up error messages         |
+| Category              | What Claude can do                                                                                                                                            |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **File operations**   | Read files, edit code, create new files, rename and reorganize                                                                                                |
+| **Search**            | Find files by pattern, search content with regex, explore codebases                                                                                           |
+| **Execution**         | Run shell commands, start servers, run tests, use git                                                                                                         |
+| **Web**               | Search the web, fetch documentation, look up error messages                                                                                                   |
+| **Code intelligence** | See type errors and warnings after edits, jump to definitions, find references (requires [code intelligence plugins](/en/discover-plugins#code-intelligence)) |
 
 These are the primary capabilities. Claude also has tools for spawning subagents, asking you questions, and other orchestration tasks. See [Tools available to Claude](/en/settings#tools-available-to-claude) for the complete list.
 
@@ -239,8 +244,3 @@ You don't need to specify which files to read or what commands to run. Claude fi
     Step-by-step guides for typical tasks
   </Card>
 </CardGroup>
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

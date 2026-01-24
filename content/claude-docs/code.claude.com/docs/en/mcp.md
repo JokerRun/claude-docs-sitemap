@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: 95ee37dfe45b2170c114bc671dd5d15d871b299cfa630f03306d97950e57ae74
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 649a8996b86124b05c538b1ba671d54b15196209e77c0df880e55dad895cdb6b
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Connect Claude Code to tools via MCP
 
@@ -1134,8 +1138,3 @@ URL patterns support wildcards using `*` to match any sequence of characters. Th
 <Note>
   **When using `managed-mcp.json`**: Users cannot add MCP servers through `claude mcp add` or configuration files. The `allowedMcpServers` and `deniedMcpServers` settings still apply to filter which managed servers are actually loaded.
 </Note>
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

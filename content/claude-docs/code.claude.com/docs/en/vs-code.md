@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: 53a042b55069314cc026cf5eaca649e99cd8dfe2a2b95b5cab9a9abc72e7beaf
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: b31f7c2a81d46b3cfac68cd6c629a47ab962df51fe1b09402879a781f271e119
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Use Claude Code in VS Code
 
@@ -401,8 +405,3 @@ Now that you have Claude Code set up in VS Code:
 * [Explore common workflows](/en/common-workflows) to get the most out of Claude Code
 * [Set up MCP servers](/en/mcp) to extend Claude's capabilities with external tools. Configure servers using the CLI, then use them in the extension.
 * [Configure Claude Code settings](/en/settings) to customize allowed commands, hooks, and more. These settings are shared between the extension and CLI.
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

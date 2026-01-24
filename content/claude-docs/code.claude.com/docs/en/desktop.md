@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-01-22T03:50:41.891478Z
-sha256: 72a2aea4f86206a8d1eb5107c9a726982af6d60602234a64534ffcf06ed0c9f4
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 390db8427834af5271090d743ff408b70377f0c541a8f74081b9efc51069fc3a
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Claude Code on desktop
 
@@ -130,8 +134,3 @@ Organizations can disable local Claude Code use in the desktop application with 
 * [Enterprise Configuration](https://support.claude.com/en/articles/12622667-enterprise-configuration)
 * [Common workflows](/en/common-workflows)
 * [Settings reference](/en/settings)
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

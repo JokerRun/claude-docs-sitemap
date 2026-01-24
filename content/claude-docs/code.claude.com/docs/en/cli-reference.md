@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: 9c36204b040aff24f60428c64c76ea8e072bddec97d1e98897bb36673e7150e1
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 472fa3b133dc0e6080b11e275265a5ff64ed200d689c773339c71b4c984340a1
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # CLI reference
 
@@ -156,8 +160,3 @@ For most use cases, `--append-system-prompt` or `--append-system-prompt-file` is
 * [Common workflows](/en/common-workflows) - Advanced workflows and patterns
 * [Settings](/en/settings) - Configuration options
 * [SDK documentation](https://docs.claude.com/en/docs/agent-sdk) - Programmatic usage and integrations
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

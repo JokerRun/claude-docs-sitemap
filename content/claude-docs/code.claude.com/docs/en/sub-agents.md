@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 1d5b6a6469dba0d73c7879daa98b02e73294766849cfc56c8f1aa9d5e653148b
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 27b26e38af8be8da03aa20d73227e6897f316af19bbe06682b0df5c539149075
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Create custom subagents
 
@@ -736,8 +740,3 @@ Now that you understand subagents, explore these related features:
 * [Distribute subagents with plugins](/en/plugins) to share subagents across teams or projects
 * [Run Claude Code programmatically](/en/headless) with the Agent SDK for CI/CD and automation
 * [Use MCP servers](/en/mcp) to give subagents access to external tools and data
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

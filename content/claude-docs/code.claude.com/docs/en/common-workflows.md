@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: c4e3580f9e40783eaf89ffef6bd645987a8235c655b89e631a160d178f9cbc18
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 65b3fb9a30cceed9c87cb0a51c9dc69f657e0414442887273a3e283d537b5ebc
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Common workflows
 
@@ -88,6 +92,7 @@ Suppose you need to locate code related to a specific feature or functionality.
 
   * Be specific about what you're looking for
   * Use domain language from the project
+  * Install a [code intelligence plugin](/en/discover-plugins#code-intelligence) for your language to give Claude precise "go to definition" and "find references" navigation
 </Tip>
 
 ***
@@ -864,8 +869,3 @@ Claude has built-in access to its documentation and can answer questions about i
     Clone our development container reference implementation
   </Card>
 </CardGroup>
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

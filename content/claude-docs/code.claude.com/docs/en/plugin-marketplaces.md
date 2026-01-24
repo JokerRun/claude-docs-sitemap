@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-01-22T03:50:41.891478Z
-sha256: a75b95d682f56860070cab7cf3d120b2d1ae52e0400c8dfab8701da8255f89bc
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 297245e855d8989ec54d0c46aea028de8f5d053234c17210e888d4eda4dd2a08
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Create and distribute a plugin marketplace
 
@@ -609,8 +613,3 @@ For additional debugging tools and common issues, see [Debugging and development
 * [Plugins reference](/en/plugins-reference) - Complete technical specifications and schemas
 * [Plugin settings](/en/settings#plugin-settings) - Plugin configuration options
 * [strictKnownMarketplaces reference](/en/settings#strictknownmarketplaces) - Managed marketplace restrictions
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

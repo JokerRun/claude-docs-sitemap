@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: ea887a07b8d65289da0b435b9d416a612cebeaf0f47871eee3fde4ddf020e033
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: d41934bd6c4f9a33f1812105fa14fb8f8db38e3e1608d3f7ee9eced80bde0521
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Claude Code on Google Vertex AI
 
@@ -164,8 +168,3 @@ If you encounter 429 errors:
 * [Vertex AI documentation](https://cloud.google.com/vertex-ai/docs)
 * [Vertex AI pricing](https://cloud.google.com/vertex-ai/pricing)
 * [Vertex AI quotas and limits](https://cloud.google.com/vertex-ai/docs/quotas)
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: df84a6ff76092f119f638e19a9545eea9b355d4a1df674ee9ffaf6b3dee3d928
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 48965cf2ee49f219ed211e5260cfc74c50226648e752116ae90a77ca6b95610c
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Best Practices for Claude Code
 
@@ -323,7 +327,7 @@ Tell Claude to use subagents explicitly: *"Use a subagent to review this code fo
   Run `/plugin` to browse the marketplace. Plugins add skills, tools, and integrations without configuration.
 </Tip>
 
-[Plugins](/en/plugins) bundle skills, hooks, subagents, and MCP servers into a single installable unit from the community and Anthropic.
+[Plugins](/en/plugins) bundle skills, hooks, subagents, and MCP servers into a single installable unit from the community and Anthropic. If you work with a typed language, install a [code intelligence plugin](/en/discover-plugins#code-intelligence) to give Claude precise symbol navigation and automatic error detection after edits.
 
 For guidance on choosing between skills, subagents, hooks, and MCP, see [Extend Claude Code](/en/features-overview#match-features-to-your-goal).
 
@@ -596,8 +600,3 @@ Over time, you'll develop intuition that no guide can capture. You'll know when 
     Store project conventions and persistent context
   </Card>
 </CardGroup>
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

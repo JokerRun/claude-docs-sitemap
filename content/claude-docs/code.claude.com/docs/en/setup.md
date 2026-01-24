@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: 6a9f37dab569ce53bf5dd255f0ad55dce9ed8ecb77dd31e60552787c72773317
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: b833be840f15015d2d13799bb15dbce15b0dd84a5dafc5ef9675debc2e5331d9
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Set up Claude Code
 
@@ -347,8 +351,3 @@ REM Remove project-specific settings (run from your project directory)
 rmdir /s /q ".claude"
 del ".mcp.json"
 ```
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

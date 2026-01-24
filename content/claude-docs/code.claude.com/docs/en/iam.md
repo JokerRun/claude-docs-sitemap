@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/iam
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: b406e61c6bde409490b7f8177cae1329e799667efefca81ed1875622c601ad3c
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 7cbed253c51022cc4f006dd1b81c27ec44c3faef45630f33d53a08a2463efa9e
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Identity and Access Management
 
@@ -239,8 +243,3 @@ Claude Code securely manages your authentication credentials:
 * **Supported authentication types**: Claude.ai credentials, Claude API credentials, Azure Auth, Bedrock Auth, and Vertex Auth.
 * **Custom credential scripts**: The [`apiKeyHelper`](/en/settings#available-settings) setting can be configured to run a shell script that returns an API key.
 * **Refresh intervals**: By default, `apiKeyHelper` is called after 5 minutes or on HTTP 401 response. Set `CLAUDE_CODE_API_KEY_HELPER_TTL_MS` environment variable for custom refresh intervals.
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

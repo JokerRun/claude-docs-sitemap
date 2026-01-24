@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 7a44bc5d94ba23a5d4c9d34d765b56fc3a67be1c536dc8353856c935439a61b7
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 2586febcfb732ac39ba20bb4606859b0dfe7ac1458346b0387ab88be07152bc3
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Use Claude Code with Chrome (beta)
 
@@ -220,8 +224,3 @@ Site-level permissions are inherited from the Chrome extension. Manage permissio
 * [CLI reference](/en/cli-reference) - Command-line flags including `--chrome`
 * [Common workflows](/en/common-workflows) - More ways to use Claude Code
 * [Getting started with Claude for Chrome](https://support.anthropic.com/en/articles/12012173-getting-started-with-claude-for-chrome) - Full documentation for the Chrome extension, including shortcuts, scheduling, and permissions
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: 9f5d67288f159e912444b2428096536cfbb8c188c8a47a2b5759392a72db8979
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 7b7dfefd84f74fbab00466dc068763b2ee6eb26a97d3777cc74e3d2cfa18d21f
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Hooks reference
 
@@ -1377,8 +1381,3 @@ Progress messages appear in verbose mode (ctrl+o) showing:
 * Command being executed
 * Success/failure status
 * Output or error messages
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

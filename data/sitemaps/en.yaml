@@ -7,7 +7,7 @@
   lastmod: '2026-01-22T23:58:01.239Z'
 - source: code
   loc: https://code.claude.com/docs/en/best-practices
-  lastmod: '2026-01-22T23:58:01.241Z'
+  lastmod: '2026-01-23T15:56:15.164Z'
 - source: code
   loc: https://code.claude.com/docs/en/checkpointing
   lastmod: '2026-01-22T23:58:01.240Z'
@@ -22,10 +22,10 @@
   lastmod: '2026-01-22T23:58:01.260Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
-  lastmod: '2026-01-22T23:58:01.260Z'
+  lastmod: '2026-01-23T15:56:15.179Z'
 - source: code
   loc: https://code.claude.com/docs/en/costs
-  lastmod: '2026-01-22T23:58:01.261Z'
+  lastmod: '2026-01-23T15:56:15.178Z'
 - source: code
   loc: https://code.claude.com/docs/en/data-usage
   lastmod: '2026-01-22T23:58:01.257Z'
@@ -37,13 +37,13 @@
   lastmod: '2026-01-22T23:58:01.259Z'
 - source: code
   loc: https://code.claude.com/docs/en/discover-plugins
-  lastmod: '2026-01-22T23:58:01.262Z'
+  lastmod: '2026-01-23T15:56:15.178Z'
 - source: code
   loc: https://code.claude.com/docs/en/features-overview
   lastmod: '2026-01-22T23:58:01.259Z'
 - source: code
   loc: https://code.claude.com/docs/en/github-actions
-  lastmod: '2026-01-22T23:58:01.261Z'
+  lastmod: '2026-01-23T18:02:40.604Z'
 - source: code
   loc: https://code.claude.com/docs/en/gitlab-ci-cd
   lastmod: '2026-01-22T23:58:01.261Z'
@@ -61,7 +61,7 @@
   lastmod: '2026-01-22T23:58:01.273Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
-  lastmod: '2026-01-22T23:58:01.277Z'
+  lastmod: '2026-01-23T15:56:15.191Z'
 - source: code
   loc: https://code.claude.com/docs/en/iam
   lastmod: '2026-01-22T23:58:01.274Z'
@@ -85,7 +85,7 @@
   lastmod: '2026-01-22T23:58:01.289Z'
 - source: code
   loc: https://code.claude.com/docs/en/microsoft-foundry
-  lastmod: '2026-01-22T23:58:01.290Z'
+  lastmod: '2026-01-23T18:02:04.078Z'
 - source: code
   loc: https://code.claude.com/docs/en/model-config
   lastmod: '2026-01-22T23:58:01.289Z'
@@ -121,7 +121,7 @@
   lastmod: '2026-01-22T23:58:01.307Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-01-22T23:58:01.304Z'
+  lastmod: '2026-01-23T18:02:20.516Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-01-22T23:58:01.304Z'

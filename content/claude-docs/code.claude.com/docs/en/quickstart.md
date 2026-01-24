@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 5ef952ea867580abb735ec33baf8b8a59196508cd19b57a0e32d8e15a1598eda
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: a92eea4454d42e9a32becba0d049ba724c8763f12844053b3ddd4a84c0c71676
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Quickstart
 
@@ -347,8 +351,3 @@ Now that you've learned the basics, explore more advanced features:
 * **In Claude Code**: Type `/help` or ask "how do I..."
 * **Documentation**: You're here! Browse other guides
 * **Community**: Join our [Discord](https://www.anthropic.com/discord) for tips and support
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/legal-and-compliance
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 03294e16a35d0a3f07b01cd61bd393a6a7691e800dba114e88ec889ab04f5c35
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 773c24daa75cf3853f754f36125add8df53b9d00cafd8f188ebaba6161878a7e
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Legal and compliance
 
@@ -41,8 +45,3 @@ Anthropic manages our security program through HackerOne. [Use this form to repo
 ***
 
 © Anthropic PBC. All rights reserved. Use is subject to applicable Anthropic Terms of Service.
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

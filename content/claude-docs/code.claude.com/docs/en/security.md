@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: 593194207944df04f95b6f3c29f6a7522707e84ecb1175557130f8e09393d87e
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: cac6901941515da8948dc0a4ee08d42ab627daaa94e68e176647581bc8b37497
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Security
 
@@ -141,8 +145,3 @@ If you discover a security vulnerability in Claude Code:
 * [Monitoring usage](/en/monitoring-usage) - Track and audit Claude Code activity
 * [Development containers](/en/devcontainer) - Secure, isolated environments
 * [Anthropic Trust Center](https://trust.anthropic.com) - Security certifications and compliance
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

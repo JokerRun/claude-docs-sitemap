@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/features-overview
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: 4dde550bbac7086df6c6c66b49f13231e329d3a15e3136cbc063a6b55f1774ea
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: eb6fd60b9c581ac79df833275db1253d40498182ab8b490a6d13ae0b6c8879ef
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Extend Claude Code
 
@@ -248,8 +252,3 @@ Each feature has its own guide with setup instructions, examples, and configurat
     Host and distribute plugin collections
   </Card>
 </CardGroup>
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

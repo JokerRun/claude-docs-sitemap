@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-01-21T01:15:37.014170Z
-sha256: f4580edabeaeea12de31492960a1afbc3c9f2d241650efdac66dfa4914228f52
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: 295f959efb8796a3904d080558cfaff924c101d368732228a2e134d271e6d1ff
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Create plugins
 
@@ -411,8 +415,3 @@ Now that you understand Claude Code's plugin system, here are suggested paths fo
   * [Subagents](/en/sub-agents): agent configuration and capabilities
   * [Hooks](/en/hooks): event handling and automation
   * [MCP](/en/mcp): external tool integration
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/jetbrains
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 5b6e45265742bff4966b949b2f17615dbe76ebf6e4fd9b3918eb07dc19354b18
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: adb2806c44ce69d528edef1b280912634006a3ea0e32137ab4f2ab945c05345f
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # JetBrains IDEs
 
@@ -153,8 +157,3 @@ When running in JetBrains IDEs, consider:
 * Being aware of which files Claude Code has access to modify
 
 For additional help, see our [troubleshooting guide](/en/troubleshooting).
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt

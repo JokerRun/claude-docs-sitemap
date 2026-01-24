@@ -1,9 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: fb73b1ff84515b29a371fc6a53ff562bcb6168c4c8fd401e743d079669d8f546
+fetched_at: 2026-01-24T03:39:08.717713Z
+sha256: c7256fe5f0d0a8eaf35f102106d825abd95c729e828572163333bbd1a1f50fb8
 ---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
 # Sandboxing
 
@@ -247,8 +251,3 @@ For implementation details and source code, visit the [GitHub repository](https:
 * [IAM](/en/iam) - Permission configuration and access control
 * [Settings](/en/settings) - Complete configuration reference
 * [CLI reference](/en/cli-reference) - Command-line options
-
-
----
-
-> To find navigation and other pages in this documentation, fetch the llms.txt file at: https://code.claude.com/docs/llms.txt
