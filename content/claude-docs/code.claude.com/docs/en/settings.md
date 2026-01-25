@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: 7e2ee44956bb44d15ec881cdac787433d850fdfdab760f0148598d4df5e9bfc0
+fetched_at: 2026-01-25T03:56:53.343488Z
+sha256: 0903fbf5c504c08a1213c0427a028da5140b1f230ddce72cd29466c14934e1a6
 ---
 
 > ## Documentation Index
@@ -210,9 +210,7 @@ To match all uses of a tool, use just the tool name without parentheses:
 | `WebFetch` | Matches **all** web fetch requests |
 | `Read`     | Matches **all** file reads         |
 
-<Warning>
-  `Bash(*)` does **not** match all Bash commands. The `*` wildcard only matches within the specifier context. To allow or deny all uses of a tool, use just the tool name: `Bash`, not `Bash(*)`.
-</Warning>
+`Bash(*)` is equivalent to `Bash` and matches all Bash commands. Both syntaxes can be used interchangeably.
 
 #### Using specifiers for fine-grained control
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/iam
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: 7cbed253c51022cc4f006dd1b81c27ec44c3faef45630f33d53a08a2463efa9e
+fetched_at: 2026-01-25T03:56:53.343488Z
+sha256: 6632c2c92ed3dd8e6f7047c35fdce3040d10a90ad150d194e582a4d7921d5649
 ---
 
 > ## Documentation Index
@@ -92,7 +92,7 @@ Rules are evaluated in order: **deny → ask → allow**. The first matching rul
 
 Permission rules use the format: `Tool` or `Tool(optional-specifier)`
 
-A rule that is just the tool name matches any use of that tool. For example, adding `Bash` to the allow list allows Claude Code to use the Bash tool without requiring user approval. Note that `Bash(*)` does **not** match all Bash commands. Use `Bash` without parentheses to match all uses.
+A rule that is just the tool name matches any use of that tool. For example, adding `Bash` to the allow list allows Claude Code to use the Bash tool without requiring user approval. `Bash(*)` is equivalent to `Bash` and can be used interchangeably.
 
 <Note>
   For a quick reference on permission rule syntax including wildcards, see [Permission rule syntax](/en/settings#permission-rule-syntax) in the settings documentation.
