@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-01-25T03:56:53.343488Z
-sha256: 0903fbf5c504c08a1213c0427a028da5140b1f230ddce72cd29466c14934e1a6
+fetched_at: 2026-01-27T03:50:11.274001Z
+sha256: bcee52a7aa9ae8f11d36079b62f5437830fd611d3da67f982d90ccfdcdafd26a
 ---
 
 > ## Documentation Index
@@ -563,6 +563,7 @@ Defines additional marketplaces that should be made available for the repository
 * `github`: GitHub repository (uses `repo`)
 * `git`: Any git URL (uses `url`)
 * `directory`: Local filesystem path (uses `path`, for development only)
+* `hostPattern`: regex pattern to match marketplace hosts (uses `hostPattern`)
 
 #### `strictKnownMarketplaces`
 
@@ -579,7 +580,7 @@ Defines additional marketplaces that should be made available for the repository
 * Only available in managed settings (`managed-settings.json`)
 * Cannot be overridden by user or project settings (highest precedence)
 * Enforced BEFORE network/filesystem operations (blocked sources never execute)
-* Uses exact matching for source specifications (including `ref`, `path` for git sources)
+* Uses exact matching for source specifications (including `ref`, `path` for git sources), except `hostPattern`, which uses regex matching
 
 **Allowlist behavior**:
 
@@ -589,7 +590,7 @@ Defines additional marketplaces that should be made available for the repository
 
 **All supported source types**:
 
-The allowlist supports six marketplace source types. Each source must match exactly for a user's marketplace addition to be allowed.
+The allowlist supports seven marketplace source types. Most sources use exact matching, while `hostPattern` uses regex matching against the marketplace host.
 
 1. **GitHub repositories**:
 
@@ -651,9 +652,27 @@ Fields: `path` (required: absolute path to marketplace.json file)
 
 Fields: `path` (required: absolute path to directory containing `.claude-plugin/marketplace.json`)
 
+7. **Host pattern matching**:
+
+```json  theme={null}
+{ "source": "hostPattern", "hostPattern": "^github\\.example\\.com$" }
+{ "source": "hostPattern", "hostPattern": "^gitlab\\.internal\\.example\\.com$" }
+```
+
+Fields: `hostPattern` (required: regex pattern to match against the marketplace host)
+
+Use host pattern matching when you want to allow all marketplaces from a specific host without enumerating each repository individually. This is useful for organizations with internal GitHub Enterprise or GitLab servers where developers create their own marketplaces.
+
+Host extraction by source type:
+
+* `github`: always matches against `github.com`
+* `git`: extracts hostname from the URL (supports both HTTPS and SSH formats)
+* `url`: extracts hostname from the URL
+* `npm`, `file`, `directory`: not supported for host pattern matching
+
 **Configuration examples**:
 
-Example - Allow specific marketplaces only:
+Example: allow specific marketplaces only:
 
 ```json  theme={null}
 {
@@ -684,6 +703,19 @@ Example - Disable all marketplace additions:
 ```json  theme={null}
 {
   "strictKnownMarketplaces": []
+}
+```
+
+Example: allow all marketplaces from an internal git server:
+
+```json  theme={null}
+{
+  "strictKnownMarketplaces": [
+    {
+      "source": "hostPattern",
+      "hostPattern": "^github\\.example\\.com$"
+    }
+  ]
 }
 ```
 
@@ -804,6 +836,7 @@ Claude Code supports the following environment variables to control its behavior
 | `CLAUDE_CODE_TMPDIR`                          | Override the temp directory used for internal temp files. Claude Code appends `/claude/` to this path. Default: `/tmp` on Unix/macOS, `os.tmpdir()` on Windows                                                                                                                                                                                                                                                                                                                                                                         |
 | `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`    | Equivalent of setting `DISABLE_AUTOUPDATER`, `DISABLE_BUG_COMMAND`, `DISABLE_ERROR_REPORTING`, and `DISABLE_TELEMETRY`                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `CLAUDE_CODE_DISABLE_TERMINAL_TITLE`          | Set to `1` to disable automatic terminal title updates based on conversation context                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `CLAUDE_CODE_ENABLE_TASKS`                    | Set to `false` to temporarily revert to the previous TODO list instead of the task tracking system. Default: `true`. See [Task list](/en/interactive-mode#task-list)                                                                                                                                                                                                                                                                                                                                                                   |
 | `CLAUDE_CODE_ENABLE_TELEMETRY`                | Set to `1` to enable OpenTelemetry data collection for metrics and logging. Required before configuring OTel exporters. See [Monitoring](/en/monitoring-usage)                                                                                                                                                                                                                                                                                                                                                                         |
 | `CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS`     | Override the default token limit for file reads. Useful when you need to read larger files in full                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `CLAUDE_CODE_HIDE_ACCOUNT_INFO`               | Set to `1` to hide your email address and organization name from the Claude Code UI. Useful when streaming or recording                                                                                                                                                                                                                                                                                                                                                                                                                |

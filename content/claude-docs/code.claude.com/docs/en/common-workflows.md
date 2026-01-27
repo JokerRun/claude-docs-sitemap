@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: 65b3fb9a30cceed9c87cb0a51c9dc69f657e0414442887273a3e283d537b5ebc
+fetched_at: 2026-01-27T03:50:11.274001Z
+sha256: a9cc7f5c6c72776f04d0ed248a549170653c4d5d2e70d939f461c4f01fe61971
 ---
 
 > ## Documentation Index
@@ -281,6 +281,8 @@ Claude analyzes the current implementation and create a comprehensive plan. Refi
 > What about backward compatibility?
 > How should we handle database migration?
 ```
+
+<Tip>Press `Ctrl+G` to open the plan in your default text editor, where you can edit it directly before Claude proceeds.</Tip>
 
 ### Configure Plan Mode as default
 

@@ -7,7 +7,7 @@
   lastmod: '2026-01-22T23:58:01.239Z'
 - source: code
   loc: https://code.claude.com/docs/en/best-practices
-  lastmod: '2026-01-23T15:56:15.164Z'
+  lastmod: '2026-01-26T19:11:27.947Z'
 - source: code
   loc: https://code.claude.com/docs/en/checkpointing
   lastmod: '2026-01-22T23:58:01.240Z'
@@ -22,7 +22,7 @@
   lastmod: '2026-01-22T23:58:01.260Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
-  lastmod: '2026-01-23T15:56:15.179Z'
+  lastmod: '2026-01-26T19:11:27.961Z'
 - source: code
   loc: https://code.claude.com/docs/en/costs
   lastmod: '2026-01-23T15:56:15.178Z'
@@ -67,7 +67,7 @@
   lastmod: '2026-01-25T02:56:42.628Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
-  lastmod: '2026-01-22T23:58:01.276Z'
+  lastmod: '2026-01-26T19:11:27.976Z'
 - source: code
   loc: https://code.claude.com/docs/en/jetbrains
   lastmod: '2026-01-22T23:58:01.273Z'
@@ -100,10 +100,10 @@
   lastmod: '2026-01-22T23:58:01.291Z'
 - source: code
   loc: https://code.claude.com/docs/en/overview
-  lastmod: '2026-01-22T23:58:01.291Z'
+  lastmod: '2026-01-26T19:11:17.915Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-marketplaces
-  lastmod: '2026-01-22T23:58:01.291Z'
+  lastmod: '2026-01-27T03:32:24.825Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins
   lastmod: '2026-01-22T23:58:01.302Z'
@@ -112,7 +112,7 @@
   lastmod: '2026-01-22T23:58:01.305Z'
 - source: code
   loc: https://code.claude.com/docs/en/quickstart
-  lastmod: '2026-01-22T23:58:01.303Z'
+  lastmod: '2026-01-26T19:11:17.955Z'
 - source: code
   loc: https://code.claude.com/docs/en/sandboxing
   lastmod: '2026-01-22T23:58:01.306Z'
@@ -121,13 +121,13 @@
   lastmod: '2026-01-22T23:58:01.307Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-01-25T02:56:42.653Z'
+  lastmod: '2026-01-27T03:32:24.838Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-01-22T23:58:01.304Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
-  lastmod: '2026-01-22T23:58:01.307Z'
+  lastmod: '2026-01-26T19:11:28.003Z'
 - source: code
   loc: https://code.claude.com/docs/en/slack
   lastmod: '2026-01-22T23:58:01.305Z'
@@ -148,7 +148,7 @@
   lastmod: '2026-01-22T23:58:01.323Z'
 - source: code
   loc: https://code.claude.com/docs/en/vs-code
-  lastmod: '2026-01-22T23:58:01.320Z'
+  lastmod: '2026-01-26T19:11:28.033Z'
 - source: platform
   loc: https://platform.claude.com/docs
   priority: '0.8'

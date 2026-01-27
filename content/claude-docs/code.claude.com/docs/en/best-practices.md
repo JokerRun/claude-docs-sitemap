@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: 48965cf2ee49f219ed211e5260cfc74c50226648e752116ae90a77ca6b95610c
+fetched_at: 2026-01-27T03:50:11.274001Z
+sha256: 075193a85f4d1c4a10e966eef9d6aa3035e0fe0a157a5d0d387a28aeaff70050
 ---
 
 > ## Documentation Index
@@ -80,6 +80,8 @@ The recommended workflow has four phases:
     I want to add Google OAuth. What files need to change?
     What's the session flow? Create a plan.
     ```
+
+    Press `Ctrl+G` to open the plan in your text editor for direct editing before Claude proceeds.
   </Step>
 
   <Step title="Implement">

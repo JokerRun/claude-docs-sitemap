@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: df3d0aab7aed717ccd42db9bdaeb65cd469f9e60ef4de10ad303db30fa8d0c50
+fetched_at: 2026-01-27T03:50:11.274001Z
+sha256: 7b72493abc034f4708e2c274cec3451e7384cb2c986d963d2c8b2be76ec7d366
 ---
 
 > ## Documentation Index
@@ -280,6 +280,7 @@ When working on complex, multi-step work, Claude creates a task list to track pr
 * To see all tasks or clear them, ask Claude directly: "show me all tasks" or "clear all tasks"
 * Tasks persist across context compactions, helping Claude stay organized on larger projects
 * To share a task list across sessions, set `CLAUDE_CODE_TASK_LIST_ID` to use a named directory in `~/.claude/tasks/`: `CLAUDE_CODE_TASK_LIST_ID=my-project claude`
+* To revert to the previous TODO list, set `CLAUDE_CODE_ENABLE_TASKS=false`.
 
 ## See also
 
