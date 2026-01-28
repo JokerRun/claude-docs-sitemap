@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-01-27T03:50:11.274001Z
-sha256: c658844bfa88d881029cb6f750d9d0ce218c233a3417281aa39556a650ff70a6
+fetched_at: 2026-01-28T03:47:52.195281Z
+sha256: d61e7684abb21c3364917e38771b42cb25cba5da2ba5d9297224417743ad8ad7
 ---
 
 > ## Documentation Index
@@ -345,7 +345,7 @@ name: pr-summary
 description: Summarize changes in a pull request
 context: fork
 agent: Explore
-allowed-tools: Bash(gh:*)
+allowed-tools: Bash(gh *)
 ---
 
 ## Pull request context
@@ -432,13 +432,13 @@ Skill
 ```
 # Allow only specific skills
 Skill(commit)
-Skill(review-pr:*)
+Skill(review-pr *)
 
 # Deny specific skills
-Skill(deploy:*)
+Skill(deploy *)
 ```
 
-Permission syntax: `Skill(name)` for exact match, `Skill(name:*)` for prefix match with any arguments.
+Permission syntax: `Skill(name)` for exact match, `Skill(name *)` for prefix match with any arguments.
 
 **Hide individual skills** by adding `disable-model-invocation: true` to their frontmatter. This removes the skill from Claude's context entirely.
 
@@ -472,7 +472,7 @@ Create `~/.claude/skills/codebase-visualizer/SKILL.md`. The description tells Cl
 ---
 name: codebase-visualizer
 description: Generate an interactive collapsible tree visualization of your codebase. Use when exploring a new repo, understanding project structure, or identifying large files.
-allowed-tools: Bash(python:*)
+allowed-tools: Bash(python *)
 ---
 
 # Codebase Visualizer

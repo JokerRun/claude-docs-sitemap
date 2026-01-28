@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: ad019c54d39fe1b7aa8de470bc82bb6b115fe83d445d663a6d706ba044743dab
+fetched_at: 2026-01-28T03:47:52.195281Z
+sha256: 9cff79e84c0a9c2c2a91adc8c0488dbdad02e3d01ca54695e435ff24421cb5cf
 ---
 
 > ## Documentation Index
@@ -444,6 +444,9 @@ When using "Limited" network access, the following domains are allowed by defaul
 * gradle.org
 * [www.gradle.org](http://www.gradle.org)
 * services.gradle.org
+* plugins.gradle.org
+* kotlin.org
+* [www.kotlin.org](http://www.kotlin.org)
 * spring.io
 * repo.spring.io
 

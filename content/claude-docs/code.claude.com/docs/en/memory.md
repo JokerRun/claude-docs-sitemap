@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: 6027b005e0f01c6dda657f6a21750965f520e4fb6621621340d64888dd243993
+fetched_at: 2026-01-28T03:47:52.195281Z
+sha256: 347e794f6305861cda88afad914ccd5636fcf5a569ce9e2d912da1ba038b3143
 ---
 
 > ## Documentation Index
@@ -64,6 +64,16 @@ Imported files can recursively import additional files, with a max-depth of 5 ho
 Claude Code reads memories recursively: starting in the cwd, Claude Code recurses up to (but not including) the root directory */* and reads any CLAUDE.md or CLAUDE.local.md files it finds. This is especially convenient when working in large repositories where you run Claude Code in *foo/bar/*, and have memories in both *foo/CLAUDE.md* and *foo/bar/CLAUDE.md*.
 
 Claude will also discover CLAUDE.md nested in subtrees under your current working directory. Instead of loading them at launch, they are only included when Claude reads files in those subtrees.
+
+### Load memory from additional directories
+
+The `--add-dir` flag gives Claude access to additional directories outside your main working directory. By default, CLAUDE.md files from these directories are not loaded.
+
+To also load memory files (CLAUDE.md, .claude/CLAUDE.md, and .claude/rules/\*.md) from additional directories, set the `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD` environment variable:
+
+```bash  theme={null}
+CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1 claude --add-dir ../shared-config
+```
 
 ## Directly edit memories with `/memory`
 

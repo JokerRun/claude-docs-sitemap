@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: c7256fe5f0d0a8eaf35f102106d825abd95c729e828572163333bbd1a1f50fb8
+fetched_at: 2026-01-28T03:47:52.195281Z
+sha256: ec54d9ef70011c1834b87c0a8ddb595b3b7d75b4ca77741be7d41393b4bf9be1
 ---
 
 > ## Documentation Index
@@ -100,7 +100,7 @@ You can enable sandboxing by running the `/sandbox` command:
 > /sandbox
 ```
 
-This opens a menu where you can choose between sandbox modes.
+This opens a menu where you can choose between sandbox modes. If required dependencies are missing (such as `bubblewrap` or `socat` on Linux), the menu displays installation instructions for your platform.
 
 ### Sandbox modes
 

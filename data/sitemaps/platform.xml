@@ -177,6 +177,10 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise</loc>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/build-with-claude/skills-guide</loc>
 <priority>0.8</priority>
 </url>
