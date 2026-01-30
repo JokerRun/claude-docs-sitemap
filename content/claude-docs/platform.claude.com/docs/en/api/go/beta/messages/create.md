@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/create
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 8369c8c8716e6d718390d8db7dec38523f6af8a1bf74da6e52f57178cfd86d39
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: a1daf635460b0b10d71e86e9c3e85ba35888ad12bfe050a99ba7ae432d7d3126
 ---
 
 ## Create
@@ -1526,6 +1526,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
 
+                - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
+
               - `Type WebSearchToolResultError`
 
                 - `const WebSearchToolResultErrorWebSearchToolResultError WebSearchToolResultError = "web_search_tool_result_error"`
@@ -2525,12 +2527,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `OutputConfig param.Field[BetaOutputConfig]`
 
-    Body param: Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+    Body param: Configuration options for the model's output, such as the output format.
 
   - `OutputFormat param.Field[BetaJSONOutputFormat]`
 
-    Body param:
-    A schema to specify Claude's output format in responses.
+    Body param: Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
   - `ServiceTier param.Field[BetaMessageNewParamsServiceTier]`
 
@@ -2820,6 +2823,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
       - `Type BetaToolType`
 
         - `const BetaToolTypeCustom BetaToolType = "custom"`
@@ -2875,6 +2880,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolBash20250124 struct{…}`
 
       - `Name Bash`
@@ -2926,6 +2933,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaCodeExecutionTool20250522 struct{…}`
 
       - `Name CodeExecution`
@@ -2975,6 +2984,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaCodeExecutionTool20250825 struct{…}`
 
       - `Name CodeExecution`
@@ -3023,6 +3034,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaToolComputerUse20241022 struct{…}`
 
@@ -3087,6 +3100,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaMemoryTool20250818 struct{…}`
 
       - `Name Memory`
@@ -3137,6 +3152,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `InputExamples []map[string, any]`
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaToolComputerUse20250124 struct{…}`
 
@@ -3201,6 +3218,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolTextEditor20241022 struct{…}`
 
       - `Name StrReplaceEditor`
@@ -3251,6 +3270,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `InputExamples []map[string, any]`
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaToolComputerUse20251124 struct{…}`
 
@@ -3319,6 +3340,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolTextEditor20250124 struct{…}`
 
       - `Name StrReplaceEditor`
@@ -3370,6 +3393,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolTextEditor20250429 struct{…}`
 
       - `Name StrReplaceBasedEditTool`
@@ -3420,6 +3445,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `InputExamples []map[string, any]`
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaToolTextEditor20250728 struct{…}`
 
@@ -3475,6 +3502,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaWebSearchTool20250305 struct{…}`
 
@@ -3536,6 +3565,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         Maximum number of times the tool can be used in the API request.
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
       - `UserLocation BetaWebSearchTool20250305UserLocation`
 
@@ -3632,6 +3663,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolSearchToolBm25_20251119 struct{…}`
 
       - `Name ToolSearchToolBm25`
@@ -3683,6 +3716,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolSearchToolRegex20251119 struct{…}`
 
       - `Name ToolSearchToolRegex`
@@ -3733,6 +3768,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaMCPToolset struct{…}`
 
@@ -4077,28 +4114,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `ID string`
 
-      - `Caller BetaServerToolUseBlockCallerUnion`
-
-        Tool invocation directly from the model.
-
-        - `type BetaDirectCaller struct{…}`
-
-          Tool invocation directly from the model.
-
-          - `Type Direct`
-
-            - `const DirectDirect Direct = "direct"`
-
-        - `type BetaServerToolCaller struct{…}`
-
-          Tool invocation generated by a server-side tool.
-
-          - `ToolID string`
-
-          - `Type CodeExecution20250825`
-
-            - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
-
       - `Input map[string, any]`
 
       - `Name BetaServerToolUseBlockName`
@@ -4121,6 +4136,28 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const ServerToolUseServerToolUse ServerToolUse = "server_tool_use"`
 
+      - `Caller BetaServerToolUseBlockCallerUnion`
+
+        Tool invocation directly from the model.
+
+        - `type BetaDirectCaller struct{…}`
+
+          Tool invocation directly from the model.
+
+          - `Type Direct`
+
+            - `const DirectDirect Direct = "direct"`
+
+        - `type BetaServerToolCaller struct{…}`
+
+          Tool invocation generated by a server-side tool.
+
+          - `ToolID string`
+
+          - `Type CodeExecution20250825`
+
+            - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
+
     - `type BetaWebSearchToolResultBlock struct{…}`
 
       - `Content BetaWebSearchToolResultBlockContentUnion`
@@ -4138,6 +4175,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
             - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
             - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+            - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
           - `Type WebSearchToolResultError`
 
@@ -4877,13 +4916,13 @@ func main() {
     MaxTokens: 1024,
     Messages: []anthropic.BetaMessageParam{anthropic.BetaMessageParam{
       Content: []anthropic.BetaContentBlockParamUnion{anthropic.BetaContentBlockParamUnion{
-        OfText: &anthropic.BetaTextBlockParam{Text: "What is a quaternion?", CacheControl: anthropic.BetaCacheControlEphemeralParam{TTL: anthropic.BetaCacheControlEphemeralTTLTTL5m}, Citations: []anthropic.BetaTextCitationParamUnion{anthropic.BetaTextCitationParamUnion{
-          OfCharLocation: &anthropic.BetaCitationCharLocationParam{CitedText: "cited_text", DocumentIndex: 0, DocumentTitle: anthropic.String("x"), EndCharIndex: 0, StartCharIndex: 0},
-        }}},
+        OfText: &anthropic.BetaTextBlockParam{
+          Text: "x",
+        },
       }},
       Role: anthropic.BetaMessageParamRoleUser,
     }},
-    Model: anthropic.ModelClaudeOpus4_5_20251101,
+    Model: anthropic.ModelClaudeSonnet4_5_20250929,
   })
   if err != nil {
     panic(err.Error())

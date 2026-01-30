@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 870df2bde03301d96c87fe1d343de173304b26f1a82796d9a57c33a44a57292b
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: e7ac3eba82ce061ee0fc24738a05233d31252a8408e9a805f59b418d71ee3114
 ---
 
 ## Count Tokens
@@ -1564,6 +1564,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `QUERY_TOO_LONG("query_too_long")`
 
+                - `REQUEST_TOO_LARGE("request_too_large")`
+
               - `JsonValue; type "web_search_tool_result_error"constant`
 
                 - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -2525,11 +2527,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `Optional<BetaOutputConfig> outputConfig`
 
-    Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+    Configuration options for the model's output, such as the output format.
 
   - `Optional<BetaJsonOutputFormat> outputFormat`
 
-    A schema to specify Claude's output format in responses.
+    Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
   - `Optional<System> system`
 
@@ -2793,6 +2797,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Optional<Boolean> strict`
 
+        When true, guarantees schema validation on tool names and inputs
+
       - `Optional<Type> type`
 
         - `CUSTOM("custom")`
@@ -2848,6 +2854,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Optional<Boolean> strict`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `class BetaToolBash20250124:`
 
       - `JsonValue; name "bash"constant`
@@ -2899,6 +2907,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Optional<Boolean> strict`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `class BetaCodeExecutionTool20250522:`
 
       - `JsonValue; name "code_execution"constant`
@@ -2948,6 +2958,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Optional<Boolean> strict`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `class BetaCodeExecutionTool20250825:`
 
       - `JsonValue; name "code_execution"constant`
@@ -2996,6 +3008,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
       - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `class BetaToolComputerUse20241022:`
 
@@ -3060,6 +3074,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Optional<Boolean> strict`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `class BetaMemoryTool20250818:`
 
       - `JsonValue; name "memory"constant`
@@ -3110,6 +3126,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `Optional<List<InputExample>> inputExamples`
 
       - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `class BetaToolComputerUse20250124:`
 
@@ -3174,6 +3192,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Optional<Boolean> strict`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `class BetaToolTextEditor20241022:`
 
       - `JsonValue; name "str_replace_editor"constant`
@@ -3224,6 +3244,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `Optional<List<InputExample>> inputExamples`
 
       - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `class BetaToolComputerUse20251124:`
 
@@ -3292,6 +3314,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Optional<Boolean> strict`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `class BetaToolTextEditor20250124:`
 
       - `JsonValue; name "str_replace_editor"constant`
@@ -3343,6 +3367,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Optional<Boolean> strict`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `class BetaToolTextEditor20250429:`
 
       - `JsonValue; name "str_replace_based_edit_tool"constant`
@@ -3393,6 +3419,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `Optional<List<InputExample>> inputExamples`
 
       - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `class BetaToolTextEditor20250728:`
 
@@ -3448,6 +3476,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
       - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `class BetaWebSearchTool20250305:`
 
@@ -3509,6 +3539,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         Maximum number of times the tool can be used in the API request.
 
       - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
       - `Optional<UserLocation> userLocation`
 
@@ -3605,6 +3637,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Optional<Boolean> strict`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `class BetaToolSearchToolBm25_20251119:`
 
       - `JsonValue; name "tool_search_tool_bm25"constant`
@@ -3656,6 +3690,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Optional<Boolean> strict`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `class BetaToolSearchToolRegex20251119:`
 
       - `JsonValue; name "tool_search_tool_regex"constant`
@@ -3706,6 +3742,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
       - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `class BetaMcpToolset:`
 
@@ -3796,7 +3834,7 @@ public final class Main {
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
             .addUserMessage("Hello, world")
-            .model(Model.CLAUDE_OPUS_4_5_20251101)
+            .model(Model.CLAUDE_SONNET_4_5_20250929)
             .build();
         BetaMessageTokensCount betaMessageTokensCount = client.beta().messages().countTokens(params);
     }

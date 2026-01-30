@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/batches/create
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 299ee4b632b9e90ab4e60a731f4e6bf433faf0522fa577e17ac9886c80c2ebdc
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: c29be374142449e0591271dfae7d4ffac37d78c167aadbf972b875dee2f8881b
 ---
 
 ## Create
@@ -1395,7 +1395,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `class WebSearchToolRequestError: …`
 
-                - `error_code: Literal["invalid_tool_input", "unavailable", "max_uses_exceeded", 2 more]`
+                - `error_code: Literal["invalid_tool_input", "unavailable", "max_uses_exceeded", 3 more]`
 
                   - `"invalid_tool_input"`
 
@@ -1406,6 +1406,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   - `"too_many_requests"`
 
                   - `"query_too_long"`
+
+                  - `"request_too_large"`
 
                 - `type: Literal["web_search_tool_result_error"]`
 
@@ -1462,8 +1464,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
         - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-3-7-sonnet-20250219` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-        - `claude-3-5-haiku-latest` - Fastest and most compact model for near-instant responsiveness
-        - `claude-3-5-haiku-20241022` - Our fastest model
+        - `claude-3-5-haiku-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+        - `claude-3-5-haiku-20241022` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-haiku-4-5` - Hybrid model, capable of near-instant responses and extended thinking
         - `claude-haiku-4-5-20251001` - Hybrid model, capable of near-instant responses and extended thinking
         - `claude-sonnet-4-20250514` - High-performance model with extended thinking
@@ -1570,6 +1572,22 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         An external identifier for the user who is associated with the request.
 
         This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
+
+    - `output_config: Optional[RequestParamsOutputConfig]`
+
+      Configuration options for the model's output, such as the output format.
+
+      - `format: Optional[RequestParamsOutputConfigFormat]`
+
+        A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+        - `schema: Dict[str, object]`
+
+          The JSON schema of the format
+
+        - `type: Literal["json_schema"]`
+
+          - `"json_schema"`
 
     - `service_tier: Optional[Literal["auto", "standard_only"]]`
 
@@ -1925,6 +1943,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+        - `strict: Optional[bool]`
+
+          When true, guarantees schema validation on tool names and inputs
+
         - `type: Optional[Literal["custom"]]`
 
           - `"custom"`
@@ -1966,6 +1988,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"1h"`
 
+        - `strict: Optional[bool]`
+
+          When true, guarantees schema validation on tool names and inputs
+
       - `class ToolTextEditor20250124: …`
 
         - `name: Literal["str_replace_editor"]`
@@ -2003,6 +2029,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"1h"`
 
+        - `strict: Optional[bool]`
+
+          When true, guarantees schema validation on tool names and inputs
+
       - `class ToolTextEditor20250429: …`
 
         - `name: Literal["str_replace_based_edit_tool"]`
@@ -2039,6 +2069,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"5m"`
 
             - `"1h"`
+
+        - `strict: Optional[bool]`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `class ToolTextEditor20250728: …`
 
@@ -2080,6 +2114,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `max_characters: Optional[int]`
 
           Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+        - `strict: Optional[bool]`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `class WebSearchTool20250305: …`
 
@@ -2129,6 +2167,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `max_uses: Optional[int]`
 
           Maximum number of times the tool can be used in the API request.
+
+        - `strict: Optional[bool]`
+
+          When true, guarantees schema validation on tool names and inputs
 
         - `user_location: Optional[UserLocation]`
 

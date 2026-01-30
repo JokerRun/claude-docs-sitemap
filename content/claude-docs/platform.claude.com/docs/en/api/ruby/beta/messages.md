@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 1742f4452842b11adc670ae4419cfb42745852a62ac85b336db0182890c6d2bb
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: af19aae03253e83b59a08bd3104aa837ec1a0efbbb83b47c65d4bf7cccb95758
 ---
 
 # Messages
@@ -1530,6 +1530,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `:query_too_long`
 
+              - `:request_too_large`
+
             - `type: :web_search_tool_result_error`
 
               - `:web_search_tool_result_error`
@@ -2713,11 +2715,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
 - `output_config: BetaOutputConfig`
 
-  Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+  Configuration options for the model's output, such as the output format.
 
   - `effort: :low | :medium | :high`
 
-    All possible effort levels.
+    How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+    Valid values are `low`, `medium`, or `high`.
 
     - `:low`
 
@@ -2725,9 +2729,23 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `:high`
 
+  - `format_: BetaJSONOutputFormat`
+
+    A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    - `schema: Hash[Symbol, untyped]`
+
+      The JSON schema of the format
+
+    - `type: :json_schema`
+
+      - `:json_schema`
+
 - `output_format: BetaJSONOutputFormat`
 
-  A schema to specify Claude's output format in responses.
+  Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+  A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
   - `schema: Hash[Symbol, untyped]`
 
@@ -3107,6 +3125,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
     - `type: :custom`
 
       - `:custom`
@@ -3162,6 +3182,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolBash20250124`
 
     - `name: :bash`
@@ -3213,6 +3235,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaCodeExecutionTool20250522`
 
     - `name: :code_execution`
@@ -3262,6 +3286,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaCodeExecutionTool20250825`
 
     - `name: :code_execution`
@@ -3310,6 +3336,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20241022`
 
@@ -3374,6 +3402,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaMemoryTool20250818`
 
     - `name: :memory`
@@ -3424,6 +3454,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20250124`
 
@@ -3488,6 +3520,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20241022`
 
     - `name: :str_replace_editor`
@@ -3538,6 +3572,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20251124`
 
@@ -3606,6 +3642,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20250124`
 
     - `name: :str_replace_editor`
@@ -3657,6 +3695,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20250429`
 
     - `name: :str_replace_based_edit_tool`
@@ -3707,6 +3747,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolTextEditor20250728`
 
@@ -3762,6 +3804,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaWebSearchTool20250305`
 
@@ -3823,6 +3867,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       Maximum number of times the tool can be used in the API request.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
     - `user_location: { type, city, country, 2 more}`
 
@@ -3919,6 +3965,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolSearchToolBm25_20251119`
 
     - `name: :tool_search_tool_bm25`
@@ -3970,6 +4018,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolSearchToolRegex20251119`
 
     - `name: :tool_search_tool_regex`
@@ -4020,6 +4070,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaMCPToolset`
 
@@ -4364,28 +4416,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `id: String`
 
-      - `caller_: BetaDirectCaller | BetaServerToolCaller`
-
-        Tool invocation directly from the model.
-
-        - `class BetaDirectCaller`
-
-          Tool invocation directly from the model.
-
-          - `type: :direct`
-
-            - `:direct`
-
-        - `class BetaServerToolCaller`
-
-          Tool invocation generated by a server-side tool.
-
-          - `tool_id: String`
-
-          - `type: :code_execution_20250825`
-
-            - `:code_execution_20250825`
-
       - `input: Hash[Symbol, untyped]`
 
       - `name: :web_search | :web_fetch | :code_execution | 4 more`
@@ -4408,6 +4438,28 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `:server_tool_use`
 
+      - `caller_: BetaDirectCaller | BetaServerToolCaller`
+
+        Tool invocation directly from the model.
+
+        - `class BetaDirectCaller`
+
+          Tool invocation directly from the model.
+
+          - `type: :direct`
+
+            - `:direct`
+
+        - `class BetaServerToolCaller`
+
+          Tool invocation generated by a server-side tool.
+
+          - `tool_id: String`
+
+          - `type: :code_execution_20250825`
+
+            - `:code_execution_20250825`
+
     - `class BetaWebSearchToolResultBlock`
 
       - `content: BetaWebSearchToolResultBlockContent`
@@ -4425,6 +4477,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
             - `:too_many_requests`
 
             - `:query_too_long`
+
+            - `:request_too_large`
 
           - `type: :web_search_tool_result_error`
 
@@ -5153,7 +5207,7 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_message = anthropic.beta.messages.create(
   max_tokens: 1024,
   messages: [{content: "Hello, world", role: :user}],
-  model: :"claude-opus-4-5-20251101"
+  model: :"claude-sonnet-4-5-20250929"
 )
 
 puts(beta_message)
@@ -6674,6 +6728,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `:query_too_long`
 
+              - `:request_too_large`
+
             - `type: :web_search_tool_result_error`
 
               - `:web_search_tool_result_error`
@@ -7813,11 +7869,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
 - `output_config: BetaOutputConfig`
 
-  Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+  Configuration options for the model's output, such as the output format.
 
   - `effort: :low | :medium | :high`
 
-    All possible effort levels.
+    How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+    Valid values are `low`, `medium`, or `high`.
 
     - `:low`
 
@@ -7825,9 +7883,23 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `:high`
 
+  - `format_: BetaJSONOutputFormat`
+
+    A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    - `schema: Hash[Symbol, untyped]`
+
+      The JSON schema of the format
+
+    - `type: :json_schema`
+
+      - `:json_schema`
+
 - `output_format: BetaJSONOutputFormat`
 
-  A schema to specify Claude's output format in responses.
+  Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+  A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
   - `schema: Hash[Symbol, untyped]`
 
@@ -8173,6 +8245,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
     - `type: :custom`
 
       - `:custom`
@@ -8228,6 +8302,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolBash20250124`
 
     - `name: :bash`
@@ -8279,6 +8355,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaCodeExecutionTool20250522`
 
     - `name: :code_execution`
@@ -8328,6 +8406,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaCodeExecutionTool20250825`
 
     - `name: :code_execution`
@@ -8376,6 +8456,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20241022`
 
@@ -8440,6 +8522,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaMemoryTool20250818`
 
     - `name: :memory`
@@ -8490,6 +8574,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20250124`
 
@@ -8554,6 +8640,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20241022`
 
     - `name: :str_replace_editor`
@@ -8604,6 +8692,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20251124`
 
@@ -8672,6 +8762,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20250124`
 
     - `name: :str_replace_editor`
@@ -8723,6 +8815,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20250429`
 
     - `name: :str_replace_based_edit_tool`
@@ -8773,6 +8867,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolTextEditor20250728`
 
@@ -8828,6 +8924,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaWebSearchTool20250305`
 
@@ -8889,6 +8987,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       Maximum number of times the tool can be used in the API request.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
     - `user_location: { type, city, country, 2 more}`
 
@@ -8985,6 +9085,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolSearchToolBm25_20251119`
 
     - `name: :tool_search_tool_bm25`
@@ -9036,6 +9138,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolSearchToolRegex20251119`
 
     - `name: :tool_search_tool_regex`
@@ -9086,6 +9190,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaMCPToolset`
 
@@ -10059,6 +10165,8 @@ puts(beta_message_tokens_count)
 
   - `strict: bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Code Execution Tool 20250825
 
 - `class BetaCodeExecutionTool20250825`
@@ -10109,6 +10217,8 @@ puts(beta_message_tokens_count)
     If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
   - `strict: bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Code Execution Tool Result Block
 
@@ -10631,28 +10741,6 @@ puts(beta_message_tokens_count)
 
     - `id: String`
 
-    - `caller_: BetaDirectCaller | BetaServerToolCaller`
-
-      Tool invocation directly from the model.
-
-      - `class BetaDirectCaller`
-
-        Tool invocation directly from the model.
-
-        - `type: :direct`
-
-          - `:direct`
-
-      - `class BetaServerToolCaller`
-
-        Tool invocation generated by a server-side tool.
-
-        - `tool_id: String`
-
-        - `type: :code_execution_20250825`
-
-          - `:code_execution_20250825`
-
     - `input: Hash[Symbol, untyped]`
 
     - `name: :web_search | :web_fetch | :code_execution | 4 more`
@@ -10675,6 +10763,28 @@ puts(beta_message_tokens_count)
 
       - `:server_tool_use`
 
+    - `caller_: BetaDirectCaller | BetaServerToolCaller`
+
+      Tool invocation directly from the model.
+
+      - `class BetaDirectCaller`
+
+        Tool invocation directly from the model.
+
+        - `type: :direct`
+
+          - `:direct`
+
+      - `class BetaServerToolCaller`
+
+        Tool invocation generated by a server-side tool.
+
+        - `tool_id: String`
+
+        - `type: :code_execution_20250825`
+
+          - `:code_execution_20250825`
+
   - `class BetaWebSearchToolResultBlock`
 
     - `content: BetaWebSearchToolResultBlockContent`
@@ -10692,6 +10802,8 @@ puts(beta_message_tokens_count)
           - `:too_many_requests`
 
           - `:query_too_long`
+
+          - `:request_too_large`
 
         - `type: :web_search_tool_result_error`
 
@@ -12610,6 +12722,8 @@ puts(beta_message_tokens_count)
           - `:too_many_requests`
 
           - `:query_too_long`
+
+          - `:request_too_large`
 
         - `type: :web_search_tool_result_error`
 
@@ -14537,6 +14651,8 @@ puts(beta_message_tokens_count)
 
   - `strict: bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Memory Tool 20250818 Command
 
 - `BetaMemoryTool20250818Command = BetaMemoryTool20250818ViewCommand | BetaMemoryTool20250818CreateCommand | BetaMemoryTool20250818StrReplaceCommand | 3 more`
@@ -14980,28 +15096,6 @@ puts(beta_message_tokens_count)
 
       - `id: String`
 
-      - `caller_: BetaDirectCaller | BetaServerToolCaller`
-
-        Tool invocation directly from the model.
-
-        - `class BetaDirectCaller`
-
-          Tool invocation directly from the model.
-
-          - `type: :direct`
-
-            - `:direct`
-
-        - `class BetaServerToolCaller`
-
-          Tool invocation generated by a server-side tool.
-
-          - `tool_id: String`
-
-          - `type: :code_execution_20250825`
-
-            - `:code_execution_20250825`
-
       - `input: Hash[Symbol, untyped]`
 
       - `name: :web_search | :web_fetch | :code_execution | 4 more`
@@ -15024,6 +15118,28 @@ puts(beta_message_tokens_count)
 
         - `:server_tool_use`
 
+      - `caller_: BetaDirectCaller | BetaServerToolCaller`
+
+        Tool invocation directly from the model.
+
+        - `class BetaDirectCaller`
+
+          Tool invocation directly from the model.
+
+          - `type: :direct`
+
+            - `:direct`
+
+        - `class BetaServerToolCaller`
+
+          Tool invocation generated by a server-side tool.
+
+          - `tool_id: String`
+
+          - `type: :code_execution_20250825`
+
+            - `:code_execution_20250825`
+
     - `class BetaWebSearchToolResultBlock`
 
       - `content: BetaWebSearchToolResultBlockContent`
@@ -15041,6 +15157,8 @@ puts(beta_message_tokens_count)
             - `:too_many_requests`
 
             - `:query_too_long`
+
+            - `:request_too_large`
 
           - `type: :web_search_tool_result_error`
 
@@ -17245,6 +17363,8 @@ puts(beta_message_tokens_count)
 
               - `:query_too_long`
 
+              - `:request_too_large`
+
             - `type: :web_search_tool_result_error`
 
               - `:web_search_tool_result_error`
@@ -18204,13 +18324,27 @@ puts(beta_message_tokens_count)
 
   - `effort: :low | :medium | :high`
 
-    All possible effort levels.
+    How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+    Valid values are `low`, `medium`, or `high`.
 
     - `:low`
 
     - `:medium`
 
     - `:high`
+
+  - `format_: BetaJSONOutputFormat`
+
+    A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    - `schema: Hash[Symbol, untyped]`
+
+      The JSON schema of the format
+
+    - `type: :json_schema`
+
+      - `:json_schema`
 
 ### Beta Plain Text Source
 
@@ -18658,28 +18792,6 @@ puts(beta_message_tokens_count)
 
       - `id: String`
 
-      - `caller_: BetaDirectCaller | BetaServerToolCaller`
-
-        Tool invocation directly from the model.
-
-        - `class BetaDirectCaller`
-
-          Tool invocation directly from the model.
-
-          - `type: :direct`
-
-            - `:direct`
-
-        - `class BetaServerToolCaller`
-
-          Tool invocation generated by a server-side tool.
-
-          - `tool_id: String`
-
-          - `type: :code_execution_20250825`
-
-            - `:code_execution_20250825`
-
       - `input: Hash[Symbol, untyped]`
 
       - `name: :web_search | :web_fetch | :code_execution | 4 more`
@@ -18702,6 +18814,28 @@ puts(beta_message_tokens_count)
 
         - `:server_tool_use`
 
+      - `caller_: BetaDirectCaller | BetaServerToolCaller`
+
+        Tool invocation directly from the model.
+
+        - `class BetaDirectCaller`
+
+          Tool invocation directly from the model.
+
+          - `type: :direct`
+
+            - `:direct`
+
+        - `class BetaServerToolCaller`
+
+          Tool invocation generated by a server-side tool.
+
+          - `tool_id: String`
+
+          - `type: :code_execution_20250825`
+
+            - `:code_execution_20250825`
+
     - `class BetaWebSearchToolResultBlock`
 
       - `content: BetaWebSearchToolResultBlockContent`
@@ -18719,6 +18853,8 @@ puts(beta_message_tokens_count)
             - `:too_many_requests`
 
             - `:query_too_long`
+
+            - `:request_too_large`
 
           - `type: :web_search_tool_result_error`
 
@@ -19573,28 +19709,6 @@ puts(beta_message_tokens_count)
 
         - `id: String`
 
-        - `caller_: BetaDirectCaller | BetaServerToolCaller`
-
-          Tool invocation directly from the model.
-
-          - `class BetaDirectCaller`
-
-            Tool invocation directly from the model.
-
-            - `type: :direct`
-
-              - `:direct`
-
-          - `class BetaServerToolCaller`
-
-            Tool invocation generated by a server-side tool.
-
-            - `tool_id: String`
-
-            - `type: :code_execution_20250825`
-
-              - `:code_execution_20250825`
-
         - `input: Hash[Symbol, untyped]`
 
         - `name: :web_search | :web_fetch | :code_execution | 4 more`
@@ -19617,6 +19731,28 @@ puts(beta_message_tokens_count)
 
           - `:server_tool_use`
 
+        - `caller_: BetaDirectCaller | BetaServerToolCaller`
+
+          Tool invocation directly from the model.
+
+          - `class BetaDirectCaller`
+
+            Tool invocation directly from the model.
+
+            - `type: :direct`
+
+              - `:direct`
+
+          - `class BetaServerToolCaller`
+
+            Tool invocation generated by a server-side tool.
+
+            - `tool_id: String`
+
+            - `type: :code_execution_20250825`
+
+              - `:code_execution_20250825`
+
       - `class BetaWebSearchToolResultBlock`
 
         - `content: BetaWebSearchToolResultBlockContent`
@@ -19634,6 +19770,8 @@ puts(beta_message_tokens_count)
               - `:too_many_requests`
 
               - `:query_too_long`
+
+              - `:request_too_large`
 
             - `type: :web_search_tool_result_error`
 
@@ -20595,28 +20733,6 @@ puts(beta_message_tokens_count)
 
           - `id: String`
 
-          - `caller_: BetaDirectCaller | BetaServerToolCaller`
-
-            Tool invocation directly from the model.
-
-            - `class BetaDirectCaller`
-
-              Tool invocation directly from the model.
-
-              - `type: :direct`
-
-                - `:direct`
-
-            - `class BetaServerToolCaller`
-
-              Tool invocation generated by a server-side tool.
-
-              - `tool_id: String`
-
-              - `type: :code_execution_20250825`
-
-                - `:code_execution_20250825`
-
           - `input: Hash[Symbol, untyped]`
 
           - `name: :web_search | :web_fetch | :code_execution | 4 more`
@@ -20639,6 +20755,28 @@ puts(beta_message_tokens_count)
 
             - `:server_tool_use`
 
+          - `caller_: BetaDirectCaller | BetaServerToolCaller`
+
+            Tool invocation directly from the model.
+
+            - `class BetaDirectCaller`
+
+              Tool invocation directly from the model.
+
+              - `type: :direct`
+
+                - `:direct`
+
+            - `class BetaServerToolCaller`
+
+              Tool invocation generated by a server-side tool.
+
+              - `tool_id: String`
+
+              - `type: :code_execution_20250825`
+
+                - `:code_execution_20250825`
+
         - `class BetaWebSearchToolResultBlock`
 
           - `content: BetaWebSearchToolResultBlockContent`
@@ -20656,6 +20794,8 @@ puts(beta_message_tokens_count)
                 - `:too_many_requests`
 
                 - `:query_too_long`
+
+                - `:request_too_large`
 
               - `type: :web_search_tool_result_error`
 
@@ -21684,28 +21824,6 @@ puts(beta_message_tokens_count)
 
         - `id: String`
 
-        - `caller_: BetaDirectCaller | BetaServerToolCaller`
-
-          Tool invocation directly from the model.
-
-          - `class BetaDirectCaller`
-
-            Tool invocation directly from the model.
-
-            - `type: :direct`
-
-              - `:direct`
-
-          - `class BetaServerToolCaller`
-
-            Tool invocation generated by a server-side tool.
-
-            - `tool_id: String`
-
-            - `type: :code_execution_20250825`
-
-              - `:code_execution_20250825`
-
         - `input: Hash[Symbol, untyped]`
 
         - `name: :web_search | :web_fetch | :code_execution | 4 more`
@@ -21728,6 +21846,28 @@ puts(beta_message_tokens_count)
 
           - `:server_tool_use`
 
+        - `caller_: BetaDirectCaller | BetaServerToolCaller`
+
+          Tool invocation directly from the model.
+
+          - `class BetaDirectCaller`
+
+            Tool invocation directly from the model.
+
+            - `type: :direct`
+
+              - `:direct`
+
+          - `class BetaServerToolCaller`
+
+            Tool invocation generated by a server-side tool.
+
+            - `tool_id: String`
+
+            - `type: :code_execution_20250825`
+
+              - `:code_execution_20250825`
+
       - `class BetaWebSearchToolResultBlock`
 
         - `content: BetaWebSearchToolResultBlockContent`
@@ -21745,6 +21885,8 @@ puts(beta_message_tokens_count)
               - `:too_many_requests`
 
               - `:query_too_long`
+
+              - `:request_too_large`
 
             - `type: :web_search_tool_result_error`
 
@@ -23017,28 +23159,6 @@ puts(beta_message_tokens_count)
 
   - `id: String`
 
-  - `caller_: BetaDirectCaller | BetaServerToolCaller`
-
-    Tool invocation directly from the model.
-
-    - `class BetaDirectCaller`
-
-      Tool invocation directly from the model.
-
-      - `type: :direct`
-
-        - `:direct`
-
-    - `class BetaServerToolCaller`
-
-      Tool invocation generated by a server-side tool.
-
-      - `tool_id: String`
-
-      - `type: :code_execution_20250825`
-
-        - `:code_execution_20250825`
-
   - `input: Hash[Symbol, untyped]`
 
   - `name: :web_search | :web_fetch | :code_execution | 4 more`
@@ -23060,6 +23180,28 @@ puts(beta_message_tokens_count)
   - `type: :server_tool_use`
 
     - `:server_tool_use`
+
+  - `caller_: BetaDirectCaller | BetaServerToolCaller`
+
+    Tool invocation directly from the model.
+
+    - `class BetaDirectCaller`
+
+      Tool invocation directly from the model.
+
+      - `type: :direct`
+
+        - `:direct`
+
+    - `class BetaServerToolCaller`
+
+      Tool invocation generated by a server-side tool.
+
+      - `tool_id: String`
+
+      - `type: :code_execution_20250825`
+
+        - `:code_execution_20250825`
 
 ### Beta Server Tool Use Block Param
 
@@ -24099,6 +24241,8 @@ puts(beta_message_tokens_count)
 
   - `strict: bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
   - `type: :custom`
 
     - `:custom`
@@ -24156,6 +24300,8 @@ puts(beta_message_tokens_count)
 
   - `strict: bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Bash 20250124
 
 - `class BetaToolBash20250124`
@@ -24208,6 +24354,8 @@ puts(beta_message_tokens_count)
   - `input_examples: Array[Hash[Symbol, untyped]]`
 
   - `strict: bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Choice
 
@@ -24396,6 +24544,8 @@ puts(beta_message_tokens_count)
 
   - `strict: bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Computer Use 20250124
 
 - `class BetaToolComputerUse20250124`
@@ -24460,6 +24610,8 @@ puts(beta_message_tokens_count)
   - `input_examples: Array[Hash[Symbol, untyped]]`
 
   - `strict: bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Computer Use 20251124
 
@@ -24529,6 +24681,8 @@ puts(beta_message_tokens_count)
   - `input_examples: Array[Hash[Symbol, untyped]]`
 
   - `strict: bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Reference Block
 
@@ -25299,6 +25453,8 @@ puts(beta_message_tokens_count)
 
   - `strict: bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Search Tool Regex 20251119
 
 - `class BetaToolSearchToolRegex20251119`
@@ -25351,6 +25507,8 @@ puts(beta_message_tokens_count)
     If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
   - `strict: bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Search Tool Result Block
 
@@ -25630,6 +25788,8 @@ puts(beta_message_tokens_count)
 
   - `strict: bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Text Editor 20250124
 
 - `class BetaToolTextEditor20250124`
@@ -25683,6 +25843,8 @@ puts(beta_message_tokens_count)
 
   - `strict: bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Text Editor 20250429
 
 - `class BetaToolTextEditor20250429`
@@ -25735,6 +25897,8 @@ puts(beta_message_tokens_count)
   - `input_examples: Array[Hash[Symbol, untyped]]`
 
   - `strict: bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Text Editor 20250728
 
@@ -25792,6 +25956,8 @@ puts(beta_message_tokens_count)
     Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
   - `strict: bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Union
 
@@ -25867,6 +26033,8 @@ puts(beta_message_tokens_count)
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
     - `type: :custom`
 
       - `:custom`
@@ -25922,6 +26090,8 @@ puts(beta_message_tokens_count)
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolBash20250124`
 
     - `name: :bash`
@@ -25973,6 +26143,8 @@ puts(beta_message_tokens_count)
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaCodeExecutionTool20250522`
 
     - `name: :code_execution`
@@ -26022,6 +26194,8 @@ puts(beta_message_tokens_count)
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaCodeExecutionTool20250825`
 
     - `name: :code_execution`
@@ -26070,6 +26244,8 @@ puts(beta_message_tokens_count)
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20241022`
 
@@ -26134,6 +26310,8 @@ puts(beta_message_tokens_count)
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaMemoryTool20250818`
 
     - `name: :memory`
@@ -26184,6 +26362,8 @@ puts(beta_message_tokens_count)
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20250124`
 
@@ -26248,6 +26428,8 @@ puts(beta_message_tokens_count)
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20241022`
 
     - `name: :str_replace_editor`
@@ -26298,6 +26480,8 @@ puts(beta_message_tokens_count)
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20251124`
 
@@ -26366,6 +26550,8 @@ puts(beta_message_tokens_count)
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20250124`
 
     - `name: :str_replace_editor`
@@ -26417,6 +26603,8 @@ puts(beta_message_tokens_count)
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20250429`
 
     - `name: :str_replace_based_edit_tool`
@@ -26467,6 +26655,8 @@ puts(beta_message_tokens_count)
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolTextEditor20250728`
 
@@ -26522,6 +26712,8 @@ puts(beta_message_tokens_count)
       Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaWebSearchTool20250305`
 
@@ -26583,6 +26775,8 @@ puts(beta_message_tokens_count)
       Maximum number of times the tool can be used in the API request.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
     - `user_location: { type, city, country, 2 more}`
 
@@ -26679,6 +26873,8 @@ puts(beta_message_tokens_count)
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolSearchToolBm25_20251119`
 
     - `name: :tool_search_tool_bm25`
@@ -26730,6 +26926,8 @@ puts(beta_message_tokens_count)
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolSearchToolRegex20251119`
 
     - `name: :tool_search_tool_regex`
@@ -26780,6 +26978,8 @@ puts(beta_message_tokens_count)
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaMCPToolset`
 
@@ -27440,6 +27640,8 @@ puts(beta_message_tokens_count)
 
   - `strict: bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Web Fetch Tool Result Block
 
 - `class BetaWebFetchToolResultBlock`
@@ -28041,6 +28243,8 @@ puts(beta_message_tokens_count)
 
   - `strict: bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
   - `user_location: { type, city, country, 2 more}`
 
     Parameters for the user's location. Used to provide more relevant search results.
@@ -28081,6 +28285,8 @@ puts(beta_message_tokens_count)
 
     - `:query_too_long`
 
+    - `:request_too_large`
+
   - `type: :web_search_tool_result_error`
 
     - `:web_search_tool_result_error`
@@ -28104,6 +28310,8 @@ puts(beta_message_tokens_count)
         - `:too_many_requests`
 
         - `:query_too_long`
+
+        - `:request_too_large`
 
       - `type: :web_search_tool_result_error`
 
@@ -28146,6 +28354,8 @@ puts(beta_message_tokens_count)
       - `:too_many_requests`
 
       - `:query_too_long`
+
+      - `:request_too_large`
 
     - `type: :web_search_tool_result_error`
 
@@ -28198,6 +28408,8 @@ puts(beta_message_tokens_count)
         - `:too_many_requests`
 
         - `:query_too_long`
+
+        - `:request_too_large`
 
       - `type: :web_search_tool_result_error`
 
@@ -28264,6 +28476,8 @@ puts(beta_message_tokens_count)
 
       - `:query_too_long`
 
+      - `:request_too_large`
+
     - `type: :web_search_tool_result_error`
 
       - `:web_search_tool_result_error`
@@ -28284,13 +28498,15 @@ puts(beta_message_tokens_count)
 
     - `:query_too_long`
 
+    - `:request_too_large`
+
   - `type: :web_search_tool_result_error`
 
     - `:web_search_tool_result_error`
 
 ### Beta Web Search Tool Result Error Code
 
-- `BetaWebSearchToolResultErrorCode = :invalid_tool_input | :unavailable | :max_uses_exceeded | 2 more`
+- `BetaWebSearchToolResultErrorCode = :invalid_tool_input | :unavailable | :max_uses_exceeded | 3 more`
 
   - `:invalid_tool_input`
 
@@ -28301,6 +28517,8 @@ puts(beta_message_tokens_count)
   - `:too_many_requests`
 
   - `:query_too_long`
+
+  - `:request_too_large`
 
 # Batches
 
@@ -29843,6 +30061,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `:query_too_long`
 
+                  - `:request_too_large`
+
                 - `type: :web_search_tool_result_error`
 
                   - `:web_search_tool_result_error`
@@ -31026,11 +31246,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `output_config: BetaOutputConfig`
 
-      Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+      Configuration options for the model's output, such as the output format.
 
       - `effort: :low | :medium | :high`
 
-        All possible effort levels.
+        How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+        Valid values are `low`, `medium`, or `high`.
 
         - `:low`
 
@@ -31038,9 +31260,23 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `:high`
 
+      - `format_: BetaJSONOutputFormat`
+
+        A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+        - `schema: Hash[Symbol, untyped]`
+
+          The JSON schema of the format
+
+        - `type: :json_schema`
+
+          - `:json_schema`
+
     - `output_format: BetaJSONOutputFormat`
 
-      A schema to specify Claude's output format in responses.
+      Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+      A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
       - `schema: Hash[Symbol, untyped]`
 
@@ -31418,6 +31654,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `strict: bool`
 
+          When true, guarantees schema validation on tool names and inputs
+
         - `type: :custom`
 
           - `:custom`
@@ -31473,6 +31711,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `strict: bool`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `class BetaToolBash20250124`
 
         - `name: :bash`
@@ -31524,6 +31764,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `strict: bool`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `class BetaCodeExecutionTool20250522`
 
         - `name: :code_execution`
@@ -31573,6 +31815,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `strict: bool`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `class BetaCodeExecutionTool20250825`
 
         - `name: :code_execution`
@@ -31621,6 +31865,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
         - `strict: bool`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `class BetaToolComputerUse20241022`
 
@@ -31685,6 +31931,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `strict: bool`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `class BetaMemoryTool20250818`
 
         - `name: :memory`
@@ -31735,6 +31983,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `input_examples: Array[Hash[Symbol, untyped]]`
 
         - `strict: bool`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `class BetaToolComputerUse20250124`
 
@@ -31799,6 +32049,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `strict: bool`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `class BetaToolTextEditor20241022`
 
         - `name: :str_replace_editor`
@@ -31849,6 +32101,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `input_examples: Array[Hash[Symbol, untyped]]`
 
         - `strict: bool`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `class BetaToolComputerUse20251124`
 
@@ -31917,6 +32171,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `strict: bool`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `class BetaToolTextEditor20250124`
 
         - `name: :str_replace_editor`
@@ -31968,6 +32224,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `strict: bool`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `class BetaToolTextEditor20250429`
 
         - `name: :str_replace_based_edit_tool`
@@ -32018,6 +32276,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `input_examples: Array[Hash[Symbol, untyped]]`
 
         - `strict: bool`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `class BetaToolTextEditor20250728`
 
@@ -32073,6 +32333,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
         - `strict: bool`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `class BetaWebSearchTool20250305`
 
@@ -32134,6 +32396,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           Maximum number of times the tool can be used in the API request.
 
         - `strict: bool`
+
+          When true, guarantees schema validation on tool names and inputs
 
         - `user_location: { type, city, country, 2 more}`
 
@@ -32230,6 +32494,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `strict: bool`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `class BetaToolSearchToolBm25_20251119`
 
         - `name: :tool_search_tool_bm25`
@@ -32281,6 +32547,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `strict: bool`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `class BetaToolSearchToolRegex20251119`
 
         - `name: :tool_search_tool_regex`
@@ -32331,6 +32599,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
         - `strict: bool`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `class BetaMCPToolset`
 
@@ -32549,7 +32819,7 @@ beta_message_batch = anthropic.beta.messages.batches.create(
   requests: [
     {
       custom_id: "my-custom-id-1",
-      params: {max_tokens: 1024, messages: [{content: "Hello, world", role: :user}], model: :"claude-opus-4-5-20251101"}
+      params: {max_tokens: 1024, messages: [{content: "Hello, world", role: :user}], model: :"claude-sonnet-4-5-20250929"}
     }
   ]
 )
@@ -33462,28 +33732,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `id: String`
 
-            - `caller_: BetaDirectCaller | BetaServerToolCaller`
-
-              Tool invocation directly from the model.
-
-              - `class BetaDirectCaller`
-
-                Tool invocation directly from the model.
-
-                - `type: :direct`
-
-                  - `:direct`
-
-              - `class BetaServerToolCaller`
-
-                Tool invocation generated by a server-side tool.
-
-                - `tool_id: String`
-
-                - `type: :code_execution_20250825`
-
-                  - `:code_execution_20250825`
-
             - `input: Hash[Symbol, untyped]`
 
             - `name: :web_search | :web_fetch | :code_execution | 4 more`
@@ -33506,6 +33754,28 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `:server_tool_use`
 
+            - `caller_: BetaDirectCaller | BetaServerToolCaller`
+
+              Tool invocation directly from the model.
+
+              - `class BetaDirectCaller`
+
+                Tool invocation directly from the model.
+
+                - `type: :direct`
+
+                  - `:direct`
+
+              - `class BetaServerToolCaller`
+
+                Tool invocation generated by a server-side tool.
+
+                - `tool_id: String`
+
+                - `type: :code_execution_20250825`
+
+                  - `:code_execution_20250825`
+
           - `class BetaWebSearchToolResultBlock`
 
             - `content: BetaWebSearchToolResultBlockContent`
@@ -33523,6 +33793,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   - `:too_many_requests`
 
                   - `:query_too_long`
+
+                  - `:request_too_large`
 
                 - `type: :web_search_tool_result_error`
 
@@ -34816,28 +35088,6 @@ puts(beta_message_batch_individual_response)
 
             - `id: String`
 
-            - `caller_: BetaDirectCaller | BetaServerToolCaller`
-
-              Tool invocation directly from the model.
-
-              - `class BetaDirectCaller`
-
-                Tool invocation directly from the model.
-
-                - `type: :direct`
-
-                  - `:direct`
-
-              - `class BetaServerToolCaller`
-
-                Tool invocation generated by a server-side tool.
-
-                - `tool_id: String`
-
-                - `type: :code_execution_20250825`
-
-                  - `:code_execution_20250825`
-
             - `input: Hash[Symbol, untyped]`
 
             - `name: :web_search | :web_fetch | :code_execution | 4 more`
@@ -34860,6 +35110,28 @@ puts(beta_message_batch_individual_response)
 
               - `:server_tool_use`
 
+            - `caller_: BetaDirectCaller | BetaServerToolCaller`
+
+              Tool invocation directly from the model.
+
+              - `class BetaDirectCaller`
+
+                Tool invocation directly from the model.
+
+                - `type: :direct`
+
+                  - `:direct`
+
+              - `class BetaServerToolCaller`
+
+                Tool invocation generated by a server-side tool.
+
+                - `tool_id: String`
+
+                - `type: :code_execution_20250825`
+
+                  - `:code_execution_20250825`
+
           - `class BetaWebSearchToolResultBlock`
 
             - `content: BetaWebSearchToolResultBlockContent`
@@ -34877,6 +35149,8 @@ puts(beta_message_batch_individual_response)
                   - `:too_many_requests`
 
                   - `:query_too_long`
+
+                  - `:request_too_large`
 
                 - `type: :web_search_tool_result_error`
 
@@ -35966,28 +36240,6 @@ puts(beta_message_batch_individual_response)
 
           - `id: String`
 
-          - `caller_: BetaDirectCaller | BetaServerToolCaller`
-
-            Tool invocation directly from the model.
-
-            - `class BetaDirectCaller`
-
-              Tool invocation directly from the model.
-
-              - `type: :direct`
-
-                - `:direct`
-
-            - `class BetaServerToolCaller`
-
-              Tool invocation generated by a server-side tool.
-
-              - `tool_id: String`
-
-              - `type: :code_execution_20250825`
-
-                - `:code_execution_20250825`
-
           - `input: Hash[Symbol, untyped]`
 
           - `name: :web_search | :web_fetch | :code_execution | 4 more`
@@ -36010,6 +36262,28 @@ puts(beta_message_batch_individual_response)
 
             - `:server_tool_use`
 
+          - `caller_: BetaDirectCaller | BetaServerToolCaller`
+
+            Tool invocation directly from the model.
+
+            - `class BetaDirectCaller`
+
+              Tool invocation directly from the model.
+
+              - `type: :direct`
+
+                - `:direct`
+
+            - `class BetaServerToolCaller`
+
+              Tool invocation generated by a server-side tool.
+
+              - `tool_id: String`
+
+              - `type: :code_execution_20250825`
+
+                - `:code_execution_20250825`
+
         - `class BetaWebSearchToolResultBlock`
 
           - `content: BetaWebSearchToolResultBlockContent`
@@ -36027,6 +36301,8 @@ puts(beta_message_batch_individual_response)
                 - `:too_many_requests`
 
                 - `:query_too_long`
+
+                - `:request_too_large`
 
               - `type: :web_search_tool_result_error`
 
@@ -37078,28 +37354,6 @@ puts(beta_message_batch_individual_response)
 
         - `id: String`
 
-        - `caller_: BetaDirectCaller | BetaServerToolCaller`
-
-          Tool invocation directly from the model.
-
-          - `class BetaDirectCaller`
-
-            Tool invocation directly from the model.
-
-            - `type: :direct`
-
-              - `:direct`
-
-          - `class BetaServerToolCaller`
-
-            Tool invocation generated by a server-side tool.
-
-            - `tool_id: String`
-
-            - `type: :code_execution_20250825`
-
-              - `:code_execution_20250825`
-
         - `input: Hash[Symbol, untyped]`
 
         - `name: :web_search | :web_fetch | :code_execution | 4 more`
@@ -37122,6 +37376,28 @@ puts(beta_message_batch_individual_response)
 
           - `:server_tool_use`
 
+        - `caller_: BetaDirectCaller | BetaServerToolCaller`
+
+          Tool invocation directly from the model.
+
+          - `class BetaDirectCaller`
+
+            Tool invocation directly from the model.
+
+            - `type: :direct`
+
+              - `:direct`
+
+          - `class BetaServerToolCaller`
+
+            Tool invocation generated by a server-side tool.
+
+            - `tool_id: String`
+
+            - `type: :code_execution_20250825`
+
+              - `:code_execution_20250825`
+
       - `class BetaWebSearchToolResultBlock`
 
         - `content: BetaWebSearchToolResultBlockContent`
@@ -37139,6 +37415,8 @@ puts(beta_message_batch_individual_response)
               - `:too_many_requests`
 
               - `:query_too_long`
+
+              - `:request_too_large`
 
             - `type: :web_search_tool_result_error`
 

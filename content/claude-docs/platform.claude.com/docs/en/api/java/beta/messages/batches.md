@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 95ee42de4f10e1baf73cc6a117af17154a57d1bca460eba2aee3ba2e655b5407
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 916ef96e59f8eec0c1274f0438405a46a970406c3a92af7df5c8bdd44ba7bfa8
 ---
 
 # Batches
@@ -1590,6 +1590,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `QUERY_TOO_LONG("query_too_long")`
 
+                    - `REQUEST_TOO_LARGE("request_too_large")`
+
                   - `JsonValue; type "web_search_tool_result_error"constant`
 
                     - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -2765,11 +2767,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `Optional<BetaOutputConfig> outputConfig`
 
-        Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+        Configuration options for the model's output, such as the output format.
 
         - `Optional<Effort> effort`
 
-          All possible effort levels.
+          How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+          Valid values are `low`, `medium`, or `high`.
 
           - `LOW("low")`
 
@@ -2777,9 +2781,23 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `HIGH("high")`
 
+        - `Optional<BetaJsonOutputFormat> format`
+
+          A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+          - `Schema schema`
+
+            The JSON schema of the format
+
+          - `JsonValue; type "json_schema"constant`
+
+            - `JSON_SCHEMA("json_schema")`
+
       - `Optional<BetaJsonOutputFormat> outputFormat`
 
-        A schema to specify Claude's output format in responses.
+        Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+        A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
         - `Schema schema`
 
@@ -3157,6 +3175,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Optional<Boolean> strict`
 
+            When true, guarantees schema validation on tool names and inputs
+
           - `Optional<Type> type`
 
             - `CUSTOM("custom")`
@@ -3212,6 +3232,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Optional<Boolean> strict`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `class BetaToolBash20250124:`
 
           - `JsonValue; name "bash"constant`
@@ -3263,6 +3285,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Optional<Boolean> strict`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `class BetaCodeExecutionTool20250522:`
 
           - `JsonValue; name "code_execution"constant`
@@ -3312,6 +3336,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Optional<Boolean> strict`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `class BetaCodeExecutionTool20250825:`
 
           - `JsonValue; name "code_execution"constant`
@@ -3360,6 +3386,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
           - `Optional<Boolean> strict`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `class BetaToolComputerUse20241022:`
 
@@ -3424,6 +3452,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Optional<Boolean> strict`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `class BetaMemoryTool20250818:`
 
           - `JsonValue; name "memory"constant`
@@ -3474,6 +3504,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `Optional<List<InputExample>> inputExamples`
 
           - `Optional<Boolean> strict`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `class BetaToolComputerUse20250124:`
 
@@ -3538,6 +3570,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Optional<Boolean> strict`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `class BetaToolTextEditor20241022:`
 
           - `JsonValue; name "str_replace_editor"constant`
@@ -3588,6 +3622,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `Optional<List<InputExample>> inputExamples`
 
           - `Optional<Boolean> strict`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `class BetaToolComputerUse20251124:`
 
@@ -3656,6 +3692,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Optional<Boolean> strict`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `class BetaToolTextEditor20250124:`
 
           - `JsonValue; name "str_replace_editor"constant`
@@ -3707,6 +3745,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Optional<Boolean> strict`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `class BetaToolTextEditor20250429:`
 
           - `JsonValue; name "str_replace_based_edit_tool"constant`
@@ -3757,6 +3797,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `Optional<List<InputExample>> inputExamples`
 
           - `Optional<Boolean> strict`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `class BetaToolTextEditor20250728:`
 
@@ -3812,6 +3854,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
           - `Optional<Boolean> strict`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `class BetaWebSearchTool20250305:`
 
@@ -3873,6 +3917,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             Maximum number of times the tool can be used in the API request.
 
           - `Optional<Boolean> strict`
+
+            When true, guarantees schema validation on tool names and inputs
 
           - `Optional<UserLocation> userLocation`
 
@@ -3969,6 +4015,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Optional<Boolean> strict`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `class BetaToolSearchToolBm25_20251119:`
 
           - `JsonValue; name "tool_search_tool_bm25"constant`
@@ -4020,6 +4068,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Optional<Boolean> strict`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `class BetaToolSearchToolRegex20251119:`
 
           - `JsonValue; name "tool_search_tool_regex"constant`
@@ -4070,6 +4120,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
           - `Optional<Boolean> strict`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `class BetaMcpToolset:`
 
@@ -4254,7 +4306,7 @@ public final class Main {
                 .params(BatchCreateParams.Request.Params.builder()
                     .maxTokens(1024L)
                     .addUserMessage("Hello, world")
-                    .model(Model.CLAUDE_OPUS_4_5_20251101)
+                    .model(Model.CLAUDE_SONNET_4_5_20250929)
                     .build())
                 .build())
             .build();
@@ -5194,28 +5246,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `String id`
 
-            - `Caller caller`
-
-              Tool invocation directly from the model.
-
-              - `class BetaDirectCaller:`
-
-                Tool invocation directly from the model.
-
-                - `JsonValue; type "direct"constant`
-
-                  - `DIRECT("direct")`
-
-              - `class BetaServerToolCaller:`
-
-                Tool invocation generated by a server-side tool.
-
-                - `String toolId`
-
-                - `JsonValue; type "code_execution_20250825"constant`
-
-                  - `CODE_EXECUTION_20250825("code_execution_20250825")`
-
             - `Input input`
 
             - `Name name`
@@ -5238,6 +5268,28 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `SERVER_TOOL_USE("server_tool_use")`
 
+            - `Optional<Caller> caller`
+
+              Tool invocation directly from the model.
+
+              - `class BetaDirectCaller:`
+
+                Tool invocation directly from the model.
+
+                - `JsonValue; type "direct"constant`
+
+                  - `DIRECT("direct")`
+
+              - `class BetaServerToolCaller:`
+
+                Tool invocation generated by a server-side tool.
+
+                - `String toolId`
+
+                - `JsonValue; type "code_execution_20250825"constant`
+
+                  - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
           - `class BetaWebSearchToolResultBlock:`
 
             - `BetaWebSearchToolResultBlockContent content`
@@ -5255,6 +5307,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   - `TOO_MANY_REQUESTS("too_many_requests")`
 
                   - `QUERY_TOO_LONG("query_too_long")`
+
+                  - `REQUEST_TOO_LARGE("request_too_large")`
 
                 - `JsonValue; type "web_search_tool_result_error"constant`
 
@@ -6550,28 +6604,6 @@ public final class Main {
 
             - `String id`
 
-            - `Caller caller`
-
-              Tool invocation directly from the model.
-
-              - `class BetaDirectCaller:`
-
-                Tool invocation directly from the model.
-
-                - `JsonValue; type "direct"constant`
-
-                  - `DIRECT("direct")`
-
-              - `class BetaServerToolCaller:`
-
-                Tool invocation generated by a server-side tool.
-
-                - `String toolId`
-
-                - `JsonValue; type "code_execution_20250825"constant`
-
-                  - `CODE_EXECUTION_20250825("code_execution_20250825")`
-
             - `Input input`
 
             - `Name name`
@@ -6594,6 +6626,28 @@ public final class Main {
 
               - `SERVER_TOOL_USE("server_tool_use")`
 
+            - `Optional<Caller> caller`
+
+              Tool invocation directly from the model.
+
+              - `class BetaDirectCaller:`
+
+                Tool invocation directly from the model.
+
+                - `JsonValue; type "direct"constant`
+
+                  - `DIRECT("direct")`
+
+              - `class BetaServerToolCaller:`
+
+                Tool invocation generated by a server-side tool.
+
+                - `String toolId`
+
+                - `JsonValue; type "code_execution_20250825"constant`
+
+                  - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
           - `class BetaWebSearchToolResultBlock:`
 
             - `BetaWebSearchToolResultBlockContent content`
@@ -6611,6 +6665,8 @@ public final class Main {
                   - `TOO_MANY_REQUESTS("too_many_requests")`
 
                   - `QUERY_TOO_LONG("query_too_long")`
+
+                  - `REQUEST_TOO_LARGE("request_too_large")`
 
                 - `JsonValue; type "web_search_tool_result_error"constant`
 
@@ -7692,28 +7748,6 @@ public final class Main {
 
           - `String id`
 
-          - `Caller caller`
-
-            Tool invocation directly from the model.
-
-            - `class BetaDirectCaller:`
-
-              Tool invocation directly from the model.
-
-              - `JsonValue; type "direct"constant`
-
-                - `DIRECT("direct")`
-
-            - `class BetaServerToolCaller:`
-
-              Tool invocation generated by a server-side tool.
-
-              - `String toolId`
-
-              - `JsonValue; type "code_execution_20250825"constant`
-
-                - `CODE_EXECUTION_20250825("code_execution_20250825")`
-
           - `Input input`
 
           - `Name name`
@@ -7736,6 +7770,28 @@ public final class Main {
 
             - `SERVER_TOOL_USE("server_tool_use")`
 
+          - `Optional<Caller> caller`
+
+            Tool invocation directly from the model.
+
+            - `class BetaDirectCaller:`
+
+              Tool invocation directly from the model.
+
+              - `JsonValue; type "direct"constant`
+
+                - `DIRECT("direct")`
+
+            - `class BetaServerToolCaller:`
+
+              Tool invocation generated by a server-side tool.
+
+              - `String toolId`
+
+              - `JsonValue; type "code_execution_20250825"constant`
+
+                - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
         - `class BetaWebSearchToolResultBlock:`
 
           - `BetaWebSearchToolResultBlockContent content`
@@ -7753,6 +7809,8 @@ public final class Main {
                 - `TOO_MANY_REQUESTS("too_many_requests")`
 
                 - `QUERY_TOO_LONG("query_too_long")`
+
+                - `REQUEST_TOO_LARGE("request_too_large")`
 
               - `JsonValue; type "web_search_tool_result_error"constant`
 
@@ -8796,28 +8854,6 @@ public final class Main {
 
         - `String id`
 
-        - `Caller caller`
-
-          Tool invocation directly from the model.
-
-          - `class BetaDirectCaller:`
-
-            Tool invocation directly from the model.
-
-            - `JsonValue; type "direct"constant`
-
-              - `DIRECT("direct")`
-
-          - `class BetaServerToolCaller:`
-
-            Tool invocation generated by a server-side tool.
-
-            - `String toolId`
-
-            - `JsonValue; type "code_execution_20250825"constant`
-
-              - `CODE_EXECUTION_20250825("code_execution_20250825")`
-
         - `Input input`
 
         - `Name name`
@@ -8840,6 +8876,28 @@ public final class Main {
 
           - `SERVER_TOOL_USE("server_tool_use")`
 
+        - `Optional<Caller> caller`
+
+          Tool invocation directly from the model.
+
+          - `class BetaDirectCaller:`
+
+            Tool invocation directly from the model.
+
+            - `JsonValue; type "direct"constant`
+
+              - `DIRECT("direct")`
+
+          - `class BetaServerToolCaller:`
+
+            Tool invocation generated by a server-side tool.
+
+            - `String toolId`
+
+            - `JsonValue; type "code_execution_20250825"constant`
+
+              - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
       - `class BetaWebSearchToolResultBlock:`
 
         - `BetaWebSearchToolResultBlockContent content`
@@ -8857,6 +8915,8 @@ public final class Main {
               - `TOO_MANY_REQUESTS("too_many_requests")`
 
               - `QUERY_TOO_LONG("query_too_long")`
+
+              - `REQUEST_TOO_LARGE("request_too_large")`
 
             - `JsonValue; type "web_search_tool_result_error"constant`
 

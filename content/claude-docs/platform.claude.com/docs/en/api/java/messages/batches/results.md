@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/results
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 9dd6ecc67b2975c91cf37b619c545619a581e3f1f6ebc4d5091d47a0605c311e
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 96d134bab4676c17e51ada4c0b0d64e7a9495d41db3c1e84f2ba7adf093721c8
 ---
 
 ## Results
@@ -243,6 +243,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   - `TOO_MANY_REQUESTS("too_many_requests")`
 
                   - `QUERY_TOO_LONG("query_too_long")`
+
+                  - `REQUEST_TOO_LARGE("request_too_large")`
 
                 - `JsonValue; type "web_search_tool_result_error"constant`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/create
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 2dc83d368c5c375a88aa42c867b7aee1be57d00529a15b0eeee366c098bb7194
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 4b4864aa07b210f6e196f4332050a5e9b26631ea7a3f3947342e5926e10b9592
 ---
 
 ## Create
@@ -27,7 +27,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     Must be unique for each request within the Message Batch.
 
-  - `params: object { max_tokens, messages, model, 11 more }`
+  - `params: object { max_tokens, messages, model, 12 more }`
 
     Messages API creation parameters for the individual request.
 
@@ -1393,7 +1393,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `WebSearchToolRequestError = object { error_code, type }`
 
-                - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 2 more`
+                - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
 
                   - `"invalid_tool_input"`
 
@@ -1404,6 +1404,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   - `"too_many_requests"`
 
                   - `"query_too_long"`
+
+                  - `"request_too_large"`
 
                 - `type: "web_search_tool_result_error"`
 
@@ -1547,6 +1549,22 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         An external identifier for the user who is associated with the request.
 
         This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
+
+    - `output_config: optional object { format }`
+
+      Configuration options for the model's output, such as the output format.
+
+      - `format: optional object { schema, type }`
+
+        A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+        - `schema: map[unknown]`
+
+          The JSON schema of the format
+
+        - `type: "json_schema"`
+
+          - `"json_schema"`
 
     - `service_tier: optional "auto" or "standard_only"`
 
@@ -1851,7 +1869,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See our [guide](https://docs.claude.com/en/docs/tool-use) for more details.
 
-      - `Tool = object { input_schema, name, cache_control, 2 more }`
+      - `Tool = object { input_schema, name, cache_control, 3 more }`
 
         - `input_schema: object { type, properties, required }`
 
@@ -1902,11 +1920,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+        - `strict: optional boolean`
+
+          When true, guarantees schema validation on tool names and inputs
+
         - `type: optional "custom"`
 
           - `"custom"`
 
-      - `ToolBash20250124 = object { name, type, cache_control }`
+      - `ToolBash20250124 = object { name, type, cache_control, strict }`
 
         - `name: "bash"`
 
@@ -1943,7 +1965,11 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"1h"`
 
-      - `ToolTextEditor20250124 = object { name, type, cache_control }`
+        - `strict: optional boolean`
+
+          When true, guarantees schema validation on tool names and inputs
+
+      - `ToolTextEditor20250124 = object { name, type, cache_control, strict }`
 
         - `name: "str_replace_editor"`
 
@@ -1980,7 +2006,11 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"1h"`
 
-      - `ToolTextEditor20250429 = object { name, type, cache_control }`
+        - `strict: optional boolean`
+
+          When true, guarantees schema validation on tool names and inputs
+
+      - `ToolTextEditor20250429 = object { name, type, cache_control, strict }`
 
         - `name: "str_replace_based_edit_tool"`
 
@@ -2017,7 +2047,11 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"1h"`
 
-      - `ToolTextEditor20250728 = object { name, type, cache_control, max_characters }`
+        - `strict: optional boolean`
+
+          When true, guarantees schema validation on tool names and inputs
+
+      - `ToolTextEditor20250728 = object { name, type, cache_control, 2 more }`
 
         - `name: "str_replace_based_edit_tool"`
 
@@ -2058,7 +2092,11 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
-      - `WebSearchTool20250305 = object { name, type, allowed_domains, 4 more }`
+        - `strict: optional boolean`
+
+          When true, guarantees schema validation on tool names and inputs
+
+      - `WebSearchTool20250305 = object { name, type, allowed_domains, 5 more }`
 
         - `name: "web_search"`
 
@@ -2106,6 +2144,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `max_uses: optional number`
 
           Maximum number of times the tool can be used in the API request.
+
+        - `strict: optional boolean`
+
+          When true, guarantees schema validation on tool names and inputs
 
         - `user_location: optional object { type, city, country, 2 more }`
 

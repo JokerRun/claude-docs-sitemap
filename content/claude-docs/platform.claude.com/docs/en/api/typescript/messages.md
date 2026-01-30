@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 92ac193a2f7157fe10c27aa38010e7a65e9a239f01e4b49bb990749db649c1a3
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 34b1c634c8d333268245e8fd1bf90699a1b0455149fd2213133cf7f8eb58f17e
 ---
 
 # Messages
@@ -1385,7 +1385,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `WebSearchToolRequestError`
 
-                - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+                - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
                   - `"invalid_tool_input"`
 
@@ -1396,6 +1396,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
                   - `"too_many_requests"`
 
                   - `"query_too_long"`
+
+                  - `"request_too_large"`
 
                 - `type: "web_search_tool_result_error"`
 
@@ -1535,6 +1537,22 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         An external identifier for the user who is associated with the request.
 
         This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
+
+    - `output_config?: OutputConfig`
+
+      Configuration options for the model's output, such as the output format.
+
+      - `format?: Format | null`
+
+        A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+        - `schema: Record<string, unknown>`
+
+          The JSON schema of the format
+
+        - `type: "json_schema"`
+
+          - `"json_schema"`
 
     - `service_tier?: "auto" | "standard_only"`
 
@@ -1892,6 +1910,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+        - `strict?: boolean`
+
+          When true, guarantees schema validation on tool names and inputs
+
         - `type?: "custom" | null`
 
           - `"custom"`
@@ -1933,6 +1955,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"1h"`
 
+        - `strict?: boolean`
+
+          When true, guarantees schema validation on tool names and inputs
+
       - `ToolTextEditor20250124`
 
         - `name: "str_replace_editor"`
@@ -1970,6 +1996,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"1h"`
 
+        - `strict?: boolean`
+
+          When true, guarantees schema validation on tool names and inputs
+
       - `ToolTextEditor20250429`
 
         - `name: "str_replace_based_edit_tool"`
@@ -2006,6 +2036,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
             - `"5m"`
 
             - `"1h"`
+
+        - `strict?: boolean`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `ToolTextEditor20250728`
 
@@ -2047,6 +2081,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `max_characters?: number | null`
 
           Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+        - `strict?: boolean`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `WebSearchTool20250305`
 
@@ -2096,6 +2134,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `max_uses?: number | null`
 
           Maximum number of times the tool can be used in the API request.
+
+        - `strict?: boolean`
+
+          When true, guarantees schema validation on tool names and inputs
 
         - `user_location?: UserLocation | null`
 
@@ -2346,7 +2388,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `WebSearchToolResultError`
 
-          - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+          - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
             - `"invalid_tool_input"`
 
@@ -2357,6 +2399,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
             - `"too_many_requests"`
 
             - `"query_too_long"`
+
+            - `"request_too_large"`
 
           - `type: "web_search_tool_result_error"`
 
@@ -3965,7 +4009,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             - `WebSearchToolRequestError`
 
-              - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+              - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
                 - `"invalid_tool_input"`
 
@@ -3976,6 +4020,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
                 - `"too_many_requests"`
 
                 - `"query_too_long"`
+
+                - `"request_too_large"`
 
               - `type: "web_search_tool_result_error"`
 
@@ -4105,6 +4151,22 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         Our previous most fast and cost-effective
 
     - `(string & {})`
+
+  - `output_config?: OutputConfig`
+
+    Configuration options for the model's output, such as the output format.
+
+    - `format?: Format | null`
+
+      A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+      - `schema: Record<string, unknown>`
+
+        The JSON schema of the format
+
+      - `type: "json_schema"`
+
+        - `"json_schema"`
 
   - `system?: string | Array<TextBlockParam>`
 
@@ -4428,6 +4490,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+      - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
+
       - `type?: "custom" | null`
 
         - `"custom"`
@@ -4469,6 +4535,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           - `"1h"`
 
+      - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
+
     - `ToolTextEditor20250124`
 
       - `name: "str_replace_editor"`
@@ -4506,6 +4576,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           - `"1h"`
 
+      - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
+
     - `ToolTextEditor20250429`
 
       - `name: "str_replace_based_edit_tool"`
@@ -4542,6 +4616,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
           - `"5m"`
 
           - `"1h"`
+
+      - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `ToolTextEditor20250728`
 
@@ -4583,6 +4661,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `max_characters?: number | null`
 
         Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+      - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `WebSearchTool20250305`
 
@@ -4632,6 +4714,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `max_uses?: number | null`
 
         Maximum number of times the tool can be used in the API request.
+
+      - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
       - `user_location?: UserLocation | null`
 
@@ -5195,7 +5281,7 @@ console.log(messageTokensCount.input_tokens);
 
       - `WebSearchToolResultError`
 
-        - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+        - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
           - `"invalid_tool_input"`
 
@@ -5206,6 +5292,8 @@ console.log(messageTokensCount.input_tokens);
           - `"too_many_requests"`
 
           - `"query_too_long"`
+
+          - `"request_too_large"`
 
         - `type: "web_search_tool_result_error"`
 
@@ -6532,7 +6620,7 @@ console.log(messageTokensCount.input_tokens);
 
       - `WebSearchToolRequestError`
 
-        - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+        - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
           - `"invalid_tool_input"`
 
@@ -6543,6 +6631,8 @@ console.log(messageTokensCount.input_tokens);
           - `"too_many_requests"`
 
           - `"query_too_long"`
+
+          - `"request_too_large"`
 
         - `type: "web_search_tool_result_error"`
 
@@ -7448,7 +7538,7 @@ console.log(messageTokensCount.input_tokens);
 
         - `WebSearchToolResultError`
 
-          - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+          - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
             - `"invalid_tool_input"`
 
@@ -7459,6 +7549,8 @@ console.log(messageTokensCount.input_tokens);
             - `"too_many_requests"`
 
             - `"query_too_long"`
+
+            - `"request_too_large"`
 
           - `type: "web_search_tool_result_error"`
 
@@ -7736,6 +7828,10 @@ console.log(messageTokensCount.input_tokens);
 
       Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+    - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
+
     - `type?: "custom" | null`
 
       - `"custom"`
@@ -7777,6 +7873,10 @@ console.log(messageTokensCount.input_tokens);
 
         - `"1h"`
 
+    - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
+
   - `ToolTextEditor20250124`
 
     - `name: "str_replace_editor"`
@@ -7814,6 +7914,10 @@ console.log(messageTokensCount.input_tokens);
 
         - `"1h"`
 
+    - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
+
   - `ToolTextEditor20250429`
 
     - `name: "str_replace_based_edit_tool"`
@@ -7850,6 +7954,10 @@ console.log(messageTokensCount.input_tokens);
         - `"5m"`
 
         - `"1h"`
+
+    - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `ToolTextEditor20250728`
 
@@ -7891,6 +7999,10 @@ console.log(messageTokensCount.input_tokens);
     - `max_characters?: number | null`
 
       Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+    - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `WebSearchTool20250305`
 
@@ -7940,6 +8052,10 @@ console.log(messageTokensCount.input_tokens);
     - `max_uses?: number | null`
 
       Maximum number of times the tool can be used in the API request.
+
+    - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
 
     - `user_location?: UserLocation | null`
 
@@ -9298,7 +9414,7 @@ console.log(messageTokensCount.input_tokens);
 
           - `WebSearchToolRequestError`
 
-            - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+            - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
               - `"invalid_tool_input"`
 
@@ -9309,6 +9425,8 @@ console.log(messageTokensCount.input_tokens);
               - `"too_many_requests"`
 
               - `"query_too_long"`
+
+              - `"request_too_large"`
 
             - `type: "web_search_tool_result_error"`
 
@@ -9897,7 +10015,7 @@ console.log(messageTokensCount.input_tokens);
 
         - `WebSearchToolResultError`
 
-          - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+          - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
             - `"invalid_tool_input"`
 
@@ -9908,6 +10026,8 @@ console.log(messageTokensCount.input_tokens);
             - `"too_many_requests"`
 
             - `"query_too_long"`
+
+            - `"request_too_large"`
 
           - `type: "web_search_tool_result_error"`
 
@@ -10202,7 +10322,7 @@ console.log(messageTokensCount.input_tokens);
 
           - `WebSearchToolResultError`
 
-            - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+            - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
               - `"invalid_tool_input"`
 
@@ -10213,6 +10333,8 @@ console.log(messageTokensCount.input_tokens);
               - `"too_many_requests"`
 
               - `"query_too_long"`
+
+              - `"request_too_large"`
 
             - `type: "web_search_tool_result_error"`
 
@@ -10640,7 +10762,7 @@ console.log(messageTokensCount.input_tokens);
 
             - `WebSearchToolResultError`
 
-              - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+              - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
                 - `"invalid_tool_input"`
 
@@ -10651,6 +10773,8 @@ console.log(messageTokensCount.input_tokens);
                 - `"too_many_requests"`
 
                 - `"query_too_long"`
+
+                - `"request_too_large"`
 
               - `type: "web_search_tool_result_error"`
 
@@ -11097,7 +11221,7 @@ console.log(messageTokensCount.input_tokens);
 
           - `WebSearchToolResultError`
 
-            - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+            - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
               - `"invalid_tool_input"`
 
@@ -11108,6 +11232,8 @@ console.log(messageTokensCount.input_tokens);
               - `"too_many_requests"`
 
               - `"query_too_long"`
+
+              - `"request_too_large"`
 
             - `type: "web_search_tool_result_error"`
 
@@ -12086,6 +12212,10 @@ console.log(messageTokensCount.input_tokens);
 
     Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+  - `strict?: boolean`
+
+    When true, guarantees schema validation on tool names and inputs
+
   - `type?: "custom" | null`
 
     - `"custom"`
@@ -12128,6 +12258,10 @@ console.log(messageTokensCount.input_tokens);
       - `"5m"`
 
       - `"1h"`
+
+  - `strict?: boolean`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Tool Choice
 
@@ -12904,6 +13038,10 @@ console.log(messageTokensCount.input_tokens);
 
       - `"1h"`
 
+  - `strict?: boolean`
+
+    When true, guarantees schema validation on tool names and inputs
+
 ### Tool Text Editor 20250429
 
 - `ToolTextEditor20250429`
@@ -12942,6 +13080,10 @@ console.log(messageTokensCount.input_tokens);
       - `"5m"`
 
       - `"1h"`
+
+  - `strict?: boolean`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Tool Text Editor 20250728
 
@@ -12985,6 +13127,10 @@ console.log(messageTokensCount.input_tokens);
   - `max_characters?: number | null`
 
     Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+  - `strict?: boolean`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Tool Union
 
@@ -13041,6 +13187,10 @@ console.log(messageTokensCount.input_tokens);
 
       Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+    - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
+
     - `type?: "custom" | null`
 
       - `"custom"`
@@ -13082,6 +13232,10 @@ console.log(messageTokensCount.input_tokens);
 
         - `"1h"`
 
+    - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
+
   - `ToolTextEditor20250124`
 
     - `name: "str_replace_editor"`
@@ -13119,6 +13273,10 @@ console.log(messageTokensCount.input_tokens);
 
         - `"1h"`
 
+    - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
+
   - `ToolTextEditor20250429`
 
     - `name: "str_replace_based_edit_tool"`
@@ -13155,6 +13313,10 @@ console.log(messageTokensCount.input_tokens);
         - `"5m"`
 
         - `"1h"`
+
+    - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `ToolTextEditor20250728`
 
@@ -13196,6 +13358,10 @@ console.log(messageTokensCount.input_tokens);
     - `max_characters?: number | null`
 
       Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+    - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `WebSearchTool20250305`
 
@@ -13245,6 +13411,10 @@ console.log(messageTokensCount.input_tokens);
     - `max_uses?: number | null`
 
       Maximum number of times the tool can be used in the API request.
+
+    - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
 
     - `user_location?: UserLocation | null`
 
@@ -13474,6 +13644,10 @@ console.log(messageTokensCount.input_tokens);
 
     Maximum number of times the tool can be used in the API request.
 
+  - `strict?: boolean`
+
+    When true, guarantees schema validation on tool names and inputs
+
   - `user_location?: UserLocation | null`
 
     Parameters for the user's location. Used to provide more relevant search results.
@@ -13502,7 +13676,7 @@ console.log(messageTokensCount.input_tokens);
 
 - `WebSearchToolRequestError`
 
-  - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+  - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
     - `"invalid_tool_input"`
 
@@ -13513,6 +13687,8 @@ console.log(messageTokensCount.input_tokens);
     - `"too_many_requests"`
 
     - `"query_too_long"`
+
+    - `"request_too_large"`
 
   - `type: "web_search_tool_result_error"`
 
@@ -13526,7 +13702,7 @@ console.log(messageTokensCount.input_tokens);
 
     - `WebSearchToolResultError`
 
-      - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+      - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
         - `"invalid_tool_input"`
 
@@ -13537,6 +13713,8 @@ console.log(messageTokensCount.input_tokens);
         - `"too_many_requests"`
 
         - `"query_too_long"`
+
+        - `"request_too_large"`
 
       - `type: "web_search_tool_result_error"`
 
@@ -13568,7 +13746,7 @@ console.log(messageTokensCount.input_tokens);
 
   - `WebSearchToolResultError`
 
-    - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+    - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
       - `"invalid_tool_input"`
 
@@ -13579,6 +13757,8 @@ console.log(messageTokensCount.input_tokens);
       - `"too_many_requests"`
 
       - `"query_too_long"`
+
+      - `"request_too_large"`
 
     - `type: "web_search_tool_result_error"`
 
@@ -13620,7 +13800,7 @@ console.log(messageTokensCount.input_tokens);
 
     - `WebSearchToolRequestError`
 
-      - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+      - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
         - `"invalid_tool_input"`
 
@@ -13631,6 +13811,8 @@ console.log(messageTokensCount.input_tokens);
         - `"too_many_requests"`
 
         - `"query_too_long"`
+
+        - `"request_too_large"`
 
       - `type: "web_search_tool_result_error"`
 
@@ -13685,7 +13867,7 @@ console.log(messageTokensCount.input_tokens);
 
   - `WebSearchToolRequestError`
 
-    - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+    - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
       - `"invalid_tool_input"`
 
@@ -13697,6 +13879,8 @@ console.log(messageTokensCount.input_tokens);
 
       - `"query_too_long"`
 
+      - `"request_too_large"`
+
     - `type: "web_search_tool_result_error"`
 
       - `"web_search_tool_result_error"`
@@ -13705,7 +13889,7 @@ console.log(messageTokensCount.input_tokens);
 
 - `WebSearchToolResultError`
 
-  - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+  - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
     - `"invalid_tool_input"`
 
@@ -13716,6 +13900,8 @@ console.log(messageTokensCount.input_tokens);
     - `"too_many_requests"`
 
     - `"query_too_long"`
+
+    - `"request_too_large"`
 
   - `type: "web_search_tool_result_error"`
 
@@ -15115,7 +15301,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `WebSearchToolRequestError`
 
-                  - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+                  - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
                     - `"invalid_tool_input"`
 
@@ -15126,6 +15312,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                     - `"too_many_requests"`
 
                     - `"query_too_long"`
+
+                    - `"request_too_large"`
 
                   - `type: "web_search_tool_result_error"`
 
@@ -15265,6 +15453,22 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           An external identifier for the user who is associated with the request.
 
           This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
+
+      - `output_config?: OutputConfig`
+
+        Configuration options for the model's output, such as the output format.
+
+        - `format?: Format | null`
+
+          A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+          - `schema: Record<string, unknown>`
+
+            The JSON schema of the format
+
+          - `type: "json_schema"`
+
+            - `"json_schema"`
 
       - `service_tier?: "auto" | "standard_only"`
 
@@ -15620,6 +15824,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+          - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
+
           - `type?: "custom" | null`
 
             - `"custom"`
@@ -15661,6 +15869,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `"1h"`
 
+          - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
+
         - `ToolTextEditor20250124`
 
           - `name: "str_replace_editor"`
@@ -15698,6 +15910,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `"1h"`
 
+          - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
+
         - `ToolTextEditor20250429`
 
           - `name: "str_replace_based_edit_tool"`
@@ -15734,6 +15950,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
               - `"5m"`
 
               - `"1h"`
+
+          - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `ToolTextEditor20250728`
 
@@ -15775,6 +15995,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `max_characters?: number | null`
 
             Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+          - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `WebSearchTool20250305`
 
@@ -15824,6 +16048,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `max_uses?: number | null`
 
             Maximum number of times the tool can be used in the API request.
+
+          - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
 
           - `user_location?: UserLocation | null`
 
@@ -16628,7 +16856,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `WebSearchToolResultError`
 
-                - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+                - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
                   - `"invalid_tool_input"`
 
@@ -16639,6 +16867,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   - `"too_many_requests"`
 
                   - `"query_too_long"`
+
+                  - `"request_too_large"`
 
                 - `type: "web_search_tool_result_error"`
 
@@ -17400,7 +17630,7 @@ console.log(messageBatchIndividualResponse.custom_id);
 
               - `WebSearchToolResultError`
 
-                - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+                - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
                   - `"invalid_tool_input"`
 
@@ -17411,6 +17641,8 @@ console.log(messageBatchIndividualResponse.custom_id);
                   - `"too_many_requests"`
 
                   - `"query_too_long"`
+
+                  - `"request_too_large"`
 
                 - `type: "web_search_tool_result_error"`
 
@@ -17966,7 +18198,7 @@ console.log(messageBatchIndividualResponse.custom_id);
 
             - `WebSearchToolResultError`
 
-              - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+              - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
                 - `"invalid_tool_input"`
 
@@ -17977,6 +18209,8 @@ console.log(messageBatchIndividualResponse.custom_id);
                 - `"too_many_requests"`
 
                 - `"query_too_long"`
+
+                - `"request_too_large"`
 
               - `type: "web_search_tool_result_error"`
 
@@ -18494,7 +18728,7 @@ console.log(messageBatchIndividualResponse.custom_id);
 
           - `WebSearchToolResultError`
 
-            - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+            - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
               - `"invalid_tool_input"`
 
@@ -18505,6 +18739,8 @@ console.log(messageBatchIndividualResponse.custom_id);
               - `"too_many_requests"`
 
               - `"query_too_long"`
+
+              - `"request_too_large"`
 
             - `type: "web_search_tool_result_error"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/count_tokens
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: fa6e21d5fa173a6a29622e9309b6025782675adb925526e2c7dec9c5cdf8ad5b
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 2c3dac9cff8f0a864f0bdd97614f92d2a2e082d4aa00e3c727677b4bd34df08b
 ---
 
 ## Count Tokens
@@ -1385,6 +1385,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `QUERY_TOO_LONG("query_too_long")`
 
+                - `REQUEST_TOO_LARGE("request_too_large")`
+
               - `JsonValue; type "web_search_tool_result_error"constant`
 
                 - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -1429,6 +1431,22 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+  - `Optional<OutputConfig> outputConfig`
+
+    Configuration options for the model's output, such as the output format.
+
+    - `Optional<Format> format`
+
+      A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+      - `Schema schema`
+
+        The JSON schema of the format
+
+      - `JsonValue; type "json_schema"constant`
+
+        - `JSON_SCHEMA("json_schema")`
 
   - `Optional<System> system`
 
@@ -1678,6 +1696,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
+
       - `Optional<Type> type`
 
         - `CUSTOM("custom")`
@@ -1719,6 +1741,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           - `TTL_1H("1h")`
 
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
+
     - `class ToolTextEditor20250124:`
 
       - `JsonValue; name "str_replace_editor"constant`
@@ -1756,6 +1782,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           - `TTL_1H("1h")`
 
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
+
     - `class ToolTextEditor20250429:`
 
       - `JsonValue; name "str_replace_based_edit_tool"constant`
@@ -1792,6 +1822,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
           - `TTL_5M("5m")`
 
           - `TTL_1H("1h")`
+
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `class ToolTextEditor20250728:`
 
@@ -1833,6 +1867,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `Optional<Long> maxCharacters`
 
         Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `class WebSearchTool20250305:`
 
@@ -1882,6 +1920,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `Optional<Long> maxUses`
 
         Maximum number of times the tool can be used in the API request.
+
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
       - `Optional<UserLocation> userLocation`
 
@@ -1934,7 +1976,7 @@ public final class Main {
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
             .addUserMessage("Hello, world")
-            .model(Model.CLAUDE_OPUS_4_5_20251101)
+            .model(Model.CLAUDE_SONNET_4_5_20250929)
             .build();
         MessageTokensCount messageTokensCount = client.messages().countTokens(params);
     }

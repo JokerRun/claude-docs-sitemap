@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: f966bdffd470568569552a457a210f6228709acff6c0a91b2fdd600ba3c8a40b
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 92d8bdcea2cfd1cd3088176065813d77a5b7d5c71f77cba91a0ae559283dee58
 ---
 
 # Features overview
@@ -29,7 +29,7 @@ These features enhance Claude's fundamental abilities for processing, analyzing,
 | [Prompt caching (5m)](/docs/en/build-with-claude/prompt-caching) | Provide Claude with more background knowledge and example outputs to reduce costs and latency. | <PlatformAvailability claudeApi bedrock vertexAi azureAi /> |
 | [Prompt caching (1hr)](/docs/en/build-with-claude/prompt-caching#1-hour-cache-duration) | Extended 1-hour cache duration for less frequently accessed but important context, complementing the standard 5-minute cache. | <PlatformAvailability claudeApi azureAi /> |
 | [Search results](/docs/en/build-with-claude/search-results) | Enable natural citations for RAG applications by providing search results with proper source attribution. Achieve web search-quality citations for custom knowledge bases and tools. | <PlatformAvailability claudeApi bedrock vertexAi azureAi /> |
-| [Structured outputs](/docs/en/build-with-claude/structured-outputs) | Guarantee schema conformance with two approaches: JSON outputs for structured data responses, and strict tool use for validated tool inputs. Available on Sonnet 4.5, Opus 4.1, Opus 4.5, and Haiku 4.5. | <PlatformAvailability claudeApiBeta azureAiBeta /> |
+| [Structured outputs](/docs/en/build-with-claude/structured-outputs) | Guarantee schema conformance with two approaches: JSON outputs for structured data responses, and strict tool use for validated tool inputs. Available on Sonnet 4.5, Opus 4.5, and Haiku 4.5. | <PlatformAvailability claudeApi bedrockBeta azureAiBeta /> |
 | [Token counting](/docs/en/api/messages-count-tokens) | Token counting enables you to determine the number of tokens in a message before sending it to Claude, helping you make informed decisions about your prompts and usage. | <PlatformAvailability claudeApi bedrock vertexAi azureAi /> |
 | [Tool use](/docs/en/agents-and-tools/tool-use/overview) | Enable Claude to interact with external tools and APIs to perform a wider variety of tasks. For a list of supported tools, see [the Tools table](#tools). | <PlatformAvailability claudeApi bedrock vertexAi azureAi /> |
 

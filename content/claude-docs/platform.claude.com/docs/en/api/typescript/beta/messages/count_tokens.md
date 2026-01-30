@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/count_tokens
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 796da1098297a02a9632c6a5666a0c934030f65afe9f039c26c5543597498c7d
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: b184b27ead4551b0d3bf9da6901975e5c0cac57de87b5fa08ec0837b1ff78f41
 ---
 
 ## Count Tokens
@@ -1522,6 +1522,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `"query_too_long"`
 
+                - `"request_too_large"`
+
               - `type: "web_search_tool_result_error"`
 
                 - `"web_search_tool_result_error"`
@@ -2657,11 +2659,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `output_config?: BetaOutputConfig`
 
-    Body param: Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+    Body param: Configuration options for the model's output, such as the output format.
 
     - `effort?: "low" | "medium" | "high" | null`
 
-      All possible effort levels.
+      How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+      Valid values are `low`, `medium`, or `high`.
 
       - `"low"`
 
@@ -2669,10 +2673,23 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"high"`
 
+    - `format?: BetaJSONOutputFormat | null`
+
+      A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+      - `schema: Record<string, unknown>`
+
+        The JSON schema of the format
+
+      - `type: "json_schema"`
+
+        - `"json_schema"`
+
   - `output_format?: BetaJSONOutputFormat | null`
 
-    Body param:
-    A schema to specify Claude's output format in responses.
+    Body param: Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
     - `schema: Record<string, unknown>`
 
@@ -3018,6 +3035,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
       - `type?: "custom" | null`
 
         - `"custom"`
@@ -3073,6 +3092,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaToolBash20250124`
 
       - `name: "bash"`
@@ -3124,6 +3145,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaCodeExecutionTool20250522`
 
       - `name: "code_execution"`
@@ -3173,6 +3196,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaCodeExecutionTool20250825`
 
       - `name: "code_execution"`
@@ -3221,6 +3246,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `BetaToolComputerUse20241022`
 
@@ -3285,6 +3312,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaMemoryTool20250818`
 
       - `name: "memory"`
@@ -3335,6 +3364,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `input_examples?: Array<Record<string, unknown>>`
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `BetaToolComputerUse20250124`
 
@@ -3399,6 +3430,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaToolTextEditor20241022`
 
       - `name: "str_replace_editor"`
@@ -3449,6 +3482,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `input_examples?: Array<Record<string, unknown>>`
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `BetaToolComputerUse20251124`
 
@@ -3517,6 +3552,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaToolTextEditor20250124`
 
       - `name: "str_replace_editor"`
@@ -3568,6 +3605,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaToolTextEditor20250429`
 
       - `name: "str_replace_based_edit_tool"`
@@ -3618,6 +3657,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `input_examples?: Array<Record<string, unknown>>`
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `BetaToolTextEditor20250728`
 
@@ -3673,6 +3714,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `BetaWebSearchTool20250305`
 
@@ -3734,6 +3777,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         Maximum number of times the tool can be used in the API request.
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
       - `user_location?: UserLocation | null`
 
@@ -3830,6 +3875,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaToolSearchToolBm25_20251119`
 
       - `name: "tool_search_tool_bm25"`
@@ -3881,6 +3928,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaToolSearchToolRegex20251119`
 
       - `name: "tool_search_tool_regex"`
@@ -3931,6 +3980,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `BetaMCPToolset`
 

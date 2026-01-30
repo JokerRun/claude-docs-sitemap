@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/count_tokens
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 9c7608f7bda638cc80c6a630826b4d91fd644484a3a08e9b4772ccfde8c9047b
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 875f499aef416d7d5e2d238f9952a9071a9f68a6e41cfaf332912d7ad0bacced
 ---
 
 ## Count Tokens
@@ -1381,6 +1381,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `const WebSearchToolRequestErrorErrorCodeQueryTooLong WebSearchToolRequestErrorErrorCode = "query_too_long"`
 
+                - `const WebSearchToolRequestErrorErrorCodeRequestTooLarge WebSearchToolRequestErrorErrorCode = "request_too_large"`
+
               - `Type WebSearchToolResultError`
 
                 - `const WebSearchToolResultErrorWebSearchToolResultError WebSearchToolResultError = "web_search_tool_result_error"`
@@ -1425,6 +1427,22 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+  - `OutputConfig param.Field[MessageCountTokensParamsOutputConfig]`
+
+    Configuration options for the model's output, such as the output format.
+
+    - `Format MessageCountTokensParamsOutputConfigFormat`
+
+      A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+      - `Schema map[string, any]`
+
+        The JSON schema of the format
+
+      - `Type JSONSchema`
+
+        - `const JSONSchemaJSONSchema JSONSchema = "json_schema"`
 
   - `System param.Field[MessageCountTokensParamsSystemUnion]`
 
@@ -1674,6 +1692,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+      - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
+
       - `Type ToolType`
 
         - `const ToolTypeCustom ToolType = "custom"`
@@ -1715,6 +1737,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           - `const CacheControlEphemeralTTLTTL1h CacheControlEphemeralTTL = "1h"`
 
+      - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
+
     - `type ToolTextEditor20250124 struct{…}`
 
       - `Name StrReplaceEditor`
@@ -1752,6 +1778,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           - `const CacheControlEphemeralTTLTTL1h CacheControlEphemeralTTL = "1h"`
 
+      - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
+
     - `type ToolTextEditor20250429 struct{…}`
 
       - `Name StrReplaceBasedEditTool`
@@ -1788,6 +1818,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
           - `const CacheControlEphemeralTTLTTL5m CacheControlEphemeralTTL = "5m"`
 
           - `const CacheControlEphemeralTTLTTL1h CacheControlEphemeralTTL = "1h"`
+
+      - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type ToolTextEditor20250728 struct{…}`
 
@@ -1829,6 +1863,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `MaxCharacters int64`
 
         Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+      - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type WebSearchTool20250305 struct{…}`
 
@@ -1878,6 +1916,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `MaxUses int64`
 
         Maximum number of times the tool can be used in the API request.
+
+      - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
       - `UserLocation WebSearchTool20250305UserLocation`
 
@@ -1931,9 +1973,9 @@ func main() {
   messageTokensCount, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
     Messages: []anthropic.MessageParam{anthropic.MessageParam{
       Content: []anthropic.ContentBlockParamUnion{anthropic.ContentBlockParamUnion{
-        OfText: &anthropic.TextBlockParam{Text: "What is a quaternion?", CacheControl: anthropic.CacheControlEphemeralParam{TTL: anthropic.CacheControlEphemeralTTLTTL5m}, Citations: []anthropic.TextCitationParamUnion{anthropic.TextCitationParamUnion{
-          OfCharLocation: &anthropic.CitationCharLocationParam{CitedText: "cited_text", DocumentIndex: 0, DocumentTitle: anthropic.String("x"), EndCharIndex: 0, StartCharIndex: 0},
-        }}},
+        OfText: &anthropic.TextBlockParam{
+          Text: "x",
+        },
       }},
       Role: anthropic.MessageParamRoleUser,
     }},

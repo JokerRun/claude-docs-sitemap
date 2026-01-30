@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/download
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 81a345d1c94fdbe944fbadee0b1f56af7387e5d3b5257390c01f0836ac9b76f4
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 917bc43bccb4237a8ac01c06372f9743e97acc0820afda2f3a97ba6368e467df
 ---
 
 ## Download
@@ -69,7 +69,7 @@ Download File
 
 ### Returns
 
-- `unnamed_schema_0 = Response`
+- `unnamed_schema_1 = Response`
 
 ### Example
 

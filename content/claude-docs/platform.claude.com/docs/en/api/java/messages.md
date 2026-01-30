@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: f17f34b57d2097c478d9a90c626e5b822b0044df3633a5a749f850e09cd63576
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 3d2e6ab8a53e35a2140172350361c3625ff3bd634e4f649e393a4355fe9974a8
 ---
 
 # Messages
@@ -1395,6 +1395,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `QUERY_TOO_LONG("query_too_long")`
 
+                - `REQUEST_TOO_LARGE("request_too_large")`
+
               - `JsonValue; type "web_search_tool_result_error"constant`
 
                 - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -1443,6 +1445,22 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
   - `Optional<Metadata> metadata`
 
     An object describing metadata about the request.
+
+  - `Optional<OutputConfig> outputConfig`
+
+    Configuration options for the model's output, such as the output format.
+
+    - `Optional<Format> format`
+
+      A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+      - `Schema schema`
+
+        The JSON schema of the format
+
+      - `JsonValue; type "json_schema"constant`
+
+        - `JSON_SCHEMA("json_schema")`
 
   - `Optional<ServiceTier> serviceTier`
 
@@ -1718,6 +1736,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
+
       - `Optional<Type> type`
 
         - `CUSTOM("custom")`
@@ -1759,6 +1781,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           - `TTL_1H("1h")`
 
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
+
     - `class ToolTextEditor20250124:`
 
       - `JsonValue; name "str_replace_editor"constant`
@@ -1796,6 +1822,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           - `TTL_1H("1h")`
 
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
+
     - `class ToolTextEditor20250429:`
 
       - `JsonValue; name "str_replace_based_edit_tool"constant`
@@ -1832,6 +1862,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           - `TTL_5M("5m")`
 
           - `TTL_1H("1h")`
+
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `class ToolTextEditor20250728:`
 
@@ -1873,6 +1907,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `Optional<Long> maxCharacters`
 
         Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `class WebSearchTool20250305:`
 
@@ -1922,6 +1960,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `Optional<Long> maxUses`
 
         Maximum number of times the tool can be used in the API request.
+
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
       - `Optional<UserLocation> userLocation`
 
@@ -2164,6 +2206,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `QUERY_TOO_LONG("query_too_long")`
 
+            - `REQUEST_TOO_LARGE("request_too_large")`
+
           - `JsonValue; type "web_search_tool_result_error"constant`
 
             - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -2401,7 +2445,7 @@ public final class Main {
         MessageCreateParams params = MessageCreateParams.builder()
             .maxTokens(1024L)
             .addUserMessage("Hello, world")
-            .model(Model.CLAUDE_OPUS_4_5_20251101)
+            .model(Model.CLAUDE_SONNET_4_5_20250929)
             .build();
         Message message = client.messages().create(params);
     }
@@ -3788,6 +3832,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `QUERY_TOO_LONG("query_too_long")`
 
+                - `REQUEST_TOO_LARGE("request_too_large")`
+
               - `JsonValue; type "web_search_tool_result_error"constant`
 
                 - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -3832,6 +3878,22 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+  - `Optional<OutputConfig> outputConfig`
+
+    Configuration options for the model's output, such as the output format.
+
+    - `Optional<Format> format`
+
+      A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+      - `Schema schema`
+
+        The JSON schema of the format
+
+      - `JsonValue; type "json_schema"constant`
+
+        - `JSON_SCHEMA("json_schema")`
 
   - `Optional<System> system`
 
@@ -4081,6 +4143,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
+
       - `Optional<Type> type`
 
         - `CUSTOM("custom")`
@@ -4122,6 +4188,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           - `TTL_1H("1h")`
 
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
+
     - `class ToolTextEditor20250124:`
 
       - `JsonValue; name "str_replace_editor"constant`
@@ -4159,6 +4229,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           - `TTL_1H("1h")`
 
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
+
     - `class ToolTextEditor20250429:`
 
       - `JsonValue; name "str_replace_based_edit_tool"constant`
@@ -4195,6 +4269,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
           - `TTL_5M("5m")`
 
           - `TTL_1H("1h")`
+
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `class ToolTextEditor20250728:`
 
@@ -4236,6 +4314,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `Optional<Long> maxCharacters`
 
         Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `class WebSearchTool20250305:`
 
@@ -4285,6 +4367,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `Optional<Long> maxUses`
 
         Maximum number of times the tool can be used in the API request.
+
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
 
       - `Optional<UserLocation> userLocation`
 
@@ -4337,7 +4423,7 @@ public final class Main {
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
             .addUserMessage("Hello, world")
-            .model(Model.CLAUDE_OPUS_4_5_20251101)
+            .model(Model.CLAUDE_SONNET_4_5_20250929)
             .build();
         MessageTokensCount messageTokensCount = client.messages().countTokens(params);
     }
@@ -4868,6 +4954,8 @@ public final class Main {
           - `TOO_MANY_REQUESTS("too_many_requests")`
 
           - `QUERY_TOO_LONG("query_too_long")`
+
+          - `REQUEST_TOO_LARGE("request_too_large")`
 
         - `JsonValue; type "web_search_tool_result_error"constant`
 
@@ -6206,6 +6294,8 @@ public final class Main {
 
           - `QUERY_TOO_LONG("query_too_long")`
 
+          - `REQUEST_TOO_LARGE("request_too_large")`
+
         - `JsonValue; type "web_search_tool_result_error"constant`
 
           - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -7122,6 +7212,8 @@ public final class Main {
 
             - `QUERY_TOO_LONG("query_too_long")`
 
+            - `REQUEST_TOO_LARGE("request_too_large")`
+
           - `JsonValue; type "web_search_tool_result_error"constant`
 
             - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -7394,6 +7486,10 @@ public final class Main {
 
       Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+    - `Optional<Boolean> strict`
+
+      When true, guarantees schema validation on tool names and inputs
+
     - `Optional<Type> type`
 
       - `CUSTOM("custom")`
@@ -7435,6 +7531,10 @@ public final class Main {
 
         - `TTL_1H("1h")`
 
+    - `Optional<Boolean> strict`
+
+      When true, guarantees schema validation on tool names and inputs
+
   - `class ToolTextEditor20250124:`
 
     - `JsonValue; name "str_replace_editor"constant`
@@ -7472,6 +7572,10 @@ public final class Main {
 
         - `TTL_1H("1h")`
 
+    - `Optional<Boolean> strict`
+
+      When true, guarantees schema validation on tool names and inputs
+
   - `class ToolTextEditor20250429:`
 
     - `JsonValue; name "str_replace_based_edit_tool"constant`
@@ -7508,6 +7612,10 @@ public final class Main {
         - `TTL_5M("5m")`
 
         - `TTL_1H("1h")`
+
+    - `Optional<Boolean> strict`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class ToolTextEditor20250728:`
 
@@ -7549,6 +7657,10 @@ public final class Main {
     - `Optional<Long> maxCharacters`
 
       Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+    - `Optional<Boolean> strict`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class WebSearchTool20250305:`
 
@@ -7598,6 +7710,10 @@ public final class Main {
     - `Optional<Long> maxUses`
 
       Maximum number of times the tool can be used in the API request.
+
+    - `Optional<Boolean> strict`
+
+      When true, guarantees schema validation on tool names and inputs
 
     - `Optional<UserLocation> userLocation`
 
@@ -8968,6 +9084,8 @@ public final class Main {
 
               - `QUERY_TOO_LONG("query_too_long")`
 
+              - `REQUEST_TOO_LARGE("request_too_large")`
+
             - `JsonValue; type "web_search_tool_result_error"constant`
 
               - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -9475,6 +9593,8 @@ public final class Main {
 
             - `QUERY_TOO_LONG("query_too_long")`
 
+            - `REQUEST_TOO_LARGE("request_too_large")`
+
           - `JsonValue; type "web_search_tool_result_error"constant`
 
             - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -9779,6 +9899,8 @@ public final class Main {
               - `TOO_MANY_REQUESTS("too_many_requests")`
 
               - `QUERY_TOO_LONG("query_too_long")`
+
+              - `REQUEST_TOO_LARGE("request_too_large")`
 
             - `JsonValue; type "web_search_tool_result_error"constant`
 
@@ -10213,6 +10335,8 @@ public final class Main {
                 - `TOO_MANY_REQUESTS("too_many_requests")`
 
                 - `QUERY_TOO_LONG("query_too_long")`
+
+                - `REQUEST_TOO_LARGE("request_too_large")`
 
               - `JsonValue; type "web_search_tool_result_error"constant`
 
@@ -10666,6 +10790,8 @@ public final class Main {
               - `TOO_MANY_REQUESTS("too_many_requests")`
 
               - `QUERY_TOO_LONG("query_too_long")`
+
+              - `REQUEST_TOO_LARGE("request_too_large")`
 
             - `JsonValue; type "web_search_tool_result_error"constant`
 
@@ -11644,6 +11770,10 @@ public final class Main {
 
     Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+  - `Optional<Boolean> strict`
+
+    When true, guarantees schema validation on tool names and inputs
+
   - `Optional<Type> type`
 
     - `CUSTOM("custom")`
@@ -11686,6 +11816,10 @@ public final class Main {
       - `TTL_5M("5m")`
 
       - `TTL_1H("1h")`
+
+  - `Optional<Boolean> strict`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Tool Choice
 
@@ -12462,6 +12596,10 @@ public final class Main {
 
       - `TTL_1H("1h")`
 
+  - `Optional<Boolean> strict`
+
+    When true, guarantees schema validation on tool names and inputs
+
 ### Tool Text Editor 20250429
 
 - `class ToolTextEditor20250429:`
@@ -12500,6 +12638,10 @@ public final class Main {
       - `TTL_5M("5m")`
 
       - `TTL_1H("1h")`
+
+  - `Optional<Boolean> strict`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Tool Text Editor 20250728
 
@@ -12543,6 +12685,10 @@ public final class Main {
   - `Optional<Long> maxCharacters`
 
     Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+  - `Optional<Boolean> strict`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Tool Union
 
@@ -12599,6 +12745,10 @@ public final class Main {
 
       Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+    - `Optional<Boolean> strict`
+
+      When true, guarantees schema validation on tool names and inputs
+
     - `Optional<Type> type`
 
       - `CUSTOM("custom")`
@@ -12640,6 +12790,10 @@ public final class Main {
 
         - `TTL_1H("1h")`
 
+    - `Optional<Boolean> strict`
+
+      When true, guarantees schema validation on tool names and inputs
+
   - `class ToolTextEditor20250124:`
 
     - `JsonValue; name "str_replace_editor"constant`
@@ -12677,6 +12831,10 @@ public final class Main {
 
         - `TTL_1H("1h")`
 
+    - `Optional<Boolean> strict`
+
+      When true, guarantees schema validation on tool names and inputs
+
   - `class ToolTextEditor20250429:`
 
     - `JsonValue; name "str_replace_based_edit_tool"constant`
@@ -12713,6 +12871,10 @@ public final class Main {
         - `TTL_5M("5m")`
 
         - `TTL_1H("1h")`
+
+    - `Optional<Boolean> strict`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class ToolTextEditor20250728:`
 
@@ -12754,6 +12916,10 @@ public final class Main {
     - `Optional<Long> maxCharacters`
 
       Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+    - `Optional<Boolean> strict`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class WebSearchTool20250305:`
 
@@ -12803,6 +12969,10 @@ public final class Main {
     - `Optional<Long> maxUses`
 
       Maximum number of times the tool can be used in the API request.
+
+    - `Optional<Boolean> strict`
+
+      When true, guarantees schema validation on tool names and inputs
 
     - `Optional<UserLocation> userLocation`
 
@@ -13032,6 +13202,10 @@ public final class Main {
 
     Maximum number of times the tool can be used in the API request.
 
+  - `Optional<Boolean> strict`
+
+    When true, guarantees schema validation on tool names and inputs
+
   - `Optional<UserLocation> userLocation`
 
     Parameters for the user's location. Used to provide more relevant search results.
@@ -13072,6 +13246,8 @@ public final class Main {
 
     - `QUERY_TOO_LONG("query_too_long")`
 
+    - `REQUEST_TOO_LARGE("request_too_large")`
+
   - `JsonValue; type "web_search_tool_result_error"constant`
 
     - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -13095,6 +13271,8 @@ public final class Main {
         - `TOO_MANY_REQUESTS("too_many_requests")`
 
         - `QUERY_TOO_LONG("query_too_long")`
+
+        - `REQUEST_TOO_LARGE("request_too_large")`
 
       - `JsonValue; type "web_search_tool_result_error"constant`
 
@@ -13137,6 +13315,8 @@ public final class Main {
       - `TOO_MANY_REQUESTS("too_many_requests")`
 
       - `QUERY_TOO_LONG("query_too_long")`
+
+      - `REQUEST_TOO_LARGE("request_too_large")`
 
     - `JsonValue; type "web_search_tool_result_error"constant`
 
@@ -13189,6 +13369,8 @@ public final class Main {
         - `TOO_MANY_REQUESTS("too_many_requests")`
 
         - `QUERY_TOO_LONG("query_too_long")`
+
+        - `REQUEST_TOO_LARGE("request_too_large")`
 
       - `JsonValue; type "web_search_tool_result_error"constant`
 
@@ -13255,6 +13437,8 @@ public final class Main {
 
       - `QUERY_TOO_LONG("query_too_long")`
 
+      - `REQUEST_TOO_LARGE("request_too_large")`
+
     - `JsonValue; type "web_search_tool_result_error"constant`
 
       - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -13274,6 +13458,8 @@ public final class Main {
     - `TOO_MANY_REQUESTS("too_many_requests")`
 
     - `QUERY_TOO_LONG("query_too_long")`
+
+    - `REQUEST_TOO_LARGE("request_too_large")`
 
   - `JsonValue; type "web_search_tool_result_error"constant`
 
@@ -14685,6 +14871,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `QUERY_TOO_LONG("query_too_long")`
 
+                    - `REQUEST_TOO_LARGE("request_too_large")`
+
                   - `JsonValue; type "web_search_tool_result_error"constant`
 
                     - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -14819,6 +15007,22 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           An external identifier for the user who is associated with the request.
 
           This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
+
+      - `Optional<OutputConfig> outputConfig`
+
+        Configuration options for the model's output, such as the output format.
+
+        - `Optional<Format> format`
+
+          A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+          - `Schema schema`
+
+            The JSON schema of the format
+
+          - `JsonValue; type "json_schema"constant`
+
+            - `JSON_SCHEMA("json_schema")`
 
       - `Optional<ServiceTier> serviceTier`
 
@@ -15174,6 +15378,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+          - `Optional<Boolean> strict`
+
+            When true, guarantees schema validation on tool names and inputs
+
           - `Optional<Type> type`
 
             - `CUSTOM("custom")`
@@ -15215,6 +15423,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `TTL_1H("1h")`
 
+          - `Optional<Boolean> strict`
+
+            When true, guarantees schema validation on tool names and inputs
+
         - `class ToolTextEditor20250124:`
 
           - `JsonValue; name "str_replace_editor"constant`
@@ -15252,6 +15464,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `TTL_1H("1h")`
 
+          - `Optional<Boolean> strict`
+
+            When true, guarantees schema validation on tool names and inputs
+
         - `class ToolTextEditor20250429:`
 
           - `JsonValue; name "str_replace_based_edit_tool"constant`
@@ -15288,6 +15504,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
               - `TTL_5M("5m")`
 
               - `TTL_1H("1h")`
+
+          - `Optional<Boolean> strict`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `class ToolTextEditor20250728:`
 
@@ -15329,6 +15549,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `Optional<Long> maxCharacters`
 
             Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+          - `Optional<Boolean> strict`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `class WebSearchTool20250305:`
 
@@ -15378,6 +15602,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `Optional<Long> maxUses`
 
             Maximum number of times the tool can be used in the API request.
+
+          - `Optional<Boolean> strict`
+
+            When true, guarantees schema validation on tool names and inputs
 
           - `Optional<UserLocation> userLocation`
 
@@ -15532,7 +15760,7 @@ public final class Main {
                 .params(BatchCreateParams.Request.Params.builder()
                     .maxTokens(1024L)
                     .addUserMessage("Hello, world")
-                    .model(Model.CLAUDE_OPUS_4_5_20251101)
+                    .model(Model.CLAUDE_SONNET_4_5_20250929)
                     .build())
                 .build())
             .build();
@@ -16235,6 +16463,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   - `TOO_MANY_REQUESTS("too_many_requests")`
 
                   - `QUERY_TOO_LONG("query_too_long")`
+
+                  - `REQUEST_TOO_LARGE("request_too_large")`
 
                 - `JsonValue; type "web_search_tool_result_error"constant`
 
@@ -17012,6 +17242,8 @@ public final class Main {
 
                   - `QUERY_TOO_LONG("query_too_long")`
 
+                  - `REQUEST_TOO_LARGE("request_too_large")`
+
                 - `JsonValue; type "web_search_tool_result_error"constant`
 
                   - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -17574,6 +17806,8 @@ public final class Main {
 
                 - `QUERY_TOO_LONG("query_too_long")`
 
+                - `REQUEST_TOO_LARGE("request_too_large")`
+
               - `JsonValue; type "web_search_tool_result_error"constant`
 
                 - `WEB_SEARCH_TOOL_RESULT_ERROR("web_search_tool_result_error")`
@@ -18097,6 +18331,8 @@ public final class Main {
               - `TOO_MANY_REQUESTS("too_many_requests")`
 
               - `QUERY_TOO_LONG("query_too_long")`
+
+              - `REQUEST_TOO_LARGE("request_too_large")`
 
             - `JsonValue; type "web_search_tool_result_error"constant`
 

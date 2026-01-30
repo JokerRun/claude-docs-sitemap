@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/results
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 26be9b32f9b274503082b83b7774bfb44518c5808e5b7997526e8b0c7bacc0ab
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: e55c4ae7028520f9a68fa7cb6498456f222b55336a1db938387777d1446960e6
 ---
 
 ## Results
@@ -230,7 +230,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `class WebSearchToolResultError`
 
-                - `error_code: :invalid_tool_input | :unavailable | :max_uses_exceeded | 2 more`
+                - `error_code: :invalid_tool_input | :unavailable | :max_uses_exceeded | 3 more`
 
                   - `:invalid_tool_input`
 
@@ -241,6 +241,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   - `:too_many_requests`
 
                   - `:query_too_long`
+
+                  - `:request_too_large`
 
                 - `type: :web_search_tool_result_error`
 

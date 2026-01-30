@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c5036b6e9a7b74d877cc9c079b6cd046162f817d5fe8ea74ba8055cbb99d8cc5
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 2ea4e63c26246a775b804e6152a6b24bd5c53cb957d8d48486b29bff89d1e2ce
 ---
 
 # Messages
@@ -1534,6 +1534,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                   - `"query_too_long"`
 
+                  - `"request_too_large"`
+
                 - `type: "web_search_tool_result_error"`
 
                   - `"web_search_tool_result_error"`
@@ -2713,11 +2715,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `output_config?: BetaOutputConfig`
 
-      Body param: Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+      Body param: Configuration options for the model's output, such as the output format.
 
       - `effort?: "low" | "medium" | "high" | null`
 
-        All possible effort levels.
+        How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+        Valid values are `low`, `medium`, or `high`.
 
         - `"low"`
 
@@ -2725,10 +2729,23 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"high"`
 
+      - `format?: BetaJSONOutputFormat | null`
+
+        A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+        - `schema: Record<string, unknown>`
+
+          The JSON schema of the format
+
+        - `type: "json_schema"`
+
+          - `"json_schema"`
+
     - `output_format?: BetaJSONOutputFormat | null`
 
-      Body param:
-      A schema to specify Claude's output format in responses.
+      Body param: Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+      A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
       - `schema: Record<string, unknown>`
 
@@ -3108,6 +3125,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `strict?: boolean`
 
+          When true, guarantees schema validation on tool names and inputs
+
         - `type?: "custom" | null`
 
           - `"custom"`
@@ -3163,6 +3182,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `strict?: boolean`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `BetaToolBash20250124`
 
         - `name: "bash"`
@@ -3214,6 +3235,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `strict?: boolean`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `BetaCodeExecutionTool20250522`
 
         - `name: "code_execution"`
@@ -3263,6 +3286,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `strict?: boolean`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `BetaCodeExecutionTool20250825`
 
         - `name: "code_execution"`
@@ -3311,6 +3336,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
         - `strict?: boolean`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `BetaToolComputerUse20241022`
 
@@ -3375,6 +3402,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `strict?: boolean`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `BetaMemoryTool20250818`
 
         - `name: "memory"`
@@ -3425,6 +3454,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `input_examples?: Array<Record<string, unknown>>`
 
         - `strict?: boolean`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `BetaToolComputerUse20250124`
 
@@ -3489,6 +3520,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `strict?: boolean`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `BetaToolTextEditor20241022`
 
         - `name: "str_replace_editor"`
@@ -3539,6 +3572,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `input_examples?: Array<Record<string, unknown>>`
 
         - `strict?: boolean`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `BetaToolComputerUse20251124`
 
@@ -3607,6 +3642,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `strict?: boolean`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `BetaToolTextEditor20250124`
 
         - `name: "str_replace_editor"`
@@ -3658,6 +3695,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `strict?: boolean`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `BetaToolTextEditor20250429`
 
         - `name: "str_replace_based_edit_tool"`
@@ -3708,6 +3747,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `input_examples?: Array<Record<string, unknown>>`
 
         - `strict?: boolean`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `BetaToolTextEditor20250728`
 
@@ -3763,6 +3804,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
         - `strict?: boolean`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `BetaWebSearchTool20250305`
 
@@ -3824,6 +3867,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           Maximum number of times the tool can be used in the API request.
 
         - `strict?: boolean`
+
+          When true, guarantees schema validation on tool names and inputs
 
         - `user_location?: UserLocation | null`
 
@@ -3920,6 +3965,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `strict?: boolean`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `BetaToolSearchToolBm25_20251119`
 
         - `name: "tool_search_tool_bm25"`
@@ -3971,6 +4018,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `strict?: boolean`
 
+          When true, guarantees schema validation on tool names and inputs
+
       - `BetaToolSearchToolRegex20251119`
 
         - `name: "tool_search_tool_regex"`
@@ -4021,6 +4070,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
         - `strict?: boolean`
+
+          When true, guarantees schema validation on tool names and inputs
 
       - `BetaMCPToolset`
 
@@ -4385,28 +4436,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `id: string`
 
-      - `caller: BetaDirectCaller | BetaServerToolCaller`
-
-        Tool invocation directly from the model.
-
-        - `BetaDirectCaller`
-
-          Tool invocation directly from the model.
-
-          - `type: "direct"`
-
-            - `"direct"`
-
-        - `BetaServerToolCaller`
-
-          Tool invocation generated by a server-side tool.
-
-          - `tool_id: string`
-
-          - `type: "code_execution_20250825"`
-
-            - `"code_execution_20250825"`
-
       - `input: Record<string, unknown>`
 
       - `name: "web_search" | "web_fetch" | "code_execution" | 4 more`
@@ -4429,6 +4458,28 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"server_tool_use"`
 
+      - `caller?: BetaDirectCaller | BetaServerToolCaller`
+
+        Tool invocation directly from the model.
+
+        - `BetaDirectCaller`
+
+          Tool invocation directly from the model.
+
+          - `type: "direct"`
+
+            - `"direct"`
+
+        - `BetaServerToolCaller`
+
+          Tool invocation generated by a server-side tool.
+
+          - `tool_id: string`
+
+          - `type: "code_execution_20250825"`
+
+            - `"code_execution_20250825"`
+
     - `BetaWebSearchToolResultBlock`
 
       - `content: BetaWebSearchToolResultBlockContent`
@@ -4446,6 +4497,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
             - `"too_many_requests"`
 
             - `"query_too_long"`
+
+            - `"request_too_large"`
 
           - `type: "web_search_tool_result_error"`
 
@@ -6695,6 +6748,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `"query_too_long"`
 
+                - `"request_too_large"`
+
               - `type: "web_search_tool_result_error"`
 
                 - `"web_search_tool_result_error"`
@@ -7830,11 +7885,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `output_config?: BetaOutputConfig`
 
-    Body param: Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+    Body param: Configuration options for the model's output, such as the output format.
 
     - `effort?: "low" | "medium" | "high" | null`
 
-      All possible effort levels.
+      How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+      Valid values are `low`, `medium`, or `high`.
 
       - `"low"`
 
@@ -7842,10 +7899,23 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"high"`
 
+    - `format?: BetaJSONOutputFormat | null`
+
+      A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+      - `schema: Record<string, unknown>`
+
+        The JSON schema of the format
+
+      - `type: "json_schema"`
+
+        - `"json_schema"`
+
   - `output_format?: BetaJSONOutputFormat | null`
 
-    Body param:
-    A schema to specify Claude's output format in responses.
+    Body param: Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
     - `schema: Record<string, unknown>`
 
@@ -8191,6 +8261,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
       - `type?: "custom" | null`
 
         - `"custom"`
@@ -8246,6 +8318,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaToolBash20250124`
 
       - `name: "bash"`
@@ -8297,6 +8371,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaCodeExecutionTool20250522`
 
       - `name: "code_execution"`
@@ -8346,6 +8422,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaCodeExecutionTool20250825`
 
       - `name: "code_execution"`
@@ -8394,6 +8472,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `BetaToolComputerUse20241022`
 
@@ -8458,6 +8538,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaMemoryTool20250818`
 
       - `name: "memory"`
@@ -8508,6 +8590,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `input_examples?: Array<Record<string, unknown>>`
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `BetaToolComputerUse20250124`
 
@@ -8572,6 +8656,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaToolTextEditor20241022`
 
       - `name: "str_replace_editor"`
@@ -8622,6 +8708,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `input_examples?: Array<Record<string, unknown>>`
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `BetaToolComputerUse20251124`
 
@@ -8690,6 +8778,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaToolTextEditor20250124`
 
       - `name: "str_replace_editor"`
@@ -8741,6 +8831,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaToolTextEditor20250429`
 
       - `name: "str_replace_based_edit_tool"`
@@ -8791,6 +8883,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `input_examples?: Array<Record<string, unknown>>`
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `BetaToolTextEditor20250728`
 
@@ -8846,6 +8940,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `BetaWebSearchTool20250305`
 
@@ -8907,6 +9003,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         Maximum number of times the tool can be used in the API request.
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
       - `user_location?: UserLocation | null`
 
@@ -9003,6 +9101,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaToolSearchToolBm25_20251119`
 
       - `name: "tool_search_tool_bm25"`
@@ -9054,6 +9154,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `strict?: boolean`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `BetaToolSearchToolRegex20251119`
 
       - `name: "tool_search_tool_regex"`
@@ -9104,6 +9206,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
       - `strict?: boolean`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `BetaMCPToolset`
 
@@ -10079,6 +10183,8 @@ console.log(betaMessageTokensCount.context_management);
 
   - `strict?: boolean`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Code Execution Tool 20250825
 
 - `BetaCodeExecutionTool20250825`
@@ -10129,6 +10235,8 @@ console.log(betaMessageTokensCount.context_management);
     If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
   - `strict?: boolean`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Code Execution Tool Result Block
 
@@ -10651,28 +10759,6 @@ console.log(betaMessageTokensCount.context_management);
 
     - `id: string`
 
-    - `caller: BetaDirectCaller | BetaServerToolCaller`
-
-      Tool invocation directly from the model.
-
-      - `BetaDirectCaller`
-
-        Tool invocation directly from the model.
-
-        - `type: "direct"`
-
-          - `"direct"`
-
-      - `BetaServerToolCaller`
-
-        Tool invocation generated by a server-side tool.
-
-        - `tool_id: string`
-
-        - `type: "code_execution_20250825"`
-
-          - `"code_execution_20250825"`
-
     - `input: Record<string, unknown>`
 
     - `name: "web_search" | "web_fetch" | "code_execution" | 4 more`
@@ -10695,6 +10781,28 @@ console.log(betaMessageTokensCount.context_management);
 
       - `"server_tool_use"`
 
+    - `caller?: BetaDirectCaller | BetaServerToolCaller`
+
+      Tool invocation directly from the model.
+
+      - `BetaDirectCaller`
+
+        Tool invocation directly from the model.
+
+        - `type: "direct"`
+
+          - `"direct"`
+
+      - `BetaServerToolCaller`
+
+        Tool invocation generated by a server-side tool.
+
+        - `tool_id: string`
+
+        - `type: "code_execution_20250825"`
+
+          - `"code_execution_20250825"`
+
   - `BetaWebSearchToolResultBlock`
 
     - `content: BetaWebSearchToolResultBlockContent`
@@ -10712,6 +10820,8 @@ console.log(betaMessageTokensCount.context_management);
           - `"too_many_requests"`
 
           - `"query_too_long"`
+
+          - `"request_too_large"`
 
         - `type: "web_search_tool_result_error"`
 
@@ -12630,6 +12740,8 @@ console.log(betaMessageTokensCount.context_management);
           - `"too_many_requests"`
 
           - `"query_too_long"`
+
+          - `"request_too_large"`
 
         - `type: "web_search_tool_result_error"`
 
@@ -14557,6 +14669,8 @@ console.log(betaMessageTokensCount.context_management);
 
   - `strict?: boolean`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Memory Tool 20250818 Command
 
 - `BetaMemoryTool20250818Command = BetaMemoryTool20250818ViewCommand | BetaMemoryTool20250818CreateCommand | BetaMemoryTool20250818StrReplaceCommand | 3 more`
@@ -15000,28 +15114,6 @@ console.log(betaMessageTokensCount.context_management);
 
       - `id: string`
 
-      - `caller: BetaDirectCaller | BetaServerToolCaller`
-
-        Tool invocation directly from the model.
-
-        - `BetaDirectCaller`
-
-          Tool invocation directly from the model.
-
-          - `type: "direct"`
-
-            - `"direct"`
-
-        - `BetaServerToolCaller`
-
-          Tool invocation generated by a server-side tool.
-
-          - `tool_id: string`
-
-          - `type: "code_execution_20250825"`
-
-            - `"code_execution_20250825"`
-
       - `input: Record<string, unknown>`
 
       - `name: "web_search" | "web_fetch" | "code_execution" | 4 more`
@@ -15044,6 +15136,28 @@ console.log(betaMessageTokensCount.context_management);
 
         - `"server_tool_use"`
 
+      - `caller?: BetaDirectCaller | BetaServerToolCaller`
+
+        Tool invocation directly from the model.
+
+        - `BetaDirectCaller`
+
+          Tool invocation directly from the model.
+
+          - `type: "direct"`
+
+            - `"direct"`
+
+        - `BetaServerToolCaller`
+
+          Tool invocation generated by a server-side tool.
+
+          - `tool_id: string`
+
+          - `type: "code_execution_20250825"`
+
+            - `"code_execution_20250825"`
+
     - `BetaWebSearchToolResultBlock`
 
       - `content: BetaWebSearchToolResultBlockContent`
@@ -15061,6 +15175,8 @@ console.log(betaMessageTokensCount.context_management);
             - `"too_many_requests"`
 
             - `"query_too_long"`
+
+            - `"request_too_large"`
 
           - `type: "web_search_tool_result_error"`
 
@@ -17261,6 +17377,8 @@ console.log(betaMessageTokensCount.context_management);
 
               - `"query_too_long"`
 
+              - `"request_too_large"`
+
             - `type: "web_search_tool_result_error"`
 
               - `"web_search_tool_result_error"`
@@ -18220,13 +18338,27 @@ console.log(betaMessageTokensCount.context_management);
 
   - `effort?: "low" | "medium" | "high" | null`
 
-    All possible effort levels.
+    How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+    Valid values are `low`, `medium`, or `high`.
 
     - `"low"`
 
     - `"medium"`
 
     - `"high"`
+
+  - `format?: BetaJSONOutputFormat | null`
+
+    A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    - `schema: Record<string, unknown>`
+
+      The JSON schema of the format
+
+    - `type: "json_schema"`
+
+      - `"json_schema"`
 
 ### Beta Plain Text Source
 
@@ -18674,28 +18806,6 @@ console.log(betaMessageTokensCount.context_management);
 
       - `id: string`
 
-      - `caller: BetaDirectCaller | BetaServerToolCaller`
-
-        Tool invocation directly from the model.
-
-        - `BetaDirectCaller`
-
-          Tool invocation directly from the model.
-
-          - `type: "direct"`
-
-            - `"direct"`
-
-        - `BetaServerToolCaller`
-
-          Tool invocation generated by a server-side tool.
-
-          - `tool_id: string`
-
-          - `type: "code_execution_20250825"`
-
-            - `"code_execution_20250825"`
-
       - `input: Record<string, unknown>`
 
       - `name: "web_search" | "web_fetch" | "code_execution" | 4 more`
@@ -18718,6 +18828,28 @@ console.log(betaMessageTokensCount.context_management);
 
         - `"server_tool_use"`
 
+      - `caller?: BetaDirectCaller | BetaServerToolCaller`
+
+        Tool invocation directly from the model.
+
+        - `BetaDirectCaller`
+
+          Tool invocation directly from the model.
+
+          - `type: "direct"`
+
+            - `"direct"`
+
+        - `BetaServerToolCaller`
+
+          Tool invocation generated by a server-side tool.
+
+          - `tool_id: string`
+
+          - `type: "code_execution_20250825"`
+
+            - `"code_execution_20250825"`
+
     - `BetaWebSearchToolResultBlock`
 
       - `content: BetaWebSearchToolResultBlockContent`
@@ -18735,6 +18867,8 @@ console.log(betaMessageTokensCount.context_management);
             - `"too_many_requests"`
 
             - `"query_too_long"`
+
+            - `"request_too_large"`
 
           - `type: "web_search_tool_result_error"`
 
@@ -19589,28 +19723,6 @@ console.log(betaMessageTokensCount.context_management);
 
         - `id: string`
 
-        - `caller: BetaDirectCaller | BetaServerToolCaller`
-
-          Tool invocation directly from the model.
-
-          - `BetaDirectCaller`
-
-            Tool invocation directly from the model.
-
-            - `type: "direct"`
-
-              - `"direct"`
-
-          - `BetaServerToolCaller`
-
-            Tool invocation generated by a server-side tool.
-
-            - `tool_id: string`
-
-            - `type: "code_execution_20250825"`
-
-              - `"code_execution_20250825"`
-
         - `input: Record<string, unknown>`
 
         - `name: "web_search" | "web_fetch" | "code_execution" | 4 more`
@@ -19633,6 +19745,28 @@ console.log(betaMessageTokensCount.context_management);
 
           - `"server_tool_use"`
 
+        - `caller?: BetaDirectCaller | BetaServerToolCaller`
+
+          Tool invocation directly from the model.
+
+          - `BetaDirectCaller`
+
+            Tool invocation directly from the model.
+
+            - `type: "direct"`
+
+              - `"direct"`
+
+          - `BetaServerToolCaller`
+
+            Tool invocation generated by a server-side tool.
+
+            - `tool_id: string`
+
+            - `type: "code_execution_20250825"`
+
+              - `"code_execution_20250825"`
+
       - `BetaWebSearchToolResultBlock`
 
         - `content: BetaWebSearchToolResultBlockContent`
@@ -19650,6 +19784,8 @@ console.log(betaMessageTokensCount.context_management);
               - `"too_many_requests"`
 
               - `"query_too_long"`
+
+              - `"request_too_large"`
 
             - `type: "web_search_tool_result_error"`
 
@@ -20607,28 +20743,6 @@ console.log(betaMessageTokensCount.context_management);
 
           - `id: string`
 
-          - `caller: BetaDirectCaller | BetaServerToolCaller`
-
-            Tool invocation directly from the model.
-
-            - `BetaDirectCaller`
-
-              Tool invocation directly from the model.
-
-              - `type: "direct"`
-
-                - `"direct"`
-
-            - `BetaServerToolCaller`
-
-              Tool invocation generated by a server-side tool.
-
-              - `tool_id: string`
-
-              - `type: "code_execution_20250825"`
-
-                - `"code_execution_20250825"`
-
           - `input: Record<string, unknown>`
 
           - `name: "web_search" | "web_fetch" | "code_execution" | 4 more`
@@ -20651,6 +20765,28 @@ console.log(betaMessageTokensCount.context_management);
 
             - `"server_tool_use"`
 
+          - `caller?: BetaDirectCaller | BetaServerToolCaller`
+
+            Tool invocation directly from the model.
+
+            - `BetaDirectCaller`
+
+              Tool invocation directly from the model.
+
+              - `type: "direct"`
+
+                - `"direct"`
+
+            - `BetaServerToolCaller`
+
+              Tool invocation generated by a server-side tool.
+
+              - `tool_id: string`
+
+              - `type: "code_execution_20250825"`
+
+                - `"code_execution_20250825"`
+
         - `BetaWebSearchToolResultBlock`
 
           - `content: BetaWebSearchToolResultBlockContent`
@@ -20668,6 +20804,8 @@ console.log(betaMessageTokensCount.context_management);
                 - `"too_many_requests"`
 
                 - `"query_too_long"`
+
+                - `"request_too_large"`
 
               - `type: "web_search_tool_result_error"`
 
@@ -21692,28 +21830,6 @@ console.log(betaMessageTokensCount.context_management);
 
         - `id: string`
 
-        - `caller: BetaDirectCaller | BetaServerToolCaller`
-
-          Tool invocation directly from the model.
-
-          - `BetaDirectCaller`
-
-            Tool invocation directly from the model.
-
-            - `type: "direct"`
-
-              - `"direct"`
-
-          - `BetaServerToolCaller`
-
-            Tool invocation generated by a server-side tool.
-
-            - `tool_id: string`
-
-            - `type: "code_execution_20250825"`
-
-              - `"code_execution_20250825"`
-
         - `input: Record<string, unknown>`
 
         - `name: "web_search" | "web_fetch" | "code_execution" | 4 more`
@@ -21736,6 +21852,28 @@ console.log(betaMessageTokensCount.context_management);
 
           - `"server_tool_use"`
 
+        - `caller?: BetaDirectCaller | BetaServerToolCaller`
+
+          Tool invocation directly from the model.
+
+          - `BetaDirectCaller`
+
+            Tool invocation directly from the model.
+
+            - `type: "direct"`
+
+              - `"direct"`
+
+          - `BetaServerToolCaller`
+
+            Tool invocation generated by a server-side tool.
+
+            - `tool_id: string`
+
+            - `type: "code_execution_20250825"`
+
+              - `"code_execution_20250825"`
+
       - `BetaWebSearchToolResultBlock`
 
         - `content: BetaWebSearchToolResultBlockContent`
@@ -21753,6 +21891,8 @@ console.log(betaMessageTokensCount.context_management);
               - `"too_many_requests"`
 
               - `"query_too_long"`
+
+              - `"request_too_large"`
 
             - `type: "web_search_tool_result_error"`
 
@@ -23025,28 +23165,6 @@ console.log(betaMessageTokensCount.context_management);
 
   - `id: string`
 
-  - `caller: BetaDirectCaller | BetaServerToolCaller`
-
-    Tool invocation directly from the model.
-
-    - `BetaDirectCaller`
-
-      Tool invocation directly from the model.
-
-      - `type: "direct"`
-
-        - `"direct"`
-
-    - `BetaServerToolCaller`
-
-      Tool invocation generated by a server-side tool.
-
-      - `tool_id: string`
-
-      - `type: "code_execution_20250825"`
-
-        - `"code_execution_20250825"`
-
   - `input: Record<string, unknown>`
 
   - `name: "web_search" | "web_fetch" | "code_execution" | 4 more`
@@ -23068,6 +23186,28 @@ console.log(betaMessageTokensCount.context_management);
   - `type: "server_tool_use"`
 
     - `"server_tool_use"`
+
+  - `caller?: BetaDirectCaller | BetaServerToolCaller`
+
+    Tool invocation directly from the model.
+
+    - `BetaDirectCaller`
+
+      Tool invocation directly from the model.
+
+      - `type: "direct"`
+
+        - `"direct"`
+
+    - `BetaServerToolCaller`
+
+      Tool invocation generated by a server-side tool.
+
+      - `tool_id: string`
+
+      - `type: "code_execution_20250825"`
+
+        - `"code_execution_20250825"`
 
 ### Beta Server Tool Use Block Param
 
@@ -24107,6 +24247,8 @@ console.log(betaMessageTokensCount.context_management);
 
   - `strict?: boolean`
 
+    When true, guarantees schema validation on tool names and inputs
+
   - `type?: "custom" | null`
 
     - `"custom"`
@@ -24164,6 +24306,8 @@ console.log(betaMessageTokensCount.context_management);
 
   - `strict?: boolean`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Bash 20250124
 
 - `BetaToolBash20250124`
@@ -24216,6 +24360,8 @@ console.log(betaMessageTokensCount.context_management);
   - `input_examples?: Array<Record<string, unknown>>`
 
   - `strict?: boolean`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Choice
 
@@ -24404,6 +24550,8 @@ console.log(betaMessageTokensCount.context_management);
 
   - `strict?: boolean`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Computer Use 20250124
 
 - `BetaToolComputerUse20250124`
@@ -24468,6 +24616,8 @@ console.log(betaMessageTokensCount.context_management);
   - `input_examples?: Array<Record<string, unknown>>`
 
   - `strict?: boolean`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Computer Use 20251124
 
@@ -24537,6 +24687,8 @@ console.log(betaMessageTokensCount.context_management);
   - `input_examples?: Array<Record<string, unknown>>`
 
   - `strict?: boolean`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Reference Block
 
@@ -25307,6 +25459,8 @@ console.log(betaMessageTokensCount.context_management);
 
   - `strict?: boolean`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Search Tool Regex 20251119
 
 - `BetaToolSearchToolRegex20251119`
@@ -25359,6 +25513,8 @@ console.log(betaMessageTokensCount.context_management);
     If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
   - `strict?: boolean`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Search Tool Result Block
 
@@ -25638,6 +25794,8 @@ console.log(betaMessageTokensCount.context_management);
 
   - `strict?: boolean`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Text Editor 20250124
 
 - `BetaToolTextEditor20250124`
@@ -25691,6 +25849,8 @@ console.log(betaMessageTokensCount.context_management);
 
   - `strict?: boolean`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Text Editor 20250429
 
 - `BetaToolTextEditor20250429`
@@ -25743,6 +25903,8 @@ console.log(betaMessageTokensCount.context_management);
   - `input_examples?: Array<Record<string, unknown>>`
 
   - `strict?: boolean`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Text Editor 20250728
 
@@ -25800,6 +25962,8 @@ console.log(betaMessageTokensCount.context_management);
     Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
   - `strict?: boolean`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Union
 
@@ -25875,6 +26039,8 @@ console.log(betaMessageTokensCount.context_management);
 
     - `strict?: boolean`
 
+      When true, guarantees schema validation on tool names and inputs
+
     - `type?: "custom" | null`
 
       - `"custom"`
@@ -25930,6 +26096,8 @@ console.log(betaMessageTokensCount.context_management);
 
     - `strict?: boolean`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `BetaToolBash20250124`
 
     - `name: "bash"`
@@ -25981,6 +26149,8 @@ console.log(betaMessageTokensCount.context_management);
 
     - `strict?: boolean`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `BetaCodeExecutionTool20250522`
 
     - `name: "code_execution"`
@@ -26030,6 +26200,8 @@ console.log(betaMessageTokensCount.context_management);
 
     - `strict?: boolean`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `BetaCodeExecutionTool20250825`
 
     - `name: "code_execution"`
@@ -26078,6 +26250,8 @@ console.log(betaMessageTokensCount.context_management);
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `BetaToolComputerUse20241022`
 
@@ -26142,6 +26316,8 @@ console.log(betaMessageTokensCount.context_management);
 
     - `strict?: boolean`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `BetaMemoryTool20250818`
 
     - `name: "memory"`
@@ -26192,6 +26368,8 @@ console.log(betaMessageTokensCount.context_management);
     - `input_examples?: Array<Record<string, unknown>>`
 
     - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `BetaToolComputerUse20250124`
 
@@ -26256,6 +26434,8 @@ console.log(betaMessageTokensCount.context_management);
 
     - `strict?: boolean`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `BetaToolTextEditor20241022`
 
     - `name: "str_replace_editor"`
@@ -26306,6 +26486,8 @@ console.log(betaMessageTokensCount.context_management);
     - `input_examples?: Array<Record<string, unknown>>`
 
     - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `BetaToolComputerUse20251124`
 
@@ -26374,6 +26556,8 @@ console.log(betaMessageTokensCount.context_management);
 
     - `strict?: boolean`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `BetaToolTextEditor20250124`
 
     - `name: "str_replace_editor"`
@@ -26425,6 +26609,8 @@ console.log(betaMessageTokensCount.context_management);
 
     - `strict?: boolean`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `BetaToolTextEditor20250429`
 
     - `name: "str_replace_based_edit_tool"`
@@ -26475,6 +26661,8 @@ console.log(betaMessageTokensCount.context_management);
     - `input_examples?: Array<Record<string, unknown>>`
 
     - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `BetaToolTextEditor20250728`
 
@@ -26530,6 +26718,8 @@ console.log(betaMessageTokensCount.context_management);
       Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
     - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `BetaWebSearchTool20250305`
 
@@ -26591,6 +26781,8 @@ console.log(betaMessageTokensCount.context_management);
       Maximum number of times the tool can be used in the API request.
 
     - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
 
     - `user_location?: UserLocation | null`
 
@@ -26687,6 +26879,8 @@ console.log(betaMessageTokensCount.context_management);
 
     - `strict?: boolean`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `BetaToolSearchToolBm25_20251119`
 
     - `name: "tool_search_tool_bm25"`
@@ -26738,6 +26932,8 @@ console.log(betaMessageTokensCount.context_management);
 
     - `strict?: boolean`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `BetaToolSearchToolRegex20251119`
 
     - `name: "tool_search_tool_regex"`
@@ -26788,6 +26984,8 @@ console.log(betaMessageTokensCount.context_management);
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `strict?: boolean`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `BetaMCPToolset`
 
@@ -27448,6 +27646,8 @@ console.log(betaMessageTokensCount.context_management);
 
   - `strict?: boolean`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Web Fetch Tool Result Block
 
 - `BetaWebFetchToolResultBlock`
@@ -28049,6 +28249,8 @@ console.log(betaMessageTokensCount.context_management);
 
   - `strict?: boolean`
 
+    When true, guarantees schema validation on tool names and inputs
+
   - `user_location?: UserLocation | null`
 
     Parameters for the user's location. Used to provide more relevant search results.
@@ -28089,6 +28291,8 @@ console.log(betaMessageTokensCount.context_management);
 
     - `"query_too_long"`
 
+    - `"request_too_large"`
+
   - `type: "web_search_tool_result_error"`
 
     - `"web_search_tool_result_error"`
@@ -28112,6 +28316,8 @@ console.log(betaMessageTokensCount.context_management);
         - `"too_many_requests"`
 
         - `"query_too_long"`
+
+        - `"request_too_large"`
 
       - `type: "web_search_tool_result_error"`
 
@@ -28154,6 +28360,8 @@ console.log(betaMessageTokensCount.context_management);
       - `"too_many_requests"`
 
       - `"query_too_long"`
+
+      - `"request_too_large"`
 
     - `type: "web_search_tool_result_error"`
 
@@ -28206,6 +28414,8 @@ console.log(betaMessageTokensCount.context_management);
         - `"too_many_requests"`
 
         - `"query_too_long"`
+
+        - `"request_too_large"`
 
       - `type: "web_search_tool_result_error"`
 
@@ -28272,6 +28482,8 @@ console.log(betaMessageTokensCount.context_management);
 
       - `"query_too_long"`
 
+      - `"request_too_large"`
+
     - `type: "web_search_tool_result_error"`
 
       - `"web_search_tool_result_error"`
@@ -28292,13 +28504,15 @@ console.log(betaMessageTokensCount.context_management);
 
     - `"query_too_long"`
 
+    - `"request_too_large"`
+
   - `type: "web_search_tool_result_error"`
 
     - `"web_search_tool_result_error"`
 
 ### Beta Web Search Tool Result Error Code
 
-- `BetaWebSearchToolResultErrorCode = "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 2 more`
+- `BetaWebSearchToolResultErrorCode = "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
 
   - `"invalid_tool_input"`
 
@@ -28309,6 +28523,8 @@ console.log(betaMessageTokensCount.context_management);
   - `"too_many_requests"`
 
   - `"query_too_long"`
+
+  - `"request_too_large"`
 
 # Batches
 
@@ -29853,6 +30069,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `"query_too_long"`
 
+                    - `"request_too_large"`
+
                   - `type: "web_search_tool_result_error"`
 
                     - `"web_search_tool_result_error"`
@@ -31032,11 +31250,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `output_config?: BetaOutputConfig`
 
-        Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+        Configuration options for the model's output, such as the output format.
 
         - `effort?: "low" | "medium" | "high" | null`
 
-          All possible effort levels.
+          How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+          Valid values are `low`, `medium`, or `high`.
 
           - `"low"`
 
@@ -31044,9 +31264,23 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"high"`
 
+        - `format?: BetaJSONOutputFormat | null`
+
+          A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+          - `schema: Record<string, unknown>`
+
+            The JSON schema of the format
+
+          - `type: "json_schema"`
+
+            - `"json_schema"`
+
       - `output_format?: BetaJSONOutputFormat | null`
 
-        A schema to specify Claude's output format in responses.
+        Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+        A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
         - `schema: Record<string, unknown>`
 
@@ -31424,6 +31658,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `strict?: boolean`
 
+            When true, guarantees schema validation on tool names and inputs
+
           - `type?: "custom" | null`
 
             - `"custom"`
@@ -31479,6 +31715,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `strict?: boolean`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `BetaToolBash20250124`
 
           - `name: "bash"`
@@ -31530,6 +31768,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `strict?: boolean`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `BetaCodeExecutionTool20250522`
 
           - `name: "code_execution"`
@@ -31579,6 +31819,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `strict?: boolean`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `BetaCodeExecutionTool20250825`
 
           - `name: "code_execution"`
@@ -31627,6 +31869,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
           - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `BetaToolComputerUse20241022`
 
@@ -31691,6 +31935,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `strict?: boolean`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `BetaMemoryTool20250818`
 
           - `name: "memory"`
@@ -31741,6 +31987,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `input_examples?: Array<Record<string, unknown>>`
 
           - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `BetaToolComputerUse20250124`
 
@@ -31805,6 +32053,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `strict?: boolean`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `BetaToolTextEditor20241022`
 
           - `name: "str_replace_editor"`
@@ -31855,6 +32105,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `input_examples?: Array<Record<string, unknown>>`
 
           - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `BetaToolComputerUse20251124`
 
@@ -31923,6 +32175,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `strict?: boolean`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `BetaToolTextEditor20250124`
 
           - `name: "str_replace_editor"`
@@ -31974,6 +32228,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `strict?: boolean`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `BetaToolTextEditor20250429`
 
           - `name: "str_replace_based_edit_tool"`
@@ -32024,6 +32280,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `input_examples?: Array<Record<string, unknown>>`
 
           - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `BetaToolTextEditor20250728`
 
@@ -32079,6 +32337,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
           - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `BetaWebSearchTool20250305`
 
@@ -32140,6 +32400,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             Maximum number of times the tool can be used in the API request.
 
           - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
 
           - `user_location?: UserLocation | null`
 
@@ -32236,6 +32498,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `strict?: boolean`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `BetaToolSearchToolBm25_20251119`
 
           - `name: "tool_search_tool_bm25"`
@@ -32287,6 +32551,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `strict?: boolean`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `BetaToolSearchToolRegex20251119`
 
           - `name: "tool_search_tool_regex"`
@@ -32337,6 +32603,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
           - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `BetaMCPToolset`
 
@@ -33493,28 +33761,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `id: string`
 
-            - `caller: BetaDirectCaller | BetaServerToolCaller`
-
-              Tool invocation directly from the model.
-
-              - `BetaDirectCaller`
-
-                Tool invocation directly from the model.
-
-                - `type: "direct"`
-
-                  - `"direct"`
-
-              - `BetaServerToolCaller`
-
-                Tool invocation generated by a server-side tool.
-
-                - `tool_id: string`
-
-                - `type: "code_execution_20250825"`
-
-                  - `"code_execution_20250825"`
-
             - `input: Record<string, unknown>`
 
             - `name: "web_search" | "web_fetch" | "code_execution" | 4 more`
@@ -33537,6 +33783,28 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `"server_tool_use"`
 
+            - `caller?: BetaDirectCaller | BetaServerToolCaller`
+
+              Tool invocation directly from the model.
+
+              - `BetaDirectCaller`
+
+                Tool invocation directly from the model.
+
+                - `type: "direct"`
+
+                  - `"direct"`
+
+              - `BetaServerToolCaller`
+
+                Tool invocation generated by a server-side tool.
+
+                - `tool_id: string`
+
+                - `type: "code_execution_20250825"`
+
+                  - `"code_execution_20250825"`
+
           - `BetaWebSearchToolResultBlock`
 
             - `content: BetaWebSearchToolResultBlockContent`
@@ -33554,6 +33822,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   - `"too_many_requests"`
 
                   - `"query_too_long"`
+
+                  - `"request_too_large"`
 
                 - `type: "web_search_tool_result_error"`
 
@@ -34381,7 +34651,9 @@ const client = new Anthropic({
   apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
 });
 
-const betaMessageBatchIndividualResponse = await client.beta.messages.batches.results('message_batch_id');
+const betaMessageBatchIndividualResponse = await client.beta.messages.batches.results(
+  'message_batch_id',
+);
 
 console.log(betaMessageBatchIndividualResponse.custom_id);
 ```
@@ -34845,28 +35117,6 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
             - `id: string`
 
-            - `caller: BetaDirectCaller | BetaServerToolCaller`
-
-              Tool invocation directly from the model.
-
-              - `BetaDirectCaller`
-
-                Tool invocation directly from the model.
-
-                - `type: "direct"`
-
-                  - `"direct"`
-
-              - `BetaServerToolCaller`
-
-                Tool invocation generated by a server-side tool.
-
-                - `tool_id: string`
-
-                - `type: "code_execution_20250825"`
-
-                  - `"code_execution_20250825"`
-
             - `input: Record<string, unknown>`
 
             - `name: "web_search" | "web_fetch" | "code_execution" | 4 more`
@@ -34889,6 +35139,28 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
               - `"server_tool_use"`
 
+            - `caller?: BetaDirectCaller | BetaServerToolCaller`
+
+              Tool invocation directly from the model.
+
+              - `BetaDirectCaller`
+
+                Tool invocation directly from the model.
+
+                - `type: "direct"`
+
+                  - `"direct"`
+
+              - `BetaServerToolCaller`
+
+                Tool invocation generated by a server-side tool.
+
+                - `tool_id: string`
+
+                - `type: "code_execution_20250825"`
+
+                  - `"code_execution_20250825"`
+
           - `BetaWebSearchToolResultBlock`
 
             - `content: BetaWebSearchToolResultBlockContent`
@@ -34906,6 +35178,8 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
                   - `"too_many_requests"`
 
                   - `"query_too_long"`
+
+                  - `"request_too_large"`
 
                 - `type: "web_search_tool_result_error"`
 
@@ -35991,28 +36265,6 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
           - `id: string`
 
-          - `caller: BetaDirectCaller | BetaServerToolCaller`
-
-            Tool invocation directly from the model.
-
-            - `BetaDirectCaller`
-
-              Tool invocation directly from the model.
-
-              - `type: "direct"`
-
-                - `"direct"`
-
-            - `BetaServerToolCaller`
-
-              Tool invocation generated by a server-side tool.
-
-              - `tool_id: string`
-
-              - `type: "code_execution_20250825"`
-
-                - `"code_execution_20250825"`
-
           - `input: Record<string, unknown>`
 
           - `name: "web_search" | "web_fetch" | "code_execution" | 4 more`
@@ -36035,6 +36287,28 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
             - `"server_tool_use"`
 
+          - `caller?: BetaDirectCaller | BetaServerToolCaller`
+
+            Tool invocation directly from the model.
+
+            - `BetaDirectCaller`
+
+              Tool invocation directly from the model.
+
+              - `type: "direct"`
+
+                - `"direct"`
+
+            - `BetaServerToolCaller`
+
+              Tool invocation generated by a server-side tool.
+
+              - `tool_id: string`
+
+              - `type: "code_execution_20250825"`
+
+                - `"code_execution_20250825"`
+
         - `BetaWebSearchToolResultBlock`
 
           - `content: BetaWebSearchToolResultBlockContent`
@@ -36052,6 +36326,8 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
                 - `"too_many_requests"`
 
                 - `"query_too_long"`
+
+                - `"request_too_large"`
 
               - `type: "web_search_tool_result_error"`
 
@@ -37099,28 +37375,6 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
         - `id: string`
 
-        - `caller: BetaDirectCaller | BetaServerToolCaller`
-
-          Tool invocation directly from the model.
-
-          - `BetaDirectCaller`
-
-            Tool invocation directly from the model.
-
-            - `type: "direct"`
-
-              - `"direct"`
-
-          - `BetaServerToolCaller`
-
-            Tool invocation generated by a server-side tool.
-
-            - `tool_id: string`
-
-            - `type: "code_execution_20250825"`
-
-              - `"code_execution_20250825"`
-
         - `input: Record<string, unknown>`
 
         - `name: "web_search" | "web_fetch" | "code_execution" | 4 more`
@@ -37143,6 +37397,28 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
           - `"server_tool_use"`
 
+        - `caller?: BetaDirectCaller | BetaServerToolCaller`
+
+          Tool invocation directly from the model.
+
+          - `BetaDirectCaller`
+
+            Tool invocation directly from the model.
+
+            - `type: "direct"`
+
+              - `"direct"`
+
+          - `BetaServerToolCaller`
+
+            Tool invocation generated by a server-side tool.
+
+            - `tool_id: string`
+
+            - `type: "code_execution_20250825"`
+
+              - `"code_execution_20250825"`
+
       - `BetaWebSearchToolResultBlock`
 
         - `content: BetaWebSearchToolResultBlockContent`
@@ -37160,6 +37436,8 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
               - `"too_many_requests"`
 
               - `"query_too_long"`
+
+              - `"request_too_large"`
 
             - `type: "web_search_tool_result_error"`
 

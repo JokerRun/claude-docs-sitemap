@@ -24,7 +24,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
 | code | https://code.claude.com/docs/en/amazon-bedrock | 2026-01-28 |  |
-| code | https://code.claude.com/docs/en/analytics | 2026-01-28 |  |
+| code | https://code.claude.com/docs/en/analytics | 2026-01-29 |  |
 | code | https://code.claude.com/docs/en/best-practices | 2026-01-28 |  |
 | code | https://code.claude.com/docs/en/checkpointing | 2026-01-28 |  |
 | code | https://code.claude.com/docs/en/chrome | 2026-01-28 |  |
@@ -38,7 +38,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/discover-plugins | 2026-01-28 |  |
 | code | https://code.claude.com/docs/en/features-overview | 2026-01-28 |  |
 | code | https://code.claude.com/docs/en/github-actions | 2026-01-28 |  |
-| ... | _(~751 more rows)_ | | |
+| ... | _(~752 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

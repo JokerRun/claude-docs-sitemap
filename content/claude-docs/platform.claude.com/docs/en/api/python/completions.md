@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/completions
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 5dfb2fb1ce93b7e55817492541a23edb1340e3efbc8c5184e8cc15cbaffec3ed
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 484e617d8b35ec3c341e7ce3619ad855152c419bb4bb1f126a6c7c11c1996689
 ---
 
 # Completions
@@ -43,8 +43,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
     - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-3-7-sonnet-20250219` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-    - `claude-3-5-haiku-latest` - Fastest and most compact model for near-instant responsiveness
-    - `claude-3-5-haiku-20241022` - Our fastest model
+    - `claude-3-5-haiku-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+    - `claude-3-5-haiku-20241022` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-haiku-4-5` - Hybrid model, capable of near-instant responses and extended thinking
     - `claude-haiku-4-5-20251001` - Hybrid model, capable of near-instant responses and extended thinking
     - `claude-sonnet-4-20250514` - High-performance model with extended thinking
@@ -288,8 +288,8 @@ Future models and features will not be compatible with Text Completions. See our
       - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
       - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-3-7-sonnet-20250219` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-      - `claude-3-5-haiku-latest` - Fastest and most compact model for near-instant responsiveness
-      - `claude-3-5-haiku-20241022` - Our fastest model
+      - `claude-3-5-haiku-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+      - `claude-3-5-haiku-20241022` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-haiku-4-5` - Hybrid model, capable of near-instant responses and extended thinking
       - `claude-haiku-4-5-20251001` - Hybrid model, capable of near-instant responses and extended thinking
       - `claude-sonnet-4-20250514` - High-performance model with extended thinking
@@ -453,8 +453,8 @@ print(completion.id)
       - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
       - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-3-7-sonnet-20250219` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-      - `claude-3-5-haiku-latest` - Fastest and most compact model for near-instant responsiveness
-      - `claude-3-5-haiku-20241022` - Our fastest model
+      - `claude-3-5-haiku-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+      - `claude-3-5-haiku-20241022` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-haiku-4-5` - Hybrid model, capable of near-instant responses and extended thinking
       - `claude-haiku-4-5-20251001` - Hybrid model, capable of near-instant responses and extended thinking
       - `claude-sonnet-4-20250514` - High-performance model with extended thinking

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/create
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: b5328a94fe65a1208bee9d64a1a17627fda9f32d5fbd9c20a485f1ddda24babe
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: afeef67b3c01d69f79a1da527306aff8e805f563de60ca0a03eb974aedbc01e4
 ---
 
 ## Create
@@ -1389,6 +1389,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `const WebSearchToolRequestErrorErrorCodeQueryTooLong WebSearchToolRequestErrorErrorCode = "query_too_long"`
 
+                - `const WebSearchToolRequestErrorErrorCodeRequestTooLarge WebSearchToolRequestErrorErrorCode = "request_too_large"`
+
               - `Type WebSearchToolResultError`
 
                 - `const WebSearchToolResultErrorWebSearchToolResultError WebSearchToolResultError = "web_search_tool_result_error"`
@@ -1437,6 +1439,22 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
   - `Metadata param.Field[Metadata]`
 
     An object describing metadata about the request.
+
+  - `OutputConfig param.Field[MessageNewParamsOutputConfig]`
+
+    Configuration options for the model's output, such as the output format.
+
+    - `Format MessageNewParamsOutputConfigFormat`
+
+      A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+      - `Schema map[string, any]`
+
+        The JSON schema of the format
+
+      - `Type JSONSchema`
+
+        - `const JSONSchemaJSONSchema JSONSchema = "json_schema"`
 
   - `ServiceTier param.Field[MessageNewParamsServiceTier]`
 
@@ -1712,6 +1730,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+      - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
+
       - `Type ToolType`
 
         - `const ToolTypeCustom ToolType = "custom"`
@@ -1753,6 +1775,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           - `const CacheControlEphemeralTTLTTL1h CacheControlEphemeralTTL = "1h"`
 
+      - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
+
     - `type ToolTextEditor20250124 struct{…}`
 
       - `Name StrReplaceEditor`
@@ -1790,6 +1816,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           - `const CacheControlEphemeralTTLTTL1h CacheControlEphemeralTTL = "1h"`
 
+      - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
+
     - `type ToolTextEditor20250429 struct{…}`
 
       - `Name StrReplaceBasedEditTool`
@@ -1826,6 +1856,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           - `const CacheControlEphemeralTTLTTL5m CacheControlEphemeralTTL = "5m"`
 
           - `const CacheControlEphemeralTTLTTL1h CacheControlEphemeralTTL = "1h"`
+
+      - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type ToolTextEditor20250728 struct{…}`
 
@@ -1867,6 +1901,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `MaxCharacters int64`
 
         Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+
+      - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type WebSearchTool20250305 struct{…}`
 
@@ -1916,6 +1954,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `MaxUses int64`
 
         Maximum number of times the tool can be used in the API request.
+
+      - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
       - `UserLocation WebSearchTool20250305UserLocation`
 
@@ -2157,6 +2199,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
             - `const WebSearchToolResultErrorErrorCodeTooManyRequests WebSearchToolResultErrorErrorCode = "too_many_requests"`
 
             - `const WebSearchToolResultErrorErrorCodeQueryTooLong WebSearchToolResultErrorErrorCode = "query_too_long"`
+
+            - `const WebSearchToolResultErrorErrorCodeRequestTooLarge WebSearchToolResultErrorErrorCode = "request_too_large"`
 
           - `Type WebSearchToolResultError`
 
@@ -2404,13 +2448,13 @@ func main() {
     MaxTokens: 1024,
     Messages: []anthropic.MessageParam{anthropic.MessageParam{
       Content: []anthropic.ContentBlockParamUnion{anthropic.ContentBlockParamUnion{
-        OfText: &anthropic.TextBlockParam{Text: "What is a quaternion?", CacheControl: anthropic.CacheControlEphemeralParam{TTL: anthropic.CacheControlEphemeralTTLTTL5m}, Citations: []anthropic.TextCitationParamUnion{anthropic.TextCitationParamUnion{
-          OfCharLocation: &anthropic.CitationCharLocationParam{CitedText: "cited_text", DocumentIndex: 0, DocumentTitle: anthropic.String("x"), EndCharIndex: 0, StartCharIndex: 0},
-        }}},
+        OfText: &anthropic.TextBlockParam{
+          Text: "x",
+        },
       }},
       Role: anthropic.MessageParamRoleUser,
     }},
-    Model: anthropic.ModelClaudeOpus4_5_20251101,
+    Model: anthropic.ModelClaudeSonnet4_5_20250929,
   })
   if err != nil {
     panic(err.Error())

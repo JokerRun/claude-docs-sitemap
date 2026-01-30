@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-01-28T03:47:52.195281Z
-sha256: 0b8ce19d1cb2f4a705f1d557c002bd9c2d92d99a4fae55b3b1d1db4466759e02
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: e56fbbd8e970425798a5ab43aaf1dff68864c8136582822f641e853b8b7131e6
 ---
 
 > ## Documentation Index
@@ -174,6 +174,7 @@ Code through hierarchical settings:
 | `alwaysThinkingEnabled`      | Enable [extended thinking](/en/common-workflows#use-extended-thinking-thinking-mode) by default for all sessions. Typically configured via the `/config` command rather than editing directly                                                                                   | `true`                                                                  |
 | `plansDirectory`             | Customize where plan files are stored. Path is relative to project root. Default: `~/.claude/plans`                                                                                                                                                                             | `"./plans"`                                                             |
 | `showTurnDuration`           | Show turn duration messages after responses (e.g., "Cooked for 1m 6s"). Set to `false` to hide these messages                                                                                                                                                                   | `true`                                                                  |
+| `spinnerVerbs`               | Customize the action verbs shown in the spinner and turn duration messages. Set `mode` to `"replace"` to use only your verbs, or `"append"` to add them to the defaults                                                                                                         | `{"mode": "append", "verbs": ["Pondering", "Crafting"]}`                |
 | `language`                   | Configure Claude's preferred response language (e.g., `"japanese"`, `"spanish"`, `"french"`). Claude will respond in this language by default                                                                                                                                   | `"japanese"`                                                            |
 | `autoUpdatesChannel`         | Release channel to follow for updates. Use `"stable"` for a version that is typically about one week old and skips versions with major regressions, or `"latest"` (default) for the most recent release                                                                         | `"stable"`                                                              |
 | `spinnerTipsEnabled`         | Show tips in the spinner while Claude is working. Set to `false` to disable tips (default: `true`)                                                                                                                                                                              | `false`                                                                 |

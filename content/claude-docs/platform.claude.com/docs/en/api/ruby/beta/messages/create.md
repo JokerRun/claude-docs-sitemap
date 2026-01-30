@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/create
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 9cd88052ec56504fb01ca39d76d575bc7458274491085699ff63da0563e10218
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 190277ce521121dfbca4ecb476855e0ab4d6e6daacb898e69622cde1ac2b852a
 ---
 
 ## Create
@@ -1528,6 +1528,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `:query_too_long`
 
+              - `:request_too_large`
+
             - `type: :web_search_tool_result_error`
 
               - `:web_search_tool_result_error`
@@ -2711,11 +2713,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
 - `output_config: BetaOutputConfig`
 
-  Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+  Configuration options for the model's output, such as the output format.
 
   - `effort: :low | :medium | :high`
 
-    All possible effort levels.
+    How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+    Valid values are `low`, `medium`, or `high`.
 
     - `:low`
 
@@ -2723,9 +2727,23 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `:high`
 
+  - `format_: BetaJSONOutputFormat`
+
+    A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    - `schema: Hash[Symbol, untyped]`
+
+      The JSON schema of the format
+
+    - `type: :json_schema`
+
+      - `:json_schema`
+
 - `output_format: BetaJSONOutputFormat`
 
-  A schema to specify Claude's output format in responses.
+  Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+  A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
   - `schema: Hash[Symbol, untyped]`
 
@@ -3105,6 +3123,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
     - `type: :custom`
 
       - `:custom`
@@ -3160,6 +3180,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolBash20250124`
 
     - `name: :bash`
@@ -3211,6 +3233,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaCodeExecutionTool20250522`
 
     - `name: :code_execution`
@@ -3260,6 +3284,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaCodeExecutionTool20250825`
 
     - `name: :code_execution`
@@ -3308,6 +3334,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20241022`
 
@@ -3372,6 +3400,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaMemoryTool20250818`
 
     - `name: :memory`
@@ -3422,6 +3452,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20250124`
 
@@ -3486,6 +3518,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20241022`
 
     - `name: :str_replace_editor`
@@ -3536,6 +3570,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20251124`
 
@@ -3604,6 +3640,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20250124`
 
     - `name: :str_replace_editor`
@@ -3655,6 +3693,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20250429`
 
     - `name: :str_replace_based_edit_tool`
@@ -3705,6 +3745,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolTextEditor20250728`
 
@@ -3760,6 +3802,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaWebSearchTool20250305`
 
@@ -3821,6 +3865,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       Maximum number of times the tool can be used in the API request.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
     - `user_location: { type, city, country, 2 more}`
 
@@ -3917,6 +3963,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolSearchToolBm25_20251119`
 
     - `name: :tool_search_tool_bm25`
@@ -3968,6 +4016,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolSearchToolRegex20251119`
 
     - `name: :tool_search_tool_regex`
@@ -4018,6 +4068,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaMCPToolset`
 
@@ -4362,28 +4414,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `id: String`
 
-      - `caller_: BetaDirectCaller | BetaServerToolCaller`
-
-        Tool invocation directly from the model.
-
-        - `class BetaDirectCaller`
-
-          Tool invocation directly from the model.
-
-          - `type: :direct`
-
-            - `:direct`
-
-        - `class BetaServerToolCaller`
-
-          Tool invocation generated by a server-side tool.
-
-          - `tool_id: String`
-
-          - `type: :code_execution_20250825`
-
-            - `:code_execution_20250825`
-
       - `input: Hash[Symbol, untyped]`
 
       - `name: :web_search | :web_fetch | :code_execution | 4 more`
@@ -4406,6 +4436,28 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `:server_tool_use`
 
+      - `caller_: BetaDirectCaller | BetaServerToolCaller`
+
+        Tool invocation directly from the model.
+
+        - `class BetaDirectCaller`
+
+          Tool invocation directly from the model.
+
+          - `type: :direct`
+
+            - `:direct`
+
+        - `class BetaServerToolCaller`
+
+          Tool invocation generated by a server-side tool.
+
+          - `tool_id: String`
+
+          - `type: :code_execution_20250825`
+
+            - `:code_execution_20250825`
+
     - `class BetaWebSearchToolResultBlock`
 
       - `content: BetaWebSearchToolResultBlockContent`
@@ -4423,6 +4475,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
             - `:too_many_requests`
 
             - `:query_too_long`
+
+            - `:request_too_large`
 
           - `type: :web_search_tool_result_error`
 
@@ -5151,7 +5205,7 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_message = anthropic.beta.messages.create(
   max_tokens: 1024,
   messages: [{content: "Hello, world", role: :user}],
-  model: :"claude-opus-4-5-20251101"
+  model: :"claude-sonnet-4-5-20250929"
 )
 
 puts(beta_message)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/count_tokens
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: e5c422acf9c85170bc443714f3ba0f82c23ffde9035e712ee9786998fe41ea37
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 393eb38862a1db2b0809df6a3337c1908196b60883d4e2d6eff62ca81db6ecde
 ---
 
 ## Count Tokens
@@ -1520,6 +1520,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `:query_too_long`
 
+              - `:request_too_large`
+
             - `type: :web_search_tool_result_error`
 
               - `:web_search_tool_result_error`
@@ -2659,11 +2661,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
 - `output_config: BetaOutputConfig`
 
-  Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+  Configuration options for the model's output, such as the output format.
 
   - `effort: :low | :medium | :high`
 
-    All possible effort levels.
+    How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+    Valid values are `low`, `medium`, or `high`.
 
     - `:low`
 
@@ -2671,9 +2675,23 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `:high`
 
+  - `format_: BetaJSONOutputFormat`
+
+    A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    - `schema: Hash[Symbol, untyped]`
+
+      The JSON schema of the format
+
+    - `type: :json_schema`
+
+      - `:json_schema`
+
 - `output_format: BetaJSONOutputFormat`
 
-  A schema to specify Claude's output format in responses.
+  Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+  A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
   - `schema: Hash[Symbol, untyped]`
 
@@ -3019,6 +3037,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
     - `type: :custom`
 
       - `:custom`
@@ -3074,6 +3094,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolBash20250124`
 
     - `name: :bash`
@@ -3125,6 +3147,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaCodeExecutionTool20250522`
 
     - `name: :code_execution`
@@ -3174,6 +3198,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaCodeExecutionTool20250825`
 
     - `name: :code_execution`
@@ -3222,6 +3248,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20241022`
 
@@ -3286,6 +3314,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaMemoryTool20250818`
 
     - `name: :memory`
@@ -3336,6 +3366,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20250124`
 
@@ -3400,6 +3432,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20241022`
 
     - `name: :str_replace_editor`
@@ -3450,6 +3484,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolComputerUse20251124`
 
@@ -3518,6 +3554,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20250124`
 
     - `name: :str_replace_editor`
@@ -3569,6 +3607,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolTextEditor20250429`
 
     - `name: :str_replace_based_edit_tool`
@@ -3619,6 +3659,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `input_examples: Array[Hash[Symbol, untyped]]`
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaToolTextEditor20250728`
 
@@ -3674,6 +3716,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaWebSearchTool20250305`
 
@@ -3735,6 +3779,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       Maximum number of times the tool can be used in the API request.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
     - `user_location: { type, city, country, 2 more}`
 
@@ -3831,6 +3877,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolSearchToolBm25_20251119`
 
     - `name: :tool_search_tool_bm25`
@@ -3882,6 +3930,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `strict: bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `class BetaToolSearchToolRegex20251119`
 
     - `name: :tool_search_tool_regex`
@@ -3932,6 +3982,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `class BetaMCPToolset`
 

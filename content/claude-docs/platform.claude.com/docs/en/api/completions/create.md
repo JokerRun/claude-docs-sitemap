@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 4d680e1af438111f780f4e5da2f91bb999b0349e6ea245c3978ded6b0e6bdd29
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 7a880c1cac57e06d189c76a08528050604a03dad71b85e126c864a35079812cf
 ---
 
 ## Create
@@ -365,6 +365,7 @@ curl https://api.anthropic.com/v1/complete \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    --max-time 600 \
     -d '{
           "max_tokens_to_sample": 256,
           "model": "claude-opus-4-5-20251101",

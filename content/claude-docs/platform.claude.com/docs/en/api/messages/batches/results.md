@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/results
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 979a1bfd386aaabcd0061a4f6b8fecbdcf2ca063d8e2c1265e0e6436d5b4a044
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 0b52966e2767bdecb97e747729e6055344dbab71dc1b0282d655a94b673ab075
 ---
 
 ## Results
@@ -228,7 +228,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `WebSearchToolResultError = object { error_code, type }`
 
-                - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 2 more`
+                - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
 
                   - `"invalid_tool_input"`
 
@@ -239,6 +239,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   - `"too_many_requests"`
 
                   - `"query_too_long"`
+
+                  - `"request_too_large"`
 
                 - `type: "web_search_tool_result_error"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/results
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 498f7c68dd0e5c97a13abde727880c18023f83ff3444207806aa77bfe4bb03a7
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: a25055a8622ecf71b7fa4d2fa0b4ebcb7f025452a8e41f64cd8dece886108918
 ---
 
 ## Results
@@ -241,6 +241,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   - `const WebSearchToolResultErrorErrorCodeTooManyRequests WebSearchToolResultErrorErrorCode = "too_many_requests"`
 
                   - `const WebSearchToolResultErrorErrorCodeQueryTooLong WebSearchToolResultErrorErrorCode = "query_too_long"`
+
+                  - `const WebSearchToolResultErrorErrorCodeRequestTooLarge WebSearchToolResultErrorErrorCode = "request_too_large"`
 
                 - `Type WebSearchToolResultError`
 

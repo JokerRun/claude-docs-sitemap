@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: a5a13e85921e891a29bc6f2cbca321bca2b602b03294dd76975bd9dd60584c1c
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: 1a68105967814613abd8a9b121f6638343cf975592206c592242f5d9c3ee6245
 ---
 
 # Citations
@@ -204,7 +204,7 @@ Citations works in conjunction with other API features including [prompt caching
 <Warning>
 **Citations and Structured Outputs are incompatible**
 
-Citations cannot be used together with [Structured Outputs](/docs/en/build-with-claude/structured-outputs). If you enable citations on any user-provided document (Document blocks or RequestSearchResultBlock) and also include the `output_format` parameter, the API will return a 400 error.
+Citations cannot be used together with [Structured Outputs](/docs/en/build-with-claude/structured-outputs). If you enable citations on any user-provided document (Document blocks or RequestSearchResultBlock) and also include the `output_config.format` parameter, the API will return a 400 error.
 
 This is because citations require interleaving citation blocks with text output, which is incompatible with the strict JSON schema constraints of structured outputs.
 </Warning>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 6faed62d0bc9c89c0789d68166ace8a459c96ff2f32e7dc18ddbeb2872bb9d31
+fetched_at: 2026-01-30T04:11:49.863510Z
+sha256: a5c35b1944c9bd988e2c7096d89672935af3071d1fd77b100f6c859bfc5d1a8e
 ---
 
 # Beta
@@ -2100,6 +2100,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
 
+                - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
+
               - `Type WebSearchToolResultError`
 
                 - `const WebSearchToolResultErrorWebSearchToolResultError WebSearchToolResultError = "web_search_tool_result_error"`
@@ -3099,12 +3101,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `OutputConfig param.Field[BetaOutputConfig]`
 
-    Body param: Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+    Body param: Configuration options for the model's output, such as the output format.
 
   - `OutputFormat param.Field[BetaJSONOutputFormat]`
 
-    Body param:
-    A schema to specify Claude's output format in responses.
+    Body param: Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
   - `ServiceTier param.Field[BetaMessageNewParamsServiceTier]`
 
@@ -3394,6 +3397,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
       - `Type BetaToolType`
 
         - `const BetaToolTypeCustom BetaToolType = "custom"`
@@ -3449,6 +3454,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolBash20250124 struct{…}`
 
       - `Name Bash`
@@ -3500,6 +3507,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaCodeExecutionTool20250522 struct{…}`
 
       - `Name CodeExecution`
@@ -3549,6 +3558,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaCodeExecutionTool20250825 struct{…}`
 
       - `Name CodeExecution`
@@ -3597,6 +3608,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaToolComputerUse20241022 struct{…}`
 
@@ -3661,6 +3674,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaMemoryTool20250818 struct{…}`
 
       - `Name Memory`
@@ -3711,6 +3726,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `InputExamples []map[string, any]`
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaToolComputerUse20250124 struct{…}`
 
@@ -3775,6 +3792,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolTextEditor20241022 struct{…}`
 
       - `Name StrReplaceEditor`
@@ -3825,6 +3844,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `InputExamples []map[string, any]`
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaToolComputerUse20251124 struct{…}`
 
@@ -3893,6 +3914,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolTextEditor20250124 struct{…}`
 
       - `Name StrReplaceEditor`
@@ -3944,6 +3967,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolTextEditor20250429 struct{…}`
 
       - `Name StrReplaceBasedEditTool`
@@ -3994,6 +4019,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `InputExamples []map[string, any]`
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaToolTextEditor20250728 struct{…}`
 
@@ -4049,6 +4076,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaWebSearchTool20250305 struct{…}`
 
@@ -4110,6 +4139,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         Maximum number of times the tool can be used in the API request.
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
       - `UserLocation BetaWebSearchTool20250305UserLocation`
 
@@ -4206,6 +4237,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolSearchToolBm25_20251119 struct{…}`
 
       - `Name ToolSearchToolBm25`
@@ -4257,6 +4290,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolSearchToolRegex20251119 struct{…}`
 
       - `Name ToolSearchToolRegex`
@@ -4307,6 +4342,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaMCPToolset struct{…}`
 
@@ -4651,28 +4688,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `ID string`
 
-      - `Caller BetaServerToolUseBlockCallerUnion`
-
-        Tool invocation directly from the model.
-
-        - `type BetaDirectCaller struct{…}`
-
-          Tool invocation directly from the model.
-
-          - `Type Direct`
-
-            - `const DirectDirect Direct = "direct"`
-
-        - `type BetaServerToolCaller struct{…}`
-
-          Tool invocation generated by a server-side tool.
-
-          - `ToolID string`
-
-          - `Type CodeExecution20250825`
-
-            - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
-
       - `Input map[string, any]`
 
       - `Name BetaServerToolUseBlockName`
@@ -4695,6 +4710,28 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const ServerToolUseServerToolUse ServerToolUse = "server_tool_use"`
 
+      - `Caller BetaServerToolUseBlockCallerUnion`
+
+        Tool invocation directly from the model.
+
+        - `type BetaDirectCaller struct{…}`
+
+          Tool invocation directly from the model.
+
+          - `Type Direct`
+
+            - `const DirectDirect Direct = "direct"`
+
+        - `type BetaServerToolCaller struct{…}`
+
+          Tool invocation generated by a server-side tool.
+
+          - `ToolID string`
+
+          - `Type CodeExecution20250825`
+
+            - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
+
     - `type BetaWebSearchToolResultBlock struct{…}`
 
       - `Content BetaWebSearchToolResultBlockContentUnion`
@@ -4712,6 +4749,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
             - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
             - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+            - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
           - `Type WebSearchToolResultError`
 
@@ -5451,13 +5490,13 @@ func main() {
     MaxTokens: 1024,
     Messages: []anthropic.BetaMessageParam{anthropic.BetaMessageParam{
       Content: []anthropic.BetaContentBlockParamUnion{anthropic.BetaContentBlockParamUnion{
-        OfText: &anthropic.BetaTextBlockParam{Text: "What is a quaternion?", CacheControl: anthropic.BetaCacheControlEphemeralParam{TTL: anthropic.BetaCacheControlEphemeralTTLTTL5m}, Citations: []anthropic.BetaTextCitationParamUnion{anthropic.BetaTextCitationParamUnion{
-          OfCharLocation: &anthropic.BetaCitationCharLocationParam{CitedText: "cited_text", DocumentIndex: 0, DocumentTitle: anthropic.String("x"), EndCharIndex: 0, StartCharIndex: 0},
-        }}},
+        OfText: &anthropic.BetaTextBlockParam{
+          Text: "x",
+        },
       }},
       Role: anthropic.BetaMessageParamRoleUser,
     }},
-    Model: anthropic.ModelClaudeOpus4_5_20251101,
+    Model: anthropic.ModelClaudeSonnet4_5_20250929,
   })
   if err != nil {
     panic(err.Error())
@@ -6979,6 +7018,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
 
+                - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
+
               - `Type WebSearchToolResultError`
 
                 - `const WebSearchToolResultErrorWebSearchToolResultError WebSearchToolResultError = "web_search_tool_result_error"`
@@ -7940,12 +7981,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `OutputConfig param.Field[BetaOutputConfig]`
 
-    Body param: Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+    Body param: Configuration options for the model's output, such as the output format.
 
   - `OutputFormat param.Field[BetaJSONOutputFormat]`
 
-    Body param:
-    A schema to specify Claude's output format in responses.
+    Body param: Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
   - `System param.Field[BetaMessageCountTokensParamsSystemUnion]`
 
@@ -8209,6 +8251,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
       - `Type BetaToolType`
 
         - `const BetaToolTypeCustom BetaToolType = "custom"`
@@ -8264,6 +8308,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolBash20250124 struct{…}`
 
       - `Name Bash`
@@ -8315,6 +8361,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaCodeExecutionTool20250522 struct{…}`
 
       - `Name CodeExecution`
@@ -8364,6 +8412,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaCodeExecutionTool20250825 struct{…}`
 
       - `Name CodeExecution`
@@ -8412,6 +8462,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaToolComputerUse20241022 struct{…}`
 
@@ -8476,6 +8528,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaMemoryTool20250818 struct{…}`
 
       - `Name Memory`
@@ -8526,6 +8580,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `InputExamples []map[string, any]`
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaToolComputerUse20250124 struct{…}`
 
@@ -8590,6 +8646,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolTextEditor20241022 struct{…}`
 
       - `Name StrReplaceEditor`
@@ -8640,6 +8698,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `InputExamples []map[string, any]`
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaToolComputerUse20251124 struct{…}`
 
@@ -8708,6 +8768,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolTextEditor20250124 struct{…}`
 
       - `Name StrReplaceEditor`
@@ -8759,6 +8821,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolTextEditor20250429 struct{…}`
 
       - `Name StrReplaceBasedEditTool`
@@ -8809,6 +8873,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `InputExamples []map[string, any]`
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaToolTextEditor20250728 struct{…}`
 
@@ -8864,6 +8930,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaWebSearchTool20250305 struct{…}`
 
@@ -8925,6 +8993,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         Maximum number of times the tool can be used in the API request.
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
       - `UserLocation BetaWebSearchTool20250305UserLocation`
 
@@ -9021,6 +9091,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolSearchToolBm25_20251119 struct{…}`
 
       - `Name ToolSearchToolBm25`
@@ -9072,6 +9144,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `Strict bool`
 
+        When true, guarantees schema validation on tool names and inputs
+
     - `type BetaToolSearchToolRegex20251119 struct{…}`
 
       - `Name ToolSearchToolRegex`
@@ -9122,6 +9196,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
       - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
 
     - `type BetaMCPToolset struct{…}`
 
@@ -9259,9 +9335,9 @@ func main() {
   betaMessageTokensCount, err := client.Beta.Messages.CountTokens(context.TODO(), anthropic.BetaMessageCountTokensParams{
     Messages: []anthropic.BetaMessageParam{anthropic.BetaMessageParam{
       Content: []anthropic.BetaContentBlockParamUnion{anthropic.BetaContentBlockParamUnion{
-        OfText: &anthropic.BetaTextBlockParam{Text: "What is a quaternion?", CacheControl: anthropic.BetaCacheControlEphemeralParam{TTL: anthropic.BetaCacheControlEphemeralTTLTTL5m}, Citations: []anthropic.BetaTextCitationParamUnion{anthropic.BetaTextCitationParamUnion{
-          OfCharLocation: &anthropic.BetaCitationCharLocationParam{CitedText: "cited_text", DocumentIndex: 0, DocumentTitle: anthropic.String("x"), EndCharIndex: 0, StartCharIndex: 0},
-        }}},
+        OfText: &anthropic.BetaTextBlockParam{
+          Text: "x",
+        },
       }},
       Role: anthropic.BetaMessageParamRoleUser,
     }},
@@ -10115,6 +10191,8 @@ func main() {
 
   - `Strict bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Code Execution Tool 20250825
 
 - `type BetaCodeExecutionTool20250825 struct{…}`
@@ -10165,6 +10243,8 @@ func main() {
     If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
   - `Strict bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Code Execution Tool Result Block
 
@@ -10687,28 +10767,6 @@ func main() {
 
     - `ID string`
 
-    - `Caller BetaServerToolUseBlockCallerUnion`
-
-      Tool invocation directly from the model.
-
-      - `type BetaDirectCaller struct{…}`
-
-        Tool invocation directly from the model.
-
-        - `Type Direct`
-
-          - `const DirectDirect Direct = "direct"`
-
-      - `type BetaServerToolCaller struct{…}`
-
-        Tool invocation generated by a server-side tool.
-
-        - `ToolID string`
-
-        - `Type CodeExecution20250825`
-
-          - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
-
     - `Input map[string, any]`
 
     - `Name BetaServerToolUseBlockName`
@@ -10731,6 +10789,28 @@ func main() {
 
       - `const ServerToolUseServerToolUse ServerToolUse = "server_tool_use"`
 
+    - `Caller BetaServerToolUseBlockCallerUnion`
+
+      Tool invocation directly from the model.
+
+      - `type BetaDirectCaller struct{…}`
+
+        Tool invocation directly from the model.
+
+        - `Type Direct`
+
+          - `const DirectDirect Direct = "direct"`
+
+      - `type BetaServerToolCaller struct{…}`
+
+        Tool invocation generated by a server-side tool.
+
+        - `ToolID string`
+
+        - `Type CodeExecution20250825`
+
+          - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
+
   - `type BetaWebSearchToolResultBlock struct{…}`
 
     - `Content BetaWebSearchToolResultBlockContentUnion`
@@ -10748,6 +10828,8 @@ func main() {
           - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
           - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+          - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
         - `Type WebSearchToolResultError`
 
@@ -12664,6 +12746,8 @@ func main() {
           - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
           - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+          - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
         - `Type WebSearchToolResultError`
 
@@ -14591,6 +14675,8 @@ func main() {
 
   - `Strict bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Memory Tool 20250818 Command
 
 - `type BetaMemoryTool20250818CommandUnion interface{…}`
@@ -15034,28 +15120,6 @@ func main() {
 
       - `ID string`
 
-      - `Caller BetaServerToolUseBlockCallerUnion`
-
-        Tool invocation directly from the model.
-
-        - `type BetaDirectCaller struct{…}`
-
-          Tool invocation directly from the model.
-
-          - `Type Direct`
-
-            - `const DirectDirect Direct = "direct"`
-
-        - `type BetaServerToolCaller struct{…}`
-
-          Tool invocation generated by a server-side tool.
-
-          - `ToolID string`
-
-          - `Type CodeExecution20250825`
-
-            - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
-
       - `Input map[string, any]`
 
       - `Name BetaServerToolUseBlockName`
@@ -15078,6 +15142,28 @@ func main() {
 
         - `const ServerToolUseServerToolUse ServerToolUse = "server_tool_use"`
 
+      - `Caller BetaServerToolUseBlockCallerUnion`
+
+        Tool invocation directly from the model.
+
+        - `type BetaDirectCaller struct{…}`
+
+          Tool invocation directly from the model.
+
+          - `Type Direct`
+
+            - `const DirectDirect Direct = "direct"`
+
+        - `type BetaServerToolCaller struct{…}`
+
+          Tool invocation generated by a server-side tool.
+
+          - `ToolID string`
+
+          - `Type CodeExecution20250825`
+
+            - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
+
     - `type BetaWebSearchToolResultBlock struct{…}`
 
       - `Content BetaWebSearchToolResultBlockContentUnion`
@@ -15095,6 +15181,8 @@ func main() {
             - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
             - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+            - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
           - `Type WebSearchToolResultError`
 
@@ -17295,6 +17383,8 @@ func main() {
 
               - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
 
+              - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
+
             - `Type WebSearchToolResultError`
 
               - `const WebSearchToolResultErrorWebSearchToolResultError WebSearchToolResultError = "web_search_tool_result_error"`
@@ -18254,13 +18344,27 @@ func main() {
 
   - `Effort BetaOutputConfigEffort`
 
-    All possible effort levels.
+    How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+    Valid values are `low`, `medium`, or `high`.
 
     - `const BetaOutputConfigEffortLow BetaOutputConfigEffort = "low"`
 
     - `const BetaOutputConfigEffortMedium BetaOutputConfigEffort = "medium"`
 
     - `const BetaOutputConfigEffortHigh BetaOutputConfigEffort = "high"`
+
+  - `Format BetaJSONOutputFormat`
+
+    A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    - `Schema map[string, any]`
+
+      The JSON schema of the format
+
+    - `Type JSONSchema`
+
+      - `const JSONSchemaJSONSchema JSONSchema = "json_schema"`
 
 ### Beta Plain Text Source
 
@@ -18708,28 +18812,6 @@ func main() {
 
       - `ID string`
 
-      - `Caller BetaServerToolUseBlockCallerUnion`
-
-        Tool invocation directly from the model.
-
-        - `type BetaDirectCaller struct{…}`
-
-          Tool invocation directly from the model.
-
-          - `Type Direct`
-
-            - `const DirectDirect Direct = "direct"`
-
-        - `type BetaServerToolCaller struct{…}`
-
-          Tool invocation generated by a server-side tool.
-
-          - `ToolID string`
-
-          - `Type CodeExecution20250825`
-
-            - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
-
       - `Input map[string, any]`
 
       - `Name BetaServerToolUseBlockName`
@@ -18752,6 +18834,28 @@ func main() {
 
         - `const ServerToolUseServerToolUse ServerToolUse = "server_tool_use"`
 
+      - `Caller BetaServerToolUseBlockCallerUnion`
+
+        Tool invocation directly from the model.
+
+        - `type BetaDirectCaller struct{…}`
+
+          Tool invocation directly from the model.
+
+          - `Type Direct`
+
+            - `const DirectDirect Direct = "direct"`
+
+        - `type BetaServerToolCaller struct{…}`
+
+          Tool invocation generated by a server-side tool.
+
+          - `ToolID string`
+
+          - `Type CodeExecution20250825`
+
+            - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
+
     - `type BetaWebSearchToolResultBlock struct{…}`
 
       - `Content BetaWebSearchToolResultBlockContentUnion`
@@ -18769,6 +18873,8 @@ func main() {
             - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
             - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+            - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
           - `Type WebSearchToolResultError`
 
@@ -19623,28 +19729,6 @@ func main() {
 
         - `ID string`
 
-        - `Caller BetaServerToolUseBlockCallerUnion`
-
-          Tool invocation directly from the model.
-
-          - `type BetaDirectCaller struct{…}`
-
-            Tool invocation directly from the model.
-
-            - `Type Direct`
-
-              - `const DirectDirect Direct = "direct"`
-
-          - `type BetaServerToolCaller struct{…}`
-
-            Tool invocation generated by a server-side tool.
-
-            - `ToolID string`
-
-            - `Type CodeExecution20250825`
-
-              - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
-
         - `Input map[string, any]`
 
         - `Name BetaServerToolUseBlockName`
@@ -19667,6 +19751,28 @@ func main() {
 
           - `const ServerToolUseServerToolUse ServerToolUse = "server_tool_use"`
 
+        - `Caller BetaServerToolUseBlockCallerUnion`
+
+          Tool invocation directly from the model.
+
+          - `type BetaDirectCaller struct{…}`
+
+            Tool invocation directly from the model.
+
+            - `Type Direct`
+
+              - `const DirectDirect Direct = "direct"`
+
+          - `type BetaServerToolCaller struct{…}`
+
+            Tool invocation generated by a server-side tool.
+
+            - `ToolID string`
+
+            - `Type CodeExecution20250825`
+
+              - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
+
       - `type BetaWebSearchToolResultBlock struct{…}`
 
         - `Content BetaWebSearchToolResultBlockContentUnion`
@@ -19684,6 +19790,8 @@ func main() {
               - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
               - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+              - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
             - `Type WebSearchToolResultError`
 
@@ -20645,28 +20753,6 @@ func main() {
 
           - `ID string`
 
-          - `Caller BetaServerToolUseBlockCallerUnion`
-
-            Tool invocation directly from the model.
-
-            - `type BetaDirectCaller struct{…}`
-
-              Tool invocation directly from the model.
-
-              - `Type Direct`
-
-                - `const DirectDirect Direct = "direct"`
-
-            - `type BetaServerToolCaller struct{…}`
-
-              Tool invocation generated by a server-side tool.
-
-              - `ToolID string`
-
-              - `Type CodeExecution20250825`
-
-                - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
-
           - `Input map[string, any]`
 
           - `Name BetaServerToolUseBlockName`
@@ -20689,6 +20775,28 @@ func main() {
 
             - `const ServerToolUseServerToolUse ServerToolUse = "server_tool_use"`
 
+          - `Caller BetaServerToolUseBlockCallerUnion`
+
+            Tool invocation directly from the model.
+
+            - `type BetaDirectCaller struct{…}`
+
+              Tool invocation directly from the model.
+
+              - `Type Direct`
+
+                - `const DirectDirect Direct = "direct"`
+
+            - `type BetaServerToolCaller struct{…}`
+
+              Tool invocation generated by a server-side tool.
+
+              - `ToolID string`
+
+              - `Type CodeExecution20250825`
+
+                - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
+
         - `type BetaWebSearchToolResultBlock struct{…}`
 
           - `Content BetaWebSearchToolResultBlockContentUnion`
@@ -20706,6 +20814,8 @@ func main() {
                 - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
                 - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+                - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
               - `Type WebSearchToolResultError`
 
@@ -21734,28 +21844,6 @@ func main() {
 
         - `ID string`
 
-        - `Caller BetaServerToolUseBlockCallerUnion`
-
-          Tool invocation directly from the model.
-
-          - `type BetaDirectCaller struct{…}`
-
-            Tool invocation directly from the model.
-
-            - `Type Direct`
-
-              - `const DirectDirect Direct = "direct"`
-
-          - `type BetaServerToolCaller struct{…}`
-
-            Tool invocation generated by a server-side tool.
-
-            - `ToolID string`
-
-            - `Type CodeExecution20250825`
-
-              - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
-
         - `Input map[string, any]`
 
         - `Name BetaServerToolUseBlockName`
@@ -21778,6 +21866,28 @@ func main() {
 
           - `const ServerToolUseServerToolUse ServerToolUse = "server_tool_use"`
 
+        - `Caller BetaServerToolUseBlockCallerUnion`
+
+          Tool invocation directly from the model.
+
+          - `type BetaDirectCaller struct{…}`
+
+            Tool invocation directly from the model.
+
+            - `Type Direct`
+
+              - `const DirectDirect Direct = "direct"`
+
+          - `type BetaServerToolCaller struct{…}`
+
+            Tool invocation generated by a server-side tool.
+
+            - `ToolID string`
+
+            - `Type CodeExecution20250825`
+
+              - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
+
       - `type BetaWebSearchToolResultBlock struct{…}`
 
         - `Content BetaWebSearchToolResultBlockContentUnion`
@@ -21795,6 +21905,8 @@ func main() {
               - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
               - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+              - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
             - `Type WebSearchToolResultError`
 
@@ -23067,28 +23179,6 @@ func main() {
 
   - `ID string`
 
-  - `Caller BetaServerToolUseBlockCallerUnion`
-
-    Tool invocation directly from the model.
-
-    - `type BetaDirectCaller struct{…}`
-
-      Tool invocation directly from the model.
-
-      - `Type Direct`
-
-        - `const DirectDirect Direct = "direct"`
-
-    - `type BetaServerToolCaller struct{…}`
-
-      Tool invocation generated by a server-side tool.
-
-      - `ToolID string`
-
-      - `Type CodeExecution20250825`
-
-        - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
-
   - `Input map[string, any]`
 
   - `Name BetaServerToolUseBlockName`
@@ -23110,6 +23200,28 @@ func main() {
   - `Type ServerToolUse`
 
     - `const ServerToolUseServerToolUse ServerToolUse = "server_tool_use"`
+
+  - `Caller BetaServerToolUseBlockCallerUnion`
+
+    Tool invocation directly from the model.
+
+    - `type BetaDirectCaller struct{…}`
+
+      Tool invocation directly from the model.
+
+      - `Type Direct`
+
+        - `const DirectDirect Direct = "direct"`
+
+    - `type BetaServerToolCaller struct{…}`
+
+      Tool invocation generated by a server-side tool.
+
+      - `ToolID string`
+
+      - `Type CodeExecution20250825`
+
+        - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
 
 ### Beta Server Tool Use Block Param
 
@@ -24149,6 +24261,8 @@ func main() {
 
   - `Strict bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
   - `Type BetaToolType`
 
     - `const BetaToolTypeCustom BetaToolType = "custom"`
@@ -24206,6 +24320,8 @@ func main() {
 
   - `Strict bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Bash 20250124
 
 - `type BetaToolBash20250124 struct{…}`
@@ -24258,6 +24374,8 @@ func main() {
   - `InputExamples []map[string, any]`
 
   - `Strict bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Choice
 
@@ -24446,6 +24564,8 @@ func main() {
 
   - `Strict bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Computer Use 20250124
 
 - `type BetaToolComputerUse20250124 struct{…}`
@@ -24510,6 +24630,8 @@ func main() {
   - `InputExamples []map[string, any]`
 
   - `Strict bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Computer Use 20251124
 
@@ -24579,6 +24701,8 @@ func main() {
   - `InputExamples []map[string, any]`
 
   - `Strict bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Reference Block
 
@@ -25347,6 +25471,8 @@ func main() {
 
   - `Strict bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Search Tool Regex 20251119
 
 - `type BetaToolSearchToolRegex20251119 struct{…}`
@@ -25399,6 +25525,8 @@ func main() {
     If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
   - `Strict bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Search Tool Result Block
 
@@ -25678,6 +25806,8 @@ func main() {
 
   - `Strict bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Text Editor 20250124
 
 - `type BetaToolTextEditor20250124 struct{…}`
@@ -25731,6 +25861,8 @@ func main() {
 
   - `Strict bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Tool Text Editor 20250429
 
 - `type BetaToolTextEditor20250429 struct{…}`
@@ -25783,6 +25915,8 @@ func main() {
   - `InputExamples []map[string, any]`
 
   - `Strict bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Text Editor 20250728
 
@@ -25840,6 +25974,8 @@ func main() {
     Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
   - `Strict bool`
+
+    When true, guarantees schema validation on tool names and inputs
 
 ### Beta Tool Union
 
@@ -25915,6 +26051,8 @@ func main() {
 
     - `Strict bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
     - `Type BetaToolType`
 
       - `const BetaToolTypeCustom BetaToolType = "custom"`
@@ -25970,6 +26108,8 @@ func main() {
 
     - `Strict bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `type BetaToolBash20250124 struct{…}`
 
     - `Name Bash`
@@ -26021,6 +26161,8 @@ func main() {
 
     - `Strict bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `type BetaCodeExecutionTool20250522 struct{…}`
 
     - `Name CodeExecution`
@@ -26070,6 +26212,8 @@ func main() {
 
     - `Strict bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `type BetaCodeExecutionTool20250825 struct{…}`
 
     - `Name CodeExecution`
@@ -26118,6 +26262,8 @@ func main() {
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `Strict bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `type BetaToolComputerUse20241022 struct{…}`
 
@@ -26182,6 +26328,8 @@ func main() {
 
     - `Strict bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `type BetaMemoryTool20250818 struct{…}`
 
     - `Name Memory`
@@ -26232,6 +26380,8 @@ func main() {
     - `InputExamples []map[string, any]`
 
     - `Strict bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `type BetaToolComputerUse20250124 struct{…}`
 
@@ -26296,6 +26446,8 @@ func main() {
 
     - `Strict bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `type BetaToolTextEditor20241022 struct{…}`
 
     - `Name StrReplaceEditor`
@@ -26346,6 +26498,8 @@ func main() {
     - `InputExamples []map[string, any]`
 
     - `Strict bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `type BetaToolComputerUse20251124 struct{…}`
 
@@ -26414,6 +26568,8 @@ func main() {
 
     - `Strict bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `type BetaToolTextEditor20250124 struct{…}`
 
     - `Name StrReplaceEditor`
@@ -26465,6 +26621,8 @@ func main() {
 
     - `Strict bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `type BetaToolTextEditor20250429 struct{…}`
 
     - `Name StrReplaceBasedEditTool`
@@ -26515,6 +26673,8 @@ func main() {
     - `InputExamples []map[string, any]`
 
     - `Strict bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `type BetaToolTextEditor20250728 struct{…}`
 
@@ -26570,6 +26730,8 @@ func main() {
       Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
     - `Strict bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `type BetaWebSearchTool20250305 struct{…}`
 
@@ -26631,6 +26793,8 @@ func main() {
       Maximum number of times the tool can be used in the API request.
 
     - `Strict bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
     - `UserLocation BetaWebSearchTool20250305UserLocation`
 
@@ -26727,6 +26891,8 @@ func main() {
 
     - `Strict bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `type BetaToolSearchToolBm25_20251119 struct{…}`
 
     - `Name ToolSearchToolBm25`
@@ -26778,6 +26944,8 @@ func main() {
 
     - `Strict bool`
 
+      When true, guarantees schema validation on tool names and inputs
+
   - `type BetaToolSearchToolRegex20251119 struct{…}`
 
     - `Name ToolSearchToolRegex`
@@ -26828,6 +26996,8 @@ func main() {
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
     - `Strict bool`
+
+      When true, guarantees schema validation on tool names and inputs
 
   - `type BetaMCPToolset struct{…}`
 
@@ -27488,6 +27658,8 @@ func main() {
 
   - `Strict bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Web Fetch Tool Result Block
 
 - `type BetaWebFetchToolResultBlock struct{…}`
@@ -28089,6 +28261,8 @@ func main() {
 
   - `Strict bool`
 
+    When true, guarantees schema validation on tool names and inputs
+
   - `UserLocation BetaWebSearchTool20250305UserLocation`
 
     Parameters for the user's location. Used to provide more relevant search results.
@@ -28129,6 +28303,8 @@ func main() {
 
     - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
 
+    - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
+
   - `Type WebSearchToolResultError`
 
     - `const WebSearchToolResultErrorWebSearchToolResultError WebSearchToolResultError = "web_search_tool_result_error"`
@@ -28152,6 +28328,8 @@ func main() {
         - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
         - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+        - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
       - `Type WebSearchToolResultError`
 
@@ -28194,6 +28372,8 @@ func main() {
       - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
       - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+      - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
     - `Type WebSearchToolResultError`
 
@@ -28246,6 +28426,8 @@ func main() {
         - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
         - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+        - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
       - `Type WebSearchToolResultError`
 
@@ -28312,6 +28494,8 @@ func main() {
 
       - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
 
+      - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
+
     - `Type WebSearchToolResultError`
 
       - `const WebSearchToolResultErrorWebSearchToolResultError WebSearchToolResultError = "web_search_tool_result_error"`
@@ -28332,6 +28516,8 @@ func main() {
 
     - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
 
+    - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
+
   - `Type WebSearchToolResultError`
 
     - `const WebSearchToolResultErrorWebSearchToolResultError WebSearchToolResultError = "web_search_tool_result_error"`
@@ -28349,6 +28535,8 @@ func main() {
   - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
   - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+  - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
 # Batches
 
@@ -29889,6 +30077,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
 
+                    - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
+
                   - `Type WebSearchToolResultError`
 
                     - `const WebSearchToolResultErrorWebSearchToolResultError WebSearchToolResultError = "web_search_tool_result_error"`
@@ -31072,11 +31262,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `OutputConfig BetaOutputConfig`
 
-        Configuration options for the model's output. Controls aspects like how much effort the model puts into its response.
+        Configuration options for the model's output, such as the output format.
 
         - `Effort BetaOutputConfigEffort`
 
-          All possible effort levels.
+          How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
+
+          Valid values are `low`, `medium`, or `high`.
 
           - `const BetaOutputConfigEffortLow BetaOutputConfigEffort = "low"`
 
@@ -31084,9 +31276,23 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `const BetaOutputConfigEffortHigh BetaOutputConfigEffort = "high"`
 
+        - `Format BetaJSONOutputFormat`
+
+          A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+          - `Schema map[string, any]`
+
+            The JSON schema of the format
+
+          - `Type JSONSchema`
+
+            - `const JSONSchemaJSONSchema JSONSchema = "json_schema"`
+
       - `OutputFormat BetaJSONOutputFormat`
 
-        A schema to specify Claude's output format in responses.
+        Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+        A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
         - `Schema map[string, any]`
 
@@ -31462,6 +31668,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Strict bool`
 
+            When true, guarantees schema validation on tool names and inputs
+
           - `Type BetaToolType`
 
             - `const BetaToolTypeCustom BetaToolType = "custom"`
@@ -31517,6 +31725,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Strict bool`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `type BetaToolBash20250124 struct{…}`
 
           - `Name Bash`
@@ -31568,6 +31778,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Strict bool`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `type BetaCodeExecutionTool20250522 struct{…}`
 
           - `Name CodeExecution`
@@ -31617,6 +31829,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Strict bool`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `type BetaCodeExecutionTool20250825 struct{…}`
 
           - `Name CodeExecution`
@@ -31665,6 +31879,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
           - `Strict bool`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `type BetaToolComputerUse20241022 struct{…}`
 
@@ -31729,6 +31945,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Strict bool`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `type BetaMemoryTool20250818 struct{…}`
 
           - `Name Memory`
@@ -31779,6 +31997,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `InputExamples []map[string, any]`
 
           - `Strict bool`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `type BetaToolComputerUse20250124 struct{…}`
 
@@ -31843,6 +32063,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Strict bool`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `type BetaToolTextEditor20241022 struct{…}`
 
           - `Name StrReplaceEditor`
@@ -31893,6 +32115,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `InputExamples []map[string, any]`
 
           - `Strict bool`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `type BetaToolComputerUse20251124 struct{…}`
 
@@ -31961,6 +32185,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Strict bool`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `type BetaToolTextEditor20250124 struct{…}`
 
           - `Name StrReplaceEditor`
@@ -32012,6 +32238,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Strict bool`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `type BetaToolTextEditor20250429 struct{…}`
 
           - `Name StrReplaceBasedEditTool`
@@ -32062,6 +32290,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `InputExamples []map[string, any]`
 
           - `Strict bool`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `type BetaToolTextEditor20250728 struct{…}`
 
@@ -32117,6 +32347,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
 
           - `Strict bool`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `type BetaWebSearchTool20250305 struct{…}`
 
@@ -32178,6 +32410,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             Maximum number of times the tool can be used in the API request.
 
           - `Strict bool`
+
+            When true, guarantees schema validation on tool names and inputs
 
           - `UserLocation BetaWebSearchTool20250305UserLocation`
 
@@ -32274,6 +32508,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Strict bool`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `type BetaToolSearchToolBm25_20251119 struct{…}`
 
           - `Name ToolSearchToolBm25`
@@ -32325,6 +32561,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Strict bool`
 
+            When true, guarantees schema validation on tool names and inputs
+
         - `type BetaToolSearchToolRegex20251119 struct{…}`
 
           - `Name ToolSearchToolRegex`
@@ -32375,6 +32613,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
           - `Strict bool`
+
+            When true, guarantees schema validation on tool names and inputs
 
         - `type BetaMCPToolset struct{…}`
 
@@ -32606,13 +32846,13 @@ func main() {
         MaxTokens: 1024,
         Messages: []anthropic.BetaMessageParam{anthropic.BetaMessageParam{
           Content: []anthropic.BetaContentBlockParamUnion{anthropic.BetaContentBlockParamUnion{
-            OfText: &anthropic.BetaTextBlockParam{Text: "What is a quaternion?", CacheControl: anthropic.BetaCacheControlEphemeralParam{TTL: anthropic.BetaCacheControlEphemeralTTLTTL5m}, Citations: []anthropic.BetaTextCitationParamUnion{anthropic.BetaTextCitationParamUnion{
-              OfCharLocation: &anthropic.BetaCitationCharLocationParam{CitedText: "cited_text", DocumentIndex: 0, DocumentTitle: anthropic.String("x"), EndCharIndex: 0, StartCharIndex: 0},
-            }}},
+            OfText: &anthropic.BetaTextBlockParam{
+              Text: "x",
+            },
           }},
           Role: anthropic.BetaMessageParamRoleUser,
         }},
-        Model: anthropic.ModelClaudeOpus4_5_20251101,
+        Model: anthropic.ModelClaudeSonnet4_5_20250929,
       },
     }},
   })
@@ -33610,28 +33850,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `ID string`
 
-            - `Caller BetaServerToolUseBlockCallerUnion`
-
-              Tool invocation directly from the model.
-
-              - `type BetaDirectCaller struct{…}`
-
-                Tool invocation directly from the model.
-
-                - `Type Direct`
-
-                  - `const DirectDirect Direct = "direct"`
-
-              - `type BetaServerToolCaller struct{…}`
-
-                Tool invocation generated by a server-side tool.
-
-                - `ToolID string`
-
-                - `Type CodeExecution20250825`
-
-                  - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
-
             - `Input map[string, any]`
 
             - `Name BetaServerToolUseBlockName`
@@ -33654,6 +33872,28 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `const ServerToolUseServerToolUse ServerToolUse = "server_tool_use"`
 
+            - `Caller BetaServerToolUseBlockCallerUnion`
+
+              Tool invocation directly from the model.
+
+              - `type BetaDirectCaller struct{…}`
+
+                Tool invocation directly from the model.
+
+                - `Type Direct`
+
+                  - `const DirectDirect Direct = "direct"`
+
+              - `type BetaServerToolCaller struct{…}`
+
+                Tool invocation generated by a server-side tool.
+
+                - `ToolID string`
+
+                - `Type CodeExecution20250825`
+
+                  - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
+
           - `type BetaWebSearchToolResultBlock struct{…}`
 
             - `Content BetaWebSearchToolResultBlockContentUnion`
@@ -33671,6 +33911,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
                   - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+                  - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
                 - `Type WebSearchToolResultError`
 
@@ -34983,28 +35225,6 @@ func main() {
 
             - `ID string`
 
-            - `Caller BetaServerToolUseBlockCallerUnion`
-
-              Tool invocation directly from the model.
-
-              - `type BetaDirectCaller struct{…}`
-
-                Tool invocation directly from the model.
-
-                - `Type Direct`
-
-                  - `const DirectDirect Direct = "direct"`
-
-              - `type BetaServerToolCaller struct{…}`
-
-                Tool invocation generated by a server-side tool.
-
-                - `ToolID string`
-
-                - `Type CodeExecution20250825`
-
-                  - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
-
             - `Input map[string, any]`
 
             - `Name BetaServerToolUseBlockName`
@@ -35027,6 +35247,28 @@ func main() {
 
               - `const ServerToolUseServerToolUse ServerToolUse = "server_tool_use"`
 
+            - `Caller BetaServerToolUseBlockCallerUnion`
+
+              Tool invocation directly from the model.
+
+              - `type BetaDirectCaller struct{…}`
+
+                Tool invocation directly from the model.
+
+                - `Type Direct`
+
+                  - `const DirectDirect Direct = "direct"`
+
+              - `type BetaServerToolCaller struct{…}`
+
+                Tool invocation generated by a server-side tool.
+
+                - `ToolID string`
+
+                - `Type CodeExecution20250825`
+
+                  - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
+
           - `type BetaWebSearchToolResultBlock struct{…}`
 
             - `Content BetaWebSearchToolResultBlockContentUnion`
@@ -35044,6 +35286,8 @@ func main() {
                   - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
                   - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+                  - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
                 - `Type WebSearchToolResultError`
 
@@ -36133,28 +36377,6 @@ func main() {
 
           - `ID string`
 
-          - `Caller BetaServerToolUseBlockCallerUnion`
-
-            Tool invocation directly from the model.
-
-            - `type BetaDirectCaller struct{…}`
-
-              Tool invocation directly from the model.
-
-              - `Type Direct`
-
-                - `const DirectDirect Direct = "direct"`
-
-            - `type BetaServerToolCaller struct{…}`
-
-              Tool invocation generated by a server-side tool.
-
-              - `ToolID string`
-
-              - `Type CodeExecution20250825`
-
-                - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
-
           - `Input map[string, any]`
 
           - `Name BetaServerToolUseBlockName`
@@ -36177,6 +36399,28 @@ func main() {
 
             - `const ServerToolUseServerToolUse ServerToolUse = "server_tool_use"`
 
+          - `Caller BetaServerToolUseBlockCallerUnion`
+
+            Tool invocation directly from the model.
+
+            - `type BetaDirectCaller struct{…}`
+
+              Tool invocation directly from the model.
+
+              - `Type Direct`
+
+                - `const DirectDirect Direct = "direct"`
+
+            - `type BetaServerToolCaller struct{…}`
+
+              Tool invocation generated by a server-side tool.
+
+              - `ToolID string`
+
+              - `Type CodeExecution20250825`
+
+                - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
+
         - `type BetaWebSearchToolResultBlock struct{…}`
 
           - `Content BetaWebSearchToolResultBlockContentUnion`
@@ -36194,6 +36438,8 @@ func main() {
                 - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
                 - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+                - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
               - `Type WebSearchToolResultError`
 
@@ -37245,28 +37491,6 @@ func main() {
 
         - `ID string`
 
-        - `Caller BetaServerToolUseBlockCallerUnion`
-
-          Tool invocation directly from the model.
-
-          - `type BetaDirectCaller struct{…}`
-
-            Tool invocation directly from the model.
-
-            - `Type Direct`
-
-              - `const DirectDirect Direct = "direct"`
-
-          - `type BetaServerToolCaller struct{…}`
-
-            Tool invocation generated by a server-side tool.
-
-            - `ToolID string`
-
-            - `Type CodeExecution20250825`
-
-              - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
-
         - `Input map[string, any]`
 
         - `Name BetaServerToolUseBlockName`
@@ -37289,6 +37513,28 @@ func main() {
 
           - `const ServerToolUseServerToolUse ServerToolUse = "server_tool_use"`
 
+        - `Caller BetaServerToolUseBlockCallerUnion`
+
+          Tool invocation directly from the model.
+
+          - `type BetaDirectCaller struct{…}`
+
+            Tool invocation directly from the model.
+
+            - `Type Direct`
+
+              - `const DirectDirect Direct = "direct"`
+
+          - `type BetaServerToolCaller struct{…}`
+
+            Tool invocation generated by a server-side tool.
+
+            - `ToolID string`
+
+            - `Type CodeExecution20250825`
+
+              - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
+
       - `type BetaWebSearchToolResultBlock struct{…}`
 
         - `Content BetaWebSearchToolResultBlockContentUnion`
@@ -37306,6 +37552,8 @@ func main() {
               - `const BetaWebSearchToolResultErrorCodeTooManyRequests BetaWebSearchToolResultErrorCode = "too_many_requests"`
 
               - `const BetaWebSearchToolResultErrorCodeQueryTooLong BetaWebSearchToolResultErrorCode = "query_too_long"`
+
+              - `const BetaWebSearchToolResultErrorCodeRequestTooLarge BetaWebSearchToolResultErrorCode = "request_too_large"`
 
             - `Type WebSearchToolResultError`
 
