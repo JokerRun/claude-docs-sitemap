@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: a5c489320552a0252f8e19f7bd068a14b88c7a6d7462cda3aa8ad707a1915b7b
+fetched_at: 2026-01-31T04:07:43.551719Z
+sha256: 7d52de4f8cbf7c6061cedef72f858aab721d37cc237abcc153647e515acf7fe3
 ---
 
 > ## Documentation Index
@@ -390,7 +390,7 @@ function example() {
 
 1. **Ask Claude to add language tags**: Request "Add appropriate language tags to all code blocks in this markdown file."
 
-2. **Use post-processing hooks**: Set up automatic formatting hooks to detect and add missing language tags. See the [markdown formatting hook example](/en/hooks-guide#markdown-formatting-hook) for implementation details.
+2. **Use post-processing hooks**: Set up automatic formatting hooks to detect and add missing language tags. See [Auto-format code after edits](/en/hooks-guide#auto-format-code-after-edits) for an example of a PostToolUse formatting hook.
 
 3. **Manual verification**: After generating markdown files, review them for proper code block formatting and request corrections if needed.
 

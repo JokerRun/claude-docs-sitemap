@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-01-28T03:47:52.195281Z
-sha256: 221de37c195eb43dea4147cf94001f88ebd56aee944896bfd489855805df7173
+fetched_at: 2026-01-31T04:07:43.551719Z
+sha256: 95700823f78d873e8bb523d284e9115496517cae16c93f29ac27b5f55fc86b3a
 ---
 
 > ## Documentation Index
@@ -295,6 +295,7 @@ When working on a branch with an open pull request, Claude Code displays a click
 * Yellow: pending review
 * Red: changes requested
 * Gray: draft
+* Purple: merged
 
 `Cmd+click` (Mac) or `Ctrl+click` (Windows/Linux) the link to open the pull request in your browser. The status updates automatically every 60 seconds.
 

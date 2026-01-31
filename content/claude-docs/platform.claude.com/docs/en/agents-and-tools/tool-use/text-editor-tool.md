@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 1f276035e9418c9ea35d0c5b8b013ecb248d6b2c76846ea769d3d683f94e9a4b
+fetched_at: 2026-01-31T04:07:43.551719Z
+sha256: 507592f73fdded822d82afad9656de4c5f836726fcac17b96403df0b392bba89
 ---
 
 # Text editor tool
@@ -387,7 +387,7 @@ Parameters:
 - `command`: Must be "insert"
 - `path`: The path to the file to modify
 - `insert_line`: The line number after which to insert the text (0 for beginning of file)
-- `new_str`: The text to insert
+- `insert_text`: The text to insert
 
 <section title="Example insert command">
 
@@ -400,7 +400,7 @@ Parameters:
     "command": "insert",
     "path": "primes.py",
     "insert_line": 0,
-    "new_str": "\"\"\"Module for working with prime numbers.\n\nThis module provides functions to check if a number is prime\nand to generate a list of prime numbers up to a given limit.\n\"\"\"\n"
+    "insert_text": "\"\"\"Module for working with prime numbers.\n\nThis module provides functions to check if a number is prime\nand to generate a list of prime numbers up to a given limit.\n\"\"\"\n"
   }
 }
 ```

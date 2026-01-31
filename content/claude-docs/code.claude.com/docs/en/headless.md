@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-01-28T03:47:52.195281Z
-sha256: d534f05ecf807c074920fc45f66f5beda2a6264a50e339792dd3a191f8f8143e
+fetched_at: 2026-01-31T04:07:43.551719Z
+sha256: 00815a715c67ca86199360c61e6c6f135d3905aca0eb88207b4eca58f95d01ef
 ---
 
 > ## Documentation Index
@@ -83,6 +83,23 @@ claude -p "Extract the main function names from auth.py" \
     | jq '.structured_output'
   ```
 </Tip>
+
+### Stream responses
+
+Use `--output-format stream-json` with `--verbose` and `--include-partial-messages` to receive tokens as they're generated. Each line is a JSON object representing an event:
+
+```bash  theme={null}
+claude -p "Explain recursion" --output-format stream-json --verbose --include-partial-messages
+```
+
+The following example uses [jq](https://jqlang.github.io/jq/) to filter for text deltas and display just the streaming text. The `-r` flag outputs raw strings (no quotes) and `-j` joins without newlines so tokens stream continuously:
+
+```bash  theme={null}
+claude -p "Write a poem" --output-format stream-json --verbose --include-partial-messages | \
+  jq -rj 'select(.type == "stream_event" and .event.delta.type? == "text_delta") | .event.delta.text'
+```
+
+For programmatic streaming with callbacks and message objects, see [Stream responses in real-time](https://platform.claude.com/docs/en/agent-sdk/streaming-output) in the Agent SDK documentation.
 
 ### Auto-approve tools
 

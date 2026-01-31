@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: 295f959efb8796a3904d080558cfaff924c101d368732228a2e134d271e6d1ff
+fetched_at: 2026-01-31T04:07:43.551719Z
+sha256: c28fcfe17242f5c9f1ef31154ea771d33ee6e8cd13c3bad049dd276f97e52d87
 ---
 
 > ## Documentation Index
@@ -357,7 +357,7 @@ If you already have skills or hooks in your `.claude/` directory, you can conver
     mkdir my-plugin/hooks
     ```
 
-    Create `my-plugin/hooks/hooks.json` with your hooks configuration. Copy the `hooks` object from your `.claude/settings.json` or `settings.local.json`—the format is the same:
+    Create `my-plugin/hooks/hooks.json` with your hooks configuration. Copy the `hooks` object from your `.claude/settings.json` or `settings.local.json`, since the format is the same. The command receives hook input as JSON on stdin, so use `jq` to extract the file path:
 
     ```json my-plugin/hooks/hooks.json theme={null}
     {
@@ -365,7 +365,7 @@ If you already have skills or hooks in your `.claude/` directory, you can conver
         "PostToolUse": [
           {
             "matcher": "Write|Edit",
-            "hooks": [{ "type": "command", "command": "npm run lint:fix $FILE" }]
+            "hooks": [{ "type": "command", "command": "jq -r '.tool_input.file_path' | xargs npm run lint:fix" }]
           }
         ]
       }

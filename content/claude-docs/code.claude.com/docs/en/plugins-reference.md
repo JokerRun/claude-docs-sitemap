@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: 7131f8cb7aa7464ab0bbfd2620b4d327a7f23b3671c8a2ab1c4a7b4e8bdc6f47
+fetched_at: 2026-01-31T04:07:43.551719Z
+sha256: 46263db24fca3d46c800e5793c31e571bbee7577b037933b99d9c8bd38d836b9
 ---
 
 > ## Documentation Index
@@ -126,7 +126,6 @@ Plugins can provide event handlers that respond to Claude Code events automatica
 * `Stop`: When Claude attempts to stop
 * `SubagentStart`: When a subagent is started
 * `SubagentStop`: When a subagent attempts to stop
-* `Setup`: When `--init`, `--init-only`, or `--maintenance` flags are used
 * `SessionStart`: At the beginning of sessions
 * `SessionEnd`: At the end of sessions
 * `PreCompact`: Before conversation history is compacted

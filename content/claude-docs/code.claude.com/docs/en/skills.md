@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-01-28T03:47:52.195281Z
-sha256: d61e7684abb21c3364917e38771b42cb25cba5da2ba5d9297224417743ad8ad7
+fetched_at: 2026-01-31T04:07:43.551719Z
+sha256: 693c21dbe6a4aa431bcef3924ccf34417492948316eada4e978a05ff68e8b7ce
 ---
 
 > ## Documentation Index
@@ -182,7 +182,7 @@ All fields are optional. Only `description` is recommended so Claude knows when 
 | `model`                    | No          | Model to use when this skill is active.                                                                                                               |
 | `context`                  | No          | Set to `fork` to run in a forked subagent context.                                                                                                    |
 | `agent`                    | No          | Which subagent type to use when `context: fork` is set.                                                                                               |
-| `hooks`                    | No          | Hooks scoped to this skill's lifecycle. See [Hooks](/en/hooks) for configuration format.                                                              |
+| `hooks`                    | No          | Hooks scoped to this skill's lifecycle. See [Hooks in skills and agents](/en/hooks#hooks-in-skills-and-agents) for configuration format.              |
 
 #### Available string substitutions
 
