@@ -28,7 +28,7 @@
   lastmod: '2026-01-28T13:17:42.833Z'
 - source: code
   loc: https://code.claude.com/docs/en/data-usage
-  lastmod: '2026-01-28T13:17:42.832Z'
+  lastmod: '2026-02-01T16:34:36.480Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
   lastmod: '2026-01-28T13:17:42.830Z'
@@ -55,10 +55,10 @@
   lastmod: '2026-01-30T18:03:04.291Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
-  lastmod: '2026-01-31T02:37:56.148Z'
+  lastmod: '2026-02-01T20:21:41.238Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks-guide
-  lastmod: '2026-01-31T02:37:56.150Z'
+  lastmod: '2026-02-01T20:21:41.236Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
   lastmod: '2026-01-28T13:17:42.852Z'
@@ -67,7 +67,7 @@
   lastmod: '2026-01-28T13:17:42.851Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
-  lastmod: '2026-01-31T02:48:28.859Z'
+  lastmod: '2026-02-01T16:34:48.442Z'
 - source: code
   loc: https://code.claude.com/docs/en/jetbrains
   lastmod: '2026-01-28T13:17:42.854Z'
@@ -85,7 +85,7 @@
   lastmod: '2026-01-28T13:17:42.875Z'
 - source: code
   loc: https://code.claude.com/docs/en/memory
-  lastmod: '2026-01-28T13:17:42.874Z'
+  lastmod: '2026-02-01T20:21:41.232Z'
 - source: code
   loc: https://code.claude.com/docs/en/microsoft-foundry
   lastmod: '2026-01-28T13:17:42.876Z'
@@ -124,7 +124,7 @@
   lastmod: '2026-01-28T13:17:42.900Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-01-31T02:37:58.758Z'
+  lastmod: '2026-02-01T20:21:41.241Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-01-31T02:37:58.740Z'
@@ -151,7 +151,7 @@
   lastmod: '2026-01-31T02:38:00.786Z'
 - source: code
   loc: https://code.claude.com/docs/en/vs-code
-  lastmod: '2026-01-28T13:17:42.926Z'
+  lastmod: '2026-02-01T20:21:41.234Z'
 - source: platform
   loc: https://platform.claude.com/docs
   priority: '0.8'

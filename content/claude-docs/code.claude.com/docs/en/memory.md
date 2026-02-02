@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-01-28T03:47:52.195281Z
-sha256: 347e794f6305861cda88afad914ccd5636fcf5a569ce9e2d912da1ba038b3143
+fetched_at: 2026-02-02T04:27:06.161687Z
+sha256: d712163f0a1520d41100f57dbac5c0cfee644ca56f3d5f12dc87dbe040306582
 ---
 
 > ## Documentation Index
@@ -44,12 +44,18 @@ See @README for project overview and @package.json for available npm commands fo
 - git workflow @docs/git-instructions.md
 ```
 
-Both relative and absolute paths are allowed. In particular, importing files in user's home dir is a convenient way for your team members to provide individual instructions that are not checked into the repository. Imports are an alternative to CLAUDE.local.md that work better across multiple git worktrees.
+Both relative and absolute paths are allowed. Relative paths resolve relative to the file containing the import, not the working directory. For private per-project preferences that shouldn't be checked into version control, prefer `CLAUDE.local.md`: it is automatically loaded and added to `.gitignore`.
+
+If you work across multiple git worktrees, `CLAUDE.local.md` only exists in one. Use a home-directory import instead so all worktrees share the same personal instructions:
 
 ```
 # Individual Preferences
 - @~/.claude/my-project-instructions.md
 ```
+
+<Warning>
+  The first time Claude Code encounters external imports in a project, it shows an approval dialog listing the specific files. Approve to load them; decline to skip them. This is a one-time decision per project: once declined, the dialog does not resurface and the imports remain disabled.
+</Warning>
 
 To avoid potential collisions, imports are not evaluated inside markdown code spans and code blocks.
 

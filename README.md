@@ -32,7 +32,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/cli-reference | 2026-01-31 |  |
 | code | https://code.claude.com/docs/en/common-workflows | 2026-01-31 |  |
 | code | https://code.claude.com/docs/en/costs | 2026-01-28 |  |
-| code | https://code.claude.com/docs/en/data-usage | 2026-01-28 |  |
+| code | https://code.claude.com/docs/en/data-usage | 2026-02-01 |  |
 | code | https://code.claude.com/docs/en/desktop | 2026-01-28 |  |
 | code | https://code.claude.com/docs/en/devcontainer | 2026-01-28 |  |
 | code | https://code.claude.com/docs/en/discover-plugins | 2026-01-28 |  |
