@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-01-31T04:07:43.551719Z
-sha256: 51eddbd0cc26281d2a78dd656684d8d67cde4271f66d2003acf502b1890377bc
+fetched_at: 2026-02-03T04:18:49.576480Z
+sha256: f717cc83d98e95231bd952584c9462c035f0ff4bfce08e1923b9c8c0c71c64ac
 ---
 
 > ## Documentation Index
@@ -343,7 +343,7 @@ This works for both built-in and custom subagents. You can also use the `--disal
 claude --disallowedTools "Task(Explore)"
 ```
 
-See [IAM documentation](/en/iam#tool-specific-permission-rules) for more details on permission rules.
+See [Permissions documentation](/en/permissions#tool-specific-permission-rules) for more details on permission rules.
 
 ### Define hooks for subagents
 

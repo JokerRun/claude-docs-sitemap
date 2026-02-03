@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-01-31T04:07:43.551719Z
-sha256: 7d52de4f8cbf7c6061cedef72f858aab721d37cc237abcc153647e515acf7fe3
+fetched_at: 2026-02-03T04:18:49.576480Z
+sha256: 01985d5f0eb1ac3344db08ffb6ff3c5851dfbd50a78c1004772ee5b9542ac53a
 ---
 
 > ## Documentation Index
@@ -174,7 +174,7 @@ claude doctor # Check installation health
 ### Repeated permission prompts
 
 If you find yourself repeatedly approving the same commands, you can allow specific tools
-to run without approval using the `/permissions` command. See [Permissions docs](/en/iam#configuring-permissions).
+to run without approval using the `/permissions` command. See [Permissions docs](/en/permissions#manage-permissions).
 
 ### Authentication issues
 

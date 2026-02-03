@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-01-28T03:47:52.195281Z
-sha256: 0dfa6d7f6072d7680bc343215443419895ea4416e9208da25ea021e78ac37caa
+fetched_at: 2026-02-03T04:18:49.576480Z
+sha256: ffc7f096c8d316593a237e3ec7a1e895268043cb03f12959e1c29dad371ed1ad
 ---
 
 > ## Documentation Index
@@ -123,7 +123,7 @@ Control how Claude works using the mode selector next to the send button:
 
 To stop Claude mid-task, click the stop button.
 
-Remote sessions only support **Code** and **Plan** modes because they continue running in the background without requiring your active participation. See [permission modes](/en/iam#permission-modes) for details on how these work internally.
+Remote sessions only support **Code** and **Plan** modes because they continue running in the background without requiring your active participation. See [permission modes](/en/permissions#permission-modes) for details on how these work internally.
 
 ### Work in parallel with sessions
 

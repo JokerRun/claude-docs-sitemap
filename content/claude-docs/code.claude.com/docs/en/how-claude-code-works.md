@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: a2cd7c186959121726d57f035e7bd7e94e50c629fbce3307d3a221aab5858602
+fetched_at: 2026-02-03T04:18:49.576480Z
+sha256: e7320e1cb1bf51199487c27c332cfc72b50954dfca564d298fafa42b5fe1adac
 ---
 
 > ## Documentation Index
@@ -150,7 +150,7 @@ Press `Shift+Tab` to cycle through permission modes:
 * **Auto-accept edits**: Claude edits files without asking, still asks for commands
 * **Plan mode**: Claude uses read-only tools only, creating a plan you can approve before execution
 
-You can also allow specific commands in `.claude/settings.json` so Claude doesn't ask each time. This is useful for trusted commands like `npm test` or `git status`. Settings can be scoped from organization-wide policies down to personal preferences. See [Permissions](/en/iam) for details.
+You can also allow specific commands in `.claude/settings.json` so Claude doesn't ask each time. This is useful for trusted commands like `npm test` or `git status`. Settings can be scoped from organization-wide policies down to personal preferences. See [Permissions](/en/permissions) for details.
 
 ***
 

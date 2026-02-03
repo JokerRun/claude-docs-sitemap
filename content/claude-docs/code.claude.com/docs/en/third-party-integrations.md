@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/third-party-integrations
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: e2c8ed23515f5e238514939713fe3302fbf3affbbebb05d12e7be4277a7c2a0a
+fetched_at: 2026-02-03T04:18:49.576480Z
+sha256: 6a6484722d5c1ed05dc49ac74fe23b52f477d91454e7f9cea6967cc62d61d31c
 ---
 
 > ## Documentation Index
@@ -116,8 +116,8 @@ If your organization has specific infrastructure requirements, compare the optio
 
 Select a deployment option to view setup instructions:
 
-* [Claude for Teams or Enterprise](/en/iam#claude-for-teams-or-enterprise-recommended)
-* [Anthropic Console](/en/iam#claude-console-authentication)
+* [Claude for Teams or Enterprise](/en/authentication#claude-for-teams-or-enterprise)
+* [Anthropic Console](/en/authentication#claude-console-authentication)
 * [Amazon Bedrock](/en/amazon-bedrock)
 * [Google Vertex AI](/en/google-vertex-ai)
 * [Microsoft Foundry](/en/microsoft-foundry)

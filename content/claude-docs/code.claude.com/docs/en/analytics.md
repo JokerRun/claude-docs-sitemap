@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/analytics
-fetched_at: 2026-01-31T04:07:43.551719Z
-sha256: 86234b8cd644266ec6cbeb7d5f282da0ea612f4f3dd828b46365617bd2f32338
+fetched_at: 2026-02-03T04:18:49.576480Z
+sha256: 727aee65ea44e3b54a9123b15704a60e7f667c32166c8c825eb24d0a9eb71e23
 ---
 
 > ## Documentation Index
@@ -224,4 +224,4 @@ The team insights table shows per-user metrics:
 
 * [Monitoring with OpenTelemetry](/en/monitoring-usage): export real-time metrics and events to your observability stack
 * [Manage costs effectively](/en/costs): set spend limits and optimize token usage
-* [Identity and access management](/en/iam): configure roles and permissions
+* [Permissions](/en/permissions): configure roles and permissions

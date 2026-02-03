@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-01-31T04:07:43.551719Z
-sha256: 693c21dbe6a4aa431bcef3924ccf34417492948316eada4e978a05ff68e8b7ce
+fetched_at: 2026-02-03T04:18:49.576480Z
+sha256: d3d4ba2e83a719c66162c61dd82fc935445c8f22707f544f51d2ed4e3b0eb556
 ---
 
 > ## Documentation Index
@@ -83,12 +83,12 @@ This example creates a skill that teaches Claude to explain code using visual di
 
 Where you store a skill determines who can use it:
 
-| Location   | Path                                             | Applies to                     |
-| :--------- | :----------------------------------------------- | :----------------------------- |
-| Enterprise | See [managed settings](/en/iam#managed-settings) | All users in your organization |
-| Personal   | `~/.claude/skills/<skill-name>/SKILL.md`         | All your projects              |
-| Project    | `.claude/skills/<skill-name>/SKILL.md`           | This project only              |
-| Plugin     | `<plugin>/skills/<skill-name>/SKILL.md`          | Where plugin is enabled        |
+| Location   | Path                                                     | Applies to                     |
+| :--------- | :------------------------------------------------------- | :----------------------------- |
+| Enterprise | See [managed settings](/en/permissions#managed-settings) | All users in your organization |
+| Personal   | `~/.claude/skills/<skill-name>/SKILL.md`                 | All your projects              |
+| Project    | `.claude/skills/<skill-name>/SKILL.md`                   | This project only              |
+| Plugin     | `<plugin>/skills/<skill-name>/SKILL.md`                  | Where plugin is enabled        |
 
 When skills share the same name across levels, higher-priority locations win: enterprise > personal > project. Plugin skills use a `plugin-name:skill-name` namespace, so they cannot conflict with other levels. If you have files in `.claude/commands/`, those work the same way, but if a skill and a command share the same name, the skill takes precedence.
 
@@ -416,7 +416,7 @@ The `agent` field specifies which subagent configuration to use. Options include
 
 ### Restrict Claude's skill access
 
-By default, Claude can invoke any skill that doesn't have `disable-model-invocation: true` set. Skills that define `allowed-tools` grant Claude access to those tools without per-use approval when the skill is active. Your [permission settings](/en/iam) still govern baseline approval behavior for all other tools. Built-in commands like `/compact` and `/init` are not available through the Skill tool.
+By default, Claude can invoke any skill that doesn't have `disable-model-invocation: true` set. Skills that define `allowed-tools` grant Claude access to those tools without per-use approval when the skill is active. Your [permission settings](/en/permissions) still govern baseline approval behavior for all other tools. Built-in commands like `/compact` and `/init` are not available through the Skill tool.
 
 Three ways to control which skills Claude can invoke:
 
@@ -427,7 +427,7 @@ Three ways to control which skills Claude can invoke:
 Skill
 ```
 
-**Allow or deny specific skills** using [permission rules](/en/iam):
+**Allow or deny specific skills** using [permission rules](/en/permissions):
 
 ```
 # Allow only specific skills
@@ -452,7 +452,7 @@ Skills can be distributed at different scopes depending on your audience:
 
 * **Project skills**: Commit `.claude/skills/` to version control
 * **Plugins**: Create a `skills/` directory in your [plugin](/en/plugins)
-* **Managed**: Deploy organization-wide through [managed settings](/en/iam#managed-settings)
+* **Managed**: Deploy organization-wide through [managed settings](/en/permissions#managed-settings)
 
 ### Generate visual output
 
@@ -674,4 +674,4 @@ To increase the limit, set the `SLASH_COMMAND_TOOL_CHAR_BUDGET` environment vari
 * **[Hooks](/en/hooks)**: automate workflows around tool events
 * **[Memory](/en/memory)**: manage CLAUDE.md files for persistent context
 * **[Interactive mode](/en/interactive-mode#built-in-commands)**: built-in commands and shortcuts
-* **[Permissions](/en/iam)**: control tool and skill access
+* **[Permissions](/en/permissions)**: control tool and skill access

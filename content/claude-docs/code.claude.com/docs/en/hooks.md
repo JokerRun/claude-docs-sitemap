@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-02-02T04:27:06.161687Z
-sha256: 3d2c336a6ce920128e87777b1dc8e1edd289621b9d0b5026361d97f5f58d69f9
+fetched_at: 2026-02-03T04:18:49.576480Z
+sha256: 14203ea013e63f172b46eb53010385fdd390e61f1ae0d9abb2e22e6e49b1a935
 ---
 
 > ## Documentation Index
@@ -392,13 +392,13 @@ Hooks receive JSON data via stdin and communicate results through exit codes, st
 
 All hook events receive these fields via stdin as JSON, in addition to event-specific fields documented in each [hook event](#hook-events) section:
 
-| Field             | Description                                                                                                                        |
-| :---------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
-| `session_id`      | Current session identifier                                                                                                         |
-| `transcript_path` | Path to conversation JSON                                                                                                          |
-| `cwd`             | Current working directory when the hook is invoked                                                                                 |
-| `permission_mode` | Current [permission mode](/en/iam#permission-modes): `"default"`, `"plan"`, `"acceptEdits"`, `"dontAsk"`, or `"bypassPermissions"` |
-| `hook_event_name` | Name of the event that fired                                                                                                       |
+| Field             | Description                                                                                                                                |
+| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| `session_id`      | Current session identifier                                                                                                                 |
+| `transcript_path` | Path to conversation JSON                                                                                                                  |
+| `cwd`             | Current working directory when the hook is invoked                                                                                         |
+| `permission_mode` | Current [permission mode](/en/permissions#permission-modes): `"default"`, `"plan"`, `"acceptEdits"`, `"dontAsk"`, or `"bypassPermissions"` |
+| `hook_event_name` | Name of the event that fired                                                                                                               |
 
 For example, a `PreToolUse` hook for a Bash command receives this on stdin:
 

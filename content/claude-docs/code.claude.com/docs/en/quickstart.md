@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-01-29T04:09:45.389890Z
-sha256: eb1a114b9bbc0a1c974b786061d4349a0b06eebba227476a4c0454673433bf53
+fetched_at: 2026-02-03T04:18:49.576480Z
+sha256: 22a83575b66c7ac99c658b82c2a71888e71571d551e0568b1e0621c727d2eeb0
 ---
 
 > ## Documentation Index
@@ -111,7 +111,7 @@ claude
 You'll see the Claude Code welcome screen with your session information, recent conversations, and latest updates. Type `/help` for available commands or `/resume` to continue a previous conversation.
 
 <Tip>
-  After logging in (Step 2), your credentials are stored on your system. Learn more in [Credential Management](/en/iam#credential-management).
+  After logging in (Step 2), your credentials are stored on your system. Learn more in [Credential Management](/en/authentication#credential-management).
 </Tip>
 
 ## Step 4: Ask your first question

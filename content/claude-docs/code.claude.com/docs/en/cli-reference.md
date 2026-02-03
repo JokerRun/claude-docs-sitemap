@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-01-31T04:07:43.551719Z
-sha256: d7cf3886dec61877db68b563386a0cde5cbab8a6a3b162836f1eb1374fd7107f
+fetched_at: 2026-02-03T04:18:49.576480Z
+sha256: 41720a93ea9901c1c6afc87922568ff0aff0e7a7db66497d1eb4876ca8c70d4c
 ---
 
 > ## Documentation Index
@@ -64,7 +64,7 @@ Customize Claude Code's behavior with these command-line flags:
 | `--no-chrome`                          | Disable [Chrome browser integration](/en/chrome) for this session                                                                                                                                         | `claude --no-chrome`                                                                               |
 | `--no-session-persistence`             | Disable session persistence so sessions are not saved to disk and cannot be resumed (print mode only)                                                                                                     | `claude -p --no-session-persistence "query"`                                                       |
 | `--output-format`                      | Specify output format for print mode (options: `text`, `json`, `stream-json`)                                                                                                                             | `claude -p "query" --output-format json`                                                           |
-| `--permission-mode`                    | Begin in a specified [permission mode](/en/iam#permission-modes)                                                                                                                                          | `claude --permission-mode plan`                                                                    |
+| `--permission-mode`                    | Begin in a specified [permission mode](/en/permissions#permission-modes)                                                                                                                                  | `claude --permission-mode plan`                                                                    |
 | `--permission-prompt-tool`             | Specify an MCP tool to handle permission prompts in non-interactive mode                                                                                                                                  | `claude -p --permission-prompt-tool mcp_auth_tool "query"`                                         |
 | `--plugin-dir`                         | Load plugins from directories for this session only (repeatable)                                                                                                                                          | `claude --plugin-dir ./my-plugins`                                                                 |
 | `--print`, `-p`                        | Print response without interactive mode (see [SDK documentation](https://docs.claude.com/en/docs/agent-sdk) for programmatic usage details)                                                               | `claude -p "query"`                                                                                |
