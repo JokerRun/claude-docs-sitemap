@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-01-28T03:47:52.195281Z
-sha256: 9cff79e84c0a9c2c2a91adc8c0488dbdad02e3d01ca54695e435ff24421cb5cf
+fetched_at: 2026-02-04T04:12:50.357302Z
+sha256: 70746b7b9e3464af5ea22506e05efa2f0fbd34a50d062a31e3c8b065fcaafab1
 ---
 
 > ## Documentation Index
@@ -145,6 +145,35 @@ Teleport checks these requirements before resuming a session. If any requirement
 | Correct repository | You must run `--teleport` from a checkout of the same repository, not a fork.                                          |
 | Branch available   | The branch from the web session must have been pushed to the remote. Teleport automatically fetches and checks it out. |
 | Same account       | You must be authenticated to the same Claude.ai account used in the web session.                                       |
+
+### Sharing sessions
+
+To share a session, toggle its visibility according to the account
+types below. After that, share the session link as-is. Recipients who open your
+shared session will see the latest state of the session upon load, but the
+recipient's page will not update in real time.
+
+#### Sharing from an Enterprise or Teams account
+
+For Enterprise and Teams accounts, the two visibility options are **Private**
+and **Team**. Team visibility makes the session visible to other members of your
+Claude.ai organization. Repository access verification is enabled by default,
+based on the GitHub account connected to the recipient's account. Your account's
+display name is visible to all recipients with access. [Claude in Slack](/en/slack)
+sessions are automatically shared with Team visibility.
+
+#### Sharing from a Max or Pro account
+
+For Max and Pro accounts, the two visibility options are **Private**
+and **Public**. Public visibility makes the session visible to any user logged
+into claude.ai.
+
+Check your session for sensitive content before sharing. Sessions may contain
+code and credentials from private GitHub repositories. Repository access
+verification is not enabled by default.
+
+Enable repository access verification and/or withhold your name from your shared
+sessions by going to Settings > Claude Code > Sharing settings.
 
 ## Cloud environment
 
@@ -308,7 +337,7 @@ When using "Limited" network access, the following domains are allowed by defaul
 
 * api.anthropic.com
 * statsig.anthropic.com
-* docs.claude.com
+* platform.claude.com
 * code.claude.com
 * claude.ai
 

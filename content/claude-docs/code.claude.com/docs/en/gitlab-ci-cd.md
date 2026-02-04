@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/gitlab-ci-cd
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: e4d89e6302abfc556fee1daa50dbef744187866b63abd8199c3fc67cc72c83d8
+fetched_at: 2026-02-04T04:12:50.357302Z
+sha256: 087906d8dca900f684a878bac8dc6d037db5889ee63e5900711c01fdf055d762
 ---
 
 > ## Documentation Index
@@ -20,7 +20,7 @@ sha256: e4d89e6302abfc556fee1daa50dbef744187866b63abd8199c3fc67cc72c83d8
 </Info>
 
 <Note>
-  This integration is built on top of the [Claude Code CLI and SDK](https://docs.claude.com/en/docs/agent-sdk), enabling programmatic use of Claude in your CI/CD jobs and custom automation workflows.
+  This integration is built on top of the [Claude Code CLI and Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview), enabling programmatic use of Claude in your CI/CD jobs and custom automation workflows.
 </Note>
 
 ## Why use Claude Code with GitLab?
@@ -415,7 +415,7 @@ When using Claude Code with GitLab CI/CD, be aware of associated costs:
 * **API costs**:
   * Each Claude interaction consumes tokens based on prompt and response size
   * Token usage varies by task complexity and codebase size
-  * See [Anthropic pricing](https://docs.claude.com/en/docs/about-claude/pricing) for details
+  * See [Anthropic pricing](https://platform.claude.com/docs/en/about-claude/pricing) for details
 
 * **Cost optimization tips**:
   * Use specific `@claude` commands to reduce unnecessary turns

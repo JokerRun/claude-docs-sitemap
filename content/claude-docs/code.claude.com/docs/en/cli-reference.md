@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-02-03T04:18:49.576480Z
-sha256: 41720a93ea9901c1c6afc87922568ff0aff0e7a7db66497d1eb4876ca8c70d4c
+fetched_at: 2026-02-04T04:12:50.357302Z
+sha256: c644207fa4464455f178e848cc2fb9228e7d13282b9a55d9776935b668522ace
 ---
 
 > ## Documentation Index
@@ -55,7 +55,7 @@ Customize Claude Code's behavior with these command-line flags:
 | `--init-only`                          | Run initialization hooks and exit (no interactive session)                                                                                                                                                | `claude --init-only`                                                                               |
 | `--include-partial-messages`           | Include partial streaming events in output (requires `--print` and `--output-format=stream-json`)                                                                                                         | `claude -p --output-format stream-json --include-partial-messages "query"`                         |
 | `--input-format`                       | Specify input format for print mode (options: `text`, `stream-json`)                                                                                                                                      | `claude -p --output-format json --input-format stream-json`                                        |
-| `--json-schema`                        | Get validated JSON output matching a JSON Schema after agent completes its workflow (print mode only, see [Agent SDK Structured Outputs](https://docs.claude.com/en/docs/agent-sdk/structured-outputs))   | `claude -p --json-schema '{"type":"object","properties":{...}}' "query"`                           |
+| `--json-schema`                        | Get validated JSON output matching a JSON Schema after agent completes its workflow (print mode only, see [structured outputs](https://platform.claude.com/docs/en/agent-sdk/structured-outputs))         | `claude -p --json-schema '{"type":"object","properties":{...}}' "query"`                           |
 | `--maintenance`                        | Run maintenance hooks and exit                                                                                                                                                                            | `claude --maintenance`                                                                             |
 | `--max-budget-usd`                     | Maximum dollar amount to spend on API calls before stopping (print mode only)                                                                                                                             | `claude -p --max-budget-usd 5.00 "query"`                                                          |
 | `--max-turns`                          | Limit the number of agentic turns (print mode only). Exits with an error when the limit is reached. No limit by default                                                                                   | `claude -p --max-turns 3 "query"`                                                                  |
@@ -67,7 +67,7 @@ Customize Claude Code's behavior with these command-line flags:
 | `--permission-mode`                    | Begin in a specified [permission mode](/en/permissions#permission-modes)                                                                                                                                  | `claude --permission-mode plan`                                                                    |
 | `--permission-prompt-tool`             | Specify an MCP tool to handle permission prompts in non-interactive mode                                                                                                                                  | `claude -p --permission-prompt-tool mcp_auth_tool "query"`                                         |
 | `--plugin-dir`                         | Load plugins from directories for this session only (repeatable)                                                                                                                                          | `claude --plugin-dir ./my-plugins`                                                                 |
-| `--print`, `-p`                        | Print response without interactive mode (see [SDK documentation](https://docs.claude.com/en/docs/agent-sdk) for programmatic usage details)                                                               | `claude -p "query"`                                                                                |
+| `--print`, `-p`                        | Print response without interactive mode (see [Agent SDK documentation](https://platform.claude.com/docs/en/agent-sdk/overview) for programmatic usage details)                                            | `claude -p "query"`                                                                                |
 | `--remote`                             | Create a new [web session](/en/claude-code-on-the-web) on claude.ai with the provided task description                                                                                                    | `claude --remote "Fix the login bug"`                                                              |
 | `--resume`, `-r`                       | Resume a specific session by ID or name, or show an interactive picker to choose a session                                                                                                                | `claude --resume auth-refactor`                                                                    |
 | `--session-id`                         | Use a specific session ID for the conversation (must be a valid UUID)                                                                                                                                     | `claude --session-id "550e8400-e29b-41d4-a716-446655440000"`                                       |
@@ -160,4 +160,4 @@ For most use cases, `--append-system-prompt` or `--append-system-prompt-file` is
 * [Quickstart guide](/en/quickstart) - Getting started with Claude Code
 * [Common workflows](/en/common-workflows) - Advanced workflows and patterns
 * [Settings](/en/settings) - Configuration options
-* [SDK documentation](https://docs.claude.com/en/docs/agent-sdk) - Programmatic usage and integrations
+* [Agent SDK documentation](https://platform.claude.com/docs/en/agent-sdk/overview) - Programmatic usage and integrations

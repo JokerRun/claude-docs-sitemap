@@ -413,6 +413,10 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/build-with-claude/zero-data-retention</loc>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/api/overview</loc>
 <priority>1</priority>
 </url>

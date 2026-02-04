@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-01-29T04:09:45.389890Z
-sha256: 7da9cc5e2bbd94d28bbedfd23a8858123d1febb2484d242d07b7596df998101d
+fetched_at: 2026-02-04T04:12:50.357302Z
+sha256: 6cae341c14c021c3bfaa95b124e774f71595849de7995e6fa8a2898d691eb08a
 ---
 
 > ## Documentation Index
@@ -31,7 +31,7 @@ This example binds `Ctrl+E` to open an external editor in the chat context, and 
 
 ```json  theme={null}
 {
-  "$schema": "https://platform.claude.com/docs/schemas/claude-code/keybindings.json",
+  "$schema": "https://www.schemastore.org/claude-code-keybindings.json",
   "$docs": "https://code.claude.com/docs/en/keybindings",
   "bindings": [
     {

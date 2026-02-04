@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-01-31T04:07:43.551719Z
-sha256: c681e2282329bfb664bcb874a0ae101d31edf62503d9d812163000c96ef0ce83
+fetched_at: 2026-02-04T04:12:50.357302Z
+sha256: 919c969892e5fc884e3d6c9be08f5a0415e901cf90aa557e8f787479f859e328
 ---
 
 > ## Documentation Index
@@ -516,7 +516,7 @@ Use @ to quickly include files or directories without waiting for Claude to read
 
 ## Use extended thinking (thinking mode)
 
-[Extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) is enabled by default, reserving a portion of the output token budget (up to 31,999 tokens) for Claude to reason through complex problems step-by-step. This reasoning is visible in verbose mode, which you can toggle on with `Ctrl+O`.
+[Extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) is enabled by default, reserving a portion of the output token budget (up to 31,999 tokens) for Claude to reason through complex problems step-by-step. This reasoning is visible in verbose mode, which you can toggle on with `Ctrl+O`.
 
 Extended thinking is particularly valuable for complex architectural decisions, challenging bugs, multi-step implementation planning, and evaluating tradeoffs between different approaches. It provides more space for exploring multiple solutions, analyzing edge cases, and self-correcting mistakes.
 

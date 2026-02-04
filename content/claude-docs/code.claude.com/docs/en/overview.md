@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-01-29T04:09:45.389890Z
-sha256: bca0bf1bab9528e5c7a3b5b71ce42e0aa8047529c751e36c3cabe51d9f9d6ff2
+fetched_at: 2026-02-04T04:12:50.357302Z
+sha256: 57aee444f26a01c4093ac6ee0a637e996a16a3ededc04b0d9a1808daa3ef27d0
 ---
 
 > ## Documentation Index
@@ -17,6 +17,7 @@ sha256: bca0bf1bab9528e5c7a3b5b71ce42e0aa8047529c751e36c3cabe51d9f9d6ff2
 
 Prerequisites:
 
+* Meet the [system requirements](/en/setup#system-requirements)
 * A [Claude subscription](https://claude.com/pricing) (Pro, Max, Teams, or Enterprise) or [Claude Console](https://console.anthropic.com/) account
 
 **Install Claude Code:**
@@ -27,19 +28,19 @@ To install Claude Code, use one of the following methods:
   <Tab title="Native Install (Recommended)">
     **macOS, Linux, WSL:**
 
-    ```bash  theme={null}
+    ```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
     curl -fsSL https://claude.ai/install.sh | bash
     ```
 
     **Windows PowerShell:**
 
-    ```powershell  theme={null}
+    ```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
     irm https://claude.ai/install.ps1 | iex
     ```
 
     **Windows CMD:**
 
-    ```batch  theme={null}
+    ```batch theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
     curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
     ```
 
@@ -49,7 +50,7 @@ To install Claude Code, use one of the following methods:
   </Tab>
 
   <Tab title="Homebrew">
-    ```sh  theme={null}
+    ```sh theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
     brew install --cask claude-code
     ```
 
@@ -59,7 +60,7 @@ To install Claude Code, use one of the following methods:
   </Tab>
 
   <Tab title="WinGet">
-    ```powershell  theme={null}
+    ```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
     winget install Anthropic.ClaudeCode
     ```
 
@@ -137,7 +138,7 @@ Claude Code works across your development environment: in your terminal, in your
     Learn more about Claude Code on claude.com
   </Card>
 
-  <Card title="Build with the Agent SDK" icon="code-branch" href="https://docs.claude.com/en/docs/agent-sdk/overview">
+  <Card title="Build with the Agent SDK" icon="code-branch" href="https://platform.claude.com/docs/en/agent-sdk/overview">
     Create custom AI agents with the Claude Agent SDK
   </Card>
 

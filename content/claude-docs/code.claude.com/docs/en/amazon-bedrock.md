@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: 35d135909a864653a39f1fa5b2f606453332ac12ea49c5cafdf99c754cc9f7a2
+fetched_at: 2026-02-04T04:12:50.357302Z
+sha256: d70c38254f7038316476a23a40a1943282e99b3b4597351da49dee95eeef5e96
 ---
 
 > ## Documentation Index
@@ -154,7 +154,7 @@ export ANTHROPIC_MODEL='arn:aws:bedrock:us-east-2:your-account-id:application-in
 export DISABLE_PROMPT_CACHING=1
 ```
 
-<Note>[Prompt caching](https://docs.claude.com/en/docs/build-with-claude/prompt-caching) may not be available in all regions.</Note>
+<Note>[Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) may not be available in all regions.</Note>
 
 ### 5. Output token configuration
 

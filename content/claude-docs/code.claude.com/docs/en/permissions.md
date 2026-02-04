@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-02-03T04:18:49.576480Z
-sha256: 8198a1e0edbcd4b857de45fe52e380bf1e9ad31dd9dda27100f09608bd60b5c3
+fetched_at: 2026-02-04T04:12:50.357302Z
+sha256: b6e586ca3a3768705dd2c7d692fb99b22068ca1448ed01988975b97963d8c6b0
 ---
 
 > ## Documentation Index
@@ -180,7 +180,7 @@ Use `Task(AgentName)` rules to control which [subagents](/en/sub-agents) Claude 
 
 * `Task(Explore)` matches the Explore subagent
 * `Task(Plan)` matches the Plan subagent
-* `Task(Verify)` matches the Verify subagent
+* `Task(my-custom-agent)` matches a custom subagent named `my-custom-agent`
 
 Add these rules to the `deny` array in your settings or use the `--disallowedTools` CLI flag to disable specific agents. To disable the Explore agent:
 

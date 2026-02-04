@@ -1,7 +1,7 @@
 ---
 - source: code
   loc: https://code.claude.com/docs/en/amazon-bedrock
-  lastmod: '2026-01-28T13:17:42.801Z'
+  lastmod: '2026-02-04T00:24:45.138Z'
 - source: code
   loc: https://code.claude.com/docs/en/analytics
   lastmod: '2026-02-03T03:00:22.468Z'
@@ -19,13 +19,13 @@
   lastmod: '2026-01-28T13:17:42.805Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-code-on-the-web
-  lastmod: '2026-01-28T13:17:42.804Z'
+  lastmod: '2026-02-04T00:24:45.139Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
-  lastmod: '2026-02-03T03:00:22.555Z'
+  lastmod: '2026-02-04T00:24:45.140Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
-  lastmod: '2026-01-31T02:48:28.860Z'
+  lastmod: '2026-02-04T00:24:45.144Z'
 - source: code
   loc: https://code.claude.com/docs/en/costs
   lastmod: '2026-01-28T13:17:42.833Z'
@@ -46,13 +46,13 @@
   lastmod: '2026-01-31T02:37:55.326Z'
 - source: code
   loc: https://code.claude.com/docs/en/github-actions
-  lastmod: '2026-01-28T13:17:42.829Z'
+  lastmod: '2026-02-04T00:24:45.141Z'
 - source: code
   loc: https://code.claude.com/docs/en/gitlab-ci-cd
-  lastmod: '2026-01-28T13:17:42.830Z'
+  lastmod: '2026-02-04T00:24:45.142Z'
 - source: code
   loc: https://code.claude.com/docs/en/google-vertex-ai
-  lastmod: '2026-01-28T13:17:42.848Z'
+  lastmod: '2026-02-04T00:24:45.145Z'
 - source: code
   loc: https://code.claude.com/docs/en/headless
   lastmod: '2026-01-30T18:03:04.291Z'
@@ -73,7 +73,7 @@
   lastmod: '2026-01-28T13:17:42.854Z'
 - source: code
   loc: https://code.claude.com/docs/en/keybindings
-  lastmod: '2026-01-28T13:17:42.851Z'
+  lastmod: '2026-02-03T15:22:08.678Z'
 - source: code
   loc: https://code.claude.com/docs/en/legal-and-compliance
   lastmod: '2026-01-28T13:17:42.855Z'
@@ -94,7 +94,7 @@
   lastmod: '2026-01-28T13:17:42.873Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
-  lastmod: '2026-01-28T13:17:42.879Z'
+  lastmod: '2026-02-03T06:43:52.750Z'
 - source: code
   loc: https://code.claude.com/docs/en/network-config
   lastmod: '2026-01-28T13:17:42.877Z'
@@ -103,10 +103,10 @@
   lastmod: '2026-01-28T13:17:42.880Z'
 - source: code
   loc: https://code.claude.com/docs/en/overview
-  lastmod: '2026-01-28T13:17:42.879Z'
+  lastmod: '2026-02-04T00:24:45.193Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
-  lastmod: '2026-02-03T03:00:25.903Z'
+  lastmod: '2026-02-04T00:23:38.001Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-marketplaces
   lastmod: '2026-01-28T13:17:42.878Z'
@@ -127,16 +127,16 @@
   lastmod: '2026-02-03T03:00:25.930Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-02-03T03:00:25.950Z'
+  lastmod: '2026-02-04T00:24:45.203Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
-  lastmod: '2026-02-03T03:00:25.941Z'
+  lastmod: '2026-02-03T20:20:13.257Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
   lastmod: '2026-02-03T03:00:25.943Z'
 - source: code
   loc: https://code.claude.com/docs/en/slack
-  lastmod: '2026-01-28T13:17:42.904Z'
+  lastmod: '2026-02-03T23:01:39.928Z'
 - source: code
   loc: https://code.claude.com/docs/en/statusline
   lastmod: '2026-01-28T13:17:42.903Z'
@@ -1519,6 +1519,9 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/workspaces
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/zero-data-retention
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/get-started
