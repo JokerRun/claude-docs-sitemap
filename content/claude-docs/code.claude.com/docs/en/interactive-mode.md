@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-02-03T04:18:49.576480Z
-sha256: 96a768fba4795b9d76e32cb160808c5577cac4aea8050d130a0dd76bb4db5846
+fetched_at: 2026-02-05T04:17:54.782179Z
+sha256: 918a711240b6a38e5acc8a60dc2f307bfb6fe6e50e4a20eac4911b7f9e488e07
 ---
 
 > ## Documentation Index
@@ -102,6 +102,7 @@ To create your own commands you can invoke with `/`, see [skills](/en/skills).
 | `/config`                 | Open the Settings interface (Config tab)                                                                                    |
 | `/context`                | Visualize current context usage as a colored grid                                                                           |
 | `/cost`                   | Show token usage statistics. See [cost tracking guide](/en/costs#using-the-cost-command) for subscription-specific details. |
+| `/debug [description]`    | Troubleshoot the current session by reading the session debug log. Optionally describe the issue                            |
 | `/doctor`                 | Checks the health of your Claude Code installation                                                                          |
 | `/exit`                   | Exit the REPL                                                                                                               |
 | `/export [filename]`      | Export the current conversation to a file or clipboard                                                                      |
@@ -109,7 +110,7 @@ To create your own commands you can invoke with `/`, see [skills](/en/skills).
 | `/init`                   | Initialize project with `CLAUDE.md` guide                                                                                   |
 | `/mcp`                    | Manage MCP server connections and OAuth authentication                                                                      |
 | `/memory`                 | Edit `CLAUDE.md` memory files                                                                                               |
-| `/model`                  | Select or change the AI model                                                                                               |
+| `/model`                  | Select or change the AI model. The change takes effect immediately without waiting for the current response to finish       |
 | `/permissions`            | View or update [permissions](/en/permissions#manage-permissions)                                                            |
 | `/plan`                   | Enter plan mode directly from the prompt                                                                                    |
 | `/rename <name>`          | Rename the current session for easier identification                                                                        |
