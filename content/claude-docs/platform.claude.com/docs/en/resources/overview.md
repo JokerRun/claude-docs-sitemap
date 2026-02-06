@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/overview
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 4ea082805b435e3fcbaaf93c9c953f66cab60b1d4579cb6dd7acb609a72ac88f
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: e6b21583a5c35fc30ea8f799984208ed721f91b740b0d20a67d7c9e6b043e22c
 ---
 
 <h2}>
@@ -10,19 +10,23 @@ sha256: 4ea082805b435e3fcbaaf93c9c953f66cab60b1d4579cb6dd7acb609a72ac88f
   </h2>
   
 
-    <Card title="Claude Opus 4.5 System Card" icon="file" href="http://www.anthropic.com/claude-opus-4-5-system-card">
+    <Card title="Claude Opus 4.6 System Card" icon="file" href="https://www.anthropic.com/claude-opus-4-6-system-card">
+      Detailed documentation of Claude Opus 4.6.
+    </Card>
+
+    <Card title="Claude Opus 4.5 System Card" icon="file" href="https://www.anthropic.com/claude-opus-4-5-system-card">
       Detailed documentation of Claude Opus 4.5.
     </Card>
 
-    <Card title="Claude Haiku 4.5 System Card" icon="file" href="http://www.anthropic.com/claude-haiku-4-5-system-card">
+    <Card title="Claude Haiku 4.5 System Card" icon="file" href="https://www.anthropic.com/claude-haiku-4-5-system-card">
       Detailed documentation of Claude Haiku 4.5.
     </Card>
 
-    <Card title="Claude Sonnet 4.5 System Card" icon="file" href="http://www.anthropic.com/claude-sonnet-4-5-system-card">
+    <Card title="Claude Sonnet 4.5 System Card" icon="file" href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
       Detailed documentation of Claude Sonnet 4.5.
     </Card>
 
-    <Card title="Claude Opus 4.1 System Card" icon="file" href="http://www.anthropic.com/claude-opus-4-1-system-card">
+    <Card title="Claude Opus 4.1 System Card" icon="file" href="https://www.anthropic.com/claude-opus-4-1-system-card">
       Detailed documentation of Claude Opus 4.1.
     </Card>
 

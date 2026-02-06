@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 4592aa5a3f33e9983923e929932b45fc00806c5d8f595ff78963818573070d84
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 34f204230e4c60000de32d87c8637027fe47e824f28f4a64733e8737f2c5eba0
 ---
 
 # How to implement tool use
@@ -11,7 +11,7 @@ sha256: 4592aa5a3f33e9983923e929932b45fc00806c5d8f595ff78963818573070d84
 
 ## Choosing a model
 
-We recommend using the latest Claude Sonnet (4.5) or Claude Opus (4.5) model for complex tools and ambiguous queries; they handle multiple tools better and seek clarification when needed.
+We recommend using the latest Claude Opus (4.6) model for complex tools and ambiguous queries; it handles multiple tools better and seeks clarification when needed.
 
 Use Claude Haiku models for straightforward tools, but note they may infer missing parameters.
 
@@ -136,7 +136,7 @@ Tool use examples is a beta feature. Include the appropriate [beta header](/docs
 | Provider | Beta header | Supported models |
 |----------|-------------|------------------|
 | Claude API,<br/>Microsoft Foundry | `advanced-tool-use-2025-11-20` | All models |
-| Vertex AI,<br/>Amazon Bedrock | `tool-examples-2025-10-29` | Claude Opus 4.5 only |
+| Vertex AI,<br/>Amazon Bedrock | `tool-examples-2025-10-29` | Claude Opus 4.6, Claude Opus 4.5 |
 </Info>
 
 ### Basic usage
@@ -150,7 +150,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=1024,
     betas=["advanced-tool-use-2025-11-20"],
     tools=[
@@ -199,7 +199,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-sonnet-4-5-20250929",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   betas: ["advanced-tool-use-2025-11-20"],
   tools: [
@@ -316,7 +316,7 @@ def calculate_sum(a: int, b: int) -> str:
 
 # Use the tool runner
 runner = client.beta.messages.tool_runner(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=[get_weather, calculate_sum],
     messages=[
@@ -384,7 +384,7 @@ const getWeatherTool = betaZodTool({
 });
 
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   max_tokens: 1024,
   tools: [getWeatherTool],
   messages: [{ role: 'user', content: "What's the weather like in Paris?" }]
@@ -424,7 +424,7 @@ const calculateSumTool = betaTool({
 });
 
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   max_tokens: 1024,
   tools: [calculateSumTool],
   messages: [{ role: 'user', content: "What's 15 + 27?" }]
@@ -480,7 +480,7 @@ end
 
 # Use the tool runner
 runner = client.beta.messages.tool_runner(
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [GetWeather.new, CalculateSum.new],
   messages: [
@@ -517,7 +517,7 @@ Use `runner.until_done()` to get the final message.
 
 ```python
 runner = client.beta.messages.tool_runner(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=[get_weather, calculate_sum],
     messages=[
@@ -535,7 +535,7 @@ Simply `await` the runner to get the final message.
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   max_tokens: 1024,
   tools: [getWeatherTool],
   messages: [{ role: 'user', content: "What's the weather like in Paris?" }]
@@ -552,7 +552,7 @@ Use `runner.run_until_finished` to get all messages.
 
 ```ruby
 runner = client.beta.messages.tool_runner(
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [GetWeather.new, CalculateSum.new],
   messages: [
@@ -578,7 +578,7 @@ Use `generate_tool_call_response()` to optionally inspect the tool result (the r
 
 ```python
 runner = client.beta.messages.tool_runner(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=[get_weather],
     messages=[{"role": "user", "content": "What's the weather in San Francisco?"}]
@@ -608,7 +608,7 @@ Use `generateToolResponse()` to optionally inspect the tool result (the runner a
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   max_tokens: 1024,
   tools: [getWeatherTool],
   messages: [{ role: 'user', content: "What's the weather in San Francisco?" }]
@@ -641,7 +641,7 @@ Use `next_message` for step-by-step control. Use `feed_messages` to inject messa
 
 ```ruby
 runner = client.beta.messages.tool_runner(
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [GetWeather.new],
   messages: [{role: "user", content: "What's the weather in San Francisco?"}]
@@ -692,7 +692,7 @@ Use the tool response method to intercept tool results and check for errors befo
 import json
 
 runner = client.beta.messages.tool_runner(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=[my_tool],
     messages=[{"role": "user", "content": "Run the tool"}]
@@ -720,7 +720,7 @@ for message in runner:
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   max_tokens: 1024,
   tools: [myTool],
   messages: [{ role: 'user', content: 'Run the tool' }]
@@ -752,7 +752,7 @@ for await (const message of runner) {
 
 ```ruby
 runner = client.beta.messages.tool_runner(
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [MyTool.new],
   messages: [{role: "user", content: "Run the tool"}]
@@ -794,7 +794,7 @@ Use the tool response method to get the tool result, modify it, then add your mo
 
 ```python
 runner = client.beta.messages.tool_runner(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=[search_documents],
     messages=[{"role": "user", "content": "Search for information about the climate of San Francisco"}]
@@ -821,7 +821,7 @@ for message in runner:
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   max_tokens: 1024,
   tools: [searchDocuments],
   messages: [{ role: 'user', content: 'Search for information about the climate of San Francisco' }]
@@ -852,7 +852,7 @@ for await (const message of runner) {
 
 ```ruby
 runner = client.beta.messages.tool_runner(
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [SearchDocuments.new],
   messages: [{role: "user", content: "Search for information about the climate of San Francisco"}]
@@ -898,7 +898,7 @@ Set `stream=True` and use `get_final_message()` to get the accumulated message.
 
 ```python
 runner = client.beta.messages.tool_runner(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=[calculate_sum],
     messages=[{"role": "user", "content": "What is 15 + 27?"}],
@@ -921,7 +921,7 @@ Set `stream: true` and use `finalMessage()` to get the accumulated message.
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 1000,
   messages: [{ role: 'user', content: 'What is the weather in San Francisco?' }],
   tools: [getWeatherTool],
@@ -946,7 +946,7 @@ Use `each_streaming` to iterate over streaming events.
 
 ```ruby
 runner = client.beta.messages.tool_runner(
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [CalculateSum.new],
   messages: [{role: "user", content: "What is 15 + 27?"}]
@@ -1097,7 +1097,7 @@ tools = [
 
 # Initial request
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=tools,
     messages=[
@@ -1151,7 +1151,7 @@ messages = [
 
 # Get final response
 final_response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=tools,
     messages=messages
@@ -1199,7 +1199,7 @@ const tools = [
 
 // Initial request
 const response = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: tools,
   messages: [
@@ -1249,7 +1249,7 @@ const messages = [
 
 // Get final response
 const finalResponse = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: tools,
   messages: messages
@@ -1356,7 +1356,7 @@ messages = [
 # Make initial request
 print("Requesting parallel tool calls...")
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=messages,
     tools=tools
@@ -1402,7 +1402,7 @@ messages.extend([
 # Get final response
 print("\nGetting final response...")
 final_response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=messages,
     tools=tools
@@ -1463,7 +1463,7 @@ async function testParallelTools() {
   // Make initial request
   console.log("Requesting parallel tool calls...");
   const response = await anthropic.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     max_tokens: 1024,
     messages: [{
       role: "user",
@@ -1508,7 +1508,7 @@ async function testParallelTools() {
   // Get final response with correct formatting
   console.log("\nGetting final response...");
   const finalResponse = await anthropic.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "What's the weather in SF and NYC, and what time is it there?" },
@@ -1580,7 +1580,7 @@ You can also encourage parallel tool use within specific user messages:
 <Warning>
 **Parallel tool use with Claude Sonnet 3.7**
 
-Claude Sonnet 3.7 may be less likely to make make parallel tool calls in a response, even when you have not set `disable_parallel_tool_use`. We recommend [upgrading to Claude 4 models](/docs/en/about-claude/models/migrating-to-claude-4), which have built-in token-efficient tool use and improved parallel tool calling.
+Claude Sonnet 3.7 may be less likely to make make parallel tool calls in a response, even when you have not set `disable_parallel_tool_use`. We recommend [upgrading to Claude 4 models](/docs/en/about-claude/models/migration-guide), which have built-in token-efficient tool use and improved parallel tool calling.
 
 If you're still using Claude Sonnet 3.7, you can enable the `token-efficient-tools-2025-02-19` [beta header](/docs/en/api/beta-headers), which helps encourage Claude to use parallel tools. You can also introduce a "batch tool" that can act as a meta-tool to wrap invocations to other tools simultaneously.
 
@@ -1609,7 +1609,7 @@ The response will have a `stop_reason` of `tool_use` and one or more `tool_use` 
 ```json JSON
 {
   "id": "msg_01Aq9w938a90dw8q",
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "stop_reason": "tool_use",
   "role": "assistant",
   "content": [
@@ -1776,7 +1776,7 @@ if response.stop_reason == "max_tokens":
     if last_block.type == "tool_use":
         # Send the request with higher max_tokens
         response = client.messages.create(
-            model="claude-sonnet-4-5",
+            model="claude-opus-4-6",
             max_tokens=4096,  # Increased limit
             messages=messages,
             tools=tools
@@ -1791,7 +1791,7 @@ if (response.stop_reason === "max_tokens") {
   if (lastBlock.type === "tool_use") {
     // Send the request with higher max_tokens
     response = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 4096, // Increased limit
       messages: messages,
       tools: tools
@@ -2043,8 +2043,8 @@ print(f"Average tools per message: {avg_tools_per_message}")
 
 **4. Model-specific behavior**
 
-- Claude Opus 4.5, Opus 4.1, and Sonnet 4: Excel at parallel tool use with minimal prompting
-- Claude Sonnet 3.7: May need stronger prompting or the `token-efficient-tools-2025-02-19` [beta header](/docs/en/api/beta-headers). Consider [upgrading to Claude 4](/docs/en/about-claude/models/migrating-to-claude-4).
+- Claude Opus 4.6, Sonnet 4.5, Opus 4.5, Opus 4.1, and Sonnet 4: Excel at parallel tool use with minimal prompting
+- Claude Sonnet 3.7: May need stronger prompting or the `token-efficient-tools-2025-02-19` [beta header](/docs/en/api/beta-headers). Consider [upgrading to Claude 4](/docs/en/about-claude/models/migration-guide).
 - Claude Haiku: Less likely to use parallel tools without explicit prompting
 
 </section>

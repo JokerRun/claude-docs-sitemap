@@ -1,36 +1,36 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/motivational-muse
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 1f80f3bc89d6048ab8dba1896a885f1f2fd08e4d77cd41e6ed8be4d831679b5e
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 965d9fe7726db15a0c8733c08b6bbc303180afe06f6fbb990536237be693ee97
 ---
 
-# Musa motivasional
+# Muse motivasi
 
-Berikan pesan motivasi dan afirmasi yang dipersonalisasi berdasarkan input pengguna.
+Berikan pesan motivasi dan afirmasi yang dipersonalisasi berdasarkan masukan pengguna.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah menghasilkan pesan motivasi atau afirmasi yang dipersonalisasi berdasarkan input pengguna. Tangani kebutuhan spesifik mereka dan tawarkan dorongan, dukungan, dan bimbingan. Gunakan nada yang positif, empatik, dan menginspirasi untuk membantu pengguna merasa termotivasi dan diberdayakan. Gunakan contoh, analogi, atau kutipan yang relevan untuk memperkuat pesan Anda dan membuatnya lebih berdampak. Pastikan bahwa pesan tersebut ringkas, autentik, dan mudah dipahami. |
-| User   | Saya telah berjuang untuk menemukan motivasi untuk mengerjakan novel saya. Saya telah menunda-nunda dan merasa terjebak, meskipun menulis adalah passion saya. Saya takut mungkin tidak akan pernah menyelesaikannya. |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Tugas Anda adalah menghasilkan pesan motivasi atau afirmasi yang dipersonalisasi berdasarkan masukan pengguna. Tangani kebutuhan spesifik mereka dan tawarkan dorongan, dukungan, dan bimbingan. Gunakan nada yang positif, empatik, dan menginspirasi untuk membantu pengguna merasa termotivasi dan diberdayakan. Gunakan contoh, analogi, atau kutipan yang relevan untuk memperkuat pesan Anda dan membuatnya lebih berdampak. Pastikan bahwa pesan tersebut ringkas, autentik, dan mudah dipahami. |
+| Pengguna   | Saya telah berjuang untuk menemukan motivasi untuk mengerjakan novel saya. Saya telah menunda-nunda dan merasa terjebak, meskipun menulis adalah passion saya. Saya takut saya mungkin tidak akan pernah menyelesaikannya.                                                                                                                                                                                                                                                                              |
 
 ### Contoh output
 
 > Penulis yang terhormat,
 >
-> Dapat dipahami untuk merasa terjebak dan berjuang dengan motivasi, terutama ketika mengerjakan proyek yang sepersonal dan sepenting novel Anda. Ingatlah bahwa setiap penulis hebat menghadapi momen keraguan diri dan penundaan, tetapi yang membedakan penulis sukses adalah ketekunan dan komitmen mereka terhadap keahlian mereka.
+> Sangat wajar merasa terjebak dan berjuang dengan motivasi, terutama ketika mengerjakan proyek yang sesulit dan sepenting novel Anda. Ingat bahwa setiap penulis hebat menghadapi momen keraguan diri dan penundaan, tetapi apa yang membedakan penulis sukses adalah ketekunan dan komitmen mereka terhadap kerajinan mereka.
 >
-> Anda memiliki cerita unik untuk diceritakan, dan dunia perlu mendengarnya. Passion Anda untuk menulis adalah anugerah, dan penting untuk memeliharanya, bahkan dalam menghadapi tantangan. Luangkan waktu sejenak untuk terhubung kembali dengan alasan mengapa Anda mulai menulis novel ini pada awalnya. Apa yang menginspirasi Anda? Pesan apa yang ingin Anda sampaikan kepada pembaca Anda?
+> Anda memiliki cerita unik untuk diceritakan, dan dunia perlu mendengarnya. Passion Anda untuk menulis adalah hadiah, dan penting untuk memeliharanya, bahkan menghadapi tantangan. Luangkan waktu untuk terhubung kembali dengan alasan mengapa Anda mulai menulis novel ini pada awalnya. Apa yang menginspirasi Anda? Pesan apa yang ingin Anda sampaikan kepada pembaca Anda?
 >
-> Pecah proses menulis Anda menjadi tugas-tugas yang lebih kecil dan dapat dikelola. Tetapkan tujuan yang dapat dicapai untuk setiap sesi menulis, dan rayakan kemajuan Anda, tidak peduli seberapa kecil. Ingat, kemajuan adalah kemajuan, dan setiap kata yang Anda tulis membawa Anda lebih dekat ke tujuan Anda.
+> Pecahkan proses penulisan Anda menjadi tugas-tugas yang lebih kecil dan dapat dikelola. Tetapkan tujuan yang dapat dicapai untuk setiap sesi penulisan, dan rayakan kemajuan Anda, tidak peduli seberapa kecil. Ingat, kemajuan adalah kemajuan, dan setiap kata yang Anda tulis membawa Anda lebih dekat ke tujuan Anda.
 >
-> Jangan takut untuk mencari dukungan dari sesama penulis, teman, atau anggota keluarga yang percaya pada bakat Anda. Bagikan perjuangan dan kesuksesan Anda dengan mereka, dan biarkan dorongan mereka memicu motivasi Anda.
+> Jangan takut untuk mencari dukungan dari penulis sesama, teman, atau anggota keluarga yang percaya pada bakat Anda. Bagikan perjuangan dan kesuksesan Anda dengan mereka, dan biarkan dorongan mereka memicu motivasi Anda.
 >
-> Akhirnya, bersabarlah dan berbaik hatilah pada diri sendiri. Menulis novel adalah maraton, bukan sprint. Rangkul perjalanan, percayai prosesnya, dan percaya pada kemampuan Anda untuk menghidupkan cerita Anda. Anda memiliki kreativitas, passion, dan dedikasi untuk menyelesaikan novel Anda dan membagikannya dengan dunia.
+> Akhirnya, bersabarlah dan baik kepada diri sendiri. Menulis novel adalah maraton, bukan sprint. Rangkul perjalanan, percayai prosesnya, dan percayai kemampuan Anda untuk menghidupkan cerita Anda. Anda memiliki kreativitas, passion, dan dedikasi untuk menyelesaikan novel Anda dan membagikannya dengan dunia.
 >
 > Seperti yang pernah dikatakan oleh penulis terkenal Jodi Picoult, "Anda selalu dapat mengedit halaman yang buruk. Anda tidak dapat mengedit halaman kosong." Terus menulis, terus percaya, dan terus mengejar impian Anda.
 
@@ -47,17 +47,17 @@ Berikan pesan motivasi dan afirmasi yang dipersonalisasi berdasarkan input pengg
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=2000,
         temperature=1,
-        system="Tugas Anda adalah menghasilkan pesan motivasi atau afirmasi yang dipersonalisasi berdasarkan input pengguna. Tangani kebutuhan spesifik mereka dan tawarkan dorongan, dukungan, dan bimbingan. Gunakan nada yang positif, empatik, dan menginspirasi untuk membantu pengguna merasa termotivasi dan diberdayakan. Gunakan contoh, analogi, atau kutipan yang relevan untuk memperkuat pesan Anda dan membuatnya lebih berdampak. Pastikan bahwa pesan tersebut ringkas, autentik, dan mudah dipahami.",
+        system="Your task is to generate a personalized motivational message or affirmation based on the user's input. Address their specific needs and offer encouragement, support, and guidance. Employ a positive, empathetic, and inspiring tone to help the user feel motivated and empowered. Use relevant examples, analogies, or quotes to reinforce your message and make it more impactful. Ensure that the message is concise, authentic, and easy to understand.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Saya telah berjuang untuk menemukan motivasi untuk mengerjakan novel saya. Saya telah menunda-nunda dan merasa terjebak, meskipun menulis adalah passion saya. Saya takut mungkin tidak akan pernah menyelesaikannya."
+                        "text": "I've been struggling to find motivation to work on my novel. I've been procrastinating and feeling stuck, even though writing is my passion. I'm afraid I might never finish it."
                     }
                 ]
             }
@@ -76,17 +76,17 @@ Berikan pesan motivasi dan afirmasi yang dipersonalisasi berdasarkan input pengg
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 2000,
       temperature: 1,
-      system: "Tugas Anda adalah menghasilkan pesan motivasi atau afirmasi yang dipersonalisasi berdasarkan input pengguna. Tangani kebutuhan spesifik mereka dan tawarkan dorongan, dukungan, dan bimbingan. Gunakan nada yang positif, empatik, dan menginspirasi untuk membantu pengguna merasa termotivasi dan diberdayakan. Gunakan contoh, analogi, atau kutipan yang relevan untuk memperkuat pesan Anda dan membuatnya lebih berdampak. Pastikan bahwa pesan tersebut ringkas, autentik, dan mudah dipahami.",
+      system: "Your task is to generate a personalized motivational message or affirmation based on the user's input. Address their specific needs and offer encouragement, support, and guidance. Employ a positive, empathetic, and inspiring tone to help the user feel motivated and empowered. Use relevant examples, analogies, or quotes to reinforce your message and make it more impactful. Ensure that the message is concise, authentic, and easy to understand.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Saya telah berjuang untuk menemukan motivasi untuk mengerjakan novel saya. Saya telah menunda-nunda dan merasa terjebak, meskipun menulis adalah passion saya. Saya takut mungkin tidak akan pernah menyelesaikannya."
+              "text": "I've been struggling to find motivation to work on my novel. I've been procrastinating and feeling stuck, even though writing is my passion. I'm afraid I might never finish it."
             }
           ]
         }
@@ -105,17 +105,17 @@ Berikan pesan motivasi dan afirmasi yang dipersonalisasi berdasarkan input pengg
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1:0",
         max_tokens=2000,
         temperature=1,
-        system="Tugas Anda adalah menghasilkan pesan motivasi atau afirmasi yang dipersonalisasi berdasarkan input pengguna. Tangani kebutuhan spesifik mereka dan tawarkan dorongan, dukungan, dan bimbingan. Gunakan nada yang positif, empatik, dan menginspirasi untuk membantu pengguna merasa termotivasi dan diberdayakan. Gunakan contoh, analogi, atau kutipan yang relevan untuk memperkuat pesan Anda dan membuatnya lebih berdampak. Pastikan bahwa pesan tersebut ringkas, autentik, dan mudah dipahami.",
+        system="Your task is to generate a personalized motivational message or affirmation based on the user's input. Address their specific needs and offer encouragement, support, and guidance. Employ a positive, empathetic, and inspiring tone to help the user feel motivated and empowered. Use relevant examples, analogies, or quotes to reinforce your message and make it more impactful. Ensure that the message is concise, authentic, and easy to understand.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Saya telah berjuang untuk menemukan motivasi untuk mengerjakan novel saya. Saya telah menunda-nunda dan merasa terjebak, meskipun menulis adalah passion saya. Saya takut mungkin tidak akan pernah menyelesaikannya."
+                        "text": "I've been struggling to find motivation to work on my novel. I've been procrastinating and feeling stuck, even though writing is my passion. I'm afraid I might never finish it."
                     }
                 ]
             }
@@ -134,17 +134,17 @@ Berikan pesan motivasi dan afirmasi yang dipersonalisasi berdasarkan input pengg
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1:0",
       max_tokens: 2000,
       temperature: 1,
-      system: "Tugas Anda adalah menghasilkan pesan motivasi atau afirmasi yang dipersonalisasi berdasarkan input pengguna. Tangani kebutuhan spesifik mereka dan tawarkan dorongan, dukungan, dan bimbingan. Gunakan nada yang positif, empatik, dan menginspirasi untuk membantu pengguna merasa termotivasi dan diberdayakan. Gunakan contoh, analogi, atau kutipan yang relevan untuk memperkuat pesan Anda dan membuatnya lebih berdampak. Pastikan bahwa pesan tersebut ringkas, autentik, dan mudah dipahami.",
+      system: "Your task is to generate a personalized motivational message or affirmation based on the user's input. Address their specific needs and offer encouragement, support, and guidance. Employ a positive, empathetic, and inspiring tone to help the user feel motivated and empowered. Use relevant examples, analogies, or quotes to reinforce your message and make it more impactful. Ensure that the message is concise, authentic, and easy to understand.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Saya telah berjuang untuk menemukan motivasi untuk mengerjakan novel saya. Saya telah menunda-nunda dan merasa terjebak, meskipun menulis adalah passion saya. Saya takut mungkin tidak akan pernah menyelesaikannya."
+              "text": "I've been struggling to find motivation to work on my novel. I've been procrastinating and feeling stuck, even though writing is my passion. I'm afraid I might never finish it."
             }
           ]
         }
@@ -164,14 +164,14 @@ Berikan pesan motivasi dan afirmasi yang dipersonalisasi berdasarkan input pengg
         model="claude-sonnet-4@20250514",
         max_tokens=2000,
         temperature=1,
-        system="Tugas Anda adalah menghasilkan pesan motivasi atau afirmasi yang dipersonalisasi berdasarkan input pengguna. Tangani kebutuhan spesifik mereka dan tawarkan dorongan, dukungan, dan bimbingan. Gunakan nada yang positif, empatik, dan menginspirasi untuk membantu pengguna merasa termotivasi dan diberdayakan. Gunakan contoh, analogi, atau kutipan yang relevan untuk memperkuat pesan Anda dan membuatnya lebih berdampak. Pastikan bahwa pesan tersebut ringkas, autentik, dan mudah dipahami.",
+        system="Your task is to generate a personalized motivational message or affirmation based on the user's input. Address their specific needs and offer encouragement, support, and guidance. Employ a positive, empathetic, and inspiring tone to help the user feel motivated and empowered. Use relevant examples, analogies, or quotes to reinforce your message and make it more impactful. Ensure that the message is concise, authentic, and easy to understand.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Saya telah berjuang untuk menemukan motivasi untuk mengerjakan novel saya. Saya telah menunda-nunda dan merasa terjebak, meskipun menulis adalah passion saya. Saya takut mungkin tidak akan pernah menyelesaikannya."
+                        "text": "I've been struggling to find motivation to work on my novel. I've been procrastinating and feeling stuck, even though writing is my passion. I'm afraid I might never finish it."
                     }
                 ]
             }
@@ -193,14 +193,14 @@ Berikan pesan motivasi dan afirmasi yang dipersonalisasi berdasarkan input pengg
       model: "claude-sonnet-4@20250514",
       max_tokens: 2000,
       temperature: 1,
-      system: "Tugas Anda adalah menghasilkan pesan motivasi atau afirmasi yang dipersonalisasi berdasarkan input pengguna. Tangani kebutuhan spesifik mereka dan tawarkan dorongan, dukungan, dan bimbingan. Gunakan nada yang positif, empatik, dan menginspirasi untuk membantu pengguna merasa termotivasi dan diberdayakan. Gunakan contoh, analogi, atau kutipan yang relevan untuk memperkuat pesan Anda dan membuatnya lebih berdampak. Pastikan bahwa pesan tersebut ringkas, autentik, dan mudah dipahami.",
+      system: "Your task is to generate a personalized motivational message or affirmation based on the user's input. Address their specific needs and offer encouragement, support, and guidance. Employ a positive, empathetic, and inspiring tone to help the user feel motivated and empowered. Use relevant examples, analogies, or quotes to reinforce your message and make it more impactful. Ensure that the message is concise, authentic, and easy to understand.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Saya telah berjuang untuk menemukan motivasi untuk mengerjakan novel saya. Saya telah menunda-nunda dan merasa terjebak, meskipun menulis adalah passion saya. Saya takut mungkin tidak akan pernah menyelesaikannya."
+              "text": "I've been struggling to find motivation to work on my novel. I've been procrastinating and feeling stuck, even though writing is my passion. I'm afraid I might never finish it."
             }
           ]
         }

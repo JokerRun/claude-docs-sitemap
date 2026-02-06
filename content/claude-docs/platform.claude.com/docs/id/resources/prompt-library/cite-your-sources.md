@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/cite-your-sources
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 1382c6e3e844dce11858cb523c5850f15606c127c4cc1638931b3716d7dcfd0a
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: b83a923d88b8eb36a0c2d1a91c3c79319f4c4b148d26263c134c3aa2f94f6f6c
 ---
 
 # Kutip sumber Anda
@@ -11,24 +11,24 @@ Dapatkan jawaban atas pertanyaan tentang konten dokumen dengan kutipan relevan y
 
 ---
 
-<Tip>Kami merekomendasikan menggunakan [fitur kutipan](/docs/id/build-with-claude/citations) yang terintegrasi dalam API daripada pendekatan berbasis prompt. Menggunakan fitur kutipan API akan meningkatkan kualitas kutipan, memastikan bahwa semua kutipan yang dikembalikan valid, dan berpotensi mengurangi jumlah token output yang diperlukan.</Tip>
+<Tip>Kami merekomendasikan menggunakan [fitur kutipan](/docs/id/build-with-claude/citations) yang tertanam dalam API daripada pendekatan berbasis prompt. Menggunakan fitur kutipan API akan meningkatkan kualitas kutipan, memastikan bahwa semua kutipan yang dikembalikan valid, dan berpotensi mengurangi jumlah token output yang diperlukan.</Tip>
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Anda adalah asisten peneliti ahli. Berikut adalah dokumen yang akan Anda jawab pertanyaannya: <br/> <doc> [Teks lengkap dari [Matterport SEC filing 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya] </doc> <br/><br/> Pertama, temukan kutipan dari dokumen yang paling relevan untuk menjawab pertanyaan, lalu cetak dalam urutan bernomor. Kutipan harus relatif singkat. <br/><br/> Jika tidak ada kutipan yang relevan, tulis "Tidak ada kutipan yang relevan" sebagai gantinya. <br/><br/> Kemudian, jawab pertanyaan, dimulai dengan "Jawaban:". Jangan sertakan atau referensikan konten yang dikutip secara verbatim dalam jawaban. Jangan katakan "Menurut Kutipan [1]" saat menjawab. Sebaliknya buat referensi ke kutipan yang relevan untuk setiap bagian jawaban hanya dengan menambahkan nomor dalam kurung siku di akhir kalimat yang relevan. <br/><br/> Jadi, format respons keseluruhan Anda harus terlihat seperti yang ditunjukkan antara tag <example></example>. Pastikan untuk mengikuti format dan spasi dengan tepat. <example> <br/> Kutipan: <br/> [1] "Perusahaan X melaporkan pendapatan sebesar \$12 juta pada tahun 2021." <br/> [2] "Hampir 90% pendapatan berasal dari penjualan widget, dengan penjualan gadget membentuk 10% sisanya." <br/><br/> Jawaban: <br/> Perusahaan X meraih \$12 juta. [1] Hampir 90% dari itu berasal dari penjualan widget. [2] <br/> </example> <br/><br/> Jika pertanyaan tidak dapat dijawab oleh dokumen, katakan demikian. |
-| User   | Apakah Matterport berkembang dengan baik? |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Sistem | Anda adalah asisten penelitian ahli. Berikut adalah dokumen yang akan Anda jawab pertanyaannya: <br/> <doc> [Teks lengkap dari [Pengajuan SEC Matterport 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya] </doc> <br/><br/> Pertama, temukan kutipan dari dokumen yang paling relevan untuk menjawab pertanyaan, kemudian cetak dalam urutan bernomor. Kutipan harus relatif pendek. <br/><br/> Jika tidak ada kutipan yang relevan, tulis "Tidak ada kutipan yang relevan" sebagai gantinya. <br/><br/> Kemudian, jawab pertanyaan, dimulai dengan "Jawaban:". Jangan sertakan atau referensikan konten kutipan secara harfiah dalam jawaban. Jangan katakan "Menurut Kutipan [1]" saat menjawab. Sebaliknya buat referensi ke kutipan yang relevan untuk setiap bagian jawaban semata-mata dengan menambahkan nomor berkurung mereka di akhir kalimat yang relevan. <br/><br/> Dengan demikian, format respons keseluruhan Anda harus terlihat seperti yang ditunjukkan di antara tag <example></example>. Pastikan untuk mengikuti pemformatan dan spasi dengan tepat. <example> <br/> Kutipan: <br/> [1] "Perusahaan X melaporkan pendapatan \$12 juta pada tahun 2021." <br/> [2] "Hampir 90% pendapatan berasal dari penjualan widget, dengan penjualan gadget membuat sisanya 10%." <br/><br/> Jawaban: <br/> Perusahaan X menghasilkan \$12 juta. [1] Hampir 90% darinya berasal dari penjualan widget. [2] <br/> </example> <br/><br/> Jika pertanyaan tidak dapat dijawab oleh dokumen, katakan demikian. |
+| Pengguna   | Apakah Matterport berkinerja baik?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 
 ## Contoh output
 
 Kutipan:  
- \[1\] "Kami baru-baru ini mengalami pertumbuhan yang pesat. Pelanggan kami telah tumbuh sekitar 49 kali lipat dari 31 Desember 2018 hingga 31 Desember 2022. Pendapatan kami meningkat sekitar 22% menjadi \$136,1 juta untuk tahun yang berakhir 31 Desember 2022, dari sekitar \$111,2 juta untuk tahun yang berakhir 31 Desember 2021."  
- \[2\] "Laba kotor kami menurun sebesar \$8,1 juta atau 14%, menjadi \$51,8 juta untuk tahun yang berakhir 31 Desember 2022, dari \$60,0 juta untuk tahun yang berakhir 31 Desember 2021, terutama disebabkan oleh biaya disruptif dan tambahan tertentu karena kendala rantai pasokan global pada tahun fiskal 2022."  
- \[3\] "Tingkat ekspansi dolar bersih kami sebesar 103% untuk tiga bulan yang berakhir 31 Desember 2022 menunjukkan daya lekat dan potensi pertumbuhan platform kami."
+ \[1\] "Kami baru-baru ini mengalami pertumbuhan yang cepat. Pelanggan berlangganan kami telah tumbuh sekitar 49 kali lipat dari 31 Desember 2018 hingga 31 Desember 2022. Pendapatan kami meningkat sekitar 22% menjadi \$136,1 juta untuk tahun yang berakhir pada 31 Desember 2022, dari sekitar \$111,2 juta untuk tahun yang berakhir pada 31 Desember 2021."  
+ \[2\] "Laba kotor kami menurun sebesar \$8,1 juta atau 14%, menjadi \$51,8 juta untuk tahun yang berakhir pada 31 Desember 2022, dari \$60,0 juta untuk tahun yang berakhir pada 31 Desember 2021, terutama karena biaya disruptif dan inkremental tertentu karena kendala rantai pasokan global di tahun fiskal 2022."  
+ \[3\] "Tingkat ekspansi dolar bersih kami sebesar 103% untuk tiga bulan yang berakhir pada 31 Desember 2022 menunjukkan daya tahan dan potensi pertumbuhan platform kami."
 
 Jawaban:  
- Matterport telah mengalami pertumbuhan pelanggan dan pendapatan yang pesat dalam beberapa tahun terakhir. \[1\] Namun, laba kotor mereka menurun pada tahun 2022 karena masalah rantai pasokan. \[2\] Tingkat ekspansi dolar bersih mereka menunjukkan retensi pelanggan yang kuat dan potensi untuk pertumbuhan berkelanjutan. \[3\] Secara keseluruhan, meskipun ada penurunan laba kotor, pertumbuhan pelanggan dan pendapatan Matterport, bersama dengan daya lekat platform mereka, menunjukkan bahwa perusahaan berkembang relatif baik.
+ Matterport telah mengalami pertumbuhan pelanggan berlangganan dan pendapatan yang cepat dalam beberapa tahun terakhir. \[1\] Namun, laba kotor mereka menurun pada tahun 2022 karena masalah rantai pasokan. \[2\] Tingkat ekspansi dolar bersih mereka menunjukkan retensi pelanggan berlangganan yang kuat dan potensi pertumbuhan berkelanjutan. \[3\] Secara keseluruhan, meskipun ada penurunan laba kotor, pertumbuhan pelanggan berlangganan dan pendapatan Matterport, bersama dengan daya tahan platform mereka, menunjukkan bahwa perusahaan berkinerja relatif baik.
 
 ---
 
@@ -43,14 +43,14 @@ client = anthropic.Anthropic(  # defaults to os.environ.get("ANTHROPIC_API_KEY")
     api_key="my_api_key",
 )
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=2000,
     temperature=0,
-    system='Anda adalah asisten peneliti ahli. Berikut adalah dokumen yang akan Anda jawab pertanyaannya: \n<doc> \n[Teks lengkap dari [Matterport SEC filing 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya] \n</doc> \n \nPertama, temukan kutipan dari dokumen yang paling relevan untuk menjawab pertanyaan, lalu cetak dalam urutan bernomor. Kutipan harus relatif singkat. \n \nJika tidak ada kutipan yang relevan, tulis "Tidak ada kutipan yang relevan" sebagai gantinya. \n \nKemudian, jawab pertanyaan, dimulai dengan "Jawaban:". Jangan sertakan atau referensikan konten yang dikutip secara verbatim dalam jawaban. Jangan katakan "Menurut Kutipan [1]" saat menjawab. Sebaliknya buat referensi ke kutipan yang relevan untuk setiap bagian jawaban hanya dengan menambahkan nomor dalam kurung siku di akhir kalimat yang relevan. \n \nJadi, format respons keseluruhan Anda harus terlihat seperti yang ditunjukkan antara tag <example></example>. Pastikan untuk mengikuti format dan spasi dengan tepat. \n<example> \nKutipan: \n[1] "Perusahaan X melaporkan pendapatan sebesar \$12 juta pada tahun 2021." \n[2] "Hampir 90% pendapatan berasal dari penjualan widget, dengan penjualan gadget membentuk 10% sisanya." \n \nJawaban: \nPerusahaan X meraih \$12 juta. [1] Hampir 90% dari itu berasal dari penjualan widget. [2] \n</example> \n \nJika pertanyaan tidak dapat dijawab oleh dokumen, katakan demikian.',
+    system='You are an expert research assistant. Here is a document you will answer questions about: \n<doc> \n[Full text of [Matterport SEC filing 10-K 2023](https://investors.matterport.com/node/9501/html), not pasted here for brevity] \n</doc> \n \nFirst, find the quotes from the document that are most relevant to answering the question, and then print them in numbered order. Quotes should be relatively short. \n \nIf there are no relevant quotes, write "No relevant quotes" instead. \n \nThen, answer the question, starting with "Answer:". Do not include or reference quoted content verbatim in the answer. Don\'t say "According to Quote [1]" when answering. Instead make references to quotes relevant to each section of the answer solely by adding their bracketed numbers at the end of relevant sentences. \n \nThus, the format of your overall response should look like what\'s shown between the <example></example> tags. Make sure to follow the formatting and spacing exactly. \n<example> \nQuotes: \n[1] "Company X reported revenue of \$12 million in 2021." \n[2] "Almost 90% of revenue came from widget sales, with gadget sales making up the remaining 10%." \n \nAnswer: \nCompany X earned \$12 million. [1] Almost 90% of it was from widget sales. [2] \n</example> \n \nIf the question cannot be answered by the document, say so.',
     messages=[
         {
             "role": "user",
-            "content": [{"type": "text", "text": "Apakah Matterport berkembang dengan baik?"}],
+            "content": [{"type": "text", "text": "Is Matterport doing well?"}],
         }
     ],
 )
@@ -70,17 +70,17 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 0,
-  system: "Anda adalah asisten peneliti ahli. Berikut adalah dokumen yang akan Anda jawab pertanyaannya:  \n<doc>  \n[Teks lengkap dari [Matterport SEC filing 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</doc>  \n  \nPertama, temukan kutipan dari dokumen yang paling relevan untuk menjawab pertanyaan, lalu cetak dalam urutan bernomor. Kutipan harus relatif singkat.  \n  \nJika tidak ada kutipan yang relevan, tulis \"Tidak ada kutipan yang relevan\" sebagai gantinya.  \n  \nKemudian, jawab pertanyaan, dimulai dengan \"Jawaban:\". Jangan sertakan atau referensikan konten yang dikutip secara verbatim dalam jawaban. Jangan katakan \"Menurut Kutipan [1]\" saat menjawab. Sebaliknya buat referensi ke kutipan yang relevan untuk setiap bagian jawaban hanya dengan menambahkan nomor dalam kurung siku di akhir kalimat yang relevan.  \n  \nJadi, format respons keseluruhan Anda harus terlihat seperti yang ditunjukkan antara tag <example></example>. Pastikan untuk mengikuti format dan spasi dengan tepat.  \n<example>  \nKutipan:  \n[1] \"Perusahaan X melaporkan pendapatan sebesar \$12 juta pada tahun 2021.\"  \n[2] \"Hampir 90% pendapatan berasal dari penjualan widget, dengan penjualan gadget membentuk 10% sisanya.\"  \n  \nJawaban:  \nPerusahaan X meraih \$12 juta. [1] Hampir 90% dari itu berasal dari penjualan widget. [2]  \n</example>  \n  \nJika pertanyaan tidak dapat dijawab oleh dokumen, katakan demikian.",
+  system: "You are an expert research assistant. Here is a document you will answer questions about:  \n<doc>  \n[Full text of [Matterport SEC filing 10-K 2023](https://investors.matterport.com/node/9501/html), not pasted here for brevity]  \n</doc>  \n  \nFirst, find the quotes from the document that are most relevant to answering the question, and then print them in numbered order. Quotes should be relatively short.  \n  \nIf there are no relevant quotes, write \"No relevant quotes\" instead.  \n  \nThen, answer the question, starting with \"Answer:\". Do not include or reference quoted content verbatim in the answer. Don't say \"According to Quote [1]\" when answering. Instead make references to quotes relevant to each section of the answer solely by adding their bracketed numbers at the end of relevant sentences.  \n  \nThus, the format of your overall response should look like what's shown between the <example></example> tags. Make sure to follow the formatting and spacing exactly.  \n<example>  \nQuotes:  \n[1] \"Company X reported revenue of \$12 million in 2021.\"  \n[2] \"Almost 90% of revenue came from widget sales, with gadget sales making up the remaining 10%.\"  \n  \nAnswer:  \nCompany X earned \$12 million. [1] Almost 90% of it was from widget sales. [2]  \n</example>  \n  \nIf the question cannot be answered by the document, say so.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Apakah Matterport berkembang dengan baik?"
+          "text": "Is Matterport doing well?"
         }
       ]
     }
@@ -102,17 +102,17 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1",
     max_tokens=2000,
     temperature=0,
-    system="Anda adalah asisten peneliti ahli. Berikut adalah dokumen yang akan Anda jawab pertanyaannya:  \n<doc>  \n[Teks lengkap dari [Matterport SEC filing 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</doc>  \n  \nPertama, temukan kutipan dari dokumen yang paling relevan untuk menjawab pertanyaan, lalu cetak dalam urutan bernomor. Kutipan harus relatif singkat.  \n  \nJika tidak ada kutipan yang relevan, tulis \"Tidak ada kutipan yang relevan\" sebagai gantinya.  \n  \nKemudian, jawab pertanyaan, dimulai dengan \"Jawaban:\". Jangan sertakan atau referensikan konten yang dikutip secara verbatim dalam jawaban. Jangan katakan \"Menurut Kutipan [1]\" saat menjawab. Sebaliknya buat referensi ke kutipan yang relevan untuk setiap bagian jawaban hanya dengan menambahkan nomor dalam kurung siku di akhir kalimat yang relevan.  \n  \nJadi, format respons keseluruhan Anda harus terlihat seperti yang ditunjukkan antara tag <example></example>. Pastikan untuk mengikuti format dan spasi dengan tepat.  \n<example>  \nKutipan:  \n[1] \"Perusahaan X melaporkan pendapatan sebesar \$12 juta pada tahun 2021.\"  \n[2] \"Hampir 90% pendapatan berasal dari penjualan widget, dengan penjualan gadget membentuk 10% sisanya.\"  \n  \nJawaban:  \nPerusahaan X meraih \$12 juta. [1] Hampir 90% dari itu berasal dari penjualan widget. [2]  \n</example>  \n  \nJika pertanyaan tidak dapat dijawab oleh dokumen, katakan demikian.",
+    system="You are an expert research assistant. Here is a document you will answer questions about:  \n<doc>  \n[Full text of [Matterport SEC filing 10-K 2023](https://investors.matterport.com/node/9501/html), not pasted here for brevity]  \n</doc>  \n  \nFirst, find the quotes from the document that are most relevant to answering the question, and then print them in numbered order. Quotes should be relatively short.  \n  \nIf there are no relevant quotes, write \"No relevant quotes\" instead.  \n  \nThen, answer the question, starting with \"Answer:\". Do not include or reference quoted content verbatim in the answer. Don't say \"According to Quote [1]\" when answering. Instead make references to quotes relevant to each section of the answer solely by adding their bracketed numbers at the end of relevant sentences.  \n  \nThus, the format of your overall response should look like what's shown between the <example></example> tags. Make sure to follow the formatting and spacing exactly.  \n<example>  \nQuotes:  \n[1] \"Company X reported revenue of \$12 million in 2021.\"  \n[2] \"Almost 90% of revenue came from widget sales, with gadget sales making up the remaining 10%.\"  \n  \nAnswer:  \nCompany X earned \$12 million. [1] Almost 90% of it was from widget sales. [2]  \n</example>  \n  \nIf the question cannot be answered by the document, say so.",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Apakah Matterport berkembang dengan baik?"
+                    "text": "Is Matterport doing well?"
                 }
             ]
         }
@@ -134,17 +134,17 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 2000,
   temperature: 0,
-  system: "Anda adalah asisten peneliti ahli. Berikut adalah dokumen yang akan Anda jawab pertanyaannya:  \n<doc>  \n[Teks lengkap dari [Matterport SEC filing 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</doc>  \n  \nPertama, temukan kutipan dari dokumen yang paling relevan untuk menjawab pertanyaan, lalu cetak dalam urutan bernomor. Kutipan harus relatif singkat.  \n  \nJika tidak ada kutipan yang relevan, tulis \"Tidak ada kutipan yang relevan\" sebagai gantinya.  \n  \nKemudian, jawab pertanyaan, dimulai dengan \"Jawaban:\". Jangan sertakan atau referensikan konten yang dikutip secara verbatim dalam jawaban. Jangan katakan \"Menurut Kutipan [1]\" saat menjawab. Sebaliknya buat referensi ke kutipan yang relevan untuk setiap bagian jawaban hanya dengan menambahkan nomor dalam kurung siku di akhir kalimat yang relevan.  \n  \nJadi, format respons keseluruhan Anda harus terlihat seperti yang ditunjukkan antara tag <example></example>. Pastikan untuk mengikuti format dan spasi dengan tepat.  \n<example>  \nKutipan:  \n[1] \"Perusahaan X melaporkan pendapatan sebesar \$12 juta pada tahun 2021.\"  \n[2] \"Hampir 90% pendapatan berasal dari penjualan widget, dengan penjualan gadget membentuk 10% sisanya.\"  \n  \nJawaban:  \nPerusahaan X meraih \$12 juta. [1] Hampir 90% dari itu berasal dari penjualan widget. [2]  \n</example>  \n  \nJika pertanyaan tidak dapat dijawab oleh dokumen, katakan demikian.",
+  system: "You are an expert research assistant. Here is a document you will answer questions about:  \n<doc>  \n[Full text of [Matterport SEC filing 10-K 2023](https://investors.matterport.com/node/9501/html), not pasted here for brevity]  \n</doc>  \n  \nFirst, find the quotes from the document that are most relevant to answering the question, and then print them in numbered order. Quotes should be relatively short.  \n  \nIf there are no relevant quotes, write \"No relevant quotes\" instead.  \n  \nThen, answer the question, starting with \"Answer:\". Do not include or reference quoted content verbatim in the answer. Don't say \"According to Quote [1]\" when answering. Instead make references to quotes relevant to each section of the answer solely by adding their bracketed numbers at the end of relevant sentences.  \n  \nThus, the format of your overall response should look like what's shown between the <example></example> tags. Make sure to follow the formatting and spacing exactly.  \n<example>  \nQuotes:  \n[1] \"Company X reported revenue of \$12 million in 2021.\"  \n[2] \"Almost 90% of revenue came from widget sales, with gadget sales making up the remaining 10%.\"  \n  \nAnswer:  \nCompany X earned \$12 million. [1] Almost 90% of it was from widget sales. [2]  \n</example>  \n  \nIf the question cannot be answered by the document, say so.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Apakah Matterport berkembang dengan baik?"
+          "text": "Is Matterport doing well?"
         }
       ]
     }
@@ -167,14 +167,14 @@ message = client.messages.create(
     model="claude-sonnet-4@20250514",
     max_tokens=2000,
     temperature=0,
-    system="Anda adalah asisten peneliti ahli. Berikut adalah dokumen yang akan Anda jawab pertanyaannya:  \n<doc>  \n[Teks lengkap dari [Matterport SEC filing 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</doc>  \n  \nPertama, temukan kutipan dari dokumen yang paling relevan untuk menjawab pertanyaan, lalu cetak dalam urutan bernomor. Kutipan harus relatif singkat.  \n  \nJika tidak ada kutipan yang relevan, tulis \"Tidak ada kutipan yang relevan\" sebagai gantinya.  \n  \nKemudian, jawab pertanyaan, dimulai dengan \"Jawaban:\". Jangan sertakan atau referensikan konten yang dikutip secara verbatim dalam jawaban. Jangan katakan \"Menurut Kutipan [1]\" saat menjawab. Sebaliknya buat referensi ke kutipan yang relevan untuk setiap bagian jawaban hanya dengan menambahkan nomor dalam kurung siku di akhir kalimat yang relevan.  \n  \nJadi, format respons keseluruhan Anda harus terlihat seperti yang ditunjukkan antara tag <example></example>. Pastikan untuk mengikuti format dan spasi dengan tepat.  \n<example>  \nKutipan:  \n[1] \"Perusahaan X melaporkan pendapatan sebesar \$12 juta pada tahun 2021.\"  \n[2] \"Hampir 90% pendapatan berasal dari penjualan widget, dengan penjualan gadget membentuk 10% sisanya.\"  \n  \nJawaban:  \nPerusahaan X meraih \$12 juta. [1] Hampir 90% dari itu berasal dari penjualan widget. [2]  \n</example>  \n  \nJika pertanyaan tidak dapat dijawab oleh dokumen, katakan demikian.",
+    system="You are an expert research assistant. Here is a document you will answer questions about:  \n<doc>  \n[Full text of [Matterport SEC filing 10-K 2023](https://investors.matterport.com/node/9501/html), not pasted here for brevity]  \n</doc>  \n  \nFirst, find the quotes from the document that are most relevant to answering the question, and then print them in numbered order. Quotes should be relatively short.  \n  \nIf there are no relevant quotes, write \"No relevant quotes\" instead.  \n  \nThen, answer the question, starting with \"Answer:\". Do not include or reference quoted content verbatim in the answer. Don't say \"According to Quote [1]\" when answering. Instead make references to quotes relevant to each section of the answer solely by adding their bracketed numbers at the end of relevant sentences.  \n  \nThus, the format of your overall response should look like what's shown between the <example></example> tags. Make sure to follow the formatting and spacing exactly.  \n<example>  \nQuotes:  \n[1] \"Company X reported revenue of \$12 million in 2021.\"  \n[2] \"Almost 90% of revenue came from widget sales, with gadget sales making up the remaining 10%.\"  \n  \nAnswer:  \nCompany X earned \$12 million. [1] Almost 90% of it was from widget sales. [2]  \n</example>  \n  \nIf the question cannot be answered by the document, say so.",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Apakah Matterport berkembang dengan baik?"
+                    "text": "Is Matterport doing well?"
                 }
             ]
         }
@@ -199,14 +199,14 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 2000,
   temperature: 0,
-  system: "Anda adalah asisten peneliti ahli. Berikut adalah dokumen yang akan Anda jawab pertanyaannya:  \n<doc>  \n[Teks lengkap dari [Matterport SEC filing 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</doc>  \n  \nPertama, temukan kutipan dari dokumen yang paling relevan untuk menjawab pertanyaan, lalu cetak dalam urutan bernomor. Kutipan harus relatif singkat.  \n  \nJika tidak ada kutipan yang relevan, tulis \"Tidak ada kutipan yang relevan\" sebagai gantinya.  \n  \nKemudian, jawab pertanyaan, dimulai dengan \"Jawaban:\". Jangan sertakan atau referensikan konten yang dikutip secara verbatim dalam jawaban. Jangan katakan \"Menurut Kutipan [1]\" saat menjawab. Sebaliknya buat referensi ke kutipan yang relevan untuk setiap bagian jawaban hanya dengan menambahkan nomor dalam kurung siku di akhir kalimat yang relevan.  \n  \nJadi, format respons keseluruhan Anda harus terlihat seperti yang ditunjukkan antara tag <example></example>. Pastikan untuk mengikuti format dan spasi dengan tepat.  \n<example>  \nKutipan:  \n[1] \"Perusahaan X melaporkan pendapatan sebesar \$12 juta pada tahun 2021.\"  \n[2] \"Hampir 90% pendapatan berasal dari penjualan widget, dengan penjualan gadget membentuk 10% sisanya.\"  \n  \nJawaban:  \nPerusahaan X meraih \$12 juta. [1] Hampir 90% dari itu berasal dari penjualan widget. [2]  \n</example>  \n  \nJika pertanyaan tidak dapat dijawab oleh dokumen, katakan demikian.",
+  system: "You are an expert research assistant. Here is a document you will answer questions about:  \n<doc>  \n[Full text of [Matterport SEC filing 10-K 2023](https://investors.matterport.com/node/9501/html), not pasted here for brevity]  \n</doc>  \n  \nFirst, find the quotes from the document that are most relevant to answering the question, and then print them in numbered order. Quotes should be relatively short.  \n  \nIf there are no relevant quotes, write \"No relevant quotes\" instead.  \n  \nThen, answer the question, starting with \"Answer:\". Do not include or reference quoted content verbatim in the answer. Don't say \"According to Quote [1]\" when answering. Instead make references to quotes relevant to each section of the answer solely by adding their bracketed numbers at the end of relevant sentences.  \n  \nThus, the format of your overall response should look like what's shown between the <example></example> tags. Make sure to follow the formatting and spacing exactly.  \n<example>  \nQuotes:  \n[1] \"Company X reported revenue of \$12 million in 2021.\"  \n[2] \"Almost 90% of revenue came from widget sales, with gadget sales making up the remaining 10%.\"  \n  \nAnswer:  \nCompany X earned \$12 million. [1] Almost 90% of it was from widget sales. [2]  \n</example>  \n  \nIf the question cannot be answered by the document, say so.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Apakah Matterport berkembang dengan baik?"
+          "text": "Is Matterport doing well?"
         }
       ]
     }

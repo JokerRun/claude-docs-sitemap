@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/slash-commands
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 59f22d4c2a7d66fed5c3b21fab62e66e02e65ce7dbc3faaf0c67cd0c38c7fa6c
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 32fd4f6d11cfe68ec44a8ae2176ec9f118e6e184a2f0ff8b04e47c5e6ca20192
 ---
 
-# Perintah Slash dalam SDK
+# Slash Commands dalam SDK
 
-Pelajari cara menggunakan perintah slash untuk mengontrol sesi Claude Code melalui SDK
+Pelajari cara menggunakan slash commands untuk mengontrol sesi Claude Code melalui SDK
 
 ---
 
-Perintah slash menyediakan cara untuk mengontrol sesi Claude Code dengan perintah khusus yang dimulai dengan `/`. Perintah-perintah ini dapat dikirim melalui SDK untuk melakukan tindakan seperti menghapus riwayat percakapan, memadatkan pesan, atau mendapatkan bantuan.
+Slash commands menyediakan cara untuk mengontrol sesi Claude Code dengan perintah khusus yang dimulai dengan `/`. Perintah-perintah ini dapat dikirim melalui SDK untuk melakukan tindakan seperti menghapus riwayat percakapan, memadatkan pesan, atau mendapatkan bantuan.
 
-## Menemukan Perintah Slash yang Tersedia
+## Menemukan Slash Commands yang Tersedia
 
-Claude Agent SDK menyediakan informasi tentang perintah slash yang tersedia dalam pesan inisialisasi sistem. Akses informasi ini ketika sesi Anda dimulai:
+Claude Agent SDK menyediakan informasi tentang slash commands yang tersedia dalam pesan inisialisasi sistem. Akses informasi ini ketika sesi Anda dimulai:
 
 <CodeGroup>
 
@@ -51,9 +51,9 @@ asyncio.run(main())
 
 </CodeGroup>
 
-## Mengirim Perintah Slash
+## Mengirim Slash Commands
 
-Kirim perintah slash dengan menyertakannya dalam string prompt Anda, sama seperti teks biasa:
+Kirim slash commands dengan memasukkannya dalam string prompt, seperti teks biasa:
 
 <CodeGroup>
 
@@ -89,11 +89,11 @@ asyncio.run(main())
 
 </CodeGroup>
 
-## Perintah Slash Umum
+## Slash Commands Umum
 
-### `/compact` - Memadatkan Riwayat Percakapan
+### `/compact` - Padatkan Riwayat Percakapan
 
-Perintah `/compact` mengurangi ukuran riwayat percakapan Anda dengan merangkum pesan-pesan lama sambil mempertahankan konteks penting:
+Perintah `/compact` mengurangi ukuran riwayat percakapan Anda dengan merangkum pesan yang lebih lama sambil mempertahankan konteks penting:
 
 <CodeGroup>
 
@@ -133,7 +133,7 @@ asyncio.run(main())
 
 </CodeGroup>
 
-### `/clear` - Menghapus Percakapan
+### `/clear` - Hapus Percakapan
 
 Perintah `/clear` memulai percakapan baru dengan menghapus semua riwayat sebelumnya:
 
@@ -173,15 +173,15 @@ asyncio.run(main())
 
 </CodeGroup>
 
-## Membuat Perintah Slash Kustom
+## Membuat Slash Commands Kustom
 
-Selain menggunakan perintah slash bawaan, Anda dapat membuat perintah kustom Anda sendiri yang tersedia melalui SDK. Perintah kustom didefinisikan sebagai file markdown dalam direktori tertentu, mirip dengan cara subagen dikonfigurasi.
+Selain menggunakan slash commands bawaan, Anda dapat membuat perintah kustom Anda sendiri yang tersedia melalui SDK. Perintah kustom didefinisikan sebagai file markdown dalam direktori tertentu, mirip dengan cara subagents dikonfigurasi.
 
 ### Lokasi File
 
-Perintah slash kustom disimpan dalam direktori yang ditentukan berdasarkan cakupannya:
+Slash commands kustom disimpan dalam direktori yang ditunjuk berdasarkan cakupan mereka:
 
-- **Perintah proyek**: `.claude/commands/` - Hanya tersedia dalam proyek saat ini
+- **Perintah proyek**: `.claude/commands/` - Hanya tersedia di proyek saat ini
 - **Perintah pribadi**: `~/.claude/commands/` - Tersedia di semua proyek Anda
 
 ### Format File
@@ -210,7 +210,7 @@ Buat `.claude/commands/security-check.md`:
 ---
 allowed-tools: Read, Grep, Glob
 description: Run security vulnerability scan
-model: claude-3-5-sonnet-20241022
+model: claude-opus-4-6
 ---
 
 Analyze the codebase for security vulnerabilities including:
@@ -222,7 +222,7 @@ Analyze the codebase for security vulnerabilities including:
 
 ### Menggunakan Perintah Kustom dalam SDK
 
-Setelah didefinisikan dalam filesystem, perintah kustom secara otomatis tersedia melalui SDK:
+Setelah didefinisikan dalam sistem file, perintah kustom secara otomatis tersedia melalui SDK:
 
 <CodeGroup>
 
@@ -338,7 +338,7 @@ asyncio.run(main())
 
 #### Eksekusi Perintah Bash
 
-Perintah kustom dapat mengeksekusi perintah bash dan menyertakan outputnya:
+Perintah kustom dapat mengeksekusi perintah bash dan menyertakan output mereka:
 
 Buat `.claude/commands/git-commit.md`:
 
@@ -360,7 +360,7 @@ Create a git commit with appropriate message based on the changes.
 
 #### Referensi File
 
-Sertakan konten file menggunakan prefix `@`:
+Sertakan konten file menggunakan awalan `@`:
 
 Buat `.claude/commands/review-config.md`:
 
@@ -495,8 +495,8 @@ asyncio.run(main())
 
 ## Lihat Juga
 
-- [Perintah Slash](https://code.claude.com/docs/slash-commands) - Dokumentasi perintah slash lengkap
-- [Subagen dalam SDK](/docs/id/agent-sdk/subagents) - Konfigurasi berbasis filesystem serupa untuk subagen
-- [Referensi TypeScript SDK](https://code.claude.com/docs/typescript-sdk-reference) - Dokumentasi API lengkap
-- [Ikhtisar SDK](/docs/id/agent-sdk/overview) - Konsep SDK umum
-- [Referensi CLI](https://code.claude.com/docs/cli-reference) - Antarmuka baris perintah
+- [Slash Commands](https://code.claude.com/docs/id/slash-commands) - Dokumentasi slash command lengkap
+- [Subagents dalam SDK](/docs/id/agent-sdk/subagents) - Konfigurasi berbasis sistem file serupa untuk subagents
+- [Referensi SDK TypeScript](/docs/id/agent-sdk/typescript) - Dokumentasi API lengkap
+- [Gambaran umum SDK](/docs/id/agent-sdk/overview) - Konsep SDK umum
+- [Referensi CLI](https://code.claude.com/docs/id/cli-reference) - Antarmuka baris perintah

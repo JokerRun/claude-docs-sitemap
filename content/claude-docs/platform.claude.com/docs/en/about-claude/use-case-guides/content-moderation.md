@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: edd5f6d1d2b099d2fdc6986b76c3906307581075a6680a936882706456ba1297
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: b5fe3a1bbe916e4a3a804557a6692c9ce9ccd0125e240f2179ad96506a210311
 ---
 
 # Content moderation
@@ -109,10 +109,10 @@ When selecting a model, it’s important to consider the size of your data. If c
     * Output token cost: 1,500 MTok * \$1.25/MTok = \$1,875
     * Monthly cost: \$715 + \$1,875 = \$2,590
 
-* **Claude Sonnet 4.5 estimated cost**
-    * Input token cost: 2,860 MTok * \$3.00/MTok = \$8,580
-    * Output token cost: 1,500 MTok * \$15.00/MTok = \$22,500
-    * Monthly cost: \$8,580 + \$22,500 = \$31,080
+* **Claude Opus 4.6 estimated cost**
+    * Input token cost: 2,860 MTok * \$5.00/MTok = \$14,300
+    * Output token cost: 1,500 MTok * \$25.00/MTok = \$37,500
+    * Monthly cost: \$14,300 + \$37,500 = \$51,800
 
 <Tip>Actual costs may differ from these estimates. These estimates are based on the prompt highlighted in the section on [batch processing](#consider-batch-processing). Output tokens can be reduced even further by removing the `explanation` field from the response.</Tip>  
 

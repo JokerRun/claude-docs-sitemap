@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 6d8aa1c98a980c33d2f85cb5d1647400a7e89faa2a7397080db0921a797aa75a
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: c8e94938711dfe73b0c5163accf6b834a4cafdf27776fc1123cb56a598477948
 ---
 
 # Visi
@@ -11,7 +11,7 @@ Kemampuan visi Claude memungkinkannya untuk memahami dan menganalisis gambar, me
 
 ---
 
-Panduan ini menjelaskan cara bekerja dengan gambar di Claude, termasuk praktik terbaik, contoh kode, dan keterbatasan yang perlu diingat.
+Panduan ini menjelaskan cara bekerja dengan gambar di Claude, termasuk praktik terbaik, contoh kode, dan batasan yang perlu diingat.
 
 ---
 
@@ -19,7 +19,7 @@ Panduan ini menjelaskan cara bekerja dengan gambar di Claude, termasuk praktik t
 
 Gunakan kemampuan visi Claude melalui:
 
-- [claude.ai](https://claude.ai/). Unggah gambar seperti yang Anda lakukan dengan file, atau seret dan lepaskan gambar langsung ke jendela obrolan.
+- [claude.ai](https://claude.ai/). Unggah gambar seperti Anda mengunggah file, atau seret dan lepaskan gambar langsung ke jendela obrolan.
 - [Console Workbench](/workbench/). Tombol untuk menambahkan gambar muncul di sudut kanan atas setiap blok pesan Pengguna.
 - **Permintaan API**. Lihat contoh dalam panduan ini.
 
@@ -31,17 +31,17 @@ Gunakan kemampuan visi Claude melalui:
 
 Anda dapat menyertakan beberapa gambar dalam satu permintaan (hingga 20 untuk [claude.ai](https://claude.ai/) dan 100 untuk permintaan API). Claude akan menganalisis semua gambar yang disediakan saat merumuskan responsnya. Ini dapat membantu untuk membandingkan atau membedakan gambar.
 
-Jika Anda mengirimkan gambar yang lebih besar dari 8000x8000 px, gambar akan ditolak. Jika Anda mengirimkan lebih dari 20 gambar dalam satu permintaan API, batas ini adalah 2000x2000 px.
+Jika Anda mengirimkan gambar yang lebih besar dari 8000x8000 px, itu akan ditolak. Jika Anda mengirimkan lebih dari 20 gambar dalam satu permintaan API, batas ini adalah 2000x2000 px.
 
 <Note>
-Meskipun API mendukung 100 gambar per permintaan, ada [batas ukuran permintaan 32MB](/docs/id/api/overview#request-size-limits) untuk titik akhir standar.
+Meskipun API mendukung 100 gambar per permintaan, ada [batas ukuran permintaan 32MB](/docs/id/api/overview#request-size-limits) untuk endpoint standar.
 </Note>
 
 ### Evaluasi ukuran gambar
 
-Untuk kinerja optimal, kami merekomendasikan mengubah ukuran gambar sebelum mengunggah jika gambar terlalu besar. Jika tepi panjang gambar Anda lebih dari 1568 piksel, atau gambar Anda lebih dari ~1.600 token, gambar akan terlebih dahulu diperkecil, mempertahankan rasio aspek, hingga berada dalam batas ukuran.
+Untuk kinerja optimal, kami merekomendasikan mengubah ukuran gambar sebelum mengunggah jika terlalu besar. Jika tepi panjang gambar Anda lebih dari 1568 piksel, atau gambar Anda lebih dari ~1.600 token, gambar akan terlebih dahulu diperkecil, mempertahankan rasio aspek, hingga berada dalam batas ukuran.
 
-Jika gambar input Anda terlalu besar dan perlu diubah ukurannya, ini akan meningkatkan latensi [time-to-first-token](/docs/id/about-claude/glossary), tanpa memberikan Anda kinerja model tambahan. Gambar yang sangat kecil di bawah 200 piksel di tepi mana pun dapat menurunkan kinerja.
+Jika gambar input Anda terlalu besar dan perlu diubah ukurannya, itu akan meningkatkan latensi [time-to-first-token](/docs/id/about-claude/glossary), tanpa memberikan Anda kinerja model tambahan. Gambar yang sangat kecil di bawah 200 piksel di tepi mana pun dapat menurunkan kinerja.
 
 <Tip>
   Untuk meningkatkan [time-to-first-token](/docs/id/about-claude/glossary), kami merekomendasikan
@@ -49,7 +49,7 @@ Jika gambar input Anda terlalu besar dan perlu diubah ukurannya, ini akan mening
   kedua dimensi).
 </Tip>
 
-Berikut adalah tabel ukuran gambar maksimum yang diterima oleh API kami yang tidak akan diubah ukurannya untuk rasio aspek umum. Dengan Claude Sonnet 4.5, gambar-gambar ini menggunakan sekitar 1.600 token dan sekitar $4,80/1K gambar.
+Berikut adalah tabel ukuran gambar maksimal yang diterima oleh API kami yang tidak akan diubah ukurannya untuk rasio aspek umum. Dengan Claude Opus 4.6, gambar-gambar ini menggunakan sekitar 1.600 token dan sekitar $4,80/1K gambar.
 
 | Rasio aspek | Ukuran gambar |
 | ----------- | ------------- |
@@ -65,21 +65,21 @@ Setiap gambar yang Anda sertakan dalam permintaan ke Claude dihitung terhadap pe
 
 Jika gambar Anda tidak perlu diubah ukurannya, Anda dapat memperkirakan jumlah token yang digunakan melalui algoritma ini: `tokens = (width px * height px)/750`
 
-Berikut adalah contoh tokenisasi perkiraan dan biaya untuk ukuran gambar berbeda dalam batasan ukuran API kami berdasarkan harga per-token Claude Sonnet 4.5 sebesar $3 per juta token input:
+Berikut adalah contoh tokenisasi perkiraan dan biaya untuk ukuran gambar berbeda dalam batasan ukuran API kami berdasarkan harga per-token Claude Opus 4.6 sebesar $3 per juta token input:
 
-| Ukuran gambar                 | \# Token   | Biaya / gambar | Biaya / 1K gambar |
-| ----------------------------- | ---------- | -------------- | ----------------- |
-| 200x200 px(0,04 megapiksel)   | \~54       | \~$0,00016     | \~$0,16           |
-| 1000x1000 px(1 megapiksel)    | \~1334     | \~$0,004       | \~$4,00           |
-| 1092x1092 px(1,19 megapiksel) | \~1590     | \~$0,0048      | \~$4,80           |
+| Ukuran gambar                 | \# Token | Biaya / gambar | Biaya / 1K gambar |
+| ----------------------------- | -------- | -------------- | ----------------- |
+| 200x200 px(0,04 megapiksel)   | \~54     | \~$0,00016     | \~$0,16           |
+| 1000x1000 px(1 megapiksel)    | \~1334   | \~$0,004       | \~$4,00           |
+| 1092x1092 px(1,19 megapiksel) | \~1590   | \~$0,0048      | \~$4,80           |
 
 ### Memastikan kualitas gambar
 
-Saat memberikan gambar kepada Claude, perhatikan hal berikut untuk hasil terbaik:
+Saat memberikan gambar ke Claude, pertimbangkan hal berikut untuk hasil terbaik:
 
 - **Format gambar**: Gunakan format gambar yang didukung: JPEG, PNG, GIF, atau WebP.
 - **Kejelasan gambar**: Pastikan gambar jelas dan tidak terlalu buram atau pikselasi.
-- **Teks**: Jika gambar berisi teks penting, pastikan teks dapat dibaca dan tidak terlalu kecil. Hindari memotong konteks visual kunci hanya untuk memperbesar teks.
+- **Teks**: Jika gambar berisi teks penting, pastikan dapat dibaca dan tidak terlalu kecil. Hindari memotong konteks visual kunci hanya untuk memperbesar teks.
 
 ---
 
@@ -92,13 +92,13 @@ Contoh-contoh ini mendemonstrasikan struktur prompt praktik terbaik yang melibat
 <Tip>
   Sama seperti dengan penempatan dokumen-kueri, Claude bekerja paling baik ketika gambar datang
   sebelum teks. Gambar yang ditempatkan setelah teks atau diinterpolasi dengan teks masih akan
-  berkinerja baik, tetapi jika kasus penggunaan Anda memungkinkan, kami merekomendasikan
-  struktur gambar-kemudian-teks.
+  berkinerja baik, tetapi jika kasus penggunaan Anda memungkinkan, kami merekomendasikan struktur
+  gambar-lalu-teks.
 </Tip>
 
 ### Tentang contoh prompt
 
-Contoh-contoh berikut mendemonstrasikan cara menggunakan kemampuan visi Claude menggunakan berbagai bahasa pemrograman dan pendekatan. Anda dapat memberikan gambar kepada Claude dengan tiga cara:
+Contoh-contoh berikut mendemonstrasikan cara menggunakan kemampuan visi Claude menggunakan berbagai bahasa pemrograman dan pendekatan. Anda dapat memberikan gambar ke Claude dengan tiga cara:
 
 1. Sebagai gambar yang dikodekan base64 dalam blok konten `image`
 2. Sebagai referensi URL ke gambar yang dihosting online
@@ -193,7 +193,7 @@ Di bawah ini adalah contoh cara menyertakan gambar dalam permintaan Messages API
       -H "anthropic-version: 2023-06-01" \
       -H "content-type: application/json" \
       -d '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 1024,
         "messages": [
           {
@@ -221,7 +221,7 @@ Di bawah ini adalah contoh cara menyertakan gambar dalam permintaan Messages API
 
     client = anthropic.Anthropic()
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -254,7 +254,7 @@ Di bawah ini adalah contoh cara menyertakan gambar dalam permintaan Messages API
 
     async function main() {
       const message = await anthropic.messages.create({
-        model: "claude-sonnet-4-5",
+        model: "claude-opus-4-6",
         max_tokens: 1024,
         messages: [
           {
@@ -331,7 +331,7 @@ Di bawah ini adalah contoh cara menyertakan gambar dalam permintaan Messages API
       -H "anthropic-version: 2023-06-01" \
       -H "content-type: application/json" \
       -d '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 1024,
         "messages": [
           {
@@ -358,7 +358,7 @@ Di bawah ini adalah contoh cara menyertakan gambar dalam permintaan Messages API
 
     client = anthropic.Anthropic()
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -390,7 +390,7 @@ Di bawah ini adalah contoh cara menyertakan gambar dalam permintaan Messages API
 
     async function main() {
       const message = await anthropic.messages.create({
-        model: "claude-sonnet-4-5",
+        model: "claude-opus-4-6",
         max_tokens: 1024,
         messages: [
           {
@@ -475,7 +475,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: files-api-2025-04-14" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "messages": [
       {
@@ -509,7 +509,7 @@ with open("image.jpg", "rb") as f:
 
 # Gunakan file yang diunggah dalam pesan
 message = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     betas=["files-api-2025-04-14"],
     messages=[
@@ -551,7 +551,7 @@ async function main() {
 
   // Gunakan file yang diunggah dalam pesan
   const response = await anthropic.beta.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: 'claude-opus-4-6',
     max_tokens: 1024,
     betas: ['files-api-2025-04-14'],
     messages: [
@@ -644,7 +644,7 @@ Minta Claude untuk mendeskripsikan satu gambar.
   <Tab title="Using Base64">
     ```python Python
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -671,7 +671,7 @@ Minta Claude untuk mendeskripsikan satu gambar.
   <Tab title="Using URL">
     ```python Python
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -703,14 +703,14 @@ Dalam situasi di mana ada beberapa gambar, perkenalkan setiap gambar dengan `Ima
 
 Minta Claude untuk mendeskripsikan perbedaan antara beberapa gambar.
 | Peran | Konten |
-| ---- | --------- |
+| ---- | ----------------------------------------------------------------- |
 | User | Image 1: \[Image 1\] Image 2: \[Image 2\] How are these images different? |
 
 <Tabs>
   <Tab title="Using Base64">
     ```python Python
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -753,7 +753,7 @@ Minta Claude untuk mendeskripsikan perbedaan antara beberapa gambar.
   <Tab title="Using URL">
     ```python Python
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -796,18 +796,18 @@ Minta Claude untuk mendeskripsikan perbedaan antara beberapa gambar.
 </section>
 <section title="Contoh: Beberapa gambar dengan system prompt">
 
-Minta Claude untuk mendeskripsikan perbedaan antara beberapa gambar, sambil memberikannya system prompt untuk cara merespons.
+Minta Claude untuk mendeskripsikan perbedaan antara beberapa gambar, sambil memberikannya system prompt tentang cara merespons.
 
 | Konten | |
-| ------- | --------- |
-| System  | Respond only in Spanish. |
+| ------- | ----------------------------------------------------------------- |
+| System  | Respond only in Spanish.                                          |
 | User    | Image 1: \[Image 1\] Image 2: \[Image 2\] How are these images different? |
 
 <Tabs>
   <Tab title="Using Base64">
     ```python Python
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         system="Respond only in Spanish.",
         messages=[
@@ -851,7 +851,7 @@ Minta Claude untuk mendeskripsikan perbedaan antara beberapa gambar, sambil memb
   <Tab title="Using URL">
     ```python Python
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         system="Respond only in Spanish.",
         messages=[
@@ -895,35 +895,35 @@ Minta Claude untuk mendeskripsikan perbedaan antara beberapa gambar, sambil memb
 </section>
 <section title="Contoh: Empat gambar di dua giliran percakapan">
 
-Kemampuan visi Claude bersinar dalam percakapan multimodal yang mencampur gambar dan teks. Anda dapat memiliki pertukaran bolak-balik yang diperpanjang dengan Claude, menambahkan gambar baru atau pertanyaan tindak lanjut kapan saja. Ini memungkinkan alur kerja yang kuat untuk analisis gambar iteratif, perbandingan, atau menggabungkan visual dengan pengetahuan lain.
+Kemampuan visi Claude bersinar dalam percakapan multimodal yang mencampur gambar dan teks. Anda dapat memiliki pertukaran bolak-balik yang diperpanjang dengan Claude, menambahkan gambar baru atau pertanyaan lanjutan kapan saja. Ini memungkinkan alur kerja yang kuat untuk analisis gambar iteratif, perbandingan, atau menggabungkan visual dengan pengetahuan lain.
 
-Minta Claude untuk membedakan dua gambar, kemudian ajukan pertanyaan tindak lanjut membandingkan gambar pertama dengan dua gambar baru.
+Minta Claude untuk membedakan dua gambar, kemudian ajukan pertanyaan lanjutan membandingkan gambar pertama dengan dua gambar baru.
 | Peran | Konten |
-| --------- | --------- |
+| --------- | ----------------------------------------------------------------- |
 | User | Image 1: \[Image 1\] Image 2: \[Image 2\] How are these images different? |
 | Assistant | \[Claude's response\] |
 | User | Image 1: \[Image 3\] Image 2: \[Image 4\] Are these images similar to the first two? |
 | Assistant | \[Claude's response\] |
 
-Saat menggunakan API, cukup masukkan gambar baru ke dalam array Pesan dalam peran `user` sebagai bagian dari struktur [percakapan multiturn](/docs/id/api/messages) standar.
+Saat menggunakan API, cukup sisipkan gambar baru ke dalam array Pesan dalam peran `user` sebagai bagian dari struktur [percakapan multiturn](/docs/id/api/messages) standar.
 
 </section>
 
 ---
 
-## Keterbatasan
+## Batasan
 
-Meskipun kemampuan pemahaman gambar Claude canggih, ada beberapa keterbatasan yang perlu diperhatikan:
+Meskipun kemampuan pemahaman gambar Claude canggih, ada beberapa batasan yang perlu diketahui:
 
 - **Identifikasi orang**: Claude [tidak dapat digunakan](https://www.anthropic.com/legal/aup) untuk mengidentifikasi (yaitu, menyebutkan nama) orang dalam gambar dan akan menolak untuk melakukannya.
 - **Akurasi**: Claude mungkin mengalami halusinasi atau membuat kesalahan saat menafsirkan gambar berkualitas rendah, diputar, atau sangat kecil di bawah 200 piksel.
-- **Penalaran spasial**: Kemampuan penalaran spasial Claude terbatas. Mungkin kesulitan dengan tugas yang memerlukan lokalisasi presisi atau tata letak, seperti membaca wajah jam analog atau mendeskripsikan posisi pion catur yang tepat.
+- **Penalaran spasial**: Kemampuan penalaran spasial Claude terbatas. Mungkin kesulitan dengan tugas yang memerlukan lokalisasi presisi atau tata letak, seperti membaca wajah jam analog atau mendeskripsikan posisi tepat bidak catur.
 - **Penghitungan**: Claude dapat memberikan perkiraan jumlah objek dalam gambar tetapi mungkin tidak selalu akurat, terutama dengan jumlah besar objek kecil.
 - **Gambar yang dihasilkan AI**: Claude tidak tahu apakah gambar dihasilkan AI dan mungkin salah jika ditanya. Jangan andalkan untuk mendeteksi gambar palsu atau sintetis.
-- **Konten yang tidak pantas**: Claude tidak akan memproses gambar yang tidak pantas atau eksplisit yang melanggar [Kebijakan Penggunaan Yang Dapat Diterima](https://www.anthropic.com/legal/aup) kami.
+- **Konten yang tidak pantas**: Claude tidak akan memproses gambar yang tidak pantas atau eksplisit yang melanggar [Kebijakan Penggunaan Kami](https://www.anthropic.com/legal/aup).
 - **Aplikasi kesehatan**: Meskipun Claude dapat menganalisis gambar medis umum, Claude tidak dirancang untuk menafsirkan pemindaian diagnostik kompleks seperti CT atau MRI. Output Claude tidak boleh dianggap sebagai pengganti saran atau diagnosis medis profesional.
 
-Selalu tinjau dan verifikasi interpretasi gambar Claude dengan hati-hati, terutama untuk kasus penggunaan yang berisiko tinggi. Jangan gunakan Claude untuk tugas yang memerlukan presisi sempurna atau analisis gambar sensitif tanpa pengawasan manusia.
+Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama untuk kasus penggunaan berisiko tinggi. Jangan gunakan Claude untuk tugas yang memerlukan presisi sempurna atau analisis gambar sensitif tanpa pengawasan manusia.
 
 ---
 
@@ -964,18 +964,18 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan hati-hati, teruta
     - API: Maksimal 5MB per gambar
     - claude.ai: Maksimal 10MB per gambar
 
-    Gambar yang lebih besar dari batasan ini akan ditolak dan mengembalikan kesalahan saat menggunakan API kami.
+    Gambar yang lebih besar dari batas ini akan ditolak dan mengembalikan kesalahan saat menggunakan API kami.
 
   
 </section>
 
   <section title="Berapa banyak gambar yang dapat saya sertakan dalam satu permintaan?">
 
-    Batasan gambar adalah:
+    Batas gambar adalah:
     - Messages API: Hingga 100 gambar per permintaan
     - claude.ai: Hingga 20 gambar per giliran
 
-    Permintaan yang melebihi batasan ini akan ditolak dan mengembalikan kesalahan.
+    Permintaan yang melebihi batas ini akan ditolak dan mengembalikan kesalahan.
 
   
 </section>
@@ -1031,7 +1031,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan hati-hati, teruta
 
 Siap mulai membangun dengan gambar menggunakan Claude? Berikut adalah beberapa sumber daya yang berguna:
 
-- [Multimodal cookbook](https://github.com/anthropics/anthropic-cookbook/tree/main/multimodal): Buku resep ini memiliki tips tentang [memulai dengan gambar](https://github.com/anthropics/anthropic-cookbook/blob/main/multimodal/getting%5Fstarted%5Fwith%5Fvision.ipynb) dan [teknik praktik terbaik](https://github.com/anthropics/anthropic-cookbook/blob/main/multimodal/best%5Fpractices%5Ffor%5Fvision.ipynb) untuk memastikan kinerja berkualitas tertinggi dengan gambar. Lihat bagaimana Anda dapat secara efektif memberi prompt Claude dengan gambar untuk melakukan tugas seperti [menginterpretasi dan menganalisis bagan](https://github.com/anthropics/anthropic-cookbook/blob/main/multimodal/reading%5Fcharts%5Fgraphs%5Fpowerpoints.ipynb) atau [mengekstrak konten dari formulir](https://github.com/anthropics/anthropic-cookbook/blob/main/multimodal/how%5Fto%5Ftranscribe%5Ftext.ipynb).
+- [Multimodal cookbook](https://platform.claude.com/cookbook/multimodal-getting-started-with-vision): Buku masak ini memiliki tips tentang [memulai dengan gambar](https://platform.claude.com/cookbook/multimodal-getting-started-with-vision) dan [teknik praktik terbaik](https://platform.claude.com/cookbook/multimodal-best-practices-for-vision) untuk memastikan kinerja kualitas tertinggi dengan gambar. Lihat bagaimana Anda dapat secara efektif memberi prompt Claude dengan gambar untuk melakukan tugas seperti [menginterpretasi dan menganalisis bagan](https://platform.claude.com/cookbook/multimodal-reading-charts-graphs-powerpoints) atau [mengekstrak konten dari formulir](https://platform.claude.com/cookbook/multimodal-how-to-transcribe-text).
 - [Referensi API](/docs/id/api/messages): Kunjungi dokumentasi kami untuk Messages API, termasuk contoh [panggilan API yang melibatkan gambar](/docs/id/build-with-claude/working-with-messages#vision).
 
 Jika Anda memiliki pertanyaan lain, jangan ragu untuk menghubungi [tim dukungan](https://support.claude.com/) kami. Anda juga dapat bergabung dengan [komunitas pengembang](https://www.anthropic.com/discord) kami untuk terhubung dengan kreator lain dan mendapatkan bantuan dari para ahli Anthropic.

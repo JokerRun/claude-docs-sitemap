@@ -1,37 +1,37 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/cost-tracking
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 30db8cbada18f6b5cb2a8376f6730e0c0c596fa34474e2709c3ceccd34cc22bb
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: b2501b8913ceacf6a0a47713baad34afe83804ba71402236c62adc73e4032c8e
 ---
 
 # Melacak Biaya dan Penggunaan
 
-Memahami dan melacak penggunaan token untuk penagihan dalam Claude Agent SDK
+Pahami dan lacak penggunaan token untuk penagihan di Claude Agent SDK
 
 ---
 
 # Pelacakan Biaya SDK
 
-Claude Agent SDK menyediakan informasi penggunaan token yang detail untuk setiap interaksi dengan Claude. Panduan ini menjelaskan cara melacak biaya dengan benar dan memahami pelaporan penggunaan, terutama ketika menangani penggunaan tool paralel dan percakapan multi-langkah.
+Claude Agent SDK menyediakan informasi penggunaan token yang terperinci untuk setiap interaksi dengan Claude. Panduan ini menjelaskan cara melacak biaya dengan benar dan memahami pelaporan penggunaan, terutama ketika menangani penggunaan alat paralel dan percakapan multi-langkah.
 
-Untuk dokumentasi API lengkap, lihat [referensi TypeScript SDK](https://code.claude.com/docs/typescript-sdk-reference).
+Untuk dokumentasi API lengkap, lihat [referensi SDK TypeScript](/docs/id/agent-sdk/typescript).
 
 ## Memahami Penggunaan Token
 
-Ketika Claude memproses permintaan, ia melaporkan penggunaan token pada tingkat pesan. Data penggunaan ini penting untuk melacak biaya dan menagih pengguna dengan tepat.
+Ketika Claude memproses permintaan, ia melaporkan penggunaan token pada tingkat pesan. Data penggunaan ini sangat penting untuk melacak biaya dan menagih pengguna dengan tepat.
 
-### Konsep Kunci
+### Konsep Utama
 
 1. **Langkah**: Langkah adalah pasangan permintaan/respons tunggal antara aplikasi Anda dan Claude
-2. **Pesan**: Pesan individual dalam langkah (teks, penggunaan tool, hasil tool)
-3. **Penggunaan**: Data konsumsi token yang dilampirkan pada pesan asisten
+2. **Pesan**: Pesan individual dalam langkah (teks, penggunaan alat, hasil alat)
+3. **Penggunaan**: Data konsumsi token yang terlampir pada pesan asisten
 
 ## Struktur Pelaporan Penggunaan
 
-### Penggunaan Tool Tunggal vs Paralel
+### Penggunaan Alat Tunggal vs Paralel
 
-Ketika Claude mengeksekusi tool, pelaporan penggunaan berbeda berdasarkan apakah tool dieksekusi secara berurutan atau paralel:
+Ketika Claude menjalankan alat, pelaporan penggunaan berbeda berdasarkan apakah alat dijalankan secara berurutan atau paralel:
 
 <CodeGroup>
 
@@ -40,11 +40,11 @@ import { query } from "@anthropic-ai/claude-agent-sdk";
 
 // Contoh: Melacak penggunaan dalam percakapan
 const result = await query({
-  prompt: "Analisis codebase ini dan jalankan tes",
+  prompt: "Analisis basis kode ini dan jalankan tes",
   options: {
     onMessage: (message) => {
       if (message.type === 'assistant' && message.usage) {
-        console.log(`ID Pesan: ${message.id}`);
+        console.log(`Message ID: ${message.id}`);
         console.log(`Penggunaan:`, message.usage);
       }
     }
@@ -60,10 +60,10 @@ import asyncio
 async def track_usage():
     # Proses pesan saat tiba
     async for message in query(
-        prompt="Analisis codebase ini dan jalankan tes"
+        prompt="Analisis basis kode ini dan jalankan tes"
     ):
         if isinstance(message, AssistantMessage) and hasattr(message, 'usage'):
-            print(f"ID Pesan: {message.id}")
+            print(f"Message ID: {message.id}")
             print(f"Penggunaan: {message.usage}")
 
 asyncio.run(track_usage())
@@ -73,10 +73,10 @@ asyncio.run(track_usage())
 
 ### Contoh Alur Pesan
 
-Berikut cara pesan dan penggunaan dilaporkan dalam percakapan multi-langkah yang khas:
+Berikut adalah cara pesan dan penggunaan dilaporkan dalam percakapan multi-langkah yang khas:
 
 ```
-<!-- Langkah 1: Permintaan awal dengan penggunaan tool paralel -->
+<!-- Langkah 1: Permintaan awal dengan penggunaan alat paralel -->
 assistant (text)      { id: "msg_1", usage: { output_tokens: 100, ... } }
 assistant (tool_use)  { id: "msg_1", usage: { output_tokens: 100, ... } }
 assistant (tool_use)  { id: "msg_1", usage: { output_tokens: 100, ... } }
@@ -85,7 +85,7 @@ user (tool_result)
 user (tool_result)
 user (tool_result)
 
-<!-- Langkah 2: Respons lanjutan -->
+<!-- Langkah 2: Respons tindak lanjut -->
 assistant (text)      { id: "msg_2", usage: { output_tokens: 98, ... } }
 ```
 
@@ -93,7 +93,7 @@ assistant (text)      { id: "msg_2", usage: { output_tokens: 98, ... } }
 
 ### 1. ID Sama = Penggunaan Sama
 
-**Semua pesan dengan field `id` yang sama melaporkan penggunaan yang identik**. Ketika Claude mengirim beberapa pesan dalam giliran yang sama (misalnya, teks + penggunaan tool), mereka berbagi ID pesan dan data penggunaan yang sama.
+**Semua pesan dengan bidang `id` yang sama melaporkan penggunaan yang identik**. Ketika Claude mengirim beberapa pesan dalam giliran yang sama (misalnya teks + penggunaan alat), mereka berbagi ID pesan dan data penggunaan yang sama.
 
 ```typescript
 // Semua pesan ini memiliki ID dan penggunaan yang sama
@@ -109,26 +109,55 @@ const uniqueUsage = messages[0].usage; // Sama untuk semua pesan dengan ID ini
 
 ### 2. Tagih Sekali Per Langkah
 
-**Anda hanya boleh menagih pengguna sekali per langkah**, bukan untuk setiap pesan individual. Ketika Anda melihat beberapa pesan asisten dengan ID yang sama, gunakan penggunaan dari salah satu dari mereka.
+**Anda hanya harus menagih pengguna sekali per langkah**, bukan untuk setiap pesan individual. Ketika Anda melihat beberapa pesan asisten dengan ID yang sama, gunakan penggunaan dari salah satunya.
 
 ### 3. Pesan Hasil Berisi Penggunaan Kumulatif
 
-Pesan `result` akhir berisi total penggunaan kumulatif dari semua langkah dalam percakapan:
+Pesan `result` terakhir berisi total penggunaan kumulatif dari semua langkah dalam percakapan:
 
 ```typescript
-// Hasil akhir mencakup total penggunaan
+// Hasil akhir mencakup penggunaan total
 const result = await query({
   prompt: "Tugas multi-langkah",
   options: { /* ... */ }
 });
 
-console.log("Total penggunaan:", result.usage);
-console.log("Total biaya:", result.usage.total_cost_usd);
+console.log("Penggunaan total:", result.usage);
+console.log("Biaya total:", result.usage.total_cost_usd);
 ```
+
+### 4. Rincian Penggunaan Per-Model
+
+Pesan hasil juga mencakup `modelUsage`, yang menyediakan data penggunaan per-model yang berwenang. Seperti `total_cost_usd`, bidang ini akurat dan cocok untuk tujuan penagihan. Ini sangat berguna ketika menggunakan beberapa model (misalnya Haiku untuk subagen, Opus untuk agen utama).
+
+```typescript
+// modelUsage menyediakan rincian per-model
+type ModelUsage = {
+  inputTokens: number
+  outputTokens: number
+  cacheReadInputTokens: number
+  cacheCreationInputTokens: number
+  webSearchRequests: number
+  costUSD: number
+  contextWindow: number
+}
+
+// Akses dari pesan hasil
+const result = await query({ prompt: "..." });
+
+// result.modelUsage adalah peta nama model ke ModelUsage
+for (const [modelName, usage] of Object.entries(result.modelUsage)) {
+  console.log(`${modelName}: $${usage.costUSD.toFixed(4)}`);
+  console.log(`  Token input: ${usage.inputTokens}`);
+  console.log(`  Token output: ${usage.outputTokens}`);
+}
+```
+
+Untuk definisi tipe lengkap, lihat [referensi SDK TypeScript](/docs/id/agent-sdk/typescript).
 
 ## Implementasi: Sistem Pelacakan Biaya
 
-Berikut contoh lengkap implementasi sistem pelacakan biaya:
+Berikut adalah contoh lengkap implementasi sistem pelacakan biaya:
 
 <CodeGroup>
 
@@ -162,7 +191,7 @@ class CostTracker {
       return;
     }
     
-    // Lewati jika sudah memproses ID pesan ini
+    // Lewati jika kami sudah memproses ID pesan ini
     if (this.processedMessageIds.has(message.id)) {
       return;
     }
@@ -195,7 +224,7 @@ const { result, stepUsages, totalCost } = await tracker.trackConversation(
 );
 
 console.log(`Langkah diproses: ${stepUsages.length}`);
-console.log(`Total biaya: $${totalCost.toFixed(4)}`);
+console.log(`Biaya total: $${totalCost.toFixed(4)}`);
 ```
 
 ```python Python
@@ -258,7 +287,7 @@ async def main():
     result = await tracker.track_conversation("Analisis dan refaktor kode ini")
 
     print(f"Langkah diproses: {len(result['step_usages'])}")
-    print(f"Total biaya: ${result['total_cost']:.4f}")
+    print(f"Biaya total: ${result['total_cost']:.4f}")
 
 asyncio.run(main())
 ```
@@ -269,11 +298,11 @@ asyncio.run(main())
 
 ### Perbedaan Token Output
 
-Dalam kasus langka, Anda mungkin mengamati nilai `output_tokens` yang berbeda untuk pesan dengan ID yang sama. Ketika ini terjadi:
+Dalam kasus yang jarang terjadi, Anda mungkin mengamati nilai `output_tokens` yang berbeda untuk pesan dengan ID yang sama. Ketika ini terjadi:
 
 1. **Gunakan nilai tertinggi** - Pesan terakhir dalam grup biasanya berisi total yang akurat
-2. **Verifikasi terhadap total biaya** - `total_cost_usd` dalam pesan hasil adalah otoritatif
-3. **Laporkan inkonsistensi** - Ajukan masalah di [repositori GitHub Claude Code](https://github.com/anthropics/claude-code/issues)
+2. **Verifikasi terhadap biaya total** - `total_cost_usd` dalam pesan hasil bersifat otoritatif
+3. **Laporkan ketidakkonsistenan** - Ajukan masalah di [repositori GitHub Claude Code](https://github.com/anthropics/claude-code/issues)
 
 ### Pelacakan Token Cache
 
@@ -296,9 +325,9 @@ interface CacheUsage {
 2. **Pantau Pesan Hasil**: Hasil akhir berisi penggunaan kumulatif yang otoritatif
 3. **Implementasikan Logging**: Catat semua data penggunaan untuk audit dan debugging
 4. **Tangani Kegagalan dengan Baik**: Lacak penggunaan parsial bahkan jika percakapan gagal
-5. **Pertimbangkan Streaming**: Untuk respons streaming, akumulasi penggunaan saat pesan tiba
+5. **Pertimbangkan Streaming**: Untuk respons streaming, akumulasikan penggunaan saat pesan tiba
 
-## Referensi Field Penggunaan
+## Referensi Bidang Penggunaan
 
 Setiap objek penggunaan berisi:
 
@@ -306,12 +335,12 @@ Setiap objek penggunaan berisi:
 - `output_tokens`: Token yang dihasilkan dalam respons
 - `cache_creation_input_tokens`: Token yang digunakan untuk membuat entri cache
 - `cache_read_input_tokens`: Token yang dibaca dari cache
-- `service_tier`: Tingkat layanan yang digunakan (misalnya, "standard")
-- `total_cost_usd`: Total biaya dalam USD (hanya dalam pesan hasil)
+- `service_tier`: Tingkat layanan yang digunakan (misalnya "standard")
+- `total_cost_usd`: Biaya total dalam USD (hanya dalam pesan hasil)
 
 ## Contoh: Membangun Dashboard Penagihan
 
-Berikut cara mengagregasi data penggunaan untuk dashboard penagihan:
+Berikut adalah cara mengagregasi data penggunaan untuk dashboard penagihan:
 
 ```typescript
 class BillingAggregator {
@@ -357,6 +386,6 @@ class BillingAggregator {
 
 ## Dokumentasi Terkait
 
-- [Referensi TypeScript SDK](https://code.claude.com/docs/typescript-sdk-reference) - Dokumentasi API lengkap
-- [Ikhtisar SDK](/docs/id/agent-sdk/overview) - Memulai dengan SDK
-- [Izin SDK](/docs/id/agent-sdk/permissions) - Mengelola izin tool
+- [Referensi SDK TypeScript](/docs/id/agent-sdk/typescript) - Dokumentasi API lengkap
+- [Ringkasan SDK](/docs/id/agent-sdk/overview) - Memulai dengan SDK
+- [Izin SDK](/docs/id/agent-sdk/permissions) - Mengelola izin alat

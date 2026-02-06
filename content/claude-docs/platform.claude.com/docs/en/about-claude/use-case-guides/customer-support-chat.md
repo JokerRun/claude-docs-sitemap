@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 5f03f9fb80f4261360bf453c4eecd79f4b7bdff61df0aa018aa678c345ac53ca
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: f1a49e2649d5a10cc4d6003a768de69b3ef18fec1a54cec02a79561bc28e8164
 ---
 
 # Customer support agent
@@ -173,7 +173,7 @@ Here are criteria and benchmarks that can be used to evaluate the business impac
 
 The choice of model depends on the trade-offs between cost, accuracy, and response time.
 
-For customer support chat, Claude Sonnet 4.5 is well suited to balance intelligence, latency, and cost. However, for instances where you have conversation flow with multiple prompts including RAG, tool use, and/or long-context prompts, Claude Haiku 4.5 may be more suitable to optimize for latency.
+For customer support chat, Claude Opus 4.6 is well suited to balance intelligence, latency, and cost. However, for instances where you have conversation flow with multiple prompts including RAG, tool use, and/or long-context prompts, Claude Haiku 4.5 may be more suitable to optimize for latency.
 
 ### Build a strong prompt
 

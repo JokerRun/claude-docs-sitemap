@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: df795083d22c41280014276bd715eb8f233642ab7e22a3bcf86db75ece86422f
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: f125046c07f9e1d76214c039d6ae60f496c17c22aa830b2d10916ef0e2cdd7c4
 ---
 
 # Beta headers
@@ -40,12 +40,12 @@ from anthropic import Anthropic
 client = Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": "Hello, Claude"}
     ],
-    betas=["beta-feature-name"]
+    betas=["code-execution-2025-08-25"]
 )
 ```
 
@@ -55,12 +55,12 @@ import Anthropic from '@anthropic-ai/sdk';
 const anthropic = new Anthropic();
 
 const msg = await anthropic.beta.messages.create({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   max_tokens: 1024,
   messages: [
     { role: 'user', content: 'Hello, Claude' }
   ],
-  betas: ['beta-feature-name']
+  betas: ['code-execution-2025-08-25']
 });
 ```
 
@@ -68,10 +68,10 @@ const msg = await anthropic.beta.messages.create({
 curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: beta-feature-name" \
+  -H "anthropic-beta: code-execution-2025-08-25" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "messages": [
       {"role": "user", "content": "Hello, Claude"}

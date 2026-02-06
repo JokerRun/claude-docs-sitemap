@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-02-05T04:17:54.782179Z
-sha256: 0b7160b77ce00c882aa6219e84939e4f8b1096893f4a3baed7cd03c53c4c8db9
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 1e3dc0b33ac972c0af46452878868b06c553f04f86281824f22ae5baee9967a3
 ---
 
 # MCP connector
@@ -51,7 +51,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: mcp-client-2025-11-20" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1000,
     "messages": [{"role": "user", "content": "What tools do you have available?"}],
     "mcp_servers": [
@@ -77,7 +77,7 @@ import { Anthropic } from '@anthropic-ai/sdk';
 const anthropic = new Anthropic();
 
 const response = await anthropic.beta.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   messages: [
     {
@@ -109,7 +109,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1000,
     messages=[{
         "role": "user",
@@ -353,7 +353,7 @@ You can connect to multiple MCP servers by including multiple server definitions
 
 ```json
 {
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "max_tokens": 1000,
   "messages": [
     {
@@ -562,7 +562,7 @@ If you're using the deprecated `mcp-client-2025-04-04` beta header, follow this 
 
 ```json
 {
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "max_tokens": 1000,
   "messages": [...],
   "mcp_servers": [
@@ -584,7 +584,7 @@ If you're using the deprecated `mcp-client-2025-04-04` beta header, follow this 
 
 ```json
 {
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "max_tokens": 1000,
   "messages": [...],
   "mcp_servers": [

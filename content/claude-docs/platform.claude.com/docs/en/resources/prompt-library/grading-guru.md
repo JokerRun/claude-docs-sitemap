@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/grading-guru
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 66c9f32161451f686c2bbbddd1900aa8f81df7bf2e35d44d67f01afbfa3f176e
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: ea3c95250aa8c71e75cf691499b6beacdf9e029e84c38a44b5669270ac6a0f75
 ---
 
 # Grading guru
@@ -51,7 +51,7 @@ client = anthropic.Anthropic(  # defaults to os.environ.get("ANTHROPIC_API_KEY")
     api_key="my_api_key",
 )
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=2000,
     temperature=0,
     messages=[
@@ -81,7 +81,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 0,
   messages: [
@@ -111,7 +111,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1",
     max_tokens=2000,
     temperature=0,
     messages=[
@@ -141,7 +141,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 2000,
   temperature: 0,
   messages: [

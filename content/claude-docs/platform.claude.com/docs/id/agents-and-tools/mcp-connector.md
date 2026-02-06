@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: e3f35eb0ac2c2948fc8534c516210401e1a487f3b5a7751ad7c1b6308916c261
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: f86c0b0e9baad0127dade42ae82bb869b039cb5019a7d18c860716ff382e0920
 ---
 
 # Konektor MCP
 
-Fitur konektor Model Context Protocol (MCP) Claude memungkinkan Anda terhubung ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP terpisah.
+Hubungkan ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP terpisah
 
 ---
 
-Fitur konektor Model Context Protocol (MCP) Claude memungkinkan Anda terhubung ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP terpisah.
+Fitur konektor Model Context Protocol (MCP) Claude memungkinkan Anda untuk terhubung ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP terpisah.
 
 <Note>
   **Versi saat ini**: Fitur ini memerlukan header beta: `"anthropic-beta": "mcp-client-2025-11-20"`
@@ -24,7 +24,7 @@ Fitur konektor Model Context Protocol (MCP) Claude memungkinkan Anda terhubung k
 - **Integrasi API langsung**: Terhubung ke server MCP tanpa mengimplementasikan klien MCP
 - **Dukungan pemanggilan alat**: Akses alat MCP melalui Messages API
 - **Konfigurasi alat yang fleksibel**: Aktifkan semua alat, daftar putih alat tertentu, atau daftar hitam alat yang tidak diinginkan
-- **Konfigurasi per-alat**: Konfigurasi alat individual dengan pengaturan khusus
+- **Konfigurasi per-alat**: Konfigurasikan alat individual dengan pengaturan khusus
 - **Autentikasi OAuth**: Dukungan untuk token Bearer OAuth untuk server yang diautentikasi
 - **Server ganda**: Terhubung ke beberapa server MCP dalam satu permintaan
 
@@ -39,7 +39,7 @@ Fitur konektor Model Context Protocol (MCP) Claude memungkinkan Anda terhubung k
 Konektor MCP menggunakan dua komponen:
 
 1. **Definisi Server MCP** (array `mcp_servers`): Menentukan detail koneksi server (URL, autentikasi)
-2. **Set Alat MCP** (array `tools`): Mengonfigurasi alat mana yang akan diaktifkan dan cara mengonfigurasinya
+2. **Kumpulan Alat MCP** (array `tools`): Mengonfigurasi alat mana yang akan diaktifkan dan cara mengonfigurasinya
 
 ### Contoh dasar
 
@@ -53,7 +53,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: mcp-client-2025-11-20" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1000,
     "messages": [{"role": "user", "content": "What tools do you have available?"}],
     "mcp_servers": [
@@ -79,7 +79,7 @@ import { Anthropic } from '@anthropic-ai/sdk';
 const anthropic = new Anthropic();
 
 const response = await anthropic.beta.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   messages: [
     {
@@ -111,7 +111,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1000,
     messages=[{
         "role": "user",
@@ -151,10 +151,10 @@ Setiap server MCP dalam array `mcp_servers` menentukan detail koneksi:
 |----------|------|----------|-------------|
 | `type` | string | Ya | Saat ini hanya "url" yang didukung |
 | `url` | string | Ya | URL server MCP. Harus dimulai dengan https:// |
-| `name` | string | Ya | Pengidentifikasi unik untuk server MCP ini. Harus direferensikan oleh tepat satu MCPToolset dalam array `tools`. |
-| `authorization_token` | string | Tidak | Token otorisasi OAuth jika diperlukan oleh server MCP. Lihat [spesifikasi MCP](https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization). |
+| `name` | string | Ya | Pengenal unik untuk server MCP ini. Harus dirujuk oleh tepat satu MCPToolset dalam array `tools`. |
+| `authorization_token` | string | Tidak | Token otorisasi OAuth jika diperlukan oleh server MCP. Lihat [spesifikasi MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). |
 
-## Konfigurasi set alat MCP
+## Konfigurasi kumpulan alat MCP
 
 MCPToolset berada dalam array `tools` dan mengonfigurasi alat mana dari server MCP yang diaktifkan dan cara mengonfigurasinya.
 
@@ -183,9 +183,9 @@ MCPToolset berada dalam array `tools` dan mengonfigurasi alat mana dari server M
 |----------|------|----------|-------------|
 | `type` | string | Ya | Harus "mcp_toolset" |
 | `mcp_server_name` | string | Ya | Harus cocok dengan nama server yang ditentukan dalam array `mcp_servers` |
-| `default_config` | object | Tidak | Konfigurasi default yang diterapkan ke semua alat dalam set ini. Konfigurasi alat individual dalam `configs` akan mengganti default ini. |
+| `default_config` | object | Tidak | Konfigurasi default yang diterapkan ke semua alat dalam kumpulan ini. Konfigurasi alat individual dalam `configs` akan mengganti default ini. |
 | `configs` | object | Tidak | Penggantian konfigurasi per-alat. Kunci adalah nama alat, nilai adalah objek konfigurasi. |
-| `cache_control` | object | Tidak | Konfigurasi titik henti cache untuk set alat ini |
+| `cache_control` | object | Tidak | Konfigurasi titik henti cache untuk kumpulan alat ini |
 
 ### Opsi konfigurasi alat
 
@@ -194,14 +194,14 @@ Setiap alat (baik dikonfigurasi dalam `default_config` atau dalam `configs`) men
 | Properti | Tipe | Default | Deskripsi |
 |----------|------|---------|-------------|
 | `enabled` | boolean | `true` | Apakah alat ini diaktifkan |
-| `defer_loading` | boolean | `false` | Jika true, deskripsi alat tidak dikirim ke model awalnya. Digunakan dengan [Alat Pencarian Alat](/agents-and-tools/tool-search-tool). |
+| `defer_loading` | boolean | `false` | Jika true, deskripsi alat tidak dikirim ke model awalnya. Digunakan dengan [Alat Pencarian Alat](/docs/id/agents-and-tools/tool-use/tool-search-tool). |
 
 ### Penggabungan konfigurasi
 
 Nilai konfigurasi digabungkan dengan urutan prioritas ini (tertinggi ke terendah):
 
 1. Pengaturan khusus alat dalam `configs`
-2. Set-level `default_config`
+2. `default_config` tingkat kumpulan
 3. Default sistem
 
 Contoh:
@@ -305,7 +305,7 @@ Gabungkan daftar putih dengan konfigurasi khusus untuk setiap alat:
 
 Dalam contoh ini:
 - `search_events` diaktifkan dengan `defer_loading: false`
-- `list_events` diaktifkan dengan `defer_loading: true` (diwarisi dari default_config)
+- `list_events` diaktifkan dengan `defer_loading: true` (diwariskan dari default_config)
 - Semua alat lainnya dinonaktifkan
 
 ## Aturan validasi
@@ -313,9 +313,9 @@ Dalam contoh ini:
 API memberlakukan aturan validasi ini:
 
 - **Server harus ada**: `mcp_server_name` dalam MCPToolset harus cocok dengan server yang ditentukan dalam array `mcp_servers`
-- **Server harus digunakan**: Setiap server MCP yang ditentukan dalam `mcp_servers` harus direferensikan oleh tepat satu MCPToolset
-- **Toolset unik per server**: Setiap server MCP hanya dapat direferensikan oleh satu MCPToolset
-- **Nama alat yang tidak dikenal**: Jika nama alat dalam `configs` tidak ada di server MCP, peringatan backend dicatat tetapi tidak ada kesalahan yang dikembalikan (server MCP mungkin memiliki ketersediaan alat yang dinamis)
+- **Server harus digunakan**: Setiap server MCP yang ditentukan dalam `mcp_servers` harus dirujuk oleh tepat satu MCPToolset
+- **Kumpulan alat unik per server**: Setiap server MCP hanya dapat dirujuk oleh satu MCPToolset
+- **Nama alat yang tidak dikenal**: Jika nama alat dalam `configs` tidak ada di server MCP, peringatan backend dicatat tetapi tidak ada kesalahan yang dikembalikan (server MCP mungkin memiliki ketersediaan alat dinamis)
 
 ## Jenis konten respons
 
@@ -355,7 +355,7 @@ Anda dapat terhubung ke beberapa server MCP dengan menyertakan beberapa definisi
 
 ```json
 {
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "max_tokens": 1000,
   "messages": [
     {
@@ -412,7 +412,7 @@ Inspektur MCP dapat memandu Anda melalui proses mendapatkan token akses untuk tu
 3. Masukkan URL server MCP.
 4. Di area kanan, klik tombol "Buka Pengaturan Autentikasi" setelah "Perlu mengonfigurasi autentikasi?".
 5. Klik "Alur OAuth Cepat" dan otorisasi di layar OAuth.
-6. Ikuti langkah-langkah di bagian "Kemajuan Alur OAuth" dari inspektur dan klik "Lanjutkan" hingga Anda mencapai "Autentikasi selesai".
+6. Ikuti langkah-langkah di bagian "Kemajuan Alur OAuth" dari inspektur dan klik "Lanjutkan" sampai Anda mencapai "Autentikasi selesai".
 7. Salin nilai `access_token`.
 8. Tempel ke bidang `authorization_token` dalam konfigurasi server MCP Anda.
 
@@ -433,7 +433,120 @@ Setelah Anda mendapatkan token akses menggunakan alur OAuth di atas, Anda dapat 
 }
 ```
 
-Untuk penjelasan terperinci tentang alur OAuth, lihat [bagian Otorisasi](https://modelcontextprotocol.io/docs/concepts/authentication) dalam spesifikasi MCP.
+Untuk penjelasan terperinci tentang alur OAuth, lihat [bagian Otorisasi](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) dalam spesifikasi MCP.
+
+## Pembantu MCP sisi klien (TypeScript)
+
+Jika Anda mengelola koneksi klien MCP Anda sendiri (misalnya, dengan server stdio lokal, prompt MCP, atau sumber daya MCP), SDK TypeScript menyediakan fungsi pembantu yang mengonversi antara jenis MCP dan jenis Claude API. Ini menghilangkan kode konversi manual saat menggunakan [SDK MCP](https://github.com/modelcontextprotocol/typescript-sdk) bersama SDK Anthropic.
+
+<Note>
+  Pembantu ini saat ini hanya tersedia di SDK TypeScript.
+</Note>
+<Note>
+  Gunakan [parameter API `mcp_servers`](#using-the-mcp-connector-in-the-messages-api) ketika Anda memiliki server jarak jauh yang dapat diakses melalui URL dan hanya memerlukan dukungan alat. Jika Anda menggunakan [Agent SDK](/docs/id/agent-sdk/mcp), koneksi MCP dikelola secara otomatis. Gunakan pembantu sisi klien ketika Anda memerlukan server lokal, prompt, sumber daya, atau kontrol lebih besar atas koneksi dengan SDK dasar.
+</Note>
+
+### Instalasi
+
+Instal SDK Anthropic dan SDK MCP:
+
+```bash
+npm install @anthropic-ai/sdk @modelcontextprotocol/sdk
+```
+
+### Pembantu yang tersedia
+
+Impor pembantu dari namespace beta:
+
+```typescript
+import {
+  mcpTools,
+  mcpMessages,
+  mcpResourceToContent,
+  mcpResourceToFile,
+} from '@anthropic-ai/sdk/helpers/beta/mcp';
+```
+
+| Pembantu | Deskripsi |
+|--------|-------------|
+| `mcpTools(tools, mcpClient)` | Mengonversi alat MCP ke alat Claude API untuk digunakan dengan `client.beta.messages.toolRunner()` |
+| `mcpMessages(messages)` | Mengonversi pesan prompt MCP ke format pesan Claude API |
+| `mcpResourceToContent(resource)` | Mengonversi sumber daya MCP ke blok konten Claude API |
+| `mcpResourceToFile(resource)` | Mengonversi sumber daya MCP ke objek file untuk diunggah |
+
+### Gunakan alat MCP
+
+Konversi alat MCP untuk digunakan dengan [pemacu alat](/docs/id/agents-and-tools/tool-use/implement-tool-use#tool-runner-beta) SDK, yang menangani eksekusi alat secara otomatis:
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+import { mcpTools } from '@anthropic-ai/sdk/helpers/beta/mcp';
+import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
+
+const anthropic = new Anthropic();
+
+// Connect to an MCP server
+const transport = new StdioClientTransport({ command: 'mcp-server', args: [] });
+const mcpClient = new Client({ name: 'my-client', version: '1.0.0' });
+await mcpClient.connect(transport);
+
+// List tools and convert them for the Claude API
+const { tools } = await mcpClient.listTools();
+const runner = await anthropic.beta.messages.toolRunner({
+  model: 'claude-sonnet-4-5',
+  max_tokens: 1024,
+  messages: [{ role: 'user', content: 'What tools do you have available?' }],
+  tools: mcpTools(tools, mcpClient),
+});
+```
+
+### Gunakan prompt MCP
+
+Konversi pesan prompt MCP ke format pesan Claude API:
+
+```typescript
+import { mcpMessages } from '@anthropic-ai/sdk/helpers/beta/mcp';
+
+const { messages } = await mcpClient.getPrompt({ name: 'my-prompt' });
+const response = await anthropic.beta.messages.create({
+  model: 'claude-sonnet-4-5',
+  max_tokens: 1024,
+  messages: mcpMessages(messages),
+});
+```
+
+### Gunakan sumber daya MCP
+
+Konversi sumber daya MCP ke blok konten untuk disertakan dalam pesan, atau ke objek file untuk diunggah:
+
+```typescript
+import { mcpResourceToContent, mcpResourceToFile } from '@anthropic-ai/sdk/helpers/beta/mcp';
+
+// As a content block in a message
+const resource = await mcpClient.readResource({ uri: 'file:///path/to/doc.txt' });
+await anthropic.beta.messages.create({
+  model: 'claude-sonnet-4-5',
+  max_tokens: 1024,
+  messages: [
+    {
+      role: 'user',
+      content: [
+        mcpResourceToContent(resource),
+        { type: 'text', text: 'Summarize this document' },
+      ],
+    },
+  ],
+});
+
+// As a file upload
+const fileResource = await mcpClient.readResource({ uri: 'file:///path/to/data.json' });
+await anthropic.beta.files.upload({ file: mcpResourceToFile(fileResource) });
+```
+
+### Penanganan kesalahan
+
+Fungsi konversi melempar `UnsupportedMCPValueError` jika nilai MCP tidak didukung oleh Claude API. Ini dapat terjadi dengan jenis konten yang tidak didukung, jenis MIME, atau tautan sumber daya non-HTTP.
 
 ## Panduan migrasi
 
@@ -441,7 +554,7 @@ Jika Anda menggunakan header beta `mcp-client-2025-04-04` yang tidak digunakan l
 
 ### Perubahan utama
 
-1. **Header beta baru**: Ubah dari `mcp-client-2025-04-04` menjadi `mcp-client-2025-11-20`
+1. **Header beta baru**: Ubah dari `mcp-client-2025-04-04` ke `mcp-client-2025-11-20`
 2. **Konfigurasi alat dipindahkan**: Konfigurasi alat sekarang berada dalam array `tools` sebagai objek MCPToolset, bukan dalam definisi server MCP
 3. **Konfigurasi lebih fleksibel**: Pola baru mendukung daftar putih, daftar hitam, dan konfigurasi per-alat
 
@@ -451,7 +564,7 @@ Jika Anda menggunakan header beta `mcp-client-2025-04-04` yang tidak digunakan l
 
 ```json
 {
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "max_tokens": 1000,
   "messages": [...],
   "mcp_servers": [
@@ -473,7 +586,7 @@ Jika Anda menggunakan header beta `mcp-client-2025-04-04` yang tidak digunakan l
 
 ```json
 {
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "max_tokens": 1000,
   "messages": [...],
   "mcp_servers": [

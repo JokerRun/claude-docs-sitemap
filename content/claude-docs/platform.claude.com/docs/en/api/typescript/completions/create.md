@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions/create
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 3f828b174afceabaf39c6f028065c384ad9991c1f0a1442847b4ed0e7adc200a
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: aa639931a121ffa61146153db0485d70e9d1fc3b86768aa3ecea8ea121314395
 ---
 
 ## Create
@@ -35,7 +35,11 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-5-20251101" | "claude-opus-4-5" | "claude-3-7-sonnet-latest" | 17 more`
+      - `"claude-opus-4-6" | "claude-opus-4-5-20251101" | "claude-opus-4-5" | 18 more`
+
+        - `"claude-opus-4-6"`
+
+          Most intelligent model for building agents and coding
 
         - `"claude-opus-4-5-20251101"`
 
@@ -275,7 +279,11 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-5-20251101" | "claude-opus-4-5" | "claude-3-7-sonnet-latest" | 17 more`
+    - `"claude-opus-4-6" | "claude-opus-4-5-20251101" | "claude-opus-4-5" | 18 more`
+
+      - `"claude-opus-4-6"`
+
+        Most intelligent model for building agents and coding
 
       - `"claude-opus-4-5-20251101"`
 
@@ -387,7 +395,7 @@ const client = new Anthropic({
 
 const completion = await client.completions.create({
   max_tokens_to_sample: 256,
-  model: 'claude-opus-4-5-20251101',
+  model: 'claude-opus-4-6',
   prompt: '\n\nHuman: Hello, world!\n\nAssistant:',
 });
 

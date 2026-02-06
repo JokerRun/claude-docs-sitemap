@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: b18ae45d53ca3c929bfe71a2318e5d975422fab467bb7421972208b1f46ab4a5
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: ea3227a24c5e319604613685924d876f546394db3ecb7187cdd3ac88cb23102d
 ---
 
 # Web fetch tool
@@ -32,14 +32,15 @@ If data exfiltration is a concern, consider:
 
 Web fetch is available on:
 
+- Claude Opus 4.6 (`claude-opus-4-6`)
+- Claude Opus 4.5 (`claude-opus-4-5-20251101`)
+- Claude Opus 4.1 (`claude-opus-4-1-20250805`)
+- Claude Opus 4 (`claude-opus-4-20250514`)
 - Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Sonnet 4 (`claude-sonnet-4-20250514`)
 - Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-3-7-sonnet-20250219`)
 - Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
 - Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-3-5-haiku-latest`)
-- Claude Opus 4.5 (`claude-opus-4-5-20251101`)
-- Claude Opus 4.1 (`claude-opus-4-1-20250805`)
-- Claude Opus 4 (`claude-opus-4-20250514`)
 
 ## How web fetch works
 
@@ -66,7 +67,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-beta: web-fetch-2025-09-10" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 1024,
         "messages": [
             {
@@ -88,7 +89,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[
         {
@@ -115,7 +116,7 @@ const anthropic = new Anthropic();
 
 async function main() {
   const response = await anthropic.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     max_tokens: 1024,
     messages: [
       {
@@ -362,7 +363,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=4096,
     messages=[
         {
@@ -413,7 +414,7 @@ messages = [
 ]
 
 response1 = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=messages,
     tools=[{
@@ -439,7 +440,7 @@ messages.append({
 })
 
 response2 = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=messages,
     tools=[{

@@ -1,27 +1,31 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/keep-claude-in-character
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 1994cc69238c10d72d6c65b2f112d5cada4ec7b471455db25dde056c2e23be7c
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 30f29102f8e86fa60cc56ded5af636ea38d5c89480de13df141a17b8161fdd16
 ---
 
-# Menjaga Claude tetap dalam karakter dengan role prompting dan prefilling
+# Pertahankan Claude tetap sesuai karakter dengan role prompting dan prefilling
+
+Panduan praktis untuk menjaga Claude tetap sesuai karakter, bahkan selama interaksi yang panjang dan kompleks.
 
 ---
 
-Panduan ini memberikan tips yang dapat ditindaklanjuti untuk menjaga Claude tetap dalam karakter, bahkan selama interaksi yang panjang dan kompleks.
+Panduan ini menyediakan tips yang dapat ditindaklanjuti untuk menjaga Claude tetap sesuai karakter, bahkan selama interaksi yang panjang dan kompleks.
 
-- **Gunakan system prompt untuk menetapkan peran:** Gunakan [system prompt](/docs/id/build-with-claude/prompt-engineering/system-prompts) untuk mendefinisikan peran dan kepribadian Claude. Ini memberikan dasar yang kuat untuk respons yang konsisten.
-    <Tip>Saat menyiapkan karakter, berikan informasi detail tentang kepribadian, latar belakang, dan sifat atau keunikan tertentu. Ini akan membantu model lebih baik dalam meniru dan menggeneralisasi sifat-sifat karakter.</Tip>
-- **Perkuat dengan respons yang telah diisi sebelumnya:** Isi terlebih dahulu respons Claude dengan tag karakter untuk memperkuat perannya, terutama dalam percakapan panjang.
-- **Siapkan Claude untuk skenario yang mungkin terjadi:** Sediakan daftar skenario umum dan respons yang diharapkan dalam prompt Anda. Ini "melatih" Claude untuk menangani berbagai situasi tanpa keluar dari karakter.
+<Note>Prefilling sudah usang dan tidak didukung pada Claude Opus 4.6 dan Claude Sonnet 4.5. Gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) atau instruksi system prompt sebagai gantinya.</Note>
+
+- **Gunakan system prompts untuk menetapkan peran:** Gunakan [system prompts](/docs/id/build-with-claude/prompt-engineering/system-prompts) untuk mendefinisikan peran dan kepribadian Claude. Ini menetapkan fondasi yang kuat untuk respons yang konsisten.
+    <Tip>Saat menyiapkan karakter, berikan informasi terperinci tentang kepribadian, latar belakang, dan sifat atau keunikan khusus apa pun. Ini akan membantu model lebih baik meniru dan menggeneralisasi sifat-sifat karakter.</Tip>
+- **Perkuat dengan respons yang sudah diisi sebelumnya:** Isi respons Claude sebelumnya dengan tag karakter untuk memperkuat perannya, terutama dalam percakapan yang panjang.
+- **Siapkan Claude untuk kemungkinan skenario:** Berikan daftar skenario umum dan respons yang diharapkan dalam prompt Anda. Ini "melatih" Claude untuk menangani situasi yang beragam tanpa keluar dari karakter.
 
 <section title="Contoh: Chatbot perusahaan untuk role prompting">
 
     | Peran | Konten |
-    | ---- | --- |
-    | System | Anda adalah AcmeBot, asisten AI kelas enterprise untuk AcmeTechCo. Peran Anda:<br/>    - Menganalisis dokumen teknis (TDD, PRD, RFC)<br/>    - Memberikan wawasan yang dapat ditindaklanjuti untuk tim engineering, produk, dan operasional<br/>    - Mempertahankan nada profesional dan ringkas |
-    | User | Berikut adalah pertanyaan pengguna untuk Anda jawab:<br/>\<user_query><br/>\{\{USER_QUERY}}<br/>\</user_query><br/><br/>Aturan Anda untuk interaksi adalah:<br/>    - Selalu merujuk pada standar AcmeTechCo atau praktik terbaik industri<br/>    - Jika tidak yakin, minta klarifikasi sebelum melanjutkan<br/>    - Jangan pernah mengungkapkan informasi rahasia AcmeTechCo.<br/><br/>Sebagai AcmeBot, Anda harus menangani situasi sesuai pedoman berikut:<br/>    - Jika ditanya tentang IP AcmeTechCo: "Saya tidak dapat mengungkapkan informasi kepemilikan TechCo."<br/>    - Jika ditanya tentang praktik terbaik: "Sesuai ISO/IEC 25010, kami memprioritaskan..."<br/>    - Jika tidak jelas tentang dokumen: "Untuk memastikan akurasi, mohon klarifikasi bagian 3.2..." |
+    | ---- | ------- |
+    | System | Anda adalah AcmeBot, asisten AI tingkat perusahaan untuk AcmeTechCo. Peran Anda:<br/>    - Analisis dokumen teknis (TDD, PRD, RFC)<br/>    - Berikan wawasan yang dapat ditindaklanjuti untuk tim teknik, produk, dan operasi<br/>    - Pertahankan nada profesional dan ringkas |
+    | User | Berikut adalah pertanyaan pengguna untuk Anda jawab:<br/>\<user_query><br/>\{\{USER_QUERY}}<br/>\</user_query><br/><br/>Aturan interaksi Anda adalah:<br/>    - Selalu referensikan standar AcmeTechCo atau praktik terbaik industri<br/>    - Jika tidak yakin, minta klarifikasi sebelum melanjutkan<br/>    - Jangan pernah mengungkapkan informasi rahasia AcmeTechCo.<br/><br/>Sebagai AcmeBot, Anda harus menangani situasi sesuai dengan panduan berikut:<br/>    - Jika ditanya tentang IP AcmeTechCo: "Saya tidak dapat mengungkapkan informasi proprietary TechCo."<br/>    - Jika ditanyakan tentang praktik terbaik: "Per ISO/IEC 25010, kami memprioritaskan..."<br/>    - Jika tidak jelas tentang dokumen: "Untuk memastikan akurasi, silakan klarifikasi bagian 3.2..." |
     | Assistant (prefill) | [AcmeBot] |
 
 </section>

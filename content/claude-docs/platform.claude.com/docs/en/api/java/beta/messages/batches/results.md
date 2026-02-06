@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/results
-fetched_at: 2026-01-30T04:11:49.863510Z
-sha256: 95011a35c262ef756da85d674a8a48cccec958b980836d13dde0c66f8aefe323
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 058265ba2144a298366f071e698e8f0513cbc9217a1695330b32e1bcf7ce81da
 ---
 
 ## Results
@@ -844,6 +844,22 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `CONTAINER_UPLOAD("container_upload")`
 
+          - `class BetaCompactionBlock:`
+
+            A compaction block returned when autocompact is triggered.
+
+            When content is None, it indicates the compaction failed to produce a valid
+            summary (e.g., malformed output from the model). Clients may round-trip
+            compaction blocks with null content; the server treats them as no-ops.
+
+            - `Optional<String> content`
+
+              Summary of compacted content, or null if compaction failed
+
+            - `JsonValue; type "compaction"constant`
+
+              - `COMPACTION("compaction")`
+
         - `Optional<BetaContextManagementResponse> contextManagement`
 
           Context management response.
@@ -891,6 +907,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
+
+            Most intelligent model for building agents and coding
 
           - `CLAUDE_OPUS_4_5_20251101("claude-opus-4-5-20251101")`
 
@@ -1005,6 +1025,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `PAUSE_TURN("pause_turn")`
 
+          - `COMPACTION("compaction")`
+
           - `REFUSAL("refusal")`
 
           - `MODEL_CONTEXT_WINDOW_EXCEEDED("model_context_window_exceeded")`
@@ -1055,9 +1077,99 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of input tokens read from the cache.
 
+          - `Optional<String> inferenceGeo`
+
+            The geographic region where inference was performed for this request.
+
           - `long inputTokens`
 
             The number of input tokens which were used.
+
+          - `Optional<List<Iteration>> iterations`
+
+            Per-iteration token usage breakdown.
+
+            Each entry represents one sampling iteration, with its own input/output token counts and cache statistics. This allows you to:
+
+            - Determine which iterations exceeded long context thresholds (>=200k tokens)
+            - Calculate the true context window size from the last iteration
+            - Understand token accumulation across server-side tool use loops
+
+            - `class BetaMessageIterationUsage:`
+
+              Token usage for a sampling iteration.
+
+              - `Optional<BetaCacheCreation> cacheCreation`
+
+                Breakdown of cached tokens by TTL
+
+                - `long ephemeral1hInputTokens`
+
+                  The number of input tokens used to create the 1 hour cache entry.
+
+                - `long ephemeral5mInputTokens`
+
+                  The number of input tokens used to create the 5 minute cache entry.
+
+              - `long cacheCreationInputTokens`
+
+                The number of input tokens used to create the cache entry.
+
+              - `long cacheReadInputTokens`
+
+                The number of input tokens read from the cache.
+
+              - `long inputTokens`
+
+                The number of input tokens which were used.
+
+              - `long outputTokens`
+
+                The number of output tokens which were used.
+
+              - `JsonValue; type "message"constant`
+
+                Usage for a sampling iteration
+
+                - `MESSAGE("message")`
+
+            - `class BetaCompactionIterationUsage:`
+
+              Token usage for a compaction iteration.
+
+              - `Optional<BetaCacheCreation> cacheCreation`
+
+                Breakdown of cached tokens by TTL
+
+                - `long ephemeral1hInputTokens`
+
+                  The number of input tokens used to create the 1 hour cache entry.
+
+                - `long ephemeral5mInputTokens`
+
+                  The number of input tokens used to create the 5 minute cache entry.
+
+              - `long cacheCreationInputTokens`
+
+                The number of input tokens used to create the cache entry.
+
+              - `long cacheReadInputTokens`
+
+                The number of input tokens read from the cache.
+
+              - `long inputTokens`
+
+                The number of input tokens which were used.
+
+              - `long outputTokens`
+
+                The number of output tokens which were used.
+
+              - `JsonValue; type "compaction"constant`
+
+                Usage for a compaction iteration
+
+                - `COMPACTION("compaction")`
 
           - `long outputTokens`
 

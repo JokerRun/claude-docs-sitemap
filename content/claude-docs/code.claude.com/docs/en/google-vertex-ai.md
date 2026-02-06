@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-02-04T04:12:50.357302Z
-sha256: 6f611685559181cdbf24e7b5922d3bdabd5a8171473c6bb5ff3d50830bb8d63a
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 6ce6c1a64f54fc06ccc0c396eaa411ec2b3558a518ef6e2d34e10cb20d131d4e
 ---
 
 > ## Documentation Index
@@ -116,7 +116,7 @@ Claude Code uses these default models for Vertex AI:
 To customize models:
 
 ```bash  theme={null}
-export ANTHROPIC_MODEL='claude-opus-4-1@20250805'
+export ANTHROPIC_MODEL='claude-opus-4-6'
 export ANTHROPIC_SMALL_FAST_MODEL='claude-haiku-4-5@20251001'
 ```
 

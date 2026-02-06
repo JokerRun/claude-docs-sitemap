@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_claude_code
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 944a24c13b791f8283a2c487a67571653a2843698656a139429294b605d0e325
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 610a5cf4a0a3940e3d61bd77dcd6938c39dba46a16e131282f408f896183f9ac
 ---
 
 ## Retrieve Claude Code
@@ -160,7 +160,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
     - `subscription_type: optional "enterprise" or "team"`
 
-      Subscription tier for subscription customers. Null for API customers.
+      Subscription tier for subscription customers. `null` for API customers.
 
       - `"enterprise"`
 
@@ -178,5 +178,6 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
 ```http
 curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```

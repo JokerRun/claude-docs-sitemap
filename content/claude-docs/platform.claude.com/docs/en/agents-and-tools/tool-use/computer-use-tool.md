@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: d2f22b214d36b1de557025f97ec7a284ba73713cb8a6f0b39bb722dc561087b1
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 19d75b27ff4f068605a97b76d6e5fa48b9ea66de638411a241e2dd3e9132c07b
 ---
 
 # Computer use tool
@@ -13,7 +13,7 @@ Claude can interact with computer environments through the computer use tool, wh
 
 <Note>
 Computer use is currently in beta and requires a [beta header](/docs/en/api/beta-headers):
-- `"computer-use-2025-11-24"` for Claude Opus 4.5
+- `"computer-use-2025-11-24"` for Claude Opus 4.6, Claude Opus 4.5
 - `"computer-use-2025-01-24"` for Claude Sonnet 4.5, Haiku 4.5, Opus 4.1, Sonnet 4, Opus 4, and Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
 
 Please reach out through our [feedback form](https://forms.gle/H6UFuXaaLywri9hz6) to share your feedback on this feature.
@@ -36,11 +36,11 @@ Computer use is available for the following Claude models:
 
 | Model | Tool Version | Beta Flag |
 |-------|--------------|-----------|
-| Claude Opus 4.5 | `computer_20251124` | `computer-use-2025-11-24` |
+| Claude Opus 4.6, Claude Opus 4.5 | `computer_20251124` | `computer-use-2025-11-24` |
 | All other supported models | `computer_20250124` | `computer-use-2025-01-24` |
 
 <Note>
-Claude Opus 4.5 introduces the `computer_20251124` tool version with new capabilities including the zoom action for detailed screen region inspection. All other models (Sonnet 4.5, Haiku 4.5, Sonnet 4, Opus 4, Opus 4.1, and Sonnet 3.7) use the `computer_20250124` tool version.
+Claude Opus 4.6 and Claude Opus 4.5 introduce the `computer_20251124` tool version with new capabilities including the zoom action for detailed screen region inspection. All other models (Sonnet 4.5, Haiku 4.5, Sonnet 4, Opus 4, Opus 4.1, and Sonnet 3.7) use the `computer_20250124` tool version.
 </Note>
 
 <Warning>
@@ -97,11 +97,11 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",  # or another compatible model
+    model="claude-opus-4-6",  # or another compatible model
     max_tokens=1024,
     tools=[
         {
-          "type": "computer_20250124",
+          "type": "computer_20251124",
           "name": "computer",
           "display_width_px": 1024,
           "display_height_px": 768,
@@ -117,7 +117,7 @@ response = client.beta.messages.create(
         }
     ],
     messages=[{"role": "user", "content": "Save a picture of a cat to my desktop."}],
-    betas=["computer-use-2025-01-24"]
+    betas=["computer-use-2025-11-24"]
 )
 print(response)
 ```
@@ -127,13 +127,13 @@ curl https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: computer-use-2025-01-24" \
+  -H "anthropic-beta: computer-use-2025-11-24" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "tools": [
       {
-        "type": "computer_20250124",
+        "type": "computer_20251124",
         "name": "computer",
         "display_width_px": 1024,
         "display_height_px": 768,
@@ -368,7 +368,7 @@ Available in Claude 4 models and Claude Sonnet 3.7:
 - **wait** - Pause between actions
 
 **Enhanced actions (`computer_20251124`)**
-Available in Claude Opus 4.5:
+Available in Claude Opus 4.6 and Claude Opus 4.5:
 - All actions from `computer_20250124`
 - **zoom** - View a specific region of the screen at full resolution. Requires `enable_zoom: true` in tool definition. Takes a `region` parameter with coordinates `[x1, y1, x2, y2]` defining top-left and bottom-right corners of the area to inspect.
 
@@ -514,7 +514,7 @@ The computer use tool can be combined with other tools to create more powerful a
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: computer-use-2025-01-24" \
     -d '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "max_tokens": 2000,
       "tools": [
         {
@@ -571,7 +571,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=[
         {
@@ -622,7 +622,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const anthropic = new Anthropic();
 
 const message = await anthropic.beta.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [
       {
@@ -688,7 +688,7 @@ public class MultipleToolsExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-                .model("claude-sonnet-4-5")
+                .model("claude-opus-4-6")
                 .maxTokens(1024)
                 .addTool(BetaToolComputerUse20250124.builder()
                         .displayWidthPx(1024)

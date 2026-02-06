@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/corporate-clairvoyant
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 4f8efe1bcfbf8031c9832968e0e9fe26e44091224592f12d14c7c08a518c2b86
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 38224be303f56387345afd6200ef4fd20d36f3b91c99b3e84716294861502601
 ---
 
 # Corporate clairvoyant
@@ -67,7 +67,7 @@ client = anthropic.Anthropic(
     api_key="my_api_key",
 )
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=2000,
     temperature=0,
     messages=[
@@ -96,7 +96,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 0,
   messages: [
@@ -127,7 +127,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+model="anthropic.claude-opus-4-6-v1",
 max_tokens=2000,
 temperature=0,
 messages=[
@@ -155,7 +155,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 2000,
   temperature: 0,
   messages: [

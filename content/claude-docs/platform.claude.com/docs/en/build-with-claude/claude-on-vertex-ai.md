@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 0bf5d63e5bf5711dfad497eda676f36732c9cd715e5232efb073b146837ef257
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: f6dd034aa5c71d39e9f8a86951fc6d48bc5d3ae754dca153c5df1010f661a86e
 ---
 
 # Claude on Vertex AI
@@ -44,6 +44,7 @@ Note that Anthropic model availability varies by region. Search for "Claude" in 
 
 | Model                          | Vertex AI API model ID |
 | ------------------------------ | ------------------------ |
+| Claude Opus 4.6                  | claude-opus-4-6 |
 | Claude Sonnet 4.5              | claude-sonnet-4-5@20250929 |
 | Claude Sonnet 4                | claude-sonnet-4@20250514 |
 | Claude Sonnet 3.7 <Tooltip tooltipContent="Deprecated as of October 28, 2025.">⚠️</Tooltip> | claude-3-7-sonnet@20250219 |
@@ -70,7 +71,7 @@ The following examples shows how to generate text from Claude on Vertex AI:
   client = AnthropicVertex(project_id=project_id, region=region)
 
   message = client.messages.create(
-      model="claude-sonnet-4-5@20250929",
+      model="claude-opus-4-6",
       max_tokens=100,
       messages=[
           {
@@ -96,7 +97,7 @@ The following examples shows how to generate text from Claude on Vertex AI:
 
   async function main() {
     const result = await client.messages.create({
-      model: 'claude-sonnet-4-5@20250929',
+      model: 'claude-opus-4-6',
       max_tokens: 100,
       messages: [
         {
@@ -112,7 +113,7 @@ The following examples shows how to generate text from Claude on Vertex AI:
   ```
 
   ```bash Shell
-  MODEL_ID=claude-sonnet-4-5@20250929
+  MODEL_ID=claude-opus-4-6
   LOCATION=global
   PROJECT_ID=MY_PROJECT_ID
 
@@ -191,7 +192,7 @@ region = "global"
 client = AnthropicVertex(project_id=project_id, region=region)
 
 message = client.messages.create(
-    model="claude-sonnet-4-5@20250929",
+    model="claude-opus-4-6",
     max_tokens=100,
     messages=[
         {
@@ -215,7 +216,7 @@ const client = new AnthropicVertex({
 });
 
 const result = await client.messages.create({
-  model: 'claude-sonnet-4-5@20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 100,
   messages: [
     {
@@ -241,7 +242,7 @@ region = "us-east1"  # Specify a specific region
 client = AnthropicVertex(project_id=project_id, region=region)
 
 message = client.messages.create(
-    model="claude-sonnet-4-5@20250929",
+    model="claude-opus-4-6",
     max_tokens=100,
     messages=[
         {
@@ -265,7 +266,7 @@ const client = new AnthropicVertex({
 });
 
 const result = await client.messages.create({
-  model: 'claude-sonnet-4-5@20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 100,
   messages: [
     {

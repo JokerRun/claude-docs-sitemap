@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 28e54e937f6cb2ac3af754dd2861fdbbc1e79d82b7a9e7d943a435bd8a94a887
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: a4154bf98fce7fcebe2d9f42a36c063c39643fad79b27ab63a4003920d61bc74
 ---
 
 # Get started with Agent Skills in the API
@@ -92,7 +92,7 @@ client = anthropic.Anthropic()
 
 # Create a message with the PowerPoint Skill
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -124,7 +124,7 @@ const client = new Anthropic();
 
 // Create a message with the PowerPoint Skill
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -156,7 +156,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [
@@ -277,7 +277,7 @@ Now that you've created your first document with Skills, try these variations:
 <CodeGroup>
 ```python Python
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -302,7 +302,7 @@ response = client.beta.messages.create(
 
 ```typescript TypeScript
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -332,7 +332,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [
@@ -360,7 +360,7 @@ curl https://api.anthropic.com/v1/messages \
 <CodeGroup>
 ```python Python
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -385,7 +385,7 @@ response = client.beta.messages.create(
 
 ```typescript TypeScript
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -415,7 +415,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [
@@ -443,7 +443,7 @@ curl https://api.anthropic.com/v1/messages \
 <CodeGroup>
 ```python Python
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -468,7 +468,7 @@ response = client.beta.messages.create(
 
 ```typescript TypeScript
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -498,7 +498,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [

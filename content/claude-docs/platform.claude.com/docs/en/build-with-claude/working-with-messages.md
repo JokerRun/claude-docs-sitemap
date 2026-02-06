@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 3ed62b1a0dd40ea6c9dc5bfe73b3d3949e847486bcbba43935ecfd8401fc81e4
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: c1826df06b0f4fd6a998fd2ff8972ad46fe893d9558426dd7756d6007e3f2854
 ---
 
 # Using the Messages API
@@ -24,7 +24,7 @@ This guide covers common patterns for working with the Messages API, including b
        --header "content-type: application/json" \
        --data \
   '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "max_tokens": 1024,
       "messages": [
           {"role": "user", "content": "Hello, Claude"}
@@ -36,7 +36,7 @@ This guide covers common patterns for working with the Messages API, including b
   import anthropic
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-sonnet-4-5",
+      model="claude-opus-4-6",
       max_tokens=1024,
       messages=[
           {"role": "user", "content": "Hello, Claude"}
@@ -51,7 +51,7 @@ This guide covers common patterns for working with the Messages API, including b
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: 'claude-opus-4-6',
     max_tokens: 1024,
     messages: [
       {"role": "user", "content": "Hello, Claude"}
@@ -72,7 +72,7 @@ This guide covers common patterns for working with the Messages API, including b
       "text": "Hello!"
     }
   ],
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {
@@ -95,7 +95,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "messages": [
         {"role": "user", "content": "Hello, Claude"},
@@ -110,7 +110,7 @@ curl https://api.anthropic.com/v1/messages \
 import anthropic
 
 message = anthropic.Anthropic().messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": "Hello, Claude"},
@@ -128,7 +128,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const anthropic = new Anthropic();
 
 await anthropic.messages.create({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   max_tokens: 1024,
   messages: [
     {"role": "user", "content": "Hello, Claude"},
@@ -172,7 +172,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
        --header "content-type: application/json" \
        --data \
   '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "max_tokens": 1,
       "messages": [
           {"role": "user", "content": "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"},
@@ -185,7 +185,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
   import anthropic
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-sonnet-4-5",
+      model="claude-opus-4-6",
       max_tokens=1,
       messages=[
           {"role": "user", "content": "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"},
@@ -201,7 +201,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: 'claude-opus-4-6',
     max_tokens: 1,
     messages: [
       {"role": "user", "content": "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"},
@@ -223,7 +223,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
       "text": "C"
     }
   ],
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "stop_reason": "max_tokens",
   "stop_sequence": null,
   "usage": {
@@ -233,7 +233,9 @@ You can pre-fill part of Claude's response in the last position of the input mes
 }
 ```
 
-For more information on prefill techniques, see our [prefill guide](/docs/en/build-with-claude/prompt-engineering/prefill-claudes-response).
+<Warning>
+Prefilling is deprecated and not supported on Claude Opus 4.6 and Claude Sonnet 4.5. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) or system prompt instructions instead.
+</Warning>
 
 ## Vision
 
@@ -254,7 +256,7 @@ Claude can read both text and images in requests. We support both `base64` and `
        --header "content-type: application/json" \
        --data \
   '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "max_tokens": 1024,
       "messages": [
           {"role": "user", "content": [
@@ -275,7 +277,7 @@ Claude can read both text and images in requests. We support both `base64` and `
        --header "content-type: application/json" \
        --data \
   '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "max_tokens": 1024,
       "messages": [
           {"role": "user", "content": [
@@ -300,7 +302,7 @@ Claude can read both text and images in requests. We support both `base64` and `
   image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf-8")
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-sonnet-4-5",
+      model="claude-opus-4-6",
       max_tokens=1024,
       messages=[
           {
@@ -326,7 +328,7 @@ Claude can read both text and images in requests. We support both `base64` and `
 
   # Option 2: URL-referenced image
   message_from_url = anthropic.Anthropic().messages.create(
-      model="claude-sonnet-4-5",
+      model="claude-opus-4-6",
       max_tokens=1024,
       messages=[
           {
@@ -362,7 +364,7 @@ Claude can read both text and images in requests. We support both `base64` and `
   const image_data = Buffer.from(image_array_buffer).toString('base64');
 
   const message = await anthropic.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: 'claude-opus-4-6',
     max_tokens: 1024,
     messages: [
           {
@@ -388,7 +390,7 @@ Claude can read both text and images in requests. We support both `base64` and `
 
   // Option 2: URL-referenced image
   const messageFromUrl = await anthropic.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: 'claude-opus-4-6',
     max_tokens: 1024,
     messages: [
           {
@@ -424,7 +426,7 @@ Claude can read both text and images in requests. We support both `base64` and `
       "text": "This image shows an ant, specifically a close-up view of an ant. The ant is shown in detail, with its distinct head, antennae, and legs clearly visible. The image is focused on capturing the intricate details and features of the ant, likely taken with a macro lens to get an extreme close-up perspective."
     }
   ],
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {

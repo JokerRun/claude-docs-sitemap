@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: b4d7ca0b84c1ef373333a9b9112154c29d7f663296f3331fff27e5f47265eb64
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 1675c06a4b0cf665eef83a920cc078eed45ada0f1fc933d314e86de58fab8070
 ---
 
 # Token counting
@@ -38,7 +38,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.count_tokens(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     system="You are a scientist",
     messages=[{
         "role": "user",
@@ -55,7 +55,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const client = new Anthropic();
 
 const response = await client.messages.countTokens({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   system: 'You are a scientist',
   messages: [{
     role: 'user',
@@ -72,7 +72,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     --header "content-type: application/json" \
     --header "anthropic-version: 2023-06-01" \
     --data '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "system": "You are a scientist",
       "messages": [{
         "role": "user",
@@ -94,7 +94,7 @@ public class CountTokensExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
-                .model(Model.CLAUDE_SONNET_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .system("You are a scientist")
                 .addUserMessage("Hello, Claude")
                 .build();
@@ -124,7 +124,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.count_tokens(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     tools=[
         {
             "name": "get_weather",
@@ -153,7 +153,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const client = new Anthropic();
 
 const response = await client.messages.countTokens({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   tools: [
     {
       name: "get_weather",
@@ -182,7 +182,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     --header "content-type: application/json" \
     --header "anthropic-version: 2023-06-01" \
     --data '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "tools": [
         {
           "name": "get_weather",
@@ -237,7 +237,7 @@ public class CountTokensWithToolsExample {
                 .build();
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
-                .model(Model.CLAUDE_SONNET_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .addTool(Tool.builder()
                         .name("get_weather")
                         .description("Get the current weather in a given location")
@@ -273,7 +273,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "messages": [
         {"role": "user", "content": [
             {"type": "image", "source": {
@@ -299,7 +299,7 @@ image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf
 client = anthropic.Anthropic()
 
 response = client.messages.count_tokens(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     messages=[
         {
             "role": "user",
@@ -334,7 +334,7 @@ const image_array_buffer = await ((await fetch(image_url)).arrayBuffer());
 const image_data = Buffer.from(image_array_buffer).toString('base64');
 
 const response = await anthropic.messages.countTokens({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   messages: [
     {
       "role": "user",
@@ -406,7 +406,7 @@ public class CountTokensImageExample {
                         .build());
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
-                .model(Model.CLAUDE_SONNET_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .addUserMessageOfBlockParams(List.of(imageBlock, textBlock))
                 .build();
 
@@ -607,7 +607,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     --header "content-type: application/json" \
     --header "anthropic-version: 2023-06-01" \
     --data '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "messages": [{
         "role": "user",
         "content": [
@@ -638,7 +638,7 @@ with open("document.pdf", "rb") as pdf_file:
     pdf_base64 = base64.standard_b64encode(pdf_file.read()).decode("utf-8")
 
 response = client.messages.count_tokens(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     messages=[{
         "role": "user",
         "content": [
@@ -670,7 +670,7 @@ const client = new Anthropic();
 const pdfBase64 = readFileSync('document.pdf', { encoding: 'base64' });
 
 const response = await client.messages.countTokens({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   messages: [{
     role: 'user',
     content: [
@@ -731,7 +731,7 @@ public class CountTokensPdfExample {
                         .build());
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
-                .model(Model.CLAUDE_SONNET_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .addUserMessageOfBlockParams(List.of(documentBlock, textBlock))
                 .build();
 

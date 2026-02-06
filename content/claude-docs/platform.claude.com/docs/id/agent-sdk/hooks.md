@@ -1,30 +1,30 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/hooks
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 456a58a78e0512fd2ca7ca46c2f93d45eaa0f9939d2d105af202a7605fc93d79
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 28bff0b842b2b140a4a0b142803aefc1f5287d7593b49f7ee1b03ffc82b2f5b7
 ---
 
 # Intercept dan kontrol perilaku agen dengan hooks
 
-Intercept dan sesuaikan perilaku agen pada titik eksekusi kunci dengan hooks
+Intercept dan customize perilaku agen pada titik eksekusi kunci dengan hooks
 
 ---
 
 Hooks memungkinkan Anda untuk menginterceptor eksekusi agen pada titik-titik kunci untuk menambahkan validasi, logging, kontrol keamanan, atau logika kustom. Dengan hooks, Anda dapat:
 
-- **Memblokir operasi berbahaya** sebelum dieksekusi, seperti perintah shell yang merusak atau akses file yang tidak sah
+- **Blokir operasi berbahaya** sebelum mereka dieksekusi, seperti perintah shell yang merusak atau akses file yang tidak sah
 - **Log dan audit** setiap pemanggilan tool untuk kepatuhan, debugging, atau analitik
-- **Transformasi input dan output** untuk membersihkan data, menyuntikkan kredensial, atau mengalihkan jalur file
+- **Transform input dan output** untuk membersihkan data, menyuntikkan kredensial, atau mengalihkan jalur file
 - **Memerlukan persetujuan manusia** untuk tindakan sensitif seperti penulisan database atau panggilan API
-- **Lacak siklus hidup sesi** untuk mengelola status, membersihkan sumber daya, atau mengirim notifikasi
+- **Track lifecycle sesi** untuk mengelola state, membersihkan resource, atau mengirim notifikasi
 
 Sebuah hook memiliki dua bagian:
 
 1. **Fungsi callback**: logika yang berjalan ketika hook dipicu
-2. **Konfigurasi hook**: memberitahu SDK acara mana yang akan di-hook (seperti `PreToolUse`) dan tool mana yang cocok
+2. **Konfigurasi hook**: memberitahu SDK event mana yang akan di-hook (seperti `PreToolUse`) dan tool mana yang akan dicocokkan
 
-Contoh berikut memblokir agen dari memodifikasi file `.env`. Pertama, tentukan callback yang memeriksa jalur file, kemudian teruskan ke `query()` untuk dijalankan sebelum panggilan tool Write atau Edit apa pun:
+Contoh berikut memblokir agen dari memodifikasi file `.env`. Pertama, tentukan callback yang memeriksa jalur file, kemudian teruskan ke `query()` untuk dijalankan sebelum pemanggilan tool Write atau Edit apa pun:
 
 <CodeGroup>
 
@@ -114,22 +114,22 @@ Ini adalah hook `PreToolUse`. Hook ini berjalan sebelum tool dieksekusi dan dapa
 
 ## Hook yang tersedia
 
-SDK menyediakan hooks untuk tahap berbeda dari eksekusi agen. Beberapa hooks tersedia di kedua SDK, sementara yang lain hanya TypeScript karena Python SDK tidak mendukungnya.
+SDK menyediakan hooks untuk tahap-tahap berbeda dari eksekusi agen. Beberapa hooks tersedia di kedua SDK, sementara yang lain hanya TypeScript karena Python SDK tidak mendukungnya.
 
 | Hook Event | Python SDK | TypeScript SDK | Apa yang memicunya | Contoh kasus penggunaan |
-|------------|------------|----------------|------------------|------------------------|
+|------------|------------|----------------|------------------|------------------|
 | `PreToolUse` | Ya | Ya | Permintaan pemanggilan tool (dapat memblokir atau memodifikasi) | Blokir perintah shell berbahaya |
-| `PostToolUse` | Ya | Ya | Hasil eksekusi tool | Log semua perubahan file ke jejak audit |
+| `PostToolUse` | Ya | Ya | Hasil eksekusi tool | Log semua perubahan file ke audit trail |
 | `PostToolUseFailure` | Tidak | Ya | Kegagalan eksekusi tool | Tangani atau log kesalahan tool |
 | `UserPromptSubmit` | Ya | Ya | Pengajuan prompt pengguna | Suntikkan konteks tambahan ke dalam prompt |
-| `Stop` | Ya | Ya | Penghentian eksekusi agen | Simpan status sesi sebelum keluar |
-| `SubagentStart` | Tidak | Ya | Inisialisasi subagen | Lacak pemijahan tugas paralel |
+| `Stop` | Ya | Ya | Penghentian eksekusi agen | Simpan state sesi sebelum keluar |
+| `SubagentStart` | Tidak | Ya | Inisialisasi subagen | Track spawning tugas paralel |
 | `SubagentStop` | Ya | Ya | Penyelesaian subagen | Agregasi hasil dari tugas paralel |
 | `PreCompact` | Ya | Ya | Permintaan pemadatan percakapan | Arsipkan transkrip lengkap sebelum merangkum |
 | `PermissionRequest` | Tidak | Ya | Dialog izin akan ditampilkan | Penanganan izin kustom |
 | `SessionStart` | Tidak | Ya | Inisialisasi sesi | Inisialisasi logging dan telemetri |
-| `SessionEnd` | Tidak | Ya | Penghentian sesi | Bersihkan sumber daya sementara |
-| `Notification` | Tidak | Ya | Pesan status agen | Kirim pembaruan status agen ke Slack atau PagerDuty |
+| `SessionEnd` | Tidak | Ya | Penghentian sesi | Bersihkan resource sementara |
+| `Notification` | Tidak | Ya | Pesan status agen | Kirim update status agen ke Slack atau PagerDuty |
 
 ## Kasus penggunaan umum
 
@@ -137,30 +137,30 @@ Hooks cukup fleksibel untuk menangani banyak skenario berbeda. Berikut adalah be
 
 <Tabs>
   <Tab title="Keamanan">
-    - Blokir perintah berbahaya (seperti `rm -rf /`, SQL yang merusak)
+    - Blokir perintah berbahaya (seperti `rm -rf /`, SQL destruktif)
     - Validasi jalur file sebelum operasi penulisan
     - Terapkan allowlist/blocklist untuk penggunaan tool
   </Tab>
   <Tab title="Logging">
-    - Buat jejak audit dari semua tindakan agen
-    - Lacak metrik eksekusi dan kinerja
+    - Buat audit trail dari semua tindakan agen
+    - Track metrik eksekusi dan performa
     - Debug perilaku agen dalam pengembangan
   </Tab>
-  <Tab title="Interception tool">
+  <Tab title="Tool interception">
     - Alihkan operasi file ke direktori sandbox
     - Suntikkan variabel lingkungan atau kredensial
-    - Transformasi input atau output tool
+    - Transform input atau output tool
   </Tab>
   <Tab title="Otorisasi">
     - Implementasikan kontrol akses berbasis peran
     - Memerlukan persetujuan manusia untuk operasi sensitif
-    - Batasi tingkat penggunaan tool tertentu
+    - Rate limit penggunaan tool spesifik
   </Tab>
 </Tabs>
 
 ## Konfigurasi hooks
 
-Untuk mengonfigurasi hook untuk agen Anda, teruskan hook dalam parameter `options.hooks` saat memanggil `query()`:
+Untuk mengkonfigurasi hook untuk agen Anda, teruskan hook dalam parameter `options.hooks` saat memanggil `query()`:
 
 <CodeGroup>
 
@@ -191,33 +191,33 @@ for await (const message of query({
 
 </CodeGroup>
 
-Opsi `hooks` adalah kamus (Python) atau objek (TypeScript) di mana:
-- **Kunci** adalah [nama acara hook](#available-hooks) (misalnya, `'PreToolUse'`, `'PostToolUse'`, `'Stop'`)
-- **Nilai** adalah array dari [matcher](#matchers), masing-masing berisi pola filter opsional dan [fungsi callback](#callback-function-inputs) Anda
+Opsi `hooks` adalah dictionary (Python) atau object (TypeScript) di mana:
+- **Keys** adalah [nama event hook](#available-hooks) (misalnya, `'PreToolUse'`, `'PostToolUse'`, `'Stop'`)
+- **Values** adalah array dari [matchers](#matchers), masing-masing berisi pola filter opsional dan [fungsi callback](#callback-function-inputs) Anda
 
-Fungsi callback hook Anda menerima [data input](#input-data) tentang acara dan mengembalikan [respons](#callback-outputs) sehingga agen tahu untuk mengizinkan, memblokir, atau memodifikasi operasi.
+Fungsi callback hook Anda menerima [data input](#input-data) tentang event dan mengembalikan [response](#callback-outputs) sehingga agen tahu untuk mengizinkan, memblokir, atau memodifikasi operasi.
 
 ### Matchers
 
-Gunakan matcher untuk memfilter tool mana yang memicu callback Anda:
+Gunakan matchers untuk memfilter tool mana yang memicu callback Anda:
 
 | Opsi | Tipe | Default | Deskripsi |
 |--------|------|---------|-------------|
 | `matcher` | `string` | `undefined` | Pola regex untuk mencocokkan nama tool. Tool bawaan termasuk `Bash`, `Read`, `Write`, `Edit`, `Glob`, `Grep`, `WebFetch`, `Task`, dan lainnya. Tool MCP menggunakan pola `mcp__<server>__<action>`. |
 | `hooks` | `HookCallback[]` | - | Diperlukan. Array fungsi callback untuk dieksekusi ketika pola cocok |
-| `timeout` | `number` | `60` | Timeout dalam detik; tingkatkan untuk hooks yang melakukan panggilan API eksternal |
+| `timeout` | `number` | `60` | Timeout dalam detik; tingkatkan untuk hooks yang membuat panggilan API eksternal |
 
-Gunakan pola `matcher` untuk menargetkan tool tertentu kapan pun memungkinkan. Matcher dengan `'Bash'` hanya berjalan untuk perintah Bash, sementara menghilangkan pola menjalankan callback Anda untuk setiap pemanggilan tool. Perhatikan bahwa matcher hanya memfilter berdasarkan **nama tool**, bukan jalur file atau argumen lainnya—untuk memfilter berdasarkan jalur file, periksa `tool_input.file_path` di dalam callback Anda.
+Gunakan pola `matcher` untuk menargetkan tool spesifik kapan pun memungkinkan. Matcher dengan `'Bash'` hanya berjalan untuk perintah Bash, sementara menghilangkan pola menjalankan callback Anda untuk setiap pemanggilan tool. Perhatikan bahwa matchers hanya memfilter berdasarkan **nama tool**, bukan jalur file atau argumen lainnya—untuk memfilter berdasarkan jalur file, periksa `tool_input.file_path` di dalam callback Anda.
 
-Matcher hanya berlaku untuk hook berbasis tool (`PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PermissionRequest`). Untuk hook siklus hidup seperti `Stop`, `SessionStart`, dan `Notification`, matcher diabaikan dan hook dipicu untuk semua acara dari tipe itu.
+Matchers hanya berlaku untuk hooks berbasis tool (`PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PermissionRequest`). Untuk hooks lifecycle seperti `Stop`, `SessionStart`, dan `Notification`, matchers diabaikan dan hook dipicu untuk semua event dari tipe tersebut.
 
 <Tip>
-**Menemukan nama tool:** Periksa array `tools` dalam pesan sistem awal ketika sesi Anda dimulai, atau tambahkan hook tanpa matcher untuk mencatat semua pemanggilan tool.
+**Menemukan nama tool:** Periksa array `tools` dalam pesan sistem awal ketika sesi Anda dimulai, atau tambahkan hook tanpa matcher untuk log semua pemanggilan tool.
 
-**Penamaan tool MCP:** Tool MCP selalu dimulai dengan `mcp__` diikuti oleh nama server dan tindakan: `mcp__<server>__<action>`. Misalnya, jika Anda mengonfigurasi server bernama `playwright`, toolnya akan dinamai `mcp__playwright__browser_screenshot`, `mcp__playwright__browser_click`, dll. Nama server berasal dari kunci yang Anda gunakan dalam konfigurasi `mcpServers`.
+**Penamaan tool MCP:** Tool MCP selalu dimulai dengan `mcp__` diikuti oleh nama server dan action: `mcp__<server>__<action>`. Misalnya, jika Anda mengkonfigurasi server bernama `playwright`, toolnya akan dinamai `mcp__playwright__browser_screenshot`, `mcp__playwright__browser_click`, dll. Nama server berasal dari kunci yang Anda gunakan dalam konfigurasi `mcpServers`.
 </Tip>
 
-Contoh ini menggunakan matcher untuk menjalankan hook hanya untuk tool yang memodifikasi file ketika acara `PreToolUse` dipicu:
+Contoh ini menggunakan matcher untuk menjalankan hook hanya untuk tool yang memodifikasi file ketika event `PreToolUse` dipicu:
 
 <CodeGroup>
 
@@ -247,47 +247,47 @@ const options = {
 
 Setiap callback hook menerima tiga argumen:
 
-1. **Data input** (`dict` / `HookInput`): Detail acara. Lihat [data input](#input-data) untuk bidang
-2. **ID penggunaan tool** (`str | None` / `string | null`): Korelasikan acara `PreToolUse` dan `PostToolUse`
-3. **Konteks** (`HookContext`): Di TypeScript, berisi properti `signal` (`AbortSignal`) untuk pembatalan. Teruskan ini ke operasi async seperti `fetch()` sehingga mereka secara otomatis membatalkan jika hook kedaluwarsa. Di Python, argumen ini dicadangkan untuk penggunaan di masa depan.
+1. **Data input** (`dict` / `HookInput`): Detail event. Lihat [data input](#input-data) untuk field
+2. **Tool use ID** (`str | None` / `string | null`): Korelasikan event `PreToolUse` dan `PostToolUse`
+3. **Context** (`HookContext`): Di TypeScript, berisi property `signal` (`AbortSignal`) untuk pembatalan. Teruskan ini ke operasi async seperti `fetch()` sehingga mereka secara otomatis membatalkan jika hook timeout. Di Python, argumen ini dicadangkan untuk penggunaan di masa depan.
 
 ### Data input
 
-Argumen pertama untuk callback hook Anda berisi informasi tentang acara. Nama bidang identik di seluruh SDK (keduanya menggunakan snake_case).
+Argumen pertama ke callback hook Anda berisi informasi tentang event. Nama field identik di seluruh SDK (keduanya menggunakan snake_case).
 
-**Bidang umum** yang ada di semua tipe hook:
+**Field umum** yang ada di semua tipe hook:
 
-| Bidang | Tipe | Deskripsi |
+| Field | Tipe | Deskripsi |
 |-------|------|-------------|
 | `hook_event_name` | `string` | Tipe hook (`PreToolUse`, `PostToolUse`, dll.) |
-| `session_id` | `string` | Pengidentifikasi sesi saat ini |
+| `session_id` | `string` | Identifier sesi saat ini |
 | `transcript_path` | `string` | Jalur ke transkrip percakapan |
 | `cwd` | `string` | Direktori kerja saat ini |
 
-**Bidang spesifik hook** bervariasi menurut tipe hook. Item yang ditandai <sup>TS</sup> hanya tersedia di TypeScript SDK:
+**Field spesifik hook** bervariasi menurut tipe hook. Item yang ditandai <sup>TS</sup> hanya tersedia di TypeScript SDK:
 
-| Bidang | Tipe | Deskripsi | Hooks |
+| Field | Tipe | Deskripsi | Hooks |
 |-------|------|-------------|-------|
-| `tool_name` | `string` | Nama tool yang dipanggil | PreToolUse, PostToolUse, PostToolUseFailure<sup>TS</sup>, PermissionRequest<sup>TS</sup> |
+| `tool_name` | `string` | Nama tool yang sedang dipanggil | PreToolUse, PostToolUse, PostToolUseFailure<sup>TS</sup>, PermissionRequest<sup>TS</sup> |
 | `tool_input` | `object` | Argumen yang dilewatkan ke tool | PreToolUse, PostToolUse, PostToolUseFailure<sup>TS</sup>, PermissionRequest<sup>TS</sup> |
 | `tool_response` | `any` | Hasil yang dikembalikan dari eksekusi tool | PostToolUse |
 | `error` | `string` | Pesan kesalahan dari kegagalan eksekusi tool | PostToolUseFailure<sup>TS</sup> |
-| `is_interrupt` | `boolean` | Apakah kegagalan disebabkan oleh gangguan | PostToolUseFailure<sup>TS</sup> |
+| `is_interrupt` | `boolean` | Apakah kegagalan disebabkan oleh interrupt | PostToolUseFailure<sup>TS</sup> |
 | `prompt` | `string` | Teks prompt pengguna | UserPromptSubmit |
-| `stop_hook_active` | `boolean` | Apakah hook stop sedang diproses | Stop, SubagentStop |
-| `agent_id` | `string` | Pengidentifikasi unik untuk subagen | SubagentStart<sup>TS</sup>, SubagentStop<sup>TS</sup> |
+| `stop_hook_active` | `boolean` | Apakah stop hook sedang diproses | Stop, SubagentStop |
+| `agent_id` | `string` | Identifier unik untuk subagen | SubagentStart<sup>TS</sup>, SubagentStop<sup>TS</sup> |
 | `agent_type` | `string` | Tipe/peran subagen | SubagentStart<sup>TS</sup> |
 | `agent_transcript_path` | `string` | Jalur ke transkrip percakapan subagen | SubagentStop<sup>TS</sup> |
 | `trigger` | `string` | Apa yang memicu pemadatan: `manual` atau `auto` | PreCompact |
 | `custom_instructions` | `string` | Instruksi kustom yang disediakan untuk pemadatan | PreCompact |
-| `permission_suggestions` | `array` | Pembaruan izin yang disarankan untuk tool | PermissionRequest<sup>TS</sup> |
+| `permission_suggestions` | `array` | Saran update izin untuk tool | PermissionRequest<sup>TS</sup> |
 | `source` | `string` | Bagaimana sesi dimulai: `startup`, `resume`, `clear`, atau `compact` | SessionStart<sup>TS</sup> |
 | `reason` | `string` | Mengapa sesi berakhir: `clear`, `logout`, `prompt_input_exit`, `bypass_permissions_disabled`, atau `other` | SessionEnd<sup>TS</sup> |
 | `message` | `string` | Pesan status dari agen | Notification<sup>TS</sup> |
 | `notification_type` | `string` | Tipe notifikasi: `permission_prompt`, `idle_prompt`, `auth_success`, atau `elicitation_dialog` | Notification<sup>TS</sup> |
 | `title` | `string` | Judul opsional yang ditetapkan oleh agen | Notification<sup>TS</sup> |
 
-Kode di bawah mendefinisikan callback hook yang menggunakan `tool_name` dan `tool_input` untuk mencatat detail tentang setiap pemanggilan tool:
+Kode di bawah mendefinisikan callback hook yang menggunakan `tool_name` dan `tool_input` untuk log detail tentang setiap pemanggilan tool:
 
 <CodeGroup>
 
@@ -314,26 +314,26 @@ const logToolCalls: HookCallback = async (input, toolUseID, { signal }) => {
 
 ### Output callback
 
-Fungsi callback Anda mengembalikan objek yang memberitahu SDK cara melanjutkan. Kembalikan objek kosong `{}` untuk mengizinkan operasi tanpa perubahan. Untuk memblokir, memodifikasi, atau menambahkan konteks ke operasi, kembalikan objek dengan bidang `hookSpecificOutput` yang berisi keputusan Anda.
+Fungsi callback Anda mengembalikan object yang memberitahu SDK cara melanjutkan. Kembalikan object kosong `{}` untuk mengizinkan operasi tanpa perubahan. Untuk memblokir, memodifikasi, atau menambahkan konteks ke operasi, kembalikan object dengan field `hookSpecificOutput` yang berisi keputusan Anda.
 
-**Bidang tingkat atas** (di luar `hookSpecificOutput`):
+**Field tingkat atas** (di luar `hookSpecificOutput`):
 
-| Bidang | Tipe | Deskripsi |
+| Field | Tipe | Deskripsi |
 |-------|------|-------------|
 | `continue` | `boolean` | Apakah agen harus melanjutkan setelah hook ini (default: `true`) |
 | `stopReason` | `string` | Pesan yang ditampilkan ketika `continue` adalah `false` |
 | `suppressOutput` | `boolean` | Sembunyikan stdout dari transkrip (default: `false`) |
 | `systemMessage` | `string` | Pesan yang disuntikkan ke dalam percakapan untuk Claude lihat |
 
-**Bidang di dalam `hookSpecificOutput`**:
+**Field di dalam `hookSpecificOutput`**:
 
-| Bidang | Tipe | Hooks | Deskripsi |
+| Field | Tipe | Hooks | Deskripsi |
 |-------|------|-------|-------------|
-| `hookEventName` | `string` | Semua | Diperlukan. Gunakan `input.hook_event_name` untuk mencocokkan acara saat ini |
+| `hookEventName` | `string` | Semua | Diperlukan. Gunakan `input.hook_event_name` untuk mencocokkan event saat ini |
 | `permissionDecision` | `'allow'` \| `'deny'` \| `'ask'` | PreToolUse | Mengontrol apakah tool dieksekusi |
-| `permissionDecisionReason` | `string` | PreToolUse | Penjelasan yang ditampilkan kepada Claude untuk keputusan |
+| `permissionDecisionReason` | `string` | PreToolUse | Penjelasan yang ditampilkan ke Claude untuk keputusan |
 | `updatedInput` | `object` | PreToolUse | Input tool yang dimodifikasi (memerlukan `permissionDecision: 'allow'`) |
-| `additionalContext` | `string` | PostToolUse, UserPromptSubmit, SessionStart<sup>TS</sup>, SubagentStart<sup>TS</sup> | Konteks yang ditambahkan ke percakapan |
+| `additionalContext` | `string` | PreToolUse, PostToolUse, UserPromptSubmit, SessionStart<sup>TS</sup>, SubagentStart<sup>TS</sup> | Konteks yang ditambahkan ke percakapan |
 
 Contoh ini memblokir operasi penulisan ke direktori `/etc` sambil menyuntikkan pesan sistem untuk mengingatkan Claude tentang praktik file yang aman:
 
@@ -381,14 +381,14 @@ const blockEtcWrites: HookCallback = async (input, toolUseID, { signal }) => {
 
 #### Alur keputusan izin
 
-Ketika beberapa hook atau aturan izin berlaku, SDK mengevaluasinya dalam urutan ini:
+Ketika beberapa hooks atau aturan izin berlaku, SDK mengevaluasinya dalam urutan ini:
 
-1. Aturan **Deny** diperiksa terlebih dahulu (kecocokan apa pun = penolakan segera).
+1. Aturan **Deny** diperiksa terlebih dahulu (kecocokan apa pun = penolakan langsung).
 2. Aturan **Ask** diperiksa kedua.
 3. Aturan **Allow** diperiksa ketiga.
 4. **Default ke Ask** jika tidak ada yang cocok.
 
-Jika hook apa pun mengembalikan `deny`, operasi diblokir—hook lain yang mengembalikan `allow` tidak akan menimpanya.
+Jika hook apa pun mengembalikan `deny`, operasi diblokir—hook lain yang mengembalikan `allow` tidak akan menggantinya.
 
 #### Blokir tool
 
@@ -486,7 +486,7 @@ const redirectToSandbox: HookCallback = async (input, toolUseID, { signal }) => 
 </CodeGroup>
 
 <Note>
-Saat menggunakan `updatedInput`, Anda juga harus menyertakan `permissionDecision`. Selalu kembalikan objek baru daripada mutasi `tool_input` asli.
+Ketika menggunakan `updatedInput`, Anda juga harus menyertakan `permissionDecision`. Selalu kembalikan object baru daripada mutasi `tool_input` asli.
 </Note>
 
 #### Tambahkan pesan sistem
@@ -512,7 +512,7 @@ const addSecurityReminder: HookCallback = async (input, toolUseID, { signal }) =
 
 </CodeGroup>
 
-#### Persetujuan otomatis untuk tool tertentu
+#### Auto-approve tool spesifik
 
 Lewati prompt izin untuk tool terpercaya. Ini berguna ketika Anda ingin operasi tertentu berjalan tanpa konfirmasi pengguna:
 
@@ -557,7 +557,7 @@ const autoApproveReadOnly: HookCallback = async (input, toolUseID, { signal }) =
 </CodeGroup>
 
 <Note>
-Bidang `permissionDecision` menerima tiga nilai: `'allow'` (persetujuan otomatis), `'deny'` (blokir), atau `'ask'` (minta konfirmasi).
+Field `permissionDecision` menerima tiga nilai: `'allow'` (auto-approve), `'deny'` (blokir), atau `'ask'` (prompt untuk konfirmasi).
 </Note>
 
 ## Tangani skenario lanjutan
@@ -566,7 +566,7 @@ Pola-pola ini membantu Anda membangun sistem hook yang lebih canggih untuk kasus
 
 ### Chaining multiple hooks
 
-Hooks dieksekusi dalam urutan kemunculannya di array. Jaga setiap hook tetap fokus pada tanggung jawab tunggal dan rantai beberapa hook untuk logika kompleks. Contoh ini menjalankan keempat hook untuk setiap pemanggilan tool (tidak ada matcher yang ditentukan):
+Hooks dieksekusi dalam urutan mereka muncul dalam array. Jaga setiap hook fokus pada tanggung jawab tunggal dan chain multiple hooks untuk logika kompleks. Contoh ini menjalankan keempat hooks untuk setiap pemanggilan tool (tidak ada matcher yang ditentukan):
 
 <CodeGroup>
 
@@ -598,9 +598,9 @@ const options = {
 
 </CodeGroup>
 
-### Matcher spesifik tool dengan regex
+### Tool-specific matchers dengan regex
 
-Gunakan pola regex untuk mencocokkan beberapa tool:
+Gunakan pola regex untuk mencocokkan multiple tools:
 
 <CodeGroup>
 
@@ -641,12 +641,12 @@ const options = {
 </CodeGroup>
 
 <Note>
-Matcher hanya mencocokkan **nama tool**, bukan jalur file atau argumen lainnya. Untuk memfilter berdasarkan jalur file, periksa `tool_input.file_path` di dalam callback hook Anda.
+Matchers hanya mencocokkan **nama tool**, bukan jalur file atau argumen lainnya. Untuk memfilter berdasarkan jalur file, periksa `tool_input.file_path` di dalam callback hook Anda.
 </Note>
 
-### Melacak aktivitas subagen
+### Tracking aktivitas subagen
 
-Gunakan hook `SubagentStop` untuk memantau penyelesaian subagen. `tool_use_id` membantu menghubungkan panggilan agen induk dengan subagen mereka:
+Gunakan hooks `SubagentStop` untuk memonitor penyelesaian subagen. `tool_use_id` membantu mengorelasikan panggilan agen parent dengan subagen mereka:
 
 <CodeGroup>
 
@@ -686,7 +686,7 @@ const options = {
 
 ### Operasi async dalam hooks
 
-Hooks dapat melakukan operasi async seperti permintaan HTTP. Tangani kesalahan dengan baik dengan menangkap pengecualian daripada melemparnya. Di TypeScript, teruskan `signal` ke `fetch()` sehingga permintaan dibatalkan jika hook kedaluwarsa:
+Hooks dapat melakukan operasi async seperti HTTP requests. Tangani error dengan baik dengan menangkap exceptions daripada melemparnya. Di TypeScript, teruskan `signal` ke `fetch()` sehingga request dibatalkan jika hook timeout:
 
 <CodeGroup>
 
@@ -739,9 +739,9 @@ const webhookNotifier: HookCallback = async (input, toolUseID, { signal }) => {
 
 </CodeGroup>
 
-### Mengirim notifikasi (hanya TypeScript)
+### Mengirim notifikasi (TypeScript only)
 
-Gunakan hook `Notification` untuk menerima pembaruan status dari agen dan meneruskannya ke layanan eksternal seperti Slack atau dashboard pemantauan:
+Gunakan hooks `Notification` untuk menerima update status dari agen dan meneruskannya ke layanan eksternal seperti Slack atau dashboard monitoring:
 
 ```typescript TypeScript
 import { query, HookCallback, NotificationHookInput } from "@anthropic-ai/claude-agent-sdk";
@@ -778,15 +778,15 @@ Bagian ini mencakup masalah umum dan cara menyelesaikannya.
 
 ### Hook tidak dipicu
 
-- Verifikasi nama acara hook benar dan peka huruf besar-kecil (`PreToolUse`, bukan `preToolUse`)
+- Verifikasi nama event hook benar dan case-sensitive (`PreToolUse`, bukan `preToolUse`)
 - Periksa bahwa pola matcher Anda cocok dengan nama tool dengan tepat
-- Pastikan hook berada di bawah tipe acara yang benar dalam `options.hooks`
-- Untuk hook `SubagentStop`, `Stop`, `SessionStart`, `SessionEnd`, dan `Notification`, matcher diabaikan. Hook ini dipicu untuk semua acara dari tipe itu.
-- Hook mungkin tidak dipicu ketika agen mencapai batas [`max_turns`](/docs/id/agent-sdk/python#configuration-options) karena sesi berakhir sebelum hook dapat dieksekusi
+- Pastikan hook berada di bawah tipe event yang benar dalam `options.hooks`
+- Untuk hooks `SubagentStop`, `Stop`, `SessionStart`, `SessionEnd`, dan `Notification`, matchers diabaikan. Hook ini dipicu untuk semua event dari tipe tersebut.
+- Hooks mungkin tidak dipicu ketika agen mencapai batas [`max_turns`](/docs/id/agent-sdk/python#configuration-options) karena sesi berakhir sebelum hooks dapat dieksekusi
 
 ### Matcher tidak memfilter seperti yang diharapkan
 
-Matcher hanya mencocokkan **nama tool**, bukan jalur file atau argumen lainnya. Untuk memfilter berdasarkan jalur file, periksa `tool_input.file_path` di dalam hook Anda:
+Matchers hanya mencocokkan **nama tool**, bukan jalur file atau argumen lainnya. Untuk memfilter berdasarkan jalur file, periksa `tool_input.file_path` di dalam hook Anda:
 
 ```typescript
 const myHook: HookCallback = async (input, toolUseID, { signal }) => {
@@ -804,9 +804,9 @@ const myHook: HookCallback = async (input, toolUseID, { signal }) => {
 
 ### Tool diblokir secara tidak terduga
 
-- Periksa semua hook `PreToolUse` untuk pengembalian `permissionDecision: 'deny'`
-- Tambahkan logging ke hook Anda untuk melihat apa `permissionDecisionReason` yang mereka kembalikan
-- Verifikasi pola matcher tidak terlalu luas (matcher kosong cocok dengan semua tool)
+- Periksa semua hooks `PreToolUse` untuk return `permissionDecision: 'deny'`
+- Tambahkan logging ke hooks Anda untuk melihat `permissionDecisionReason` apa yang mereka kembalikan
+- Verifikasi pola matcher tidak terlalu luas (matcher kosong mencocokkan semua tools)
 
 ### Input yang dimodifikasi tidak diterapkan
 
@@ -823,31 +823,31 @@ const myHook: HookCallback = async (input, toolUseID, { signal }) => {
   ```
 
 - Anda juga harus mengembalikan `permissionDecision: 'allow'` agar modifikasi input berlaku
-- Sertakan `hookEventName` dalam `hookSpecificOutput` untuk mengidentifikasi tipe hook mana output tersebut
+- Sertakan `hookEventName` dalam `hookSpecificOutput` untuk mengidentifikasi tipe hook mana outputnya
 
 ### Hook sesi tidak tersedia
 
-Hook `SessionStart`, `SessionEnd`, dan `Notification` hanya tersedia di TypeScript SDK. Python SDK tidak mendukung acara ini karena keterbatasan setup.
+Hook `SessionStart`, `SessionEnd`, dan `Notification` hanya tersedia di TypeScript SDK. Python SDK tidak mendukung event ini karena keterbatasan setup.
 
 ### Prompt izin subagen berlipat ganda
 
-Saat memijahkan beberapa subagen, masing-masing mungkin meminta izin secara terpisah. Subagen tidak secara otomatis mewarisi izin agen induk. Untuk menghindari prompt berulang, gunakan hook `PreToolUse` untuk persetujuan otomatis tool tertentu, atau konfigurasi aturan izin yang berlaku untuk sesi subagen.
+Ketika spawning multiple subagents, masing-masing mungkin meminta izin secara terpisah. Subagents tidak secara otomatis mewarisi izin agen parent. Untuk menghindari prompt berulang, gunakan hooks `PreToolUse` untuk auto-approve tool spesifik, atau konfigurasi aturan izin yang berlaku untuk sesi subagen.
 
-### Loop hook rekursif dengan subagen
+### Loop hook rekursif dengan subagents
 
-Hook `UserPromptSubmit` yang memijahkan subagen dapat membuat loop tak terbatas jika subagen tersebut memicu hook yang sama. Untuk mencegah ini:
+Hook `UserPromptSubmit` yang spawns subagents dapat membuat loop tak terbatas jika subagents tersebut memicu hook yang sama. Untuk mencegah ini:
 
-- Periksa indikator subagen dalam input hook sebelum memijahkan
-- Gunakan bidang `parent_tool_use_id` untuk mendeteksi jika Anda sudah dalam konteks subagen
-- Batasi hook hanya berjalan untuk sesi agen tingkat atas
+- Periksa indikator subagen dalam input hook sebelum spawning
+- Gunakan field `parent_tool_use_id` untuk mendeteksi jika Anda sudah dalam konteks subagen
+- Scope hooks untuk hanya berjalan untuk sesi agen tingkat atas
 
 ### systemMessage tidak muncul dalam output
 
-Bidang `systemMessage` menambahkan konteks ke percakapan yang model lihat, tetapi mungkin tidak muncul di semua mode output SDK. Jika Anda perlu menampilkan keputusan hook ke aplikasi Anda, log mereka secara terpisah atau gunakan saluran output khusus.
+Field `systemMessage` menambahkan konteks ke percakapan yang model lihat, tetapi mungkin tidak muncul di semua mode output SDK. Jika Anda perlu menampilkan keputusan hook ke aplikasi Anda, log mereka secara terpisah atau gunakan channel output khusus.
 
 ## Pelajari lebih lanjut
 
 - [Permissions](/docs/id/agent-sdk/permissions): kontrol apa yang dapat dilakukan agen Anda
-- [Custom Tools](/docs/id/agent-sdk/custom-tools): bangun tool untuk memperluas kemampuan agen
+- [Custom Tools](/docs/id/agent-sdk/custom-tools): bangun tools untuk memperluas kemampuan agen
 - [TypeScript SDK Reference](/docs/id/agent-sdk/typescript)
 - [Python SDK Reference](/docs/id/agent-sdk/python)

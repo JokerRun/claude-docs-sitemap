@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-02-04T04:12:50.357302Z
-sha256: c644207fa4464455f178e848cc2fb9228e7d13282b9a55d9776935b668522ace
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 1cf621e137a4dc03a8515c7d4aa59919461985607265d6a9685892c9a4183185
 ---
 
 > ## Documentation Index
@@ -77,6 +77,7 @@ Customize Claude Code's behavior with these command-line flags:
 | `--system-prompt`                      | Replace the entire system prompt with custom text (works in both interactive and print modes)                                                                                                             | `claude --system-prompt "You are a Python expert"`                                                 |
 | `--system-prompt-file`                 | Load system prompt from a file, replacing the default prompt (print mode only)                                                                                                                            | `claude -p --system-prompt-file ./custom-prompt.txt "query"`                                       |
 | `--teleport`                           | Resume a [web session](/en/claude-code-on-the-web) in your local terminal                                                                                                                                 | `claude --teleport`                                                                                |
+| `--teammate-mode`                      | Set how [agent team](/en/agent-teams) teammates display: `auto` (default), `in-process`, or `tmux`. See [set up agent teams](/en/agent-teams#set-up-agent-teams)                                          | `claude --teammate-mode in-process`                                                                |
 | `--tools`                              | Restrict which built-in tools Claude can use (works in both interactive and print modes). Use `""` to disable all, `"default"` for all, or tool names like `"Bash,Edit,Read"`                             | `claude --tools "Bash,Edit,Read"`                                                                  |
 | `--verbose`                            | Enable verbose logging, shows full turn-by-turn output (helpful for debugging in both print and interactive modes)                                                                                        | `claude --verbose`                                                                                 |
 | `--version`, `-v`                      | Output the version number                                                                                                                                                                                 | `claude -v`                                                                                        |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/create
-fetched_at: 2026-01-30T04:11:49.863510Z
-sha256: a1daf635460b0b10d71e86e9c3e85ba35888ad12bfe050a99ba7ae432d7d3126
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 4b744614eef00eca2df39c2404826eed6e776722504bff8e576d43b640acf67f
 ---
 
 ## Create
@@ -2449,6 +2449,47 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+        - `type BetaCompactionBlockParamResp struct{…}`
+
+          A compaction block containing summary of previous context.
+
+          Users should round-trip these blocks from responses to subsequent requests
+          to maintain context across compaction boundaries.
+
+          When content is None, the block represents a failed compaction. The server
+          treats these as no-ops. Empty string content is not allowed.
+
+          - `Content string`
+
+            Summary of previously compacted content, or null if compaction failed
+
+          - `Type Compaction`
+
+            - `const CompactionCompaction Compaction = "compaction"`
+
+          - `CacheControl BetaCacheControlEphemeral`
+
+            Create a cache control breakpoint at this content block.
+
+            - `Type Ephemeral`
+
+              - `const EphemeralEphemeral Ephemeral = "ephemeral"`
+
+            - `TTL BetaCacheControlEphemeralTTL`
+
+              The time-to-live for the cache control breakpoint.
+
+              This may be one the following values:
+
+              - `5m`: 5 minutes
+              - `1h`: 1 hour
+
+              Defaults to `5m`.
+
+              - `const BetaCacheControlEphemeralTTLTTL5m BetaCacheControlEphemeralTTL = "5m"`
+
+              - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
+
     - `Role BetaMessageParamRole`
 
       - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
@@ -2500,6 +2541,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     Body param: Context management configuration.
 
     This allows you to control how Claude manages context across multiple requests, such as whether to clear function results or not.
+
+  - `InferenceGeo param.Field[string]`
+
+    Body param: Specifies the geographic region for inference processing. If not specified, the workspace's `default_inference_geo` is used.
 
   - `MCPServers param.Field[[]BetaRequestMCPServerURLDefinition]`
 
@@ -2818,6 +2863,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         Description of what this tool does.
 
         Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
+
+      - `EagerInputStreaming bool`
+
+        Enable eager input streaming for this tool. When true, tool input parameters will be streamed incrementally as they are generated, and types will be inferred on-the-fly rather than buffering the full JSON output. When false, streaming is disabled for this tool even if the fine-grained-tool-streaming beta is active. When null (default), uses the default behavior based on beta headers.
 
       - `InputExamples []map[string, any]`
 
@@ -4646,6 +4695,22 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const ContainerUploadContainerUpload ContainerUpload = "container_upload"`
 
+    - `type BetaCompactionBlock struct{…}`
+
+      A compaction block returned when autocompact is triggered.
+
+      When content is None, it indicates the compaction failed to produce a valid
+      summary (e.g., malformed output from the model). Clients may round-trip
+      compaction blocks with null content; the server treats them as no-ops.
+
+      - `Content string`
+
+        Summary of compacted content, or null if compaction failed
+
+      - `Type Compaction`
+
+        - `const CompactionCompaction Compaction = "compaction"`
+
   - `ContextManagement BetaContextManagementResponse`
 
     Context management response.
@@ -4699,6 +4764,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
+
+        Most intelligent model for building agents and coding
 
       - `const ModelClaudeOpus4_5_20251101 Model = "claude-opus-4-5-20251101"`
 
@@ -4815,6 +4884,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `const BetaStopReasonPauseTurn BetaStopReason = "pause_turn"`
 
+    - `const BetaStopReasonCompaction BetaStopReason = "compaction"`
+
     - `const BetaStopReasonRefusal BetaStopReason = "refusal"`
 
     - `const BetaStopReasonModelContextWindowExceeded BetaStopReason = "model_context_window_exceeded"`
@@ -4865,9 +4936,99 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of input tokens read from the cache.
 
+    - `InferenceGeo string`
+
+      The geographic region where inference was performed for this request.
+
     - `InputTokens int64`
 
       The number of input tokens which were used.
+
+    - `Iterations []BetaUsageIterationUnion`
+
+      Per-iteration token usage breakdown.
+
+      Each entry represents one sampling iteration, with its own input/output token counts and cache statistics. This allows you to:
+
+      - Determine which iterations exceeded long context thresholds (>=200k tokens)
+      - Calculate the true context window size from the last iteration
+      - Understand token accumulation across server-side tool use loops
+
+      - `type BetaMessageIterationUsage struct{…}`
+
+        Token usage for a sampling iteration.
+
+        - `CacheCreation BetaCacheCreation`
+
+          Breakdown of cached tokens by TTL
+
+          - `Ephemeral1hInputTokens int64`
+
+            The number of input tokens used to create the 1 hour cache entry.
+
+          - `Ephemeral5mInputTokens int64`
+
+            The number of input tokens used to create the 5 minute cache entry.
+
+        - `CacheCreationInputTokens int64`
+
+          The number of input tokens used to create the cache entry.
+
+        - `CacheReadInputTokens int64`
+
+          The number of input tokens read from the cache.
+
+        - `InputTokens int64`
+
+          The number of input tokens which were used.
+
+        - `OutputTokens int64`
+
+          The number of output tokens which were used.
+
+        - `Type Message`
+
+          Usage for a sampling iteration
+
+          - `const MessageMessage Message = "message"`
+
+      - `type BetaCompactionIterationUsage struct{…}`
+
+        Token usage for a compaction iteration.
+
+        - `CacheCreation BetaCacheCreation`
+
+          Breakdown of cached tokens by TTL
+
+          - `Ephemeral1hInputTokens int64`
+
+            The number of input tokens used to create the 1 hour cache entry.
+
+          - `Ephemeral5mInputTokens int64`
+
+            The number of input tokens used to create the 5 minute cache entry.
+
+        - `CacheCreationInputTokens int64`
+
+          The number of input tokens used to create the cache entry.
+
+        - `CacheReadInputTokens int64`
+
+          The number of input tokens read from the cache.
+
+        - `InputTokens int64`
+
+          The number of input tokens which were used.
+
+        - `OutputTokens int64`
+
+          The number of output tokens which were used.
+
+        - `Type Compaction`
+
+          Usage for a compaction iteration
+
+          - `const CompactionCompaction Compaction = "compaction"`
 
     - `OutputTokens int64`
 
@@ -4922,7 +5083,7 @@ func main() {
       }},
       Role: anthropic.BetaMessageParamRoleUser,
     }},
-    Model: anthropic.ModelClaudeSonnet4_5_20250929,
+    Model: anthropic.ModelClaudeOpus4_6,
   })
   if err != nil {
     panic(err.Error())

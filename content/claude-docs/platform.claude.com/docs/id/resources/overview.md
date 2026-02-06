@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/overview
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 51f08feae3eb104d0e376d2b20731073ea22aefdb774342205dde28d3b94a878
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: b1bab9665244ce7f14a512656d08c146a9bd449a33d9a3799e08949202a8d17d
 ---
 
 <h2}>
@@ -10,19 +10,23 @@ sha256: 51f08feae3eb104d0e376d2b20731073ea22aefdb774342205dde28d3b94a878
   </h2>
   
 
-    <Card title="Kartu Sistem Claude Opus 4.5" icon="file" href="http://www.anthropic.com/claude-opus-4-5-system-card">
+    <Card title="Kartu Sistem Claude Opus 4.6" icon="file" href="https://www.anthropic.com/claude-opus-4-6-system-card">
+      Dokumentasi terperinci dari Claude Opus 4.6.
+    </Card>
+
+    <Card title="Kartu Sistem Claude Opus 4.5" icon="file" href="https://www.anthropic.com/claude-opus-4-5-system-card">
       Dokumentasi terperinci dari Claude Opus 4.5.
     </Card>
 
-    <Card title="Kartu Sistem Claude Haiku 4.5" icon="file" href="http://www.anthropic.com/claude-haiku-4-5-system-card">
+    <Card title="Kartu Sistem Claude Haiku 4.5" icon="file" href="https://www.anthropic.com/claude-haiku-4-5-system-card">
       Dokumentasi terperinci dari Claude Haiku 4.5.
     </Card>
 
-    <Card title="Kartu Sistem Claude Sonnet 4.5" icon="file" href="http://www.anthropic.com/claude-sonnet-4-5-system-card">
+    <Card title="Kartu Sistem Claude Sonnet 4.5" icon="file" href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
       Dokumentasi terperinci dari Claude Sonnet 4.5.
     </Card>
 
-    <Card title="Kartu Sistem Claude Opus 4.1" icon="file" href="http://www.anthropic.com/claude-opus-4-1-system-card">
+    <Card title="Kartu Sistem Claude Opus 4.1" icon="file" href="https://www.anthropic.com/claude-opus-4-1-system-card">
       Dokumentasi terperinci dari Claude Opus 4.1.
     </Card>
 
@@ -35,7 +39,7 @@ sha256: 51f08feae3eb104d0e376d2b20731073ea22aefdb774342205dde28d3b94a878
     </Card>
 
     <Card title="Kartu Model Claude 3" icon="file" href="https://assets.anthropic.com/m/61e7d27f8c8f5919/original/Claude-3-Model-Card.pdf">
-      Dokumentasi terperinci dari model Claude 3 termasuk lampiran 3.5 terbaru.
+      Dokumentasi terperinci dari model Claude 3 termasuk lampiran terbaru 3.5.
     </Card>
 
   
@@ -53,7 +57,7 @@ sha256: 51f08feae3eb104d0e376d2b20731073ea22aefdb774342205dde28d3b94a878
       Pelajaran langkah demi langkah tentang membangun dengan Claude.
     </Card>
 
-    <Card title="Buku Resep" icon="fork-knife" href="https://github.com/anthropics/anthropic-cookbook">
+    <Card title="Buku Resep" icon="fork-knife" href="https://platform.claude.com/cookbooks">
       Sampel kode dan implementasi yang dapat direplikasi.
     </Card>
 

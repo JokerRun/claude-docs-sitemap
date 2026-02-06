@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/master-moderator
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: d3acf4e2a609a7e950b088248353230cf55d2efceec971d628c169b0ade20761
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 10d1f74843eefbe0ba3040e6bdbecf8cbe205cd5074826ba21ff36e525fc1a15
 ---
 
 # Master moderator
@@ -34,7 +34,7 @@ Evaluate user inputs for potential harmful or illegal content.
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=10,
         temperature=0,
         messages=[
@@ -62,7 +62,7 @@ Evaluate user inputs for potential harmful or illegal content.
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 10,
       temperature: 0,
       messages: [
@@ -90,7 +90,7 @@ Evaluate user inputs for potential harmful or illegal content.
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1",
         max_tokens=10,
         temperature=0,
         messages=[
@@ -118,7 +118,7 @@ Evaluate user inputs for potential harmful or illegal content.
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 10,
       temperature: 0,
       messages: [

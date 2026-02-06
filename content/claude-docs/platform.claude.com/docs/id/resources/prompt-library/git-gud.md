@@ -1,43 +1,43 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/git-gud
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 654d2324247b8528b9eb6bce2ae06ad1cd1d41f373eac6f51a5906b6797fe74d
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 92c958379a9331951401570eee2b04e032cd42f3e2c91aa16ac150c1204d778b
 ---
 
 # Git gud
 
-Menghasilkan perintah Git yang sesuai berdasarkan tindakan kontrol versi yang dijelaskan pengguna.
+Hasilkan perintah Git yang sesuai berdasarkan tindakan kontrol versi yang dijelaskan pengguna.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-| Role | Content |
-| ---- | --- |
-| User | Saya telah membuat beberapa perubahan pada file lokal saya dan ingin menyimpannya di repositori Git lokal saya. Perintah Git apa yang harus saya gunakan? |
+| Peran | Konten                                                                                                                       |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Pengguna | Saya telah membuat beberapa perubahan pada file lokal saya dan saya ingin menyimpannya di repositori Git lokal saya. Perintah Git apa yang harus saya gunakan? |
 
-## Example Output
+## Contoh Output
 
 Untuk menyimpan perubahan yang telah Anda buat pada file lokal Anda di repositori Git lokal Anda, Anda harus menggunakan perintah Git berikut:
 
 1.  `git add .` atau `git add <file>`
 
-    - Perintah ini melakukan staging pada perubahan yang telah Anda buat, mempersiapkannya untuk di-commit. Tanda `.` menambahkan semua perubahan di direktori saat ini dan subdirektorinya. Jika Anda hanya ingin melakukan staging pada file tertentu, ganti `.` dengan nama file atau path.
+    - Perintah ini mempersiapkan perubahan yang telah Anda buat, menyiapkannya untuk di-commit. `.` menambahkan semua perubahan di direktori saat ini dan subdirektorinya. Jika Anda hanya ingin mempersiapkan file tertentu, ganti `.` dengan nama file atau jalur.
 
-2.  `git commit -m "Pesan commit Anda"`
+2.  `git commit -m "Your commit message"`
 
-    - Perintah ini melakukan commit pada perubahan yang telah di-staging ke repositori Git lokal Anda. Flag `-m` memungkinkan Anda memberikan pesan commit yang menjelaskan perubahan yang telah Anda buat. Ganti `"Pesan commit Anda"` dengan ringkasan singkat dan deskriptif dari perubahan Anda.
+    - Perintah ini melakukan commit pada perubahan yang telah Anda persiapkan ke repositori Git lokal Anda. Flag `-m` memungkinkan Anda memberikan pesan commit yang menjelaskan perubahan yang telah Anda buat. Ganti `"Your commit message"` dengan ringkasan singkat dan deskriptif tentang perubahan Anda.
 
 Sebagai contoh, jika Anda telah membuat perubahan pada file bernama `example.txt`, Anda akan menjalankan:
 
 ```
 git add example.txt
-git commit -m "Update example.txt dengan konten baru"
+git commit -m "Update example.txt with new content"
 
 ```
 
-Perintah-perintah ini akan menyimpan perubahan Anda di repositori Git lokal Anda, membuat commit baru dengan pesan yang diberikan. Anda dapat kemudian melakukan push perubahan ini ke repositori remote atau melanjutkan bekerja pada branch lokal Anda.
+Perintah-perintah ini akan menyimpan perubahan Anda di repositori Git lokal Anda, membuat commit baru dengan pesan yang disediakan. Anda dapat kemudian mendorong perubahan ini ke repositori jarak jauh atau terus bekerja pada cabang lokal Anda.
 
 Ingat untuk menjalankan perintah-perintah ini dari dalam direktori repositori Git Anda di terminal atau command prompt Anda.
 
@@ -54,7 +54,7 @@ client = anthropic.Anthropic(  # defaults to os.environ.get("ANTHROPIC_API_KEY")
     api_key="my_api_key",
 )
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1000,
     temperature=0,
     messages=[
@@ -84,7 +84,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 0,
   messages: [
@@ -114,7 +114,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=1000,
     temperature=0,
     messages=[
@@ -144,7 +144,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 1000,
   temperature: 0,
   messages: [

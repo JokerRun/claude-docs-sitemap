@@ -1,37 +1,37 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/portmanteau-poet
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: ad28c77d72fe6bb0abd18ce9b3041e074e4a27a729dba95c5f40a96d3aeea6eb
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: bba4ce93edd9801c5d7ef4dd5444f9b60ac7421b73ef1f6bd32f40ed9ceecc68
 ---
 
 # Penyair portmanteau
 
-Gabungkan dua kata bersama-sama untuk menciptakan portmanteau baru yang bermakna.
+Menggabungkan dua kata untuk menciptakan portmanteau baru yang bermakna.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Anda adalah asisten AI dengan bakat untuk menciptakan portmanteau yang inovatif. Tugas Anda adalah membantu pengguna menggabungkan dua kata bersama-sama untuk membentuk kata baru yang bermakna yang menangkap esensi dari kedua kata asli. Tawarkan beberapa pilihan jika memungkinkan. |
-| User   | Bagaimana dengan menggabungkan kata "music" dan "therapy" untuk menciptakan kata baru yang mewakili ide menggunakan musik untuk mempromosikan penyembuhan dan kesejahteraan? |
+|        | Konten                                                                                                                                                                                                                                            |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Anda adalah asisten AI dengan keahlian dalam menciptakan portmanteau inovatif. Tugas Anda adalah membantu pengguna menggabungkan dua kata untuk membentuk kata baru yang bermakna dan menangkap esensi dari kedua kata asli. Tawarkan beberapa pilihan jika memungkinkan. |
+| Pengguna   | Bagaimana jika menggabungkan kata-kata "musik" dan "terapi" untuk menciptakan kata baru yang mewakili ide menggunakan musik untuk mempromosikan penyembuhan dan kesejahteraan?                                                                                                 |
 
 ## Contoh output
 
-Berikut adalah beberapa pilihan portmanteau inovatif yang menggabungkan "music" dan "therapy" untuk mewakili konsep menggunakan musik untuk mempromosikan penyembuhan dan kesejahteraan:
+Berikut adalah beberapa pilihan portmanteau inovatif yang menggabungkan "musik" dan "terapi" untuk mewakili konsep menggunakan musik untuk mempromosikan penyembuhan dan kesejahteraan:
 
-1.  Musitherapy: Gabungan ini menggabungkan "music" dan "therapy" dengan cara yang langsung, membuatnya mudah untuk memahami konsep di balik kata tersebut.
-2.  Melodihealing: Dengan menggabungkan "melody" dan "healing," portmanteau ini menekankan kekuatan terapeutik melodi dalam mempromosikan kesejahteraan.
-3.  Rhythmedicine: Gabungan "rhythm" dan "medicine" ini menunjukkan bahwa aspek ritmis musik dapat memiliki sifat obat untuk penyembuhan.
-4.  Harmonicure: Dengan menggabungkan "harmony" dan "cure," portmanteau ini menyoroti ide bahwa elemen harmonis musik dapat membantu menyembuhkan penyakit.
-5.  Tunetreatment: Gabungan "tune" dan "treatment" ini menyiratkan bahwa nada atau lagu tertentu dapat digunakan sebagai bentuk pengobatan untuk berbagai kondisi.
-6.  Symphonotherapy: Dengan menggabungkan "symphony" dan "therapy," portmanteau ini menunjukkan bahwa sifat kompleks dan berlapis dari musik simfoni dapat memiliki efek terapeutik.
-7.  Melotherapy: Gabungan sederhana "melody" dan "therapy" ini menekankan aspek terapeutik melodi dalam kata yang ringkas dan mudah diingat.
-8.  Melodicine: Dengan menggabungkan "melody" dan "medicine," portmanteau ini menekankan ide menggunakan sifat penyembuhan musik dan melodinya sebagai bentuk obat atau pengobatan untuk berbagai kondisi atau tantangan.
+1.  Musiterapi: Perpaduan ini menggabungkan "musik" dan "terapi" dengan cara yang langsung, sehingga mudah memahami konsep di balik kata tersebut.
+2.  Melodipenyembuhan: Dengan menggabungkan "melodi" dan "penyembuhan," portmanteau ini menekankan kekuatan terapeutik melodi dalam mempromosikan kesejahteraan.
+3.  Ritmeobatan: Perpaduan "ritme" dan "obatan" ini menunjukkan bahwa aspek ritmis musik dapat memiliki sifat obat untuk penyembuhan.
+4.  Harmoniobat: Dengan menggabungkan "harmoni" dan "obat," portmanteau ini menyoroti ide bahwa elemen harmonis musik dapat membantu menyembuhkan penyakit.
+5.  Laguperawatan: Perpaduan "lagu" dan "perawatan" ini menyiratkan bahwa lagu atau melodi tertentu dapat digunakan sebagai bentuk perawatan untuk berbagai kondisi.
+6.  Simfoterapi: Dengan menggabungkan "simfoni" dan "terapi," portmanteau ini menunjukkan bahwa sifat kompleks dan berlapis dari musik simfoni dapat memiliki efek terapeutik.
+7.  Meloditerapi: Perpaduan sederhana "melodi" dan "terapi" ini menekankan aspek terapeutik melodi dalam kata yang ringkas dan mudah diingat.
+8.  Melodibat: Dengan menggabungkan "melodi" dan "obat," portmanteau ini menekankan ide menggunakan sifat penyembuhan musik dan melodinya sebagai bentuk obat atau perawatan untuk berbagai kondisi atau tantangan.
 
-Pilih portmanteau yang paling menangkap esensi ide Anda, atau gunakan ini sebagai inspirasi untuk menciptakan gabungan unik Anda sendiri!
+Pilih portmanteau yang paling menangkap esensi ide Anda, atau gunakan ini sebagai inspirasi untuk membuat perpaduan unik Anda sendiri!
 
 ---
 
@@ -48,7 +48,7 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=1000,
   temperature=1,
   system="You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",
@@ -80,7 +80,7 @@ apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
 });
 
 const msg = await anthropic.messages.create({
-model: "claude-sonnet-4-5",
+model: "claude-opus-4-6",
 max_tokens: 1000,
 temperature: 1,
 system: "You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",
@@ -113,7 +113,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+model="anthropic.claude-opus-4-6-v1:0",
 max_tokens=1000,
 temperature=1,
 system="You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",
@@ -144,7 +144,7 @@ import AnthropicBedrock from '@anthropic-ai/bedrock-sdk';
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+model: "anthropic.claude-opus-4-6-v1:0",
 max_tokens: 1000,
 temperature: 1,
 system: "You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",
@@ -225,5 +225,8 @@ console.log(msg);
 ```
 </Tab>
 </Tabs>
+
+```
+ 
 
 ```

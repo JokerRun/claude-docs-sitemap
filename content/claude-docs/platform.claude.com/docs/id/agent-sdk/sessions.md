@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/sessions
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 418217ce402a34d058c08e2891ad36fd09754cdf158674dcf54020a9fb0a82a2
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 2cc2cebce7bb1f3f1810ceaa9b0ec2f181e83d2f76b07946ba25295b51b77c55
 ---
 
 # Manajemen Sesi
 
-Memahami bagaimana Claude Agent SDK menangani sesi dan pemulihan sesi
+Memahami cara Claude Agent SDK menangani sesi dan resumsi sesi
 
 ---
 
 # Manajemen Sesi
 
-Claude Agent SDK menyediakan kemampuan manajemen sesi untuk menangani status percakapan dan pemulihan. Sesi memungkinkan Anda untuk melanjutkan percakapan di berbagai interaksi sambil mempertahankan konteks penuh.
+Claude Agent SDK menyediakan kemampuan manajemen sesi untuk menangani status percakapan dan resumsi. Sesi memungkinkan Anda melanjutkan percakapan di berbagai interaksi sambil mempertahankan konteks penuh.
 
 ## Cara Kerja Sesi
 
@@ -31,7 +31,7 @@ let sessionId: string | undefined
 const response = query({
   prompt: "Help me build a web application",
   options: {
-    model: "claude-sonnet-4-5"
+    model: "claude-opus-4-6"
   }
 })
 
@@ -66,7 +66,7 @@ session_id = None
 async for message in query(
     prompt="Help me build a web application",
     options=ClaudeAgentOptions(
-        model="claude-sonnet-4-5"
+        model="claude-opus-4-6"
     )
 ):
     # The first message is a system init message with the session ID
@@ -93,7 +93,7 @@ if session_id:
 
 ## Melanjutkan Sesi
 
-SDK mendukung pemulihan sesi dari status percakapan sebelumnya, memungkinkan alur kerja pengembangan berkelanjutan. Gunakan opsi `resume` dengan ID sesi untuk melanjutkan percakapan sebelumnya.
+SDK mendukung melanjutkan sesi dari status percakapan sebelumnya, memungkinkan alur kerja pengembangan berkelanjutan. Gunakan opsi `resume` dengan ID sesi untuk melanjutkan percakapan sebelumnya.
 
 <CodeGroup>
 
@@ -105,7 +105,7 @@ const response = query({
   prompt: "Continue implementing the authentication system from where we left off",
   options: {
     resume: "session-xyz", // Session ID from previous conversation
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     allowedTools: ["Read", "Edit", "Write", "Glob", "Grep", "Bash"]
   }
 })
@@ -124,7 +124,7 @@ async for message in query(
     prompt="Continue implementing the authentication system from where we left off",
     options=ClaudeAgentOptions(
         resume="session-xyz",  # Session ID from previous conversation
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         allowed_tools=["Read", "Edit", "Write", "Glob", "Grep", "Bash"]
     )
 ):
@@ -143,9 +143,9 @@ Untuk melacak dan mengembalikan perubahan file di seluruh sesi, lihat [File Chec
 
 ## Memisahkan Sesi
 
-Ketika melanjutkan sesi, Anda dapat memilih untuk melanjutkan sesi asli atau memisahkannya menjadi cabang baru. Secara default, melanjutkan akan terus dengan sesi asli. Gunakan opsi `forkSession` (TypeScript) atau `fork_session` (Python) untuk membuat ID sesi baru yang dimulai dari status yang dilanjutkan.
+Ketika melanjutkan sesi, Anda dapat memilih untuk melanjutkan sesi asli atau memisahnya menjadi cabang baru. Secara default, melanjutkan akan terus sesi asli. Gunakan opsi `forkSession` (TypeScript) atau opsi `fork_session` (Python) untuk membuat ID sesi baru yang dimulai dari status yang dilanjutkan.
 
-### Kapan Memisahkan Sesi
+### Kapan Harus Memisahkan Sesi
 
 Pemisahan berguna ketika Anda ingin:
 - Menjelajahi pendekatan berbeda dari titik awal yang sama
@@ -174,7 +174,7 @@ let sessionId: string | undefined
 
 const response = query({
   prompt: "Help me design a REST API",
-  options: { model: "claude-sonnet-4-5" }
+  options: { model: "claude-opus-4-6" }
 })
 
 for await (const message of response) {
@@ -190,7 +190,7 @@ const forkedResponse = query({
   options: {
     resume: sessionId,
     forkSession: true,  // Creates a new session ID
-    model: "claude-sonnet-4-5"
+    model: "claude-opus-4-6"
   }
 })
 
@@ -207,7 +207,7 @@ const originalContinued = query({
   options: {
     resume: sessionId,
     forkSession: false,  // Continue original session (default)
-    model: "claude-sonnet-4-5"
+    model: "claude-opus-4-6"
   }
 })
 ```
@@ -220,7 +220,7 @@ session_id = None
 
 async for message in query(
     prompt="Help me design a REST API",
-    options=ClaudeAgentOptions(model="claude-sonnet-4-5")
+    options=ClaudeAgentOptions(model="claude-opus-4-6")
 ):
     if hasattr(message, 'subtype') and message.subtype == 'init':
         session_id = message.data.get('session_id')
@@ -232,7 +232,7 @@ async for message in query(
     options=ClaudeAgentOptions(
         resume=session_id,
         fork_session=True,  # Creates a new session ID
-        model="claude-sonnet-4-5"
+        model="claude-opus-4-6"
     )
 ):
     if hasattr(message, 'subtype') and message.subtype == 'init':
@@ -246,7 +246,7 @@ async for message in query(
     options=ClaudeAgentOptions(
         resume=session_id,
         fork_session=False,  # Continue original session (default)
-        model="claude-sonnet-4-5"
+        model="claude-opus-4-6"
     )
 ):
     print(message)

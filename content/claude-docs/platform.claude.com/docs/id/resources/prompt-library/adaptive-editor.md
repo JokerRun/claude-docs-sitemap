@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/adaptive-editor
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c3164603a2b0d92a7fd0a3079eea255ef8a1ed9288c345dc5b9d5780cbebd889
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 7e9a97ac047030e290b424d64ccc2efd6133fb8770a58582935ffb19869c64d4
 ---
 
 # Editor adaptif
@@ -11,15 +11,15 @@ Tulis ulang teks mengikuti instruksi yang diberikan pengguna, seperti dengan nad
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|      | Konten |
-| ---- | --- |
-| User | Tulis ulang paragraf berikut menggunakan instruksi berikut: dengan gaya bajak laut. Paragraf: Pada tahun 1758, ahli botani dan zoologi Swedia Carl Linnaeus menerbitkan dalam Systema Naturae-nya, penamaan dua kata untuk spesies (nomenklatur binomial). Canis adalah kata Latin yang berarti "anjing", dan di bawah genus ini, dia mencantumkan anjing domestik, serigala, dan serigala emas. |
+|      | Konten                                                                                                                                                                                                                                                                                                                                                                              |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Pengguna | Tulis ulang paragraf berikut menggunakan instruksi berikut: dalam gaya seorang bajak laut. Paragraf: Pada tahun 1758, ahli botani dan zoolog Swedia Carl Linnaeus menerbitkan dalam Systema Naturae-nya, penamaan dua kata spesies (nomenklatur binomial). Canis adalah kata Latin yang berarti "anjing", dan di bawah genus ini, dia mendaftarkan anjing domestik, serigala, dan jackal emas. |
 
-### Contoh output
+### Contoh keluaran
 
-> Ahoy kawan! Kembali pada tahun 1758, ahli botani dan pecinta hewan yang kotor itu Carl Linnaeus mengeluarkan bukunya Systema Naturae, yang memiliki nama dua kata mewah untuk segala macam makhluk (nomenklatur binomial dia menyebutnya). Canis adalah kata bajak laut untuk "anjing", dan di bawah judul itu dia mencantumkan anjing biasa, serigala, dan serigala emas juga. Arrr! Semua anjing itu sama saja bagi Kapten Linnaeus tua. Dia mungkin memiliki kaki kayu dan burung beo di bahunya ketika dia menulis buku itu! Haha! Sekarang pel dek kalian para bajingan sebelum aku membuat kalian berjalan di papan!
+> Ahoy mateys! Kembali pada tahun 1758, ahli botani yang jahat itu dan pecinta hewan Carl Linnaeus mengeluarkan bukunya Systema Naturae, yang memiliki nama-nama dua kata yang mewah untuk semua jenis makhluk (nomenklatur binomial yang dia sebut). Canis adalah kata bajak laut untuk ""anjing"", dan di bawah judul itu dia mendaftarkan anjing biasa, serigala, dan jackal emas juga. Arrr! Semua anjing itu sama bagi Kapten Linnaeus tua. Dia mungkin memiliki kaki kayu dan burung beo di bahunya ketika dia menulis buku itu! Haha! Sekarang bersihkan geladak kalian, para bajak laut, sebelum saya membuat kalian berjalan di papan!
 
 ---
 
@@ -34,7 +34,7 @@ Tulis ulang teks mengikuti instruksi yang diberikan pengguna, seperti dengan nad
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=2000,
         temperature=1,
         messages=[
@@ -43,7 +43,7 @@ Tulis ulang teks mengikuti instruksi yang diberikan pengguna, seperti dengan nad
                 "content": [
                     {
                         "type": "text",
-                        "text": "Rewrite the following paragraph using the following instructions: in the style of a pirate.  \n  \nParagraph:  \nIn 1758, the Swedish botanist and zoologist Carl Linnaeus published in his Systema Naturae, the two-word naming of species (binomial nomenclature). Canis is the Latin word meaning \"dog\", and under this genus, he listed the domestic dog, the wolf, and the golden jackal."
+                        "text": "Tulis ulang paragraf berikut menggunakan instruksi berikut: dalam gaya seorang bajak laut.  \n  \nParagraf:  \nPada tahun 1758, ahli botani dan zoolog Swedia Carl Linnaeus menerbitkan dalam Systema Naturae-nya, penamaan dua kata spesies (nomenklatur binomial). Canis adalah kata Latin yang berarti \"anjing\", dan di bawah genus ini, dia mendaftarkan anjing domestik, serigala, dan jackal emas."
                     }
                 ]
             }
@@ -62,7 +62,7 @@ Tulis ulang teks mengikuti instruksi yang diberikan pengguna, seperti dengan nad
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 2000,
       temperature: 1,
       messages: [
@@ -71,7 +71,7 @@ Tulis ulang teks mengikuti instruksi yang diberikan pengguna, seperti dengan nad
           "content": [
             {
               "type": "text",
-              "text": "Rewrite the following paragraph using the following instructions: in the style of a pirate.  \n  \nParagraph:  \nIn 1758, the Swedish botanist and zoologist Carl Linnaeus published in his Systema Naturae, the two-word naming of species (binomial nomenclature). Canis is the Latin word meaning \"dog\", and under this genus, he listed the domestic dog, the wolf, and the golden jackal."
+              "text": "Tulis ulang paragraf berikut menggunakan instruksi berikut: dalam gaya seorang bajak laut.  \n  \nParagraf:  \nPada tahun 1758, ahli botani dan zoolog Swedia Carl Linnaeus menerbitkan dalam Systema Naturae-nya, penamaan dua kata spesies (nomenklatur binomial). Canis adalah kata Latin yang berarti \"anjing\", dan di bawah genus ini, dia mendaftarkan anjing domestik, serigala, dan jackal emas."
             }
           ]
         }
@@ -90,7 +90,7 @@ Tulis ulang teks mengikuti instruksi yang diberikan pengguna, seperti dengan nad
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1:0",
         max_tokens=2000,
         temperature=1,
         messages=[
@@ -99,7 +99,7 @@ Tulis ulang teks mengikuti instruksi yang diberikan pengguna, seperti dengan nad
                 "content": [
                     {
                         "type": "text",
-                        "text": "Rewrite the following paragraph using the following instructions: in the style of a pirate.  \n  \nParagraph:  \nIn 1758, the Swedish botanist and zoologist Carl Linnaeus published in his Systema Naturae, the two-word naming of species (binomial nomenclature). Canis is the Latin word meaning \"dog\", and under this genus, he listed the domestic dog, the wolf, and the golden jackal."
+                        "text": "Tulis ulang paragraf berikut menggunakan instruksi berikut: dalam gaya seorang bajak laut.  \n  \nParagraf:  \nPada tahun 1758, ahli botani dan zoolog Swedia Carl Linnaeus menerbitkan dalam Systema Naturae-nya, penamaan dua kata spesies (nomenklatur binomial). Canis adalah kata Latin yang berarti \"anjing\", dan di bawah genus ini, dia mendaftarkan anjing domestik, serigala, dan jackal emas."
                     }
                 ]
             }
@@ -118,7 +118,7 @@ Tulis ulang teks mengikuti instruksi yang diberikan pengguna, seperti dengan nad
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1:0",
       max_tokens: 2000,
       temperature: 1,
       messages: [
@@ -127,7 +127,7 @@ Tulis ulang teks mengikuti instruksi yang diberikan pengguna, seperti dengan nad
           "content": [
             {
               "type": "text",
-              "text": "Rewrite the following paragraph using the following instructions: in the style of a pirate.  \n  \nParagraph:  \nIn 1758, the Swedish botanist and zoologist Carl Linnaeus published in his Systema Naturae, the two-word naming of species (binomial nomenclature). Canis is the Latin word meaning \"dog\", and under this genus, he listed the domestic dog, the wolf, and the golden jackal."
+              "text": "Tulis ulang paragraf berikut menggunakan instruksi berikut: dalam gaya seorang bajak laut.  \n  \nParagraf:  \nPada tahun 1758, ahli botani dan zoolog Swedia Carl Linnaeus menerbitkan dalam Systema Naturae-nya, penamaan dua kata spesies (nomenklatur binomial). Canis adalah kata Latin yang berarti \"anjing\", dan di bawah genus ini, dia mendaftarkan anjing domestik, serigala, dan jackal emas."
             }
           ]
         }
@@ -153,7 +153,7 @@ Tulis ulang teks mengikuti instruksi yang diberikan pengguna, seperti dengan nad
                 "content": [
                     {
                         "type": "text",
-                        "text": "Rewrite the following paragraph using the following instructions: in the style of a pirate.  \n  \nParagraph:  \nIn 1758, the Swedish botanist and zoologist Carl Linnaeus published in his Systema Naturae, the two-word naming of species (binomial nomenclature). Canis is the Latin word meaning \"dog\", and under this genus, he listed the domestic dog, the wolf, and the golden jackal."
+                        "text": "Tulis ulang paragraf berikut menggunakan instruksi berikut: dalam gaya seorang bajak laut.  \n  \nParagraf:  \nPada tahun 1758, ahli botani dan zoolog Swedia Carl Linnaeus menerbitkan dalam Systema Naturae-nya, penamaan dua kata spesies (nomenklatur binomial). Canis adalah kata Latin yang berarti \"anjing\", dan di bawah genus ini, dia mendaftarkan anjing domestik, serigala, dan jackal emas."
                     }
                 ]
             }
@@ -181,7 +181,7 @@ Tulis ulang teks mengikuti instruksi yang diberikan pengguna, seperti dengan nad
           "content": [
             {
               "type": "text",
-              "text": "Rewrite the following paragraph using the following instructions: in the style of a pirate.  \n  \nParagraph:  \nIn 1758, the Swedish botanist and zoologist Carl Linnaeus published in his Systema Naturae, the two-word naming of species (binomial nomenclature). Canis is the Latin word meaning \"dog\", and under this genus, he listed the domestic dog, the wolf, and the golden jackal."
+              "text": "Tulis ulang paragraf berikut menggunakan instruksi berikut: dalam gaya seorang bajak laut.  \n  \nParagraf:  \nPada tahun 1758, ahli botani dan zoolog Swedia Carl Linnaeus menerbitkan dalam Systema Naturae-nya, penamaan dua kata spesies (nomenklatur binomial). Canis adalah kata Latin yang berarti \"anjing\", dan di bawah genus ini, dia mendaftarkan anjing domestik, serigala, dan jackal emas."
             }
           ]
         }

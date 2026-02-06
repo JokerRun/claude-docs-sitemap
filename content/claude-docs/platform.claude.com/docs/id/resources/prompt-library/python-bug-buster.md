@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/python-bug-buster
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 38d0e17577b9957b24dff5ab1268b0d9f24f5834d20ce4da5d7683b3895116cc
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 9b81d2e4c92197c91152463fd06f8471475344ee55edef78bc7bc8d87ceeac2a
 ---
 
 # Pemburu bug Python
 
-Mendeteksi dan memperbaiki bug dalam kode Python.
+Deteksi dan perbaiki bug dalam kode Python.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Console](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah menganalisis potongan kode Python yang diberikan, mengidentifikasi bug atau kesalahan yang ada, dan memberikan versi kode yang diperbaiki yang menyelesaikan masalah-masalah tersebut. Jelaskan masalah yang Anda temukan dalam kode asli dan bagaimana perbaikan Anda mengatasi masalah tersebut. Kode yang diperbaiki harus fungsional, efisien, dan mematuhi praktik terbaik dalam pemrograman Python. |
-| User   | def calculate_average(nums): <br/> sum = 0 <br/> for num in nums: <br/> sum += num <br/> average = sum / len(nums) <br/> return average <br/><br/> numbers = [10, 20, 30, 40, 50] <br/> result = calculate_average(numbers) <br/> print("The average is:", results) |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                             |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Tugas Anda adalah menganalisis cuplikan kode Python yang diberikan, mengidentifikasi bug atau kesalahan apa pun yang ada, dan memberikan versi kode yang diperbaiki yang menyelesaikan masalah ini. Jelaskan masalah yang Anda temukan dalam kode asli dan bagaimana perbaikan Anda mengatasi masalah tersebut. Kode yang diperbaiki harus berfungsi, efisien, dan mematuhi praktik terbaik dalam pemrograman Python. |
+| Pengguna   | def calculate_average(nums): <br/> sum = 0 <br/> for num in nums: <br/> sum += num <br/> average = sum / len(nums) <br/> return average <br/><br/> numbers = [10, 20, 30, 40, 50] <br/> result = calculate_average(numbers) <br/> print("The average is:", results)                                                                                                 |
 
 ## Contoh Output
 
@@ -38,7 +38,7 @@ print("The average is:", result)
 Penjelasan:
 
     1. Mengubah nama variabel "sum" menjadi "total" untuk menghindari penggunaan fungsi bawaan Python "sum()".
-    2. Memperbaiki kesalahan ketik dalam pernyataan print, mengubah "results" menjadi "result" untuk merujuk variabel dengan benar.
+    2. Memperbaiki kesalahan ketik dalam pernyataan print, mengubah "results" menjadi "result" untuk mereferensikan variabel dengan benar.
 
 ## Permintaan API
 
@@ -53,10 +53,10 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=1000,
   temperature=0,
-  system="Tugas Anda adalah menganalisis potongan kode Python yang diberikan, mengidentifikasi bug atau kesalahan yang ada, dan memberikan versi kode yang diperbaiki yang menyelesaikan masalah-masalah tersebut. Jelaskan masalah yang Anda temukan dalam kode asli dan bagaimana perbaikan Anda mengatasi masalah tersebut. Kode yang diperbaiki harus fungsional, efisien, dan mematuhi praktik terbaik dalam pemrograman Python.",
+  system="Your task is to analyze the provided Python code snippet, identify any bugs or errors present, and provide a corrected version of the code that resolves these issues. Explain the problems you found in the original code and how your fixes address them. The corrected code should be functional, efficient, and adhere to best practices in Python programming.",
   messages=[
     {
     "role": "user",
@@ -84,10 +84,10 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 0,
-  system: "Tugas Anda adalah menganalisis potongan kode Python yang diberikan, mengidentifikasi bug atau kesalahan yang ada, dan memberikan versi kode yang diperbaiki yang menyelesaikan masalah-masalah tersebut. Jelaskan masalah yang Anda temukan dalam kode asli dan bagaimana perbaikan Anda mengatasi masalah tersebut. Kode yang diperbaiki harus fungsional, efisien, dan mematuhi praktik terbaik dalam pemrograman Python.",
+  system: "Your task is to analyze the provided Python code snippet, identify any bugs or errors present, and provide a corrected version of the code that resolves these issues. Explain the problems you found in the original code and how your fixes address them. The corrected code should be functional, efficient, and adhere to best practices in Python programming.",
   messages: [
     {
       "role": "user",
@@ -115,10 +115,10 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+model="anthropic.claude-opus-4-6-v1:0",
 max_tokens=1000,
 temperature=0,
-system="Tugas Anda adalah menganalisis potongan kode Python yang diberikan, mengidentifikasi bug atau kesalahan yang ada, dan memberikan versi kode yang diperbaiki yang menyelesaikan masalah-masalah tersebut. Jelaskan masalah yang Anda temukan dalam kode asli dan bagaimana perbaikan Anda mengatasi masalah tersebut. Kode yang diperbaiki harus fungsional, efisien, dan mematuhi praktik terbaik dalam pemrograman Python.",
+system="Your task is to analyze the provided Python code snippet, identify any bugs or errors present, and provide a corrected version of the code that resolves these issues. Explain the problems you found in the original code and how your fixes address them. The corrected code should be functional, efficient, and adhere to best practices in Python programming.",
 messages=[
 {
 "role": "user",
@@ -144,10 +144,10 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 1000,
   temperature: 0,
-  system: "Tugas Anda adalah menganalisis potongan kode Python yang diberikan, mengidentifikasi bug atau kesalahan yang ada, dan memberikan versi kode yang diperbaiki yang menyelesaikan masalah-masalah tersebut. Jelaskan masalah yang Anda temukan dalam kode asli dan bagaimana perbaikan Anda mengatasi masalah tersebut. Kode yang diperbaiki harus fungsional, efisien, dan mematuhi praktik terbaik dalam pemrograman Python.",
+  system: "Your task is to analyze the provided Python code snippet, identify any bugs or errors present, and provide a corrected version of the code that resolves these issues. Explain the problems you found in the original code and how your fixes address them. The corrected code should be functional, efficient, and adhere to best practices in Python programming.",
   messages: [
     {
       "role": "user",
@@ -174,7 +174,7 @@ message = client.messages.create(
 model="claude-sonnet-4@20250514",
 max_tokens=1000,
 temperature=0,
-system="Tugas Anda adalah menganalisis potongan kode Python yang diberikan, mengidentifikasi bug atau kesalahan yang ada, dan memberikan versi kode yang diperbaiki yang menyelesaikan masalah-masalah tersebut. Jelaskan masalah yang Anda temukan dalam kode asli dan bagaimana perbaikan Anda mengatasi masalah tersebut. Kode yang diperbaiki harus fungsional, efisien, dan mematuhi praktik terbaik dalam pemrograman Python.",
+system="Your task is to analyze the provided Python code snippet, identify any bugs or errors present, and provide a corrected version of the code that resolves these issues. Explain the problems you found in the original code and how your fixes address them. The corrected code should be functional, efficient, and adhere to best practices in Python programming.",
 messages=[
 {
 "role": "user",
@@ -203,7 +203,7 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 1000,
   temperature: 0,
-  system: "Tugas Anda adalah menganalisis potongan kode Python yang diberikan, mengidentifikasi bug atau kesalahan yang ada, dan memberikan versi kode yang diperbaiki yang menyelesaikan masalah-masalah tersebut. Jelaskan masalah yang Anda temukan dalam kode asli dan bagaimana perbaikan Anda mengatasi masalah tersebut. Kode yang diperbaiki harus fungsional, efisien, dan mematuhi praktik terbaik dalam pemrograman Python.",
+  system: "Your task is to analyze the provided Python code snippet, identify any bugs or errors present, and provide a corrected version of the code that resolves these issues. Explain the problems you found in the original code and how your fixes address them. The corrected code should be functional, efficient, and adhere to best practices in Python programming.",
   messages: [
     {
       "role": "user",

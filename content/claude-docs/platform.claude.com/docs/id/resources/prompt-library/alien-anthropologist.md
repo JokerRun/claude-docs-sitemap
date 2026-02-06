@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/alien-anthropologist
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: d5f42920b924023377abfad5ca1a6620ab90fcf457b69e4432ff3b9d466e4140
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 307018ca34625f38b273e730a28d4360f21ba02e961d6bd2ed7c1d6339693d12
 ---
 
 # Antropolog alien
@@ -11,26 +11,26 @@ Analisis budaya dan adat istiadat manusia dari perspektif seorang antropolog ali
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Bayangkan Anda adalah seorang antropolog alien yang mempelajari budaya dan adat istiadat manusia. Analisis aspek-aspek berikut dari masyarakat manusia dari perspektif objektif, orang luar. Berikan observasi, wawasan, dan hipotesis yang detail berdasarkan informasi yang tersedia. |
-| User   | Interaksi sosial dan hubungan manusia |
+|        | Konten                                                                                                                                                                                                                                                           |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Bayangkan Anda adalah seorang antropolog alien yang mempelajari budaya dan adat istiadat manusia. Analisis aspek-aspek berikut dari masyarakat manusia dari perspektif objektif sebagai pengamat luar. Berikan pengamatan terperinci, wawasan, dan hipotesis berdasarkan informasi yang tersedia. |
+| Pengguna   | Interaksi sosial manusia dan hubungan                                                                                                                                                                                                                                       |
 
-### Contoh output
+### Contoh keluaran
 
-> - Manusia membentuk berbagai jenis ikatan sosial, termasuk hubungan keluarga, romantis, dan platonik.
+> - Manusia membentuk berbagai jenis ikatan sosial, termasuk hubungan keluarga, romantis, dan persahabatan.
 > - Mereka terlibat dalam komunikasi verbal dan non-verbal yang kompleks untuk mengekspresikan emosi, berbagi informasi, dan mempertahankan koneksi sosial.
-> - Hierarki sosial dan dinamika kekuasaan ada dalam kelompok manusia, sering berdasarkan faktor-faktor seperti usia, jenis kelamin, kekayaan, dan status sosial.
+> - Hierarki sosial dan dinamika kekuasaan ada dalam kelompok manusia, sering kali berdasarkan faktor-faktor seperti usia, jenis kelamin, kekayaan, dan status sosial.
 > - Manusia berpartisipasi dalam ritual dan upacara sosial untuk menandai peristiwa penting dalam hidup, memperkuat ikatan sosial, dan mempertahankan tradisi budaya.
 >
 > Hipotesis:
 >
-> - Pembentukan ikatan sosial dan hubungan mungkin berfungsi sebagai adaptasi evolusioner untuk meningkatkan peluang bertahan hidup dan reproduksi.
+> - Pembentukan ikatan sosial dan hubungan mungkin berfungsi sebagai adaptasi evolusioner untuk meningkatkan peluang kelangsungan hidup dan reproduksi.
 > - Sistem komunikasi yang kompleks memungkinkan manusia untuk mengoordinasikan aktivitas kelompok, menyelesaikan konflik, dan mentransmisikan pengetahuan lintas generasi.
 > - Hierarki sosial dan dinamika kekuasaan mungkin membantu mempertahankan ketertiban dan stabilitas dalam masyarakat manusia, tetapi juga dapat menyebabkan ketidaksetaraan dan konflik sosial.
-> - Ritual dan upacara mungkin berfungsi untuk memperkuat kohesi sosial, memberikan rasa memiliki, dan mengatasi ketidakpastian hidup.
+> - Ritual dan upacara mungkin berfungsi untuk memperkuat kohesi sosial, memberikan rasa memiliki, dan mengatasi ketidakpastian kehidupan.
 
 ---
 
@@ -45,17 +45,17 @@ Analisis budaya dan adat istiadat manusia dari perspektif seorang antropolog ali
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=2000,
         temperature=1,
-        system="Bayangkan Anda adalah seorang antropolog alien yang mempelajari budaya dan adat istiadat manusia. Analisis aspek-aspek berikut dari masyarakat manusia dari perspektif objektif, orang luar. Berikan observasi, wawasan, dan hipotesis yang detail berdasarkan informasi yang tersedia.",
+        system="Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Interaksi sosial dan hubungan manusia"
+                        "text": "Human social interactions and relationships"
                     }
                 ]
             }
@@ -74,17 +74,17 @@ Analisis budaya dan adat istiadat manusia dari perspektif seorang antropolog ali
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 2000,
       temperature: 1,
-      system: "Bayangkan Anda adalah seorang antropolog alien yang mempelajari budaya dan adat istiadat manusia. Analisis aspek-aspek berikut dari masyarakat manusia dari perspektif objektif, orang luar. Berikan observasi, wawasan, dan hipotesis yang detail berdasarkan informasi yang tersedia.",
+      system: "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Interaksi sosial dan hubungan manusia"
+              "text": "Human social interactions and relationships"
             }
           ]
         }
@@ -103,17 +103,17 @@ Analisis budaya dan adat istiadat manusia dari perspektif seorang antropolog ali
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1:0",
         max_tokens=2000,
         temperature=1,
-        system="Bayangkan Anda adalah seorang antropolog alien yang mempelajari budaya dan adat istiadat manusia. Analisis aspek-aspek berikut dari masyarakat manusia dari perspektif objektif, orang luar. Berikan observasi, wawasan, dan hipotesis yang detail berdasarkan informasi yang tersedia.",
+        system="Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Interaksi sosial dan hubungan manusia"
+                        "text": "Human social interactions and relationships"
                     }
                 ]
             }
@@ -132,17 +132,17 @@ Analisis budaya dan adat istiadat manusia dari perspektif seorang antropolog ali
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1:0",
       max_tokens: 2000,
       temperature: 1,
-      system: "Bayangkan Anda adalah seorang antropolog alien yang mempelajari budaya dan adat istiadat manusia. Analisis aspek-aspek berikut dari masyarakat manusia dari perspektif objektif, orang luar. Berikan observasi, wawasan, dan hipotesis yang detail berdasarkan informasi yang tersedia.",
+      system: "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Interaksi sosial dan hubungan manusia"
+              "text": "Human social interactions and relationships"
             }
           ]
         }
@@ -162,14 +162,14 @@ Analisis budaya dan adat istiadat manusia dari perspektif seorang antropolog ali
         model="claude-sonnet-4@20250514",
         max_tokens=2000,
         temperature=1,
-        system="Bayangkan Anda adalah seorang antropolog alien yang mempelajari budaya dan adat istiadat manusia. Analisis aspek-aspek berikut dari masyarakat manusia dari perspektif objektif, orang luar. Berikan observasi, wawasan, dan hipotesis yang detail berdasarkan informasi yang tersedia.",
+        system="Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Interaksi sosial dan hubungan manusia"
+                        "text": "Human social interactions and relationships"
                     }
                 ]
             }
@@ -191,14 +191,14 @@ Analisis budaya dan adat istiadat manusia dari perspektif seorang antropolog ali
       model: "claude-sonnet-4@20250514",
       max_tokens: 2000,
       temperature: 1,
-      system: "Bayangkan Anda adalah seorang antropolog alien yang mempelajari budaya dan adat istiadat manusia. Analisis aspek-aspek berikut dari masyarakat manusia dari perspektif objektif, orang luar. Berikan observasi, wawasan, dan hipotesis yang detail berdasarkan informasi yang tersedia.",
+      system: "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Interaksi sosial dan hubungan manusia"
+              "text": "Human social interactions and relationships"
             }
           ]
         }

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 60efbf7419e3fe66be14196c29e25390d2e06e25bc5c79186d0270c8b27dd2a0
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 6dcb518d6b97cf60a16b0495c99d6b321510e15a38a4731ec34dc13f05499a3c
 ---
 
 ## List
@@ -81,5 +81,6 @@ List Workspace Members
 
 ```http
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```

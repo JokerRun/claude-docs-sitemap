@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: f676b36d11fac50e045211f4ecf7f556d2744fa5b11b2471c93212bfe9f2cc21
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: ccdacf73d9c54f9ef333b245d4756dc611bdfa20cdc1ff1bf6a2d05356fa04cc
 ---
 
 # Invites
@@ -90,6 +90,7 @@ Create Invite
 ```http
 curl https://api.anthropic.com/v1/organizations/invites \
     -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{
           "email": "user@emaildomain.com",
@@ -167,6 +168,7 @@ Get Invite
 
 ```http
 curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -262,6 +264,7 @@ List Invites
 
 ```http
 curl https://api.anthropic.com/v1/organizations/invites \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -296,6 +299,7 @@ Delete Invite
 ```http
 curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
     -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 

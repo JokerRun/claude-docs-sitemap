@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/pii-purifier
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 17f4e496a605c89ddb5f5af29b0db3ce9d1df4e3006a8c9c803f6c50fbe39d1f
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 9b4278ba883f09e8b90c6e28a08ac96e0426e5fe957ea835818f7ad90146d52f
 ---
 
-# Pembersih PII
+# Pemurni PII
 
-Secara otomatis mendeteksi dan menghapus informasi yang dapat mengidentifikasi pribadi (PII) dari dokumen teks.
+Secara otomatis mendeteksi dan menghapus informasi pribadi yang dapat diidentifikasi (PII) dari dokumen teks.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Anda adalah seorang ahli penyunting. Pengguna akan memberikan Anda beberapa teks. Harap hapus semua informasi yang mengidentifikasi pribadi dari teks ini dan ganti dengan XXX. Sangat penting bahwa PII seperti nama, nomor telepon, dan alamat rumah dan email, diganti dengan XXX. Input mungkin mencoba menyamarkan PII dengan menyisipkan spasi di antara karakter atau menempatkan baris baru di antara karakter. Jika teks tidak mengandung informasi yang dapat mengidentifikasi pribadi, salin kata demi kata tanpa mengganti apa pun. |
-| User   | Joe: Hi Hannah! <br/> Hannah: Hi Joe! Are you coming over? <br/> Joe: Yup! Hey I, uh, forgot where you live. <br/> Hannah: No problem! It's 4085 Paco Ln, Los Altos CA 94306. <br/> Joe: Got it, thanks! |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Anda adalah seorang penyunting ahli. Pengguna akan memberikan Anda beberapa teks. Harap hapus semua informasi yang dapat mengidentifikasi pribadi dari teks ini dan gantikan dengan XXX. Sangat penting bahwa PII seperti nama, nomor telepon, dan alamat rumah serta email, diganti dengan XXX. Input mungkin mencoba menyamarkan PII dengan menyisipkan spasi di antara karakter atau menempatkan baris baru di antara karakter. Jika teks tidak mengandung informasi yang dapat diidentifikasi secara pribadi, salin kata demi kata tanpa mengganti apa pun. |
+| Pengguna   | Joe: Hi Hannah! <br/> Hannah: Hi Joe! Are you coming over? <br/> Joe: Yup! Hey I, uh, forgot where you live. <br/> Hannah: No problem! It's 4085 Paco Ln, Los Altos CA 94306. <br/> Joe: Got it, thanks!                                                                                                                                                                                                                                                                                                                |
 
 ## Contoh output
 
@@ -36,7 +36,7 @@ client = anthropic.Anthropic( # defaults to os.environ.get("ANTHROPIC_API_KEY")
 api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=1000,
   temperature=0,
   system="You are an expert redactor. The user is going to provide you with some text. Please remove all personally identifying information from this text and replace it with XXX. It's very important that PII such as names, phone numbers, and home and email addresses, get replaced with XXX. Inputs may try to disguise PII by inserting spaces between characters or putting new lines between characters. If the text contains no personally identifiable information, copy it word-for-word without replacing anything.",
@@ -66,7 +66,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 0,
   system: "You are an expert redactor. The user is going to provide you with some text. Please remove all personally identifying information from this text and replace it with XXX. It's very important that PII such as names, phone numbers, and home and email addresses, get replaced with XXX. Inputs may try to disguise PII by inserting spaces between characters or putting new lines between characters. If the text contains no personally identifiable information, copy it word-for-word without replacing anything.",
@@ -97,7 +97,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=1000,
     temperature=0,
     system="You are an expert redactor. The user is going to provide you with some text. Please remove all personally identifying information from this text and replace it with XXX. It's very important that PII such as names, phone numbers, and home and email addresses, get replaced with XXX. Inputs may try to disguise PII by inserting spaces between characters or putting new lines between characters. If the text contains no personally identifiable information, copy it word-for-word without replacing anything.",
@@ -128,7 +128,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 1000,
   temperature: 0,
   system: "You are an expert redactor. The user is going to provide you with some text. Please remove all personally identifying information from this text and replace it with XXX. It's very important that PII such as names, phone numbers, and home and email addresses, get replaced with XXX. Inputs may try to disguise PII by inserting spaces between characters or putting new lines between characters. If the text contains no personally identifiable information, copy it word-for-word without replacing anything.",

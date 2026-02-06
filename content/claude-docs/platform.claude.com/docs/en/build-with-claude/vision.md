@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: f06d0554a87f7589deed5d0729e47a55cf3bf68f65bf95644093a866a4b42317
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: f582824c9072ac6de9310b2d73fc1947de494be9d3f0c9ada87b4cc616c663bd
 ---
 
 # Vision
@@ -49,7 +49,7 @@ If your input image is too large and needs to be resized, it will increase laten
   both dimensions).
 </Tip>
 
-Here is a table of maximum image sizes accepted by our API that will not be resized for common aspect ratios. With Claude Sonnet 4.5, these images use approximately 1,600 tokens and around $4.80/1K images.
+Here is a table of maximum image sizes accepted by our API that will not be resized for common aspect ratios. With Claude Opus 4.6, these images use approximately 1,600 tokens and around $4.80/1K images.
 
 | Aspect ratio | Image size   |
 | ------------ | ------------ |
@@ -65,7 +65,7 @@ Each image you include in a request to Claude counts towards your token usage. T
 
 If your image does not need to be resized, you can estimate the number of tokens used through this algorithm: `tokens = (width px * height px)/750`
 
-Here are examples of approximate tokenization and costs for different image sizes within our API's size constraints based on Claude Sonnet 4.5 per-token price of $3 per million input tokens:
+Here are examples of approximate tokenization and costs for different image sizes within our API's size constraints based on Claude Opus 4.6 per-token price of $3 per million input tokens:
 
 | Image size                    | \# of Tokens | Cost / image | Cost / 1K images |
 | ----------------------------- | ------------ | ------------ | ---------------- |
@@ -193,7 +193,7 @@ Below are examples of how to include images in a Messages API request using base
       -H "anthropic-version: 2023-06-01" \
       -H "content-type: application/json" \
       -d '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 1024,
         "messages": [
           {
@@ -221,7 +221,7 @@ Below are examples of how to include images in a Messages API request using base
 
     client = anthropic.Anthropic()
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -254,7 +254,7 @@ Below are examples of how to include images in a Messages API request using base
 
     async function main() {
       const message = await anthropic.messages.create({
-        model: "claude-sonnet-4-5",
+        model: "claude-opus-4-6",
         max_tokens: 1024,
         messages: [
           {
@@ -331,7 +331,7 @@ Below are examples of how to include images in a Messages API request using base
       -H "anthropic-version: 2023-06-01" \
       -H "content-type: application/json" \
       -d '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 1024,
         "messages": [
           {
@@ -358,7 +358,7 @@ Below are examples of how to include images in a Messages API request using base
 
     client = anthropic.Anthropic()
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -390,7 +390,7 @@ Below are examples of how to include images in a Messages API request using base
 
     async function main() {
       const message = await anthropic.messages.create({
-        model: "claude-sonnet-4-5",
+        model: "claude-opus-4-6",
         max_tokens: 1024,
         messages: [
           {
@@ -475,7 +475,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: files-api-2025-04-14" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "messages": [
       {
@@ -509,7 +509,7 @@ with open("image.jpg", "rb") as f:
 
 # Use the uploaded file in a message
 message = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     betas=["files-api-2025-04-14"],
     messages=[
@@ -551,7 +551,7 @@ async function main() {
 
   // Use the uploaded file in a message
   const response = await anthropic.beta.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: 'claude-opus-4-6',
     max_tokens: 1024,
     betas: ['files-api-2025-04-14'],
     messages: [
@@ -644,7 +644,7 @@ Ask Claude to describe one image.
   <Tab title="Using Base64">
     ```python Python
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -671,7 +671,7 @@ Ask Claude to describe one image.
   <Tab title="Using URL">
     ```python Python
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -710,7 +710,7 @@ Ask Claude to describe the differences between multiple images.
   <Tab title="Using Base64">
     ```python Python
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -753,7 +753,7 @@ Ask Claude to describe the differences between multiple images.
   <Tab title="Using URL">
     ```python Python
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -807,7 +807,7 @@ Ask Claude to describe the differences between multiple images, while giving it 
   <Tab title="Using Base64">
     ```python Python
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         system="Respond only in Spanish.",
         messages=[
@@ -851,7 +851,7 @@ Ask Claude to describe the differences between multiple images, while giving it 
   <Tab title="Using URL">
     ```python Python
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         system="Respond only in Spanish.",
         messages=[

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/culinary-creator
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: dfee3d65344f73716f1906a5792524fa5a642013d52608e2620f4866f95d0867
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 418aa09d2bda02cdfd0d265ebb281cf3dea3847d2c0582e15e0190cab598c91b
 ---
 
 # Pencipta kuliner
@@ -11,27 +11,27 @@ Sarankan ide resep berdasarkan bahan-bahan yang tersedia dan preferensi diet pen
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah menghasilkan ide resep yang dipersonalisasi berdasarkan input pengguna tentang bahan-bahan yang tersedia dan preferensi diet. Gunakan informasi ini untuk menyarankan berbagai resep kreatif dan lezat yang dapat dibuat menggunakan bahan-bahan yang diberikan sambil mengakomodasi kebutuhan diet pengguna, jika ada yang disebutkan. Untuk setiap resep, berikan deskripsi singkat, daftar bahan yang diperlukan, dan serangkaian instruksi sederhana. Pastikan bahwa resep mudah diikuti, bergizi, dan dapat disiapkan dengan bahan atau peralatan tambahan yang minimal. |
-| User   | Bahan yang tersedia: dada ayam, brokoli, wortel, bawang bombay, bawang putih, minyak zaitun, beras, kecap asin bebas gluten, madu <br/> Preferensi diet: bebas gluten |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Tugas Anda adalah menghasilkan ide resep yang dipersonalisasi berdasarkan input pengguna tentang bahan-bahan yang tersedia dan preferensi diet. Gunakan informasi ini untuk menyarankan berbagai resep kreatif dan lezat yang dapat dibuat menggunakan bahan-bahan yang diberikan sambil memenuhi kebutuhan diet pengguna, jika ada yang disebutkan. Untuk setiap resep, berikan deskripsi singkat, daftar bahan-bahan yang diperlukan, dan serangkaian instruksi sederhana. Pastikan resep mudah diikuti, bergizi, dan dapat disiapkan dengan bahan-bahan atau peralatan tambahan minimal. |
+| Pengguna   | Bahan-bahan yang tersedia: dada ayam, brokoli, wortel, bawang, bawang putih, minyak zaitun, nasi, kecap asin bebas gluten, madu <br/> Preferensi diet: bebas gluten                                                                                                                                                                                                                                                                                                                                                                                                             |
 
 ## Contoh Output
 
 Resep yang disarankan:
 
-Tumis Ayam Madu Bawang Putih
+Stir-Fry Ayam Madu Bawang Putih
 
-Deskripsi: Tumisan cepat dan beraroma yang menampilkan dada ayam yang lembut, sayuran renyah, dan saus madu bawang putih yang manis dan gurih.  
+Deskripsi: Stir-fry yang cepat dan lezat menampilkan dada ayam yang empuk, sayuran renyah, dan saus madu bawang putih yang manis dan gurih.  
  Bahan-bahan:
 
-- 2 dada ayam, potong menjadi potongan kecil
+- 2 dada ayam, dipotong menjadi potongan kecil
 - 2 cangkir kuntum brokoli
 - 1 cangkir wortel iris
-- 1 bawang bombay, potong dadu
-- 3 siung bawang putih, cincang halus
+- 1 bawang, dicincang
+- 3 siung bawang putih, dihaluskan
 - 2 sdm minyak zaitun
 - 1/4 cangkir kecap asin (bebas gluten)
 - 2 sdm madu
@@ -39,25 +39,25 @@ Deskripsi: Tumisan cepat dan beraroma yang menampilkan dada ayam yang lembut, sa
 Instruksi:
 
 1.  Dalam wajan besar atau wok, panaskan minyak zaitun dengan api sedang-tinggi.
-2.  Tambahkan bawang bombay potong dadu dan bawang putih cincang, tumis hingga harum, sekitar 2 menit.
+2.  Tambahkan bawang cincang dan bawang putih yang dihaluskan, dan tumis hingga harum, sekitar 2 menit.
 3.  Tambahkan potongan ayam dan masak hingga tidak lagi berwarna merah muda, sekitar 5-7 menit.
-4.  Tambahkan brokoli dan wortel, tumis hingga sayuran renyah-empuk, sekitar 5 menit.
-5.  Dalam mangkuk kecil, kocok kecap asin dan madu.
-6.  Tuang saus ke atas ayam dan sayuran, aduk hingga rata.
+4.  Tambahkan brokoli dan wortel, dan stir-fry hingga sayuran empuk-renyah, sekitar 5 menit.
+5.  Dalam mangkuk kecil, kocok bersama kecap asin dan madu.
+6.  Tuangkan saus di atas ayam dan sayuran, dan aduk hingga merata.
 7.  Masak selama 2-3 menit tambahan, atau hingga saus mengental sedikit.
 8.  Sajikan panas dengan nasi kukus.
 
 Mangkuk Nasi Ayam dan Sayuran
 
-Deskripsi: Mangkuk nasi yang mengenyangkan dan bergizi dengan topping ayam berbumbu, sayuran panggang, dan tetesan kecap asin.
+Deskripsi: Mangkuk nasi yang gurih dan bergizi dengan topping ayam berbumbu, sayuran panggang, dan percikan kecap asin.
 
 Bahan-bahan:
 
-- 2 dada ayam, potong menjadi potongan kecil
+- 2 dada ayam, dipotong menjadi potongan kecil
 - 2 cangkir kuntum brokoli
 - 1 cangkir wortel iris
-- 1 bawang bombay, potong dadu
-- 2 siung bawang putih, cincang halus
+- 1 bawang, dicincang
+- 2 siung bawang putih, dihaluskan
 - 2 sdm minyak zaitun
 - 1/4 cangkir kecap asin (bebas gluten)
 - 2 cangkir nasi matang
@@ -65,12 +65,12 @@ Bahan-bahan:
 Instruksi:
 
 1.  Panaskan oven hingga 400°F (200°C).
-2.  Dalam mangkuk besar, campurkan potongan ayam, brokoli, wortel, bawang bombay, dan bawang putih.
-3.  Siram dengan minyak zaitun dan setengah dari kecap asin, aduk hingga rata.
+2.  Dalam mangkuk besar, gabungkan potongan ayam, brokoli, wortel, bawang, dan bawang putih.
+3.  Siramkan dengan minyak zaitun dan setengah dari kecap asin, dan aduk hingga merata.
 4.  Sebarkan ayam dan sayuran di atas loyang dan panggang dalam oven yang sudah dipanaskan selama 20-25 menit, atau hingga ayam matang dan sayuran empuk.
-5.  Bagi nasi matang ke dalam mangkuk saji.
-6.  Beri topping setiap mangkuk dengan ayam dan sayuran panggang.
-7.  Siram sisa kecap asin di atas setiap mangkuk.
+5.  Bagi nasi matang di antara mangkuk penyajian.
+6.  Topping setiap mangkuk dengan ayam dan sayuran panggang.
+7.  Siramkan sisa kecap asin di atas setiap mangkuk.
 8.  Sajikan panas dan nikmati!
 
 ---
@@ -88,17 +88,17 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=2000,
   temperature=0.5,
-  system="Tugas Anda adalah menghasilkan ide resep yang dipersonalisasi berdasarkan input pengguna tentang bahan-bahan yang tersedia dan preferensi diet. Gunakan informasi ini untuk menyarankan berbagai resep kreatif dan lezat yang dapat dibuat menggunakan bahan-bahan yang diberikan sambil mengakomodasi kebutuhan diet pengguna, jika ada yang disebutkan. Untuk setiap resep, berikan deskripsi singkat, daftar bahan yang diperlukan, dan serangkaian instruksi sederhana. Pastikan bahwa resep mudah diikuti, bergizi, dan dapat disiapkan dengan bahan atau peralatan tambahan yang minimal.",
+  system="Your task is to generate personalized recipe ideas based on the user's input of available ingredients and dietary preferences. Use this information to suggest a variety of creative and delicious recipes that can be made using the given ingredients while accommodating the user's dietary needs, if any are mentioned. For each recipe, provide a brief description, a list of required ingredients, and a simple set of instructions. Ensure that the recipes are easy to follow, nutritious, and can be prepared with minimal additional ingredients or equipment.",
   messages=[
     {
     "role": "user",
     "content": [
         {
           "type": "text",
-          "text": "Bahan yang tersedia: dada ayam, brokoli, wortel, bawang bombay, bawang putih, minyak zaitun, beras, kecap asin bebas gluten, madu \nPreferensi diet: bebas gluten"
+          "text": "Available ingredients: chicken breast, broccoli, carrots, onion, garlic, olive oil, rice, gluten free soy sauce, honey \nDietary preferences: gluten free"
         }
       ]
     }
@@ -119,17 +119,17 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 0.5,
-  system: "Tugas Anda adalah menghasilkan ide resep yang dipersonalisasi berdasarkan input pengguna tentang bahan-bahan yang tersedia dan preferensi diet. Gunakan informasi ini untuk menyarankan berbagai resep kreatif dan lezat yang dapat dibuat menggunakan bahan-bahan yang diberikan sambil mengakomodasi kebutuhan diet pengguna, jika ada yang disebutkan. Untuk setiap resep, berikan deskripsi singkat, daftar bahan yang diperlukan, dan serangkaian instruksi sederhana. Pastikan bahwa resep mudah diikuti, bergizi, dan dapat disiapkan dengan bahan atau peralatan tambahan yang minimal.",
+  system: "Your task is to generate personalized recipe ideas based on the user's input of available ingredients and dietary preferences. Use this information to suggest a variety of creative and delicious recipes that can be made using the given ingredients while accommodating the user's dietary needs, if any are mentioned. For each recipe, provide a brief description, a list of required ingredients, and a simple set of instructions. Ensure that the recipes are easy to follow, nutritious, and can be prepared with minimal additional ingredients or equipment.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Bahan yang tersedia: dada ayam, brokoli, wortel, bawang bombay, bawang putih, minyak zaitun, beras, kecap asin bebas gluten, madu  \nPreferensi diet: bebas gluten"
+          "text": "Available ingredients: chicken breast, broccoli, carrots, onion, garlic, olive oil, rice, gluten free soy sauce, honey  \nDietary preferences: gluten free"
         }
       ]
     }
@@ -137,7 +137,7 @@ const msg = await anthropic.messages.create({
 });
 console.log(msg);
 
-````
+```
 
 </Tab>
 <Tab title="AWS Bedrock Python">
@@ -150,17 +150,17 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=2000,
     temperature=0.5,
-    system="Tugas Anda adalah menghasilkan ide resep yang dipersonalisasi berdasarkan input pengguna tentang bahan-bahan yang tersedia dan preferensi diet. Gunakan informasi ini untuk menyarankan berbagai resep kreatif dan lezat yang dapat dibuat menggunakan bahan-bahan yang diberikan sambil mengakomodasi kebutuhan diet pengguna, jika ada yang disebutkan. Untuk setiap resep, berikan deskripsi singkat, daftar bahan yang diperlukan, dan serangkaian instruksi sederhana. Pastikan bahwa resep mudah diikuti, bergizi, dan dapat disiapkan dengan bahan atau peralatan tambahan yang minimal.",
+    system="Your task is to generate personalized recipe ideas based on the user's input of available ingredients and dietary preferences. Use this information to suggest a variety of creative and delicious recipes that can be made using the given ingredients while accommodating the user's dietary needs, if any are mentioned. For each recipe, provide a brief description, a list of required ingredients, and a simple set of instructions. Ensure that the recipes are easy to follow, nutritious, and can be prepared with minimal additional ingredients or equipment.",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Bahan yang tersedia: dada ayam, brokoli, wortel, bawang bombay, bawang putih, minyak zaitun, beras, kecap asin bebas gluten, madu  \nPreferensi diet: bebas gluten"
+                    "text": "Available ingredients: chicken breast, broccoli, carrots, onion, garlic, olive oil, rice, gluten free soy sauce, honey  \nDietary preferences: gluten free"
                 }
             ]
         }
@@ -181,17 +181,17 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 2000,
   temperature: 0.5,
-  system: "Tugas Anda adalah menghasilkan ide resep yang dipersonalisasi berdasarkan input pengguna tentang bahan-bahan yang tersedia dan preferensi diet. Gunakan informasi ini untuk menyarankan berbagai resep kreatif dan lezat yang dapat dibuat menggunakan bahan-bahan yang diberikan sambil mengakomodasi kebutuhan diet pengguna, jika ada yang disebutkan. Untuk setiap resep, berikan deskripsi singkat, daftar bahan yang diperlukan, dan serangkaian instruksi sederhana. Pastikan bahwa resep mudah diikuti, bergizi, dan dapat disiapkan dengan bahan atau peralatan tambahan yang minimal.",
+  system: "Your task is to generate personalized recipe ideas based on the user's input of available ingredients and dietary preferences. Use this information to suggest a variety of creative and delicious recipes that can be made using the given ingredients while accommodating the user's dietary needs, if any are mentioned. For each recipe, provide a brief description, a list of required ingredients, and a simple set of instructions. Ensure that the recipes are easy to follow, nutritious, and can be prepared with minimal additional ingredients or equipment.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Bahan yang tersedia: dada ayam, brokoli, wortel, bawang bombay, bawang putih, minyak zaitun, beras, kecap asin bebas gluten, madu  \nPreferensi diet: bebas gluten"
+          "text": "Available ingredients: chicken breast, broccoli, carrots, onion, garlic, olive oil, rice, gluten free soy sauce, honey  \nDietary preferences: gluten free"
         }
       ]
     }
@@ -213,14 +213,14 @@ message = client.messages.create(
     model="claude-sonnet-4@20250514",
     max_tokens=2000,
     temperature=0.5,
-    system="Tugas Anda adalah menghasilkan ide resep yang dipersonalisasi berdasarkan input pengguna tentang bahan-bahan yang tersedia dan preferensi diet. Gunakan informasi ini untuk menyarankan berbagai resep kreatif dan lezat yang dapat dibuat menggunakan bahan-bahan yang diberikan sambil mengakomodasi kebutuhan diet pengguna, jika ada yang disebutkan. Untuk setiap resep, berikan deskripsi singkat, daftar bahan yang diperlukan, dan serangkaian instruksi sederhana. Pastikan bahwa resep mudah diikuti, bergizi, dan dapat disiapkan dengan bahan atau peralatan tambahan yang minimal.",
+    system="Your task is to generate personalized recipe ideas based on the user's input of available ingredients and dietary preferences. Use this information to suggest a variety of creative and delicious recipes that can be made using the given ingredients while accommodating the user's dietary needs, if any are mentioned. For each recipe, provide a brief description, a list of required ingredients, and a simple set of instructions. Ensure that the recipes are easy to follow, nutritious, and can be prepared with minimal additional ingredients or equipment.",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Bahan yang tersedia: dada ayam, brokoli, wortel, bawang bombay, bawang putih, minyak zaitun, beras, kecap asin bebas gluten, madu  \nPreferensi diet: bebas gluten"
+                    "text": "Available ingredients: chicken breast, broccoli, carrots, onion, garlic, olive oil, rice, gluten free soy sauce, honey  \nDietary preferences: gluten free"
                 }
             ]
         }
@@ -244,14 +244,14 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 2000,
   temperature: 0.5,
-  system: "Tugas Anda adalah menghasilkan ide resep yang dipersonalisasi berdasarkan input pengguna tentang bahan-bahan yang tersedia dan preferensi diet. Gunakan informasi ini untuk menyarankan berbagai resep kreatif dan lezat yang dapat dibuat menggunakan bahan-bahan yang diberikan sambil mengakomodasi kebutuhan diet pengguna, jika ada yang disebutkan. Untuk setiap resep, berikan deskripsi singkat, daftar bahan yang diperlukan, dan serangkaian instruksi sederhana. Pastikan bahwa resep mudah diikuti, bergizi, dan dapat disiapkan dengan bahan atau peralatan tambahan yang minimal.",
+  system: "Your task is to generate personalized recipe ideas based on the user's input of available ingredients and dietary preferences. Use this information to suggest a variety of creative and delicious recipes that can be made using the given ingredients while accommodating the user's dietary needs, if any are mentioned. For each recipe, provide a brief description, a list of required ingredients, and a simple set of instructions. Ensure that the recipes are easy to follow, nutritious, and can be prepared with minimal additional ingredients or equipment.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Bahan yang tersedia: dada ayam, brokoli, wortel, bawang bombay, bawang putih, minyak zaitun, beras, kecap asin bebas gluten, madu  \nPreferensi diet: bebas gluten"
+          "text": "Available ingredients: chicken breast, broccoli, carrots, onion, garlic, olive oil, rice, gluten free soy sauce, honey  \nDietary preferences: gluten free"
         }
       ]
     }

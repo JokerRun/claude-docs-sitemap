@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/email-extractor
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 725c75887012ed414ec9fd4efd54b4f15f30657f0ded5fccfb5b4d45583aab39
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: d4a06987f9fd932c2ae9802635e1b57a3ee58abfc181eef29c2975e440dcce83
 ---
 
 # Email extractor
@@ -35,7 +35,7 @@ Extract email addresses from a document into a JSON-formatted list.
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1000,
         temperature=0,
         system="Precisely copy any email addresses from the following text and then write them, one per line. Only write an email address if it's precisely spelled out in the input text. If there are no email addresses in the text, write \"N/A\".  Do not say anything else.",
@@ -64,7 +64,7 @@ Extract email addresses from a document into a JSON-formatted list.
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 0,
       system: "Precisely copy any email addresses from the following text and then write them, one per line. Only write an email address if it's precisely spelled out in the input text. If there are no email addresses in the text, write \"N/A\".  Do not say anything else.",
@@ -93,7 +93,7 @@ Extract email addresses from a document into a JSON-formatted list.
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1",
         max_tokens=1000,
         temperature=0,
         system="Precisely copy any email addresses from the following text and then write them, one per line. Only write an email address if it's precisely spelled out in the input text. If there are no email addresses in the text, write \"N/A\".  Do not say anything else.",
@@ -122,7 +122,7 @@ Extract email addresses from a document into a JSON-formatted list.
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 1000,
       temperature: 0,
       system: "Precisely copy any email addresses from the following text and then write them, one per line. Only write an email address if it's precisely spelled out in the input text. If there are no email addresses in the text, write \"N/A\".  Do not say anything else.",

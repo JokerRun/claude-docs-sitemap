@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-code-analytics-api
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 56dff9dc8c95c3cdba0a9fbe803fdeecb42e3e7463ca07c2f815e63bbcf93ecc
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 9062724bf851ebaa7f479f4577eedde2323c68cc384f883300e92e42e2c04e3c
 ---
 
 # Claude Code Analytics API
@@ -21,7 +21,7 @@ API ini memungkinkan Anda untuk lebih baik memantau, menganalisis, dan mengoptim
 
 * **Analisis Produktivitas Pengembang:** Lacak sesi, baris kode yang ditambahkan/dihapus, komit, dan permintaan tarik yang dibuat menggunakan Claude Code
 * **Metrik Penggunaan Alat:** Pantau tingkat penerimaan dan penolakan untuk alat Claude Code yang berbeda (Edit, Write, NotebookEdit)
-* **Analisis Biaya:** Lihat perkiraan biaya dan penggunaan token yang dipecah berdasarkan model Claude
+* **Analisis Biaya:** Lihat biaya perkiraan dan penggunaan token yang dipecah menurut model Claude
 * **Pelaporan Khusus:** Ekspor data untuk membangun dasbor eksekutif dan laporan untuk tim manajemen
 * **Justifikasi Penggunaan:** Berikan metrik untuk membenarkan dan memperluas adopsi Claude Code secara internal
 
@@ -61,7 +61,7 @@ Lacak penggunaan Claude Code, metrik produktivitas, dan aktivitas pengembang di 
 - **Agregasi harian**: Mengembalikan metrik untuk satu hari yang ditentukan oleh parameter `starting_at`
 - **Data tingkat pengguna**: Setiap catatan mewakili aktivitas satu pengguna untuk hari yang ditentukan
 - **Metrik produktivitas**: Lacak sesi, baris kode, komit, permintaan tarik, dan penggunaan alat
-- **Data token dan biaya**: Pantau penggunaan dan perkiraan biaya yang dipecah berdasarkan model Claude
+- **Data token dan biaya**: Pantau penggunaan dan biaya perkiraan yang dipecah menurut model Claude
 - **Paginasi berbasis kursor**: Tangani kumpulan data besar dengan paginasi stabil menggunakan kursor buram
 - **Kesegaran data**: Metrik tersedia dengan penundaan hingga 1 jam untuk konsistensi
 
@@ -101,7 +101,7 @@ page=page_MjAyNS0wNS0xNFQwMDowMDowMFo=" \
 | Parameter | Tipe | Diperlukan | Deskripsi |
 |-----------|------|----------|-------------|
 | `starting_at` | string | Ya | Tanggal UTC dalam format YYYY-MM-DD. Mengembalikan metrik untuk hari tunggal ini saja |
-| `limit` | integer | Tidak | Jumlah catatan per halaman (default: 20, maks: 1000) |
+| `limit` | integer | Tidak | Jumlah catatan per halaman (default: 20, max: 1000) |
 | `page` | string | Tidak | Token kursor buram dari field `next_page` respons sebelumnya |
 
 ### Metrik yang tersedia
@@ -123,17 +123,17 @@ Setiap catatan respons berisi metrik berikut untuk satu pengguna pada satu hari:
 - **pull_requests_by_claude_code**: Jumlah permintaan tarik yang dibuat melalui fungsionalitas PR Claude Code
 
 #### Metrik tindakan alat
-Rincian tingkat penerimaan dan penolakan tindakan alat berdasarkan jenis alat:
+Rincian tingkat penerimaan dan penolakan tindakan alat menurut jenis alat:
 - **edit_tool.accepted/rejected**: Jumlah proposal alat Edit yang diterima/ditolak pengguna
 - **write_tool.accepted/rejected**: Jumlah proposal alat Write yang diterima/ditolak pengguna
 - **notebook_edit_tool.accepted/rejected**: Jumlah proposal alat NotebookEdit yang diterima/ditolak pengguna
 
 #### Rincian model
 Untuk setiap model Claude yang digunakan:
-- **model**: Pengenal model Claude (misalnya, `claude-sonnet-4-5-20250929`)
+- **model**: Pengenal model Claude (misalnya, `claude-opus-4-6`)
 - **tokens.input/output**: Jumlah token input dan output untuk model ini
 - **tokens.cache_read/cache_creation**: Penggunaan token terkait cache untuk model ini
-- **estimated_cost.amount**: Perkiraan biaya dalam sen USD untuk model ini
+- **estimated_cost.amount**: Biaya perkiraan dalam sen USD untuk model ini
 - **estimated_cost.currency**: Kode mata uang untuk jumlah biaya (saat ini selalu `USD`)
 
 ### Struktur respons
@@ -181,7 +181,7 @@ API mengembalikan data dalam format berikut:
       },
       "model_breakdown": [
         {
-          "model": "claude-sonnet-4-5-20250929",
+          "model": "claude-opus-4-6",
           "tokens": {
             "input": 100000,
             "output": 35000,
@@ -216,14 +216,14 @@ Kursor mengenkode posisi catatan terakhir dan memastikan paginasi stabil bahkan 
 - **Dasbor eksekutif**: Buat laporan tingkat tinggi yang menunjukkan dampak Claude Code pada kecepatan pengembangan
 - **Perbandingan alat AI**: Ekspor metrik untuk membandingkan Claude Code dengan alat pengkodean AI lainnya seperti Copilot dan Cursor
 - **Analisis produktivitas pengembang**: Lacak metrik produktivitas individu dan tim dari waktu ke waktu
-- **Pelacakan dan alokasi biaya**: Pantau pola pengeluaran dan alokasikan biaya berdasarkan tim atau proyek
+- **Pelacakan dan alokasi biaya**: Pantau pola pengeluaran dan alokasikan biaya menurut tim atau proyek
 - **Pemantauan adopsi**: Identifikasi tim dan pengguna mana yang mendapatkan nilai paling banyak dari Claude Code
 - **Justifikasi ROI**: Berikan metrik konkret untuk membenarkan dan memperluas adopsi Claude Code secara internal
 
 ## Pertanyaan yang sering diajukan
 
 ### Seberapa segar data analitik?
-Data analitik Claude Code biasanya muncul dalam 1 jam setelah penyelesaian aktivitas pengguna. Untuk memastikan hasil paginasi yang konsisten, hanya data yang lebih lama dari 1 jam yang disertakan dalam respons.
+Data analitik Claude Code biasanya muncul dalam 1 jam setelah penyelesaian aktivitas pengguna. Untuk memastikan hasil paginasi yang konsisten, hanya data yang lebih tua dari 1 jam yang disertakan dalam respons.
 
 ### Bisakah saya mendapatkan metrik real-time?
 Tidak, API ini hanya menyediakan metrik yang diagregasi harian. Untuk pemantauan real-time, pertimbangkan menggunakan [integrasi OpenTelemetry](https://code.claude.com/docs/en/monitoring-usage).
@@ -254,7 +254,7 @@ Semua tanggal dalam UTC. Parameter `starting_at` harus dalam format YYYY-MM-DD d
 
 Claude Code Analytics API membantu Anda memahami dan mengoptimalkan alur kerja pengembangan tim Anda. Pelajari lebih lanjut tentang fitur terkait:
 
-- [Gambaran umum Admin API](/docs/id/build-with-claude/administration-api)
+- [Ikhtisar Admin API](/docs/id/build-with-claude/administration-api)
 - [Referensi Admin API](/docs/id/api/admin)
 - [Dasbor Claude Code Analytics](/claude-code)
 - [API Penggunaan dan Biaya](/docs/id/build-with-claude/usage-cost-api) - Lacak penggunaan API di semua layanan Anthropic

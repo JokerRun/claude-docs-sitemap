@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/efficiency-estimator
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c30ed9735ee4b6651981dcd5391c325ea9a8acae81803bbf9913b55e2ae6ed34
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 7265329f530586fa317cd8d55760799585c6bb111a5d070ef01aa9f6744261f9
 ---
 
 # Estimator efisiensi
@@ -11,16 +11,16 @@ Hitung kompleksitas waktu dari fungsi dan algoritma.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah menganalisis fungsi atau algoritma yang diberikan dan menghitung kompleksitas waktunya menggunakan notasi Big O. Jelaskan alasan Anda langkah demi langkah, menggambarkan bagaimana Anda sampai pada kompleksitas waktu akhir. Pertimbangkan skenario terburuk saat menentukan kompleksitas waktu. Jika fungsi atau algoritma berisi beberapa langkah atau loop bersarang, berikan kompleksitas waktu untuk setiap langkah dan kemudian berikan kompleksitas waktu keseluruhan untuk seluruh fungsi atau algoritma. Asumsikan fungsi atau operasi built-in yang digunakan memiliki kompleksitas waktu O(1) kecuali ditentukan lain. |
-| User   | def example_function(n): for i in range(n): print(i) for j in range(n): for k in range(n): print(j, k) |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Tugas Anda adalah menganalisis fungsi atau algoritma yang diberikan dan menghitung kompleksitas waktunya menggunakan notasi Big O. Jelaskan penalaran Anda langkah demi langkah, mendeskripsikan bagaimana Anda sampai pada kompleksitas waktu akhir. Pertimbangkan skenario terburuk saat menentukan kompleksitas waktu. Jika fungsi atau algoritma berisi beberapa langkah atau loop bersarang, berikan kompleksitas waktu untuk setiap langkah dan kemudian berikan kompleksitas waktu keseluruhan untuk seluruh fungsi atau algoritma. Asumsikan bahwa fungsi bawaan atau operasi apa pun yang digunakan memiliki kompleksitas waktu O(1) kecuali ditentukan lain. |
+| Pengguna   | def example_function(n): for i in range(n): print(i) for j in range(n): for k in range(n): print(j, k)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 
 ### Contoh output
 
-> Untuk menganalisis kompleksitas waktu dari fungsi `example_function(n)` yang diberikan, kita akan memecahnya menjadi langkah-langkah dan mempertimbangkan skenario terburuk.
+> Untuk menganalisis kompleksitas waktu dari fungsi `example_function(n)` yang diberikan, kami akan memecahnya menjadi langkah-langkah dan mempertimbangkan skenario terburuk.
 >
 > Langkah 1: Menganalisis loop pertama
 >
@@ -46,10 +46,10 @@ Hitung kompleksitas waktu dari fungsi dan algoritma.
 > Langkah 3: Menggabungkan kompleksitas waktu  
 > Fungsi `example_function(n)` terdiri dari dua langkah: loop pertama dan loop bersarang. Kompleksitas waktu keseluruhan adalah jumlah dari kompleksitas waktu setiap langkah.
 >
-> Kompleksitas waktu loop pertama: O(n)  
-> Kompleksitas waktu loop bersarang: O(n^2)
+> Kompleksitas waktu dari loop pertama: O(n)  
+> Kompleksitas waktu dari loop bersarang: O(n^2)
 >
-> Untuk menentukan kompleksitas waktu keseluruhan, kita mempertimbangkan suku dominan, yaitu suku dengan tingkat pertumbuhan tertinggi. Dalam hal ini, O(n^2) mendominasi O(n).
+> Untuk menentukan kompleksitas waktu keseluruhan, kami mempertimbangkan istilah dominan, yang merupakan istilah dengan urutan pertumbuhan tertinggi. Dalam hal ini, O(n^2) mendominasi O(n).
 >
 > Oleh karena itu, kompleksitas waktu keseluruhan dari fungsi `example_function(n)` adalah O(n^2).
 >
@@ -68,10 +68,10 @@ Hitung kompleksitas waktu dari fungsi dan algoritma.
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1000,
         temperature=0,
-        system="Tugas Anda adalah menganalisis fungsi atau algoritma yang diberikan dan menghitung kompleksitas waktunya menggunakan notasi Big O. Jelaskan alasan Anda langkah demi langkah, menggambarkan bagaimana Anda sampai pada kompleksitas waktu akhir. Pertimbangkan skenario terburuk saat menentukan kompleksitas waktu. Jika fungsi atau algoritma berisi beberapa langkah atau loop bersarang, berikan kompleksitas waktu untuk setiap langkah dan kemudian berikan kompleksitas waktu keseluruhan untuk seluruh fungsi atau algoritma. Asumsikan fungsi atau operasi built-in yang digunakan memiliki kompleksitas waktu O(1) kecuali ditentukan lain.",
+        system="Your task is to analyze the provided function or algorithm and calculate its time complexity using Big O notation. Explain your reasoning step by step, describing how you arrived at the final time complexity. Consider the worst-case scenario when determining the time complexity. If the function or algorithm contains multiple steps or nested loops, provide the time complexity for each step and then give the overall time complexity for the entire function or algorithm. Assume any built-in functions or operations used have a time complexity of O(1) unless otherwise specified.",
         messages=[
             {
                 "role": "user",
@@ -97,10 +97,10 @@ Hitung kompleksitas waktu dari fungsi dan algoritma.
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 0,
-      system: "Tugas Anda adalah menganalisis fungsi atau algoritma yang diberikan dan menghitung kompleksitas waktunya menggunakan notasi Big O. Jelaskan alasan Anda langkah demi langkah, menggambarkan bagaimana Anda sampai pada kompleksitas waktu akhir. Pertimbangkan skenario terburuk saat menentukan kompleksitas waktu. Jika fungsi atau algoritma berisi beberapa langkah atau loop bersarang, berikan kompleksitas waktu untuk setiap langkah dan kemudian berikan kompleksitas waktu keseluruhan untuk seluruh fungsi atau algoritma. Asumsikan fungsi atau operasi built-in yang digunakan memiliki kompleksitas waktu O(1) kecuali ditentukan lain.",
+      system: "Your task is to analyze the provided function or algorithm and calculate its time complexity using Big O notation. Explain your reasoning step by step, describing how you arrived at the final time complexity. Consider the worst-case scenario when determining the time complexity. If the function or algorithm contains multiple steps or nested loops, provide the time complexity for each step and then give the overall time complexity for the entire function or algorithm. Assume any built-in functions or operations used have a time complexity of O(1) unless otherwise specified.",
       messages: [
         {
           "role": "user",
@@ -126,10 +126,10 @@ Hitung kompleksitas waktu dari fungsi dan algoritma.
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1:0",
         max_tokens=1000,
         temperature=0,
-        system="Tugas Anda adalah menganalisis fungsi atau algoritma yang diberikan dan menghitung kompleksitas waktunya menggunakan notasi Big O. Jelaskan alasan Anda langkah demi langkah, menggambarkan bagaimana Anda sampai pada kompleksitas waktu akhir. Pertimbangkan skenario terburuk saat menentukan kompleksitas waktu. Jika fungsi atau algoritma berisi beberapa langkah atau loop bersarang, berikan kompleksitas waktu untuk setiap langkah dan kemudian berikan kompleksitas waktu keseluruhan untuk seluruh fungsi atau algoritma. Asumsikan fungsi atau operasi built-in yang digunakan memiliki kompleksitas waktu O(1) kecuali ditentukan lain.",
+        system="Your task is to analyze the provided function or algorithm and calculate its time complexity using Big O notation. Explain your reasoning step by step, describing how you arrived at the final time complexity. Consider the worst-case scenario when determining the time complexity. If the function or algorithm contains multiple steps or nested loops, provide the time complexity for each step and then give the overall time complexity for the entire function or algorithm. Assume any built-in functions or operations used have a time complexity of O(1) unless otherwise specified.",
         messages=[
             {
                 "role": "user",
@@ -155,10 +155,10 @@ Hitung kompleksitas waktu dari fungsi dan algoritma.
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1:0",
       max_tokens: 1000,
       temperature: 0,
-      system: "Tugas Anda adalah menganalisis fungsi atau algoritma yang diberikan dan menghitung kompleksitas waktunya menggunakan notasi Big O. Jelaskan alasan Anda langkah demi langkah, menggambarkan bagaimana Anda sampai pada kompleksitas waktu akhir. Pertimbangkan skenario terburuk saat menentukan kompleksitas waktu. Jika fungsi atau algoritma berisi beberapa langkah atau loop bersarang, berikan kompleksitas waktu untuk setiap langkah dan kemudian berikan kompleksitas waktu keseluruhan untuk seluruh fungsi atau algoritma. Asumsikan fungsi atau operasi built-in yang digunakan memiliki kompleksitas waktu O(1) kecuali ditentukan lain.",
+      system: "Your task is to analyze the provided function or algorithm and calculate its time complexity using Big O notation. Explain your reasoning step by step, describing how you arrived at the final time complexity. Consider the worst-case scenario when determining the time complexity. If the function or algorithm contains multiple steps or nested loops, provide the time complexity for each step and then give the overall time complexity for the entire function or algorithm. Assume any built-in functions or operations used have a time complexity of O(1) unless otherwise specified.",
       messages: [
         {
           "role": "user",
@@ -185,7 +185,7 @@ Hitung kompleksitas waktu dari fungsi dan algoritma.
         model="claude-sonnet-4@20250514",
         max_tokens=1000,
         temperature=0,
-        system="Tugas Anda adalah menganalisis fungsi atau algoritma yang diberikan dan menghitung kompleksitas waktunya menggunakan notasi Big O. Jelaskan alasan Anda langkah demi langkah, menggambarkan bagaimana Anda sampai pada kompleksitas waktu akhir. Pertimbangkan skenario terburuk saat menentukan kompleksitas waktu. Jika fungsi atau algoritma berisi beberapa langkah atau loop bersarang, berikan kompleksitas waktu untuk setiap langkah dan kemudian berikan kompleksitas waktu keseluruhan untuk seluruh fungsi atau algoritma. Asumsikan fungsi atau operasi built-in yang digunakan memiliki kompleksitas waktu O(1) kecuali ditentukan lain.",
+        system="Your task is to analyze the provided function or algorithm and calculate its time complexity using Big O notation. Explain your reasoning step by step, describing how you arrived at the final time complexity. Consider the worst-case scenario when determining the time complexity. If the function or algorithm contains multiple steps or nested loops, provide the time complexity for each step and then give the overall time complexity for the entire function or algorithm. Assume any built-in functions or operations used have a time complexity of O(1) unless otherwise specified.",
         messages=[
             {
                 "role": "user",
@@ -213,7 +213,7 @@ Hitung kompleksitas waktu dari fungsi dan algoritma.
     const msg = await client.messages.create({
       model: "claude-sonnet-4@20250514",
       max_tokens: 1000,
-      system: "Tugas Anda adalah menganalisis fungsi atau algoritma yang diberikan dan menghitung kompleksitas waktunya menggunakan notasi Big O. Jelaskan alasan Anda langkah demi langkah, menggambarkan bagaimana Anda sampai pada kompleksitas waktu akhir. Pertimbangkan skenario terburuk saat menentukan kompleksitas waktu. Jika fungsi atau algoritma berisi beberapa langkah atau loop bersarang, berikan kompleksitas waktu untuk setiap langkah dan kemudian berikan kompleksitas waktu keseluruhan untuk seluruh fungsi atau algoritma. Asumsikan fungsi atau operasi built-in yang digunakan memiliki kompleksitas waktu O(1) kecuali ditentukan lain.",
+      system: "Your task is to analyze the provided function or algorithm and calculate its time complexity using Big O notation. Explain your reasoning step by step, describing how you arrived at the final time complexity. Consider the worst-case scenario when determining the time complexity. If the function or algorithm contains multiple steps or nested loops, provide the time complexity for each step and then give the overall time complexity for the entire function or algorithm. Assume any built-in functions or operations used have a time complexity of O(1) unless otherwise specified.",
       temperature: 0,
       messages: [
         {

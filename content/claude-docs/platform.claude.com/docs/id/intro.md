@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: a95d47447fd88429e49528f98b5420c15e4b84bf03c6cda79e1112d6d5428020
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: b30b21c60b753ae9bee612f070a3a207005990d074808978261a84940ff2ef0b
 ---
 
 # Pengenalan Claude
@@ -15,12 +15,9 @@ Claude adalah platform AI yang sangat berkinerja, dapat dipercaya, dan cerdas ya
 
 The latest generation of Claude models:
 
-**Claude Opus 4.5** - Most intelligent model, and an industry-leader for coding,
-agents, and computer use. [Learn more](https://www.anthropic.com/news/claude-opus-4-5).
+**Claude Opus 4.6** - Claude Opus 4.6 is the latest version of our most intelligent model, and the world’s best model for coding, enterprise agents, and professional work. [Learn more](https://www.anthropic.com/news/claude-opus-4-6).
 
-**Claude Sonnet 4.5** - Balanced performance and practicality for most uses,
-including coding and agents. [Learn
-more](https://www.anthropic.com/news/claude-sonnet-4-5).
+**Claude Sonnet 4.5** - Balanced performance and practicality for most uses, including coding and agents. [Learn more](https://www.anthropic.com/news/claude-sonnet-4-5).
 
 **Claude Haiku 4.5** - Fastest model with near-frontier intelligence. [Learn more](https://www.anthropic.com/news/claude-haiku-4-5).
 
@@ -50,7 +47,7 @@ Jika Anda baru mengenal Claude, mulai di sini untuk mempelajari hal-hal penting 
 
 ## Kembangkan dengan Claude
 
-Anthropic memiliki alat pengembang kelas dunia untuk membangun aplikasi yang dapat diskalakan dengan Claude.
+Anthropic memiliki alat pengembang kelas terbaik untuk membangun aplikasi yang dapat diskalakan dengan Claude.
 
 <CardGroup cols={3}>
   <Card title="Developer Console" icon="computer" href="/">
@@ -59,8 +56,8 @@ Anthropic memiliki alat pengembang kelas dunia untuk membangun aplikasi yang dap
   <Card title="Referensi API" icon="code" href="/docs/id/api/overview">
     Jelajahi, implementasikan, dan skalakan dengan Claude API dan SDK.
   </Card>
-  <Card title="Claude Cookbook" icon="chef-hat" href="https://github.com/anthropics/anthropic-cookbook">
-    Pelajari dengan notebook Jupyter interaktif yang mendemonstrasikan pengunggahan PDF, embeddings, dan banyak lagi.
+  <Card title="Claude Cookbook" icon="chef-hat" href="https://platform.claude.com/cookbooks">
+    Pelajari dengan notebook Jupyter interaktif yang mendemonstrasikan pengunggahan PDF, embedding, dan banyak lagi.
   </Card>
 </CardGroup>
 
@@ -85,7 +82,7 @@ Claude dapat membantu dengan banyak tugas yang melibatkan teks, kode, dan gambar
 
 <CardGroup cols={2}>
   <Card title="Pusat Bantuan" icon="help" href="https://support.claude.com/en/">
-    Temukan jawaban atas pertanyaan akun dan penagihan yang sering diajukan.
+    Temukan jawaban untuk pertanyaan akun dan penagihan yang sering diajukan.
   </Card>
 
   <Card title="Status Layanan" icon="chart" href="https://status.claude.com">

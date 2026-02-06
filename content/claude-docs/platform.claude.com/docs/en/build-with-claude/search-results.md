@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 235ba8921de605efaf1577722d9787d4f2c9c9e3367cbbc848fc7a4115576069
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 6d667437d683fbf1e5087f6ca7b75c9eb2cbaf504f90e708cf53bea4895a22dd
 ---
 
 # Search results
@@ -15,10 +15,11 @@ Search result content blocks enable natural citations with proper source attribu
 
 The search results feature is available on the following models:
 
+- Claude Opus 4.6 (`claude-opus-4-6`)
+- Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 - Claude Opus 4.1 (`claude-opus-4-1-20250805`)
 - Claude Opus 4 (`claude-opus-4-20250514`)
-- Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Sonnet 4 (`claude-sonnet-4-20250514`)
 - Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-3-7-sonnet-20250219`)
 - Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
@@ -149,7 +150,7 @@ def search_knowledge_base(query):
 
 # Create a message with the tool
 response = client.messages.create(
-    model="claude-sonnet-4-5",  # Works with all supported models
+    model="claude-opus-4-6",  # Works with all supported models
     max_tokens=1024,
     tools=[knowledge_base_tool],
     messages=[
@@ -166,7 +167,7 @@ if response.content[0].type == "tool_use":
     
     # Send the tool result back
     final_response = client.messages.create(
-        model="claude-sonnet-4-5",  # Works with all supported models
+        model="claude-opus-4-6",  # Works with all supported models
         max_tokens=1024,
         messages=[
             MessageParam(role="user", content="How do I configure the timeout settings?"),
@@ -240,7 +241,7 @@ function searchKnowledgeBase(query: string) {
 
 // Create a message with the tool
 const response = await anthropic.messages.create({
-  model: "claude-sonnet-4-5", // Works with all supported models
+  model: "claude-opus-4-6", // Works with all supported models
   max_tokens: 1024,
   tools: [knowledgeBaseTool],
   messages: [
@@ -256,7 +257,7 @@ if (response.content[0].type === "tool_use") {
   const toolResult = searchKnowledgeBase(response.content[0].input.query);
   
   const finalResponse = await anthropic.messages.create({
-    model: "claude-sonnet-4-5", // Works with all supported models
+    model: "claude-opus-4-6", // Works with all supported models
     max_tokens: 1024,
       messages: [
       { role: "user", content: "How do I configure the timeout settings?" },
@@ -300,7 +301,7 @@ client = Anthropic()
 
 # Provide search results directly in the user message
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[
         MessageParam(
@@ -349,7 +350,7 @@ const anthropic = new Anthropic();
 
 // Provide search results directly in the user message
 const response = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   messages: [
     {
@@ -399,7 +400,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "messages": [
         {

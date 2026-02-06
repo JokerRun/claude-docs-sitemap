@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 396ab5f215b46c8e6bfdce75d762f0a8e0418b7057eb2424b43dadedad4e91c9
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: dc0638b7e96dd68f5564a906c4a7cc795935531d80d545e4e9e4d0913829650f
 ---
 
 # Users
@@ -65,6 +65,7 @@ Get User
 
 ```http
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -152,6 +153,7 @@ List Users
 
 ```http
 curl https://api.anthropic.com/v1/organizations/users \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -228,6 +230,7 @@ Update User
 ```http
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{
           "role": "user"
@@ -265,6 +268,7 @@ Remove User
 ```http
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/adaptive-editor
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: afb18a9f0209223c2b3c5acf3569da668313038a231ea4a79305c5348812b912
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 98b016edca48c6464d5e14c001cb4f8341d5852a0a947f2491c518f5fa87d094
 ---
 
 # Adaptive editor
@@ -34,7 +34,7 @@ Rewrite text following user-given instructions, such as with a different tone, a
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=2000,
         temperature=1,
         messages=[
@@ -62,7 +62,7 @@ Rewrite text following user-given instructions, such as with a different tone, a
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 2000,
       temperature: 1,
       messages: [
@@ -90,7 +90,7 @@ Rewrite text following user-given instructions, such as with a different tone, a
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1",
         max_tokens=2000,
         temperature=1,
         messages=[
@@ -118,7 +118,7 @@ Rewrite text following user-given instructions, such as with a different tone, a
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 2000,
       temperature: 1,
       messages: [

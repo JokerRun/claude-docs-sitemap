@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions/create
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 1dd18910d955d2089b5adfda3405ac03f27669245342d797d45a419a6776fc78
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 3da6eab19f02f32d908855e2d0ead4dcc2538bb6a63ad2fc3c366e06036fa13e
 ---
 
 ## Create
@@ -163,6 +163,10 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
+
+        Most intelligent model for building agents and coding
+
       - `const ModelClaudeOpus4_5_20251101 Model = "claude-opus-4-5-20251101"`
 
         Premium model combining maximum intelligence with practical performance
@@ -281,7 +285,7 @@ func main() {
   )
   completion, err := client.Completions.New(context.TODO(), anthropic.CompletionNewParams{
     MaxTokensToSample: 256,
-    Model: anthropic.ModelClaudeOpus4_5_20251101,
+    Model: anthropic.ModelClaudeOpus4_6,
     Prompt: "\n\nHuman: Hello, world!\n\nAssistant:",
   })
   if err != nil {

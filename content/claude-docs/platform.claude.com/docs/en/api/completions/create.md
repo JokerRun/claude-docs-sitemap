@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-01-30T04:11:49.863510Z
-sha256: 7a880c1cac57e06d189c76a08528050604a03dad71b85e126c864a35079812cf
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 545c22ec9d4a6e917064dfbf5a3f32f6625d940914b1b54e04fb4eb5d1caf99a
 ---
 
 ## Create
@@ -77,11 +77,15 @@ Future models and features will not be compatible with Text Completions. See our
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `UnionMember0 = "claude-opus-4-5-20251101" or "claude-opus-4-5" or "claude-3-7-sonnet-latest" or 17 more`
+  - `UnionMember0 = "claude-opus-4-6" or "claude-opus-4-5-20251101" or "claude-opus-4-5" or 18 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-opus-4-6"`
+
+      Most intelligent model for building agents and coding
 
     - `"claude-opus-4-5-20251101"`
 
@@ -253,11 +257,15 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `UnionMember0 = "claude-opus-4-5-20251101" or "claude-opus-4-5" or "claude-3-7-sonnet-latest" or 17 more`
+    - `UnionMember0 = "claude-opus-4-6" or "claude-opus-4-5-20251101" or "claude-opus-4-5" or 18 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-6"`
+
+        Most intelligent model for building agents and coding
 
       - `"claude-opus-4-5-20251101"`
 
@@ -368,7 +376,7 @@ curl https://api.anthropic.com/v1/complete \
     --max-time 600 \
     -d '{
           "max_tokens_to_sample": 256,
-          "model": "claude-opus-4-5-20251101",
+          "model": "claude-opus-4-6",
           "prompt": "\\n\\nHuman: Hello, world!\\n\\nAssistant:"
         }'
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-01-30T04:11:49.863510Z
-sha256: 1a68105967814613abd8a9b121f6638343cf975592206c592242f5d9c3ee6245
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 194654549db9fe30428e4fea9dace193118efdef134f1efd1be37d8266a1d242
 ---
 
 # Citations
@@ -34,7 +34,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "messages": [
       {
@@ -67,7 +67,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[
         {
@@ -204,7 +204,7 @@ Citations works in conjunction with other API features including [prompt caching
 <Warning>
 **Citations and Structured Outputs are incompatible**
 
-Citations cannot be used together with [Structured Outputs](/docs/en/build-with-claude/structured-outputs). If you enable citations on any user-provided document (Document blocks or RequestSearchResultBlock) and also include the `output_config.format` parameter, the API will return a 400 error.
+Citations cannot be used together with [Structured Outputs](/docs/en/build-with-claude/structured-outputs). If you enable citations on any user-provided document (Document blocks or RequestSearchResultBlock) and also include the `output_config.format` parameter (or the deprecated `output_format` parameter), the API will return a 400 error.
 
 This is because citations require interleaving citation blocks with text output, which is incompatible with the strict JSON schema constraints of structured outputs.
 </Warning>
@@ -225,7 +225,7 @@ client = anthropic.Anthropic()
 long_document = "This is a very long document with thousands of words..." + " ... " * 1000  # Minimum cacheable length
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[
         {
@@ -260,7 +260,7 @@ const client = new Anthropic();
 const longDocument = "This is a very long document with thousands of words..." + " ... ".repeat(1000);  // Minimum cacheable length
 
 const response = await client.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   messages: [
     {
@@ -292,7 +292,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "anthropic-version: 2023-06-01" \
      --header "content-type: application/json" \
      --data '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "messages": [
         {

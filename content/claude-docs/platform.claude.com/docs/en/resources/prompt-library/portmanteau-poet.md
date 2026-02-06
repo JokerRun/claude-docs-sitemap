@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/portmanteau-poet
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 5436a8343c31c7262de52580d742e31060adc787289ef24aca53d3c8742ba75c
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: ecb043e0d45b8399bc4f31561e77eac848c655ce4be979a2f4a6687c56393eec
 ---
 
 # Portmanteau poet
@@ -48,7 +48,7 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=1000,
   temperature=1,
   system="You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",
@@ -80,7 +80,7 @@ apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
 });
 
 const msg = await anthropic.messages.create({
-model: "claude-sonnet-4-5",
+model: "claude-opus-4-6",
 max_tokens: 1000,
 temperature: 1,
 system: "You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",
@@ -113,7 +113,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+model="anthropic.claude-opus-4-6-v1",
 max_tokens=1000,
 temperature=1,
 system="You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",
@@ -144,7 +144,7 @@ import AnthropicBedrock from '@anthropic-ai/bedrock-sdk';
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+model: "anthropic.claude-opus-4-6-v1",
 max_tokens: 1000,
 temperature: 1,
 system: "You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",

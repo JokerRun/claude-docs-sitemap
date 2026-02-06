@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/latex-legend
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 8340483df1d409b7077189ad935f55058b80ce1e04a5ddf89f920eac75b6d6f5
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 2d4c313aa0a3f5e1ff65ac6e84ff6074ab281ddd9566eac7934a87bf2ad99a9b
 ---
 
 # Legenda LaTeX
@@ -11,16 +11,16 @@ Tulis dokumen LaTeX, menghasilkan kode untuk persamaan matematika, tabel, dan la
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Anda adalah asisten AI dengan keahlian dalam LaTeX, sistem persiapan dokumen yang banyak digunakan untuk penulisan akademik dan teknis. Tugas Anda adalah membantu pengguna menulis dokumen LaTeX dengan menyediakan kode yang sesuai untuk berbagai elemen seperti persamaan matematika, tabel, dan lainnya. Berikan penjelasan yang jelas dan contoh untuk memastikan pengguna memahami cara menggunakan kode LaTeX secara efektif. |
-| User   | Saya perlu membuat tabel sederhana dengan tiga kolom dan dua baris. Baris header harus berisi judul "Name," "Age," dan "City." Baris data harus memiliki nilai "John," "25," dan "New York." |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Anda adalah asisten AI dengan keahlian dalam LaTeX, sistem persiapan dokumen yang banyak digunakan untuk penulisan akademik dan teknis. Tugas Anda adalah membantu pengguna menulis dokumen LaTeX dengan menyediakan kode yang sesuai untuk berbagai elemen seperti persamaan matematika, tabel, dan lainnya. Tawarkan penjelasan dan contoh yang jelas untuk memastikan pengguna memahami cara menggunakan kode LaTeX secara efektif. |
+| Pengguna   | Saya perlu membuat tabel sederhana dengan tiga kolom dan dua baris. Baris header harus berisi judul "Nama," "Usia," dan "Kota." Baris data harus memiliki nilai "John," "25," dan "New York."                                                                                                                                                                                               |
 
 ## Contoh Output
 
-Berikut adalah kode LaTeX untuk membuat tabel sederhana dengan tiga kolom dan dua baris, termasuk baris header dengan judul "Name," "Age," dan "City," dan baris data dengan nilai "John," "25," dan "New York":
+Berikut adalah kode LaTeX untuk membuat tabel sederhana dengan tiga kolom dan dua baris, termasuk baris header dengan judul "Nama," "Usia," dan "Kota," serta baris data dengan nilai "John," "25," dan "New York":
 
 ```latex
 \begin{table}[h]
@@ -40,24 +40,24 @@ John & 25 & New York \\
 
 Penjelasan:
 
-- Environment `table` digunakan untuk membuat tabel mengambang yang dapat diposisikan secara otomatis oleh LaTeX.
-- Parameter opsional `[h]` menyarankan kepada LaTeX untuk menempatkan tabel "di sini" dalam alur dokumen, jika memungkinkan.
+- Lingkungan `table` digunakan untuk membuat tabel mengambang yang dapat diposisikan secara otomatis oleh LaTeX.
+- Parameter opsional `[h]` menyarankan kepada LaTeX untuk menempatkan tabel "di sini" dalam aliran dokumen, jika memungkinkan.
 - Perintah `\centering` memusatkan tabel secara horizontal di halaman.
-- Environment `tabular` digunakan untuk membuat struktur tabel yang sebenarnya.
-- Argumen `{|c|c|c|}` menentukan tiga kolom yang dipusatkan (`c`) dipisahkan oleh garis vertikal (`|`).
+- Lingkungan `tabular` digunakan untuk membuat struktur tabel yang sebenarnya.
+- Argumen `{|c|c|c|}` menentukan tiga kolom berpusat (`c`) yang dipisahkan oleh garis vertikal (`|`).
 - Perintah `\hline` menambahkan garis horizontal untuk memisahkan baris header dari baris data dan untuk membingkai tabel.
-- Karakter `&` memisahkan sel dalam satu baris, dan `\\` menandai akhir baris.
-- Perintah `\caption` menambahkan keterangan ke tabel, yang akan diberi label sebagai "Sample Table" dalam contoh ini.
-- Perintah `\label` memberikan label ke tabel, yang dapat digunakan untuk referensi silang dalam dokumen Anda.
+- Karakter `&` memisahkan sel dalam baris, dan `\\` menandai akhir baris.
+- Perintah `\caption` menambahkan keterangan ke tabel, yang akan diberi label "Sample Table" dalam contoh ini.
+- Perintah `\label` menetapkan label ke tabel, yang dapat digunakan untuk referensi silang dalam dokumen Anda.
 
-Ketika Anda mengkompilasi dokumen LaTeX Anda, kode ini akan menghasilkan tabel yang terlihat seperti ini:
+Ketika Anda mengompilasi dokumen LaTeX Anda, kode ini akan menghasilkan tabel yang terlihat seperti ini:
 
 ```
-+---+---+---+
++------+-----+----------+
 | Name | Age |   City   |
-+---+---+---+
++------+-----+----------+
 | John |  25 | New York |
-+---+---+---+
++------+-----+----------+
 
 ```
 
@@ -74,7 +74,7 @@ client = anthropic.Anthropic(  # defaults to os.environ.get("ANTHROPIC_API_KEY")
     api_key="my_api_key",
 )
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=2000,
     temperature=0,
     system="You are an AI assistant with expertise in LaTeX, a document preparation system widely used for academic and technical writing. Your task is to help users write LaTeX documents by providing the appropriate code for various elements such as mathematical equations, tables, and more. Offer clear explanations and examples to ensure the user understands how to use the LaTeX code effectively.",
@@ -104,7 +104,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 0,
   system: "You are an AI assistant with expertise in LaTeX, a document preparation system widely used for academic and technical writing. Your task is to help users write LaTeX documents by providing the appropriate code for various elements such as mathematical equations, tables, and more. Offer clear explanations and examples to ensure the user understands how to use the LaTeX code effectively.",
@@ -136,7 +136,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+model="anthropic.claude-opus-4-6-v1:0",
 max_tokens=2000,
 temperature=0,
 system="You are an AI assistant with expertise in LaTeX, a document preparation system widely used for academic and technical writing. Your task is to help users write LaTeX documents by providing the appropriate code for various elements such as mathematical equations, tables, and more. Offer clear explanations and examples to ensure the user understands how to use the LaTeX code effectively.",
@@ -165,7 +165,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 2000,
   temperature: 0,
   system: "You are an AI assistant with expertise in LaTeX, a document preparation system widely used for academic and technical writing. Your task is to help users write LaTeX documents by providing the appropriate code for various elements such as mathematical equations, tables, and more. Offer clear explanations and examples to ensure the user understands how to use the LaTeX code effectively.",

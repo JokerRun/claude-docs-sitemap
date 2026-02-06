@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 2c6b8ab12a75c0043687623fe61dd6367b20cf4abe82dd572b3a21bd3b7ea249
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: cc22ea411f71c83d17d4d6557827c295b4324089da7f9205c3f9b97b9bf09278
 ---
 
 # Admin
@@ -39,6 +39,7 @@ Retrieve information about the organization associated with the authenticated AP
 
 ```http
 curl https://api.anthropic.com/v1/organizations/me \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -149,6 +150,7 @@ Create Invite
 ```http
 curl https://api.anthropic.com/v1/organizations/invites \
     -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{
           "email": "user@emaildomain.com",
@@ -226,6 +228,7 @@ Get Invite
 
 ```http
 curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -321,6 +324,7 @@ List Invites
 
 ```http
 curl https://api.anthropic.com/v1/organizations/invites \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -355,6 +359,7 @@ Delete Invite
 ```http
 curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
     -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -474,6 +479,7 @@ Get User
 
 ```http
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -561,6 +567,7 @@ List Users
 
 ```http
 curl https://api.anthropic.com/v1/organizations/users \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -637,6 +644,7 @@ Update User
 ```http
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{
           "role": "user"
@@ -674,6 +682,7 @@ Remove User
 ```http
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -735,9 +744,31 @@ Create Workspace
 
   Name of the Workspace.
 
+- `data_residency: optional object { allowed_inference_geos, default_inference_geo, workspace_geo }`
+
+  Data residency configuration for the workspace. If omitted, defaults to workspace_geo=`"us"`, allowed_inference_geos=`"unrestricted"`, and default_inference_geo=`"global"`.
+
+  - `allowed_inference_geos: optional array of string or "unrestricted"`
+
+    Permitted inference geo values. Defaults to 'unrestricted' if omitted, which allows all geos. Use the string 'unrestricted' to allow all geos, or a list of specific geos.
+
+    - `UnionMember0 = array of string`
+
+    - `UnionMember1 = "unrestricted"`
+
+      - `"unrestricted"`
+
+  - `default_inference_geo: optional string`
+
+    Default inference geo applied when requests omit the parameter. Defaults to 'global' if omitted. Must be a member of allowed_inference_geos unless allowed_inference_geos is `"unrestricted"`.
+
+  - `workspace_geo: optional string`
+
+    Geographic region for workspace data storage. Immutable after creation. Defaults to 'us' if omitted.
+
 ### Returns
 
-- `Workspace = object { id, archived_at, created_at, 3 more }`
+- `Workspace = object { id, archived_at, created_at, 4 more }`
 
   - `id: string`
 
@@ -745,11 +776,33 @@ Create Workspace
 
   - `archived_at: string`
 
-    RFC 3339 datetime string indicating when the Workspace was archived, or null if the Workspace is not archived.
+    RFC 3339 datetime string indicating when the Workspace was archived, or `null` if the Workspace is not archived.
 
   - `created_at: string`
 
     RFC 3339 datetime string indicating when the Workspace was created.
+
+  - `data_residency: object { allowed_inference_geos, default_inference_geo, workspace_geo }`
+
+    Data residency configuration.
+
+    - `allowed_inference_geos: array of string or "unrestricted"`
+
+      Permitted inference geo values. 'unrestricted' means all geos are allowed.
+
+      - `UnionMember0 = array of string`
+
+      - `UnionMember1 = "unrestricted"`
+
+        - `"unrestricted"`
+
+    - `default_inference_geo: string`
+
+      Default inference geo applied when requests omit the parameter.
+
+    - `workspace_geo: string`
+
+      Geographic region for workspace data storage. Immutable after creation.
 
   - `display_color: string`
 
@@ -772,6 +825,7 @@ Create Workspace
 ```http
 curl https://api.anthropic.com/v1/organizations/workspaces \
     -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{
           "name": "x"
@@ -792,7 +846,7 @@ Get Workspace
 
 ### Returns
 
-- `Workspace = object { id, archived_at, created_at, 3 more }`
+- `Workspace = object { id, archived_at, created_at, 4 more }`
 
   - `id: string`
 
@@ -800,11 +854,33 @@ Get Workspace
 
   - `archived_at: string`
 
-    RFC 3339 datetime string indicating when the Workspace was archived, or null if the Workspace is not archived.
+    RFC 3339 datetime string indicating when the Workspace was archived, or `null` if the Workspace is not archived.
 
   - `created_at: string`
 
     RFC 3339 datetime string indicating when the Workspace was created.
+
+  - `data_residency: object { allowed_inference_geos, default_inference_geo, workspace_geo }`
+
+    Data residency configuration.
+
+    - `allowed_inference_geos: array of string or "unrestricted"`
+
+      Permitted inference geo values. 'unrestricted' means all geos are allowed.
+
+      - `UnionMember0 = array of string`
+
+      - `UnionMember1 = "unrestricted"`
+
+        - `"unrestricted"`
+
+    - `default_inference_geo: string`
+
+      Default inference geo applied when requests omit the parameter.
+
+    - `workspace_geo: string`
+
+      Geographic region for workspace data storage. Immutable after creation.
 
   - `display_color: string`
 
@@ -826,6 +902,7 @@ Get Workspace
 
 ```http
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -865,11 +942,33 @@ List Workspaces
 
   - `archived_at: string`
 
-    RFC 3339 datetime string indicating when the Workspace was archived, or null if the Workspace is not archived.
+    RFC 3339 datetime string indicating when the Workspace was archived, or `null` if the Workspace is not archived.
 
   - `created_at: string`
 
     RFC 3339 datetime string indicating when the Workspace was created.
+
+  - `data_residency: object { allowed_inference_geos, default_inference_geo, workspace_geo }`
+
+    Data residency configuration.
+
+    - `allowed_inference_geos: array of string or "unrestricted"`
+
+      Permitted inference geo values. 'unrestricted' means all geos are allowed.
+
+      - `UnionMember0 = array of string`
+
+      - `UnionMember1 = "unrestricted"`
+
+        - `"unrestricted"`
+
+    - `default_inference_geo: string`
+
+      Default inference geo applied when requests omit the parameter.
+
+    - `workspace_geo: string`
+
+      Geographic region for workspace data storage. Immutable after creation.
 
   - `display_color: string`
 
@@ -903,6 +1002,7 @@ List Workspaces
 
 ```http
 curl https://api.anthropic.com/v1/organizations/workspaces \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -924,9 +1024,27 @@ Update Workspace
 
   Name of the Workspace.
 
+- `data_residency: optional object { allowed_inference_geos, default_inference_geo }`
+
+  Data residency configuration for the workspace.
+
+  - `allowed_inference_geos: optional array of string or "unrestricted"`
+
+    Permitted inference geo values. Use 'unrestricted' to allow all geos, or a list of specific geos.
+
+    - `UnionMember0 = array of string`
+
+    - `UnionMember1 = "unrestricted"`
+
+      - `"unrestricted"`
+
+  - `default_inference_geo: optional string`
+
+    Default inference geo applied when requests omit the parameter. Must be a member of allowed_inference_geos unless allowed_inference_geos is `"unrestricted"`.
+
 ### Returns
 
-- `Workspace = object { id, archived_at, created_at, 3 more }`
+- `Workspace = object { id, archived_at, created_at, 4 more }`
 
   - `id: string`
 
@@ -934,11 +1052,33 @@ Update Workspace
 
   - `archived_at: string`
 
-    RFC 3339 datetime string indicating when the Workspace was archived, or null if the Workspace is not archived.
+    RFC 3339 datetime string indicating when the Workspace was archived, or `null` if the Workspace is not archived.
 
   - `created_at: string`
 
     RFC 3339 datetime string indicating when the Workspace was created.
+
+  - `data_residency: object { allowed_inference_geos, default_inference_geo, workspace_geo }`
+
+    Data residency configuration.
+
+    - `allowed_inference_geos: array of string or "unrestricted"`
+
+      Permitted inference geo values. 'unrestricted' means all geos are allowed.
+
+      - `UnionMember0 = array of string`
+
+      - `UnionMember1 = "unrestricted"`
+
+        - `"unrestricted"`
+
+    - `default_inference_geo: string`
+
+      Default inference geo applied when requests omit the parameter.
+
+    - `workspace_geo: string`
+
+      Geographic region for workspace data storage. Immutable after creation.
 
   - `display_color: string`
 
@@ -961,6 +1101,7 @@ Update Workspace
 ```http
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
     -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{
           "name": "x"
@@ -981,7 +1122,7 @@ Archive Workspace
 
 ### Returns
 
-- `Workspace = object { id, archived_at, created_at, 3 more }`
+- `Workspace = object { id, archived_at, created_at, 4 more }`
 
   - `id: string`
 
@@ -989,11 +1130,33 @@ Archive Workspace
 
   - `archived_at: string`
 
-    RFC 3339 datetime string indicating when the Workspace was archived, or null if the Workspace is not archived.
+    RFC 3339 datetime string indicating when the Workspace was archived, or `null` if the Workspace is not archived.
 
   - `created_at: string`
 
     RFC 3339 datetime string indicating when the Workspace was created.
+
+  - `data_residency: object { allowed_inference_geos, default_inference_geo, workspace_geo }`
+
+    Data residency configuration.
+
+    - `allowed_inference_geos: array of string or "unrestricted"`
+
+      Permitted inference geo values. 'unrestricted' means all geos are allowed.
+
+      - `UnionMember0 = array of string`
+
+      - `UnionMember1 = "unrestricted"`
+
+        - `"unrestricted"`
+
+    - `default_inference_geo: string`
+
+      Default inference geo applied when requests omit the parameter.
+
+    - `workspace_geo: string`
+
+      Geographic region for workspace data storage. Immutable after creation.
 
   - `display_color: string`
 
@@ -1016,6 +1179,7 @@ Archive Workspace
 ```http
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/archive \
     -X POST \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -1086,6 +1250,7 @@ Create Workspace Member
 ```http
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members \
     -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{
           "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
@@ -1145,6 +1310,7 @@ Get Workspace Member
 
 ```http
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -1224,6 +1390,7 @@ List Workspace Members
 
 ```http
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -1294,6 +1461,7 @@ Update Workspace Member
 ```http
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
     -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{
           "workspace_role": "workspace_user"
@@ -1339,6 +1507,7 @@ Delete Workspace Member
 ```http
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
     -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -1382,7 +1551,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members
 
 **get** `/v1/organizations/api_keys/{api_key_id}`
 
-Get Api Key
+Get API Key
 
 ### Path Parameters
 
@@ -1442,12 +1611,13 @@ Get Api Key
 
   - `workspace_id: string`
 
-    ID of the Workspace associated with the API key, or null if the API key belongs to the default Workspace.
+    ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
 
 ### Example
 
 ```http
 curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -1455,7 +1625,7 @@ curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
 
 **get** `/v1/organizations/api_keys`
 
-List Api Keys
+List API Keys
 
 ### Query Parameters
 
@@ -1543,7 +1713,7 @@ List Api Keys
 
   - `workspace_id: string`
 
-    ID of the Workspace associated with the API key, or null if the API key belongs to the default Workspace.
+    ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
 
 - `first_id: string`
 
@@ -1561,6 +1731,7 @@ List Api Keys
 
 ```http
 curl https://api.anthropic.com/v1/organizations/api_keys \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -1568,7 +1739,7 @@ curl https://api.anthropic.com/v1/organizations/api_keys \
 
 **post** `/v1/organizations/api_keys/{api_key_id}`
 
-Update Api Key
+Update API Key
 
 ### Path Parameters
 
@@ -1644,13 +1815,14 @@ Update Api Key
 
   - `workspace_id: string`
 
-    ID of the Workspace associated with the API key, or null if the API key belongs to the default Workspace.
+    ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
 
 ### Example
 
 ```http
 curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
     -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{}'
 ```
@@ -1696,7 +1868,7 @@ Get Messages Usage Report
 
   Time buckets that end before this RFC 3339 timestamp will be returned.
 
-- `group_by: optional array of "api_key_id" or "workspace_id" or "model" or 2 more`
+- `group_by: optional array of "api_key_id" or "workspace_id" or "model" or 3 more`
 
   Group by any subset of the available options.
 
@@ -1709,6 +1881,18 @@ Get Messages Usage Report
   - `"service_tier"`
 
   - `"context_window"`
+
+  - `"inference_geo"`
+
+- `inference_geos: optional array of "global" or "us" or "not_available"`
+
+  Restrict usage returned to the specified inference geo(s). Use `not_available` for models that do not support specifying `inference_geo`.
+
+  - `"global"`
+
+  - `"us"`
+
+  - `"not_available"`
 
 - `limit: optional number`
 
@@ -1747,6 +1931,14 @@ Get Messages Usage Report
 
   Restrict usage returned to the specified workspace ID(s).
 
+### Header Parameters
+
+- `"anthropic-beta": optional array of string`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
+
 ### Returns
 
 - `MessagesUsageReport = object { data, has_more, next_page }`
@@ -1757,13 +1949,13 @@ Get Messages Usage Report
 
       End of the time bucket (exclusive) in RFC 3339 format.
 
-    - `results: array of object { api_key_id, cache_creation, cache_read_input_tokens, 7 more }`
+    - `results: array of object { api_key_id, cache_creation, cache_read_input_tokens, 8 more }`
 
       List of usage items for this time bucket.  There may be multiple items if one or more `group_by[]` parameters are specified.
 
       - `api_key_id: string`
 
-        ID of the API key used. Null if not grouping by API key or for usage in the Anthropic Console.
+        ID of the API key used. `null` if not grouping by API key or for usage in the Anthropic Console.
 
       - `cache_creation: object { ephemeral_1h_input_tokens, ephemeral_5m_input_tokens }`
 
@@ -1783,15 +1975,20 @@ Get Messages Usage Report
 
       - `context_window: "0-200k" or "200k-1M"`
 
-        Context window used. Null if not grouping by context window.
+        Context window used. `null` if not grouping by context window.
 
         - `"0-200k"`
 
         - `"200k-1M"`
 
+      - `inference_geo: string`
+
+        Inference geo used matching requests' `inference_geo` parameter if set, otherwise the workspace's `default_inference_geo`.
+        For models that do not support specifying `inference_geo` the value is `"not_available"`. Always `null` if not grouping by inference geo.
+
       - `model: string`
 
-        Model used. Null if not grouping by model.
+        Model used. `null` if not grouping by model.
 
       - `output_tokens: number`
 
@@ -1807,7 +2004,7 @@ Get Messages Usage Report
 
       - `service_tier: "standard" or "batch" or "priority" or 3 more`
 
-        Service tier used. Null if not grouping by service tier.
+        Service tier used. `null` if not grouping by service tier.
 
         - `"standard"`
 
@@ -1827,7 +2024,7 @@ Get Messages Usage Report
 
       - `workspace_id: string`
 
-        ID of the Workspace used. Null if not grouping by workspace or for the default workspace.
+        ID of the Workspace used. `null` if not grouping by workspace or for the default workspace.
 
     - `starting_at: string`
 
@@ -1845,6 +2042,7 @@ Get Messages Usage Report
 
 ```http
 curl https://api.anthropic.com/v1/organizations/usage_report/messages \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -2003,7 +2201,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
     - `subscription_type: optional "enterprise" or "team"`
 
-      Subscription tier for subscription customers. Null for API customers.
+      Subscription tier for subscription customers. `null` for API customers.
 
       - `"enterprise"`
 
@@ -2021,6 +2219,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
 ```http
 curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -2160,7 +2359,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
     - `subscription_type: optional "enterprise" or "team"`
 
-      Subscription tier for subscription customers. Null for API customers.
+      Subscription tier for subscription customers. `null` for API customers.
 
       - `"enterprise"`
 
@@ -2184,13 +2383,13 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
       End of the time bucket (exclusive) in RFC 3339 format.
 
-    - `results: array of object { api_key_id, cache_creation, cache_read_input_tokens, 7 more }`
+    - `results: array of object { api_key_id, cache_creation, cache_read_input_tokens, 8 more }`
 
       List of usage items for this time bucket.  There may be multiple items if one or more `group_by[]` parameters are specified.
 
       - `api_key_id: string`
 
-        ID of the API key used. Null if not grouping by API key or for usage in the Anthropic Console.
+        ID of the API key used. `null` if not grouping by API key or for usage in the Anthropic Console.
 
       - `cache_creation: object { ephemeral_1h_input_tokens, ephemeral_5m_input_tokens }`
 
@@ -2210,15 +2409,20 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
       - `context_window: "0-200k" or "200k-1M"`
 
-        Context window used. Null if not grouping by context window.
+        Context window used. `null` if not grouping by context window.
 
         - `"0-200k"`
 
         - `"200k-1M"`
 
+      - `inference_geo: string`
+
+        Inference geo used matching requests' `inference_geo` parameter if set, otherwise the workspace's `default_inference_geo`.
+        For models that do not support specifying `inference_geo` the value is `"not_available"`. Always `null` if not grouping by inference geo.
+
       - `model: string`
 
-        Model used. Null if not grouping by model.
+        Model used. `null` if not grouping by model.
 
       - `output_tokens: number`
 
@@ -2234,7 +2438,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
       - `service_tier: "standard" or "batch" or "priority" or 3 more`
 
-        Service tier used. Null if not grouping by service tier.
+        Service tier used. `null` if not grouping by service tier.
 
         - `"standard"`
 
@@ -2254,7 +2458,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
       - `workspace_id: string`
 
-        ID of the Workspace used. Null if not grouping by workspace or for the default workspace.
+        ID of the Workspace used. `null` if not grouping by workspace or for the default workspace.
 
     - `starting_at: string`
 
@@ -2309,6 +2513,14 @@ Get Cost Report
 
   Optionally set to the `next_page` token from the previous response.
 
+### Header Parameters
+
+- `"anthropic-beta": optional array of string`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
+
 ### Returns
 
 - `CostReport = object { data, has_more, next_page }`
@@ -2319,7 +2531,7 @@ Get Cost Report
 
       End of the time bucket (exclusive) in RFC 3339 format.
 
-    - `results: array of object { amount, context_window, cost_type, 6 more }`
+    - `results: array of object { amount, context_window, cost_type, 7 more }`
 
       List of cost items for this time bucket. There may be multiple items if one or more `group_by[]` parameters are specified.
 
@@ -2329,7 +2541,7 @@ Get Cost Report
 
       - `context_window: "0-200k" or "200k-1M"`
 
-        Input context window used. Null if not grouping by description or for non-token costs.
+        Input context window used. `null` if not grouping by description or for non-token costs.
 
         - `"0-200k"`
 
@@ -2337,7 +2549,7 @@ Get Cost Report
 
       - `cost_type: "tokens" or "web_search" or "code_execution"`
 
-        Type of cost. Null if not grouping by description.
+        Type of cost. `null` if not grouping by description.
 
         - `"tokens"`
 
@@ -2351,15 +2563,20 @@ Get Cost Report
 
       - `description: string`
 
-        Description of the cost item. Null if not grouping by description.
+        Description of the cost item. `null` if not grouping by description.
+
+      - `inference_geo: string`
+
+        Inference geo used matching requests' `inference_geo` parameter if set, otherwise the workspace's `default_inference_geo`.
+        For models that do not support specifying `inference_geo` the value is `"not_available"`. Always `null` if not grouping by inference geo.
 
       - `model: string`
 
-        Model name used. Null if not grouping by description or for non-token costs.
+        Model name used. `null` if not grouping by description or for non-token costs.
 
       - `service_tier: "standard" or "batch"`
 
-        Service tier used. Null if not grouping by description or for non-token costs.
+        Service tier used. `null` if not grouping by description or for non-token costs.
 
         - `"standard"`
 
@@ -2367,7 +2584,7 @@ Get Cost Report
 
       - `token_type: "uncached_input_tokens" or "output_tokens" or "cache_read_input_tokens" or 2 more`
 
-        Type of token. Null if not grouping by description or for non-token costs.
+        Type of token. `null` if not grouping by description or for non-token costs.
 
         - `"uncached_input_tokens"`
 
@@ -2381,7 +2598,7 @@ Get Cost Report
 
       - `workspace_id: string`
 
-        ID of the Workspace this cost is associated with. Null if not grouping by workspace or for the default workspace.
+        ID of the Workspace this cost is associated with. `null` if not grouping by workspace or for the default workspace.
 
     - `starting_at: string`
 
@@ -2399,6 +2616,7 @@ Get Cost Report
 
 ```http
 curl https://api.anthropic.com/v1/organizations/cost_report \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -2414,7 +2632,7 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
 
       End of the time bucket (exclusive) in RFC 3339 format.
 
-    - `results: array of object { amount, context_window, cost_type, 6 more }`
+    - `results: array of object { amount, context_window, cost_type, 7 more }`
 
       List of cost items for this time bucket. There may be multiple items if one or more `group_by[]` parameters are specified.
 
@@ -2424,7 +2642,7 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
 
       - `context_window: "0-200k" or "200k-1M"`
 
-        Input context window used. Null if not grouping by description or for non-token costs.
+        Input context window used. `null` if not grouping by description or for non-token costs.
 
         - `"0-200k"`
 
@@ -2432,7 +2650,7 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
 
       - `cost_type: "tokens" or "web_search" or "code_execution"`
 
-        Type of cost. Null if not grouping by description.
+        Type of cost. `null` if not grouping by description.
 
         - `"tokens"`
 
@@ -2446,15 +2664,20 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
 
       - `description: string`
 
-        Description of the cost item. Null if not grouping by description.
+        Description of the cost item. `null` if not grouping by description.
+
+      - `inference_geo: string`
+
+        Inference geo used matching requests' `inference_geo` parameter if set, otherwise the workspace's `default_inference_geo`.
+        For models that do not support specifying `inference_geo` the value is `"not_available"`. Always `null` if not grouping by inference geo.
 
       - `model: string`
 
-        Model name used. Null if not grouping by description or for non-token costs.
+        Model name used. `null` if not grouping by description or for non-token costs.
 
       - `service_tier: "standard" or "batch"`
 
-        Service tier used. Null if not grouping by description or for non-token costs.
+        Service tier used. `null` if not grouping by description or for non-token costs.
 
         - `"standard"`
 
@@ -2462,7 +2685,7 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
 
       - `token_type: "uncached_input_tokens" or "output_tokens" or "cache_read_input_tokens" or 2 more`
 
-        Type of token. Null if not grouping by description or for non-token costs.
+        Type of token. `null` if not grouping by description or for non-token costs.
 
         - `"uncached_input_tokens"`
 
@@ -2476,7 +2699,7 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
 
       - `workspace_id: string`
 
-        ID of the Workspace this cost is associated with. Null if not grouping by workspace or for the default workspace.
+        ID of the Workspace this cost is associated with. `null` if not grouping by workspace or for the default workspace.
 
     - `starting_at: string`
 

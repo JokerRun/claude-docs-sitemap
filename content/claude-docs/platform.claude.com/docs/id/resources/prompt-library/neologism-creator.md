@@ -1,30 +1,30 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/neologism-creator
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 06dcb141cfea0c25854819d1707adbf09c9a4d714706fbd00b24e213704c2845
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 3bae36de5dfa5af8f143aa259bf4829aa3c689ff0c84c1f4aa75238734c33550
 ---
 
 # Pencipta neologisme
 
-Menciptakan kata-kata baru dan memberikan definisinya berdasarkan konsep atau ide yang diberikan pengguna.
+Ciptakan kata-kata baru dan berikan definisi mereka berdasarkan konsep atau ide yang disediakan pengguna.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|      | Konten |
-| ---- | --- |
-| Pengguna | Bisakah Anda membantu saya membuat kata baru untuk tindakan berpura-pura memahami sesuatu agar tidak terlihat bodoh atau tidak tahu? |
+|      | Konten                                                                                                                               |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Pengguna | Bisakah Anda membantu saya membuat kata baru untuk tindakan berpura-pura memahami sesuatu untuk menghindari terlihat bodoh atau tidak terinformasi? |
 
-## Contoh output
+## Contoh keluaran
 
 Bagaimana dengan neologisme "fauxprehension" untuk menggambarkan konsep ini?
 
 Fauxprehension (fəʊprɪˈhɛnʃ(ə)n) - kata benda  
- Definisi: Tindakan menyamar memahami atau memahami suatu topik, konsep, atau situasi untuk menghindari tampak bodoh, tidak tahu, atau ketinggalan informasi. Ini adalah kepura-puraan pengetahuan atau pemahaman tentang suatu materi, sering digunakan dalam pengaturan sosial atau profesional untuk mempertahankan citra atau status seseorang.
+ Definisi: Tindakan menyamar memahami atau menangkap topik, konsep, atau situasi untuk menghindari terlihat bodoh, tidak terinformasi, atau ketinggalan informasi. Ini adalah penyamaran pengetahuan atau pemahaman tentang suatu materi, sering digunakan dalam pengaturan sosial atau profesional untuk mempertahankan citra atau status seseorang.
 
-Etimologi: Kata "fauxprehension" adalah gabungan dari "faux," yang berasal dari kata Prancis yang berarti palsu atau tiruan, dan "comprehension," yang berarti tindakan atau kemampuan memahami sesuatu.
+Etimologi: Kata "fauxprehension" adalah perpaduan dari "faux," yang berasal dari kata Prancis yang berarti palsu atau tiruan, dan "comprehension," yang berarti tindakan atau kemampuan memahami sesuatu.
 
 ---
 
@@ -41,7 +41,7 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=1000,
   temperature=1,
   messages=[
@@ -71,7 +71,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 1,
   messages: [
@@ -88,7 +88,7 @@ const msg = await anthropic.messages.create({
 });
 console.log(msg);
 
-````
+```
 
 </Tab>
 <Tab title="AWS Bedrock Python">
@@ -101,7 +101,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=1000,
     temperature=1,
     messages=[
@@ -131,7 +131,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 1000,
   temperature: 1,
   messages: [

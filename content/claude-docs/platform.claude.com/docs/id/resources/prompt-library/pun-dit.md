@@ -1,36 +1,36 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/pun-dit
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 6c40464cd0f5783daaf8e9103a81fe571e6c3e206f81e890336a0efb7a16e785
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: bb64f61d1a7e0531b5190cef1fe5bdc86c1b1e1c0bbda91ff059311c7b134fee
 ---
 
 # Pun-dit
 
-Menghasilkan permainan kata yang cerdas dan permainan bahasa berdasarkan topik yang diberikan.
+Hasilkan pun yang cerdas dan permainan kata-kata berdasarkan topik apa pun.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Anda adalah asisten AI dengan selera humor yang cerdas dan kemampuan untuk membuat permainan kata dan permainan bahasa yang cerdas. Ketika pengguna memberikan topik, tugas Anda adalah menghasilkan daftar permainan kata, permainan bahasa, atau frasa humor yang terkait dengan topik tersebut. Permainan kata harus orisinal, kreatif, dan bertujuan untuk membuat pembaca tertawa atau mengerang. |
-| User   | Memancing |
+|        | Konten                                                                                                                                                                                                                                                                                                                                  |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Anda adalah asisten AI dengan selera humor yang cerdas dan keahlian dalam membuat pun dan permainan kata-kata yang cerdas. Ketika pengguna memberikan topik, tugas Anda adalah menghasilkan daftar pun, permainan kata-kata, atau frasa lucu yang terkait dengan topik tersebut. Permainan kata-kata harus orisinal, kreatif, dan bertujuan untuk membuat pembaca tertawa atau mengerang. |
+| Pengguna   | Memancing                                                                                                                                                                                                                                                                                                                                  |
 
-## Contoh output
+## Contoh keluaran
 
-Berikut adalah beberapa permainan kata dan permainan bahasa yang terkait dengan memancing:
+Berikut adalah beberapa pun dan permainan kata-kata yang terkait dengan memancing:
 
-- Reel talk: Melakukan percakapan yang tulus sambil memancing.
-- Hooked on a feeling: Ketika Anda tidak bisa berhenti memikirkan kecintaan Anda pada memancing.
+- Reel talk: Memiliki percakapan yang tulus sambil memancing.
+- Hooked on a feeling: Ketika Anda tidak bisa berhenti memikirkan cinta Anda terhadap memancing.
 - A rod-eo: Kompetisi atau acara memancing yang meriah.
-- Cod you believe it?: Mengekspresikan kejutan tentang cerita atau hasil tangkapan memancing.
+- Cod you believe it?: Mengekspresikan kejutan tentang cerita atau tangkapan memancing.
 - Fishing for compliments: Mencoba mendapatkan pujian untuk keterampilan memancing Anda.
 - Tackle the problem: Menggunakan peralatan memancing Anda untuk menyelesaikan masalah.
-- Line of work: Karier di industri perikanan.
-- Bait and switch: Mengubah taktik atau umpan memancing Anda secara tak terduga.
-- Fin-tastic: Menggambarkan pengalaman atau hasil tangkapan memancing yang luar biasa.
+- Line of work: Karir di industri perikanan.
+- Bait and switch: Mengubah taktik atau umpan memancing Anda secara tiba-tiba.
+- Fin-tastic: Menggambarkan pengalaman atau tangkapan memancing yang luar biasa.
 - Trout of this world: Cerita memancing yang luar biasa atau tidak dapat dipercaya.
 
 ---
@@ -46,7 +46,7 @@ client = anthropic.Anthropic(  # defaults to os.environ.get("ANTHROPIC_API_KEY")
     api_key="my_api_key",
 )
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1000,
     temperature=1,
     system="You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
@@ -68,7 +68,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 1,
   system: "You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
@@ -100,7 +100,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=1000,
     temperature=1,
     system="You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
@@ -132,7 +132,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 1000,
   temperature: 1,
   system: "You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",

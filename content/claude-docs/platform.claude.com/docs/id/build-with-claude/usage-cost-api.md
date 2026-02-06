@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/usage-cost-api
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 2e284235525fd0c489101ef73e4e2e0b9887f74be3e783b0b4f7b4062c48f937
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 6716ff5cfe9420dd9e26cca942e7cb5311b6c172512803f426385871b558bd7c
 ---
 
 # Usage and Cost API
@@ -15,7 +15,7 @@ Akses secara terprogram data penggunaan API dan biaya organisasi Anda dengan Usa
 **The Admin API is unavailable for individual accounts.** To collaborate with teammates and add members, set up your organization in **Console → Settings → Organization**.
 </Tip>
 
-Usage & Cost Admin API menyediakan akses terprogram dan granular ke data penggunaan API historis dan biaya untuk organisasi Anda. Data ini mirip dengan informasi yang tersedia di halaman [Usage](/usage) dan [Cost](/cost) dari Claude Console.
+Usage & Cost Admin API menyediakan akses terprogram dan granular ke data penggunaan API historis dan biaya untuk organisasi Anda. Data ini serupa dengan informasi yang tersedia di halaman [Usage](/usage) dan [Cost](/cost) dari Claude Console.
 
 API ini memungkinkan Anda untuk lebih baik memantau, menganalisis, dan mengoptimalkan implementasi Claude Anda:
 
@@ -28,7 +28,7 @@ API ini memungkinkan Anda untuk lebih baik memantau, menganalisis, dan mengoptim
 <Check>
   **Admin API key diperlukan**
   
-  API ini adalah bagian dari [Admin API](/docs/id/build-with-claude/administration-api). Endpoint ini memerlukan Admin API key (dimulai dengan `sk-ant-admin...`) yang berbeda dari kunci API standar. Hanya anggota organisasi dengan peran admin yang dapat menyediakan Admin API key melalui [Claude Console](/settings/admin-keys).
+  API ini adalah bagian dari [Admin API](/docs/id/build-with-claude/administration-api). Endpoint ini memerlukan Admin API key (dimulai dengan `sk-ant-admin...`) yang berbeda dari API key standar. Hanya anggota organisasi dengan peran admin yang dapat menyediakan Admin API key melalui [Claude Console](/settings/admin-keys).
 </Check>
 
 ## Solusi mitra
@@ -40,13 +40,13 @@ Platform observabilitas terkemuka menawarkan integrasi siap pakai untuk memantau
     Platform intelijen cloud untuk melacak dan memperkirakan biaya
   </Card>
   <Card title="Datadog" icon="chart" href="https://docs.datadoghq.com/integrations/anthropic/">
-    Observabilitas LLM dengan pelacakan dan pemantauan otomatis
+    LLM Observability dengan pelacakan dan pemantauan otomatis
   </Card>
   <Card title="Grafana Cloud" icon="chart" href="https://grafana.com/docs/grafana-cloud/monitor-infrastructure/integrations/integration-reference/integration-anthropic/">
     Integrasi tanpa agen untuk observabilitas LLM yang mudah dengan dashboard dan peringatan siap pakai
   </Card>
   <Card title="Honeycomb" icon="polygon" href="https://docs.honeycomb.io/integrations/anthropic-usage-monitoring/">
-    Kueri lanjutan dan visualisasi melalui OpenTelemetry
+    Kueri dan visualisasi lanjutan melalui OpenTelemetry
   </Card>
   <Card title="Vantage" icon="chart" href="https://docs.vantage.sh/connecting_anthropic">
     Platform FinOps untuk observabilitas biaya & penggunaan LLM
@@ -81,10 +81,10 @@ Lacak konsumsi token di seluruh organisasi Anda dengan rincian terperinci menuru
 
 ### Konsep kunci
 
-- **Time buckets**: Agregasi data penggunaan dalam interval tetap (`1m`, `1h`, atau `1d`)
-- **Token tracking**: Ukur input tanpa cache, input cache, pembuatan cache, dan token output
-- **Filtering & grouping**: Filter berdasarkan API key, workspace, model, service tier, atau context window, dan kelompokkan hasil menurut dimensi ini
-- **Server tool usage**: Lacak penggunaan alat sisi server seperti pencarian web
+- **Time buckets**: Agregat data penggunaan dalam interval tetap (`1m`, `1h`, atau `1d`)
+- **Pelacakan token**: Ukur input tanpa cache, input cache, pembuatan cache, dan token output
+- **Penyaringan & pengelompokan**: Filter berdasarkan API key, workspace, model, service tier, context window, atau [data residency](/docs/id/build-with-claude/data-residency), dan kelompokkan hasil berdasarkan dimensi ini
+- **Penggunaan server tool**: Lacak penggunaan server-side tools seperti web search
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Usage API](/docs/id/api/admin-api/usage-cost/get-messages-usage-report).
 
@@ -102,13 +102,13 @@ bucket_width=1d" \
   --header "x-api-key: $ADMIN_API_KEY"
 ```
 
-#### Penggunaan per jam dengan filtering
+#### Penggunaan per jam dengan penyaringan
 
 ```bash
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2025-01-15T00:00:00Z&\
 ending_at=2025-01-15T23:59:59Z&\
-models[]=claude-sonnet-4-5-20250929&\
+models[]=claude-opus-4-6&\
 service_tiers[]=batch&\
 context_window[]=0-200k&\
 bucket_width=1h" \
@@ -137,9 +137,41 @@ Untuk mengambil ID API key organisasi Anda, gunakan endpoint [List API Keys](/do
 Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](/docs/id/api/admin-api/workspaces/list-workspaces), atau temukan ID workspace organisasi Anda di Anthropic Console.
 </Tip>
 
+#### Data residency
+
+Lacak [kontrol data residency](/docs/id/build-with-claude/data-residency) Anda dengan mengelompokkan dan menyaring penggunaan dengan dimensi `inference_geo`. Ini berguna untuk memverifikasi perutean geografis di seluruh organisasi Anda.
+
+```bash
+curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
+starting_at=2026-02-01T00:00:00Z&\
+ending_at=2026-02-08T00:00:00Z&\
+group_by[]=inference_geo&\
+group_by[]=model&\
+bucket_width=1d" \
+  --header "anthropic-version: 2023-06-01" \
+  --header "x-api-key: $ADMIN_API_KEY"
+```
+
+Anda juga dapat menyaring ke geo spesifik. Nilai yang valid adalah `global`, `us`, dan `not_available`:
+
+```bash
+curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
+starting_at=2026-02-01T00:00:00Z&\
+ending_at=2026-02-08T00:00:00Z&\
+inference_geos[]=us&\
+group_by[]=model&\
+bucket_width=1d" \
+  --header "anthropic-version: 2023-06-01" \
+  --header "x-api-key: $ADMIN_API_KEY"
+```
+
+<Note>
+Model yang dirilis sebelum Februari 2026 (sebelum Claude Opus 4.6) tidak mendukung parameter permintaan `inference_geo`, jadi laporan penggunaan mereka mengembalikan `"not_available"` untuk dimensi ini. Anda dapat menggunakan `not_available` sebagai nilai filter dalam `inference_geos[]` untuk menargetkan model tersebut.
+</Note>
+
 ### Batas granularitas waktu
 
-| Granularitas | Batas Default | Batas Maksimum | Use Case |
+| Granularitas | Batas Default | Batas Maksimum | Kasus Penggunaan |
 |-------------|---------------|---------------|----------|
 | `1m` | 60 buckets | 1440 buckets | Pemantauan real-time |
 | `1h` | 24 buckets | 168 buckets | Pola harian |
@@ -152,8 +184,8 @@ Ambil rincian biaya tingkat layanan dalam USD dengan endpoint `/v1/organizations
 ### Konsep kunci
 
 - **Mata uang**: Semua biaya dalam USD, dilaporkan sebagai string desimal dalam unit terendah (sen)
-- **Jenis biaya**: Lacak biaya penggunaan token, pencarian web, dan eksekusi kode
-- **Grouping**: Kelompokkan biaya menurut workspace atau deskripsi untuk rincian terperinci
+- **Jenis biaya**: Lacak biaya penggunaan token, web search, dan eksekusi kode
+- **Pengelompokan**: Kelompokkan biaya menurut workspace atau deskripsi untuk rincian terperinci. Saat mengelompokkan menurut `description`, respons menyertakan bidang yang diurai seperti `model` dan `inference_geo`
 - **Time buckets**: Granularitas harian saja (`1d`)
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Cost API](/docs/id/api/admin-api/usage-cost/get-cost-report).
@@ -203,12 +235,12 @@ page=page_xyz..." \
   --header "x-api-key: $ADMIN_API_KEY"
 ```
 
-## Use case umum
+## Kasus penggunaan umum
 
-Jelajahi implementasi terperinci di [anthropic-cookbook](https://github.com/anthropics/anthropic-cookbook):
+Jelajahi implementasi terperinci di [Claude Cookbook](https://platform.claude.com/cookbooks):
 
 - **Laporan penggunaan harian**: Lacak tren konsumsi token
-- **Atribusi biaya**: Alokasikan pengeluaran menurut workspace untuk chargebacks
+- **Atribusi biaya**: Alokasikan pengeluaran menurut workspace untuk chargeback
 - **Efisiensi cache**: Ukur dan optimalkan prompt caching
 - **Pemantauan anggaran**: Atur peringatan untuk ambang batas pengeluaran
 - **Ekspor CSV**: Hasilkan laporan untuk tim keuangan
@@ -235,14 +267,15 @@ Penggunaan dan biaya yang dikaitkan dengan workspace default memiliki nilai `nul
 
 ### Bagaimana cara mendapatkan rincian biaya per pengguna untuk Claude Code?
 
-Gunakan [Claude Code Analytics API](/docs/id/build-with-claude/claude-code-analytics-api), yang menyediakan biaya perkiraan per pengguna dan metrik produktivitas tanpa keterbatasan kinerja dari memecah biaya menurut banyak API key. Untuk penggunaan API umum dengan banyak key, gunakan [Usage API](#usage-api) untuk melacak konsumsi token sebagai proxy biaya.
+Gunakan [Claude Code Analytics API](/docs/id/build-with-claude/claude-code-analytics-api), yang menyediakan biaya perkiraan per pengguna dan metrik produktivitas tanpa keterbatasan kinerja memecah biaya menurut banyak API key. Untuk penggunaan API umum dengan banyak key, gunakan [Usage API](#usage-api) untuk melacak konsumsi token sebagai proxy biaya.
 
 ## Lihat juga
 Usage dan Cost API dapat digunakan untuk membantu Anda memberikan pengalaman yang lebih baik bagi pengguna Anda, membantu Anda mengelola biaya, dan menjaga rate limit Anda. Pelajari lebih lanjut tentang beberapa fitur lain ini:
 
 - [Gambaran umum Admin API](/docs/id/build-with-claude/administration-api)
 - [Referensi Admin API](/docs/id/api/admin)
-- [Pricing](/docs/id/about-claude/pricing)
+- [Harga](/docs/id/about-claude/pricing)
 - [Prompt caching](/docs/id/build-with-claude/prompt-caching) - Optimalkan biaya dengan caching
 - [Batch processing](/docs/id/build-with-claude/batch-processing) - Diskon 50% untuk permintaan batch
 - [Rate limits](/docs/id/api/rate-limits) - Pahami tier penggunaan
+- [Data residency](/docs/id/build-with-claude/data-residency) - Kontrol geografi inferensi

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/results
-fetched_at: 2026-01-30T04:11:49.863510Z
-sha256: 96d134bab4676c17e51ada4c0b0d64e7a9495d41db3c1e84f2ba7adf093721c8
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 329ad6913d9ebe8eaff0ec9ecea6bfbdfc104c8e71b26ba693e26a6a7addf79a
 ---
 
 ## Results
@@ -276,6 +276,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
+
+            Most intelligent model for building agents and coding
+
           - `CLAUDE_OPUS_4_5_20251101("claude-opus-4-5-20251101")`
 
             Premium model combining maximum intelligence with practical performance
@@ -436,6 +440,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `Optional<Long> cacheReadInputTokens`
 
             The number of input tokens read from the cache.
+
+          - `Optional<String> inferenceGeo`
+
+            The geographic region where inference was performed for this request.
 
           - `long inputTokens`
 

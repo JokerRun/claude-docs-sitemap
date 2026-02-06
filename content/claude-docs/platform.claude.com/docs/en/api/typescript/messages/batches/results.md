@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/results
-fetched_at: 2026-01-30T04:11:49.863510Z
-sha256: ffd722c18bc90b7c7285c509ec6ad1db45f9a702e53008684ed4ad60b21464e5
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: b01e66d0b910c59485674801bda6494d77da33d650b4d0b76b71a95ad33475d5
 ---
 
 ## Results
@@ -274,7 +274,11 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-opus-4-5-20251101" | "claude-opus-4-5" | "claude-3-7-sonnet-latest" | 17 more`
+          - `"claude-opus-4-6" | "claude-opus-4-5-20251101" | "claude-opus-4-5" | 18 more`
+
+            - `"claude-opus-4-6"`
+
+              Most intelligent model for building agents and coding
 
             - `"claude-opus-4-5-20251101"`
 
@@ -438,6 +442,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `cache_read_input_tokens: number | null`
 
             The number of input tokens read from the cache.
+
+          - `inference_geo: string | null`
+
+            The geographic region where inference was performed for this request.
 
           - `input_tokens: number`
 

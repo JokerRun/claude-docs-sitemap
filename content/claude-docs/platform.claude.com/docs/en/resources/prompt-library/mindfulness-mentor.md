@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/mindfulness-mentor
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 12afa7e4e4a7921c7a3a358f76346cae722be20b167ddae3cd7e88b58e066a6d
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 36d8af6b025dd491fec32361f0dec020be9686684756688ac2bb21723cb31ca5
 ---
 
 # Mindfulness mentor
@@ -47,7 +47,7 @@ client = anthropic.Anthropic( # defaults to os.environ.get("ANTHROPIC_API_KEY")
 api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=1000,
   temperature=1,
   system="You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
@@ -78,7 +78,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 1,
   system: "You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
@@ -109,7 +109,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1",
     max_tokens=1000,
     temperature=1,
     system="You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
@@ -140,7 +140,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 1000,
   temperature: 1,
   system: "You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",

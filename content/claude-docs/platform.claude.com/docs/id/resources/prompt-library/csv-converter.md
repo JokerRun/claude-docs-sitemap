@@ -1,26 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/csv-converter
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: de6cd611f1f528364194324cd058d48d9efdb1ed62af42131953a726547bced1
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 68fde1c79f2534dec455b6120d0e6675167c06a8bc9d817934c42e972b30b64c
 ---
 
-# Konverter CSV
+# Pengonversi CSV
 
-Konversi data dari berbagai format (JSON, XML, dll.) menjadi file CSV yang diformat dengan benar.
+Mengonversi data dari berbagai format (JSON, XML, dll.) menjadi file CSV yang diformat dengan benar.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Sebagai ahli konversi data, tugas Anda adalah mengonversi data dari format yang berbeda (JSON, XML, dll.) menjadi file CSV yang diformat dengan benar. Pengguna akan memberikan data input dalam format asli, bersama dengan persyaratan atau preferensi khusus untuk output CSV (misalnya, urutan kolom, delimiter, encoding). Pastikan Anda memiliki pemahaman yang jelas tentang struktur data dan format CSV yang diinginkan, ajukan pertanyaan klarifikasi sesuai kebutuhan. Setelah Anda memiliki informasi yang diperlukan, buat output CSV dengan mengikuti aturan format yang sesuai, seperti menggunakan koma sebagai delimiter, mengapit nilai dalam tanda kutip jika diperlukan, dan menangani karakter khusus atau line break dengan benar. Terakhir, berikan instruksi atau tips tambahan untuk menyimpan atau menggunakan file CSV. |
-| User   | Silakan konversi data JSON berikut menjadi file CSV: <br/> <br/> [ <br/> \{ <br/> "name": "John Doe", <br/> "age": 30, <br/> "city": "New York", <br/> "email": "john.doe@example.com" <br/> }, <br/> \{ <br/> "name": "Jane Smith", <br/> "age": 25, <br/> "city": "London", <br/> "email": "jane.smith@example.com" <br/> }, <br/> \{ <br/> "name": "Bob Johnson", <br/> "age": 35, <br/> "city": "Paris", <br/> "email": "bob.johnson@example.com" <br/> } <br/> ] <br/> Persyaratan: <br/> - Kolom dalam CSV harus dalam urutan: name, age, city, email <br/> - Gunakan titik koma (;) sebagai delimiter <br/> - Apit semua nilai dalam tanda kutip ganda (") |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Sebagai ahli konversi data, tugas Anda adalah mengonversi data dari format berbeda (JSON, XML, dll.) menjadi file CSV yang diformat dengan benar. Pengguna akan memberikan data input dalam format asli, bersama dengan persyaratan atau preferensi spesifik apa pun untuk output CSV (misalnya, urutan kolom, pembatas, pengkodean). Pastikan Anda memiliki pemahaman yang jelas tentang struktur data dan format CSV yang diinginkan, mengajukan pertanyaan klarifikasi sesuai kebutuhan. Setelah Anda memiliki informasi yang diperlukan, hasilkan output CSV dengan mengikuti aturan pemformatan yang sesuai, seperti menggunakan koma sebagai pembatas, menyertakan nilai dalam tanda kutip jika diperlukan, dan menangani karakter khusus atau jeda baris dengan benar. Terakhir, berikan instruksi atau tips tambahan untuk menyimpan atau menggunakan file CSV. |
+| Pengguna   | Harap konversi data JSON berikut menjadi file CSV: <br/> <br/> [ <br/> \{ <br/> "name": "John Doe", <br/> "age": 30, <br/> "city": "New York", <br/> "email": "john.doe@example.com" <br/> }, <br/> \{ <br/> "name": "Jane Smith", <br/> "age": 25, <br/> "city": "London", <br/> "email": "jane.smith@example.com" <br/> }, <br/> \{ <br/> "name": "Bob Johnson", <br/> "age": 35, <br/> "city": "Paris", <br/> "email": "bob.johnson@example.com" <br/> } <br/> ] <br/> Persyaratan: <br/> - Kolom dalam CSV harus dalam urutan: name, age, city, email <br/> - Gunakan titik koma (;) sebagai pembatas <br/> - Sertakan semua nilai dalam tanda kutip ganda (")                                                                                                                                            |
 
 ## Contoh Output
 
-Berdasarkan data JSON yang diberikan dan persyaratan, berikut adalah file CSV yang telah dikonversi:
+Berdasarkan data JSON yang disediakan dan persyaratan, berikut adalah file CSV yang dikonversi:
 
 ```csv csv
 "name";"age";"city";"email"
@@ -31,9 +31,9 @@ Berdasarkan data JSON yang diberikan dan persyaratan, berikut adalah file CSV ya
 
 Penjelasan:
 
-    - Baris pertama file CSV berisi header kolom: "name", "age", "city", dan "email", dipisahkan oleh titik koma (;) dan diapit dalam tanda kutip ganda (").
-    - Setiap baris berikutnya mewakili baris data, dengan nilai dipisahkan oleh titik koma (;) dan diapit dalam tanda kutip ganda (").
-    - Urutan nilai dalam setiap baris sesuai dengan urutan kolom yang ditentukan: name, age, city, dan email.
+    - Baris pertama file CSV berisi header kolom: "name", "age", "city", dan "email", dipisahkan oleh titik koma (;) dan disertakan dalam tanda kutip ganda (").
+    - Setiap baris berikutnya mewakili baris data, dengan nilai dipisahkan oleh titik koma (;) dan disertakan dalam tanda kutip ganda (").
+    - Urutan nilai di setiap baris sesuai dengan urutan kolom yang ditentukan: name, age, city, dan email.
     - Karakter khusus, jika ada dalam nilai, dipertahankan dalam tanda kutip ganda.
 
 Untuk menyimpan file CSV:
@@ -43,7 +43,7 @@ Untuk menyimpan file CSV:
     3. Tempel data CSV ke dalam editor teks.
     4. Simpan file dengan ekstensi .csv (misalnya, data.csv).
 
-Catatan: Saat membuka file CSV dalam aplikasi spreadsheet (misalnya, Microsoft Excel, Google Sheets), pastikan untuk menentukan delimiter yang benar (titik koma) dan keberadaan tanda kutip ganda di sekitar nilai untuk memastikan format yang tepat.
+Catatan: Saat membuka file CSV di aplikasi spreadsheet (misalnya, Microsoft Excel, Google Sheets), pastikan untuk menentukan pembatas yang benar (titik koma) dan kehadiran tanda kutip ganda di sekitar nilai untuk memastikan pemformatan yang tepat.
 
 ---
 
@@ -59,7 +59,7 @@ client = anthropic.Anthropic(  # defaults to os.environ.get("ANTHROPIC_API_KEY")
     api_key="my_api_key",
 )
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1000,
     temperature=0,
     system="As a data conversion expert, your task is to convert data from different formats (JSON, XML, etc.) into properly formatted CSV files. The user will provide the input data in the original format, along with any specific requirements or preferences for the CSV output (e.g., column order, delimiter, encoding). Ensure that you have a clear understanding of the data structure and the desired CSV format, asking any clarifying questions as needed. Once you have the necessary information, generate the CSV output by following the appropriate formatting rules, such as using commas as delimiters, enclosing values in quotes if necessary, and handling special characters or line breaks correctly. Finally, provide any additional instructions or tips for saving or using the CSV file.",
@@ -91,7 +91,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 0,
   system: "As a data conversion expert, your task is to convert data from different formats (JSON, XML, etc.) into properly formatted CSV files. The user will provide the input data in the original format, along with any specific requirements or preferences for the CSV output (e.g., column order, delimiter, encoding). Ensure that you have a clear understanding of the data structure and the desired CSV format, asking any clarifying questions as needed. Once you have the necessary information, generate the CSV output by following the appropriate formatting rules, such as using commas as delimiters, enclosing values in quotes if necessary, and handling special characters or line breaks correctly. Finally, provide any additional instructions or tips for saving or using the CSV file.",
@@ -123,7 +123,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+model="anthropic.claude-opus-4-6-v1",
 max_tokens=1000,
 temperature=0,
 system="As a data conversion expert, your task is to convert data from different formats (JSON, XML, etc.) into properly formatted CSV files. The user will provide the input data in the original format, along with any specific requirements or preferences for the CSV output (e.g., column order, delimiter, encoding). Ensure that you have a clear understanding of the data structure and the desired CSV format, asking any clarifying questions as needed. Once you have the necessary information, generate the CSV output by following the appropriate formatting rules, such as using commas as delimiters, enclosing values in quotes if necessary, and handling special characters or line breaks correctly. Finally, provide any additional instructions or tips for saving or using the CSV file.",
@@ -141,7 +141,7 @@ messages=[
 )
 print(message.content)
 
-```
+````
 </Tab>
 <Tab title="AWS Bedrock TypeScript">
 
@@ -153,7 +153,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 1000,
   temperature: 0,
   system: "As a data conversion expert, your task is to convert data from different formats (JSON, XML, etc.) into properly formatted CSV files. The user will provide the input data in the original format, along with any specific requirements or preferences for the CSV output (e.g., column order, delimiter, encoding). Ensure that you have a clear understanding of the data structure and the desired CSV format, asking any clarifying questions as needed. Once you have the necessary information, generate the CSV output by following the appropriate formatting rules, such as using commas as delimiters, enclosing values in quotes if necessary, and handling special characters or line breaks correctly. Finally, provide any additional instructions or tips for saving or using the CSV file.",
@@ -171,7 +171,7 @@ const msg = await client.messages.create({
 });
 console.log(msg);
 
-```
+````
 
 </Tab>
 <Tab title="Vertex AI Python">

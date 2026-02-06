@@ -1,33 +1,24 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: a7d38399b2ea7caaa54ffa486f8a636791aee5f20429df972044158e55c0a349
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: e0a8d286d3a5e022b0509952bb0d2c114816f92aec4d9eaabc6615553c3b7f55
 ---
 
 # Streaming alat berbutir halus
 
-Penggunaan alat sekarang mendukung streaming berbutir halus untuk nilai parameter, mengurangi latensi untuk mulai menerima parameter besar.
+Pelajari cara menggunakan streaming alat berbutir halus untuk mengurangi latensi saat menerima parameter besar
 
 ---
 
-Penggunaan alat sekarang mendukung [streaming](/docs/id/build-with-claude/streaming) berbutir halus untuk nilai parameter. Ini memungkinkan pengembang untuk melakukan streaming parameter penggunaan alat tanpa buffering / validasi JSON, mengurangi latensi untuk mulai menerima parameter besar.
-
-Streaming alat berbutir halus tersedia melalui Claude API, AWS Bedrock, Google Cloud's Vertex AI, dan Microsoft Foundry.
-
-<Note>
-Streaming alat berbutir halus adalah fitur beta. Pastikan untuk mengevaluasi respons Anda sebelum menggunakannya dalam produksi. 
-
-Silakan gunakan [formulir ini](https://forms.gle/D4Fjr7GvQRzfTZT96) untuk memberikan umpan balik tentang kualitas respons model, API itu sendiri, atau kualitas dokumentasi—kami tidak sabar mendengar dari Anda!
-</Note>
+Streaming alat berbutir halus tersedia secara umum di semua model dan semua platform, tanpa memerlukan header beta. Ini memungkinkan [streaming](/docs/id/build-with-claude/streaming) nilai parameter penggunaan alat tanpa buffering atau validasi JSON, mengurangi latensi untuk mulai menerima parameter besar.
 
 <Warning>
-Saat menggunakan streaming alat berbutir halus, Anda mungkin berpotensi menerima input JSON yang tidak valid atau sebagian. Pastikan untuk mempertimbangkan kasus-kasus tepi ini dalam kode Anda.
+Saat menggunakan streaming alat berbutir halus, Anda mungkin menerima input JSON yang tidak valid atau sebagian. Pastikan untuk mempertimbangkan kasus-kasus tepi ini dalam kode Anda.
 </Warning>
 
 ## Cara menggunakan streaming alat berbutir halus
-
-Untuk menggunakan fitur beta ini, cukup tambahkan header beta `fine-grained-tool-streaming-2025-05-14` ke permintaan penggunaan alat dan aktifkan streaming.
+Streaming alat berbutir halus tersedia di semua model dan semua platform (Claude API, Amazon Bedrock, Google Vertex AI, dan Microsoft Foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada alat apa pun tempat Anda ingin streaming berbutir halus diaktifkan, dan aktifkan streaming pada permintaan Anda.
 
 Berikut adalah contoh cara menggunakan streaming alat berbutir halus dengan API:
 
@@ -38,14 +29,14 @@ Berikut adalah contoh cara menggunakan streaming alat berbutir halus dengan API:
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: fine-grained-tool-streaming-2025-05-14" \
     -d '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "max_tokens": 65536,
       "tools": [
         {
           "name": "make_file",
           "description": "Write text to a file",
+          "eager_input_streaming": true,
           "input_schema": {
             "type": "object",
             "properties": {
@@ -77,12 +68,13 @@ Berikut adalah contoh cara menggunakan streaming alat berbutir halus dengan API:
 
   client = anthropic.Anthropic()
 
-  response = client.beta.messages.stream(
+  response = client.messages.stream(
       max_tokens=65536,
-      model="claude-sonnet-4-5",
+      model="claude-opus-4-6",
       tools=[{
         "name": "make_file",
         "description": "Write text to a file",
+        "eager_input_streaming": True,
         "input_schema": {
           "type": "object",
           "properties": {
@@ -101,8 +93,7 @@ Berikut adalah contoh cara menggunakan streaming alat berbutir halus dengan API:
       messages=[{
         "role": "user",
         "content": "Can you write a long poem and make a file called poem.txt?"
-      }],
-      betas=["fine-grained-tool-streaming-2025-05-14"]
+      }]
   )
 
   print(response.usage)
@@ -113,12 +104,13 @@ Berikut adalah contoh cara menggunakan streaming alat berbutir halus dengan API:
 
   const anthropic = new Anthropic();
 
-  const message = await anthropic.beta.messages.stream({
-    model: "claude-sonnet-4-5",
+  const message = await anthropic.messages.stream({
+    model: "claude-opus-4-6",
     max_tokens: 65536,
     tools: [{
       "name": "make_file",
       "description": "Write text to a file",
+      "eager_input_streaming": true,
       "input_schema": {
         "type": "object",
         "properties": {
@@ -134,11 +126,10 @@ Berikut adalah contoh cara menggunakan streaming alat berbutir halus dengan API:
         "required": ["filename", "lines_of_text"]
       }
     }],
-    messages: [{ 
-      role: "user", 
-      content: "Can you write a long poem and make a file called poem.txt?" 
-    }],
-    betas: ["fine-grained-tool-streaming-2025-05-14"]
+    messages: [{
+      role: "user",
+      content: "Can you write a long poem and make a file called poem.txt?"
+    }]
   });
 
   console.log(message.usage);
@@ -148,7 +139,7 @@ Berikut adalah contoh cara menggunakan streaming alat berbutir halus dengan API:
 Dalam contoh ini, streaming alat berbutir halus memungkinkan Claude untuk melakukan streaming baris-baris puisi panjang ke dalam panggilan alat `make_file` tanpa buffering untuk memvalidasi apakah parameter `lines_of_text` adalah JSON yang valid. Ini berarti Anda dapat melihat parameter stream saat tiba, tanpa harus menunggu seluruh parameter untuk buffer dan validasi.
 
 <Note>
-Dengan streaming alat berbutir halus, chunk penggunaan alat mulai streaming lebih cepat, dan sering kali lebih panjang dan mengandung lebih sedikit jeda kata. Ini disebabkan oleh perbedaan dalam perilaku chunking.
+Dengan streaming alat berbutir halus, chunk penggunaan alat mulai melakukan streaming lebih cepat, dan sering kali lebih panjang dan mengandung lebih sedikit jeda kata. Ini disebabkan oleh perbedaan dalam perilaku chunking.
 
 Contoh: 
 
@@ -174,12 +165,12 @@ Chunk 2: ' new features comparison'
 
 <Warning>
 Karena streaming berbutir halus mengirim parameter tanpa buffering atau validasi JSON, tidak ada jaminan bahwa stream yang dihasilkan akan selesai dalam string JSON yang valid.
-Khususnya, jika [alasan berhenti](/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` tercapai, stream mungkin berakhir di tengah parameter dan mungkin tidak lengkap. Anda umumnya harus menulis dukungan khusus untuk menangani saat `max_tokens` tercapai.
+Khususnya, jika [stop reason](/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` tercapai, stream mungkin berakhir di tengah parameter dan mungkin tidak lengkap. Anda umumnya harus menulis dukungan khusus untuk menangani saat `max_tokens` tercapai.
 </Warning>
 
 ## Menangani JSON tidak valid dalam respons alat
 
-Saat menggunakan streaming alat berbutir halus, Anda mungkin menerima JSON yang tidak valid atau tidak lengkap dari model. Jika Anda perlu mengirimkan JSON yang tidak valid ini kembali ke model dalam blok respons kesalahan, Anda dapat membungkusnya dalam objek JSON untuk memastikan penanganan yang tepat (dengan kunci yang masuk akal). Sebagai contoh:
+Saat menggunakan streaming alat berbutir halus, Anda mungkin menerima JSON yang tidak valid atau tidak lengkap dari model. Jika Anda perlu melewatkan JSON yang tidak valid ini kembali ke model dalam blok respons kesalahan, Anda dapat membungkusnya dalam objek JSON untuk memastikan penanganan yang tepat (dengan kunci yang masuk akal). Sebagai contoh:
 
 ```json
 {

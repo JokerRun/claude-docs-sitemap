@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c8b60cbdf642dfa5eca3eee7722bb41aaf2d522a74f8fa7ce04976990321c9ec
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: afb5daf7a37ed7560d637c596fba631bc514b3bbbed0a4786e0fba4d0bb31f1c
 ---
 
 # Penggunaan alat dengan Claude
 
-Claude dapat berinteraksi dengan alat dan fungsi, memungkinkan Anda memperluas kemampuan Claude untuk melakukan berbagai tugas.
+Claude dapat berinteraksi dengan alat dan fungsi untuk memperluas kemampuannya dalam melakukan berbagai tugas.
 
 ---
 
-Claude mampu berinteraksi dengan alat dan fungsi, memungkinkan Anda memperluas kemampuan Claude untuk melakukan berbagai tugas.
+Claude mampu berinteraksi dengan alat dan fungsi, memungkinkan Anda untuk memperluas kemampuan Claude guna melakukan berbagai tugas yang lebih luas.
 
 <Tip>
   Pelajari semua yang Anda butuhkan untuk menguasai penggunaan alat dengan Claude sebagai bagian dari [kursus](https://anthropic.skilljar.com/) baru kami! Silakan terus bagikan ide dan saran Anda menggunakan [formulir](https://forms.gle/BFnYc6iCkWoRzFgk7) ini.
@@ -20,7 +20,7 @@ Claude mampu berinteraksi dengan alat dan fungsi, memungkinkan Anda memperluas k
 <Tip>
 **Jamin kepatuhan skema dengan penggunaan alat yang ketat**
 
-[Structured Outputs](/docs/id/build-with-claude/structured-outputs) menyediakan validasi skema yang dijamin untuk input alat. Tambahkan `strict: true` ke definisi alat Anda untuk memastikan panggilan alat Claude selalu sesuai dengan skema Anda dengan tepat—tidak ada lagi ketidakcocokan tipe atau bidang yang hilang.
+[Structured Outputs](/docs/id/build-with-claude/structured-outputs) menyediakan validasi skema yang dijamin untuk input alat. Tambahkan `strict: true` ke definisi alat Anda untuk memastikan panggilan alat Claude selalu sesuai dengan skema Anda dengan tepat—tidak ada lagi ketidaksesuaian tipe atau bidang yang hilang.
 
 Sempurna untuk agen produksi di mana parameter alat yang tidak valid akan menyebabkan kegagalan. [Pelajari kapan menggunakan penggunaan alat yang ketat →](/docs/id/build-with-claude/structured-outputs#when-to-use-json-outputs-vs-strict-tool-use)
 </Tip>
@@ -35,7 +35,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "tools": [
       {
@@ -68,7 +68,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=[
         {
@@ -100,7 +100,7 @@ const anthropic = new Anthropic({
 
 async function main() {
   const response = await anthropic.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     max_tokens: 1024,
     tools: [{
       name: "get_weather",
@@ -184,7 +184,7 @@ Claude mendukung dua jenis alat:
    - Alat khusus yang ditentukan pengguna yang Anda buat dan implementasikan
    - Alat yang ditentukan Anthropic seperti [penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool) yang memerlukan implementasi klien
 
-2. **Alat server**: Alat yang dijalankan pada server Anthropic, seperti alat [pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) dan [pengambilan web](/docs/id/agents-and-tools/tool-use/web-fetch-tool). Alat ini harus ditentukan dalam permintaan API tetapi tidak memerlukan implementasi di pihak Anda.
+2. **Alat server**: Alat yang dijalankan pada server Anthropic, seperti alat [pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) dan [pengambilan web](/docs/id/agents-and-tools/tool-use/web-fetch-tool). Alat-alat ini harus ditentukan dalam permintaan API tetapi tidak memerlukan implementasi di pihak Anda.
 
 <Note>
 Alat yang ditentukan Anthropic menggunakan tipe yang diberi versi (misalnya, `web_search_20250305`, `text_editor_20250124`) untuk memastikan kompatibilitas di seluruh versi model.
@@ -194,12 +194,12 @@ Alat yang ditentukan Anthropic menggunakan tipe yang diberi versi (misalnya, `we
 Integrasikan alat klien dengan Claude dalam langkah-langkah berikut:
 
 <Steps>
-  <Step title="Berikan Claude dengan alat dan prompt pengguna">
+  <Step title="Sediakan Claude dengan alat dan prompt pengguna">
     - Tentukan alat klien dengan nama, deskripsi, dan skema input dalam permintaan API Anda.
-    - Sertakan prompt pengguna yang mungkin memerlukan alat ini, misalnya, "Bagaimana cuaca di San Francisco?"
+    - Sertakan prompt pengguna yang mungkin memerlukan alat-alat ini, misalnya, "Bagaimana cuaca di San Francisco?"
   </Step>
   <Step title="Claude memutuskan untuk menggunakan alat">
-    - Claude menilai apakah alat apa pun dapat membantu dengan kueri pengguna.
+    - Claude menilai apakah ada alat yang dapat membantu dengan kueri pengguna.
     - Jika ya, Claude membuat permintaan penggunaan alat yang diformat dengan benar.
     - Untuk alat klien, respons API memiliki `stop_reason` dari `tool_use`, menandakan niat Claude.
   </Step>
@@ -219,9 +219,9 @@ Catatan: Langkah 3 dan 4 bersifat opsional. Untuk beberapa alur kerja, permintaa
 Alat server mengikuti alur kerja yang berbeda:
 
 <Steps>
-  <Step title="Berikan Claude dengan alat dan prompt pengguna">
+  <Step title="Sediakan Claude dengan alat dan prompt pengguna">
     - Alat server, seperti [pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) dan [pengambilan web](/docs/id/agents-and-tools/tool-use/web-fetch-tool), memiliki parameter mereka sendiri.
-    - Sertakan prompt pengguna yang mungkin memerlukan alat ini, misalnya, "Cari berita terbaru tentang AI" atau "Analisis konten di URL ini."
+    - Sertakan prompt pengguna yang mungkin memerlukan alat-alat ini, misalnya, "Cari berita terbaru tentang AI" atau "Analisis konten di URL ini."
   </Step>
   <Step title="Claude menjalankan alat server">
     - Claude menilai apakah alat server dapat membantu dengan kueri pengguna.
@@ -245,7 +245,7 @@ Jika Anda membangun aplikasi yang menggunakan [Model Context Protocol (MCP)](htt
 
 ### Mengonversi alat MCP ke format Claude
 
-Ketika Anda membangun klien MCP dan memanggil `list_tools()` pada server MCP, Anda akan menerima definisi alat dengan bidang `inputSchema`. Untuk menggunakan alat ini dengan Claude, konversikan ke format Claude:
+Ketika Anda membangun klien MCP dan memanggil `list_tools()` pada server MCP, Anda akan menerima definisi alat dengan bidang `inputSchema`. Untuk menggunakan alat-alat ini dengan Claude, konversikan ke format Claude:
 
 <CodeGroup>
 ```python Python
@@ -282,7 +282,7 @@ async function getClaudeTools(mcpClient: Client) {
 ```
 </CodeGroup>
 
-Kemudian teruskan alat yang dikonversi ini ke Claude:
+Kemudian teruskan alat-alat yang telah dikonversi ini ke Claude:
 
 <CodeGroup>
 ```python Python
@@ -292,7 +292,7 @@ client = anthropic.Anthropic()
 claude_tools = await get_claude_tools(mcp_session)
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=claude_tools,
     messages=[{"role": "user", "content": "What tools do you have available?"}]
@@ -306,7 +306,7 @@ const anthropic = new Anthropic();
 const claudeTools = await getClaudeTools(mcpClient);
 
 const response = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: claudeTools,
   messages: [{ role: "user", content: "What tools do you have available?" }],
@@ -322,7 +322,7 @@ Untuk panduan lengkap tentang membangun klien MCP, lihat [Bangun klien MCP](http
 
 ## Contoh penggunaan alat
 
-Berikut adalah beberapa contoh kode yang mendemonstrasikan berbagai pola dan teknik penggunaan alat. Demi singkatnya, alatnya adalah alat sederhana, dan deskripsi alatnya lebih pendek dari yang ideal untuk memastikan kinerja terbaik.
+Berikut adalah beberapa contoh kode yang mendemonstrasikan berbagai pola dan teknik penggunaan alat. Demi singkatnya, alatnya adalah alat sederhana, dan deskripsi alat lebih pendek dari yang ideal untuk memastikan kinerja terbaik.
 
 <section title="Contoh alat tunggal">
 
@@ -334,7 +334,7 @@ Berikut adalah beberapa contoh kode yang mendemonstrasikan berbagai pola dan tek
          --header "content-type: application/json" \
          --data \
     '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 1024,
         "tools": [{
             "name": "get_weather",
@@ -364,7 +364,7 @@ Berikut adalah beberapa contoh kode yang mendemonstrasikan berbagai pola dan tek
     client = anthropic.Anthropic()
 
     response = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         tools=[
             {
@@ -450,7 +450,7 @@ Claude akan mengembalikan respons yang serupa dengan:
 ```json JSON
 {
   "id": "msg_01Aq9w938a90dw8q",
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "stop_reason": "tool_use",
   "role": "assistant",
   "content": [
@@ -478,7 +478,7 @@ Anda kemudian perlu menjalankan fungsi `get_weather` dengan input yang disediaka
          --header "content-type: application/json" \
          --data \
     '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 1024,
         "tools": [
             {
@@ -540,7 +540,7 @@ Anda kemudian perlu menjalankan fungsi `get_weather` dengan input yang disediaka
 
     ```python Python
     response = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         tools=[
             {
@@ -680,7 +680,7 @@ Ini akan mencetak respons akhir Claude, menggabungkan data cuaca:
 ```json JSON
 {
   "id": "msg_01Aq9w938a90dw8q",
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "stop_reason": "stop_sequence",
   "role": "assistant",
   "content": [
@@ -716,7 +716,7 @@ Anda dapat menyediakan Claude dengan beberapa alat untuk dipilih dalam satu perm
          --header "content-type: application/json" \
          --data \
     '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 1024,
         "tools": [{
             "name": "get_weather",
@@ -763,7 +763,7 @@ Anda dapat menyediakan Claude dengan beberapa alat untuk dipilih dalam satu perm
     client = anthropic.Anthropic()
 
     response = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         tools=[
             {
@@ -881,16 +881,16 @@ Anda dapat menyediakan Claude dengan beberapa alat untuk dipilih dalam satu perm
 
 Dalam hal ini, Claude mungkin:
 - Menggunakan alat secara berurutan (satu per satu) — memanggil `get_weather` terlebih dahulu, kemudian `get_time` setelah menerima hasil cuaca
-- Menggunakan panggilan alat paralel — mengeluarkan beberapa blok `tool_use` dalam satu respons ketika operasi independen
+- Menggunakan panggilan alat paralel — menampilkan beberapa blok `tool_use` dalam satu respons ketika operasi independen
 
 Ketika Claude membuat panggilan alat paralel, Anda harus mengembalikan semua hasil alat dalam satu pesan `user`, dengan setiap hasil dalam blok `tool_result` tersendiri.
 
 </section>
 <section title="Informasi yang hilang">
 
-Jika prompt pengguna tidak menyertakan informasi yang cukup untuk mengisi semua parameter yang diperlukan untuk alat, Claude Opus jauh lebih mungkin mengenali bahwa parameter hilang dan memintanya. Claude Sonnet mungkin bertanya, terutama ketika diminta untuk berpikir sebelum mengeluarkan permintaan alat. Tetapi mungkin juga melakukan yang terbaik untuk menyimpulkan nilai yang masuk akal.
+Jika prompt pengguna tidak menyertakan informasi yang cukup untuk mengisi semua parameter yang diperlukan untuk alat, Claude Opus jauh lebih mungkin mengenali bahwa parameter hilang dan memintanya. Claude Sonnet mungkin bertanya, terutama ketika diminta untuk berpikir sebelum menampilkan permintaan alat. Tetapi mungkin juga melakukan yang terbaik untuk menyimpulkan nilai yang masuk akal.
 
-Misalnya, menggunakan alat `get_weather` di atas, jika Anda bertanya kepada Claude "What's the weather?" tanpa menentukan lokasi, Claude, khususnya Claude Sonnet, mungkin menebak tentang input alat:
+Misalnya, menggunakan alat `get_weather` di atas, jika Anda bertanya kepada Claude "What's the weather?" tanpa menentukan lokasi, Claude, khususnya Claude Sonnet, mungkin membuat tebakan tentang input alat:
 
 ```json JSON
 {
@@ -906,7 +906,7 @@ Perilaku ini tidak dijamin, terutama untuk prompt yang lebih ambigu dan untuk mo
 </section>
 <section title="Alat berurutan">
 
-Beberapa tugas mungkin memerlukan pemanggilan beberapa alat secara berurutan, menggunakan output dari satu alat sebagai input ke alat lain. Dalam hal ini, Claude akan memanggil satu alat pada satu waktu. Jika diminta untuk memanggil alat semuanya sekaligus, Claude mungkin menebak parameter untuk alat lebih jauh ke hilir jika mereka bergantung pada hasil alat untuk alat lebih jauh ke hulu.
+Beberapa tugas mungkin memerlukan pemanggilan beberapa alat secara berurutan, menggunakan output dari satu alat sebagai input ke alat lain. Dalam hal ini, Claude akan memanggil satu alat pada satu waktu. Jika diminta untuk memanggil alat semuanya sekaligus, Claude mungkin akan menebak parameter untuk alat lebih jauh ke hilir jika mereka bergantung pada hasil alat untuk alat lebih jauh ke hulu.
 
 Berikut adalah contoh menggunakan alat `get_location` untuk mendapatkan lokasi pengguna, kemudian meneruskan lokasi itu ke alat `get_weather`:
 
@@ -918,7 +918,7 @@ Berikut adalah contoh menggunakan alat `get_location` untuk mendapatkan lokasi p
          --header "content-type: application/json" \
          --data \
     '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 1024,
         "tools": [
             {
@@ -958,7 +958,7 @@ Berikut adalah contoh menggunakan alat `get_location` untuk mendapatkan lokasi p
 
     ```python Python
     response = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         tools=[
             {
@@ -1059,7 +1059,7 @@ Berikut adalah contoh menggunakan alat `get_location` untuk mendapatkan lokasi p
 
 </CodeGroup>
 
-Dalam hal ini, Claude akan terlebih dahulu memanggil alat `get_location` untuk mendapatkan lokasi pengguna. Setelah Anda mengembalikan lokasi dalam `tool_result`, Claude kemudian akan memanggil `get_weather` dengan lokasi itu untuk mendapatkan jawaban akhir.
+Dalam hal ini, Claude terlebih dahulu akan memanggil alat `get_location` untuk mendapatkan lokasi pengguna. Setelah Anda mengembalikan lokasi dalam `tool_result`, Claude kemudian akan memanggil `get_weather` dengan lokasi itu untuk mendapatkan jawaban akhir.
 
 Percakapan lengkap mungkin terlihat seperti:
 
@@ -1072,10 +1072,10 @@ Percakapan lengkap mungkin terlihat seperti:
 | Pengguna      | \[Tool result for get_weather with matching id and result of "59°F (15°C), mostly cloudy"\]                                                                                                                                             |
 | Asisten | Based on your current location in San Francisco, CA, the weather right now is 59°F (15°C) and mostly cloudy. It's a fairly cool and overcast day in the city. You may want to bring a light jacket if you're heading outside.           |
 
-Contoh ini mendemonstrasikan bagaimana Claude dapat merantai beberapa panggilan alat bersama-sama untuk menjawab pertanyaan yang memerlukan pengumpulan data dari berbagai sumber. Langkah-langkah kunci adalah:
+Contoh ini mendemonstrasikan bagaimana Claude dapat menghubungkan beberapa panggilan alat untuk menjawab pertanyaan yang memerlukan pengumpulan data dari sumber yang berbeda. Langkah-langkah kunci adalah:
 
-1. Claude pertama kali menyadari bahwa ia memerlukan lokasi pengguna untuk menjawab pertanyaan cuaca, jadi ia memanggil alat `get_location`.
-2. Pengguna (yaitu kode klien) menjalankan fungsi `get_location` aktual dan mengembalikan hasilnya "San Francisco, CA" dalam blok `tool_result`.
+1. Claude pertama-tama menyadari bahwa ia memerlukan lokasi pengguna untuk menjawab pertanyaan cuaca, jadi ia memanggil alat `get_location`.
+2. Pengguna (yaitu kode klien) menjalankan fungsi `get_location` aktual dan mengembalikan hasil "San Francisco, CA" dalam blok `tool_result`.
 3. Dengan lokasi sekarang diketahui, Claude melanjutkan untuk memanggil alat `get_weather`, meneruskan "San Francisco, CA" sebagai parameter `location` (serta parameter `unit` yang ditebak, karena `unit` bukan parameter yang diperlukan).
 4. Pengguna sekali lagi menjalankan fungsi `get_weather` aktual dengan argumen yang disediakan dan mengembalikan data cuaca dalam blok `tool_result` lain.
 5. Akhirnya, Claude menggabungkan data cuaca ke dalam respons bahasa alami untuk pertanyaan asli.
@@ -1113,6 +1113,7 @@ When you use `tools`, we also automatically include a special system prompt for 
 
 | Model                    | Tool choice                                          | Tool use system prompt token count          |
 |--------------------------|------------------------------------------------------|---------------------------------------------|
+| Claude Opus 4.6              | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Opus 4.5            | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Opus 4.1            | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Opus 4            | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
@@ -1127,9 +1128,9 @@ When you use `tools`, we also automatically include a special system prompt for 
 
 These token counts are added to your normal input and output tokens to calculate the total cost of a request.
 
-Lihat [tabel perbandingan model](/docs/id/about-claude/models/overview#model-comparison-table) kami untuk harga per-model saat ini.
+Lihat [tabel ringkasan model](/docs/id/about-claude/models/overview#latest-models-comparison) kami untuk harga per-model saat ini.
 
-Ketika Anda mengirim prompt penggunaan alat, seperti permintaan API lainnya, respons akan menampilkan hitungan token input dan output sebagai bagian dari metrik `usage` yang dilaporkan.
+Ketika Anda mengirim prompt penggunaan alat, seperti permintaan API lainnya, respons akan menampilkan jumlah token input dan output sebagai bagian dari metrik `usage` yang dilaporkan.
 
 ---
 
@@ -1141,7 +1142,7 @@ Jelajahi repositori kami dengan contoh kode penggunaan alat yang siap diimplemen
   <Card
     title="Alat Kalkulator"
     icon="calculator"
-    href="https://github.com/anthropics/anthropic-cookbook/blob/main/tool_use/calculator_tool.ipynb"
+    href="https://platform.claude.com/cookbook/tool-use-calculator-tool"
   >
     Pelajari cara mengintegrasikan alat kalkulator sederhana dengan Claude untuk perhitungan numerik yang presisi.
   </Card>
@@ -1150,17 +1151,16 @@ Jelajahi repositori kami dengan contoh kode penggunaan alat yang siap diimplemen
 <Card
   title="Agen Layanan Pelanggan"
   icon="headset"
-  href="https://github.com/anthropics/anthropic-cookbook/blob/main/tool_use/customer_service_agent.ipynb"
+  href="https://platform.claude.com/cookbook/tool-use-customer-service-agent"
 >
-  Bangun bot layanan pelanggan yang responsif yang memanfaatkan alat klien untuk
-  meningkatkan dukungan.
+  Bangun bot layanan pelanggan yang responsif yang memanfaatkan alat klien untuk meningkatkan dukungan.
 </Card>
 
   <Card
     title="Pengekstrak JSON"
     icon="code-brackets"
-    href="https://github.com/anthropics/anthropic-cookbook/blob/main/tool_use/extracting_structured_json.ipynb"
+    href="https://platform.claude.com/cookbook/tool-use-extracting-structured-json"
   >
-    Lihat bagaimana Claude dan penggunaan alat dapat mengekstrak data terstruktur dari teks tidak terstruktur.
+    Lihat bagaimana Claude dan penggunaan alat dapat mengekstrak data terstruktur dari teks yang tidak terstruktur.
   </Card>
 </CardGroup>

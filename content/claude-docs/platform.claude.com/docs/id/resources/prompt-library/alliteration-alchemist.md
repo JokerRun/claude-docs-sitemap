@@ -1,45 +1,45 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/alliteration-alchemist
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 0d01f215357a78aa9c2ad00154f7f6197cf9d8dd5cd01ffa3c3e84ebe6328365
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 7fea109576b250f8a38e7e0208a9fc47aa594214e54888a3e02a9fcdcda2b078
 ---
 
-# Alkemis aliterasi
+# Alliteration alchemist
 
-Menghasilkan frasa dan kalimat aliteratif untuk subjek yang diberikan.
+Hasilkan frasa dan kalimat aliteratif untuk subjek apa pun.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah membuat frasa dan kalimat aliteratif untuk subjek yang diberikan. Pastikan bahwa aliterasi tidak hanya terdengar menyenangkan tetapi juga menyampaikan informasi yang relevan atau membangkitkan emosi yang sesuai terkait dengan subjek tersebut. |
-| User   | Samudra |
+|        | Konten                                                                                                                                                                                                                           |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| System | Tugas Anda adalah membuat frasa dan kalimat aliteratif untuk subjek yang diberikan. Pastikan bahwa aliterasi tidak hanya terdengar menyenangkan tetapi juga menyampaikan informasi yang relevan atau membangkitkan emosi yang sesuai terkait dengan subjek. |
+| User   | Laut                                                                                                                                                                                                                             |
 
 ### Contoh output
 
-> 1.  Ombak berbisik membasahi pantai.
-> 2.  Percikan air asin menyembur di pasir.
-> 3.  Arus yang menghantam mengukir tebing pantai.
+> 1.  Ombak yang berbisik membasahi pantai.
+> 2.  Semprotan laut yang asin memercik di pasir.
+> 3.  Arus yang menghantam mengukir tebing pesisir.
 > 4.  Kedalaman yang dalam dan gelap menyembunyikan bahaya tersembunyi.
-> 5.  Sungai kecil yang bergelembung membawa kehidupan ke pantai.
-> 6.  Mamalia yang perkasa dan megah bermigrasi melalui perairan.
+> 5.  Aliran yang bergemuruh membawa kehidupan ke pantai.
+> 6.  Mamalia yang megah dan agung bermigrasi melalui perairan.
 > 7.  Pasang surut yang menggelegar melempar kapal ke sana kemari.
-> 8.  Kawanan ikan yang berkilauan melindungi makhluk laut yang misterius.
-> 9.  Pantulan yang beriak mengungkapkan dunia di bawah permukaan.
-> 10. Laut yang berputar dan bergelombang membentuk garis pantai.
-> 11. Busa yang berbusa dan berbuih mengalir dengan bebas.
-> 12. Camar yang anggun meluncur di atas samudra yang berkilauan.
-> 13. Lumba-lumba yang bermain menyelam melalui perairan yang murni.
-> 14. Angin asin bertiup melintasi biru yang tak terbatas.
-> 15. Riak yang berirama bergulung menuju pantai berbatu.
-> 16. Gua karang menyembunyikan komunitas akuatik yang berwarna-warni.
-> 17. Langit badai dan laut yang membengkak menandakan kekuatan alam.
-> 18. Pasang surut yang bergulir mengubah teluk yang tenang.
-> 19. Angin yang berputar dan berderu mengaduk ombak.
-> 20. Perairan safir yang tenang membentang ke cakrawala.
+> 8.  Terumbu yang berkilau melindungi makhluk laut yang tersembunyi.
+> 9.  Riak yang bergelombang mengungkapkan dunia di bawah permukaan.
+> 10. Laut yang berputar dan membengkak membentuk garis pantai.
+> 11. Gumpalan es yang berbusa dan berbuih mengalir dengan bebas.
+> 12. Burung camar yang anggun meluncur di atas laut yang berkilau.
+> 13. Lumba-lumba yang ceria menyelam melalui perairan yang murni.
+> 14. Angin laut yang asin berhembus melintasi biru yang tak terbatas.
+> 15. Riak yang berirama bergulir menuju pantai yang berbatu.
+> 16. Gua karang menyembunyikan komunitas akuatik yang penuh warna.
+> 17. Langit yang badai dan laut yang membengkak menandakan kekuatan alam.
+> 18. Pasang surut yang berguling mengubah teluk yang tenang.
+> 19. Angin yang berputar dan bersiul menyapu gelombang.
+> 20. Perairan safir yang tenang membentang hingga ke cakrawala.
 
 ---
 
@@ -54,17 +54,17 @@ Menghasilkan frasa dan kalimat aliteratif untuk subjek yang diberikan.
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1000,
         temperature=1,
-        system="Tugas Anda adalah membuat frasa dan kalimat aliteratif untuk subjek yang diberikan. Pastikan bahwa aliterasi tidak hanya terdengar menyenangkan tetapi juga menyampaikan informasi yang relevan atau membangkitkan emosi yang sesuai terkait dengan subjek tersebut.",
+        system="Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Samudra"
+                        "text": "Ocean"
                     }
                 ]
             }
@@ -83,17 +83,17 @@ Menghasilkan frasa dan kalimat aliteratif untuk subjek yang diberikan.
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 1,
-      system: "Tugas Anda adalah membuat frasa dan kalimat aliteratif untuk subjek yang diberikan. Pastikan bahwa aliterasi tidak hanya terdengar menyenangkan tetapi juga menyampaikan informasi yang relevan atau membangkitkan emosi yang sesuai terkait dengan subjek tersebut.",
+      system: "Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Samudra"
+              "text": "Ocean"
             }
           ]
         }
@@ -112,17 +112,17 @@ Menghasilkan frasa dan kalimat aliteratif untuk subjek yang diberikan.
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1:0",
         max_tokens=1000,
         temperature=1,
-        system="Tugas Anda adalah membuat frasa dan kalimat aliteratif untuk subjek yang diberikan. Pastikan bahwa aliterasi tidak hanya terdengar menyenangkan tetapi juga menyampaikan informasi yang relevan atau membangkitkan emosi yang sesuai terkait dengan subjek tersebut.",
+        system="Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Samudra"
+                        "text": "Ocean"
                     }
                 ]
             }
@@ -141,17 +141,17 @@ Menghasilkan frasa dan kalimat aliteratif untuk subjek yang diberikan.
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1:0",
       max_tokens: 1000,
       temperature: 1,
-      system: "Tugas Anda adalah membuat frasa dan kalimat aliteratif untuk subjek yang diberikan. Pastikan bahwa aliterasi tidak hanya terdengar menyenangkan tetapi juga menyampaikan informasi yang relevan atau membangkitkan emosi yang sesuai terkait dengan subjek tersebut.",
+      system: "Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Samudra"
+              "text": "Ocean"
             }
           ]
         }
@@ -171,14 +171,14 @@ Menghasilkan frasa dan kalimat aliteratif untuk subjek yang diberikan.
         model="claude-sonnet-4@20250514",
         max_tokens=1000,
         temperature=1,
-        system="Tugas Anda adalah membuat frasa dan kalimat aliteratif untuk subjek yang diberikan. Pastikan bahwa aliterasi tidak hanya terdengar menyenangkan tetapi juga menyampaikan informasi yang relevan atau membangkitkan emosi yang sesuai terkait dengan subjek tersebut.",
+        system="Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Samudra"
+                        "text": "Ocean"
                     }
                 ]
             }
@@ -200,14 +200,14 @@ Menghasilkan frasa dan kalimat aliteratif untuk subjek yang diberikan.
       model: "claude-sonnet-4@20250514",
       max_tokens: 1000,
       temperature: 1,
-      system: "Tugas Anda adalah membuat frasa dan kalimat aliteratif untuk subjek yang diberikan. Pastikan bahwa aliterasi tidak hanya terdengar menyenangkan tetapi juga menyampaikan informasi yang relevan atau membangkitkan emosi yang sesuai terkait dengan subjek tersebut.",
+      system: "Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Samudra"
+              "text": "Ocean"
             }
           ]
         }

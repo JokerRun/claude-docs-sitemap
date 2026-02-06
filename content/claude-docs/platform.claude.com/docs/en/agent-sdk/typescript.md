@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 4ca6d80a3ba7621966f3e764eee7091fa6a8795c97ebb0982d6a1755171e8a83
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 34a76b4c423164e51ca1514ffb7bf6af9f48194c678e77c9e426fad67176ed6a
 ---
 
 # Agent SDK reference - TypeScript
@@ -1907,7 +1907,7 @@ type SdkBeta = 'context-1m-2025-08-07';
 
 | Value | Description | Compatible Models |
 |:------|:------------|:------------------|
-| `'context-1m-2025-08-07'` | Enables 1 million token [context window](/docs/en/build-with-claude/context-windows) | Claude Sonnet 4, Claude Sonnet 4.5 |
+| `'context-1m-2025-08-07'` | Enables 1 million token [context window](/docs/en/build-with-claude/context-windows) | Claude Opus 4.6, Claude Sonnet 4.5, Claude Sonnet 4 |
 
 ### `SlashCommand`
 

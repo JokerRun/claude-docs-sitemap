@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 0aa255c75912713b4f79ef7ae7b01c48aef97859fb5865b8564992fd8527aeb3
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 80d3bb25897a72770f8342c3ae609d17b1a06c33dd63fe1284c595ef3c5d36e3
 ---
 
 # Alat eksekusi kode
@@ -18,6 +18,8 @@ Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulas
 Alat eksekusi kode saat ini dalam beta publik.
 
 Untuk menggunakan fitur ini, tambahkan [header beta](/docs/id/api/beta-headers) `"code-execution-2025-08-25"` ke permintaan API Anda.
+
+Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/LTAU6Xn2puCJMi1n6) untuk berbagi umpan balik Anda tentang fitur ini.
 </Note>
 
 ## Kompatibilitas model
@@ -26,10 +28,11 @@ Alat eksekusi kode tersedia di model berikut:
 
 | Model | Versi Alat |
 |-------|--------------|
+| Claude Opus 4.6 (`claude-opus-4-6`) | `code_execution_20250825` |
+| Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`) | `code_execution_20250825` |
 | Claude Opus 4.5 (`claude-opus-4-5-20251101`) | `code_execution_20250825` |
 | Claude Opus 4.1 (`claude-opus-4-1-20250805`) | `code_execution_20250825` |
 | Claude Opus 4 (`claude-opus-4-20250514`) | `code_execution_20250825` |
-| Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`) | `code_execution_20250825` |
 | Claude Sonnet 4 (`claude-sonnet-4-20250514`) | `code_execution_20250825` |
 | Claude Sonnet 3.7 (`claude-3-7-sonnet-20250219`) ([tidak direkomendasikan](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825` |
 | Claude Haiku 4.5 (`claude-haiku-4-5-20251001`) | `code_execution_20250825` |
@@ -45,7 +48,7 @@ Versi alat yang lebih lama tidak dijamin kompatibel mundur dengan model yang leb
 
 ## Mulai cepat
 
-Berikut adalah contoh sederhana yang meminta Claude melakukan perhitungan:
+Berikut adalah contoh sederhana yang meminta Claude untuk melakukan perhitungan:
 
 <CodeGroup>
 ```bash Shell
@@ -55,7 +58,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-beta: code-execution-2025-08-25" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 4096,
         "messages": [
             {
@@ -76,7 +79,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     betas=["code-execution-2025-08-25"],
     max_tokens=4096,
     messages=[{
@@ -99,7 +102,7 @@ const anthropic = new Anthropic();
 
 async function main() {
   const response = await anthropic.beta.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     betas: ["code-execution-2025-08-25"],
     max_tokens: 4096,
     messages: [
@@ -130,14 +133,14 @@ Ketika Anda menambahkan alat eksekusi kode ke permintaan API Anda:
    - **Perintah Bash**: Jalankan perintah shell untuk operasi sistem dan manajemen paket
    - **Operasi file**: Buat, lihat, dan edit file secara langsung, termasuk menulis kode
 3. Claude dapat menggunakan kombinasi apa pun dari kemampuan ini dalam satu permintaan
-4. Semua operasi berjalan dalam lingkungan sandbox yang aman
-5. Claude memberikan hasil dengan grafik, perhitungan, atau analisis yang dihasilkan
+4. Semua operasi berjalan di lingkungan sandbox yang aman
+5. Claude memberikan hasil dengan bagan, perhitungan, atau analisis yang dihasilkan
 
 ## Cara menggunakan alat
 
 ### Jalankan perintah Bash
 
-Minta Claude untuk memeriksa informasi sistem dan memasang paket:
+Minta Claude untuk memeriksa informasi sistem dan menginstal paket:
 
 <CodeGroup>
 ```bash Shell
@@ -147,7 +150,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-beta: code-execution-2025-08-25" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 4096,
         "messages": [{
             "role": "user",
@@ -162,7 +165,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```python Python
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     betas=["code-execution-2025-08-25"],
     max_tokens=4096,
     messages=[{
@@ -178,7 +181,7 @@ response = client.beta.messages.create(
 
 ```typescript TypeScript
 const response = await anthropic.beta.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   betas: ["code-execution-2025-08-25"],
   max_tokens: 4096,
   messages: [{
@@ -205,7 +208,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-beta: code-execution-2025-08-25" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 4096,
         "messages": [{
             "role": "user",
@@ -220,7 +223,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```python Python
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     betas=["code-execution-2025-08-25"],
     max_tokens=4096,
     messages=[{
@@ -236,7 +239,7 @@ response = client.beta.messages.create(
 
 ```typescript TypeScript
 const response = await anthropic.beta.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   betas: ["code-execution-2025-08-25"],
   max_tokens: 4096,
   messages: [{
@@ -290,7 +293,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-beta: code-execution-2025-08-25,files-api-2025-04-14" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 4096,
         "messages": [{
             "role": "user",
@@ -318,7 +321,7 @@ file_object = client.beta.files.upload(
 
 # Gunakan file_id dengan eksekusi kode
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     betas=["code-execution-2025-08-25", "files-api-2025-04-14"],
     max_tokens=4096,
     messages=[{
@@ -349,7 +352,7 @@ async function main() {
 
   // Gunakan file_id dengan eksekusi kode
   const response = await anthropic.beta.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     betas: ["code-execution-2025-08-25", "files-api-2025-04-14"],
     max_tokens: 4096,
     messages: [{
@@ -385,7 +388,7 @@ client = Anthropic()
 
 # Minta eksekusi kode yang membuat file
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     betas=["code-execution-2025-08-25", "files-api-2025-04-14"],
     max_tokens=4096,
     messages=[{
@@ -428,7 +431,7 @@ const anthropic = new Anthropic();
 async function main() {
   // Minta eksekusi kode yang membuat file
   const response = await anthropic.beta.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     betas: ["code-execution-2025-08-25", "files-api-2025-04-14"],
     max_tokens: 4096,
     messages: [{
@@ -502,7 +505,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-beta: code-execution-2025-08-25,files-api-2025-04-14" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 4096,
         "messages": [{
             "role": "user",
@@ -532,7 +535,7 @@ file_object = client.beta.files.upload(
 
 # Gunakan dengan eksekusi kode
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     betas=["code-execution-2025-08-25", "files-api-2025-04-14"],
     max_tokens=4096,
     messages=[{
@@ -553,7 +556,7 @@ response = client.beta.messages.create(
 # 2. Gunakan text_editor untuk menulis kode Python untuk menganalisis CSV dan membuat visualisasi
 # 3. Gunakan bash untuk menjalankan kode Python
 # 4. Gunakan text_editor untuk membuat README.md dengan temuan
-# 5. Gunakan bash untuk mengorganisir file ke direktori laporan
+# 5. Gunakan bash untuk mengorganisir file ke dalam direktori laporan
 ```
 
 ```typescript TypeScript
@@ -564,7 +567,7 @@ const fileObject = await anthropic.beta.files.create({
 
 // Gunakan dengan eksekusi kode
 const response = await anthropic.beta.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   betas: ["code-execution-2025-08-25", "files-api-2025-04-14"],
   max_tokens: 4096,
   messages: [{
@@ -585,7 +588,7 @@ const response = await anthropic.beta.messages.create({
 // 2. Gunakan text_editor untuk menulis kode Python untuk menganalisis CSV dan membuat visualisasi
 // 3. Gunakan bash untuk menjalankan kode Python
 // 4. Gunakan text_editor untuk membuat README.md dengan temuan
-// 5. Gunakan bash untuk mengorganisir file ke direktori laporan
+// 5. Gunakan bash untuk mengorganisir file ke dalam direktori laporan
 ```
 </CodeGroup>
 
@@ -740,11 +743,11 @@ Setiap jenis alat dapat mengembalikan kesalahan spesifik:
 | Alat | Kode Kesalahan | Deskripsi |
 |------|-----------|-------------|
 | Semua alat | `unavailable` | Alat sementara tidak tersedia |
-| Semua alat | `execution_time_exceeded` | Eksekusi melampaui batas waktu maksimum |
+| Semua alat | `execution_time_exceeded` | Eksekusi melebihi batas waktu maksimal |
 | Semua alat | `container_expired` | Kontainer kedaluwarsa dan tidak lagi tersedia |
 | Semua alat | `invalid_tool_input` | Parameter tidak valid diberikan ke alat |
 | Semua alat | `too_many_requests` | Batas laju terlampaui untuk penggunaan alat |
-| text_editor | `file_not_found` | File tidak ada (untuk operasi view/edit) |
+| text_editor | `file_not_found` | File tidak ada (untuk operasi lihat/edit) |
 | text_editor | `string_not_found` | `old_str` tidak ditemukan dalam file (untuk str_replace) |
 
 #### Alasan penghentian `pause_turn`
@@ -753,7 +756,7 @@ Respons mungkin menyertakan alasan penghentian `pause_turn`, yang menunjukkan ba
 
 ## Kontainer
 
-Alat eksekusi kode berjalan dalam lingkungan yang terkontainerisasi dan aman yang dirancang khusus untuk eksekusi kode, dengan fokus lebih tinggi pada Python.
+Alat eksekusi kode berjalan di lingkungan terkontainer yang aman yang dirancang khusus untuk eksekusi kode, dengan fokus lebih tinggi pada Python.
 
 ### Lingkungan runtime
 - **Versi Python**: 3.11.12
@@ -800,7 +803,7 @@ client = Anthropic(
 
 # Permintaan pertama: Buat file dengan angka acak
 response1 = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     betas=["code-execution-2025-08-25"],
     max_tokens=4096,
     messages=[{
@@ -819,7 +822,7 @@ container_id = response1.container.id
 # Permintaan kedua: Gunakan kembali kontainer untuk membaca file
 response2 = client.beta.messages.create(
     container=container_id,  # Gunakan kembali kontainer yang sama
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     betas=["code-execution-2025-08-25"],
     max_tokens=4096,
     messages=[{
@@ -841,7 +844,7 @@ const anthropic = new Anthropic();
 async function main() {
   // Permintaan pertama: Buat file dengan angka acak
   const response1 = await anthropic.beta.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     betas: ["code-execution-2025-08-25"],
     max_tokens: 4096,
     messages: [{
@@ -860,7 +863,7 @@ async function main() {
   // Permintaan kedua: Gunakan kembali kontainer untuk membaca file
   const response2 = await anthropic.beta.messages.create({
     container: containerId,  // Gunakan kembali kontainer yang sama
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     betas: ["code-execution-2025-08-25"],
     max_tokens: 4096,
     messages: [{
@@ -887,7 +890,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-beta: code-execution-2025-08-25" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 4096,
         "messages": [{
             "role": "user",
@@ -910,7 +913,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "content-type: application/json" \
     --data '{
         "container": "'$CONTAINER_ID'",
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 4096,
         "messages": [{
             "role": "user",
@@ -926,7 +929,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ## Streaming
 
-Dengan streaming diaktifkan, Anda akan menerima acara eksekusi kode saat terjadi:
+Dengan streaming diaktifkan, Anda akan menerima peristiwa eksekusi kode saat terjadi:
 
 ```javascript
 event: content_block_start
@@ -936,7 +939,7 @@ data: {"type": "content_block_start", "index": 1, "content_block": {"type": "ser
 event: content_block_delta
 data: {"type": "content_block_delta", "index": 1, "delta": {"type": "input_json_delta", "partial_json": "{\"code\":\"import pandas as pd\\ndf = pd.read_csv('data.csv')\\nprint(df.head())\"}"}}
 
-// Jeda saat kode dijalankan
+// Jeda saat kode dieksekusi
 
 // Hasil eksekusi di-streaming
 event: content_block_start
@@ -969,7 +972,7 @@ Dengan meningkatkan ke `code-execution-2025-08-25`, Anda mendapatkan akses ke ma
 
 ### Kompatibilitas mundur
 
-- Semua eksekusi kode Python yang ada terus bekerja persis seperti sebelumnya
+- Semua eksekusi kode Python yang ada terus berfungsi persis seperti sebelumnya
 - Tidak ada perubahan yang diperlukan untuk alur kerja hanya Python yang ada
 
 ### Langkah-langkah upgrade
@@ -1000,7 +1003,7 @@ Alat eksekusi kode mendukung [pemanggilan alat terprogram](/docs/id/agents-and-t
 ```python Python
 # Aktifkan pemanggilan terprogram untuk alat Anda
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     betas=["advanced-tool-use-2025-11-20"],
     max_tokens=4096,
     messages=[{

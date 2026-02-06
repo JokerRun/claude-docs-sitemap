@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: bc70f6b50fd2d2a296e64c970809d9494bf880d72bb0dafa3313874cb0547b1e
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 4e81c465b02b103ac195e7c629bc846f5a9f40ff473732e5c1d334bf77d249d5
 ---
 
 ## List
 
 **get** `/v1/organizations/api_keys`
 
-List Api Keys
+List API Keys
 
 ### Query Parameters
 
@@ -97,7 +97,7 @@ List Api Keys
 
   - `workspace_id: string`
 
-    ID of the Workspace associated with the API key, or null if the API key belongs to the default Workspace.
+    ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
 
 - `first_id: string`
 
@@ -115,5 +115,6 @@ List Api Keys
 
 ```http
 curl https://api.anthropic.com/v1/organizations/api_keys \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```

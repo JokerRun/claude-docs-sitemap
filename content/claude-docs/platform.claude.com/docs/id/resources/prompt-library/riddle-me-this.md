@@ -1,32 +1,32 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/riddle-me-this
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c9461202a5e9df6334a41c003656f6d05ad388c4c11028726359a0f143f9be85
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 4c2b29fa6a259808bf9e3924d9d0f0c6fac7589f2286b5ce70149ed8925c635f
 ---
 
-# Teka-teki untukku
+# Tebak-tebakan untuk Anda
 
-Buat teka-teki dan pandu pengguna menuju solusinya.
+Hasilkan teka-teki dan panduan pengguna menuju solusinya.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-| Role | Content |
-| ---- | --- |
-| User | Buat teka-teki yang cerdas dan berikan panduan langkah demi langkah untuk membantu pengguna mencapai solusi yang benar. Teka-teki harus menantang tetapi dapat dipecahkan dengan pemikiran logis dan perhatian terhadap detail. Setelah menyajikan setiap teka-teki, tawarkan serangkaian petunjuk atau pertanyaan yang secara progresif mengarahkan pengguna menuju jawaban. Pastikan bahwa petunjuk tidak terlalu jelas tetapi masih memberikan informasi yang cukup untuk memandu proses berpikir pengguna. Akhirnya, ungkapkan solusinya dan berikan penjelasan singkat tentang bagaimana teka-teki dapat dipecahkan menggunakan petunjuk yang diberikan. |
+| Peran | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pengguna | Hasilkan teka-teki yang cerdas dan berikan panduan langkah demi langkah untuk membantu pengguna sampai pada solusi yang benar. Teka-teki harus menantang tetapi dapat diselesaikan dengan pemikiran logis dan perhatian terhadap detail. Setelah menyajikan setiap teka-teki, tawarkan serangkaian petunjuk atau pertanyaan yang secara progresif membimbing pengguna menuju jawaban. Pastikan bahwa petunjuk tidak terlalu jelas tetapi masih memberikan informasi yang cukup untuk memandu proses pemikiran pengguna. Terakhir, ungkapkan solusi dan berikan penjelasan singkat tentang bagaimana teka-teki dapat diselesaikan menggunakan petunjuk yang diberikan. |
 
 ## Contoh Output
 
-Saya tidak hidup, tetapi saya tumbuh; Saya tidak memiliki paru-paru, tetapi saya membutuhkan udara; Saya tidak memiliki mulut, tetapi air membunuh saya. Apa saya?
+Saya tidak hidup, tetapi saya tumbuh; saya tidak memiliki paru-paru, tetapi saya membutuhkan udara; saya tidak memiliki mulut, tetapi air membunuh saya. Apa saya?
 
-Petunjuk 1: Pertimbangkan berbagai keadaan materi dan bagaimana mereka dapat berubah.  
-Petunjuk 2: Pikirkan tentang hubungan antara tiga elemen yang disebutkan: udara, air, dan objek misterius.  
-Petunjuk 3: Jawabannya terkait dengan fenomena umum yang terjadi dalam kehidupan sehari-hari.
+Petunjuk 1: Pertimbangkan berbagai keadaan materi dan bagaimana keadaan tersebut dapat berubah.  
+ Petunjuk 2: Pikirkan tentang hubungan antara tiga elemen yang disebutkan: udara, air, dan objek misteri.  
+ Petunjuk 3: Jawabannya terkait dengan fenomena umum yang terjadi dalam kehidupan sehari-hari.
 
 Solusi: Api.  
-Penjelasan: Api tidak hidup, tetapi ia tumbuh dan menyebar saat mengonsumsi bahan bakar. Ia tidak memiliki paru-paru, tetapi memerlukan oksigen (udara) untuk mempertahankan dirinya. Meskipun tidak memiliki mulut, air sering digunakan untuk memadamkan api, secara efektif "membunuhnya".
+ Penjelasan: Api tidak hidup, tetapi tumbuh dan menyebar saat mengonsumsi bahan bakar. Tidak memiliki paru-paru, tetapi memerlukan oksigen (udara) untuk mempertahankan dirinya. Meskipun tidak memiliki mulut, air sering digunakan untuk memadamkan api, secara efektif "membunuh" mereka.
 
 ---
 
@@ -43,7 +43,7 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=1000,
   temperature=0,
   messages=[
@@ -52,7 +52,7 @@ message = client.messages.create(
       "content": [
         {
           "type": "text",
-          "text": "Buat teka-teki yang cerdas dan berikan panduan langkah demi langkah untuk membantu pengguna mencapai solusi yang benar. Teka-teki harus menantang tetapi dapat dipecahkan dengan pemikiran logis dan perhatian terhadap detail. Setelah menyajikan setiap teka-teki, tawarkan serangkaian petunjuk atau pertanyaan yang secara progresif mengarahkan pengguna menuju jawaban. Pastikan bahwa petunjuk tidak terlalu jelas tetapi masih memberikan informasi yang cukup untuk memandu proses berpikir pengguna. Akhirnya, ungkapkan solusinya dan berikan penjelasan singkat tentang bagaimana teka-teki dapat dipecahkan menggunakan petunjuk yang diberikan."
+          "text": "Generate a clever riddle and provide a step-by-step guide to help the user arrive at the correct solutions. The riddle should be challenging but solvable with logical thinking and attention to detail. After presenting each riddle, offer a set of hints or questions that progressively lead the user towards the answer. Ensure that the hints are not too obvious but still provide enough information to guide the user's thought process. Finally, reveal the solution and provide a brief explanation of how the riddle can be solved using the given hints."
         }
       ]
     }
@@ -72,7 +72,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 0,
   messages: [
@@ -81,7 +81,7 @@ const msg = await anthropic.messages.create({
       "content": [
         {
           "type": "text",
-          "text": "Buat teka-teki yang cerdas dan berikan panduan langkah demi langkah untuk membantu pengguna mencapai solusi yang benar. Teka-teki harus menantang tetapi dapat dipecahkan dengan pemikiran logis dan perhatian terhadap detail. Setelah menyajikan setiap teka-teki, tawarkan serangkaian petunjuk atau pertanyaan yang secara progresif mengarahkan pengguna menuju jawaban. Pastikan bahwa petunjuk tidak terlalu jelas tetapi masih memberikan informasi yang cukup untuk memandu proses berpikir pengguna. Akhirnya, ungkapkan solusinya dan berikan penjelasan singkat tentang bagaimana teka-teki dapat dipecahkan menggunakan petunjuk yang diberikan."
+          "text": "Generate a clever riddle and provide a step-by-step guide to help the user arrive at the correct solutions. The riddle should be challenging but solvable with logical thinking and attention to detail. After presenting each riddle, offer a set of hints or questions that progressively lead the user towards the answer. Ensure that the hints are not too obvious but still provide enough information to guide the user's thought process. Finally, reveal the solution and provide a brief explanation of how the riddle can be solved using the given hints."
         }
       ]
     }
@@ -102,7 +102,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=1000,
     temperature=0,
     messages=[
@@ -111,7 +111,7 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "Buat teka-teki yang cerdas dan berikan panduan langkah demi langkah untuk membantu pengguna mencapai solusi yang benar. Teka-teki harus menantang tetapi dapat dipecahkan dengan pemikiran logis dan perhatian terhadap detail. Setelah menyajikan setiap teka-teki, tawarkan serangkaian petunjuk atau pertanyaan yang secara progresif mengarahkan pengguna menuju jawaban. Pastikan bahwa petunjuk tidak terlalu jelas tetapi masih memberikan informasi yang cukup untuk memandu proses berpikir pengguna. Akhirnya, ungkapkan solusinya dan berikan penjelasan singkat tentang bagaimana teka-teki dapat dipecahkan menggunakan petunjuk yang diberikan."
+                    "text": "Generate a clever riddle and provide a step-by-step guide to help the user arrive at the correct solutions. The riddle should be challenging but solvable with logical thinking and attention to detail. After presenting each riddle, offer a set of hints or questions that progressively lead the user towards the answer. Ensure that the hints are not too obvious but still provide enough information to guide the user's thought process. Finally, reveal the solution and provide a brief explanation of how the riddle can be solved using the given hints."
                 }
             ]
         }
@@ -132,7 +132,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 1000,
   temperature: 0,
   messages: [
@@ -141,7 +141,7 @@ const msg = await client.messages.create({
       "content": [
         {
           "type": "text",
-          "text": "Buat teka-teki yang cerdas dan berikan panduan langkah demi langkah untuk membantu pengguna mencapai solusi yang benar. Teka-teki harus menantang tetapi dapat dipecahkan dengan pemikiran logis dan perhatian terhadap detail. Setelah menyajikan setiap teka-teki, tawarkan serangkaian petunjuk atau pertanyaan yang secara progresif mengarahkan pengguna menuju jawaban. Pastikan bahwa petunjuk tidak terlalu jelas tetapi masih memberikan informasi yang cukup untuk memandu proses berpikir pengguna. Akhirnya, ungkapkan solusinya dan berikan penjelasan singkat tentang bagaimana teka-teki dapat dipecahkan menggunakan petunjuk yang diberikan."
+          "text": "Generate a clever riddle and provide a step-by-step guide to help the user arrive at the correct solutions. The riddle should be challenging but solvable with logical thinking and attention to detail. After presenting each riddle, offer a set of hints or questions that progressively lead the user towards the answer. Ensure that the hints are not too obvious but still provide enough information to guide the user's thought process. Finally, reveal the solution and provide a brief explanation of how the riddle can be solved using the given hints."
         }
       ]
     }
@@ -169,7 +169,7 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "Buat teka-teki yang cerdas dan berikan panduan langkah demi langkah untuk membantu pengguna mencapai solusi yang benar. Teka-teki harus menantang tetapi dapat dipecahkan dengan pemikiran logis dan perhatian terhadap detail. Setelah menyajikan setiap teka-teki, tawarkan serangkaian petunjuk atau pertanyaan yang secara progresif mengarahkan pengguna menuju jawaban. Pastikan bahwa petunjuk tidak terlalu jelas tetapi masih memberikan informasi yang cukup untuk memandu proses berpikir pengguna. Akhirnya, ungkapkan solusinya dan berikan penjelasan singkat tentang bagaimana teka-teki dapat dipecahkan menggunakan petunjuk yang diberikan."
+                    "text": "Generate a clever riddle and provide a step-by-step guide to help the user arrive at the correct solutions. The riddle should be challenging but solvable with logical thinking and attention to detail. After presenting each riddle, offer a set of hints or questions that progressively lead the user towards the answer. Ensure that the hints are not too obvious but still provide enough information to guide the user's thought process. Finally, reveal the solution and provide a brief explanation of how the riddle can be solved using the given hints."
                 }
             ]
         }
@@ -199,7 +199,7 @@ const msg = await client.messages.create({
       "content": [
         {
           "type": "text",
-          "text": "Buat teka-teki yang cerdas dan berikan panduan langkah demi langkah untuk membantu pengguna mencapai solusi yang benar. Teka-teki harus menantang tetapi dapat dipecahkan dengan pemikiran logis dan perhatian terhadap detail. Setelah menyajikan setiap teka-teki, tawarkan serangkaian petunjuk atau pertanyaan yang secara progresif mengarahkan pengguna menuju jawaban. Pastikan bahwa petunjuk tidak terlalu jelas tetapi masih memberikan informasi yang cukup untuk memandu proses berpikir pengguna. Akhirnya, ungkapkan solusinya dan berikan penjelasan singkat tentang bagaimana teka-teki dapat dipecahkan menggunakan petunjuk yang diberikan."
+          "text": "Generate a clever riddle and provide a step-by-step guide to help the user arrive at the correct solutions. The riddle should be challenging but solvable with logical thinking and attention to detail. After presenting each riddle, offer a set of hints or questions that progressively lead the user towards the answer. Ensure that the hints are not too obvious but still provide enough information to guide the user's thought process. Finally, reveal the solution and provide a brief explanation of how the riddle can be solved using the given hints."
         }
       ]
     }

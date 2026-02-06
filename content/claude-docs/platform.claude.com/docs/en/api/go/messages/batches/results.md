@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/results
-fetched_at: 2026-01-30T04:11:49.863510Z
-sha256: a25055a8622ecf71b7fa4d2fa0b4ebcb7f025452a8e41f64cd8dece886108918
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: f375c00fe46f814a0c010b3d7cd69f298ad6807dd4530a3236d1cfb37320c378
 ---
 
 ## Results
@@ -280,6 +280,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
+
+              Most intelligent model for building agents and coding
+
             - `const ModelClaudeOpus4_5_20251101 Model = "claude-opus-4-5-20251101"`
 
               Premium model combining maximum intelligence with practical performance
@@ -442,6 +446,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `CacheReadInputTokens int64`
 
             The number of input tokens read from the cache.
+
+          - `InferenceGeo string`
+
+            The geographic region where inference was performed for this request.
 
           - `InputTokens int64`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: d100184bae2c0d7ed255056a8717f013406fe6522687b4a5557c5104fdaf16da
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: c921e676e1f8b6345aa9a5532de128f0ab7a460d01e6fd5c33641b4c7813890e
 ---
 
 # Menggunakan Agent Skills dengan API
@@ -41,22 +41,22 @@ Untuk referensi API lengkap termasuk skema permintaan/respons dan semua paramete
 ## Ikhtisar
 
 <Note>
-Untuk pendalaman mendalam tentang arsitektur dan aplikasi dunia nyata dari Agent Skills, baca blog teknik kami: [Equipping agents for the real world with Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills).
+Untuk penjelasan mendalam tentang arsitektur dan aplikasi dunia nyata dari Agent Skills, baca blog teknik kami: [Equipping agents for the real world with Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills).
 </Note>
 
 Skills terintegrasi dengan Messages API melalui alat eksekusi kode. Baik menggunakan Skills yang sudah dibuat sebelumnya yang dikelola oleh Anthropic atau Skills khusus yang telah Anda unggah, bentuk integrasi identik—keduanya memerlukan eksekusi kode dan menggunakan struktur `container` yang sama.
 
 ### Menggunakan Skills
 
-Skills terintegrasi secara identik dalam Messages API terlepas dari sumbernya. Anda menentukan Skills dalam parameter `container` dengan `skill_id`, `type`, dan `version` opsional, dan mereka dijalankan di lingkungan eksekusi kode.
+Skills terintegrasi secara identik dalam Messages API terlepas dari sumbernya. Anda menentukan Skills dalam parameter `container` dengan `skill_id`, `type`, dan `version` opsional, dan mereka dieksekusi di lingkungan eksekusi kode.
 
 **Anda dapat menggunakan Skills dari dua sumber:**
 
-| Aspek | Skills Anthropic | Skills Khusus |
-|---|---|---|
-| **Nilai type** | `anthropic` | `custom` |
+| Aspek | Anthropic Skills | Skills Khusus |
+|--------|------------------|---------------|
+| **Nilai Type** | `anthropic` | `custom` |
 | **ID Skill** | Nama pendek: `pptx`, `xlsx`, `docx`, `pdf` | Dihasilkan: `skill_01AbCdEfGhIjKlMnOpQrStUv` |
-| **Format versi** | Berbasis tanggal: `20251013` atau `latest` | Stempel waktu epoch: `1759178010641129` atau `latest` |
+| **Format Versi** | Berbasis tanggal: `20251013` atau `latest` | Stempel waktu epoch: `1759178010641129` atau `latest` |
 | **Manajemen** | Dibuat sebelumnya dan dikelola oleh Anthropic | Unggah dan kelola melalui [Skills API](/docs/id/api/skills/create-skill) |
 | **Ketersediaan** | Tersedia untuk semua pengguna | Pribadi untuk ruang kerja Anda |
 
@@ -67,7 +67,7 @@ Kedua sumber skill dikembalikan oleh [endpoint List Skills](/docs/id/api/skills/
 Untuk menggunakan Skills, Anda memerlukan:
 
 1. **Kunci API Anthropic** dari [Konsol](/settings/keys)
-2. **Header Beta**:
+2. **Header beta**:
    - `code-execution-2025-08-25` - Mengaktifkan eksekusi kode (diperlukan untuk Skills)
    - `skills-2025-10-02` - Mengaktifkan Skills API
    - `files-api-2025-04-14` - Untuk mengunggah/mengunduh file ke/dari container
@@ -75,13 +75,13 @@ Untuk menggunakan Skills, Anda memerlukan:
 
 ---
 
-## Menggunakan Skills dalam Pesan
+## Menggunakan Skills dalam Messages
 
 ### Parameter Container
 
 Skills ditentukan menggunakan parameter `container` dalam Messages API. Anda dapat menyertakan hingga 8 Skills per permintaan.
 
-Strukturnya identik untuk Skills Anthropic dan khusus—tentukan `type` dan `skill_id` yang diperlukan, dan secara opsional sertakan `version` untuk menyematkan ke versi tertentu:
+Strukturnya identik untuk Skills Anthropic dan Skills khusus—tentukan `type` dan `skill_id` yang diperlukan, dan secara opsional sertakan `version` untuk mengikat ke versi tertentu:
 
 <CodeGroup>
 ```python Python
@@ -90,7 +90,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -119,7 +119,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const client = new Anthropic();
 
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -149,7 +149,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [
@@ -179,7 +179,7 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), mereka mengembalik
 **Cara kerjanya:**
 1. Skills membuat file selama eksekusi kode
 2. Respons mencakup `file_id` untuk setiap file yang dibuat
-3. Gunakan Files API untuk mengunduh konten file sebenarnya
+3. Gunakan Files API untuk mengunduh konten file aktual
 4. Simpan secara lokal atau proses sesuai kebutuhan
 
 **Contoh: Membuat dan mengunduh file Excel**
@@ -190,9 +190,9 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-# Langkah 1: Gunakan Skill untuk membuat file
+# Step 1: Use a Skill to create a file
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -207,7 +207,7 @@ response = client.beta.messages.create(
     tools=[{"type": "code_execution_20250825", "name": "code_execution"}]
 )
 
-# Langkah 2: Ekstrak ID file dari respons
+# Step 2: Extract file IDs from the response
 def extract_file_ids(response):
     file_ids = []
     for item in response.content:
@@ -219,7 +219,7 @@ def extract_file_ids(response):
                         file_ids.append(file.file_id)
     return file_ids
 
-# Langkah 3: Unduh file menggunakan Files API
+# Step 3: Download the file using Files API
 for file_id in extract_file_ids(response):
     file_metadata = client.beta.files.retrieve_metadata(
         file_id=file_id,
@@ -230,7 +230,7 @@ for file_id in extract_file_ids(response):
         betas=["files-api-2025-04-14"]
     )
 
-    # Langkah 4: Simpan ke disk
+    # Step 4: Save to disk
     file_content.write_to_file(file_metadata.filename)
     print(f"Downloaded: {file_metadata.filename}")
 ```
@@ -240,9 +240,9 @@ import Anthropic from '@anthropic-ai/sdk';
 
 const client = new Anthropic();
 
-// Langkah 1: Gunakan Skill untuk membuat file
+// Step 1: Use a Skill to create a file
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -257,7 +257,7 @@ const response = await client.beta.messages.create({
   tools: [{type: 'code_execution_20250825', name: 'code_execution'}]
 });
 
-// Langkah 2: Ekstrak ID file dari respons
+// Step 2: Extract file IDs from the response
 function extractFileIds(response: any): string[] {
   const fileIds: string[] = [];
   for (const item of response.content) {
@@ -275,7 +275,7 @@ function extractFileIds(response: any): string[] {
   return fileIds;
 }
 
-// Langkah 3: Unduh file menggunakan Files API
+// Step 3: Download the file using Files API
 const fs = require('fs');
 for (const fileId of extractFileIds(response)) {
   const fileMetadata = await client.beta.files.retrieve_metadata(fileId, {
@@ -285,21 +285,21 @@ for (const fileId of extractFileIds(response)) {
     betas: ['files-api-2025-04-14']
   });
 
-  // Langkah 4: Simpan ke disk
+  // Step 4: Save to disk
   fs.writeFileSync(fileMetadata.filename, Buffer.from(await fileContent.arrayBuffer()));
   console.log(`Downloaded: ${fileMetadata.filename}`);
 }
 ```
 
 ```bash Shell
-# Langkah 1: Gunakan Skill untuk membuat file
+# Step 1: Use a Skill to create a file
 RESPONSE=$(curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [
@@ -316,16 +316,16 @@ RESPONSE=$(curl https://api.anthropic.com/v1/messages \
     }]
   }')
 
-# Langkah 2: Ekstrak file_id dari respons (menggunakan jq)
+# Step 2: Extract file_id from response (using jq)
 FILE_ID=$(echo "$RESPONSE" | jq -r '.content[] | select(.type=="bash_code_execution_tool_result") | .content | select(.type=="bash_code_execution_result") | .content[] | select(.file_id) | .file_id')
 
-# Langkah 3: Dapatkan nama file dari metadata
+# Step 3: Get filename from metadata
 FILENAME=$(curl "https://api.anthropic.com/v1/files/$FILE_ID" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: files-api-2025-04-14" | jq -r '.filename')
 
-# Langkah 4: Unduh file menggunakan Files API
+# Step 4: Download the file using Files API
 curl "https://api.anthropic.com/v1/files/$FILE_ID/content" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -340,19 +340,19 @@ echo "Downloaded: $FILENAME"
 
 <CodeGroup>
 ```python Python
-# Dapatkan metadata file
+# Get file metadata
 file_info = client.beta.files.retrieve_metadata(
     file_id=file_id,
     betas=["files-api-2025-04-14"]
 )
 print(f"Filename: {file_info.filename}, Size: {file_info.size_bytes} bytes")
 
-# Daftar semua file
+# List all files
 files = client.beta.files.list(betas=["files-api-2025-04-14"])
 for file in files.data:
     print(f"{file.filename} - {file.created_at}")
 
-# Hapus file
+# Delete a file
 client.beta.files.delete(
     file_id=file_id,
     betas=["files-api-2025-04-14"]
@@ -360,13 +360,13 @@ client.beta.files.delete(
 ```
 
 ```typescript TypeScript
-// Dapatkan metadata file
+// Get file metadata
 const fileInfo = await client.beta.files.retrieve_metadata(fileId, {
   betas: ['files-api-2025-04-14']
 });
 console.log(`Filename: ${fileInfo.filename}, Size: ${fileInfo.size_bytes} bytes`);
 
-// Daftar semua file
+// List all files
 const files = await client.beta.files.list({
   betas: ['files-api-2025-04-14']
 });
@@ -374,26 +374,26 @@ for (const file of files.data) {
   console.log(`${file.filename} - ${file.created_at}`);
 }
 
-// Hapus file
+// Delete a file
 await client.beta.files.delete(fileId, {
   betas: ['files-api-2025-04-14']
 });
 ```
 
 ```bash Shell
-# Dapatkan metadata file
+# Get file metadata
 curl "https://api.anthropic.com/v1/files/$FILE_ID" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: files-api-2025-04-14"
 
-# Daftar semua file
+# List all files
 curl "https://api.anthropic.com/v1/files" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: files-api-2025-04-14"
 
-# Hapus file
+# Delete a file
 curl -X DELETE "https://api.anthropic.com/v1/files/$FILE_ID" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -411,9 +411,9 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
 
 <CodeGroup>
 ```python Python
-# Permintaan pertama membuat container
+# First request creates container
 response1 = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -425,7 +425,7 @@ response1 = client.beta.messages.create(
     tools=[{"type": "code_execution_20250825", "name": "code_execution"}]
 )
 
-# Lanjutkan percakapan dengan container yang sama
+# Continue conversation with same container
 messages = [
     {"role": "user", "content": "Analyze this sales data"},
     {"role": "assistant", "content": response1.content},
@@ -433,11 +433,11 @@ messages = [
 ]
 
 response2 = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
-        "id": response1.container.id,  # Gunakan kembali container
+        "id": response1.container.id,  # Reuse container
         "skills": [
             {"type": "anthropic", "skill_id": "xlsx", "version": "latest"}
         ]
@@ -448,9 +448,9 @@ response2 = client.beta.messages.create(
 ```
 
 ```typescript TypeScript
-// Permintaan pertama membuat container
+// First request creates container
 const response1 = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -462,7 +462,7 @@ const response1 = await client.beta.messages.create({
   tools: [{type: 'code_execution_20250825', name: 'code_execution'}]
 });
 
-// Lanjutkan percakapan dengan container yang sama
+// Continue conversation with same container
 const messages = [
   {role: 'user', content: 'Analyze this sales data'},
   {role: 'assistant', content: response1.content},
@@ -470,11 +470,11 @@ const messages = [
 ];
 
 const response2 = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
-    id: response1.container.id,  // Gunakan kembali container
+    id: response1.container.id,  // Reuse container
     skills: [
       {type: 'anthropic', skill_id: 'xlsx', version: 'latest'}
     ]
@@ -495,7 +495,7 @@ messages = [{"role": "user", "content": "Process this large dataset"}]
 max_retries = 10
 
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -507,14 +507,14 @@ response = client.beta.messages.create(
     tools=[{"type": "code_execution_20250825", "name": "code_execution"}]
 )
 
-# Tangani pause_turn untuk operasi panjang
+# Handle pause_turn for long operations
 for i in range(max_retries):
     if response.stop_reason != "pause_turn":
         break
 
     messages.append({"role": "assistant", "content": response.content})
     response = client.beta.messages.create(
-        model="claude-sonnet-4-5-20250929",
+        model="claude-opus-4-6",
         max_tokens=4096,
         betas=["code-execution-2025-08-25", "skills-2025-10-02"],
         container={
@@ -533,7 +533,7 @@ let messages = [{role: 'user' as const, content: 'Process this large dataset'}];
 const maxRetries = 10;
 
 let response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -545,7 +545,7 @@ let response = await client.beta.messages.create({
   tools: [{type: 'code_execution_20250825', name: 'code_execution'}]
 });
 
-// Tangani pause_turn untuk operasi panjang
+// Handle pause_turn for long operations
 for (let i = 0; i < maxRetries; i++) {
   if (response.stop_reason !== 'pause_turn') {
     break;
@@ -553,7 +553,7 @@ for (let i = 0; i < maxRetries; i++) {
 
   messages.push({role: 'assistant', content: response.content});
   response = await client.beta.messages.create({
-    model: 'claude-sonnet-4-5-20250929',
+    model: 'claude-opus-4-6',
     max_tokens: 4096,
     betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
     container: {
@@ -569,14 +569,14 @@ for (let i = 0; i < maxRetries; i++) {
 ```
 
 ```bash Shell
-# Permintaan awal
+# Initial request
 RESPONSE=$(curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [
@@ -597,19 +597,19 @@ RESPONSE=$(curl https://api.anthropic.com/v1/messages \
     }]
   }')
 
-# Periksa stop_reason dan tangani pause_turn dalam loop
+# Check stop_reason and handle pause_turn in a loop
 STOP_REASON=$(echo "$RESPONSE" | jq -r '.stop_reason')
 CONTAINER_ID=$(echo "$RESPONSE" | jq -r '.container.id')
 
 while [ "$STOP_REASON" = "pause_turn" ]; do
-  # Lanjutkan dengan container yang sama
+  # Continue with same container
   RESPONSE=$(curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
     -H "content-type: application/json" \
     -d "{
-      \"model\": \"claude-sonnet-4-5-20250929\",
+      \"model\": \"claude-opus-4-6\",
       \"max_tokens\": 4096,
       \"container\": {
         \"id\": \"$CONTAINER_ID\",
@@ -632,17 +632,17 @@ done
 </CodeGroup>
 
 <Note>
-Respons mungkin mencakup alasan penghentian `pause_turn`, yang menunjukkan bahwa API menjeda operasi Skill yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya untuk membiarkan Claude melanjutkan giliran, atau ubah konten jika Anda ingin menghentikan percakapan dan memberikan panduan tambahan.
+Respons mungkin mencakup alasan penghentian `pause_turn`, yang menunjukkan bahwa API menjeda operasi Skill yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya untuk membiarkan Claude melanjutkan giliran-nya, atau memodifikasi konten jika Anda ingin mengganggu percakapan dan memberikan panduan tambahan.
 </Note>
 
-### Menggunakan Beberapa Skills
+### Menggunakan Multiple Skills
 
 Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang kompleks:
 
 <CodeGroup>
 ```python Python
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -677,7 +677,7 @@ response = client.beta.messages.create(
 
 ```typescript TypeScript
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -717,7 +717,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [
@@ -764,7 +764,7 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-# Opsi 1: Menggunakan pembantu files_from_dir (hanya Python, direkomendasikan)
+# Option 1: Using files_from_dir helper (Python only, recommended)
 from anthropic.lib import files_from_dir
 
 skill = client.beta.skills.create(
@@ -773,14 +773,14 @@ skill = client.beta.skills.create(
     betas=["skills-2025-10-02"]
 )
 
-# Opsi 2: Menggunakan file zip
+# Option 2: Using a zip file
 skill = client.beta.skills.create(
     display_title="Financial Analysis",
     files=[("skill.zip", open("financial_analysis_skill.zip", "rb"))],
     betas=["skills-2025-10-02"]
 )
 
-# Opsi 3: Menggunakan tuple file (nama file, konten file, tipe mime)
+# Option 3: Using file tuples (filename, file_content, mime_type)
 skill = client.beta.skills.create(
     display_title="Financial Analysis",
     files=[
@@ -800,7 +800,7 @@ import fs from 'fs';
 
 const client = new Anthropic();
 
-// Opsi 1: Menggunakan file zip
+// Option 1: Using a zip file
 const skill = await client.beta.skills.create({
   displayTitle: 'Financial Analysis',
   files: [
@@ -812,7 +812,7 @@ const skill = await client.beta.skills.create({
   betas: ['skills-2025-10-02']
 });
 
-// Opsi 2: Menggunakan objek file individual
+// Option 2: Using individual file objects
 const skill = await client.beta.skills.create({
   displayTitle: 'Financial Analysis',
   files: [
@@ -848,20 +848,20 @@ curl -X POST "https://api.anthropic.com/v1/skills" \
 **Persyaratan:**
 - Harus menyertakan file SKILL.md di tingkat atas
 - Semua file harus menentukan direktori root umum dalam jalur mereka
-- Total ukuran unggahan harus di bawah 8MB
+- Ukuran unggahan total harus di bawah 8MB
 - Persyaratan frontmatter YAML:
-  - `name`: Maksimal 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan ("anthropic", "claude")
+  - `name`: Maksimal 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata-kata yang dicadangkan ("anthropic", "claude")
   - `description`: Maksimal 1024 karakter, tidak kosong, tanpa tag XML
 
 Untuk skema permintaan/respons lengkap, lihat [referensi API Create Skill](/docs/id/api/skills/create-skill).
 
-### Daftar Skills
+### Mendaftar Skills
 
 Ambil semua Skills yang tersedia untuk ruang kerja Anda, termasuk Skills yang sudah dibuat sebelumnya oleh Anthropic dan Skills khusus Anda. Gunakan parameter `source` untuk memfilter berdasarkan jenis skill:
 
 <CodeGroup>
 ```python Python
-# Daftar semua Skills
+# List all Skills
 skills = client.beta.skills.list(
     betas=["skills-2025-10-02"]
 )
@@ -869,7 +869,7 @@ skills = client.beta.skills.list(
 for skill in skills.data:
     print(f"{skill.id}: {skill.display_title} (source: {skill.source})")
 
-# Daftar hanya Skills khusus
+# List only custom Skills
 custom_skills = client.beta.skills.list(
     source="custom",
     betas=["skills-2025-10-02"]
@@ -877,7 +877,7 @@ custom_skills = client.beta.skills.list(
 ```
 
 ```typescript TypeScript
-// Daftar semua Skills
+// List all Skills
 const skills = await client.beta.skills.list({
   betas: ['skills-2025-10-02']
 });
@@ -886,7 +886,7 @@ for (const skill of skills.data) {
   console.log(`${skill.id}: ${skill.display_title} (source: ${skill.source})`);
 }
 
-// Daftar hanya Skills khusus
+// List only custom Skills
 const customSkills = await client.beta.skills.list({
   source: 'custom',
   betas: ['skills-2025-10-02']
@@ -894,13 +894,13 @@ const customSkills = await client.beta.skills.list({
 ```
 
 ```bash Shell
-# Daftar semua Skills
+# List all Skills
 curl "https://api.anthropic.com/v1/skills" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: skills-2025-10-02"
 
-# Daftar hanya Skills khusus
+# List only custom Skills
 curl "https://api.anthropic.com/v1/skills?source=custom" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -951,7 +951,7 @@ Untuk menghapus Skill, Anda harus terlebih dahulu menghapus semua versinya:
 
 <CodeGroup>
 ```python Python
-# Langkah 1: Hapus semua versi
+# Step 1: Delete all versions
 versions = client.beta.skills.versions.list(
     skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv",
     betas=["skills-2025-10-02"]
@@ -964,7 +964,7 @@ for version in versions.data:
         betas=["skills-2025-10-02"]
     )
 
-# Langkah 2: Hapus Skill
+# Step 2: Delete the Skill
 client.beta.skills.delete(
     skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv",
     betas=["skills-2025-10-02"]
@@ -972,7 +972,7 @@ client.beta.skills.delete(
 ```
 
 ```typescript TypeScript
-// Langkah 1: Hapus semua versi
+// Step 1: Delete all versions
 const versions = await client.beta.skills.versions.list(
   'skill_01AbCdEfGhIjKlMnOpQrStUv',
   { betas: ['skills-2025-10-02'] }
@@ -986,7 +986,7 @@ for (const version of versions.data) {
   );
 }
 
-// Langkah 2: Hapus Skill
+// Step 2: Delete the Skill
 await client.beta.skills.delete(
   'skill_01AbCdEfGhIjKlMnOpQrStUv',
   { betas: ['skills-2025-10-02'] }
@@ -994,7 +994,7 @@ await client.beta.skills.delete(
 ```
 
 ```bash Shell
-# Hapus semua versi terlebih dahulu, kemudian hapus Skill
+# Delete all versions first, then delete the Skill
 curl -X DELETE "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -1008,13 +1008,13 @@ Mencoba menghapus Skill dengan versi yang ada akan mengembalikan kesalahan 400.
 
 Skills mendukung versioning untuk mengelola pembaruan dengan aman:
 
-**Skills yang Dikelola Anthropic**:
+**Anthropic-Managed Skills**:
 - Versi menggunakan format tanggal: `20251013`
 - Versi baru dirilis saat pembaruan dilakukan
 - Tentukan versi yang tepat untuk stabilitas
 
-**Skills Khusus**:
-- Stempel waktu epoch yang dihasilkan secara otomatis: `1759178010641129`
+**Custom Skills**:
+- Timestamp epoch yang dihasilkan secara otomatis: `1759178010641129`
 - Gunakan `"latest"` untuk selalu mendapatkan versi terbaru
 - Buat versi baru saat memperbarui file Skill
 
@@ -1029,9 +1029,9 @@ new_version = client.beta.skills.versions.create(
     betas=["skills-2025-10-02"]
 )
 
-# Gunakan versi tertentu
+# Gunakan versi spesifik
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -1047,7 +1047,7 @@ response = client.beta.messages.create(
 
 # Gunakan versi terbaru
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -1076,9 +1076,9 @@ const newVersion = await client.beta.skills.versions.create(
   }
 );
 
-// Gunakan versi tertentu
+// Gunakan versi spesifik
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -1094,7 +1094,7 @@ const response = await client.beta.messages.create({
 
 // Gunakan versi terbaru
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -1119,14 +1119,14 @@ NEW_VERSION=$(curl -X POST "https://api.anthropic.com/v1/skills/skill_01AbCdEfGh
 
 VERSION_NUMBER=$(echo "$NEW_VERSION" | jq -r '.version')
 
-# Gunakan versi tertentu
+# Gunakan versi spesifik
 curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d "{
-    \"model\": \"claude-sonnet-4-5-20250929\",
+    \"model\": \"claude-opus-4-6\",
     \"max_tokens\": 4096,
     \"container\": {
       \"skills\": [{
@@ -1146,7 +1146,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [{
@@ -1169,58 +1169,58 @@ Lihat [referensi API Create Skill Version](/docs/id/api/skills/create-skill-vers
 
 Ketika Anda menentukan Skills dalam container:
 
-1. **Penemuan Metadata**: Claude melihat metadata untuk setiap Skill (nama, deskripsi) dalam prompt sistem
+1. **Penemuan Metadata**: Claude melihat metadata untuk setiap Skill (nama, deskripsi) dalam system prompt
 2. **Pemuatan File**: File Skill disalin ke dalam container di `/skills/{directory}/`
 3. **Penggunaan Otomatis**: Claude secara otomatis memuat dan menggunakan Skills ketika relevan dengan permintaan Anda
-4. **Komposisi**: Beberapa Skills bersama-sama untuk alur kerja yang kompleks
+4. **Komposisi**: Beberapa Skills bersatu untuk alur kerja yang kompleks
 
-Arsitektur pengungkapan progresif memastikan penggunaan konteks yang efisien—Claude hanya memuat instruksi Skill lengkap ketika diperlukan.
+Arsitektur progressive disclosure memastikan penggunaan konteks yang efisien—Claude hanya memuat instruksi Skill lengkap ketika diperlukan.
 
 ---
 
-## Kasus Penggunaan
+## Use Cases
 
-### Skills Organisasi
+### Organizational Skills
 
-**Brand & Komunikasi**
+**Brand & Communications**
 - Terapkan pemformatan khusus perusahaan (warna, font, tata letak) ke dokumen
 - Hasilkan komunikasi mengikuti template organisasi
 - Pastikan panduan merek yang konsisten di semua output
 
-**Manajemen Proyek**
-- Struktur catatan dengan format khusus perusahaan (OKR, log keputusan)
+**Project Management**
+- Struktur catatan dengan format khusus perusahaan (OKRs, decision logs)
 - Hasilkan tugas mengikuti konvensi tim
-- Buat ringkasan pertemuan dan pembaruan status standar
+- Buat ringkasan pertemuan dan pembaruan status yang terstandar
 
-**Operasi Bisnis**
+**Business Operations**
 - Buat laporan, proposal, dan analisis standar perusahaan
 - Jalankan prosedur analitik khusus perusahaan
 - Hasilkan model keuangan mengikuti template organisasi
 
-### Skills Pribadi
+### Personal Skills
 
-**Pembuatan Konten**
+**Content Creation**
 - Template dokumen khusus
 - Pemformatan dan styling khusus
 - Pembuatan konten khusus domain
 
-**Analisis Data**
+**Data Analysis**
 - Pipeline pemrosesan data khusus
 - Template visualisasi khusus
 - Metode analitik khusus industri
 
-**Pengembangan & Otomasi**
+**Development & Automation**
 - Template pembuatan kode
-- Kerangka kerja pengujian
-- Alur kerja penerapan
+- Framework pengujian
+- Alur kerja deployment
 
-### Contoh: Pemodelan Keuangan
+### Example: Financial Modeling
 
-Gabungkan Skills Excel dan analisis DCF khusus:
+Gabungkan Excel dan custom DCF analysis Skills:
 
 <CodeGroup>
 ```python Python
-# Buat Skill analisis DCF khusus
+# Buat custom DCF analysis Skill
 from anthropic.lib import files_from_dir
 
 dcf_skill = client.beta.skills.create(
@@ -1231,7 +1231,7 @@ dcf_skill = client.beta.skills.create(
 
 # Gunakan dengan Excel untuk membuat model keuangan
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -1249,7 +1249,7 @@ response = client.beta.messages.create(
 ```
 
 ```typescript TypeScript
-// Buat Skill analisis DCF khusus
+// Buat custom DCF analysis Skill
 import { toFile } from '@anthropic-ai/sdk';
 import fs from 'fs';
 
@@ -1263,7 +1263,7 @@ const dcfSkill = await client.beta.skills.create({
 
 // Gunakan dengan Excel untuk membuat model keuangan
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -1281,7 +1281,7 @@ const response = await client.beta.messages.create({
 ```
 
 ```bash Shell
-# Buat Skill analisis DCF khusus
+# Buat custom DCF analysis Skill
 DCF_SKILL=$(curl -X POST "https://api.anthropic.com/v1/skills" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -1298,7 +1298,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d "{
-    \"model\": \"claude-sonnet-4-5-20250929\",
+    \"model\": \"claude-opus-4-6\",
     \"max_tokens\": 4096,
     \"container\": {
       \"skills\": [
@@ -1328,74 +1328,74 @@ curl https://api.anthropic.com/v1/messages \
 
 ---
 
-## Batas dan Kendala
+## Limits and Constraints
 
-### Batas Permintaan
-- **Maksimal Skills per permintaan**: 8
-- **Ukuran unggahan Skill maksimal**: 8MB (semua file digabungkan)
-- **Persyaratan frontmatter YAML**:
-  - `name`: Maksimal 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan
+### Request Limits
+- **Maximum Skills per request**: 8
+- **Maximum Skill upload size**: 8MB (semua file digabungkan)
+- **YAML frontmatter requirements**:
+  - `name`: Maksimal 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata-kata yang dicadangkan
   - `description`: Maksimal 1024 karakter, tidak kosong, tanpa tag XML
 
-### Kendala Lingkungan
-Skills berjalan di container eksekusi kode dengan batasan ini:
-- **Tidak ada akses jaringan** - Tidak dapat membuat panggilan API eksternal
-- **Tidak ada instalasi paket runtime** - Hanya paket yang sudah diinstal sebelumnya tersedia
-- **Lingkungan terisolasi** - Setiap permintaan mendapatkan container segar
+### Environment Constraints
+Skills berjalan dalam code execution container dengan batasan ini:
+- **No network access** - Tidak dapat melakukan panggilan API eksternal
+- **No runtime package installation** - Hanya paket yang sudah diinstal sebelumnya yang tersedia
+- **Isolated environment** - Setiap permintaan mendapatkan container segar
 
-Lihat [dokumentasi alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk paket yang tersedia.
+Lihat [dokumentasi code execution tool](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk paket yang tersedia.
 
 ---
 
-## Praktik Terbaik
+## Best Practices
 
-### Kapan Menggunakan Beberapa Skills
+### When to Use Multiple Skills
 
-Gabungkan Skills ketika tugas melibatkan beberapa jenis dokumen atau domain:
+Gabungkan Skills ketika tugas melibatkan beberapa tipe dokumen atau domain:
 
-**Kasus penggunaan yang baik:**
-- Analisis data (Excel) + pembuatan presentasi (PowerPoint)
-- Pembuatan laporan (Word) + ekspor ke PDF
-- Logika domain khusus + pembuatan dokumen
+**Good use cases:**
+- Data analysis (Excel) + presentation creation (PowerPoint)
+- Report generation (Word) + export to PDF
+- Custom domain logic + document generation
 
-**Hindari:**
-- Menyertakan Skills yang tidak digunakan (berdampak pada kinerja)
+**Avoid:**
+- Including unused Skills (impacts performance)
 
-### Strategi Manajemen Versi
+### Version Management Strategy
 
-**Untuk produksi:**
+**For production:**
 ```python
-# Sematkan ke versi tertentu untuk stabilitas
+# Pin to specific versions for stability
 container={
     "skills": [{
         "type": "custom",
         "skill_id": "skill_01AbCdEfGhIjKlMnOpQrStUv",
-        "version": "1759178010641129"  # Versi tertentu
+        "version": "1759178010641129"  # Specific version
     }]
 }
 ```
 
-**Untuk pengembangan:**
+**For development:**
 ```python
-# Gunakan latest untuk pengembangan aktif
+# Use latest for active development
 container={
     "skills": [{
         "type": "custom",
         "skill_id": "skill_01AbCdEfGhIjKlMnOpQrStUv",
-        "version": "latest"  # Selalu dapatkan yang terbaru
+        "version": "latest"  # Always get newest
     }]
 }
 ```
 
-### Pertimbangan Caching Prompt
+### Prompt Caching Considerations
 
-Saat menggunakan prompt caching, perhatikan bahwa mengubah daftar Skills dalam container Anda akan memecahkan cache:
+Ketika menggunakan prompt caching, perhatikan bahwa mengubah daftar Skills dalam container Anda akan memecahkan cache:
 
 <CodeGroup>
 ```python Python
 # Permintaan pertama membuat cache
 response1 = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02", "prompt-caching-2024-07-31"],
     container={
@@ -1409,7 +1409,7 @@ response1 = client.beta.messages.create(
 
 # Menambah/menghapus Skills memecahkan cache
 response2 = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02", "prompt-caching-2024-07-31"],
     container={
@@ -1426,7 +1426,7 @@ response2 = client.beta.messages.create(
 ```typescript TypeScript
 // Permintaan pertama membuat cache
 const response1 = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02', 'prompt-caching-2024-07-31'],
   container: {
@@ -1440,7 +1440,7 @@ const response1 = await client.beta.messages.create({
 
 // Menambah/menghapus Skills memecahkan cache
 const response2 = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02', 'prompt-caching-2024-07-31'],
   container: {
@@ -1462,7 +1462,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02,prompt-caching-2024-07-31" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [
@@ -1480,7 +1480,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02,prompt-caching-2024-07-31" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [
@@ -1494,9 +1494,9 @@ curl https://api.anthropic.com/v1/messages \
 ```
 </CodeGroup>
 
-Untuk kinerja caching terbaik, pertahankan daftar Skills Anda tetap konsisten di seluruh permintaan.
+Untuk performa caching terbaik, jaga daftar Skills Anda tetap konsisten di seluruh permintaan.
 
-### Penanganan Kesalahan
+### Error Handling
 
 Tangani kesalahan terkait Skill dengan baik:
 
@@ -1504,7 +1504,7 @@ Tangani kesalahan terkait Skill dengan baik:
 ```python Python
 try:
     response = client.beta.messages.create(
-        model="claude-sonnet-4-5-20250929",
+        model="claude-opus-4-6",
         max_tokens=4096,
         betas=["code-execution-2025-08-25", "skills-2025-10-02"],
         container={
@@ -1518,7 +1518,7 @@ try:
 except anthropic.BadRequestError as e:
     if "skill" in str(e):
         print(f"Skill error: {e}")
-        # Tangani kesalahan khusus skill
+        # Handle skill-specific errors
     else:
         raise
 ```
@@ -1526,7 +1526,7 @@ except anthropic.BadRequestError as e:
 ```typescript TypeScript
 try {
   const response = await client.beta.messages.create({
-    model: 'claude-sonnet-4-5-20250929',
+    model: 'claude-opus-4-6',
     max_tokens: 4096,
     betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
     container: {
@@ -1540,7 +1540,7 @@ try {
 } catch (error) {
   if (error instanceof Anthropic.BadRequestError && error.message.includes('skill')) {
     console.error(`Skill error: ${error.message}`);
-    // Tangani kesalahan khusus skill
+    // Handle skill-specific errors
   } else {
     throw error;
   }
@@ -1550,28 +1550,28 @@ try {
 
 ---
 
-## Langkah Berikutnya
+## Next Steps
 
 <CardGroup cols={2}>
   <Card
-    title="Referensi API"
+    title="API Reference"
     icon="book"
     href="/docs/id/api/skills/create-skill"
   >
-    Referensi API lengkap dengan semua endpoint
+    Complete API reference with all endpoints
   </Card>
   <Card
-    title="Panduan Penulisan"
+    title="Authoring Guide"
     icon="edit"
     href="/docs/id/agents-and-tools/agent-skills/best-practices"
   >
-    Praktik terbaik untuk menulis Skills yang efektif
+    Best practices for writing effective Skills
   </Card>
   <Card
-    title="Alat Eksekusi Kode"
+    title="Code Execution Tool"
     icon="terminal"
     href="/docs/id/agents-and-tools/tool-use/code-execution-tool"
   >
-    Pelajari tentang lingkungan eksekusi kode
+    Learn about the code execution environment
   </Card>
 </CardGroup>

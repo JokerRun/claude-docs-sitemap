@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages
-fetched_at: 2026-01-30T04:11:49.863510Z
-sha256: 7ef5e64953781143ff4db1ba7ecdea2f1a4e43af355ad8e26002b530dc868a90
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 16563be5610e3a2f1913912ae8a9df72ba0562390c7b22f4ed2d098714777eb2
 ---
 
 # Messages
@@ -1440,12 +1440,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `UnionMember0 = Literal["claude-opus-4-5-20251101", "claude-opus-4-5", "claude-3-7-sonnet-latest", 17 more]`
+  - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `claude-opus-4-6` - Most intelligent model for building agents and coding
     - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
     - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
     - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -1466,6 +1467,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `claude-3-opus-latest` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-3-opus-20240229` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-3-haiku-20240307` - Our previous most fast and cost-effective
+
+    - `"claude-opus-4-6"`
+
+      Most intelligent model for building agents and coding
 
     - `"claude-opus-4-5-20251101"`
 
@@ -1549,6 +1554,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `UnionMember1 = str`
 
+- `inference_geo: Optional[str]`
+
+  Specifies the geographic region for inference processing. If not specified, the workspace's `default_inference_geo` is used.
+
 - `metadata: Optional[MetadataParam]`
 
   An object describing metadata about the request.
@@ -1559,11 +1568,23 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
 
-- `output_config: Optional[OutputConfig]`
+- `output_config: Optional[OutputConfigParam]`
 
   Configuration options for the model's output, such as the output format.
 
-  - `format: Optional[OutputConfigFormat]`
+  - `effort: Optional[Literal["low", "medium", "high", "max"]]`
+
+    All possible effort levels.
+
+    - `"low"`
+
+    - `"medium"`
+
+    - `"high"`
+
+    - `"max"`
+
+  - `format: Optional[JSONOutputFormat]`
 
     A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
 
@@ -1758,6 +1779,12 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"disabled"`
 
+  - `class ThinkingConfigAdaptive: …`
+
+    - `type: Literal["adaptive"]`
+
+      - `"adaptive"`
+
 - `tool_choice: Optional[ToolChoiceParam]`
 
   How the model should use the provided tools. The model can use a specific tool, any available tool, decide by itself, or not use tools at all.
@@ -1930,6 +1957,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       Description of what this tool does.
 
       Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
+
+    - `eager_input_streaming: Optional[bool]`
+
+      Enable eager input streaming for this tool. When true, tool input parameters will be streamed incrementally as they are generated, and types will be inferred on-the-fly rather than buffering the full JSON output. When false, streaming is disabled for this tool even if the fine-grained-tool-streaming beta is active. When null (default), uses the default behavior based on beta headers.
 
     - `strict: Optional[bool]`
 
@@ -2433,12 +2464,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `UnionMember0 = Literal["claude-opus-4-5-20251101", "claude-opus-4-5", "claude-3-7-sonnet-latest", 17 more]`
+    - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `claude-opus-4-6` - Most intelligent model for building agents and coding
       - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
       - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
       - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -2459,6 +2491,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `claude-3-opus-latest` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-3-opus-20240229` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-3-haiku-20240307` - Our previous most fast and cost-effective
+
+      - `"claude-opus-4-6"`
+
+        Most intelligent model for building agents and coding
 
       - `"claude-opus-4-5-20251101"`
 
@@ -2623,6 +2659,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of input tokens read from the cache.
 
+    - `inference_geo: Optional[str]`
+
+      The geographic region where inference was performed for this request.
+
     - `input_tokens: int`
 
       The number of input tokens which were used.
@@ -2664,7 +2704,7 @@ message = client.messages.create(
         "content": "Hello, world",
         "role": "user",
     }],
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
 )
 print(message.id)
 ```
@@ -4094,12 +4134,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `UnionMember0 = Literal["claude-opus-4-5-20251101", "claude-opus-4-5", "claude-3-7-sonnet-latest", 17 more]`
+  - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `claude-opus-4-6` - Most intelligent model for building agents and coding
     - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
     - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
     - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -4120,6 +4161,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `claude-3-opus-latest` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-3-opus-20240229` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-3-haiku-20240307` - Our previous most fast and cost-effective
+
+    - `"claude-opus-4-6"`
+
+      Most intelligent model for building agents and coding
 
     - `"claude-opus-4-5-20251101"`
 
@@ -4203,11 +4248,23 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `UnionMember1 = str`
 
-- `output_config: Optional[OutputConfig]`
+- `output_config: Optional[OutputConfigParam]`
 
   Configuration options for the model's output, such as the output format.
 
-  - `format: Optional[OutputConfigFormat]`
+  - `effort: Optional[Literal["low", "medium", "high", "max"]]`
+
+    All possible effort levels.
+
+    - `"low"`
+
+    - `"medium"`
+
+    - `"high"`
+
+    - `"max"`
+
+  - `format: Optional[JSONOutputFormat]`
 
     A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
 
@@ -4367,6 +4424,12 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `type: Literal["disabled"]`
 
       - `"disabled"`
+
+  - `class ThinkingConfigAdaptive: …`
+
+    - `type: Literal["adaptive"]`
+
+      - `"adaptive"`
 
 - `tool_choice: Optional[ToolChoiceParam]`
 
@@ -4540,6 +4603,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       Description of what this tool does.
 
       Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
+
+    - `eager_input_streaming: Optional[bool]`
+
+      Enable eager input streaming for this tool. When true, tool input parameters will be streamed incrementally as they are generated, and types will be inferred on-the-fly rather than buffering the full JSON output. When false, streaming is disabled for this tool even if the fine-grained-tool-streaming beta is active. When null (default), uses the default behavior based on beta headers.
 
     - `strict: Optional[bool]`
 
@@ -4816,7 +4883,7 @@ message_tokens_count = client.messages.count_tokens(
         "content": "string",
         "role": "user",
     }],
-    model="claude-opus-4-5-20251101",
+    model="claude-opus-4-6",
 )
 print(message_tokens_count.input_tokens)
 ```
@@ -7402,6 +7469,18 @@ print(message_tokens_count.input_tokens)
 
     - `"input_json_delta"`
 
+### JSON Output Format
+
+- `class JSONOutputFormat: …`
+
+  - `schema: Dict[str, object]`
+
+    The JSON schema of the format
+
+  - `type: Literal["json_schema"]`
+
+    - `"json_schema"`
+
 ### Message
 
 - `class Message: …`
@@ -7635,12 +7714,13 @@ print(message_tokens_count.input_tokens)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `UnionMember0 = Literal["claude-opus-4-5-20251101", "claude-opus-4-5", "claude-3-7-sonnet-latest", 17 more]`
+    - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `claude-opus-4-6` - Most intelligent model for building agents and coding
       - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
       - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
       - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -7661,6 +7741,10 @@ print(message_tokens_count.input_tokens)
       - `claude-3-opus-latest` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-3-opus-20240229` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-3-haiku-20240307` - Our previous most fast and cost-effective
+
+      - `"claude-opus-4-6"`
+
+        Most intelligent model for building agents and coding
 
       - `"claude-opus-4-5-20251101"`
 
@@ -7825,6 +7909,10 @@ print(message_tokens_count.input_tokens)
 
       The number of input tokens read from the cache.
 
+    - `inference_geo: Optional[str]`
+
+      The geographic region where inference was performed for this request.
+
     - `input_tokens: int`
 
       The number of input tokens which were used.
@@ -7905,6 +7993,10 @@ print(message_tokens_count.input_tokens)
       Description of what this tool does.
 
       Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
+
+    - `eager_input_streaming: Optional[bool]`
+
+      Enable eager input streaming for this tool. When true, tool input parameters will be streamed incrementally as they are generated, and types will be inferred on-the-fly rather than buffering the full JSON output. When false, streaming is disabled for this tool even if the fine-grained-tool-streaming beta is active. When null (default), uses the default behavior based on beta headers.
 
     - `strict: Optional[bool]`
 
@@ -9565,18 +9657,19 @@ print(message_tokens_count.input_tokens)
 
 ### Model
 
-- `Model = Union[Literal["claude-opus-4-5-20251101", "claude-opus-4-5", "claude-3-7-sonnet-latest", 17 more], str]`
+- `Model = Union[Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more], str]`
 
   The model that will complete your prompt.
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `UnionMember0 = Literal["claude-opus-4-5-20251101", "claude-opus-4-5", "claude-3-7-sonnet-latest", 17 more]`
+  - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `claude-opus-4-6` - Most intelligent model for building agents and coding
     - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
     - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
     - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -9597,6 +9690,10 @@ print(message_tokens_count.input_tokens)
     - `claude-3-opus-latest` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-3-opus-20240229` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-3-haiku-20240307` - Our previous most fast and cost-effective
+
+    - `"claude-opus-4-6"`
+
+      Most intelligent model for building agents and coding
 
     - `"claude-opus-4-5-20251101"`
 
@@ -9679,6 +9776,34 @@ print(message_tokens_count.input_tokens)
       Our previous most fast and cost-effective
 
   - `UnionMember1 = str`
+
+### Output Config
+
+- `class OutputConfig: …`
+
+  - `effort: Optional[Literal["low", "medium", "high", "max"]]`
+
+    All possible effort levels.
+
+    - `"low"`
+
+    - `"medium"`
+
+    - `"high"`
+
+    - `"max"`
+
+  - `format: Optional[JSONOutputFormat]`
+
+    A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+    - `schema: Dict[str, object]`
+
+      The JSON schema of the format
+
+    - `type: Literal["json_schema"]`
+
+      - `"json_schema"`
 
 ### Plain Text Source
 
@@ -10469,12 +10594,13 @@ print(message_tokens_count.input_tokens)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = Literal["claude-opus-4-5-20251101", "claude-opus-4-5", "claude-3-7-sonnet-latest", 17 more]`
+      - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `claude-opus-4-6` - Most intelligent model for building agents and coding
         - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
         - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
         - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -10495,6 +10621,10 @@ print(message_tokens_count.input_tokens)
         - `claude-3-opus-latest` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-3-opus-20240229` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-3-haiku-20240307` - Our previous most fast and cost-effective
+
+        - `"claude-opus-4-6"`
+
+          Most intelligent model for building agents and coding
 
         - `"claude-opus-4-5-20251101"`
 
@@ -10658,6 +10788,10 @@ print(message_tokens_count.input_tokens)
       - `cache_read_input_tokens: Optional[int]`
 
         The number of input tokens read from the cache.
+
+      - `inference_geo: Optional[str]`
+
+        The geographic region where inference was performed for this request.
 
       - `input_tokens: int`
 
@@ -10934,12 +11068,13 @@ print(message_tokens_count.input_tokens)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `UnionMember0 = Literal["claude-opus-4-5-20251101", "claude-opus-4-5", "claude-3-7-sonnet-latest", 17 more]`
+        - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `claude-opus-4-6` - Most intelligent model for building agents and coding
           - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
           - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
           - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -10960,6 +11095,10 @@ print(message_tokens_count.input_tokens)
           - `claude-3-opus-latest` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
           - `claude-3-opus-20240229` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
           - `claude-3-haiku-20240307` - Our previous most fast and cost-effective
+
+          - `"claude-opus-4-6"`
+
+            Most intelligent model for building agents and coding
 
           - `"claude-opus-4-5-20251101"`
 
@@ -11123,6 +11262,10 @@ print(message_tokens_count.input_tokens)
         - `cache_read_input_tokens: Optional[int]`
 
           The number of input tokens read from the cache.
+
+        - `inference_geo: Optional[str]`
+
+          The geographic region where inference was performed for this request.
 
         - `input_tokens: int`
 
@@ -12248,6 +12391,14 @@ print(message_tokens_count.input_tokens)
 
     - `"thinking"`
 
+### Thinking Config Adaptive
+
+- `class ThinkingConfigAdaptive: …`
+
+  - `type: Literal["adaptive"]`
+
+    - `"adaptive"`
+
 ### Thinking Config Disabled
 
 - `class ThinkingConfigDisabled: …`
@@ -12301,6 +12452,12 @@ print(message_tokens_count.input_tokens)
     - `type: Literal["disabled"]`
 
       - `"disabled"`
+
+  - `class ThinkingConfigAdaptive: …`
+
+    - `type: Literal["adaptive"]`
+
+      - `"adaptive"`
 
 ### Thinking Delta
 
@@ -12364,6 +12521,10 @@ print(message_tokens_count.input_tokens)
     Description of what this tool does.
 
     Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
+
+  - `eager_input_streaming: Optional[bool]`
+
+    Enable eager input streaming for this tool. When true, tool input parameters will be streamed incrementally as they are generated, and types will be inferred on-the-fly rather than buffering the full JSON output. When false, streaming is disabled for this tool even if the fine-grained-tool-streaming beta is active. When null (default), uses the default behavior based on beta headers.
 
   - `strict: Optional[bool]`
 
@@ -13340,6 +13501,10 @@ print(message_tokens_count.input_tokens)
 
       Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
 
+    - `eager_input_streaming: Optional[bool]`
+
+      Enable eager input streaming for this tool. When true, tool input parameters will be streamed incrementally as they are generated, and types will be inferred on-the-fly rather than buffering the full JSON output. When false, streaming is disabled for this tool even if the fine-grained-tool-streaming beta is active. When null (default), uses the default behavior based on beta headers.
+
     - `strict: Optional[bool]`
 
       When true, guarantees schema validation on tool names and inputs
@@ -13687,6 +13852,10 @@ print(message_tokens_count.input_tokens)
   - `cache_read_input_tokens: Optional[int]`
 
     The number of input tokens read from the cache.
+
+  - `inference_geo: Optional[str]`
+
+    The geographic region where inference was performed for this request.
 
   - `input_tokens: int`
 
@@ -15511,12 +15680,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = Literal["claude-opus-4-5-20251101", "claude-opus-4-5", "claude-3-7-sonnet-latest", 17 more]`
+      - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `claude-opus-4-6` - Most intelligent model for building agents and coding
         - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
         - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
         - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -15537,6 +15707,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `claude-3-opus-latest` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-3-opus-20240229` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-3-haiku-20240307` - Our previous most fast and cost-effective
+
+        - `"claude-opus-4-6"`
+
+          Most intelligent model for building agents and coding
 
         - `"claude-opus-4-5-20251101"`
 
@@ -15620,6 +15794,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `UnionMember1 = str`
 
+    - `inference_geo: Optional[str]`
+
+      Specifies the geographic region for inference processing. If not specified, the workspace's `default_inference_geo` is used.
+
     - `metadata: Optional[MetadataParam]`
 
       An object describing metadata about the request.
@@ -15630,11 +15808,23 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
 
-    - `output_config: Optional[RequestParamsOutputConfig]`
+    - `output_config: Optional[OutputConfigParam]`
 
       Configuration options for the model's output, such as the output format.
 
-      - `format: Optional[RequestParamsOutputConfigFormat]`
+      - `effort: Optional[Literal["low", "medium", "high", "max"]]`
+
+        All possible effort levels.
+
+        - `"low"`
+
+        - `"medium"`
+
+        - `"high"`
+
+        - `"max"`
+
+      - `format: Optional[JSONOutputFormat]`
 
         A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
 
@@ -15827,6 +16017,12 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"disabled"`
 
+      - `class ThinkingConfigAdaptive: …`
+
+        - `type: Literal["adaptive"]`
+
+          - `"adaptive"`
+
     - `tool_choice: Optional[ToolChoiceParam]`
 
       How the model should use the provided tools. The model can use a specific tool, any available tool, decide by itself, or not use tools at all.
@@ -15999,6 +16195,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           Description of what this tool does.
 
           Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
+
+        - `eager_input_streaming: Optional[bool]`
+
+          Enable eager input streaming for this tool. When true, tool input parameters will be streamed incrementally as they are generated, and types will be inferred on-the-fly rather than buffering the full JSON output. When false, streaming is disabled for this tool even if the fine-grained-tool-streaming beta is active. When null (default), uses the default behavior based on beta headers.
 
         - `strict: Optional[bool]`
 
@@ -16377,7 +16577,7 @@ message_batch = client.messages.batches.create(
                 "content": "Hello, world",
                 "role": "user",
             }],
-            "model": "claude-sonnet-4-5-20250929",
+            "model": "claude-opus-4-6",
         },
     }],
 )
@@ -17076,12 +17276,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `UnionMember0 = Literal["claude-opus-4-5-20251101", "claude-opus-4-5", "claude-3-7-sonnet-latest", 17 more]`
+          - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `claude-opus-4-6` - Most intelligent model for building agents and coding
             - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
             - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
             - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -17102,6 +17303,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `claude-3-opus-latest` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
             - `claude-3-opus-20240229` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
             - `claude-3-haiku-20240307` - Our previous most fast and cost-effective
+
+            - `"claude-opus-4-6"`
+
+              Most intelligent model for building agents and coding
 
             - `"claude-opus-4-5-20251101"`
 
@@ -17265,6 +17470,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `cache_read_input_tokens: Optional[int]`
 
             The number of input tokens read from the cache.
+
+          - `inference_geo: Optional[str]`
+
+            The geographic region where inference was performed for this request.
 
           - `input_tokens: int`
 
@@ -17876,12 +18085,13 @@ print(message_batch_individual_response.custom_id)
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `UnionMember0 = Literal["claude-opus-4-5-20251101", "claude-opus-4-5", "claude-3-7-sonnet-latest", 17 more]`
+          - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `claude-opus-4-6` - Most intelligent model for building agents and coding
             - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
             - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
             - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -17902,6 +18112,10 @@ print(message_batch_individual_response.custom_id)
             - `claude-3-opus-latest` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
             - `claude-3-opus-20240229` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
             - `claude-3-haiku-20240307` - Our previous most fast and cost-effective
+
+            - `"claude-opus-4-6"`
+
+              Most intelligent model for building agents and coding
 
             - `"claude-opus-4-5-20251101"`
 
@@ -18065,6 +18279,10 @@ print(message_batch_individual_response.custom_id)
           - `cache_read_input_tokens: Optional[int]`
 
             The number of input tokens read from the cache.
+
+          - `inference_geo: Optional[str]`
+
+            The geographic region where inference was performed for this request.
 
           - `input_tokens: int`
 
@@ -18469,12 +18687,13 @@ print(message_batch_individual_response.custom_id)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `UnionMember0 = Literal["claude-opus-4-5-20251101", "claude-opus-4-5", "claude-3-7-sonnet-latest", 17 more]`
+        - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `claude-opus-4-6` - Most intelligent model for building agents and coding
           - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
           - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
           - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -18495,6 +18714,10 @@ print(message_batch_individual_response.custom_id)
           - `claude-3-opus-latest` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
           - `claude-3-opus-20240229` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
           - `claude-3-haiku-20240307` - Our previous most fast and cost-effective
+
+          - `"claude-opus-4-6"`
+
+            Most intelligent model for building agents and coding
 
           - `"claude-opus-4-5-20251101"`
 
@@ -18658,6 +18881,10 @@ print(message_batch_individual_response.custom_id)
         - `cache_read_input_tokens: Optional[int]`
 
           The number of input tokens read from the cache.
+
+        - `inference_geo: Optional[str]`
+
+          The geographic region where inference was performed for this request.
 
         - `input_tokens: int`
 
@@ -19024,12 +19251,13 @@ print(message_batch_individual_response.custom_id)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = Literal["claude-opus-4-5-20251101", "claude-opus-4-5", "claude-3-7-sonnet-latest", 17 more]`
+      - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `claude-opus-4-6` - Most intelligent model for building agents and coding
         - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
         - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
         - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -19050,6 +19278,10 @@ print(message_batch_individual_response.custom_id)
         - `claude-3-opus-latest` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-3-opus-20240229` - Deprecated: Will reach end-of-life on January 5th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-3-haiku-20240307` - Our previous most fast and cost-effective
+
+        - `"claude-opus-4-6"`
+
+          Most intelligent model for building agents and coding
 
         - `"claude-opus-4-5-20251101"`
 
@@ -19213,6 +19445,10 @@ print(message_batch_individual_response.custom_id)
       - `cache_read_input_tokens: Optional[int]`
 
         The number of input tokens read from the cache.
+
+      - `inference_geo: Optional[str]`
+
+        The geographic region where inference was performed for this request.
 
       - `input_tokens: int`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/trivia-generator
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c5620d8d1f034ac435ec4b065222558ad11522db30c3dd6732916983d2d6e203
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 27893334b81fd51df3dbe461d94f7e973095fde19d3a7f462ff79224bb3aa074
 ---
 
 # Trivia generator
@@ -78,7 +78,7 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=2000,
   temperature=0.5,
   messages=[
@@ -108,7 +108,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 0.5,
   messages: [
@@ -139,7 +139,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+model="anthropic.claude-opus-4-6-v1",
 max_tokens=2000,
 temperature=0.5,
 messages=[
@@ -168,7 +168,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 2000,
   temperature: 0.5,
   messages: [

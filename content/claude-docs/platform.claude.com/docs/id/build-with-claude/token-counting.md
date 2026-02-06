@@ -1,34 +1,36 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 9a1abe38665c6d90ebea54dd2c204b4ea55129c394bb9827747535e78ff00617
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 2d6df0c2bb8af96fe4a2bd21c62fdc60bbee56ca30945e50cf34066041b7df4d
 ---
 
 # Penghitungan token
 
+Pelajari cara menghitung token dalam pesan sebelum mengirimnya ke Claude untuk membuat keputusan yang tepat tentang prompt dan penggunaan Anda.
+
 ---
 
-Penghitungan token memungkinkan Anda menentukan jumlah token dalam pesan sebelum mengirimkannya ke Claude, membantu Anda membuat keputusan yang tepat tentang prompt dan penggunaan Anda. Dengan penghitungan token, Anda dapat
-- Mengelola batas tingkat dan biaya secara proaktif
-- Membuat keputusan routing model yang cerdas
+Penghitungan token memungkinkan Anda menentukan jumlah token dalam pesan sebelum mengirimnya ke Claude, membantu Anda membuat keputusan yang tepat tentang prompt dan penggunaan Anda. Dengan penghitungan token, Anda dapat
+- Mengelola batas laju dan biaya secara proaktif
+- Membuat keputusan perutean model yang cerdas
 - Mengoptimalkan prompt agar memiliki panjang tertentu
 ---
 
 ## Cara menghitung token pesan
 
-Endpoint [penghitungan token](/docs/id/api/messages-count-tokens) menerima daftar input terstruktur yang sama untuk membuat pesan, termasuk dukungan untuk prompt sistem, [tools](/docs/id/agents-and-tools/tool-use/overview), [gambar](/docs/id/build-with-claude/vision), dan [PDF](/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
+Endpoint [penghitungan token](/docs/id/api/messages-count-tokens) menerima daftar input terstruktur yang sama untuk membuat pesan, termasuk dukungan untuk prompt sistem, [alat](/docs/id/agents-and-tools/tool-use/overview), [gambar](/docs/id/build-with-claude/vision), dan [PDF](/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
 
 <Note>
-Jumlah token harus dianggap sebagai **perkiraan**. Dalam beberapa kasus, jumlah sebenarnya dari token input yang digunakan saat membuat pesan mungkin berbeda dalam jumlah kecil.
+Jumlah token harus dianggap sebagai **perkiraan**. Dalam beberapa kasus, jumlah token input aktual yang digunakan saat membuat pesan mungkin berbeda dalam jumlah kecil.
 
-Jumlah token mungkin termasuk token yang ditambahkan secara otomatis oleh Anthropic untuk optimisasi sistem. **Anda tidak ditagih untuk token yang ditambahkan sistem**. Penagihan hanya mencerminkan konten Anda.
+Jumlah token mungkin mencakup token yang ditambahkan secara otomatis oleh Anthropic untuk optimasi sistem. **Anda tidak ditagih untuk token yang ditambahkan sistem**. Penagihan hanya mencerminkan konten Anda.
 </Note>
 
 ### Model yang didukung
 Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitungan token.
 
-### Menghitung token dalam pesan dasar
+### Hitung token dalam pesan dasar
 
 <CodeGroup>
 
@@ -38,7 +40,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.count_tokens(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     system="You are a scientist",
     messages=[{
         "role": "user",
@@ -55,7 +57,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const client = new Anthropic();
 
 const response = await client.messages.countTokens({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   system: 'You are a scientist',
   messages: [{
     role: 'user',
@@ -72,7 +74,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     --header "content-type: application/json" \
     --header "anthropic-version: 2023-06-01" \
     --data '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "system": "You are a scientist",
       "messages": [{
         "role": "user",
@@ -94,7 +96,7 @@ public class CountTokensExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
-                .model(Model.CLAUDE_SONNET_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .system("You are a scientist")
                 .addUserMessage("Hello, Claude")
                 .build();
@@ -110,10 +112,10 @@ public class CountTokensExample {
 { "input_tokens": 14 }
 ```
 
-### Menghitung token dalam pesan dengan tools
+### Hitung token dalam pesan dengan alat
 
 <Note>
-Jumlah token [Server tool](/docs/id/agents-and-tools/tool-use/overview#server-tools) hanya berlaku untuk panggilan sampling pertama.
+Jumlah token [alat server](/docs/id/agents-and-tools/tool-use/overview#server-tools) hanya berlaku untuk panggilan sampling pertama.
 </Note>
 
 <CodeGroup>
@@ -124,7 +126,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.count_tokens(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     tools=[
         {
             "name": "get_weather",
@@ -153,7 +155,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const client = new Anthropic();
 
 const response = await client.messages.countTokens({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   tools: [
     {
       name: "get_weather",
@@ -182,7 +184,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     --header "content-type: application/json" \
     --header "anthropic-version: 2023-06-01" \
     --data '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "tools": [
         {
           "name": "get_weather",
@@ -229,15 +231,15 @@ public class CountTokensWithToolsExample {
         InputSchema schema = InputSchema.builder()
                 .properties(JsonValue.from(Map.of(
                         "location", Map.of(
- "type", "string",
- "description", "The city and state, e.g. San Francisco, CA"
+                                "type", "string",
+                                "description", "The city and state, e.g. San Francisco, CA"
                         )
                 )))
                 .putAdditionalProperty("required", JsonValue.from(List.of("location")))
                 .build();
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
-                .model(Model.CLAUDE_SONNET_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .addTool(Tool.builder()
                         .name("get_weather")
                         .description("Get the current weather in a given location")
@@ -257,7 +259,7 @@ public class CountTokensWithToolsExample {
 { "input_tokens": 403 }
 ```
 
-### Menghitung token dalam pesan dengan gambar
+### Hitung token dalam pesan dengan gambar
 
 <CodeGroup>
 ```bash Shell
@@ -273,7 +275,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "messages": [
         {"role": "user", "content": [
             {"type": "image", "source": {
@@ -299,7 +301,7 @@ image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf
 client = anthropic.Anthropic()
 
 response = client.messages.count_tokens(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     messages=[
         {
             "role": "user",
@@ -334,7 +336,7 @@ const image_array_buffer = await ((await fetch(image_url)).arrayBuffer());
 const image_data = Buffer.from(image_array_buffer).toString('base64');
 
 const response = await anthropic.messages.countTokens({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   messages: [
     {
       "role": "user",
@@ -395,9 +397,9 @@ public class CountTokensImageExample {
         ContentBlockParam imageBlock = ContentBlockParam.ofImage(
                 ImageBlockParam.builder()
                         .source(Base64ImageSource.builder()
- .mediaType(Base64ImageSource.MediaType.IMAGE_JPEG)
- .data(imageBase64)
- .build())
+                                .mediaType(Base64ImageSource.MediaType.IMAGE_JPEG)
+                                .data(imageBase64)
+                                .build())
                         .build());
 
         ContentBlockParam textBlock = ContentBlockParam.ofText(
@@ -406,7 +408,7 @@ public class CountTokensImageExample {
                         .build());
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
-                .model(Model.CLAUDE_SONNET_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .addUserMessageOfBlockParams(List.of(imageBlock, textBlock))
                 .build();
 
@@ -421,12 +423,12 @@ public class CountTokensImageExample {
 { "input_tokens": 1551 }
 ```
 
-### Menghitung token dalam pesan dengan extended thinking
+### Hitung token dalam pesan dengan pemikiran yang diperluas
 
 <Note>
-Lihat [di sini](/docs/id/build-with-claude/extended-thinking#how-context-window-is-calculated-with-extended-thinking) untuk detail lebih lanjut tentang bagaimana jendela konteks dihitung dengan extended thinking
-- Blok thinking dari giliran asisten **sebelumnya** diabaikan dan **tidak** dihitung terhadap token input Anda
-- Thinking giliran asisten **saat ini** **dihitung** terhadap token input Anda
+Lihat [di sini](/docs/id/build-with-claude/extended-thinking#how-context-window-is-calculated-with-extended-thinking) untuk detail lebih lanjut tentang cara jendela konteks dihitung dengan pemikiran yang diperluas
+- Blok pemikiran dari putaran asisten **sebelumnya** diabaikan dan **tidak** dihitung menuju token input Anda
+- Pemikiran putaran asisten **saat ini** **dihitung** menuju token input Anda
 </Note>
 
 <CodeGroup>
@@ -594,10 +596,10 @@ public class CountTokensThinkingExample {
 { "input_tokens": 88 }
 ```
 
-### Menghitung token dalam pesan dengan PDF
+### Hitung token dalam pesan dengan PDF
 
 <Note>
-Penghitungan token mendukung PDF dengan [keterbatasan](/docs/id/build-with-claude/pdf-support#pdf-support-limitations) yang sama seperti Messages API.
+Penghitungan token mendukung PDF dengan [batasan](/docs/id/build-with-claude/pdf-support#pdf-support-limitations) yang sama seperti API Pesan.
 </Note> 
 
 <CodeGroup>
@@ -607,7 +609,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     --header "content-type: application/json" \
     --header "anthropic-version: 2023-06-01" \
     --data '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "messages": [{
         "role": "user",
         "content": [
@@ -638,7 +640,7 @@ with open("document.pdf", "rb") as pdf_file:
     pdf_base64 = base64.standard_b64encode(pdf_file.read()).decode("utf-8")
 
 response = client.messages.count_tokens(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     messages=[{
         "role": "user",
         "content": [
@@ -670,7 +672,7 @@ const client = new Anthropic();
 const pdfBase64 = readFileSync('document.pdf', { encoding: 'base64' });
 
 const response = await client.messages.countTokens({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   messages: [{
     role: 'user',
     content: [
@@ -720,9 +722,9 @@ public class CountTokensPdfExample {
         ContentBlockParam documentBlock = ContentBlockParam.ofDocument(
                 DocumentBlockParam.builder()
                         .source(Base64PdfSource.builder()
- .mediaType(Base64PdfSource.MediaType.APPLICATION_PDF)
- .data(pdfBase64)
- .build())
+                                .mediaType(Base64PdfSource.MediaType.APPLICATION_PDF)
+                                .data(pdfBase64)
+                                .build())
                         .build());
 
         ContentBlockParam textBlock = ContentBlockParam.ofText(
@@ -731,7 +733,7 @@ public class CountTokensPdfExample {
                         .build());
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
-                .model(Model.CLAUDE_SONNET_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .addUserMessageOfBlockParams(List.of(documentBlock, textBlock))
                 .build();
 
@@ -748,26 +750,26 @@ public class CountTokensPdfExample {
 
 ---
 
-## Harga dan batas tingkat
+## Harga dan batas laju
 
-Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas permintaan per menit berdasarkan [tingkat penggunaan](/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, hubungi penjualan melalui [Claude Console](/settings/limits).
+Penghitungan token **gratis digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, hubungi penjualan melalui [Konsol Claude](/settings/limits).
 
 | Tingkat penggunaan | Permintaan per menit (RPM) |
-|---|---|
+|------------|---------------------------|
 | 1          | 100                       |
-| 2          | 2,000                     |
-| 3          | 4,000                     |
-| 4          | 8,000                     |
+| 2          | 2.000                     |
+| 3          | 4.000                     |
+| 4          | 8.000                     |
 
 <Note>
-  Penghitungan token dan pembuatan pesan memiliki batas tingkat yang terpisah dan independen -- penggunaan satu tidak dihitung terhadap batas yang lain.
+  Penghitungan token dan pembuatan pesan memiliki batas laju yang terpisah dan independen -- penggunaan satu tidak dihitung terhadap batas yang lain.
 </Note>
 
 ---
 ## FAQ
 
-  <section title="Apakah penghitungan token menggunakan prompt caching?">
+  <section title="Apakah penghitungan token menggunakan caching prompt?">
 
-    Tidak, penghitungan token memberikan perkiraan tanpa menggunakan logika caching. Meskipun Anda dapat menyediakan blok `cache_control` dalam permintaan penghitungan token Anda, prompt caching hanya terjadi selama pembuatan pesan yang sebenarnya.
+    Tidak, penghitungan token memberikan perkiraan tanpa menggunakan logika caching. Meskipun Anda dapat memberikan blok `cache_control` dalam permintaan penghitungan token Anda, caching prompt hanya terjadi selama pembuatan pesan aktual.
   
 </section>

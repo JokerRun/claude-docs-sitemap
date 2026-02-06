@@ -1,35 +1,35 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/product-naming-pro
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: d9b2584d7e38ab7583ba5bd58cf2c15d6164b3ced2da56b5bdfdc0f6fba1b8c9
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: fd38c7dac854875d31c7a1cd7eb4037b1701d63f9699bd8bf4b0c55e0dedaeea
 ---
 
-# Ahli penamaan produk
+# Penamaan produk pro
 
 Buat nama produk yang menarik dari deskripsi dan kata kunci.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah menghasilkan nama produk yang kreatif, mudah diingat, dan dapat dipasarkan berdasarkan deskripsi dan kata kunci yang diberikan. Nama produk harus ringkas (2-4 kata), menggugah, dan mudah dipahami oleh target audiens. Hindari nama yang generik atau terlalu literal. Sebaliknya, bertujuan untuk menciptakan nama yang menonjol, menangkap esensi produk, dan meninggalkan kesan yang mendalam. |
-| User   | Deskripsi: Headphone over-ear nirkabel peredam bising dengan daya tahan baterai 20 jam dan kontrol sentuh. Dirancang untuk audiophile dan pelancong sering. Kata kunci: imersif, nyaman, high-fidelity, tahan lama, praktis |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Sistem | Tugas Anda adalah menghasilkan nama produk yang kreatif, berkesan, dan dapat dipasarkan berdasarkan deskripsi dan kata kunci yang diberikan. Nama produk harus ringkas (2-4 kata), evocative, dan mudah dipahami oleh audiens target. Hindari nama yang generik atau terlalu literal. Sebaliknya, bertujuan untuk membuat nama yang menonjol, menangkap esensi produk, dan meninggalkan kesan yang bertahan lama. |
+| Pengguna   | Deskripsi: Headphone nirkabel peredam bising over-ear dengan daya tahan baterai 20 jam dan kontrol sentuh. Dirancang untuk audiophile dan frequent traveler. Kata kunci: immersive, comfortable, high-fidelity, long-lasting, convenient                                                                                                                                                          |
 
 ## Contoh output
 
 > 1. SoundOasis Elite
->    2.AudioZen Nomad
->    3.Serenity Pro
->    4.Tranquility Touch
->    5.Harmonix Journey
->    6.SonicSolace Roam
->    7.Auditory Bliss
->    8.Quietude Quest
->    9.Euphony Excursion
->    10.Acoustica Wanderlust
+>    2. AudioZen Nomad
+>    3. Serenity Pro
+>    4. Tranquility Touch
+>    5. Harmonix Journey
+>    6. SonicSolace Roam
+>    7. Auditory Bliss
+>    8. Quietude Quest
+>    9. Euphony Excursion
+>    10. Acoustica Wanderlust
 
 ### Permintaan API
 
@@ -42,7 +42,7 @@ Buat nama produk yang menarik dari deskripsi dan kata kunci.
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1000,
         temperature=1,
         system="Your task is to generate creative, memorable, and marketable product names based on the provided description and keywords. The product names should be concise (2-4 words), evocative, and easily understood by the target audience. Avoid generic or overly literal names. Instead, aim to create a name that stands out, captures the essence of the product, and leaves a lasting impression.",
@@ -71,7 +71,7 @@ Buat nama produk yang menarik dari deskripsi dan kata kunci.
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 1,
       system: "Your task is to generate creative, memorable, and marketable product names based on the provided description and keywords. The product names should be concise (2-4 words), evocative, and easily understood by the target audience. Avoid generic or overly literal names. Instead, aim to create a name that stands out, captures the essence of the product, and leaves a lasting impression.",
@@ -100,7 +100,7 @@ Buat nama produk yang menarik dari deskripsi dan kata kunci.
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1:0",
         max_tokens=1000,
         temperature=1,
         system="Your task is to generate creative, memorable, and marketable product names based on the provided description and keywords. The product names should be concise (2-4 words), evocative, and easily understood by the target audience. Avoid generic or overly literal names. Instead, aim to create a name that stands out, captures the essence of the product, and leaves a lasting impression.",
@@ -129,7 +129,7 @@ Buat nama produk yang menarik dari deskripsi dan kata kunci.
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1:0",
       max_tokens: 1000,
       temperature: 1,
       system: "Your task is to generate creative, memorable, and marketable product names based on the provided description and keywords. The product names should be concise (2-4 words), evocative, and easily understood by the target audience. Avoid generic or overly literal names. Instead, aim to create a name that stands out, captures the essence of the product, and leaves a lasting impression.",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 4999593c8620585dd131d715b54cb234aa0ae0760d86d8e93b57865ed816fc3f
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 2e0e8109f368a34a78d842f4ab5d86b1bfdb9aec4a4ad87ec8ff4f01e7ff6a33
 ---
 
 ## List
@@ -89,5 +89,6 @@ List Users
 
 ```http
 curl https://api.anthropic.com/v1/organizations/users \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```

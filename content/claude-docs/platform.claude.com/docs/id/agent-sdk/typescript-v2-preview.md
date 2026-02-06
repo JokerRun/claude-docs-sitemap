@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/typescript-v2-preview
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 588937b1d6bf6868bad9c998a4e1690ef36ba403673641238c853e2c17593c97
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 9acd07c0cfd7f46ce32ff33d52148bd5d13cf702b021118e14edc9d9263a4a5f
 ---
 
-# Antarmuka TypeScript SDK V2 (pratinjau)
+# TypeScript SDK V2 interface (preview)
 
-Pratinjau SDK Agent TypeScript V2 yang disederhanakan, dengan pola send/receive berbasis sesi untuk percakapan multi-turn.
+Pratinjau SDK Agent TypeScript V2 yang disederhanakan, dengan pola send/stream berbasis sesi untuk percakapan multi-turn.
 
 ---
 
@@ -15,13 +15,13 @@ Pratinjau SDK Agent TypeScript V2 yang disederhanakan, dengan pola send/receive 
 Antarmuka V2 adalah **pratinjau yang tidak stabil**. API mungkin berubah berdasarkan umpan balik sebelum menjadi stabil. Beberapa fitur seperti session forking hanya tersedia di [SDK V1](/docs/id/agent-sdk/typescript).
 </Warning>
 
-SDK Agent TypeScript Claude V2 menghilangkan kebutuhan untuk async generators dan koordinasi yield. Ini membuat percakapan multi-turn lebih sederhana—alih-alih mengelola status generator di seluruh turn, setiap turn adalah siklus `send()`/`receive()` yang terpisah. Permukaan API berkurang menjadi tiga konsep:
+SDK Agent TypeScript Claude V2 menghilangkan kebutuhan untuk async generators dan koordinasi yield. Ini membuat percakapan multi-turn lebih sederhana, alih-alih mengelola status generator di seluruh turn, setiap turn adalah siklus `send()`/`stream()` yang terpisah. Permukaan API berkurang menjadi tiga konsep:
 
 - `createSession()` / `resumeSession()`: Mulai atau lanjutkan percakapan
 - `session.send()`: Kirim pesan
-- `session.receive()`: Dapatkan respons
+- `session.stream()`: Dapatkan respons
 
-## Instalasi
+## Installation
 
 Antarmuka V2 disertakan dalam paket SDK yang ada:
 
@@ -29,9 +29,9 @@ Antarmuka V2 disertakan dalam paket SDK yang ada:
 npm install @anthropic-ai/claude-agent-sdk
 ```
 
-## Mulai cepat
+## Quick start
 
-### Prompt sekali jalan
+### One-shot prompt
 
 Untuk kueri single-turn sederhana di mana Anda tidak perlu mempertahankan sesi, gunakan `unstable_v2_prompt()`. Contoh ini mengirim pertanyaan matematika dan mencatat jawabannya:
 
@@ -39,7 +39,7 @@ Untuk kueri single-turn sederhana di mana Anda tidak perlu mempertahankan sesi, 
 import { unstable_v2_prompt } from '@anthropic-ai/claude-agent-sdk'
 
 const result = await unstable_v2_prompt('What is 2 + 2?', {
-  model: 'claude-sonnet-4-5-20250929'
+  model: 'claude-opus-4-6'
 })
 console.log(result.result)
 ```
@@ -52,7 +52,7 @@ import { query } from '@anthropic-ai/claude-agent-sdk'
 
 const q = query({
   prompt: 'What is 2 + 2?',
-  options: { model: 'claude-sonnet-4-5-20250929' }
+  options: { model: 'claude-opus-4-6' }
 })
 
 for await (const msg of q) {
@@ -64,11 +64,11 @@ for await (const msg of q) {
 
 </details>
 
-### Sesi dasar
+### Basic session
 
-Untuk interaksi di luar prompt tunggal, buat sesi. V2 memisahkan pengiriman dan penerimaan menjadi langkah-langkah yang berbeda:
+Untuk interaksi di luar prompt tunggal, buat sesi. V2 memisahkan pengiriman dan streaming menjadi langkah-langkah yang berbeda:
 - `send()` mengirimkan pesan Anda
-- `receive()` mengalirkan respons kembali
+- `stream()` melakukan streaming respons kembali
 
 Pemisahan eksplisit ini memudahkan untuk menambahkan logika antar turn (seperti memproses respons sebelum mengirim tindak lanjut).
 
@@ -78,11 +78,11 @@ Contoh di bawah membuat sesi, mengirim "Hello!" ke Claude, dan mencetak respons 
 import { unstable_v2_createSession } from '@anthropic-ai/claude-agent-sdk'
 
 await using session = unstable_v2_createSession({
-  model: 'claude-sonnet-4-5-20250929'
+  model: 'claude-opus-4-6'
 })
 
 await session.send('Hello!')
-for await (const msg of session.receive()) {
+for await (const msg of session.stream()) {
   // Filter for assistant messages to get human-readable output
   if (msg.type === 'assistant') {
     const text = msg.message.content
@@ -97,14 +97,14 @@ for await (const msg of session.receive()) {
 <details>
 <summary>Lihat operasi yang sama di V1</summary>
 
-Di V1, aliran input dan output melalui async generator tunggal. Untuk prompt dasar ini terlihat serupa, tetapi menambahkan logika multi-turn memerlukan restrukturisasi untuk menggunakan input generator.
+Di V1, input dan output mengalir melalui async generator tunggal. Untuk prompt dasar ini terlihat serupa, tetapi menambahkan logika multi-turn memerlukan restrukturisasi untuk menggunakan input generator.
 
 ```typescript
 import { query } from '@anthropic-ai/claude-agent-sdk'
 
 const q = query({
   prompt: 'Hello!',
-  options: { model: 'claude-sonnet-4-5-20250929' }
+  options: { model: 'claude-opus-4-6' }
 })
 
 for await (const msg of q) {
@@ -120,22 +120,22 @@ for await (const msg of q) {
 
 </details>
 
-### Percakapan multi-turn
+### Multi-turn conversation
 
-Sesi mempertahankan konteks di seluruh pertukaran ganda. Untuk melanjutkan percakapan, panggil `send()` lagi pada sesi yang sama. Claude mengingat turn sebelumnya.
+Sesi mempertahankan konteks di seluruh pertukaran berganda. Untuk melanjutkan percakapan, panggil `send()` lagi pada sesi yang sama. Claude mengingat turn sebelumnya.
 
-Contoh ini menanyakan pertanyaan matematika, kemudian menanyakan tindak lanjut yang mereferensikan jawaban sebelumnya:
+Contoh ini menanyakan pertanyaan matematika, kemudian menanyakan tindak lanjut yang merujuk pada jawaban sebelumnya:
 
 ```typescript
 import { unstable_v2_createSession } from '@anthropic-ai/claude-agent-sdk'
 
 await using session = unstable_v2_createSession({
-  model: 'claude-sonnet-4-5-20250929'
+  model: 'claude-opus-4-6'
 })
 
 // Turn 1
 await session.send('What is 5 + 3?')
-for await (const msg of session.receive()) {
+for await (const msg of session.stream()) {
   // Filter for assistant messages to get human-readable output
   if (msg.type === 'assistant') {
     const text = msg.message.content
@@ -148,7 +148,7 @@ for await (const msg of session.receive()) {
 
 // Turn 2
 await session.send('Multiply that by 2')
-for await (const msg of session.receive()) {
+for await (const msg of session.stream()) {
   if (msg.type === 'assistant') {
     const text = msg.message.content
       .filter(block => block.type === 'text')
@@ -184,7 +184,7 @@ async function* createInputStream() {
 
 const q = query({
   prompt: createInputStream(),
-  options: { model: 'claude-sonnet-4-5-20250929' }
+  options: { model: 'claude-opus-4-6' }
 })
 
 for await (const msg of q) {
@@ -200,7 +200,7 @@ for await (const msg of q) {
 
 </details>
 
-### Lanjutkan sesi
+### Session resume
 
 Jika Anda memiliki ID sesi dari interaksi sebelumnya, Anda dapat melanjutkannya nanti. Ini berguna untuk alur kerja yang berjalan lama atau ketika Anda perlu mempertahankan percakapan di seluruh restart aplikasi.
 
@@ -224,14 +224,14 @@ function getAssistantText(msg: SDKMessage): string | null {
 
 // Create initial session and have a conversation
 const session = unstable_v2_createSession({
-  model: 'claude-sonnet-4-5-20250929'
+  model: 'claude-opus-4-6'
 })
 
 await session.send('Remember this number: 42')
 
 // Get the session ID from any received message
 let sessionId: string | undefined
-for await (const msg of session.receive()) {
+for await (const msg of session.stream()) {
   sessionId = msg.session_id
   const text = getAssistantText(msg)
   if (text) console.log('Initial response:', text)
@@ -242,11 +242,11 @@ session.close()
 
 // Later: resume the session using the stored ID
 await using resumedSession = unstable_v2_resumeSession(sessionId!, {
-  model: 'claude-sonnet-4-5-20250929'
+  model: 'claude-opus-4-6'
 })
 
 await resumedSession.send('What number did I ask you to remember?')
-for await (const msg of resumedSession.receive()) {
+for await (const msg of resumedSession.stream()) {
   const text = getAssistantText(msg)
   if (text) console.log('Resumed response:', text)
 }
@@ -261,7 +261,7 @@ import { query } from '@anthropic-ai/claude-agent-sdk'
 // Create initial session
 const initialQuery = query({
   prompt: 'Remember this number: 42',
-  options: { model: 'claude-sonnet-4-5-20250929' }
+  options: { model: 'claude-opus-4-6' }
 })
 
 // Get session ID from any message
@@ -283,7 +283,7 @@ console.log('Session ID:', sessionId)
 const resumedQuery = query({
   prompt: 'What number did I ask you to remember?',
   options: {
-    model: 'claude-sonnet-4-5-20250929',
+    model: 'claude-opus-4-6',
     resume: sessionId
   }
 })
@@ -301,7 +301,7 @@ for await (const msg of resumedQuery) {
 
 </details>
 
-### Pembersihan
+### Cleanup
 
 Sesi dapat ditutup secara manual atau otomatis menggunakan [`await using`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-2.html#using-declarations-and-explicit-resource-management), fitur TypeScript 5.2+ untuk pembersihan sumber daya otomatis. Jika Anda menggunakan versi TypeScript yang lebih lama atau mengalami masalah kompatibilitas, gunakan pembersihan manual sebagai gantinya.
 
@@ -311,7 +311,7 @@ Sesi dapat ditutup secara manual atau otomatis menggunakan [`await using`](https
 import { unstable_v2_createSession } from '@anthropic-ai/claude-agent-sdk'
 
 await using session = unstable_v2_createSession({
-  model: 'claude-sonnet-4-5-20250929'
+  model: 'claude-opus-4-6'
 })
 // Session closes automatically when the block exits
 ```
@@ -322,13 +322,13 @@ await using session = unstable_v2_createSession({
 import { unstable_v2_createSession } from '@anthropic-ai/claude-agent-sdk'
 
 const session = unstable_v2_createSession({
-  model: 'claude-sonnet-4-5-20250929'
+  model: 'claude-opus-4-6'
 })
 // ... use the session ...
 session.close()
 ```
 
-## Referensi API
+## API reference
 
 ### `unstable_v2_createSession()`
 
@@ -357,7 +357,7 @@ function unstable_v2_resumeSession(
 
 ### `unstable_v2_prompt()`
 
-Fungsi kenyamanan sekali jalan untuk kueri single-turn.
+Fungsi kenyamanan one-shot untuk kueri single-turn.
 
 ```typescript
 function unstable_v2_prompt(
@@ -369,29 +369,29 @@ function unstable_v2_prompt(
 ): Promise<Result>
 ```
 
-### Antarmuka Sesi
+### Session interface
 
 ```typescript
 interface Session {
   send(message: string): Promise<void>;
-  receive(): AsyncGenerator<SDKMessage>;
+  stream(): AsyncGenerator<SDKMessage>;
   close(): void;
 }
 ```
 
-## Ketersediaan fitur
+## Feature availability
 
-Tidak semua fitur V1 tersedia di V2 namun. Berikut ini memerlukan penggunaan [SDK V1](/docs/id/agent-sdk/typescript):
+Tidak semua fitur V1 tersedia di V2 belum. Berikut ini memerlukan penggunaan [SDK V1](/docs/id/agent-sdk/typescript):
 
 - Session forking (opsi `forkSession`)
 - Beberapa pola input streaming lanjutan
 
-## Umpan balik
+## Feedback
 
 Bagikan umpan balik Anda tentang antarmuka V2 sebelum menjadi stabil. Laporkan masalah dan saran melalui [GitHub Issues](https://github.com/anthropics/claude-code/issues).
 
-## Lihat juga
+## See also
 
-- [Referensi TypeScript SDK (V1)](/docs/id/agent-sdk/typescript) - Dokumentasi SDK V1 lengkap
-- [Gambaran umum SDK](/docs/id/agent-sdk/overview) - Konsep SDK umum
-- [Contoh V2 di GitHub](https://github.com/anthropics/claude-agent-sdk-demos/tree/main/hello-world-v2) - Contoh kode yang berfungsi
+- [TypeScript SDK reference (V1)](/docs/id/agent-sdk/typescript) - Dokumentasi SDK V1 lengkap
+- [SDK overview](/docs/id/agent-sdk/overview) - Konsep SDK umum
+- [V2 examples on GitHub](https://github.com/anthropics/claude-agent-sdk-demos/tree/main/hello-world-v2) - Contoh kode yang berfungsi

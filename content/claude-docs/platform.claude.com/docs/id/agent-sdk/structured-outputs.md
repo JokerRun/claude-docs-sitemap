@@ -1,44 +1,75 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/structured-outputs
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 417a98907a11f950ac5e22c378243f8bfb43e6820f960a47e09ef970ef6cdef7
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: eb2dfc546b58544cab178ae4df3bae37c93c31ebb57a94aebb142ecd36616d11
 ---
 
-# Output terstruktur dalam SDK
+# Dapatkan output terstruktur dari agen
 
-Dapatkan hasil JSON yang divalidasi dari alur kerja agen
+Kembalikan JSON yang divalidasi dari alur kerja agen menggunakan JSON Schema, Zod, atau Pydantic. Dapatkan data terstruktur yang aman tipe setelah penggunaan alat multi-putaran.
 
 ---
 
-Dapatkan JSON terstruktur dan tervalidasi dari alur kerja agen. Agent SDK mendukung output terstruktur melalui JSON Schemas, memastikan agen Anda mengembalikan data dalam format yang tepat sesuai kebutuhan Anda.
+Output terstruktur memungkinkan Anda menentukan bentuk data yang tepat yang ingin Anda dapatkan kembali dari agen. Agen dapat menggunakan alat apa pun yang diperlukan untuk menyelesaikan tugas, dan Anda tetap mendapatkan JSON yang divalidasi sesuai dengan skema Anda di akhir. Tentukan [JSON Schema](https://json-schema.org/understanding-json-schema/about) untuk struktur yang Anda butuhkan, dan SDK menjamin output cocok dengannya.
 
-<Note>
-**Kapan menggunakan output terstruktur**
+Untuk keamanan tipe penuh, gunakan [Zod](#type-safe-schemas-with-zod-and-pydantic) (TypeScript) atau [Pydantic](#type-safe-schemas-with-zod-and-pydantic) (Python) untuk menentukan skema Anda dan dapatkan objek yang sangat diketik kembali.
 
-Gunakan output terstruktur ketika Anda memerlukan JSON yang divalidasi setelah agen menyelesaikan alur kerja multi-turn dengan tools (pencarian file, eksekusi perintah, penelusuran web, dll.).
+## Mengapa output terstruktur?
 
-Untuk panggilan API tunggal tanpa penggunaan tool, lihat [API Structured Outputs](/docs/id/build-with-claude/structured-outputs).
-</Note>
+Agen mengembalikan teks bentuk bebas secara default, yang berfungsi untuk obrolan tetapi tidak ketika Anda perlu menggunakan output secara terprogram. Output terstruktur memberi Anda data yang diketik yang dapat Anda teruskan langsung ke logika aplikasi, database, atau komponen UI Anda.
 
-## Mengapa menggunakan output terstruktur
+Pertimbangkan aplikasi resep di mana agen mencari web dan membawa kembali resep. Tanpa output terstruktur, Anda mendapatkan teks bentuk bebas yang perlu Anda parsing sendiri. Dengan output terstruktur, Anda menentukan bentuk yang Anda inginkan dan mendapatkan data yang diketik yang dapat Anda gunakan langsung di aplikasi Anda.
 
-Output terstruktur menyediakan integrasi yang andal dan type-safe dengan aplikasi Anda:
+<section title="Tanpa output terstruktur">
 
-- **Struktur yang divalidasi**: Selalu terima JSON yang valid sesuai dengan skema Anda
-- **Integrasi yang disederhanakan**: Tidak perlu kode parsing atau validasi
-- **Keamanan tipe**: Gunakan dengan petunjuk tipe TypeScript atau Python untuk keamanan end-to-end
-- **Pemisahan yang bersih**: Tentukan persyaratan output secara terpisah dari instruksi tugas
-- **Otonomi tool**: Agen memilih tool mana yang akan digunakan sambil menjamin format output
+```text
+Berikut adalah resep kue cokelat chip klasik!
 
-<Tabs>
-<Tab title="TypeScript">
+**Kue Cokelat Chip**
+Waktu persiapan: 15 menit | Waktu memasak: 10 menit
+
+Bahan-bahan:
+- 2 1/4 cangkir tepung serbaguna
+- 1 cangkir mentega, dilunakkan
+...
+```
+
+Untuk menggunakan ini di aplikasi Anda, Anda perlu mengurai judul, mengonversi "15 menit" menjadi angka, memisahkan bahan dari instruksi, dan menangani pemformatan yang tidak konsisten di seluruh respons.
+
+</section>
+<section title="Dengan output terstruktur">
+
+```json
+{
+  "name": "Chocolate Chip Cookies",
+  "prep_time_minutes": 15,
+  "cook_time_minutes": 10,
+  "ingredients": [
+    {"item": "all-purpose flour", "amount": 2.25, "unit": "cups"},
+    {"item": "butter, softened", "amount": 1, "unit": "cup"},
+    ...
+  ],
+  "steps": ["Preheat oven to 375°F", "Cream butter and sugar", ...]
+}
+```
+
+Data yang diketik yang dapat Anda gunakan langsung di UI Anda.
+
+</section>
 
 ## Mulai cepat
 
-```typescript
+Untuk menggunakan output terstruktur, tentukan [JSON Schema](https://json-schema.org/understanding-json-schema/about) yang menggambarkan bentuk data yang Anda inginkan, kemudian teruskan ke `query()` melalui opsi `outputFormat` (TypeScript) atau opsi `output_format` (Python). Ketika agen selesai, pesan hasil mencakup bidang `structured_output` dengan data yang divalidasi sesuai dengan skema Anda.
+
+Contoh di bawah ini meminta agen untuk meneliti Anthropic dan mengembalikan nama perusahaan, tahun didirikan, dan kantor pusat sebagai output terstruktur.
+
+<CodeGroup>
+
+```typescript TypeScript
 import { query } from '@anthropic-ai/claude-agent-sdk'
 
+// Tentukan bentuk data yang ingin Anda dapatkan kembali
 const schema = {
   type: 'object',
   properties: {
@@ -58,6 +89,7 @@ for await (const message of query({
     }
   }
 })) {
+  // Pesan hasil berisi structured_output dengan data yang divalidasi
   if (message.type === 'result' && message.structured_output) {
     console.log(message.structured_output)
     // { company_name: "Anthropic", founded_year: 2021, headquarters: "San Francisco, CA" }
@@ -65,69 +97,11 @@ for await (const message of query({
 }
 ```
 
-## Mendefinisikan skema dengan Zod
+```python Python
+import asyncio
+from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 
-Untuk proyek TypeScript, gunakan Zod untuk definisi skema yang type-safe dan validasi:
-
-```typescript
-import { z } from 'zod'
-import { zodToJsonSchema } from 'zod-to-json-schema'
-
-// Define schema with Zod
-const AnalysisResult = z.object({
-  summary: z.string(),
-  issues: z.array(z.object({
-    severity: z.enum(['low', 'medium', 'high']),
-    description: z.string(),
-    file: z.string()
-  })),
-  score: z.number().min(0).max(100)
-})
-
-type AnalysisResult = z.infer<typeof AnalysisResult>
-
-// Convert to JSON Schema
-const schema = zodToJsonSchema(AnalysisResult, { $refStrategy: 'root' })
-
-// Use in query
-for await (const message of query({
-  prompt: 'Analyze the codebase for security issues',
-  options: {
-    outputFormat: {
-      type: 'json_schema',
-      schema: schema
-    }
-  }
-})) {
-  if (message.type === 'result' && message.structured_output) {
-    // Validate and get fully typed result
-    const parsed = AnalysisResult.safeParse(message.structured_output)
-    if (parsed.success) {
-      const data: AnalysisResult = parsed.data
-      console.log(`Score: ${data.score}`)
-      console.log(`Found ${data.issues.length} issues`)
-      data.issues.forEach(issue => {
-        console.log(`[${issue.severity}] ${issue.file}: ${issue.description}`)
-      })
-    }
-  }
-}
-```
-
-**Manfaat Zod:**
-- Inferensi tipe TypeScript penuh
-- Validasi runtime dengan `safeParse()`
-- Pesan kesalahan yang lebih baik
-- Skema yang dapat dikomposisi
-
-</Tab>
-<Tab title="Python">
-
-## Mulai cepat
-
-```python
-from claude_agent_sdk import query
-
+# Tentukan bentuk data yang ingin Anda dapatkan kembali
 schema = {
     "type": "object",
     "properties": {
@@ -138,105 +112,146 @@ schema = {
     "required": ["company_name"]
 }
 
-async for message in query(
-    prompt="Research Anthropic and provide key company information",
-    options={
-        "output_format": {
-            "type": "json_schema",
-            "schema": schema
-        }
-    }
-):
-    if hasattr(message, 'structured_output'):
-        print(message.structured_output)
-        # {'company_name': 'Anthropic', 'founded_year': 2021, 'headquarters': 'San Francisco, CA'}
+async def main():
+    async for message in query(
+        prompt="Research Anthropic and provide key company information",
+        options=ClaudeAgentOptions(
+            output_format={
+                "type": "json_schema",
+                "schema": schema
+            }
+        )
+    ):
+        # Pesan hasil berisi structured_output dengan data yang divalidasi
+        if isinstance(message, ResultMessage) and message.structured_output:
+            print(message.structured_output)
+            # {'company_name': 'Anthropic', 'founded_year': 2021, 'headquarters': 'San Francisco, CA'}
+
+asyncio.run(main())
 ```
 
-## Mendefinisikan skema dengan Pydantic
+</CodeGroup>
 
-Untuk proyek Python, gunakan Pydantic untuk definisi skema yang type-safe dan validasi:
+## Skema yang aman tipe dengan Zod dan Pydantic
 
-```python
+Alih-alih menulis JSON Schema dengan tangan, Anda dapat menggunakan [Zod](https://zod.dev/) (TypeScript) atau [Pydantic](https://docs.pydantic.dev/latest/) (Python) untuk menentukan skema Anda. Perpustakaan ini menghasilkan JSON Schema untuk Anda dan memungkinkan Anda mengurai respons menjadi objek yang sepenuhnya diketik yang dapat Anda gunakan di seluruh basis kode Anda dengan pelengkapan otomatis dan pemeriksaan tipe.
+
+Contoh di bawah ini menentukan skema untuk rencana implementasi fitur dengan ringkasan, daftar langkah (masing-masing dengan tingkat kompleksitas), dan risiko potensial. Agen merencanakan fitur dan mengembalikan objek `FeaturePlan` yang diketik. Anda kemudian dapat mengakses properti seperti `plan.summary` dan mengulangi `plan.steps` dengan keamanan tipe penuh.
+
+<CodeGroup>
+
+```typescript TypeScript
+import { z } from 'zod'
+import { query } from '@anthropic-ai/claude-agent-sdk'
+
+// Tentukan skema dengan Zod
+const FeaturePlan = z.object({
+  feature_name: z.string(),
+  summary: z.string(),
+  steps: z.array(z.object({
+    step_number: z.number(),
+    description: z.string(),
+    estimated_complexity: z.enum(['low', 'medium', 'high'])
+  })),
+  risks: z.array(z.string())
+})
+
+type FeaturePlan = z.infer<typeof FeaturePlan>
+
+// Konversi ke JSON Schema
+const schema = z.toJSONSchema(FeaturePlan)
+
+// Gunakan dalam query
+for await (const message of query({
+  prompt: 'Plan how to add dark mode support to a React app. Break it into implementation steps.',
+  options: {
+    outputFormat: {
+      type: 'json_schema',
+      schema: schema
+    }
+  }
+})) {
+  if (message.type === 'result' && message.structured_output) {
+    // Validasi dan dapatkan hasil yang sepenuhnya diketik
+    const parsed = FeaturePlan.safeParse(message.structured_output)
+    if (parsed.success) {
+      const plan: FeaturePlan = parsed.data
+      console.log(`Feature: ${plan.feature_name}`)
+      console.log(`Summary: ${plan.summary}`)
+      plan.steps.forEach(step => {
+        console.log(`${step.step_number}. [${step.estimated_complexity}] ${step.description}`)
+      })
+    }
+  }
+}
+```
+
+```python Python
+import asyncio
 from pydantic import BaseModel
-from claude_agent_sdk import query
+from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 
-class Issue(BaseModel):
-    severity: str  # 'low', 'medium', 'high'
+class Step(BaseModel):
+    step_number: int
     description: str
-    file: str
+    estimated_complexity: str  # 'low', 'medium', 'high'
 
-class AnalysisResult(BaseModel):
+class FeaturePlan(BaseModel):
+    feature_name: str
     summary: str
-    issues: list[Issue]
-    score: int
+    steps: list[Step]
+    risks: list[str]
 
-# Use in query
-async for message in query(
-    prompt="Analyze the codebase for security issues",
-    options={
-        "output_format": {
-            "type": "json_schema",
-            "schema": AnalysisResult.model_json_schema()
-        }
-    }
-):
-    if hasattr(message, 'structured_output'):
-        # Validate and get fully typed result
-        result = AnalysisResult.model_validate(message.structured_output)
-        print(f"Score: {result.score}")
-        print(f"Found {len(result.issues)} issues")
-        for issue in result.issues:
-            print(f"[{issue.severity}] {issue.file}: {issue.description}")
+async def main():
+    async for message in query(
+        prompt="Plan how to add dark mode support to a React app. Break it into implementation steps.",
+        options=ClaudeAgentOptions(
+            output_format={
+                "type": "json_schema",
+                "schema": FeaturePlan.model_json_schema()
+            }
+        )
+    ):
+        if isinstance(message, ResultMessage) and message.structured_output:
+            # Validasi dan dapatkan hasil yang sepenuhnya diketik
+            plan = FeaturePlan.model_validate(message.structured_output)
+            print(f"Feature: {plan.feature_name}")
+            print(f"Summary: {plan.summary}")
+            for step in plan.steps:
+                print(f"{step.step_number}. [{step.estimated_complexity}] {step.description}")
+
+asyncio.run(main())
 ```
 
-**Manfaat Pydantic:**
-- Petunjuk tipe Python penuh
-- Validasi runtime dengan `model_validate()`
+</CodeGroup>
+
+**Manfaat:**
+- Inferensi tipe penuh (TypeScript) dan petunjuk tipe (Python)
+- Validasi runtime dengan `safeParse()` atau `model_validate()`
 - Pesan kesalahan yang lebih baik
-- Fungsionalitas data class
+- Skema yang dapat dikomposisi dan dapat digunakan kembali
 
-</Tab>
-</Tabs>
+## Konfigurasi format output
 
-## Cara kerja output terstruktur
+Opsi `outputFormat` (TypeScript) atau `output_format` (Python) menerima objek dengan:
 
-<Steps>
-  <Step title="Tentukan skema JSON Anda">
-    Buat JSON Schema yang mendeskripsikan struktur yang ingin dikembalikan oleh agen. Skema menggunakan format JSON Schema standar.
-  </Step>
-  <Step title="Tambahkan parameter outputFormat">
-    Sertakan parameter `outputFormat` dalam opsi query Anda dengan `type: "json_schema"` dan definisi skema Anda.
-  </Step>
-  <Step title="Jalankan query Anda">
-    Agen menggunakan tool apa pun yang diperlukan untuk menyelesaikan tugas (operasi file, perintah, pencarian web, dll.).
-  </Step>
-  <Step title="Akses output yang divalidasi">
-    Hasil akhir agen akan berupa JSON yang valid sesuai dengan skema Anda, tersedia di `message.structured_output`.
-  </Step>
-</Steps>
+- `type`: Atur ke `"json_schema"` untuk output terstruktur
+- `schema`: Objek [JSON Schema](https://json-schema.org/understanding-json-schema/about) yang menentukan struktur output Anda. Anda dapat menghasilkan ini dari skema Zod dengan `z.toJSONSchema()` atau model Pydantic dengan `.model_json_schema()`
 
-## Fitur JSON Schema yang didukung
+SDK mendukung fitur JSON Schema standar termasuk semua tipe dasar (object, array, string, number, boolean, null), `enum`, `const`, `required`, objek bersarang, dan definisi `$ref`. Untuk daftar lengkap fitur yang didukung dan batasan, lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations).
 
-Agent SDK mendukung fitur dan batasan JSON Schema yang sama seperti [API Structured Outputs](/docs/id/build-with-claude/structured-outputs#json-schema-limitations).
+## Contoh: agen pelacakan TODO
 
-Fitur utama yang didukung:
-- Semua tipe dasar: object, array, string, integer, number, boolean, null
-- `enum`, `const`, `required`, `additionalProperties` (harus `false`)
-- Format string: `date-time`, `date`, `email`, `uri`, `uuid`, dll.
-- `$ref`, `$def`, dan `definitions`
+Contoh ini menunjukkan bagaimana output terstruktur bekerja dengan penggunaan alat multi-langkah. Agen perlu menemukan komentar TODO dalam basis kode, kemudian mencari informasi git blame untuk masing-masing. Agen secara otonom memutuskan alat mana yang akan digunakan (Grep untuk mencari, Bash untuk menjalankan perintah git) dan menggabungkan hasil menjadi respons terstruktur tunggal.
 
-Untuk detail lengkap tentang fitur yang didukung, batasan, dan dukungan pola regex, lihat [JSON Schema limitations](/docs/id/build-with-claude/structured-outputs#json-schema-limitations) dalam dokumentasi API.
-
-## Contoh: Agen pelacakan TODO
-
-Berikut adalah contoh lengkap yang menunjukkan agen yang mencari TODO dalam kode dan mengekstrak informasi git blame:
+Skema mencakup bidang opsional (`author` dan `date`) karena informasi git blame mungkin tidak tersedia untuk semua file. Agen mengisi apa yang dapat ditemukannya dan menghilangkan sisanya.
 
 <CodeGroup>
 
 ```typescript TypeScript
 import { query } from '@anthropic-ai/claude-agent-sdk'
 
-// Define structure for TODO extraction
+// Tentukan struktur untuk ekstraksi TODO
 const todoSchema = {
   type: 'object',
   properties: {
@@ -259,9 +274,9 @@ const todoSchema = {
   required: ['todos', 'total_count']
 }
 
-// Agent uses Grep to find TODOs, Bash to get git blame info
+// Agen menggunakan Grep untuk menemukan TODO, Bash untuk mendapatkan informasi git blame
 for await (const message of query({
-  prompt: 'Find all TODO comments in src/ and identify who added them',
+  prompt: 'Find all TODO comments in this codebase and identify who added them',
   options: {
     outputFormat: {
       type: 'json_schema',
@@ -283,9 +298,10 @@ for await (const message of query({
 ```
 
 ```python Python
-from claude_agent_sdk import query
+import asyncio
+from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 
-# Define structure for TODO extraction
+# Tentukan struktur untuk ekstraksi TODO
 todo_schema = {
     "type": "object",
     "properties": {
@@ -308,57 +324,96 @@ todo_schema = {
     "required": ["todos", "total_count"]
 }
 
-# Agent uses Grep to find TODOs, Bash to get git blame info
-async for message in query(
-    prompt="Find all TODO comments in src/ and identify who added them",
-    options={
-        "output_format": {
-            "type": "json_schema",
-            "schema": todo_schema
-        }
-    }
-):
-    if hasattr(message, 'structured_output'):
-        data = message.structured_output
-        print(f"Found {data['total_count']} TODOs")
-        for todo in data['todos']:
-            print(f"{todo['file']}:{todo['line']} - {todo['text']}")
-            if 'author' in todo:
-                print(f"  Added by {todo['author']} on {todo['date']}")
+async def main():
+    # Agen menggunakan Grep untuk menemukan TODO, Bash untuk mendapatkan informasi git blame
+    async for message in query(
+        prompt="Find all TODO comments in this codebase and identify who added them",
+        options=ClaudeAgentOptions(
+            output_format={
+                "type": "json_schema",
+                "schema": todo_schema
+            }
+        )
+    ):
+        if isinstance(message, ResultMessage) and message.structured_output:
+            data = message.structured_output
+            print(f"Found {data['total_count']} TODOs")
+            for todo in data['todos']:
+                print(f"{todo['file']}:{todo['line']} - {todo['text']}")
+                if 'author' in todo:
+                    print(f"  Added by {todo['author']} on {todo['date']}")
+
+asyncio.run(main())
 ```
 
 </CodeGroup>
 
-Agen secara otonomi menggunakan tool yang tepat (Grep, Bash) untuk mengumpulkan informasi dan mengembalikan data yang divalidasi.
-
 ## Penanganan kesalahan
 
-Jika agen tidak dapat menghasilkan output yang valid sesuai dengan skema Anda, Anda akan menerima hasil kesalahan:
+Pembuatan output terstruktur dapat gagal ketika agen tidak dapat menghasilkan JSON yang valid sesuai dengan skema Anda. Ini biasanya terjadi ketika skema terlalu kompleks untuk tugas, tugas itu sendiri ambigu, atau agen mencapai batas percobaan ulangnya mencoba memperbaiki kesalahan validasi.
 
-```typescript
+Ketika kesalahan terjadi, pesan hasil memiliki `subtype` yang menunjukkan apa yang salah:
+
+| Subtype | Arti |
+|---------|---------|
+| `success` | Output dihasilkan dan divalidasi dengan berhasil |
+| `error_max_structured_output_retries` | Agen tidak dapat menghasilkan output yang valid setelah beberapa upaya |
+
+Contoh di bawah ini memeriksa bidang `subtype` untuk menentukan apakah output dihasilkan dengan berhasil atau jika Anda perlu menangani kegagalan:
+
+<CodeGroup>
+
+```typescript TypeScript
 for await (const msg of query({
-  prompt: 'Analyze the data',
+  prompt: 'Extract contact info from the document',
   options: {
     outputFormat: {
       type: 'json_schema',
-      schema: mySchema
+      schema: contactSchema
     }
   }
 })) {
   if (msg.type === 'result') {
     if (msg.subtype === 'success' && msg.structured_output) {
+      // Gunakan output yang divalidasi
       console.log(msg.structured_output)
     } else if (msg.subtype === 'error_max_structured_output_retries') {
+      // Tangani kegagalan - coba lagi dengan prompt yang lebih sederhana, kembali ke yang tidak terstruktur, dll.
       console.error('Could not produce valid output')
     }
   }
 }
 ```
 
+```python Python
+async for message in query(
+    prompt="Extract contact info from the document",
+    options=ClaudeAgentOptions(
+        output_format={
+            "type": "json_schema",
+            "schema": contact_schema
+        }
+    )
+):
+    if isinstance(message, ResultMessage):
+        if message.subtype == "success" and message.structured_output:
+            # Gunakan output yang divalidasi
+            print(message.structured_output)
+        elif message.subtype == "error_max_structured_output_retries":
+            # Tangani kegagalan
+            print("Could not produce valid output")
+```
+
+</CodeGroup>
+
+**Tips untuk menghindari kesalahan:**
+
+- **Jaga skema tetap fokus.** Skema yang bersarang dalam dengan banyak bidang yang diperlukan lebih sulit untuk dipenuhi. Mulai sederhana dan tambahkan kompleksitas sesuai kebutuhan.
+- **Cocokkan skema dengan tugas.** Jika tugas mungkin tidak memiliki semua informasi yang diperlukan skema Anda, buat bidang tersebut opsional.
+- **Gunakan prompt yang jelas.** Prompt yang ambigu membuat lebih sulit bagi agen untuk mengetahui output apa yang harus diproduksi.
+
 ## Sumber daya terkait
 
-- [JSON Schema documentation](https://json-schema.org/)
-- [API Structured Outputs](/docs/id/build-with-claude/structured-outputs) - Untuk panggilan API tunggal
-- [Custom tools](/docs/id/agent-sdk/custom-tools) - Tentukan tool untuk agen Anda
-- [TypeScript SDK reference](/docs/id/agent-sdk/typescript) - Referensi API TypeScript lengkap
-- [Python SDK reference](/docs/id/agent-sdk/python) - Referensi API Python lengkap
+- [Dokumentasi JSON Schema](https://json-schema.org/): pelajari sintaks JSON Schema untuk menentukan skema kompleks dengan objek bersarang, array, enum, dan batasan validasi
+- [API Structured Outputs](/docs/id/build-with-claude/structured-outputs): gunakan output terstruktur dengan Claude API secara langsung untuk permintaan satu putaran tanpa penggunaan alat
+- [Alat kustom](/docs/id/agent-sdk/custom-tools): berikan agen Anda alat kustom untuk dipanggil selama eksekusi sebelum mengembalikan output terstruktur

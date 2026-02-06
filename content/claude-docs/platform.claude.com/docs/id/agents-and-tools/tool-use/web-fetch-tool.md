@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: d2bd083c959c452427e07bacaf55727dc67edb95f451a83c46f33af7518b623d
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: f20564e26196e0e5280058d34277bb39adabe330c9cdd64040ef6ea691bd6480
 ---
 
 # Alat pengambilan web
@@ -20,11 +20,11 @@ Silakan gunakan [formulir ini](https://forms.gle/NhWcgmkcvPCMmPE86) untuk member
 </Note>
 
 <Warning>
-Mengaktifkan alat pengambilan web di lingkungan di mana Claude memproses input yang tidak dipercaya bersama dengan data sensitif menimbulkan risiko exfiltrasi data. Kami merekomendasikan hanya menggunakan alat ini di lingkungan terpercaya atau saat menangani data non-sensitif.
+Mengaktifkan alat pengambilan web di lingkungan di mana Claude memproses input yang tidak terpercaya bersama dengan data sensitif menimbulkan risiko eksfiltrasi data. Kami merekomendasikan hanya menggunakan alat ini di lingkungan terpercaya atau saat menangani data non-sensitif.
 
-Untuk meminimalkan risiko exfiltrasi, Claude tidak diizinkan untuk secara dinamis membuat URL. Claude hanya dapat mengambil URL yang telah secara eksplisit disediakan oleh pengguna atau yang berasal dari hasil pencarian web atau pengambilan web sebelumnya. Namun, masih ada risiko residual yang harus dipertimbangkan dengan hati-hati saat menggunakan alat ini.
+Untuk meminimalkan risiko eksfiltrasi, Claude tidak diizinkan untuk secara dinamis membuat URL. Claude hanya dapat mengambil URL yang telah secara eksplisit disediakan oleh pengguna atau yang berasal dari hasil pencarian web atau pengambilan web sebelumnya. Namun, masih ada risiko sisa yang harus dipertimbangkan dengan hati-hati saat menggunakan alat ini.
 
-Jika exfiltrasi data menjadi perhatian, pertimbangkan:
+Jika eksfiltrasi data menjadi perhatian, pertimbangkan:
 - Menonaktifkan alat pengambilan web sepenuhnya
 - Menggunakan parameter `max_uses` untuk membatasi jumlah permintaan
 - Menggunakan parameter `allowed_domains` untuk membatasi ke domain yang diketahui aman
@@ -34,14 +34,15 @@ Jika exfiltrasi data menjadi perhatian, pertimbangkan:
 
 Pengambilan web tersedia di:
 
+- Claude Opus 4.6 (`claude-opus-4-6`)
+- Claude Opus 4.5 (`claude-opus-4-5-20251101`)
+- Claude Opus 4.1 (`claude-opus-4-1-20250805`)
+- Claude Opus 4 (`claude-opus-4-20250514`)
 - Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Sonnet 4 (`claude-sonnet-4-20250514`)
 - Claude Sonnet 3.7 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-3-7-sonnet-20250219`)
 - Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
 - Claude Haiku 3.5 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-3-5-haiku-latest`)
-- Claude Opus 4.5 (`claude-opus-4-5-20251101`)
-- Claude Opus 4.1 (`claude-opus-4-1-20250805`)
-- Claude Opus 4 (`claude-opus-4-20250514`)
 
 ## Cara kerja pengambilan web
 
@@ -68,7 +69,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-beta: web-fetch-2025-09-10" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 1024,
         "messages": [
             {
@@ -90,7 +91,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[
         {
@@ -117,7 +118,7 @@ const anthropic = new Anthropic();
 
 async function main() {
   const response = await anthropic.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     max_tokens: 1024,
     messages: [
       {
@@ -151,26 +152,26 @@ Alat pengambilan web mendukung parameter berikut:
   "type": "web_fetch_20250910",
   "name": "web_fetch",
 
-  // Optional: Limit the number of fetches per request
+  // Opsional: Batasi jumlah pengambilan per permintaan
   "max_uses": 10,
 
-  // Optional: Only fetch from these domains
+  // Opsional: Hanya ambil dari domain ini
   "allowed_domains": ["example.com", "docs.example.com"],
 
-  // Optional: Never fetch from these domains
+  // Opsional: Jangan pernah ambil dari domain ini
   "blocked_domains": ["private.example.com"],
 
-  // Optional: Enable citations for fetched content
+  // Opsional: Aktifkan kutipan untuk konten yang diambil
   "citations": {
     "enabled": true
   },
 
-  // Optional: Maximum content length in tokens
+  // Opsional: Panjang konten maksimum dalam token
   "max_content_tokens": 100000
 }
 ```
 
-#### Penggunaan maksimal
+#### Penggunaan maksimum
 
 Parameter `max_uses` membatasi jumlah pengambilan web yang dilakukan. Jika Claude mencoba lebih banyak pengambilan daripada yang diizinkan, `web_fetch_tool_result` akan menjadi kesalahan dengan kode kesalahan `max_uses_exceeded`. Saat ini tidak ada batas default.
 
@@ -217,12 +218,12 @@ Berikut adalah contoh struktur respons:
 {
   "role": "assistant",
   "content": [
-    // 1. Claude's decision to fetch
+    // 1. Keputusan Claude untuk mengambil
     {
       "type": "text",
       "text": "I'll fetch the content from the article to analyze it."
     },
-    // 2. The fetch request
+    // 2. Permintaan pengambilan
     {
       "type": "server_tool_use",
       "id": "srvtoolu_01234567890abcdef",
@@ -231,7 +232,7 @@ Berikut adalah contoh struktur respons:
         "url": "https://example.com/article"
       }
     },
-    // 3. Fetch results
+    // 3. Hasil pengambilan
     {
       "type": "web_fetch_tool_result",
       "tool_use_id": "srvtoolu_01234567890abcdef",
@@ -251,7 +252,7 @@ Berikut adalah contoh struktur respons:
         "retrieved_at": "2025-08-25T10:30:00Z"
       }
     },
-    // 4. Claude's analysis with citations (if enabled)
+    // 4. Analisis Claude dengan kutipan (jika diaktifkan)
     {
       "text": "Based on the article, ",
       "type": "text"
@@ -364,7 +365,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=4096,
     messages=[
         {
@@ -406,7 +407,7 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-# First request with web fetch
+# Permintaan pertama dengan pengambilan web
 messages = [
     {
         "role": "user",
@@ -415,7 +416,7 @@ messages = [
 ]
 
 response1 = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=messages,
     tools=[{
@@ -427,13 +428,13 @@ response1 = client.messages.create(
     }
 )
 
-# Add Claude's response to conversation
+# Tambahkan respons Claude ke percakapan
 messages.append({
     "role": "assistant",
     "content": response1.content
 })
 
-# Second request with cache breakpoint
+# Permintaan kedua dengan titik henti cache
 messages.append({
     "role": "user",
     "content": "What methodology does the paper use?",
@@ -441,7 +442,7 @@ messages.append({
 })
 
 response2 = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=messages,
     tools=[{
@@ -453,7 +454,7 @@ response2 = client.messages.create(
     }
 )
 
-# The second response benefits from cached fetch results
+# Respons kedua mendapat manfaat dari hasil pengambilan yang disimpan dalam cache
 print(f"Cache read tokens: {response2.usage.get('cache_read_input_tokens', 0)}")
 ```
 
@@ -468,27 +469,27 @@ data: {"type": "message_start", "message": {"id": "msg_abc123", "type": "message
 event: content_block_start
 data: {"type": "content_block_start", "index": 0, "content_block": {"type": "text", "text": ""}}
 
-// Claude's decision to fetch
+// Keputusan Claude untuk mengambil
 
 event: content_block_start
 data: {"type": "content_block_start", "index": 1, "content_block": {"type": "server_tool_use", "id": "srvtoolu_xyz789", "name": "web_fetch"}}
 
-// Fetch URL streamed
+// URL pengambilan dialirkan
 event: content_block_delta
 data: {"type": "content_block_delta", "index": 1, "delta": {"type": "input_json_delta", "partial_json": "{\"url\":\"https://example.com/article\"}"}}
 
-// Pause while fetch executes
+// Jeda saat pengambilan dieksekusi
 
-// Fetch results streamed
+// Hasil pengambilan dialirkan
 event: content_block_start
 data: {"type": "content_block_start", "index": 2, "content_block": {"type": "web_fetch_tool_result", "tool_use_id": "srvtoolu_xyz789", "content": {"type": "web_fetch_result", "url": "https://example.com/article", "content": {"type": "document", "source": {"type": "text", "media_type": "text/plain", "data": "Article content..."}}}}}
 
-// Claude's response continues...
+// Respons Claude berlanjut...
 ```
 
 ## Permintaan batch
 
-Anda dapat menyertakan alat pengambilan web dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat pengambilan web melalui Messages Batches API memiliki harga yang sama dengan permintaan Messages API reguler.
+Anda dapat menyertakan alat pengambilan web dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat pengambilan web melalui Messages Batches API dihargai sama dengan yang ada dalam permintaan Messages API biasa.
 
 ## Penggunaan dan harga
 

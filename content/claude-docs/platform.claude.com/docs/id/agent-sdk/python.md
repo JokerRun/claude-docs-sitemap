@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/python
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 1dddb198cec12b31b1ddfc250d73a4d1785745161408d347825c7fc4c0b166c7
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 82fbe2118b819b899695b74a286bacc07b8899bcaea572a573eb05354c0744b1
 ---
 
 # Referensi Agent SDK - Python
@@ -26,7 +26,7 @@ Python SDK menyediakan dua cara untuk berinteraksi dengan Claude Code:
 | Fitur               | `query()`                     | `ClaudeSDKClient`                  |
 | :------------------ | :---------------------------- | :--------------------------------- |
 | **Sesi**            | Membuat sesi baru setiap kali | Menggunakan kembali sesi yang sama |
-| **Percakapan**      | Pertukaran tunggal             | Pertukaran berganda dalam konteks yang sama |
+| **Percakapan**      | Pertukaran tunggal             | Pertukaran ganda dalam konteks yang sama |
 | **Koneksi**         | Dikelola secara otomatis       | Kontrol manual                     |
 | **Input Streaming** | ✅ Didukung                   | ✅ Didukung                       |
 | **Interupsi**       | ❌ Tidak didukung              | ✅ Didukung                       |
@@ -49,7 +49,7 @@ Python SDK menyediakan dua cara untuk berinteraksi dengan Claude Code:
 **Terbaik untuk:**
 
 - **Melanjutkan percakapan** - Ketika Anda memerlukan Claude untuk mengingat konteks
-- **Pertanyaan lanjutan** - Membangun berdasarkan respons sebelumnya
+- **Pertanyaan lanjutan** - Membangun di atas respons sebelumnya
 - **Aplikasi interaktif** - Antarmuka obrolan, REPL
 - **Logika berbasis respons** - Ketika tindakan berikutnya bergantung pada respons Claude
 - **Kontrol sesi** - Mengelola siklus hidup percakapan secara eksplisit
@@ -119,7 +119,7 @@ def tool(
 
 | Parameter      | Tipe                     | Deskripsi                                             |
 | :------------- | :----------------------- | :------------------------------------------------------ |
-| `name`         | `str`                    | Pengidentifikasi unik untuk alat                          |
+| `name`         | `str`                    | Pengenal unik untuk alat                          |
 | `description`  | `str`                    | Deskripsi yang dapat dibaca manusia tentang apa yang dilakukan alat        |
 | `input_schema` | `type \| dict[str, Any]` | Skema yang mendefinisikan parameter input alat (lihat di bawah) |
 
@@ -179,7 +179,7 @@ def create_sdk_mcp_server(
 
 | Parameter | Tipe                            | Default   | Deskripsi                                           |
 | :-------- | :------------------------------ | :-------- | :---------------------------------------------------- |
-| `name`    | `str`                           | -         | Pengidentifikasi unik untuk server                      |
+| `name`    | `str`                           | -         | Pengenal unik untuk server                      |
 | `version` | `str`                           | `"1.0.0"` | String versi server                                 |
 | `tools`   | `list[SdkMcpTool[Any]] \| None` | `None`    | Daftar fungsi alat yang dibuat dengan dekorator `@tool` |
 
@@ -227,12 +227,12 @@ options = ClaudeAgentOptions(
 
 ### `ClaudeSDKClient`
 
-**Mempertahankan sesi percakapan di seluruh pertukaran berganda.** Ini adalah setara Python dari cara fungsi `query()` SDK TypeScript bekerja secara internal - ini membuat objek klien yang dapat melanjutkan percakapan.
+**Mempertahankan sesi percakapan di seluruh pertukaran ganda.** Ini adalah setara Python dari cara fungsi `query()` SDK TypeScript bekerja secara internal - ia membuat objek klien yang dapat melanjutkan percakapan.
 
 #### Fitur Utama
 
-- **Kontinuitas Sesi**: Mempertahankan konteks percakapan di seluruh panggilan `query()` berganda
-- **Percakapan Sama**: Claude mengingat pesan sebelumnya dalam sesi
+- **Kontinuitas Sesi**: Mempertahankan konteks percakapan di seluruh panggilan `query()` ganda
+- **Percakapan yang Sama**: Claude mengingat pesan sebelumnya dalam sesi
 - **Dukungan Interupsi**: Dapat menghentikan Claude di tengah eksekusi
 - **Siklus Hidup Eksplisit**: Anda mengontrol kapan sesi dimulai dan berakhir
 - **Alur Berbasis Respons**: Dapat bereaksi terhadap respons dan mengirim tindak lanjut
@@ -259,7 +259,7 @@ class ClaudeSDKClient:
 | `query(prompt, session_id)` | Kirim permintaan baru dalam mode streaming                                |
 | `receive_messages()`        | Terima semua pesan dari Claude sebagai iterator async               |
 | `receive_response()`        | Terima pesan hingga dan termasuk ResultMessage                |
-| `interrupt()`               | Kirim sinyal interupsi (hanya berfungsi dalam mode streaming)                |
+| `interrupt()`               | Kirim sinyal interupsi (hanya bekerja dalam mode streaming)                |
 | `rewind_files(user_message_uuid)` | Pulihkan file ke keadaan mereka pada pesan pengguna yang ditentukan. Memerlukan `enable_file_checkpointing=True`. Lihat [File checkpointing](/docs/id/agent-sdk/file-checkpointing) |
 | `disconnect()`              | Putuskan sambungan dari Claude                                              |
 
@@ -274,7 +274,7 @@ async with ClaudeSDKClient() as client:
         print(message)
 ```
 
-> **Penting:** Saat mengulangi pesan, hindari menggunakan `break` untuk keluar lebih awal karena ini dapat menyebabkan masalah pembersihan asyncio. Sebaliknya, biarkan iterasi selesai secara alami atau gunakan flag untuk melacak kapan Anda menemukan apa yang Anda butuhkan.
+> **Penting:** Saat mengulangi pesan, hindari menggunakan `break` untuk keluar lebih awal karena ini dapat menyebabkan masalah pembersihan asyncio. Sebaliknya, biarkan iterasi selesai secara alami atau gunakan flag untuk melacak kapan Anda telah menemukan apa yang Anda butuhkan.
 
 #### Contoh - Melanjutkan percakapan
 
@@ -382,42 +382,38 @@ async def interruptible_task():
 asyncio.run(interruptible_task())
 ```
 
-#### Contoh - Kontrol izin tingkat lanjut
+#### Contoh - Kontrol izin lanjutan
 
 ```python
 from claude_agent_sdk import (
     ClaudeSDKClient,
     ClaudeAgentOptions
 )
+from claude_agent_sdk.types import PermissionResultAllow, PermissionResultDeny
 
 async def custom_permission_handler(
     tool_name: str,
     input_data: dict,
     context: dict
-):
+) -> PermissionResultAllow | PermissionResultDeny:
     """Custom logic for tool permissions."""
 
     # Block writes to system directories
     if tool_name == "Write" and input_data.get("file_path", "").startswith("/system/"):
-        return {
-            "behavior": "deny",
-            "message": "System directory write not allowed",
-            "interrupt": True
-        }
+        return PermissionResultDeny(
+            message="System directory write not allowed",
+            interrupt=True
+        )
 
     # Redirect sensitive file operations
     if tool_name in ["Write", "Edit"] and "config" in input_data.get("file_path", ""):
         safe_path = f"./sandbox/{input_data['file_path']}"
-        return {
-            "behavior": "allow",
-            "updatedInput": {**input_data, "file_path": safe_path}
-        }
+        return PermissionResultAllow(
+            updated_input={**input_data, "file_path": safe_path}
+        )
 
     # Allow everything else
-    return {
-        "behavior": "allow",
-        "updatedInput": input_data
-    }
+    return PermissionResultAllow(updated_input=input_data)
 
 async def main():
     options = ClaudeAgentOptions(
@@ -452,7 +448,7 @@ class SdkMcpTool(Generic[T]):
 
 | Properti       | Tipe                                       | Deskripsi                                |
 | :------------- | :----------------------------------------- | :----------------------------------------- |
-| `name`         | `str`                                      | Pengidentifikasi unik untuk alat             |
+| `name`         | `str`                                      | Pengenal unik untuk alat             |
 | `description`  | `str`                                      | Deskripsi yang dapat dibaca manusia                 |
 | `input_schema` | `type[T] \| dict[str, Any]`                | Skema untuk validasi input                |
 | `handler`      | `Callable[[T], Awaitable[dict[str, Any]]]` | Fungsi async yang menangani eksekusi alat |
@@ -464,6 +460,7 @@ Dataclass konfigurasi untuk kueri Claude Code.
 ```python
 @dataclass
 class ClaudeAgentOptions:
+    tools: list[str] | ToolsPreset | None = None
     allowed_tools: list[str] = field(default_factory=list)
     system_prompt: str | SystemPromptPreset | None = None
     mcp_servers: dict[str, McpServerConfig] | str | Path = field(default_factory=dict)
@@ -471,11 +468,15 @@ class ClaudeAgentOptions:
     continue_conversation: bool = False
     resume: str | None = None
     max_turns: int | None = None
+    max_budget_usd: float | None = None
     disallowed_tools: list[str] = field(default_factory=list)
     model: str | None = None
+    fallback_model: str | None = None
+    betas: list[SdkBeta] = field(default_factory=list)
     output_format: OutputFormat | None = None
     permission_prompt_tool_name: str | None = None
     cwd: str | Path | None = None
+    cli_path: str | Path | None = None
     settings: str | None = None
     add_dirs: list[str | Path] = field(default_factory=list)
     env: dict[str, str] = field(default_factory=dict)
@@ -490,39 +491,46 @@ class ClaudeAgentOptions:
     fork_session: bool = False
     agents: dict[str, AgentDefinition] | None = None
     setting_sources: list[SettingSource] | None = None
+    max_thinking_tokens: int | None = None
 ```
 
 | Properti                      | Tipe                                         | Default              | Deskripsi                                                                                                                                                                             |
 | :---------------------------- | :------------------------------------------- | :------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tools`                       | `list[str] \| ToolsPreset \| None`           | `None`               | Konfigurasi alat. Gunakan `{"type": "preset", "preset": "claude_code"}` untuk alat default Claude Code                                                                                  |
 | `allowed_tools`               | `list[str]`                                  | `[]`                 | Daftar nama alat yang diizinkan                                                                                                                                                              |
 | `system_prompt`               | `str \| SystemPromptPreset \| None`          | `None`               | Konfigurasi prompt sistem. Lewatkan string untuk prompt kustom, atau gunakan `{"type": "preset", "preset": "claude_code"}` untuk prompt sistem Claude Code. Tambahkan `"append"` untuk memperluas preset |
 | `mcp_servers`                 | `dict[str, McpServerConfig] \| str \| Path`  | `{}`                 | Konfigurasi server MCP atau jalur ke file konfigurasi                                                                                                                                        |
 | `permission_mode`             | `PermissionMode \| None`                     | `None`               | Mode izin untuk penggunaan alat                                                                                                                                                          |
-| `continue_conversation`       | `bool`                                       | `False`              | Lanjutkan percakapan paling baru                                                                                                                                                                   |
+| `continue_conversation`       | `bool`                                       | `False`              | Lanjutkan percakapan terbaru                                                                                                                                                                   |
 | `resume`                      | `str \| None`                                | `None`               | ID sesi untuk dilanjutkan                                                                                                                                                                    |
-| `max_turns`                   | `int \| None`                                | `None`               | Putaran percakapan maksimum                                                                                                                                                              |
+| `max_turns`                   | `int \| None`                                | `None`               | Jumlah maksimal putaran percakapan                                                                                                                                                              |
+| `max_budget_usd`              | `float \| None`                              | `None`               | Anggaran maksimal dalam USD untuk sesi                                                                                                                                                   |
 | `disallowed_tools`            | `list[str]`                                  | `[]`                 | Daftar nama alat yang tidak diizinkan                                                                                                                                                           |
 | `enable_file_checkpointing`   | `bool`                                       | `False`              | Aktifkan pelacakan perubahan file untuk rewinding. Lihat [File checkpointing](/docs/id/agent-sdk/file-checkpointing)                                                                              |
 | `model`                       | `str \| None`                                | `None`               | Model Claude yang akan digunakan                                                                                                                                                                                     |
+| `fallback_model`              | `str \| None`                                | `None`               | Model fallback yang digunakan jika model utama gagal                                                                                                                                        |
+| `betas`                       | `list[SdkBeta]`                              | `[]`                 | Fitur beta yang akan diaktifkan. Lihat [`SdkBeta`](#sdkbeta) untuk opsi yang tersedia                                                                                                                |
 | `output_format`               | [`OutputFormat`](#outputformat) ` \| None`   | `None`               | Tentukan format output untuk hasil agen. Lihat [Structured outputs](/docs/id/agent-sdk/structured-outputs) untuk detail                                                                    |
 | `permission_prompt_tool_name` | `str \| None`                                | `None`               | Nama alat MCP untuk prompt izin                                                                                                                                                    |
 | `cwd`                         | `str \| Path \| None`                        | `None`               | Direktori kerja saat ini                                                                                                                                                               |
+| `cli_path`                    | `str \| Path \| None`                        | `None`               | Jalur kustom ke executable CLI Claude Code                                                                                                                                           |
 | `settings`                    | `str \| None`                                | `None`               | Jalur ke file pengaturan                                                                                                                                                                   |
 | `add_dirs`                    | `list[str \| Path]`                          | `[]`                 | Direktori tambahan yang dapat diakses Claude                                                                                                                                                |
 | `env`                         | `dict[str, str]`                             | `{}`                 | Variabel lingkungan                                                                                                                                                                   |
 | `extra_args`                  | `dict[str, str \| None]`                     | `{}`                 | Argumen CLI tambahan untuk diteruskan langsung ke CLI                                                                                                                                    |
-| `max_buffer_size`             | `int \| None`                                | `None`               | Byte maksimum saat membuffer stdout CLI                                                                                                                                                 |
+| `max_buffer_size`             | `int \| None`                                | `None`               | Byte maksimal saat membuffer stdout CLI                                                                                                                                                 |
 | `debug_stderr`                | `Any`                                        | `sys.stderr`         | _Deprecated_ - Objek seperti file untuk output debug. Gunakan callback `stderr` sebagai gantinya                                                                                                         |
 | `stderr`                      | `Callable[[str], None] \| None`              | `None`               | Fungsi callback untuk output stderr dari CLI                                                                                                                                            |
-| `can_use_tool`                | `CanUseTool \| None`                         | `None`               | Fungsi callback izin alat                                                                                                                                                       |
+| `can_use_tool`                | [`CanUseTool`](#canusertool) ` \| None`      | `None`               | Fungsi callback izin alat. Lihat [Permission types](#canusertool) untuk detail                                                                                                     |
 | `hooks`                       | `dict[HookEvent, list[HookMatcher]] \| None` | `None`               | Konfigurasi hook untuk mengintersepsi acara                                                                                                                                             |
-| `user`                        | `str \| None`                                | `None`               | Pengidentifikasi pengguna                                                                                                                                                                                         |
-| `include_partial_messages`    | `bool`                                       | `False`              | Sertakan acara streaming pesan parsial                                                                                                                                                |
+| `user`                        | `str \| None`                                | `None`               | Pengenal pengguna                                                                                                                                                                         |
+| `include_partial_messages`    | `bool`                                       | `False`              | Sertakan acara streaming pesan parsial. Ketika diaktifkan, pesan [`StreamEvent`](#streamevent) dihasilkan                                                                              |
 | `fork_session`                | `bool`                                       | `False`              | Saat melanjutkan dengan `resume`, fork ke ID sesi baru alih-alih melanjutkan sesi asli                                                                                        |
-| `agents`                      | `dict[str, AgentDefinition] \| None`         | `None`               | Subagen yang didefinisikan secara terprogram                                                                                                                                                      |
+| `agents`                      | `dict[str, AgentDefinition] \| None`         | `None`               | Subagen yang didefinisikan secara terprogram                                                                                                                                      |
 | `plugins`                     | `list[SdkPluginConfig]`                      | `[]`                 | Muat plugin kustom dari jalur lokal. Lihat [Plugins](/docs/id/agent-sdk/plugins) untuk detail                                                                                             |
 | `sandbox`                     | [`SandboxSettings`](#sandboxsettings) ` \| None` | `None`              | Konfigurasi perilaku sandbox secara terprogram. Lihat [Sandbox settings](#sandboxsettings) untuk detail                                                        |
-| `setting_sources`             | `list[SettingSource] \| None`                | `None` (no settings) | Kontrol pengaturan filesystem mana yang akan dimuat. Saat dihilangkan, tidak ada pengaturan yang dimuat. **Catatan:** Harus menyertakan `"project"` untuk memuat file CLAUDE.md                                             |
+| `setting_sources`             | `list[SettingSource] \| None`                | `None` (no settings) | Kontrol pengaturan filesystem mana yang akan dimuat. Ketika dihilangkan, tidak ada pengaturan yang dimuat. **Catatan:** Harus menyertakan `"project"` untuk memuat file CLAUDE.md                                             |
+| `max_thinking_tokens`         | `int \| None`                                | `None`               | Token maksimal untuk blok pemikiran                                                                                                                                                      |
 
 ### `OutputFormat`
 
@@ -534,14 +542,14 @@ class OutputFormat(TypedDict):
     schema: dict[str, Any]
 ```
 
-| Bidang   | Diperlukan | Deskripsi                                    |
+| Field    | Required | Deskripsi                                    |
 | :------- | :------- | :--------------------------------------------- |
-| `type`   | Ya      | Harus `"json_schema"` untuk validasi JSON Schema |
-| `schema` | Ya      | Definisi JSON Schema untuk validasi output   |
+| `type`   | Yes      | Harus `"json_schema"` untuk validasi JSON Schema |
+| `schema` | Yes      | Definisi JSON Schema untuk validasi output   |
 
 ### `SystemPromptPreset`
 
-Konfigurasi untuk menggunakan prompt sistem preset Claude Code dengan penambahan opsional.
+Konfigurasi untuk menggunakan preset prompt sistem Claude Code dengan penambahan opsional.
 
 ```python
 class SystemPromptPreset(TypedDict):
@@ -550,11 +558,11 @@ class SystemPromptPreset(TypedDict):
     append: NotRequired[str]
 ```
 
-| Bidang   | Diperlukan | Deskripsi                                                   |
+| Field    | Required | Deskripsi                                                   |
 | :------- | :------- | :------------------------------------------------------------ |
-| `type`   | Ya      | Harus `"preset"` untuk menggunakan prompt sistem preset              |
-| `preset` | Ya      | Harus `"claude_code"` untuk menggunakan prompt sistem Claude Code    |
-| `append` | Tidak       | Instruksi tambahan untuk ditambahkan ke prompt sistem preset |
+| `type`   | Yes      | Harus `"preset"` untuk menggunakan preset prompt sistem              |
+| `preset` | Yes      | Harus `"claude_code"` untuk menggunakan prompt sistem Claude Code    |
+| `append` | No       | Instruksi tambahan untuk ditambahkan ke preset prompt sistem |
 
 ### `SettingSource`
 
@@ -564,10 +572,10 @@ Mengontrol sumber konfigurasi berbasis filesystem mana yang dimuat pengaturan SD
 SettingSource = Literal["user", "project", "local"]
 ```
 
-| Nilai       | Deskripsi                                  | Lokasi                      |
+| Value       | Deskripsi                                  | Lokasi                      |
 | :---------- | :------------------------------------------- | :---------------------------- |
 | `"user"`    | Pengaturan pengguna global                         | `~/.claude/settings.json`     |
-| `"project"` | Pengaturan proyek bersama (dikontrol versi) | `.claude/settings.json`       |
+| `"project"` | Pengaturan proyek bersama (version controlled) | `.claude/settings.json`       |
 | `"local"`   | Pengaturan proyek lokal (gitignored)          | `.claude/settings.local.json` |
 
 #### Perilaku default
@@ -576,7 +584,7 @@ Ketika `setting_sources` **dihilangkan** atau **`None`**, SDK **tidak** memuat p
 
 #### Mengapa menggunakan setting_sources?
 
-**Muat semua pengaturan filesystem (perilaku warisan):**
+**Muat semua pengaturan filesystem (perilaku legacy):**
 
 ```python
 # Load all settings like SDK v0.0.x did
@@ -618,7 +626,7 @@ async for message in query(
     print(message)
 ```
 
-**Aplikasi hanya SDK:**
+**Aplikasi SDK saja:**
 
 ```python
 # Define everything programmatically (default behavior)
@@ -661,7 +669,7 @@ Ketika beberapa sumber dimuat, pengaturan digabungkan dengan preseden ini (terti
 2. Pengaturan proyek (`.claude/settings.json`)
 3. Pengaturan pengguna (`~/.claude/settings.json`)
 
-Opsi terprogram (seperti `agents`, `allowed_tools`) selalu mengganti pengaturan filesystem.
+Opsi terprogram (seperti `agents`, `allowed_tools`) selalu menimpa pengaturan filesystem.
 
 ### `AgentDefinition`
 
@@ -676,12 +684,12 @@ class AgentDefinition:
     model: Literal["sonnet", "opus", "haiku", "inherit"] | None = None
 ```
 
-| Bidang         | Diperlukan | Deskripsi                                                    |
+| Field         | Required | Deskripsi                                                    |
 | :------------ | :------- | :------------------------------------------------------------- |
-| `description` | Ya      | Deskripsi bahasa alami tentang kapan menggunakan agen ini         |
-| `tools`       | Tidak       | Array nama alat yang diizinkan. Jika dihilangkan, mewarisi semua alat    |
-| `prompt`      | Ya      | Prompt sistem agen                                      |
-| `model`       | Tidak       | Penggantian model untuk agen ini. Jika dihilangkan, menggunakan model utama |
+| `description` | Yes      | Deskripsi bahasa alami tentang kapan menggunakan agen ini         |
+| `tools`       | No       | Array nama alat yang diizinkan. Jika dihilangkan, mewarisi semua alat    |
+| `prompt`      | Yes      | Prompt sistem agen                                      |
+| `model`       | No       | Penggantian model untuk agen ini. Jika dihilangkan, menggunakan model utama |
 
 ### `PermissionMode`
 
@@ -695,6 +703,125 @@ PermissionMode = Literal[
     "bypassPermissions"  # Bypass all permission checks (use with caution)
 ]
 ```
+
+### `CanUseTool`
+
+Alias tipe untuk fungsi callback izin alat.
+
+```python
+CanUseTool = Callable[
+    [str, dict[str, Any], ToolPermissionContext],
+    Awaitable[PermissionResult]
+]
+```
+
+Callback menerima:
+- `tool_name`: Nama alat yang sedang dipanggil
+- `input_data`: Parameter input alat
+- `context`: `ToolPermissionContext` dengan informasi tambahan
+
+Mengembalikan `PermissionResult` (baik `PermissionResultAllow` atau `PermissionResultDeny`).
+
+### `ToolPermissionContext`
+
+Informasi konteks yang diteruskan ke callback izin alat.
+
+```python
+@dataclass
+class ToolPermissionContext:
+    signal: Any | None = None  # Future: abort signal support
+    suggestions: list[PermissionUpdate] = field(default_factory=list)
+```
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `signal` | `Any \| None` | Dicadangkan untuk dukungan sinyal pembatalan di masa depan |
+| `suggestions` | `list[PermissionUpdate]` | Saran pembaruan izin dari CLI |
+
+### `PermissionResult`
+
+Tipe union untuk hasil callback izin.
+
+```python
+PermissionResult = PermissionResultAllow | PermissionResultDeny
+```
+
+### `PermissionResultAllow`
+
+Hasil yang menunjukkan panggilan alat harus diizinkan.
+
+```python
+@dataclass
+class PermissionResultAllow:
+    behavior: Literal["allow"] = "allow"
+    updated_input: dict[str, Any] | None = None
+    updated_permissions: list[PermissionUpdate] | None = None
+```
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `behavior` | `Literal["allow"]` | `"allow"` | Harus "allow" |
+| `updated_input` | `dict[str, Any] \| None` | `None` | Input yang dimodifikasi untuk digunakan sebagai pengganti asli |
+| `updated_permissions` | `list[PermissionUpdate] \| None` | `None` | Pembaruan izin untuk diterapkan |
+
+### `PermissionResultDeny`
+
+Hasil yang menunjukkan panggilan alat harus ditolak.
+
+```python
+@dataclass
+class PermissionResultDeny:
+    behavior: Literal["deny"] = "deny"
+    message: str = ""
+    interrupt: bool = False
+```
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `behavior` | `Literal["deny"]` | `"deny"` | Harus "deny" |
+| `message` | `str` | `""` | Pesan yang menjelaskan mengapa alat ditolak |
+| `interrupt` | `bool` | `False` | Apakah akan menghentikan eksekusi saat ini |
+
+### `PermissionUpdate`
+
+Konfigurasi untuk memperbarui izin secara terprogram.
+
+```python
+@dataclass
+class PermissionUpdate:
+    type: Literal[
+        "addRules",
+        "replaceRules",
+        "removeRules",
+        "setMode",
+        "addDirectories",
+        "removeDirectories",
+    ]
+    rules: list[PermissionRuleValue] | None = None
+    behavior: Literal["allow", "deny", "ask"] | None = None
+    mode: PermissionMode | None = None
+    directories: list[str] | None = None
+    destination: Literal["userSettings", "projectSettings", "localSettings", "session"] | None = None
+```
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `type` | `Literal[...]` | Jenis operasi pembaruan izin |
+| `rules` | `list[PermissionRuleValue] \| None` | Aturan untuk operasi tambah/ganti/hapus |
+| `behavior` | `Literal["allow", "deny", "ask"] \| None` | Perilaku untuk operasi berbasis aturan |
+| `mode` | `PermissionMode \| None` | Mode untuk operasi setMode |
+| `directories` | `list[str] \| None` | Direktori untuk operasi tambah/hapus direktori |
+| `destination` | `Literal[...] \| None` | Tempat menerapkan pembaruan izin |
+
+### `SdkBeta`
+
+Tipe literal untuk fitur beta SDK.
+
+```python
+SdkBeta = Literal["context-1m-2025-08-07"]
+```
+
+Gunakan dengan field `betas` di `ClaudeAgentOptions` untuk mengaktifkan fitur beta.
 
 ### `McpSdkServerConfig`
 
@@ -745,7 +872,7 @@ class McpHttpServerConfig(TypedDict):
 
 ### `SdkPluginConfig`
 
-Konfigurasi untuk memuat plugin dalam SDK.
+Konfigurasi untuk memuat plugin di SDK.
 
 ```python
 class SdkPluginConfig(TypedDict):
@@ -753,7 +880,7 @@ class SdkPluginConfig(TypedDict):
     path: str
 ```
 
-| Bidang | Tipe | Deskripsi |
+| Field | Type | Description |
 |:------|:-----|:------------|
 | `type` | `Literal["local"]` | Harus `"local"` (hanya plugin lokal yang didukung saat ini) |
 | `path` | `str` | Jalur absolut atau relatif ke direktori plugin |
@@ -775,7 +902,7 @@ Untuk informasi lengkap tentang membuat dan menggunakan plugin, lihat [Plugins](
 Tipe union dari semua pesan yang mungkin.
 
 ```python
-Message = UserMessage | AssistantMessage | SystemMessage | ResultMessage
+Message = UserMessage | AssistantMessage | SystemMessage | ResultMessage | StreamEvent
 ```
 
 ### `UserMessage`
@@ -826,13 +953,34 @@ class ResultMessage:
     total_cost_usd: float | None = None
     usage: dict[str, Any] | None = None
     result: str | None = None
+    structured_output: Any = None
 ```
 
-## Jenis Blok Konten
+### `StreamEvent`
+
+Acara aliran untuk pembaruan pesan parsial selama streaming. Hanya diterima ketika `include_partial_messages=True` di `ClaudeAgentOptions`.
+
+```python
+@dataclass
+class StreamEvent:
+    uuid: str
+    session_id: str
+    event: dict[str, Any]  # The raw Anthropic API stream event
+    parent_tool_use_id: str | None = None
+```
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `uuid` | `str` | Pengenal unik untuk acara ini |
+| `session_id` | `str` | Pengenal sesi |
+| `event` | `dict[str, Any]` | Data acara aliran API Anthropic mentah |
+| `parent_tool_use_id` | `str \| None` | ID penggunaan alat induk jika acara ini dari subagen |
+
+## Tipe Blok Konten
 
 ### `ContentBlock`
 
-Jenis union dari semua blok konten.
+Tipe union dari semua blok konten.
 
 ```python
 ContentBlock = TextBlock | ThinkingBlock | ToolUseBlock | ToolResultBlock
@@ -883,7 +1031,7 @@ class ToolResultBlock:
     is_error: bool | None = None
 ```
 
-## Jenis Kesalahan
+## Tipe Kesalahan
 
 ### `ClaudeSDKError`
 
@@ -896,7 +1044,7 @@ class ClaudeSDKError(Exception):
 
 ### `CLINotFoundError`
 
-Dimunculkan ketika Claude Code CLI tidak terinstal atau tidak ditemukan.
+Dimunculkan ketika Claude Code CLI tidak diinstal atau tidak ditemukan.
 
 ```python
 class CLINotFoundError(CLIConnectionError):
@@ -944,13 +1092,13 @@ class CLIJSONDecodeError(ClaudeSDKError):
         self.original_error = original_error
 ```
 
-## Jenis Hook
+## Tipe Hook
 
-Untuk panduan komprehensif tentang penggunaan hook dengan contoh dan pola umum, lihat [panduan Hook](/docs/id/agent-sdk/hooks).
+Untuk panduan komprehensif tentang menggunakan hook dengan contoh dan pola umum, lihat [panduan Hooks](/docs/id/agent-sdk/hooks).
 
 ### `HookEvent`
 
-Jenis peristiwa hook yang didukung. Perhatikan bahwa karena keterbatasan pengaturan, Python SDK tidak mendukung hook SessionStart, SessionEnd, dan Notification.
+Tipe acara hook yang didukung. Perhatikan bahwa karena keterbatasan pengaturan, Python SDK tidak mendukung hook SessionStart, SessionEnd, dan Notification.
 
 ```python
 HookEvent = Literal[
@@ -976,8 +1124,8 @@ HookCallback = Callable[
 
 Parameter:
 
-- `input_data`: Data input spesifik hook (lihat [panduan Hook](/docs/id/agent-sdk/hooks#input-data))
-- `tool_use_id`: Pengidentifikasi penggunaan alat opsional (untuk hook terkait alat)
+- `input_data`: Data input spesifik hook (lihat [panduan Hooks](/docs/id/agent-sdk/hooks#input-data))
+- `tool_use_id`: Pengenal penggunaan alat opsional (untuk hook terkait alat)
 - `context`: Konteks hook dengan informasi tambahan
 
 Mengembalikan kamus yang mungkin berisi:
@@ -998,7 +1146,7 @@ class HookContext:
 
 ### `HookMatcher`
 
-Konfigurasi untuk mencocokkan hook ke peristiwa atau alat tertentu.
+Konfigurasi untuk mencocokkan hook ke acara atau alat tertentu.
 
 ```python
 @dataclass
@@ -1008,9 +1156,187 @@ class HookMatcher:
     timeout: float | None = None        # Timeout in seconds for all hooks in this matcher (default: 60)
 ```
 
+### `HookInput`
+
+Tipe union dari semua tipe input hook. Tipe aktual tergantung pada field `hook_event_name`.
+
+```python
+HookInput = (
+    PreToolUseHookInput
+    | PostToolUseHookInput
+    | UserPromptSubmitHookInput
+    | StopHookInput
+    | SubagentStopHookInput
+    | PreCompactHookInput
+)
+```
+
+### `BaseHookInput`
+
+Field dasar yang ada di semua tipe input hook.
+
+```python
+class BaseHookInput(TypedDict):
+    session_id: str
+    transcript_path: str
+    cwd: str
+    permission_mode: NotRequired[str]
+```
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `session_id` | `str` | Pengenal sesi saat ini |
+| `transcript_path` | `str` | Jalur ke file transkrip sesi |
+| `cwd` | `str` | Direktori kerja saat ini |
+| `permission_mode` | `str` (opsional) | Mode izin saat ini |
+
+### `PreToolUseHookInput`
+
+Data input untuk acara hook `PreToolUse`.
+
+```python
+class PreToolUseHookInput(BaseHookInput):
+    hook_event_name: Literal["PreToolUse"]
+    tool_name: str
+    tool_input: dict[str, Any]
+```
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `hook_event_name` | `Literal["PreToolUse"]` | Selalu "PreToolUse" |
+| `tool_name` | `str` | Nama alat yang akan dieksekusi |
+| `tool_input` | `dict[str, Any]` | Parameter input untuk alat |
+
+### `PostToolUseHookInput`
+
+Data input untuk acara hook `PostToolUse`.
+
+```python
+class PostToolUseHookInput(BaseHookInput):
+    hook_event_name: Literal["PostToolUse"]
+    tool_name: str
+    tool_input: dict[str, Any]
+    tool_response: Any
+```
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `hook_event_name` | `Literal["PostToolUse"]` | Selalu "PostToolUse" |
+| `tool_name` | `str` | Nama alat yang dieksekusi |
+| `tool_input` | `dict[str, Any]` | Parameter input yang digunakan |
+| `tool_response` | `Any` | Respons dari eksekusi alat |
+
+### `UserPromptSubmitHookInput`
+
+Data input untuk acara hook `UserPromptSubmit`.
+
+```python
+class UserPromptSubmitHookInput(BaseHookInput):
+    hook_event_name: Literal["UserPromptSubmit"]
+    prompt: str
+```
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `hook_event_name` | `Literal["UserPromptSubmit"]` | Selalu "UserPromptSubmit" |
+| `prompt` | `str` | Prompt yang dikirimkan pengguna |
+
+### `StopHookInput`
+
+Data input untuk acara hook `Stop`.
+
+```python
+class StopHookInput(BaseHookInput):
+    hook_event_name: Literal["Stop"]
+    stop_hook_active: bool
+```
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `hook_event_name` | `Literal["Stop"]` | Selalu "Stop" |
+| `stop_hook_active` | `bool` | Apakah hook stop aktif |
+
+### `SubagentStopHookInput`
+
+Data input untuk acara hook `SubagentStop`.
+
+```python
+class SubagentStopHookInput(BaseHookInput):
+    hook_event_name: Literal["SubagentStop"]
+    stop_hook_active: bool
+```
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `hook_event_name` | `Literal["SubagentStop"]` | Selalu "SubagentStop" |
+| `stop_hook_active` | `bool` | Apakah hook stop aktif |
+
+### `PreCompactHookInput`
+
+Data input untuk acara hook `PreCompact`.
+
+```python
+class PreCompactHookInput(BaseHookInput):
+    hook_event_name: Literal["PreCompact"]
+    trigger: Literal["manual", "auto"]
+    custom_instructions: str | None
+```
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `hook_event_name` | `Literal["PreCompact"]` | Selalu "PreCompact" |
+| `trigger` | `Literal["manual", "auto"]` | Apa yang memicu pemadatan |
+| `custom_instructions` | `str \| None` | Instruksi khusus untuk pemadatan |
+
+### `HookJSONOutput`
+
+Tipe union untuk nilai pengembalian callback hook.
+
+```python
+HookJSONOutput = AsyncHookJSONOutput | SyncHookJSONOutput
+```
+
+#### `SyncHookJSONOutput`
+
+Output hook sinkron dengan field kontrol dan keputusan.
+
+```python
+class SyncHookJSONOutput(TypedDict):
+    # Control fields
+    continue_: NotRequired[bool]      # Whether to proceed (default: True)
+    suppressOutput: NotRequired[bool] # Hide stdout from transcript
+    stopReason: NotRequired[str]      # Message when continue is False
+
+    # Decision fields
+    decision: NotRequired[Literal["block"]]
+    systemMessage: NotRequired[str]   # Warning message for user
+    reason: NotRequired[str]          # Feedback for Claude
+
+    # Hook-specific output
+    hookSpecificOutput: NotRequired[dict[str, Any]]
+```
+
+<Note>
+Gunakan `continue_` (dengan garis bawah) dalam kode Python. Ini secara otomatis dikonversi ke `continue` ketika dikirim ke CLI.
+</Note>
+
+#### `AsyncHookJSONOutput`
+
+Output hook async yang menunda eksekusi hook.
+
+```python
+class AsyncHookJSONOutput(TypedDict):
+    async_: Literal[True]             # Set to True to defer execution
+    asyncTimeout: NotRequired[int]    # Timeout in milliseconds
+```
+
+<Note>
+Gunakan `async_` (dengan garis bawah) dalam kode Python. Ini secara otomatis dikonversi ke `async` ketika dikirim ke CLI.
+</Note>
+
 ### Contoh Penggunaan Hook
 
-Contoh ini mendaftarkan dua hook: satu yang memblokir perintah bash berbahaya seperti `rm -rf /`, dan yang lain yang mencatat semua penggunaan alat untuk audit. Hook keamanan hanya berjalan pada perintah Bash (melalui `matcher`), sementara hook logging berjalan pada semua alat.
+Contoh ini mendaftarkan dua hook: satu yang memblokir perintah bash berbahaya seperti `rm -rf /`, dan satu lagi yang mencatat semua penggunaan alat untuk audit. Hook keamanan hanya berjalan pada perintah Bash (melalui `matcher`), sementara hook logging berjalan pada semua alat.
 
 ```python
 from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher, HookContext
@@ -1062,7 +1388,7 @@ async for message in query(
     print(message)
 ```
 
-## Jenis Input/Output Alat
+## Tipe Input/Output Alat
 
 Dokumentasi skema input/output untuk semua alat Claude Code bawaan. Meskipun Python SDK tidak mengekspor ini sebagai tipe, mereka mewakili struktur input dan output alat dalam pesan.
 
@@ -1088,6 +1414,50 @@ Dokumentasi skema input/output untuk semua alat Claude Code bawaan. Meskipun Pyt
     "usage": dict | None,             # Token usage statistics
     "total_cost_usd": float | None,  # Total cost in USD
     "duration_ms": int | None         # Execution duration in milliseconds
+}
+```
+
+### AskUserQuestion
+
+**Nama alat:** `AskUserQuestion`
+
+Mengajukan pertanyaan klarifikasi kepada pengguna selama eksekusi. Lihat [Handle approvals and user input](/docs/id/agent-sdk/user-input#handle-clarifying-questions) untuk detail penggunaan.
+
+**Input:**
+
+```python
+{
+    "questions": [                    # Questions to ask the user (1-4 questions)
+        {
+            "question": str,          # The complete question to ask the user
+            "header": str,            # Very short label displayed as a chip/tag (max 12 chars)
+            "options": [              # The available choices (2-4 options)
+                {
+                    "label": str,         # Display text for this option (1-5 words)
+                    "description": str    # Explanation of what this option means
+                }
+            ],
+            "multiSelect": bool       # Set to true to allow multiple selections
+        }
+    ],
+    "answers": dict | None            # User answers populated by the permission system
+}
+```
+
+**Output:**
+
+```python
+{
+    "questions": [                    # The questions that were asked
+        {
+            "question": str,
+            "header": str,
+            "options": [{"label": str, "description": str}],
+            "multiSelect": bool
+        }
+    ],
+    "answers": dict[str, str]         # Maps question text to answer string
+                                      # Multi-select answers are comma-separated
 }
 ```
 
@@ -1156,7 +1526,7 @@ Dokumentasi skema input/output untuk semua alat Claude Code bawaan. Meskipun Pyt
 }
 ```
 
-**Output (File teks):**
+**Output (Text files):**
 
 ```python
 {
@@ -1166,7 +1536,7 @@ Dokumentasi skema input/output untuk semua alat Claude Code bawaan. Meskipun Pyt
 }
 ```
 
-**Output (Gambar):**
+**Output (Images):**
 
 ```python
 {
@@ -1245,7 +1615,7 @@ Dokumentasi skema input/output untuk semua alat Claude Code bawaan. Meskipun Pyt
 }
 ```
 
-**Output (mode konten):**
+**Output (content mode):**
 
 ```python
 {
@@ -1262,7 +1632,7 @@ Dokumentasi skema input/output untuk semua alat Claude Code bawaan. Meskipun Pyt
 }
 ```
 
-**Output (mode files_with_matches):**
+**Output (files_with_matches mode):**
 
 ```python
 {
@@ -1889,24 +2259,24 @@ class SandboxSettings(TypedDict, total=False):
     enableWeakerNestedSandbox: bool
 ```
 
-| Properti | Tipe | Default | Deskripsi |
+| Property | Type | Default | Description |
 | :------- | :--- | :------ | :---------- |
 | `enabled` | `bool` | `False` | Aktifkan mode sandbox untuk eksekusi perintah |
-| `autoAllowBashIfSandboxed` | `bool` | `False` | Persetujuan otomatis perintah bash ketika sandbox diaktifkan |
+| `autoAllowBashIfSandboxed` | `bool` | `False` | Persetujuan otomatis perintah bash saat sandbox diaktifkan |
 | `excludedCommands` | `list[str]` | `[]` | Perintah yang selalu melewati pembatasan sandbox (misalnya, `["docker"]`). Ini berjalan tanpa sandbox secara otomatis tanpa keterlibatan model |
 | `allowUnsandboxedCommands` | `bool` | `False` | Izinkan model untuk meminta menjalankan perintah di luar sandbox. Ketika `True`, model dapat mengatur `dangerouslyDisableSandbox` dalam input alat, yang kembali ke [sistem izin](#permissions-fallback-for-unsandboxed-commands) |
-| `network` | [`SandboxNetworkConfig`](#sandboxnetworkconfig) | `None` | Konfigurasi sandbox spesifik jaringan |
+| `network` | [`SandboxNetworkConfig`](#sandboxnetworkconfig) | `None` | Konfigurasi sandbox khusus jaringan |
 | `ignoreViolations` | [`SandboxIgnoreViolations`](#sandboxignoreviolations) | `None` | Konfigurasi pelanggaran sandbox mana yang akan diabaikan |
 | `enableWeakerNestedSandbox` | `bool` | `False` | Aktifkan sandbox bersarang yang lebih lemah untuk kompatibilitas |
 
 <Note>
-**Pembatasan akses filesystem dan jaringan** TIDAK dikonfigurasi melalui pengaturan sandbox. Sebaliknya, mereka berasal dari [aturan izin](https://code.claude.com/docs/en/settings#permission-settings):
+**Pembatasan akses sistem file dan jaringan** TIDAK dikonfigurasi melalui pengaturan sandbox. Sebaliknya, mereka berasal dari [aturan izin](https://code.claude.com/docs/id/settings#permission-settings):
 
-- **Pembatasan baca filesystem**: Aturan penolakan baca
-- **Pembatasan tulis filesystem**: Aturan izin/penolakan edit
+- **Pembatasan baca sistem file**: Aturan penolakan baca
+- **Pembatasan tulis sistem file**: Aturan izin/penolakan edit
 - **Pembatasan jaringan**: Aturan izin/penolakan WebFetch
 
-Gunakan pengaturan sandbox untuk sandboxing eksekusi perintah, dan aturan izin untuk kontrol akses filesystem dan jaringan.
+Gunakan pengaturan sandbox untuk sandboxing eksekusi perintah, dan aturan izin untuk kontrol akses sistem file dan jaringan.
 </Note>
 
 #### Contoh penggunaan
@@ -1917,10 +2287,8 @@ from claude_agent_sdk import query, ClaudeAgentOptions, SandboxSettings
 sandbox_settings: SandboxSettings = {
     "enabled": True,
     "autoAllowBashIfSandboxed": True,
-    "excludedCommands": ["docker"],
     "network": {
-        "allowLocalBinding": True,
-        "allowUnixSockets": ["/var/run/docker.sock"]
+        "allowLocalBinding": True
     }
 }
 
@@ -1931,9 +2299,13 @@ async for message in query(
     print(message)
 ```
 
+<Warning>
+**Keamanan Unix socket**: Opsi `allowUnixSockets` dapat memberikan akses ke layanan sistem yang kuat. Misalnya, mengizinkan `/var/run/docker.sock` secara efektif memberikan akses sistem host penuh melalui API Docker, melewati isolasi sandbox. Hanya izinkan Unix socket yang benar-benar diperlukan dan pahami implikasi keamanan dari masing-masing.
+</Warning>
+
 ### `SandboxNetworkConfig`
 
-Konfigurasi spesifik jaringan untuk mode sandbox.
+Konfigurasi khusus jaringan untuk mode sandbox.
 
 ```python
 class SandboxNetworkConfig(TypedDict, total=False):
@@ -1944,11 +2316,11 @@ class SandboxNetworkConfig(TypedDict, total=False):
     socksProxyPort: int
 ```
 
-| Properti | Tipe | Default | Deskripsi |
+| Property | Type | Default | Description |
 | :------- | :--- | :------ | :---------- |
 | `allowLocalBinding` | `bool` | `False` | Izinkan proses untuk mengikat ke port lokal (misalnya, untuk server dev) |
-| `allowUnixSockets` | `list[str]` | `[]` | Jalur soket Unix yang dapat diakses oleh proses (misalnya, soket Docker) |
-| `allowAllUnixSockets` | `bool` | `False` | Izinkan akses ke semua soket Unix |
+| `allowUnixSockets` | `list[str]` | `[]` | Jalur Unix socket yang dapat diakses proses (misalnya, Docker socket) |
+| `allowAllUnixSockets` | `bool` | `False` | Izinkan akses ke semua Unix socket |
 | `httpProxyPort` | `int` | `None` | Port proxy HTTP untuk permintaan jaringan |
 | `socksProxyPort` | `int` | `None` | Port proxy SOCKS untuk permintaan jaringan |
 
@@ -1962,19 +2334,19 @@ class SandboxIgnoreViolations(TypedDict, total=False):
     network: list[str]
 ```
 
-| Properti | Tipe | Default | Deskripsi |
+| Property | Type | Default | Description |
 | :------- | :--- | :------ | :---------- |
 | `file` | `list[str]` | `[]` | Pola jalur file untuk mengabaikan pelanggaran |
 | `network` | `list[str]` | `[]` | Pola jaringan untuk mengabaikan pelanggaran |
 
 ### Fallback Izin untuk Perintah Tanpa Sandbox
 
-Ketika `allowUnsandboxedCommands` diaktifkan, model dapat meminta untuk menjalankan perintah di luar sandbox dengan mengatur `dangerouslyDisableSandbox: True` dalam input alat. Permintaan ini kembali ke sistem izin yang ada, artinya handler `can_use_tool` Anda akan dipanggil, memungkinkan Anda menerapkan logika otorisasi kustom.
+Ketika `allowUnsandboxedCommands` diaktifkan, model dapat meminta untuk menjalankan perintah di luar sandbox dengan mengatur `dangerouslyDisableSandbox: True` dalam input alat. Permintaan ini kembali ke sistem izin yang ada, berarti handler `can_use_tool` Anda akan dipanggil, memungkinkan Anda menerapkan logika otorisasi kustom.
 
 <Note>
 **`excludedCommands` vs `allowUnsandboxedCommands`:**
 - `excludedCommands`: Daftar statis perintah yang selalu melewati sandbox secara otomatis (misalnya, `["docker"]`). Model tidak memiliki kontrol atas ini.
-- `allowUnsandboxedCommands`: Memungkinkan model memutuskan pada waktu runtime apakah akan meminta eksekusi tanpa sandbox dengan mengatur `dangerouslyDisableSandbox: True` dalam input alat.
+- `allowUnsandboxedCommands`: Memungkinkan model memutuskan saat runtime apakah akan meminta eksekusi tanpa sandbox dengan mengatur `dangerouslyDisableSandbox: True` dalam input alat.
 </Note>
 
 ```python
@@ -2008,17 +2380,19 @@ async def main():
 Pola ini memungkinkan Anda untuk:
 
 - **Audit permintaan model**: Catat ketika model meminta eksekusi tanpa sandbox
-- **Implementasi allowlist**: Hanya izinkan perintah tertentu untuk berjalan tanpa sandbox
+- **Implementasikan daftar izin**: Hanya izinkan perintah tertentu untuk berjalan tanpa sandbox
 - **Tambahkan alur persetujuan**: Memerlukan otorisasi eksplisit untuk operasi istimewa
 
 <Warning>
 Perintah yang berjalan dengan `dangerouslyDisableSandbox: True` memiliki akses sistem penuh. Pastikan handler `can_use_tool` Anda memvalidasi permintaan ini dengan hati-hati.
+
+Jika `permission_mode` diatur ke `bypassPermissions` dan `allow_unsandboxed_commands` diaktifkan, model dapat secara otonom menjalankan perintah di luar sandbox tanpa prompt persetujuan apa pun. Kombinasi ini secara efektif memungkinkan model untuk melarikan diri dari isolasi sandbox secara diam-diam.
 </Warning>
 
 ## Lihat juga
 
 - [Panduan Python SDK](/docs/id/agent-sdk/python) - Tutorial dan contoh
-- [Ikhtisar SDK](/docs/id/agent-sdk/overview) - Konsep SDK umum
-- [Referensi TypeScript SDK](/docs/id/agent-sdk/typescript) - Dokumentasi TypeScript SDK
-- [Referensi CLI](https://code.claude.com/docs/en/cli-reference) - Antarmuka baris perintah
-- [Alur kerja umum](https://code.claude.com/docs/en/common-workflows) - Panduan langkah demi langkah
+- [Ringkasan SDK](/docs/id/agent-sdk/overview) - Konsep SDK umum
+- [Referensi TypeScript SDK](/docs/id/agent-sdk/typescript) - Dokumentasi SDK TypeScript
+- [Referensi CLI](https://code.claude.com/docs/id/cli-reference) - Antarmuka baris perintah
+- [Alur kerja umum](https://code.claude.com/docs/id/common-workflows) - Panduan langkah demi langkah

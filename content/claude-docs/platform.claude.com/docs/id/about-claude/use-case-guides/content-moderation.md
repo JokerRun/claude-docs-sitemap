@@ -1,53 +1,53 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: a9d018a5fd2cc5576209cf56014f510e99b22dfb56367c82a26b74a9fbaa0061
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 871e47fe44d37ff56a52527b96990980a912e0580bd60b703c78bb98b147c290
 ---
 
 # Moderasi konten
 
-Moderasi konten adalah aspek penting dalam mempertahankan lingkungan yang aman, penuh hormat, dan produktif dalam aplikasi digital. Dalam panduan ini, kami akan membahas bagaimana Claude dapat digunakan untuk memoderasi konten dalam aplikasi digital Anda.
+Moderasi konten adalah aspek penting dalam mempertahankan lingkungan yang aman, hormat, dan produktif dalam aplikasi digital. Dalam panduan ini, kami akan membahas bagaimana Claude dapat digunakan untuk memoderasi konten dalam aplikasi digital Anda.
 
 ---
 
-> Kunjungi [cookbook moderasi konten](https://github.com/anthropics/anthropic-cookbook/blob/main/misc/building%5Fmoderation%5Ffilter.ipynb) kami untuk melihat contoh implementasi moderasi konten menggunakan Claude.
+> Kunjungi [buku resep moderasi konten](https://platform.claude.com/cookbook/misc-building-moderation-filter) kami untuk melihat contoh implementasi moderasi konten menggunakan Claude.
 
-<Tip>Panduan ini berfokus pada moderasi konten yang dibuat pengguna dalam aplikasi Anda. Jika Anda mencari panduan untuk memoderasi interaksi dengan Claude, silakan merujuk ke [panduan guardrails](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations) kami.</Tip>
+<Tip>Panduan ini berfokus pada moderasi konten yang dibuat pengguna dalam aplikasi Anda. Jika Anda mencari panduan tentang moderasi interaksi dengan Claude, silakan lihat [panduan guardrails](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations) kami.</Tip>
 
 ## Sebelum membangun dengan Claude
 
-### Putuskan apakah akan menggunakan Claude untuk moderasi konten
+### Tentukan apakah akan menggunakan Claude untuk moderasi konten
 
-Berikut adalah beberapa indikator kunci bahwa Anda harus menggunakan LLM seperti Claude daripada pendekatan ML tradisional atau berbasis aturan untuk moderasi konten:
+Berikut adalah beberapa indikator kunci bahwa Anda harus menggunakan LLM seperti Claude daripada pendekatan berbasis ML tradisional atau berbasis aturan untuk moderasi konten:
 
 <section title="Anda menginginkan implementasi yang hemat biaya dan cepat">
-Metode ML tradisional memerlukan sumber daya teknik yang signifikan, keahlian ML, dan biaya infrastruktur. Sistem moderasi manusia menimbulkan biaya yang lebih tinggi lagi. Dengan Claude, Anda dapat memiliki sistem moderasi yang canggih dan berjalan dalam waktu yang jauh lebih singkat dengan biaya yang jauh lebih murah.
+Metode ML tradisional memerlukan sumber daya teknik yang signifikan, keahlian ML, dan biaya infrastruktur. Sistem moderasi manusia menimbulkan biaya yang bahkan lebih tinggi. Dengan Claude, Anda dapat memiliki sistem moderasi yang canggih dan berjalan dalam sebagian kecil waktu dengan sebagian kecil harganya.
 </section>
 <section title="Anda menginginkan pemahaman semantik dan keputusan yang cepat">
-Pendekatan ML tradisional, seperti model bag-of-words atau pencocokan pola sederhana, sering kesulitan memahami nada, maksud, dan konteks konten. Sementara sistem moderasi manusia unggul dalam memahami makna semantik, mereka memerlukan waktu untuk konten ditinjau. Claude menjembatani kesenjangan dengan menggabungkan pemahaman semantik dengan kemampuan memberikan keputusan moderasi dengan cepat.
+Pendekatan ML tradisional, seperti model bag-of-words atau pencocokan pola sederhana, sering kali kesulitan memahami nada, niat, dan konteks konten. Sementara sistem moderasi manusia unggul dalam memahami makna semantik, mereka memerlukan waktu untuk konten ditinjau. Claude menjembatani kesenjangan dengan menggabungkan pemahaman semantik dengan kemampuan memberikan keputusan moderasi dengan cepat.
 </section>
 <section title="Anda memerlukan keputusan kebijakan yang konsisten">
-Dengan memanfaatkan kemampuan penalaran canggihnya, Claude dapat menginterpretasikan dan menerapkan pedoman moderasi yang kompleks secara seragam. Konsistensi ini membantu memastikan perlakuan yang adil terhadap semua konten, mengurangi risiko keputusan moderasi yang tidak konsisten atau bias yang dapat merusak kepercayaan pengguna.
+Dengan memanfaatkan kemampuan penalaran canggihnya, Claude dapat menginterpretasi dan menerapkan pedoman moderasi yang kompleks secara seragam. Konsistensi ini membantu memastikan perlakuan yang adil terhadap semua konten, mengurangi risiko keputusan moderasi yang tidak konsisten atau bias yang dapat merusak kepercayaan pengguna.
 </section>
-<section title="Kebijakan moderasi Anda kemungkinan akan berubah atau berkembang seiring waktu">
-Setelah pendekatan ML tradisional ditetapkan, mengubahnya adalah upaya yang melelahkan dan intensif data. Di sisi lain, seiring produk atau kebutuhan pelanggan Anda berkembang, Claude dapat dengan mudah beradaptasi dengan perubahan atau penambahan kebijakan moderasi tanpa pelabelan ulang data pelatihan yang ekstensif.
+<section title="Kebijakan moderasi Anda mungkin berubah atau berkembang seiring waktu">
+Setelah pendekatan ML tradisional ditetapkan, mengubahnya adalah tugas yang membosankan dan intensif data. Di sisi lain, seiring produk atau kebutuhan pelanggan Anda berkembang, Claude dapat dengan mudah beradaptasi dengan perubahan atau penambahan kebijakan moderasi tanpa pelabelan ulang data pelatihan yang ekstensif.
 </section>
-<section title="Anda memerlukan penalaran yang dapat diinterpretasikan untuk keputusan moderasi Anda">
-Jika Anda ingin memberikan pengguna atau regulator penjelasan yang jelas di balik keputusan moderasi, Claude dapat menghasilkan justifikasi yang detail dan koheren. Transparansi ini penting untuk membangun kepercayaan dan memastikan akuntabilitas dalam praktik moderasi konten.
+<section title="Anda memerlukan penalaran yang dapat diinterpretasi untuk keputusan moderasi Anda">
+Jika Anda ingin memberikan pengguna atau regulator penjelasan yang jelas di balik keputusan moderasi, Claude dapat menghasilkan pembenaran yang terperinci dan koheren. Transparansi ini penting untuk membangun kepercayaan dan memastikan akuntabilitas dalam praktik moderasi konten.
 </section>
 <section title="Anda memerlukan dukungan multibahasa tanpa mempertahankan model terpisah">
-Pendekatan ML tradisional biasanya memerlukan model terpisah atau proses terjemahan yang ekstensif untuk setiap bahasa yang didukung. Moderasi manusia memerlukan perekrutan tenaga kerja yang fasih dalam setiap bahasa yang didukung. Kemampuan multibahasa Claude memungkinkannya mengklasifikasikan tiket dalam berbagai bahasa tanpa perlu model terpisah atau proses terjemahan yang ekstensif, menyederhanakan moderasi untuk basis pelanggan global.
+Pendekatan ML tradisional biasanya memerlukan model terpisah atau proses terjemahan ekstensif untuk setiap bahasa yang didukung. Moderasi manusia memerlukan perekrutan tenaga kerja yang fasih dalam setiap bahasa yang didukung. Kemampuan multibahasa Claude memungkinkannya untuk mengklasifikasikan tiket dalam berbagai bahasa tanpa perlu model terpisah atau proses terjemahan ekstensif, menyederhanakan moderasi untuk basis pelanggan global.
 </section>
 <section title="Anda memerlukan dukungan multimodal">
-Kemampuan multimodal Claude memungkinkannya menganalisis dan menginterpretasikan konten di seluruh teks dan gambar. Ini menjadikannya alat yang serbaguna untuk moderasi konten komprehensif dalam lingkungan di mana berbagai jenis media perlu dievaluasi bersama.
+Kemampuan multimodal Claude memungkinkannya untuk menganalisis dan menginterpretasi konten di seluruh teks dan gambar. Ini menjadikannya alat serbaguna untuk moderasi konten komprehensif di lingkungan di mana berbagai jenis media perlu dievaluasi bersama-sama.
 </section>
 
-<Note>Anthropic telah melatih semua model Claude untuk jujur, membantu, dan tidak berbahaya. Ini dapat mengakibatkan Claude memoderasi konten yang dianggap sangat berbahaya (sejalan dengan [Kebijakan Penggunaan yang Dapat Diterima](https://www.anthropic.com/legal/aup) kami), terlepas dari prompt yang digunakan. Misalnya, situs web dewasa yang ingin mengizinkan pengguna memposting konten seksual eksplisit mungkin menemukan bahwa Claude masih menandai konten eksplisit sebagai memerlukan moderasi, bahkan jika mereka menentukan dalam prompt mereka untuk tidak memoderasi konten seksual eksplisit. Kami merekomendasikan meninjau AUP kami sebelum membangun solusi moderasi.</Note>
+<Note>Anthropic telah melatih semua model Claude untuk jujur, membantu, dan tidak berbahaya. Ini mungkin menghasilkan Claude memoderasi konten yang dianggap sangat berbahaya (sesuai dengan [Kebijakan Penggunaan Yang Dapat Diterima](https://www.anthropic.com/legal/aup)) kami, terlepas dari prompt yang digunakan. Misalnya, situs web dewasa yang ingin memungkinkan pengguna memposting konten seksual eksplisit mungkin menemukan bahwa Claude masih menandai konten eksplisit sebagai memerlukan moderasi, bahkan jika mereka menentukan dalam prompt mereka untuk tidak memoderasi konten seksual eksplisit. Kami merekomendasikan untuk meninjau AUP kami sebelum membangun solusi moderasi.</Note>
 
-### Buat contoh konten untuk dimoderasi
-Sebelum mengembangkan solusi moderasi konten, pertama buat contoh konten yang harus ditandai dan konten yang tidak boleh ditandai. Pastikan Anda menyertakan kasus tepi dan skenario menantang yang mungkin sulit ditangani secara efektif oleh sistem moderasi konten. Setelah itu, tinjau contoh Anda untuk membuat daftar kategori moderasi yang terdefinisi dengan baik.
-Misalnya, contoh yang dihasilkan oleh platform media sosial mungkin mencakup yang berikut:
+### Hasilkan contoh konten untuk memoderasi
+Sebelum mengembangkan solusi moderasi konten, pertama-tama buat contoh konten yang harus ditandai dan konten yang tidak boleh ditandai. Pastikan Anda menyertakan kasus tepi dan skenario menantang yang mungkin sulit ditangani oleh sistem moderasi konten. Setelah itu, tinjau contoh Anda untuk membuat daftar kategori moderasi yang terdefinisi dengan baik.
+Misalnya, contoh yang dihasilkan oleh platform media sosial mungkin mencakup hal berikut:
 
 ```python
 allowed_user_comments = [
@@ -82,43 +82,43 @@ unsafe_categories = [
 ]
 ```
 
-Memoderasi contoh-contoh ini secara efektif memerlukan pemahaman bahasa yang bernuansa. Dalam komentar, `This movie was great, I really enjoyed it. The main actor really killed it!`, sistem moderasi konten perlu mengenali bahwa "killed it" adalah metafora, bukan indikasi kekerasan yang sebenarnya. Sebaliknya, meskipun tidak ada penyebutan eksplisit tentang kekerasan, komentar `Delete this post now or you better hide. I am coming after you and your family.` harus ditandai oleh sistem moderasi konten.
+Moderasi contoh-contoh ini secara efektif memerlukan pemahaman nuansa bahasa. Dalam komentar, `This movie was great, I really enjoyed it. The main actor really killed it!`, sistem moderasi konten perlu mengenali bahwa "killed it" adalah metafora, bukan indikasi kekerasan aktual. Sebaliknya, meskipun tidak ada penyebutan kekerasan yang eksplisit, komentar `Delete this post now or you better hide. I am coming after you and your family.` harus ditandai oleh sistem moderasi konten.
 
-Daftar `unsafe_categories` dapat disesuaikan untuk memenuhi kebutuhan spesifik Anda. Misalnya, jika Anda ingin mencegah anak di bawah umur membuat konten di situs web Anda, Anda dapat menambahkan "Underage Posting" ke daftar.
+Daftar `unsafe_categories` dapat disesuaikan dengan kebutuhan spesifik Anda. Misalnya, jika Anda ingin mencegah anak di bawah umur membuat konten di situs web Anda, Anda dapat menambahkan "Underage Posting" ke daftar.
 
 ___
 
 ## Cara memoderasi konten menggunakan Claude
 
 ### Pilih model Claude yang tepat
-Saat memilih model, penting untuk mempertimbangkan ukuran data Anda. Jika biaya menjadi perhatian, model yang lebih kecil seperti Claude Haiku 3 adalah pilihan yang sangat baik karena efektivitas biayanya. Berikut adalah perkiraan biaya untuk memoderasi teks untuk platform media sosial yang menerima satu miliar posting per bulan:
+Saat memilih model, penting untuk mempertimbangkan ukuran data Anda. Jika biaya menjadi perhatian, model yang lebih kecil seperti Claude Haiku 3 adalah pilihan yang sangat baik karena efektivitas biayanya. Di bawah ini adalah perkiraan biaya untuk memoderasi teks untuk platform media sosial yang menerima satu miliar posting per bulan:
 
 * **Ukuran konten**
-    * Posting per bulan: 1 miliar
+    * Posting per bulan: 1bn
     * Karakter per posting: 100
-    * Total karakter: 100 miliar
+    * Total karakter: 100bn
 
-* **Perkiraan token**
-    * Token input: 28,6 miliar (dengan asumsi 1 token per 3,5 karakter)
+* **Token yang diperkirakan**
+    * Token input: 28.6bn (dengan asumsi 1 token per 3,5 karakter)
     * Persentase pesan yang ditandai: 3%
     * Token output per pesan yang ditandai: 50
-    * Total token output: 1,5 miliar
+    * Total token output: 1.5bn
 
-* **Perkiraan biaya Claude Haiku 3**
+* **Biaya Claude Haiku 3 yang diperkirakan**
     * Biaya token input: 2.860 MTok * \$0,25/MTok = \$715
     * Biaya token output: 1.500 MTok * \$1,25/MTok = \$1.875
     * Biaya bulanan: \$715 + \$1.875 = \$2.590
 
-* **Perkiraan biaya Claude Sonnet 4.5**
-    * Biaya token input: 2.860 MTok * \$3,00/MTok = \$8.580
-    * Biaya token output: 1.500 MTok * \$15,00/MTok = \$22.500
-    * Biaya bulanan: \$8.580 + \$22.500 = \$31.080
+* **Biaya Claude Opus 4.6 yang diperkirakan**
+    * Biaya token input: 2.860 MTok * \$5,00/MTok = \$14.300
+    * Biaya token output: 1.500 MTok * \$25,00/MTok = \$37.500
+    * Biaya bulanan: \$14.300 + \$37.500 = \$51.800
 
-<Tip>Biaya aktual mungkin berbeda dari perkiraan ini. Perkiraan ini didasarkan pada prompt yang disorot dalam bagian tentang [pemrosesan batch](#consider-batch-processing). Token output dapat dikurangi lebih lanjut dengan menghapus field `explanation` dari respons.</Tip>  
+<Tip>Biaya aktual mungkin berbeda dari perkiraan ini. Perkiraan ini didasarkan pada prompt yang disorot dalam bagian tentang [pemrosesan batch](#consider-batch-processing). Token output dapat dikurangi lebih lanjut dengan menghapus bidang `explanation` dari respons.</Tip>  
 
 ### Bangun prompt yang kuat
 
-Untuk menggunakan Claude untuk moderasi konten, Claude harus memahami persyaratan moderasi aplikasi Anda. Mari mulai dengan menulis prompt yang memungkinkan Anda mendefinisikan kebutuhan moderasi Anda:
+Untuk menggunakan Claude untuk moderasi konten, Claude harus memahami persyaratan moderasi aplikasi Anda. Mari kita mulai dengan menulis prompt yang memungkinkan Anda menentukan kebutuhan moderasi Anda:
 
 ```python
 import anthropic
@@ -185,15 +185,15 @@ for comment in user_comments:
         print("No issues detected.")
 ```
 
-Dalam contoh ini, fungsi `moderate_message` berisi prompt penilaian yang mencakup kategori konten tidak aman dan pesan yang ingin kita evaluasi. Prompt meminta Claude untuk menilai apakah pesan harus dimoderasi, berdasarkan kategori tidak aman yang telah kita definisikan.
+Dalam contoh ini, fungsi `moderate_message` berisi prompt penilaian yang mencakup kategori konten yang tidak aman dan pesan yang ingin kami evaluasi. Prompt meminta Claude untuk menilai apakah pesan harus dimoderasi, berdasarkan kategori yang tidak aman yang kami tentukan.
 
-Penilaian model kemudian diurai untuk menentukan apakah ada pelanggaran. Jika ada pelanggaran, Claude juga mengembalikan daftar kategori yang dilanggar, serta penjelasan mengapa pesan tersebut tidak aman.
+Penilaian model kemudian diuraikan untuk menentukan apakah ada pelanggaran. Jika ada pelanggaran, Claude juga mengembalikan daftar kategori yang dilanggar, serta penjelasan mengapa pesan tersebut tidak aman.
 
 ### Evaluasi prompt Anda
 
-Moderasi konten adalah masalah klasifikasi. Dengan demikian, Anda dapat menggunakan teknik yang sama yang diuraikan dalam [cookbook klasifikasi](https://github.com/anthropics/anthropic-cookbook/blob/main/skills/classification/guide.ipynb) kami untuk menentukan akurasi sistem moderasi konten Anda.
+Moderasi konten adalah masalah klasifikasi. Dengan demikian, Anda dapat menggunakan teknik yang sama yang diuraikan dalam [buku resep klasifikasi](https://platform.claude.com/cookbook/capabilities-classification-guide) kami untuk menentukan akurasi sistem moderasi konten Anda.
 
-Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten sebagai masalah klasifikasi biner, Anda mungkin malah membuat beberapa kategori untuk mewakili berbagai tingkat risiko. Membuat beberapa tingkat risiko memungkinkan Anda menyesuaikan agresivitas moderasi Anda. Misalnya, Anda mungkin ingin secara otomatis memblokir kueri pengguna yang dianggap berisiko tinggi, sementara pengguna dengan banyak kueri berisiko sedang ditandai untuk tinjauan manusia.
+Pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten sebagai masalah klasifikasi biner, Anda dapat membuat beberapa kategori untuk mewakili berbagai tingkat risiko. Membuat beberapa tingkat risiko memungkinkan Anda menyesuaikan agresivitas moderasi Anda. Misalnya, Anda mungkin ingin secara otomatis memblokir kueri pengguna yang dianggap berisiko tinggi, sementara pengguna dengan banyak kueri berisiko sedang ditandai untuk ditinjau manusia.
 
 ```python
 import anthropic
@@ -266,31 +266,31 @@ for comment in user_comments:
         print(f"Explanation: {explanation}")
 ```
 
-Kode ini mengimplementasikan fungsi `assess_risk_level` yang menggunakan Claude untuk mengevaluasi tingkat risiko suatu pesan. Fungsi ini menerima pesan dan daftar kategori tidak aman sebagai input.
+Kode ini mengimplementasikan fungsi `assess_risk_level` yang menggunakan Claude untuk mengevaluasi tingkat risiko pesan. Fungsi menerima pesan dan daftar kategori yang tidak aman sebagai input.
 
-Dalam fungsi tersebut, prompt dihasilkan untuk Claude, termasuk pesan yang akan dinilai, kategori tidak aman, dan instruksi khusus untuk mengevaluasi tingkat risiko. Prompt menginstruksikan Claude untuk merespons dengan objek JSON yang mencakup tingkat risiko, kategori yang dilanggar, dan penjelasan opsional.
+Dalam fungsi, prompt dihasilkan untuk Claude, termasuk pesan yang akan dinilai, kategori yang tidak aman, dan instruksi khusus untuk mengevaluasi tingkat risiko. Prompt menginstruksikan Claude untuk merespons dengan objek JSON yang mencakup tingkat risiko, kategori yang dilanggar, dan penjelasan opsional.
 
-Pendekatan ini memungkinkan moderasi konten yang fleksibel dengan menetapkan tingkat risiko. Ini dapat diintegrasikan dengan mulus ke dalam sistem yang lebih besar untuk mengotomatisasi penyaringan konten atau menandai komentar untuk tinjauan manusia berdasarkan tingkat risiko yang dinilai. Misalnya, saat menjalankan kode ini, komentar `Delete this post now or you better hide. I am coming after you and your family.` diidentifikasi sebagai berisiko tinggi karena ancaman berbahayanya. Sebaliknya, komentar `Stay away from the 5G cellphones!! They are using 5G to control you.` dikategorikan sebagai berisiko sedang.
+Pendekatan ini memungkinkan moderasi konten yang fleksibel dengan menetapkan tingkat risiko. Ini dapat diintegrasikan dengan mulus ke dalam sistem yang lebih besar untuk mengotomatisasi penyaringan konten atau menandai komentar untuk ditinjau manusia berdasarkan tingkat risiko yang dinilai. Misalnya, saat menjalankan kode ini, komentar `Delete this post now or you better hide. I am coming after you and your family.` diidentifikasi sebagai berisiko tinggi karena ancamannya yang berbahaya. Sebaliknya, komentar `Stay away from the 5G cellphones!! They are using 5G to control you.` dikategorikan sebagai risiko sedang.
 
-### Deploy prompt Anda
+### Terapkan prompt Anda
 
-Setelah Anda yakin dengan kualitas solusi Anda, saatnya untuk men-deploy-nya ke produksi. Berikut adalah beberapa praktik terbaik yang harus diikuti saat menggunakan moderasi konten dalam produksi:
+Setelah Anda yakin dengan kualitas solusi Anda, saatnya untuk menerapkannya ke produksi. Berikut adalah beberapa praktik terbaik yang harus diikuti saat menggunakan moderasi konten dalam produksi:
 
-1. **Berikan umpan balik yang jelas kepada pengguna:** Ketika input pengguna diblokir atau respons ditandai karena moderasi konten, berikan umpan balik yang informatif dan konstruktif untuk membantu pengguna memahami mengapa pesan mereka ditandai dan bagaimana mereka dapat merumuskannya kembali dengan tepat. Dalam contoh koding di atas, ini dilakukan melalui tag `explanation` dalam respons Claude.
+1. **Berikan umpan balik yang jelas kepada pengguna:** Ketika input pengguna diblokir atau respons ditandai karena moderasi konten, berikan umpan balik yang informatif dan konstruktif untuk membantu pengguna memahami mengapa pesan mereka ditandai dan bagaimana mereka dapat merumuskannya kembali dengan tepat. Dalam contoh pengkodean di atas, ini dilakukan melalui tag `explanation` dalam respons Claude.
 
 2. **Analisis konten yang dimoderasi:** Lacak jenis konten yang ditandai oleh sistem moderasi Anda untuk mengidentifikasi tren dan area potensial untuk perbaikan.
 
-3. **Evaluasi dan tingkatkan secara berkelanjutan:** Secara teratur menilai kinerja sistem moderasi konten Anda menggunakan metrik seperti pelacakan presisi dan recall. Gunakan data ini untuk secara iteratif memperbaiki prompt moderasi, kata kunci, dan kriteria penilaian Anda.
+3. **Terus evaluasi dan tingkatkan:** Secara teratur menilai kinerja sistem moderasi konten Anda menggunakan metrik seperti pelacakan presisi dan recall. Gunakan data ini untuk secara berulang menyempurnakan prompt moderasi, kata kunci, dan kriteria penilaian Anda.
 
 ___
 
 ## Tingkatkan kinerja
 
-Dalam skenario kompleks, mungkin membantu untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik prompt engineering](/docs/id/build-with-claude/prompt-engineering/overview) standar. Berikut adalah beberapa strategi lanjutan:
+Dalam skenario yang kompleks, mungkin bermanfaat untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar teknik [rekayasa prompt](/docs/id/build-with-claude/prompt-engineering/overview) standar. Berikut adalah beberapa strategi lanjutan:
 
-### Definisikan topik dan berikan contoh
+### Tentukan topik dan berikan contoh
 
-Selain mencantumkan kategori tidak aman dalam prompt, perbaikan lebih lanjut dapat dilakukan dengan memberikan definisi dan frasa yang terkait dengan setiap kategori.
+Selain mencantumkan kategori yang tidak aman dalam prompt, perbaikan lebih lanjut dapat dilakukan dengan memberikan definisi dan frasa yang terkait dengan setiap kategori.
 
 ```python
 import anthropic
@@ -381,9 +381,9 @@ for comment in user_comments:
         print("No issues detected.")
 ```
 
-Fungsi `moderate_message_with_definitions` memperluas fungsi `moderate_message` sebelumnya dengan memungkinkan setiap kategori tidak aman dipasangkan dengan definisi yang detail. Ini terjadi dalam kode dengan mengganti daftar `unsafe_categories` dari fungsi asli dengan kamus `unsafe_category_definitions`. Kamus ini memetakan setiap kategori tidak aman ke definisi yang sesuai. Baik nama kategori maupun definisinya disertakan dalam prompt.
+Fungsi `moderate_message_with_definitions` memperluas fungsi `moderate_message` sebelumnya dengan memungkinkan setiap kategori yang tidak aman dipasangkan dengan definisi terperinci. Ini terjadi dalam kode dengan mengganti daftar `unsafe_categories` dari fungsi asli dengan kamus `unsafe_category_definitions`. Kamus ini memetakan setiap kategori yang tidak aman ke definisi yang sesuai. Baik nama kategori maupun definisinya disertakan dalam prompt.
 
-Khususnya, definisi untuk kategori `Specialized Advice` sekarang menentukan jenis nasihat keuangan yang harus dilarang. Akibatnya, komentar `It's a great time to invest in gold!`, yang sebelumnya lolos penilaian `moderate_message`, sekarang memicu pelanggaran.
+Secara khusus, definisi untuk kategori `Specialized Advice` sekarang menentukan jenis saran keuangan yang harus dilarang. Akibatnya, komentar `It's a great time to invest in gold!`, yang sebelumnya lulus penilaian `moderate_message`, sekarang memicu pelanggaran.
 
 ### Pertimbangkan pemrosesan batch
 
@@ -458,14 +458,14 @@ Explanation: {violation['explanation']}
 """)
 ```
 Dalam contoh ini, fungsi `batch_moderate_messages` menangani moderasi seluruh batch pesan dengan satu panggilan API Claude.
-Di dalam fungsi, prompt dibuat yang mencakup daftar pesan untuk dievaluasi, kategori konten tidak aman yang didefinisikan, dan deskripsinya. Prompt mengarahkan Claude untuk mengembalikan objek JSON yang mencantumkan semua pesan yang mengandung pelanggaran. Setiap pesan dalam respons diidentifikasi oleh id-nya, yang sesuai dengan posisi pesan dalam daftar input.
-Perlu diingat bahwa menemukan ukuran batch optimal untuk kebutuhan spesifik Anda mungkin memerlukan beberapa eksperimen. Sementara ukuran batch yang lebih besar dapat menurunkan biaya, mereka juga mungkin menyebabkan sedikit penurunan kualitas. Selain itu, Anda mungkin perlu meningkatkan parameter `max_tokens` dalam panggilan API Claude untuk mengakomodasi respons yang lebih panjang. Untuk detail tentang jumlah maksimum token yang dapat dikeluarkan model pilihan Anda, lihat [halaman perbandingan model](/docs/id/about-claude/models#model-comparison-table).
+Di dalam fungsi, prompt dibuat yang mencakup daftar pesan yang akan dievaluasi, kategori konten yang tidak aman yang ditentukan, dan deskripsinya. Prompt mengarahkan Claude untuk mengembalikan objek JSON yang mencantumkan semua pesan yang berisi pelanggaran. Setiap pesan dalam respons diidentifikasi oleh id-nya, yang sesuai dengan posisi pesan dalam daftar input.
+Ingat bahwa menemukan ukuran batch optimal untuk kebutuhan spesifik Anda mungkin memerlukan beberapa eksperimen. Meskipun ukuran batch yang lebih besar dapat menurunkan biaya, mereka juga mungkin menyebabkan penurunan kualitas yang sedikit. Selain itu, Anda mungkin perlu meningkatkan parameter `max_tokens` dalam panggilan API Claude untuk mengakomodasi respons yang lebih panjang. Untuk detail tentang jumlah maksimum token yang dapat dikeluarkan model pilihan Anda, lihat [halaman perbandingan model](/docs/id/about-claude/models#model-comparison-table).
 
-<CardGroup cols={2}> 
-  <Card title="Cookbook moderasi konten" icon="link" href="https://github.com/anthropics/anthropic-cookbook/blob/main/misc/building%5Fmoderation%5Ffilter.ipynb">
-    Lihat contoh berbasis kode yang diimplementasikan sepenuhnya tentang cara menggunakan Claude untuk moderasi konten.
+<CardGroup cols={2}>
+  <Card title="Buku resep moderasi konten" icon="link" href="https://platform.claude.com/cookbook/misc-building-moderation-filter">
+    Lihat contoh berbasis kode yang sepenuhnya diimplementasikan tentang cara menggunakan Claude untuk moderasi konten.
   </Card>
   <Card title="Panduan guardrails" icon="link" href="/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations">
-    Jelajahi panduan guardrails kami untuk teknik memoderasi interaksi dengan Claude.
+    Jelajahi panduan guardrails kami untuk teknik moderasi interaksi dengan Claude.
   </Card>
 </CardGroup>

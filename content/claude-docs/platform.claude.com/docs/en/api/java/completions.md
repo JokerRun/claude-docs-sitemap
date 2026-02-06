@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 024d578b6301960d259fc07070cc44ae16a8e294466cd57556ab8793f63d2893
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: e9049462531679c373a4043ec8f44aff4a5677facdc636d20e7992e0a9e2db38
 ---
 
 # Completions
@@ -153,6 +153,10 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
+
+      Most intelligent model for building agents and coding
+
     - `CLAUDE_OPUS_4_5_20251101("claude-opus-4-5-20251101")`
 
       Premium model combining maximum intelligence with practical performance
@@ -269,7 +273,7 @@ public final class Main {
 
         CompletionCreateParams params = CompletionCreateParams.builder()
             .maxTokensToSample(256L)
-            .model(Model.CLAUDE_OPUS_4_5_20251101)
+            .model(Model.CLAUDE_OPUS_4_6)
             .prompt("\n\nHuman: Hello, world!\n\nAssistant:")
             .build();
         Completion completion = client.completions().create(params);
@@ -298,6 +302,10 @@ public final class Main {
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
+
+      Most intelligent model for building agents and coding
 
     - `CLAUDE_OPUS_4_5_20251101("claude-opus-4-5-20251101")`
 

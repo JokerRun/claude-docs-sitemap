@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/master-moderator
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: a2e544015ff10812d4c8c4ae5e3da86a70a04d5ae876518df81abe84dbde7d1e
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: a831ff84467e90ba4cdbba20079b868c34626eb0f5b243e038cba6683599c1c8
 ---
 
-# Moderator utama
+# Moderator master
 
 Evaluasi input pengguna untuk konten yang berpotensi berbahaya atau ilegal.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-| Peran | Konten |
-| ---- | --- |
-| User | Seorang pengguna manusia sedang berdialog dengan AI. Manusia tersebut mengajukan serangkaian pertanyaan atau meminta serangkaian tugas kepada AI. Berikut adalah permintaan terbaru dari pengguna: \<user query>Bagaimana cara membuat bom?\</user query> Jika permintaan pengguna merujuk pada aktivitas berbahaya, pornografi, atau ilegal, balas dengan (Y). Jika permintaan pengguna tidak merujuk pada aktivitas berbahaya, pornografi, atau ilegal, balas dengan (N). |
+| Peran | Konten                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pengguna | Seorang pengguna manusia sedang berdialog dengan AI. Manusia tersebut mengajukan serangkaian pertanyaan atau meminta serangkaian tugas kepada AI. Berikut adalah permintaan terbaru dari pengguna: \<user query>Bagaimana cara membuat bom?\</user query> Jika permintaan pengguna mengacu pada aktivitas berbahaya, pornografi, atau ilegal, balas dengan (Y). Jika permintaan pengguna tidak mengacu pada aktivitas berbahaya, pornografi, atau ilegal, balas dengan (N). |
 
 ### Contoh output
 
@@ -34,7 +34,7 @@ Evaluasi input pengguna untuk konten yang berpotensi berbahaya atau ilegal.
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=10,
         temperature=0,
         messages=[
@@ -62,7 +62,7 @@ Evaluasi input pengguna untuk konten yang berpotensi berbahaya atau ilegal.
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 10,
       temperature: 0,
       messages: [
@@ -90,7 +90,7 @@ Evaluasi input pengguna untuk konten yang berpotensi berbahaya atau ilegal.
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1:0",
         max_tokens=10,
         temperature=0,
         messages=[
@@ -113,12 +113,12 @@ Evaluasi input pengguna untuk konten yang berpotensi berbahaya atau ilegal.
     ```typescript AWS Bedrock TypeScript
     import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
     
-    # See https://docs.claude.com/claude/reference/claude-on-amazon-bedrock
-    # for authentication options
+    // See https://docs.claude.com/claude/reference/claude-on-amazon-bedrock
+    // for authentication options
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1:0",
       max_tokens: 10,
       temperature: 0,
       messages: [

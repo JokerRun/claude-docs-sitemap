@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/email-extractor
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: cc0e19d4009426589448c6f0ca5f58709d582fcfd4c8b3278e03c9647c8e85a7
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 7115f5e137c77a781b26730eeae6ea96a1eb017ca3eac4d83a91520a5371267e
 ---
 
-# Ekstraksi email
+# Pengekstrak email
 
 Ekstrak alamat email dari dokumen ke dalam daftar berformat JSON.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Salin dengan tepat alamat email apa pun dari teks berikut dan kemudian tulis satu per baris. Hanya tulis alamat email jika dieja dengan tepat dalam teks input. Jika tidak ada alamat email dalam teks, tulis "N/A". Jangan katakan hal lain. |
-| User   | Direktori Telepon: John Latrabe, 555-232-1995, [john909709@geemail.com] Josie Lana, 555-759-2905, [josie@josielananier.com] Keven Stevens, 555-980-7000, [drkevin22@geemail.com] Direktori telepon akan terus diperbarui oleh manajer HR.                      |
+|        | Konten                                                                                                                                                                                                                                                        |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Salin dengan tepat setiap alamat email dari teks berikut dan kemudian tuliskan, satu per baris. Hanya tuliskan alamat email jika dieja dengan tepat dalam teks input. Jika tidak ada alamat email dalam teks, tuliskan "N/A". Jangan katakan apa pun selain itu. |
+| Pengguna   | Direktori Telepon: John Latrabe, 555-232-1995, [john909709@geemail.com] Josie Lana, 555-759-2905, [josie@josielananier.com] Keven Stevens, 555-980-7000, [drkevin22@geemail.com] Direktori telepon akan diperbarui oleh manajer HR.                      |
 
 ### Contoh output
 
@@ -35,7 +35,7 @@ Ekstrak alamat email dari dokumen ke dalam daftar berformat JSON.
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1000,
         temperature=0,
         system="Precisely copy any email addresses from the following text and then write them, one per line. Only write an email address if it's precisely spelled out in the input text. If there are no email addresses in the text, write \"N/A\".  Do not say anything else.",
@@ -64,7 +64,7 @@ Ekstrak alamat email dari dokumen ke dalam daftar berformat JSON.
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 0,
       system: "Precisely copy any email addresses from the following text and then write them, one per line. Only write an email address if it's precisely spelled out in the input text. If there are no email addresses in the text, write \"N/A\".  Do not say anything else.",
@@ -93,7 +93,7 @@ Ekstrak alamat email dari dokumen ke dalam daftar berformat JSON.
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1:0",
         max_tokens=1000,
         temperature=0,
         system="Precisely copy any email addresses from the following text and then write them, one per line. Only write an email address if it's precisely spelled out in the input text. If there are no email addresses in the text, write \"N/A\".  Do not say anything else.",
@@ -122,7 +122,7 @@ Ekstrak alamat email dari dokumen ke dalam daftar berformat JSON.
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1:0",
       max_tokens: 1000,
       temperature: 0,
       system: "Precisely copy any email addresses from the following text and then write them, one per line. Only write an email address if it's precisely spelled out in the input text. If there are no email addresses in the text, write \"N/A\".  Do not say anything else.",

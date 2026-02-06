@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/typescript
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 114d99877dfd2ebe7b4fbc4a90289152d5784a3e9cf26e5bea8790c1c5a0b33e
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 6210761e018cf6b01782b99c4d21268949cbcfcaf79fe95bbae7001ce2785c6d
 ---
 
-# Referensi Agent SDK - TypeScript
+# Agent SDK reference - TypeScript
 
-Referensi API lengkap untuk Agent SDK TypeScript, termasuk semua fungsi, tipe, dan antarmuka.
+Referensi API lengkap untuk TypeScript Agent SDK, termasuk semua fungsi, tipe, dan antarmuka.
 
 ---
 
 <script src="/components/typescript-sdk-type-links.js" defer />
 
 <Note>
-**Coba antarmuka V2 baru (pratinjau):** Antarmuka yang disederhanakan dengan pola `send()` dan `receive()` kini tersedia, membuat percakapan multi-putaran lebih mudah. [Pelajari lebih lanjut](/docs/id/agent-sdk/typescript-v2-preview)
+**Coba antarmuka V2 baru (pratinjau):** Antarmuka yang disederhanakan dengan pola `send()` dan `receive()` kini tersedia, membuat percakapan multi-putaran lebih mudah. [Pelajari lebih lanjut tentang pratinjau TypeScript V2](/docs/id/agent-sdk/typescript-v2-preview)
 </Note>
 
 ## Instalasi
@@ -52,7 +52,7 @@ Mengembalikan objek [`Query`](#query-1) yang memperluas `AsyncGenerator<`[`SDKMe
 
 ### `tool()`
 
-Membuat definisi tool MCP yang aman tipe untuk digunakan dengan server MCP SDK.
+Membuat definisi alat MCP yang aman tipe untuk digunakan dengan server MCP SDK.
 
 ```typescript
 function tool<Schema extends ZodRawShape>(
@@ -67,10 +67,10 @@ function tool<Schema extends ZodRawShape>(
 
 | Parameter | Tipe | Deskripsi |
 | :-------- | :--- | :---------- |
-| `name` | `string` | Nama tool |
-| `description` | `string` | Deskripsi tentang apa yang dilakukan tool |
-| `inputSchema` | `Schema extends ZodRawShape` | Skema Zod yang mendefinisikan parameter input tool |
-| `handler` | `(args, extra) => Promise<`[`CallToolResult`](#calltoolresult)`>` | Fungsi asinkron yang mengeksekusi logika tool |
+| `name` | `string` | Nama alat |
+| `description` | `string` | Deskripsi tentang apa yang dilakukan alat |
+| `inputSchema` | `Schema extends ZodRawShape` | Skema Zod yang mendefinisikan parameter input alat |
+| `handler` | `(args, extra) => Promise<`[`CallToolResult`](#calltoolresult)`>` | Fungsi asinkron yang mengeksekusi logika alat |
 
 ### `createSdkMcpServer()`
 
@@ -90,7 +90,7 @@ function createSdkMcpServer(options: {
 | :-------- | :--- | :---------- |
 | `options.name` | `string` | Nama server MCP |
 | `options.version` | `string` | String versi opsional |
-| `options.tools` | `Array<SdkMcpToolDefinition>` | Array definisi tool yang dibuat dengan [`tool()`](#tool) |
+| `options.tools` | `Array<SdkMcpToolDefinition>` | Array definisi alat yang dibuat dengan [`tool()`](#tool) |
 
 ## Tipe
 
@@ -104,12 +104,12 @@ Objek konfigurasi untuk fungsi `query()`.
 | `additionalDirectories` | `string[]` | `[]` | Direktori tambahan yang dapat diakses Claude |
 | `agents` | `Record<string, [`AgentDefinition`](#agentdefinition)>` | `undefined` | Tentukan subagen secara terprogram |
 | `allowDangerouslySkipPermissions` | `boolean` | `false` | Aktifkan bypass izin. Diperlukan saat menggunakan `permissionMode: 'bypassPermissions'` |
-| `allowedTools` | `string[]` | Semua tool | Daftar nama tool yang diizinkan |
+| `allowedTools` | `string[]` | Semua alat | Daftar nama alat yang diizinkan |
 | `betas` | [`SdkBeta`](#sdkbeta)`[]` | `[]` | Aktifkan fitur beta (misalnya, `['context-1m-2025-08-07']`) |
-| `canUseTool` | [`CanUseTool`](#canusetool) | `undefined` | Fungsi izin kustom untuk penggunaan tool |
+| `canUseTool` | [`CanUseTool`](#canusetool) | `undefined` | Fungsi izin kustom untuk penggunaan alat |
 | `continue` | `boolean` | `false` | Lanjutkan percakapan terbaru |
 | `cwd` | `string` | `process.cwd()` | Direktori kerja saat ini |
-| `disallowedTools` | `string[]` | `[]` | Daftar nama tool yang tidak diizinkan |
+| `disallowedTools` | `string[]` | `[]` | Daftar nama alat yang tidak diizinkan |
 | `enableFileCheckpointing` | `boolean` | `false` | Aktifkan pelacakan perubahan file untuk rewinding. Lihat [File checkpointing](/docs/id/agent-sdk/file-checkpointing) |
 | `env` | `Dict<string>` | `process.env` | Variabel lingkungan |
 | `executable` | `'bun' \| 'deno' \| 'node'` | Terdeteksi otomatis | Runtime JavaScript yang digunakan |
@@ -117,17 +117,17 @@ Objek konfigurasi untuk fungsi `query()`.
 | `extraArgs` | `Record<string, string \| null>` | `{}` | Argumen tambahan |
 | `fallbackModel` | `string` | `undefined` | Model yang digunakan jika model utama gagal |
 | `forkSession` | `boolean` | `false` | Saat melanjutkan dengan `resume`, fork ke ID sesi baru alih-alih melanjutkan sesi asli |
-| `hooks` | `Partial<Record<`[`HookEvent`](#hookevent)`, `[`HookCallbackMatcher`](#hookcallbackmatcher)`[]>>` | `{}` | Callback hook untuk event |
-| `includePartialMessages` | `boolean` | `false` | Sertakan event pesan parsial |
-| `maxBudgetUsd` | `number` | `undefined` | Anggaran maksimal dalam USD untuk query |
-| `maxThinkingTokens` | `number` | `undefined` | Token maksimal untuk proses thinking |
-| `maxTurns` | `number` | `undefined` | Putaran percakapan maksimal |
+| `hooks` | `Partial<Record<`[`HookEvent`](#hookevent)`, `[`HookCallbackMatcher`](#hookcallbackmatcher)`[]>>` | `{}` | Callback hook untuk acara |
+| `includePartialMessages` | `boolean` | `false` | Sertakan acara pesan parsial |
+| `maxBudgetUsd` | `number` | `undefined` | Anggaran maksimum dalam USD untuk kueri |
+| `maxThinkingTokens` | `number` | `undefined` | Token maksimum untuk proses pemikiran |
+| `maxTurns` | `number` | `undefined` | Putaran percakapan maksimum |
 | `mcpServers` | `Record<string, [`McpServerConfig`](#mcpserverconfig)>` | `{}` | Konfigurasi server MCP |
 | `model` | `string` | Default dari CLI | Model Claude yang digunakan |
-| `outputFormat` | `{ type: 'json_schema', schema: JSONSchema }` | `undefined` | Tentukan format output untuk hasil agent. Lihat [Structured outputs](/docs/id/agent-sdk/structured-outputs) untuk detail |
+| `outputFormat` | `{ type: 'json_schema', schema: JSONSchema }` | `undefined` | Tentukan format output untuk hasil agen. Lihat [Structured outputs](/docs/id/agent-sdk/structured-outputs) untuk detail |
 | `pathToClaudeCodeExecutable` | `string` | Menggunakan executable bawaan | Path ke executable Claude Code |
 | `permissionMode` | [`PermissionMode`](#permissionmode) | `'default'` | Mode izin untuk sesi |
-| `permissionPromptToolName` | `string` | `undefined` | Nama tool MCP untuk prompt izin |
+| `permissionPromptToolName` | `string` | `undefined` | Nama alat MCP untuk prompt izin |
 | `plugins` | [`SdkPluginConfig`](#sdkpluginconfig)`[]` | `[]` | Muat plugin kustom dari path lokal. Lihat [Plugins](/docs/id/agent-sdk/plugins) untuk detail |
 | `resume` | `string` | `undefined` | ID sesi untuk dilanjutkan |
 | `resumeSessionAt` | `string` | `undefined` | Lanjutkan sesi pada UUID pesan tertentu |
@@ -135,8 +135,8 @@ Objek konfigurasi untuk fungsi `query()`.
 | `settingSources` | [`SettingSource`](#settingsource)`[]` | `[]` (tidak ada pengaturan) | Kontrol sumber pengaturan berbasis filesystem yang dimuat. Saat dihilangkan, tidak ada pengaturan yang dimuat. **Catatan:** Harus menyertakan `'project'` untuk memuat file CLAUDE.md |
 | `stderr` | `(data: string) => void` | `undefined` | Callback untuk output stderr |
 | `strictMcpConfig` | `boolean` | `false` | Terapkan validasi MCP ketat |
-| `systemPrompt` | `string \| { type: 'preset'; preset: 'claude_code'; append?: string }` | `undefined` (prompt kosong) | Konfigurasi system prompt. Teruskan string untuk prompt kustom, atau `{ type: 'preset', preset: 'claude_code' }` untuk menggunakan system prompt Claude Code. Saat menggunakan bentuk objek preset, tambahkan `append` untuk memperluas system prompt dengan instruksi tambahan |
-| `tools` | `string[] \| { type: 'preset'; preset: 'claude_code' }` | `undefined` | Konfigurasi tool. Teruskan array nama tool atau gunakan preset untuk mendapatkan tool default Claude Code |
+| `systemPrompt` | `string \| { type: 'preset'; preset: 'claude_code'; append?: string }` | `undefined` (prompt minimal) | Konfigurasi prompt sistem. Teruskan string untuk prompt kustom, atau `{ type: 'preset', preset: 'claude_code' }` untuk menggunakan prompt sistem Claude Code. Saat menggunakan bentuk objek preset, tambahkan `append` untuk memperluas prompt sistem dengan instruksi tambahan |
+| `tools` | `string[] \| { type: 'preset'; preset: 'claude_code' }` | `undefined` | Konfigurasi alat. Teruskan array nama alat atau gunakan preset untuk mendapatkan alat default Claude Code |
 
 ### `Query`
 
@@ -160,12 +160,12 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
 
 | Metode | Deskripsi |
 | :----- | :---------- |
-| `interrupt()` | Menghentikan query (hanya tersedia dalam mode input streaming) |
+| `interrupt()` | Mengganggu kueri (hanya tersedia dalam mode input streaming) |
 | `rewindFiles(userMessageUuid)` | Mengembalikan file ke keadaan mereka pada pesan pengguna yang ditentukan. Memerlukan `enableFileCheckpointing: true`. Lihat [File checkpointing](/docs/id/agent-sdk/file-checkpointing) |
 | `setPermissionMode()` | Mengubah mode izin (hanya tersedia dalam mode input streaming) |
 | `setModel()` | Mengubah model (hanya tersedia dalam mode input streaming) |
-| `setMaxThinkingTokens()` | Mengubah token thinking maksimal (hanya tersedia dalam mode input streaming) |
-| `supportedCommands()` | Mengembalikan slash command yang tersedia |
+| `setMaxThinkingTokens()` | Mengubah token pemikiran maksimum (hanya tersedia dalam mode input streaming) |
+| `supportedCommands()` | Mengembalikan perintah slash yang tersedia |
 | `supportedModels()` | Mengembalikan model yang tersedia dengan info tampilan |
 | `mcpServerStatus()` | Mengembalikan status server MCP yang terhubung |
 | `accountInfo()` | Mengembalikan informasi akun |
@@ -183,12 +183,12 @@ type AgentDefinition = {
 }
 ```
 
-| Field | Diperlukan | Deskripsi |
+| Bidang | Diperlukan | Deskripsi |
 |:------|:---------|:------------|
-| `description` | Ya | Deskripsi bahasa alami tentang kapan menggunakan agent ini |
-| `tools` | Tidak | Array nama tool yang diizinkan. Jika dihilangkan, mewarisi semua tool |
-| `prompt` | Ya | System prompt agent |
-| `model` | Tidak | Override model untuk agent ini. Jika dihilangkan, menggunakan model utama |
+| `description` | Ya | Deskripsi bahasa alami tentang kapan menggunakan agen ini |
+| `tools` | Tidak | Array nama alat yang diizinkan. Jika dihilangkan, mewarisi semua alat |
+| `prompt` | Ya | Prompt sistem agen |
+| `model` | Tidak | Override model untuk agen ini. Jika dihilangkan, menggunakan model utama |
 
 ### `SettingSource`
 
@@ -232,11 +232,11 @@ const result = query({
 });
 ```
 
-**Lingkungan testing dan CI:**
+**Lingkungan pengujian dan CI:**
 ```typescript
 // Pastikan perilaku konsisten di CI dengan mengecualikan pengaturan lokal
 const result = query({
-  prompt: "Jalankan test",
+  prompt: "Jalankan tes",
   options: {
     settingSources: ['project'],  // Hanya pengaturan bersama tim
     permissionMode: 'bypassPermissions'
@@ -282,21 +282,21 @@ Ketika beberapa sumber dimuat, pengaturan digabungkan dengan preseden ini (terti
 2. Pengaturan proyek (`.claude/settings.json`)
 3. Pengaturan pengguna (`~/.claude/settings.json`)
 
-Opsi terprogram (seperti `agents`, `allowedTools`) selalu mengganti pengaturan filesystem.
+Opsi terprogram (seperti `agents`, `allowedTools`) selalu menimpa pengaturan filesystem.
 
 ### `PermissionMode`
 
 ```typescript
 type PermissionMode =
   | 'default'           // Perilaku izin standar
-  | 'acceptEdits'       // Auto-accept edit file
+  | 'acceptEdits'       // Auto-accept pengeditan file
   | 'bypassPermissions' // Bypass semua pemeriksaan izin
   | 'plan'              // Mode perencanaan - tidak ada eksekusi
 ```
 
 ### `CanUseTool`
 
-Tipe fungsi izin kustom untuk mengontrol penggunaan tool.
+Tipe fungsi izin kustom untuk mengontrol penggunaan alat.
 
 ```typescript
 type CanUseTool = (
@@ -391,7 +391,7 @@ type SdkPluginConfig = {
 }
 ```
 
-| Field | Tipe | Deskripsi |
+| Bidang | Tipe | Deskripsi |
 |:------|:-----|:------------|
 | `type` | `'local'` | Harus `'local'` (hanya plugin lokal yang didukung saat ini) |
 | `path` | `string` | Path absolut atau relatif ke direktori plugin |
@@ -410,7 +410,7 @@ Untuk informasi lengkap tentang membuat dan menggunakan plugin, lihat [Plugins](
 
 ### `SDKMessage`
 
-Tipe union dari semua pesan yang mungkin dikembalikan oleh query.
+Tipe union dari semua pesan yang mungkin dikembalikan oleh kueri.
 
 ```typescript
 type SDKMessage = 
@@ -565,7 +565,7 @@ type SDKCompactBoundaryMessage = {
 
 ### `SDKPermissionDenial`
 
-Informasi tentang penggunaan tool yang ditolak.
+Informasi tentang penggunaan alat yang ditolak.
 
 ```typescript
 type SDKPermissionDenial = {
@@ -577,11 +577,11 @@ type SDKPermissionDenial = {
 
 ## Tipe Hook
 
-Untuk panduan komprehensif tentang menggunakan hook dengan contoh dan pola umum, lihat [panduan Hooks](/docs/id/agent-sdk/hooks).
+Untuk panduan komprehensif tentang menggunakan hook dengan contoh dan pola umum, lihat [Panduan Hooks](/docs/id/agent-sdk/hooks).
 
 ### `HookEvent`
 
-Event hook yang tersedia.
+Acara hook yang tersedia.
 
 ```typescript
 type HookEvent =
@@ -823,13 +823,13 @@ type SyncHookJSONOutput = {
 }
 ```
 
-## Tipe Input Tool
+## Tipe Input Alat
 
-Dokumentasi skema input untuk semua tool Claude Code bawaan. Tipe-tipe ini diekspor dari `@anthropic-ai/claude-agent-sdk` dan dapat digunakan untuk interaksi tool yang aman tipe.
+Dokumentasi skema input untuk semua alat Claude Code bawaan. Tipe-tipe ini diekspor dari `@anthropic-ai/claude-agent-sdk` dan dapat digunakan untuk interaksi alat yang aman tipe.
 
 ### `ToolInput`
 
-**Catatan:** Ini adalah tipe dokumentasi saja untuk kejelasan. Ini mewakili union dari semua tipe input tool.
+**Catatan:** Ini adalah tipe dokumentasi saja untuk kejelasan. Ini mewakili union dari semua tipe input alat.
 
 ```typescript
 type ToolInput =
@@ -854,7 +854,7 @@ type ToolInput =
 
 ### Task
 
-**Nama tool:** `Task`
+**Nama alat:** `Task`
 
 ```typescript
 interface AgentInput {
@@ -863,21 +863,21 @@ interface AgentInput {
    */
   description: string;
   /**
-   * Tugas untuk dijalankan agent
+   * Tugas untuk dilakukan agen
    */
   prompt: string;
   /**
-   * Tipe agent khusus yang digunakan untuk tugas ini
+   * Jenis agen khusus yang digunakan untuk tugas ini
    */
   subagent_type: string;
 }
 ```
 
-Meluncurkan agent baru untuk menangani tugas kompleks multi-langkah secara otonom.
+Meluncurkan agen baru untuk menangani tugas kompleks multi-langkah secara otonom.
 
 ### AskUserQuestion
 
-**Nama tool:** `AskUserQuestion`
+**Nama alat:** `AskUserQuestion`
 
 ```typescript
 interface AskUserQuestionInput {
@@ -891,7 +891,7 @@ interface AskUserQuestionInput {
      */
     question: string;
     /**
-     * Label sangat singkat ditampilkan sebagai chip/tag (maks 12 karakter).
+     * Label sangat pendek ditampilkan sebagai chip/tag (maks 12 karakter).
      * Contoh: "Auth method", "Library", "Approach"
      */
     header: string;
@@ -923,11 +923,11 @@ interface AskUserQuestionInput {
 }
 ```
 
-Menanyakan pertanyaan klarifikasi kepada pengguna selama eksekusi. Lihat [Handling the AskUserQuestion Tool](/docs/id/agent-sdk/permissions#handling-the-askuserquestion-tool) untuk detail penggunaan.
+Menanyakan pertanyaan klarifikasi kepada pengguna selama eksekusi. Lihat [Handle approvals and user input](/docs/id/agent-sdk/user-input#handle-clarifying-questions) untuk detail penggunaan.
 
 ### Bash
 
-**Nama tool:** `Bash`
+**Nama alat:** `Bash`
 
 ```typescript
 interface BashInput {
@@ -944,22 +944,22 @@ interface BashInput {
    */
   description?: string;
   /**
-   * Atur ke true untuk menjalankan perintah ini di background
+   * Atur ke true untuk menjalankan perintah ini di latar belakang
    */
   run_in_background?: boolean;
 }
 ```
 
-Mengeksekusi perintah bash dalam sesi shell persisten dengan timeout opsional dan eksekusi background.
+Mengeksekusi perintah bash dalam sesi shell persisten dengan timeout opsional dan eksekusi latar belakang.
 
 ### BashOutput
 
-**Nama tool:** `BashOutput`
+**Nama alat:** `BashOutput`
 
 ```typescript
 interface BashOutputInput {
   /**
-   * ID shell background untuk mengambil output dari
+   * ID shell latar belakang untuk mengambil output dari
    */
   bash_id: string;
   /**
@@ -969,11 +969,11 @@ interface BashOutputInput {
 }
 ```
 
-Mengambil output dari shell bash background yang sedang berjalan atau selesai.
+Mengambil output dari shell bash yang sedang berjalan atau selesai.
 
 ### Edit
 
-**Nama tool:** `Edit`
+**Nama alat:** `Edit`
 
 ```typescript
 interface FileEditInput {
@@ -1000,7 +1000,7 @@ Melakukan penggantian string yang tepat dalam file.
 
 ### Read
 
-**Nama tool:** `Read`
+**Nama alat:** `Read`
 
 ```typescript
 interface FileReadInput {
@@ -1023,7 +1023,7 @@ Membaca file dari filesystem lokal, termasuk teks, gambar, PDF, dan notebook Jup
 
 ### Write
 
-**Nama tool:** `Write`
+**Nama alat:** `Write`
 
 ```typescript
 interface FileWriteInput {
@@ -1042,7 +1042,7 @@ Menulis file ke filesystem lokal, menimpa jika ada.
 
 ### Glob
 
-**Nama tool:** `Glob`
+**Nama alat:** `Glob`
 
 ```typescript
 interface GlobInput {
@@ -1061,7 +1061,7 @@ Pencocokan pola file cepat yang bekerja dengan ukuran codebase apa pun.
 
 ### Grep
 
-**Nama tool:** `Grep`
+**Nama alat:** `Grep`
 
 ```typescript
 interface GrepInput {
@@ -1078,7 +1078,7 @@ interface GrepInput {
    */
   glob?: string;
   /**
-   * Tipe file untuk dicari (misalnya "js", "py", "rust")
+   * Jenis file untuk dicari (misalnya "js", "py", "rust")
    */
   type?: string;
   /**
@@ -1086,7 +1086,7 @@ interface GrepInput {
    */
   output_mode?: 'content' | 'files_with_matches' | 'count';
   /**
-   * Pencarian case insensitive
+   * Pencarian tidak peka huruf besar-kecil
    */
   '-i'?: boolean;
   /**
@@ -1116,26 +1116,26 @@ interface GrepInput {
 }
 ```
 
-Tool pencarian yang kuat dibangun di atas ripgrep dengan dukungan regex.
+Alat pencarian yang kuat dibangun di atas ripgrep dengan dukungan regex.
 
 ### KillBash
 
-**Nama tool:** `KillBash`
+**Nama alat:** `KillBash`
 
 ```typescript
 interface KillShellInput {
   /**
-   * ID shell background yang akan dibunuh
+   * ID shell latar belakang yang akan dibunuh
    */
   shell_id: string;
 }
 ```
 
-Membunuh shell bash background yang sedang berjalan berdasarkan ID-nya.
+Membunuh shell bash latar belakang yang sedang berjalan berdasarkan ID-nya.
 
 ### NotebookEdit
 
-**Nama tool:** `NotebookEdit`
+**Nama alat:** `NotebookEdit`
 
 ```typescript
 interface NotebookEditInput {
@@ -1152,11 +1152,11 @@ interface NotebookEditInput {
    */
   new_source: string;
   /**
-   * Tipe sel (code atau markdown)
+   * Jenis sel (code atau markdown)
    */
   cell_type?: 'code' | 'markdown';
   /**
-   * Tipe edit (replace, insert, delete)
+   * Jenis edit (replace, insert, delete)
    */
   edit_mode?: 'replace' | 'insert' | 'delete';
 }
@@ -1166,7 +1166,7 @@ Mengedit sel dalam file notebook Jupyter.
 
 ### WebFetch
 
-**Nama tool:** `WebFetch`
+**Nama alat:** `WebFetch`
 
 ```typescript
 interface WebFetchInput {
@@ -1185,12 +1185,12 @@ Mengambil konten dari URL dan memprosesnya dengan model AI.
 
 ### WebSearch
 
-**Nama tool:** `WebSearch`
+**Nama alat:** `WebSearch`
 
 ```typescript
 interface WebSearchInput {
   /**
-   * Query pencarian yang digunakan
+   * Kueri pencarian yang digunakan
    */
   query: string;
   /**
@@ -1208,7 +1208,7 @@ Mencari web dan mengembalikan hasil yang diformat.
 
 ### TodoWrite
 
-**Nama tool:** `TodoWrite`
+**Nama alat:** `TodoWrite`
 
 ```typescript
 interface TodoWriteInput {
@@ -1236,7 +1236,7 @@ Membuat dan mengelola daftar tugas terstruktur untuk melacak kemajuan.
 
 ### ExitPlanMode
 
-**Nama tool:** `ExitPlanMode`
+**Nama alat:** `ExitPlanMode`
 
 ```typescript
 interface ExitPlanModeInput {
@@ -1251,22 +1251,22 @@ Keluar dari mode perencanaan dan meminta pengguna untuk menyetujui rencana.
 
 ### ListMcpResources
 
-**Nama tool:** `ListMcpResources`
+**Nama alat:** `ListMcpResources`
 
 ```typescript
 interface ListMcpResourcesInput {
   /**
-   * Nama server opsional untuk memfilter resource
+   * Nama server opsional untuk memfilter sumber daya
    */
   server?: string;
 }
 ```
 
-Mencantumkan resource MCP yang tersedia dari server yang terhubung.
+Mencantumkan sumber daya MCP yang tersedia dari server yang terhubung.
 
 ### ReadMcpResource
 
-**Nama tool:** `ReadMcpResource`
+**Nama alat:** `ReadMcpResource`
 
 ```typescript
 interface ReadMcpResourceInput {
@@ -1275,21 +1275,21 @@ interface ReadMcpResourceInput {
    */
   server: string;
   /**
-   * URI resource yang akan dibaca
+   * URI sumber daya untuk dibaca
    */
   uri: string;
 }
 ```
 
-Membaca resource MCP tertentu dari server.
+Membaca sumber daya MCP tertentu dari server.
 
-## Tipe Output Tool
+## Tipe Output Alat
 
-Dokumentasi skema output untuk semua tool Claude Code bawaan. Tipe-tipe ini mewakili data respons aktual yang dikembalikan oleh setiap tool.
+Dokumentasi skema output untuk semua alat Claude Code bawaan. Tipe-tipe ini mewakili data respons aktual yang dikembalikan oleh setiap alat.
 
 ### `ToolOutput`
 
-**Catatan:** Ini adalah tipe dokumentasi saja untuk kejelasan. Ini mewakili union dari semua tipe output tool.
+**Catatan:** Ini adalah tipe dokumentasi saja untuk kejelasan. Ini mewakili union dari semua tipe output alat.
 
 ```typescript
 type ToolOutput =
@@ -1314,7 +1314,7 @@ type ToolOutput =
 
 ### Task
 
-**Nama tool:** `Task`
+**Nama alat:** `Task`
 
 ```typescript
 interface TaskOutput {
@@ -1332,7 +1332,7 @@ interface TaskOutput {
     cache_read_input_tokens?: number;
   };
   /**
-   * Total biaya dalam USD
+   * Biaya total dalam USD
    */
   total_cost_usd?: number;
   /**
@@ -1346,7 +1346,7 @@ Mengembalikan hasil akhir dari subagen setelah menyelesaikan tugas yang didelega
 
 ### AskUserQuestion
 
-**Nama tool:** `AskUserQuestion`
+**Nama alat:** `AskUserQuestion`
 
 ```typescript
 interface AskUserQuestionOutput {
@@ -1375,7 +1375,7 @@ Mengembalikan pertanyaan yang ditanyakan dan jawaban pengguna.
 
 ### Bash
 
-**Nama tool:** `Bash`
+**Nama alat:** `Bash`
 
 ```typescript
 interface BashOutput {
@@ -1384,7 +1384,7 @@ interface BashOutput {
    */
   output: string;
   /**
-   * Exit code perintah
+   * Kode keluar perintah
    */
   exitCode: number;
   /**
@@ -1392,17 +1392,17 @@ interface BashOutput {
    */
   killed?: boolean;
   /**
-   * Shell ID untuk proses background
+   * Shell ID untuk proses latar belakang
    */
   shellId?: string;
 }
 ```
 
-Mengembalikan output perintah dengan status exit. Perintah background mengembalikan segera dengan shellId.
+Mengembalikan output perintah dengan status keluar. Perintah latar belakang kembali segera dengan shellId.
 
 ### BashOutput
 
-**Nama tool:** `BashOutput`
+**Nama alat:** `BashOutput`
 
 ```typescript
 interface BashOutputToolOutput {
@@ -1415,17 +1415,17 @@ interface BashOutputToolOutput {
    */
   status: 'running' | 'completed' | 'failed';
   /**
-   * Exit code (saat selesai)
+   * Kode keluar (saat selesai)
    */
   exitCode?: number;
 }
 ```
 
-Mengembalikan output inkremental dari shell background.
+Mengembalikan output inkremental dari shell latar belakang.
 
 ### Edit
 
-**Nama tool:** `Edit`
+**Nama alat:** `Edit`
 
 ```typescript
 interface EditOutput {
@@ -1434,7 +1434,7 @@ interface EditOutput {
    */
   message: string;
   /**
-   * Jumlah penggantian yang dibuat
+   * Jumlah penggantian yang dilakukan
    */
   replacements: number;
   /**
@@ -1444,9 +1444,9 @@ interface EditOutput {
 }
 ```
 
-Mengembalikan konfirmasi edit yang berhasil dengan jumlah penggantian.
+Mengembalikan konfirmasi pengeditan yang berhasil dengan jumlah penggantian.
 
-### Baca
+### Read
 
 **Nama alat:** `Read`
 
@@ -1524,14 +1524,14 @@ interface NotebookFileOutput {
 
 Mengembalikan konten file dalam format yang sesuai dengan tipe file.
 
-### Tulis
+### Write
 
 **Nama alat:** `Write`
 
 ```typescript
 interface WriteOutput {
   /**
-   * Pesan kesuksesan
+   * Pesan sukses
    */
   message: string;
   /**
@@ -1610,7 +1610,7 @@ interface GrepFilesOutput {
 
 interface GrepCountOutput {
   /**
-   * Jumlah kecocokan per file
+   * Hitungan kecocokan per file
    */
   counts: Array<{
     file: string;
@@ -1632,11 +1632,11 @@ Mengembalikan hasil pencarian dalam format yang ditentukan oleh output_mode.
 ```typescript
 interface KillBashOutput {
   /**
-   * Pesan kesuksesan
+   * Pesan sukses
    */
   message: string;
   /**
-   * ID shell yang dibunuh
+   * ID shell yang dihentikan
    */
   shell_id: string;
 }
@@ -1651,7 +1651,7 @@ Mengembalikan konfirmasi setelah menghentikan shell latar belakang.
 ```typescript
 interface NotebookEditOutput {
   /**
-   * Pesan kesuksesan
+   * Pesan sukses
    */
   message: string;
   /**
@@ -1696,7 +1696,7 @@ interface WebFetchOutput {
 }
 ```
 
-Mengembalikan analisis AI terhadap konten web yang diambil.
+Mengembalikan analisis AI dari konten web yang diambil.
 
 ### WebSearch
 
@@ -1727,7 +1727,7 @@ interface WebSearchOutput {
 }
 ```
 
-Mengembalikan hasil pencarian web yang diformat.
+Mengembalikan hasil pencarian yang diformat dari web.
 
 ### TodoWrite
 
@@ -1736,7 +1736,7 @@ Mengembalikan hasil pencarian web yang diformat.
 ```typescript
 interface TodoWriteOutput {
   /**
-   * Pesan kesuksesan
+   * Pesan sukses
    */
   message: string;
   /**
@@ -1907,7 +1907,7 @@ type SdkBeta = 'context-1m-2025-08-07';
 
 | Nilai | Deskripsi | Model Kompatibel |
 |:------|:----------|:-----------------|
-| `'context-1m-2025-08-07'` | Mengaktifkan [jendela konteks](/docs/id/build-with-claude/context-windows) 1 juta token | Claude Sonnet 4, Claude Sonnet 4.5 |
+| `'context-1m-2025-08-07'` | Mengaktifkan [jendela konteks](/docs/id/build-with-claude/context-windows) 1 juta token | Claude Opus 4.6, Claude Sonnet 4.5, Claude Sonnet 4 |
 
 ### `SlashCommand`
 
@@ -1986,7 +1986,7 @@ type ConfigScope = 'local' | 'user' | 'project';
 
 ### `NonNullableUsage`
 
-Versi [`Usage`](#usage) dengan semua field yang dapat bernilai null dibuat non-nullable.
+Versi dari [`Usage`](#usage) dengan semua field yang dapat bernilai null dibuat tidak dapat bernilai null.
 
 ```typescript
 type NonNullableUsage = {
@@ -2023,7 +2023,7 @@ type CallToolResult = {
 
 ### `AbortError`
 
-Kelas error khusus untuk operasi abort.
+Kelas error khusus untuk operasi pembatalan.
 
 ```typescript
 class AbortError extends Error {}
@@ -2050,7 +2050,7 @@ type SandboxSettings = {
 | Properti | Tipe | Default | Deskripsi |
 | :------- | :--- | :------ | :---------- |
 | `enabled` | `boolean` | `false` | Aktifkan mode sandbox untuk eksekusi perintah |
-| `autoAllowBashIfSandboxed` | `boolean` | `false` | Setujui otomatis perintah bash saat sandbox diaktifkan |
+| `autoAllowBashIfSandboxed` | `boolean` | `false` | Persetujuan otomatis perintah bash saat sandbox diaktifkan |
 | `excludedCommands` | `string[]` | `[]` | Perintah yang selalu melewati pembatasan sandbox (misalnya, `['docker']`). Ini berjalan tanpa sandbox secara otomatis tanpa keterlibatan model |
 | `allowUnsandboxedCommands` | `boolean` | `false` | Izinkan model untuk meminta menjalankan perintah di luar sandbox. Ketika `true`, model dapat mengatur `dangerouslyDisableSandbox` dalam input alat, yang kembali ke [sistem izin](#permissions-fallback-for-unsandboxed-commands) |
 | `network` | [`NetworkSandboxSettings`](#networksandboxsettings) | `undefined` | Konfigurasi sandbox khusus jaringan |
@@ -2060,9 +2060,9 @@ type SandboxSettings = {
 <Note>
 **Pembatasan akses sistem file dan jaringan** TIDAK dikonfigurasi melalui pengaturan sandbox. Sebaliknya, mereka berasal dari [aturan izin](https://code.claude.com/docs/id/settings#permission-settings):
 
-- **Pembatasan baca sistem file**: Aturan deny baca
-- **Pembatasan tulis sistem file**: Aturan allow/deny edit
-- **Pembatasan jaringan**: Aturan allow/deny WebFetch
+- **Pembatasan baca sistem file**: Aturan penolakan baca
+- **Pembatasan tulis sistem file**: Aturan izin/penolakan edit
+- **Pembatasan jaringan**: Aturan izin/penolakan WebFetch
 
 Gunakan pengaturan sandbox untuk sandboxing eksekusi perintah, dan aturan izin untuk kontrol akses sistem file dan jaringan.
 </Note>
@@ -2078,15 +2078,17 @@ const result = await query({
     sandbox: {
       enabled: true,
       autoAllowBashIfSandboxed: true,
-      excludedCommands: ["docker"],
       network: {
-        allowLocalBinding: true,
-        allowUnixSockets: ["/var/run/docker.sock"]
+        allowLocalBinding: true
       }
     }
   }
 });
 ```
+
+<Warning>
+**Keamanan Unix socket**: Opsi `allowUnixSockets` dapat memberikan akses ke layanan sistem yang kuat. Misalnya, mengizinkan `/var/run/docker.sock` secara efektif memberikan akses sistem host penuh melalui API Docker, melewati isolasi sandbox. Hanya izinkan Unix socket yang benar-benar diperlukan dan pahami implikasi keamanan dari masing-masing.
+</Warning>
 
 ### `NetworkSandboxSettings`
 
@@ -2105,8 +2107,8 @@ type NetworkSandboxSettings = {
 | Properti | Tipe | Default | Deskripsi |
 | :------- | :--- | :------ | :---------- |
 | `allowLocalBinding` | `boolean` | `false` | Izinkan proses untuk mengikat ke port lokal (misalnya, untuk server dev) |
-| `allowUnixSockets` | `string[]` | `[]` | Jalur soket Unix yang dapat diakses proses (misalnya, soket Docker) |
-| `allowAllUnixSockets` | `boolean` | `false` | Izinkan akses ke semua soket Unix |
+| `allowUnixSockets` | `string[]` | `[]` | Jalur Unix socket yang dapat diakses oleh proses (misalnya, Docker socket) |
+| `allowAllUnixSockets` | `boolean` | `false` | Izinkan akses ke semua Unix socket |
 | `httpProxyPort` | `number` | `undefined` | Port proxy HTTP untuk permintaan jaringan |
 | `socksProxyPort` | `number` | `undefined` | Port proxy SOCKS untuk permintaan jaringan |
 
@@ -2128,12 +2130,12 @@ type SandboxIgnoreViolations = {
 
 ### Fallback Izin untuk Perintah Tanpa Sandbox
 
-Ketika `allowUnsandboxedCommands` diaktifkan, model dapat meminta untuk menjalankan perintah di luar sandbox dengan mengatur `dangerouslyDisableSandbox: true` dalam input alat. Permintaan ini kembali ke sistem izin yang ada, yang berarti handler `canUseTool` Anda akan dipanggil, memungkinkan Anda untuk menerapkan logika otorisasi khusus.
+Ketika `allowUnsandboxedCommands` diaktifkan, model dapat meminta untuk menjalankan perintah di luar sandbox dengan mengatur `dangerouslyDisableSandbox: true` dalam input alat. Permintaan ini kembali ke sistem izin yang ada, yang berarti handler `canUseTool` Anda akan dipanggil, memungkinkan Anda menerapkan logika otorisasi khusus.
 
 <Note>
 **`excludedCommands` vs `allowUnsandboxedCommands`:**
 - `excludedCommands`: Daftar statis perintah yang selalu melewati sandbox secara otomatis (misalnya, `['docker']`). Model tidak memiliki kontrol atas ini.
-- `allowUnsandboxedCommands`: Membiarkan model memutuskan pada waktu runtime apakah akan meminta eksekusi tanpa sandbox dengan mengatur `dangerouslyDisableSandbox: true` dalam input alat.
+- `allowUnsandboxedCommands`: Memungkinkan model memutuskan pada waktu runtime apakah akan meminta eksekusi tanpa sandbox dengan mengatur `dangerouslyDisableSandbox: true` dalam input alat.
 </Note>
 
 ```typescript
@@ -2165,16 +2167,18 @@ const result = await query({
 Pola ini memungkinkan Anda untuk:
 
 - **Audit permintaan model**: Catat ketika model meminta eksekusi tanpa sandbox
-- **Implementasi allowlist**: Hanya izinkan perintah tertentu untuk berjalan tanpa sandbox
-- **Tambahkan alur persetujuan**: Memerlukan otorisasi eksplisit untuk operasi yang istimewa
+- **Implementasikan daftar izin**: Hanya izinkan perintah tertentu untuk berjalan tanpa sandbox
+- **Tambahkan alur persetujuan**: Memerlukan otorisasi eksplisit untuk operasi istimewa
 
 <Warning>
 Perintah yang berjalan dengan `dangerouslyDisableSandbox: true` memiliki akses sistem penuh. Pastikan handler `canUseTool` Anda memvalidasi permintaan ini dengan hati-hati.
+
+Jika `permissionMode` diatur ke `bypassPermissions` dan `allowUnsandboxedCommands` diaktifkan, model dapat secara otonom menjalankan perintah di luar sandbox tanpa prompt persetujuan apa pun. Kombinasi ini secara efektif memungkinkan model untuk melarikan diri dari isolasi sandbox secara diam-diam.
 </Warning>
 
 ## Lihat juga
 
-- [Ringkasan SDK](/docs/id/agent-sdk/overview) - Konsep SDK umum
+- [Ikhtisar SDK](/docs/id/agent-sdk/overview) - Konsep SDK umum
 - [Referensi SDK Python](/docs/id/agent-sdk/python) - Dokumentasi SDK Python
 - [Referensi CLI](https://code.claude.com/docs/id/cli-reference) - Antarmuka baris perintah
 - [Alur kerja umum](https://code.claude.com/docs/id/common-workflows) - Panduan langkah demi langkah

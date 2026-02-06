@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/skills
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 871430c4df8f0f2c105f192abcd02b3ee3f9d23d277a672ceafbd50ec99dff8d
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 0aef56e3456c889dfb093b9e32a3a8705670f997abf52577fb649c6a96b046e1
 ---
 
 # Agent Skills dalam SDK
@@ -11,13 +11,13 @@ Perluas Claude dengan kemampuan khusus menggunakan Agent Skills dalam Claude Age
 
 ---
 
-## Ringkasan
+## Ikhtisar
 
 Agent Skills memperluas Claude dengan kemampuan khusus yang Claude secara otomatis memanggil ketika relevan. Skills dikemas sebagai file `SKILL.md` yang berisi instruksi, deskripsi, dan sumber daya pendukung opsional.
 
-Untuk informasi komprehensif tentang Skills, termasuk manfaat, arsitektur, dan pedoman penulisan, lihat [ringkasan Agent Skills](/docs/id/agents-and-tools/agent-skills/overview).
+Untuk informasi komprehensif tentang Skills, termasuk manfaat, arsitektur, dan panduan penulisan, lihat [ikhtisar Agent Skills](/docs/id/agents-and-tools/agent-skills/overview).
 
-## Cara Skills Bekerja dengan SDK
+## Bagaimana Skills Bekerja dengan SDK
 
 Saat menggunakan Claude Agent SDK, Skills adalah:
 
@@ -87,7 +87,7 @@ Skills dimuat dari direktori sistem file berdasarkan konfigurasi `settingSources
 
 - **Project Skills** (`.claude/skills/`): Dibagikan dengan tim Anda melalui git - dimuat ketika `setting_sources` mencakup `"project"`
 - **User Skills** (`~/.claude/skills/`): Skills pribadi di semua proyek - dimuat ketika `setting_sources` mencakup `"user"`
-- **Plugin Skills**: Disertakan dengan plugin Claude Code yang diinstal
+- **Plugin Skills**: Disertakan dengan plugin Claude Code yang terinstal
 
 ## Membuat Skills
 
@@ -100,8 +100,8 @@ Skills didefinisikan sebagai direktori yang berisi file `SKILL.md` dengan frontm
 ```
 
 Untuk panduan lengkap tentang membuat Skills, termasuk struktur SKILL.md, Skills multi-file, dan contoh, lihat:
-- [Agent Skills dalam Claude Code](https://code.claude.com/docs/skills): Panduan lengkap dengan contoh
-- [Agent Skills Best Practices](/docs/id/agents-and-tools/agent-skills/best-practices): Pedoman penulisan dan konvensi penamaan
+- [Agent Skills dalam Claude Code](https://code.claude.com/docs/en/skills): Panduan lengkap dengan contoh
+- [Agent Skills Best Practices](/docs/id/agents-and-tools/agent-skills/best-practices): Panduan penulisan dan konvensi penamaan
 
 ## Pembatasan Alat
 
@@ -180,7 +180,7 @@ for await (const message of query({
 
 </CodeGroup>
 
-Claude akan mencantumkan Skills yang tersedia berdasarkan direktori kerja saat ini dan plugin yang diinstal.
+Claude akan mencantumkan Skills yang tersedia berdasarkan direktori kerja saat ini dan plugin yang terinstal.
 
 ## Menguji Skills
 
@@ -248,7 +248,7 @@ const options = {
 
 // Correct - Skills will be loaded
 const options = {
-  settingSources: ["user", "project"],  # Required to load Skills
+  settingSources: ["user", "project"],  // Required to load Skills
   allowedTools: ["Skill"]
 };
 ```
@@ -294,25 +294,25 @@ ls ~/.claude/skills/*/SKILL.md
 
 ### Skill Tidak Digunakan
 
-**Periksa alat Skill diaktifkan**: Konfirmasi `"Skill"` ada dalam `allowedTools` Anda.
+**Periksa alat Skill diaktifkan**: Konfirmkan `"Skill"` ada dalam `allowedTools` Anda.
 
 **Periksa deskripsi**: Pastikan itu spesifik dan mencakup kata kunci yang relevan. Lihat [Agent Skills Best Practices](/docs/id/agents-and-tools/agent-skills/best-practices#writing-effective-descriptions) untuk panduan tentang menulis deskripsi yang efektif.
 
 ### Pemecahan Masalah Tambahan
 
-Untuk pemecahan masalah Skills umum (sintaks YAML, debugging, dll.), lihat [bagian pemecahan masalah Claude Code Skills](https://code.claude.com/docs/skills#troubleshooting).
+Untuk pemecahan masalah Skills umum (sintaks YAML, debugging, dll.), lihat [bagian pemecahan masalah Claude Code Skills](https://code.claude.com/docs/en/skills#troubleshooting).
 
 ## Dokumentasi Terkait
 
 ### Panduan Skills
-- [Agent Skills dalam Claude Code](https://code.claude.com/docs/skills): Panduan Skills lengkap dengan pembuatan, contoh, dan pemecahan masalah
-- [Ringkasan Agent Skills](/docs/id/agents-and-tools/agent-skills/overview): Ringkasan konseptual, manfaat, dan arsitektur
-- [Agent Skills Best Practices](/docs/id/agents-and-tools/agent-skills/best-practices): Pedoman penulisan untuk Skills yang efektif
-- [Agent Skills Cookbook](https://github.com/anthropics/claude-cookbooks/tree/main/skills): Contoh Skills dan template
+- [Agent Skills dalam Claude Code](https://code.claude.com/docs/en/skills): Panduan Skills lengkap dengan pembuatan, contoh, dan pemecahan masalah
+- [Agent Skills Overview](/docs/id/agents-and-tools/agent-skills/overview): Ikhtisar konseptual, manfaat, dan arsitektur
+- [Agent Skills Best Practices](/docs/id/agents-and-tools/agent-skills/best-practices): Panduan penulisan untuk Skills yang efektif
+- [Agent Skills Cookbook](https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction): Contoh Skills dan template
 
 ### Sumber Daya SDK
 - [Subagents dalam SDK](/docs/id/agent-sdk/subagents): Agen berbasis sistem file serupa dengan opsi terprogram
 - [Slash Commands dalam SDK](/docs/id/agent-sdk/slash-commands): Perintah yang dipanggil pengguna
-- [Ringkasan SDK](/docs/id/agent-sdk/overview): Konsep SDK umum
-- [Referensi SDK TypeScript](/docs/id/agent-sdk/typescript): Dokumentasi API lengkap
-- [Referensi SDK Python](/docs/id/agent-sdk/python): Dokumentasi API lengkap
+- [SDK Overview](/docs/id/agent-sdk/overview): Konsep SDK umum
+- [TypeScript SDK Reference](/docs/id/agent-sdk/typescript): Dokumentasi API lengkap
+- [Python SDK Reference](/docs/id/agent-sdk/python): Dokumentasi API lengkap

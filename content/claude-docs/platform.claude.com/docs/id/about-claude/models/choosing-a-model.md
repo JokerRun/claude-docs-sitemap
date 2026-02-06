@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/choosing-a-model
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 84fa0e507ea5aec3597aadffe278e8fbc4f0dc19ebcb3d00a2491068382271d0
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: a6141b17671a40dd3f47f7cedc98da020371affbb632c38f03a0e6299e36edb7
 ---
 
 # Memilih model yang tepat
@@ -35,43 +35,42 @@ Untuk banyak aplikasi, memulai dengan model yang lebih cepat dan hemat biaya sep
 3. Evaluasi apakah kinerja memenuhi persyaratan Anda
 4. Tingkatkan hanya jika diperlukan untuk kesenjangan kemampuan tertentu
 
-Pendekatan ini memungkinkan iterasi cepat, biaya pengembangan lebih rendah, dan sering kali cukup untuk banyak aplikasi umum. Pendekatan ini terbaik untuk:
-- Pembuatan prototipe dan pengembangan awal
+Pendekatan ini memungkinkan iterasi cepat, biaya pengembangan lebih rendah, dan sering kali cukup untuk banyak aplikasi umum. Pendekatan ini paling baik untuk:
+- Prototyping dan pengembangan awal
 - Aplikasi dengan persyaratan latensi ketat
 - Implementasi yang sensitif terhadap biaya
 - Tugas-tugas bervolume tinggi yang sederhana
 
 ### Opsi 2: Mulai dengan model yang paling mampu
 
-Untuk tugas-tugas kompleks di mana kecerdasan dan kemampuan lanjutan adalah yang terpenting, Anda mungkin ingin memulai dengan model yang paling mampu dan kemudian mempertimbangkan optimasi ke model yang lebih efisien di kemudian hari:
+Untuk tugas-tugas kompleks di mana kecerdasan dan kemampuan lanjutan adalah yang terpenting, Anda mungkin ingin memulai dengan model yang paling mampu dan kemudian mempertimbangkan untuk mengoptimalkan ke model yang lebih efisien di kemudian hari:
 
-1. Implementasikan dengan Claude Sonnet 4.5
+1. Implementasikan dengan Claude Opus 4.6
 2. Optimalkan prompt Anda untuk model-model ini
 3. Evaluasi apakah kinerja memenuhi persyaratan Anda
-4. Pertimbangkan peningkatan efisiensi dengan menurunkan kecerdasan seiring waktu dengan optimasi alur kerja yang lebih besar
+4. Pertimbangkan untuk meningkatkan efisiensi dengan menurunkan kecerdasan seiring waktu dengan optimasi alur kerja yang lebih besar
 
-Pendekatan ini terbaik untuk:
-- Tugas penalaran kompleks
-- Aplikasi ilmiah atau matematika
-- Tugas yang memerlukan pemahaman bernuansa
-- Aplikasi di mana akurasi lebih penting daripada pertimbangan biaya
+Pendekatan ini paling baik untuk:
+- Tugas-tugas penalaran kompleks
+- Aplikasi ilmiah atau matematis
+- Tugas-tugas yang memerlukan pemahaman bernuansa
+- Aplikasi di mana akurasi mengungguli pertimbangan biaya
 - Pengkodean lanjutan
 
 ## Matriks pemilihan model
 
 | Ketika Anda membutuhkan... | Kami merekomendasikan untuk memulai dengan... | Contoh kasus penggunaan |
 |------------------|-------------------|-------------------|
-| Model terbaik untuk agen kompleks dan pengkodean, kecerdasan tertinggi di sebagian besar tugas, orkestrasi alat superior untuk tugas otonom jangka panjang | Claude Sonnet 4.5 | Agen pengkodean otonom, otomasi keamanan siber, analisis keuangan kompleks, tugas penelitian multi-jam, kerangka kerja multi-agen |
-| Kecerdasan maksimal dengan kinerja praktis untuk tugas khusus kompleks | Claude Opus 4.5 | Rekayasa perangkat lunak profesional, agen lanjutan untuk tugas kantor, penggunaan komputer dan browser dalam skala besar, aplikasi visi perubahan langkah |
-| Kecerdasan dan penalaran luar biasa untuk tugas khusus kompleks | Claude Opus 4.1 | Refaktorisasi basis kode yang sangat kompleks, penulisan kreatif bernuansa, analisis ilmiah khusus |
-| Kinerja mendekati perbatasan dengan kecepatan kilat dan pemikiran yang diperpanjang - model Haiku kami yang tercepat dan paling cerdas dengan harga paling ekonomis | Claude Haiku 4.5 | Aplikasi real-time, pemrosesan cerdas bervolume tinggi, penerapan sensitif biaya yang memerlukan penalaran kuat, tugas sub-agen |
+| Claude Opus 4.6 adalah versi terbaru dari model paling cerdas kami, dan model terbaik di dunia untuk pengkodean, agen perusahaan, dan pekerjaan profesional. | Claude Opus 4.6 | Rekayasa perangkat lunak profesional, agen lanjutan untuk tugas kantor, penggunaan komputer dan browser dalam skala besar, tugas penelitian berdurasi multi-jam, aplikasi visi perubahan langkah |
+| Kombinasi terbaik dari kecepatan dan kecerdasan untuk tugas-tugas sehari-hari | Claude Sonnet 4.5 | Pembuatan kode, analisis data, pembuatan konten, pemahaman visual, penggunaan alat agentic |
+| Kinerja mendekati frontier dengan kecepatan kilat dan pemikiran yang diperluas pada titik harga paling ekonomis | Claude Haiku 4.5 | Aplikasi real-time, pemrosesan cerdas bervolume tinggi, penerapan sensitif biaya yang memerlukan penalaran kuat, tugas sub-agen |
 
 ***
 
 ## Tentukan apakah akan meningkatkan atau mengubah model
 
 Untuk menentukan apakah Anda perlu meningkatkan atau mengubah model, Anda harus:
-1. [Buat tes benchmark](/docs/id/test-and-evaluate/develop-tests) khusus untuk kasus penggunaan Anda - memiliki set evaluasi yang baik adalah langkah paling penting dalam proses
+1. [Buat tes benchmark](/docs/id/test-and-evaluate/develop-tests) yang spesifik untuk kasus penggunaan Anda - memiliki set evaluasi yang baik adalah langkah paling penting dalam proses
 2. Uji dengan prompt dan data aktual Anda
 3. Bandingkan kinerja di seluruh model untuk:
    - Akurasi respons
@@ -85,8 +84,8 @@ Untuk menentukan apakah Anda perlu meningkatkan atau mengubah model, Anda harus:
   <Card title="Bagan perbandingan model" icon="settings" href="/docs/id/about-claude/models/overview">
     Lihat spesifikasi terperinci dan harga untuk model Claude terbaru
   </Card>
-  <Card title="Apa yang baru di Claude 4.5" icon="sparkle" href="/docs/id/about-claude/models/whats-new-claude-4-5">
-    Jelajahi peningkatan terbaru dalam model Claude 4.5
+  <Card title="Apa yang baru di Claude 4.6" icon="sparkle" href="/docs/id/about-claude/models/whats-new-claude-4-6">
+    Jelajahi peningkatan terbaru dalam model Claude 4.6
   </Card>
   <Card title="Mulai membangun" icon="code" href="/docs/id/get-started">
     Mulai dengan panggilan API pertama Anda

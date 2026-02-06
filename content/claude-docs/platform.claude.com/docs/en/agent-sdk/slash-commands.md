@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/slash-commands
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 7ad2150a79b94e99f11419f8f372c0cd967d4754fe1c6819284a6b6074b933e5
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 73c1df978af3cd7f9c432b9f6a070f59d9bdce38d5f55c9d7b853b1b4abce3e9
 ---
 
 # Slash Commands in the SDK
@@ -210,7 +210,7 @@ Create `.claude/commands/security-check.md`:
 ---
 allowed-tools: Read, Grep, Glob
 description: Run security vulnerability scan
-model: claude-sonnet-4-5-20250929
+model: claude-opus-4-6
 ---
 
 Analyze the codebase for security vulnerabilities including:

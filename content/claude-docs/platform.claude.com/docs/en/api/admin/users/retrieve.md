@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/retrieve
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 13286c94ddff79b7a4e75d1e16f6f8938f7709210554706011ecba19ec0badb5
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: ae028818d3e0d46d14e7256a64974fc9e9914249f666a91c3725c11780d84f17
 ---
 
 ## Retrieve
@@ -63,5 +63,6 @@ Get User
 
 ```http
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```

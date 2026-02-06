@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/migration-guide
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: dab25db499dce4b854e2fa82862613b3e21f41f362f7f2cc9d2dfe23e878a8d8
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 83a300e94bc837247a27e023b46cba98e23a63bf0fc9869a9a6316aa98cbfb6e
 ---
 
 # Migrasi ke Claude Agent SDK
@@ -48,10 +48,10 @@ npm install @anthropic-ai/claude-agent-sdk
 Ubah semua impor dari `@anthropic-ai/claude-code` ke `@anthropic-ai/claude-agent-sdk`:
 
 ```typescript
-// Sebelumnya
+// Sebelum
 import { query, tool, createSdkMcpServer } from "@anthropic-ai/claude-code";
 
-// Sesudahnya
+// Sesudah
 import {
   query,
   tool,
@@ -61,17 +61,17 @@ import {
 
 **4. Perbarui dependensi package.json:**
 
-Jika Anda memiliki paket yang tercantum di `package.json` Anda, perbarui:
+Jika Anda memiliki paket yang terdaftar di `package.json` Anda, perbarui:
 
 ```json
-// Sebelumnya
+// Sebelum
 {
   "dependencies": {
     "@anthropic-ai/claude-code": "^1.0.0"
   }
 }
 
-// Sesudahnya
+// Sesudah
 {
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "^0.1.0"
@@ -100,10 +100,10 @@ pip install claude-agent-sdk
 Ubah semua impor dari `claude_code_sdk` ke `claude_agent_sdk`:
 
 ```python
-# Sebelumnya
+# Sebelum
 from claude_code_sdk import query, ClaudeCodeOptions
 
-# Sesudahnya
+# Sesudah
 from claude_agent_sdk import query, ClaudeAgentOptions
 ```
 
@@ -112,18 +112,18 @@ from claude_agent_sdk import query, ClaudeAgentOptions
 Ubah `ClaudeCodeOptions` menjadi `ClaudeAgentOptions`:
 
 ```python
-# Sebelumnya
+# Sebelum
 from claude_agent_sdk import query, ClaudeCodeOptions
 
 options = ClaudeCodeOptions(
-    model="claude-sonnet-4-5"
+    model="claude-opus-4-6"
 )
 
-# Sesudahnya
+# Sesudah
 from claude_agent_sdk import query, ClaudeAgentOptions
 
 options = ClaudeAgentOptions(
-    model="claude-sonnet-4-5"
+    model="claude-opus-4-6"
 )
 ```
 
@@ -139,24 +139,24 @@ Untuk meningkatkan isolasi dan konfigurasi eksplisit, Claude Agent SDK v0.1.0 me
 
 ### Python: ClaudeCodeOptions diubah nama menjadi ClaudeAgentOptions
 
-**Apa yang berubah:** Tipe SDK Python `ClaudeCodeOptions` telah diubah nama menjadi `ClaudeAgentOptions`.
+**Apa yang berubah:** Tipe Python SDK `ClaudeCodeOptions` telah diubah nama menjadi `ClaudeAgentOptions`.
 
 **Migrasi:**
 
 ```python
-# SEBELUMNYA (v0.0.x)
+# SEBELUM (v0.0.x)
 from claude_agent_sdk import query, ClaudeCodeOptions
 
 options = ClaudeCodeOptions(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     permission_mode="acceptEdits"
 )
 
-# SESUDAHNYA (v0.1.0)
+# SESUDAH (v0.1.0)
 from claude_agent_sdk import query, ClaudeAgentOptions
 
 options = ClaudeAgentOptions(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     permission_mode="acceptEdits"
 )
 ```
@@ -172,10 +172,10 @@ options = ClaudeAgentOptions(
 <CodeGroup>
 
 ```typescript TypeScript
-// SEBELUMNYA (v0.0.x) - Menggunakan prompt sistem Claude Code secara default
+// SEBELUM (v0.0.x) - Menggunakan prompt sistem Claude Code secara default
 const result = query({ prompt: "Hello" });
 
-// SESUDAHNYA (v0.1.0) - Menggunakan prompt sistem kosong secara default
+// SESUDAH (v0.1.0) - Menggunakan prompt sistem minimal secara default
 // Untuk mendapatkan perilaku lama, secara eksplisit minta preset Claude Code:
 const result = query({
   prompt: "Hello",
@@ -194,11 +194,11 @@ const result = query({
 ```
 
 ```python Python
-# SEBELUMNYA (v0.0.x) - Menggunakan prompt sistem Claude Code secara default
+# SEBELUM (v0.0.x) - Menggunakan prompt sistem Claude Code secara default
 async for message in query(prompt="Hello"):
     print(message)
 
-# SESUDAHNYA (v0.1.0) - Menggunakan prompt sistem kosong secara default
+# SESUDAH (v0.1.0) - Menggunakan prompt sistem minimal secara default
 # Untuk mendapatkan perilaku lama, secara eksplisit minta preset Claude Code:
 from claude_agent_sdk import query, ClaudeAgentOptions
 
@@ -233,7 +233,7 @@ async for message in query(
 <CodeGroup>
 
 ```typescript TypeScript
-// SEBELUMNYA (v0.0.x) - Memuat semua pengaturan secara otomatis
+// SEBELUM (v0.0.x) - Memuat semua pengaturan secara otomatis
 const result = query({ prompt: "Hello" });
 // Akan membaca dari:
 // - ~/.claude/settings.json (pengguna)
@@ -242,7 +242,7 @@ const result = query({ prompt: "Hello" });
 // - File CLAUDE.md
 // - Perintah slash kustom
 
-// SESUDAHNYA (v0.1.0) - Tidak ada pengaturan yang dimuat secara default
+// SESUDAH (v0.1.0) - Tidak ada pengaturan yang dimuat secara default
 // Untuk mendapatkan perilaku lama:
 const result = query({
   prompt: "Hello",
@@ -261,7 +261,7 @@ const result = query({
 ```
 
 ```python Python
-# SEBELUMNYA (v0.0.x) - Memuat semua pengaturan secara otomatis
+# SEBELUM (v0.0.x) - Memuat semua pengaturan secara otomatis
 async for message in query(prompt="Hello"):
     print(message)
 # Akan membaca dari:
@@ -271,7 +271,7 @@ async for message in query(prompt="Hello"):
 # - File CLAUDE.md
 # - Perintah slash kustom
 
-# SESUDAHNYA (v0.1.0) - Tidak ada pengaturan yang dimuat secara default
+# SESUDAH (v0.1.0) - Tidak ada pengaturan yang dimuat secara default
 # Untuk mendapatkan perilaku lama:
 from claude_agent_sdk import query, ClaudeAgentOptions
 

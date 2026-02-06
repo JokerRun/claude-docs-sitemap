@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: 7594c6105fb20c7051dbdf8bda5fa8bef0ecb5e7d6f4b206672295aa544ff325
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 1e9af8f54b9e6ce0b0536ca68050a9ca09827683c79475eea6de4a7ac65b5fb1
 ---
 
 # Prompt caching
@@ -21,7 +21,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "system": [
       {
@@ -52,7 +52,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     system=[
       {
@@ -80,7 +80,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   system: [
     {
@@ -124,7 +124,7 @@ public class PromptCachingExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .maxTokens(1024)
                 .systemOfTextBlockParams(List.of(
                         TextBlockParam.builder()
@@ -190,6 +190,7 @@ Prompt caching introduces a new pricing structure. The table below shows the pri
 
 | Model             | Base Input Tokens | 5m Cache Writes | 1h Cache Writes | Cache Hits & Refreshes | Output Tokens |
 |-------------------|-------------------|-----------------|-----------------|----------------------|---------------|
+| Claude Opus 4.6     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.5   | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.1   | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
 | Claude Opus 4     | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
@@ -206,6 +207,8 @@ The table above reflects the following pricing multipliers for prompt caching:
 - 5-minute cache write tokens are 1.25 times the base input tokens price
 - 1-hour cache write tokens are 2 times the base input tokens price
 - Cache read tokens are 0.1 times the base input tokens price
+
+These multipliers stack with other pricing modifiers such as the Batch API discount, long context pricing, and data residency. See [pricing](/docs/en/about-claude/pricing) for full details.
 </Note>
 
 ---
@@ -214,6 +217,7 @@ The table above reflects the following pricing multipliers for prompt caching:
 ### Supported models
 
 Prompt caching is currently supported on:
+- Claude Opus 4.6
 - Claude Opus 4.5
 - Claude Opus 4.1
 - Claude Opus 4
@@ -268,8 +272,8 @@ You can define up to 4 cache breakpoints if you want to:
 
 ### Cache limitations
 The minimum cacheable prompt length is:
-- 4096 tokens for Claude Opus 4.5
-- 1024 tokens for Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4.5, Claude Sonnet 4, and Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
+- 4096 tokens for Claude Opus 4.6, Claude Opus 4.5
+- 1024 tokens for Claude Sonnet 4.5, Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4, and Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
 - 4096 tokens for Claude Haiku 4.5
 - 2048 tokens for Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations)) and Claude Haiku 3
 
@@ -532,7 +536,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "system": [
         {
@@ -559,7 +563,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     system=[
         {
@@ -588,7 +592,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   system: [
     {
@@ -628,7 +632,7 @@ public class LegalDocumentAnalysisExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .maxTokens(1024)
                 .systemOfTextBlockParams(List.of(
                         TextBlockParam.builder()
@@ -672,7 +676,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "tools": [
         {
@@ -725,7 +729,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=[
         {
@@ -780,7 +784,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const client = new Anthropic();
 
 const response = await client.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     max_tokens: 1024,
     tools=[
         {
@@ -876,7 +880,7 @@ public class ToolsWithCacheControlExample {
                 .build();
 
         MessageCreateParams params = MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .maxTokens(1024)
                 .addTool(Tool.builder()
                         .name("get_weather")
@@ -930,7 +934,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "system": [
         {
@@ -976,7 +980,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     system=[
         {
@@ -1025,7 +1029,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const client = new Anthropic();
 
 const response = await client.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     max_tokens: 1024,
     system=[
         {
@@ -1093,7 +1097,7 @@ public class ConversationWithCacheControlExample {
 
         // Create message params
         MessageCreateParams params = MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .maxTokens(1024)
                 .systemOfTextBlockParams(List.of(systemPrompt))
                 // First user message (without cache control)
@@ -1145,7 +1149,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "tools": [
         {
@@ -1244,7 +1248,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=[
         {
@@ -1345,7 +1349,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const client = new Anthropic();
 
 const response = await client.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     max_tokens: 1024,
     tools: [
         {
@@ -1486,7 +1490,7 @@ public class MultipleCacheBreakpointsExample {
                 .build();
 
         MessageCreateParams params = MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .maxTokens(1024)
                 // Tools with cache control on the last one
                 .addTool(Tool.builder()
@@ -1647,7 +1651,7 @@ This pattern is especially powerful for:
 
   <section title="Is prompt caching available for all models?">
 
-    No, prompt caching is currently only available for Claude Opus 4.5, Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4.5, Claude Sonnet 4, Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)), Claude Haiku 4.5, Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations)), and Claude Haiku 3.
+    No, prompt caching is currently only available for Claude Opus 4.6, Claude Opus 4.5, Claude Sonnet 4.5, Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4, Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)), Claude Haiku 4.5, Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations)), and Claude Haiku 3.
   
 </section>
 

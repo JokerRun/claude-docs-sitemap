@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 63b3c3ca2aa258df916f208582a742a4a6f8d70624f2c1ad9afb06bc6f64c645
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 390cc97cb9116f0935caeed2ebcaa5559a15dfb2f4f758388a5cd42247c070e7
 ---
 
 # Increase output consistency
@@ -32,6 +32,9 @@ Precisely define your desired output format using JSON, XML, or custom templates
 </section>
 
 ## Prefill Claude's response
+
+<Note>Prefilling is deprecated and not supported on Claude Opus 4.6 and Claude Sonnet 4.5. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) or system prompt instructions instead.</Note>
+
 Prefill the `Assistant` turn with your desired format. This trick bypasses Claude's friendly preamble and enforces your structure.
 
 <section title="Example: Daily sales report">

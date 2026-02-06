@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/administration-api
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: ac347744fb89ce7eb84595005f81be2d0de22ecf4c4a5d972eb54a74abb8d589
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: f85cae78ed04e503196de7207897a1bb9639b93ac1595799a2437fa20bc8fee6
 ---
 
-# Ikhtisar Admin API
+# Gambaran umum Admin API
 
 Kelola sumber daya organisasi Anda secara terprogram dengan Admin API, termasuk anggota organisasi, ruang kerja, dan kunci API.
 
@@ -31,7 +31,7 @@ Saat Anda menggunakan Admin API:
 2. API memungkinkan Anda mengelola:
    - Anggota organisasi dan peran mereka
    - Undangan anggota organisasi
-   - Ruang kerja dan anggotanya
+   - Ruang kerja dan anggota mereka
    - Kunci API
 
 Ini berguna untuk:
@@ -49,7 +49,7 @@ Ada lima peran tingkat organisasi. Lihat detail selengkapnya [di sini](https://s
 | claude_code_user | Dapat menggunakan Workbench dan [Claude Code](https://code.claude.com/docs/en/overview) |
 | developer | Dapat menggunakan Workbench dan mengelola kunci API |
 | billing | Dapat menggunakan Workbench dan mengelola detail penagihan |
-| admin | Dapat melakukan semua hal di atas, plus mengelola pengguna |
+| admin | Dapat melakukan semua di atas, ditambah mengelola pengguna |
 
 ## Konsep kunci
 
@@ -108,6 +108,8 @@ curl --request DELETE "https://api.anthropic.com/v1/organizations/invites/{invit
 </CodeGroup>
 
 ### Ruang Kerja
+
+Untuk panduan komprehensif tentang ruang kerja, lihat [Ruang Kerja](/docs/id/build-with-claude/workspaces).
 
 Buat dan kelola [ruang kerja](/docs/id/api/admin-api/workspaces/get-workspace) ([konsol](/settings/workspaces)) untuk mengorganisir sumber daya Anda:
 
@@ -216,11 +218,11 @@ curl "https://api.anthropic.com/v1/organizations/me" \
 
 Endpoint ini berguna untuk menentukan secara terprogram organisasi mana yang dimiliki kunci Admin API.
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization Info API](/docs/id/api/admin-api/organization/get-me).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi API Informasi Organisasi](/docs/id/api/admin-api/organization/get-me).
 
 ## Mengakses laporan penggunaan dan biaya
 
-Untuk mengakses laporan penggunaan dan biaya untuk organisasi Anda, gunakan endpoint Usage and Cost API:
+Untuk mengakses laporan penggunaan dan biaya untuk organisasi Anda, gunakan endpoint API Penggunaan dan Biaya:
 
 - [**Endpoint Penggunaan**](/docs/id/build-with-claude/usage-cost-api#usage-api) (`/v1/organizations/usage_report/messages`) menyediakan data penggunaan terperinci, termasuk jumlah token dan metrik permintaan, dikelompokkan menurut berbagai dimensi seperti ruang kerja, pengguna, dan model.
 - [**Endpoint Biaya**](/docs/id/build-with-claude/usage-cost-api#cost-api) (`/v1/organizations/cost_report`) menyediakan data biaya yang terkait dengan penggunaan organisasi Anda, memungkinkan Anda melacak pengeluaran dan mengalokasikan biaya berdasarkan ruang kerja atau deskripsi.
@@ -229,9 +231,9 @@ Endpoint ini memberikan wawasan terperinci tentang penggunaan organisasi Anda da
 
 ## Mengakses analitik Claude Code
 
-Untuk organisasi yang menggunakan Claude Code, [**Claude Code Analytics API**](/docs/id/build-with-claude/claude-code-analytics-api) menyediakan metrik produktivitas terperinci dan wawasan penggunaan:
+Untuk organisasi yang menggunakan Claude Code, [**API Analitik Claude Code**](/docs/id/build-with-claude/claude-code-analytics-api) menyediakan metrik produktivitas terperinci dan wawasan penggunaan:
 
-- [**Endpoint Claude Code Analytics**](/docs/id/build-with-claude/claude-code-analytics-api) (`/v1/organizations/usage_report/claude_code`) menyediakan metrik agregat harian untuk penggunaan Claude Code, termasuk sesi, baris kode, komit, permintaan tarik, statistik penggunaan alat, dan data biaya yang dipecah menurut pengguna dan model.
+- [**Endpoint Analitik Claude Code**](/docs/id/build-with-claude/claude-code-analytics-api) (`/v1/organizations/usage_report/claude_code`) menyediakan metrik agregat harian untuk penggunaan Claude Code, termasuk sesi, baris kode, komit, permintaan tarik, statistik penggunaan alat, dan data biaya yang dipecah menurut pengguna dan model.
 
 API ini memungkinkan Anda melacak produktivitas pengembang, menganalisis adopsi Claude Code, dan membangun dasbor khusus untuk organisasi Anda.
 
@@ -240,10 +242,10 @@ API ini memungkinkan Anda melacak produktivitas pengembang, menganalisis adopsi 
 Untuk menggunakan Admin API secara efektif:
 
 - Gunakan nama dan deskripsi yang bermakna untuk ruang kerja dan kunci API
-- Terapkan penanganan kesalahan yang tepat untuk operasi yang gagal
+- Implementasikan penanganan kesalahan yang tepat untuk operasi yang gagal
 - Audit secara teratur peran dan izin anggota
-- Bersihkan ruang kerja yang tidak digunakan dan undangan yang kedaluwarsa
-- Pantau penggunaan kunci API dan putar kunci secara berkala
+- Bersihkan ruang kerja yang tidak digunakan dan undangan yang kadaluarsa
+- Pantau penggunaan kunci API dan rotasi kunci secara berkala
 
 ## FAQ
 
@@ -273,7 +275,7 @@ Tidak, anggota organisasi dengan peran admin tidak dapat dihapus melalui API unt
 
 <section title="Berapa lama undangan organisasi berlangsung?">
 
-Undangan organisasi kedaluwarsa setelah 21 hari. Saat ini tidak ada cara untuk mengubah periode kedaluwarsa ini.
+Undangan organisasi berakhir setelah 21 hari. Saat ini tidak ada cara untuk mengubah periode kedaluwarsa ini.
 
 </section>
 
@@ -297,18 +299,18 @@ Admin organisasi secara otomatis mendapatkan peran `workspace_admin` ke semua ru
 
 <section title="Peran mana yang dapat ditetapkan di ruang kerja?">
 
-Pengguna dan pengembang organisasi dapat ditetapkan peran `workspace_admin`, `workspace_developer`, atau `workspace_user`. Peran `workspace_billing` tidak dapat ditetapkan secara manual - peran ini diwarisi dari memiliki peran organisasi `billing`.
+Pengguna dan pengembang organisasi dapat ditetapkan peran `workspace_admin`, `workspace_developer`, atau `workspace_user`. Peran `workspace_billing` tidak dapat ditetapkan secara manual - ini diwariskan dari memiliki peran organisasi `billing`.
 
 </section>
 
 <section title="Bisakah peran ruang kerja admin atau anggota penagihan organisasi diubah?">
 
-Hanya anggota penagihan organisasi yang dapat memiliki peran ruang kerja mereka ditingkatkan ke peran admin. Sebaliknya, admin organisasi dan anggota penagihan tidak dapat memiliki peran ruang kerja mereka diubah atau dihapus dari ruang kerja saat mereka memegang peran organisasi tersebut. Akses ruang kerja mereka harus diubah dengan mengubah peran organisasi mereka terlebih dahulu.
+Hanya anggota penagihan organisasi yang dapat memiliki peran ruang kerja mereka ditingkatkan ke peran admin. Jika tidak, admin organisasi dan anggota penagihan tidak dapat memiliki peran ruang kerja mereka diubah atau dihapus dari ruang kerja saat mereka memegang peran organisasi tersebut. Akses ruang kerja mereka harus dimodifikasi dengan mengubah peran organisasi mereka terlebih dahulu.
 
 </section>
 
 <section title="Apa yang terjadi pada akses ruang kerja saat peran organisasi berubah?">
 
-Jika admin organisasi atau anggota penagihan diturunkan menjadi pengguna atau pengembang, mereka kehilangan akses ke semua ruang kerja kecuali yang mereka tetapkan peran secara manual. Ketika pengguna dipromosikan ke peran admin atau penagihan, mereka mendapatkan akses otomatis ke semua ruang kerja.
+Jika admin organisasi atau anggota penagihan diturunkan menjadi pengguna atau pengembang, mereka kehilangan akses ke semua ruang kerja kecuali yang mereka tetapkan secara manual. Saat pengguna dipromosikan ke peran admin atau penagihan, mereka mendapatkan akses otomatis ke semua ruang kerja.
 
 </section>

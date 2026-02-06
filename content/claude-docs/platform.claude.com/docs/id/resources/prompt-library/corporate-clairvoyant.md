@@ -1,32 +1,32 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/corporate-clairvoyant
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: a5a6a0f1f837cac9809405cc4c9b721c89acf560d2257ae60be64119a001dd6d
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: aa2a12c9c20666d7909ea560b214c1d0cc2e9a02123f4dcaae1080104d1b73d1
 ---
 
 # Peramal korporat
 
-Ekstrak wawasan, identifikasi risiko, dan suling informasi kunci dari laporan korporat yang panjang menjadi satu memo.
+Ekstrak wawasan, identifikasi risiko, dan saring informasi kunci dari laporan korporat panjang menjadi satu memo.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|      | Konten |
-| ---- | --- |
-| User | Tugas Anda adalah menganalisis laporan berikut: <br /> <br /> <report> [Teks lengkap dari [pengajuan SEC 10-K 2023 Matterport](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya] </report> <br /> <br /> Ringkas laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan poin penting. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo ini adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja institusi keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail relevan dalam ringkasan dan analisis Anda. |
+|      | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pengguna | Tugas Anda adalah menganalisis laporan berikut: <br /> <br /> <report> [Teks lengkap [Pengajuan SEC Matterport 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya] </report> <br /> <br /> Ringkaslah laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan kesimpulan kunci. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja lembaga keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail yang relevan dalam ringkasan dan analisis Anda. |
 
 ## Contoh Output
 
 > Kepada: Tim Investasi  
 > Dari: \[Nama Anda\]  
 > Tanggal: 4 Maret 2024  
-> Subjek: Sorotan 10-K 2022 Matterport dan Outlook Keuangan
+> Subjek: Sorotan 10-K 2022 Matterport dan Prospek Keuangan
 >
-> Hai tim,
+> Halo tim,
 >
-> Saya telah mengidentifikasi beberapa poin penting dari laporan tahunan 2022 Matterport:
+> Saya telah mengidentifikasi beberapa kesimpulan kunci dari laporan tahunan 2022 Matterport:
 >
 > Kinerja Keuangan:
 >
@@ -37,20 +37,20 @@ Ekstrak wawasan, identifikasi risiko, dan suling informasi kunci dari laporan ko
 >
 > Sorotan Bisnis:
 >
-> - Basis pelanggan tumbuh 39% menjadi lebih dari 701.000 pada akhir 2022. Ruang yang dikelola mencapai 9,2 juta
-> - Memperluas platform dengan peluncuran mount bermotor Matterport Axis, kamera Pro3, dan pembaruan besar pada perangkat lunak cloud
+> - Basis pelanggan tumbuh 39% menjadi lebih dari 701.000 pada akhir 2022. Ruang di bawah manajemen mencapai 9,2 juta
+> - Memperluas platform dengan peluncuran dudukan bermotor Matterport Axis, kamera Pro3, dan pembaruan besar ke perangkat lunak cloud
 > - Menyelesaikan akuisisi Enview (AI untuk data spasial 3D) dan VHT Studios (pemasaran real estat) untuk meningkatkan penawaran
 > - Menandatangani kemitraan penting dengan Burns & McDonnell dan CGS untuk memberikan solusi Matterport kepada pelanggan perusahaan mereka
 >
-> Outlook:
+> Prospek:
 >
-> - Matterport melihat peluang pasar yang besar dalam digitalisasi bangunan dan ruang dunia (memperkirakan TAM \$240B+)
-> - Fokus pada mendorong adopsi dengan pelanggan perusahaan besar di seluruh vertikal kunci seperti real estat, AEC, manajemen fasilitas, dan lainnya
+> - Matterport melihat peluang pasar yang besar dalam mendigitalkan bangunan dan ruang dunia (memperkirakan TAM \$240B+)
+> - Fokus pada mendorong adopsi dengan pelanggan perusahaan besar di seluruh vertikal utama seperti real estat, AEC, manajemen fasilitas, dan lainnya
 > - Akan terus berinvestasi dalam R&D dan ekspansi internasional untuk menembus pasar bangunan global yang sebagian besar belum dimanfaatkan
-> - Pertumbuhan dan margin jangka pendek mungkin terdampak oleh angin sakal makroekonomi dan masalah rantai pasokan
-> - Namun, posisi likuiditas yang sehat dan basis pelanggan yang relatif lengket memberikan perlindungan downside
+> - Pertumbuhan dan margin jangka pendek dapat dipengaruhi oleh tantangan makroekonomi dan rantai pasokan
+> - Namun, posisi likuiditas yang sehat dan basis pelanggan yang relatif lengket memberikan perlindungan penurunan
 >
-> Singkatnya, Matterport memberikan pertumbuhan top-line yang kuat pada 2022 karena membuat kemajuan dalam menembus pasar global yang besar. Meskipun profitabilitas tetap tertantang karena perusahaan berinvestasi besar untuk pertumbuhan, neraca keuangannya terlihat solid. Selain beberapa masalah rantai pasokan yang berkelanjutan, momentum bisnis yang mendasari tampak utuh berdasarkan metrik operasional kunci. Kecuali ada penurunan ekonomi yang parah, Matterport tampak berposisi baik untuk terus meraih pangsa di ruang digitalisasi bangunan yang baru berkembang.
+> Singkatnya, Matterport memberikan pertumbuhan lini atas yang kuat pada 2022 saat membuat kemajuan dalam menembus pasar global yang besar. Meskipun profitabilitas tetap menantang karena perusahaan berinvestasi besar untuk pertumbuhan, neraca terlihat solid. Terlepas dari beberapa masalah rantai pasokan yang berkelanjutan, momentum bisnis yang mendasar tampak utuh berdasarkan metrik operasional utama. Kecuali ada penurunan ekonomi yang parah, Matterport tampaknya berada dalam posisi yang baik untuk terus mendapatkan pangsa di ruang digitalisasi bangunan yang baru lahir.
 
 ---
 
@@ -67,7 +67,7 @@ client = anthropic.Anthropic(
     api_key="my_api_key",
 )
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=2000,
     temperature=0,
     messages=[
@@ -76,7 +76,7 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "Tugas Anda adalah menganalisis laporan berikut:  \n<report>  \n[Teks lengkap dari [pengajuan SEC 10-K 2023 Matterport](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</report>  \n  \nRingkas laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan poin penting. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo ini adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja institusi keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail relevan dalam ringkasan dan analisis Anda."
+                    "text": "Tugas Anda adalah menganalisis laporan berikut:  \n<report>  \n[Teks lengkap [Pengajuan SEC Matterport 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</report>  \n  \nRingkaslah laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan kesimpulan kunci. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja lembaga keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail yang relevan dalam ringkasan dan analisis Anda."
                 }
             ]
         }
@@ -96,7 +96,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 0,
   messages: [
@@ -105,7 +105,7 @@ const msg = await anthropic.messages.create({
       "content": [
         {
           "type": "text",
-          "text": "Tugas Anda adalah menganalisis laporan berikut:  \n<report>  \n[Teks lengkap dari [pengajuan SEC 10-K 2023 Matterport](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</report>  \n  \nRingkas laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan poin penting. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo ini adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja institusi keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail relevan dalam ringkasan dan analisis Anda."
+          "text": "Tugas Anda adalah menganalisis laporan berikut:  \n<report>  \n[Teks lengkap [Pengajuan SEC Matterport 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</report>  \n  \nRingkaslah laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan kesimpulan kunci. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja lembaga keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail yang relevan dalam ringkasan dan analisis Anda."
         }
       ]
     }
@@ -120,14 +120,14 @@ console.log(msg);
 ```python 
 from anthropic import AnthropicBedrock
 
-# See https://docs.claude.com/claude/reference/claude-on-amazon-bedrock
+# Lihat https://docs.claude.com/claude/reference/claude-on-amazon-bedrock
 
-# for authentication options
+# untuk opsi autentikasi
 
 client = AnthropicBedrock()
 
 message = client.messages.create(
-model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+model="anthropic.claude-opus-4-6-v1:0",
 max_tokens=2000,
 temperature=0,
 messages=[
@@ -136,7 +136,7 @@ messages=[
 "content": [
 {
 "type": "text",
-"text": "Tugas Anda adalah menganalisis laporan berikut: \n<report> \n[Teks lengkap dari [pengajuan SEC 10-K 2023 Matterport](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya] \n</report> \n \nRingkas laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan poin penting. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo ini adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja institusi keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail relevan dalam ringkasan dan analisis Anda."
+"text": "Tugas Anda adalah menganalisis laporan berikut: \n<report> \n[Teks lengkap [Pengajuan SEC Matterport 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya] \n</report> \n \nRingkaslah laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan kesimpulan kunci. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja lembaga keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail yang relevan dalam ringkasan dan analisis Anda."
 }
 ]
 }
@@ -150,12 +150,12 @@ print(message.content)
 ```typescript
 import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 
-// See https://docs.claude.com/claude/reference/claude-on-amazon-bedrock
-// for authentication options
+// Lihat https://docs.claude.com/claude/reference/claude-on-amazon-bedrock
+// untuk opsi autentikasi
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 2000,
   temperature: 0,
   messages: [
@@ -164,7 +164,7 @@ const msg = await client.messages.create({
       "content": [
         {
           "type": "text",
-          "text": "Tugas Anda adalah menganalisis laporan berikut:  \n<report>  \n[Teks lengkap dari [pengajuan SEC 10-K 2023 Matterport](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</report>  \n  \nRingkas laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan poin penting. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo ini adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja institusi keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail relevan dalam ringkasan dan analisis Anda."
+          "text": "Tugas Anda adalah menganalisis laporan berikut:  \n<report>  \n[Teks lengkap [Pengajuan SEC Matterport 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</report>  \n  \nRingkaslah laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan kesimpulan kunci. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja lembaga keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail yang relevan dalam ringkasan dan analisis Anda."
         }
       ]
     }
@@ -193,7 +193,7 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "Tugas Anda adalah menganalisis laporan berikut:  \n<report>  \n[Teks lengkap dari [pengajuan SEC 10-K 2023 Matterport](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</report>  \n  \nRingkas laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan poin penting. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo ini adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja institusi keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail relevan dalam ringkasan dan analisis Anda."
+                    "text": "Tugas Anda adalah menganalisis laporan berikut:  \n<report>  \n[Teks lengkap [Pengajuan SEC Matterport 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</report>  \n  \nRingkaslah laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan kesimpulan kunci. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja lembaga keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail yang relevan dalam ringkasan dan analisis Anda."
                 }
             ]
         }
@@ -210,8 +210,8 @@ print(message.content)
 ```typescript
 import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
 
-// Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
-// Additionally goes through the standard `google-auth-library` flow.
+// Membaca dari variabel lingkungan `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID`.
+// Selain itu melalui alur `google-auth-library` standar.
 const client = new AnthropicVertex();
 
 const msg = await client.messages.create({
@@ -224,7 +224,7 @@ const msg = await client.messages.create({
       "content": [
         {
           "type": "text",
-          "text": "Tugas Anda adalah menganalisis laporan berikut:  \n<report>  \n[Teks lengkap dari [pengajuan SEC 10-K 2023 Matterport](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</report>  \n  \nRingkas laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan poin penting. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo ini adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja institusi keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail relevan dalam ringkasan dan analisis Anda."
+          "text": "Tugas Anda adalah menganalisis laporan berikut:  \n<report>  \n[Teks lengkap [Pengajuan SEC Matterport 10-K 2023](https://investors.matterport.com/node/9501/html), tidak ditempel di sini untuk singkatnya]  \n</report>  \n  \nRingkaslah laporan tahunan ini dengan cara yang ringkas dan jelas, dan identifikasi tren pasar utama dan kesimpulan kunci. Keluarkan temuan Anda sebagai memo singkat yang dapat saya kirim ke tim saya. Tujuan memo adalah untuk memastikan tim saya tetap terkini tentang bagaimana kinerja lembaga keuangan dan secara kualitatif meramalkan dan mengidentifikasi apakah ada risiko operasional dan pendapatan yang diharapkan pada kuartal mendatang. Pastikan untuk menyertakan semua detail yang relevan dalam ringkasan dan analisis Anda."
         }
       ]
     }

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 03977ae9685890ff93bd6161f3188a2a3cdd77d984f22fcf0c2f0368e056d298
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 0f8128c5525b276cf9b6077d29cc9192f01f47223cb0e9603fce4ddb427cd19e
 ---
 
 # Prompt engineering overview
@@ -60,9 +60,8 @@ The prompt engineering pages in this section have been organized from most broad
 4. [Let Claude think (chain of thought)](/docs/en/build-with-claude/prompt-engineering/chain-of-thought)
 5. [Use XML tags](/docs/en/build-with-claude/prompt-engineering/use-xml-tags)
 6. [Give Claude a role (system prompts)](/docs/en/build-with-claude/prompt-engineering/system-prompts)
-7. [Prefill Claude's response](/docs/en/build-with-claude/prompt-engineering/prefill-claudes-response)
-8. [Chain complex prompts](/docs/en/build-with-claude/prompt-engineering/chain-prompts)
-9. [Long context tips](/docs/en/build-with-claude/prompt-engineering/long-context-tips)
+7. [Chain complex prompts](/docs/en/build-with-claude/prompt-engineering/chain-prompts)
+8. [Long context tips](/docs/en/build-with-claude/prompt-engineering/long-context-tips)
 
 ***
 

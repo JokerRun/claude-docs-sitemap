@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/review-classifier
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: ff59112daa0fa13008a64a23d5cd2e96fbf29e60f7f3263acc27d05bcd432341
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 61e01691b1775463df72a9f0a3924070558706f4f6377949d879d3cca73955d0
 ---
 
 # Review classifier
@@ -44,7 +44,7 @@ Categorize feedback into pre-specified tags and categorizations.
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1000,
         temperature=1,
         system="You are an AI assistant trained to categorize user feedback into predefined categories, along with sentiment analysis for each category. Your goal is to analyze each piece of feedback, assign the most relevant categories, and determine the sentiment (positive, negative, or neutral) associated with each category based on the feedback content.\n\nPredefined Categories:\n- Product Features and Functionality\n    - Core Features\n    - Add-ons and Integrations\n    - Customization and Configuration\n- User Experience and Design\n    - Ease of Use\n    - Navigation and Discoverability\n    - Visual Design and Aesthetics\n    - Accessibility\n- Performance and Reliability\n    - Speed and Responsiveness\n    - Uptime and Availability\n    - Scalability\n    - Bug Fixes and Error Handling\n- Customer Support and Service\n    - Responsiveness and Availability\n    - Knowledge and Expertise\n    - Issue Resolution and Follow-up\n    - Self-Service Resources\n- Billing, Pricing, and Licensing\n    - Pricing Model and Tiers\n    - Billing Processes and Invoicing\n    - License Management\n    - Upgrades and Renewals\n- Security, Compliance, and Privacy\n    - Data Protection and Confidentiality\n    - Access Control and Authentication\n    - Regulatory Compliance\n    - Incident Response and Monitoring\n- Mobile and Cross-Platform Compatibility\n    - Mobile App Functionality\n    - Synchronization and Data Consistency\n    - Responsive Design\n    - Device and OS Compatibility\n- Third-Party Integrations and API\n    - Integration Functionality and Reliability\n    - API Documentation and Support\n    - Customization and Extensibility\n- Onboarding, Training, and Documentation\n    - User Guides and Tutorials\n    - In-App Guidance and Tooltips\n    - Webinars and Live Training\n    - Knowledge Base and FAQs",
@@ -73,7 +73,7 @@ Categorize feedback into pre-specified tags and categorizations.
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 1,
       system: "You are an AI assistant trained to categorize user feedback into predefined categories, along with sentiment analysis for each category. Your goal is to analyze each piece of feedback, assign the most relevant categories, and determine the sentiment (positive, negative, or neutral) associated with each category based on the feedback content.\n\nPredefined Categories:\n- Product Features and Functionality\n    - Core Features\n    - Add-ons and Integrations\n    - Customization and Configuration\n- User Experience and Design\n    - Ease of Use\n    - Navigation and Discoverability\n    - Visual Design and Aesthetics\n    - Accessibility\n- Performance and Reliability\n    - Speed and Responsiveness\n    - Uptime and Availability\n    - Scalability\n    - Bug Fixes and Error Handling\n- Customer Support and Service\n    - Responsiveness and Availability\n    - Knowledge and Expertise\n    - Issue Resolution and Follow-up\n    - Self-Service Resources\n- Billing, Pricing, and Licensing\n    - Pricing Model and Tiers\n    - Billing Processes and Invoicing\n    - License Management\n    - Upgrades and Renewals\n- Security, Compliance, and Privacy\n    - Data Protection and Confidentiality\n    - Access Control and Authentication\n    - Regulatory Compliance\n    - Incident Response and Monitoring\n- Mobile and Cross-Platform Compatibility\n    - Mobile App Functionality\n    - Synchronization and Data Consistency\n    - Responsive Design\n    - Device and OS Compatibility\n- Third-Party Integrations and API\n    - Integration Functionality and Reliability\n    - API Documentation and Support\n    - Customization and Extensibility\n- Onboarding, Training, and Documentation\n    - User Guides and Tutorials\n    - In-App Guidance and Tooltips\n    - Webinars and Live Training\n    - Knowledge Base and FAQs",
@@ -102,7 +102,7 @@ Categorize feedback into pre-specified tags and categorizations.
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1",
         max_tokens=1000,
         temperature=1,
         system="You are an AI assistant trained to categorize user feedback into predefined categories, along with sentiment analysis for each category. Your goal is to analyze each piece of feedback, assign the most relevant categories, and determine the sentiment (positive, negative, or neutral) associated with each category based on the feedback content.\n\nPredefined Categories:\n- Product Features and Functionality\n    - Core Features\n    - Add-ons and Integrations\n    - Customization and Configuration\n- User Experience and Design\n    - Ease of Use\n    - Navigation and Discoverability\n    - Visual Design and Aesthetics\n    - Accessibility\n- Performance and Reliability\n    - Speed and Responsiveness\n    - Uptime and Availability\n    - Scalability\n    - Bug Fixes and Error Handling\n- Customer Support and Service\n    - Responsiveness and Availability\n    - Knowledge and Expertise\n    - Issue Resolution and Follow-up\n    - Self-Service Resources\n- Billing, Pricing, and Licensing\n    - Pricing Model and Tiers\n    - Billing Processes and Invoicing\n    - License Management\n    - Upgrades and Renewals\n- Security, Compliance, and Privacy\n    - Data Protection and Confidentiality\n    - Access Control and Authentication\n    - Regulatory Compliance\n    - Incident Response and Monitoring\n- Mobile and Cross-Platform Compatibility\n    - Mobile App Functionality\n    - Synchronization and Data Consistency\n    - Responsive Design\n    - Device and OS Compatibility\n- Third-Party Integrations and API\n    - Integration Functionality and Reliability\n    - API Documentation and Support\n    - Customization and Extensibility\n- Onboarding, Training, and Documentation\n    - User Guides and Tutorials\n    - In-App Guidance and Tooltips\n    - Webinars and Live Training\n    - Knowledge Base and FAQs",
@@ -131,7 +131,7 @@ Categorize feedback into pre-specified tags and categorizations.
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 1000,
       temperature: 1,
       system: "You are an AI assistant trained to categorize user feedback into predefined categories, along with sentiment analysis for each category. Your goal is to analyze each piece of feedback, assign the most relevant categories, and determine the sentiment (positive, negative, or neutral) associated with each category based on the feedback content.\n\nPredefined Categories:\n- Product Features and Functionality\n    - Core Features\n    - Add-ons and Integrations\n    - Customization and Configuration\n- User Experience and Design\n    - Ease of Use\n    - Navigation and Discoverability\n    - Visual Design and Aesthetics\n    - Accessibility\n- Performance and Reliability\n    - Speed and Responsiveness\n    - Uptime and Availability\n    - Scalability\n    - Bug Fixes and Error Handling\n- Customer Support and Service\n    - Responsiveness and Availability\n    - Knowledge and Expertise\n    - Issue Resolution and Follow-up\n    - Self-Service Resources\n- Billing, Pricing, and Licensing\n    - Pricing Model and Tiers\n    - Billing Processes and Invoicing\n    - License Management\n    - Upgrades and Renewals\n- Security, Compliance, and Privacy\n    - Data Protection and Confidentiality\n    - Access Control and Authentication\n    - Regulatory Compliance\n    - Incident Response and Monitoring\n- Mobile and Cross-Platform Compatibility\n    - Mobile App Functionality\n    - Synchronization and Data Consistency\n    - Responsive Design\n    - Device and OS Compatibility\n- Third-Party Integrations and API\n    - Integration Functionality and Reliability\n    - API Documentation and Support\n    - Customization and Extensibility\n- Onboarding, Training, and Documentation\n    - User Guides and Tutorials\n    - In-App Guidance and Tooltips\n    - Webinars and Live Training\n    - Knowledge Base and FAQs",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 9c621682d1ef8e8090e187281d5342e594f675bc3ecaaf34a3c114ec1940c021
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: bad29e2a52f6abfcbdf2624282673ed421fe0b02e6b2cf59340a932137276b08
 ---
 
 # Alat pencarian web
@@ -21,27 +21,28 @@ Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/sWjBtsrNEY
 
 Pencarian web tersedia di:
 
-- Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
-- Claude Sonnet 4 (`claude-sonnet-4-20250514`)
-- Claude Sonnet 3.7 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-3-7-sonnet-20250219`)
-- Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
-- Claude Haiku 3.5 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-3-5-haiku-latest`)
+- Claude Opus 4.6 (`claude-opus-4-6`)
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 - Claude Opus 4.1 (`claude-opus-4-1-20250805`)
 - Claude Opus 4 (`claude-opus-4-20250514`)
+- Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
+- Claude Sonnet 4 (`claude-sonnet-4-20250514`)
+- Claude Sonnet 3.7 ([tidak direkomendasikan](/docs/id/about-claude/model-deprecations)) (`claude-3-7-sonnet-20250219`)
+- Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
+- Claude Haiku 3.5 ([tidak direkomendasikan](/docs/id/about-claude/model-deprecations)) (`claude-3-5-haiku-latest`)
 
 ## Cara kerja pencarian web
 
 Ketika Anda menambahkan alat pencarian web ke permintaan API Anda:
 
 1. Claude memutuskan kapan harus mencari berdasarkan prompt.
-2. API menjalankan pencarian dan memberikan Claude dengan hasilnya. Proses ini dapat berulang beberapa kali selama satu permintaan.
+2. API menjalankan pencarian dan memberikan Claude hasil pencarian. Proses ini dapat berulang beberapa kali selama satu permintaan.
 3. Di akhir gilirannya, Claude memberikan respons akhir dengan sumber yang dikutip.
 
 ## Cara menggunakan pencarian web
 
 <Note>
-Administrator organisasi Anda harus mengaktifkan pencarian web di [Console](/settings/privacy).
+Administrator organisasi Anda harus mengaktifkan pencarian web di [Konsol](/settings/privacy).
 </Note>
 
 Sediakan alat pencarian web dalam permintaan API Anda:
@@ -53,7 +54,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-version: 2023-06-01" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 1024,
         "messages": [
             {
@@ -75,7 +76,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[
         {
@@ -99,7 +100,7 @@ const anthropic = new Anthropic();
 
 async function main() {
   const response = await anthropic.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-6",
     max_tokens: 1024,
     messages: [
       {
@@ -173,7 +174,7 @@ Saat menggunakan filter domain:
 Format domain yang tidak valid akan mengembalikan kesalahan alat `invalid_tool_input`.
 
 <Note>
-Pembatasan domain tingkat permintaan harus kompatibel dengan pembatasan domain tingkat organisasi yang dikonfigurasi di Console. Domain tingkat permintaan hanya dapat lebih membatasi domain, bukan mengganti atau memperluas di luar daftar tingkat organisasi. Jika permintaan Anda menyertakan domain yang bertentangan dengan pengaturan organisasi, API akan mengembalikan kesalahan validasi.
+Pembatasan domain tingkat permintaan harus kompatibel dengan pembatasan domain tingkat organisasi yang dikonfigurasi di Konsol. Domain tingkat permintaan hanya dapat membatasi domain lebih lanjut, bukan mengganti atau memperluas di luar daftar tingkat organisasi. Jika permintaan Anda menyertakan domain yang bertentangan dengan pengaturan organisasi, API akan mengembalikan kesalahan validasi.
 </Note>
 
 #### Lokalisasi
@@ -279,7 +280,7 @@ Bidang kutipan pencarian web `cited_text`, `title`, dan `url` tidak dihitung ter
 
 #### Kesalahan
 
-Ketika alat pencarian web mengalami kesalahan (seperti mencapai batas laju), Claude API masih mengembalikan respons 200 (sukses). Kesalahan direpresentasikan dalam badan respons menggunakan struktur berikut:
+Ketika alat pencarian web mengalami kesalahan (seperti mencapai batas laju), Claude API masih mengembalikan respons 200 (berhasil). Kesalahan direpresentasikan dalam badan respons menggunakan struktur berikut:
 
 ```json
 {
@@ -296,13 +297,13 @@ Ini adalah kode kesalahan yang mungkin:
 
 - `too_many_requests`: Batas laju terlampaui
 - `invalid_input`: Parameter kueri pencarian tidak valid
-- `max_uses_exceeded`: Penggunaan alat pencarian web maksimal terlampaui
-- `query_too_long`: Kueri melebihi panjang maksimal
+- `max_uses_exceeded`: Penggunaan alat pencarian web maksimum terlampaui
+- `query_too_long`: Kueri melebihi panjang maksimum
 - `unavailable`: Kesalahan internal terjadi
 
 #### Alasan penghentian `pause_turn`
 
-Respons dapat mencakup alasan penghentian `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya untuk membiarkan Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda ingin mengganggu percakapan.
+Respons mungkin menyertakan alasan penghentian `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya untuk membiarkan Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda ingin mengganggu percakapan.
 
 ## Caching prompt
 
@@ -327,7 +328,7 @@ messages = [
 ]
 
 response1 = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=messages,
     tools=[{
@@ -357,7 +358,7 @@ messages.append({
 })
 
 response2 = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=messages,
     tools=[{
@@ -381,7 +382,7 @@ print(f"Cache read tokens: {response2.usage.get('cache_read_input_tokens', 0)}")
 
 ## Streaming
 
-Dengan streaming diaktifkan, Anda akan menerima peristiwa pencarian sebagai bagian dari aliran. Akan ada jeda saat pencarian dijalankan:
+Dengan streaming diaktifkan, Anda akan menerima acara pencarian sebagai bagian dari aliran. Akan ada jeda saat pencarian dijalankan:
 
 ```javascript
 event: message_start
@@ -410,7 +411,7 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "web
 
 ## Permintaan batch
 
-Anda dapat menyertakan alat pencarian web dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat pencarian web melalui Messages Batches API memiliki harga yang sama dengan yang ada di permintaan Messages API biasa.
+Anda dapat menyertakan alat pencarian web dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat pencarian web melalui Messages Batches API dihargai sama dengan yang ada dalam permintaan Messages API reguler.
 
 ## Penggunaan dan harga
 

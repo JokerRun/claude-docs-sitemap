@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/code-consultant
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 23e7d3757144aa9b0c4acc562fabfe714fb3c45c15befaa0cd43e998bc468fd8
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 5ad309ac2ef14b2e07bcefae754a71ab498c273cfd46318862685a494b90d959
 ---
 
 # Konsultan kode
 
-Sarankan perbaikan untuk mengoptimalkan performa kode Python.
+Sarankan peningkatan untuk mengoptimalkan kinerja kode Python.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah menganalisis cuplikan kode Python yang diberikan dan menyarankan perbaikan untuk mengoptimalkan performanya. Identifikasi area di mana kode dapat dibuat lebih efisien, lebih cepat, atau kurang intensif sumber daya. Berikan saran spesifik untuk optimasi, beserta penjelasan tentang bagaimana perubahan ini dapat meningkatkan performa kode. Kode yang dioptimalkan harus mempertahankan fungsionalitas yang sama dengan kode asli sambil menunjukkan efisiensi yang lebih baik. |
-| User   | def fibonacci(n): <br/> if n \<= 0: <br/> return [] <br/> elif n \== 1: <br/> return [0] <br/> elif n \== 2: <br/> return [0, 1] <br/> else: <br/> fib = [0, 1] <br/> for i in range(2, n): <br/> fib.append(fib[i-1] + fib[i-2]) <br/> return fib |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Tugas Anda adalah menganalisis cuplikan kode Python yang diberikan dan menyarankan peningkatan untuk mengoptimalkan kinerjanya. Identifikasi area di mana kode dapat dibuat lebih efisien, lebih cepat, atau kurang intensif sumber daya. Berikan saran spesifik untuk optimasi, bersama dengan penjelasan tentang bagaimana perubahan ini dapat meningkatkan kinerja kode. Kode yang dioptimalkan harus mempertahankan fungsi yang sama dengan kode asli sambil menunjukkan efisiensi yang ditingkatkan. |
+| Pengguna   | def fibonacci(n): <br/> if n \<= 0: <br/> return [] <br/> elif n \== 1: <br/> return [0] <br/> elif n \== 2: <br/> return [0, 1] <br/> else: <br/> fib = [0, 1] <br/> for i in range(2, n): <br/> fib.append(fib[i-1] + fib[i-2]) <br/> return fib                                                                                                                                                                                                                   |
 
 ## Contoh Output
 
@@ -29,7 +29,7 @@ def fibonacci(n):
 
 ```
 
-Penjelasan: Menggunakan fungsi generator dengan yield lebih efisien memori untuk menghasilkan deret Fibonacci. Ini menghindari pembuatan dan penyimpanan seluruh deret dalam list. Sebaliknya, ini menghasilkan setiap angka secara langsung sesuai kebutuhan.
+Penjelasan: Menggunakan fungsi generator dengan yield lebih hemat memori untuk menghasilkan urutan Fibonacci. Ini menghindari pembuatan dan penyimpanan seluruh urutan dalam daftar. Sebaliknya, ia menghasilkan setiap angka dengan cepat sesuai kebutuhan.
 
 ---
 
@@ -44,10 +44,10 @@ client = anthropic.Anthropic(  # defaults to os.environ.get("ANTHROPIC_API_KEY")
     api_key="my_api_key",
 )
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1000,
     temperature=0,
-    system="Tugas Anda adalah menganalisis cuplikan kode Python yang diberikan dan menyarankan perbaikan untuk mengoptimalkan performanya. Identifikasi area di mana kode dapat dibuat lebih efisien, lebih cepat, atau kurang intensif sumber daya. Berikan saran spesifik untuk optimasi, beserta penjelasan tentang bagaimana perubahan ini dapat meningkatkan performa kode. Kode yang dioptimalkan harus mempertahankan fungsionalitas yang sama dengan kode asli sambil menunjukkan efisiensi yang lebih baik.",
+    system="Your task is to analyze the provided Python code snippet and suggest improvements to optimize its performance. Identify areas where the code can be made more efficient, faster, or less resource-intensive. Provide specific suggestions for optimization, along with explanations of how these changes can enhance the code's performance. The optimized code should maintain the same functionality as the original code while demonstrating improved efficiency.",
     messages=[
         {
             "role": "user",
@@ -75,10 +75,10 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 0,
-  system: "Tugas Anda adalah menganalisis cuplikan kode Python yang diberikan dan menyarankan perbaikan untuk mengoptimalkan performanya. Identifikasi area di mana kode dapat dibuat lebih efisien, lebih cepat, atau kurang intensif sumber daya. Berikan saran spesifik untuk optimasi, beserta penjelasan tentang bagaimana perubahan ini dapat meningkatkan performa kode. Kode yang dioptimalkan harus mempertahankan fungsionalitas yang sama dengan kode asli sambil menunjukkan efisiensi yang lebih baik.",
+  system: "Your task is to analyze the provided Python code snippet and suggest improvements to optimize its performance. Identify areas where the code can be made more efficient, faster, or less resource-intensive. Provide specific suggestions for optimization, along with explanations of how these changes can enhance the code's performance. The optimized code should maintain the same functionality as the original code while demonstrating improved efficiency.",
   messages: [
     {
       "role": "user",
@@ -106,10 +106,10 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=1000,
     temperature=0,
-    system="Tugas Anda adalah menganalisis cuplikan kode Python yang diberikan dan menyarankan perbaikan untuk mengoptimalkan performanya. Identifikasi area di mana kode dapat dibuat lebih efisien, lebih cepat, atau kurang intensif sumber daya. Berikan saran spesifik untuk optimasi, beserta penjelasan tentang bagaimana perubahan ini dapat meningkatkan performa kode. Kode yang dioptimalkan harus mempertahankan fungsionalitas yang sama dengan kode asli sambil menunjukkan efisiensi yang lebih baik.",
+    system="Your task is to analyze the provided Python code snippet and suggest improvements to optimize its performance. Identify areas where the code can be made more efficient, faster, or less resource-intensive. Provide specific suggestions for optimization, along with explanations of how these changes can enhance the code's performance. The optimized code should maintain the same functionality as the original code while demonstrating improved efficiency.",
     messages=[
         {
             "role": "user",
@@ -137,10 +137,10 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 1000,
   temperature: 0,
-  system: "Tugas Anda adalah menganalisis cuplikan kode Python yang diberikan dan menyarankan perbaikan untuk mengoptimalkan performanya. Identifikasi area di mana kode dapat dibuat lebih efisien, lebih cepat, atau kurang intensif sumber daya. Berikan saran spesifik untuk optimasi, beserta penjelasan tentang bagaimana perubahan ini dapat meningkatkan performa kode. Kode yang dioptimalkan harus mempertahankan fungsionalitas yang sama dengan kode asli sambil menunjukkan efisiensi yang lebih baik.",
+  system: "Your task is to analyze the provided Python code snippet and suggest improvements to optimize its performance. Identify areas where the code can be made more efficient, faster, or less resource-intensive. Provide specific suggestions for optimization, along with explanations of how these changes can enhance the code's performance. The optimized code should maintain the same functionality as the original code while demonstrating improved efficiency.",
   messages: [
     {
       "role": "user",
@@ -169,7 +169,7 @@ message = client.messages.create(
     model="claude-sonnet-4@20250514",
     max_tokens=1000,
     temperature=0,
-    system="Tugas Anda adalah menganalisis cuplikan kode Python yang diberikan dan menyarankan perbaikan untuk mengoptimalkan performanya. Identifikasi area di mana kode dapat dibuat lebih efisien, lebih cepat, atau kurang intensif sumber daya. Berikan saran spesifik untuk optimasi, beserta penjelasan tentang bagaimana perubahan ini dapat meningkatkan performa kode. Kode yang dioptimalkan harus mempertahankan fungsionalitas yang sama dengan kode asli sambil menunjukkan efisiensi yang lebih baik.",
+    system="Your task is to analyze the provided Python code snippet and suggest improvements to optimize its performance. Identify areas where the code can be made more efficient, faster, or less resource-intensive. Provide specific suggestions for optimization, along with explanations of how these changes can enhance the code's performance. The optimized code should maintain the same functionality as the original code while demonstrating improved efficiency.",
     messages=[
         {
             "role": "user",
@@ -199,7 +199,7 @@ const msg = await client.messages.create({
 model: "claude-sonnet-4@20250514",
 max_tokens: 1000,
 temperature: 0,
-system: "Tugas Anda adalah menganalisis cuplikan kode Python yang diberikan dan menyarankan perbaikan untuk mengoptimalkan performanya. Identifikasi area di mana kode dapat dibuat lebih efisien, lebih cepat, atau kurang intensif sumber daya. Berikan saran spesifik untuk optimasi, beserta penjelasan tentang bagaimana perubahan ini dapat meningkatkan performa kode. Kode yang dioptimalkan harus mempertahankan fungsionalitas yang sama dengan kode asli sambil menunjukkan efisiensi yang lebih baik.",
+system: "Your task is to analyze the provided Python code snippet and suggest improvements to optimize its performance. Identify areas where the code can be made more efficient, faster, or less resource-intensive. Provide specific suggestions for optimization, along with explanations of how these changes can enhance the code's performance. The optimized code should maintain the same functionality as the original code while demonstrating improved efficiency.",
 messages: [
 {
 "role": "user",

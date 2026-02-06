@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/microsoft-foundry
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: 651a7114e691b66aac30656e6274cc3d3b341dcbfea822150367aaf812c0f6e9
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 1beeee1ab4794db0cc037510728c9179fe938a753ce21089c025dc528f8053e2
 ---
 
 > ## Documentation Index
@@ -80,7 +80,7 @@ export ANTHROPIC_FOUNDRY_RESOURCE={resource}
 # Set models to your resource's deployment names
 export ANTHROPIC_DEFAULT_SONNET_MODEL='claude-sonnet-4-5'
 export ANTHROPIC_DEFAULT_HAIKU_MODEL='claude-haiku-4-5'
-export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-1'
+export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-6'
 ```
 
 For more details on model configuration options, see [Model configuration](/en/model-config).

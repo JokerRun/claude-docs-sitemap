@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: f563ea7fe33b22128ac67018909d5a2784206185657e66601531ec1034bd6719
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: db96be5b4c56586a3e8fc2c32c51e79cfa86859b7e4aea059d32b86c4a79c3c8
 ---
 
 ## List
@@ -41,11 +41,33 @@ List Workspaces
 
   - `archived_at: string`
 
-    RFC 3339 datetime string indicating when the Workspace was archived, or null if the Workspace is not archived.
+    RFC 3339 datetime string indicating when the Workspace was archived, or `null` if the Workspace is not archived.
 
   - `created_at: string`
 
     RFC 3339 datetime string indicating when the Workspace was created.
+
+  - `data_residency: object { allowed_inference_geos, default_inference_geo, workspace_geo }`
+
+    Data residency configuration.
+
+    - `allowed_inference_geos: array of string or "unrestricted"`
+
+      Permitted inference geo values. 'unrestricted' means all geos are allowed.
+
+      - `UnionMember0 = array of string`
+
+      - `UnionMember1 = "unrestricted"`
+
+        - `"unrestricted"`
+
+    - `default_inference_geo: string`
+
+      Default inference geo applied when requests omit the parameter.
+
+    - `workspace_geo: string`
+
+      Geographic region for workspace data storage. Immutable after creation.
 
   - `display_color: string`
 
@@ -79,5 +101,6 @@ List Workspaces
 
 ```http
 curl https://api.anthropic.com/v1/organizations/workspaces \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```

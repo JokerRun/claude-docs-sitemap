@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/client-sdks
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 45cacfbdcf8cef72910a7cb3919a3d593090128f16f7269afed8b4cfd5431563
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 543177019c6bc082c3b0751aeeedab3896528ad634d97d1d5c34ff2e73db9ae0
 ---
 
 # Client SDKs
@@ -23,6 +23,8 @@ Konfigurasi tambahan diperlukan untuk menggunakan Client SDKs Anthropic melalui 
 
 **Persyaratan:** Python 3.8+
 
+**Versi SDK minimum:** 0.22.0
+
 **Instalasi:**
 
 ```bash
@@ -38,6 +40,8 @@ pip install anthropic
 <Info>
 Meskipun perpustakaan ini dalam TypeScript, perpustakaan ini juga dapat digunakan dalam perpustakaan JavaScript.
 </Info>
+
+**Versi SDK minimum:** 0.37.0
 
 **Instalasi:**
 
@@ -98,8 +102,7 @@ SDK C# saat ini dalam beta.
 **Instalasi:**
 
 ```bash
-git clone git@github.com:anthropics/anthropic-sdk-csharp.git
-dotnet add reference anthropic-sdk-csharp/src/Anthropic.Client
+dotnet add package Anthropic
 ```
 
 ---
@@ -142,6 +145,6 @@ composer require "anthropic-ai/sdk 0.3.0"
 
 ---
 
-## Namespace beta dalam client SDKs
+## Beta namespace dalam client SDKs
 
-Setiap SDK memiliki namespace `beta` yang tersedia untuk mengakses fitur baru yang dirilis Anthropic dalam versi beta. Gunakan ini bersama dengan [header beta](/docs/id/api/beta-headers) untuk mengakses fitur-fitur ini. Lihat repositori GitHub setiap SDK untuk contoh penggunaan spesifik.
+Setiap SDK memiliki namespace `beta` yang tersedia untuk mengakses fitur baru yang dirilis Anthropic dalam versi beta. Gunakan ini bersama dengan [beta headers](/docs/id/api/beta-headers) untuk mengakses fitur-fitur ini. Lihat repositori GitHub setiap SDK untuk contoh penggunaan spesifik.

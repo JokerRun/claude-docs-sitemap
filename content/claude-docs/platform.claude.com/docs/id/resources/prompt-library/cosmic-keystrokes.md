@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/cosmic-keystrokes
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: b31dd963298fc352bf2f39eb2c1fe1c9485fe9a974dd6c09f0b57ebf993bedbd
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: b71d2137112202c43426e2a33d7a337abfabbb796e313dab6dc34c975d1bc073
 ---
 
 # Cosmic Keystrokes
 
-Menghasilkan permainan mengetik kecepatan interaktif dalam satu file HTML, menampilkan gameplay side-scrolling dan styling Tailwind CSS.
+Buat game mengetik kecepatan interaktif dalam satu file HTML, menampilkan gameplay side-scrolling dan styling Tailwind CSS.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Console](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| User | Buatkan saya aplikasi web yang lengkap sebagai satu file HTML. Aplikasi tersebut harus berisi permainan side-scrolling sederhana di mana saya menggunakan WASD untuk bergerak. Saat bergerak di dunia, sesekali karakter/sprite akan menemui kata-kata. Ketika sebuah kata ditemui, pemain harus mengetik kata tersebut dengan benar secepat mungkin. Semakin cepat kata berhasil diketik, semakin banyak poin yang didapat pemain. Kita harus memiliki penghitung di kanan atas untuk melacak poin. Kata-kata harus acak dan sangat bervariasi untuk menjaga permainan tetap menarik.<br/><br/>Anda harus membuat website yang sangat estetik dan menggunakan Tailwind. |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pengguna | Buatkan saya aplikasi web yang lengkap sebagai satu file HTML. Aplikasi harus berisi game side-scrolling sederhana di mana saya menggunakan WASD untuk bergerak. Saat bergerak di dunia, sesekali karakter/sprite akan menemukan kata-kata. Ketika sebuah kata ditemukan, pemain harus mengetik kata tersebut dengan benar secepat mungkin. Semakin cepat kata berhasil diketik, semakin banyak poin yang didapat pemain. Kami harus memiliki penghitung di sudut kanan atas untuk melacak poin. Kata-kata harus acak dan sangat bervariasi untuk menjaga permainan tetap menarik.<br/><br/>Anda harus membuat situs web yang sangat estetis dan menggunakan Tailwind. |
 
 ## Contoh Output
 
@@ -296,7 +296,7 @@ client = anthropic.Anthropic(
     api_key="my_api_key",
 )
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=2000,
     temperature=0,
     messages=[
@@ -322,7 +322,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   max_tokens: 2000,
   temperature: 0,
   messages: [
@@ -348,7 +348,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1",
     max_tokens=2000,
     temperature=0,
     messages=[
@@ -374,7 +374,7 @@ import AnthropicBedrock from '@anthropic-ai/bedrock-sdk';
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: 'anthropic.claude-sonnet-4-5-20250929-v1:0',
+  model: 'anthropic.claude-opus-4-6-v1',
   max_tokens: 2000,
   temperature: 0,
   messages: [

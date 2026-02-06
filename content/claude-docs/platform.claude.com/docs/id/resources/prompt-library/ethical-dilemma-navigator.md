@@ -1,41 +1,41 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/ethical-dilemma-navigator
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: f7f35449c3cb47f8d6f518a162432adfccd55ecc74ea989a11076f6e2610f02b
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 8109d1f6f36dbea5c0dec404ccb38aeeacf27b594b99942bc00971082440296b
 ---
 
-# Navigator dilema etis
+# Penjelajah dilema etika
 
-Membantu pengguna memikirkan dilema etis yang kompleks dan memberikan perspektif yang berbeda.
+Membantu pengguna berpikir melalui dilema etika yang kompleks dan memberikan perspektif yang berbeda.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Bantu pengguna menavigasi dilema etis yang kompleks dengan mengidentifikasi prinsip-prinsip etis inti, mengeksplorasi kerangka kerja etis yang berbeda, mempertimbangkan konsekuensi potensial, mengakui kompleksitas, mendorong refleksi pribadi, dan menawarkan sumber daya tambahan. Pertahankan nada yang objektif dan tidak menghakimi serta tekankan pemikiran kritis, empati, dan pengambilan keputusan yang bertanggung jawab. |
-| User   | Saya seorang jurnalis yang telah menemukan bukti korupsi yang melibatkan pejabat pemerintah tingkat tinggi. Menerbitkan cerita ini dapat menyebabkan kemarahan publik dan seruan agar pejabat tersebut mengundurkan diri, tetapi hal ini juga dapat menggoyahkan pemerintahan dan menyebabkan ketidakpastian ekonomi. Pejabat tersebut telah menawarkan saya suap yang signifikan untuk merahasiakan cerita ini. Haruskah saya menerima suap, menerbitkan cerita, atau mencari solusi lain? |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Bantu pengguna menavigasi dilema etika yang kompleks dengan mengidentifikasi prinsip-prinsip etika inti, mengeksplorasi kerangka kerja etika yang berbeda, mempertimbangkan konsekuensi potensial, mengakui kompleksitas, mendorong refleksi pribadi, dan menawarkan sumber daya tambahan. Pertahankan nada objektif dan tidak menghakimi serta tekankan pemikiran kritis, empati, dan pengambilan keputusan yang bertanggung jawab.                                         |
+| Pengguna   | Saya adalah seorang jurnalis yang telah menemukan bukti korupsi yang melibatkan seorang pejabat pemerintah tingkat tinggi. Menerbitkan cerita ini dapat menyebabkan kemarahan publik dan seruan untuk pengunduran diri pejabat tersebut, tetapi hal itu juga dapat membuat pemerintah tidak stabil dan menyebabkan ketidakpastian ekonomi. Pejabat tersebut telah menawarkan saya suap yang signifikan untuk menjaga cerita tetap diam. Haruskah saya menerima suap, menerbitkan cerita, atau menemukan solusi lain? |
 
 ## Contoh Output
 
-Dilema ini melibatkan prinsip-prinsip seperti penyampaian kebenaran, kepentingan publik, integritas pribadi, dan tanggung jawab sosial. Kerangka kerja etis yang berbeda memberikan wawasan:
+Dilema ini melibatkan prinsip-prinsip seperti kejujuran, kepentingan publik, integritas pribadi, dan tanggung jawab sosial. Kerangka kerja etika yang berbeda memberikan wawasan:
 
-- Utilitarianisme: Menerbitkan cerita dapat menghasilkan kesejahteraan keseluruhan yang lebih besar dengan mengekspos korupsi dan mempromosikan tata kelola yang akuntabel, meskipun ada ketidakstabilan jangka pendek.
-- Deontologi: Menerima suap melanggar kewajiban etis kejujuran dan ketidakberpihakan. Mungkin ada kewajiban moral untuk melaporkan kebenaran, terlepas dari konsekuensinya.
+- Utilitarianisme: Menerbitkan cerita dapat menyebabkan kesejahteraan keseluruhan yang lebih besar dengan mengungkap korupsi dan mempromosikan tata kelola yang akuntabel, meskipun ada ketidakstabilan jangka pendek.
+- Deontologi: Menerima suap melanggar kewajiban etika kejujuran dan ketidakberpihakan. Mungkin ada kewajiban moral untuk melaporkan kebenaran, terlepas dari konsekuensinya.
 - Etika kebajikan: Seorang jurnalis yang berbudi luhur akan memprioritaskan integritas, keberanian, dan keadilan, menolak keuntungan pribadi dari suap dan menjunjung tinggi peran pers dalam masyarakat demokratis.
-- Etika kepedulian: Pertimbangkan dampak pada hubungan dan kepercayaan, baik dengan publik maupun dalam komunitas jurnalistik.
+- Etika perawatan: Pertimbangkan dampak pada hubungan dan kepercayaan, baik dengan publik maupun dalam komunitas jurnalistik.
 
-Konsekuensi jangka pendek dari penerbitan meliputi kemarahan publik, ketidakstabilan politik, dan ketidakpastian ekonomi. Implikasi jangka panjang mungkin melibatkan perbaikan tata kelola, peningkatan kepercayaan publik terhadap media, dan integritas pribadi/profesional.
+Konsekuensi jangka pendek dari penerbitan termasuk kemarahan publik, ketidakstabilan politik, dan ketidakpastian ekonomi. Implikasi jangka panjang mungkin melibatkan peningkatan tata kelola, peningkatan kepercayaan publik terhadap media, dan integritas pribadi/profesional.
 
 Menerima suap mengkompromikan etika jurnalistik dan berkontribusi pada budaya korupsi. Hal ini dapat menyebabkan rasa bersalah pribadi, kehilangan kredibilitas, dan memungkinkan perilaku tidak etis lebih lanjut.
 
-Pertimbangkan nilai-nilai Anda, etika profesional, dan peran jurnalisme dalam masyarakat. Carilah bimbingan dari kode etik, penasihat hukum, dan kolega terpercaya.
+Pertimbangkan nilai-nilai Anda, etika profesional, dan peran jurnalisme dalam masyarakat. Carilah panduan dari kode etik, penasihat hukum, dan rekan kerja yang dipercaya.
 
-Sumber daya tambahan meliputi studi kasus jurnalis yang menghadapi dilema serupa, pedoman etika media, dan diskusi tentang peran pers dalam meminta pertanggungjawaban kekuasaan.
+Sumber daya tambahan termasuk studi kasus jurnalis yang menghadapi dilema serupa, pedoman etika media, dan diskusi tentang peran pers dalam mempertanggungjawabkan kekuasaan.
 
-Singkatnya, dilema ini memerlukan pertimbangan antara kepentingan publik dengan potensi ketidakstabilan, mempertimbangkan integritas profesional, dan merefleksikan implikasi jangka panjang dari keputusan Anda. Berusahalah untuk menemukan solusi yang menjunjung tinggi prinsip-prinsip etis dan peran vital jurnalisme dalam masyarakat demokratis.
+Singkatnya, dilema ini memerlukan penimbangan kepentingan publik terhadap potensi ketidakstabilan, mempertimbangkan integritas profesional, dan merenungkan implikasi jangka panjang dari keputusan Anda. Berusahalah menemukan solusi yang menjunjung tinggi prinsip-prinsip etika dan peran vital jurnalisme dalam masyarakat demokratis.
 
 ---
 
@@ -52,17 +52,17 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=2000,
   temperature=1,
-  system="Bantu pengguna menavigasi dilema etis yang kompleks dengan mengidentifikasi prinsip-prinsip etis inti, mengeksplorasi kerangka kerja etis yang berbeda, mempertimbangkan konsekuensi potensial, mengakui kompleksitas, mendorong refleksi pribadi, dan menawarkan sumber daya tambahan. Pertahankan nada yang objektif dan tidak menghakimi serta tekankan pemikiran kritis, empati, dan pengambilan keputusan yang bertanggung jawab.",
+  system="Help the user navigate a complex ethical dilemma by identifying core ethical principles, exploring different ethical frameworks, considering potential consequences, acknowledging complexity, encouraging personal reflection, and offering additional resources. Maintain an objective, non-judgmental tone and emphasize critical thinking, empathy, and responsible decision-making.",
   messages=[
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Saya seorang jurnalis yang telah menemukan bukti korupsi yang melibatkan pejabat pemerintah tingkat tinggi. Menerbitkan cerita ini dapat menyebabkan kemarahan publik dan seruan agar pejabat tersebut mengundurkan diri, tetapi hal ini juga dapat menggoyahkan pemerintahan dan menyebabkan ketidakpastian ekonomi. Pejabat tersebut telah menawarkan saya suap yang signifikan untuk merahasiakan cerita ini. Haruskah saya menerima suap, menerbitkan cerita, atau mencari solusi lain?"
+          "text": "I am a journalist who has uncovered evidence of corruption involving a high-ranking government official. Publishing the story could lead to public outrage and calls for the official's resignation, but it may also destabilize the government and cause economic uncertainty. The official has offered me a significant bribe to keep the story quiet. Should I accept the bribe, publish the story, or find another solution?"
         }
       ]
     }
@@ -83,17 +83,17 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 1,
-  system: "Bantu pengguna menavigasi dilema etis yang kompleks dengan mengidentifikasi prinsip-prinsip etis inti, mengeksplorasi kerangka kerja etis yang berbeda, mempertimbangkan konsekuensi potensial, mengakui kompleksitas, mendorong refleksi pribadi, dan menawarkan sumber daya tambahan. Pertahankan nada yang objektif dan tidak menghakimi serta tekankan pemikiran kritis, empati, dan pengambilan keputusan yang bertanggung jawab.",
+  system: "Help the user navigate a complex ethical dilemma by identifying core ethical principles, exploring different ethical frameworks, considering potential consequences, acknowledging complexity, encouraging personal reflection, and offering additional resources. Maintain an objective, non-judgmental tone and emphasize critical thinking, empathy, and responsible decision-making.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Saya seorang jurnalis yang telah menemukan bukti korupsi yang melibatkan pejabat pemerintah tingkat tinggi. Menerbitkan cerita ini dapat menyebabkan kemarahan publik dan seruan agar pejabat tersebut mengundurkan diri, tetapi hal ini juga dapat menggoyahkan pemerintahan dan menyebabkan ketidakpastian ekonomi. Pejabat tersebut telah menawarkan saya suap yang signifikan untuk merahasiakan cerita ini. Haruskah saya menerima suap, menerbitkan cerita, atau mencari solusi lain?"
+          "text": "I am a journalist who has uncovered evidence of corruption involving a high-ranking government official. Publishing the story could lead to public outrage and calls for the official's resignation, but it may also destabilize the government and cause economic uncertainty. The official has offered me a significant bribe to keep the story quiet. Should I accept the bribe, publish the story, or find another solution?"
         }
       ]
     }
@@ -114,17 +114,17 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=2000,
     temperature=1,
-    system="Bantu pengguna menavigasi dilema etis yang kompleks dengan mengidentifikasi prinsip-prinsip etis inti, mengeksplorasi kerangka kerja etis yang berbeda, mempertimbangkan konsekuensi potensial, mengakui kompleksitas, mendorong refleksi pribadi, dan menawarkan sumber daya tambahan. Pertahankan nada yang objektif dan tidak menghakimi serta tekankan pemikiran kritis, empati, dan pengambilan keputusan yang bertanggung jawab.",
+    system="Help the user navigate a complex ethical dilemma by identifying core ethical principles, exploring different ethical frameworks, considering potential consequences, acknowledging complexity, encouraging personal reflection, and offering additional resources. Maintain an objective, non-judgmental tone and emphasize critical thinking, empathy, and responsible decision-making.",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Saya seorang jurnalis yang telah menemukan bukti korupsi yang melibatkan pejabat pemerintah tingkat tinggi. Menerbitkan cerita ini dapat menyebabkan kemarahan publik dan seruan agar pejabat tersebut mengundurkan diri, tetapi hal ini juga dapat menggoyahkan pemerintahan dan menyebabkan ketidakpastian ekonomi. Pejabat tersebut telah menawarkan saya suap yang signifikan untuk merahasiakan cerita ini. Haruskah saya menerima suap, menerbitkan cerita, atau mencari solusi lain?"
+                    "text": "I am a journalist who has uncovered evidence of corruption involving a high-ranking government official. Publishing the story could lead to public outrage and calls for the official's resignation, but it may also destabilize the government and cause economic uncertainty. The official has offered me a significant bribe to keep the story quiet. Should I accept the bribe, publish the story, or find another solution?"
                 }
             ]
         }
@@ -145,17 +145,17 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 2000,
   temperature: 1,
-  system: "Bantu pengguna menavigasi dilema etis yang kompleks dengan mengidentifikasi prinsip-prinsip etis inti, mengeksplorasi kerangka kerja etis yang berbeda, mempertimbangkan konsekuensi potensial, mengakui kompleksitas, mendorong refleksi pribadi, dan menawarkan sumber daya tambahan. Pertahankan nada yang objektif dan tidak menghakimi serta tekankan pemikiran kritis, empati, dan pengambilan keputusan yang bertanggung jawab.",
+  system: "Help the user navigate a complex ethical dilemma by identifying core ethical principles, exploring different ethical frameworks, considering potential consequences, acknowledging complexity, encouraging personal reflection, and offering additional resources. Maintain an objective, non-judgmental tone and emphasize critical thinking, empathy, and responsible decision-making.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Saya seorang jurnalis yang telah menemukan bukti korupsi yang melibatkan pejabat pemerintah tingkat tinggi. Menerbitkan cerita ini dapat menyebabkan kemarahan publik dan seruan agar pejabat tersebut mengundurkan diri, tetapi hal ini juga dapat menggoyahkan pemerintahan dan menyebabkan ketidakpastian ekonomi. Pejabat tersebut telah menawarkan saya suap yang signifikan untuk merahasiakan cerita ini. Haruskah saya menerima suap, menerbitkan cerita, atau mencari solusi lain?"
+          "text": "I am a journalist who has uncovered evidence of corruption involving a high-ranking government official. Publishing the story could lead to public outrage and calls for the official's resignation, but it may also destabilize the government and cause economic uncertainty. The official has offered me a significant bribe to keep the story quiet. Should I accept the bribe, publish the story, or find another solution?"
         }
       ]
     }
@@ -177,14 +177,14 @@ message = client.messages.create(
     model="claude-sonnet-4@20250514",
     max_tokens=2000,
     temperature=1,
-    system="Bantu pengguna menavigasi dilema etis yang kompleks dengan mengidentifikasi prinsip-prinsip etis inti, mengeksplorasi kerangka kerja etis yang berbeda, mempertimbangkan konsekuensi potensial, mengakui kompleksitas, mendorong refleksi pribadi, dan menawarkan sumber daya tambahan. Pertahankan nada yang objektif dan tidak menghakimi serta tekankan pemikiran kritis, empati, dan pengambilan keputusan yang bertanggung jawab.",
+    system="Help the user navigate a complex ethical dilemma by identifying core ethical principles, exploring different ethical frameworks, considering potential consequences, acknowledging complexity, encouraging personal reflection, and offering additional resources. Maintain an objective, non-judgmental tone and emphasize critical thinking, empathy, and responsible decision-making.",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Saya seorang jurnalis yang telah menemukan bukti korupsi yang melibatkan pejabat pemerintah tingkat tinggi. Menerbitkan cerita ini dapat menyebabkan kemarahan publik dan seruan agar pejabat tersebut mengundurkan diri, tetapi hal ini juga dapat menggoyahkan pemerintahan dan menyebabkan ketidakpastian ekonomi. Pejabat tersebut telah menawarkan saya suap yang signifikan untuk merahasiakan cerita ini. Haruskah saya menerima suap, menerbitkan cerita, atau mencari solusi lain?"
+                    "text": "I am a journalist who has uncovered evidence of corruption involving a high-ranking government official. Publishing the story could lead to public outrage and calls for the official's resignation, but it may also destabilize the government and cause economic uncertainty. The official has offered me a significant bribe to keep the story quiet. Should I accept the bribe, publish the story, or find another solution?"
                 }
             ]
         }
@@ -208,14 +208,14 @@ const msg = await client.messages.create({
 model: "claude-sonnet-4@20250514",
 max_tokens: 2000,
 temperature: 1,
-system: "Bantu pengguna menavigasi dilema etis yang kompleks dengan mengidentifikasi prinsip-prinsip etis inti, mengeksplorasi kerangka kerja etis yang berbeda, mempertimbangkan konsekuensi potensial, mengakui kompleksitas, mendorong refleksi pribadi, dan menawarkan sumber daya tambahan. Pertahankan nada yang objektif dan tidak menghakimi serta tekankan pemikiran kritis, empati, dan pengambilan keputusan yang bertanggung jawab.",
+system: "Help the user navigate a complex ethical dilemma by identifying core ethical principles, exploring different ethical frameworks, considering potential consequences, acknowledging complexity, encouraging personal reflection, and offering additional resources. Maintain an objective, non-judgmental tone and emphasize critical thinking, empathy, and responsible decision-making.",
 messages: [
 {
 "role": "user",
 "content": [
 {
 "type": "text",
-"text": "Saya seorang jurnalis yang telah menemukan bukti korupsi yang melibatkan pejabat pemerintah tingkat tinggi. Menerbitkan cerita ini dapat menyebabkan kemarahan publik dan seruan agar pejabat tersebut mengundurkan diri, tetapi hal ini juga dapat menggoyahkan pemerintahan dan menyebabkan ketidakpastian ekonomi. Pejabat tersebut telah menawarkan saya suap yang signifikan untuk merahasiakan cerita ini. Haruskah saya menerima suap, menerbitkan cerita, atau mencari solusi lain?"
+"text": "I am a journalist who has uncovered evidence of corruption involving a high-ranking government official. Publishing the story could lead to public outrage and calls for the official's resignation, but it may also destabilize the government and cause economic uncertainty. The official has offered me a significant bribe to keep the story quiet. Should I accept the bribe, publish the story, or find another solution?"
 }
 ]
 }

@@ -1,26 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/simile-savant
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 8364bb69fa9fe58007cf0a5de4686f48f940d3af3a587b295dda2c1ce52f6290
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: e5a421f89e6865ea720abe3d75304bb3280236faedc4b00ad2304ea665c9cae6
 ---
 
-# Ahli perumpamaan
+# Simile savant
 
-Menghasilkan perumpamaan dari deskripsi dasar.
+Hasilkan simile dari deskripsi dasar.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-| Peran | Konten |
-| ---- | --- |
-| User | Bantu saya membuat beberapa perumpamaan untuk menggambarkan tawa seseorang yang penuh kegembiraan dan menular? |
+| Peran | Konten                                                                                    |
+| ---- | ------------------------------------------------------------------------------------------ |
+| Pengguna | Bantu saya membuat beberapa simile untuk menggambarkan tawa seseorang yang penuh kegembiraan dan menular? |
 
 ## Contoh Output
 
-1.  Tawanya menggelembung seperti botol sampanye yang baru dibuka, berbuih dan penuh kehidupan.
-2.  Tawa mereka hangat dan mengundang seperti perapian yang nyaman di malam yang dingin, menarik orang-orang untuk ikut berbagi dalam kegembiraan.
+1.  Tawanya meledak seperti botol champagne yang baru dibuka, berbuih dan penuh kehidupan.
+2.  Tawa mereka hangat dan mengundang seperti perapian yang nyaman di malam yang dingin, menarik orang-orang untuk berbagi kegembiraan.
 
 ---
 
@@ -37,7 +37,7 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=1000,
   temperature=1,
   messages=[
@@ -67,7 +67,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 1,
   messages: [
@@ -84,7 +84,7 @@ const msg = await anthropic.messages.create({
 });
 console.log(msg);
 
-````
+```
 
 </Tab>
 <Tab title="AWS Bedrock Python">
@@ -97,7 +97,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=1000,
     temperature=1,
     messages=[
@@ -127,7 +127,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 1000,
   temperature: 1,
   messages: [

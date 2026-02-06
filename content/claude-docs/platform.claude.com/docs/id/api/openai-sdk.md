@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/openai-sdk
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 2f7e8ba53c036b709893f7437b3b4ac8644e3dbb24b240b5e657125804329dff
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 92e2885ab4731bf9f7bdeca7b408a83b8cd2797f78a80c78fcdfe41a73bdd675
 ---
 
 # Kompatibilitas OpenAI SDK
 
-Anthropic menyediakan lapisan kompatibilitas yang memungkinkan Anda menggunakan OpenAI SDK untuk menguji Claude API. Dengan beberapa perubahan kode, Anda dapat dengan cepat mengevaluasi kemampuan model Anthropic.
+Anthropic menyediakan lapisan kompatibilitas yang memungkinkan Anda menggunakan OpenAI SDK untuk menguji Claude API. Dengan beberapa perubahan kode, Anda dapat dengan cepat mengevaluasi kemampuan model Claude.
 
 ---
 
@@ -46,7 +46,7 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
     )
 
     response = client.chat.completions.create(
-        model="claude-sonnet-4-5", # Anthropic model name
+        model="claude-opus-4-6", # Anthropic model name
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": "Who are you?"}
@@ -68,7 +68,7 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
         messages: [
             { role: "user", content: "Who are you?" }
         ],
-        model: "claude-sonnet-4-5", // Claude model name
+        model: "claude-opus-4-6", // Claude model name
     });
 
     console.log(response.choices[0].message.content);
@@ -81,10 +81,10 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
 
 Berikut adalah perbedaan paling substansial dari penggunaan OpenAI:
 
-* Parameter `strict` untuk function calling diabaikan, yang berarti JSON penggunaan alat tidak dijamin mengikuti skema yang disediakan. Untuk kepatuhan skema yang dijamin, gunakan [Claude API asli dengan Structured Outputs](/docs/id/build-with-claude/structured-outputs).
+* Parameter `strict` untuk pemanggilan fungsi diabaikan, yang berarti JSON penggunaan alat tidak dijamin mengikuti skema yang disediakan. Untuk kepatuhan skema yang dijamin, gunakan [Claude API asli dengan Structured Outputs](/docs/id/build-with-claude/structured-outputs).
 * Input audio tidak didukung; itu akan diabaikan dan dihapus dari input
-* Penyimpanan prompt tidak didukung, tetapi didukung di [Anthropic SDK](/docs/id/api/client-sdks)
-* Pesan sistem/pengembang diangkat dan digabungkan ke awal percakapan, karena Anthropic hanya mendukung satu pesan sistem awal tunggal.
+* Penyimpanan prompt tidak didukung, tetapi didukung dalam [Anthropic SDK](/docs/id/api/client-sdks)
+* Pesan sistem/pengembang diangkat dan digabungkan ke awal percakapan, karena Anthropic hanya mendukung satu pesan sistem awal.
 
 Sebagian besar bidang yang tidak didukung diabaikan secara diam-diam daripada menghasilkan kesalahan. Semuanya didokumentasikan di bawah.
 
@@ -140,7 +140,7 @@ Batas laju mengikuti [batas standar](/docs/id/api/rate-limits) Anthropic untuk e
 | `stream_options` | Sepenuhnya didukung |
 | `top_p` | Sepenuhnya didukung |
 | `parallel_tool_calls` | Sepenuhnya didukung |
-| `stop` | Semua urutan penghenti non-whitespace berfungsi |
+| `stop` | Semua urutan penghenti non-spasi putih berfungsi |
 | `temperature` | Antara 0 dan 1 (inklusif). Nilai lebih besar dari 1 dibatasi pada 1. |
 | `n` | Harus tepat 1 |
 | `logprobs` | Diabaikan |
@@ -176,7 +176,7 @@ Bidang `tools[n].function`
 
 Bidang `functions[n]`
 <Info>
-OpenAI telah menghapus bidang `functions` dan menyarankan menggunakan `tools` sebagai gantinya.
+OpenAI telah menghapuskan bidang `functions` dan menyarankan menggunakan `tools` sebagai gantinya.
 </Info>
 | Bidang        | Status dukungan         |
 |--------------|-----------------|
@@ -193,7 +193,7 @@ OpenAI telah menghapus bidang `functions` dan menyarankan menggunakan `tools` se
 <section title="Tampilkan bidang">
 
 <Tabs>
-<Tab title="Developer role">
+<Tab title="Peran pengembang">
 Bidang untuk `messages[n].role == "developer"`
 <Info>
 Pesan pengembang diangkat ke awal percakapan sebagai bagian dari pesan sistem awal
@@ -204,7 +204,7 @@ Pesan pengembang diangkat ke awal percakapan sebagai bagian dari pesan sistem aw
 | `name` | Diabaikan |
 
 </Tab>
-<Tab title="System role">
+<Tab title="Peran sistem">
 Bidang untuk `messages[n].role == "system"`
 
 <Info>
@@ -216,7 +216,7 @@ Pesan sistem diangkat ke awal percakapan sebagai bagian dari pesan sistem awal
 | `name` | Diabaikan |
 
 </Tab>
-<Tab title="User role">
+<Tab title="Peran pengguna">
 Bidang untuk `messages[n].role == "user"`
 
 | Bidang | Varian | Sub-bidang | Status dukungan |
@@ -231,7 +231,7 @@ Bidang untuk `messages[n].role == "user"`
 
 </Tab>
 
-<Tab title="Assistant role">
+<Tab title="Peran asisten">
 Bidang untuk `messages[n].role == "assistant"`
 | Bidang | Varian | Status dukungan |
 |-------|---------|----------------|
@@ -245,7 +245,7 @@ Bidang untuk `messages[n].role == "assistant"`
 
 </Tab>
 
-<Tab title="Tool role">
+<Tab title="Peran alat">
 Bidang untuk `messages[n].role == "tool"`
 | Bidang | Varian | Status dukungan |
 |-------|---------|----------------|
@@ -256,7 +256,7 @@ Bidang untuk `messages[n].role == "tool"`
 | `name` | | Diabaikan |
 </Tab>
 
-<Tab title="Function role">
+<Tab title="Peran fungsi">
 Bidang untuk `messages[n].role == "function"`
 | Bidang | Varian | Status dukungan |
 |-------|---------|----------------|

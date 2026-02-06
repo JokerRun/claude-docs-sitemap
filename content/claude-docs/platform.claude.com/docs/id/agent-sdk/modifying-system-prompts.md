@@ -1,62 +1,62 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/modifying-system-prompts
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 2af8619395d235abc727b3025641d0bc39c7defb36af36418ad8c7efdc7d6b4b
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: efdabd6f7fe40e11e334532d3927cbd326e8d7742382552036dd766f5d5df405
 ---
 
-# Memodifikasi system prompt
+# Memodifikasi system prompts
 
-Pelajari cara menyesuaikan perilaku Claude dengan memodifikasi system prompt menggunakan tiga pendekatan - output styles, systemPrompt dengan append, dan custom system prompt.
+Pelajari cara menyesuaikan perilaku Claude dengan memodifikasi system prompts menggunakan tiga pendekatan - output styles, systemPrompt dengan append, dan custom system prompts.
 
 ---
 
-System prompt mendefinisikan perilaku, kemampuan, dan gaya respons Claude. Claude Agent SDK menyediakan tiga cara untuk menyesuaikan system prompt: menggunakan output styles (konfigurasi persisten berbasis file), menambahkan ke prompt Claude Code, atau menggunakan prompt yang sepenuhnya kustom.
+System prompts mendefinisikan perilaku Claude, kemampuan, dan gaya respons. Claude Agent SDK menyediakan tiga cara untuk menyesuaikan system prompts: menggunakan output styles (konfigurasi berbasis file yang persisten), menambahkan ke prompt Claude Code, atau menggunakan prompt kustom sepenuhnya.
 
-## Memahami system prompt
+## Memahami system prompts
 
-System prompt adalah set instruksi awal yang membentuk bagaimana Claude berperilaku sepanjang percakapan.
+Sebuah system prompt adalah set instruksi awal yang membentuk bagaimana Claude berperilaku sepanjang percakapan.
 
 <Note>
-**Perilaku default:** Agent SDK menggunakan **system prompt kosong** secara default untuk fleksibilitas maksimum. Untuk menggunakan system prompt Claude Code (instruksi tool, panduan kode, dll.), tentukan `systemPrompt: { preset: "claude_code" }` di TypeScript atau `system_prompt="claude_code"` di Python.
+**Perilaku default:** Agent SDK menggunakan **minimal system prompt** secara default. Ini hanya berisi instruksi tool yang penting tetapi menghilangkan pedoman coding Claude Code, gaya respons, dan konteks proyek. Untuk menyertakan system prompt Claude Code lengkap, tentukan `systemPrompt: { preset: "claude_code" }` di TypeScript atau `system_prompt={"type": "preset", "preset": "claude_code"}` di Python.
 </Note>
 
 System prompt Claude Code mencakup:
 
 - Instruksi penggunaan tool dan tool yang tersedia
-- Panduan gaya dan format kode
+- Pedoman gaya kode dan pemformatan
 - Pengaturan nada respons dan verbositas
 - Instruksi keamanan dan keselamatan
 - Konteks tentang direktori kerja saat ini dan lingkungan
 
 ## Metode modifikasi
 
-### Metode 1: File CLAUDE.md (instruksi tingkat proyek)
+### Method 1: File CLAUDE.md (instruksi tingkat proyek)
 
-File CLAUDE.md menyediakan konteks dan instruksi spesifik proyek yang secara otomatis dibaca oleh Agent SDK ketika berjalan di sebuah direktori. Mereka berfungsi sebagai "memori" persisten untuk proyek Anda.
+File CLAUDE.md menyediakan konteks dan instruksi spesifik proyek yang secara otomatis dibaca oleh Agent SDK ketika berjalan di direktori. Mereka berfungsi sebagai "memori" persisten untuk proyek Anda.
 
-#### Cara CLAUDE.md bekerja dengan SDK
+#### Bagaimana CLAUDE.md bekerja dengan SDK
 
 **Lokasi dan penemuan:**
 
 - **Tingkat proyek:** `CLAUDE.md` atau `.claude/CLAUDE.md` di direktori kerja Anda
 - **Tingkat pengguna:** `~/.claude/CLAUDE.md` untuk instruksi global di semua proyek
 
-**PENTING:** SDK hanya membaca file CLAUDE.md ketika Anda secara eksplisit mengkonfigurasi `settingSources` (TypeScript) atau `setting_sources` (Python):
+**PENTING:** SDK hanya membaca file CLAUDE.md ketika Anda secara eksplisit mengonfigurasi `settingSources` (TypeScript) atau `setting_sources` (Python):
 
 - Sertakan `'project'` untuk memuat CLAUDE.md tingkat proyek
 - Sertakan `'user'` untuk memuat CLAUDE.md tingkat pengguna (`~/.claude/CLAUDE.md`)
 
-Preset system prompt `claude_code` TIDAK secara otomatis memuat CLAUDE.md - Anda juga harus menentukan setting sources.
+Preset system prompt `claude_code` TIDAK secara otomatis memuat CLAUDE.md - Anda juga harus menentukan sumber pengaturan.
 
 **Format konten:**
 File CLAUDE.md menggunakan markdown biasa dan dapat berisi:
 
-- Panduan dan standar coding
+- Pedoman coding dan standar
 - Konteks spesifik proyek
-- Perintah atau workflow umum
+- Perintah atau alur kerja umum
 - Konvensi API
-- Persyaratan testing
+- Persyaratan pengujian
 
 #### Contoh CLAUDE.md
 
@@ -89,8 +89,8 @@ File CLAUDE.md menggunakan markdown biasa dan dapat berisi:
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
-// PENTING: Anda harus menentukan settingSources untuk memuat CLAUDE.md
-// Preset claude_code saja TIDAK memuat file CLAUDE.md
+// IMPORTANT: You must specify settingSources to load CLAUDE.md
+// The claude_code preset alone does NOT load CLAUDE.md files
 const messages = [];
 
 for await (const message of query({
@@ -98,22 +98,22 @@ for await (const message of query({
   options: {
     systemPrompt: {
       type: "preset",
-      preset: "claude_code", // Gunakan system prompt Claude Code
+      preset: "claude_code", // Use Claude Code's system prompt
     },
-    settingSources: ["project"], // Diperlukan untuk memuat CLAUDE.md dari proyek
+    settingSources: ["project"], // Required to load CLAUDE.md from project
   },
 })) {
   messages.push(message);
 }
 
-// Sekarang Claude memiliki akses ke panduan proyek Anda dari CLAUDE.md
+// Now Claude has access to your project guidelines from CLAUDE.md
 ```
 
 ```python Python
 from claude_agent_sdk import query, ClaudeAgentOptions
 
-# PENTING: Anda harus menentukan setting_sources untuk memuat CLAUDE.md
-# Preset claude_code saja TIDAK memuat file CLAUDE.md
+# IMPORTANT: You must specify setting_sources to load CLAUDE.md
+# The claude_code preset alone does NOT load CLAUDE.md files
 messages = []
 
 async for message in query(
@@ -121,14 +121,14 @@ async for message in query(
     options=ClaudeAgentOptions(
         system_prompt={
             "type": "preset",
-            "preset": "claude_code"  # Gunakan system prompt Claude Code
+            "preset": "claude_code"  # Use Claude Code's system prompt
         },
-        setting_sources=["project"]  # Diperlukan untuk memuat CLAUDE.md dari proyek
+        setting_sources=["project"]  # Required to load CLAUDE.md from project
     )
 ):
     messages.append(message)
 
-# Sekarang Claude memiliki akses ke panduan proyek Anda dari CLAUDE.md
+# Now Claude has access to your project guidelines from CLAUDE.md
 ```
 
 </CodeGroup>
@@ -137,22 +137,22 @@ async for message in query(
 
 **Terbaik untuk:**
 
-- **Konteks yang dibagikan tim** - Panduan yang harus diikuti semua orang
+- **Konteks bersama tim** - Pedoman yang harus diikuti semua orang
 - **Konvensi proyek** - Standar coding, struktur file, pola penamaan
 - **Perintah umum** - Perintah build, test, deploy spesifik untuk proyek Anda
-- **Memori jangka panjang** - Konteks yang harus bertahan di semua sesi
-- **Instruksi yang dikontrol versi** - Commit ke git agar tim tetap sinkron
+- **Memori jangka panjang** - Konteks yang harus persisten di semua sesi
+- **Instruksi terkontrol versi** - Commit ke git sehingga tim tetap sinkron
 
 **Karakteristik kunci:**
 
 - ✅ Persisten di semua sesi dalam proyek
 - ✅ Dibagikan dengan tim melalui git
 - ✅ Penemuan otomatis (tidak perlu perubahan kode)
-- ⚠️ Memerlukan loading settings melalui `settingSources`
+- ⚠️ Memerlukan pemuatan pengaturan melalui `settingSources`
 
-### Metode 2: Output styles (konfigurasi persisten)
+### Method 2: Output styles (konfigurasi persisten)
 
-Output styles adalah konfigurasi tersimpan yang memodifikasi system prompt Claude. Mereka disimpan sebagai file markdown dan dapat digunakan kembali di berbagai sesi dan proyek.
+Output styles adalah konfigurasi yang disimpan yang memodifikasi system prompt Claude. Mereka disimpan sebagai file markdown dan dapat digunakan kembali di seluruh sesi dan proyek.
 
 #### Membuat output style
 
@@ -168,8 +168,8 @@ async function createOutputStyle(
   description: string,
   prompt: string
 ) {
-  // Tingkat pengguna: ~/.claude/output-styles
-  // Tingkat proyek: .claude/output-styles
+  // User-level: ~/.claude/output-styles
+  // Project-level: .claude/output-styles
   const outputStylesDir = join(homedir(), ".claude", "output-styles");
 
   await mkdir(outputStylesDir, { recursive: true });
@@ -188,7 +188,7 @@ ${prompt}`;
   await writeFile(filePath, content, "utf-8");
 }
 
-// Contoh: Buat spesialis code review
+// Example: Create a code review specialist
 await createOutputStyle(
   "Code Reviewer",
   "Thorough code review assistant",
@@ -206,8 +206,8 @@ For every code submission:
 from pathlib import Path
 
 async def create_output_style(name: str, description: str, prompt: str):
-    # Tingkat pengguna: ~/.claude/output-styles
-    # Tingkat proyek: .claude/output-styles
+    # User-level: ~/.claude/output-styles
+    # Project-level: .claude/output-styles
     output_styles_dir = Path.home() / '.claude' / 'output-styles'
 
     output_styles_dir.mkdir(parents=True, exist_ok=True)
@@ -223,7 +223,7 @@ description: {description}
     file_path = output_styles_dir / file_name
     file_path.write_text(content, encoding='utf-8')
 
-# Contoh: Buat spesialis code review
+# Example: Create a code review specialist
 await create_output_style(
     'Code Reviewer',
     'Thorough code review assistant',
@@ -249,7 +249,7 @@ Setelah dibuat, aktifkan output styles melalui:
 
 **Catatan untuk pengguna SDK:** Output styles dimuat ketika Anda menyertakan `settingSources: ['user']` atau `settingSources: ['project']` (TypeScript) / `setting_sources=["user"]` atau `setting_sources=["project"]` (Python) dalam opsi Anda.
 
-### Metode 3: Menggunakan `systemPrompt` dengan append
+### Method 3: Menggunakan `systemPrompt` dengan append
 
 Anda dapat menggunakan preset Claude Code dengan properti `append` untuk menambahkan instruksi kustom Anda sambil mempertahankan semua fungsionalitas bawaan.
 
@@ -300,7 +300,7 @@ async for message in query(
 
 </CodeGroup>
 
-### Metode 4: Custom system prompt
+### Method 4: Custom system prompts
 
 Anda dapat menyediakan string kustom sebagai `systemPrompt` untuk mengganti default sepenuhnya dengan instruksi Anda sendiri.
 
@@ -361,29 +361,29 @@ async for message in query(
 ## Perbandingan keempat pendekatan
 
 | Fitur                   | CLAUDE.md           | Output Styles      | `systemPrompt` dengan append | Custom `systemPrompt`     |
-| --- | --- | --- | --- | --- |
+| ----------------------- | ------------------- | ------------------ | -------------------------- | ------------------------- |
 | **Persistensi**         | File per-proyek | Disimpan sebagai file  | Hanya sesi            | Hanya sesi           |
-| **Reusabilitas**        | Per-proyek      | Lintas proyek | Duplikasi kode        | Duplikasi kode       |
-| **Manajemen**           | Di filesystem    | CLI + file     | Dalam kode                 | Dalam kode                |
-| **Tool default**        | Dipertahankan        | Dipertahankan       | Dipertahankan               | Hilang (kecuali disertakan) |
+| **Dapat digunakan kembali**         | Per-proyek      | Di seluruh proyek | Duplikasi kode        | Duplikasi kode       |
+| **Manajemen**          | Di sistem file    | CLI + file     | Dalam kode                 | Dalam kode                |
+| **Tool default**       | Dipertahankan        | Dipertahankan       | Dipertahankan               | Hilang (kecuali disertakan) |
 | **Keamanan bawaan**     | Dipertahankan       | Dipertahankan      | Dipertahankan              | Harus ditambahkan          |
 | **Konteks lingkungan** | Otomatis        | Otomatis       | Otomatis               | Harus disediakan       |
-| **Level kustomisasi** | Hanya penambahan   | Ganti default | Hanya penambahan          | Kontrol penuh       |
+| **Tingkat kustomisasi** | Hanya penambahan   | Ganti default | Hanya penambahan          | Kontrol penuh       |
 | **Kontrol versi**     | Dengan proyek     | Ya             | Dengan kode               | Dengan kode              |
 | **Cakupan**               | Spesifik proyek | Pengguna atau proyek | Sesi kode            | Sesi kode           |
 
 **Catatan:** "Dengan append" berarti menggunakan `systemPrompt: { type: "preset", preset: "claude_code", append: "..." }` di TypeScript atau `system_prompt={"type": "preset", "preset": "claude_code", "append": "..."}` di Python.
 
-## Kasus penggunaan dan praktik terbaik
+## Use cases dan best practices
 
 ### Kapan menggunakan CLAUDE.md
 
 **Terbaik untuk:**
 
-- Standar dan konvensi coding spesifik proyek
+- Standar coding dan konvensi spesifik proyek
 - Mendokumentasikan struktur dan arsitektur proyek
 - Mencantumkan perintah umum (build, test, deploy)
-- Konteks yang dibagikan tim yang harus dikontrol versi
+- Konteks bersama tim yang harus dikontrol versi
 - Instruksi yang berlaku untuk semua penggunaan SDK dalam proyek
 
 **Contoh:**
@@ -392,30 +392,30 @@ async for message in query(
 - "Jalankan `npm run lint:fix` sebelum commit"
 - "Migrasi database ada di direktori `migrations/`"
 
-**Penting:** Untuk memuat file CLAUDE.md, Anda harus secara eksplisit mengatur `settingSources: ['project']` (TypeScript) atau `setting_sources=["project"]` (Python). Preset system prompt `claude_code` TIDAK secara otomatis memuat CLAUDE.md tanpa pengaturan ini.
+**Penting:** Untuk memuat file CLAUDE.md, Anda harus secara eksplisit menetapkan `settingSources: ['project']` (TypeScript) atau `setting_sources=["project"]` (Python). Preset system prompt `claude_code` TIDAK secara otomatis memuat CLAUDE.md tanpa pengaturan ini.
 
 ### Kapan menggunakan output styles
 
 **Terbaik untuk:**
 
-- Perubahan perilaku persisten di berbagai sesi
-- Konfigurasi yang dibagikan tim
+- Perubahan perilaku persisten di seluruh sesi
+- Konfigurasi bersama tim
 - Asisten khusus (code reviewer, data scientist, DevOps)
 - Modifikasi prompt kompleks yang memerlukan versioning
 
 **Contoh:**
 
-- Membuat asisten optimisasi SQL khusus
-- Membangun code reviewer yang fokus pada keamanan
+- Membuat asisten optimasi SQL khusus
+- Membangun code reviewer yang berfokus pada keamanan
 - Mengembangkan asisten pengajaran dengan pedagogi spesifik
 
 ### Kapan menggunakan `systemPrompt` dengan append
 
 **Terbaik untuk:**
 
-- Menambahkan standar atau preferensi coding spesifik
-- Menyesuaikan format output
-- Menambahkan pengetahuan domain-spesifik
+- Menambahkan standar coding atau preferensi spesifik
+- Menyesuaikan pemformatan output
+- Menambahkan pengetahuan domain spesifik
 - Memodifikasi verbositas respons
 - Meningkatkan perilaku default Claude Code tanpa kehilangan instruksi tool
 
@@ -424,14 +424,14 @@ async for message in query(
 **Terbaik untuk:**
 
 - Kontrol penuh atas perilaku Claude
-- Tugas khusus sesi tunggal
+- Tugas sesi tunggal khusus
 - Menguji strategi prompt baru
 - Situasi di mana tool default tidak diperlukan
 - Membangun agen khusus dengan perilaku unik
 
 ## Menggabungkan pendekatan
 
-Anda dapat menggabungkan metode ini untuk fleksibilitas maksimum:
+Anda dapat menggabungkan metode ini untuk fleksibilitas maksimal:
 
 ### Contoh: Output style dengan penambahan spesifik sesi
 
@@ -440,8 +440,8 @@ Anda dapat menggabungkan metode ini untuk fleksibilitas maksimum:
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
-// Dengan asumsi output style "Code Reviewer" aktif (melalui /output-style)
-// Tambahkan area fokus spesifik sesi
+// Assuming "Code Reviewer" output style is active (via /output-style)
+// Add session-specific focus areas
 const messages = [];
 
 for await (const message of query({
@@ -466,8 +466,8 @@ for await (const message of query({
 ```python Python
 from claude_agent_sdk import query, ClaudeAgentOptions
 
-# Dengan asumsi output style "Code Reviewer" aktif (melalui /output-style)
-# Tambahkan area fokus spesifik sesi
+# Assuming "Code Reviewer" output style is active (via /output-style)
+# Add session-specific focus areas
 messages = []
 
 async for message in query(
@@ -492,7 +492,6 @@ async for message in query(
 
 ## Lihat juga
 
-- [Output styles](https://code.claude.com/docs/output-styles) - Dokumentasi lengkap output styles
+- [Output styles](https://code.claude.com/docs/id/output-styles) - Dokumentasi output styles lengkap
 - [Panduan TypeScript SDK](/docs/id/agent-sdk/typescript) - Panduan penggunaan SDK lengkap
-- [Referensi TypeScript SDK](https://code.claude.com/docs/typescript-sdk-reference) - Dokumentasi API lengkap
-- [Panduan konfigurasi](https://code.claude.com/docs/configuration) - Opsi konfigurasi umum
+- [Panduan konfigurasi](https://code.claude.com/docs/id/settings) - Opsi konfigurasi umum

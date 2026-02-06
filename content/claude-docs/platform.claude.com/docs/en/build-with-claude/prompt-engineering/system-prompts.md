@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/system-prompts
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 9ee34981d522ea1e45a9af288e7466a6566194dbaedae9c9b8fc6413b4e2debc
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: f01f502c4edd187194c73dbc505be853d139bd3bd65647e2237eb132c7fb30e1
 ---
 
 # Giving Claude a role with a system prompt
@@ -37,7 +37,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=2048,
     system="You are a seasoned data scientist at a Fortune 500 company.", # <-- role prompt
     messages=[

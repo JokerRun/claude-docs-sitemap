@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c217bb856b9fff41cdd08c84880e72302cc8b5922c7aad29ea8ff0025c805d97
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 49ce4349ab9a8cded77fe2cbc93970d7d68ebfe69e7969453c96a8487bf2a3f4
 ---
 
 # Alat memori
 
-Alat memori memungkinkan Claude menyimpan dan mengambil informasi di seluruh percakapan melalui direktori file memori.
+Alat memori memungkinkan Claude untuk menyimpan dan mengambil informasi di seluruh percakapan melalui direktori file memori.
 
 ---
 
-Alat memori memungkinkan Claude menyimpan dan mengambil informasi di seluruh percakapan melalui direktori file memori. Claude dapat membuat, membaca, memperbarui, dan menghapus file yang bertahan di antara sesi, memungkinkannya membangun pengetahuan seiring waktu tanpa menyimpan semuanya di jendela konteks.
+Alat memori memungkinkan Claude untuk menyimpan dan mengambil informasi di seluruh percakapan melalui direktori file memori. Claude dapat membuat, membaca, memperbarui, dan menghapus file yang bertahan antar sesi, memungkinkannya membangun pengetahuan seiring waktu tanpa menyimpan semuanya di jendela konteks.
 
 Alat memori beroperasi di sisi klien—Anda mengontrol di mana dan bagaimana data disimpan melalui infrastruktur Anda sendiri.
 
@@ -26,17 +26,17 @@ Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/YXC2EKGMhj
 - Pertahankan konteks proyek di seluruh eksekusi agen yang berbeda
 - Belajar dari interaksi, keputusan, dan umpan balik masa lalu
 - Bangun basis pengetahuan seiring waktu
-- Aktifkan pembelajaran lintas percakapan di mana Claude meningkat dalam alur kerja berulang
+- Aktifkan pembelajaran lintas percakapan di mana Claude meningkat dalam alur kerja yang berulang
 
 ## Cara kerjanya
 
-Ketika diaktifkan, Claude secara otomatis memeriksa direktori memorinya sebelum memulai tugas. Claude dapat membuat, membaca, memperbarui, dan menghapus file di direktori `/memories` untuk menyimpan apa yang dipelajarinya saat bekerja, kemudian mereferensikan memori tersebut dalam percakapan masa depan untuk menangani tugas serupa dengan lebih efektif atau melanjutkan dari mana ia berhenti.
+Ketika diaktifkan, Claude secara otomatis memeriksa direktori memorinya sebelum memulai tugas. Claude dapat membuat, membaca, memperbarui, dan menghapus file di direktori `/memories` untuk menyimpan apa yang dipelajarinya saat bekerja, kemudian mereferensikan memori tersebut dalam percakapan masa depan untuk menangani tugas serupa dengan lebih efektif atau melanjutkan dari tempat ia berhenti.
 
 Karena ini adalah alat sisi klien, Claude membuat panggilan alat untuk melakukan operasi memori, dan aplikasi Anda menjalankan operasi tersebut secara lokal. Ini memberi Anda kontrol penuh atas di mana dan bagaimana memori disimpan. Untuk keamanan, Anda harus membatasi semua operasi memori ke direktori `/memories`.
 
-### Contoh: Cara kerja panggilan alat memori
+### Contoh: Cara panggilan alat memori bekerja
 
-Ketika Anda meminta Claude membantu dengan tugas, Claude secara otomatis memeriksa direktori memorinya terlebih dahulu. Berikut adalah tampilan interaksi tipikal:
+Ketika Anda meminta Claude untuk membantu dengan tugas, Claude secara otomatis memeriksa direktori memorinya terlebih dahulu. Berikut adalah tampilan interaksi tipikal:
 
 **1. Permintaan pengguna:**
 ```
@@ -45,7 +45,7 @@ Ketika Anda meminta Claude membantu dengan tugas, Claude secara otomatis memerik
 
 **2. Claude memeriksa direktori memori:**
 ```
-"Saya akan membantu Anda merespons tiket layanan pelanggan. Biarkan saya memeriksa memori saya untuk konteks sebelumnya apa pun."
+"Saya akan membantu Anda merespons tiket layanan pelanggan. Biarkan saya memeriksa memori saya untuk konteks sebelumnya."
 ```
 
 Claude memanggil alat memori:
@@ -88,25 +88,26 @@ Claude memanggil alat memori:
 {
   "type": "tool_result",
   "tool_use_id": "toolu_01D5E6F7G8H9I0J1K2L3M4N5",
-  "content": "Berikut adalah isi /memories/customer_service_guidelines.xml dengan nomor baris:\n     1\t<guidelines>\n     2\t<addressing_customers>\n     3\t- Selalu panggil pelanggan dengan nama depan mereka\n     4\t- Gunakan bahasa yang berempati\n..."
+  "content": "Berikut adalah isi /memories/customer_service_guidelines.xml dengan nomor baris:\n     1\t<guidelines>\n     2\t<addressing_customers>\n     3\t- Selalu panggil pelanggan dengan nama depan mereka\n     4\t- Gunakan bahasa yang empatik\n..."
 }
 ```
 
 **6. Claude menggunakan memori untuk membantu:**
 ```
-"Berdasarkan panduan layanan pelanggan Anda, saya dapat membantu Anda membuat respons. Silakan bagikan detail tiket..."
+"Berdasarkan panduan layanan pelanggan Anda, saya dapat membantu Anda menyusun respons. Silakan bagikan detail tiketnya..."
 ```
 
 ## Model yang didukung
 
 Alat memori tersedia di:
 
-- Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
-- Claude Sonnet 4 (`claude-sonnet-4-20250514`)
-- Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
+- Claude Opus 4.6 (`claude-opus-4-6`)
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 - Claude Opus 4.1 (`claude-opus-4-1-20250805`)
 - Claude Opus 4 (`claude-opus-4-20250514`)
+- Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
+- Claude Sonnet 4 (`claude-sonnet-4-20250514`)
+- Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
 
 ## Memulai
 
@@ -114,12 +115,12 @@ Untuk menggunakan alat memori:
 
 1. Sertakan header beta `context-management-2025-06-27` dalam permintaan API Anda
 2. Tambahkan alat memori ke permintaan Anda
-3. Implementasikan penangan sisi klien untuk operasi memori
+3. Implementasikan penanganan sisi klien untuk operasi memori
 
 <Note>
-Untuk menangani operasi alat memori di aplikasi Anda, Anda perlu mengimplementasikan penangan untuk setiap perintah memori. SDK kami menyediakan pembantu alat memori yang menangani antarmuka alat—Anda dapat membuat subkelas `BetaAbstractMemoryTool` (Python) atau menggunakan `betaMemoryTool` (TypeScript) untuk mengimplementasikan backend memori Anda sendiri (berbasis file, database, penyimpanan cloud, file terenkripsi, dll.).
+Untuk menangani operasi alat memori di aplikasi Anda, Anda perlu mengimplementasikan penanganan untuk setiap perintah memori. SDK kami menyediakan pembantu alat memori yang menangani antarmuka alat—Anda dapat membuat subkelas `BetaAbstractMemoryTool` (Python) atau menggunakan `betaMemoryTool` (TypeScript) untuk mengimplementasikan backend memori Anda sendiri (berbasis file, database, penyimpanan cloud, file terenkripsi, dll.).
 
-Untuk contoh yang berfungsi, lihat:
+Untuk contoh kerja, lihat:
 - Python: [examples/memory/basic.py](https://github.com/anthropics/anthropic-sdk-python/blob/main/examples/memory/basic.py)
 - TypeScript: [examples/tools-helpers-memory.ts](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/examples/tools-helpers-memory.ts)
 </Note>
@@ -135,7 +136,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "content-type: application/json" \
     --header "anthropic-beta: context-management-2025-06-27" \
     --data '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 2048,
         "messages": [
             {
@@ -156,7 +157,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 message = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=2048,
     messages=[
         {
@@ -180,7 +181,7 @@ const anthropic = new Anthropic({
 });
 
 const message = await anthropic.beta.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 2048,
   messages: [
     {
@@ -237,10 +238,10 @@ Berikut adalah isi {path} dengan nomor baris:
 Pemformatan nomor baris:
 - **Lebar**: 6 karakter, rata kanan dengan padding spasi
 - **Pemisah**: Karakter tab antara nomor baris dan konten
-- **Pengindeksan**: 1-diindeks (baris pertama adalah baris 1)
+- **Pengindeksan**: Diindeks 1 (baris pertama adalah baris 1)
 - **Batas baris**: File dengan lebih dari 999.999 baris harus mengembalikan kesalahan: `"File {path} exceeds maximum line limit of 999,999 lines."`
 
-**Contoh output:**
+**Contoh keluaran:**
 ```
 Berikut adalah isi /memories/notes.txt dengan nomor baris:
      1	Hello World
@@ -390,12 +391,12 @@ Anda juga dapat memandu apa yang Claude tulis ke memori, misalnya, "Hanya tulis 
 
 ## Pertimbangan keamanan
 
-Berikut adalah masalah keamanan penting saat mengimplementasikan penyimpanan memori Anda:
+Berikut adalah kekhawatiran keamanan penting saat mengimplementasikan penyimpanan memori Anda:
 
 ### Informasi sensitif
-Claude biasanya akan menolak untuk menuliskan informasi sensitif dalam file memori. Namun, Anda mungkin ingin mengimplementasikan validasi yang lebih ketat yang menghilangkan informasi yang berpotensi sensitif.
+Claude biasanya akan menolak untuk menulis informasi sensitif dalam file memori. Namun, Anda mungkin ingin mengimplementasikan validasi yang lebih ketat yang menghilangkan informasi yang berpotensi sensitif.
 
-### Ukuran penyimpanan file
+### Ukuran penyimpanan file memori
 Pertimbangkan pelacakan ukuran file memori dan mencegah file tumbuh terlalu besar. Pertimbangkan menambahkan jumlah karakter maksimum yang dapat dikembalikan perintah baca memori, dan biarkan Claude membuat halaman melalui konten.
 
 ### Kedaluwarsa memori
@@ -421,7 +422,7 @@ Alat memori menggunakan pola penanganan kesalahan yang serupa dengan [alat edito
 
 ## Menggunakan dengan Context Editing
 
-Alat memori dapat dikombinasikan dengan [context editing](/docs/id/build-with-claude/context-editing), yang secara otomatis menghapus hasil alat lama ketika konteks percakapan tumbuh melampaui ambang yang dikonfigurasi. Kombinasi ini memungkinkan alur kerja agentic jangka panjang yang sebaliknya akan melampaui batas konteks.
+Alat memori dapat digabungkan dengan [context editing](/docs/id/build-with-claude/context-editing), yang secara otomatis menghapus hasil alat lama ketika konteks percakapan tumbuh melampaui ambang yang dikonfigurasi. Kombinasi ini memungkinkan alur kerja agentic jangka panjang yang sebaliknya akan melampaui batas konteks.
 
 ### Cara mereka bekerja bersama
 
@@ -429,7 +430,7 @@ Ketika context editing diaktifkan dan percakapan Anda mendekati ambang pembersih
 
 Setelah hasil alat dihapus, Claude dapat mengambil informasi yang disimpan dari file memori kapan pun diperlukan, secara efektif memperlakukan memori sebagai perpanjangan dari konteks kerjanya. Ini memungkinkan Claude untuk:
 
-- Melanjutkan alur kerja multi-langkah yang kompleks tanpa kehilangan informasi kritis
+- Melanjutkan alur kerja multi-langkah yang kompleks tanpa kehilangan informasi penting
 - Mereferensikan pekerjaan dan keputusan masa lalu bahkan setelah hasil alat dihapus
 - Mempertahankan konteks yang koheren di seluruh percakapan yang akan melampaui batas konteks tipikal
 - Membangun basis pengetahuan seiring waktu sambil menjaga jendela konteks aktif tetap dapat dikelola
@@ -453,7 +454,7 @@ Untuk menggunakan kedua fitur bersama:
 
 ```python Python
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=4096,
     messages=[...],
     tools=[
@@ -490,7 +491,7 @@ const anthropic = new Anthropic({
 });
 
 const response = await anthropic.beta.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 4096,
   messages: [...],
   tools: [
@@ -521,7 +522,7 @@ const response = await anthropic.beta.messages.create({
 
 </CodeGroup>
 
-Anda juga dapat mengecualikan panggilan alat memori dari dihapus untuk memastikan Claude selalu memiliki akses ke operasi memori terbaru:
+Anda juga dapat mengecualikan panggilan alat memori dari pembersihan untuk memastikan Claude selalu memiliki akses ke operasi memori terbaru:
 
 <CodeGroup>
 
@@ -548,3 +549,9 @@ context_management: {
 ```
 
 </CodeGroup>
+
+## Menggunakan dengan Compaction
+
+Alat memori juga dapat dipasangkan dengan [compaction](/docs/id/build-with-claude/compaction), yang menyediakan ringkasan konteks percakapan sisi server. Sementara context editing menghapus hasil alat tertentu di sisi klien, compaction secara otomatis merangkum seluruh percakapan di sisi server ketika mendekati batas jendela konteks.
+
+Untuk alur kerja agentic jangka panjang, pertimbangkan menggunakan keduanya: compaction menjaga konteks aktif tetap dapat dikelola tanpa pembukuan sisi klien, dan memori mempertahankan informasi penting di seluruh batas compaction sehingga tidak ada yang kritis hilang dalam ringkasan.

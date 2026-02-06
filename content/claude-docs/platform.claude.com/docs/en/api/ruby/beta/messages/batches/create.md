@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/create
-fetched_at: 2026-01-30T04:11:49.863510Z
-sha256: 633816b8ae374a3e359c3735795a2555b75737f0986fcf90afe11800ba3aa6b8
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 40576ce786ea3186960b0f77dfe375118a8931f6a03e3dd28e77ca591b10f9f1
 ---
 
 ## Create
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     Must be unique for each request within the Message Batch.
 
-  - `params: { max_tokens, messages, model, 16 more}`
+  - `params: { max_tokens, messages, model, 17 more}`
 
     Messages API creation parameters for the individual request.
 
@@ -2467,6 +2467,47 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `:"1h"`
 
+          - `class BetaCompactionBlockParam`
+
+            A compaction block containing summary of previous context.
+
+            Users should round-trip these blocks from responses to subsequent requests
+            to maintain context across compaction boundaries.
+
+            When content is None, the block represents a failed compaction. The server
+            treats these as no-ops. Empty string content is not allowed.
+
+            - `content: String`
+
+              Summary of previously compacted content, or null if compaction failed
+
+            - `type: :compaction`
+
+              - `:compaction`
+
+            - `cache_control: BetaCacheControlEphemeral`
+
+              Create a cache control breakpoint at this content block.
+
+              - `type: :ephemeral`
+
+                - `:ephemeral`
+
+              - `ttl: :"5m" | :"1h"`
+
+                The time-to-live for the cache control breakpoint.
+
+                This may be one the following values:
+
+                - `5m`: 5 minutes
+                - `1h`: 1 hour
+
+                Defaults to `5m`.
+
+                - `:"5m"`
+
+                - `:"1h"`
+
       - `role: :user | :assistant`
 
         - `:user`
@@ -2479,11 +2520,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `:"claude-opus-4-5-20251101" | :"claude-opus-4-5" | :"claude-3-7-sonnet-latest" | 17 more`
+      - `:"claude-opus-4-6" | :"claude-opus-4-5-20251101" | :"claude-opus-4-5" | 18 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `:"claude-opus-4-6"`
+
+          Most intelligent model for building agents and coding
 
         - `:"claude-opus-4-5-20251101"`
 
@@ -2607,7 +2652,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       This allows you to control how Claude manages context across multiple requests, such as whether to clear function results or not.
 
-      - `edits: Array[BetaClearToolUses20250919Edit | BetaClearThinking20251015Edit]`
+      - `edits: Array[BetaClearToolUses20250919Edit | BetaClearThinking20251015Edit | BetaCompact20260112Edit]`
 
         List of context management edits to apply
 
@@ -2697,6 +2742,36 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `:all`
 
+        - `class BetaCompact20260112Edit`
+
+          Automatically compact older context when reaching the configured trigger threshold.
+
+          - `type: :compact_20260112`
+
+            - `:compact_20260112`
+
+          - `instructions: String`
+
+            Additional instructions for summarization.
+
+          - `pause_after_compaction: bool`
+
+            Whether to pause after compaction and return the compaction block to the user.
+
+          - `trigger: BetaInputTokensTrigger`
+
+            When to trigger compaction. Defaults to 150000 input tokens.
+
+            - `type: :input_tokens`
+
+              - `:input_tokens`
+
+            - `value: Integer`
+
+    - `inference_geo: String`
+
+      Specifies the geographic region for inference processing. If not specified, the workspace's `default_inference_geo` is used.
+
     - `mcp_servers: Array[BetaRequestMCPServerURLDefinition]`
 
       MCP servers to be utilized in this request
@@ -2731,17 +2806,17 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Configuration options for the model's output, such as the output format.
 
-      - `effort: :low | :medium | :high`
+      - `effort: :low | :medium | :high | :max`
 
-        How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer.
-
-        Valid values are `low`, `medium`, or `high`.
+        All possible effort levels.
 
         - `:low`
 
         - `:medium`
 
         - `:high`
+
+        - `:max`
 
       - `format_: BetaJSONOutputFormat`
 
@@ -2950,6 +3025,12 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:disabled`
 
+      - `class BetaThinkingConfigAdaptive`
+
+        - `type: :adaptive`
+
+          - `:adaptive`
+
     - `tool_choice: BetaToolChoice`
 
       How the model should use the provided tools. The model can use a specific tool, any available tool, decide by itself, or not use tools at all.
@@ -3132,6 +3213,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           Description of what this tool does.
 
           Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
+
+        - `eager_input_streaming: bool`
+
+          Enable eager input streaming for this tool. When true, tool input parameters will be streamed incrementally as they are generated, and types will be inferred on-the-fly rather than buffering the full JSON output. When false, streaming is disabled for this tool even if the fine-grained-tool-streaming beta is active. When null (default), uses the default behavior based on beta headers.
 
         - `input_examples: Array[Hash[Symbol, untyped]]`
 
@@ -4302,7 +4387,7 @@ beta_message_batch = anthropic.beta.messages.batches.create(
   requests: [
     {
       custom_id: "my-custom-id-1",
-      params: {max_tokens: 1024, messages: [{content: "Hello, world", role: :user}], model: :"claude-sonnet-4-5-20250929"}
+      params: {max_tokens: 1024, messages: [{content: "Hello, world", role: :user}], model: :"claude-opus-4-6"}
     }
   ]
 )

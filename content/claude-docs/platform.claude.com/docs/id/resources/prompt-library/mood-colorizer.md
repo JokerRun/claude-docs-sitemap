@@ -1,28 +1,28 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/mood-colorizer
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 3ef4156858cc17fb6f7adfad24de0aa7ca2d44e783e060b58413e2c8d1deac27
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: a5749a415f850df34d4194db163b23f6e4650572c16735143cfe5f28a6d7d3ed
 ---
 
-# Pewarna suasana hati
+# Pengubah warna suasana hati
 
-Mengubah deskripsi teks suasana hati menjadi kode HEX yang sesuai.
+Ubah deskripsi teks suasana hati menjadi kode HEX yang sesuai.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah mengambil deskripsi teks yang diberikan tentang suasana hati atau emosi dan menghasilkan kode warna HEX yang secara visual mewakili suasana hati tersebut. Gunakan prinsip-prinsip psikologi warna dan asosiasi umum untuk menentukan warna yang paling sesuai untuk suasana hati yang diberikan. Jika deskripsi teks tidak jelas, ambigu, atau tidak memberikan informasi yang cukup untuk menentukan warna yang sesuai, tanggapi dengan "Tidak dapat menentukan kode warna HEX untuk suasana hati yang diberikan." |
-| User   | Emosi yang penuh gairah, intens, dan berapi-api, penuh dengan cinta dan hasrat. |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Tugas Anda adalah mengambil deskripsi teks suasana hati atau emosi yang diberikan dan menghasilkan kode warna HEX yang secara visual mewakili suasana hati tersebut. Gunakan prinsip psikologi warna dan asosiasi umum untuk menentukan warna yang paling sesuai untuk suasana hati yang diberikan. Jika deskripsi teks tidak jelas, ambigu, atau tidak memberikan informasi yang cukup untuk menentukan warna yang sesuai, berikan respons "Unable to determine a HEX color code for the given mood." |
+| Pengguna   | Emosi yang penuh gairah, intens, dan berapi-api, penuh dengan cinta dan keinginan.                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ## Contoh Output
 
 `# FF1744`
 
-Kode warna HEX ini mewakili nuansa merah yang cerah dan berani. Merah umumnya dikaitkan dengan gairah, intensitas, cinta, dan hasrat. Nuansa spesifik yang dipilih di sini adalah merah yang berapi-api dan energik yang menangkap panas dan semangat dari emosi yang digambarkan. Merah dikenal dapat merangsang perasaan kegembiraan dan gairah, membuatnya menjadi pilihan yang tepat untuk mewakili suasana hati ini.
+Kode warna HEX ini mewakili nuansa merah yang hidup dan berani. Merah umumnya dikaitkan dengan gairah, intensitas, cinta, dan keinginan. Nuansa spesifik yang dipilih di sini adalah merah yang berapi-api dan penuh energi yang menangkap panas dan semangat emosi yang dijelaskan. Merah dikenal dapat merangsang perasaan kegembiraan dan gairah, menjadikannya pilihan yang tepat untuk mewakili suasana hati ini.
 
 ---
 
@@ -39,17 +39,17 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=500,
   temperature=0.5,
-  system="Tugas Anda adalah mengambil deskripsi teks yang diberikan tentang suasana hati atau emosi dan menghasilkan kode warna HEX yang secara visual mewakili suasana hati tersebut. Gunakan prinsip-prinsip psikologi warna dan asosiasi umum untuk menentukan warna yang paling sesuai untuk suasana hati yang diberikan. Jika deskripsi teks tidak jelas, ambigu, atau tidak memberikan informasi yang cukup untuk menentukan warna yang sesuai, tanggapi dengan \"Tidak dapat menentukan kode warna HEX untuk suasana hati yang diberikan.\"",
+  system="Your task is to take the provided text description of a mood or emotion and generate a HEX color code that visually represents that mood. Use color psychology principles and common associations to determine the most appropriate color for the given mood. If the text description is unclear, ambiguous, or does not provide enough information to determine a suitable color, respond with \"Unable to determine a HEX color code for the given mood.\"",
   messages=[
     {
     "role": "user",
     "content": [
         {
           "type": "text",
-          "text": "Emosi yang penuh gairah, intens, dan berapi-api, penuh dengan cinta dan hasrat."
+          "text": "A passionate, intense, and fiery emotion, full of love and desire."
         }
       ]
     }
@@ -70,17 +70,17 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 500,
   temperature: 0.5,
-  system: "Tugas Anda adalah mengambil deskripsi teks yang diberikan tentang suasana hati atau emosi dan menghasilkan kode warna HEX yang secara visual mewakili suasana hati tersebut. Gunakan prinsip-prinsip psikologi warna dan asosiasi umum untuk menentukan warna yang paling sesuai untuk suasana hati yang diberikan. Jika deskripsi teks tidak jelas, ambigu, atau tidak memberikan informasi yang cukup untuk menentukan warna yang sesuai, tanggapi dengan \"Tidak dapat menentukan kode warna HEX untuk suasana hati yang diberikan.\"",
+  system: "Your task is to take the provided text description of a mood or emotion and generate a HEX color code that visually represents that mood. Use color psychology principles and common associations to determine the most appropriate color for the given mood. If the text description is unclear, ambiguous, or does not provide enough information to determine a suitable color, respond with \"Unable to determine a HEX color code for the given mood.\"",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Emosi yang penuh gairah, intens, dan berapi-api, penuh dengan cinta dan hasrat."
+          "text": "A passionate, intense, and fiery emotion, full of love and desire."
         }
       ]
     }
@@ -88,7 +88,7 @@ const msg = await anthropic.messages.create({
 });
 console.log(msg);
 
-````
+```
 
 </Tab>
 <Tab title="AWS Bedrock Python">
@@ -101,17 +101,17 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=500,
     temperature=0.5,
-    system="Tugas Anda adalah mengambil deskripsi teks yang diberikan tentang suasana hati atau emosi dan menghasilkan kode warna HEX yang secara visual mewakili suasana hati tersebut. Gunakan prinsip-prinsip psikologi warna dan asosiasi umum untuk menentukan warna yang paling sesuai untuk suasana hati yang diberikan. Jika deskripsi teks tidak jelas, ambigu, atau tidak memberikan informasi yang cukup untuk menentukan warna yang sesuai, tanggapi dengan \"Tidak dapat menentukan kode warna HEX untuk suasana hati yang diberikan.\"",
+    system="Your task is to take the provided text description of a mood or emotion and generate a HEX color code that visually represents that mood. Use color psychology principles and common associations to determine the most appropriate color for the given mood. If the text description is unclear, ambiguous, or does not provide enough information to determine a suitable color, respond with \"Unable to determine a HEX color code for the given mood.\"",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Emosi yang penuh gairah, intens, dan berapi-api, penuh dengan cinta dan hasrat."
+                    "text": "A passionate, intense, and fiery emotion, full of love and desire."
                 }
             ]
         }
@@ -132,17 +132,17 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 500,
   temperature: 0.5,
-  system: "Tugas Anda adalah mengambil deskripsi teks yang diberikan tentang suasana hati atau emosi dan menghasilkan kode warna HEX yang secara visual mewakili suasana hati tersebut. Gunakan prinsip-prinsip psikologi warna dan asosiasi umum untuk menentukan warna yang paling sesuai untuk suasana hati yang diberikan. Jika deskripsi teks tidak jelas, ambigu, atau tidak memberikan informasi yang cukup untuk menentukan warna yang sesuai, tanggapi dengan \"Tidak dapat menentukan kode warna HEX untuk suasana hati yang diberikan.\"",
+  system: "Your task is to take the provided text description of a mood or emotion and generate a HEX color code that visually represents that mood. Use color psychology principles and common associations to determine the most appropriate color for the given mood. If the text description is unclear, ambiguous, or does not provide enough information to determine a suitable color, respond with \"Unable to determine a HEX color code for the given mood.\"",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Emosi yang penuh gairah, intens, dan berapi-api, penuh dengan cinta dan hasrat."
+          "text": "A passionate, intense, and fiery emotion, full of love and desire."
         }
       ]
     }
@@ -164,14 +164,14 @@ message = client.messages.create(
     model="claude-sonnet-4@20250514",
     max_tokens=500,
     temperature=0.5,
-    system="Tugas Anda adalah mengambil deskripsi teks yang diberikan tentang suasana hati atau emosi dan menghasilkan kode warna HEX yang secara visual mewakili suasana hati tersebut. Gunakan prinsip-prinsip psikologi warna dan asosiasi umum untuk menentukan warna yang paling sesuai untuk suasana hati yang diberikan. Jika deskripsi teks tidak jelas, ambigu, atau tidak memberikan informasi yang cukup untuk menentukan warna yang sesuai, tanggapi dengan \"Tidak dapat menentukan kode warna HEX untuk suasana hati yang diberikan.\"",
+    system="Your task is to take the provided text description of a mood or emotion and generate a HEX color code that visually represents that mood. Use color psychology principles and common associations to determine the most appropriate color for the given mood. If the text description is unclear, ambiguous, or does not provide enough information to determine a suitable color, respond with \"Unable to determine a HEX color code for the given mood.\"",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Emosi yang penuh gairah, intens, dan berapi-api, penuh dengan cinta dan hasrat."
+                    "text": "A passionate, intense, and fiery emotion, full of love and desire."
                 }
             ]
         }
@@ -195,14 +195,14 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 500,
   temperature: 0.5,
-  system: "Tugas Anda adalah mengambil deskripsi teks yang diberikan tentang suasana hati atau emosi dan menghasilkan kode warna HEX yang secara visual mewakili suasana hati tersebut. Gunakan prinsip-prinsip psikologi warna dan asosiasi umum untuk menentukan warna yang paling sesuai untuk suasana hati yang diberikan. Jika deskripsi teks tidak jelas, ambigu, atau tidak memberikan informasi yang cukup untuk menentukan warna yang sesuai, tanggapi dengan \"Tidak dapat menentukan kode warna HEX untuk suasana hati yang diberikan.\"",
+  system: "Your task is to take the provided text description of a mood or emotion and generate a HEX color code that visually represents that mood. Use color psychology principles and common associations to determine the most appropriate color for the given mood. If the text description is unclear, ambiguous, or does not provide enough information to determine a suitable color, respond with \"Unable to determine a HEX color code for the given mood.\"",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Emosi yang penuh gairah, intens, dan berapi-api, penuh dengan cinta dan hasrat."
+          "text": "A passionate, intense, and fiery emotion, full of love and desire."
         }
       ]
     }

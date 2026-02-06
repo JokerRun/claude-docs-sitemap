@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/vr-fitness-innovator
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 550b5521292d3b25baa0cc15280cb31eea23ff97e9a91f19be381ac50ff12c1d
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 029fbbe2f01ca3d1ba550dea176ade541281757c059f5cf4e357f73d488b35f0
 ---
 
 # VR fitness innovator
@@ -47,7 +47,7 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=1000,
   temperature=1,
   messages=[
@@ -77,7 +77,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 1,
   messages: [
@@ -107,7 +107,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1",
     max_tokens=1000,
     temperature=1,
     messages=[
@@ -137,7 +137,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 1000,
   temperature: 1,
   messages: [

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c38647baf948feb7307be331159a7cf53d41c629f36565f45bfb207b84a8f182
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 7b42877ed62380664ab012d6792e00582fc91ab077c807f08df20467f272008a
 ---
 
 # Alat bash
@@ -47,7 +47,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     tools=[
         {
@@ -67,7 +67,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "tools": [
       {
@@ -92,7 +92,7 @@ Alat bash mempertahankan sesi yang persisten:
 1. Claude menentukan perintah apa yang akan dijalankan
 2. Anda menjalankan perintah di shell bash
 3. Kembalikan output (stdout dan stderr) ke Claude
-4. Status sesi bertahan di antara perintah (variabel lingkungan, direktori kerja)
+4. Status sesi persisten antar perintah (variabel lingkungan, direktori kerja)
 
 ## Parameter
 
@@ -138,7 +138,7 @@ Claude dapat merantai perintah untuk menyelesaikan tugas kompleks:
 {"command": "python fetch_joke.py"}
 ```
 
-Sesi mempertahankan status di antara perintah, jadi file yang dibuat di langkah 2 tersedia di langkah 3.
+Sesi mempertahankan status antar perintah, jadi file yang dibuat di langkah 2 tersedia di langkah 3.
 
 ***
 
@@ -224,7 +224,7 @@ Saat mengimplementasikan alat bash, tangani berbagai skenario kesalahan:
 
 <section title="Timeout eksekusi perintah">
 
-Jika perintah memakan waktu terlalu lama untuk dieksekusi:
+Jika perintah memakan waktu terlalu lama untuk dijalankan:
 
 ```json
 {
@@ -334,7 +334,7 @@ def truncate_output(output, max_lines=100):
 
 <section title="Catat semua perintah">
 
-Simpan jejak audit perintah yang dieksekusi:
+Simpan jejak audit perintah yang dijalankan:
 ```python
 import logging
 
@@ -365,9 +365,9 @@ def sanitize_output(output):
 <Warning>
 Alat bash menyediakan akses sistem langsung. Implementasikan langkah-langkah keamanan penting ini:
 - Menjalankan di lingkungan terisolasi (Docker/VM)
-- Mengimplementasikan penyaringan perintah dan daftar izin
+- Mengimplementasikan penyaringan perintah dan daftar putih
 - Menetapkan batas sumber daya (CPU, memori, disk)
-- Mencatat semua perintah yang dieksekusi
+- Mencatat semua perintah yang dijalankan
 </Warning>
 
 ### Rekomendasi utama
@@ -406,9 +406,9 @@ Lihat [harga penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricin
 
 ## Keterbatasan
 
-- **Tidak ada perintah interaktif**: Tidak dapat menangani `vim`, `less`, atau permintaan kata sandi
+- **Tidak ada perintah interaktif**: Tidak dapat menangani `vim`, `less`, atau prompt kata sandi
 - **Tidak ada aplikasi GUI**: Hanya baris perintah
-- **Cakupan sesi**: Bertahan dalam percakapan, hilang di antara panggilan API
+- **Ruang lingkup sesi**: Persisten dalam percakapan, hilang antar panggilan API
 - **Batas output**: Output besar mungkin dipotong
 - **Tidak ada streaming**: Hasil dikembalikan setelah selesai
 

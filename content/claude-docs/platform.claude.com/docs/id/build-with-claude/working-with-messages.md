@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 875d89592ac72203dd2edaca1fe802513cb947ac4539748d6480cd838b0a7a89
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: e0a4391bafb6da3bdc73669260f3c969bcb844f8676aa9fa573ae0104e407da3
 ---
 
 # Menggunakan Messages API
@@ -11,7 +11,7 @@ Pola praktis dan contoh untuk menggunakan Messages API secara efektif
 
 ---
 
-Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-putaran, teknik prefill, dan kemampuan visi. Untuk spesifikasi API lengkap, lihat [referensi Messages API](/docs/id/api/messages).
+Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-giliran, teknik prefill, dan kemampuan visi. Untuk spesifikasi API lengkap, lihat [referensi Messages API](/docs/id/api/messages).
 
 ## Permintaan dan respons dasar
 
@@ -24,7 +24,7 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
        --header "content-type: application/json" \
        --data \
   '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "max_tokens": 1024,
       "messages": [
           {"role": "user", "content": "Hello, Claude"}
@@ -36,7 +36,7 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
   import anthropic
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-sonnet-4-5",
+      model="claude-opus-4-6",
       max_tokens=1024,
       messages=[
           {"role": "user", "content": "Hello, Claude"}
@@ -51,7 +51,7 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: 'claude-opus-4-6',
     max_tokens: 1024,
     messages: [
       {"role": "user", "content": "Hello, Claude"}
@@ -72,7 +72,7 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
       "text": "Hello!"
     }
   ],
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {
@@ -82,9 +82,9 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
 }
 ```
 
-## Beberapa putaran percakapan
+## Beberapa giliran percakapan
 
-Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat percakapan lengkap ke API. Anda dapat menggunakan pola ini untuk membangun percakapan seiring waktu. Putaran percakapan sebelumnya tidak perlu berasal dari Claude — Anda dapat menggunakan pesan `assistant` sintetis.
+Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat percakapan lengkap ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak perlu benar-benar berasal dari Claude — Anda dapat menggunakan pesan `assistant` sintetis.
 
 <CodeGroup>
 ```bash Shell
@@ -95,7 +95,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "messages": [
         {"role": "user", "content": "Hello, Claude"},
@@ -110,7 +110,7 @@ curl https://api.anthropic.com/v1/messages \
 import anthropic
 
 message = anthropic.Anthropic().messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": "Hello, Claude"},
@@ -128,7 +128,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const anthropic = new Anthropic();
 
 await anthropic.messages.create({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   max_tokens: 1024,
   messages: [
     {"role": "user", "content": "Hello, Claude"},
@@ -172,7 +172,7 @@ Anda dapat mengisi sebelumnya bagian dari respons Claude di posisi terakhir daft
        --header "content-type: application/json" \
        --data \
   '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "max_tokens": 1,
       "messages": [
           {"role": "user", "content": "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"},
@@ -185,7 +185,7 @@ Anda dapat mengisi sebelumnya bagian dari respons Claude di posisi terakhir daft
   import anthropic
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-sonnet-4-5",
+      model="claude-opus-4-6",
       max_tokens=1,
       messages=[
           {"role": "user", "content": "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"},
@@ -201,7 +201,7 @@ Anda dapat mengisi sebelumnya bagian dari respons Claude di posisi terakhir daft
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: 'claude-opus-4-6',
     max_tokens: 1,
     messages: [
       {"role": "user", "content": "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"},
@@ -223,7 +223,7 @@ Anda dapat mengisi sebelumnya bagian dari respons Claude di posisi terakhir daft
       "text": "C"
     }
   ],
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "stop_reason": "max_tokens",
   "stop_sequence": null,
   "usage": {
@@ -233,7 +233,9 @@ Anda dapat mengisi sebelumnya bagian dari respons Claude di posisi terakhir daft
 }
 ```
 
-Untuk informasi lebih lanjut tentang teknik prefill, lihat [panduan prefill](/docs/id/build-with-claude/prompt-engineering/prefill-claudes-response) kami.
+<Warning>
+Prefilling tidak direkomendasikan dan tidak didukung pada Claude Opus 4.6 dan Claude Sonnet 4.5. Gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) atau instruksi system prompt sebagai gantinya.
+</Warning>
 
 ## Visi
 
@@ -254,7 +256,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Kami mendukung tipe sumbe
        --header "content-type: application/json" \
        --data \
   '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "max_tokens": 1024,
       "messages": [
           {"role": "user", "content": [
@@ -275,7 +277,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Kami mendukung tipe sumbe
        --header "content-type: application/json" \
        --data \
   '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-6",
       "max_tokens": 1024,
       "messages": [
           {"role": "user", "content": [
@@ -300,7 +302,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Kami mendukung tipe sumbe
   image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf-8")
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-sonnet-4-5",
+      model="claude-opus-4-6",
       max_tokens=1024,
       messages=[
           {
@@ -326,7 +328,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Kami mendukung tipe sumbe
 
   # Option 2: URL-referenced image
   message_from_url = anthropic.Anthropic().messages.create(
-      model="claude-sonnet-4-5",
+      model="claude-opus-4-6",
       max_tokens=1024,
       messages=[
           {
@@ -362,7 +364,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Kami mendukung tipe sumbe
   const image_data = Buffer.from(image_array_buffer).toString('base64');
 
   const message = await anthropic.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: 'claude-opus-4-6',
     max_tokens: 1024,
     messages: [
           {
@@ -388,7 +390,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Kami mendukung tipe sumbe
 
   // Option 2: URL-referenced image
   const messageFromUrl = await anthropic.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: 'claude-opus-4-6',
     max_tokens: 1024,
     messages: [
           {
@@ -424,7 +426,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Kami mendukung tipe sumbe
       "text": "This image shows an ant, specifically a close-up view of an ant. The ant is shown in detail, with its distinct head, antennae, and legs clearly visible. The image is focused on capturing the intricate details and features of the ant, likely taken with a macro lens to get an extreme close-up perspective."
     }
   ],
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-6",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {
@@ -437,5 +439,5 @@ Claude dapat membaca teks dan gambar dalam permintaan. Kami mendukung tipe sumbe
 ## Penggunaan alat dan penggunaan komputer
 
 Lihat [panduan](/docs/id/agents-and-tools/tool-use/overview) kami untuk contoh cara menggunakan alat dengan Messages API.
-Lihat [panduan penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool) kami untuk contoh cara mengontrol lingkungan komputer desktop dengan Messages API.
+Lihat [panduan penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool) kami untuk contoh cara mengontrol lingkungan desktop komputer dengan Messages API.
 Untuk output JSON yang dijamin, lihat [Structured Outputs](/docs/id/build-with-claude/structured-outputs).

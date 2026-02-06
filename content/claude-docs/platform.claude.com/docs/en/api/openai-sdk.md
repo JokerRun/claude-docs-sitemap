@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/openai-sdk
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 17fa12b13358d1c8a58ffce6f7c2ac77aed3a762e3096cadb3b3ff3dd4782907
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: b14c232f20f70f056fc45bfb56dd81a22b356553920e6365d08d008ad8acbc0d
 ---
 
 # OpenAI SDK compatibility
@@ -46,7 +46,7 @@ To use the OpenAI SDK compatibility feature, you'll need to:
     )
 
     response = client.chat.completions.create(
-        model="claude-sonnet-4-5", # Anthropic model name
+        model="claude-opus-4-6", # Anthropic model name
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": "Who are you?"}
@@ -68,7 +68,7 @@ To use the OpenAI SDK compatibility feature, you'll need to:
         messages: [
             { role: "user", content: "Who are you?" }
         ],
-        model: "claude-sonnet-4-5", // Claude model name
+        model: "claude-opus-4-6", // Claude model name
     });
 
     console.log(response.choices[0].message.content);

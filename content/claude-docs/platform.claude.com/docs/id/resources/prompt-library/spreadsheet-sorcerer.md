@@ -1,26 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/spreadsheet-sorcerer
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 7ffed3d093f65d2cef47191782e5289492c02d1b7a6f9ecdc7f9da7f334b62a9
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 898992444523a45bf91311ecaad937f0a772de5b729e3a2e343bcbf77afe57ed
 ---
 
 # Penyihir spreadsheet
 
-Menghasilkan spreadsheet CSV dengan berbagai jenis data.
+Hasilkan spreadsheet CSV dengan berbagai jenis data.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah menghasilkan spreadsheet CSV yang berisi jenis data yang ditentukan. Spreadsheet harus terorganisir dengan baik, dengan header kolom yang jelas dan jenis data yang sesuai untuk setiap kolom. Pastikan bahwa data tersebut realistis, beragam, dan diformat secara konsisten. Sertakan minimal 10 baris data, tidak termasuk baris header. |
-| User   | Buat spreadsheet yang berisi informasi tentang buku-buku di perpustakaan. Sertakan kolom-kolom berikut: Book ID, Title, Author, Genre, Publication Year, dan Available Copies. Pastikan bahwa data mencakup berbagai genre dan tahun publikasi, dan bahwa jumlah salinan yang tersedia bervariasi antar buku.                             |
+|        | Konten                                                                                                                                                                                                                                                                                                                                      |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Tugas Anda adalah membuat spreadsheet CSV yang berisi jenis data yang ditentukan. Spreadsheet harus terorganisir dengan baik, dengan header kolom yang jelas dan tipe data yang sesuai untuk setiap kolom. Pastikan bahwa data realistis, beragam, dan diformat secara konsisten. Sertakan minimal 10 baris data, tidak termasuk baris header. |
+| Pengguna   | Buat spreadsheet yang berisi informasi tentang buku di perpustakaan. Sertakan kolom berikut: ID Buku, Judul, Penulis, Genre, Tahun Publikasi, dan Salinan Tersedia. Pastikan bahwa data mencakup berbagai genre dan tahun publikasi, dan bahwa jumlah salinan yang tersedia bervariasi antar buku.                             |
 
-### Contoh output
+### Contoh keluaran
 
-> Berikut adalah spreadsheet CSV yang berisi informasi tentang buku-buku di perpustakaan, berdasarkan persyaratan Anda:
+> Berikut adalah spreadsheet CSV yang berisi informasi tentang buku di perpustakaan, berdasarkan persyaratan Anda:
 >
 > Book ID,Title,Author,Genre,Publication Year,Available Copies  
 > 1,To Kill a Mockingbird,Harper Lee,Classic,1960,5  
@@ -52,17 +52,17 @@ Menghasilkan spreadsheet CSV dengan berbagai jenis data.
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1000,
         temperature=0,
-        system="Tugas Anda adalah menghasilkan spreadsheet CSV yang berisi jenis data yang ditentukan. Spreadsheet harus terorganisir dengan baik, dengan header kolom yang jelas dan jenis data yang sesuai untuk setiap kolom. Pastikan bahwa data tersebut realistis, beragam, dan diformat secara konsisten. Sertakan minimal 10 baris data, tidak termasuk baris header.",
+        system="Your task is to generate a CSV spreadsheet containing the specified type of data. The spreadsheet should be well-organized, with clear column headers and appropriate data types for each column. Ensure that the data is realistic, diverse, and formatted consistently. Include a minimum of 10 rows of data, not counting the header row.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Buat spreadsheet yang berisi informasi tentang buku-buku di perpustakaan. Sertakan kolom-kolom berikut: Book ID, Title, Author, Genre, Publication Year, dan Available Copies. Pastikan bahwa data mencakup berbagai genre dan tahun publikasi, dan bahwa jumlah salinan yang tersedia bervariasi antar buku."
+                        "text": "Create a spreadsheet containing information about books in a library. Include the following columns: Book ID, Title, Author, Genre, Publication Year, and Available Copies. Ensure that the data covers a variety of genres and publication years, and that the number of available copies varies between books."
                     }
                 ]
             }
@@ -81,17 +81,17 @@ Menghasilkan spreadsheet CSV dengan berbagai jenis data.
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 0,
-      system: "Tugas Anda adalah menghasilkan spreadsheet CSV yang berisi jenis data yang ditentukan. Spreadsheet harus terorganisir dengan baik, dengan header kolom yang jelas dan jenis data yang sesuai untuk setiap kolom. Pastikan bahwa data tersebut realistis, beragam, dan diformat secara konsisten. Sertakan minimal 10 baris data, tidak termasuk baris header.",
+      system: "Your task is to generate a CSV spreadsheet containing the specified type of data. The spreadsheet should be well-organized, with clear column headers and appropriate data types for each column. Ensure that the data is realistic, diverse, and formatted consistently. Include a minimum of 10 rows of data, not counting the header row.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Buat spreadsheet yang berisi informasi tentang buku-buku di perpustakaan. Sertakan kolom-kolom berikut: Book ID, Title, Author, Genre, Publication Year, dan Available Copies. Pastikan bahwa data mencakup berbagai genre dan tahun publikasi, dan bahwa jumlah salinan yang tersedia bervariasi antar buku."
+              "text": "Create a spreadsheet containing information about books in a library. Include the following columns: Book ID, Title, Author, Genre, Publication Year, and Available Copies. Ensure that the data covers a variety of genres and publication years, and that the number of available copies varies between books."
             }
           ]
         }
@@ -110,17 +110,17 @@ Menghasilkan spreadsheet CSV dengan berbagai jenis data.
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1:0",
         max_tokens=1000,
         temperature=0,
-        system="Tugas Anda adalah menghasilkan spreadsheet CSV yang berisi jenis data yang ditentukan. Spreadsheet harus terorganisir dengan baik, dengan header kolom yang jelas dan jenis data yang sesuai untuk setiap kolom. Pastikan bahwa data tersebut realistis, beragam, dan diformat secara konsisten. Sertakan minimal 10 baris data, tidak termasuk baris header.",
+        system="Your task is to generate a CSV spreadsheet containing the specified type of data. The spreadsheet should be well-organized, with clear column headers and appropriate data types for each column. Ensure that the data is realistic, diverse, and formatted consistently. Include a minimum of 10 rows of data, not counting the header row.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Buat spreadsheet yang berisi informasi tentang buku-buku di perpustakaan. Sertakan kolom-kolom berikut: Book ID, Title, Author, Genre, Publication Year, dan Available Copies. Pastikan bahwa data mencakup berbagai genre dan tahun publikasi, dan bahwa jumlah salinan yang tersedia bervariasi antar buku."
+                        "text": "Create a spreadsheet containing information about books in a library. Include the following columns: Book ID, Title, Author, Genre, Publication Year, and Available Copies. Ensure that the data covers a variety of genres and publication years, and that the number of available copies varies between books."
                     }
                 ]
             }
@@ -139,17 +139,17 @@ Menghasilkan spreadsheet CSV dengan berbagai jenis data.
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1:0",
       max_tokens: 1000,
       temperature: 0,
-      system: "Tugas Anda adalah menghasilkan spreadsheet CSV yang berisi jenis data yang ditentukan. Spreadsheet harus terorganisir dengan baik, dengan header kolom yang jelas dan jenis data yang sesuai untuk setiap kolom. Pastikan bahwa data tersebut realistis, beragam, dan diformat secara konsisten. Sertakan minimal 10 baris data, tidak termasuk baris header.",
+      system: "Your task is to generate a CSV spreadsheet containing the specified type of data. The spreadsheet should be well-organized, with clear column headers and appropriate data types for each column. Ensure that the data is realistic, diverse, and formatted consistently. Include a minimum of 10 rows of data, not counting the header row.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Buat spreadsheet yang berisi informasi tentang buku-buku di perpustakaan. Sertakan kolom-kolom berikut: Book ID, Title, Author, Genre, Publication Year, dan Available Copies. Pastikan bahwa data mencakup berbagai genre dan tahun publikasi, dan bahwa jumlah salinan yang tersedia bervariasi antar buku."
+              "text": "Create a spreadsheet containing information about books in a library. Include the following columns: Book ID, Title, Author, Genre, Publication Year, and Available Copies. Ensure that the data covers a variety of genres and publication years, and that the number of available copies varies between books."
             }
           ]
         }
@@ -169,14 +169,14 @@ Menghasilkan spreadsheet CSV dengan berbagai jenis data.
         model="claude-sonnet-4@20250514",
         max_tokens=1000,
         temperature=0,
-        system="Tugas Anda adalah menghasilkan spreadsheet CSV yang berisi jenis data yang ditentukan. Spreadsheet harus terorganisir dengan baik, dengan header kolom yang jelas dan jenis data yang sesuai untuk setiap kolom. Pastikan bahwa data tersebut realistis, beragam, dan diformat secara konsisten. Sertakan minimal 10 baris data, tidak termasuk baris header.",
+        system="Your task is to generate a CSV spreadsheet containing the specified type of data. The spreadsheet should be well-organized, with clear column headers and appropriate data types for each column. Ensure that the data is realistic, diverse, and formatted consistently. Include a minimum of 10 rows of data, not counting the header row.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Buat spreadsheet yang berisi informasi tentang buku-buku di perpustakaan. Sertakan kolom-kolom berikut: Book ID, Title, Author, Genre, Publication Year, dan Available Copies. Pastikan bahwa data mencakup berbagai genre dan tahun publikasi, dan bahwa jumlah salinan yang tersedia bervariasi antar buku."
+                        "text": "Create a spreadsheet containing information about books in a library. Include the following columns: Book ID, Title, Author, Genre, Publication Year, and Available Copies. Ensure that the data covers a variety of genres and publication years, and that the number of available copies varies between books."
                     }
                 ]
             }
@@ -198,14 +198,14 @@ Menghasilkan spreadsheet CSV dengan berbagai jenis data.
       model: "claude-sonnet-4@20250514",
       max_tokens: 1000,
       temperature: 0,
-      system: "Tugas Anda adalah menghasilkan spreadsheet CSV yang berisi jenis data yang ditentukan. Spreadsheet harus terorganisir dengan baik, dengan header kolom yang jelas dan jenis data yang sesuai untuk setiap kolom. Pastikan bahwa data tersebut realistis, beragam, dan diformat secara konsisten. Sertakan minimal 10 baris data, tidak termasuk baris header.",
+      system: "Your task is to generate a CSV spreadsheet containing the specified type of data. The spreadsheet should be well-organized, with clear column headers and appropriate data types for each column. Ensure that the data is realistic, diverse, and formatted consistently. Include a minimum of 10 rows of data, not counting the header row.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Buat spreadsheet yang berisi informasi tentang buku-buku di perpustakaan. Sertakan kolom-kolom berikut: Book ID, Title, Author, Genre, Publication Year, dan Available Copies. Pastikan bahwa data mencakup berbagai genre dan tahun publikasi, dan bahwa jumlah salinan yang tersedia bervariasi antar buku."
+              "text": "Create a spreadsheet containing information about books in a library. Include the following columns: Book ID, Title, Author, Genre, Publication Year, and Available Copies. Ensure that the data covers a variety of genres and publication years, and that the number of available copies varies between books."
             }
           ]
         }

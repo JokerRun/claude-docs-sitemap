@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 59f5b25f231a8e143b327abcb911db1be9b92beb2f01319e8da513d613938023
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 839b5ffe7d5863642305d09d9a1590afe41a5c4473ec4b25740224b6fdb7f366
 ---
 
 # Pemrosesan batch
@@ -24,7 +24,7 @@ Message Batches API adalah implementasi pertama kami dari pola ini.
 
 # Message Batches API
 
-Message Batches API adalah cara yang kuat dan hemat biaya untuk memproses secara asinkron volume besar permintaan [Messages](/docs/id/api/messages). Pendekatan ini cocok untuk tugas-tugas yang tidak memerlukan respons langsung, dengan sebagian besar batch selesai dalam waktu kurang dari 1 jam sambil mengurangi biaya sebesar 50% dan meningkatkan throughput.
+Message Batches API adalah cara yang kuat dan hemat biaya untuk memproses secara asinkron volume besar permintaan [Messages](/docs/id/api/messages). Pendekatan ini sangat cocok untuk tugas-tugas yang tidak memerlukan respons langsung, dengan sebagian besar batch selesai dalam waktu kurang dari 1 jam sambil mengurangi biaya sebesar 50% dan meningkatkan throughput.
 
 Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/creating-message-batches), selain panduan ini.
 
@@ -60,7 +60,7 @@ Permintaan apa pun yang dapat Anda buat ke Messages API dapat disertakan dalam b
 - Visi
 - Penggunaan alat
 - Pesan sistem
-- Percakapan multi-giliran
+- Percakapan multi-putaran
 - Fitur beta apa pun
 
 Karena setiap permintaan dalam batch diproses secara independen, Anda dapat mencampur berbagai jenis permintaan dalam satu batch.
@@ -76,6 +76,7 @@ Batches API menawarkan penghematan biaya yang signifikan. Semua penggunaan diken
 
 | Model             | Batch input      | Batch output    |
 |-------------------|------------------|-----------------|
+| Claude Opus 4.6       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.5     | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.1     | $7.50 / MTok     | $37.50 / MTok   |
 | Claude Opus 4     | $7.50 / MTok     | $37.50 / MTok   |
@@ -111,7 +112,7 @@ curl https://api.anthropic.com/v1/messages/batches \
         {
             "custom_id": "my-first-request",
             "params": {
-                "model": "claude-sonnet-4-5",
+                "model": "claude-opus-4-6",
                 "max_tokens": 1024,
                 "messages": [
                     {"role": "user", "content": "Hello, world"}
@@ -121,7 +122,7 @@ curl https://api.anthropic.com/v1/messages/batches \
         {
             "custom_id": "my-second-request",
             "params": {
-                "model": "claude-sonnet-4-5",
+                "model": "claude-opus-4-6",
                 "max_tokens": 1024,
                 "messages": [
                     {"role": "user", "content": "Hi again, friend"}
@@ -144,7 +145,7 @@ message_batch = client.messages.batches.create(
         Request(
             custom_id="my-first-request",
             params=MessageCreateParamsNonStreaming(
-                model="claude-sonnet-4-5",
+                model="claude-opus-4-6",
                 max_tokens=1024,
                 messages=[{
                     "role": "user",
@@ -155,7 +156,7 @@ message_batch = client.messages.batches.create(
         Request(
             custom_id="my-second-request",
             params=MessageCreateParamsNonStreaming(
-                model="claude-sonnet-4-5",
+                model="claude-opus-4-6",
                 max_tokens=1024,
                 messages=[{
                     "role": "user",
@@ -178,7 +179,7 @@ const messageBatch = await anthropic.messages.batches.create({
   requests: [{
     custom_id: "my-first-request",
     params: {
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1024,
       messages: [
         {"role": "user", "content": "Hello, world"}
@@ -187,7 +188,7 @@ const messageBatch = await anthropic.messages.batches.create({
   }, {
     custom_id: "my-second-request",
     params: {
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1024,
       messages: [
         {"role": "user", "content": "Hi again, friend"}
@@ -213,7 +214,7 @@ public class BatchExample {
             .addRequest(BatchCreateParams.Request.builder()
                 .customId("my-first-request")
                 .params(BatchCreateParams.Request.Params.builder()
-                    .model(Model.CLAUDE_OPUS_4_0)
+                    .model(Model.CLAUDE_OPUS_4_6)
                     .maxTokens(1024)
                     .addUserMessage("Hello, world")
                     .build())
@@ -221,7 +222,7 @@ public class BatchExample {
             .addRequest(BatchCreateParams.Request.builder()
                 .customId("my-second-request")
                 .params(BatchCreateParams.Request.Params.builder()
-                    .model(Model.CLAUDE_OPUS_4_0)
+                    .model(Model.CLAUDE_OPUS_4_6)
                     .maxTokens(1024)
                     .addUserMessage("Hi again, friend")
                     .build())
@@ -242,7 +243,7 @@ Dalam contoh ini, dua permintaan terpisah di-batch bersama untuk pemrosesan asin
 <Tip>
   **Uji permintaan batch Anda dengan Messages API**
 
-Validasi objek `params` untuk setiap permintaan pesan dilakukan secara asinkron, dan kesalahan validasi dikembalikan ketika pemrosesan seluruh batch telah selesai. Anda dapat memastikan bahwa Anda membangun input dengan benar dengan memverifikasi bentuk permintaan Anda dengan [Messages API](/docs/id/api/messages) terlebih dahulu.
+Validasi objek `params` untuk setiap permintaan pesan dilakukan secara asinkron, dan kesalahan validasi dikembalikan ketika pemrosesan seluruh batch telah selesai. Anda dapat memastikan bahwa Anda membangun input dengan benar dengan terlebih dahulu memverifikasi bentuk permintaan Anda dengan [Messages API](/docs/id/api/messages).
 </Tip>
 
 Ketika batch pertama kali dibuat, respons akan memiliki status pemrosesan `in_progress`.
@@ -425,14 +426,14 @@ Setelah pemrosesan batch selesai, setiap permintaan Messages dalam batch akan me
 
 | Jenis Hasil | Deskripsi |
 |-------------|-------------|
-| `succeeded` | Permintaan berhasil. Termasuk hasil pesan. |
-| `errored`   | Permintaan mengalami kesalahan dan pesan tidak dibuat. Kemungkinan kesalahan termasuk permintaan tidak valid dan kesalahan server internal. Anda tidak akan dikenakan biaya untuk permintaan ini. |
-| `canceled`  | Pengguna membatalkan batch sebelum permintaan ini dapat dikirim ke model. Anda tidak akan dikenakan biaya untuk permintaan ini. |
-| `expired`   | Batch mencapai kedaluwarsa 24 jam sebelum permintaan ini dapat dikirim ke model. Anda tidak akan dikenakan biaya untuk permintaan ini. |
+| `succeeded` | Permintaan berhasil. Mencakup hasil pesan. |
+| `errored`   | Permintaan mengalami kesalahan dan pesan tidak dibuat. Kemungkinan kesalahan termasuk permintaan tidak valid dan kesalahan server internal. Anda tidak akan ditagih untuk permintaan ini. |
+| `canceled`  | Pengguna membatalkan batch sebelum permintaan ini dapat dikirim ke model. Anda tidak akan ditagih untuk permintaan ini. |
+| `expired`   | Batch mencapai kedaluwarsa 24 jam sebelum permintaan ini dapat dikirim ke model. Anda tidak akan ditagih untuk permintaan ini. |
 
 Anda akan melihat gambaran umum hasil Anda dengan `request_counts` batch, yang menunjukkan berapa banyak permintaan yang mencapai masing-masing dari empat status ini.
 
-Hasil batch tersedia untuk diunduh di properti `results_url` pada Message Batch, dan jika izin organisasi memungkinkan, di Console. Karena ukuran hasil yang berpotensi besar, disarankan untuk [streaming hasil](/docs/id/api/retrieving-message-batch-results) kembali daripada mengunduhnya sekaligus.
+Hasil batch tersedia untuk diunduh di properti `results_url` pada Message Batch, dan jika izin organisasi memungkinkan, di Console. Karena ukuran hasil yang berpotensi besar, disarankan untuk [streaming hasil](/docs/id/api/retrieving-message-batch-results) kembali daripada mengunduh semuanya sekaligus.
 
 <CodeGroup>
 
@@ -572,16 +573,16 @@ public class BatchResultsExample {
 Hasil akan dalam format `.jsonl`, di mana setiap baris adalah objek JSON yang valid yang mewakili hasil dari satu permintaan dalam Message Batch. Untuk setiap hasil yang di-stream, Anda dapat melakukan sesuatu yang berbeda tergantung pada `custom_id` dan jenis hasilnya. Berikut adalah contoh set hasil:
 
 ```json .jsonl file
-{"custom_id":"my-second-request","result":{"type":"succeeded","message":{"id":"msg_014VwiXbi91y3JMjcpyGBHX5","type":"message","role":"assistant","model":"claude-sonnet-4-5-20250929","content":[{"type":"text","text":"Hello again! It's nice to see you. How can I assist you today? Is there anything specific you'd like to chat about or any questions you have?"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":11,"output_tokens":36}}}}
-{"custom_id":"my-first-request","result":{"type":"succeeded","message":{"id":"msg_01FqfsLoHwgeFbguDgpz48m7","type":"message","role":"assistant","model":"claude-sonnet-4-5-20250929","content":[{"type":"text","text":"Hello! How can I assist you today? Feel free to ask me any questions or let me know if there's anything you'd like to chat about."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":10,"output_tokens":34}}}}
+{"custom_id":"my-second-request","result":{"type":"succeeded","message":{"id":"msg_014VwiXbi91y3JMjcpyGBHX5","type":"message","role":"assistant","model":"claude-opus-4-6","content":[{"type":"text","text":"Hello again! It's nice to see you. How can I assist you today? Is there anything specific you'd like to chat about or any questions you have?"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":11,"output_tokens":36}}}}
+{"custom_id":"my-first-request","result":{"type":"succeeded","message":{"id":"msg_01FqfsLoHwgeFbguDgpz48m7","type":"message","role":"assistant","model":"claude-opus-4-6","content":[{"type":"text","text":"Hello! How can I assist you today? Feel free to ask me any questions or let me know if there's anything you'd like to chat about."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":10,"output_tokens":34}}}}
 ```
 
 Jika hasil Anda memiliki kesalahan, `result.error`-nya akan diatur ke [bentuk kesalahan](/docs/id/api/errors#error-shapes) standar kami.
 
 <Tip>
-  **Hasil batch mungkin tidak sesuai urutan input**
+  **Hasil batch mungkin tidak sesuai dengan urutan input**
 
-Hasil batch dapat dikembalikan dalam urutan apa pun, dan mungkin tidak sesuai dengan urutan permintaan saat batch dibuat. Dalam contoh di atas, hasil untuk permintaan batch kedua dikembalikan sebelum yang pertama. Untuk mencocokkan hasil dengan benar dengan permintaan yang sesuai, selalu gunakan bidang `custom_id`.
+Hasil batch dapat dikembalikan dalam urutan apa pun, dan mungkin tidak sesuai dengan urutan permintaan saat batch dibuat. Dalam contoh di atas, hasil untuk permintaan batch kedua dikembalikan sebelum yang pertama. Untuk dengan benar mencocokkan hasil dengan permintaan yang sesuai, selalu gunakan bidang `custom_id`.
 </Tip>
 
 ### Membatalkan Message Batch
@@ -666,7 +667,7 @@ Message Batches API mendukung prompt caching, memungkinkan Anda untuk berpotensi
 
 Untuk memaksimalkan kemungkinan cache hits dalam permintaan batch Anda:
 
-1. Sertakan blok `cache_control` yang identik di setiap permintaan Message dalam batch Anda
+1. Sertakan blok `cache_control` yang identik dalam setiap permintaan Message dalam batch Anda
 2. Pertahankan aliran permintaan yang stabil untuk mencegah entri cache kedaluwarsa setelah masa hidup 5 menit mereka
 3. Struktur permintaan Anda untuk berbagi sebanyak mungkin konten yang di-cache
 
@@ -685,7 +686,7 @@ curl https://api.anthropic.com/v1/messages/batches \
         {
             "custom_id": "my-first-request",
             "params": {
-                "model": "claude-sonnet-4-5",
+                "model": "claude-opus-4-6",
                 "max_tokens": 1024,
                 "system": [
                     {
@@ -706,7 +707,7 @@ curl https://api.anthropic.com/v1/messages/batches \
         {
             "custom_id": "my-second-request",
             "params": {
-                "model": "claude-sonnet-4-5",
+                "model": "claude-opus-4-6",
                 "max_tokens": 1024,
                 "system": [
                     {
@@ -740,7 +741,7 @@ message_batch = client.messages.batches.create(
         Request(
             custom_id="my-first-request",
             params=MessageCreateParamsNonStreaming(
-                model="claude-sonnet-4-5",
+                model="claude-opus-4-6",
                 max_tokens=1024,
                 system=[
                     {
@@ -762,7 +763,7 @@ message_batch = client.messages.batches.create(
         Request(
             custom_id="my-second-request",
             params=MessageCreateParamsNonStreaming(
-                model="claude-sonnet-4-5",
+                model="claude-opus-4-6",
                 max_tokens=1024,
                 system=[
                     {
@@ -794,7 +795,7 @@ const messageBatch = await anthropic.messages.batches.create({
   requests: [{
     custom_id: "my-first-request",
     params: {
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1024,
       system: [
         {
@@ -814,7 +815,7 @@ const messageBatch = await anthropic.messages.batches.create({
   }, {
     custom_id: "my-second-request",
     params: {
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1024,
       system: [
         {
@@ -854,7 +855,7 @@ public class BatchExample {
                 .addRequest(BatchCreateParams.Request.builder()
                         .customId("my-first-request")
                         .params(BatchCreateParams.Request.Params.builder()
-                                .model(Model.CLAUDE_OPUS_4_0)
+                                .model(Model.CLAUDE_OPUS_4_6)
                                 .maxTokens(1024)
                                 .systemOfTextBlockParams(List.of(
                                         TextBlockParam.builder()
@@ -871,7 +872,7 @@ public class BatchExample {
                 .addRequest(BatchCreateParams.Request.builder()
                         .customId("my-second-request")
                         .params(BatchCreateParams.Request.Params.builder()
-                                .model(Model.CLAUDE_OPUS_4_0)
+                                .model(Model.CLAUDE_OPUS_4_6)
                                 .maxTokens(1024)
                                 .systemOfTextBlockParams(List.of(
                                         TextBlockParam.builder()
@@ -900,27 +901,27 @@ Dalam contoh ini, kedua permintaan dalam batch mencakup pesan sistem yang identi
 
 Untuk memanfaatkan Batches API sebaik-baiknya:
 
-- Pantau status pemrosesan batch secara teratur dan implementasikan logika retry yang sesuai untuk permintaan yang gagal.
+- Pantau status pemrosesan batch secara teratur dan terapkan logika retry yang sesuai untuk permintaan yang gagal.
 - Gunakan nilai `custom_id` yang bermakna untuk dengan mudah mencocokkan hasil dengan permintaan, karena urutan tidak dijamin.
-- Pertimbangkan untuk memecah dataset yang sangat besar menjadi beberapa batch untuk manajemen yang lebih baik.
-- Lakukan dry run satu bentuk permintaan dengan Messages API untuk menghindari kesalahan validasi.
+- Pertimbangkan untuk memecah dataset yang sangat besar menjadi beberapa batch untuk manageability yang lebih baik.
+- Lakukan dry run dengan bentuk permintaan tunggal menggunakan Messages API untuk menghindari kesalahan validasi.
 
 ### Pemecahan masalah untuk masalah umum
 
 Jika mengalami perilaku yang tidak terduga:
 
-- Verifikasi bahwa ukuran permintaan batch total tidak melebihi 256 MB. Jika ukuran permintaan terlalu besar, Anda mungkin mendapatkan kesalahan 413 `request_too_large`.
+- Verifikasi bahwa ukuran total permintaan batch tidak melebihi 256 MB. Jika ukuran permintaan terlalu besar, Anda mungkin mendapatkan kesalahan 413 `request_too_large`.
 - Periksa bahwa Anda menggunakan [model yang didukung](#supported-models) untuk semua permintaan dalam batch.
 - Pastikan setiap permintaan dalam batch memiliki `custom_id` yang unik.
-- Pastikan bahwa kurang dari 29 hari telah berlalu sejak waktu batch `created_at` (bukan waktu `ended_at` pemrosesan). Jika lebih dari 29 hari telah berlalu, hasil tidak akan lagi dapat dilihat.
+- Pastikan bahwa kurang dari 29 hari telah berlalu sejak waktu batch `created_at` (bukan `ended_at` pemrosesan). Jika lebih dari 29 hari telah berlalu, hasil tidak akan lagi dapat dilihat.
 - Konfirmasi bahwa batch belum dibatalkan.
 
-Perhatikan bahwa kegagalan satu permintaan dalam batch tidak mempengaruhi pemrosesan permintaan lainnya.
+Perhatikan bahwa kegagalan satu permintaan dalam batch tidak mempengaruhi pemrosesan permintaan lain.
 
 ---
 ## Penyimpanan dan privasi batch
 
-- **Isolasi Workspace**: Batch diisolasi dalam Workspace tempat mereka dibuat. Mereka hanya dapat diakses oleh kunci API yang terkait dengan Workspace tersebut, atau pengguna dengan izin untuk melihat batch Workspace di Console.
+- **Isolasi Workspace**: Batch terisolasi dalam Workspace tempat mereka dibuat. Mereka hanya dapat diakses oleh kunci API yang terkait dengan Workspace tersebut, atau pengguna dengan izin untuk melihat batch Workspace di Console.
 
 - **Ketersediaan hasil**: Hasil batch tersedia selama 29 hari setelah batch dibuat, memberikan waktu yang cukup untuk pengambilan dan pemrosesan.
 
@@ -953,7 +954,7 @@ Perhatikan bahwa kegagalan satu permintaan dalam batch tidak mempengaruhi pemros
 
   <section title="Bisakah saya memperbarui batch setelah dikirimkan?">
 
-    Tidak, setelah batch dikirimkan, batch tidak dapat dimodifikasi. Jika Anda perlu membuat perubahan, Anda harus membatalkan batch saat ini dan mengirimkan batch baru. Perhatikan bahwa pembatalan mungkin tidak langsung berlaku.
+    Tidak, setelah batch dikirimkan, batch tidak dapat dimodifikasi. Jika Anda perlu membuat perubahan, Anda harus membatalkan batch saat ini dan mengirimkan yang baru. Perhatikan bahwa pembatalan mungkin tidak langsung berlaku.
   
 </section>
 
@@ -973,7 +974,7 @@ Perhatikan bahwa kegagalan satu permintaan dalam batch tidak mempengaruhi pemros
 
     Message Batches API dirancang dengan langkah-langkah privasi dan pemisahan data yang kuat:
 
-    1. Batch dan hasilnya diisolasi dalam Workspace tempat mereka dibuat. Ini berarti mereka hanya dapat diakses oleh kunci API dari Workspace yang sama.
+    1. Batch dan hasilnya terisolasi dalam Workspace tempat mereka dibuat. Ini berarti mereka hanya dapat diakses oleh kunci API dari Workspace yang sama.
     2. Setiap permintaan dalam batch diproses secara independen, tanpa kebocoran data antar permintaan.
     3. Hasil hanya tersedia untuk waktu terbatas (29 hari), dan mengikuti [kebijakan retensi data](https://support.claude.com/en/articles/7996866-how-long-do-you-store-personal-data) kami.
     4. Mengunduh hasil batch di Console dapat dinonaktifkan pada tingkat organisasi atau per basis Workspace.

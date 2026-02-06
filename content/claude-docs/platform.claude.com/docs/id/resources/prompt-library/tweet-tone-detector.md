@@ -1,26 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/tweet-tone-detector
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 96dc45947a4883fbb85e574680fcb41c72d6eb1cc40b689df9d81907f49fab2a
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: fb15892e0d3552ed8c95010eb09391f1cd11bdb013ae4dcce3adf4553ad9bd23
 ---
 
-# Detektor nada tweet
+# Pendeteksi nada tweet
 
 Deteksi nada dan sentimen di balik tweet.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah menganalisis tweet yang diberikan dan mengidentifikasi nada utama dan sentimen yang diekspresikan oleh penulis. Nada harus diklasifikasikan sebagai salah satu dari berikut: Positif, Negatif, Netral, Humoris, Sarkastik, Antusias, Marah, atau Informatif. Sentimen harus diklasifikasikan sebagai Positif, Negatif, atau Netral. Berikan penjelasan singkat untuk klasifikasi Anda, soroti kata-kata kunci, frasa, emotikon, atau elemen lain yang mempengaruhi keputusan Anda. |
-| User   | Wow, saya sangat terkesan dengan penanganan krisis oleh perusahaan ini. 🙄 Mereka benar-benar memiliki prioritas yang tepat. #sarcasm #fail |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Sistem | Tugas Anda adalah menganalisis tweet yang diberikan dan mengidentifikasi nada dan sentimen utama yang diungkapkan oleh penulis. Nada harus diklasifikasikan sebagai salah satu dari berikut: Positif, Negatif, Netral, Humoris, Sarkastis, Antusias, Marah, atau Informatif. Sentimen harus diklasifikasikan sebagai Positif, Negatif, atau Netral. Berikan penjelasan singkat untuk klasifikasi Anda, menyoroti kata-kata kunci, frasa, emotikon, atau elemen lain yang mempengaruhi keputusan Anda. |
+| Pengguna   | Wow, saya sangat terkesan dengan cara perusahaan menangani krisis ini. 🙄 Mereka benar-benar memiliki prioritas yang tepat. #sarcasm #fail                                                                                                                                                                                                                                                                                                                                                              |
 
 ### Contoh output
 
-> Nada: Sarkastik
+> Nada: Sarkastis
 > Sentimen: Negatif
 
 ### Permintaan API
@@ -34,17 +34,17 @@ Deteksi nada dan sentimen di balik tweet.
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1000,
         temperature=0,
-        system="Tugas Anda adalah menganalisis tweet yang diberikan dan mengidentifikasi nada utama dan sentimen yang diekspresikan oleh penulis. Nada harus diklasifikasikan sebagai salah satu dari berikut: Positif, Negatif, Netral, Humoris, Sarkastik, Antusias, Marah, atau Informatif. Sentimen harus diklasifikasikan sebagai Positif, Negatif, atau Netral. Berikan penjelasan singkat untuk klasifikasi Anda, soroti kata-kata kunci, frasa, emotikon, atau elemen lain yang mempengaruhi keputusan Anda.",
+        system="Your task is to analyze the provided tweet and identify the primary tone and sentiment expressed by the author. The tone should be classified as one of the following: Positive, Negative, Neutral, Humorous, Sarcastic, Enthusiastic, Angry, or Informative. The sentiment should be classified as Positive, Negative, or Neutral. Provide a brief explanation for your classifications, highlighting the key words, phrases, emoticons, or other elements that influenced your decision.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Wow, saya sangat terkesan dengan penanganan krisis oleh perusahaan ini. 🙄 Mereka benar-benar memiliki prioritas yang tepat. #sarcasm #fail"
+                        "text": "Wow, I'm so impressed by the company's handling of this crisis. 🙄 They really have their priorities straight. #sarcasm #fail"
                     }
                 ]
             }
@@ -63,17 +63,17 @@ Deteksi nada dan sentimen di balik tweet.
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 0,
-      system: "Tugas Anda adalah menganalisis tweet yang diberikan dan mengidentifikasi nada utama dan sentimen yang diekspresikan oleh penulis. Nada harus diklasifikasikan sebagai salah satu dari berikut: Positif, Negatif, Netral, Humoris, Sarkastik, Antusias, Marah, atau Informatif. Sentimen harus diklasifikasikan sebagai Positif, Negatif, atau Netral. Berikan penjelasan singkat untuk klasifikasi Anda, soroti kata-kata kunci, frasa, emotikon, atau elemen lain yang mempengaruhi keputusan Anda.",
+      system: "Your task is to analyze the provided tweet and identify the primary tone and sentiment expressed by the author. The tone should be classified as one of the following: Positive, Negative, Neutral, Humorous, Sarcastic, Enthusiastic, Angry, or Informative. The sentiment should be classified as Positive, Negative, or Neutral. Provide a brief explanation for your classifications, highlighting the key words, phrases, emoticons, or other elements that influenced your decision.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Wow, saya sangat terkesan dengan penanganan krisis oleh perusahaan ini. 🙄 Mereka benar-benar memiliki prioritas yang tepat. #sarcasm #fail"
+              "text": "Wow, I'm so impressed by the company's handling of this crisis. 🙄 They really have their priorities straight. #sarcasm #fail"
             }
           ]
         }
@@ -92,17 +92,17 @@ Deteksi nada dan sentimen di balik tweet.
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1:0",
         max_tokens=1000,
         temperature=0,
-        system="Tugas Anda adalah menganalisis tweet yang diberikan dan mengidentifikasi nada utama dan sentimen yang diekspresikan oleh penulis. Nada harus diklasifikasikan sebagai salah satu dari berikut: Positif, Negatif, Netral, Humoris, Sarkastik, Antusias, Marah, atau Informatif. Sentimen harus diklasifikasikan sebagai Positif, Negatif, atau Netral. Berikan penjelasan singkat untuk klasifikasi Anda, soroti kata-kata kunci, frasa, emotikon, atau elemen lain yang mempengaruhi keputusan Anda.",
+        system="Your task is to analyze the provided tweet and identify the primary tone and sentiment expressed by the author. The tone should be classified as one of the following: Positive, Negative, Neutral, Humorous, Sarcastic, Enthusiastic, Angry, or Informative. The sentiment should be classified as Positive, Negative, or Neutral. Provide a brief explanation for your classifications, highlighting the key words, phrases, emoticons, or other elements that influenced your decision.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Wow, saya sangat terkesan dengan penanganan krisis oleh perusahaan ini. 🙄 Mereka benar-benar memiliki prioritas yang tepat. #sarcasm #fail"
+                        "text": "Wow, I'm so impressed by the company's handling of this crisis. 🙄 They really have their priorities straight. #sarcasm #fail"
                     }
                 ]
             }
@@ -121,17 +121,17 @@ Deteksi nada dan sentimen di balik tweet.
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1:0",
       max_tokens: 1000,
       temperature: 0,
-      system: "Tugas Anda adalah menganalisis tweet yang diberikan dan mengidentifikasi nada utama dan sentimen yang diekspresikan oleh penulis. Nada harus diklasifikasikan sebagai salah satu dari berikut: Positif, Negatif, Netral, Humoris, Sarkastik, Antusias, Marah, atau Informatif. Sentimen harus diklasifikasikan sebagai Positif, Negatif, atau Netral. Berikan penjelasan singkat untuk klasifikasi Anda, soroti kata-kata kunci, frasa, emotikon, atau elemen lain yang mempengaruhi keputusan Anda.",
+      system: "Your task is to analyze the provided tweet and identify the primary tone and sentiment expressed by the author. The tone should be classified as one of the following: Positive, Negative, Neutral, Humorous, Sarcastic, Enthusiastic, Angry, or Informative. The sentiment should be classified as Positive, Negative, or Neutral. Provide a brief explanation for your classifications, highlighting the key words, phrases, emoticons, or other elements that influenced your decision.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Wow, saya sangat terkesan dengan penanganan krisis oleh perusahaan ini. 🙄 Mereka benar-benar memiliki prioritas yang tepat. #sarcasm #fail"
+              "text": "Wow, I'm so impressed by the company's handling of this crisis. 🙄 They really have their priorities straight. #sarcasm #fail"
             }
           ]
         }
@@ -151,14 +151,14 @@ Deteksi nada dan sentimen di balik tweet.
         model="claude-sonnet-4@20250514",
         max_tokens=1000,
         temperature=0,
-        system="Tugas Anda adalah menganalisis tweet yang diberikan dan mengidentifikasi nada utama dan sentimen yang diekspresikan oleh penulis. Nada harus diklasifikasikan sebagai salah satu dari berikut: Positif, Negatif, Netral, Humoris, Sarkastik, Antusias, Marah, atau Informatif. Sentimen harus diklasifikasikan sebagai Positif, Negatif, atau Netral. Berikan penjelasan singkat untuk klasifikasi Anda, soroti kata-kata kunci, frasa, emotikon, atau elemen lain yang mempengaruhi keputusan Anda.",
+        system="Your task is to analyze the provided tweet and identify the primary tone and sentiment expressed by the author. The tone should be classified as one of the following: Positive, Negative, Neutral, Humorous, Sarcastic, Enthusiastic, Angry, or Informative. The sentiment should be classified as Positive, Negative, or Neutral. Provide a brief explanation for your classifications, highlighting the key words, phrases, emoticons, or other elements that influenced your decision.",
         messages=[
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Wow, saya sangat terkesan dengan penanganan krisis oleh perusahaan ini. 🙄 Mereka benar-benar memiliki prioritas yang tepat. #sarcasm #fail"
+                        "text": "Wow, I'm so impressed by the company's handling of this crisis. 🙄 They really have their priorities straight. #sarcasm #fail"
                     }
                 ]
             }
@@ -180,14 +180,14 @@ Deteksi nada dan sentimen di balik tweet.
       model: "claude-sonnet-4@20250514",
       max_tokens: 1000,
       temperature: 0,
-      system: "Tugas Anda adalah menganalisis tweet yang diberikan dan mengidentifikasi nada utama dan sentimen yang diekspresikan oleh penulis. Nada harus diklasifikasikan sebagai salah satu dari berikut: Positif, Negatif, Netral, Humoris, Sarkastik, Antusias, Marah, atau Informatif. Sentimen harus diklasifikasikan sebagai Positif, Negatif, atau Netral. Berikan penjelasan singkat untuk klasifikasi Anda, soroti kata-kata kunci, frasa, emotikon, atau elemen lain yang mempengaruhi keputusan Anda.",
+      system: "Your task is to analyze the provided tweet and identify the primary tone and sentiment expressed by the author. The tone should be classified as one of the following: Positive, Negative, Neutral, Humorous, Sarcastic, Enthusiastic, Angry, or Informative. The sentiment should be classified as Positive, Negative, or Neutral. Provide a brief explanation for your classifications, highlighting the key words, phrases, emoticons, or other elements that influenced your decision.",
       messages: [
         {
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "Wow, saya sangat terkesan dengan penanganan krisis oleh perusahaan ini. 🙄 Mereka benar-benar memiliki prioritas yang tepat. #sarcasm #fail"
+              "text": "Wow, I'm so impressed by the company's handling of this crisis. 🙄 They really have their priorities straight. #sarcasm #fail"
             }
           ]
         }

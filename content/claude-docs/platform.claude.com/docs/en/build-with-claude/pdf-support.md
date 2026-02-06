@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: f24115bbd413ce4349879e19bf26fbbec4f0539ccb9ef18745c25b3973462d81
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 63ee2445b34db56e3a191922699c4ef115ef251f619b50d17bad667580ca106c
 ---
 
 # PDF support
@@ -100,7 +100,7 @@ The simplest approach is to reference a PDF directly from a URL:
       -H "x-api-key: $ANTHROPIC_API_KEY" \
       -H "anthropic-version: 2023-06-01" \
       -d '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 1024,
         "messages": [{
             "role": "user",
@@ -123,7 +123,7 @@ The simplest approach is to reference a PDF directly from a URL:
 
     client = anthropic.Anthropic()
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -154,7 +154,7 @@ The simplest approach is to reference a PDF directly from a URL:
     
     async function main() {
       const response = await anthropic.messages.create({
-        model: 'claude-sonnet-4-5',
+        model: 'claude-opus-4-6',
         max_tokens: 1024,
         messages: [
           {
@@ -200,7 +200,7 @@ The simplest approach is to reference a PDF directly from a URL:
 
             // Create a message with document and text content blocks
             MessageCreateParams params = MessageCreateParams.builder()
-                    .model(Model.CLAUDE_OPUS_4_20250514)
+                    .model(Model.CLAUDE_OPUS_4_6)
                     .maxTokens(1024)
                     .addUserMessageOfBlockParams(
                             List.of(
@@ -235,7 +235,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
 
     # Create a JSON request file using the pdf_base64.txt content
     jq -n --rawfile PDF_BASE64 pdf_base64.txt '{
-        "model": "claude-sonnet-4-5",
+        "model": "claude-opus-4-6",
         "max_tokens": 1024,
         "messages": [{
             "role": "user",
@@ -277,7 +277,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
     # Send to Claude using base64 encoding
     client = anthropic.Anthropic()
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
             {
@@ -320,7 +320,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
       // Send the API request with base64-encoded PDF
       const anthropic = new Anthropic();
       const response = await anthropic.messages.create({
-        model: 'claude-sonnet-4-5',
+        model: 'claude-opus-4-6',
         max_tokens: 1024,
         messages: [
           {
@@ -393,7 +393,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
 
             // Create a message with document and text content blocks
             MessageCreateParams params = MessageCreateParams.builder()
-                    .model(Model.CLAUDE_OPUS_4_20250514)
+                    .model(Model.CLAUDE_OPUS_4_6)
                     .maxTokens(1024)
                     .addUserMessageOfBlockParams(
                             List.of(
@@ -433,7 +433,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: files-api-2025-04-14" \
   -d '{
-    "model": "claude-sonnet-4-5", 
+    "model": "claude-opus-4-6", 
     "max_tokens": 1024,
     "messages": [{
       "role": "user",
@@ -463,7 +463,7 @@ with open("document.pdf", "rb") as f:
 
 # Use the uploaded file in a message
 message = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     betas=["files-api-2025-04-14"],
     messages=[
@@ -505,7 +505,7 @@ async function main() {
 
   // Use the uploaded file in a message
   const response = await anthropic.beta.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: 'claude-opus-4-6',
     max_tokens: 1024,
     betas: ['files-api-2025-04-14'],
     messages: [
@@ -561,7 +561,7 @@ public class PdfFilesExample {
                 .build();
 
         MessageCreateParams params = MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .maxTokens(1024)
                 .addUserMessageOfBlockParams(
                         List.of(
@@ -631,7 +631,7 @@ Cache PDFs to improve performance on repeated queries:
 ```bash Shell
 # Create a JSON request file using the pdf_base64.txt content
 jq -n --rawfile PDF_BASE64 pdf_base64.txt '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "messages": [{
         "role": "user",
@@ -662,7 +662,7 @@ curl https://api.anthropic.com/v1/messages \
 ```
 ```python Python
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[
         {
@@ -689,7 +689,7 @@ message = client.messages.create(
 
 ```typescript TypeScript
 const response = await anthropic.messages.create({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-opus-4-6',
   max_tokens: 1024,
   messages: [
     {
@@ -742,7 +742,7 @@ public class MessagesDocumentExample {
         String pdfBase64 = new String(pdfBytes);
 
         MessageCreateParams params = MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .maxTokens(1024)
                 .addUserMessageOfBlockParams(List.of(
                         ContentBlockParam.ofDocument(
@@ -778,7 +778,7 @@ jq -n --rawfile PDF_BASE64 pdf_base64.txt '
       {
           "custom_id": "my-first-request",
           "params": {
-              "model": "claude-sonnet-4-5",
+              "model": "claude-opus-4-6",
               "max_tokens": 1024,
               "messages": [
                 {
@@ -804,7 +804,7 @@ jq -n --rawfile PDF_BASE64 pdf_base64.txt '
       {
           "custom_id": "my-second-request",
           "params": {
-              "model": "claude-sonnet-4-5",
+              "model": "claude-opus-4-6",
               "max_tokens": 1024,
               "messages": [
                 {
@@ -844,7 +844,7 @@ message_batch = client.messages.batches.create(
         {
             "custom_id": "doc1",
             "params": {
-                "model": "claude-sonnet-4-5",
+                "model": "claude-opus-4-6",
                 "max_tokens": 1024,
                 "messages": [
                     {
@@ -897,7 +897,7 @@ const response = await anthropic.messages.batches.create({
             role: 'user',
           },
         ],
-        model: 'claude-sonnet-4-5',
+        model: 'claude-opus-4-6',
       },
     },
     {
@@ -923,7 +923,7 @@ const response = await anthropic.messages.batches.create({
             role: 'user',
           },
         ],
-        model: 'claude-sonnet-4-5',
+        model: 'claude-opus-4-6',
       },
     }
   ],
@@ -955,7 +955,7 @@ public class MessagesBatchDocumentExample {
                 .addRequest(BatchCreateParams.Request.builder()
                         .customId("my-first-request")
                         .params(BatchCreateParams.Request.Params.builder()
-                                .model(Model.CLAUDE_OPUS_4_20250514)
+                                .model(Model.CLAUDE_OPUS_4_6)
                                 .maxTokens(1024)
                                 .addUserMessageOfBlockParams(List.of(
                                         ContentBlockParam.ofDocument(
@@ -976,7 +976,7 @@ public class MessagesBatchDocumentExample {
                 .addRequest(BatchCreateParams.Request.builder()
                         .customId("my-second-request")
                         .params(BatchCreateParams.Request.Params.builder()
-                                .model(Model.CLAUDE_OPUS_4_20250514)
+                                .model(Model.CLAUDE_OPUS_4_6)
                                 .maxTokens(1024)
                                 .addUserMessageOfBlockParams(List.of(
                                         ContentBlockParam.ofDocument(

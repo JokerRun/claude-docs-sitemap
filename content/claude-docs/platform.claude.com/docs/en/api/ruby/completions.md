@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/completions
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 2f34c8603de6277ff49bb6afaf7e9e319e3de73489479bd213c285b8d1f09457
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: fd962831c203da8e8dcf5c0fe63ffaa42897f4f04febf9cc5a9a2204b356b1b9
 ---
 
 # Completions
@@ -33,11 +33,15 @@ Future models and features will not be compatible with Text Completions. See our
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `:"claude-opus-4-5-20251101" | :"claude-opus-4-5" | :"claude-3-7-sonnet-latest" | 17 more`
+  - `:"claude-opus-4-6" | :"claude-opus-4-5-20251101" | :"claude-opus-4-5" | 18 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `:"claude-opus-4-6"`
+
+      Most intelligent model for building agents and coding
 
     - `:"claude-opus-4-5-20251101"`
 
@@ -257,11 +261,15 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `:"claude-opus-4-5-20251101" | :"claude-opus-4-5" | :"claude-3-7-sonnet-latest" | 17 more`
+    - `:"claude-opus-4-6" | :"claude-opus-4-5-20251101" | :"claude-opus-4-5" | 18 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-opus-4-6"`
+
+        Most intelligent model for building agents and coding
 
       - `:"claude-opus-4-5-20251101"`
 
@@ -371,7 +379,7 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
 completion = anthropic.completions.create(
   max_tokens_to_sample: 256,
-  model: :"claude-opus-4-5-20251101",
+  model: :"claude-opus-4-6",
   prompt: "\n\nHuman: Hello, world!\n\nAssistant:"
 )
 
@@ -400,11 +408,15 @@ puts(completion)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `:"claude-opus-4-5-20251101" | :"claude-opus-4-5" | :"claude-3-7-sonnet-latest" | 17 more`
+    - `:"claude-opus-4-6" | :"claude-opus-4-5-20251101" | :"claude-opus-4-5" | 18 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-opus-4-6"`
+
+        Most intelligent model for building agents and coding
 
       - `:"claude-opus-4-5-20251101"`
 

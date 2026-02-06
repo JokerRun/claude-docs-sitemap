@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-02-04T04:12:50.357302Z
-sha256: d0f01a92de22e85062783f7db4bedf7059ac3de5e1260a16f3f4c29aab819b43
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 87124f404eae57350140726798e2284a77180814b67655833418fa0f461f8146
 ---
 
 > ## Documentation Index
@@ -23,7 +23,7 @@ Claude Code GitHub Actions brings AI-powered automation to your GitHub workflow.
 </Note>
 
 <Info>
-  **Claude Opus 4.5 is now available.** Claude Code GitHub Actions default to Sonnet. To use Opus 4.5, configure the [model parameter](#breaking-changes-reference) to use `claude-opus-4-5-20251101`.
+  **Claude Opus 4.6 is now available.** Claude Code GitHub Actions default to Sonnet. To use Opus 4.6, configure the [model parameter](#breaking-changes-reference) to use `claude-opus-4-6`.
 </Info>
 
 ## Why use Claude Code GitHub Actions?
@@ -200,7 +200,7 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           prompt: "Generate a summary of yesterday's commits and open issues"
-          claude_args: "--model claude-opus-4-5-20251101"
+          claude_args: "--model opus"
 ```
 
 ### Common use cases

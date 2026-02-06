@@ -1,44 +1,44 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/extended-thinking-tips
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: b1d836e66b772beaae7d3b8feda261820c1cf47d89aa5ec068d7dcd61a3d5543
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: c6fb2e80fc53dbef633d9fcf0156b11e0356d7f347975b45956e452935b722e7
 ---
 
-# Tips pemikiran diperpanjang
+# Tips extended thinking
 
-Panduan lanjutan untuk memaksimalkan fitur pemikiran diperpanjang Claude dengan strategi dan teknik yang efektif.
+Strategi lanjutan dan teknik untuk memaksimalkan fitur extended thinking Claude
 
 ---
 
-Panduan ini menyediakan strategi dan teknik lanjutan untuk memaksimalkan fitur pemikiran diperpanjang Claude. Pemikiran diperpanjang memungkinkan Claude untuk mengatasi masalah kompleks langkah demi langkah, meningkatkan kinerja pada tugas-tugas sulit.
+Panduan ini menyediakan strategi lanjutan dan teknik untuk memaksimalkan fitur extended thinking Claude. Extended thinking memungkinkan Claude untuk menyelesaikan masalah kompleks secara bertahap, meningkatkan kinerja pada tugas-tugas yang sulit.
 
-Lihat [Model pemikiran diperpanjang](/docs/id/about-claude/models/extended-thinking-models) untuk panduan dalam memutuskan kapan menggunakan pemikiran diperpanjang.
+Lihat [Extended thinking](/docs/id/build-with-claude/extended-thinking) untuk panduan tentang memutuskan kapan menggunakan extended thinking.
 
 ## Sebelum memulai
 
-Panduan ini mengasumsikan bahwa Anda telah memutuskan untuk menggunakan mode pemikiran diperpanjang dan telah meninjau langkah-langkah dasar kami tentang [cara memulai dengan pemikiran diperpanjang](/docs/id/about-claude/models/extended-thinking-models#getting-started-with-extended-thinking-models) serta [panduan implementasi pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking) kami.
+Panduan ini mengasumsikan bahwa Anda telah memutuskan untuk menggunakan mode extended thinking dan telah meninjau [panduan implementasi extended thinking](/docs/id/build-with-claude/extended-thinking) kami.
 
-### Pertimbangan teknis untuk pemikiran diperpanjang
+### Pertimbangan teknis untuk extended thinking
 
-- Token pemikiran memiliki anggaran minimum 1024 token. Kami merekomendasikan Anda memulai dengan anggaran pemikiran minimum dan meningkatkan secara bertahap untuk menyesuaikan berdasarkan kebutuhan dan kompleksitas tugas Anda.
-- Untuk beban kerja di mana anggaran pemikiran optimal di atas 32K, kami merekomendasikan Anda menggunakan [pemrosesan batch](/docs/id/build-with-claude/batch-processing) untuk menghindari masalah jaringan. Permintaan yang mendorong model untuk berpikir di atas 32K token menyebabkan permintaan yang berjalan lama yang mungkin mengalami timeout sistem dan batas koneksi terbuka.
-- Pemikiran diperpanjang berkinerja terbaik dalam bahasa Inggris, meskipun output akhir dapat dalam [bahasa apa pun yang didukung Claude](/docs/id/build-with-claude/multilingual-support).
-- Jika Anda memerlukan pemikiran di bawah anggaran minimum, kami merekomendasikan menggunakan mode standar, dengan pemikiran dimatikan, dengan prompting chain-of-thought tradisional dengan tag XML (seperti `<thinking>`). Lihat [prompting chain of thought](/docs/id/build-with-claude/prompt-engineering/chain-of-thought).
+- Thinking tokens memiliki anggaran minimum 1024 token. Kami merekomendasikan bahwa Anda mulai dengan anggaran thinking minimum dan secara bertahap tingkatkan untuk menyesuaikan berdasarkan kebutuhan dan kompleksitas tugas Anda.
+- Untuk beban kerja di mana anggaran thinking optimal berada di atas 32K, kami merekomendasikan bahwa Anda menggunakan [batch processing](/docs/id/build-with-claude/batch-processing) untuk menghindari masalah jaringan. Permintaan yang mendorong model untuk berpikir di atas 32K token menyebabkan permintaan yang berjalan lama yang mungkin menghadapi batas waktu sistem dan batas koneksi terbuka.
+- Extended thinking berkinerja terbaik dalam bahasa Inggris, meskipun output akhir dapat dalam [bahasa apa pun yang Claude dukung](/docs/id/build-with-claude/multilingual-support).
+- Jika Anda memerlukan thinking di bawah anggaran minimum, kami merekomendasikan menggunakan mode standar, dengan thinking dimatikan, dengan prompting chain-of-thought tradisional dengan tag XML (seperti `<thinking>`). Lihat [chain of thought prompting](/docs/id/build-with-claude/prompt-engineering/chain-of-thought).
 
-## Teknik prompting untuk pemikiran diperpanjang
+## Teknik prompting untuk extended thinking
 
-### Gunakan instruksi umum terlebih dahulu, kemudian troubleshoot dengan instruksi langkah demi langkah yang lebih detail
+### Gunakan instruksi umum terlebih dahulu, kemudian troubleshoot dengan instruksi yang lebih step-by-step
 
-Claude sering berkinerja lebih baik dengan instruksi tingkat tinggi untuk hanya berpikir mendalam tentang suatu tugas daripada panduan preskriptif langkah demi langkah. Kreativitas model dalam mendekati masalah mungkin melebihi kemampuan manusia untuk meresepkan proses pemikiran yang optimal.
+Claude sering berkinerja lebih baik dengan instruksi tingkat tinggi untuk hanya berpikir mendalam tentang tugas daripada panduan preskriptif step-by-step. Kreativitas model dalam mendekati masalah mungkin melebihi kemampuan manusia untuk meresepkan proses thinking yang optimal.
 
 Misalnya, alih-alih:
 
 <CodeGroup>
 ```text User
 Pikirkan masalah matematika ini langkah demi langkah:
-1. Pertama, identifikasi variabel
-2. Kemudian, susun persamaan
+1. Pertama, identifikasi variabelnya
+2. Kemudian, atur persamaannya
 3. Selanjutnya, selesaikan untuk x
 ...
 ```
@@ -48,45 +48,45 @@ Pertimbangkan:
 
 <CodeGroup>
 ```text User
-Tolong pikirkan masalah matematika ini secara menyeluruh dan sangat detail.
-Pertimbangkan beberapa pendekatan dan tunjukkan penalaran lengkap Anda.
-Coba metode yang berbeda jika pendekatan pertama Anda tidak berhasil.
+Silakan pikirkan masalah matematika ini secara menyeluruh dan sangat detail.
+Pertimbangkan berbagai pendekatan dan tunjukkan penalaran lengkap Anda.
+Coba metode berbeda jika pendekatan pertama Anda tidak berhasil.
 ```
 />
 </CodeGroup>
 
 <TryInConsoleButton
   userPrompt={
-    `Tolong pikirkan masalah matematika ini secara menyeluruh dan sangat detail.
-Pertimbangkan beberapa pendekatan dan tunjukkan penalaran lengkap Anda.
-Coba metode yang berbeda jika pendekatan pertama Anda tidak berhasil.`
+    `Silakan pikirkan masalah matematika ini secara menyeluruh dan sangat detail.
+Pertimbangkan berbagai pendekatan dan tunjukkan penalaran lengkap Anda.
+Coba metode berbeda jika pendekatan pertama Anda tidak berhasil.`
   }
   thinkingBudgetTokens={16000}
 >
-  Coba di Console
+  Coba di Konsol
 </TryInConsoleButton>
 
-Meskipun demikian, Claude masih dapat mengikuti langkah-langkah eksekusi terstruktur yang kompleks ketika diperlukan. Model dapat menangani daftar yang lebih panjang dengan instruksi yang lebih kompleks daripada versi sebelumnya. Kami merekomendasikan Anda memulai dengan instruksi yang lebih umum, kemudian membaca output pemikiran Claude dan beriterasi untuk memberikan instruksi yang lebih spesifik untuk mengarahkan pemikirannya dari sana.
+Meskipun demikian, Claude masih dapat secara efektif mengikuti langkah-langkah eksekusi terstruktur yang kompleks ketika diperlukan. Model dapat menangani bahkan daftar yang lebih panjang dengan instruksi yang lebih kompleks daripada versi sebelumnya. Kami merekomendasikan bahwa Anda mulai dengan instruksi yang lebih umum, kemudian baca output thinking Claude dan ulangi untuk memberikan instruksi yang lebih spesifik untuk mengarahkan thinkingnya dari sana.
 
-### Multishot prompting dengan pemikiran diperpanjang
+### Multishot prompting dengan extended thinking
 
-[Multishot prompting](/docs/id/build-with-claude/prompt-engineering/multishot-prompting) bekerja dengan baik dengan pemikiran diperpanjang. Ketika Anda memberikan Claude contoh cara berpikir melalui masalah, ia akan mengikuti pola penalaran serupa dalam blok pemikiran diperpanjangnya.
+[Multishot prompting](/docs/id/build-with-claude/prompt-engineering/multishot-prompting) bekerja dengan baik dengan extended thinking. Ketika Anda memberikan Claude contoh tentang cara berpikir melalui masalah, Claude akan mengikuti pola penalaran serupa dalam blok extended thinking-nya.
 
-Anda dapat menyertakan contoh few-shot dalam prompt Anda dalam skenario pemikiran diperpanjang dengan menggunakan tag XML seperti `<thinking>` atau `<scratchpad>` untuk menunjukkan pola kanonik pemikiran diperpanjang dalam contoh tersebut.
+Anda dapat menyertakan contoh few-shot dalam prompt Anda dalam skenario extended thinking dengan menggunakan tag XML seperti `<thinking>` atau `<scratchpad>` untuk menunjukkan pola extended thinking kanonik dalam contoh-contoh tersebut.
 
-Claude akan menggeneralisasi pola ke proses pemikiran diperpanjang formal. Namun, mungkin Anda akan mendapatkan hasil yang lebih baik dengan memberikan Claude kebebasan untuk berpikir dengan cara yang dianggapnya terbaik.
+Claude akan menggeneralisasi pola ke proses extended thinking formal. Namun, ada kemungkinan Anda akan mendapatkan hasil yang lebih baik dengan memberikan Claude kebebasan untuk berpikir dengan cara yang dianggapnya terbaik.
 
 Contoh:
 
 <CodeGroup>
 ```text User
-Saya akan menunjukkan cara menyelesaikan masalah matematika, kemudian saya ingin Anda menyelesaikan yang serupa.
+Saya akan menunjukkan kepada Anda cara menyelesaikan masalah matematika, kemudian saya ingin Anda menyelesaikan masalah yang serupa.
 
 Masalah 1: Berapa 15% dari 80?
 
 <thinking>
-Untuk mencari 15% dari 80:
-1. Ubah 15% menjadi desimal: 15% = 0,15
+Untuk menemukan 15% dari 80:
+1. Konversi 15% ke desimal: 15% = 0,15
 2. Kalikan: 0,15 × 80 = 12
 </thinking>
 
@@ -100,13 +100,13 @@ Masalah 2: Berapa 35% dari 240?
 
 <TryInConsoleButton
   userPrompt={
-    `Saya akan menunjukkan cara menyelesaikan masalah matematika, kemudian saya ingin Anda menyelesaikan yang serupa.
+    `Saya akan menunjukkan kepada Anda cara menyelesaikan masalah matematika, kemudian saya ingin Anda menyelesaikan masalah yang serupa.
 
 Masalah 1: Berapa 15% dari 80?
 
 <thinking>
-Untuk mencari 15% dari 80:
-1. Ubah 15% menjadi desimal: 15% = 0,15
+Untuk menemukan 15% dari 80:
+1. Konversi 15% ke desimal: 15% = 0,15
 2. Kalikan: 0,15 × 80 = 12
 </thinking>
 
@@ -117,57 +117,59 @@ Masalah 2: Berapa 35% dari 240?`
   }
   thinkingBudgetTokens={16000} 
 >
-  Coba di Console
+  Coba di Konsol
 </TryInConsoleButton>
 
-### Memaksimalkan mengikuti instruksi dengan pemikiran diperpanjang
-Claude menunjukkan peningkatan signifikan dalam mengikuti instruksi ketika pemikiran diperpanjang diaktifkan. Model biasanya:
-1. Bernalar tentang instruksi di dalam blok pemikiran diperpanjang
-2. Mengeksekusi instruksi tersebut dalam respons
+### Memaksimalkan instruction following dengan extended thinking
 
-Untuk memaksimalkan mengikuti instruksi:
-- Jelas dan spesifik tentang apa yang Anda inginkan
+Claude menunjukkan instruction following yang secara signifikan lebih baik ketika extended thinking diaktifkan. Model biasanya:
+1. Bernalar tentang instruksi di dalam blok extended thinking
+2. Melaksanakan instruksi tersebut dalam respons
+
+Untuk memaksimalkan instruction following:
+- Jadilah jelas dan spesifik tentang apa yang Anda inginkan
 - Untuk instruksi kompleks, pertimbangkan untuk memecahnya menjadi langkah-langkah bernomor yang harus dikerjakan Claude secara metodis
-- Berikan Claude anggaran yang cukup untuk memproses instruksi sepenuhnya dalam pemikiran diperpanjangnya
+- Berikan Claude anggaran yang cukup untuk memproses instruksi sepenuhnya dalam extended thinking-nya
 
-### Menggunakan pemikiran diperpanjang untuk debug dan mengarahkan perilaku Claude
-Anda dapat menggunakan output pemikiran Claude untuk debug logika Claude, meskipun metode ini tidak selalu dapat diandalkan dengan sempurna.
+### Menggunakan extended thinking untuk debug dan mengarahkan perilaku Claude
+
+Anda dapat menggunakan output thinking Claude untuk men-debug logika Claude, meskipun metode ini tidak selalu sempurna dapat diandalkan.
 
 Untuk memanfaatkan metodologi ini dengan sebaik-baiknya, kami merekomendasikan tips berikut:
-- Kami tidak merekomendasikan mengirimkan kembali pemikiran diperpanjang Claude dalam blok teks pengguna, karena ini tidak meningkatkan kinerja dan mungkin benar-benar menurunkan hasil.
-- Prefilling pemikiran diperpanjang secara eksplisit tidak diizinkan, dan mengubah teks output model secara manual yang mengikuti blok pemikirannya kemungkinan akan menurunkan hasil karena kebingungan model.
+- Kami tidak merekomendasikan melewatkan extended thinking Claude kembali di blok teks pengguna, karena ini tidak meningkatkan kinerja dan mungkin benar-benar menurunkan hasil.
+- Prefilling extended thinking secara eksplisit tidak diizinkan, dan secara manual mengubah teks output model yang mengikuti blok thinkingnya kemungkinan akan menurunkan hasil karena kebingungan model.
 
-Ketika pemikiran diperpanjang dimatikan, [prefill](/docs/id/build-with-claude/prompt-engineering/prefill-claudes-response) teks respons `assistant` standar masih diizinkan.
+Ketika extended thinking dimatikan, prefill teks respons `assistant` standar masih diizinkan.
 
 <Note>
-Terkadang Claude mungkin mengulangi pemikiran diperpanjangnya dalam teks output assistant. Jika Anda menginginkan respons yang bersih, instruksikan Claude untuk tidak mengulangi pemikiran diperpanjangnya dan hanya mengeluarkan jawaban.
+Kadang-kadang Claude mungkin mengulangi extended thinking-nya dalam teks output assistant. Jika Anda menginginkan respons yang bersih, instruksikan Claude untuk tidak mengulangi extended thinking-nya dan hanya mengeluarkan jawabannya.
 </Note>
 
-### Memanfaatkan output panjang dan pemikiran bentuk panjang dengan sebaik-baiknya
+### Memanfaatkan output panjang dan longform thinking dengan sebaik-baiknya
 
-Untuk kasus penggunaan generasi dataset, coba prompt seperti "Tolong buat tabel yang sangat detail tentang..." untuk menghasilkan dataset yang komprehensif.
+Untuk use case generasi dataset, coba prompt seperti "Silakan buat tabel yang sangat detail dari..." untuk menghasilkan dataset komprehensif.
 
-Untuk kasus penggunaan seperti generasi konten detail di mana Anda mungkin ingin menghasilkan blok pemikiran diperpanjang yang lebih panjang dan respons yang lebih detail, coba tips ini:
-- Tingkatkan panjang pemikiran diperpanjang maksimum DAN secara eksplisit minta output yang lebih panjang
+Untuk use case seperti generasi konten detail di mana Anda mungkin ingin menghasilkan blok extended thinking yang lebih panjang dan respons yang lebih detail, coba tips ini:
+- Tingkatkan panjang extended thinking maksimum DAN secara eksplisit minta output yang lebih panjang
 - Untuk output yang sangat panjang (20.000+ kata), minta outline detail dengan jumlah kata hingga tingkat paragraf. Kemudian minta Claude untuk mengindeks paragrafnya ke outline dan mempertahankan jumlah kata yang ditentukan
 
 <Warning>
-Kami tidak merekomendasikan Anda mendorong Claude untuk mengeluarkan lebih banyak token demi mengeluarkan token. Sebaliknya, kami mendorong Anda untuk memulai dengan anggaran pemikiran kecil dan meningkatkan sesuai kebutuhan untuk menemukan pengaturan optimal untuk kasus penggunaan Anda.
+Kami tidak merekomendasikan bahwa Anda mendorong Claude untuk mengeluarkan lebih banyak token demi mengeluarkan token. Sebaliknya, kami mendorong Anda untuk memulai dengan anggaran thinking kecil dan meningkat sesuai kebutuhan untuk menemukan pengaturan optimal untuk use case Anda.
 </Warning>
 
-Berikut adalah contoh kasus penggunaan di mana Claude unggul karena pemikiran diperpanjang yang lebih panjang:
+Berikut adalah contoh use case di mana Claude unggul karena extended thinking yang lebih panjang:
 
   <section title="Masalah STEM kompleks">
 
-    Masalah STEM kompleks memerlukan Claude untuk membangun model mental, menerapkan pengetahuan khusus, dan bekerja melalui langkah-langkah logis berurutan—proses yang mendapat manfaat dari waktu penalaran yang lebih lama.
+    Masalah STEM kompleks memerlukan Claude untuk membangun model mental, menerapkan pengetahuan khusus, dan menyelesaikan langkah-langkah logis berurutan—proses yang mendapat manfaat dari waktu penalaran yang lebih lama.
     
     <Tabs>
       <Tab title="Prompt standar">
         <CodeGroup>
         ```text User
         Tulis skrip python untuk bola kuning yang memantul dalam persegi,
-        pastikan untuk menangani deteksi tabrakan dengan benar.
-        Buat persegi berputar perlahan.
+pastikan untuk menangani deteksi tabrakan dengan benar.
+Buat persegi berputar perlahan.
         ```
         />
         </CodeGroup>
@@ -180,19 +182,19 @@ Buat persegi berputar perlahan.`
           }
           thinkingBudgetTokens={16000}
         >
-          Coba di Console
+          Coba di Konsol
         </TryInConsoleButton>
         <Note>
-        Tugas yang lebih sederhana ini biasanya menghasilkan hanya sekitar beberapa detik waktu berpikir.
+        Tugas yang lebih sederhana ini biasanya menghasilkan hanya beberapa detik waktu thinking.
         </Note>
       </Tab>
       <Tab title="Prompt yang ditingkatkan">
         <CodeGroup>
         ```text User
         Tulis skrip Python untuk bola kuning yang memantul dalam tesseract,
-        pastikan untuk menangani deteksi tabrakan dengan benar.
-        Buat tesseract berputar perlahan.
-        Pastikan bola tetap dalam tesseract.
+pastikan untuk menangani deteksi tabrakan dengan benar.
+Buat tesseract berputar perlahan.
+Pastikan bola tetap berada dalam tesseract.
         ```
         />
         </CodeGroup>
@@ -202,23 +204,23 @@ Buat persegi berputar perlahan.`
             `Tulis skrip Python untuk bola kuning yang memantul dalam tesseract,
 pastikan untuk menangani deteksi tabrakan dengan benar.
 Buat tesseract berputar perlahan.
-Pastikan bola tetap dalam tesseract.`
+Pastikan bola tetap berada dalam tesseract.`
           }
           thinkingBudgetTokens={16000}
         >
-          Coba di Console
+          Coba di Konsol
         </TryInConsoleButton>
         <Note>
-        Tantangan visualisasi 4D yang kompleks ini memanfaatkan waktu pemikiran diperpanjang yang panjang dengan sebaik-baiknya saat Claude bekerja melalui kompleksitas matematika dan pemrograman.
+        Tantangan visualisasi 4D yang kompleks ini memanfaatkan waktu extended thinking yang panjang dengan sebaik-baiknya karena Claude menyelesaikan kompleksitas matematika dan pemrograman.
         </Note>
       </Tab>
     </Tabs>
   
 </section>
   
-  <section title="Masalah optimisasi kendala">
+  <section title="Masalah optimasi kendala">
 
-    Optimisasi kendala menantang Claude untuk memenuhi beberapa persyaratan yang bersaing secara bersamaan, yang paling baik dicapai ketika memungkinkan waktu pemikiran diperpanjang yang panjang sehingga model dapat secara metodis mengatasi setiap kendala.
+    Tantangan optimasi kendala menantang Claude untuk memenuhi beberapa persyaratan yang bersaing secara bersamaan, yang paling baik dicapai ketika memungkinkan waktu extended thinking yang panjang sehingga model dapat secara metodis mengatasi setiap kendala.
     
     <Tabs>
       <Tab title="Prompt standar">
@@ -233,24 +235,24 @@ Pastikan bola tetap dalam tesseract.`
           userPrompt="Rencanakan liburan seminggu ke Jepang."
           thinkingBudgetTokens={16000}
         >
-          Coba di Console
+          Coba di Konsol
         </TryInConsoleButton>
         <Note>
-        Permintaan terbuka ini biasanya menghasilkan hanya sekitar beberapa detik waktu berpikir.
+        Permintaan open-ended ini biasanya menghasilkan hanya beberapa detik waktu thinking.
         </Note>
       </Tab>
       <Tab title="Prompt yang ditingkatkan">
         <CodeGroup>
         ```text User
         Rencanakan perjalanan 7 hari ke Jepang dengan kendala berikut:
-        - Anggaran $2.500
-        - Harus mencakup Tokyo dan Kyoto
-        - Perlu mengakomodasi diet vegetarian
-        - Preferensi untuk pengalaman budaya daripada berbelanja
-        - Harus mencakup satu hari hiking
-        - Tidak lebih dari 2 jam perjalanan antar lokasi per hari
-        - Perlu waktu luang setiap sore untuk panggilan kembali ke rumah
-        - Harus menghindari keramaian jika memungkinkan
+- Anggaran $2.500
+- Harus mencakup Tokyo dan Kyoto
+- Perlu mengakomodasi diet vegetarian
+- Preferensi untuk pengalaman budaya daripada belanja
+- Harus mencakup satu hari hiking
+- Tidak lebih dari 2 jam perjalanan antara lokasi per hari
+- Perlu waktu luang setiap sore untuk panggilan kembali ke rumah
+- Harus menghindari keramaian jika memungkinkan
         ```
         />
         </CodeGroup>
@@ -261,34 +263,34 @@ Pastikan bola tetap dalam tesseract.`
 - Anggaran $2.500
 - Harus mencakup Tokyo dan Kyoto
 - Perlu mengakomodasi diet vegetarian
-- Preferensi untuk pengalaman budaya daripada berbelanja
+- Preferensi untuk pengalaman budaya daripada belanja
 - Harus mencakup satu hari hiking
-- Tidak lebih dari 2 jam perjalanan antar lokasi per hari
+- Tidak lebih dari 2 jam perjalanan antara lokasi per hari
 - Perlu waktu luang setiap sore untuk panggilan kembali ke rumah
 - Harus menghindari keramaian jika memungkinkan`
           }
           thinkingBudgetTokens={16000}
         >
-          Coba di Console
+          Coba di Konsol
         </TryInConsoleButton>
         <Note>
-        Dengan beberapa kendala untuk diseimbangkan, Claude secara alami akan berkinerja terbaik ketika diberi lebih banyak ruang untuk memikirkan cara memenuhi semua persyaratan secara optimal.
+        Dengan beberapa kendala untuk diseimbangkan, Claude akan secara alami berkinerja terbaik ketika diberikan lebih banyak ruang untuk berpikir tentang cara memenuhi semua persyaratan secara optimal.
         </Note>
       </Tab>
     </Tabs>
   
 </section>
   
-  <section title="Kerangka pemikiran">
+  <section title="Kerangka kerja thinking">
 
-    Kerangka pemikiran terstruktur memberikan Claude metodologi eksplisit untuk diikuti, yang mungkin bekerja terbaik ketika Claude diberi ruang pemikiran diperpanjang yang panjang untuk mengikuti setiap langkah.
+    Kerangka kerja thinking terstruktur memberikan Claude metodologi eksplisit untuk diikuti, yang mungkin bekerja terbaik ketika Claude diberikan ruang extended thinking yang panjang untuk mengikuti setiap langkah.
     
     <Tabs>
       <Tab title="Prompt standar">
         <CodeGroup>
         ```text User
         Kembangkan strategi komprehensif untuk Microsoft
-        memasuki pasar obat yang dipersonalisasi pada tahun 2027.
+memasuki pasar personalized medicine pada tahun 2027.
         ```
         />
         </CodeGroup>
@@ -296,35 +298,35 @@ Pastikan bola tetap dalam tesseract.`
         <TryInConsoleButton
           userPrompt={
             `Kembangkan strategi komprehensif untuk Microsoft
-memasuki pasar obat yang dipersonalisasi pada tahun 2027.`
+memasuki pasar personalized medicine pada tahun 2027.`
           }
           thinkingBudgetTokens={16000}
         >
-          Coba di Console
+          Coba di Konsol
         </TryInConsoleButton>
         <Note>
-        Pertanyaan strategis luas ini biasanya menghasilkan hanya sekitar beberapa detik waktu berpikir.
+        Pertanyaan strategis yang luas ini biasanya menghasilkan hanya beberapa detik waktu thinking.
         </Note>
       </Tab>
       <Tab title="Prompt yang ditingkatkan">
         <CodeGroup>
         ```text User
         Kembangkan strategi komprehensif untuk Microsoft memasuki
-        pasar obat yang dipersonalisasi pada tahun 2027.
-        
-        Mulai dengan:
-        1. Kanvas Strategi Blue Ocean
-        2. Terapkan Lima Kekuatan Porter untuk mengidentifikasi tekanan kompetitif
-        
-        Selanjutnya, lakukan latihan perencanaan skenario dengan empat
-        masa depan yang berbeda berdasarkan variabel regulasi dan teknologi.
-        
-        Untuk setiap skenario:
-        - Kembangkan respons strategis menggunakan Matriks Ansoff
-        
-        Akhirnya, terapkan kerangka Tiga Horizon untuk:
-        - Memetakan jalur transisi
-        - Mengidentifikasi inovasi disruptif potensial di setiap tahap
+pasar personalized medicine pada tahun 2027.
+
+Mulai dengan:
+1. Kanvas Blue Ocean Strategy
+2. Terapkan Porter's Five Forces untuk mengidentifikasi tekanan kompetitif
+
+Selanjutnya, lakukan latihan scenario planning dengan empat
+masa depan yang berbeda berdasarkan variabel regulasi dan teknologi.
+
+Untuk setiap skenario:
+- Kembangkan respons strategis menggunakan Ansoff Matrix
+
+Terakhir, terapkan kerangka kerja Three Horizons untuk:
+- Memetakan jalur transisi
+- Mengidentifikasi inovasi disruptif potensial di setiap tahap
         ```
         />
         </CodeGroup>
@@ -332,46 +334,47 @@ memasuki pasar obat yang dipersonalisasi pada tahun 2027.`
         <TryInConsoleButton
           userPrompt={
             `Kembangkan strategi komprehensif untuk Microsoft memasuki
-pasar obat yang dipersonalisasi pada tahun 2027.
+pasar personalized medicine pada tahun 2027.
 
 Mulai dengan:
-1. Kanvas Strategi Blue Ocean
-2. Terapkan Lima Kekuatan Porter untuk mengidentifikasi tekanan kompetitif
+1. Kanvas Blue Ocean Strategy
+2. Terapkan Porter's Five Forces untuk mengidentifikasi tekanan kompetitif
 
-Selanjutnya, lakukan latihan perencanaan skenario dengan empat
+Selanjutnya, lakukan latihan scenario planning dengan empat
 masa depan yang berbeda berdasarkan variabel regulasi dan teknologi.
 
 Untuk setiap skenario:
-- Kembangkan respons strategis menggunakan Matriks Ansoff
+- Kembangkan respons strategis menggunakan Ansoff Matrix
 
-Akhirnya, terapkan kerangka Tiga Horizon untuk:
+Terakhir, terapkan kerangka kerja Three Horizons untuk:
 - Memetakan jalur transisi
 - Mengidentifikasi inovasi disruptif potensial di setiap tahap`
           }
           thinkingBudgetTokens={16000}
         >
-          Coba di Console
+          Coba di Konsol
         </TryInConsoleButton>
         <Note>
-        Dengan menentukan beberapa kerangka analitis yang harus diterapkan secara berurutan, waktu berpikir secara alami meningkat saat Claude bekerja melalui setiap kerangka secara metodis.
+        Dengan menentukan beberapa kerangka kerja analitik yang harus diterapkan secara berurutan, waktu thinking secara alami meningkat karena Claude menyelesaikan setiap kerangka kerja secara metodis.
         </Note>
       </Tab>
     </Tabs>
   
 </section>
 
-### Minta Claude merefleksikan dan memeriksa pekerjaannya untuk meningkatkan konsistensi dan penanganan kesalahan
+### Biarkan Claude merenungkan dan memeriksa pekerjaannya untuk konsistensi dan penanganan kesalahan yang lebih baik
+
 Anda dapat menggunakan prompting bahasa alami sederhana untuk meningkatkan konsistensi dan mengurangi kesalahan:
-1. Minta Claude untuk memverifikasi pekerjaannya dengan tes sederhana sebelum menyatakan tugas selesai
+1. Minta Claude untuk memverifikasi pekerjaannya dengan tes sederhana sebelum mendeklarasikan tugas selesai
 2. Instruksikan model untuk menganalisis apakah langkah sebelumnya mencapai hasil yang diharapkan
-3. Untuk tugas coding, minta Claude untuk menjalankan kasus uji dalam pemikiran diperpanjangnya
+3. Untuk tugas coding, minta Claude untuk menjalankan test case dalam extended thinking-nya
 
 Contoh:
 
 <CodeGroup>
 ```text User
-Tulis fungsi untuk menghitung faktorial dari suatu angka.
-Sebelum Anda selesai, tolong verifikasi solusi Anda dengan kasus uji untuk:
+Tulis fungsi untuk menghitung faktorial dari angka.
+Sebelum Anda selesai, silakan verifikasi solusi Anda dengan test case untuk:
 - n=0
 - n=1
 - n=5
@@ -383,8 +386,8 @@ Dan perbaiki masalah apa pun yang Anda temukan.
 
 <TryInConsoleButton
   userPrompt={
-    `Tulis fungsi untuk menghitung faktorial dari suatu angka.
-Sebelum Anda selesai, tolong verifikasi solusi Anda dengan kasus uji untuk:
+    `Tulis fungsi untuk menghitung faktorial dari angka.
+Sebelum Anda selesai, silakan verifikasi solusi Anda dengan test case untuk:
 - n=0
 - n=1
 - n=5
@@ -393,16 +396,16 @@ Dan perbaiki masalah apa pun yang Anda temukan.`
   }
   thinkingBudgetTokens={16000}
 >
-  Coba di Console
+  Coba di Konsol
 </TryInConsoleButton>
 
-## Langkah selanjutnya
+## Langkah berikutnya
 
 <CardGroup>
-  <Card title="Cookbook pemikiran diperpanjang" icon="book" href="https://github.com/anthropics/anthropic-cookbook/tree/main/extended_thinking">
-    Jelajahi contoh praktis pemikiran diperpanjang dalam cookbook kami.
+  <Card title="Extended thinking cookbook" icon="book" href="https://platform.claude.com/cookbook/extended-thinking-extended-thinking">
+    Jelajahi contoh praktis extended thinking dalam cookbook kami.
   </Card>
-  <Card title="Panduan pemikiran diperpanjang" icon="code" href="/docs/id/build-with-claude/extended-thinking">
-    Lihat dokumentasi teknis lengkap untuk mengimplementasikan pemikiran diperpanjang.
+  <Card title="Panduan extended thinking" icon="code" href="/docs/id/build-with-claude/extended-thinking">
+    Lihat dokumentasi teknis lengkap untuk mengimplementasikan extended thinking.
   </Card>
 </CardGroup>

@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/grammar-genie
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 0361230010e12af198e96a7c3c0aba3a9f3556917fb2fe70cd92041162ffcbc4
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: e98f934f3e2bf298382459b191705daf87972c7bebbd327425dcb0a3b2b9aede
 ---
 
 # Grammar genie
 
-Mengubah kalimat yang salah secara tata bahasa menjadi bahasa Inggris yang benar.
+Ubah kalimat yang secara gramatikal tidak benar menjadi bahasa Inggris yang tepat.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Content |
-| --- | --- |
-| System | Tugas Anda adalah mengambil teks yang diberikan dan menulis ulang menjadi versi yang jelas dan benar secara tata bahasa sambil mempertahankan makna asli sedekat mungkin. Perbaiki kesalahan ejaan, kesalahan tanda baca, masalah tenses kata kerja, masalah pilihan kata, dan kesalahan tata bahasa lainnya. |
-| User   | I can haz cheeseburger? |
+|        | Konten                                                                                                                                                                                                                                                                                     |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Tugas Anda adalah mengambil teks yang diberikan dan menulis ulang menjadi versi yang jelas dan gramatikal benar sambil mempertahankan makna asli sedekat mungkin. Perbaiki kesalahan ejaan, kesalahan tanda baca, masalah tense kata kerja, masalah pilihan kata, dan kesalahan gramatikal lainnya. |
+| Pengguna   | I can haz cheeseburger?                                                                                                                                                                                                                                                                     |
 
 ## Contoh Output
 
@@ -35,7 +35,7 @@ client = anthropic.Anthropic(  # defaults to os.environ.get("ANTHROPIC_API_KEY")
     api_key="my_api_key",
 )
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1000,
     temperature=0,
     system="Your task is to take the text provided and rewrite it into a clear, grammatically correct version while preserving the original meaning as closely as possible. Correct any spelling mistakes, punctuation errors, verb tense issues, word choice problems, and other grammatical mistakes.",
@@ -60,7 +60,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 0,
   system: "Your task is to take the text provided and rewrite it into a clear, grammatically correct version while preserving the original meaning as closely as possible. Correct any spelling mistakes, punctuation errors, verb tense issues, word choice problems, and other grammatical mistakes.",
@@ -91,7 +91,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=1000,
     temperature=0,
     system="Your task is to take the text provided and rewrite it into a clear, grammatically correct version while preserving the original meaning as closely as possible. Correct any spelling mistakes, punctuation errors, verb tense issues, word choice problems, and other grammatical mistakes.",
@@ -121,7 +121,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+model: "anthropic.claude-opus-4-6-v1:0",
 max_tokens: 1000,
 temperature: 0,
 system: "Your task is to take the text provided and rewrite it into a clear, grammatically correct version while preserving the original meaning as closely as possible. Correct any spelling mistakes, punctuation errors, verb tense issues, word choice problems, and other grammatical mistakes.",

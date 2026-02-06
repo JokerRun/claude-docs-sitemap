@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 9fcda8f71cb2cd8c2a52b7cfd82936977aa4947d5da9d3506a63cdf6f6bc6e72
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 12c99186b4b4c89b01653470b1eb75514ffab2462d67ca14a3225ab9262ae52b
 ---
 
 # Output terstruktur
@@ -13,19 +13,21 @@ Dapatkan hasil JSON yang divalidasi dari alur kerja agen
 
 Output terstruktur membatasi respons Claude untuk mengikuti skema tertentu, memastikan output yang valid dan dapat diurai untuk pemrosesan hilir. Dua fitur yang saling melengkapi tersedia:
 
-- **Output JSON** (`output_format`): Dapatkan respons Claude dalam format JSON tertentu
+- **Output JSON** (`output_config.format`): Dapatkan respons Claude dalam format JSON tertentu
 - **Penggunaan alat ketat** (`strict: true`): Jamin validasi skema pada nama alat dan input
+
+<Warning>
+Parameter `output_format` telah dipindahkan ke `output_config.format`. Parameter `output_format` lama masih berfungsi sementara tetapi sudah usang dan akan dihapus dalam versi API mendatang. Perbarui kode Anda untuk menggunakan `output_config: {format: {...}}` sebagai gantinya.
+</Warning>
 
 Fitur-fitur ini dapat digunakan secara independen atau bersama-sama dalam permintaan yang sama.
 
 <Note>
-Output terstruktur saat ini tersedia sebagai fitur beta publik di Claude API untuk Claude Sonnet 4.5, Claude Opus 4.1, Claude Opus 4.5, dan Claude Haiku 4.5.
-
-Untuk menggunakan fitur ini, atur [header beta](/docs/id/api/beta-headers) `structured-outputs-2025-11-13`.
+Output terstruktur tersedia secara umum di Claude API dan Amazon Bedrock untuk Claude Opus 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5. Output terstruktur tetap dalam beta publik di Microsoft Foundry.
 </Note>
 
 <Tip>
-Bagikan umpan balik menggunakan [formulir](https://forms.gle/BFnYc6iCkWoRzFgk7) ini.
+**Bermigrasi dari beta?** Parameter `output_format` telah dipindahkan ke `output_config.format`, dan header beta tidak lagi diperlukan. Header beta lama (`structured-outputs-2025-11-13`) dan parameter `output_format` akan terus berfungsi selama periode transisi. Lihat contoh kode di bawah untuk bentuk API yang diperbarui.
 </Tip>
 
 ## Mengapa menggunakan output terstruktur
@@ -59,9 +61,8 @@ curl https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: structured-outputs-2025-11-13" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "messages": [
       {
@@ -69,18 +70,20 @@ curl https://api.anthropic.com/v1/messages \
         "content": "Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm."
       }
     ],
-    "output_format": {
-      "type": "json_schema",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "name": {"type": "string"},
-          "email": {"type": "string"},
-          "plan_interest": {"type": "string"},
-          "demo_requested": {"type": "boolean"}
-        },
-        "required": ["name", "email", "plan_interest", "demo_requested"],
-        "additionalProperties": false
+    "output_config": {
+      "format": {
+        "type": "json_schema",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "email": {"type": "string"},
+            "plan_interest": {"type": "string"},
+            "demo_requested": {"type": "boolean"}
+          },
+          "required": ["name", "email", "plan_interest", "demo_requested"],
+          "additionalProperties": false
+        }
       }
     }
   }'
@@ -91,28 +94,29 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+response = client.messages.create(
+    model="claude-opus-4-6",
     max_tokens=1024,
-    betas=["structured-outputs-2025-11-13"],
     messages=[
         {
             "role": "user",
             "content": "Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm."
         }
     ],
-    output_format={
-        "type": "json_schema",
-        "schema": {
-            "type": "object",
-            "properties": {
-                "name": {"type": "string"},
-                "email": {"type": "string"},
-                "plan_interest": {"type": "string"},
-                "demo_requested": {"type": "boolean"}
-            },
-            "required": ["name", "email", "plan_interest", "demo_requested"],
-            "additionalProperties": False
+    output_config={
+        "format": {
+            "type": "json_schema",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string"},
+                    "email": {"type": "string"},
+                    "plan_interest": {"type": "string"},
+                    "demo_requested": {"type": "boolean"}
+                },
+                "required": ["name", "email", "plan_interest", "demo_requested"],
+                "additionalProperties": False
+            }
         }
     }
 )
@@ -126,28 +130,29 @@ const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY
 });
 
-const response = await client.beta.messages.create({
-  model: "claude-sonnet-4-5",
+const response = await client.messages.create({
+  model: "claude-opus-4-6",
   max_tokens: 1024,
-  betas: ["structured-outputs-2025-11-13"],
   messages: [
     {
       role: "user",
       content: "Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm."
     }
   ],
-  output_format: {
-    type: "json_schema",
-    schema: {
-      type: "object",
-      properties: {
-        name: { type: "string" },
-        email: { type: "string" },
-        plan_interest: { type: "string" },
-        demo_requested: { type: "boolean" }
-      },
-      required: ["name", "email", "plan_interest", "demo_requested"],
-      additionalProperties: false
+  output_config: {
+    format: {
+      type: "json_schema",
+      schema: {
+        type: "object",
+        properties: {
+          name: { type: "string" },
+          email: { type: "string" },
+          plan_interest: { type: "string" },
+          demo_requested: { type: "boolean" }
+        },
+        required: ["name", "email", "plan_interest", "demo_requested"],
+        additionalProperties: false
+      }
     }
   }
 });
@@ -173,11 +178,8 @@ console.log(response.content[0].text);
   <Step title="Tentukan skema JSON Anda">
     Buat skema JSON yang mendeskripsikan struktur yang ingin Anda ikuti oleh Claude. Skema menggunakan format JSON Schema standar dengan beberapa batasan (lihat [batasan JSON Schema](#json-schema-limitations)).
   </Step>
-  <Step title="Tambahkan parameter output_format">
-    Sertakan parameter `output_format` dalam permintaan API Anda dengan `type: "json_schema"` dan definisi skema Anda.
-  </Step>
-  <Step title="Sertakan header beta">
-    Tambahkan header `anthropic-beta: structured-outputs-2025-11-13` ke permintaan Anda.
+  <Step title="Tambahkan parameter output_config.format">
+    Sertakan parameter `output_config.format` dalam permintaan API Anda dengan `type: "json_schema"` dan definisi skema Anda.
   </Step>
   <Step title="Urai respons">
     Respons Claude akan berupa JSON yang valid sesuai dengan skema Anda, dikembalikan di `response.content[0].text`.
@@ -186,7 +188,11 @@ console.log(response.content[0].text);
 
 ### Bekerja dengan output JSON di SDK
 
-SDK Python dan TypeScript menyediakan pembantu yang memudahkan bekerja dengan output JSON, termasuk transformasi skema, validasi otomatis, dan integrasi dengan perpustakaan skema populer.
+SDK Python dan TypeScript menyediakan pembantu yang memudahkan pekerjaan dengan output JSON, termasuk transformasi skema, validasi otomatis, dan integrasi dengan perpustakaan skema populer.
+
+<Note>
+Metode pembantu SDK (seperti `.parse()` dan integrasi Pydantic/Zod) masih menerima `output_format` sebagai parameter kenyamanan. SDK menangani terjemahan ke `output_config.format` secara internal. Contoh di bawah menunjukkan sintaks pembantu SDK.
+</Note>
 
 #### Menggunakan Pydantic dan Zod
 
@@ -207,29 +213,29 @@ class ContactInfo(BaseModel):
 client = Anthropic()
 
 # With .create() - requires transform_schema()
-response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+response = client.messages.create(
+    model="claude-opus-4-6",
     max_tokens=1024,
-    betas=["structured-outputs-2025-11-13"],
     messages=[
         {
             "role": "user",
             "content": "Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm."
         }
     ],
-    output_format={
-        "type": "json_schema",
-        "schema": transform_schema(ContactInfo),
+    output_config={
+        "format": {
+            "type": "json_schema",
+            "schema": transform_schema(ContactInfo),
+        }
     }
 )
 
 print(response.content[0].text)
 
 # With .parse() - can pass Pydantic model directly
-response = client.beta.messages.parse(
-    model="claude-sonnet-4-5",
+response = client.messages.parse(
+    model="claude-opus-4-6",
     max_tokens=1024,
-    betas=["structured-outputs-2025-11-13"],
     messages=[
         {
             "role": "user",
@@ -245,7 +251,7 @@ print(response.parsed_output)
 ```typescript TypeScript
 import Anthropic from '@anthropic-ai/sdk';
 import { z } from 'zod';
-import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod';
+import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod';
 
 const ContactInfoSchema = z.object({
   name: z.string(),
@@ -256,34 +262,29 @@ const ContactInfoSchema = z.object({
 
 const client = new Anthropic();
 
-const response = await client.beta.messages.parse({
-  model: "claude-sonnet-4-5",
+const response = await client.messages.create({
+  model: "claude-opus-4-6",
   max_tokens: 1024,
-  betas: ["structured-outputs-2025-11-13"],
   messages: [
     {
       role: "user",
       content: "Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm."
     }
   ],
-  output_format: betaZodOutputFormat(ContactInfoSchema),
+  output_config: { format: zodOutputFormat(ContactInfoSchema) },
 });
 
 // Automatically parsed and validated
-console.log(response.parsed_output);
+console.log(response.content[0].text);
 ```
 
 </CodeGroup>
 
 #### Metode khusus SDK
 
-**Python: `client.beta.messages.parse()` (Direkomendasikan)**
+**Python: `client.messages.parse()` (Direkomendasikan)**
 
 Metode `parse()` secara otomatis mengubah model Pydantic Anda, memvalidasi respons, dan mengembalikan atribut `parsed_output`.
-
-<Note>
-Metode `parse()` tersedia di `client.beta.messages`, bukan `client.messages`.
-</Note>
 
 <section title="Contoh penggunaan">
 
@@ -298,9 +299,8 @@ class ContactInfo(BaseModel):
 
 client = anthropic.Anthropic()
 
-response = client.beta.messages.parse(
-    model="claude-sonnet-4-5",
-    betas=["structured-outputs-2025-11-13"],
+response = client.messages.parse(
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[{"role": "user", "content": "..."}],
     output_format=ContactInfo,
@@ -315,7 +315,7 @@ print(contact.name, contact.email)
 
 **Python: pembantu `transform_schema()`**
 
-Untuk ketika Anda perlu secara manual mengubah skema sebelum mengirim, atau ketika Anda ingin memodifikasi skema yang dihasilkan Pydantic. Tidak seperti `client.beta.messages.parse()`, yang mengubah skema yang disediakan secara otomatis, ini memberi Anda skema yang diubah sehingga Anda dapat menyesuaikannya lebih lanjut.
+Untuk ketika Anda perlu secara manual mengubah skema sebelum mengirim, atau ketika Anda ingin memodifikasi skema yang dihasilkan Pydantic. Tidak seperti `client.messages.parse()`, yang secara otomatis mengubah skema yang disediakan, ini memberi Anda skema yang diubah sehingga Anda dapat menyesuaikannya lebih lanjut.
 
 <section title="Contoh penggunaan">
 
@@ -329,12 +329,13 @@ schema = transform_schema(schema)
 # Modify schema if needed
 schema["properties"]["custom_field"] = {"type": "string"}
 
-response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
-    betas=["structured-outputs-2025-11-13"],
+response = client.messages.create(
+    model="claude-opus-4-6",
     max_tokens=1024,
-    output_format=schema,
     messages=[{"role": "user", "content": "..."}],
+    output_config={
+        "format": {"type": "json_schema", "schema": schema},
+    },
 )
 ```
 
@@ -345,20 +346,20 @@ response = client.beta.messages.create(
 SDK Python dan TypeScript secara otomatis mengubah skema dengan fitur yang tidak didukung:
 
 1. **Hapus batasan yang tidak didukung** (misalnya, `minimum`, `maximum`, `minLength`, `maxLength`)
-2. **Perbarui deskripsi** dengan informasi batasan (misalnya, "Harus minimal 100"), ketika batasan tidak langsung didukung dengan output terstruktur
+2. **Perbarui deskripsi** dengan informasi batasan (misalnya, "Harus setidaknya 100"), ketika batasan tidak langsung didukung dengan output terstruktur
 3. **Tambahkan `additionalProperties: false`** ke semua objek
 4. **Filter format string** ke daftar yang didukung saja
 5. **Validasi respons** terhadap skema asli Anda (dengan semua batasan)
 
 Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda masih memberlakukan semua batasan melalui validasi.
 
-**Contoh:** Bidang Pydantic dengan `minimum: 100` menjadi integer biasa dalam skema yang dikirim, tetapi deskripsi diperbarui menjadi "Harus minimal 100", dan SDK memvalidasi respons terhadap batasan asli.
+**Contoh:** Bidang Pydantic dengan `minimum: 100` menjadi integer biasa dalam skema yang dikirim, tetapi deskripsi diperbarui menjadi "Harus setidaknya 100", dan SDK memvalidasi respons terhadap batasan asli.
 
 ### Kasus penggunaan umum
 
 <section title="Ekstraksi data">
 
-Ekstrak data terstruktur dari teks yang tidak terstruktur:
+Ekstrak data terstruktur dari teks tidak terstruktur:
 
 <CodeGroup>
 
@@ -373,9 +374,8 @@ class Invoice(BaseModel):
     line_items: List[dict]
     customer_name: str
 
-response = client.beta.messages.parse(
-    model="claude-sonnet-4-5",
-    betas=["structured-outputs-2025-11-13"],
+response = client.messages.parse(
+    model="claude-opus-4-6",
     output_format=Invoice,
     messages=[{"role": "user", "content": f"Extract invoice data from: {invoice_text}"}]
 )
@@ -383,19 +383,19 @@ response = client.beta.messages.parse(
 
 ```typescript TypeScript
 import { z } from 'zod';
+import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod';
 
 const InvoiceSchema = z.object({
   invoice_number: z.string(),
   date: z.string(),
   total_amount: z.number(),
-  line_items: z.array(z.record(z.any())),
+  line_items: z.array(z.record(z.string(), z.any())),
   customer_name: z.string(),
 });
 
-const response = await client.beta.messages.parse({
-  model: "claude-sonnet-4-5",
-  betas: ["structured-outputs-2025-11-13"],
-  output_format: InvoiceSchema,
+const response = await client.messages.create({
+  model: "claude-opus-4-6",
+  output_config: { format: zodOutputFormat(InvoiceSchema) },
   messages: [{"role": "user", "content": `Extract invoice data from: ${invoiceText}`}]
 });
 ```
@@ -420,9 +420,8 @@ class Classification(BaseModel):
     tags: List[str]
     sentiment: str
 
-response = client.beta.messages.parse(
-    model="claude-sonnet-4-5",
-    betas=["structured-outputs-2025-11-13"],
+response = client.messages.parse(
+    model="claude-opus-4-6",
     output_format=Classification,
     messages=[{"role": "user", "content": f"Classify this feedback: {feedback_text}"}]
 )
@@ -430,6 +429,7 @@ response = client.beta.messages.parse(
 
 ```typescript TypeScript
 import { z } from 'zod';
+import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod';
 
 const ClassificationSchema = z.object({
   category: z.string(),
@@ -438,10 +438,9 @@ const ClassificationSchema = z.object({
   sentiment: z.string(),
 });
 
-const response = await client.beta.messages.parse({
-  model: "claude-sonnet-4-5",
-  betas: ["structured-outputs-2025-11-13"],
-  output_format: ClassificationSchema,
+const response = await client.messages.create({
+  model: "claude-opus-4-6",
+  output_config: { format: zodOutputFormat(ClassificationSchema) },
   messages: [{"role": "user", "content": `Classify this feedback: ${feedbackText}`}]
 });
 ```
@@ -450,7 +449,7 @@ const response = await client.beta.messages.parse({
 
 </section>
 
-<section title="Format respons API">
+<section title="Pemformatan respons API">
 
 Hasilkan respons yang siap API:
 
@@ -466,9 +465,8 @@ class APIResponse(BaseModel):
     errors: Optional[List[dict]]
     metadata: dict
 
-response = client.beta.messages.parse(
-    model="claude-sonnet-4-5",
-    betas=["structured-outputs-2025-11-13"],
+response = client.messages.parse(
+    model="claude-opus-4-6",
     output_format=APIResponse,
     messages=[{"role": "user", "content": "Process this request: ..."}]
 )
@@ -476,18 +474,18 @@ response = client.beta.messages.parse(
 
 ```typescript TypeScript
 import { z } from 'zod';
+import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod';
 
 const APIResponseSchema = z.object({
   status: z.string(),
-  data: z.record(z.any()),
-  errors: z.array(z.record(z.any())).optional(),
-  metadata: z.record(z.any()),
+  data: z.record(z.string(), z.any()),
+  errors: z.array(z.record(z.string(), z.any())).optional(),
+  metadata: z.record(z.string(), z.any()),
 });
 
-const response = await client.beta.messages.parse({
-  model: "claude-sonnet-4-5",
-  betas: ["structured-outputs-2025-11-13"],
-  output_format: APIResponseSchema,
+const response = await client.messages.create({
+  model: "claude-opus-4-6",
+  output_config: { format: zodOutputFormat(APIResponseSchema) },
   messages: [{"role": "user", "content": "Process this request: ..."}]
 });
 ```
@@ -512,7 +510,7 @@ Membangun sistem agen yang andal memerlukan kepatuhan skema yang dijamin. Tanpa 
 Penggunaan alat ketat menjamin parameter yang aman tipe:
 - Fungsi menerima argumen yang diketik dengan benar setiap saat
 - Tidak perlu memvalidasi dan mencoba ulang panggilan alat
-- Agen siap produksi yang bekerja secara konsisten dalam skala
+- Agen siap produksi yang bekerja secara konsisten dalam skala besar
 
 Misalnya, anggaplah sistem pemesanan memerlukan `passengers: int`. Tanpa mode ketat, Claude mungkin memberikan `passengers: "two"` atau `passengers: "2"`. Dengan `strict: true`, respons akan selalu berisi `passengers: 2`.
 
@@ -525,9 +523,8 @@ curl https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: structured-outputs-2025-11-13" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "messages": [
       {"role": "user", "content": "What is the weather in San Francisco?"}
@@ -560,10 +557,9 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+response = client.messages.create(
+    model="claude-opus-4-6",
     max_tokens=1024,
-    betas=["structured-outputs-2025-11-13"],
     messages=[
         {"role": "user", "content": "What's the weather like in San Francisco?"}
     ],
@@ -601,10 +597,9 @@ const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY
 });
 
-const response = await client.beta.messages.create({
-  model: "claude-sonnet-4-5",
+const response = await client.messages.create({
+  model: "claude-opus-4-6",
   max_tokens: 1024,
-  betas: ["structured-outputs-2025-11-13"],
   messages: [
     {
       role: "user",
@@ -650,8 +645,8 @@ console.log(response.content);
 ```
 
 **Jaminan:**
-- `input` alat ketat mengikuti `input_schema`
-- `name` alat selalu valid (dari alat yang disediakan atau alat server)
+- Input alat `input` ketat mengikuti `input_schema`
+- Nama alat `name` selalu valid (dari alat yang disediakan atau alat server)
 
 ### Cara kerjanya
 
@@ -662,9 +657,6 @@ console.log(response.content);
   <Step title="Tambahkan strict: true">
     Atur `"strict": true` sebagai properti tingkat atas dalam definisi alat Anda, bersama dengan `name`, `description`, dan `input_schema`.
   </Step>
-  <Step title="Sertakan header beta">
-    Tambahkan header `anthropic-beta: structured-outputs-2025-11-13` ke permintaan Anda.
-  </Step>
   <Step title="Tangani panggilan alat">
     Ketika Claude menggunakan alat, bidang `input` dalam blok tool_use akan ketat mengikuti `input_schema` Anda, dan `name` akan selalu valid.
   </Step>
@@ -674,14 +666,13 @@ console.log(response.content);
 
 <section title="Input alat yang divalidasi">
 
-Pastikan parameter alat tepat sesuai dengan skema Anda:
+Pastikan parameter alat persis sesuai dengan skema Anda:
 
 <CodeGroup>
 
 ```python Python
-response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
-    betas=["structured-outputs-2025-11-13"],
+response = client.messages.create(
+    model="claude-opus-4-6",
     messages=[{"role": "user", "content": "Search for flights to Tokyo"}],
     tools=[{
         "name": "search_flights",
@@ -701,9 +692,8 @@ response = client.beta.messages.create(
 ```
 
 ```typescript TypeScript
-const response = await client.beta.messages.create({
-  model: "claude-sonnet-4-5",
-  betas: ["structured-outputs-2025-11-13"],
+const response = await client.messages.create({
+  model: "claude-opus-4-6",
   messages: [{"role": "user", "content": "Search for flights to Tokyo"}],
   tools: [{
     name: "search_flights",
@@ -733,9 +723,8 @@ Bangun agen multi-langkah yang andal dengan parameter alat yang dijamin:
 <CodeGroup>
 
 ```python Python
-response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
-    betas=["structured-outputs-2025-11-13"],
+response = client.messages.create(
+    model="claude-opus-4-6",
     messages=[{"role": "user", "content": "Help me plan a trip to Paris for 2 people"}],
     tools=[
         {
@@ -772,9 +761,8 @@ response = client.beta.messages.create(
 ```
 
 ```typescript TypeScript
-const response = await client.beta.messages.create({
-  model: "claude-sonnet-4-5",
-  betas: ["structured-outputs-2025-11-13"],
+const response = await client.messages.create({
+  model: "claude-opus-4-6",
   messages: [{"role": "user", "content": "Help me plan a trip to Paris for 2 people"}],
   tools: [
     {
@@ -821,27 +809,28 @@ Output JSON dan penggunaan alat ketat menyelesaikan masalah yang berbeda dan dap
 - **Output JSON** mengontrol format respons Claude (apa yang Claude katakan)
 - **Penggunaan alat ketat** memvalidasi parameter alat (bagaimana Claude memanggil fungsi Anda)
 
-Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin-valid DAN mengembalikan respons JSON terstruktur. Ini berguna untuk alur kerja agen di mana Anda memerlukan panggilan alat yang andal dan output akhir yang terstruktur.
+Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin valid DAN mengembalikan respons JSON terstruktur. Ini berguna untuk alur kerja agen di mana Anda memerlukan panggilan alat yang andal dan output akhir yang terstruktur.
 
 <CodeGroup>
 
 ```python Python
-response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
-    betas=["structured-outputs-2025-11-13"],
+response = client.messages.create(
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Help me plan a trip to Paris for next month"}],
     # JSON outputs: structured response format
-    output_format={
-        "type": "json_schema",
-        "schema": {
-            "type": "object",
-            "properties": {
-                "summary": {"type": "string"},
-                "next_steps": {"type": "array", "items": {"type": "string"}}
-            },
-            "required": ["summary", "next_steps"],
-            "additionalProperties": False
+    output_config={
+        "format": {
+            "type": "json_schema",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "summary": {"type": "string"},
+                    "next_steps": {"type": "array", "items": {"type": "string"}}
+                },
+                "required": ["summary", "next_steps"],
+                "additionalProperties": False
+            }
         }
     },
     # Strict tool use: guaranteed tool parameters
@@ -862,22 +851,23 @@ response = client.beta.messages.create(
 ```
 
 ```typescript TypeScript
-const response = await client.beta.messages.create({
-  model: "claude-sonnet-4-5",
-  betas: ["structured-outputs-2025-11-13"],
+const response = await client.messages.create({
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Help me plan a trip to Paris for next month" }],
   // JSON outputs: structured response format
-  output_format: {
-    type: "json_schema",
-    schema: {
-      type: "object",
-      properties: {
-        summary: { type: "string" },
-        next_steps: { type: "array", items: { type: "string" } }
-      },
-      required: ["summary", "next_steps"],
-      additionalProperties: false
+  output_config: {
+    format: {
+      type: "json_schema",
+      schema: {
+        type: "object",
+        properties: {
+          summary: { type: "string" },
+          next_steps: { type: "array", items: { type: "string" } }
+        },
+        required: ["summary", "next_steps"],
+        additionalProperties: false
+      }
     }
   },
   // Strict tool use: guaranteed tool parameters
@@ -909,7 +899,7 @@ Output terstruktur menggunakan sampling terbatas dengan artefak tata bahasa yang
 - **Caching otomatis**: Tata bahasa yang dikompilasi di-cache selama 24 jam dari penggunaan terakhir, membuat permintaan berikutnya jauh lebih cepat
 - **Invalidasi cache**: Cache dibatalkan jika Anda mengubah:
   - Struktur skema JSON
-  - Set alat dalam permintaan Anda (ketika menggunakan output terstruktur dan penggunaan alat bersama-sama)
+  - Set alat dalam permintaan Anda (saat menggunakan output terstruktur dan penggunaan alat bersama-sama)
   - Mengubah hanya bidang `name` atau `description` tidak membatalkan cache
 
 ### Modifikasi prompt dan biaya token
@@ -918,7 +908,7 @@ Saat menggunakan output terstruktur, Claude secara otomatis menerima prompt sist
 
 - Jumlah token input Anda akan sedikit lebih tinggi
 - Prompt yang disuntikkan menghabiskan token Anda seperti prompt sistem lainnya
-- Mengubah parameter `output_format` akan membatalkan [cache prompt](/docs/id/build-with-claude/prompt-caching) apa pun untuk utas percakapan itu
+- Mengubah parameter `output_config.format` akan membatalkan [cache prompt](/docs/id/build-with-claude/prompt-caching) apa pun untuk utas percakapan itu
 
 ### Batasan JSON Schema
 
@@ -942,7 +932,7 @@ Output terstruktur mendukung JSON Schema standar dengan beberapa batasan. Baik o
 
 - Skema rekursif
 - Tipe kompleks dalam enum
-- Eksternal `$ref` (misalnya, `'$ref': 'http://...'`)
+- `$ref` eksternal (misalnya, `'$ref': 'http://...'`)
 - Batasan numerik (`minimum`, `maximum`, `multipleOf`, dll.)
 - Batasan string (`minLength`, `maxLength`)
 - Batasan array di luar `minItems` dari 0 atau 1
@@ -955,16 +945,16 @@ Jika Anda menggunakan fitur yang tidak didukung, Anda akan menerima kesalahan 40
 <section title="Dukungan pola (regex)">
 
 **Fitur regex yang didukung:**
-- Pencocokan penuh (`^...$`) dan pencocokan parsial
-- Kuantifier: `*`, `+`, `?`, kasus `{n,m}` sederhana
+- Pencocokan penuh (`^...$`) dan pencocokan sebagian
+- Quantifier: `*`, `+`, `?`, kasus `{n,m}` sederhana
 - Kelas karakter: `[]`, `.`, `\d`, `\w`, `\s`
 - Grup: `(...)`
 
 **TIDAK didukung:**
 - Backreferences ke grup (misalnya, `\1`, `\2`)
-- Pernyataan lookahead/lookbehind (misalnya, `(?=...)`, `(?!...)`)
+- Asersi lookahead/lookbehind (misalnya, `(?=...)`, `(?!...)`)
 - Batas kata: `\b`, `\B`
-- Kuantifier `{n,m}` kompleks dengan rentang besar
+- Quantifier `{n,m}` kompleks dengan rentang besar
 
 Pola regex sederhana bekerja dengan baik. Pola kompleks mungkin menghasilkan kesalahan 400.
 
@@ -976,11 +966,11 @@ SDK Python dan TypeScript dapat secara otomatis mengubah skema dengan fitur yang
 
 ### Output yang tidak valid
 
-Meskipun output terstruktur menjamin kepatuhan skema dalam sebagian besar kasus, ada skenario di mana output mungkin tidak sesuai dengan skema Anda:
+Meskipun output terstruktur menjamin kepatuhan skema dalam kebanyakan kasus, ada skenario di mana output mungkin tidak sesuai dengan skema Anda:
 
 **Penolakan** (`stop_reason: "refusal"`)
 
-Claude mempertahankan properti keamanan dan kegunaannya bahkan saat menggunakan output terstruktur. Jika Claude menolak permintaan karena alasan keamanan:
+Claude mempertahankan properti keselamatan dan kegunaannya bahkan saat menggunakan output terstruktur. Jika Claude menolak permintaan karena alasan keselamatan:
 
 - Respons akan memiliki `stop_reason: "refusal"`
 - Anda akan menerima kode status 200
@@ -1000,7 +990,7 @@ Jika respons dipotong karena mencapai batas `max_tokens`:
 Jika skema Anda menggunakan fitur yang tidak didukung atau terlalu kompleks, Anda akan menerima kesalahan 400:
 
 **"Terlalu banyak definisi rekursif dalam skema"**
-- Penyebab: Skema memiliki definisi rekursif yang berlebihan atau siklis
+- Penyebab: Skema memiliki definisi rekursif yang berlebihan atau siklik
 - Solusi: Sederhanakan struktur skema, kurangi kedalaman nesting
 
 **"Skema terlalu kompleks"**
@@ -1012,14 +1002,14 @@ Untuk masalah persisten dengan skema yang valid, [hubungi dukungan](https://supp
 ## Kompatibilitas fitur
 
 **Bekerja dengan:**
-- **[Pemrosesan batch](/docs/id/build-with-claude/batch-processing)**: Proses output terstruktur dalam skala dengan diskon 50%
+- **[Pemrosesan batch](/docs/id/build-with-claude/batch-processing)**: Proses output terstruktur dalam skala besar dengan diskon 50%
 - **[Penghitungan token](/docs/id/build-with-claude/token-counting)**: Hitung token tanpa kompilasi
 - **[Streaming](/docs/id/build-with-claude/streaming)**: Stream output terstruktur seperti respons normal
-- **Penggunaan gabungan**: Gunakan output JSON (`output_format`) dan penggunaan alat ketat (`strict: true`) bersama-sama dalam permintaan yang sama
+- **Penggunaan gabungan**: Gunakan output JSON (`output_config.format`) dan penggunaan alat ketat (`strict: true`) bersama-sama dalam permintaan yang sama
 
 **Tidak kompatibel dengan:**
-- **[Kutipan](/docs/id/build-with-claude/citations)**: Kutipan memerlukan interleaving blok kutipan dengan teks, yang bertentangan dengan batasan skema JSON ketat. Mengembalikan kesalahan 400 jika kutipan diaktifkan dengan `output_format`.
-- **[Prefilling Pesan](/docs/id/build-with-claude/prompt-engineering/prefill-claudes-response)**: Tidak kompatibel dengan output JSON
+- **[Kutipan](/docs/id/build-with-claude/citations)**: Kutipan memerlukan interleaving blok kutipan dengan teks, yang bertentangan dengan batasan skema JSON ketat. Mengembalikan kesalahan 400 jika kutipan diaktifkan dengan `output_config.format`.
+- **Prefilling Pesan**: Tidak kompatibel dengan output JSON
 
 <Tip>
 **Cakupan tata bahasa**: Tata bahasa hanya berlaku untuk output langsung Claude, bukan untuk panggilan penggunaan alat, hasil alat, atau tag pemikiran (saat menggunakan [Extended Thinking](/docs/id/build-with-claude/extended-thinking)). Status tata bahasa direset antar bagian, memungkinkan Claude berpikir bebas sambil tetap menghasilkan output terstruktur dalam respons akhir.

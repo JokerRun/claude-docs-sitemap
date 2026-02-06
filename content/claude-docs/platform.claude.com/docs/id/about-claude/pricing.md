@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: a5de570a275777158839c9c08fe91c8361565f25e1a02715ad00a6ca9f661bbc
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 9fbd3783bd21edf7143ff88f40c6f5b454e3d0ff594e98293d066b31c8c04065
 ---
 
 # Harga
@@ -21,6 +21,7 @@ Tabel berikut menunjukkan harga untuk semua model Claude di berbagai tingkat pen
 
 | Model             | Base Input Tokens | 5m Cache Writes | 1h Cache Writes | Cache Hits & Refreshes | Output Tokens |
 |-------------------|-------------------|-----------------|-----------------|----------------------|---------------|
+| Claude Opus 4.6     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.5   | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.1   | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
 | Claude Opus 4     | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
@@ -52,26 +53,35 @@ Model Claude tersedia di [AWS Bedrock](/docs/id/build-with-claude/claude-on-amaz
 **Harga endpoint regional untuk model Claude 4.5 dan seterusnya**
 
 Mulai dari Claude Sonnet 4.5 dan Haiku 4.5, AWS Bedrock dan Google Vertex AI menawarkan dua jenis endpoint:
-- **Endpoint global**: Perutean dinamis di seluruh wilayah untuk ketersediaan maksimal
-- **Endpoint regional**: Perutean data dijamin dalam wilayah geografis tertentu
+- **Endpoint global**: Perutean dinamis di seluruh region untuk ketersediaan maksimal
+- **Endpoint regional**: Perutean data dijamin dalam region geografis tertentu
 
 Endpoint regional mencakup premium 10% dibandingkan endpoint global. **Claude API (1P) bersifat global secara default dan tidak terpengaruh oleh perubahan ini.** Claude API bersifat global-only (setara dengan penawaran endpoint global dan harga dari penyedia lain).
 
 **Cakupan**: Struktur harga ini berlaku untuk Claude Sonnet 4.5, Haiku 4.5, dan semua model di masa depan. Model sebelumnya (Claude Sonnet 4, Opus 4, dan rilis sebelumnya) mempertahankan harga yang ada.
 
 Untuk detail implementasi dan contoh kode:
-- [Endpoint global vs regional AWS Bedrock](/docs/id/build-with-claude/claude-on-amazon-bedrock#global-vs-regional-endpoints)
-- [Endpoint global vs regional Google Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai#global-vs-regional-endpoints)
+- [AWS Bedrock endpoint global vs regional](/docs/id/build-with-claude/claude-on-amazon-bedrock#global-vs-regional-endpoints)
+- [Google Vertex AI endpoint global vs regional](/docs/id/build-with-claude/claude-on-vertex-ai#global-vs-regional-endpoints)
 </Note>
 
 ## Harga khusus fitur
 
+### Harga residensi data
+
+Untuk Claude Opus 4.6 dan model yang lebih baru, menentukan inferensi hanya-AS melalui parameter `inference_geo` menimbulkan pengganda 1,1x pada semua kategori harga token, termasuk token input, token output, cache write, dan cache read. Perutean global (default) menggunakan harga standar.
+
+Ini berlaku hanya untuk Claude API (1P). Platform pihak ketiga memiliki harga regional mereka sendiri — lihat [AWS Bedrock](https://aws.amazon.com/bedrock/pricing/), [Google Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/pricing), dan [Microsoft Foundry](https://azure.microsoft.com/en-us/pricing/details/ai-foundry/#pricing) untuk detail. Model sebelumnya mempertahankan harga yang ada terlepas dari pengaturan `inference_geo`.
+
+Untuk informasi lebih lanjut, lihat [dokumentasi residensi data](/docs/id/build-with-claude/data-residency) kami.
+
 ### Pemrosesan batch
 
-Batch API memungkinkan pemrosesan asinkron dari volume besar permintaan dengan diskon 50% untuk token input dan output.
+Batch API memungkinkan pemrosesan asinkron volume besar permintaan dengan diskon 50% pada token input dan output.
 
 | Model             | Batch input      | Batch output    |
 |-------------------|------------------|-----------------|
+| Claude Opus 4.6       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.5     | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.1     | $7.50 / MTok     | $37.50 / MTok   |
 | Claude Opus 4     | $7.50 / MTok     | $37.50 / MTok   |
@@ -87,28 +97,31 @@ Untuk informasi lebih lanjut tentang pemrosesan batch, lihat [dokumentasi pemros
 
 ### Harga konteks panjang
 
-Saat menggunakan Claude Sonnet 4 atau Sonnet 4.5 dengan [jendela konteks token 1M diaktifkan](/docs/id/build-with-claude/context-windows#1m-token-context-window), permintaan yang melebihi 200K token input secara otomatis dikenakan biaya pada tingkat konteks panjang premium:
+Saat menggunakan Claude Opus 4.6, Sonnet 4.5, atau Sonnet 4 dengan [jendela konteks token 1M diaktifkan](/docs/id/build-with-claude/context-windows#1m-token-context-window), permintaan yang melebihi 200K token input secara otomatis dikenakan biaya pada tarif konteks panjang premium:
 
 <Note>
-Jendela konteks token 1M saat ini dalam beta untuk organisasi di [tingkat penggunaan](/docs/id/api/rate-limits) 4 dan organisasi dengan batas laju kustom. Jendela konteks token 1M hanya tersedia untuk Claude Sonnet 4 dan Sonnet 4.5.
+Jendela konteks token 1M saat ini dalam beta untuk organisasi di [tingkat penggunaan](/docs/id/api/rate-limits) 4 dan organisasi dengan batas laju kustom. Jendela konteks token 1M hanya tersedia untuk Claude Opus 4.6, Sonnet 4.5, dan Sonnet 4.
 </Note>
 
-| ≤ 200K token input | > 200K token input |
-|-----------------------------------|-------------------------------------|
-| Input: $3 / MTok | Input: $6 / MTok |
-| Output: $15 / MTok | Output: $22.50 / MTok |
+| Model | ≤ 200K token input | > 200K token input |
+|-------|-----------------------------------|-------------------------------------|
+| Claude Opus 4.6 | Input: $5 / MTok | Input: $10 / MTok |
+|  | Output: $25 / MTok | Output: $37.50 / MTok |
+| Claude Sonnet 4.5 / 4 | Input: $3 / MTok | Input: $6 / MTok |
+|  | Output: $15 / MTok | Output: $22.50 / MTok |
 
 Harga konteks panjang ditumpuk dengan pengubah harga lainnya:
-- Diskon [Batch API 50%](#batch-processing) berlaku untuk harga konteks panjang
-- Pengganda [prompt caching](#model-pricing) berlaku di atas harga konteks panjang
+- [Diskon Batch API 50%](#batch-processing) berlaku untuk harga konteks panjang
+- [Pengganda prompt caching](#model-pricing) berlaku di atas harga konteks panjang
+- [Pengganda residensi data 1,1x](#data-residency-pricing) berlaku di atas harga konteks panjang
 
 <Note>
-Bahkan dengan flag beta diaktifkan, permintaan dengan kurang dari 200K token input dikenakan biaya pada tingkat standar. Jika permintaan Anda melebihi 200K token input, semua token dikenakan harga premium.
+Bahkan dengan flag beta diaktifkan, permintaan dengan token input kurang dari 200K dikenakan biaya pada tarif standar. Jika permintaan Anda melebihi 200K token input, semua token dikenakan harga premium.
 
-Ambang batas 200K didasarkan semata-mata pada token input (termasuk cache reads/writes). Jumlah token output tidak mempengaruhi pemilihan tingkat harga, meskipun token output dikenakan biaya pada tingkat lebih tinggi ketika ambang batas input terlampaui.
+Ambang batas 200K didasarkan semata-mata pada token input (termasuk cache read/write). Jumlah token output tidak mempengaruhi pemilihan tingkat harga, meskipun token output dikenakan biaya pada tarif yang lebih tinggi ketika ambang batas input terlampaui.
 </Note>
 
-Untuk memeriksa apakah permintaan API Anda dikenakan biaya pada tingkat jendela konteks 1M, periksa objek `usage` dalam respons API:
+Untuk memeriksa apakah permintaan API Anda dikenakan biaya pada tarif jendela konteks 1M, periksa objek `usage` dalam respons API:
 
 ```json
 {
@@ -126,7 +139,7 @@ Hitung total token input dengan menjumlahkan:
 - `cache_creation_input_tokens` (jika menggunakan prompt caching)
 - `cache_read_input_tokens` (jika menggunakan prompt caching)
 
-Jika total melebihi 200.000 token, seluruh permintaan ditagih pada tingkat konteks 1M.
+Jika totalnya melebihi 200.000 token, seluruh permintaan ditagih pada tarif konteks 1M.
 
 Untuk informasi lebih lanjut tentang objek `usage`, lihat [dokumentasi respons API](/docs/id/api/messages#response-usage).
 
@@ -149,6 +162,7 @@ When you use `tools`, we also automatically include a special system prompt for 
 
 | Model                    | Tool choice                                          | Tool use system prompt token count          |
 |--------------------------|------------------------------------------------------|---------------------------------------------|
+| Claude Opus 4.6              | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Opus 4.5            | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Opus 4.1            | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Opus 4            | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
@@ -271,13 +285,13 @@ Memahami harga untuk aplikasi agen sangat penting saat membangun dengan Claude. 
 
 ### Contoh agen dukungan pelanggan
 
-Saat membangun agen dukungan pelanggan, berikut adalah cara biaya dapat terbagi:
+Saat membangun agen dukungan pelanggan, berikut adalah cara biaya mungkin terbagi:
 
 <Note>
   Contoh perhitungan untuk memproses 10.000 tiket dukungan:
   - Rata-rata ~3.700 token per percakapan
-  - Menggunakan Claude Sonnet 4.5 pada $3/MTok input, $15/MTok output
-  - Total biaya: ~$22.20 per 10.000 tiket
+  - Menggunakan Claude Opus 4.6 pada $5/MTok input, $25/MTok output
+  - Total biaya: ~$37,00 per 10.000 tiket
 </Note>
 
 Untuk panduan terperinci tentang perhitungan ini, lihat [panduan agen dukungan pelanggan](/docs/id/about-claude/use-case-guides/customer-support-chat) kami.
@@ -288,16 +302,16 @@ Untuk arsitektur agen yang lebih kompleks dengan beberapa langkah:
 
 1. **Pemrosesan permintaan awal**
    - Input tipikal: 500-1.000 token
-   - Biaya pemrosesan: ~$0.003 per permintaan
+   - Biaya pemrosesan: ~$0,003 per permintaan
 
 2. **Pengambilan memori dan konteks**
    - Konteks yang diambil: 2.000-5.000 token
-   - Biaya per pengambilan: ~$0.015 per operasi
+   - Biaya per pengambilan: ~$0,015 per operasi
 
 3. **Perencanaan dan eksekusi tindakan**
    - Token perencanaan: 1.000-2.000
    - Umpan balik eksekusi: 500-1.000
-   - Biaya gabungan: ~$0.045 per tindakan
+   - Biaya gabungan: ~$0,045 per tindakan
 
 Untuk panduan komprehensif tentang pola harga agen, lihat [panduan kasus penggunaan agen](/docs/id/about-claude/use-case-guides) kami.
 
@@ -311,7 +325,7 @@ Saat membangun agen dengan Claude:
 4. **Pantau pola penggunaan**: Lacak konsumsi token untuk mengidentifikasi peluang optimasi
 
 <Tip>
-  Untuk aplikasi agen volume tinggi, pertimbangkan untuk menghubungi [tim penjualan enterprise](/docs/id/contact-sales) kami untuk pengaturan harga kustom.
+  Untuk aplikasi agen volume tinggi, pertimbangkan menghubungi [tim penjualan enterprise](/docs/id/contact-sales) kami untuk pengaturan harga kustom.
 </Tip>
 
 ## Pertimbangan harga tambahan
@@ -320,27 +334,27 @@ Saat membangun agen dengan Claude:
 
 Batas laju bervariasi menurut tingkat penggunaan dan mempengaruhi berapa banyak permintaan yang dapat Anda buat:
 
-- **Tier 1**: Penggunaan tingkat entry dengan batas dasar
+- **Tier 1**: Penggunaan tingkat pemula dengan batas dasar
 - **Tier 2**: Batas yang ditingkatkan untuk aplikasi yang berkembang
-- **Tier 3**: Batas lebih tinggi untuk aplikasi yang sudah mapan
+- **Tier 3**: Batas yang lebih tinggi untuk aplikasi yang sudah mapan
 - **Tier 4**: Batas standar maksimal
 - **Enterprise**: Batas kustom tersedia
 
 Untuk informasi batas laju terperinci, lihat [dokumentasi batas laju](/docs/id/api/rate-limits) kami.
 
-Untuk batas laju lebih tinggi atau pengaturan harga kustom, [hubungi tim penjualan kami](https://claude.com/contact-sales).
+Untuk batas laju yang lebih tinggi atau pengaturan harga kustom, [hubungi tim penjualan kami](https://claude.com/contact-sales).
 
 ### Diskon volume
 
 Diskon volume mungkin tersedia untuk pengguna volume tinggi. Ini dinegosiasikan berdasarkan kasus per kasus.
 
 - Tier standar menggunakan harga yang ditunjukkan di atas
-- Pelanggan enterprise dapat [menghubungi penjualan](mailto:sales@anthropic.com) untuk harga kustom
+- Pelanggan Enterprise dapat [menghubungi penjualan](mailto:sales@anthropic.com) untuk harga kustom
 - Diskon akademik dan penelitian mungkin tersedia
 
 ### Harga enterprise
 
-Untuk pelanggan enterprise dengan kebutuhan khusus:
+Untuk pelanggan enterprise dengan kebutuhan spesifik:
 
 - Batas laju kustom
 - Diskon volume
@@ -353,7 +367,7 @@ Hubungi tim penjualan kami di [sales@anthropic.com](mailto:sales@anthropic.com) 
 
 - Penagihan dihitung bulanan berdasarkan penggunaan aktual
 - Pembayaran diproses dalam USD
-- Opsi kartu kredit dan faktur tersedia
+- Opsi kartu kredit dan invoicing tersedia
 - Pelacakan penggunaan tersedia di [Claude Console](/)
 
 ## Pertanyaan yang sering diajukan
@@ -372,6 +386,6 @@ Diskon Batch API dan prompt caching dapat digabungkan. Misalnya, menggunakan ked
 
 **Metode pembayaran apa yang diterima?**
 
-Kami menerima kartu kredit utama untuk akun standar. Pelanggan enterprise dapat mengatur faktur dan metode pembayaran lainnya.
+Kami menerima kartu kredit utama untuk akun standar. Pelanggan Enterprise dapat mengatur invoicing dan metode pembayaran lainnya.
 
 Untuk pertanyaan tambahan tentang harga, hubungi [support@anthropic.com](mailto:support@anthropic.com).

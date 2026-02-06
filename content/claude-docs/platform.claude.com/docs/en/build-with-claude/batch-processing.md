@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 14943d2ee43211736fae184082bd16e5604e29ed2b0cac223f68c3d65d0c5ef5
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: b0a0ab10179c6a29726ea31a5d6a59f58dfebd9d247d67130913cbc9edd68dea
 ---
 
 # Batch processing
@@ -74,6 +74,7 @@ The Batches API offers significant cost savings. All usage is charged at 50% of 
 
 | Model             | Batch input      | Batch output    |
 |-------------------|------------------|-----------------|
+| Claude Opus 4.6       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.5     | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.1     | $7.50 / MTok     | $37.50 / MTok   |
 | Claude Opus 4     | $7.50 / MTok     | $37.50 / MTok   |
@@ -109,7 +110,7 @@ curl https://api.anthropic.com/v1/messages/batches \
         {
             "custom_id": "my-first-request",
             "params": {
-                "model": "claude-sonnet-4-5",
+                "model": "claude-opus-4-6",
                 "max_tokens": 1024,
                 "messages": [
                     {"role": "user", "content": "Hello, world"}
@@ -119,7 +120,7 @@ curl https://api.anthropic.com/v1/messages/batches \
         {
             "custom_id": "my-second-request",
             "params": {
-                "model": "claude-sonnet-4-5",
+                "model": "claude-opus-4-6",
                 "max_tokens": 1024,
                 "messages": [
                     {"role": "user", "content": "Hi again, friend"}
@@ -142,7 +143,7 @@ message_batch = client.messages.batches.create(
         Request(
             custom_id="my-first-request",
             params=MessageCreateParamsNonStreaming(
-                model="claude-sonnet-4-5",
+                model="claude-opus-4-6",
                 max_tokens=1024,
                 messages=[{
                     "role": "user",
@@ -153,7 +154,7 @@ message_batch = client.messages.batches.create(
         Request(
             custom_id="my-second-request",
             params=MessageCreateParamsNonStreaming(
-                model="claude-sonnet-4-5",
+                model="claude-opus-4-6",
                 max_tokens=1024,
                 messages=[{
                     "role": "user",
@@ -176,7 +177,7 @@ const messageBatch = await anthropic.messages.batches.create({
   requests: [{
     custom_id: "my-first-request",
     params: {
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1024,
       messages: [
         {"role": "user", "content": "Hello, world"}
@@ -185,7 +186,7 @@ const messageBatch = await anthropic.messages.batches.create({
   }, {
     custom_id: "my-second-request",
     params: {
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1024,
       messages: [
         {"role": "user", "content": "Hi again, friend"}
@@ -211,7 +212,7 @@ public class BatchExample {
             .addRequest(BatchCreateParams.Request.builder()
                 .customId("my-first-request")
                 .params(BatchCreateParams.Request.Params.builder()
-                    .model(Model.CLAUDE_OPUS_4_0)
+                    .model(Model.CLAUDE_OPUS_4_6)
                     .maxTokens(1024)
                     .addUserMessage("Hello, world")
                     .build())
@@ -219,7 +220,7 @@ public class BatchExample {
             .addRequest(BatchCreateParams.Request.builder()
                 .customId("my-second-request")
                 .params(BatchCreateParams.Request.Params.builder()
-                    .model(Model.CLAUDE_OPUS_4_0)
+                    .model(Model.CLAUDE_OPUS_4_6)
                     .maxTokens(1024)
                     .addUserMessage("Hi again, friend")
                     .build())
@@ -570,8 +571,8 @@ public class BatchResultsExample {
 The results will be in `.jsonl` format, where each line is a valid JSON object representing the result of a single request in the Message Batch. For each streamed result, you can do something different depending on its `custom_id` and result type. Here is an example set of results:
 
 ```json .jsonl file
-{"custom_id":"my-second-request","result":{"type":"succeeded","message":{"id":"msg_014VwiXbi91y3JMjcpyGBHX5","type":"message","role":"assistant","model":"claude-sonnet-4-5-20250929","content":[{"type":"text","text":"Hello again! It's nice to see you. How can I assist you today? Is there anything specific you'd like to chat about or any questions you have?"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":11,"output_tokens":36}}}}
-{"custom_id":"my-first-request","result":{"type":"succeeded","message":{"id":"msg_01FqfsLoHwgeFbguDgpz48m7","type":"message","role":"assistant","model":"claude-sonnet-4-5-20250929","content":[{"type":"text","text":"Hello! How can I assist you today? Feel free to ask me any questions or let me know if there's anything you'd like to chat about."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":10,"output_tokens":34}}}}
+{"custom_id":"my-second-request","result":{"type":"succeeded","message":{"id":"msg_014VwiXbi91y3JMjcpyGBHX5","type":"message","role":"assistant","model":"claude-opus-4-6","content":[{"type":"text","text":"Hello again! It's nice to see you. How can I assist you today? Is there anything specific you'd like to chat about or any questions you have?"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":11,"output_tokens":36}}}}
+{"custom_id":"my-first-request","result":{"type":"succeeded","message":{"id":"msg_01FqfsLoHwgeFbguDgpz48m7","type":"message","role":"assistant","model":"claude-opus-4-6","content":[{"type":"text","text":"Hello! How can I assist you today? Feel free to ask me any questions or let me know if there's anything you'd like to chat about."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":10,"output_tokens":34}}}}
 ```
 
 If your result has an error, its `result.error` will be set to our standard [error shape](/docs/en/api/errors#error-shapes).
@@ -683,7 +684,7 @@ curl https://api.anthropic.com/v1/messages/batches \
         {
             "custom_id": "my-first-request",
             "params": {
-                "model": "claude-sonnet-4-5",
+                "model": "claude-opus-4-6",
                 "max_tokens": 1024,
                 "system": [
                     {
@@ -704,7 +705,7 @@ curl https://api.anthropic.com/v1/messages/batches \
         {
             "custom_id": "my-second-request",
             "params": {
-                "model": "claude-sonnet-4-5",
+                "model": "claude-opus-4-6",
                 "max_tokens": 1024,
                 "system": [
                     {
@@ -738,7 +739,7 @@ message_batch = client.messages.batches.create(
         Request(
             custom_id="my-first-request",
             params=MessageCreateParamsNonStreaming(
-                model="claude-sonnet-4-5",
+                model="claude-opus-4-6",
                 max_tokens=1024,
                 system=[
                     {
@@ -760,7 +761,7 @@ message_batch = client.messages.batches.create(
         Request(
             custom_id="my-second-request",
             params=MessageCreateParamsNonStreaming(
-                model="claude-sonnet-4-5",
+                model="claude-opus-4-6",
                 max_tokens=1024,
                 system=[
                     {
@@ -792,7 +793,7 @@ const messageBatch = await anthropic.messages.batches.create({
   requests: [{
     custom_id: "my-first-request",
     params: {
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1024,
       system: [
         {
@@ -812,7 +813,7 @@ const messageBatch = await anthropic.messages.batches.create({
   }, {
     custom_id: "my-second-request",
     params: {
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1024,
       system: [
         {
@@ -852,7 +853,7 @@ public class BatchExample {
                 .addRequest(BatchCreateParams.Request.builder()
                         .customId("my-first-request")
                         .params(BatchCreateParams.Request.Params.builder()
-                                .model(Model.CLAUDE_OPUS_4_0)
+                                .model(Model.CLAUDE_OPUS_4_6)
                                 .maxTokens(1024)
                                 .systemOfTextBlockParams(List.of(
                                         TextBlockParam.builder()
@@ -869,7 +870,7 @@ public class BatchExample {
                 .addRequest(BatchCreateParams.Request.builder()
                         .customId("my-second-request")
                         .params(BatchCreateParams.Request.Params.builder()
-                                .model(Model.CLAUDE_OPUS_4_0)
+                                .model(Model.CLAUDE_OPUS_4_6)
                                 .maxTokens(1024)
                                 .systemOfTextBlockParams(List.of(
                                         TextBlockParam.builder()

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/alien-anthropologist
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 5b7ccd58ca317103ea57ac11ae212a741bf022011a89a13acc2f078675d2ff7c
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 0b60a248d3ecfa0158a20edc40d8c7e2d4fdc57519c52f323d9693ccfb523f64
 ---
 
 # Alien anthropologist
@@ -45,7 +45,7 @@ Analyze human culture and customs from the perspective of an alien anthropologis
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=2000,
         temperature=1,
         system="Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
@@ -74,7 +74,7 @@ Analyze human culture and customs from the perspective of an alien anthropologis
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 2000,
       temperature: 1,
       system: "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
@@ -103,7 +103,7 @@ Analyze human culture and customs from the perspective of an alien anthropologis
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1",
         max_tokens=2000,
         temperature=1,
         system="Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
@@ -132,7 +132,7 @@ Analyze human culture and customs from the perspective of an alien anthropologis
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 2000,
       temperature: 1,
       system: "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",

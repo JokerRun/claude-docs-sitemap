@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/quickstart
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 242c72ea339a3cdca55740dbe53ac84f5e1bbf462fa9e883a984a43fe92d36f1
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 88a6b4382238005da6abad42d23398b975e731a6f957f95ed063206dd6f00cc7
 ---
 
 # Panduan Cepat
 
-Mulai dengan Python atau TypeScript Agent SDK untuk membangun agen AI yang bekerja secara otonom
+Mulai dengan Python atau TypeScript Agent SDK untuk membangun agen AI yang bekerja secara mandiri
 
 ---
 
@@ -21,39 +21,11 @@ Gunakan Agent SDK untuk membangun agen AI yang membaca kode Anda, menemukan bug,
 ## Prasyarat
 
 - **Node.js 18+** atau **Python 3.10+**
-- Akun **Anthropic** ([daftar di sini](https://console.anthropic.com/))
+- Akun **Anthropic** ([daftar di sini](https://platform.claude.com/))
 
 ## Pengaturan
 
 <Steps>
-  <Step title="Instal Claude Code">
-    Agent SDK menggunakan Claude Code sebagai runtime-nya. Instal untuk platform Anda:
-
-    <Tabs>
-      <Tab title="macOS/Linux/WSL">
-        ```bash
-        curl -fsSL https://claude.ai/install.sh | bash
-        ```
-      </Tab>
-      <Tab title="Homebrew">
-        ```bash
-        brew install --cask claude-code
-        ```
-      </Tab>
-      <Tab title="npm">
-        ```bash
-        npm install -g @anthropic-ai/claude-code
-        ```
-      </Tab>
-    </Tabs>
-
-    Setelah menginstal Claude Code di mesin Anda, jalankan `claude` di terminal Anda dan ikuti prompt untuk autentikasi. SDK akan menggunakan autentikasi ini secara otomatis.
-
-    <Tip>
-    Untuk informasi lebih lanjut tentang instalasi Claude Code, lihat [pengaturan Claude Code](https://docs.anthropic.com/en/docs/claude-code/setup).
-    </Tip>
-  </Step>
-
   <Step title="Buat folder proyek">
     Buat direktori baru untuk panduan cepat ini:
 
@@ -90,19 +62,21 @@ Gunakan Agent SDK untuk membangun agen AI yang membaca kode Anda, menemukan bug,
   </Step>
 
   <Step title="Atur kunci API Anda">
-    Jika Anda telah mengautentikasi Claude Code (dengan menjalankan `claude` di terminal Anda), SDK menggunakan autentikasi tersebut secara otomatis.
-
-    Jika tidak, Anda memerlukan kunci API, yang dapat Anda dapatkan dari [Konsol Claude](https://console.anthropic.com/).
-
-    Buat file `.env` di direktori proyek Anda dan simpan kunci API di sana:
+    Dapatkan kunci API dari [Claude Console](https://platform.claude.com/), kemudian buat file `.env` di direktori proyek Anda:
 
     ```bash
     ANTHROPIC_API_KEY=your-api-key
     ```
 
-    <Note>
-    **Menggunakan Amazon Bedrock, Google Vertex AI, atau Microsoft Azure?** Lihat panduan pengaturan untuk [Bedrock](https://code.claude.com/docs/en/amazon-bedrock), [Vertex AI](https://code.claude.com/docs/en/google-vertex-ai), atau [Azure AI Foundry](https://code.claude.com/docs/en/azure-ai-foundry).
+    SDK juga mendukung autentikasi melalui penyedia API pihak ketiga:
 
+    - **Amazon Bedrock**: atur variabel lingkungan `CLAUDE_CODE_USE_BEDROCK=1` dan konfigurasi kredensial AWS
+    - **Google Vertex AI**: atur variabel lingkungan `CLAUDE_CODE_USE_VERTEX=1` dan konfigurasi kredensial Google Cloud
+    - **Microsoft Azure**: atur variabel lingkungan `CLAUDE_CODE_USE_FOUNDRY=1` dan konfigurasi kredensial Azure
+
+    Lihat panduan pengaturan untuk [Bedrock](https://code.claude.com/docs/id/amazon-bedrock), [Vertex AI](https://code.claude.com/docs/id/google-vertex-ai), atau [Azure AI Foundry](https://code.claude.com/docs/id/azure-ai-foundry) untuk detail.
+
+    <Note>
     Kecuali telah disetujui sebelumnya, Anthropic tidak mengizinkan pengembang pihak ketiga untuk menawarkan login claude.ai atau batas laju untuk produk mereka, termasuk agen yang dibangun di Agent SDK Claude. Silakan gunakan metode autentikasi kunci API yang dijelaskan dalam dokumen ini.
     </Note>
   </Step>
@@ -124,7 +98,7 @@ def get_user_name(user):
 ```
 
 Kode ini memiliki dua bug:
-1. `calculate_average([])` mogok dengan pembagian dengan nol
+1. `calculate_average([])` mogok dengan pembagian oleh nol
 2. `get_user_name(None)` mogok dengan TypeError
 
 ## Bangun agen yang menemukan dan memperbaiki bug
@@ -187,15 +161,15 @@ for await (const message of query({
 
 Kode ini memiliki tiga bagian utama:
 
-1. **`query`**: titik masuk utama yang membuat loop agentic. Ini mengembalikan async iterator, jadi Anda menggunakan `async for` untuk streaming pesan saat Claude bekerja. Lihat API lengkap di referensi SDK [Python](/docs/id/agent-sdk/python#query) atau [TypeScript](/docs/id/agent-sdk/typescript#query).
+1. **`query`**: titik masuk utama yang membuat loop agentic. Ini mengembalikan iterator async, jadi Anda menggunakan `async for` untuk streaming pesan saat Claude bekerja. Lihat API lengkap di referensi SDK [Python](/docs/id/agent-sdk/python#query) atau [TypeScript](/docs/id/agent-sdk/typescript#query).
 
 2. **`prompt`**: apa yang ingin Anda lakukan Claude. Claude mengetahui alat mana yang digunakan berdasarkan tugas.
 
-3. **`options`**: konfigurasi untuk agen. Contoh ini menggunakan `allowedTools` untuk membatasi Claude ke `Read`, `Edit`, dan `Glob`, dan `permissionMode: "acceptEdits"` untuk auto-approve perubahan file. Opsi lain termasuk `systemPrompt`, `mcpServers`, dan lainnya. Lihat semua opsi untuk [Python](/docs/id/agent-sdk/python#claudeagentoptions) atau [TypeScript](/docs/id/agent-sdk/typescript#claudeagentoptions).
+3. **`options`**: konfigurasi untuk agen. Contoh ini menggunakan `allowedTools` untuk membatasi Claude ke `Read`, `Edit`, dan `Glob`, dan `permissionMode: "acceptEdits"` untuk auto-approve perubahan file. Opsi lainnya termasuk `systemPrompt`, `mcpServers`, dan lainnya. Lihat semua opsi untuk [Python](/docs/id/agent-sdk/python#claudeagentoptions) atau [TypeScript](/docs/id/agent-sdk/typescript#claudeagentoptions).
 
 Loop `async for` terus berjalan saat Claude berpikir, memanggil alat, mengamati hasil, dan memutuskan apa yang harus dilakukan selanjutnya. Setiap iterasi menghasilkan pesan: penalaran Claude, panggilan alat, hasil alat, atau hasil akhir. SDK menangani orkestrasi (eksekusi alat, manajemen konteks, percobaan ulang) sehingga Anda hanya mengonsumsi aliran. Loop berakhir ketika Claude menyelesaikan tugas atau mengalami kesalahan.
 
-Penanganan pesan di dalam loop memfilter untuk output yang dapat dibaca manusia. Tanpa pemfilteran, Anda akan melihat objek pesan mentah termasuk inisialisasi sistem dan status internal, yang berguna untuk debugging tetapi berisik sebaliknya.
+Penanganan pesan di dalam loop memfilter output yang dapat dibaca manusia. Tanpa pemfilteran, Anda akan melihat objek pesan mentah termasuk inisialisasi sistem dan status internal, yang berguna untuk debugging tetapi berisik sebaliknya.
 
 <Note>
 Contoh ini menggunakan streaming untuk menampilkan kemajuan secara real-time. Jika Anda tidak memerlukan output langsung (misalnya untuk pekerjaan latar belakang atau pipeline CI), Anda dapat mengumpulkan semua pesan sekaligus. Lihat [Streaming vs. single-turn mode](/docs/id/agent-sdk/streaming-vs-single-mode) untuk detail.
@@ -218,7 +192,7 @@ Agen Anda siap. Jalankan dengan perintah berikut:
   </Tab>
 </Tabs>
 
-Setelah menjalankan, periksa `utils.py`. Anda akan melihat kode defensif yang menangani daftar kosong dan pengguna null. Agen Anda secara otonom:
+Setelah menjalankan, periksa `utils.py`. Anda akan melihat kode defensif menangani daftar kosong dan pengguna null. Agen Anda secara mandiri:
 
 1. **Membaca** `utils.py` untuk memahami kode
 2. **Menganalisis** logika dan mengidentifikasi kasus tepi yang akan mogok
@@ -227,7 +201,7 @@ Setelah menjalankan, periksa `utils.py`. Anda akan melihat kode defensif yang me
 Inilah yang membuat Agent SDK berbeda: Claude menjalankan alat secara langsung alih-alih meminta Anda untuk mengimplementasikannya.
 
 <Note>
-Jika Anda melihat "Claude Code not found", [instal Claude Code](#instal-claude-code) dan mulai ulang terminal Anda. Untuk "API key not found", [atur kunci API Anda](#atur-kunci-api-anda). Lihat [panduan pemecahan masalah lengkap](https://docs.anthropic.com/en/docs/claude-code/troubleshooting) untuk bantuan lebih lanjut.
+Jika Anda melihat "API key not found", pastikan Anda telah menetapkan variabel lingkungan `ANTHROPIC_API_KEY` di file `.env` atau lingkungan shell Anda. Lihat [panduan pemecahan masalah lengkap](https://code.claude.com/docs/id/troubleshooting) untuk bantuan lebih lanjut.
 </Note>
 
 ### Coba prompt lain
@@ -240,7 +214,7 @@ Sekarang agen Anda sudah diatur, coba beberapa prompt berbeda:
 
 ### Sesuaikan agen Anda
 
-Anda dapat mengubah perilaku agen dengan mengubah opsi. Berikut beberapa contoh:
+Anda dapat mengubah perilaku agen dengan mengubah opsi. Berikut adalah beberapa contoh:
 
 **Tambahkan kemampuan pencarian web:**
 
@@ -315,18 +289,18 @@ Dengan `Bash` diaktifkan, coba: `"Write unit tests for utils.py, run them, and f
 | Mode | Perilaku | Kasus penggunaan |
 |------|----------|----------|
 | `acceptEdits` | Auto-approves file edits, asks for other actions | Alur kerja pengembangan terpercaya |
-| `bypassPermissions` | Berjalan tanpa prompt | Pipeline CI/CD, otomasi |
-| `default` | Memerlukan callback `canUseTool` untuk menangani persetujuan | Alur persetujuan kustom |
+| `bypassPermissions` | Runs without prompts | Pipeline CI/CD, otomasi |
+| `default` | Requires a `canUseTool` callback to handle approval | Alur persetujuan kustom |
 
-Contoh di atas menggunakan mode `acceptEdits`, yang auto-approves operasi file sehingga agen dapat berjalan tanpa prompt interaktif. Jika Anda ingin meminta pengguna untuk persetujuan, gunakan mode `default` dan sediakan callback [`canUseTool`](/docs/id/agent-sdk/permissions#canusetool) yang mengumpulkan input pengguna. Untuk kontrol lebih lanjut, lihat [Izin](/docs/id/agent-sdk/permissions).
+Contoh di atas menggunakan mode `acceptEdits`, yang auto-approve operasi file sehingga agen dapat berjalan tanpa prompt interaktif. Jika Anda ingin meminta pengguna untuk persetujuan, gunakan mode `default` dan sediakan callback [`canUseTool`](/docs/id/agent-sdk/user-input) yang mengumpulkan input pengguna. Untuk kontrol lebih lanjut, lihat [Permissions](/docs/id/agent-sdk/permissions).
 
 ## Langkah berikutnya
 
 Sekarang Anda telah membuat agen pertama Anda, pelajari cara memperluas kemampuannya dan menyesuaikannya dengan kasus penggunaan Anda:
 
-- **[Izin](/docs/id/agent-sdk/permissions)**: kontrol apa yang dapat dilakukan agen Anda dan kapan memerlukan persetujuan
+- **[Permissions](/docs/id/agent-sdk/permissions)**: kontrol apa yang dapat dilakukan agen Anda dan kapan memerlukan persetujuan
 - **[Hooks](/docs/id/agent-sdk/hooks)**: jalankan kode kustom sebelum atau sesudah panggilan alat
-- **[Sesi](/docs/id/agent-sdk/sessions)**: bangun agen multi-turn yang mempertahankan konteks
-- **[Server MCP](/docs/id/agent-sdk/mcp)**: terhubung ke database, browser, API, dan sistem eksternal lainnya
-- **[Hosting](/docs/id/agent-sdk/hosting)**: sebarkan agen ke Docker, cloud, dan CI/CD
-- **[Agen contoh](https://github.com/anthropics/claude-agent-sdk-demos)**: lihat contoh lengkap: asisten email, agen penelitian, dan lainnya
+- **[Sessions](/docs/id/agent-sdk/sessions)**: bangun agen multi-turn yang mempertahankan konteks
+- **[MCP servers](/docs/id/agent-sdk/mcp)**: terhubung ke database, browser, API, dan sistem eksternal lainnya
+- **[Hosting](/docs/id/agent-sdk/hosting)**: deploy agen ke Docker, cloud, dan CI/CD
+- **[Example agents](https://github.com/anthropics/claude-agent-sdk-demos)**: lihat contoh lengkap: asisten email, agen penelitian, dan lainnya

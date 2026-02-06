@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: aad3913f1f600a909cef1af0aed65cbb74b616d3847ddb95e18f0fd1d698942a
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 8bb1701d599b637385742084854894dacf1131d952fa2f90aac6ebcf6358a9eb
 ---
 
 # Claude in Microsoft Foundry
@@ -120,7 +120,7 @@ client = AnthropicFoundry(
 )
 
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello!"}]
 )
@@ -136,7 +136,7 @@ const client = new AnthropicFoundry({
 });
 
 const message = await client.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello!" }],
 });
@@ -149,7 +149,7 @@ curl https://{resource}.services.ai.azure.com/anthropic/v1/messages \
   -H "api-key: YOUR_AZURE_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "messages": [
       {"role": "user", "content": "Hello!"}
@@ -192,7 +192,7 @@ client = AnthropicFoundry(
 
 # Make request
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello!"}]
 )
@@ -221,7 +221,7 @@ const client = new AnthropicFoundry({
 
 // Make request
 const message = await client.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello!" }],
 });
@@ -238,7 +238,7 @@ curl https://{resource}.services.ai.azure.com/anthropic/v1/messages \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-opus-4-6",
     "max_tokens": 1024,
     "messages": [
       {"role": "user", "content": "Hello!"}
@@ -273,11 +273,12 @@ For details on response headers specific to Foundry, see the [correlation reques
 
 ## API model IDs and deployments
 
-The following Claude models are available through Foundry. The latest generation models (Sonnet 4.5, Opus 4.1, and Haiku 4.5) offer the most advanced capabilities:
+The following Claude models are available through Foundry. The latest generation models (Opus 4.6, Sonnet 4.5, and Haiku 4.5) offer the most advanced capabilities:
 
 | Model             | Default Deployment Name     |
 | :---------------- | :-------------------------- |
-| Claude Opus 4.5   | `claude-opus-4-5`  |
+| Claude Opus 4.6     | `claude-opus-4-6`             |
+| Claude Opus 4.5   | `claude-opus-4-5`           |
 | Claude Sonnet 4.5 | `claude-sonnet-4-5`         |
 | Claude Opus 4.1   | `claude-opus-4-1`           |
 | Claude Haiku 4.5  | `claude-haiku-4-5`          |

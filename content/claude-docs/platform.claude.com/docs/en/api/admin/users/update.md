@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/update
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 93ba3c986cf8ec33ba677db13bcc856a12834a8b9114e602797f5cac722ce0e1
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 56bd0224c189b27bdec7b32067c4406d4aa845215b883bd227851a144585a58f
 ---
 
 ## Update
@@ -78,6 +78,7 @@ Update User
 ```http
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{
           "role": "user"

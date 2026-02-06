@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/google-apps-scripter
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 4d949abdade2bcbc3f2931874384ec619177fb048a9c1a826ccbe58af976c47f
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 09ae78217987b25f145fbde27bb45bb75a00db79f5fd06af9020b16d59724ce4
 ---
 
 # Google apps scripter
@@ -98,7 +98,7 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=2000,
   temperature=0,
   messages=[
@@ -129,7 +129,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 0,
   messages: [
@@ -160,7 +160,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1",
     max_tokens=2000,
     temperature=0,
     messages=[
@@ -191,7 +191,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 2000,
   temperature: 0,
   messages: [

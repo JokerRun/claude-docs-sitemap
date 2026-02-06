@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: f7d422dbd191f3a4e71f131459fd560baa54f10ac87c7e13ac376bdcccc1cc77
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 1d48a81f9d48d92b833cf99013ad964fc035862dd542fb8652e326051aa34ea0
 ---
 
 # Claude di Amazon Bedrock
@@ -27,7 +27,7 @@ aws sts get-caller-identity
 
 ## Instal SDK untuk mengakses Bedrock
 
-[SDK klien](/docs/id/api/client-sdks) Anthropic mendukung Bedrock. Anda juga dapat menggunakan AWS SDK seperti `boto3` secara langsung.
+[SDK klien](/docs/id/api/client-sdks) Anthropic mendukung Bedrock. Anda juga dapat menggunakan SDK AWS seperti `boto3` secara langsung.
 
 <CodeGroup>
   ```python Python
@@ -53,13 +53,13 @@ Buka [AWS Console > Bedrock > Model Access](https://console.aws.amazon.com/bedro
 
 | Model | ID model Bedrock dasar | `global` | `us` | `eu` | `jp` | `apac` |
 | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
+| Claude Opus 4.6 | anthropic.claude-opus-4-6-v1:0 | Ya | Ya | Ya | Ya | Ya |
 | Claude Sonnet 4.5 | anthropic.claude-sonnet-4-5-20250929-v1:0 | Ya | Ya | Ya | Ya | Tidak |
 | Claude Sonnet 4 | anthropic.claude-sonnet-4-20250514-v1:0 | Ya | Ya | Ya | Tidak | Ya |
 | Claude Sonnet 3.7 <Tooltip tooltipContent="Tidak digunakan lagi sejak 28 Oktober 2025.">⚠️</Tooltip> | anthropic.claude-3-7-sonnet-20250219-v1:0 | Tidak | Ya | Ya | Tidak | Ya |
 | Claude Opus 4.5 | anthropic.claude-opus-4-5-20251101-v1:0 | Ya | Ya | Ya | Tidak | Tidak |
 | Claude Opus 4.1 | anthropic.claude-opus-4-1-20250805-v1:0 | Tidak | Ya | Tidak | Tidak | Tidak |
 | Claude Opus 4 | anthropic.claude-opus-4-20250514-v1:0 | Tidak | Ya | Tidak | Tidak | Tidak |
-| Claude Opus 3 <Tooltip tooltipContent="Tidak digunakan lagi sejak 30 Juni 2025.">⚠️</Tooltip> | anthropic.claude-3-opus-20240229-v1:0 | Tidak | Ya | Tidak | Tidak | Tidak |
 | Claude Haiku 4.5 | anthropic.claude-haiku-4-5-20251001-v1:0 | Ya | Ya | Ya | Tidak | Tidak |
 | Claude Haiku 3.5 <Tooltip tooltipContent="Tidak digunakan lagi sejak 19 Desember 2025.">⚠️</Tooltip> | anthropic.claude-3-5-haiku-20241022-v1:0 | Tidak | Ya | Tidak | Tidak | Tidak |
 | Claude Haiku 3 | anthropic.claude-3-haiku-20240307-v1:0 | Tidak | Ya | Ya | Tidak | Ya |
@@ -108,7 +108,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Bedrock:
   )
 
   message = client.messages.create(
-      model="global.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model="global.anthropic.claude-opus-4-6-v1:0",
       max_tokens=256,
       messages=[{"role": "user", "content": "Hello, world"}]
   )
@@ -135,7 +135,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Bedrock:
 
   async function main() {
     const message = await client.messages.create({
-      model: 'global.anthropic.claude-sonnet-4-5-20250929-v1:0',
+      model: 'global.anthropic.claude-opus-4-6-v1:0',
       max_tokens: 256,
       messages: [{"role": "user", "content": "Hello, world"}]
     });
@@ -155,7 +155,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Bedrock:
     "anthropic_version": "bedrock-2023-05-31"
   })
 
-  response = bedrock.invoke_model(body=body, modelId="global.anthropic.claude-sonnet-4-5-20250929-v1:0")
+  response = bedrock.invoke_model(body=body, modelId="global.anthropic.claude-opus-4-6-v1:0")
 
   response_body = json.loads(response.get("body").read())
   print(response_body.get("content"))
@@ -179,18 +179,18 @@ Anda dapat menemukan semua fitur yang saat ini didukung di Bedrock [di sini](/do
 
 ### Dukungan PDF di Bedrock
 
-Dukungan PDF tersedia di Amazon Bedrock melalui API Converse dan API InvokeModel. Untuk informasi terperinci tentang kemampuan dan batasan pemrosesan PDF, lihat [dokumentasi dukungan PDF](/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
+Dukungan PDF tersedia di Amazon Bedrock melalui API Converse dan API InvokeModel. Untuk informasi terperinci tentang kemampuan dan keterbatasan pemrosesan PDF, lihat [dokumentasi dukungan PDF](/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
 
 **Pertimbangan penting untuk pengguna API Converse:**
 - Analisis PDF visual (bagan, gambar, tata letak) memerlukan kutipan untuk diaktifkan
 - Tanpa kutipan, hanya ekstraksi teks dasar yang tersedia
 - Untuk kontrol penuh tanpa kutipan paksa, gunakan API InvokeModel
 
-Untuk detail lebih lanjut tentang dua mode pemrosesan dokumen dan batasan mereka, lihat [panduan dukungan PDF](/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
+Untuk detail lebih lanjut tentang dua mode pemrosesan dokumen dan keterbatasannya, lihat [panduan dukungan PDF](/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
 
 ### Jendela konteks token 1M
 
-Claude Sonnet 4 dan 4.5 mendukung [jendela konteks token 1M](/docs/id/build-with-claude/context-windows#1m-token-context-window) di Amazon Bedrock.
+Claude Opus 4.6, Sonnet 4.5, dan Sonnet 4 mendukung [jendela konteks token 1M](/docs/id/build-with-claude/context-windows#1m-token-context-window) di Amazon Bedrock.
 
 <Note>
 Jendela konteks token 1M saat ini dalam beta. Untuk menggunakan jendela konteks yang diperluas, sertakan header beta `context-1m-2025-08-07` dalam [permintaan API Bedrock Anda](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages-request-response.html).
@@ -198,10 +198,10 @@ Jendela konteks token 1M saat ini dalam beta. Untuk menggunakan jendela konteks 
 
 ## Global vs regional endpoints
 
-Dimulai dengan **Claude Sonnet 4.5 dan semua model di masa depan**, Amazon Bedrock menawarkan dua jenis endpoint:
+Mulai dengan **Claude Sonnet 4.5 dan semua model di masa depan**, Amazon Bedrock menawarkan dua jenis endpoint:
 
 - **Global endpoints**: Perutean dinamis untuk ketersediaan maksimal
-- **Regional endpoints**: Perutean data terjamin melalui wilayah geografis tertentu
+- **Regional endpoints**: Perutean data yang dijamin melalui wilayah geografis tertentu
 
 Regional endpoints mencakup premium harga 10% dibandingkan global endpoints.
 
@@ -213,19 +213,19 @@ Ini berlaku untuk Claude Sonnet 4.5 dan model di masa depan saja. Model yang leb
 
 **Global endpoints (direkomendasikan):**
 - Memberikan ketersediaan dan uptime maksimal
-- Secara dinamis merutekan permintaan ke wilayah dengan kapasitas yang tersedia
+- Secara dinamis merutingkan permintaan ke wilayah dengan kapasitas yang tersedia
 - Tidak ada premium harga
 - Terbaik untuk aplikasi di mana residensi data fleksibel
 
 **Regional endpoints (CRIS):**
-- Merutekan lalu lintas melalui wilayah geografis tertentu
+- Merutingkan lalu lintas melalui wilayah geografis tertentu
 - Diperlukan untuk persyaratan residensi data dan kepatuhan
 - Tersedia untuk US, EU, Jepang, dan Australia
 - Premium harga 10% mencerminkan biaya infrastruktur untuk kapasitas regional yang didedikasikan
 
 ### Implementasi
 
-**Menggunakan global endpoints (default untuk Sonnet 4.5 dan 4):**
+**Menggunakan global endpoints (default untuk Opus 4.6, Sonnet 4.5, dan Sonnet 4):**
 
 ID model untuk Claude Sonnet 4.5 dan 4 sudah menyertakan awalan `global.`:
 
@@ -236,7 +236,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock(aws_region="us-west-2")
 
 message = client.messages.create(
-    model="global.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="global.anthropic.claude-opus-4-6-v1:0",
     max_tokens=256,
     messages=[{"role": "user", "content": "Hello, world"}]
 )
@@ -250,7 +250,7 @@ const client = new AnthropicBedrock({
 });
 
 const message = await client.messages.create({
-  model: 'global.anthropic.claude-sonnet-4-5-20250929-v1:0',
+  model: 'global.anthropic.claude-opus-4-6-v1:0',
   max_tokens: 256,
   messages: [{role: "user", content: "Hello, world"}]
 });
@@ -267,9 +267,9 @@ from anthropic import AnthropicBedrock
 
 client = AnthropicBedrock(aws_region="us-west-2")
 
-# Menggunakan endpoint regional US (CRIS)
+# Menggunakan US regional endpoint (CRIS)
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",  # Tidak ada awalan global.
+    model="anthropic.claude-opus-4-6-v1:0",  # Tidak ada awalan global.
     max_tokens=256,
     messages=[{"role": "user", "content": "Hello, world"}]
 )
@@ -282,9 +282,9 @@ const client = new AnthropicBedrock({
   awsRegion: 'us-west-2',
 });
 
-// Menggunakan endpoint regional US (CRIS)
+// Menggunakan US regional endpoint (CRIS)
 const message = await client.messages.create({
-  model: 'anthropic.claude-sonnet-4-5-20250929-v1:0',  // Tidak ada awalan global.
+  model: 'anthropic.claude-opus-4-6-v1:0',  // Tidak ada awalan global.
   max_tokens: 256,
   messages: [{role: "user", content: "Hello, world"}]
 });

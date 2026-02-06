@@ -1,26 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/second-grade-simplifier
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 5badbeb93c624b5904c84c680c6f68c641f5d357074a35772ab87fa696e1426c
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: a162730cacc80739489c4b891ebea026687a337bab7d9ed62e314817050eab2b
 ---
 
-# Penyederhanaan untuk kelas dua
+# Penyederhanaan tingkat kelas dua
 
 Membuat teks kompleks mudah dipahami oleh pelajar muda.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah mengambil teks yang diberikan dan menulis ulang dengan cara yang mudah dibaca dan dipahami oleh pelajar muda di kelas 3-5. Sederhanakan kosakata tingkat lanjut, pecah kalimat panjang, jelaskan konsep sulit dalam bahasa yang sederhana, dan sajikan informasi dengan cara yang jelas dan menarik. Teks singkat yang ditulis ulang harus menyampaikan ide-ide inti dari teks asli dengan cara yang sesuai untuk usia mereka. |
-| User   | Mitokondria, yang sering disebut sebagai pembangkit tenaga sel, adalah organel penting yang memainkan peran krusial dalam produksi adenosin trifosfat (ATP) melalui proses respirasi seluler. ATP adalah mata uang energi utama sel, memungkinkan berbagai fungsi seluler dan reaksi biokimia terjadi. |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Tugas Anda adalah mengambil teks yang diberikan dan menulis ulang dengan cara yang mudah dipahami oleh pelajar muda di kelas 3-5. Sederhanakan kosakata tingkat lanjut, pecahkan kalimat panjang, jelaskan konsep sulit dalam bahasa sederhana, dan sajikan informasi dengan cara yang jelas dan menarik. Teks yang ditulis ulang secara singkat harus menyampaikan ide-ide inti dari teks asli dengan cara yang sesuai dengan usia. |
+| Pengguna   | Mitokondria, sering disebut sebagai pembangkit tenaga sel, adalah organel penting yang memainkan peran penting dalam produksi adenosin trifosfat (ATP) melalui proses respirasi seluler. ATP adalah mata uang energi utama sel, memungkinkan berbagai fungsi seluler dan reaksi biokimia terjadi.                                                                                               |
 
 ## Contoh Output
 
-Mitokondria adalah bagian kecil di dalam sel yang bekerja seperti stasiun pembangkit listrik kecil. Mereka membuat molekul khusus yang disebut ATP, yang seperti uang energi sel. ATP membantu sel melakukan pekerjaan penting dan membuatnya berjalan dengan lancar, sama seperti bagaimana uang membantu orang membeli hal-hal yang mereka butuhkan. Mitokondria sangat penting karena tanpa mereka, sel tidak akan memiliki energi untuk berfungsi dengan baik.
+Mitokondria adalah bagian-bagian kecil di dalam sel yang bekerja seperti stasiun tenaga kecil. Mereka membuat molekul khusus yang disebut ATP, yang seperti uang energi sel. ATP membantu sel melakukan pekerjaan penting dan menjaganya tetap berjalan lancar, seperti bagaimana uang membantu orang membeli hal-hal yang mereka butuhkan. Mitokondria sangat penting karena tanpa mereka, sel tidak akan memiliki energi untuk berfungsi dengan baik.
 
 ---
 
@@ -37,17 +37,17 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=1000,
   temperature=0,
-  system="Tugas Anda adalah mengambil teks yang diberikan dan menulis ulang dengan cara yang mudah dibaca dan dipahami oleh pelajar muda di kelas 3-5. Sederhanakan kosakata tingkat lanjut, pecah kalimat panjang, jelaskan konsep sulit dalam bahasa yang sederhana, dan sajikan informasi dengan cara yang jelas dan menarik. Teks singkat yang ditulis ulang harus menyampaikan ide-ide inti dari teks asli dengan cara yang sesuai untuk usia mereka.",
+  system="Your task is to take the text provided and rewrite it in a way that is easy for young learners in grades 3-5 to read and understand. Simplify advanced vocabulary, break down long sentences, explain difficult concepts in plain language, and present the information in a clear, engaging way. The short rewritten text should convey the core ideas of the original text in an age-appropriate manner.",
   messages=[
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Mitokondria, yang sering disebut sebagai pembangkit tenaga sel, adalah organel penting yang memainkan peran krusial dalam produksi adenosin trifosfat (ATP) melalui proses respirasi seluler. ATP adalah mata uang energi utama sel, memungkinkan berbagai fungsi seluler dan reaksi biokimia terjadi."
+          "text": "The mitochondria, often referred to as the powerhouses of the cell, are essential organelles that play a crucial role in the production of adenosine triphosphate (ATP) through the process of cellular respiration. ATP is the primary energy currency of the cell, enabling various cellular functions and biochemical reactions to occur."
         }
       ]
     }
@@ -68,17 +68,17 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 0,
-  system: "Tugas Anda adalah mengambil teks yang diberikan dan menulis ulang dengan cara yang mudah dibaca dan dipahami oleh pelajar muda di kelas 3-5. Sederhanakan kosakata tingkat lanjut, pecah kalimat panjang, jelaskan konsep sulit dalam bahasa yang sederhana, dan sajikan informasi dengan cara yang jelas dan menarik. Teks singkat yang ditulis ulang harus menyampaikan ide-ide inti dari teks asli dengan cara yang sesuai untuk usia mereka.",
+  system: "Your task is to take the text provided and rewrite it in a way that is easy for young learners in grades 3-5 to read and understand. Simplify advanced vocabulary, break down long sentences, explain difficult concepts in plain language, and present the information in a clear, engaging way. The short rewritten text should convey the core ideas of the original text in an age-appropriate manner.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Mitokondria, yang sering disebut sebagai pembangkit tenaga sel, adalah organel penting yang memainkan peran krusial dalam produksi adenosin trifosfat (ATP) melalui proses respirasi seluler. ATP adalah mata uang energi utama sel, memungkinkan berbagai fungsi seluler dan reaksi biokimia terjadi."
+          "text": "The mitochondria, often referred to as the powerhouses of the cell, are essential organelles that play a crucial role in the production of adenosine triphosphate (ATP) through the process of cellular respiration. ATP is the primary energy currency of the cell, enabling various cellular functions and biochemical reactions to occur."
         }
       ]
     }
@@ -86,7 +86,7 @@ const msg = await anthropic.messages.create({
 });
 console.log(msg);
 
-````
+```
 
 </Tab>
 <Tab title="AWS Bedrock Python">
@@ -99,17 +99,17 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=1000,
     temperature=0,
-    system="Tugas Anda adalah mengambil teks yang diberikan dan menulis ulang dengan cara yang mudah dibaca dan dipahami oleh pelajar muda di kelas 3-5. Sederhanakan kosakata tingkat lanjut, pecah kalimat panjang, jelaskan konsep sulit dalam bahasa yang sederhana, dan sajikan informasi dengan cara yang jelas dan menarik. Teks singkat yang ditulis ulang harus menyampaikan ide-ide inti dari teks asli dengan cara yang sesuai untuk usia mereka.",
+    system="Your task is to take the text provided and rewrite it in a way that is easy for young learners in grades 3-5 to read and understand. Simplify advanced vocabulary, break down long sentences, explain difficult concepts in plain language, and present the information in a clear, engaging way. The short rewritten text should convey the core ideas of the original text in an age-appropriate manner.",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Mitokondria, yang sering disebut sebagai pembangkit tenaga sel, adalah organel penting yang memainkan peran krusial dalam produksi adenosin trifosfat (ATP) melalui proses respirasi seluler. ATP adalah mata uang energi utama sel, memungkinkan berbagai fungsi seluler dan reaksi biokimia terjadi."
+                    "text": "The mitochondria, often referred to as the powerhouses of the cell, are essential organelles that play a crucial role in the production of adenosine triphosphate (ATP) through the process of cellular respiration. ATP is the primary energy currency of the cell, enabling various cellular functions and biochemical reactions to occur."
                 }
             ]
         }
@@ -130,17 +130,17 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 1000,
   temperature: 0,
-  system: "Tugas Anda adalah mengambil teks yang diberikan dan menulis ulang dengan cara yang mudah dibaca dan dipahami oleh pelajar muda di kelas 3-5. Sederhanakan kosakata tingkat lanjut, pecah kalimat panjang, jelaskan konsep sulit dalam bahasa yang sederhana, dan sajikan informasi dengan cara yang jelas dan menarik. Teks singkat yang ditulis ulang harus menyampaikan ide-ide inti dari teks asli dengan cara yang sesuai untuk usia mereka.",
+  system: "Your task is to take the text provided and rewrite it in a way that is easy for young learners in grades 3-5 to read and understand. Simplify advanced vocabulary, break down long sentences, explain difficult concepts in plain language, and present the information in a clear, engaging way. The short rewritten text should convey the core ideas of the original text in an age-appropriate manner.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Mitokondria, yang sering disebut sebagai pembangkit tenaga sel, adalah organel penting yang memainkan peran krusial dalam produksi adenosin trifosfat (ATP) melalui proses respirasi seluler. ATP adalah mata uang energi utama sel, memungkinkan berbagai fungsi seluler dan reaksi biokimia terjadi."
+          "text": "The mitochondria, often referred to as the powerhouses of the cell, are essential organelles that play a crucial role in the production of adenosine triphosphate (ATP) through the process of cellular respiration. ATP is the primary energy currency of the cell, enabling various cellular functions and biochemical reactions to occur."
         }
       ]
     }
@@ -152,6 +152,7 @@ console.log(msg);
 
 </Tab>
 <Tab title="Vertex AI Python">
+
 ```python
 from anthropic import AnthropicVertex
 
@@ -161,14 +162,14 @@ message = client.messages.create(
 model="claude-sonnet-4@20250514",
 max_tokens=1000,
 temperature=0,
-system="Tugas Anda adalah mengambil teks yang diberikan dan menulis ulang dengan cara yang mudah dibaca dan dipahami oleh pelajar muda di kelas 3-5. Sederhanakan kosakata tingkat lanjut, pecah kalimat panjang, jelaskan konsep sulit dalam bahasa yang sederhana, dan sajikan informasi dengan cara yang jelas dan menarik. Teks singkat yang ditulis ulang harus menyampaikan ide-ide inti dari teks asli dengan cara yang sesuai untuk usia mereka.",
+system="Your task is to take the text provided and rewrite it in a way that is easy for young learners in grades 3-5 to read and understand. Simplify advanced vocabulary, break down long sentences, explain difficult concepts in plain language, and present the information in a clear, engaging way. The short rewritten text should convey the core ideas of the original text in an age-appropriate manner.",
 messages=[
 {
 "role": "user",
 "content": [
 {
 "type": "text",
-"text": "Mitokondria, yang sering disebut sebagai pembangkit tenaga sel, adalah organel penting yang memainkan peran krusial dalam produksi adenosin trifosfat (ATP) melalui proses respirasi seluler. ATP adalah mata uang energi utama sel, memungkinkan berbagai fungsi seluler dan reaksi biokimia terjadi."
+"text": "The mitochondria, often referred to as the powerhouses of the cell, are essential organelles that play a crucial role in the production of adenosine triphosphate (ATP) through the process of cellular respiration. ATP is the primary energy currency of the cell, enabling various cellular functions and biochemical reactions to occur."
 }
 ]
 }
@@ -176,10 +177,11 @@ messages=[
 )
 print(message.content)
 
-````
+```
 
 </Tab>
 <Tab title="Vertex AI TypeScript">
+
 ```typescript
 import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
 
@@ -191,14 +193,14 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 1000,
   temperature: 0,
-  system: "Tugas Anda adalah mengambil teks yang diberikan dan menulis ulang dengan cara yang mudah dibaca dan dipahami oleh pelajar muda di kelas 3-5. Sederhanakan kosakata tingkat lanjut, pecah kalimat panjang, jelaskan konsep sulit dalam bahasa yang sederhana, dan sajikan informasi dengan cara yang jelas dan menarik. Teks singkat yang ditulis ulang harus menyampaikan ide-ide inti dari teks asli dengan cara yang sesuai untuk usia mereka.",
+  system: "Your task is to take the text provided and rewrite it in a way that is easy for young learners in grades 3-5 to read and understand. Simplify advanced vocabulary, break down long sentences, explain difficult concepts in plain language, and present the information in a clear, engaging way. The short rewritten text should convey the core ideas of the original text in an age-appropriate manner.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Mitokondria, yang sering disebut sebagai pembangkit tenaga sel, adalah organel penting yang memainkan peran krusial dalam produksi adenosin trifosfat (ATP) melalui proses respirasi seluler. ATP adalah mata uang energi utama sel, memungkinkan berbagai fungsi seluler dan reaksi biokimia terjadi."
+          "text": "The mitochondria, often referred to as the powerhouses of the cell, are essential organelles that play a crucial role in the production of adenosine triphosphate (ATP) through the process of cellular respiration. ATP is the primary energy currency of the cell, enabling various cellular functions and biochemical reactions to occur."
         }
       ]
     }
@@ -206,7 +208,7 @@ const msg = await client.messages.create({
 });
 console.log(msg);
 
-````
+```
 
 </Tab>
 </Tabs>

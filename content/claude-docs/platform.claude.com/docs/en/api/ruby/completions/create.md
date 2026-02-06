@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/completions/create
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 2b19a8d513bfe81f194bb1480196b563d3fd54ee19e1c72a0c57bdc01ceada96
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 2589c21f438ff5776f8990ab91fcf312d4740cd71c7d55e70d18fa6a5a3df790
 ---
 
 ## Create
@@ -31,11 +31,15 @@ Future models and features will not be compatible with Text Completions. See our
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `:"claude-opus-4-5-20251101" | :"claude-opus-4-5" | :"claude-3-7-sonnet-latest" | 17 more`
+  - `:"claude-opus-4-6" | :"claude-opus-4-5-20251101" | :"claude-opus-4-5" | 18 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `:"claude-opus-4-6"`
+
+      Most intelligent model for building agents and coding
 
     - `:"claude-opus-4-5-20251101"`
 
@@ -255,11 +259,15 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `:"claude-opus-4-5-20251101" | :"claude-opus-4-5" | :"claude-3-7-sonnet-latest" | 17 more`
+    - `:"claude-opus-4-6" | :"claude-opus-4-5-20251101" | :"claude-opus-4-5" | 18 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-opus-4-6"`
+
+        Most intelligent model for building agents and coding
 
       - `:"claude-opus-4-5-20251101"`
 
@@ -369,7 +377,7 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
 completion = anthropic.completions.create(
   max_tokens_to_sample: 256,
-  model: :"claude-opus-4-5-20251101",
+  model: :"claude-opus-4-6",
   prompt: "\n\nHuman: Hello, world!\n\nAssistant:"
 )
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/analytics
-fetched_at: 2026-02-03T04:18:49.576480Z
-sha256: 727aee65ea44e3b54a9123b15704a60e7f667c32166c8c825eb24d0a9eb71e23
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: f069c497b41558b21346fe3fb2d2a68239ef098a3216ced77558714fb633ce6e
 ---
 
 > ## Documentation Index
@@ -40,6 +40,10 @@ The Teams and Enterprise dashboard includes:
 Usage and adoption data is available for all Claude for Teams and Claude for Enterprise accounts. Contribution metrics require additional setup to connect your GitHub organization.
 
 You need the Owner role to configure analytics settings. A GitHub admin must install the GitHub app.
+
+<Warning>
+  Contribution metrics are not available for organizations with [Zero Data Retention](/en/data-usage#data-retention) enabled. The analytics dashboard will show usage metrics only.
+</Warning>
 
 <Steps>
   <Step title="Install the GitHub app">

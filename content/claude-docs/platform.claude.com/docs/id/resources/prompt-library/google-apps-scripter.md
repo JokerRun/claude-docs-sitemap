@@ -1,25 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/google-apps-scripter
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 619138643139946ce9607f36fa8bbec85873223d8726041d96511b50d8e073bb
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 2b5d09753a9da82db41e4182f90f198e0411daa136ca957898e8b2ee3e256d88
 ---
 
-# Pembuat skrip Google apps
+# Google apps scripter
 
-Menghasilkan skrip Google Apps untuk menyelesaikan tugas berdasarkan kebutuhan pengguna.
+Hasilkan Google Apps scripts untuk menyelesaikan tugas berdasarkan persyaratan pengguna.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|      | Konten |
-| ---- | --- |
-| User | Buatkan saya skrip Google apps yang akan menerjemahkan semua teks dalam presentasi Google Slides ke bahasa Korea. |
+|      | Konten                                                                                               |
+| ---- | ----------------------------------------------------------------------------------------------------- |
+| Pengguna | Buatkan saya Google apps script yang akan menerjemahkan semua teks dalam presentasi Google Slides ke bahasa Korea. |
 
 ## Contoh Output
 
-Berikut adalah skrip Google Apps yang menerjemahkan semua teks dalam presentasi Google Slides ke bahasa Korea:
+Berikut adalah Google Apps Script yang menerjemahkan semua teks dalam presentasi Google Slides ke bahasa Korea:
 
 ```javascript
 function translateSlidesToKorean() {
@@ -59,28 +59,28 @@ function translateSlidesToKorean() {
 }
 ```
 
-Berikut cara kerja skrip ini:
+Berikut cara kerja script:
 
-1.  Fungsi `translateSlidesToKorean()` mengambil presentasi Google Slides yang aktif menggunakan `SlidesApp.getActivePresentation()`.
+1.  Fungsi `translateSlidesToKorean()` mengambil presentasi Google Slides aktif menggunakan `SlidesApp.getActivePresentation()`.
 2.  Fungsi ini mendapatkan semua slide dalam presentasi menggunakan metode `getSlides()`.
-3.  Kami melakukan iterasi pada setiap slide dalam presentasi.
+3.  Kami mengulangi setiap slide dalam presentasi.
 4.  Untuk setiap slide, kami mengambil semua elemen halaman (bentuk, kotak teks, tabel, dll.) menggunakan metode `getPageElements()`.
-5.  Kami melakukan iterasi pada setiap elemen halaman di slide.
+5.  Kami mengulangi setiap elemen halaman di slide.
 6.  Kami memeriksa jenis elemen halaman menggunakan `getPageElementType()`:
 
-    - Jika elemen halaman adalah bentuk (`SlidesApp.PageElementType.SHAPE`), kami mendapatkan konten teks dari bentuk menggunakan `getText().asString()`. Kemudian kami menerjemahkan teks ke bahasa Korea menggunakan `LanguageApp.translate(text, '', 'ko')`, di mana `''` mewakili bahasa sumber (deteksi otomatis) dan `'ko'` mewakili bahasa target (Korea). Akhirnya, kami mengatur teks yang diterjemahkan kembali ke bentuk menggunakan `setText()`.
-    - Jika elemen halaman adalah tabel (`SlidesApp.PageElementType.TABLE`), kami melakukan iterasi pada setiap sel dalam tabel dan menerjemahkan teks dalam setiap sel dengan cara yang sama seperti cara kami menangani bentuk.
+    - Jika elemen halaman adalah bentuk (`SlidesApp.PageElementType.SHAPE`), kami mendapatkan konten teks bentuk menggunakan `getText().asString()`. Kami kemudian menerjemahkan teks ke bahasa Korea menggunakan `LanguageApp.translate(text, '', 'ko')`, di mana `''` mewakili bahasa sumber (deteksi otomatis) dan `'ko'` mewakili bahasa target (Korea). Terakhir, kami menetapkan teks yang diterjemahkan kembali ke bentuk menggunakan `setText()`.
+    - Jika elemen halaman adalah tabel (`SlidesApp.PageElementType.TABLE`), kami mengulangi setiap sel dalam tabel dan menerjemahkan teks dalam setiap sel dengan cara yang sama seperti cara kami menangani bentuk.
 
-7.  Skrip terus memproses semua elemen halaman di setiap slide hingga semua teks dalam presentasi telah diterjemahkan ke bahasa Korea.
+7.  Script terus memproses semua elemen halaman di setiap slide hingga semua teks dalam presentasi telah diterjemahkan ke bahasa Korea.
 
 {' '}
 <Note>
-  **Catatan:** Skrip ini mengasumsikan bahwa Anda memiliki izin yang diperlukan untuk
+  **Catatan:** Script ini mengasumsikan bahwa Anda memiliki izin yang diperlukan untuk
   mengakses dan memodifikasi presentasi Google Slides. Pastikan Anda memiliki
-  hak akses yang diperlukan sebelum menjalankan skrip.
+  hak akses yang diperlukan sebelum menjalankan script.
 </Note>
-Selain itu, perlu diingat bahwa terjemahan dilakukan menggunakan API Google Translate,
-sehingga kualitas terjemahan dapat bervariasi tergantung pada kompleksitas
+Juga, perlu diingat bahwa terjemahan dilakukan menggunakan Google Translate
+API, jadi kualitas terjemahan mungkin bervariasi tergantung pada kompleksitas
 teks dan kemampuan layanan terjemahan.
 
 ---
@@ -98,7 +98,7 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=2000,
   temperature=0,
   messages=[
@@ -129,7 +129,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 0,
   messages: [
@@ -160,7 +160,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=2000,
     temperature=0,
     messages=[
@@ -191,7 +191,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 2000,
   temperature: 0,
   messages: [

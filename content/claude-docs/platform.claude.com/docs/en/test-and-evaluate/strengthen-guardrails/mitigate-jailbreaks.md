@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 66324ee2cd0f4420f4d7302086d4e36e2fc2f9ceaa2c265710d74fc6e14c9157
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 491bc9c57d750e3e46f9e4f81af96063c8acc3f207df58ab5eaacef1e388e75e
 ---
 
 # Mitigate jailbreaks and prompt injections
@@ -13,7 +13,7 @@ Jailbreaking and prompt injections occur when users craft prompts to exploit mod
 
 <Tip>Claude is far more resistant to jailbreaking than other major LLMs, thanks to advanced training methods like Constitutional AI.</Tip>
 
-- **Harmlessness screens**: Use a lightweight model like Claude Haiku 3 to pre-screen user inputs.
+- **Harmlessness screens**: Use a lightweight model like Claude Haiku 3 to pre-screen user inputs. (Note: prefilling is deprecated and not supported on Claude Opus 4.6 and Sonnet 4.5.)
 
     <section title="Example: Harmlessness screen for content moderation">
 

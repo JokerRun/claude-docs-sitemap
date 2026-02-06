@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/count_tokens
-fetched_at: 2026-01-30T04:11:49.863510Z
-sha256: 2c3dac9cff8f0a864f0bdd97614f92d2a2e082d4aa00e3c727677b4bd34df08b
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 5c036ab5e8d714f562505798a2fb644c449ef35f54c525fc00c6e9a37b460603
 ---
 
 ## Count Tokens
@@ -1436,18 +1436,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     Configuration options for the model's output, such as the output format.
 
-    - `Optional<Format> format`
-
-      A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
-
-      - `Schema schema`
-
-        The JSON schema of the format
-
-      - `JsonValue; type "json_schema"constant`
-
-        - `JSON_SCHEMA("json_schema")`
-
   - `Optional<System> system`
 
     System prompt.
@@ -1695,6 +1683,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         Description of what this tool does.
 
         Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
+
+      - `Optional<Boolean> eagerInputStreaming`
+
+        Enable eager input streaming for this tool. When true, tool input parameters will be streamed incrementally as they are generated, and types will be inferred on-the-fly rather than buffering the full JSON output. When false, streaming is disabled for this tool even if the fine-grained-tool-streaming beta is active. When null (default), uses the default behavior based on beta headers.
 
       - `Optional<Boolean> strict`
 
@@ -1976,7 +1968,7 @@ public final class Main {
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
             .addUserMessage("Hello, world")
-            .model(Model.CLAUDE_SONNET_4_5_20250929)
+            .model(Model.CLAUDE_OPUS_4_6)
             .build();
         MessageTokensCount messageTokensCount = client.messages().countTokens(params);
     }

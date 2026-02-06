@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: d41190cf548e6ab946bdcdac636b501b42563f32c62ff2104b1872d1bdb9db82
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 645b7d972912fec87adfca6cea71c04a60ce513ed5c26ed2e2e4fb0b3d775d17
 ---
 
 # Mulai dengan Agent Skills di API
@@ -29,7 +29,7 @@ Agent Skills yang telah dibangun sebelumnya memperluas kemampuan Claude dengan k
 - **PDF (pdf)**: Hasilkan dokumen PDF
 
 <Note>
-**Ingin membuat Skills khusus?** Lihat [Agent Skills Cookbook](https://github.com/anthropics/claude-cookbooks/tree/main/skills) untuk contoh membangun Skills Anda sendiri dengan keahlian khusus domain.
+**Ingin membuat Skills khusus?** Lihat [Agent Skills Cookbook](https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction) untuk contoh membangun Skills Anda sendiri dengan keahlian khusus domain.
 </Note>
 
 ## Langkah 1: Daftar Skills yang tersedia
@@ -92,7 +92,7 @@ client = anthropic.Anthropic()
 
 # Create a message with the PowerPoint Skill
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -124,7 +124,7 @@ const client = new Anthropic();
 
 // Create a message with the PowerPoint Skill
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -156,7 +156,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [
@@ -182,17 +182,17 @@ curl https://api.anthropic.com/v1/messages \
 Mari kita uraikan apa yang dilakukan setiap bagian:
 
 - **`container.skills`**: Menentukan Skills mana yang dapat digunakan Claude
-- **`type: "anthropic"`**: Menunjukkan ini adalah Skill yang dikelola Anthropic
+- **`type: "anthropic"`**: Menunjukkan bahwa ini adalah Skill yang dikelola Anthropic
 - **`skill_id: "pptx"`**: Pengenal PowerPoint Skill
 - **`version: "latest"`**: Versi Skill diatur ke yang paling baru dipublikasikan
 - **`tools`**: Mengaktifkan eksekusi kode (diperlukan untuk Skills)
-- **Header Beta**: `code-execution-2025-08-25` dan `skills-2025-10-02`
+- **Beta headers**: `code-execution-2025-08-25` dan `skills-2025-10-02`
 
-Ketika Anda membuat permintaan ini, Claude secara otomatis mencocokkan tugas Anda dengan Skill yang relevan. Karena Anda meminta presentasi, Claude menentukan bahwa PowerPoint Skill relevan dan memuat instruksi lengkapnya: tingkat kedua progressive disclosure. Kemudian Claude mengeksekusi kode Skill untuk membuat presentasi Anda.
+Ketika Anda membuat permintaan ini, Claude secara otomatis mencocokkan tugas Anda dengan Skill yang relevan. Karena Anda meminta presentasi, Claude menentukan bahwa PowerPoint Skill relevan dan memuat instruksi lengkapnya: tingkat kedua progressive disclosure. Kemudian Claude menjalankan kode Skill untuk membuat presentasi Anda.
 
 ## Langkah 3: Unduh file yang dibuat
 
-Presentasi dibuat dalam wadah eksekusi kode dan disimpan sebagai file. Respons mencakup referensi file dengan ID file. Ekstrak ID file dan unduh menggunakan Files API:
+Presentasi dibuat di kontainer eksekusi kode dan disimpan sebagai file. Respons mencakup referensi file dengan ID file. Ekstrak ID file dan unduh menggunakan Files API:
 
 <CodeGroup>
 ```python Python
@@ -270,14 +270,14 @@ Untuk detail lengkap tentang bekerja dengan file yang dihasilkan, lihat [dokumen
 
 ## Coba lebih banyak contoh
 
-Sekarang setelah Anda membuat dokumen pertama Anda dengan Skills, coba variasi ini:
+Sekarang yang Anda telah membuat dokumen pertama Anda dengan Skills, coba variasi ini:
 
 ### Buat spreadsheet
 
 <CodeGroup>
 ```python Python
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -302,7 +302,7 @@ response = client.beta.messages.create(
 
 ```typescript TypeScript
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -332,7 +332,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [
@@ -360,7 +360,7 @@ curl https://api.anthropic.com/v1/messages \
 <CodeGroup>
 ```python Python
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -385,7 +385,7 @@ response = client.beta.messages.create(
 
 ```typescript TypeScript
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -415,7 +415,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [
@@ -443,7 +443,7 @@ curl https://api.anthropic.com/v1/messages \
 <CodeGroup>
 ```python Python
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
@@ -468,7 +468,7 @@ response = client.beta.messages.create(
 
 ```typescript TypeScript
 const response = await client.beta.messages.create({
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-4-6',
   max_tokens: 4096,
   betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
   container: {
@@ -498,7 +498,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-opus-4-6",
     "max_tokens": 4096,
     "container": {
       "skills": [
@@ -523,7 +523,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ## Langkah berikutnya
 
-Sekarang setelah Anda menggunakan Agent Skills yang telah dibangun sebelumnya, Anda dapat:
+Sekarang yang Anda telah menggunakan Agent Skills yang telah dibangun sebelumnya, Anda dapat:
 
 <CardGroup cols={2}>
   <Card
@@ -538,7 +538,7 @@ Sekarang setelah Anda menggunakan Agent Skills yang telah dibangun sebelumnya, A
     icon="code"
     href="/docs/id/api/skills/create-skill"
   >
-    Unggah Skills Anda sendiri untuk tugas khusus
+    Unggah Skills Anda sendiri untuk tugas-tugas khusus
   </Card>
   <Card
     title="Panduan Penulisan"
@@ -550,7 +550,7 @@ Sekarang setelah Anda menggunakan Agent Skills yang telah dibangun sebelumnya, A
   <Card
     title="Gunakan Skills di Claude Code"
     icon="terminal"
-    href="https://code.claude.com/docs/skills"
+    href="https://code.claude.com/docs/en/skills"
   >
     Pelajari tentang Skills di Claude Code
   </Card>
@@ -564,7 +564,7 @@ Sekarang setelah Anda menggunakan Agent Skills yang telah dibangun sebelumnya, A
   <Card
     title="Agent Skills Cookbook"
     icon="book"
-    href="https://github.com/anthropics/anthropic-cookbook/blob/main/skills/README.md"
+    href="https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction"
   >
     Jelajahi contoh Skills dan pola implementasi
   </Card>

@@ -1,429 +1,203 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/permissions
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 30998dd01cf7e90d88bf0b108f9f78588ab70f1d20173def69890234670ca30b
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 8f2e424f30014bb00e32cc90582e0a2cc501a22ae1dd59e565d44bd6b427ff6c
 ---
 
-# Menangani Izin
+# Konfigurasi izin
 
-Kontrol penggunaan alat dan izin dalam Claude Agent SDK
+Kontrol bagaimana agen Anda menggunakan alat dengan mode izin, hook, dan aturan allow/deny deklaratif.
 
 ---
 
-# Izin SDK
-
-Claude Agent SDK menyediakan kontrol izin yang kuat yang memungkinkan Anda mengelola bagaimana Claude menggunakan alat dalam aplikasi Anda.
-
-Panduan ini mencakup cara mengimplementasikan sistem izin menggunakan callback `canUseTool`, hooks, dan aturan izin settings.json. Untuk dokumentasi API lengkap, lihat [referensi SDK TypeScript](/docs/id/agent-sdk/typescript).
-
-## Ikhtisar
-
-Claude Agent SDK menyediakan empat cara yang saling melengkapi untuk mengontrol penggunaan alat:
-
-1. **[Mode Izin](#permission-modes)** - Pengaturan perilaku izin global yang mempengaruhi semua alat
-2. **[Callback canUseTool](/docs/id/agent-sdk/typescript#canusetool)** - Penanganan izin runtime untuk kasus yang tidak tercakup oleh aturan lain
-3. **[Hooks](/docs/id/agent-sdk/hooks)** - Kontrol terperinci atas setiap eksekusi alat dengan logika kustom
-4. **[Aturan izin (settings.json)](https://code.claude.com/docs/en/settings#permission-settings)** - Aturan allow/deny deklaratif dengan parsing perintah bash terintegrasi
-
-Kasus penggunaan untuk setiap pendekatan:
-- Mode izin - Tetapkan perilaku izin keseluruhan (perencanaan, auto-accepting edits, bypassing checks)
-- `canUseTool` - Persetujuan dinamis untuk kasus yang tidak tercakup, meminta izin pengguna
-- Hooks - Kontrol programatik atas semua eksekusi alat
-- Aturan izin - Kebijakan statis dengan parsing perintah bash yang cerdas
-
-## Diagram Alur Izin
-
-```mermaid
-
-flowchart TD
-    Start([Tool request]) --> PreHook(PreToolUse Hook)
-
-    PreHook -->|&nbsp;&nbsp;Allow&nbsp;&nbsp;| Execute(Execute Tool)
-    PreHook -->|&nbsp;&nbsp;Deny&nbsp;&nbsp;| Denied(Denied)
-    PreHook -->|&nbsp;&nbsp;Ask&nbsp;&nbsp;| Callback(canUseTool Callback)
-    PreHook -->|&nbsp;&nbsp;Continue&nbsp;&nbsp;| Deny(Check Deny Rules)
-
-    Deny -->|&nbsp;&nbsp;Match&nbsp;&nbsp;| Denied
-    Deny -->|&nbsp;&nbsp;No Match&nbsp;&nbsp;| Allow(Check Allow Rules)
-
-    Allow -->|&nbsp;&nbsp;Match&nbsp;&nbsp;| Execute
-    Allow -->|&nbsp;&nbsp;No Match&nbsp;&nbsp;| Ask(Check Ask Rules)
-
-    Ask -->|&nbsp;&nbsp;Match&nbsp;&nbsp;| Callback
-    Ask -->|&nbsp;&nbsp;No Match&nbsp;&nbsp;| Mode{Permission Mode?}
-
-    Mode -->|&nbsp;&nbsp;bypassPermissions&nbsp;&nbsp;| Execute
-    Mode -->|&nbsp;&nbsp;Other modes&nbsp;&nbsp;| Callback
-
-    Callback -->|&nbsp;&nbsp;Allow&nbsp;&nbsp;| Execute
-    Callback -->|&nbsp;&nbsp;Deny&nbsp;&nbsp;| Denied
-
-    Denied --> DeniedResponse([Feedback to agent])
-
-    Execute --> PostHook(PostToolUse Hook)
-    PostHook --> Done([Tool Response])
-
-
-```
-
-**Urutan Pemrosesan:** PreToolUse Hook → Deny Rules → Allow Rules → Ask Rules → Permission Mode Check → canUseTool Callback → PostToolUse Hook
-
-## Mode Izin
-
-Mode izin memberikan kontrol global atas bagaimana Claude menggunakan alat. Anda dapat mengatur mode izin saat memanggil `query()` atau mengubahnya secara dinamis selama sesi streaming.
-
-### Mode yang Tersedia
-
-SDK mendukung empat mode izin, masing-masing dengan perilaku yang berbeda:
-
-| Mode | Deskripsi | Perilaku Alat |
-| :--- | :---------- | :------------ |
-| `default` | Perilaku izin standar | Pemeriksaan izin normal berlaku |
-| `plan` | Mode perencanaan - tidak ada eksekusi | Claude hanya dapat menggunakan alat read-only; menyajikan rencana sebelum eksekusi **(Saat ini tidak didukung dalam SDK)** |
-| `acceptEdits` | Auto-accept file edits | Edit file dan operasi filesystem secara otomatis disetujui |
-| `bypassPermissions` | Bypass semua pemeriksaan izin | Semua alat berjalan tanpa prompt izin (gunakan dengan hati-hati) |
-
-### Mengatur Mode Izin
-
-Anda dapat mengatur mode izin dengan dua cara:
-
-#### 1. Konfigurasi Awal
-
-Atur mode saat membuat query:
-
-<CodeGroup>
-
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-const result = await query({
-  prompt: "Help me refactor this code",
-  options: {
-    permissionMode: 'default'  // Standard permission mode
-  }
-});
-```
-
-```python Python
-from claude_agent_sdk import query
-
-result = await query(
-    prompt="Help me refactor this code",
-    options={
-        "permission_mode": "default"  # Standard permission mode
-    }
-)
-```
-
-</CodeGroup>
-
-#### 2. Perubahan Mode Dinamis (Hanya Streaming)
-
-Ubah mode selama sesi streaming:
-
-<CodeGroup>
-
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-// Create an async generator for streaming input
-async function* streamInput() {
-  yield { 
-    type: 'user',
-    message: { 
-      role: 'user', 
-      content: "Let's start with default permissions" 
-    }
-  };
-  
-  // Later in the conversation...
-  yield {
-    type: 'user',
-    message: {
-      role: 'user',
-      content: "Now let's speed up development"
-    }
-  };
-}
-
-const q = query({
-  prompt: streamInput(),
-  options: {
-    permissionMode: 'default'  // Start in default mode
-  }
-});
-
-// Change mode dynamically
-await q.setPermissionMode('acceptEdits');
-
-// Process messages
-for await (const message of q) {
-  console.log(message);
-}
-```
-
-```python Python
-from claude_agent_sdk import query
-
-async def stream_input():
-    """Async generator for streaming input"""
-    yield {
-        "type": "user",
-        "message": {
-            "role": "user",
-            "content": "Let's start with default permissions"
-        }
-    }
-    
-    # Later in the conversation...
-    yield {
-        "type": "user",
-        "message": {
-            "role": "user",
-            "content": "Now let's speed up development"
-        }
-    }
-
-q = query(
-    prompt=stream_input(),
-    options={
-        "permission_mode": "default"  # Start in default mode
-    }
-)
-
-# Change mode dynamically
-await q.set_permission_mode("acceptEdits")
-
-# Process messages
-async for message in q:
-    print(message)
-```
-
-</CodeGroup>
-
-### Perilaku Spesifik Mode
-
-#### Mode Accept Edits (`acceptEdits`)
-
-Dalam mode accept edits:
-- Semua edit file secara otomatis disetujui
-- Operasi filesystem (mkdir, touch, rm, dll.) auto-approved
-- Alat lain masih memerlukan izin normal
-- Mempercepat pengembangan ketika Anda mempercayai edit Claude
-- Berguna untuk prototyping cepat dan iterasi
-
-Operasi yang auto-approved:
-- Edit file (Edit, Write tools)
-- Perintah filesystem Bash (mkdir, touch, rm, mv, cp)
-- Pembuatan dan penghapusan file
-
-#### Mode Bypass Permissions (`bypassPermissions`)
-
-Dalam mode bypass permissions:
-- **SEMUA penggunaan alat secara otomatis disetujui**
-- Tidak ada prompt izin yang muncul
-- Hooks masih dieksekusi (masih dapat memblokir operasi)
-- **Gunakan dengan sangat hati-hati** - Claude memiliki akses sistem penuh
-- Direkomendasikan hanya untuk lingkungan terkontrol
-
-### Prioritas Mode dalam Alur Izin
-
-Mode izin dievaluasi pada titik tertentu dalam alur izin:
-
-1. **Hooks dieksekusi terlebih dahulu** - Dapat allow, deny, ask, atau continue
-2. **Aturan Deny** diperiksa - Blokir alat terlepas dari mode
-3. **Aturan Allow** diperiksa - Izinkan alat jika cocok
-4. **Aturan Ask** diperiksa - Minta izin jika cocok
-5. **Mode izin** dievaluasi:
-   - **Mode `bypassPermissions`** - Jika aktif, izinkan semua alat yang tersisa
-   - **Mode lain** - Tunda ke callback `canUseTool`
-6. **Callback `canUseTool`** - Menangani kasus yang tersisa
-
-Ini berarti:
-- Hooks dapat selalu mengontrol penggunaan alat, bahkan dalam mode `bypassPermissions`
-- Aturan deny eksplisit menggantikan semua mode izin
-- Aturan ask dievaluasi sebelum mode izin
-- Mode `bypassPermissions` menggantikan callback `canUseTool` untuk alat yang tidak cocok
-
-### Praktik Terbaik
-
-1. **Gunakan mode default** untuk eksekusi terkontrol dengan pemeriksaan izin normal
-2. **Gunakan mode acceptEdits** saat bekerja pada file atau direktori terisolasi
-3. **Hindari bypassPermissions** dalam produksi atau pada sistem dengan data sensitif
-4. **Gabungkan mode dengan hooks** untuk kontrol terperinci
-5. **Ubah mode secara dinamis** berdasarkan kemajuan tugas dan kepercayaan diri
-
-Contoh perkembangan mode:
-```typescript
-// Start in default mode for controlled execution
-permissionMode: 'default'
-
-// Switch to acceptEdits for rapid iteration
-await q.setPermissionMode('acceptEdits')
-```
-
-## canUseTool
-
-Callback `canUseTool` dilewatkan sebagai opsi saat memanggil fungsi `query`. Ini menerima nama alat dan parameter input, dan harus mengembalikan keputusan - allow atau deny.
-
-canUseTool fires kapan pun Claude Code akan menampilkan prompt izin kepada pengguna, misalnya hooks dan aturan izin tidak mencakupnya dan tidak dalam mode acceptEdits.
-
-Berikut adalah contoh lengkap yang menunjukkan cara mengimplementasikan persetujuan alat interaktif:
-
-<CodeGroup>
-
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-async function promptForToolApproval(toolName: string, input: any) {
-  console.log("\n🔧 Tool Request:");
-  console.log(`   Tool: ${toolName}`);
-  
-  // Display tool parameters
-  if (input && Object.keys(input).length > 0) {
-    console.log("   Parameters:");
-    for (const [key, value] of Object.entries(input)) {
-      let displayValue = value;
-      if (typeof value === 'string' && value.length > 100) {
-        displayValue = value.substring(0, 100) + "...";
-      } else if (typeof value === 'object') {
-        displayValue = JSON.stringify(value, null, 2);
-      }
-      console.log(`     ${key}: ${displayValue}`);
-    }
-  }
-  
-  // Get user approval (replace with your UI logic)
-  const approved = await getUserApproval();
-  
-  if (approved) {
-    console.log("   ✅ Approved\n");
-    return {
-      behavior: "allow",
-      updatedInput: input
-    };
-  } else {
-    console.log("   ❌ Denied\n");
-    return {
-      behavior: "deny",
-      message: "User denied permission for this tool"
-    };
-  }
-}
-
-// Use the permission callback
-const result = await query({
-  prompt: "Help me analyze this codebase",
-  options: {
-    canUseTool: async (toolName, input) => {
-      return promptForToolApproval(toolName, input);
-    }
-  }
-});
-```
-
-```python Python
-from claude_agent_sdk import query
-
-async def prompt_for_tool_approval(tool_name: str, input_params: dict):
-    print(f"\n🔧 Tool Request:")
-    print(f"   Tool: {tool_name}")
-
-    # Display parameters
-    if input_params:
-        print("   Parameters:")
-        for key, value in input_params.items():
-            display_value = value
-            if isinstance(value, str) and len(value) > 100:
-                display_value = value[:100] + "..."
-            elif isinstance(value, (dict, list)):
-                display_value = json.dumps(value, indent=2)
-            print(f"     {key}: {display_value}")
-
-    # Get user approval
-    answer = input("\n   Approve this tool use? (y/n): ")
-
-    if answer.lower() in ['y', 'yes']:
-        print("   ✅ Approved\n")
-        return {
-            "behavior": "allow",
-            "updatedInput": input_params
-        }
-    else:
-        print("   ❌ Denied\n")
-        return {
-            "behavior": "deny",
-            "message": "User denied permission for this tool"
-        }
-
-# Use the permission callback
-result = await query(
-    prompt="Help me analyze this codebase",
-    options={
-        "can_use_tool": prompt_for_tool_approval
-    }
-)
-```
-
-</CodeGroup>
-
-## Menangani Alat AskUserQuestion
-
-Alat `AskUserQuestion` memungkinkan Claude untuk mengajukan pertanyaan klarifikasi kepada pengguna selama percakapan. Ketika alat ini dipanggil, callback `canUseTool` Anda menerima pertanyaan dan harus mengembalikan jawaban pengguna.
-
-### Struktur Input
-
-Ketika `canUseTool` dipanggil dengan `toolName: "AskUserQuestion"`, input berisi:
-
-```typescript
-{
-  questions: [
-    {
-      question: "Which database should we use?",
-      header: "Database",
-      options: [
-        { label: "PostgreSQL", description: "Relational, ACID compliant" },
-        { label: "MongoDB", description: "Document-based, flexible schema" }
-      ],
-      multiSelect: false
-    },
-    {
-      question: "Which features should we enable?",
-      header: "Features",
-      options: [
-        { label: "Authentication", description: "User login and sessions" },
-        { label: "Logging", description: "Request and error logging" },
-        { label: "Caching", description: "Redis-based response caching" }
-      ],
-      multiSelect: true
-    }
-  ]
-}
-```
-
-### Mengembalikan Jawaban
-
-Kembalikan jawaban dalam `updatedInput.answers` sebagai record yang memetakan teks pertanyaan ke label opsi yang dipilih:
-
-```typescript
-return {
-  behavior: "allow",
-  updatedInput: {
-    questions: input.questions,  // Pass through original questions
-    answers: {
-      "Which database should we use?": "PostgreSQL",
-      "Which features should we enable?": "Authentication, Caching"
-    }
-  }
-}
-```
+Claude Agent SDK menyediakan kontrol izin untuk mengelola bagaimana Claude menggunakan alat. Gunakan mode izin dan aturan untuk menentukan apa yang diizinkan secara otomatis, dan callback [`canUseTool`](/docs/id/agent-sdk/user-input) untuk menangani segalanya di runtime.
 
 <Note>
-Jawaban multi-select adalah string yang dipisahkan koma (misalnya, `"Authentication, Caching"`).
+Halaman ini mencakup mode izin dan aturan. Untuk membangun alur persetujuan interaktif di mana pengguna menyetujui atau menolak permintaan alat di runtime, lihat [Tangani persetujuan dan input pengguna](/docs/id/agent-sdk/user-input).
 </Note>
 
-## Sumber Daya Terkait
+## Bagaimana izin dievaluasi
 
-- [Panduan Hooks](/docs/id/agent-sdk/hooks) - Pelajari cara mengimplementasikan hooks untuk kontrol terperinci atas eksekusi alat
-- [Pengaturan: Aturan Izin](https://code.claude.com/docs/en/settings#permission-settings) - Konfigurasi aturan allow/deny deklaratif dengan parsing perintah bash
+Ketika Claude meminta alat, SDK memeriksa izin dalam urutan ini:
+
+<Steps>
+  <Step title="Hook">
+    Jalankan [hook](/docs/id/agent-sdk/hooks) terlebih dahulu, yang dapat mengizinkan, menolak, atau melanjutkan ke langkah berikutnya
+  </Step>
+  <Step title="Aturan izin">
+    Periksa aturan yang ditentukan dalam [settings.json](https://code.claude.com/docs/en/settings#permission-settings) dalam urutan ini: aturan `deny` terlebih dahulu (blokir terlepas dari aturan lain), kemudian aturan `allow` (izinkan jika cocok), kemudian aturan `ask` (minta persetujuan). Aturan deklaratif ini memungkinkan Anda untuk pra-menyetujui, memblokir, atau memerlukan persetujuan untuk alat tertentu tanpa menulis kode.
+  </Step>
+  <Step title="Mode izin">
+    Terapkan [mode izin](#permission-modes) aktif (`bypassPermissions`, `acceptEdits`, `dontAsk`, dll.)
+  </Step>
+  <Step title="Callback canUseTool">
+    Jika tidak diselesaikan oleh aturan atau mode, panggil callback [`canUseTool`](/docs/id/agent-sdk/user-input) Anda untuk keputusan
+  </Step>
+</Steps>
+
+![Permission evaluation flow diagram](/docs/images/agent-sdk/permissions-flow.svg)
+
+Halaman ini berfokus pada **mode izin** (langkah 3), konfigurasi statis yang mengontrol perilaku default. Untuk langkah-langkah lainnya:
+
+- **Hook**: jalankan kode khusus untuk mengizinkan, menolak, atau memodifikasi permintaan alat. Lihat [Kontrol eksekusi dengan hook](/docs/id/agent-sdk/hooks).
+- **Aturan izin**: konfigurasi aturan allow/deny deklaratif dalam `settings.json`. Lihat [Pengaturan izin](https://code.claude.com/docs/en/settings#permission-settings).
+- **Callback canUseTool**: minta persetujuan pengguna di runtime. Lihat [Tangani persetujuan dan input pengguna](/docs/id/agent-sdk/user-input).
+
+## Mode izin
+
+Mode izin menyediakan kontrol global atas bagaimana Claude menggunakan alat. Anda dapat mengatur mode izin saat memanggil `query()` atau mengubahnya secara dinamis selama sesi streaming.
+
+### Mode yang tersedia
+
+SDK mendukung mode izin ini:
+
+| Mode | Deskripsi | Perilaku alat |
+| :--- | :---------- | :------------ |
+| `default` | Perilaku izin standar | Tidak ada persetujuan otomatis; alat yang tidak cocok memicu callback `canUseTool` Anda |
+| `acceptEdits` | Terima otomatis edit file | Edit file dan [operasi sistem file](#accept-edits-mode-acceptedits) (`mkdir`, `rm`, `mv`, dll.) disetujui secara otomatis |
+| `bypassPermissions` | Lewati semua pemeriksaan izin | Semua alat berjalan tanpa prompt izin (gunakan dengan hati-hati) |
+| `plan` | Mode perencanaan | Tidak ada eksekusi alat; Claude merencanakan tanpa membuat perubahan |
+
+<Warning>
+**Warisan subagen**: Saat menggunakan `bypassPermissions`, semua subagen mewarisi mode ini dan tidak dapat ditimpa. Subagen mungkin memiliki prompt sistem yang berbeda dan perilaku yang kurang terbatas daripada agen utama Anda. Mengaktifkan `bypassPermissions` memberikan mereka akses sistem penuh dan otonom tanpa prompt persetujuan apa pun.
+</Warning>
+
+### Atur mode izin
+
+Anda dapat mengatur mode izin sekali saat memulai kueri, atau mengubahnya secara dinamis saat sesi aktif.
+
+<Tabs>
+  <Tab title="Pada waktu kueri">
+    Lewatkan `permission_mode` (Python) atau `permissionMode` (TypeScript) saat membuat kueri. Mode ini berlaku untuk seluruh sesi kecuali diubah secara dinamis.
+
+    <CodeGroup>
+
+    ```python Python
+    import asyncio
+    from claude_agent_sdk import query, ClaudeAgentOptions
+
+    async def main():
+        async for message in query(
+            prompt="Help me refactor this code",
+            options=ClaudeAgentOptions(
+                permission_mode="default",  # Set the mode here
+            ),
+        ):
+            if hasattr(message, "result"):
+                print(message.result)
+
+    asyncio.run(main())
+    ```
+
+    ```typescript TypeScript
+    import { query } from "@anthropic-ai/claude-agent-sdk";
+
+    async function main() {
+      for await (const message of query({
+        prompt: "Help me refactor this code",
+        options: {
+          permissionMode: "default",  // Set the mode here
+        },
+      })) {
+        if ("result" in message) {
+          console.log(message.result);
+        }
+      }
+    }
+
+    main();
+    ```
+
+    </CodeGroup>
+  </Tab>
+  <Tab title="Selama streaming">
+    Panggil `set_permission_mode()` (Python) atau `setPermissionMode()` (TypeScript) untuk mengubah mode di tengah sesi. Mode baru berlaku segera untuk semua permintaan alat berikutnya. Ini memungkinkan Anda untuk memulai dengan pembatasan dan melonggarkan izin seiring kepercayaan berkembang, misalnya beralih ke `acceptEdits` setelah meninjau pendekatan awal Claude.
+
+    <CodeGroup>
+
+    ```python Python
+    import asyncio
+    from claude_agent_sdk import query, ClaudeAgentOptions
+
+    async def main():
+        q = query(
+            prompt="Help me refactor this code",
+            options=ClaudeAgentOptions(
+                permission_mode="default",  # Start in default mode
+            ),
+        )
+
+        # Change mode dynamically mid-session
+        await q.set_permission_mode("acceptEdits")
+
+        # Process messages with the new permission mode
+        async for message in q:
+            if hasattr(message, "result"):
+                print(message.result)
+
+    asyncio.run(main())
+    ```
+
+    ```typescript TypeScript
+    import { query } from "@anthropic-ai/claude-agent-sdk";
+
+    async function main() {
+      const q = query({
+        prompt: "Help me refactor this code",
+        options: {
+          permissionMode: "default",  // Start in default mode
+        },
+      });
+
+      // Change mode dynamically mid-session
+      await q.setPermissionMode("acceptEdits");
+
+      // Process messages with the new permission mode
+      for await (const message of q) {
+        if ("result" in message) {
+          console.log(message.result);
+        }
+      }
+    }
+
+    main();
+    ```
+
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+### Detail mode
+
+#### Mode terima edit (`acceptEdits`)
+
+Menyetujui operasi file secara otomatis sehingga Claude dapat mengedit kode tanpa meminta. Alat lain (seperti perintah Bash yang bukan operasi sistem file) masih memerlukan izin normal.
+
+**Operasi yang disetujui otomatis:**
+- Edit file (alat Edit, Write)
+- Perintah sistem file: `mkdir`, `touch`, `rm`, `mv`, `cp`
+
+**Gunakan saat:** Anda mempercayai edit Claude dan menginginkan iterasi lebih cepat, seperti selama prototyping atau saat bekerja di direktori terisolasi.
+
+#### Mode lewati izin (`bypassPermissions`)
+
+Menyetujui semua penggunaan alat tanpa prompt. Hook masih dijalankan dan dapat memblokir operasi jika diperlukan.
+
+<Warning>
+Gunakan dengan sangat hati-hati. Claude memiliki akses sistem penuh dalam mode ini. Hanya gunakan di lingkungan terkontrol di mana Anda mempercayai semua operasi yang mungkin.
+</Warning>
+
+#### Mode rencana (`plan`)
+
+Mencegah eksekusi alat sepenuhnya. Claude dapat menganalisis kode dan membuat rencana tetapi tidak dapat membuat perubahan. Claude dapat menggunakan `AskUserQuestion` untuk memperjelas persyaratan sebelum menyelesaikan rencana. Lihat [Tangani persetujuan dan input pengguna](/docs/id/agent-sdk/user-input#handle-clarifying-questions) untuk menangani prompt ini.
+
+**Gunakan saat:** Anda ingin Claude mengusulkan perubahan tanpa menjalankannya, seperti selama tinjauan kode atau ketika Anda perlu menyetujui perubahan sebelum dibuat.
+
+## Sumber daya terkait
+
+Untuk langkah-langkah lain dalam alur evaluasi izin:
+
+- [Tangani persetujuan dan input pengguna](/docs/id/agent-sdk/user-input): prompt persetujuan interaktif dan pertanyaan klarifikasi
+- [Panduan hook](/docs/id/agent-sdk/hooks): jalankan kode khusus di titik-titik kunci dalam siklus hidup agen
+- [Aturan izin](https://code.claude.com/docs/en/settings#permission-settings): aturan allow/deny deklaratif dalam `settings.json`

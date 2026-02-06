@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 3c5322f0c5405e952709fdf0df0b5e13224d381aed9faf3f04f3af1fa5a9428a
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 097f20a7853922de90b2e21ab79a32bb3e26106f6a838c339e6d97a9e8c1d2ea
 ---
 
 # API Keys
@@ -11,7 +11,7 @@ sha256: 3c5322f0c5405e952709fdf0df0b5e13224d381aed9faf3f04f3af1fa5a9428a
 
 **get** `/v1/organizations/api_keys/{api_key_id}`
 
-Get Api Key
+Get API Key
 
 ### Path Parameters
 
@@ -71,12 +71,13 @@ Get Api Key
 
   - `workspace_id: string`
 
-    ID of the Workspace associated with the API key, or null if the API key belongs to the default Workspace.
+    ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
 
 ### Example
 
 ```http
 curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -84,7 +85,7 @@ curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
 
 **get** `/v1/organizations/api_keys`
 
-List Api Keys
+List API Keys
 
 ### Query Parameters
 
@@ -172,7 +173,7 @@ List Api Keys
 
   - `workspace_id: string`
 
-    ID of the Workspace associated with the API key, or null if the API key belongs to the default Workspace.
+    ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
 
 - `first_id: string`
 
@@ -190,6 +191,7 @@ List Api Keys
 
 ```http
 curl https://api.anthropic.com/v1/organizations/api_keys \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
@@ -197,7 +199,7 @@ curl https://api.anthropic.com/v1/organizations/api_keys \
 
 **post** `/v1/organizations/api_keys/{api_key_id}`
 
-Update Api Key
+Update API Key
 
 ### Path Parameters
 
@@ -273,13 +275,14 @@ Update Api Key
 
   - `workspace_id: string`
 
-    ID of the Workspace associated with the API key, or null if the API key belongs to the default Workspace.
+    ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
 
 ### Example
 
 ```http
 curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
     -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{}'
 ```

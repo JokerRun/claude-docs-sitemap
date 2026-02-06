@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-code-analytics-api
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 65b65e2d21fe9b0a176869ba1af9ec48ed96dcef69127ffe790eb77846288134
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: ea7e30883a9109d7caf112edf5ab145c58eb752d1ccd9de2147660d0db6c20b5
 ---
 
 # Claude Code Analytics API
@@ -130,7 +130,7 @@ Breakdown of tool action acceptance and rejection rates by tool type:
 
 #### Model breakdown
 For each Claude model used:
-- **model**: Claude model identifier (e.g., `claude-sonnet-4-5-20250929`)
+- **model**: Claude model identifier (e.g., `claude-opus-4-6`)
 - **tokens.input/output**: Input and output token counts for this model
 - **tokens.cache_read/cache_creation**: Cache-related token usage for this model
 - **estimated_cost.amount**: Estimated cost in cents USD for this model
@@ -181,7 +181,7 @@ The API returns data in the following format:
       },
       "model_breakdown": [
         {
-          "model": "claude-sonnet-4-5-20250929",
+          "model": "claude-opus-4-6",
           "tokens": {
             "input": 100000,
             "output": 35000,

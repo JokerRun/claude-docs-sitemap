@@ -1,28 +1,28 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/idiom-illuminator
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: e93c647a3669b1b5692da3231d0d91c4ff109bf37f1454bb18b2d45b631d34aa
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 807b8209bcb33f14c81fabe4d65ac80bd963b24fd4994b261a1da0c32802ca3d
 ---
 
-# Penjelas idiom
+# Penerang idiom
 
-Menjelaskan makna dan asal-usul idiom dan peribahasa yang umum.
+Jelaskan makna dan asal-usul idiom dan peribahasa umum.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah memberikan penjelasan yang jelas tentang makna dan asal-usul idiom dan peribahasa yang diberikan pengguna kepada Anda. Berikan interpretasi ringkas tentang makna kiasannya dan bagaimana biasanya digunakan dalam percakapan atau tulisan. Selanjutnya, gali asal-usul frasa tersebut, berikan konteks sejarah, referensi budaya, atau informasi etimologis yang menjelaskan bagaimana idiom atau peribahasa tersebut muncul. Jika ada cerita menarik, anekdot, atau teori yang terkait dengan asal-usulnya, sertakan juga. Bertujuan untuk memberikan pemahaman yang komprehensif tentang makna dan latar belakang idiom atau peribahasa tersebut. |
-| User   | Break a leg |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Tugas Anda adalah memberikan penjelasan yang jelas tentang makna dan asal-usul idiom dan peribahasa yang diberikan pengguna kepada Anda. Tawarkan interpretasi ringkas tentang makna kiasannya dan bagaimana biasanya digunakan dalam percakapan atau tulisan. Selanjutnya, gali lebih dalam tentang asal-usul frasa tersebut, memberikan konteks historis, referensi budaya, atau informasi etimologis yang menjelaskan bagaimana idiom atau peribahasa tersebut berasal. Jika ada cerita menarik, anekdot, atau teori yang terkait dengan asal-usulnya, sertakan juga. Bertujuan untuk memberikan pemahaman komprehensif tentang makna dan latar belakang idiom atau peribahasa. |
+| Pengguna   | Break a leg                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ## Contoh Output
 
-Makna: Idiom ini umumnya digunakan dalam seni pertunjukan sebagai cara untuk mengucapkan selamat kepada seseorang sebelum pertunjukan. Ini adalah ungkapan ironis, karena patah kaki akan menjadi peristiwa yang mengerikan bagi seorang penampil.
+Makna: Idiom ini biasanya digunakan dalam seni pertunjukan sebagai cara untuk mengucapkan selamat kepada seseorang sebelum pertunjukan. Ini adalah ekspresi yang ironis, karena mematahkan kaki akan menjadi peristiwa yang mengerikan bagi seorang pemain.
 
-Asal-usul: Ada beberapa teori tentang asal-usul idiom ini. Satu teori menunjukkan bahwa ini berasal dari takhayul bahwa mengucapkan selamat secara langsung akan membawa sial pada pertunjukan, jadi ungkapan ironis digunakan sebagai gantinya. Teori lain melacak asal-usulnya ke teater Yunani kuno, di mana penonton akan menghentakkan kaki mereka dan mematahkan ranting untuk bertepuk tangan atas pertunjukan yang bagus. Semakin banyak ranting yang patah, semakin baik pertunjukannya. Seiring waktu, ini berkembang menjadi frasa "break a leg" sebagai cara untuk mengharapkan seseorang mendapat pertunjukan yang layak mendapat tepuk tangan yang meriah.
+Asal-usul: Ada beberapa teori tentang asal-usul idiom ini. Satu teori menunjukkan bahwa itu berasal dari takhayul bahwa mengucapkan selamat langsung kepada seseorang akan menggagalkan pertunjukan, jadi frasa yang ironis digunakan sebagai gantinya. Teori lain melacak asal-usul ke teater Yunani kuno, di mana penonton akan menghentak kaki mereka dan mematahkan ranting untuk memuji pertunjukan yang baik. Semakin banyak ranting yang patah, semakin baik pertunjukannya. Seiring waktu, ini berkembang menjadi frasa "break a leg" sebagai cara untuk mengucapkan selamat kepada seseorang atas pertunjukan yang layak mendapatkan tepukan yang meriah.
 
 ---
 
@@ -37,10 +37,10 @@ client = anthropic.Anthropic(  # defaults to os.environ.get("ANTHROPIC_API_KEY")
     api_key="my_api_key",
 )
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1000,
     temperature=1,
-    system="Tugas Anda adalah memberikan penjelasan yang jelas tentang makna dan asal-usul idiom dan peribahasa yang diberikan pengguna kepada Anda. Berikan interpretasi ringkas tentang makna kiasannya dan bagaimana biasanya digunakan dalam percakapan atau tulisan. Selanjutnya, gali asal-usul frasa tersebut, berikan konteks sejarah, referensi budaya, atau informasi etimologis yang menjelaskan bagaimana idiom atau peribahasa tersebut muncul. Jika ada cerita menarik, anekdot, atau teori yang terkait dengan asal-usulnya, sertakan juga. Bertujuan untuk memberikan pemahaman yang komprehensif tentang makna dan latar belakang idiom atau peribahasa tersebut.",
+    system="Your task is to provide a clear explanation of the meaning and origin of an idioms and proverb that the user gives you. Offer a concise interpretation of its figurative meaning and how it is typically used in conversation or writing. Next, delve into the origin of the phrase, providing historical context, cultural references, or etymological information that explains how the idiom or proverb came to be. If there are any interesting stories, anecdotes, or theories associated with the origin, include those as well. Aim to provide a comprehensive understanding of both the meaning and the background of the idiom or proverb.",
     messages=[{"role": "user", "content": [{"type": "text", "text": "Break a leg"}]}],
 )
 print(message.content)
@@ -58,10 +58,10 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 1,
-  system: "Tugas Anda adalah memberikan penjelasan yang jelas tentang makna dan asal-usul idiom dan peribahasa yang diberikan pengguna kepada Anda. Berikan interpretasi ringkas tentang makna kiasannya dan bagaimana biasanya digunakan dalam percakapan atau tulisan. Selanjutnya, gali asal-usul frasa tersebut, berikan konteks sejarah, referensi budaya, atau informasi etimologis yang menjelaskan bagaimana idiom atau peribahasa tersebut muncul. Jika ada cerita menarik, anekdot, atau teori yang terkait dengan asal-usulnya, sertakan juga. Bertujuan untuk memberikan pemahaman yang komprehensif tentang makna dan latar belakang idiom atau peribahasa tersebut.",
+  system: "Your task is to provide a clear explanation of the meaning and origin of an idioms and proverb that the user gives you. Offer a concise interpretation of its figurative meaning and how it is typically used in conversation or writing. Next, delve into the origin of the phrase, providing historical context, cultural references, or etymological information that explains how the idiom or proverb came to be. If there are any interesting stories, anecdotes, or theories associated with the origin, include those as well. Aim to provide a comprehensive understanding of both the meaning and the background of the idiom or proverb.",
   messages: [
     {
       "role": "user",
@@ -89,10 +89,10 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=1000,
     temperature=1,
-    system="Tugas Anda adalah memberikan penjelasan yang jelas tentang makna dan asal-usul idiom dan peribahasa yang diberikan pengguna kepada Anda. Berikan interpretasi ringkas tentang makna kiasannya dan bagaimana biasanya digunakan dalam percakapan atau tulisan. Selanjutnya, gali asal-usul frasa tersebut, berikan konteks sejarah, referensi budaya, atau informasi etimologis yang menjelaskan bagaimana idiom atau peribahasa tersebut muncul. Jika ada cerita menarik, anekdot, atau teori yang terkait dengan asal-usulnya, sertakan juga. Bertujuan untuk memberikan pemahaman yang komprehensif tentang makna dan latar belakang idiom atau peribahasa tersebut.",
+    system="Your task is to provide a clear explanation of the meaning and origin of an idioms and proverb that the user gives you. Offer a concise interpretation of its figurative meaning and how it is typically used in conversation or writing. Next, delve into the origin of the phrase, providing historical context, cultural references, or etymological information that explains how the idiom or proverb came to be. If there are any interesting stories, anecdotes, or theories associated with the origin, include those as well. Aim to provide a comprehensive understanding of both the meaning and the background of the idiom or proverb.",
     messages=[
         {
             "role": "user",
@@ -120,10 +120,10 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 1000,
   temperature: 1,
-  system: "Tugas Anda adalah memberikan penjelasan yang jelas tentang makna dan asal-usul idiom dan peribahasa yang diberikan pengguna kepada Anda. Berikan interpretasi ringkas tentang makna kiasannya dan bagaimana biasanya digunakan dalam percakapan atau tulisan. Selanjutnya, gali asal-usul frasa tersebut, berikan konteks sejarah, referensi budaya, atau informasi etimologis yang menjelaskan bagaimana idiom atau peribahasa tersebut muncul. Jika ada cerita menarik, anekdot, atau teori yang terkait dengan asal-usulnya, sertakan juga. Bertujuan untuk memberikan pemahaman yang komprehensif tentang makna dan latar belakang idiom atau peribahasa tersebut.",
+  system: "Your task is to provide a clear explanation of the meaning and origin of an idioms and proverb that the user gives you. Offer a concise interpretation of its figurative meaning and how it is typically used in conversation or writing. Next, delve into the origin of the phrase, providing historical context, cultural references, or etymological information that explains how the idiom or proverb came to be. If there are any interesting stories, anecdotes, or theories associated with the origin, include those as well. Aim to provide a comprehensive understanding of both the meaning and the background of the idiom or proverb.",
   messages: [
     {
       "role": "user",
@@ -152,7 +152,7 @@ message = client.messages.create(
     model="claude-sonnet-4@20250514",
     max_tokens=1000,
     temperature=1,
-    system="Tugas Anda adalah memberikan penjelasan yang jelas tentang makna dan asal-usul idiom dan peribahasa yang diberikan pengguna kepada Anda. Berikan interpretasi ringkas tentang makna kiasannya dan bagaimana biasanya digunakan dalam percakapan atau tulisan. Selanjutnya, gali asal-usul frasa tersebut, berikan konteks sejarah, referensi budaya, atau informasi etimologis yang menjelaskan bagaimana idiom atau peribahasa tersebut muncul. Jika ada cerita menarik, anekdot, atau teori yang terkait dengan asal-usulnya, sertakan juga. Bertujuan untuk memberikan pemahaman yang komprehensif tentang makna dan latar belakang idiom atau peribahasa tersebut.",
+    system="Your task is to provide a clear explanation of the meaning and origin of an idioms and proverb that the user gives you. Offer a concise interpretation of its figurative meaning and how it is typically used in conversation or writing. Next, delve into the origin of the phrase, providing historical context, cultural references, or etymological information that explains how the idiom or proverb came to be. If there are any interesting stories, anecdotes, or theories associated with the origin, include those as well. Aim to provide a comprehensive understanding of both the meaning and the background of the idiom or proverb.",
     messages=[
         {
             "role": "user",
@@ -183,7 +183,7 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 1000,
   temperature: 1,
-  system: "Tugas Anda adalah memberikan penjelasan yang jelas tentang makna dan asal-usul idiom dan peribahasa yang diberikan pengguna kepada Anda. Berikan interpretasi ringkas tentang makna kiasannya dan bagaimana biasanya digunakan dalam percakapan atau tulisan. Selanjutnya, gali asal-usul frasa tersebut, berikan konteks sejarah, referensi budaya, atau informasi etimologis yang menjelaskan bagaimana idiom atau peribahasa tersebut muncul. Jika ada cerita menarik, anekdot, atau teori yang terkait dengan asal-usulnya, sertakan juga. Bertujuan untuk memberikan pemahaman yang komprehensif tentang makna dan latar belakang idiom atau peribahasa tersebut.",
+  system: "Your task is to provide a clear explanation of the meaning and origin of an idioms and proverb that the user gives you. Offer a concise interpretation of its figurative meaning and how it is typically used in conversation or writing. Next, delve into the origin of the phrase, providing historical context, cultural references, or etymological information that explains how the idiom or proverb came to be. If there are any interesting stories, anecdotes, or theories associated with the origin, include those as well. Aim to provide a comprehensive understanding of both the meaning and the background of the idiom or proverb.",
   messages: [
     {
       "role": "user",

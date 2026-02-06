@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/rate-limits
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 5c85d1c12b7298a0b3496e7449a6aa10ce92c20cec8ae9e8735a419db7031d17
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 5572d19351bea7b6ada286c9d550bed704301c55fb56d00e6257f4bf031f5e98
 ---
 
 # Batas laju
@@ -14,9 +14,9 @@ Untuk mengurangi penyalahgunaan dan mengelola kapasitas di API kami, kami telah 
 Kami memiliki dua jenis batas:
 
 1. **Batas pengeluaran** menetapkan biaya bulanan maksimum yang dapat dikeluarkan organisasi untuk penggunaan API.
-2. **Batas laju** menetapkan jumlah maksimum permintaan API yang dapat dibuat organisasi selama periode waktu yang ditentukan.
+2. **Batas laju** menetapkan jumlah maksimum permintaan API yang dapat dilakukan organisasi selama periode waktu yang ditentukan.
 
-Kami memberlakukan batas yang dikonfigurasi layanan di tingkat organisasi, tetapi Anda juga dapat menetapkan batas yang dapat dikonfigurasi pengguna untuk ruang kerja organisasi Anda.
+Kami menerapkan batas yang dikonfigurasi layanan di tingkat organisasi, tetapi Anda juga dapat menetapkan batas yang dapat dikonfigurasi pengguna untuk ruang kerja organisasi Anda.
 
 Batas ini berlaku untuk penggunaan Tier Standar dan Prioritas. Untuk informasi lebih lanjut tentang Tier Prioritas, yang menawarkan tingkat layanan yang ditingkatkan sebagai imbalan komitmen pengeluaran, lihat [Service Tiers](/docs/id/api/service-tiers).
 
@@ -26,16 +26,16 @@ Batas ini berlaku untuk penggunaan Tier Standar dan Prioritas. Untuk informasi l
 * Batas didefinisikan oleh **tingkat penggunaan**, di mana setiap tingkat dikaitkan dengan set batas pengeluaran dan laju yang berbeda.
 * Organisasi Anda akan meningkat tingkat secara otomatis saat Anda mencapai ambang batas tertentu saat menggunakan API.
   Batas ditetapkan di tingkat organisasi. Anda dapat melihat batas organisasi Anda di [halaman Batas](/settings/limits) di [Claude Console](/).
-* Anda mungkin mencapai batas laju selama interval waktu yang lebih pendek. Misalnya, laju 60 permintaan per menit (RPM) dapat diberlakukan sebagai 1 permintaan per detik. Lonjakan permintaan singkat dengan volume tinggi dapat melampaui batas laju dan menghasilkan kesalahan batas laju.
+* Anda mungkin mencapai batas laju selama interval waktu yang lebih pendek. Misalnya, laju 60 permintaan per menit (RPM) dapat diterapkan sebagai 1 permintaan per detik. Lonjakan permintaan singkat dengan volume tinggi dapat melampaui batas laju dan menghasilkan kesalahan batas laju.
 * Batas yang dijelaskan di bawah adalah batas tingkat standar kami. Jika Anda mencari batas yang lebih tinggi dan khusus atau Tier Prioritas untuk tingkat layanan yang ditingkatkan, hubungi penjualan melalui [Claude Console](/settings/limits).
-* Kami menggunakan [algoritma token bucket](https://en.wikipedia.org/wiki/Token_bucket) untuk melakukan pembatasan laju. Ini berarti kapasitas Anda terus diisi ulang hingga batas maksimum Anda, bukan direset pada interval tetap.
+* Kami menggunakan [algoritma token bucket](https://en.wikipedia.org/wiki/Token_bucket) untuk melakukan pembatasan laju. Ini berarti kapasitas Anda terus diisi ulang hingga batas maksimum Anda, daripada direset pada interval tetap.
 * Semua batas yang dijelaskan di sini mewakili penggunaan maksimum yang diizinkan, bukan minimum yang dijamin. Batas ini dimaksudkan untuk mengurangi pengeluaran yang tidak disengaja dan memastikan distribusi sumber daya yang adil di antara pengguna.
 
 ## Batas pengeluaran
 
 Setiap tingkat penggunaan memiliki batas tentang berapa banyak yang dapat Anda keluarkan di API setiap bulan kalender. Setelah Anda mencapai batas pengeluaran tingkat Anda, sampai Anda memenuhi syarat untuk tingkat berikutnya, Anda harus menunggu sampai bulan berikutnya untuk dapat menggunakan API lagi.
 
-Untuk memenuhi syarat tingkat berikutnya, Anda harus memenuhi persyaratan setoran. Untuk meminimalkan risiko pendanaan berlebih akun Anda, Anda tidak dapat menyetor lebih dari batas pengeluaran bulanan Anda.
+Untuk memenuhi syarat untuk tingkat berikutnya, Anda harus memenuhi persyaratan setoran. Untuk meminimalkan risiko pendanaan berlebihan akun Anda, Anda tidak dapat menyetor lebih dari batas pengeluaran bulanan Anda.
 
 ### Persyaratan untuk meningkatkan tingkat
 <table>
@@ -76,9 +76,9 @@ Untuk memenuhi syarat tingkat berikutnya, Anda harus memenuhi persyaratan setora
 </table>
 
 <Note>
-**Pembelian Kredit** menunjukkan pembelian kredit kumulatif (tidak termasuk pajak) yang diperlukan untuk meningkat ke tingkat itu. Anda meningkat segera setelah mencapai ambang batas.
+**Pembelian Kredit** menunjukkan pembelian kredit kumulatif (tidak termasuk pajak) yang diperlukan untuk maju ke tingkat tersebut. Anda maju segera setelah mencapai ambang batas.
 
-**Pembelian Kredit Maksimum** membatasi jumlah maksimum yang dapat Anda tambahkan ke akun Anda dalam satu transaksi untuk mencegah pendanaan berlebih akun.
+**Pembelian Kredit Maksimum** membatasi jumlah maksimum yang dapat Anda tambahkan ke akun Anda dalam satu transaksi untuk mencegah pendanaan berlebihan akun.
 </Note>
 
 ## Batas laju
@@ -92,7 +92,7 @@ Anda mungkin juga mengalami kesalahan 429 karena batas akselerasi di API jika or
 
 ### ITPM yang menyadari cache
 
-Banyak penyedia API menggunakan batas "token per menit" (TPM) gabungan yang mungkin mencakup semua token, baik yang di-cache maupun tidak, input dan output. **Untuk sebagian besar model Claude, hanya token input yang tidak di-cache yang dihitung terhadap batas laju ITPM Anda.** Ini adalah keuntungan utama yang membuat batas laju kami secara efektif lebih tinggi daripada yang mungkin terlihat pada awalnya.
+Banyak penyedia API menggunakan batas "token per menit" (TPM) gabungan yang mungkin mencakup semua token, baik yang di-cache maupun tidak di-cache, input dan output. **Untuk sebagian besar model Claude, hanya token input yang tidak di-cache yang dihitung terhadap batas laju ITPM Anda.** Ini adalah keuntungan utama yang membuat batas laju kami secara efektif lebih tinggi daripada yang mungkin terlihat pada awalnya.
 
 Batas laju ITPM diperkirakan di awal setiap permintaan, dan perkiraan disesuaikan selama permintaan untuk mencerminkan jumlah sebenarnya dari token input yang digunakan.
 
@@ -118,13 +118,13 @@ Untuk tujuan batas laju pada sebagian besar model, hanya `input_tokens` + `cache
 <Note>
 Beberapa model yang lebih lama (ditandai dengan † dalam tabel batas laju di bawah) juga menghitung `cache_read_input_tokens` terhadap batas laju ITPM.
 
-Untuk semua model tanpa penanda †, token input yang di-cache tidak dihitung terhadap batas laju dan ditagih dengan tarif yang dikurangi (10% dari harga token input dasar). Ini berarti Anda dapat mencapai throughput efektif yang secara signifikan lebih tinggi dengan menggunakan [prompt caching](/docs/id/build-with-claude/prompt-caching).
+Untuk semua model tanpa penanda †, token input yang di-cache tidak dihitung terhadap batas laju dan ditagih dengan tarif yang dikurangi (10% dari harga token input dasar). Ini berarti Anda dapat mencapai throughput efektif yang jauh lebih tinggi dengan menggunakan [prompt caching](/docs/id/build-with-claude/prompt-caching).
 </Note>
 
 <Tip>
 **Maksimalkan batas laju Anda dengan prompt caching**
 
-Untuk mendapatkan hasil maksimal dari batas laju Anda, gunakan [prompt caching](/docs/id/build-with-claude/prompt-caching) untuk konten berulang seperti:
+Untuk memanfaatkan batas laju Anda sebaik-baiknya, gunakan [prompt caching](/docs/id/build-with-claude/prompt-caching) untuk konten berulang seperti:
 - Instruksi sistem dan prompt
 - Dokumen konteks besar
 - Definisi alat
@@ -140,7 +140,11 @@ Batas laju diterapkan secara terpisah untuk setiap model; oleh karena itu Anda d
 Anda dapat memeriksa batas laju saat ini dan perilaku Anda di [Claude Console](/settings/limits).
 
 <Note>
-Untuk permintaan konteks panjang (>200K token) saat menggunakan header beta `context-1m-2025-08-07` dengan Claude Sonnet 4.x, batas laju terpisah berlaku. Lihat [Batas laju konteks panjang](#long-context-rate-limits) di bawah.
+Batas laju saat ini dibagikan di semua nilai `inference_geo`. Permintaan dengan `inference_geo: "us"` dan `inference_geo: "global"` menarik dari kumpulan batas laju yang sama.
+</Note>
+
+<Note>
+Untuk permintaan konteks panjang (>200K token) saat menggunakan header beta `context-1m-2025-08-07` dengan Claude Opus 4.x atau Sonnet 4.x, batas laju terpisah berlaku. Lihat [Batas laju konteks panjang](#long-context-rate-limits) di bawah.
 </Note>
 
 <Tabs>
@@ -153,7 +157,6 @@ Untuk permintaan konteks panjang (>200K token) saat menggunakan header beta `con
 | Claude Haiku 3.5 ([deprecated](/docs/id/about-claude/model-deprecations))                    | 50                                | 50.000<sup>†</sup>                     | 10.000                                  |
 | Claude Haiku 3                                                                               | 50                                | 50.000<sup>†</sup>                     | 10.000                                  |
 | Claude Opus 4.x<sup>*</sup>                                                                  | 50                                | 30.000                                 | 8.000                                   |
-| Claude Opus 3 ([deprecated](/docs/id/about-claude/model-deprecations))                      | 50                                | 20.000<sup>†</sup>                     | 4.000                                   |
 
 </Tab>
 <Tab title="Tier 2">
@@ -165,7 +168,6 @@ Untuk permintaan konteks panjang (>200K token) saat menggunakan header beta `con
 | Claude Haiku 3.5 ([deprecated](/docs/id/about-claude/model-deprecations))                    | 1.000                             | 100.000<sup>†</sup>                    | 20.000                                  |
 | Claude Haiku 3                                                                               | 1.000                             | 100.000<sup>†</sup>                    | 20.000                                  |
 | Claude Opus 4.x<sup>*</sup>                                                                  | 1.000                             | 450.000                                | 90.000                                  |
-| Claude Opus 3 ([deprecated](/docs/id/about-claude/model-deprecations))                      | 1.000                             | 40.000<sup>†</sup>                     | 8.000                                   |
 
 </Tab>
 <Tab title="Tier 3">
@@ -177,7 +179,6 @@ Untuk permintaan konteks panjang (>200K token) saat menggunakan header beta `con
 | Claude Haiku 3.5 ([deprecated](/docs/id/about-claude/model-deprecations))                    | 2.000                             | 200.000<sup>†</sup>                    | 40.000                                  |
 | Claude Haiku 3                                                                               | 2.000                             | 200.000<sup>†</sup>                    | 40.000                                  |
 | Claude Opus 4.x<sup>*</sup>                                                                  | 2.000                             | 800.000                                | 160.000                                 |
-| Claude Opus 3 ([deprecated](/docs/id/about-claude/model-deprecations))                      | 2.000                             | 80.000<sup>†</sup>                     | 16.000                                  |
 
 </Tab>
 <Tab title="Tier 4">
@@ -189,7 +190,6 @@ Untuk permintaan konteks panjang (>200K token) saat menggunakan header beta `con
 | Claude Haiku 3.5 ([deprecated](/docs/id/about-claude/model-deprecations))                    | 4.000                             | 400.000<sup>†</sup>                    | 80.000                                  |
 | Claude Haiku 3                                                                               | 4.000                             | 400.000<sup>†</sup>                    | 80.000                                  |
 | Claude Opus 4.x<sup>*</sup>                                                                  | 4.000                             | 2.000.000                              | 400.000                                 |
-| Claude Opus 3 ([deprecated](/docs/id/about-claude/model-deprecations))                      | 4.000                             | 400.000<sup>†</sup>                    | 80.000                                  |
 
 </Tab>
 <Tab title="Custom">
@@ -197,9 +197,9 @@ Jika Anda mencari batas yang lebih tinggi untuk kasus penggunaan Enterprise, hub
 </Tab>
 </Tabs>
 
-_<sup>* - Batas laju Opus 4.x adalah batas total yang berlaku untuk lalu lintas gabungan di seluruh Opus 4, Opus 4.1, dan Opus 4.5.</sup>_
+_<sup>* - Batas laju Opus adalah batas total yang berlaku untuk lalu lintas gabungan di seluruh Opus 4.6, Opus 4.5, Opus 4.1, dan Opus 4.</sup>_
 
-_<sup>** - Batas laju Sonnet 4.x adalah batas total yang berlaku untuk lalu lintas gabungan di seluruh Sonnet 4 dan Sonnet 4.5.</sup>_
+_<sup>** - Batas laju Sonnet 4.x adalah batas total yang berlaku untuk lalu lintas gabungan di seluruh Sonnet 4.5 dan Sonnet 4.</sup>_
 
 _<sup>† - Batas menghitung `cache_read_input_tokens` terhadap penggunaan ITPM.</sup>_
 
@@ -235,10 +235,10 @@ Jika Anda mencari batas yang lebih tinggi untuk kasus penggunaan Enterprise, hub
 
 ### Batas laju konteks panjang
 
-Saat menggunakan Claude Sonnet 4 dan Sonnet 4.5 dengan [jendela konteks token 1M diaktifkan](/docs/id/build-with-claude/context-windows#1m-token-context-window), batas laju khusus berikut berlaku untuk permintaan yang melebihi 200K token.
+Saat menggunakan Claude Opus 4.6, Sonnet 4.5, atau Sonnet 4 dengan [jendela konteks token 1M diaktifkan](/docs/id/build-with-claude/context-windows#1m-token-context-window), batas laju khusus berikut berlaku untuk permintaan yang melebihi 200K token.
 
 <Note>
-Jendela konteks token 1M saat ini dalam beta untuk organisasi di tingkat penggunaan 4 dan organisasi dengan batas laju khusus. Jendela konteks token 1M hanya tersedia untuk Claude Sonnet 4 dan Sonnet 4.5.
+Jendela konteks token 1M saat ini dalam beta untuk organisasi di tingkat penggunaan 4 dan organisasi dengan batas laju khusus. Jendela konteks token 1M hanya tersedia untuk Claude Opus 4.6, Sonnet 4.5, dan Sonnet 4.
 </Note>
 
 <Tabs>
@@ -253,28 +253,30 @@ Untuk batas laju konteks panjang khusus untuk kasus penggunaan enterprise, hubun
 </Tabs>
 
 <Tip>
-Untuk mendapatkan hasil maksimal dari jendela konteks token 1M dengan batas laju, gunakan [prompt caching](/docs/id/build-with-claude/prompt-caching).
+Untuk memanfaatkan jendela konteks token 1M dengan batas laju sebaik-baiknya, gunakan [prompt caching](/docs/id/build-with-claude/prompt-caching).
 </Tip>
 
 ### Memantau batas laju Anda di Console
 
 Anda dapat memantau penggunaan batas laju Anda di halaman [Penggunaan](/settings/usage) dari [Claude Console](/). 
 
-Selain menyediakan bagan token dan permintaan, halaman Penggunaan menyediakan dua bagan batas laju terpisah. Gunakan bagan ini untuk melihat berapa banyak ruang yang Anda miliki untuk berkembang, kapan Anda mungkin mencapai penggunaan puncak, lebih baik memahami batas laju apa yang akan diminta, atau bagaimana Anda dapat meningkatkan tingkat caching Anda. Bagan memvisualisasikan sejumlah metrik untuk batas laju tertentu (misalnya per model):
+Selain menyediakan bagan token dan permintaan, halaman Penggunaan menyediakan dua bagan batas laju terpisah. Gunakan bagan ini untuk melihat berapa banyak ruang yang Anda miliki untuk berkembang, kapan Anda mungkin mencapai penggunaan puncak, lebih memahami batas laju apa yang akan diminta, atau bagaimana Anda dapat meningkatkan tingkat caching Anda. Bagan memvisualisasikan sejumlah metrik untuk batas laju tertentu (misalnya per model):
 
 - Bagan **Batas Laju - Token Input** mencakup:
-  - Token input per menit maksimum per jam yang tidak di-cache
+  - Token input maksimum per menit yang tidak di-cache per jam
   - Batas laju token input per menit saat ini Anda
   - Tingkat cache untuk token input Anda (yaitu persentase token input yang dibaca dari cache)
 - Bagan **Batas Laju - Token Output** mencakup:
-  - Token output per menit maksimum per jam
+  - Token output maksimum per menit per jam
   - Batas laju token output per menit saat ini Anda
 
 ## Menetapkan batas yang lebih rendah untuk Ruang Kerja
 
-Untuk melindungi Ruang Kerja di Organisasi Anda dari potensi penggunaan berlebih, Anda dapat menetapkan batas pengeluaran dan laju khusus per Ruang Kerja.
+Untuk informasi lebih lanjut tentang ruang kerja, lihat [Workspaces](/docs/id/build-with-claude/workspaces).
 
-Contoh: Jika batas Organisasi Anda adalah 40.000 token input per menit dan 8.000 token output per menit, Anda mungkin membatasi satu Ruang Kerja hingga 30.000 total token per menit. Ini melindungi Ruang Kerja lain dari potensi penggunaan berlebih dan memastikan distribusi sumber daya yang lebih adil di seluruh Organisasi Anda. Token per menit yang tidak digunakan yang tersisa (atau lebih, jika Ruang Kerja itu tidak menggunakan batas) kemudian tersedia untuk Ruang Kerja lain gunakan.
+Untuk melindungi Ruang Kerja di Organisasi Anda dari potensi penggunaan berlebihan, Anda dapat menetapkan pengeluaran khusus dan batas laju per Ruang Kerja.
+
+Contoh: Jika batas Organisasi Anda adalah 40.000 token input per menit dan 8.000 token output per menit, Anda mungkin membatasi satu Ruang Kerja hingga 30.000 total token per menit. Ini melindungi Ruang Kerja lain dari potensi penggunaan berlebihan dan memastikan distribusi sumber daya yang lebih adil di seluruh Organisasi Anda. Token per menit yang tidak digunakan yang tersisa (atau lebih, jika Ruang Kerja itu tidak menggunakan batas) kemudian tersedia untuk Ruang Kerja lain gunakan.
 
 Catatan:
 - Anda tidak dapat menetapkan batas pada Ruang Kerja default.
@@ -284,7 +286,7 @@ Catatan:
 
 ## Header respons
 
-Respons API mencakup header yang menunjukkan batas laju yang diberlakukan, penggunaan saat ini, dan kapan batas akan direset.
+Respons API mencakup header yang menunjukkan batas laju yang diterapkan, penggunaan saat ini, dan kapan batas akan direset.
 
 Header berikut dikembalikan:
 

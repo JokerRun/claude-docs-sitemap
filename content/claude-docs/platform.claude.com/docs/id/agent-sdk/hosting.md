@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/hosting
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 3d8ace620a89841bef4edbffd6e656393a00efec625b4aa59bd244cd988f2923
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 2efbc1108bd39cd5c4cd7a51ff45464f41b361f1ce35a0fe5f368be52b4cb836
 ---
 
 # Hosting the Agent SDK
 
-Deploy dan host Claude Agent SDK di lingkungan produksi
+Sebarkan dan hosting Claude Agent SDK di lingkungan produksi
 
 ---
 
-Claude Agent SDK berbeda dari API LLM stateless tradisional karena mempertahankan status percakapan dan menjalankan perintah di lingkungan yang persisten. Panduan ini mencakup arsitektur, pertimbangan hosting, dan praktik terbaik untuk menerapkan agen berbasis SDK dalam produksi.
+Claude Agent SDK berbeda dari API LLM stateless tradisional karena mempertahankan status percakapan dan menjalankan perintah di lingkungan yang persisten. Panduan ini mencakup arsitektur, pertimbangan hosting, dan praktik terbaik untuk menyebarkan agen berbasis SDK dalam produksi.
 
 <Info>
 Untuk pengerasan keamanan di luar sandboxing dasar—termasuk kontrol jaringan, manajemen kredensial, dan opsi isolasi—lihat [Secure Deployment](/docs/id/agent-sdk/secure-deployment).
@@ -19,9 +19,9 @@ Untuk pengerasan keamanan di luar sandboxing dasar—termasuk kontrol jaringan, 
 
 ## Persyaratan Hosting
 
-### Container-Based Sandboxing
+### Sandboxing Berbasis Container
 
-Untuk keamanan dan isolasi, SDK harus berjalan di dalam lingkungan container yang di-sandbox. Ini menyediakan isolasi proses, batasan sumber daya, kontrol jaringan, dan sistem file yang bersifat sementara.
+Untuk keamanan dan isolasi, SDK harus berjalan di dalam lingkungan container yang tersandbox. Ini menyediakan isolasi proses, batas sumber daya, kontrol jaringan, dan sistem file yang bersifat sementara.
 
 SDK juga mendukung [konfigurasi sandbox terprogram](/docs/id/agent-sdk/typescript#sandbox-settings) untuk eksekusi perintah.
 
@@ -52,8 +52,8 @@ Tidak seperti panggilan API stateless, Claude Agent SDK beroperasi sebagai **pro
 
 Beberapa penyedia mengkhususkan diri dalam lingkungan container aman untuk eksekusi kode AI:
 
+- **[Modal Sandbox](https://modal.com/docs/guide/sandbox)** - [implementasi demo](https://modal.com/docs/examples/claude-slack-gif-creator)
 - **[Cloudflare Sandboxes](https://github.com/cloudflare/sandbox-sdk)**
-- **[Modal Sandboxes](https://modal.com/docs/guide/sandbox)**
 - **[Daytona](https://www.daytona.io/)**
 - **[E2B](https://e2b.dev/)**
 - **[Fly Machines](https://fly.io/docs/machines/)**
@@ -61,7 +61,7 @@ Beberapa penyedia mengkhususkan diri dalam lingkungan container aman untuk eksek
 
 Untuk opsi self-hosted (Docker, gVisor, Firecracker) dan konfigurasi isolasi terperinci, lihat [Isolation Technologies](/docs/id/agent-sdk/secure-deployment#isolation-technologies).
 
-## Pola Penerapan Produksi
+## Pola Penyebaran Produksi
 
 ### Pola 1: Sesi Ephemeral
 
@@ -70,21 +70,21 @@ Buat container baru untuk setiap tugas pengguna, kemudian hancurkan saat selesai
 Terbaik untuk tugas sekali jalan, pengguna mungkin masih berinteraksi dengan AI saat tugas sedang diselesaikan, tetapi setelah selesai container dihancurkan.
 
 **Contoh:**
-- Bug Investigation & Fix: Debug dan selesaikan masalah spesifik dengan konteks yang relevan
-- Invoice Processing: Ekstrak dan struktur data dari kwitansi/faktur untuk sistem akuntansi
-- Translation Tasks: Terjemahkan dokumen atau batch konten antar bahasa
-- Image/Video Processing: Terapkan transformasi, optimasi, atau ekstrak metadata dari file media
+- Investigasi & Perbaikan Bug: Debug dan selesaikan masalah spesifik dengan konteks yang relevan
+- Pemrosesan Invoice: Ekstrak dan strukturkan data dari kwitansi/invoice untuk sistem akuntansi
+- Tugas Terjemahan: Terjemahkan dokumen atau batch konten antar bahasa
+- Pemrosesan Gambar/Video: Terapkan transformasi, optimasi, atau ekstrak metadata dari file media
 
 ### Pola 2: Sesi Berjalan Lama
 
-Pertahankan instans container yang persisten untuk tugas yang berjalan lama. Sering kali menjalankan _beberapa_ proses Claude Agent di dalam container berdasarkan permintaan.
+Pertahankan instans container persisten untuk tugas yang berjalan lama. Sering kali menjalankan **beberapa** proses Claude Agent di dalam container berdasarkan permintaan.
 
 Terbaik untuk agen proaktif yang mengambil tindakan tanpa masukan pengguna, agen yang melayani konten atau agen yang memproses jumlah pesan yang tinggi.
 
 **Contoh:**
-- Email Agent: Memantau email masuk dan secara otomatis menyeleksi, merespons, atau mengambil tindakan berdasarkan konten
+- Email Agent: Memantau email masuk dan secara otomatis melakukan triase, merespons, atau mengambil tindakan berdasarkan konten
 - Site Builder: Menghost situs web khusus per pengguna dengan kemampuan pengeditan langsung yang disajikan melalui port container
-- High-Frequency Chat Bots: Menangani aliran pesan berkelanjutan dari platform seperti Slack di mana waktu respons cepat sangat penting
+- Chat Bot Frekuensi Tinggi: Menangani aliran pesan berkelanjutan dari platform seperti Slack di mana waktu respons cepat sangat penting
 
 ### Pola 3: Sesi Hybrid
 
@@ -101,10 +101,10 @@ Terbaik untuk container dengan interaksi intermiten dari pengguna yang memulai p
 
 Jalankan beberapa proses Claude Agent SDK dalam satu container global.
 
-Terbaik untuk agen yang harus berkolaborasi erat satu sama lain. Ini mungkin pola yang paling tidak populer karena Anda harus mencegah agen dari menimpa satu sama lain.
+Terbaik untuk agen yang harus berkolaborasi erat satu sama lain. Ini mungkin pola yang paling tidak populer karena Anda harus mencegah agen saling menimpa.
 
 **Contoh:**
-- **Simulations**: Agen yang berinteraksi satu sama lain dalam simulasi seperti video game.
+- **Simulasi**: Agen yang berinteraksi satu sama lain dalam simulasi seperti video game.
 
 # FAQ
 
@@ -112,22 +112,22 @@ Terbaik untuk agen yang harus berkolaborasi erat satu sama lain. Ini mungkin pol
 Saat hosting di container, ekspos port untuk berkomunikasi dengan instans SDK Anda. Aplikasi Anda dapat mengekspos endpoint HTTP/WebSocket untuk klien eksternal sementara SDK berjalan secara internal dalam container.
 
 ### Berapa biaya hosting container?
-Kami telah menemukan bahwa biaya dominan untuk melayani agen adalah token, container bervariasi berdasarkan apa yang Anda sediakan tetapi biaya minimum adalah kira-kira 5 sen per jam berjalan.
+Kami telah menemukan bahwa biaya dominan untuk melayani agen adalah token, container bervariasi berdasarkan apa yang Anda sediakan tetapi biaya minimum kira-kira 5 sen per jam berjalan.
 
-### Kapan saya harus mematikan container idle versus menjaganya tetap hangat?
+### Kapan saya harus mematikan container idle vs. menjaganya tetap hangat?
 Ini mungkin tergantung penyedia, penyedia sandbox yang berbeda akan membiarkan Anda menetapkan kriteria berbeda untuk idle timeout setelah itu sandbox mungkin berhenti.
-Anda akan ingin menyesuaikan timeout ini berdasarkan seberapa sering Anda pikir respons pengguna mungkin terjadi.
+Anda akan ingin menyetel timeout ini berdasarkan seberapa sering Anda pikir respons pengguna mungkin terjadi.
 
 ### Seberapa sering saya harus memperbarui Claude Code CLI?
 Claude Code CLI diversi dengan semver, jadi perubahan breaking apa pun akan diversi.
 
 ### Bagaimana cara saya memantau kesehatan container dan kinerja agen?
-Karena container hanya server, infrastruktur logging yang sama yang Anda gunakan untuk backend akan bekerja untuk container.
+Karena container hanyalah server, infrastruktur logging yang sama yang Anda gunakan untuk backend akan bekerja untuk container.
 
 ### Berapa lama sesi agen dapat berjalan sebelum timeout?
 Sesi agen tidak akan timeout, tetapi kami merekomendasikan menetapkan properti 'maxTurns' untuk mencegah Claude terjebak dalam loop.
 
-## Langkah Berikutnya
+## Langkah Selanjutnya
 
 - [Secure Deployment](/docs/id/agent-sdk/secure-deployment) - Kontrol jaringan, manajemen kredensial, dan pengerasan isolasi
 - [TypeScript SDK - Sandbox Settings](/docs/id/agent-sdk/typescript#sandbox-settings) - Konfigurasi sandbox secara terprogram

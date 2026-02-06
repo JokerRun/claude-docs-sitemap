@@ -1,30 +1,30 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/emoji-encoder
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 2e487d19fe04d4d30af40a3612ecb2e8a4b3b6c7b9cfadec83c740bd41ad8da6
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 0062ae2637f978a4f9e0dd74e7a8bc4bdea3ebfd77dc2e5e182c44c48e4c04cb
 ---
 
-# Encoder emoji
+# Pengkode emoji
 
-Mengubah teks biasa menjadi pesan emoji yang menyenangkan dan ekspresif.
-
----
-
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
-
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah mengambil pesan teks biasa yang diberikan dan mengubahnya menjadi pesan yang ekspresif dan kaya emoji yang menyampaikan makna dan maksud yang sama. Ganti kata-kata dan frasa kunci dengan emoji yang relevan jika sesuai untuk menambah minat visual dan emosi. Gunakan emoji secara kreatif tetapi pastikan pesan tetap jelas dan mudah dipahami. Jangan mengubah pesan inti atau menambahkan informasi baru. |
-| User   | Seluruh dunia adalah panggung, dan semua pria dan wanita hanyalah pemain. Mereka memiliki pintu keluar dan pintu masuk mereka; Dan satu orang dalam waktunya memainkan banyak peran. |
-
-## Contoh output
-
-Seluruh 🌍 adalah 🎭, dan semua 👨 dan 👩 hanyalah 🎭🎬. Mereka memiliki 🚪🚶‍♂️ dan 🚶‍♀️🚪 mereka; Dan satu 👨 dalam ⌛nya memainkan banyak 🎭.
+Ubah teks biasa menjadi pesan emoji yang menyenangkan dan ekspresif.
 
 ---
 
-## API Request
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
+
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Tugas Anda adalah mengambil pesan teks biasa yang diberikan dan mengubahnya menjadi pesan yang ekspresif dan kaya emoji yang menyampaikan makna dan niat yang sama. Ganti kata kunci dan frasa dengan emoji yang relevan jika sesuai untuk menambah minat visual dan emosi. Gunakan emoji secara kreatif tetapi pastikan pesan tetap jelas dan mudah dipahami. Jangan ubah pesan inti atau tambahkan informasi baru. |
+| Pengguna   | Seluruh dunia adalah panggung, dan semua pria dan wanita hanyalah pemain. Mereka memiliki pintu keluar dan pintu masuk mereka; Dan satu pria dalam waktunya memainkan banyak peran.                                                                                                                                                                                                                                                 |
+
+## Contoh keluaran
+
+Seluruh 🌍 adalah 🎭, dan semua 👨 dan 👩 hanyalah 🎭🎬. Mereka memiliki 🚪🚶‍♂️ dan 🚶‍♀️🚪 mereka; Dan satu 👨 dalam ⌛ nya memainkan banyak 🎭.
+
+---
+
+## Permintaan API
 
 <Tabs>
 <Tab title="Python">
@@ -35,17 +35,17 @@ client = anthropic.Anthropic(  # defaults to os.environ.get("ANTHROPIC_API_KEY")
     api_key="my_api_key",
 )
 message = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     max_tokens=1000,
     temperature=0,
-    system="Tugas Anda adalah mengambil pesan teks biasa yang diberikan dan mengubahnya menjadi pesan yang ekspresif dan kaya emoji yang menyampaikan makna dan maksud yang sama. Ganti kata-kata dan frasa kunci dengan emoji yang relevan jika sesuai untuk menambah minat visual dan emosi. Gunakan emoji secara kreatif tetapi pastikan pesan tetap jelas dan mudah dipahami. Jangan mengubah pesan inti atau menambahkan informasi baru.",
+    system="Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Seluruh dunia adalah panggung, dan semua pria dan wanita hanyalah pemain. Mereka memiliki pintu keluar dan pintu masuk mereka; Dan satu orang dalam waktunya memainkan banyak peran.",
+                    "text": "All the world's a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts.",
                 }
             ],
         }
@@ -66,17 +66,17 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 0,
-  system: "Tugas Anda adalah mengambil pesan teks biasa yang diberikan dan mengubahnya menjadi pesan yang ekspresif dan kaya emoji yang menyampaikan makna dan maksud yang sama. Ganti kata-kata dan frasa kunci dengan emoji yang relevan jika sesuai untuk menambah minat visual dan emosi. Gunakan emoji secara kreatif tetapi pastikan pesan tetap jelas dan mudah dipahami. Jangan mengubah pesan inti atau menambahkan informasi baru.",
+  system: "Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Seluruh dunia adalah panggung, dan semua pria dan wanita hanyalah pemain. Mereka memiliki pintu keluar dan pintu masuk mereka; Dan satu orang dalam waktunya memainkan banyak peran."
+          "text": "All the world's a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts."
         }
       ]
     }
@@ -97,17 +97,17 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=1000,
     temperature=0,
-    system="Tugas Anda adalah mengambil pesan teks biasa yang diberikan dan mengubahnya menjadi pesan yang ekspresif dan kaya emoji yang menyampaikan makna dan maksud yang sama. Ganti kata-kata dan frasa kunci dengan emoji yang relevan jika sesuai untuk menambah minat visual dan emosi. Gunakan emoji secara kreatif tetapi pastikan pesan tetap jelas dan mudah dipahami. Jangan mengubah pesan inti atau menambahkan informasi baru.",
+    system="Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Seluruh dunia adalah panggung, dan semua pria dan wanita hanyalah pemain. Mereka memiliki pintu keluar dan pintu masuk mereka; Dan satu orang dalam waktunya memainkan banyak peran."
+                    "text": "All the world's a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts."
                 }
             ]
         }
@@ -128,17 +128,17 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1:0",
   max_tokens: 1000,
   temperature: 0,
-  system: "Tugas Anda adalah mengambil pesan teks biasa yang diberikan dan mengubahnya menjadi pesan yang ekspresif dan kaya emoji yang menyampaikan makna dan maksud yang sama. Ganti kata-kata dan frasa kunci dengan emoji yang relevan jika sesuai untuk menambah minat visual dan emosi. Gunakan emoji secara kreatif tetapi pastikan pesan tetap jelas dan mudah dipahami. Jangan mengubah pesan inti atau menambahkan informasi baru.",
+  system: "Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Seluruh dunia adalah panggung, dan semua pria dan wanita hanyalah pemain. Mereka memiliki pintu keluar dan pintu masuk mereka; Dan satu orang dalam waktunya memainkan banyak peran."
+          "text": "All the world's a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts."
         }
       ]
     }
@@ -160,14 +160,14 @@ message = client.messages.create(
     model="claude-sonnet-4@20250514",
     max_tokens=1000,
     temperature=0,
-    system="Tugas Anda adalah mengambil pesan teks biasa yang diberikan dan mengubahnya menjadi pesan yang ekspresif dan kaya emoji yang menyampaikan makna dan maksud yang sama. Ganti kata-kata dan frasa kunci dengan emoji yang relevan jika sesuai untuk menambah minat visual dan emosi. Gunakan emoji secara kreatif tetapi pastikan pesan tetap jelas dan mudah dipahami. Jangan mengubah pesan inti atau menambahkan informasi baru.",
+    system="Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Seluruh dunia adalah panggung, dan semua pria dan wanita hanyalah pemain. Mereka memiliki pintu keluar dan pintu masuk mereka; Dan satu orang dalam waktunya memainkan banyak peran."
+                    "text": "All the world's a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts."
                 }
             ]
         }
@@ -191,14 +191,14 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 1000,
   temperature: 0,
-  system: "Tugas Anda adalah mengambil pesan teks biasa yang diberikan dan mengubahnya menjadi pesan yang ekspresif dan kaya emoji yang menyampaikan makna dan maksud yang sama. Ganti kata-kata dan frasa kunci dengan emoji yang relevan jika sesuai untuk menambah minat visual dan emosi. Gunakan emoji secara kreatif tetapi pastikan pesan tetap jelas dan mudah dipahami. Jangan mengubah pesan inti atau menambahkan informasi baru.",
+  system: "Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Seluruh dunia adalah panggung, dan semua pria dan wanita hanyalah pemain. Mereka memiliki pintu keluar dan pintu masuk mereka; Dan satu orang dalam waktunya memainkan banyak peran."
+          "text": "All the world's a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts."
         }
       ]
     }

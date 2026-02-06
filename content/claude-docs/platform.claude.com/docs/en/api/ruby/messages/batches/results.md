@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/results
-fetched_at: 2026-01-30T04:11:49.863510Z
-sha256: e55c4ae7028520f9a68fa7cb6498456f222b55336a1db938387777d1446960e6
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 50f866fbbd562b66b4164c8f529b030cd169463c0fc41807b3994770ba7e3537
 ---
 
 ## Results
@@ -274,11 +274,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `:"claude-opus-4-5-20251101" | :"claude-opus-4-5" | :"claude-3-7-sonnet-latest" | 17 more`
+          - `:"claude-opus-4-6" | :"claude-opus-4-5-20251101" | :"claude-opus-4-5" | 18 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-opus-4-6"`
+
+              Most intelligent model for building agents and coding
 
             - `:"claude-opus-4-5-20251101"`
 
@@ -442,6 +446,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `cache_read_input_tokens: Integer`
 
             The number of input tokens read from the cache.
+
+          - `inference_geo: String`
+
+            The geographic region where inference was performed for this request.
 
           - `input_tokens: Integer`
 

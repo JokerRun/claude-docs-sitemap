@@ -1,32 +1,32 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/prompt-library/interview-question-crafter
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 4faf15545a0c944434e102a2184c9b69fd36a7674b057b47c97a6c302896e5ea
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: b572b4f9d825a8956069f681489c6ad6f38f36c9780071f79b8602081bfd392d
 ---
 
 # Pembuat pertanyaan wawancara
 
-Menghasilkan pertanyaan untuk wawancara.
+Hasilkan pertanyaan untuk wawancara.
 
 ---
 
-> Salin prompt ini ke [Console](/dashboard) developer kami untuk mencobanya sendiri!
+> Salin prompt ini ke [Konsol](/docs/id/dashboard) pengembang kami untuk mencobanya sendiri!
 
-|        | Konten |
-| --- | --- |
-| System | Tugas Anda adalah menghasilkan serangkaian pertanyaan yang bijaksana dan terbuka untuk wawancara berdasarkan konteks yang diberikan. Pertanyaan-pertanyaan tersebut harus dirancang untuk memunculkan respons yang mendalam dan terperinci dari pewawancara, memungkinkan mereka untuk menunjukkan pengetahuan, pengalaman, dan keterampilan berpikir kritis mereka. Hindari pertanyaan ya/tidak atau pertanyaan dengan jawaban yang jelas. Sebaliknya, fokuslah pada pertanyaan yang mendorong refleksi, penilaian diri, dan berbagi contoh atau anekdot spesifik. |
-| User   | Anda sedang mewawancarai kandidat untuk posisi manajer pemasaran di perusahaan e-commerce yang sudah mapan. Kandidat ideal harus memiliki pengalaman dalam mengembangkan dan melaksanakan kampanye pemasaran multi-saluran, keterampilan analitis yang kuat, dan kemampuan untuk berkolaborasi secara efektif dengan tim lintas fungsi. Mereka juga harus bersemangat untuk tetap mengikuti tren dan teknologi pemasaran terbaru. |
+|        | Konten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem | Tugas Anda adalah menghasilkan serangkaian pertanyaan yang bijaksana dan terbuka untuk wawancara berdasarkan konteks yang diberikan. Pertanyaan harus dirancang untuk mendapatkan respons yang mendalam dan terperinci dari pewawancara, memungkinkan mereka menampilkan pengetahuan, pengalaman, dan keterampilan berpikir kritis mereka. Hindari pertanyaan ya/tidak atau pertanyaan dengan jawaban yang jelas. Sebaliknya, fokus pada pertanyaan yang mendorong refleksi, penilaian diri, dan berbagi contoh atau anekdot spesifik. |
+| Pengguna   | Anda sedang mewawancarai kandidat untuk posisi manajer pemasaran di perusahaan e-commerce yang sudah mapan. Kandidat ideal harus memiliki pengalaman mengembangkan dan melaksanakan kampanye pemasaran multi-saluran, keterampilan analitik yang kuat, dan kemampuan untuk berkolaborasi secara efektif dengan tim lintas fungsi. Mereka juga harus bersemangat tentang tetap mengikuti tren dan teknologi pemasaran terbaru.                                                                             |
 
 ## Contoh Output
 
-1.  Bisakah Anda menceritakan kepada saya tentang kampanye pemasaran multi-saluran yang sukses yang Anda kembangkan dan laksanakan dalam peran sebelumnya? Apa tantangan yang Anda hadapi, dan bagaimana Anda mengatasinya?
-2.  Bagaimana Anda mengukur keberhasilan kampanye pemasaran Anda, dan metrik apa yang Anda fokuskan? Bisakah Anda memberikan contoh bagaimana Anda menggunakan data dan analitik untuk mengoptimalkan kinerja kampanye?
-3.  Berdasarkan pengalaman Anda, apa elemen kunci dari strategi pemasaran e-commerce yang sukses? Bagaimana Anda memastikan bahwa strategi Anda selaras dengan tujuan bisnis keseluruhan perusahaan?
-4.  Bisakah Anda berbagi contoh saat Anda harus berkolaborasi dengan tim lintas fungsi (misalnya, produk, penjualan, atau layanan pelanggan) untuk mencapai tujuan pemasaran? Tantangan apa yang Anda temui, dan bagaimana Anda mendorong kolaborasi yang efektif?
-5.  Bagaimana Anda tetap mendapat informasi tentang tren dan teknologi pemasaran terbaru, dan bagaimana Anda menerapkan pengetahuan ini untuk meningkatkan strategi atau kampanye pemasaran Anda?
-6.  Bisakah Anda menjelaskan saat kampanye pemasaran yang Anda terlibat di dalamnya tidak berkinerja sesuai harapan? Apa yang Anda pelajari dari pengalaman tersebut, dan bagaimana Anda menerapkan pelajaran tersebut pada kampanye masa depan?
-7.  Perusahaan kami menghargai inovasi dan perbaikan berkelanjutan. Bisakah Anda berbagi contoh saat Anda memperkenalkan pendekatan pemasaran, alat, atau teknologi baru yang secara signifikan berdampak pada kinerja atau hasil tim Anda?
+1.  Bisakah Anda membimbing saya melalui kampanye pemasaran multi-saluran yang sukses yang Anda kembangkan dan jalankan di peran sebelumnya? Tantangan apa yang Anda hadapi, dan bagaimana Anda mengatasinya?
+2.  Bagaimana Anda mengukur kesuksesan kampanye pemasaran Anda, dan metrik apa yang Anda fokuskan? Bisakah Anda memberikan contoh tentang bagaimana Anda menggunakan data dan analitik untuk mengoptimalkan kinerja kampanye?
+3.  Berdasarkan pengalaman Anda, apa elemen kunci dari strategi pemasaran e-commerce yang sukses? Bagaimana Anda memastikan bahwa strategi Anda sejalan dengan tujuan bisnis keseluruhan perusahaan?
+4.  Bisakah Anda berbagi contoh waktu ketika Anda harus berkolaborasi dengan tim lintas fungsi (misalnya, produk, penjualan, atau layanan pelanggan) untuk mencapai tujuan pemasaran? Tantangan apa yang Anda hadapi, dan bagaimana Anda mendorong kolaborasi yang efektif?
+5.  Bagaimana Anda tetap terinformasi tentang tren dan teknologi pemasaran terbaru, dan bagaimana Anda menerapkan pengetahuan ini untuk meningkatkan strategi atau kampanye pemasaran Anda?
+6.  Bisakah Anda menjelaskan waktu ketika kampanye pemasaran yang Anda libatkan tidak berkinerja seperti yang diharapkan? Apa yang Anda pelajari dari pengalaman tersebut, dan bagaimana Anda menerapkan pelajaran tersebut ke kampanye di masa depan?
+7.  Perusahaan kami menghargai inovasi dan peningkatan berkelanjutan. Bisakah Anda berbagi contoh waktu ketika Anda memperkenalkan pendekatan, alat, atau teknologi pemasaran baru yang berdampak signifikan pada kinerja atau hasil tim Anda?
 
 ---
 
@@ -43,17 +43,17 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=1000,
   temperature=0.5,
-  system="Tugas Anda adalah menghasilkan serangkaian pertanyaan yang bijaksana dan terbuka untuk wawancara berdasarkan konteks yang diberikan. Pertanyaan-pertanyaan tersebut harus dirancang untuk memunculkan respons yang mendalam dan terperinci dari pewawancara, memungkinkan mereka untuk menunjukkan pengetahuan, pengalaman, dan keterampilan berpikir kritis mereka. Hindari pertanyaan ya/tidak atau pertanyaan dengan jawaban yang jelas. Sebaliknya, fokuslah pada pertanyaan yang mendorong refleksi, penilaian diri, dan berbagi contoh atau anekdot spesifik.",
+  system="Your task is to generate a series of thoughtful, open-ended questions for an interview based on the given context. The questions should be designed to elicit insightful and detailed responses from the interviewee, allowing them to showcase their knowledge, experience, and critical thinking skills. Avoid yes/no questions or those with obvious answers. Instead, focus on questions that encourage reflection, self-assessment, and the sharing of specific examples or anecdotes.",
   messages=[
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Anda sedang mewawancarai kandidat untuk posisi manajer pemasaran di perusahaan e-commerce yang sudah mapan. Kandidat ideal harus memiliki pengalaman dalam mengembangkan dan melaksanakan kampanye pemasaran multi-saluran, keterampilan analitis yang kuat, dan kemampuan untuk berkolaborasi secara efektif dengan tim lintas fungsi. Mereka juga harus bersemangat untuk tetap mengikuti tren dan teknologi pemasaran terbaru."
+          "text": "You are interviewing a candidate for a marketing manager position at a well-established e-commerce company. The ideal candidate should have experience developing and executing multi-channel marketing campaigns, strong analytical skills, and the ability to collaborate effectively with cross-functional teams. They should also be passionate about staying up-to-date with the latest marketing trends and technologies."
         }
       ]
     }
@@ -74,17 +74,17 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 0.5,
-  system: "Tugas Anda adalah menghasilkan serangkaian pertanyaan yang bijaksana dan terbuka untuk wawancara berdasarkan konteks yang diberikan. Pertanyaan-pertanyaan tersebut harus dirancang untuk memunculkan respons yang mendalam dan terperinci dari pewawancara, memungkinkan mereka untuk menunjukkan pengetahuan, pengalaman, dan keterampilan berpikir kritis mereka. Hindari pertanyaan ya/tidak atau pertanyaan dengan jawaban yang jelas. Sebaliknya, fokuslah pada pertanyaan yang mendorong refleksi, penilaian diri, dan berbagi contoh atau anekdot spesifik.",
+  system: "Your task is to generate a series of thoughtful, open-ended questions for an interview based on the given context. The questions should be designed to elicit insightful and detailed responses from the interviewee, allowing them to showcase their knowledge, experience, and critical thinking skills. Avoid yes/no questions or those with obvious answers. Instead, focus on questions that encourage reflection, self-assessment, and the sharing of specific examples or anecdotes.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Anda sedang mewawancarai kandidat untuk posisi manajer pemasaran di perusahaan e-commerce yang sudah mapan. Kandidat ideal harus memiliki pengalaman dalam mengembangkan dan melaksanakan kampanye pemasaran multi-saluran, keterampilan analitis yang kuat, dan kemampuan untuk berkolaborasi secara efektif dengan tim lintas fungsi. Mereka juga harus bersemangat untuk tetap mengikuti tren dan teknologi pemasaran terbaru."
+          "text": "You are interviewing a candidate for a marketing manager position at a well-established e-commerce company. The ideal candidate should have experience developing and executing multi-channel marketing campaigns, strong analytical skills, and the ability to collaborate effectively with cross-functional teams. They should also be passionate about staying up-to-date with the latest marketing trends and technologies."
         }
       ]
     }
@@ -92,7 +92,7 @@ const msg = await anthropic.messages.create({
 });
 console.log(msg);
 
-````
+```
 
 </Tab>
 <Tab title="AWS Bedrock Python">
@@ -105,17 +105,17 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1:0",
     max_tokens=1000,
     temperature=0.5,
-    system="Tugas Anda adalah menghasilkan serangkaian pertanyaan yang bijaksana dan terbuka untuk wawancara berdasarkan konteks yang diberikan. Pertanyaan-pertanyaan tersebut harus dirancang untuk memunculkan respons yang mendalam dan terperinci dari pewawancara, memungkinkan mereka untuk menunjukkan pengetahuan, pengalaman, dan keterampilan berpikir kritis mereka. Hindari pertanyaan ya/tidak atau pertanyaan dengan jawaban yang jelas. Sebaliknya, fokuslah pada pertanyaan yang mendorong refleksi, penilaian diri, dan berbagi contoh atau anekdot spesifik.",
+    system="Your task is to generate a series of thoughtful, open-ended questions for an interview based on the given context. The questions should be designed to elicit insightful and detailed responses from the interviewee, allowing them to showcase their knowledge, experience, and critical thinking skills. Avoid yes/no questions or those with obvious answers. Instead, focus on questions that encourage reflection, self-assessment, and the sharing of specific examples or anecdotes.",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Anda sedang mewawancarai kandidat untuk posisi manajer pemasaran di perusahaan e-commerce yang sudah mapan. Kandidat ideal harus memiliki pengalaman dalam mengembangkan dan melaksanakan kampanye pemasaran multi-saluran, keterampilan analitis yang kuat, dan kemampuan untuk berkolaborasi secara efektif dengan tim lintas fungsi. Mereka juga harus bersemangat untuk tetap mengikuti tren dan teknologi pemasaran terbaru."
+                    "text": "You are interviewing a candidate for a marketing manager position at a well-established e-commerce company. The ideal candidate should have experience developing and executing multi-channel marketing campaigns, strong analytical skills, and the ability to collaborate effectively with cross-functional teams. They should also be passionate about staying up-to-date with the latest marketing trends and technologies."
                 }
             ]
         }
@@ -127,6 +127,7 @@ print(message.content)
 
 </Tab>
 <Tab title="AWS Bedrock TypeScript">
+
 ```typescript
 import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 
@@ -135,25 +136,26 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
-max_tokens: 1000,
-temperature: 0.5,
-system: "Tugas Anda adalah menghasilkan serangkaian pertanyaan yang bijaksana dan terbuka untuk wawancara berdasarkan konteks yang diberikan. Pertanyaan-pertanyaan tersebut harus dirancang untuk memunculkan respons yang mendalam dan terperinci dari pewawancara, memungkinkan mereka untuk menunjukkan pengetahuan, pengalaman, dan keterampilan berpikir kritis mereka. Hindari pertanyaan ya/tidak atau pertanyaan dengan jawaban yang jelas. Sebaliknya, fokuslah pada pertanyaan yang mendorong refleksi, penilaian diri, dan berbagi contoh atau anekdot spesifik.",
-messages: [
-{
-"role": "user",
-"content": [
-{
-"type": "text",
-"text": "Anda sedang mewawancarai kandidat untuk posisi manajer pemasaran di perusahaan e-commerce yang sudah mapan. Kandidat ideal harus memiliki pengalaman dalam mengembangkan dan melaksanakan kampanye pemasaran multi-saluran, keterampilan analitis yang kuat, dan kemampuan untuk berkolaborasi secara efektif dengan tim lintas fungsi. Mereka juga harus bersemangat untuk tetap mengikuti tren dan teknologi pemasaran terbaru."
-}
-]
-}
-]
+  model: "anthropic.claude-opus-4-6-v1:0",
+  max_tokens: 1000,
+  temperature: 0.5,
+  system: "Your task is to generate a series of thoughtful, open-ended questions for an interview based on the given context. The questions should be designed to elicit insightful and detailed responses from the interviewee, allowing them to showcase their knowledge, experience, and critical thinking skills. Avoid yes/no questions or those with obvious answers. Instead, focus on questions that encourage reflection, self-assessment, and the sharing of specific examples or anecdotes.",
+  messages: [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "You are interviewing a candidate for a marketing manager position at a well-established e-commerce company. The ideal candidate should have experience developing and executing multi-channel marketing campaigns, strong analytical skills, and the ability to collaborate effectively with cross-functional teams. They should also be passionate about staying up-to-date with the latest marketing trends and technologies."
+        }
+      ]
+    }
+  ]
 });
 console.log(msg);
 
-````
+```
+
 </Tab>
 <Tab title="Vertex AI Python">
 
@@ -166,14 +168,14 @@ message = client.messages.create(
     model="claude-sonnet-4@20250514",
     max_tokens=1000,
     temperature=0.5,
-    system="Tugas Anda adalah menghasilkan serangkaian pertanyaan yang bijaksana dan terbuka untuk wawancara berdasarkan konteks yang diberikan. Pertanyaan-pertanyaan tersebut harus dirancang untuk memunculkan respons yang mendalam dan terperinci dari pewawancara, memungkinkan mereka untuk menunjukkan pengetahuan, pengalaman, dan keterampilan berpikir kritis mereka. Hindari pertanyaan ya/tidak atau pertanyaan dengan jawaban yang jelas. Sebaliknya, fokuslah pada pertanyaan yang mendorong refleksi, penilaian diri, dan berbagi contoh atau anekdot spesifik.",
+    system="Your task is to generate a series of thoughtful, open-ended questions for an interview based on the given context. The questions should be designed to elicit insightful and detailed responses from the interviewee, allowing them to showcase their knowledge, experience, and critical thinking skills. Avoid yes/no questions or those with obvious answers. Instead, focus on questions that encourage reflection, self-assessment, and the sharing of specific examples or anecdotes.",
     messages=[
         {
             "role": "user",
             "content": [
                 {
                     "type": "text",
-                    "text": "Anda sedang mewawancarai kandidat untuk posisi manajer pemasaran di perusahaan e-commerce yang sudah mapan. Kandidat ideal harus memiliki pengalaman dalam mengembangkan dan melaksanakan kampanye pemasaran multi-saluran, keterampilan analitis yang kuat, dan kemampuan untuk berkolaborasi secara efektif dengan tim lintas fungsi. Mereka juga harus bersemangat untuk tetap mengikuti tren dan teknologi pemasaran terbaru."
+                    "text": "You are interviewing a candidate for a marketing manager position at a well-established e-commerce company. The ideal candidate should have experience developing and executing multi-channel marketing campaigns, strong analytical skills, and the ability to collaborate effectively with cross-functional teams. They should also be passionate about staying up-to-date with the latest marketing trends and technologies."
                 }
             ]
         }
@@ -181,7 +183,7 @@ message = client.messages.create(
 )
 print(message.content)
 
-````
+```
 
 </Tab>
 <Tab title="Vertex AI TypeScript">
@@ -197,14 +199,14 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 1000,
   temperature: 0.5,
-  system: "Tugas Anda adalah menghasilkan serangkaian pertanyaan yang bijaksana dan terbuka untuk wawancara berdasarkan konteks yang diberikan. Pertanyaan-pertanyaan tersebut harus dirancang untuk memunculkan respons yang mendalam dan terperinci dari pewawancara, memungkinkan mereka untuk menunjukkan pengetahuan, pengalaman, dan keterampilan berpikir kritis mereka. Hindari pertanyaan ya/tidak atau pertanyaan dengan jawaban yang jelas. Sebaliknya, fokuslah pada pertanyaan yang mendorong refleksi, penilaian diri, dan berbagi contoh atau anekdot spesifik.",
+  system: "Your task is to generate a series of thoughtful, open-ended questions for an interview based on the given context. The questions should be designed to elicit insightful and detailed responses from the interviewee, allowing them to showcase their knowledge, experience, and critical thinking skills. Avoid yes/no questions or those with obvious answers. Instead, focus on questions that encourage reflection, self-assessment, and the sharing of specific examples or anecdotes.",
   messages: [
     {
       "role": "user",
       "content": [
         {
           "type": "text",
-          "text": "Anda sedang mewawancarai kandidat untuk posisi manajer pemasaran di perusahaan e-commerce yang sudah mapan. Kandidat ideal harus memiliki pengalaman dalam mengembangkan dan melaksanakan kampanye pemasaran multi-saluran, keterampilan analitis yang kuat, dan kemampuan untuk berkolaborasi secara efektif dengan tim lintas fungsi. Mereka juga harus bersemangat untuk tetap mengikuti tren dan teknologi pemasaran terbaru."
+          "text": "You are interviewing a candidate for a marketing manager position at a well-established e-commerce company. The ideal candidate should have experience developing and executing multi-channel marketing campaigns, strong analytical skills, and the ability to collaborate effectively with cross-functional teams. They should also be passionate about staying up-to-date with the latest marketing trends and technologies."
         }
       ]
     }

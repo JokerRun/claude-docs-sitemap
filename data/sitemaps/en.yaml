@@ -1,16 +1,19 @@
 ---
 - source: code
+  loc: https://code.claude.com/docs/en/agent-teams
+  lastmod: '2026-02-05T17:50:16.211Z'
+- source: code
   loc: https://code.claude.com/docs/en/amazon-bedrock
   lastmod: '2026-02-04T00:24:45.138Z'
 - source: code
   loc: https://code.claude.com/docs/en/analytics
-  lastmod: '2026-02-03T03:00:22.468Z'
+  lastmod: '2026-02-05T22:59:38.916Z'
 - source: code
   loc: https://code.claude.com/docs/en/authentication
   lastmod: '2026-02-03T03:00:22.470Z'
 - source: code
   loc: https://code.claude.com/docs/en/best-practices
-  lastmod: '2026-02-04T20:50:41.570Z'
+  lastmod: '2026-02-05T23:03:43.822Z'
 - source: code
   loc: https://code.claude.com/docs/en/checkpointing
   lastmod: '2026-01-28T13:17:42.808Z'
@@ -22,13 +25,13 @@
   lastmod: '2026-02-04T00:24:45.139Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
-  lastmod: '2026-02-04T00:24:45.140Z'
+  lastmod: '2026-02-05T17:50:16.244Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
-  lastmod: '2026-02-04T00:24:45.144Z'
+  lastmod: '2026-02-05T18:33:59.781Z'
 - source: code
   loc: https://code.claude.com/docs/en/costs
-  lastmod: '2026-01-28T13:17:42.833Z'
+  lastmod: '2026-02-05T17:46:07.150Z'
 - source: code
   loc: https://code.claude.com/docs/en/data-usage
   lastmod: '2026-02-01T16:34:36.480Z'
@@ -43,16 +46,16 @@
   lastmod: '2026-01-28T13:17:42.831Z'
 - source: code
   loc: https://code.claude.com/docs/en/features-overview
-  lastmod: '2026-01-31T02:37:55.326Z'
+  lastmod: '2026-02-05T17:50:16.275Z'
 - source: code
   loc: https://code.claude.com/docs/en/github-actions
-  lastmod: '2026-02-04T00:24:45.141Z'
+  lastmod: '2026-02-05T17:46:07.147Z'
 - source: code
   loc: https://code.claude.com/docs/en/gitlab-ci-cd
   lastmod: '2026-02-04T00:24:45.142Z'
 - source: code
   loc: https://code.claude.com/docs/en/google-vertex-ai
-  lastmod: '2026-02-04T00:24:45.145Z'
+  lastmod: '2026-02-05T17:46:07.148Z'
 - source: code
   loc: https://code.claude.com/docs/en/headless
   lastmod: '2026-01-30T18:03:04.291Z'
@@ -64,10 +67,10 @@
   lastmod: '2026-02-01T20:21:41.236Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
-  lastmod: '2026-02-03T03:00:22.635Z'
+  lastmod: '2026-02-05T17:50:16.277Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
-  lastmod: '2026-02-04T18:01:04.428Z'
+  lastmod: '2026-02-05T17:46:07.152Z'
 - source: code
   loc: https://code.claude.com/docs/en/jetbrains
   lastmod: '2026-01-28T13:17:42.854Z'
@@ -88,10 +91,10 @@
   lastmod: '2026-02-01T20:21:41.232Z'
 - source: code
   loc: https://code.claude.com/docs/en/microsoft-foundry
-  lastmod: '2026-01-28T13:17:42.876Z'
+  lastmod: '2026-02-05T17:46:07.151Z'
 - source: code
   loc: https://code.claude.com/docs/en/model-config
-  lastmod: '2026-01-28T13:17:42.873Z'
+  lastmod: '2026-02-05T18:33:59.780Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
   lastmod: '2026-02-03T06:43:52.750Z'
@@ -106,16 +109,16 @@
   lastmod: '2026-02-04T23:57:06.213Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
-  lastmod: '2026-02-04T00:23:38.001Z'
+  lastmod: '2026-02-05T17:50:17.318Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-marketplaces
-  lastmod: '2026-01-28T13:17:42.878Z'
+  lastmod: '2026-02-05T21:43:32.422Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins
-  lastmod: '2026-01-31T02:37:58.738Z'
+  lastmod: '2026-02-05T21:43:32.417Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins-reference
-  lastmod: '2026-01-31T02:37:58.735Z'
+  lastmod: '2026-02-05T21:43:32.485Z'
 - source: code
   loc: https://code.claude.com/docs/en/quickstart
   lastmod: '2026-02-03T03:00:25.938Z'
@@ -127,7 +130,7 @@
   lastmod: '2026-02-03T03:00:25.930Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-02-05T00:09:03.092Z'
+  lastmod: '2026-02-05T23:03:44.032Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-02-04T18:02:58.128Z'
@@ -139,10 +142,10 @@
   lastmod: '2026-02-03T23:01:39.928Z'
 - source: code
   loc: https://code.claude.com/docs/en/statusline
-  lastmod: '2026-01-28T13:17:42.903Z'
+  lastmod: '2026-02-05T23:03:44.079Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-02-05T02:55:48.544Z'
+  lastmod: '2026-02-05T21:43:32.438Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
   lastmod: '2026-01-28T13:17:42.919Z'
@@ -168,13 +171,13 @@
   loc: https://platform.claude.com/docs/en/about-claude/models/choosing-a-model
   priority: '0.8'
 - source: platform
-  loc: https://platform.claude.com/docs/en/about-claude/models/migrating-to-claude-4
+  loc: https://platform.claude.com/docs/en/about-claude/models/migration-guide
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/about-claude/models/overview
   priority: '1'
 - source: platform
-  loc: https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-5
+  loc: https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-6
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/about-claude/pricing
@@ -244,6 +247,9 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/agent-sdk/slash-commands
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/agent-sdk/stop-reasons
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/agent-sdk/streaming-output
@@ -1401,6 +1407,9 @@
   loc: https://platform.claude.com/docs/en/api/versioning
   priority: '0.8'
 - source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking
+  priority: '0.8'
+- source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/administration-api
   priority: '0.8'
 - source: platform
@@ -1422,10 +1431,16 @@
   loc: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
   priority: '0.8'
 - source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/compaction
+  priority: '0.8'
+- source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/context-editing
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/context-windows
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/data-residency
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/effort
@@ -1438,6 +1453,9 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/files
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/multilingual-support
@@ -1461,7 +1479,7 @@
   loc: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/chain-prompts
   priority: '0.8'
 - source: platform
-  loc: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-4-best-practices
+  loc: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/extended-thinking-tips
@@ -1475,9 +1493,6 @@
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview
   priority: '1'
-- source: platform
-  loc: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prefill-claudes-response
-  priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompt-generator
   priority: '0.8'
@@ -1773,13 +1788,13 @@
   loc: https://platform.claude.com/docs/id/about-claude/models/choosing-a-model
   priority: '0.7'
 - source: platform
-  loc: https://platform.claude.com/docs/id/about-claude/models/migrating-to-claude-4
+  loc: https://platform.claude.com/docs/id/about-claude/models/migration-guide
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/about-claude/models/overview
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/id/about-claude/models/whats-new-claude-4-5
+  loc: https://platform.claude.com/docs/id/about-claude/models/whats-new-claude-4-6
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/about-claude/pricing
@@ -1851,6 +1866,12 @@
   loc: https://platform.claude.com/docs/id/agent-sdk/slash-commands
   priority: '0.7'
 - source: platform
+  loc: https://platform.claude.com/docs/id/agent-sdk/stop-reasons
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/agent-sdk/streaming-output
+  priority: '0.7'
+- source: platform
   loc: https://platform.claude.com/docs/id/agent-sdk/streaming-vs-single-mode
   priority: '0.7'
 - source: platform
@@ -1869,7 +1890,13 @@
   loc: https://platform.claude.com/docs/id/agent-sdk/typescript-v2-preview
   priority: '0.7'
 - source: platform
+  loc: https://platform.claude.com/docs/id/agent-sdk/user-input
+  priority: '0.7'
+- source: platform
   loc: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview
@@ -1950,6 +1977,9 @@
   loc: https://platform.claude.com/docs/id/api/versioning
   priority: '0.7'
 - source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/adaptive-thinking
+  priority: '0.7'
+- source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/administration-api
   priority: '0.7'
 - source: platform
@@ -1971,10 +2001,16 @@
   loc: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
   priority: '0.7'
 - source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/compaction
+  priority: '0.7'
+- source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/context-editing
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/context-windows
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/data-residency
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/effort
@@ -1987,6 +2023,9 @@
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/files
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
@@ -2010,7 +2049,7 @@
   loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/chain-prompts
   priority: '0.7'
 - source: platform
-  loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-4-best-practices
+  loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/extended-thinking-tips
@@ -2024,9 +2063,6 @@
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview
   priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prefill-claudes-response
-  priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompt-generator
   priority: '0.7'
@@ -2065,6 +2101,12 @@
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/workspaces
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/zero-data-retention
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/get-started

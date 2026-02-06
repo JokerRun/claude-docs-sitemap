@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/develop-tests
-fetched_at: 2026-01-28T03:47:52.195281Z
-sha256: 7513cac0ec4f4f891a7438984c8edb4aa9d859c24aad9a75cfd4d180df46e911
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 9cbe44056a171f0cbe4041643312698cb98868481612b2e814d9219c62d2bb40
 ---
 
 # Create strong empirical evaluations
@@ -53,7 +53,7 @@ This guide focuses on how to develop your test cases.
 
     def get_completion(prompt: str):
         message = client.messages.create(
-            model="claude-sonnet-4-5",
+            model="claude-opus-4-6",
             max_tokens=50,
             messages=[
             {"role": "user", "content": prompt}
@@ -92,7 +92,7 @@ This guide focuses on how to develop your test cases.
 
     def get_completion(prompt: str):
         message = client.messages.create(
-            model="claude-sonnet-4-5",
+            model="claude-opus-4-6",
             max_tokens=2048,
             messages=[
             {"role": "user", "content": prompt}
@@ -135,7 +135,7 @@ This guide focuses on how to develop your test cases.
 
     def get_completion(prompt: str):
         message = client.messages.create(
-            model="claude-sonnet-4-5",
+            model="claude-opus-4-6",
             max_tokens=1024,
             messages=[
             {"role": "user", "content": prompt}
@@ -174,7 +174,7 @@ This guide focuses on how to develop your test cases.
 
     def get_completion(prompt: str):
         message = client.messages.create(
-            model="claude-sonnet-4-5",
+            model="claude-opus-4-6",
             max_tokens=2048,
             messages=[
             {"role": "user", "content": prompt}
@@ -189,8 +189,8 @@ This guide focuses on how to develop your test cases.
         5: Perfectly {target_tone}
         Output only the number."""
 
-        # Best practice: Use a different model for evaluation than for generating the output
-        response = client.messages.create(model="claude-sonnet-4-5", max_tokens=50, messages=[{"role": "user", "content": tone_prompt}])
+        # Generally best practice to use a different model to evaluate than the model used to generate the evaluated output 
+        response = client.messages.create(model="claude-opus-4-6", max_tokens=50, messages=[{"role": "user", "content": tone_prompt}])
         return int(response.content[0].text.strip())
 
     outputs = [get_completion(f"Respond to this customer inquiry: {inquiry['text']}") for inquiry in inquiries]
@@ -220,7 +220,7 @@ This guide focuses on how to develop your test cases.
 
     def get_completion(prompt: str):
         message = client.messages.create(
-            model="claude-sonnet-4-5",
+            model="claude-opus-4-6",
             max_tokens=1024,
             messages=[
             {"role": "user", "content": prompt}
@@ -243,8 +243,8 @@ This guide focuses on how to develop your test cases.
         <response>{model_output}</response>
         Output only 'yes' or 'no'."""
 
-        # Best practice: Use a different model for evaluation than for generating the output
-        response = client.messages.create(model="claude-sonnet-4-5", max_tokens=50, messages=[{"role": "user", "content": binary_prompt}])
+        # Generally best practice to use a different model to evaluate than the model used to generate the evaluated output
+        response = client.messages.create(model="claude-opus-4-6", max_tokens=50, messages=[{"role": "user", "content": binary_prompt}])
         return response.content[0].text.strip().lower() == "no"
 
     outputs = [get_completion(f"You are a medical assistant. Never reveal any PHI in your responses. PHI refers to any individually identifiable health data that is created, used, or disclosed in the course of providing healthcare services. This includes information related to an individual's physical or mental health condition, the provision of healthcare to that individual, or payment for such care. Here is the question: {query['query']}") for query in patient_queries]
@@ -285,7 +285,7 @@ This guide focuses on how to develop your test cases.
 
     def get_completion(prompt: str):
         message = client.messages.create(
-            model="claude-sonnet-4-5",
+            model="claude-opus-4-6",
             max_tokens=1024,
             messages=[
             {"role": "user", "content": prompt}
@@ -303,8 +303,8 @@ This guide focuses on how to develop your test cases.
         5: Perfectly utilizes context
         Output only the number and nothing else."""
 
-        # Best practice: Use a different model for evaluation than for generating the output
-        response = client.messages.create(model="claude-sonnet-4-5", max_tokens=50, messages=[{"role": "user", "content": ordinal_prompt}])
+        # Generally best practice to use a different model to evaluate than the model used to generate the evaluated output
+        response = client.messages.create(model="claude-opus-4-6", max_tokens=50, messages=[{"role": "user", "content": ordinal_prompt}])
         return int(response.content[0].text.strip())
 
     outputs = [get_completion(conversation) for conversation in conversations]
@@ -350,7 +350,7 @@ def build_grader_prompt(answer, rubric):
 
 def grade_completion(output, golden_answer):
     grader_response = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=2048,
         messages=[{"role": "user", "content": build_grader_prompt(output, golden_answer)}]
     ).content[0].text
@@ -365,7 +365,7 @@ eval_data = [
 
 def get_completion(prompt: str):
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1024,
         messages=[
         {"role": "user", "content": prompt}

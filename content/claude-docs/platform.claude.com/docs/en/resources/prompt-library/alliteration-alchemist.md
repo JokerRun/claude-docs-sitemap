@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/alliteration-alchemist
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 6b6db2549efc754d43adacedf6d952f78095bdc7321541998bfdacda3c873c6c
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 1f28c5addccb6838418f8a2852e587680a2375984c6ddbfc58b1eb94e7a9ba66
 ---
 
 # Alliteration alchemist
@@ -54,7 +54,7 @@ Generate alliterative phrases and sentences for any given subject.
         api_key="my_api_key",
     )
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-opus-4-6",
         max_tokens=1000,
         temperature=1,
         system="Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
@@ -83,7 +83,7 @@ Generate alliterative phrases and sentences for any given subject.
     });
     
     const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-5",
+      model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 1,
       system: "Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
@@ -112,7 +112,7 @@ Generate alliterative phrases and sentences for any given subject.
     client = AnthropicBedrock()
     
     message = client.messages.create(
-        model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+        model="anthropic.claude-opus-4-6-v1",
         max_tokens=1000,
         temperature=1,
         system="Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
@@ -141,7 +141,7 @@ Generate alliterative phrases and sentences for any given subject.
     const client = new AnthropicBedrock();
     
     const msg = await client.messages.create({
-      model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 1000,
       temperature: 1,
       system: "Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",

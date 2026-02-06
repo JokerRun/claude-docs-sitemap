@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/migration-guide
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 83a55fafb1c7551306d456410ddcacd082e6188c6b8ffdbee259fffac0a9ed2d
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: b5043b410c943f3d9592d0f5cf59aacc236cbc02598e35b791dc8a9cf65dca51
 ---
 
 # Migrate to Claude Agent SDK
@@ -116,14 +116,14 @@ Change `ClaudeCodeOptions` to `ClaudeAgentOptions`:
 from claude_agent_sdk import query, ClaudeCodeOptions
 
 options = ClaudeCodeOptions(
-    model="claude-sonnet-4-5"
+    model="claude-opus-4-6"
 )
 
 # After
 from claude_agent_sdk import query, ClaudeAgentOptions
 
 options = ClaudeAgentOptions(
-    model="claude-sonnet-4-5"
+    model="claude-opus-4-6"
 )
 ```
 
@@ -148,7 +148,7 @@ To improve isolation and explicit configuration, Claude Agent SDK v0.1.0 introdu
 from claude_agent_sdk import query, ClaudeCodeOptions
 
 options = ClaudeCodeOptions(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     permission_mode="acceptEdits"
 )
 
@@ -156,7 +156,7 @@ options = ClaudeCodeOptions(
 from claude_agent_sdk import query, ClaudeAgentOptions
 
 options = ClaudeAgentOptions(
-    model="claude-sonnet-4-5",
+    model="claude-opus-4-6",
     permission_mode="acceptEdits"
 )
 ```

@@ -1,23 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/file-checkpointing
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 8faeda13d3a8f505ad5bb7c1e00b9547903967249f0804b24174a2b4a79c8576
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 2a5c843f11d9a6cc106b0692d2e381a9e23d0ff0dafc93f9b7fc16d482ab59f3
 ---
 
-# Membatalkan perubahan file dengan checkpointing
+# Kembalikan perubahan file dengan checkpointing
 
-Lacak perubahan file selama sesi agen dan pulihkan file ke status sebelumnya
+Lacak perubahan file selama sesi agen dan kembalikan file ke status sebelumnya
 
 ---
 
-File checkpointing melacak modifikasi file yang dilakukan melalui alat Write, Edit, dan NotebookEdit selama sesi agen, memungkinkan Anda untuk membatalkan file ke status sebelumnya. Ingin mencobanya? Lompat ke [contoh interaktif](#try-it-out).
+File checkpointing melacak modifikasi file yang dilakukan melalui alat Write, Edit, dan NotebookEdit selama sesi agen, memungkinkan Anda untuk mengembalikan file ke status sebelumnya. Ingin mencobanya? Lompat ke [contoh interaktif](#try-it-out).
 
 Dengan checkpointing, Anda dapat:
 
-- **Membatalkan perubahan yang tidak diinginkan** dengan memulihkan file ke status yang diketahui baik
-- **Menjelajahi alternatif** dengan memulihkan ke checkpoint dan mencoba pendekatan berbeda
-- **Pulih dari kesalahan** ketika agen membuat modifikasi yang salah
+- **Batalkan perubahan yang tidak diinginkan** dengan mengembalikan file ke status yang diketahui baik
+- **Jelajahi alternatif** dengan mengembalikan ke checkpoint dan mencoba pendekatan berbeda
+- **Pulihkan dari kesalahan** ketika agen membuat modifikasi yang salah
 
 <Warning>
 Hanya perubahan yang dilakukan melalui alat Write, Edit, dan NotebookEdit yang dilacak. Perubahan yang dilakukan melalui perintah Bash (seperti `echo > file.txt` atau `sed -i`) tidak ditangkap oleh sistem checkpoint.
@@ -30,13 +30,13 @@ Ketika Anda mengaktifkan file checkpointing, SDK membuat cadangan file sebelum m
 Checkpoint bekerja dengan alat bawaan ini yang digunakan agen untuk memodifikasi file:
 
 | Alat | Deskripsi |
-|------|-----------|
+|------|-------------|
 | Write | Membuat file baru atau menimpa file yang ada dengan konten baru |
-| Edit | Membuat pengeditan yang ditargetkan ke bagian tertentu dari file yang ada |
+| Edit | Membuat pengeditan bertarget ke bagian tertentu dari file yang ada |
 | NotebookEdit | Memodifikasi sel dalam notebook Jupyter (file `.ipynb`) |
 
 <Note>
-Pembatalan file memulihkan file di disk ke status sebelumnya. Ini tidak membatalkan percakapan itu sendiri. Riwayat percakapan dan konteks tetap utuh setelah memanggil `rewindFiles()` (TypeScript) atau `rewind_files()` (Python).
+Pengembalian file mengembalikan file di disk ke status sebelumnya. Ini tidak mengembalikan percakapan itu sendiri. Riwayat percakapan dan konteks tetap utuh setelah memanggil `rewindFiles()` (TypeScript) atau `rewind_files()` (Python).
 </Note>
 
 Sistem checkpoint melacak:
@@ -45,13 +45,13 @@ Sistem checkpoint melacak:
 - File yang dimodifikasi selama sesi
 - Konten asli file yang dimodifikasi
 
-Ketika Anda membatalkan ke checkpoint, file yang dibuat dihapus dan file yang dimodifikasi dipulihkan ke konten mereka pada titik itu.
+Ketika Anda mengembalikan ke checkpoint, file yang dibuat dihapus dan file yang dimodifikasi dipulihkan ke konten mereka pada titik itu.
 
 ## Implementasikan checkpointing
 
 Untuk menggunakan file checkpointing, aktifkan dalam opsi Anda, tangkap UUID checkpoint dari aliran respons, kemudian panggil `rewindFiles()` (TypeScript) atau `rewind_files()` (Python) ketika Anda perlu memulihkan.
 
-Contoh berikut menunjukkan alur lengkap: aktifkan checkpointing, tangkap UUID checkpoint dan ID sesi dari aliran respons, kemudian lanjutkan sesi nanti untuk membatalkan file. Setiap langkah dijelaskan secara detail di bawah.
+Contoh berikut menunjukkan alur lengkap: aktifkan checkpointing, tangkap UUID checkpoint dan ID sesi dari aliran respons, kemudian lanjutkan sesi nanti untuk mengembalikan file. Setiap langkah dijelaskan secara detail di bawah.
 
 <CodeGroup>
 
@@ -191,8 +191,8 @@ const opts = {
 Konfigurasikan opsi SDK Anda untuk mengaktifkan checkpointing dan menerima UUID checkpoint:
 
 | Opsi | Python | TypeScript | Deskripsi |
-|--------|--------|------------|-----------|
-| Aktifkan checkpointing | `enable_file_checkpointing=True` | `enableFileCheckpointing: true` | Melacak perubahan file untuk pembatalan |
+|--------|--------|------------|-------------|
+| Aktifkan checkpointing | `enable_file_checkpointing=True` | `enableFileCheckpointing: true` | Melacak perubahan file untuk pengembalian |
 | Terima UUID checkpoint | `extra_args={"replay-user-messages": None}` | `extraArgs: { 'replay-user-messages': null }` | Diperlukan untuk mendapatkan UUID pesan pengguna dalam aliran |
 
 <CodeGroup>
@@ -227,9 +227,9 @@ const response = query({
 
 Dengan opsi `replay-user-messages` yang diatur (ditunjukkan di atas), setiap pesan pengguna dalam aliran respons memiliki UUID yang berfungsi sebagai checkpoint.
 
-Untuk sebagian besar kasus penggunaan, tangkap UUID pesan pengguna pertama (`message.uuid`); pembatalan ke sana memulihkan semua file ke status asli mereka. Untuk menyimpan beberapa checkpoint dan membatalkan ke status perantara, lihat [Beberapa titik pemulihan](#multiple-restore-points).
+Untuk sebagian besar kasus penggunaan, tangkap UUID pesan pengguna pertama (`message.uuid`); mengembalikan ke sana mengembalikan semua file ke status asli mereka. Untuk menyimpan beberapa checkpoint dan mengembalikan ke status perantara, lihat [Beberapa titik pemulihan](#multiple-restore-points).
 
-Menangkap ID sesi (`message.session_id`) bersifat opsional; Anda hanya membutuhkannya jika Anda ingin membatalkan nanti, setelah aliran selesai. Jika Anda memanggil `rewindFiles()` segera saat masih memproses pesan (seperti yang dilakukan contoh di [Checkpoint sebelum operasi berisiko](#checkpoint-before-risky-operations)), Anda dapat melewatkan penangkapan ID sesi.
+Menangkap ID sesi (`message.session_id`) bersifat opsional; Anda hanya membutuhkannya jika Anda ingin mengembalikan nanti, setelah aliran selesai. Jika Anda memanggil `rewindFiles()` segera saat masih memproses pesan (seperti yang dilakukan contoh dalam [Checkpoint sebelum operasi berisiko](#checkpoint-before-risky-operations)), Anda dapat melewatkan penangkapan ID sesi.
 
 <CodeGroup>
 
@@ -266,9 +266,9 @@ for await (const message of response) {
 
 </Step>
 
-<Step title="Batalkan file">
+<Step title="Kembalikan file">
 
-Untuk membatalkan setelah aliran selesai, lanjutkan sesi dengan prompt kosong dan panggil `rewind_files()` (Python) atau `rewindFiles()` (TypeScript) dengan UUID checkpoint Anda. Anda juga dapat membatalkan selama aliran; lihat [Checkpoint sebelum operasi berisiko](#checkpoint-before-risky-operations) untuk pola itu.
+Untuk mengembalikan setelah aliran selesai, lanjutkan sesi dengan prompt kosong dan panggil `rewind_files()` (Python) atau `rewindFiles()` (TypeScript) dengan UUID checkpoint Anda. Anda juga dapat mengembalikan selama aliran; lihat [Checkpoint sebelum operasi berisiko](#checkpoint-before-risky-operations) untuk pola itu.
 
 <CodeGroup>
 
@@ -297,7 +297,7 @@ for await (const msg of rewindQuery) {
 
 </CodeGroup>
 
-Jika Anda menangkap ID sesi dan ID checkpoint, Anda juga dapat membatalkan dari CLI:
+Jika Anda menangkap ID sesi dan ID checkpoint, Anda juga dapat mengembalikan dari CLI:
 
 ```bash
 claude --resume <session-id> --rewind-files <checkpoint-uuid>
@@ -313,7 +313,7 @@ Pola ini menunjukkan cara berbeda untuk menangkap dan menggunakan UUID checkpoin
 
 ### Checkpoint sebelum operasi berisiko
 
-Pola ini menyimpan hanya UUID checkpoint paling baru, memperbarui sebelum setiap putaran agen. Jika ada yang salah selama pemrosesan, Anda dapat segera membatalkan ke status terakhir yang aman dan keluar dari loop.
+Pola ini menyimpan hanya UUID checkpoint paling baru, memperbaruinya sebelum setiap putaran agen. Jika ada yang salah selama pemrosesan, Anda dapat segera mengembalikan ke status terakhir yang aman dan keluar dari loop.
 
 <CodeGroup>
 
@@ -391,9 +391,9 @@ main();
 
 ### Beberapa titik pemulihan
 
-Jika Claude membuat perubahan di beberapa putaran, Anda mungkin ingin membatalkan ke titik tertentu daripada semuanya. Misalnya, jika Claude merefaktor file di putaran satu dan menambahkan tes di putaran dua, Anda mungkin ingin menyimpan refaktor tetapi membatalkan tes.
+Jika Claude membuat perubahan di beberapa putaran, Anda mungkin ingin mengembalikan ke titik tertentu daripada semuanya. Misalnya, jika Claude merefaktor file di putaran satu dan menambahkan tes di putaran dua, Anda mungkin ingin menyimpan refaktor tetapi membatalkan tes.
 
-Pola ini menyimpan semua UUID checkpoint dalam array dengan metadata. Setelah sesi selesai, Anda dapat membatalkan ke checkpoint sebelumnya:
+Pola ini menyimpan semua UUID checkpoint dalam array dengan metadata. Setelah sesi selesai, Anda dapat mengembalikan ke checkpoint sebelumnya mana pun:
 
 <CodeGroup>
 
@@ -513,13 +513,13 @@ main();
 
 ## Coba sekarang
 
-Contoh lengkap ini membuat file utilitas kecil, membuat agen menambahkan komentar dokumentasi, menunjukkan perubahan kepada Anda, kemudian menanyakan apakah Anda ingin membatalkan.
+Contoh lengkap ini membuat file utilitas kecil, meminta agen menambahkan komentar dokumentasi, menunjukkan perubahan kepada Anda, kemudian menanyakan apakah Anda ingin mengembalikan.
 
 Sebelum Anda mulai, pastikan Anda telah [menginstal Claude Agent SDK](/docs/id/agent-sdk/quickstart).
 
 <Steps>
 
-<Step title="Buat file uji">
+<Step title="Buat file pengujian">
 
 Buat file baru bernama `utils.py` (Python) atau `utils.ts` (TypeScript) dan tempel kode berikut:
 
@@ -570,7 +570,7 @@ export function divide(a: number, b: number): number {
 
 Buat file baru bernama `try_checkpointing.py` (Python) atau `try_checkpointing.ts` (TypeScript) di direktori yang sama dengan file utilitas Anda, dan tempel kode berikut.
 
-Skrip ini meminta Claude untuk menambahkan komentar doc ke file utilitas Anda, kemudian memberi Anda opsi untuk membatalkan dan memulihkan yang asli.
+Skrip ini meminta Claude untuk menambahkan komentar doc ke file utilitas Anda, kemudian memberi Anda opsi untuk mengembalikan dan mengembalikan aslinya.
 
 <CodeGroup>
 
@@ -709,8 +709,8 @@ Contoh ini mendemonstrasikan alur kerja checkpointing lengkap:
 
 1. **Aktifkan checkpointing**: konfigurasikan SDK dengan `enable_file_checkpointing=True` dan `permission_mode="acceptEdits"` untuk menyetujui pengeditan file secara otomatis
 2. **Tangkap data checkpoint**: saat agen berjalan, simpan UUID pesan pengguna pertama (titik pemulihan Anda) dan ID sesi
-3. **Minta pembatalan**: setelah agen selesai, periksa file utilitas Anda untuk melihat komentar doc, kemudian putuskan apakah Anda ingin membatalkan perubahan
-4. **Lanjutkan dan batalkan**: jika ya, lanjutkan sesi dengan prompt kosong dan panggil `rewind_files()` untuk memulihkan file asli
+3. **Minta pengembalian**: setelah agen selesai, periksa file utilitas Anda untuk melihat komentar doc, kemudian putuskan apakah Anda ingin membatalkan perubahan
+4. **Lanjutkan dan kembalikan**: jika ya, lanjutkan sesi dengan prompt kosong dan panggil `rewind_files()` untuk mengembalikan file asli
 
 </Step>
 
@@ -719,24 +719,25 @@ Contoh ini mendemonstrasikan alur kerja checkpointing lengkap:
 Atur variabel lingkungan dan jalankan skrip dari direktori yang sama dengan file utilitas Anda.
 
 <Tip>
-Buka file utilitas Anda (`utils.py` atau `utils.ts`) di IDE atau editor Anda sebelum menjalankan skrip. Anda akan melihat file diperbarui secara real-time saat agen menambahkan komentar doc, kemudian kembali ke asli ketika Anda memilih untuk membatalkan.
+Buka file utilitas Anda (`utils.py` atau `utils.ts`) di IDE atau editor Anda sebelum menjalankan skrip. Anda akan melihat file diperbarui secara real-time saat agen menambahkan komentar doc, kemudian kembali ke aslinya ketika Anda memilih untuk mengembalikan.
 </Tip>
 
-<CodeGroup>
+<Tabs>
+  <Tab title="Python">
+    ```bash
+    export CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING=1
+    python try_checkpointing.py
+    ```
+  </Tab>
+  <Tab title="TypeScript">
+    ```bash
+    export CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING=1
+    npx tsx try_checkpointing.ts
+    ```
+  </Tab>
+</Tabs>
 
-```bash Python
-export CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING=1
-python try_checkpointing.py
-```
-
-```bash TypeScript
-export CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING=1
-npx tsx try_checkpointing.ts
-```
-
-</CodeGroup>
-
-Anda akan melihat agen menambahkan komentar doc, kemudian prompt menanyakan apakah Anda ingin membatalkan. Jika Anda memilih ya, file dipulihkan ke status aslinya.
+Anda akan melihat agen menambahkan komentar doc, kemudian prompt menanyakan apakah Anda ingin mengembalikan. Jika Anda memilih ya, file dipulihkan ke status aslinya.
 
 </Step>
 
@@ -747,10 +748,10 @@ Anda akan melihat agen menambahkan komentar doc, kemudian prompt menanyakan apak
 File checkpointing memiliki keterbatasan berikut:
 
 | Keterbatasan | Deskripsi |
-|------------|-----------|
+|------------|-------------|
 | Alat Write/Edit/NotebookEdit saja | Perubahan yang dilakukan melalui perintah Bash tidak dilacak |
 | Sesi yang sama | Checkpoint terikat pada sesi yang membuatnya |
-| Konten file saja | Membuat, memindahkan, atau menghapus direktori tidak dibatalkan oleh pembatalan |
+| Konten file saja | Membuat, memindahkan, atau menghapus direktori tidak dibatalkan oleh pengembalian |
 | File lokal | File jarak jauh atau jaringan tidak dilacak |
 
 ## Pemecahan masalah
@@ -777,15 +778,15 @@ Kesalahan ini terjadi ketika data checkpoint tidak ada untuk UUID pesan pengguna
 
 **Penyebab umum**:
 - Variabel lingkungan `CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING` tidak diatur
-- Sesi tidak diselesaikan dengan benar sebelum mencoba melanjutkan dan membatalkan
+- Sesi tidak diselesaikan dengan benar sebelum mencoba melanjutkan dan mengembalikan
 
 **Solusi**: Pastikan Anda telah mengatur variabel lingkungan (lihat [Atur variabel lingkungan](#set-the-environment-variable)), kemudian gunakan pola yang ditunjukkan dalam contoh: tangkap UUID pesan pengguna pertama, selesaikan sesi sepenuhnya, kemudian lanjutkan dengan prompt kosong dan panggil `rewindFiles()` sekali.
 
 ### Kesalahan "ProcessTransport is not ready for writing"
 
-Kesalahan ini terjadi ketika Anda memanggil `rewindFiles()` atau `rewind_files()` setelah Anda selesai melakukan iterasi melalui respons. Koneksi ke proses CLI ditutup ketika loop selesai.
+Kesalahan ini terjadi ketika Anda memanggil `rewindFiles()` atau `rewind_files()` setelah Anda selesai mengulangi respons. Koneksi ke proses CLI ditutup ketika loop selesai.
 
-**Solusi**: Lanjutkan sesi dengan prompt kosong, kemudian batalkan pada kueri baru:
+**Solusi**: Lanjutkan sesi dengan prompt kosong, kemudian panggil rewind pada kueri baru:
 
 <CodeGroup>
 
@@ -818,7 +819,7 @@ for await (const msg of rewindQuery) {
 
 ## Langkah berikutnya
 
-- **[Sesi](/docs/id/agent-sdk/sessions)**: pelajari cara melanjutkan sesi, yang diperlukan untuk pembatalan setelah aliran selesai. Mencakup ID sesi, melanjutkan percakapan, dan forking sesi.
+- **[Sesi](/docs/id/agent-sdk/sessions)**: pelajari cara melanjutkan sesi, yang diperlukan untuk pengembalian setelah aliran selesai. Mencakup ID sesi, melanjutkan percakapan, dan forking sesi.
 - **[Izin](/docs/id/agent-sdk/permissions)**: konfigurasikan alat mana yang dapat digunakan Claude dan bagaimana modifikasi file disetujui. Berguna jika Anda menginginkan kontrol lebih besar atas kapan pengeditan terjadi.
 - **[Referensi SDK TypeScript](/docs/id/agent-sdk/typescript)**: referensi API lengkap termasuk semua opsi untuk `query()` dan metode `rewindFiles()`.
 - **[Referensi SDK Python](/docs/id/agent-sdk/python)**: referensi API lengkap termasuk semua opsi untuk `ClaudeAgentOptions` dan metode `rewind_files()`.

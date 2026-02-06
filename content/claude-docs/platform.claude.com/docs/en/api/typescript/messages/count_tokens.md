@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/count_tokens
-fetched_at: 2026-01-30T04:11:49.863510Z
-sha256: 0f1138815925fb7434a4ce0a8440513632c005c45e3ad5caba6dcaf2d051896f
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 8ec0575228acecda83716b379a9bc4e30a657bb656abb7e5027be63d1130b80f
 ---
 
 ## Count Tokens
@@ -1432,7 +1432,11 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-5-20251101" | "claude-opus-4-5" | "claude-3-7-sonnet-latest" | 17 more`
+    - `"claude-opus-4-6" | "claude-opus-4-5-20251101" | "claude-opus-4-5" | 18 more`
+
+      - `"claude-opus-4-6"`
+
+        Most intelligent model for building agents and coding
 
       - `"claude-opus-4-5-20251101"`
 
@@ -1520,7 +1524,19 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     Configuration options for the model's output, such as the output format.
 
-    - `format?: Format | null`
+    - `effort?: "low" | "medium" | "high" | "max" | null`
+
+      All possible effort levels.
+
+      - `"low"`
+
+      - `"medium"`
+
+      - `"high"`
+
+      - `"max"`
+
+    - `format?: JSONOutputFormat | null`
 
       A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
 
@@ -1680,6 +1696,12 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `type: "disabled"`
 
         - `"disabled"`
+
+    - `ThinkingConfigAdaptive`
+
+      - `type: "adaptive"`
+
+        - `"adaptive"`
 
   - `tool_choice?: ToolChoice`
 
@@ -1853,6 +1875,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         Description of what this tool does.
 
         Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
+
+      - `eager_input_streaming?: boolean | null`
+
+        Enable eager input streaming for this tool. When true, tool input parameters will be streamed incrementally as they are generated, and types will be inferred on-the-fly rather than buffering the full JSON output. When false, streaming is disabled for this tool even if the fine-grained-tool-streaming beta is active. When null (default), uses the default behavior based on beta headers.
 
       - `strict?: boolean`
 
@@ -2126,7 +2152,7 @@ const client = new Anthropic({
 
 const messageTokensCount = await client.messages.countTokens({
   messages: [{ content: 'string', role: 'user' }],
-  model: 'claude-opus-4-5-20251101',
+  model: 'claude-opus-4-6',
 });
 
 console.log(messageTokensCount.input_tokens);

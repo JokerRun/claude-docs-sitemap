@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/perspectives-ponderer
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 803139effa12e20fda20ac3ab91cb3f1ac26f38d4fe7f1584d01a1c62816182b
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: efb9364241bd550086e94c4db21a3f65530c6851d332c8271601279c03852212
 ---
 
 # Perspectives ponderer
@@ -54,7 +54,7 @@ client = anthropic.Anthropic(
   api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-sonnet-4-5",
+  model="claude-opus-4-6",
   max_tokens=1000,
   temperature=1,
   messages=[
@@ -84,7 +84,7 @@ const anthropic = new Anthropic({
 });
 
 const msg = await anthropic.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 1,
   messages: [
@@ -114,7 +114,7 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-    model="anthropic.claude-sonnet-4-5-20250929-v1:0",
+    model="anthropic.claude-opus-4-6-v1",
     max_tokens=1000,
     temperature=1,
     messages=[
@@ -144,7 +144,7 @@ import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-  model: "anthropic.claude-sonnet-4-5-20250929-v1:0",
+  model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 1000,
   temperature: 1,
   messages: [

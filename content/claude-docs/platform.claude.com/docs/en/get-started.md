@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 4e16765277e67170a9d9767cc104a7777f630803dbd74b9f5eb0a504bd472b36
+fetched_at: 2026-02-06T04:18:04.377404Z
+sha256: 52d1b9b97129bd3c3445e6402eb11418c6cd3404a7a11d7e9d7f77ebade1f816
 ---
 
 # Get started with Claude
@@ -38,7 +38,7 @@ Make your first API call to Claude and build a simple web search assistant
           -H "x-api-key: $ANTHROPIC_API_KEY" \
           -H "anthropic-version: 2023-06-01" \
           -d '{
-            "model": "claude-sonnet-4-5",
+            "model": "claude-opus-4-6",
             "max_tokens": 1000,
             "messages": [
               {
@@ -61,7 +61,7 @@ Make your first API call to Claude and build a simple web search assistant
               "text": "Here are some effective search strategies to find the latest renewable energy developments:\n\n## Search Terms to Use:\n- \"renewable energy news 2024\"\n- \"clean energy breakthrough\"\n- \"solar/wind/battery technology advances\"\n- \"green energy innovations\"\n- \"climate tech developments\"\n- \"energy storage solutions\"\n\n## Best Sources to Check:\n\n**News & Industry Sites:**\n- Renewable Energy World\n- GreenTech Media (now Wood Mackenzie)\n- Energy Storage News\n- CleanTechnica\n- PV Magazine (for solar)\n- WindPower Engineering & Development..."
             }
           ],
-          "model": "claude-sonnet-4-5",
+          "model": "claude-opus-4-6",
           "stop_reason": "end_turn",
           "usage": {
             "input_tokens": 21,
@@ -100,7 +100,7 @@ Make your first API call to Claude and build a simple web search assistant
         client = anthropic.Anthropic()
 
         message = client.messages.create(
-            model="claude-sonnet-4-5",
+            model="claude-opus-4-6",
             max_tokens=1000,
             messages=[
                 {
@@ -154,7 +154,7 @@ Make your first API call to Claude and build a simple web search assistant
           const anthropic = new Anthropic();
 
           const msg = await anthropic.messages.create({
-            model: "claude-sonnet-4-5",
+            model: "claude-opus-4-6",
             max_tokens: 1000,
             messages: [
               {
@@ -181,7 +181,7 @@ Make your first API call to Claude and build a simple web search assistant
           id: 'msg_01ThFHzad6Bh4TpQ6cHux9t8',
           type: 'message',
           role: 'assistant',
-          model: 'claude-sonnet-4-5-20250929',
+          model: 'claude-opus-4-6',
           content: [
             {
               type: 'text',
@@ -256,7 +256,7 @@ Make your first API call to Claude and build a simple web search assistant
                 AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
                 MessageCreateParams params = MessageCreateParams.builder()
-                        .model("claude-sonnet-4-5-20250929")
+                        .model("claude-opus-4-6")
                         .maxTokens(1000)
                         .addUserMessage("What should I search for to find the latest developments in renewable energy?")
                         .build();
