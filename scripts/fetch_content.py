@@ -132,14 +132,29 @@ def main(sitemap_path: str = "data/sitemaps/en.yaml", content_base: str = ".") -
     if not os.path.exists(sitemap_path):
         print(f"✗ Sitemap not found: {sitemap_path}", file=sys.stderr)
         return 1
-    
+
     with open(sitemap_path, "r", encoding="utf-8") as f:
         sitemap_items = yaml.safe_load(f) or []
-    
+
     if not sitemap_items:
         print(f"✗ No items in sitemap: {sitemap_path}", file=sys.stderr)
         return 1
-    
+
+    # Load existing manifest to preserve fetched_at timestamps
+    manifest_path = os.path.join(content_base, "data/manifests/docs.en.json")
+    existing_manifest = {}
+    if os.path.exists(manifest_path):
+        try:
+            with open(manifest_path, "r", encoding="utf-8") as f:
+                existing_entries = json.load(f)
+                # Build a lookup map: url -> manifest entry
+                for entry in existing_entries:
+                    url = entry.get("url")
+                    if url:
+                        existing_manifest[url] = entry
+        except Exception as e:
+            print(f"⚠ Could not load existing manifest: {e}", file=sys.stderr)
+
     now = datetime.utcnow().isoformat() + "Z"
     manifest = []
     fetched_count = 0
@@ -166,28 +181,37 @@ def main(sitemap_path: str = "data/sitemaps/en.yaml", content_base: str = ".") -
             
             existing_meta = read_frontmatter(local_path) or {}
             existing_sha256 = existing_meta.get("sha256")
+
+            # Determine fetched_at timestamp
             if existing_sha256 != sha256:
-                # Add frontmatter and write only when content changes
+                # Content changed: update file and use current timestamp
                 text_with_fm = add_frontmatter(content, url, source, now)
                 with open(local_path, "w", encoding="utf-8") as f:
                     f.write(text_with_fm)
                 fetched_at = now
             else:
-                # Preserve existing fetched_at, converting datetime to string if needed
-                existing_fetched = existing_meta.get("fetched_at", now)
-                if isinstance(existing_fetched, datetime):
-                    # Convert datetime to ISO format string, removing timezone suffix if present
-                    iso_str = existing_fetched.isoformat()
-                    # Remove +00:00 and ensure it ends with Z
-                    if iso_str.endswith('+00:00'):
-                        fetched_at = iso_str[:-6] + 'Z'
-                    elif not iso_str.endswith('Z'):
-                        fetched_at = iso_str + 'Z'
-                    else:
-                        fetched_at = iso_str
+                # Content unchanged: preserve existing timestamp from manifest
+                # Check manifest first, then frontmatter as fallback
+                existing_entry = existing_manifest.get(url)
+                if existing_entry and existing_entry.get("sha256") == sha256:
+                    # Use timestamp from existing manifest entry
+                    fetched_at = existing_entry.get("fetched_at", now)
                 else:
-                    fetched_at = existing_fetched
-            
+                    # Fallback to frontmatter
+                    existing_fetched = existing_meta.get("fetched_at", now)
+                    if isinstance(existing_fetched, datetime):
+                        # Convert datetime to ISO format string, removing timezone suffix if present
+                        iso_str = existing_fetched.isoformat()
+                        # Remove +00:00 and ensure it ends with Z
+                        if iso_str.endswith('+00:00'):
+                            fetched_at = iso_str[:-6] + 'Z'
+                        elif not iso_str.endswith('Z'):
+                            fetched_at = iso_str + 'Z'
+                        else:
+                            fetched_at = iso_str
+                    else:
+                        fetched_at = existing_fetched
+
             # Record in manifest
             manifest.append({
                 "source": source,
