@@ -1,10 +1,10 @@
 ---
 - source: code
   loc: https://code.claude.com/docs/en/agent-teams
-  lastmod: '2026-02-05T17:50:16.211Z'
+  lastmod: '2026-02-07T00:03:19.077Z'
 - source: code
   loc: https://code.claude.com/docs/en/amazon-bedrock
-  lastmod: '2026-02-04T00:24:45.138Z'
+  lastmod: '2026-02-06T18:57:54.586Z'
 - source: code
   loc: https://code.claude.com/docs/en/analytics
   lastmod: '2026-02-05T22:59:38.916Z'
@@ -13,10 +13,10 @@
   lastmod: '2026-02-03T03:00:22.470Z'
 - source: code
   loc: https://code.claude.com/docs/en/best-practices
-  lastmod: '2026-02-05T23:03:43.822Z'
+  lastmod: '2026-02-06T19:30:56.286Z'
 - source: code
   loc: https://code.claude.com/docs/en/checkpointing
-  lastmod: '2026-01-28T13:17:42.808Z'
+  lastmod: '2026-02-07T00:03:19.104Z'
 - source: code
   loc: https://code.claude.com/docs/en/chrome
   lastmod: '2026-02-04T20:50:41.565Z'
@@ -25,7 +25,7 @@
   lastmod: '2026-02-04T00:24:45.139Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
-  lastmod: '2026-02-05T17:50:16.244Z'
+  lastmod: '2026-02-07T00:03:19.107Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
   lastmod: '2026-02-05T18:33:59.781Z'
@@ -61,22 +61,22 @@
   lastmod: '2026-01-30T18:03:04.291Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
-  lastmod: '2026-02-03T03:00:22.663Z'
+  lastmod: '2026-02-07T00:03:19.136Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks-guide
-  lastmod: '2026-02-01T20:21:41.236Z'
+  lastmod: '2026-02-07T00:03:19.132Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
-  lastmod: '2026-02-05T17:50:16.277Z'
+  lastmod: '2026-02-07T00:03:19.134Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
-  lastmod: '2026-02-05T17:46:07.152Z'
+  lastmod: '2026-02-06T19:30:56.283Z'
 - source: code
   loc: https://code.claude.com/docs/en/jetbrains
   lastmod: '2026-01-28T13:17:42.854Z'
 - source: code
   loc: https://code.claude.com/docs/en/keybindings
-  lastmod: '2026-02-03T15:22:08.678Z'
+  lastmod: '2026-02-06T19:30:56.280Z'
 - source: code
   loc: https://code.claude.com/docs/en/legal-and-compliance
   lastmod: '2026-01-28T13:17:42.855Z'
@@ -88,7 +88,7 @@
   lastmod: '2026-02-05T00:09:03.086Z'
 - source: code
   loc: https://code.claude.com/docs/en/memory
-  lastmod: '2026-02-01T20:21:41.232Z'
+  lastmod: '2026-02-07T00:03:23.736Z'
 - source: code
   loc: https://code.claude.com/docs/en/microsoft-foundry
   lastmod: '2026-02-05T17:46:07.151Z'
@@ -118,7 +118,7 @@
   lastmod: '2026-02-05T21:43:32.417Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins-reference
-  lastmod: '2026-02-05T21:43:32.485Z'
+  lastmod: '2026-02-07T00:03:23.764Z'
 - source: code
   loc: https://code.claude.com/docs/en/quickstart
   lastmod: '2026-02-03T03:00:25.938Z'
@@ -130,13 +130,13 @@
   lastmod: '2026-02-03T03:00:25.930Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-02-05T23:03:44.032Z'
+  lastmod: '2026-02-07T00:03:23.804Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-02-04T18:02:58.128Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
-  lastmod: '2026-02-03T03:00:25.943Z'
+  lastmod: '2026-02-07T00:03:23.798Z'
 - source: code
   loc: https://code.claude.com/docs/en/slack
   lastmod: '2026-02-03T23:01:39.928Z'
@@ -145,7 +145,7 @@
   lastmod: '2026-02-05T23:03:44.079Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-02-05T21:43:32.438Z'
+  lastmod: '2026-02-07T00:03:23.803Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
   lastmod: '2026-01-28T13:17:42.919Z'
@@ -1262,6 +1262,27 @@
 - source: platform
   loc: https://platform.claude.com/docs/en/api/ruby/models/retrieve
   priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/sdks/csharp
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/sdks/go
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/sdks/java
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/sdks/php
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/sdks/python
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/sdks/ruby
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/sdks/typescript
+  priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/service-tiers
   priority: '0.8'

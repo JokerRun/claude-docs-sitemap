@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-02-04T04:12:50.357302Z
-sha256: 6cae341c14c021c3bfaa95b124e774f71595849de7995e6fa8a2898d691eb08a
+fetched_at: 2026-02-07T04:10:25.616975Z
+sha256: f431b89c2b90b1f18cf292f7f5255b868c7b42e27d0fa0c56d12e97b3bf33bb0
 ---
 
 > ## Documentation Index
@@ -64,7 +64,7 @@ Each binding block specifies a **context** where the bindings apply:
 | `ThemePicker`     | Theme picker dialog                              |
 | `Attachments`     | Image/attachment bar navigation                  |
 | `Footer`          | Footer indicator navigation (tasks, teams, diff) |
-| `MessageSelector` | Rewind dialog message selection                  |
+| `MessageSelector` | Rewind and summarize dialog message selection    |
 | `DiffDialog`      | Diff viewer navigation                           |
 | `ModelPicker`     | Model picker effort level                        |
 | `Select`          | Generic select/list components                   |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 1cf621e137a4dc03a8515c7d4aa59919461985607265d6a9685892c9a4183185
+fetched_at: 2026-02-07T04:10:25.616975Z
+sha256: 38e6faa928d542b1e6546d04906797b5b4d809a3696423fa38fddd962cf5825c
 ---
 
 > ## Documentation Index
@@ -91,12 +91,16 @@ Customize Claude Code's behavior with these command-line flags:
 
 The `--agents` flag accepts a JSON object that defines one or more custom subagents. Each subagent requires a unique name (as the key) and a definition object with the following fields:
 
-| Field         | Required | Description                                                                                                                         |
-| :------------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------- |
-| `description` | Yes      | Natural language description of when the subagent should be invoked                                                                 |
-| `prompt`      | Yes      | The system prompt that guides the subagent's behavior                                                                               |
-| `tools`       | No       | Array of specific tools the subagent can use (for example, `["Read", "Edit", "Bash"]`). If omitted, inherits all tools              |
-| `model`       | No       | Model alias to use: `sonnet`, `opus`, `haiku`, or `inherit`. If omitted, defaults to `inherit` (uses the main conversation's model) |
+| Field             | Required | Description                                                                                                                                                                                                        |
+| :---------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `description`     | Yes      | Natural language description of when the subagent should be invoked                                                                                                                                                |
+| `prompt`          | Yes      | The system prompt that guides the subagent's behavior                                                                                                                                                              |
+| `tools`           | No       | Array of specific tools the subagent can use, for example `["Read", "Edit", "Bash"]`. If omitted, inherits all tools. Supports [`Task(agent_type)`](/en/sub-agents#restrict-which-subagents-can-be-spawned) syntax |
+| `disallowedTools` | No       | Array of tool names to explicitly deny for this subagent                                                                                                                                                           |
+| `model`           | No       | Model alias to use: `sonnet`, `opus`, `haiku`, or `inherit`. If omitted, defaults to `inherit`                                                                                                                     |
+| `skills`          | No       | Array of [skill](/en/skills) names to preload into the subagent's context                                                                                                                                          |
+| `mcpServers`      | No       | Array of [MCP servers](/en/mcp) for this subagent. Each entry is a server name string or a `{name: config}` object                                                                                                 |
+| `maxTurns`        | No       | Maximum number of agentic turns before the subagent stops                                                                                                                                                          |
 
 Example:
 

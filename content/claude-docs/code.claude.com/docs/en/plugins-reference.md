@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 12caf839ec4b7ed9c309bbc29513b6e6e98f5731bb2098fbb4aacdf489c4969b
+fetched_at: 2026-02-07T04:10:25.616975Z
+sha256: 9c2af45068dc9df0f182b1fdbc9600ef4b7661e6f76aa5d5881c156da8becfc8
 ---
 
 > ## Documentation Index
@@ -120,6 +120,8 @@ Plugins can provide event handlers that respond to Claude Code events automatica
 * `SubagentStop`: When a subagent attempts to stop
 * `SessionStart`: At the beginning of sessions
 * `SessionEnd`: At the end of sessions
+* `TeammateIdle`: When an agent team teammate is about to go idle
+* `TaskCompleted`: When a task is being marked as completed
 * `PreCompact`: Before conversation history is compacted
 
 **Hook types**:

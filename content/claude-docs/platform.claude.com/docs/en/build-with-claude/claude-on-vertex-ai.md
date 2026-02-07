@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: f6dd034aa5c71d39e9f8a86951fc6d48bc5d3ae754dca153c5df1010f661a86e
+fetched_at: 2026-02-07T04:10:25.616975Z
+sha256: 81ee077242223945369af60df25f6a21c6af08fa5df7a1e8f3d15601b7435f9f
 ---
 
 # Claude on Vertex AI
@@ -24,15 +24,41 @@ Note that this guide assumes you have already have a GCP project that is able to
 
 First, install Anthropic's [client SDK](/docs/en/api/client-sdks) for your language of choice.
 
-<CodeGroup>
-  ```python Python
-  pip install -U google-cloud-aiplatform "anthropic[vertex]"
-  ```
+<Tabs>
+<Tab title="Python">
+```bash
+pip install -U google-cloud-aiplatform "anthropic[vertex]"
+```
+</Tab>
 
-  ```typescript TypeScript
-  npm install @anthropic-ai/vertex-sdk
-  ```
+<Tab title="TypeScript">
+```bash
+npm install @anthropic-ai/vertex-sdk
+```
+</Tab>
+
+<Tab title="Java">
+<CodeGroup>
+```groovy Gradle
+implementation("com.anthropic:anthropic-java-vertex:2.+")
+```
+
+```xml Maven
+<dependency>
+    <groupId>com.anthropic</groupId>
+    <artifactId>anthropic-java-vertex</artifactId>
+    <version>2.13.0</version>
+</dependency>
+```
 </CodeGroup>
+</Tab>
+
+<Tab title="Go">
+```bash
+go get github.com/anthropics/anthropic-sdk-go
+```
+</Tab>
+</Tabs>
 
 ## Accessing Vertex AI
 
@@ -112,6 +138,62 @@ The following examples shows how to generate text from Claude on Vertex AI:
   main();
   ```
 
+  ```java Java
+  import com.anthropic.client.AnthropicClient;
+  import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+  import com.anthropic.vertex.backends.VertexBackend;
+  import com.anthropic.models.messages.Message;
+  import com.anthropic.models.messages.MessageCreateParams;
+
+  public class VertexExample {
+      public static void main(String[] args) {
+          // Uses default Google Cloud credentials
+          AnthropicClient client = AnthropicOkHttpClient.builder()
+              .backend(VertexBackend.fromEnv())
+              .build();
+
+          Message message = client.messages().create(MessageCreateParams.builder()
+              .model("claude-opus-4-6")
+              .maxTokens(100)
+              .addUserMessage("Hey Claude!")
+              .build());
+
+          System.out.println(message);
+      }
+  }
+  ```
+
+  ```go Go
+  package main
+
+  import (
+      "context"
+      "fmt"
+
+      "github.com/anthropics/anthropic-sdk-go"
+      "github.com/anthropics/anthropic-sdk-go/vertex"
+  )
+
+  func main() {
+      // Uses default Google Cloud credentials
+      client := anthropic.NewClient(
+          vertex.WithGoogleAuth(context.Background(), "global", "MY_PROJECT_ID"),
+      )
+
+      message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+          Model:     "claude-opus-4-6",
+          MaxTokens: 100,
+          Messages: []anthropic.MessageParam{
+              anthropic.NewUserMessage(anthropic.NewTextBlock("Hey Claude!")),
+          },
+      })
+      if err != nil {
+          panic(err)
+      }
+      fmt.Printf("%+v\n", message)
+  }
+  ```
+
   ```bash Shell
   MODEL_ID=claude-opus-4-6
   LOCATION=global
@@ -134,6 +216,8 @@ The following examples shows how to generate text from Claude on Vertex AI:
 </CodeGroup>
 
 See our [client SDKs](/docs/en/api/client-sdks) and the official [Vertex AI docs](https://cloud.google.com/vertex-ai/docs) for more details.
+
+Claude is also available through [Amazon Bedrock](/docs/en/build-with-claude/claude-on-amazon-bedrock) and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry).
 
 ## Activity logging
 
@@ -226,6 +310,46 @@ const result = await client.messages.create({
   ],
 });
 ```
+
+```java Java
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.vertex.backends.VertexBackend;
+import com.anthropic.models.messages.MessageCreateParams;
+
+// Uses default Google Cloud credentials
+AnthropicClient client = AnthropicOkHttpClient.builder()
+    .backend(VertexBackend.fromEnv())
+    .build();
+
+var message = client.messages().create(MessageCreateParams.builder()
+    .model("claude-opus-4-6")
+    .maxTokens(100)
+    .addUserMessage("Hey Claude!")
+    .build());
+```
+
+```go Go
+import (
+    "context"
+
+    "github.com/anthropics/anthropic-sdk-go"
+    "github.com/anthropics/anthropic-sdk-go/vertex"
+)
+
+// Uses default Google Cloud credentials
+client := anthropic.NewClient(
+    vertex.WithGoogleAuth(context.Background(), "global", "MY_PROJECT_ID"),
+)
+
+message, _ := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+    Model:     "claude-opus-4-6",
+    MaxTokens: 100,
+    Messages: []anthropic.MessageParam{
+        anthropic.NewUserMessage(anthropic.NewTextBlock("Hey Claude!")),
+    },
+})
+```
 </CodeGroup>
 
 **Using regional endpoints:**
@@ -275,6 +399,49 @@ const result = await client.messages.create({
     },
   ],
 });
+```
+
+```java Java
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.vertex.backends.VertexBackend;
+import com.anthropic.models.messages.MessageCreateParams;
+
+// Uses default Google Cloud credentials with specific region
+AnthropicClient client = AnthropicOkHttpClient.builder()
+    .backend(VertexBackend.builder()
+        .region("us-east1")  // Specify a specific region
+        .project("MY_PROJECT_ID")
+        .build())
+    .build();
+
+var message = client.messages().create(MessageCreateParams.builder()
+    .model("claude-opus-4-6")
+    .maxTokens(100)
+    .addUserMessage("Hey Claude!")
+    .build());
+```
+
+```go Go
+import (
+    "context"
+
+    "github.com/anthropics/anthropic-sdk-go"
+    "github.com/anthropics/anthropic-sdk-go/vertex"
+)
+
+// Specify a specific region
+client := anthropic.NewClient(
+    vertex.WithGoogleAuth(context.Background(), "us-east1", "MY_PROJECT_ID"),
+)
+
+message, _ := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+    Model:     "claude-opus-4-6",
+    MaxTokens: 100,
+    Messages: []anthropic.MessageParam{
+        anthropic.NewUserMessage(anthropic.NewTextBlock("Hey Claude!")),
+    },
+})
 ```
 </CodeGroup>
 

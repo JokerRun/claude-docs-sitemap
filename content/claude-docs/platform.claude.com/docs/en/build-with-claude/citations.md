@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 194654549db9fe30428e4fea9dace193118efdef134f1efd1be37d8266a1d242
+fetched_at: 2026-02-07T04:10:25.616975Z
+sha256: 9a3ed5e6025d046e542341110aeaea6762057c1517984e6ec5f609237942c04c
 ---
 
 # Citations
@@ -123,7 +123,7 @@ public class DocumentExample {
                 .build();
 
         MessageCreateParams params = MessageCreateParams.builder()
-                .model(Model.CLAUDE_SONNET_4_20250514)
+                .model(Model.CLAUDE_OPUS_4_6)
                 .maxTokens(1024)
                 .addUserMessageOfBlockParams(List.of(ContentBlockParam.ofDocument(documentParam), ContentBlockParam.ofText(textBlockParam)))
                 .build();

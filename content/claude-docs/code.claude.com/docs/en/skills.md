@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-02-03T04:18:49.576480Z
-sha256: d3d4ba2e83a719c66162c61dd82fc935445c8f22707f544f51d2ed4e3b0eb556
+fetched_at: 2026-02-07T04:10:25.616975Z
+sha256: 04885f27ebe84bd7cec927824c7fb25a0f82086c89c57c51bc020d0b44aaef8e
 ---
 
 > ## Documentation Index
@@ -112,6 +112,14 @@ The `SKILL.md` contains the main instructions and is required. Other files are o
 
 <Note>
   Files in `.claude/commands/` still work and support the same [frontmatter](#frontmatter-reference). Skills are recommended since they support additional features like supporting files.
+</Note>
+
+#### Skills from additional directories
+
+Skills defined in `.claude/skills/` within directories added via `--add-dir` are loaded automatically and picked up by live change detection, so you can edit them during a session without restarting.
+
+<Note>
+  CLAUDE.md files from `--add-dir` directories are not loaded by default. To load them, set `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1`. See [Load memory from additional directories](/en/memory#load-memory-from-additional-directories).
 </Note>
 
 ## Configure skills
@@ -663,9 +671,9 @@ If Claude uses your skill when you don't want it:
 
 ### Claude doesn't see all my skills
 
-Skill descriptions are loaded into context so Claude knows what's available. If you have many skills, they may exceed the character budget (default 15,000 characters). Run `/context` to check for a warning about excluded skills.
+Skill descriptions are loaded into context so Claude knows what's available. If you have many skills, they may exceed the character budget. The budget scales dynamically at 2% of the context window, with a fallback of 16,000 characters. Run `/context` to check for a warning about excluded skills.
 
-To increase the limit, set the `SLASH_COMMAND_TOOL_CHAR_BUDGET` environment variable.
+To override the limit, set the `SLASH_COMMAND_TOOL_CHAR_BUDGET` environment variable.
 
 ## Related resources
 

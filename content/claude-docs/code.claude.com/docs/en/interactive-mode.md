@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 9095cb78fac61512c449f8aea50d79e4f5b0ab0484a339bd6d1c86357523bad6
+fetched_at: 2026-02-07T04:10:25.616975Z
+sha256: 3ce4a47e4ccf9f70d50d324d8869d8fa977b373e439297b0120eea8464cb909f
 ---
 
 > ## Documentation Index
@@ -42,7 +42,7 @@ sha256: 9095cb78fac61512c449f8aea50d79e4f5b0ab0484a339bd6d1c86357523bad6
 | `Ctrl+T`                                          | Toggle task list                   | Show or hide the [task list](#task-list) in the terminal status area                                                                                 |
 | `Left/Right arrows`                               | Cycle through dialog tabs          | Navigate between tabs in permission dialogs and menus                                                                                                |
 | `Up/Down arrows`                                  | Navigate command history           | Recall previous inputs                                                                                                                               |
-| `Esc` + `Esc`                                     | Rewind the code/conversation       | Restore the code and/or conversation to a previous point                                                                                             |
+| `Esc` + `Esc`                                     | Rewind or summarize                | Restore code and/or conversation to a previous point, or summarize from a selected message                                                           |
 | `Shift+Tab` or `Alt+M` (some configurations)      | Toggle permission modes            | Switch between Auto-Accept Mode, Plan Mode, and normal mode. When an [agent team](/en/agent-teams) is active, the cycle also includes Delegate Mode. |
 | `Option+P` (macOS) or `Alt+P` (Windows/Linux)     | Switch model                       | Switch models without clearing your prompt                                                                                                           |
 | `Option+T` (macOS) or `Alt+T` (Windows/Linux)     | Toggle extended thinking           | Enable or disable extended thinking mode. Run `/terminal-setup` first to enable this shortcut                                                        |
@@ -116,7 +116,7 @@ To create your own commands you can invoke with `/`, see [skills](/en/skills).
 | `/plan`                   | Enter plan mode directly from the prompt                                                                                                                                                                                   |
 | `/rename <name>`          | Rename the current session for easier identification                                                                                                                                                                       |
 | `/resume [session]`       | Resume a conversation by ID or name, or open the session picker                                                                                                                                                            |
-| `/rewind`                 | Rewind the conversation and/or code                                                                                                                                                                                        |
+| `/rewind`                 | Rewind the conversation and/or code, or summarize from a selected message                                                                                                                                                  |
 | `/stats`                  | Visualize daily usage, session history, streaks, and model preferences                                                                                                                                                     |
 | `/status`                 | Open the Settings interface (Status tab) showing version, model, account, and connectivity                                                                                                                                 |
 | `/statusline`             | Set up Claude Code's status line UI                                                                                                                                                                                        |

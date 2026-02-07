@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-02-04T04:12:50.357302Z
-sha256: d70c38254f7038316476a23a40a1943282e99b3b4597351da49dee95eeef5e96
+fetched_at: 2026-02-07T04:10:25.616975Z
+sha256: 176ac270e1303ed139d87c75caf122647c2c1f257f87208a807d1e08b8319484
 ---
 
 > ## Documentation Index
@@ -155,22 +155,6 @@ export DISABLE_PROMPT_CACHING=1
 ```
 
 <Note>[Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) may not be available in all regions.</Note>
-
-### 5. Output token configuration
-
-These are the recommended token settings for Claude Code with Amazon Bedrock:
-
-```bash  theme={null}
-# Recommended output token settings for Bedrock
-export CLAUDE_CODE_MAX_OUTPUT_TOKENS=4096
-export MAX_THINKING_TOKENS=1024
-```
-
-**Why these values:**
-
-* **`CLAUDE_CODE_MAX_OUTPUT_TOKENS=4096`**: Bedrock's burndown throttling logic sets a minimum of 4096 tokens as the `max_token` penalty. Setting this lower won't reduce costs but may cut off long tool uses, causing the Claude Code agent loop to fail persistently. Claude Code typically uses less than 4096 output tokens without extended thinking, but may need this headroom for tasks involving significant file creation or Write tool usage.
-
-* **`MAX_THINKING_TOKENS=1024`**: This provides space for extended thinking without cutting off tool use responses, while still maintaining focused reasoning chains. This balance helps prevent trajectory changes that aren't always helpful for coding tasks specifically.
 
 ## IAM configuration
 
