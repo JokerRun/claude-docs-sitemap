@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/download
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 01f6dd2ce804d89f5f3fd9244cbded6a4b9be3dd61995e4e66a908ad0a09461a
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 010f558f73e51105738bfce9dfeeaead48b27bb2a42713bf1052af18e2c90fd4
 ---
 
 ## Download
@@ -66,6 +66,8 @@ Download File
       - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
 
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
 ### Returns
 

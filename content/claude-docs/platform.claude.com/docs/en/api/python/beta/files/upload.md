@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/upload
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: f1872b320ebb27f465f206b9b7823f305cf40adeba192dcde51b5940897e94f7
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 4563fb7c254ca0d4915710342991db931bb9ae87d9990b2f21efa36e6ecc82c9
 ---
 
 ## Upload
@@ -25,7 +25,7 @@ Upload File
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -64,6 +64,8 @@ Upload File
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

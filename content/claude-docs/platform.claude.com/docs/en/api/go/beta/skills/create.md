@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/create
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 46a6de66ea44cb0d5c205958b090e3266b5212acf6f67d5d82d44aa1080878c6
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 8143ca5e7fe8aed6c62cfc6d0bbd1d42e8382ed5e66b00d144da0e9bfe1de21b
 ---
 
 ## Create
@@ -74,6 +74,8 @@ Create Skill
       - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
 
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
 ### Returns
 

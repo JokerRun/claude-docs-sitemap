@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: af67d02c647b9fc7042743e0087f7d78827be7f47232a23013a189744e87b0f3
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 6e01c4f593ac13855f2af90fd3e5e477c0f5c2fb0d8c2f9989a0807a224410b8
 ---
 
 ## Create
@@ -2852,6 +2852,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `const BetaMessageBatchNewParamsRequestParamsServiceTierStandardOnly BetaMessageBatchNewParamsRequestParamsServiceTier = "standard_only"`
 
+      - `Speed string`
+
+        The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+        - `const BetaMessageBatchNewParamsRequestParamsSpeedStandard BetaMessageBatchNewParamsRequestParamsSpeed = "standard"`
+
+        - `const BetaMessageBatchNewParamsRequestParamsSpeedFast BetaMessageBatchNewParamsRequestParamsSpeed = "fast"`
+
       - `StopSequences []string`
 
         Custom text sequences that will cause the model to stop generating.
@@ -4281,6 +4289,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
 
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/delete
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 5560b4211b3bb0f68795f59bc661e7fd90400a1e5948d93d41e55795695c332c
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 8886a09fb41b6b5fae1aa976ed19be632aeded3ffa067d9c48ed0b615d99c69a
 ---
 
 ## Delete
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 16 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

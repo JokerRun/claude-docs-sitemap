@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/download
-fetched_at: 2026-01-30T04:11:49.863510Z
-sha256: 917bc43bccb4237a8ac01c06372f9743e97acc0820afda2f3a97ba6368e467df
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 09f9c77c2e022f42863720109ab064caf9bcb3cbe9ddf5f0c0c3e488d4255981
 ---
 
 ## Download
@@ -27,7 +27,7 @@ Download File
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 16 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -67,9 +67,11 @@ Download File
 
       - `"skills-2025-10-02"`
 
+      - `"fast-mode-2026-02-01"`
+
 ### Returns
 
-- `unnamed_schema_1 = Response`
+- `unnamed_schema_2 = Response`
 
 ### Example
 

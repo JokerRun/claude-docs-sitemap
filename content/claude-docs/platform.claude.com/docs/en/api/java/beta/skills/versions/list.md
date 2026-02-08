@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 0169aaae339b53efbeb73232e83fb4b66d9513025c32ae8a6dea988cddbd3f0d
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 4aa5dd395266ae9bab0e7b0be64bdf6c3c09fa82c6e6efb4a58802923499c868
 ---
 
 ## List
@@ -74,6 +74,8 @@ List Skill Versions
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 

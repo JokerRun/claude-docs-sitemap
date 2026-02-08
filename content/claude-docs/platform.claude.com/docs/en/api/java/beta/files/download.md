@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/download
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 993df6d0cbab237f3451443760329f394f4a29a17726edca3f527fdb024fd075
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 614868da40b532cd927f3c77811f07bf305267b840240224f695788d5dbd1e3f
 ---
 
 ## Download
@@ -62,6 +62,8 @@ Download File
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Example
 

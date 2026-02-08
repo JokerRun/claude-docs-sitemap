@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: ff1a527cb9a6018afb451cf42d1c7017d216ceb2bfc9d007aa94a2d6c9fa9231
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: a98d4c8d6f64fc71db79cdf43adcb3692a46d7f1f9404a7fb0e0e6aeea8211d1
 ---
 
 ## List
@@ -37,7 +37,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 16 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 17 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"model-context-window-exceeded-2025-08-26"`
 
     - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
 
 ### Returns
 

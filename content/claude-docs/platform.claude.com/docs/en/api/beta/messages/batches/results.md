@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/results
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 259eea4f667e3e1656fdaecba7a1e1cafb0503900e18579cd20a50049b2704d0
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 73cc630a281c66d813ec972c1811b86f516befe05fd10c5e48079235d9418f45
 ---
 
 ## Results
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 16 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -1095,7 +1097,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of input tokens which were used.
 
-          - `iterations: array of BetaMessageIterationUsage or BetaCompactionIterationUsage`
+          - `iterations: BetaIterationsUsage`
 
             Per-iteration token usage breakdown.
 
@@ -1206,6 +1208,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"priority"`
 
             - `"batch"`
+
+          - `speed: "standard" or "fast"`
+
+            The inference speed mode used for this request.
+
+            - `"standard"`
+
+            - `"fast"`
 
       - `type: "succeeded"`
 

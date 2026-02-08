@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 60ba1b997cb04d19ba2beec420732367b90acadea61d32b3809d6a08f36755d9
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: efaa574812e88a597919c36520097356fc539ac330afd4f892f10287dcc2c681
 ---
 
 ## Create
@@ -2838,6 +2838,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"standard_only"`
 
+    - `speed?: "standard" | "fast" | null`
+
+      Body param: The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+      - `"standard"`
+
+      - `"fast"`
+
     - `stop_sequences?: Array<string>`
 
       Body param: Custom text sequences that will cause the model to stop generating.
@@ -4232,7 +4240,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `(string & {})`
 
-      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 16 more`
+      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
 
         - `"message-batches-2024-09-24"`
 
@@ -4271,6 +4279,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"model-context-window-exceeded-2025-08-26"`
 
         - `"skills-2025-10-02"`
+
+        - `"fast-mode-2026-02-01"`
 
   - `MessageCreateParamsNonStreaming extends MessageCreateParamsBase`
 
@@ -5296,7 +5306,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of input tokens which were used.
 
-    - `iterations: Array<BetaMessageIterationUsage | BetaCompactionIterationUsage> | null`
+    - `iterations: BetaIterationsUsage | null`
 
       Per-iteration token usage breakdown.
 
@@ -5407,6 +5417,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"priority"`
 
       - `"batch"`
+
+    - `speed: "standard" | "fast" | null`
+
+      The inference speed mode used for this request.
+
+      - `"standard"`
+
+      - `"fast"`
 
 ### Example
 

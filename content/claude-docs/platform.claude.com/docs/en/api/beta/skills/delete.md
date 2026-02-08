@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/delete
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: b66eea53fd2fdf4a7c3e932af08effb52876a2caa6cae8fc24586f17574209d3
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: f356fd73476b26aa10c0bb423b33eabee4592e336d7926a896ef7278400d30a7
 ---
 
 ## Delete
@@ -27,7 +27,7 @@ Delete Skill
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 16 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Delete Skill
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

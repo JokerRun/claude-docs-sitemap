@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/count_tokens
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 9c6db284293d2a525d88e7f24e5e3269b023865bcea58bc0e7baf648efd79dd8
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 19704e4238e4ad00c666a359b1cbb1e5b4334ace83f229a972afd17027b93b5c
 ---
 
 ## Count Tokens
@@ -2772,6 +2772,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `:json_schema`
 
+- `speed: String`
+
+  The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
 - `system_: String | Array[BetaTextBlockParam]`
 
   System prompt.
@@ -4126,7 +4130,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 16 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 17 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -4165,6 +4169,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `:"model-context-window-exceeded-2025-08-26"`
 
     - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
 
 ### Returns
 

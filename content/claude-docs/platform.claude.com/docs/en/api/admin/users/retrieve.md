@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/retrieve
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: ae028818d3e0d46d14e7256a64974fc9e9914249f666a91c3725c11780d84f17
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 25459518f0677b7a4ada4ac7e853110c808c23524f1b2722e52e4ed0208ea51f
 ---
 
 ## Retrieve
@@ -37,7 +37,7 @@ Get User
 
     Name of the User.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -50,6 +50,8 @@ Get User
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `type: "user"`
 

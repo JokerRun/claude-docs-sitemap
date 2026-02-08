@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/create
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 98580bbaa60819c4894deb57464bc10245ba080d12b6f41d0c93d91ffdfc1acc
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 155388d82d2ca68cc77122ba5ae3995cf072a5a1860a8f3d093b9eecf138ec39
 ---
 
 ## Create
@@ -27,7 +27,7 @@ Create Skill Version
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 16 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Create Skill Version
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

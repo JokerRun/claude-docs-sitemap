@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 4e7f9221ab8dcf602b311ecb63cfa045397042eecfa948b936718f4167c95c4c
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 01b769ec2c47e9572768381475edf4889db21ede8db67d5b74ce28ce51d303fd
 ---
 
 ## Create
@@ -17,7 +17,7 @@ Create Invite
 
   Email of the User.
 
-- `role: "user" or "developer" or "billing" or "claude_code_user"`
+- `role: "user" or "developer" or "billing" or 2 more`
 
   Role for the invited User. Cannot be "admin".
 
@@ -28,6 +28,8 @@ Create Invite
   - `"billing"`
 
   - `"claude_code_user"`
+
+  - `"managed"`
 
 ### Returns
 
@@ -49,7 +51,7 @@ Create Invite
 
     RFC 3339 datetime string indicating when the Invite was created.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -62,6 +64,8 @@ Create Invite
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `status: "accepted" or "expired" or "deleted" or "pending"`
 

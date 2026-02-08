@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/results
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 707bc2ea1bcce1d4faf2c1bd2ebbdca62e4a5509d7a56adde4ff3a628e763dc2
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: f8fa1c64b9c01f653b1b9f46ce6dc9cc0cd116cc7f09b105eecde18dde0be468
 ---
 
 ## Results
@@ -31,7 +31,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 16 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -70,6 +70,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"model-context-window-exceeded-2025-08-26"`
 
       - `"skills-2025-10-02"`
+
+      - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -1093,7 +1095,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of input tokens which were used.
 
-          - `iterations: Array<BetaMessageIterationUsage | BetaCompactionIterationUsage> | null`
+          - `iterations: BetaIterationsUsage | null`
 
             Per-iteration token usage breakdown.
 
@@ -1204,6 +1206,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"priority"`
 
             - `"batch"`
+
+          - `speed: "standard" | "fast" | null`
+
+            The inference speed mode used for this request.
+
+            - `"standard"`
+
+            - `"fast"`
 
       - `type: "succeeded"`
 

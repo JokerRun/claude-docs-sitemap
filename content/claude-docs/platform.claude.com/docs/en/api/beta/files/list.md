@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: b07cc97b386ab34022c3abe4bce708e7ff386c6e40572765d26db886638fbbc3
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 9eebf76e16b069492efee85ef028103b6b8c38d6585321577d2d1b2a1f1edfe0
 ---
 
 ## List
@@ -35,7 +35,7 @@ List Files
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 16 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ List Files
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

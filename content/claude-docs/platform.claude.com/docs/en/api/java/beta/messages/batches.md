@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 1d9f438f085470ed90ca369927c31c0b312b89c8910d34a5acda8b92c13519b4
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: fd0e7f023d8eaad97e9c882476dfaad92f49d454cf20a0886d960d7646725868
 ---
 
 # Batches
@@ -64,6 +64,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
   - `List<Request> requests`
 
@@ -2892,6 +2894,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `STANDARD_ONLY("standard_only")`
 
+      - `Optional<Speed> speed`
+
+        The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+        - `STANDARD("standard")`
+
+        - `FAST("fast")`
+
       - `Optional<List<String>> stopSequences`
 
         Custom text sequences that will cause the model to stop generating.
@@ -4460,6 +4470,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -4641,6 +4653,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -4813,6 +4827,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 
@@ -4987,6 +5003,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
 ### Returns
 
 - `class BetaDeletedMessageBatch:`
@@ -5085,6 +5103,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 
@@ -6104,7 +6124,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of input tokens which were used.
 
-          - `Optional<List<Iteration>> iterations`
+          - `Optional<List<BetaIterationsUsageItems>> iterations`
 
             Per-iteration token usage breakdown.
 
@@ -6215,6 +6235,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `PRIORITY("priority")`
 
             - `BATCH("batch")`
+
+          - `Optional<Speed> speed`
+
+            The inference speed mode used for this request.
+
+            - `STANDARD("standard")`
+
+            - `FAST("fast")`
 
       - `JsonValue; type "succeeded"constant`
 
@@ -7574,7 +7602,7 @@ public final class Main {
 
             The number of input tokens which were used.
 
-          - `Optional<List<Iteration>> iterations`
+          - `Optional<List<BetaIterationsUsageItems>> iterations`
 
             Per-iteration token usage breakdown.
 
@@ -7685,6 +7713,14 @@ public final class Main {
             - `PRIORITY("priority")`
 
             - `BATCH("batch")`
+
+          - `Optional<Speed> speed`
+
+            The inference speed mode used for this request.
+
+            - `STANDARD("standard")`
+
+            - `FAST("fast")`
 
       - `JsonValue; type "succeeded"constant`
 
@@ -8830,7 +8866,7 @@ public final class Main {
 
           The number of input tokens which were used.
 
-        - `Optional<List<Iteration>> iterations`
+        - `Optional<List<BetaIterationsUsageItems>> iterations`
 
           Per-iteration token usage breakdown.
 
@@ -8941,6 +8977,14 @@ public final class Main {
           - `PRIORITY("priority")`
 
           - `BATCH("batch")`
+
+        - `Optional<Speed> speed`
+
+          The inference speed mode used for this request.
+
+          - `STANDARD("standard")`
+
+          - `FAST("fast")`
 
     - `JsonValue; type "succeeded"constant`
 
@@ -10048,7 +10092,7 @@ public final class Main {
 
         The number of input tokens which were used.
 
-      - `Optional<List<Iteration>> iterations`
+      - `Optional<List<BetaIterationsUsageItems>> iterations`
 
         Per-iteration token usage breakdown.
 
@@ -10159,6 +10203,14 @@ public final class Main {
         - `PRIORITY("priority")`
 
         - `BATCH("batch")`
+
+      - `Optional<Speed> speed`
+
+        The inference speed mode used for this request.
+
+        - `STANDARD("standard")`
+
+        - `FAST("fast")`
 
   - `JsonValue; type "succeeded"constant`
 

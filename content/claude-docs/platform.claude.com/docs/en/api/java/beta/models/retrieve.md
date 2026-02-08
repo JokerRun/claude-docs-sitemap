@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/models/retrieve
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 3b7dc80b17ef440a5eb2e78652441a9ff8ef87bafe6d06e986c6bcc3c1b37eeb
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: d783ac2d03f9b99fbd581f267272870dc3b33851a837baa0b76bf2dde76f572e
 ---
 
 ## Retrieve
@@ -64,6 +64,8 @@ The Models API response can be used to determine information about a specific mo
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 

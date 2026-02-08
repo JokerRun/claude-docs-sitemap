@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/completions/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 2589c21f438ff5776f8990ab91fcf312d4740cd71c7d55e70d18fa6a5a3df790
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: b7bd86430ed71cc775cf8734aa122e21b3eb036c27ecf3db2fb010bd62cd61c5
 ---
 
 ## Create
@@ -199,7 +199,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 16 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 17 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -238,6 +238,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `:"model-context-window-exceeded-2025-08-26"`
 
     - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
 
 ### Returns
 

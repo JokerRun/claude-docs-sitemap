@@ -45,6 +45,9 @@
   loc: https://code.claude.com/docs/en/discover-plugins
   lastmod: '2026-01-28T13:17:42.831Z'
 - source: code
+  loc: https://code.claude.com/docs/en/fast-mode
+  lastmod: '2026-02-07T18:24:11.262Z'
+- source: code
   loc: https://code.claude.com/docs/en/features-overview
   lastmod: '2026-02-05T17:50:16.275Z'
 - source: code
@@ -1471,6 +1474,9 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/fast-mode
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/files

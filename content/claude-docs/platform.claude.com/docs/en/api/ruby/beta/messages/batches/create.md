@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 40576ce786ea3186960b0f77dfe375118a8931f6a03e3dd28e77ca591b10f9f1
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 6b4e2ef905cea2a1f68064c9738dccffd5681b117e02738838b66639e074936e
 ---
 
 ## Create
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     Must be unique for each request within the Message Batch.
 
-  - `params: { max_tokens, messages, model, 17 more}`
+  - `params: { max_tokens, messages, model, 18 more}`
 
     Messages API creation parameters for the individual request.
 
@@ -2854,6 +2854,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `:standard_only`
 
+    - `speed: :standard | :fast`
+
+      The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+      - `:standard`
+
+      - `:fast`
+
     - `stop_sequences: Array[String]`
 
       Custom text sequences that will cause the model to stop generating.
@@ -4246,7 +4254,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 16 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 17 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -4285,6 +4293,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"model-context-window-exceeded-2025-08-26"`
 
     - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
 
 ### Returns
 

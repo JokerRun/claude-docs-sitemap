@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-6
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 8c88ab170c8ee74cb6fb16fae5a914129bef06fa17bd06f9a87fe5a3f497b894
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 2c093edc3e86cb75afbb78e76ded4dfd27892d0fbe442e6dbc9e8e32997ea937
 ---
 
 # What's new in Claude 4.6
@@ -48,13 +48,27 @@ The [effort parameter](/docs/en/build-with-claude/effort) is now generally avail
 
 [Compaction](/docs/en/build-with-claude/compaction) provides automatic, server-side context summarization, enabling effectively infinite conversations. When context approaches the window limit, the API automatically summarizes earlier parts of the conversation.
 
+### Fast mode (research preview)
+
+[Fast mode](/docs/en/build-with-claude/fast-mode) (`speed: "fast"`) delivers significantly faster output token generation for Opus models. Fast mode is up to 2.5x as fast at premium pricing ($30/$150 per MTok). This is the same model running with faster inference (no change to intelligence or capabilities).
+
+```python
+response = client.beta.messages.create(
+    model="claude-opus-4-6",
+    max_tokens=4096,
+    speed="fast",
+    betas=["fast-mode-2026-02-01"],
+    messages=[{"role": "user", "content": "Refactor this module..."}]
+)
+```
+
 ### Fine-grained tool streaming (GA)
 
 [Fine-grained tool streaming](/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming) is now generally available on all models and platforms. No beta header is required.
 
 ### 128K output tokens
 
-Opus 4.6 supports up to 128K output tokens, doubling the previous 64K limit. This enables longer thinking budgets and more comprehensive responses. The SDKs require streaming for requests with large `max_tokens` values to avoid HTTP timeouts. If you don't need to process events incrementally, use `.stream()` with `.get_final_message()` to get the complete response — see [Streaming Messages](/docs/en/build-with-claude/streaming#get-the-final-message-without-handling-events) for details.
+Opus 4.6 supports up to 128K output tokens, doubling the previous 64K limit. This enables longer thinking budgets and more comprehensive responses. The SDKs require streaming for requests with large `max_tokens` values to avoid HTTP timeouts. If you don't need to process events incrementally, use `.stream()` with `.get_final_message()` to get the complete response. See [Streaming Messages](/docs/en/build-with-claude/streaming#get-the-final-message-without-handling-events) for details.
 
 ### Data residency controls
 
@@ -118,6 +132,9 @@ For step-by-step migration instructions, see [Migrating to Claude 4.6](/docs/en/
   </Card>
   <Card title="Compaction" icon="compress" href="/docs/en/build-with-claude/compaction">
     Explore server-side context compaction.
+  </Card>
+  <Card title="Fast mode" icon="bolt" href="/docs/en/build-with-claude/fast-mode">
+    Faster output token generation for Opus models.
   </Card>
   <Card title="Migration guide" icon="arrow-right" href="/docs/en/about-claude/models/migration-guide">
     Step-by-step migration instructions.

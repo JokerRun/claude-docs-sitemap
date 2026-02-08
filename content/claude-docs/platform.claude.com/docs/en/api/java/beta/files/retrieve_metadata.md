@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/retrieve_metadata
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 2afa8fb5d2d47dd6e16ebfb793fa3ef295c49f9d13d0fe2bb98fcc47e199335d
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: b04c2f9fa687e364629d2ac30543bfea4d605383ad62913538fb2b65b8995f49
 ---
 
 ## Retrieve Metadata
@@ -62,6 +62,8 @@ Get File Metadata
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 

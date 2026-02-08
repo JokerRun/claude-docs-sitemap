@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 299cd0c41707a9ad496387d55293ec674307d5500af91758c3e39a980ba24161
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: a76ba8e0fde00245c40dd3375a4b377b57b499445dcf41f87f0510404340af5b
 ---
 
 ## Create
@@ -2852,6 +2852,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `"standard_only"`
 
+      - `speed?: "standard" | "fast" | null`
+
+        The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+        - `"standard"`
+
+        - `"fast"`
+
       - `stop_sequences?: Array<string>`
 
         Custom text sequences that will cause the model to stop generating.
@@ -4244,7 +4252,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 16 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -4283,6 +4291,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"model-context-window-exceeded-2025-08-26"`
 
       - `"skills-2025-10-02"`
+
+      - `"fast-mode-2026-02-01"`
 
 ### Returns
 

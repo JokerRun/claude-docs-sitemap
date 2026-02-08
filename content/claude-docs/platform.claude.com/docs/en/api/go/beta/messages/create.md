@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 4b744614eef00eca2df39c2404826eed6e776722504bff8e576d43b640acf67f
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 34d7179cc7246b2a2450cbb6885a422d2390224381d398911bbd58ddc5c21edd
 ---
 
 ## Create
@@ -2590,6 +2590,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `const BetaMessageNewParamsServiceTierStandardOnly BetaMessageNewParamsServiceTier = "standard_only"`
 
+  - `Speed param.Field[BetaMessageNewParamsSpeed]`
+
+    Body param: The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+    - `const BetaMessageNewParamsSpeedStandard BetaMessageNewParamsSpeed = "standard"`
+
+    - `const BetaMessageNewParamsSpeedFast BetaMessageNewParamsSpeed = "fast"`
+
   - `StopSequences param.Field[[]string]`
 
     Body param: Custom text sequences that will cause the model to stop generating.
@@ -3936,6 +3944,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
 ### Returns
 
 - `type BetaMessage struct{…}`
@@ -4944,7 +4954,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of input tokens which were used.
 
-    - `Iterations []BetaUsageIterationUnion`
+    - `Iterations BetaIterationsUsage`
 
       Per-iteration token usage breakdown.
 
@@ -5055,6 +5065,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `const BetaUsageServiceTierPriority BetaUsageServiceTier = "priority"`
 
       - `const BetaUsageServiceTierBatch BetaUsageServiceTier = "batch"`
+
+    - `Speed BetaUsageSpeed`
+
+      The inference speed mode used for this request.
+
+      - `const BetaUsageSpeedStandard BetaUsageSpeed = "standard"`
+
+      - `const BetaUsageSpeedFast BetaUsageSpeed = "fast"`
 
 ### Example
 

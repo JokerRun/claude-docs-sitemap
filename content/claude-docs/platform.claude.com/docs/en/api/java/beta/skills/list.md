@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 4012d83033b85602254f0a7d2f309c27021605d98593e517f806ad6e0fac8fcb
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: f079765adb2ce48e3089b84d5d2b57384a251a2076966cdf2a7c5a4ae7133206
 ---
 
 ## List
@@ -79,6 +79,8 @@ List Skills
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 

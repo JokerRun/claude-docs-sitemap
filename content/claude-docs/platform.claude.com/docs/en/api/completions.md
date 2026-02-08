@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: f7570c64d0d0f038cf0d1560c151a6b8653a6cff39d703fca54066ec6bf98711
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: ddc911c29565d4278919b95e5d8d69bd96cd7e5d77530b140e40e36c4c0ab3d2
 ---
 
 # Completions
@@ -25,7 +25,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 16 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -64,6 +64,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Body Parameters
 

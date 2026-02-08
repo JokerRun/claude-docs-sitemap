@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: d1c64f744341fa450d51217fc7c195f086c8b3dada396766b9446b821f240005
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 7557df12fd006d98135d5dbfd831e409454260570d17de74c4f8738fe1832b73
 ---
 
 ## List
@@ -35,7 +35,7 @@ List Files
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ List Files
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

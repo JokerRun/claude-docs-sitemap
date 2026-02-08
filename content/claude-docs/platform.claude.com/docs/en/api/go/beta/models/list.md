@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/models/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 7380f40755df0bf37dcc383447b17c607da4c5f7d177c2ae1fc9bdd7a5f594b5
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: bb4ee5c2293ed5f8176c48ca1f39e02045f1820aa217de4d45292ae641004e12
 ---
 
 ## List
@@ -78,6 +78,8 @@ The Models API response can be used to determine which models are available for 
       - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
 
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
 ### Returns
 

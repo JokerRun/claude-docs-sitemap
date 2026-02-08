@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/count_tokens
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 4e33b1fd9be71184a8f1d6c204787f8ab2d1e84c7bff99a706ddeb4b98ec7db1
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 823bb2e8072226c8839589f5d524829a3a03668d2f979112b976204ffa43edb5
 ---
 
 ## Count Tokens
@@ -2770,6 +2770,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"json_schema"`
 
+  - `speed?: string | null`
+
+    Body param: The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
   - `system?: string | Array<BetaTextBlockParam>`
 
     Body param: System prompt.
@@ -4124,7 +4128,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 16 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -4163,6 +4167,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `"model-context-window-exceeded-2025-08-26"`
 
       - `"skills-2025-10-02"`
+
+      - `"fast-mode-2026-02-01"`
 
 ### Returns
 

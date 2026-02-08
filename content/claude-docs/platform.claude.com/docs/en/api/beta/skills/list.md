@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 5400f25533da3fbb0f13c95668fce16e7b029eea1868483111fe111da6de8490
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: f3343c222f79d542e422f894e2d4c46293955a082f24c6367943255c643688d4
 ---
 
 ## List
@@ -42,7 +42,7 @@ List Skills
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 16 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,6 +81,8 @@ List Skills
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

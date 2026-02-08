@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/delete
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 66da4fcf6d4ce758843d1ec1726e6e19fadea00bbceeba0229a02f33a0dc9824
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 040227d2ef91cf2871a98a1ba29ff8896e536b874e9067de726d791616ffb6cc
 ---
 
 ## Delete
@@ -25,7 +25,7 @@ Delete File
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -64,6 +64,8 @@ Delete File
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: eae454b1c7bb2641af66f9ca62184bf28451b0229109fc18ad245aab0d263271
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: cb79b6c6db69d10a3489763d3dcfab095ba27d3de7a4ec4f35f52a7be3feed62
 ---
 
 ## Create
@@ -23,7 +23,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 16 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -62,6 +62,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Body Parameters
 
@@ -2884,6 +2886,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `"standard_only"`
 
+- `speed: optional "standard" or "fast"`
+
+  The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+  - `"standard"`
+
+  - `"fast"`
+
 - `stop_sequences: optional array of string`
 
   Custom text sequences that will cause the model to stop generating.
@@ -5278,7 +5288,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of input tokens which were used.
 
-    - `iterations: array of BetaMessageIterationUsage or BetaCompactionIterationUsage`
+    - `iterations: BetaIterationsUsage`
 
       Per-iteration token usage breakdown.
 
@@ -5389,6 +5399,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"priority"`
 
       - `"batch"`
+
+    - `speed: "standard" or "fast"`
+
+      The inference speed mode used for this request.
+
+      - `"standard"`
+
+      - `"fast"`
 
 ### Example
 

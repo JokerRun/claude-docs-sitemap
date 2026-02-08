@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 1e9af8f54b9e6ce0b0536ca68050a9ca09827683c79475eea6de4a7ac65b5fb1
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 6f837da4a097754a224b9100bed2a6dad6738703f37eee013c118cbcd5bb582e
 ---
 
 # Prompt caching
@@ -325,6 +325,7 @@ The following table shows which parts of the cache are invalidated by different 
 | **Tool definitions** | ✘ | ✘ | ✘ | Modifying tool definitions (names, descriptions, parameters) invalidates the entire cache |
 | **Web search toggle** | ✓ | ✘ | ✘ | Enabling/disabling web search modifies the system prompt |
 | **Citations toggle** | ✓ | ✘ | ✘ | Enabling/disabling citations modifies the system prompt |
+| **Speed setting** | ✓ | ✘ | ✘ | Switching between [`speed: "fast"` and standard speed](/docs/en/build-with-claude/fast-mode) invalidates system and message caches |
 | **Tool choice** | ✓ | ✓ | ✘ | Changes to `tool_choice` parameter only affect message blocks |
 | **Images** | ✓ | ✓ | ✘ | Adding/removing images anywhere in the prompt affects message blocks |
 | **Thinking parameters** | ✓ | ✓ | ✘ | Changes to extended thinking settings (enable/disable, budget) affect message blocks |

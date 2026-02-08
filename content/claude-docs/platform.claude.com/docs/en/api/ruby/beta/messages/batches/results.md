@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/results
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 8a3be9e3ca7338836d3b0b9b4683bfa3ea1a224773bc48fe804a7ae8d2bb6795
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: f9bc37f0571b97bcf4f89ed47e4f59a96cd2fdfea015038a01188f9c2de00057
 ---
 
 ## Results
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 16 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 17 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"model-context-window-exceeded-2025-08-26"`
 
     - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -1095,7 +1097,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of input tokens which were used.
 
-          - `iterations: Array[BetaMessageIterationUsage | BetaCompactionIterationUsage]`
+          - `iterations: BetaIterationsUsage`
 
             Per-iteration token usage breakdown.
 
@@ -1206,6 +1208,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `:priority`
 
             - `:batch`
+
+          - `speed: :standard | :fast`
+
+            The inference speed mode used for this request.
+
+            - `:standard`
+
+            - `:fast`
 
       - `type: :succeeded`
 

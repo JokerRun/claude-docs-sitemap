@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 9893951fb413bb9acbf44b1bcc71f5fcd2d041891229d7e1f78b3bb149f4a32e
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: be73e02f1767035e26f69da1042c3889ed16cb9d92a6a2c9253703435fdbcd04
 ---
 
 ## Count Tokens
@@ -62,6 +62,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
   - `List<BetaMessageParam> messages`
 
@@ -2575,6 +2577,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     Deprecated: Use `output_config.format` instead. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
 
     A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
+
+  - `Optional<String> speed`
+
+    The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
 
   - `Optional<System> system`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/models/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 7aab8b1868bbb2fe5a9ca863198b0ab32aef00eb978bc01c501819c5171261e9
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 54e51d1fb98bbe965a67a0876b068b3a7f0a3146ed8d12d3795dcde413729b28
 ---
 
 ## List
@@ -37,7 +37,7 @@ The Models API response can be used to determine which models are available for 
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ The Models API response can be used to determine which models are available for 
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

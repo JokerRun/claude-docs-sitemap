@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/delete
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 97bec557620cf17f621f079a3e08c7e53309194d2bc2ba7d04c437b0d6855fbd
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 07206f72b310c0d18293b7a694d46ef80679d9afc37f47967537c4c4e13c9c07
 ---
 
 ## Delete
@@ -64,6 +64,8 @@ Delete Skill
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 

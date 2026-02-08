@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: ff80d5e79f8458356b57b3febe18b604700e39224b32ba5102f24b93e3cf61d0
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 712b2315361d7270bcd4ccc65bbbb54fbace38f3837f78c6b8c5fce40172dd65
 ---
 
 ## List
@@ -78,6 +78,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
 
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
 ### Returns
 

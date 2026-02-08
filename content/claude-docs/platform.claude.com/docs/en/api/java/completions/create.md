@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 3eab256c1278d4bbf46a613507844584ee60449565c70f662eeafe3041642433
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 8f0a5a7489656ca30aabce524430b6f837fc31c9806ea313fe62bf00d0e78b16
 ---
 
 ## Create
@@ -62,6 +62,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
   - `long maxTokensToSample`
 

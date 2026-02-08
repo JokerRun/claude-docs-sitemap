@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/models/retrieve
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: a7793d28911666977c4496db950e0060b746636a0c8d6874cb96604347feacca
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: d40b34e6ef84a1e9c44ef500c91fd937c83a0466fe825a741e831dcfcaca4149
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 16 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 17 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ The Models API response can be used to determine information about a specific mo
     - `:"model-context-window-exceeded-2025-08-26"`
 
     - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
 
 ### Returns
 

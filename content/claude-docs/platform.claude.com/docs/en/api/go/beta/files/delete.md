@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/delete
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 10963fbb4b7ba0bf227393f725674fbdebe74392fd9a122640e2f52cc1583a2d
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 863e79c31ac476a644d3b7d4117b01f9424f6d821f3eeb4e86320c976d605b2c
 ---
 
 ## Delete
@@ -66,6 +66,8 @@ Delete File
       - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
 
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
 ### Returns
 

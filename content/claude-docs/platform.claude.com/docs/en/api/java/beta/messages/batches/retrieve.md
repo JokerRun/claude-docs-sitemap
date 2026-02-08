@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/retrieve
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 7b5507aad736f9607a6e61b3401ef44b59f77acb6b11ab9e33329e0324835354
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 457213a5bd13bcc87492f63527d80184a25e23a8126d74aa180e45bc09455fa6
 ---
 
 ## Retrieve
@@ -64,6 +64,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 

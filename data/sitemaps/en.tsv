@@ -14,6 +14,7 @@ code	https://code.claude.com/docs/en/data-usage	2026-02-01T16:34:36.480Z
 code	https://code.claude.com/docs/en/desktop	2026-02-03T03:00:22.550Z	
 code	https://code.claude.com/docs/en/devcontainer	2026-01-28T13:17:42.832Z	
 code	https://code.claude.com/docs/en/discover-plugins	2026-01-28T13:17:42.831Z	
+code	https://code.claude.com/docs/en/fast-mode	2026-02-07T18:24:11.262Z	
 code	https://code.claude.com/docs/en/features-overview	2026-02-05T17:50:16.275Z	
 code	https://code.claude.com/docs/en/github-actions	2026-02-05T17:46:07.147Z	
 code	https://code.claude.com/docs/en/gitlab-ci-cd	2026-02-04T00:24:45.142Z	
@@ -490,6 +491,7 @@ platform	https://platform.claude.com/docs/en/build-with-claude/data-residency		0
 platform	https://platform.claude.com/docs/en/build-with-claude/effort		0.8
 platform	https://platform.claude.com/docs/en/build-with-claude/embeddings		0.8
 platform	https://platform.claude.com/docs/en/build-with-claude/extended-thinking		0.8
+platform	https://platform.claude.com/docs/en/build-with-claude/fast-mode		0.8
 platform	https://platform.claude.com/docs/en/build-with-claude/files		0.8
 platform	https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons		0.8
 platform	https://platform.claude.com/docs/en/build-with-claude/multilingual-support		0.8

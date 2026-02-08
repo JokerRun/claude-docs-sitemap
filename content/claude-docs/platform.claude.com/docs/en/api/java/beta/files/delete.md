@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/delete
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: bd41ccfa5f609a4ec546d572e6b60b3fc241aaeb6534c6f81548ebd3d1e7010d
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 8430685dcdd72fd0a5198eee1171641286e42b6fc14a034785cf6803c1a757b9
 ---
 
 ## Delete
@@ -62,6 +62,8 @@ Delete File
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 

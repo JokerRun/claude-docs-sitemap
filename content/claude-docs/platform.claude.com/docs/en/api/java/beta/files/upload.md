@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/upload
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 94a466ef674c3ca4d4a9902281b147e60e09703b6bec82fb74faef8a5585fe8d
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: c5e80693ab3f20bc81b63434d17ed9ce3096e86381cae9e9332e89df21413d96
 ---
 
 ## Upload
@@ -58,6 +58,8 @@ Upload File
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
   - `String file`
 

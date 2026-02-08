@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/models/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: b97cb770a8abaf45b34e6ef2efe6d36ed2d94196369181baf1c07df77988645b
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: eecec8421c829d11bccfee20898ea6889544577fc4a748b5c9d492b7caad7bfc
 ---
 
 ## List
@@ -37,7 +37,7 @@ The Models API response can be used to determine which models are available for 
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 16 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 17 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ The Models API response can be used to determine which models are available for 
     - `:"model-context-window-exceeded-2025-08-26"`
 
     - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
 
 ### Returns
 

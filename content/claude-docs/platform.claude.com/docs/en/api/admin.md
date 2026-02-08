@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: cc22ea411f71c83d17d4d6557827c295b4324089da7f9205c3f9b97b9bf09278
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: ee2b0ef302cfe914c212de82dd263e7fbe62d245833dcf20e84df432d69668bf
 ---
 
 # Admin
@@ -79,7 +79,7 @@ Create Invite
 
   Email of the User.
 
-- `role: "user" or "developer" or "billing" or "claude_code_user"`
+- `role: "user" or "developer" or "billing" or 2 more`
 
   Role for the invited User. Cannot be "admin".
 
@@ -90,6 +90,8 @@ Create Invite
   - `"billing"`
 
   - `"claude_code_user"`
+
+  - `"managed"`
 
 ### Returns
 
@@ -111,7 +113,7 @@ Create Invite
 
     RFC 3339 datetime string indicating when the Invite was created.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -124,6 +126,8 @@ Create Invite
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `status: "accepted" or "expired" or "deleted" or "pending"`
 
@@ -190,7 +194,7 @@ Get Invite
 
     RFC 3339 datetime string indicating when the Invite was created.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -203,6 +207,8 @@ Get Invite
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `status: "accepted" or "expired" or "deleted" or "pending"`
 
@@ -274,7 +280,7 @@ List Invites
 
     RFC 3339 datetime string indicating when the Invite was created.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -287,6 +293,8 @@ List Invites
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `status: "accepted" or "expired" or "deleted" or "pending"`
 
@@ -385,7 +393,7 @@ curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
 
     RFC 3339 datetime string indicating when the Invite was created.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -398,6 +406,8 @@ curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `status: "accepted" or "expired" or "deleted" or "pending"`
 
@@ -453,7 +463,7 @@ Get User
 
     Name of the User.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -466,6 +476,8 @@ Get User
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `type: "user"`
 
@@ -529,7 +541,7 @@ List Users
 
     Name of the User.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -542,6 +554,8 @@ List Users
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `type: "user"`
 
@@ -585,7 +599,7 @@ Update User
 
 ### Body Parameters
 
-- `role: "user" or "developer" or "billing" or "claude_code_user"`
+- `role: "user" or "developer" or "billing" or 2 more`
 
   New role for the User. Cannot be "admin".
 
@@ -596,6 +610,8 @@ Update User
   - `"billing"`
 
   - `"claude_code_user"`
+
+  - `"managed"`
 
 ### Returns
 
@@ -617,7 +633,7 @@ Update User
 
     Name of the User.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -630,6 +646,8 @@ Update User
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `type: "user"`
 
@@ -708,7 +726,7 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
 
     Name of the User.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -721,6 +739,8 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `type: "user"`
 
@@ -1868,9 +1888,9 @@ Get Messages Usage Report
 
   Time buckets that end before this RFC 3339 timestamp will be returned.
 
-- `group_by: optional array of "api_key_id" or "workspace_id" or "model" or 3 more`
+- `group_by: optional array of "api_key_id" or "workspace_id" or "model" or 4 more`
 
-  Group by any subset of the available options.
+  Group by any subset of the available options. Grouping by `speed` requires the `fast-mode-2026-02-01` beta header.
 
   - `"api_key_id"`
 
@@ -1883,6 +1903,8 @@ Get Messages Usage Report
   - `"context_window"`
 
   - `"inference_geo"`
+
+  - `"speed"`
 
 - `inference_geos: optional array of "global" or "us" or "not_available"`
 
@@ -1927,6 +1949,15 @@ Get Messages Usage Report
 
   - `"flex_discount"`
 
+- `speeds: optional array of "standard" or "fast"`
+
+  Restrict usage returned to the specified speed(s) (research preview).
+  Requires the `fast-mode-2026-02-01` beta header.
+
+  - `"standard"`
+
+  - `"fast"`
+
 - `workspace_ids: optional array of string`
 
   Restrict usage returned to the specified workspace ID(s).
@@ -1949,7 +1980,7 @@ Get Messages Usage Report
 
       End of the time bucket (exclusive) in RFC 3339 format.
 
-    - `results: array of object { api_key_id, cache_creation, cache_read_input_tokens, 8 more }`
+    - `results: array of object { api_key_id, cache_creation, cache_read_input_tokens, 9 more }`
 
       List of usage items for this time bucket.  There may be multiple items if one or more `group_by[]` parameters are specified.
 
@@ -2017,6 +2048,15 @@ Get Messages Usage Report
         - `"flex"`
 
         - `"flex_discount"`
+
+      - `speed: "standard" or "fast"`
+
+        Speed of the usage (research preview). `null` if not grouping by speed.
+        Only returned when the `fast-mode-2026-02-01` beta header is provided.
+
+        - `"standard"`
+
+        - `"fast"`
 
       - `uncached_input_tokens: number`
 
@@ -2383,7 +2423,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
       End of the time bucket (exclusive) in RFC 3339 format.
 
-    - `results: array of object { api_key_id, cache_creation, cache_read_input_tokens, 8 more }`
+    - `results: array of object { api_key_id, cache_creation, cache_read_input_tokens, 9 more }`
 
       List of usage items for this time bucket.  There may be multiple items if one or more `group_by[]` parameters are specified.
 
@@ -2451,6 +2491,15 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
         - `"flex"`
 
         - `"flex_discount"`
+
+      - `speed: "standard" or "fast"`
+
+        Speed of the usage (research preview). `null` if not grouping by speed.
+        Only returned when the `fast-mode-2026-02-01` beta header is provided.
+
+        - `"standard"`
+
+        - `"fast"`
 
       - `uncached_input_tokens: number`
 
@@ -2531,7 +2580,7 @@ Get Cost Report
 
       End of the time bucket (exclusive) in RFC 3339 format.
 
-    - `results: array of object { amount, context_window, cost_type, 7 more }`
+    - `results: array of object { amount, context_window, cost_type, 8 more }`
 
       List of cost items for this time bucket. There may be multiple items if one or more `group_by[]` parameters are specified.
 
@@ -2581,6 +2630,15 @@ Get Cost Report
         - `"standard"`
 
         - `"batch"`
+
+      - `speed: "standard" or "fast"`
+
+        Speed used (research preview). `null` if not grouping by speed, or for non-token costs.
+        Only returned when the `fast-mode-2026-02-01` beta header is provided.
+
+        - `"standard"`
+
+        - `"fast"`
 
       - `token_type: "uncached_input_tokens" or "output_tokens" or "cache_read_input_tokens" or 2 more`
 
@@ -2632,7 +2690,7 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
 
       End of the time bucket (exclusive) in RFC 3339 format.
 
-    - `results: array of object { amount, context_window, cost_type, 7 more }`
+    - `results: array of object { amount, context_window, cost_type, 8 more }`
 
       List of cost items for this time bucket. There may be multiple items if one or more `group_by[]` parameters are specified.
 
@@ -2682,6 +2740,15 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
         - `"standard"`
 
         - `"batch"`
+
+      - `speed: "standard" or "fast"`
+
+        Speed used (research preview). `null` if not grouping by speed, or for non-token costs.
+        Only returned when the `fast-mode-2026-02-01` beta header is provided.
+
+        - `"standard"`
+
+        - `"fast"`
 
       - `token_type: "uncached_input_tokens" or "output_tokens" or "cache_read_input_tokens" or 2 more`
 

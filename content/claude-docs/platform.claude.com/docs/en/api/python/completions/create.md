@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/completions/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: dd374ee67ca296d2bd53e6dc6f1fa8b6fe8a557dd3108d2bd3beb2cf2b00cf1d
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 0a8654ad9edaedeafb6e6cab3b89d56821fb72fe154bf0ea28cabad815c26858
 ---
 
 ## Create
@@ -221,7 +221,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -260,6 +260,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

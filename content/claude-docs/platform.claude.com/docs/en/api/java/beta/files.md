@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: ccb7533191119b623fac3b265f22157cb8fea58ab15a65cf84ed51d28aa8a51e
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: b3c2bc2e1869345f19bf29edad0eb7b3cf8ed1f680bace1cf7698c99a66e43f6
 ---
 
 # Files
@@ -60,6 +60,8 @@ Upload File
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
   - `String file`
 
@@ -196,6 +198,8 @@ List Files
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
 ### Returns
 
 - `class FileMetadata:`
@@ -313,6 +317,8 @@ Download File
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
 ### Example
 
 ```java
@@ -391,6 +397,8 @@ Get File Metadata
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 
@@ -508,6 +516,8 @@ Delete File
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 

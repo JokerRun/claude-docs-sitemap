@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/delete
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: d3002e6554a72dd309b35a659b46cda7b75b9ee68259cf5c3d172cae55b5adb6
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 0473be596c2a09d206879ccebabce2891b98d1928c6464fe42f1d3d74e357967
 ---
 
 ## Delete
@@ -66,6 +66,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/results
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 7be999efead6f7487aa08bb533057363d802a5650b46735ece210087de9f1b8f
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: d5011990b8b21656f50210a1fa3b2a7b1609c61199fa23fb1cd5dcc5c21753ad
 ---
 
 ## Results
@@ -70,6 +70,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
 
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -1097,7 +1099,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of input tokens which were used.
 
-          - `Iterations []BetaUsageIterationUnion`
+          - `Iterations BetaIterationsUsage`
 
             Per-iteration token usage breakdown.
 
@@ -1208,6 +1210,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `const BetaUsageServiceTierPriority BetaUsageServiceTier = "priority"`
 
             - `const BetaUsageServiceTierBatch BetaUsageServiceTier = "batch"`
+
+          - `Speed BetaUsageSpeed`
+
+            The inference speed mode used for this request.
+
+            - `const BetaUsageSpeedStandard BetaUsageSpeed = "standard"`
+
+            - `const BetaUsageSpeedFast BetaUsageSpeed = "fast"`
 
       - `Type Succeeded`
 

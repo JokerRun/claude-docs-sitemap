@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/choosing-a-model
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 7d30178a66b3a76aaf4f89a95a3cdad830c2f6a7f033d7a42fc90885b3aa5e89
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 319da7d2b04e276c025ee62acaea19f1570a51b460f7c5964546fdfdc9d2b8c5
 ---
 
 # Choosing the right model
@@ -15,7 +15,7 @@ Selecting the optimal Claude model for your application involves balancing three
 
 When choosing a Claude model, we recommend first evaluating these factors:
 - **Capabilities:** What specific features or capabilities will you need the model to have in order to meet your needs?
-- **Speed:** How quickly does the model need to respond in your application?
+- **Speed:** How quickly does the model need to respond in your application? For Claude Opus 4.6, [fast mode](/docs/en/build-with-claude/fast-mode) (research preview) can provide up to 2.5x higher output speed at premium pricing.
 - **Cost:** What's your budget for both development and production usage?
 
 Knowing these answers in advance will make narrowing down and deciding which model to use much easier.

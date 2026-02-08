@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 11beb8ff384f24895ec579d7a0c11def839dd1733075770a2238b662fe6aa943
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: f5f9c52514ed4b704f032f4a208629604dd4675a2a38b271156d52fe4b6d23e1
 ---
 
 ## Create
@@ -62,6 +62,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
   - `long maxTokens`
 
@@ -2636,6 +2638,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `STANDARD_ONLY("standard_only")`
 
+  - `Optional<Speed> speed`
+
+    The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+    - `STANDARD("standard")`
+
+    - `FAST("fast")`
+
   - `Optional<List<String>> stopSequences`
 
     Custom text sequences that will cause the model to stop generating.
@@ -4936,7 +4946,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of input tokens which were used.
 
-    - `Optional<List<Iteration>> iterations`
+    - `Optional<List<BetaIterationsUsageItems>> iterations`
 
       Per-iteration token usage breakdown.
 
@@ -5047,6 +5057,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `PRIORITY("priority")`
 
       - `BATCH("batch")`
+
+    - `Optional<Speed> speed`
+
+      The inference speed mode used for this request.
+
+      - `STANDARD("standard")`
+
+      - `FAST("fast")`
 
 ### Example
 

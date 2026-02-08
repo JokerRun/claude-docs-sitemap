@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 4d088ce0c5f5dc8ab367331eb686708b1eac64c691f46c06046fabfef08daeae
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 9a473bdf199a34f81e1f7829045a390c2936ec15a15ea2af5d27d631686532ee
 ---
 
 ## List
@@ -72,6 +72,8 @@ List Files
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/models/retrieve
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 976c6a351061580f2e7d225b21d2842fdb7912f6892fe6a1be9daf82c8b581aa
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: b581d94fc9e2e26625eedf545059a6a8f42e292f71914ade1332ca992c7b8546
 ---
 
 ## Retrieve
@@ -68,6 +68,8 @@ The Models API response can be used to determine information about a specific mo
       - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
 
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
 ### Returns
 

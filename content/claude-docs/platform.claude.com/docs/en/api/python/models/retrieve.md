@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/models/retrieve
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 5d7c7cb1abbd3960580c11eb2c2270b4c750cf10986b00521812d55be10b0d0b
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 0137a1c7c9c303aa4080e70e87521ca48d3f90d8a120031bb0df6617736dbd8b
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ The Models API response can be used to determine information about a specific mo
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

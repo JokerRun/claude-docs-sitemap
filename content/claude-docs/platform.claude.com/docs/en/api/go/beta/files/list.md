@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c3f3def2cf29ab26d631bed495215245c4598fbaa1d9e40cc79089e915bcd82b
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 52bc49ff5a03dfbd104e3d81f02c3c1f26a604d253d1d1fe6550b8c30889b52c
 ---
 
 ## List
@@ -76,6 +76,8 @@ List Files
       - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
 
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
 ### Returns
 

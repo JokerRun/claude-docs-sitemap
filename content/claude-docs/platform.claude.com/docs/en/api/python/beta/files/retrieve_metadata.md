@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/retrieve_metadata
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: bc05b7f95fbf7bd3343e81e8e4d7084e39ddc222539e606c70de6041eb90b81b
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: c45543628de8faecd6e3c255aa8b364de5ff5ef6c9cb9698f9d5d0e950fd3b51
 ---
 
 ## Retrieve Metadata
@@ -25,7 +25,7 @@ Get File Metadata
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -64,6 +64,8 @@ Get File Metadata
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

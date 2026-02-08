@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: efa6d04813d39216a59e0ab23c20a51bda049c3bb1fd89ad937a0193df83e7a3
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 599b6b92ea096e30af730756c989fbbbffd0fb1488bdd300f1736ff632676300
 ---
 
 ## Create
@@ -62,6 +62,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
   - `List<Request> requests`
 
@@ -2889,6 +2891,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `AUTO("auto")`
 
         - `STANDARD_ONLY("standard_only")`
+
+      - `Optional<Speed> speed`
+
+        The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+        - `STANDARD("standard")`
+
+        - `FAST("fast")`
 
       - `Optional<List<String>> stopSequences`
 

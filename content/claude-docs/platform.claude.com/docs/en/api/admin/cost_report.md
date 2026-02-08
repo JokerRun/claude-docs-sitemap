@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/cost_report
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: dd848a741c6ec23ad19e0ab4844c2be41307937fbeb88a1499aaf1bc17751f7e
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: f831b8f8aa1953c1c59eb1662a5e611c332ed900e56d4a47d5576a412a7c0b2f
 ---
 
 # Cost Report
@@ -64,7 +64,7 @@ Get Cost Report
 
       End of the time bucket (exclusive) in RFC 3339 format.
 
-    - `results: array of object { amount, context_window, cost_type, 7 more }`
+    - `results: array of object { amount, context_window, cost_type, 8 more }`
 
       List of cost items for this time bucket. There may be multiple items if one or more `group_by[]` parameters are specified.
 
@@ -114,6 +114,15 @@ Get Cost Report
         - `"standard"`
 
         - `"batch"`
+
+      - `speed: "standard" or "fast"`
+
+        Speed used (research preview). `null` if not grouping by speed, or for non-token costs.
+        Only returned when the `fast-mode-2026-02-01` beta header is provided.
+
+        - `"standard"`
+
+        - `"fast"`
 
       - `token_type: "uncached_input_tokens" or "output_tokens" or "cache_read_input_tokens" or 2 more`
 
@@ -165,7 +174,7 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
 
       End of the time bucket (exclusive) in RFC 3339 format.
 
-    - `results: array of object { amount, context_window, cost_type, 7 more }`
+    - `results: array of object { amount, context_window, cost_type, 8 more }`
 
       List of cost items for this time bucket. There may be multiple items if one or more `group_by[]` parameters are specified.
 
@@ -215,6 +224,15 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
         - `"standard"`
 
         - `"batch"`
+
+      - `speed: "standard" or "fast"`
+
+        Speed used (research preview). `null` if not grouping by speed, or for non-token costs.
+        Only returned when the `fast-mode-2026-02-01` beta header is provided.
+
+        - `"standard"`
+
+        - `"fast"`
 
       - `token_type: "uncached_input_tokens" or "output_tokens" or "cache_read_input_tokens" or 2 more`
 

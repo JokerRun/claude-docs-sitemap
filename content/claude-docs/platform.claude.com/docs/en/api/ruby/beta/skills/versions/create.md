@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/create
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 740e928b18d0e24721a26726f60b431771c964016c0eab7d7ffa0575bad7138b
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: d99d8721e04df3b341ab2878cc6c690c8c5c4ec90923ca6c60e870e873c41595
 ---
 
 ## Create
@@ -33,7 +33,7 @@ Create Skill Version
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 16 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 17 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Create Skill Version
     - `:"model-context-window-exceeded-2025-08-26"`
 
     - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
 
 ### Returns
 

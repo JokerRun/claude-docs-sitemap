@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/create
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: ae7f9975241f99adfed5c577057d71152f1df5000533b49c27909064db1c0890
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 5e17432b268ef04a4ae1a828c76b7aae42719659f4a3d1862c6baeae2394b1e5
 ---
 
 ## Create
@@ -33,7 +33,7 @@ Create Skill
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Create Skill
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

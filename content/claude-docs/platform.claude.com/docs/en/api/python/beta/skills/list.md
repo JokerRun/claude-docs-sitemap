@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 167eb0f34cc51bdaee6f9b9cf45fa2f423662b41f03fb8401a6849242940c0a5
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: afea23c50a9d620043cabb5ae2f14a087a383dafdda7a762eeb79cdb1ed3603c
 ---
 
 ## List
@@ -42,7 +42,7 @@ List Skills
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,6 +81,8 @@ List Skills
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

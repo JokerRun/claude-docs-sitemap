@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/count_tokens
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 047d8742bc0b67729bc8ce11cb3dc751fe250eea588a7d6b1f8f6085e503d5c0
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 32e56bc966fbf6e46af977644d5c6e2e2c68c026cbd2ee0f8636b273bc22478c
 ---
 
 ## Count Tokens
@@ -2530,6 +2530,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
 
+  - `Speed param.Field[string]`
+
+    Body param: The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
   - `System param.Field[BetaMessageCountTokensParamsSystemUnion]`
 
     Body param: System prompt.
@@ -3843,6 +3847,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
 
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
 ### Returns
 

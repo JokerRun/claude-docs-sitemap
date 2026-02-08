@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/count_tokens
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 20e4633dcddcd0fe32d718eff2c6b8b645867432a4606a41d8118fd2aa68c7f1
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 9ba2b91650867ad2e1719e9ad58fe9c739038b68c984332c536631a517b7c829
 ---
 
 ## Count Tokens
@@ -2794,6 +2794,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `"json_schema"`
 
+- `speed: Optional[str]`
+
+  The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
 - `system: Optional[Union[str, Iterable[BetaTextBlockParam]]]`
 
   System prompt.
@@ -4148,7 +4152,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -4187,6 +4191,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

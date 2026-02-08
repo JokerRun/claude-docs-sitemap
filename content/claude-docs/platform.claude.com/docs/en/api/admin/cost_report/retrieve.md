@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/cost_report/retrieve
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: c234942e8b269074ac651f938386602f7bea529cf28d7296c1ec337379194250
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 3f023e69d28d2f784d2f85daf02d26ceb20d15d35db1808366af815983654ec7
 ---
 
 ## Retrieve
@@ -62,7 +62,7 @@ Get Cost Report
 
       End of the time bucket (exclusive) in RFC 3339 format.
 
-    - `results: array of object { amount, context_window, cost_type, 7 more }`
+    - `results: array of object { amount, context_window, cost_type, 8 more }`
 
       List of cost items for this time bucket. There may be multiple items if one or more `group_by[]` parameters are specified.
 
@@ -112,6 +112,15 @@ Get Cost Report
         - `"standard"`
 
         - `"batch"`
+
+      - `speed: "standard" or "fast"`
+
+        Speed used (research preview). `null` if not grouping by speed, or for non-token costs.
+        Only returned when the `fast-mode-2026-02-01` beta header is provided.
+
+        - `"standard"`
+
+        - `"fast"`
 
       - `token_type: "uncached_input_tokens" or "output_tokens" or "cache_read_input_tokens" or 2 more`
 

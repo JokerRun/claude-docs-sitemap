@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: ac207d934516a744c7fdd6b7aeadf9eb918d38311a81c09b42d2811e128e0f24
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: ef36164476c416a09b868e423b43a14b51d29e61b9cd86c96259bfe8d184c1fb
 ---
 
 ## Create
@@ -2860,6 +2860,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `"standard_only"`
 
+- `speed: Optional[Literal["standard", "fast"]]`
+
+  The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+  - `"standard"`
+
+  - `"fast"`
+
 - `stop_sequences: Optional[SequenceNotStr[str]]`
 
   Custom text sequences that will cause the model to stop generating.
@@ -4254,7 +4262,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -4293,6 +4301,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -5324,7 +5334,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of input tokens which were used.
 
-    - `iterations: Optional[List[Iteration]]`
+    - `iterations: Optional[BetaIterationsUsage]`
 
       Per-iteration token usage breakdown.
 
@@ -5435,6 +5445,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"priority"`
 
       - `"batch"`
+
+    - `speed: Optional[Literal["standard", "fast"]]`
+
+      The inference speed mode used for this request.
+
+      - `"standard"`
+
+      - `"fast"`
 
 ### Example
 

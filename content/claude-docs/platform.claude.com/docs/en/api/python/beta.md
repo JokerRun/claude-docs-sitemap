@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 442fbb7c0a81a16a889e6aabb3e8ed0d2fefd71ac240fde314085462cef0bb9b
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 700b1c1337462c0f07f353cfa604c1cb14decde722be56652ad4e68d6a6a7575
 ---
 
 # Beta
@@ -11,11 +11,11 @@ sha256: 442fbb7c0a81a16a889e6aabb3e8ed0d2fefd71ac240fde314085462cef0bb9b
 
 ### Anthropic Beta
 
-- `AnthropicBeta = Union[str, Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]]`
+- `AnthropicBeta = Union[str, Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]]`
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -54,6 +54,8 @@ sha256: 442fbb7c0a81a16a889e6aabb3e8ed0d2fefd71ac240fde314085462cef0bb9b
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Beta API Error
 
@@ -339,7 +341,7 @@ The Models API response can be used to determine which models are available for 
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -378,6 +380,8 @@ The Models API response can be used to determine which models are available for 
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -439,7 +443,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -478,6 +482,8 @@ The Models API response can be used to determine information about a specific mo
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -3401,6 +3407,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `"standard_only"`
 
+- `speed: Optional[Literal["standard", "fast"]]`
+
+  The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+  - `"standard"`
+
+  - `"fast"`
+
 - `stop_sequences: Optional[SequenceNotStr[str]]`
 
   Custom text sequences that will cause the model to stop generating.
@@ -4795,7 +4809,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -4834,6 +4848,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -5865,7 +5881,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of input tokens which were used.
 
-    - `iterations: Optional[List[Iteration]]`
+    - `iterations: Optional[BetaIterationsUsage]`
 
       Per-iteration token usage breakdown.
 
@@ -5976,6 +5992,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"priority"`
 
       - `"batch"`
+
+    - `speed: Optional[Literal["standard", "fast"]]`
+
+      The inference speed mode used for this request.
+
+      - `"standard"`
+
+      - `"fast"`
 
 ### Example
 
@@ -8786,6 +8810,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `"json_schema"`
 
+- `speed: Optional[str]`
+
+  The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
 - `system: Optional[Union[str, Iterable[BetaTextBlockParam]]]`
 
   System prompt.
@@ -10140,7 +10168,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -10179,6 +10207,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -15446,6 +15476,94 @@ print(beta_message_tokens_count.context_management)
 
   - `value: int`
 
+### Beta Iterations Usage
+
+- `BetaIterationsUsage = Optional[List[BetaIterationsUsageItem]]`
+
+  Per-iteration token usage breakdown.
+
+  Each entry represents one sampling iteration, with its own input/output token counts and cache statistics. This allows you to:
+
+  - Determine which iterations exceeded long context thresholds (>=200k tokens)
+  - Calculate the true context window size from the last iteration
+  - Understand token accumulation across server-side tool use loops
+
+  - `class BetaMessageIterationUsage: …`
+
+    Token usage for a sampling iteration.
+
+    - `cache_creation: Optional[BetaCacheCreation]`
+
+      Breakdown of cached tokens by TTL
+
+      - `ephemeral_1h_input_tokens: int`
+
+        The number of input tokens used to create the 1 hour cache entry.
+
+      - `ephemeral_5m_input_tokens: int`
+
+        The number of input tokens used to create the 5 minute cache entry.
+
+    - `cache_creation_input_tokens: int`
+
+      The number of input tokens used to create the cache entry.
+
+    - `cache_read_input_tokens: int`
+
+      The number of input tokens read from the cache.
+
+    - `input_tokens: int`
+
+      The number of input tokens which were used.
+
+    - `output_tokens: int`
+
+      The number of output tokens which were used.
+
+    - `type: Literal["message"]`
+
+      Usage for a sampling iteration
+
+      - `"message"`
+
+  - `class BetaCompactionIterationUsage: …`
+
+    Token usage for a compaction iteration.
+
+    - `cache_creation: Optional[BetaCacheCreation]`
+
+      Breakdown of cached tokens by TTL
+
+      - `ephemeral_1h_input_tokens: int`
+
+        The number of input tokens used to create the 1 hour cache entry.
+
+      - `ephemeral_5m_input_tokens: int`
+
+        The number of input tokens used to create the 5 minute cache entry.
+
+    - `cache_creation_input_tokens: int`
+
+      The number of input tokens used to create the cache entry.
+
+    - `cache_read_input_tokens: int`
+
+      The number of input tokens read from the cache.
+
+    - `input_tokens: int`
+
+      The number of input tokens which were used.
+
+    - `output_tokens: int`
+
+      The number of output tokens which were used.
+
+    - `type: Literal["compaction"]`
+
+      Usage for a compaction iteration
+
+      - `"compaction"`
+
 ### Beta JSON Output Format
 
 - `class BetaJSONOutputFormat: …`
@@ -17012,7 +17130,7 @@ print(beta_message_tokens_count.context_management)
 
       The number of input tokens which were used.
 
-    - `iterations: Optional[List[Iteration]]`
+    - `iterations: Optional[BetaIterationsUsage]`
 
       Per-iteration token usage breakdown.
 
@@ -17124,6 +17242,14 @@ print(beta_message_tokens_count.context_management)
 
       - `"batch"`
 
+    - `speed: Optional[Literal["standard", "fast"]]`
+
+      The inference speed mode used for this request.
+
+      - `"standard"`
+
+      - `"fast"`
+
 ### Beta Message Delta Usage
 
 - `class BetaMessageDeltaUsage: …`
@@ -17140,7 +17266,7 @@ print(beta_message_tokens_count.context_management)
 
     The cumulative number of input tokens which were used.
 
-  - `iterations: Optional[List[Iteration]]`
+  - `iterations: Optional[BetaIterationsUsage]`
 
     Per-iteration token usage breakdown.
 
@@ -20912,7 +21038,7 @@ print(beta_message_tokens_count.context_management)
 
       The cumulative number of input tokens which were used.
 
-    - `iterations: Optional[List[Iteration]]`
+    - `iterations: Optional[BetaIterationsUsage]`
 
       Per-iteration token usage breakdown.
 
@@ -22046,7 +22172,7 @@ print(beta_message_tokens_count.context_management)
 
         The number of input tokens which were used.
 
-      - `iterations: Optional[List[Iteration]]`
+      - `iterations: Optional[BetaIterationsUsage]`
 
         Per-iteration token usage breakdown.
 
@@ -22157,6 +22283,14 @@ print(beta_message_tokens_count.context_management)
         - `"priority"`
 
         - `"batch"`
+
+      - `speed: Optional[Literal["standard", "fast"]]`
+
+        The inference speed mode used for this request.
+
+        - `"standard"`
+
+        - `"fast"`
 
   - `type: Literal["message_start"]`
 
@@ -23204,7 +23338,7 @@ print(beta_message_tokens_count.context_management)
 
           The number of input tokens which were used.
 
-        - `iterations: Optional[List[Iteration]]`
+        - `iterations: Optional[BetaIterationsUsage]`
 
           Per-iteration token usage breakdown.
 
@@ -23315,6 +23449,14 @@ print(beta_message_tokens_count.context_management)
           - `"priority"`
 
           - `"batch"`
+
+        - `speed: Optional[Literal["standard", "fast"]]`
+
+          The inference speed mode used for this request.
+
+          - `"standard"`
+
+          - `"fast"`
 
     - `type: Literal["message_start"]`
 
@@ -23444,7 +23586,7 @@ print(beta_message_tokens_count.context_management)
 
         The cumulative number of input tokens which were used.
 
-      - `iterations: Optional[List[Iteration]]`
+      - `iterations: Optional[BetaIterationsUsage]`
 
         Per-iteration token usage breakdown.
 
@@ -29140,7 +29282,7 @@ print(beta_message_tokens_count.context_management)
 
     The number of input tokens which were used.
 
-  - `iterations: Optional[List[Iteration]]`
+  - `iterations: Optional[BetaIterationsUsage]`
 
     Per-iteration token usage breakdown.
 
@@ -29251,6 +29393,14 @@ print(beta_message_tokens_count.context_management)
     - `"priority"`
 
     - `"batch"`
+
+  - `speed: Optional[Literal["standard", "fast"]]`
+
+    The inference speed mode used for this request.
+
+    - `"standard"`
+
+    - `"fast"`
 
 ### Beta Web Fetch Block
 
@@ -33421,6 +33571,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `"standard_only"`
 
+    - `speed: Optional[Literal["standard", "fast"]]`
+
+      The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+      - `"standard"`
+
+      - `"fast"`
+
     - `stop_sequences: Optional[SequenceNotStr[str]]`
 
       Custom text sequences that will cause the model to stop generating.
@@ -34813,7 +34971,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -34852,6 +35010,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -34990,7 +35150,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -35029,6 +35189,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -35167,7 +35329,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -35206,6 +35368,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -35335,7 +35499,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -35374,6 +35538,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -35504,7 +35670,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -35543,6 +35709,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -35599,7 +35767,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -35638,6 +35806,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -36687,7 +36857,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of input tokens which were used.
 
-          - `iterations: Optional[List[Iteration]]`
+          - `iterations: Optional[BetaIterationsUsage]`
 
             Per-iteration token usage breakdown.
 
@@ -36798,6 +36968,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"priority"`
 
             - `"batch"`
+
+          - `speed: Optional[Literal["standard", "fast"]]`
+
+            The inference speed mode used for this request.
+
+            - `"standard"`
+
+            - `"fast"`
 
       - `type: Literal["succeeded"]`
 
@@ -38180,7 +38358,7 @@ print(beta_message_batch_individual_response.custom_id)
 
             The number of input tokens which were used.
 
-          - `iterations: Optional[List[Iteration]]`
+          - `iterations: Optional[BetaIterationsUsage]`
 
             Per-iteration token usage breakdown.
 
@@ -38291,6 +38469,14 @@ print(beta_message_batch_individual_response.custom_id)
             - `"priority"`
 
             - `"batch"`
+
+          - `speed: Optional[Literal["standard", "fast"]]`
+
+            The inference speed mode used for this request.
+
+            - `"standard"`
+
+            - `"fast"`
 
       - `type: Literal["succeeded"]`
 
@@ -39466,7 +39652,7 @@ print(beta_message_batch_individual_response.custom_id)
 
           The number of input tokens which were used.
 
-        - `iterations: Optional[List[Iteration]]`
+        - `iterations: Optional[BetaIterationsUsage]`
 
           Per-iteration token usage breakdown.
 
@@ -39577,6 +39763,14 @@ print(beta_message_batch_individual_response.custom_id)
           - `"priority"`
 
           - `"batch"`
+
+        - `speed: Optional[Literal["standard", "fast"]]`
+
+          The inference speed mode used for this request.
+
+          - `"standard"`
+
+          - `"fast"`
 
     - `type: Literal["succeeded"]`
 
@@ -40714,7 +40908,7 @@ print(beta_message_batch_individual_response.custom_id)
 
         The number of input tokens which were used.
 
-      - `iterations: Optional[List[Iteration]]`
+      - `iterations: Optional[BetaIterationsUsage]`
 
         Per-iteration token usage breakdown.
 
@@ -40826,6 +41020,14 @@ print(beta_message_batch_individual_response.custom_id)
 
         - `"batch"`
 
+      - `speed: Optional[Literal["standard", "fast"]]`
+
+        The inference speed mode used for this request.
+
+        - `"standard"`
+
+        - `"fast"`
+
   - `type: Literal["succeeded"]`
 
     - `"succeeded"`
@@ -40852,7 +41054,7 @@ Upload File
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -40891,6 +41093,8 @@ Upload File
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -40975,7 +41179,7 @@ List Files
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -41014,6 +41218,8 @@ List Files
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -41087,7 +41293,7 @@ Download File
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -41126,6 +41332,8 @@ Download File
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -41168,7 +41376,7 @@ Get File Metadata
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -41207,6 +41415,8 @@ Get File Metadata
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -41281,7 +41491,7 @@ Delete File
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -41320,6 +41530,8 @@ Delete File
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -41438,7 +41650,7 @@ Create Skill
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -41477,6 +41689,8 @@ Create Skill
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -41573,7 +41787,7 @@ List Skills
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -41612,6 +41826,8 @@ List Skills
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -41694,7 +41910,7 @@ Get Skill
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -41733,6 +41949,8 @@ Get Skill
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -41816,7 +42034,7 @@ Delete Skill
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -41855,6 +42073,8 @@ Delete Skill
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -41917,7 +42137,7 @@ Create Skill Version
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -41956,6 +42176,8 @@ Create Skill Version
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -42052,7 +42274,7 @@ List Skill Versions
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -42091,6 +42313,8 @@ List Skill Versions
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -42184,7 +42408,7 @@ Get Skill Version
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -42223,6 +42447,8 @@ Get Skill Version
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 
@@ -42316,7 +42542,7 @@ Delete Skill Version
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -42355,6 +42581,8 @@ Delete Skill Version
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: dc0638b7e96dd68f5564a906c4a7cc795935531d80d545e4e9e4d0913829650f
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 4976c4ddea6ae36c8e3b95717425230ff95153b2b4e63218b7e1ef45ce9dfb06
 ---
 
 # Users
@@ -39,7 +39,7 @@ Get User
 
     Name of the User.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -52,6 +52,8 @@ Get User
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `type: "user"`
 
@@ -115,7 +117,7 @@ List Users
 
     Name of the User.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -128,6 +130,8 @@ List Users
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `type: "user"`
 
@@ -171,7 +175,7 @@ Update User
 
 ### Body Parameters
 
-- `role: "user" or "developer" or "billing" or "claude_code_user"`
+- `role: "user" or "developer" or "billing" or 2 more`
 
   New role for the User. Cannot be "admin".
 
@@ -182,6 +186,8 @@ Update User
   - `"billing"`
 
   - `"claude_code_user"`
+
+  - `"managed"`
 
 ### Returns
 
@@ -203,7 +209,7 @@ Update User
 
     Name of the User.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -216,6 +222,8 @@ Update User
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `type: "user"`
 
@@ -294,7 +302,7 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
 
     Name of the User.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "user" or "developer" or "billing" or 3 more`
 
     Organization role of the User.
 
@@ -307,6 +315,8 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     - `"admin"`
 
     - `"claude_code_user"`
+
+    - `"managed"`
 
   - `type: "user"`
 

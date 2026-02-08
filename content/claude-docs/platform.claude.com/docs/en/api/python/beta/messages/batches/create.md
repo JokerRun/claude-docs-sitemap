@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: ce3a9a2c09908eac0ea0bbe7aa1e66493ce3b69423cc750fe34b7eee581a0492
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: c38331556c31a74236fac7fb0bf4df5073d42b476abb112c0633ee17c4c57e9b
 ---
 
 ## Create
@@ -2876,6 +2876,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `"standard_only"`
 
+    - `speed: Optional[Literal["standard", "fast"]]`
+
+      The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+      - `"standard"`
+
+      - `"fast"`
+
     - `stop_sequences: Optional[SequenceNotStr[str]]`
 
       Custom text sequences that will cause the model to stop generating.
@@ -4268,7 +4276,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 16 more]`
+  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -4307,6 +4315,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"model-context-window-exceeded-2025-08-26"`
 
     - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
 
 ### Returns
 

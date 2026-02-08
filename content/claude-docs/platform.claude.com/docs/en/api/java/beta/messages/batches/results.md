@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/results
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 058265ba2144a298366f071e698e8f0513cbc9217a1695330b32e1bcf7ce81da
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: 6726a1628769f28bf04bf70e55abfb67265ae5c671fcb1faa74795e335101756
 ---
 
 ## Results
@@ -66,6 +66,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 
@@ -1085,7 +1087,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of input tokens which were used.
 
-          - `Optional<List<Iteration>> iterations`
+          - `Optional<List<BetaIterationsUsageItems>> iterations`
 
             Per-iteration token usage breakdown.
 
@@ -1196,6 +1198,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `PRIORITY("priority")`
 
             - `BATCH("batch")`
+
+          - `Optional<Speed> speed`
+
+            The inference speed mode used for this request.
+
+            - `STANDARD("standard")`
+
+            - `FAST("fast")`
 
       - `JsonValue; type "succeeded"constant`
 

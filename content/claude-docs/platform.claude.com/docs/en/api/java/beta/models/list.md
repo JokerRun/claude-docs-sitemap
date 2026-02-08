@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/models/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 2aee167d78d43c862fb91e81d5792976556979d2561001cc3caf67174ed19a0a
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: aa8943f4977fa99eae27768d45e92f937d3e21e73cca9cf1a8b5d9719e68f048
 ---
 
 ## List
@@ -74,6 +74,8 @@ The Models API response can be used to determine which models are available for 
     - `MODEL_CONTEXT_WINDOW_EXCEEDED_2025_08_26("model-context-window-exceeded-2025-08-26")`
 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
+
+    - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
 ### Returns
 

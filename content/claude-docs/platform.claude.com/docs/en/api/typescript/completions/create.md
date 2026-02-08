@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: aa639931a121ffa61146153db0485d70e9d1fc3b86768aa3ecea8ea121314395
+fetched_at: 2026-02-08T04:34:43.786498Z
+sha256: b3f93afb8c1a3217dfc8f56d1d8de14dcbcabeb368126580f6f3ae1be0ef53c0
 ---
 
 ## Create
@@ -199,7 +199,7 @@ Future models and features will not be compatible with Text Completions. See our
 
       - `(string & {})`
 
-      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 16 more`
+      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
 
         - `"message-batches-2024-09-24"`
 
@@ -238,6 +238,8 @@ Future models and features will not be compatible with Text Completions. See our
         - `"model-context-window-exceeded-2025-08-26"`
 
         - `"skills-2025-10-02"`
+
+        - `"fast-mode-2026-02-01"`
 
   - `CompletionCreateParamsNonStreaming extends CompletionCreateParamsBase`
 
