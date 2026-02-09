@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: b5ffd771018641949809c3bb6649c67ba131fac86105c6d6f5e13c2837e809b7
+fetched_at: 2026-02-09T04:29:26.539361Z
+sha256: 50ed1fd79756dea4b8a007a5723944f127afd9e28732ee60a718c51dbc145a49
 ---
 
 > ## Documentation Index
@@ -38,7 +38,7 @@ remembering exact version numbers:
 | **`sonnet[1m]`** | Uses Sonnet with a [1 million token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#1m-token-context-window) for long sessions |
 | **`opusplan`**   | Special mode that uses `opus` during plan mode, then switches to `sonnet` for execution                                                                              |
 
-Aliases always point to the latest version. To pin to a specific version, use the full model name (for example, `claude-opus-4-5-20251101`) or set the corresponding environment variable like `ANTHROPIC_DEFAULT_OPUS_MODEL`.
+Aliases always point to the latest version. To pin to a specific version, use the full model name (for example, `claude-opus-4-6`) or set the corresponding environment variable like `ANTHROPIC_DEFAULT_OPUS_MODEL`.
 
 ### Setting your model
 
