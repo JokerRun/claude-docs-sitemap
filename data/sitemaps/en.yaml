@@ -46,7 +46,7 @@
   lastmod: '2026-01-28T13:17:42.831Z'
 - source: code
   loc: https://code.claude.com/docs/en/fast-mode
-  lastmod: '2026-02-07T18:24:11.262Z'
+  lastmod: '2026-02-10T21:04:12.403Z'
 - source: code
   loc: https://code.claude.com/docs/en/features-overview
   lastmod: '2026-02-05T17:50:16.275Z'
@@ -112,7 +112,7 @@
   lastmod: '2026-02-09T21:52:44.868Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
-  lastmod: '2026-02-05T17:50:17.318Z'
+  lastmod: '2026-02-10T22:02:21.884Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-marketplaces
   lastmod: '2026-02-05T21:43:32.422Z'
@@ -132,8 +132,11 @@
   loc: https://code.claude.com/docs/en/security
   lastmod: '2026-02-03T03:00:25.930Z'
 - source: code
+  loc: https://code.claude.com/docs/en/server-managed-settings
+  lastmod: '2026-02-10T22:02:21.927Z'
+- source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-02-07T00:03:23.804Z'
+  lastmod: '2026-02-10T22:02:21.936Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-02-04T18:02:58.128Z'

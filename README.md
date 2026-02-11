@@ -38,7 +38,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/desktop | 2026-02-10 |  |
 | code | https://code.claude.com/docs/en/devcontainer | 2026-01-28 |  |
 | code | https://code.claude.com/docs/en/discover-plugins | 2026-01-28 |  |
-| ... | _(~777 more rows)_ | | |
+| ... | _(~778 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

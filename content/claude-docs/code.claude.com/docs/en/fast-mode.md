@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 871ac1a0437826d93d3194a269eaf8c4a5b60c652f2e2a0ca43e45a4ba025678
+fetched_at: 2026-02-11T04:31:44.904339Z
+sha256: 7dc76bb70f0f0dcfac20f244d201dab9d3212b53675fbee5592abc8fb5495a6b
 ---
 
 > ## Documentation Index
@@ -17,7 +17,7 @@ sha256: 871ac1a0437826d93d3194a269eaf8c4a5b60c652f2e2a0ca43e45a4ba025678
   Fast mode is in [research preview](#research-preview). The feature, pricing, and availability may change based on feedback.
 </Note>
 
-Fast mode delivers faster Opus 4.6 responses at a higher cost per token. Toggle it on with `/fast` when you need speed for interactive work like rapid iteration or live debugging, and toggle it off when cost matters more than latency.
+Fast mode is a high-speed configuration for Claude Opus 4.6, making the model 2.5x faster at a higher cost per token. Toggle it on with `/fast` when you need speed for interactive work like rapid iteration or live debugging, and toggle it off when cost matters more than latency.
 
 Fast mode is not a different model. It uses the same Opus 4.6 with a different API configuration that prioritizes speed over cost efficiency. You get identical quality and capabilities, just faster responses.
 

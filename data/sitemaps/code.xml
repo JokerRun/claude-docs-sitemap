@@ -338,7 +338,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/fast-mode</loc>
-    <lastmod>2026-02-07T18:24:11.262Z</lastmod>
+    <lastmod>2026-02-10T21:04:12.403Z</lastmod>
   </url>
 
   <url>
@@ -448,7 +448,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/permissions</loc>
-    <lastmod>2026-02-05T17:50:17.318Z</lastmod>
+    <lastmod>2026-02-10T22:02:21.884Z</lastmod>
   </url>
 
   <url>
@@ -482,8 +482,13 @@
   </url>
 
   <url>
+    <loc>https://code.claude.com/docs/en/server-managed-settings</loc>
+    <lastmod>2026-02-10T22:02:21.927Z</lastmod>
+  </url>
+
+  <url>
     <loc>https://code.claude.com/docs/en/settings</loc>
-    <lastmod>2026-02-07T00:03:23.804Z</lastmod>
+    <lastmod>2026-02-10T22:02:21.936Z</lastmod>
   </url>
 
   <url>

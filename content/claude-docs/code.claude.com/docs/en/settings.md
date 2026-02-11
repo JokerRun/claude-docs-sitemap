@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-02-07T04:10:25.616975Z
-sha256: a3c51fc8da6f841bf8ff34234cead62862b3ddbc4717b33bec9a3c017e4cfc2f
+fetched_at: 2026-02-11T04:31:44.904339Z
+sha256: a7f880ad4762cbe95078f2d3bb45d9d144d72b0f3e7182b3f3e03f3da06c6aef
 ---
 
 > ## Documentation Index
@@ -100,7 +100,7 @@ Code through hierarchical settings:
     These are system-wide paths (not user home directories like `~/Library/...`) that require administrator privileges. They are designed to be deployed by IT administrators.
   </Note>
 
-  See [Managed settings](/en/permissions#managed-settings) and [Managed MCP configuration](/en/mcp#managed-mcp-configuration) for details.
+  See [Managed settings](/en/permissions#managed-settings) and [Managed MCP configuration](/en/mcp#managed-mcp-configuration) for details. For organizations without device management infrastructure, see [server-managed settings](/en/server-managed-settings).
 
   <Note>
     Managed deployments can also restrict **plugin marketplace additions** using
@@ -361,8 +361,8 @@ your-repo-file-index --query "$query" | head -20
 
 Settings apply in order of precedence. From highest to lowest:
 
-1. **Managed settings** (`managed-settings.json`)
-   * Policies deployed by IT/DevOps to system directories
+1. **Managed settings** ([`managed-settings.json`](/en/permissions#managed-settings) or [server-managed settings](/en/server-managed-settings))
+   * Policies deployed by IT/DevOps to system directories, or delivered from Anthropic's servers for Claude for Enterprise customers
    * Cannot be overridden by user or project settings
 
 2. **Command line arguments**

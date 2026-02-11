@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 3247caaa1d367bfd3ff13e53a33c0559826c2ef02d618a1fd2ace202e0c8e96d
+fetched_at: 2026-02-11T04:31:44.904339Z
+sha256: 941772240681490822404c0f8141233a2feab0651618879e1386eb4ee6f838e2
 ---
 
 > ## Documentation Index
@@ -223,7 +223,7 @@ Use both for defense-in-depth:
 
 ## Managed settings
 
-For organizations that need centralized control over Claude Code configuration, administrators can deploy `managed-settings.json` files to system directories. These policy files follow the same format as regular settings files and cannot be overridden by user or project settings.
+For organizations that need centralized control over Claude Code configuration, administrators can deploy `managed-settings.json` files to system directories. These policy files follow the same format as regular settings files and cannot be overridden by user or project settings. For organizations without device management infrastructure, [server-managed settings](/en/server-managed-settings) provide an alternative that delivers configurations from Anthropic's servers.
 
 **Managed settings file locations**:
 
