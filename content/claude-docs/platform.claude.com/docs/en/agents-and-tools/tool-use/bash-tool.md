@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 3e81cf0abbf26e99d7a2607bdc6b683cdc0939e6cfe62796b3b066bf40ab3bb7
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 9f6f467fd1a6ddc1c9f74de15be3e1f060e65271571dfc85e75336187aaa8969
 ---
 
 # Bash tool
@@ -47,15 +47,10 @@ client = anthropic.Anthropic()
 response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
-    tools=[
-        {
-            "type": "bash_20250124",
-            "name": "bash"
-        }
-    ],
+    tools=[{"type": "bash_20250124", "name": "bash"}],
     messages=[
         {"role": "user", "content": "List all Python files in the current directory."}
-    ]
+    ],
 )
 ```
 
@@ -130,7 +125,9 @@ Claude can chain commands to complete complex tasks:
 {"command": "pip install requests"}
 
 # 2. Create script
-{"command": "cat > fetch_joke.py << 'EOF'\nimport requests\nresponse = requests.get('https://official-joke-api.appspot.com/random_joke')\njoke = response.json()\nprint(f\"Setup: {joke['setup']}\")\nprint(f\"Punchline: {joke['punchline']}\")\nEOF"}
+{
+    "command": "cat > fetch_joke.py << 'EOF'\nimport requests\nresponse = requests.get('https://official-joke-api.appspot.com/random_joke')\njoke = response.json()\nprint(f\"Setup: {joke['setup']}\")\nprint(f\"Punchline: {joke['punchline']}\")\nEOF"
+}
 
 # 3. Run script
 {"command": "python fetch_joke.py"}
@@ -151,16 +148,17 @@ The bash tool is implemented as a schema-less tool. When using this tool, you do
     import subprocess
     import threading
     import queue
-    
+
+
     class BashSession:
         def __init__(self):
             self.process = subprocess.Popen(
-                ['/bin/bash'],
+                ["/bin/bash"],
                 stdin=subprocess.PIPE,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
-                bufsize=0
+                bufsize=0,
             )
             self.output_queue = queue.Queue()
             self.error_queue = queue.Queue()
@@ -172,9 +170,9 @@ The bash tool is implemented as a schema-less tool. When using this tool, you do
     ```python
     def execute_command(self, command):
         # Send command to bash
-        self.process.stdin.write(command + '\n')
+        self.process.stdin.write(command + "\n")
         self.process.stdin.flush()
-        
+
         # Capture output with timeout
         output = self._read_output(timeout=10)
         return output
@@ -191,12 +189,12 @@ The bash tool is implemented as a schema-less tool. When using this tool, you do
             else:
                 command = content.input.get("command")
                 result = bash_session.execute_command(command)
-            
+
             # Return result to Claude
             tool_result = {
                 "type": "tool_result",
                 "tool_use_id": content.id,
-                "content": result
+                "content": result,
             }
     ```
   </Step>
@@ -205,11 +203,11 @@ The bash tool is implemented as a schema-less tool. When using this tool, you do
     ```python
     def validate_command(command):
         # Block dangerous commands
-        dangerous_patterns = ['rm -rf /', 'format', ':(){:|:&};:']
+        dangerous_patterns = ["rm -rf /", "format", ":(){:|:&};:"]
         for pattern in dangerous_patterns:
             if pattern in command:
                 return False, f"Command contains dangerous pattern: {pattern}"
-        
+
         # Add more validation as needed
         return True, None
     ```
@@ -289,11 +287,7 @@ Implement timeouts to prevent hanging commands:
 def execute_with_timeout(command, timeout=30):
     try:
         result = subprocess.run(
-            command, 
-            shell=True, 
-            capture_output=True, 
-            text=True, 
-            timeout=timeout
+            command, shell=True, capture_output=True, text=True, timeout=timeout
         )
         return result.stdout + result.stderr
     except subprocess.TimeoutExpired:
@@ -310,7 +304,7 @@ Keep the bash session persistent to maintain environment variables and working d
 commands = [
     "cd /tmp",
     "echo 'Hello' > test.txt",
-    "cat test.txt"  # This works because we're still in /tmp
+    "cat test.txt",  # This works because we're still in /tmp
 ]
 ```
 
@@ -321,9 +315,9 @@ commands = [
 Truncate very large outputs to prevent token limit issues:
 ```python
 def truncate_output(output, max_lines=100):
-    lines = output.split('\n')
+    lines = output.split("\n")
     if len(lines) > max_lines:
-        truncated = '\n'.join(lines[:max_lines])
+        truncated = "\n".join(lines[:max_lines])
         return f"{truncated}\n\n... Output truncated ({len(lines)} total lines) ..."
     return output
 ```
@@ -335,6 +329,7 @@ def truncate_output(output, max_lines=100):
 Keep an audit trail of executed commands:
 ```python
 import logging
+
 
 def log_command(command, output, user_id):
     logging.info(f"User {user_id} executed: {command}")
@@ -350,9 +345,12 @@ Remove sensitive information from command outputs:
 def sanitize_output(output):
     # Remove potential secrets or credentials
     import re
+
     # Example: Remove AWS credentials
-    output = re.sub(r'aws_access_key_id\s*=\s*\S+', 'aws_access_key_id=***', output)
-    output = re.sub(r'aws_secret_access_key\s*=\s*\S+', 'aws_secret_access_key=***', output)
+    output = re.sub(r"aws_access_key_id\s*=\s*\S+", "aws_access_key_id=***", output)
+    output = re.sub(
+        r"aws_secret_access_key\s*=\s*\S+", "aws_secret_access_key=***", output
+    )
     return output
 ```
 

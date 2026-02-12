@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/usage-cost-api
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 02cfa9510a3c69b690738743545bc5de5e1bba2dc7000efa98c5b996bb4f4790
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 536fd4031b2f46ba2173242e5e006cc820d3c2e9852336d179ac1365b8b5d2da
 ---
 
 # Usage and Cost API
@@ -27,7 +27,7 @@ This API enables you to better monitor, analyze, and optimize your Claude implem
 
 <Check>
   **Admin API key required**
-  
+
   This API is part of the [Admin API](/docs/en/build-with-claude/administration-api). These endpoints require an Admin API key (starting with `sk-ant-admin...`) that differs from standard API keys. Only organization members with the admin role can provision Admin API keys through the [Claude Console](/settings/admin-keys).
 </Check>
 
@@ -68,9 +68,9 @@ bucket_width=1d" \
 
 <Tip>
   **Set a User-Agent header for integrations**
-  
+
   If you're building an integration, set your User-Agent header to help us understand usage patterns:
-  ```
+  ```text
   User-Agent: YourApp/1.0.0 (https://yourapp.com)
   ```
 </Tip>

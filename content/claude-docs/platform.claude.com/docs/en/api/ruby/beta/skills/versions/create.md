@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: d99d8721e04df3b341ab2878cc6c690c8c5c4ec90923ca6c60e870e873c41595
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: efaf5ffe926f591fff2c1cd2e4ea4a80b44360d53e1d72e228fb7f3201c7f4fa
 ---
 
 ## Create
@@ -122,15 +122,3 @@ Create Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-version = anthropic.beta.skills.versions.create("skill_id")
-
-puts(version)
-```

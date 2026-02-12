@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: a51fbb8269d344d6ddcf0f92c4b2a5849e94a4fde37714cf83fc7a5254262e61
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 5317e6acdd2b830359e4123f1bb92b4f51e7b6f68dfca2463f0fe102460a1d6e
 ---
 
 ## List
@@ -120,15 +120,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `:message_batch`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-page = anthropic.messages.batches.list
-
-puts(page)
-```

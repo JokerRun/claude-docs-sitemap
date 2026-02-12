@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-02-11T04:31:44.904339Z
-sha256: d1f745682143f2d4346d5d5dfe82addfe4b612452231b54c2eb950a249445c8e
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 8efa8ef13c22d5dc56d2b9c5b3d0cc674a8a7be835d533050aa78437fe4e2f78
 ---
 
 # Compaction
@@ -39,7 +39,7 @@ When compaction is enabled, Claude automatically summarizes your conversation wh
 3. Creates a `compaction` block containing the summary.
 4. Continues the response with the compacted context.
 
-On subsequent requests, append the response to your messages. The API automatically drops all message blocks prior to the `compaction` block, continuing the conversation from the summary. 
+On subsequent requests, append the response to your messages. The API automatically drops all message blocks prior to the `compaction` block, continuing the conversation from the summary.
 
 ![Flow diagram showing the compaction process: when input tokens exceed the trigger threshold, Claude generates a summary in a compaction block and continues the response with the compacted context](/docs/images/compaction-flow.svg)
 
@@ -86,13 +86,7 @@ response = client.beta.messages.create(
     model="claude-opus-4-6",
     max_tokens=4096,
     messages=messages,
-    context_management={
-        "edits": [
-            {
-                "type": "compact_20260112"
-            }
-        ]
-    }
+    context_management={"edits": [{"type": "compact_20260112"}]},
 )
 
 # Append the response (including any compaction block) to continue the conversation
@@ -100,7 +94,7 @@ messages.append({"role": "assistant", "content": response.content})
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
@@ -149,13 +143,10 @@ response = client.beta.messages.create(
         "edits": [
             {
                 "type": "compact_20260112",
-                "trigger": {
-                    "type": "input_tokens",
-                    "value": 150000
-                }
+                "trigger": {"type": "input_tokens", "value": 150000},
             }
         ]
-    }
+    },
 )
 ```
 
@@ -201,10 +192,10 @@ response = client.beta.messages.create(
         "edits": [
             {
                 "type": "compact_20260112",
-                "instructions": "Focus on preserving code snippets, variable names, and technical decisions."
+                "instructions": "Focus on preserving code snippets, variable names, and technical decisions.",
             }
         ]
-    }
+    },
 )
 ```
 
@@ -240,13 +231,8 @@ response = client.beta.messages.create(
     max_tokens=4096,
     messages=messages,
     context_management={
-        "edits": [
-            {
-                "type": "compact_20260112",
-                "pause_after_compaction": True
-            }
-        ]
-    }
+        "edits": [{"type": "compact_20260112", "pause_after_compaction": True}]
+    },
 )
 
 # Check if compaction triggered a pause
@@ -260,9 +246,7 @@ if response.stop_reason == "compaction":
         model="claude-opus-4-6",
         max_tokens=4096,
         messages=messages,
-        context_management={
-            "edits": [{"type": "compact_20260112"}]
-        }
+        context_management={"edits": [{"type": "compact_20260112"}]},
     )
 ```
 
@@ -332,10 +316,12 @@ if response.stop_reason == "compaction":
 
     # Estimate total tokens consumed; prompt wrap-up if over budget
     if n_compactions * TRIGGER_THRESHOLD >= TOTAL_TOKEN_BUDGET:
-        messages.append({
-            "role": "user",
-            "content": "Please wrap up your current work and summarize the final state.",
-        })
+        messages.append(
+            {
+                "role": "user",
+                "content": "Please wrap up your current work and summarize the final state.",
+            }
+        )
 ```
 
 ## Working with compaction blocks
@@ -376,9 +362,7 @@ response = client.beta.messages.create(
     model="claude-opus-4-6",
     max_tokens=4096,
     messages=messages,
-    context_management={
-        "edits": [{"type": "compact_20260112"}]
-    }
+    context_management={"edits": [{"type": "compact_20260112"}]},
 )
 ```
 
@@ -421,9 +405,7 @@ with client.beta.messages.stream(
     model="claude-opus-4-6",
     max_tokens=4096,
     messages=messages,
-    context_management={
-        "edits": [{"type": "compact_20260112"}]
-    }
+    context_management={"edits": [{"type": "compact_20260112"}]},
 ) as stream:
     for event in stream:
         if event.type == "content_block_start":
@@ -444,7 +426,7 @@ with client.beta.messages.stream(
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
@@ -520,13 +502,13 @@ response = client.beta.messages.create(
         {
             "type": "text",
             "text": "You are a helpful coding assistant...",
-            "cache_control": {"type": "ephemeral"}  # Cache the system prompt separately
+            "cache_control": {
+                "type": "ephemeral"
+            },  # Cache the system prompt separately
         }
     ],
     messages=messages,
-    context_management={
-        "edits": [{"type": "compact_20260112"}]
-    }
+    context_management={"edits": [{"type": "compact_20260112"}]},
 )
 ```
 
@@ -539,7 +521,7 @@ const response = await client.beta.messages.create({
     {
       type: "text",
       text: "You are a helpful coding assistant...",
-      cache_control: { type: "ephemeral" }  // Cache the system prompt separately
+      cache_control: { type: "ephemeral" } // Cache the system prompt separately
     }
   ],
   messages,
@@ -601,9 +583,7 @@ count_response = client.beta.messages.count_tokens(
     betas=["compact-2026-01-12"],
     model="claude-opus-4-6",
     messages=messages,
-    context_management={
-        "edits": [{"type": "compact_20260112"}]
-    }
+    context_management={"edits": [{"type": "compact_20260112"}]},
 )
 
 print(f"Current tokens: {count_response.input_tokens}")
@@ -637,6 +617,7 @@ client = anthropic.Anthropic()
 
 messages: list[dict] = []
 
+
 def chat(user_message: str) -> str:
     messages.append({"role": "user", "content": user_message})
 
@@ -649,19 +630,18 @@ def chat(user_message: str) -> str:
             "edits": [
                 {
                     "type": "compact_20260112",
-                    "trigger": {"type": "input_tokens", "value": 100000}
+                    "trigger": {"type": "input_tokens", "value": 100000},
                 }
             ]
-        }
+        },
     )
 
     # Append response (compaction blocks are automatically included)
     messages.append({"role": "assistant", "content": response.content})
 
     # Return the text content
-    return next(
-        block.text for block in response.content if block.type == "text"
-    )
+    return next(block.text for block in response.content if block.type == "text")
+
 
 # Run a long conversation
 print(chat("Help me build a Python web scraper"))
@@ -671,7 +651,7 @@ print(chat("Now add rate limiting and error handling"))
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
@@ -722,6 +702,7 @@ client = anthropic.Anthropic()
 
 messages: list[dict[str, Any]] = []
 
+
 def chat(user_message: str) -> str:
     messages.append({"role": "user", "content": user_message})
 
@@ -735,10 +716,10 @@ def chat(user_message: str) -> str:
                 {
                     "type": "compact_20260112",
                     "trigger": {"type": "input_tokens", "value": 100000},
-                    "pause_after_compaction": True
+                    "pause_after_compaction": True,
                 }
             ]
-        }
+        },
     )
 
     # Check if compaction occurred and paused
@@ -762,9 +743,7 @@ def chat(user_message: str) -> str:
             model="claude-opus-4-6",
             max_tokens=4096,
             messages=messages_after_compaction,
-            context_management={
-                "edits": [{"type": "compact_20260112"}]
-            }
+            context_management={"edits": [{"type": "compact_20260112"}]},
         )
 
         # Update our message list to reflect the compaction
@@ -775,9 +754,8 @@ def chat(user_message: str) -> str:
     messages.append({"role": "assistant", "content": response.content})
 
     # Return the text content
-    return next(
-        block.text for block in response.content if block.type == "text"
-    )
+    return next(block.text for block in response.content if block.type == "text")
+
 
 # Run a long conversation
 print(chat("Help me build a Python web scraper"))
@@ -787,7 +765,7 @@ print(chat("Now add rate limiting and error handling"))
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/upload
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 4563fb7c254ca0d4915710342991db931bb9ae87d9990b2f21efa36e6ecc82c9
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: d267f76a24bdd920d524ec52d6e92c857959aa4c3595c50b2885283bfb70a92d
 ---
 
 ## Upload
@@ -23,9 +23,9 @@ Upload File
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -104,18 +104,3 @@ Upload File
   - `downloadable: Optional[bool]`
 
     Whether the file can be downloaded.
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-file_metadata = client.beta.files.upload(
-    file=b"raw file contents",
-)
-print(file_metadata.id)
-```

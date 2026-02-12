@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/download
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 614868da40b532cd927f3c77811f07bf305267b840240224f695788d5dbd1e3f
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: d76549f695912b6d980771a6b4e652663d0976d8528978815181f7a822cc3a7b
 ---
 
 ## Download
@@ -64,24 +64,3 @@ Download File
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.core.http.HttpResponse;
-import com.anthropic.models.beta.files.FileDownloadParams;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        HttpResponse response = client.beta().files().download("file_id");
-    }
-}
-```

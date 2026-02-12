@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 9a473bdf199a34f81e1f7829045a390c2936ec15a15ea2af5d27d631686532ee
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 60a121d5a749c61a2e4f00ec6438e11c34058b1faca8ac50e323a71c9bfeb430
 ---
 
 ## List
@@ -112,24 +112,3 @@ List Files
   - `Optional<Boolean> downloadable`
 
     Whether the file can be downloaded.
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.files.FileListPage;
-import com.anthropic.models.beta.files.FileListParams;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        FileListPage page = client.beta().files().list();
-    }
-}
-```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/delete
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 4564fc71b426999f8b8080eee94ba98ddcb2d728017f74366d4422fc49abb822
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 790e4d243c81393f7dc2305c9e789c19f9732133c683c81bc0044f00697e3bed
 ---
 
 ## Delete
@@ -90,15 +90,3 @@ Delete Skill Version
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-version = anthropic.beta.skills.versions.delete("version", skill_id: "skill_id")
-
-puts(version)
-```

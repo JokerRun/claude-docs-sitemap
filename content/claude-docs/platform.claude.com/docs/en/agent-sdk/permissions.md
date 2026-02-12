@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/permissions
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 6adf1b328ce59b6829fa5b68567979d84b3a11b2c78e0e524717eea5bbe853ec
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 76d2ea362fa4d1387b3992dd21f75e731a2c2c8ebaa8f5dfb220a1ebace06228
 ---
 
 # Configure permissions
@@ -77,6 +77,7 @@ You can set the permission mode once when starting a query, or change it dynamic
     import asyncio
     from claude_agent_sdk import query, ClaudeAgentOptions
 
+
     async def main():
         async for message in query(
             prompt="Help me refactor this code",
@@ -86,6 +87,7 @@ You can set the permission mode once when starting a query, or change it dynamic
         ):
             if hasattr(message, "result"):
                 print(message.result)
+
 
     asyncio.run(main())
     ```
@@ -97,8 +99,8 @@ You can set the permission mode once when starting a query, or change it dynamic
       for await (const message of query({
         prompt: "Help me refactor this code",
         options: {
-          permissionMode: "default",  // Set the mode here
-        },
+          permissionMode: "default" // Set the mode here
+        }
       })) {
         if ("result" in message) {
           console.log(message.result);
@@ -120,6 +122,7 @@ You can set the permission mode once when starting a query, or change it dynamic
     import asyncio
     from claude_agent_sdk import query, ClaudeAgentOptions
 
+
     async def main():
         q = query(
             prompt="Help me refactor this code",
@@ -136,6 +139,7 @@ You can set the permission mode once when starting a query, or change it dynamic
             if hasattr(message, "result"):
                 print(message.result)
 
+
     asyncio.run(main())
     ```
 
@@ -146,8 +150,8 @@ You can set the permission mode once when starting a query, or change it dynamic
       const q = query({
         prompt: "Help me refactor this code",
         options: {
-          permissionMode: "default",  // Start in default mode
-        },
+          permissionMode: "default" // Start in default mode
+        }
       });
 
       // Change mode dynamically mid-session

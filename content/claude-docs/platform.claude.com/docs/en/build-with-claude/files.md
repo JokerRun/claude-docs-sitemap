@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-02-07T04:10:25.616975Z
-sha256: 14f2d783d40d67776aea616d0d5ee332d1409d467ce6cba093fe9505a3b2daac
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 5f56e89720919241075be638e919e05ff098acc20e5e0bc4c1bfb39cee52a6ba
 ---
 
 # Files API
@@ -54,20 +54,20 @@ import anthropic
 
 client = anthropic.Anthropic()
 client.beta.files.upload(
-  file=("document.pdf", open("/path/to/document.pdf", "rb"), "application/pdf"),
+    file=("document.pdf", open("/path/to/document.pdf", "rb"), "application/pdf"),
 )
 ```
 
 ```typescript TypeScript
-import Anthropic, { toFile } from '@anthropic-ai/sdk';
+import Anthropic, { toFile } from "@anthropic-ai/sdk";
 import fs from "fs";
 
 const anthropic = new Anthropic();
 
 await anthropic.beta.files.upload({
-  file: await toFile(fs.createReadStream('/path/to/document.pdf'), undefined, { type: 'application/pdf' })
+  file: await toFile(fs.createReadStream("/path/to/document.pdf"), undefined, { type: "application/pdf" })
 }, {
-  betas: ['files-api-2025-04-14']
+  betas: ["files-api-2025-04-14"]
 });
 ```
 
@@ -89,25 +89,25 @@ System.out.println(file.id());
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
+	"context"
+	"fmt"
+	"os"
 
-    "github.com/anthropics/anthropic-sdk-go"
+	"github.com/anthropics/anthropic-sdk-go"
 )
 
 func main() {
-    client := anthropic.NewClient()
+	client := anthropic.NewClient()
 
-    file, _ := os.Open("/path/to/document.pdf")
-    defer file.Close()
+	file, _ := os.Open("/path/to/document.pdf")
+	defer file.Close()
 
-    response, _ := client.Beta.Files.Upload(context.Background(),
-        anthropic.BetaFileUploadParams{
-            File: file,
-        })
+	response, _ := client.Beta.Files.Upload(context.Background(),
+		anthropic.BetaFileUploadParams{
+			File: file,
+		})
 
-    fmt.Println(response.ID)
+	fmt.Println(response.ID)
 }
 ```
 
@@ -188,7 +188,7 @@ curl -X POST https://api.anthropic.com/v1/messages \
         "content": [
           {
             "type": "text",
-            "text": "Please summarize this document for me."          
+            "text": "Please summarize this document for me."
           },
           {
             "type": "document",
@@ -215,18 +215,15 @@ response = client.beta.messages.create(
         {
             "role": "user",
             "content": [
-                {
-                    "type": "text",
-                    "text": "Please summarize this document for me."
-                },
+                {"type": "text", "text": "Please summarize this document for me."},
                 {
                     "type": "document",
                     "source": {
                         "type": "file",
-                        "file_id": "file_011CNha8iCJcU1wXNR6q4V8w"
-                    }
-                }
-            ]
+                        "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+                    },
+                },
+            ],
         }
     ],
     betas=["files-api-2025-04-14"],
@@ -235,7 +232,7 @@ print(response)
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -260,7 +257,7 @@ const response = await anthropic.beta.messages.create({
       ]
     }
   ],
-  betas: ["files-api-2025-04-14"],
+  betas: ["files-api-2025-04-14"]
 });
 
 console.log(response);
@@ -296,38 +293,38 @@ System.out.println(message);
 package main
 
 import (
-    "context"
-    "fmt"
+	"context"
+	"fmt"
 
-    "github.com/anthropics/anthropic-sdk-go"
+	"github.com/anthropics/anthropic-sdk-go"
 )
 
 func main() {
-    client := anthropic.NewClient()
+	client := anthropic.NewClient()
 
-    response, _ := client.Beta.Messages.New(context.Background(),
-        anthropic.BetaMessageNewParams{
-            Model:     anthropic.ModelClaudeOpus4_6,
-            MaxTokens: 1024,
-            Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-            Messages: []anthropic.BetaMessageParam{
-                {
-                    Role: "user",
-                    Content: []anthropic.BetaContentBlockParam{
-                        anthropic.NewBetaTextBlock("Please summarize this document for me."),
-                        {
-                            Type: "document",
-                            Source: &anthropic.BetaDocumentSourceParam{
-                                Type:   "file",
-                                FileID: "file_011CNha8iCJcU1wXNR6q4V8w",
-                            },
-                        },
-                    },
-                },
-            },
-        })
+	response, _ := client.Beta.Messages.New(context.Background(),
+		anthropic.BetaMessageNewParams{
+			Model:     anthropic.ModelClaudeOpus4_6,
+			MaxTokens: 1024,
+			Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
+			Messages: []anthropic.BetaMessageParam{
+				{
+					Role: "user",
+					Content: []anthropic.BetaContentBlockParam{
+						anthropic.NewBetaTextBlock("Please summarize this document for me."),
+						{
+							Type: "document",
+							Source: &anthropic.BetaDocumentSourceParam{
+								Type:   "file",
+								FileID: "file_011CNha8iCJcU1wXNR6q4V8w",
+							},
+						},
+					},
+				},
+			},
+		})
 
-    fmt.Println(response)
+	fmt.Println(response)
 }
 ```
 
@@ -481,7 +478,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 # Example: Reading a CSV file
-df = pd.read_csv('data.csv')
+df = pd.read_csv("data.csv")
 csv_content = df.to_string()
 
 # Send as plain text in the message
@@ -494,36 +491,36 @@ response = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": f"Here's the CSV data:\n\n{csv_content}\n\nPlease analyze this data."
+                    "text": f"Here's the CSV data:\n\n{csv_content}\n\nPlease analyze this data.",
                 }
-            ]
+            ],
         }
-    ]
+    ],
 )
 
 print(response.content[0].text)
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
-import fs from 'fs';
+import { Anthropic } from "@anthropic-ai/sdk";
+import fs from "fs/promises";
 
 const anthropic = new Anthropic();
 
 async function analyzeDocument() {
   // Example: Reading a text file
-  const textContent = fs.readFileSync('document.txt', 'utf-8');
+  const textContent = await fs.readFile("document.txt", "utf-8");
 
   // Send as plain text in the message
   const response = await anthropic.messages.create({
-    model: 'claude-opus-4-6',
+    model: "claude-opus-4-6",
     max_tokens: 1024,
     messages: [
       {
-        role: 'user',
+        role: "user",
         content: [
           {
-            type: 'text',
+            type: "text",
             text: `Here's the document content:\n\n${textContent}\n\nPlease summarize this document.`
           }
         ]
@@ -554,7 +551,7 @@ For PDFs and text files, use the `document` content block:
     "file_id": "file_011CNha8iCJcU1wXNR6q4V8w"
   },
   "title": "Document Title", // Optional
-  "context": "Context about the document", // Optional  
+  "context": "Context about the document", // Optional
   "citations": {"enabled": true} // Optional, enables citations
 }
 ```
@@ -595,11 +592,11 @@ files = client.beta.files.list()
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 const files = await anthropic.beta.files.list({
-  betas: ['files-api-2025-04-14'],
+  betas: ["files-api-2025-04-14"]
 });
 ```
 </CodeGroup>
@@ -624,12 +621,12 @@ file = client.beta.files.retrieve_metadata("file_011CNha8iCJcU1wXNR6q4V8w")
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 const file = await anthropic.beta.files.retrieveMetadata(
   "file_011CNha8iCJcU1wXNR6q4V8w",
-  { betas: ['files-api-2025-04-14'] },
+  { betas: ["files-api-2025-04-14"] }
 );
 ```
 </CodeGroup>
@@ -654,12 +651,12 @@ result = client.beta.files.delete("file_011CNha8iCJcU1wXNR6q4V8w")
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 const result = await anthropic.beta.files.delete(
   "file_011CNha8iCJcU1wXNR6q4V8w",
-  { betas: ['files-api-2025-04-14'] },
+  { betas: ["files-api-2025-04-14"] }
 );
 ```
 </CodeGroup>
@@ -685,22 +682,22 @@ file_content = client.beta.files.download("file_011CNha8iCJcU1wXNR6q4V8w")
 
 # Save to file
 with open("downloaded_file.txt", "w") as f:
-    f.write(file_content.decode('utf-8'))
+    f.write(file_content.decode("utf-8"))
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
-import fs from 'fs';
+import { Anthropic } from "@anthropic-ai/sdk";
+import fs from "fs/promises";
 
 const anthropic = new Anthropic();
 
 const fileContent = await anthropic.beta.files.download(
   "file_011CNha8iCJcU1wXNR6q4V8w",
-  { betas: ['files-api-2025-04-14'] },
+  { betas: ["files-api-2025-04-14"] }
 );
 
 // Save to file
-fs.writeFileSync("downloaded_file.txt", fileContent);
+await fs.writeFile("downloaded_file.txt", fileContent);
 ```
 </CodeGroup>
 
@@ -754,7 +751,7 @@ File API operations are **free**:
 - Uploading files
 - Downloading files
 - Listing files
-- Getting file metadata  
+- Getting file metadata
 - Deleting files
 
 File content used in `Messages` requests are priced as input tokens. You can only download files created by [skills](/docs/en/build-with-claude/skills-guide) or the [code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool).

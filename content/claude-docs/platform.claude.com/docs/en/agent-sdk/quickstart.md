@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-02-05T04:17:54.782179Z
-sha256: 5cc5caff15dff8965b0d7de4a54f5cd19867fbdbc1c31d95c518bae2dfaf6200
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: ff9b483de44f6ff05334c58a4f2d117954a37076b46d9a6b60d3b66a6d11bd46
 ---
 
 # Quickstart
@@ -93,6 +93,7 @@ def calculate_average(numbers):
         total += num
     return total / len(numbers)
 
+
 def get_user_name(user):
     return user["name"].upper()
 ```
@@ -110,24 +111,26 @@ Create `agent.py` if you're using the Python SDK, or `agent.ts` for TypeScript:
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, AssistantMessage, ResultMessage
 
+
 async def main():
     # Agentic loop: streams messages as Claude works
     async for message in query(
         prompt="Review utils.py for bugs that would cause crashes. Fix any issues you find.",
         options=ClaudeAgentOptions(
             allowed_tools=["Read", "Edit", "Glob"],  # Tools Claude can use
-            permission_mode="acceptEdits"            # Auto-approve file edits
-        )
+            permission_mode="acceptEdits",  # Auto-approve file edits
+        ),
     ):
         # Print human-readable output
         if isinstance(message, AssistantMessage):
             for block in message.content:
                 if hasattr(block, "text"):
-                    print(block.text)              # Claude's reasoning
+                    print(block.text)  # Claude's reasoning
                 elif hasattr(block, "name"):
-                    print(f"Tool: {block.name}")   # Tool being called
+                    print(f"Tool: {block.name}")  # Tool being called
         elif isinstance(message, ResultMessage):
-            print(f"Done: {message.subtype}")      # Final result
+            print(f"Done: {message.subtype}")  # Final result
+
 
 asyncio.run(main())
 ```
@@ -139,17 +142,17 @@ import { query } from "@anthropic-ai/claude-agent-sdk";
 for await (const message of query({
   prompt: "Review utils.py for bugs that would cause crashes. Fix any issues you find.",
   options: {
-    allowedTools: ["Read", "Edit", "Glob"],  // Tools Claude can use
-    permissionMode: "acceptEdits"            // Auto-approve file edits
+    allowedTools: ["Read", "Edit", "Glob"], // Tools Claude can use
+    permissionMode: "acceptEdits" // Auto-approve file edits
   }
 })) {
   // Print human-readable output
   if (message.type === "assistant" && message.message?.content) {
     for (const block of message.message.content) {
       if ("text" in block) {
-        console.log(block.text);             // Claude's reasoning
+        console.log(block.text); // Claude's reasoning
       } else if ("name" in block) {
-        console.log(`Tool: ${block.name}`);  // Tool being called
+        console.log(`Tool: ${block.name}`); // Tool being called
       }
     }
   } else if (message.type === "result") {
@@ -220,9 +223,8 @@ You can modify your agent's behavior by changing the options. Here are a few exa
 
 <CodeGroup>
 ```python Python
-options=ClaudeAgentOptions(
-    allowed_tools=["Read", "Edit", "Glob", "WebSearch"],
-    permission_mode="acceptEdits"
+options = ClaudeAgentOptions(
+    allowed_tools=["Read", "Edit", "Glob", "WebSearch"], permission_mode="acceptEdits"
 )
 ```
 
@@ -238,10 +240,10 @@ options: {
 
 <CodeGroup>
 ```python Python
-options=ClaudeAgentOptions(
+options = ClaudeAgentOptions(
     allowed_tools=["Read", "Edit", "Glob"],
     permission_mode="acceptEdits",
-    system_prompt="You are a senior Python developer. Always follow PEP 8 style guidelines."
+    system_prompt="You are a senior Python developer. Always follow PEP 8 style guidelines.",
 )
 ```
 
@@ -258,9 +260,8 @@ options: {
 
 <CodeGroup>
 ```python Python
-options=ClaudeAgentOptions(
-    allowed_tools=["Read", "Edit", "Glob", "Bash"],
-    permission_mode="acceptEdits"
+options = ClaudeAgentOptions(
+    allowed_tools=["Read", "Edit", "Glob", "Bash"], permission_mode="acceptEdits"
 )
 ```
 

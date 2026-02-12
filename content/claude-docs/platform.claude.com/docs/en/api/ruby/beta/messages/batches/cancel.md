@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/cancel
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: a34ebdbf3f75ba112e4828eb1e8770d8040c27374d30103ba9f65e67e2ccacad
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 0cb68457a89f8bc76eb4d35f8e1db30ced6853a4448f46cbcbd1805def747b08
 ---
 
 ## Cancel
@@ -160,15 +160,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `:message_batch`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_message_batch = anthropic.beta.messages.batches.cancel("message_batch_id")
-
-puts(beta_message_batch)
-```

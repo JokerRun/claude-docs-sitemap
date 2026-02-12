@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: aaafe9fa4ad9705751363159fab00f7e470fcc0fbc8c9b1e7935b4aea843436e
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: d74852b6a23f35f057197ab471acc25497b9fb6d551e956a823ec44b31b600a7
 ---
 
 ## List
@@ -128,18 +128,3 @@ List Skill Versions
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-// Automatically fetches more pages as needed.
-for await (const versionListResponse of client.beta.skills.versions.list('skill_id')) {
-  console.log(versionListResponse.id);
-}
-```

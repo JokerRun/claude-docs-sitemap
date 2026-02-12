@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/count_tokens
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 19704e4238e4ad00c666a359b1cbb1e5b4334ace83f229a972afd17027b93b5c
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: f3cfc29ed7c221d528276900bc8549c422d25145f54179d549884b4a48143411
 ---
 
 ## Count Tokens
@@ -4187,18 +4187,3 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
   - `input_tokens: Integer`
 
     The total number of tokens across the provided list of messages, system prompt, and tools.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_message_tokens_count = anthropic.beta.messages.count_tokens(
-  messages: [{content: "string", role: :user}],
-  model: :"claude-opus-4-6"
-)
-
-puts(beta_message_tokens_count)
-```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/streaming-vs-single-mode
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 936bba60eba33a99bf858a981dc6c0ce9d8a0769a4269f68ad41b1d540599168
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 1329fa5f2042f005e0760fa21711379c04df9c162b0115e016721dc929eb28d9
 ---
 
 # Streaming Input
@@ -34,10 +34,10 @@ sequenceDiagram
     participant Agent as Claude Agent
     participant Tools as Tools/Hooks
     participant FS as Environment/<br/>File System
-    
+
     App->>Agent: Initialize with AsyncGenerator
     activate Agent
-    
+
     App->>Agent: Yield Message 1
     Agent->>Tools: Execute tools
     Tools->>FS: Read files
@@ -47,20 +47,20 @@ sequenceDiagram
     Agent-->>App: Stream partial response
     Agent-->>App: Stream more content...
     Agent->>App: Complete Message 1
-    
+
     App->>Agent: Yield Message 2 + Image
     Agent->>Tools: Process image & execute
     Tools->>FS: Access filesystem
     FS-->>Tools: Operation results
     Agent-->>App: Stream response 2
-    
+
     App->>Agent: Queue Message 3
     App->>Agent: Interrupt/Cancel
     Agent->>App: Handle interruption
-    
+
     Note over App,Agent: Session stays alive
     Note over Tools,FS: Persistent file system<br/>state maintained
-    
+
     deactivate Agent
 ```
 
@@ -93,7 +93,7 @@ sequenceDiagram
 
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
-import { readFileSync } from "fs";
+import { readFile } from "fs/promises";
 
 async function* generateMessages() {
   // First message
@@ -104,10 +104,10 @@ async function* generateMessages() {
       content: "Analyze this codebase for security issues"
     }
   };
-  
+
   // Wait for conditions or user input
   await new Promise(resolve => setTimeout(resolve, 2000));
-  
+
   // Follow-up with image
   yield {
     type: "user" as const,
@@ -123,7 +123,7 @@ async function* generateMessages() {
           source: {
             type: "base64",
             media_type: "image/png",
-            data: readFileSync("diagram.png", "base64")
+            data: await readFile("diagram.png", "base64")
           }
         }
       ]
@@ -146,9 +146,15 @@ for await (const message of query({
 ```
 
 ```python Python
-from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions, AssistantMessage, TextBlock
+from claude_agent_sdk import (
+    ClaudeSDKClient,
+    ClaudeAgentOptions,
+    AssistantMessage,
+    TextBlock,
+)
 import asyncio
 import base64
+
 
 async def streaming_analysis():
     async def message_generator():
@@ -157,8 +163,8 @@ async def streaming_analysis():
             "type": "user",
             "message": {
                 "role": "user",
-                "content": "Analyze this codebase for security issues"
-            }
+                "content": "Analyze this codebase for security issues",
+            },
         }
 
         # Wait for conditions
@@ -173,27 +179,21 @@ async def streaming_analysis():
             "message": {
                 "role": "user",
                 "content": [
-                    {
-                        "type": "text",
-                        "text": "Review this architecture diagram"
-                    },
+                    {"type": "text", "text": "Review this architecture diagram"},
                     {
                         "type": "image",
                         "source": {
                             "type": "base64",
                             "media_type": "image/png",
-                            "data": image_data
-                        }
-                    }
-                ]
-            }
+                            "data": image_data,
+                        },
+                    },
+                ],
+            },
         }
 
     # Use ClaudeSDKClient for streaming input
-    options = ClaudeAgentOptions(
-        max_turns=10,
-        allowed_tools=["Read", "Grep"]
-    )
+    options = ClaudeAgentOptions(max_turns=10, allowed_tools=["Read", "Grep"])
 
     async with ClaudeSDKClient(options) as client:
         # Send streaming input
@@ -205,6 +205,7 @@ async def streaming_analysis():
                 for block in message.content:
                     if isinstance(block, TextBlock):
                         print(block.text)
+
 
 asyncio.run(streaming_analysis())
 ```
@@ -272,14 +273,12 @@ for await (const message of query({
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 import asyncio
 
+
 async def single_message_example():
     # Simple one-shot query using query() function
     async for message in query(
         prompt="Explain the authentication flow",
-        options=ClaudeAgentOptions(
-            max_turns=1,
-            allowed_tools=["Read", "Grep"]
-        )
+        options=ClaudeAgentOptions(max_turns=1, allowed_tools=["Read", "Grep"]),
     ):
         if isinstance(message, ResultMessage):
             print(message.result)
@@ -287,13 +286,11 @@ async def single_message_example():
     # Continue conversation with session management
     async for message in query(
         prompt="Now explain the authorization process",
-        options=ClaudeAgentOptions(
-            continue_conversation=True,
-            max_turns=1
-        )
+        options=ClaudeAgentOptions(continue_conversation=True, max_turns=1),
     ):
         if isinstance(message, ResultMessage):
             print(message.result)
+
 
 asyncio.run(single_message_example())
 ```

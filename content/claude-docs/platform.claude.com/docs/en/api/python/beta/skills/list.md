@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: afea23c50a9d620043cabb5ae2f14a087a383dafdda7a762eeb79cdb1ed3603c
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 3f52ccbe3d79701053bd3ad1f19179b5820e0ea1759900e2aab1ce172b0801d4
 ---
 
 ## List
@@ -40,9 +40,9 @@ List Skills
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -128,17 +128,3 @@ List Skills
   - `updated_at: str`
 
     ISO 8601 timestamp of when the skill was last updated.
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-page = client.beta.skills.list()
-page = page.data[0]
-print(page.id)
-```

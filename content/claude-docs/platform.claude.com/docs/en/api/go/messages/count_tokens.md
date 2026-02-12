@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/count_tokens
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 4ceff58399bb2b59b3a80893d2eb1ed5e7ebe9389e89748cee95ea1cfb6b2ce9
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 770ebf3c5a3d65f727056bc4e4a5484079e5bc00bb808ffefeba224db17b7b73
 ---
 
 ## Count Tokens
@@ -1944,38 +1944,3 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
   - `InputTokens int64`
 
     The total number of tokens across the provided list of messages, system prompt, and tools.
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  messageTokensCount, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-    Messages: []anthropic.MessageParam{anthropic.MessageParam{
-      Content: []anthropic.ContentBlockParamUnion{anthropic.ContentBlockParamUnion{
-        OfText: &anthropic.TextBlockParam{
-          Text: "x",
-        },
-      }},
-      Role: anthropic.MessageParamRoleUser,
-    }},
-    Model: anthropic.ModelClaudeOpus4_6,
-  })
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", messageTokensCount.InputTokens)
-}
-```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: ebcc593fba18290ddce3ff3c856457929580538c4929047dff2a7a71b972e9dd
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: c63c07bb23478b224d18589901b27085e53f4322a6ada57bc0cee090acfcbe69
 ---
 
 # Skill authoring best practices
@@ -855,13 +855,13 @@ def process_file(path):
     except FileNotFoundError:
         # Create file with default content instead of failing
         print(f"File {path} not found, creating default")
-        with open(path, 'w') as f:
-            f.write('')
-        return ''
+        with open(path, "w") as f:
+            f.write("")
+        return ""
     except PermissionError:
         # Provide alternative instead of failing
         print(f"Cannot access {path}, using default")
-        return ''
+        return ""
 ```
 
 **Bad example: Punt to Claude**:
@@ -887,7 +887,7 @@ MAX_RETRIES = 3
 **Bad example: Magic numbers**:
 ```python
 TIMEOUT = 47  # Why 47?
-RETRIES = 5   # Why 5?
+RETRIES = 5  # Why 5?
 ```
 
 ### Provide utility scripts

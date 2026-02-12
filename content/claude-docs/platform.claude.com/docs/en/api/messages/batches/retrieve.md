@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/retrieve
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 8b771332536ec16e9b397153a1239441d453fc8e0b45adf98eea45cac14b5148
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 2d8c916bbe8ce28246d2a7c2348876f9544cbca6a27eb9db6507d801d6987b48
 ---
 
 ## Retrieve
@@ -108,11 +108,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```

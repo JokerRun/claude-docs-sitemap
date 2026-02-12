@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: d7f246d78a008faa5b9ddb96df72deee884ce112d139bee345c5357a9a3a8e57
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: b3cc3073c464991289095006d5834f625c253fd000e58da8210c18ec75d6332e
 ---
 
 ## Create
@@ -103,13 +103,3 @@ Create Skill
 - `updated_at: string`
 
   ISO 8601 timestamp of when the skill was last updated.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/skills \
-    -X POST \
-    -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: skills-2025-10-02' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```

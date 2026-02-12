@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/zero-data-retention
-fetched_at: 2026-02-04T04:12:50.357302Z
-sha256: e3bef4a7cad0316969d50e17c3a6519180a257413c086305c4dcb3edddf0cd19
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 9dc4e6d77ae907458748a350287f59b6f4efec24f03781750831b178f68d6ca6
 ---
 
 # Zero Data Retention (ZDR)
@@ -14,7 +14,7 @@ Learn about Anthropic's Zero Data Retention (ZDR) policy, including which API en
 This page provides a list of which API endpoints and features are ZDR-eligible and which are not.
 
 <Note>
-Information about Anthropic's standard retention policies are set out in [Anthropic's commercial data retention policy](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) and [consumer data retention policy](https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data). 
+Information about Anthropic's standard retention policies are set out in [Anthropic's commercial data retention policy](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) and [consumer data retention policy](https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data).
 
 Zero Data Retention (ZDR) is Anthropic's commitment to ensuring that customer data submitted through certain API endpoints is not stored after the API response is returned except where needed to comply with law or combat misuse, as outlined in a customer's arrangements with Anthropic. Subject to these exceptions, when using ZDR-enabled endpoints, your data is processed in real-time and immediately discarded, with no logging or storage of prompts or outputs.
 </Note>

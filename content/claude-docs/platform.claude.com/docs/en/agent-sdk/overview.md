@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/overview
-fetched_at: 2026-02-05T04:17:54.782179Z
-sha256: a08acfd138b3b66d5e7eebb99e5ae3aabd23630909139dc943c545548f036181
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: dcab76d6791198e9ec32e4758d97a8f468eb773179e8427ed11f46ce204cd100
 ---
 
 # Agent SDK overview
@@ -22,12 +22,14 @@ Build AI agents that autonomously read files, run commands, search the web, edit
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions
 
+
 async def main():
     async for message in query(
         prompt="Find and fix the bug in auth.py",
-        options=ClaudeAgentOptions(allowed_tools=["Read", "Edit", "Bash"])
+        options=ClaudeAgentOptions(allowed_tools=["Read", "Edit", "Bash"]),
     ):
         print(message)  # Claude reads the file, finds the bug, edits it
+
 
 asyncio.run(main())
 ```
@@ -39,7 +41,7 @@ for await (const message of query({
   prompt: "Find and fix the bug in auth.py",
   options: { allowedTools: ["Read", "Edit", "Bash"] }
 })) {
-  console.log(message);  // Claude reads the file, finds the bug, edits it
+  console.log(message); // Claude reads the file, finds the bug, edits it
 }
 ```
 </CodeGroup>
@@ -99,13 +101,15 @@ The Agent SDK includes built-in tools for reading files, running commands, and e
     import asyncio
     from claude_agent_sdk import query, ClaudeAgentOptions
 
+
     async def main():
         async for message in query(
             prompt="What files are in this directory?",
-            options=ClaudeAgentOptions(allowed_tools=["Bash", "Glob"])
+            options=ClaudeAgentOptions(allowed_tools=["Bash", "Glob"]),
         ):
             if hasattr(message, "result"):
                 print(message.result)
+
 
     asyncio.run(main())
     ```
@@ -115,7 +119,7 @@ The Agent SDK includes built-in tools for reading files, running commands, and e
 
     for await (const message of query({
       prompt: "What files are in this directory?",
-      options: { allowedTools: ["Bash", "Glob"] },
+      options: { allowedTools: ["Bash", "Glob"] }
     })) {
       if ("result" in message) console.log(message.result);
     }
@@ -153,13 +157,15 @@ Everything that makes Claude Code powerful is available in the SDK:
     import asyncio
     from claude_agent_sdk import query, ClaudeAgentOptions
 
+
     async def main():
         async for message in query(
             prompt="Find all TODO comments and create a summary",
-            options=ClaudeAgentOptions(allowed_tools=["Read", "Glob", "Grep"])
+            options=ClaudeAgentOptions(allowed_tools=["Read", "Glob", "Grep"]),
         ):
             if hasattr(message, "result"):
                 print(message.result)
+
 
     asyncio.run(main())
     ```
@@ -190,11 +196,13 @@ Everything that makes Claude Code powerful is available in the SDK:
     from datetime import datetime
     from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher
 
+
     async def log_file_change(input_data, tool_use_id, context):
-        file_path = input_data.get('tool_input', {}).get('file_path', 'unknown')
-        with open('./audit.log', 'a') as f:
+        file_path = input_data.get("tool_input", {}).get("file_path", "unknown")
+        with open("./audit.log", "a") as f:
             f.write(f"{datetime.now()}: modified {file_path}\n")
         return {}
+
 
     async def main():
         async for message in query(
@@ -202,23 +210,26 @@ Everything that makes Claude Code powerful is available in the SDK:
             options=ClaudeAgentOptions(
                 permission_mode="acceptEdits",
                 hooks={
-                    "PostToolUse": [HookMatcher(matcher="Edit|Write", hooks=[log_file_change])]
-                }
-            )
+                    "PostToolUse": [
+                        HookMatcher(matcher="Edit|Write", hooks=[log_file_change])
+                    ]
+                },
+            ),
         ):
             if hasattr(message, "result"):
                 print(message.result)
+
 
     asyncio.run(main())
     ```
 
     ```typescript TypeScript
     import { query, HookCallback } from "@anthropic-ai/claude-agent-sdk";
-    import { appendFileSync } from "fs";
+    import { appendFile } from "fs/promises";
 
     const logFileChange: HookCallback = async (input) => {
       const filePath = (input as any).tool_input?.file_path ?? "unknown";
-      appendFileSync("./audit.log", `${new Date().toISOString()}: modified ${filePath}\n`);
+      await appendFile("./audit.log", `${new Date().toISOString()}: modified ${filePath}\n`);
       return {};
     };
 
@@ -248,6 +259,7 @@ Everything that makes Claude Code powerful is available in the SDK:
     import asyncio
     from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
 
+
     async def main():
         async for message in query(
             prompt="Use the code-reviewer agent to review this codebase",
@@ -257,13 +269,14 @@ Everything that makes Claude Code powerful is available in the SDK:
                     "code-reviewer": AgentDefinition(
                         description="Expert code reviewer for quality and security reviews.",
                         prompt="Analyze code quality and suggest improvements.",
-                        tools=["Read", "Glob", "Grep"]
+                        tools=["Read", "Glob", "Grep"],
                     )
-                }
-            )
+                },
+            ),
         ):
             if hasattr(message, "result"):
                 print(message.result)
+
 
     asyncio.run(main())
     ```
@@ -303,6 +316,7 @@ Everything that makes Claude Code powerful is available in the SDK:
     import asyncio
     from claude_agent_sdk import query, ClaudeAgentOptions
 
+
     async def main():
         async for message in query(
             prompt="Open example.com and describe what you see",
@@ -310,10 +324,11 @@ Everything that makes Claude Code powerful is available in the SDK:
                 mcp_servers={
                     "playwright": {"command": "npx", "args": ["@playwright/mcp@latest"]}
                 }
-            )
+            ),
         ):
             if hasattr(message, "result"):
                 print(message.result)
+
 
     asyncio.run(main())
     ```
@@ -350,16 +365,17 @@ Everything that makes Claude Code powerful is available in the SDK:
     import asyncio
     from claude_agent_sdk import query, ClaudeAgentOptions
 
+
     async def main():
         async for message in query(
             prompt="Review this code for best practices",
             options=ClaudeAgentOptions(
-                allowed_tools=["Read", "Glob", "Grep"],
-                permission_mode="bypassPermissions"
-            )
+                allowed_tools=["Read", "Glob", "Grep"], permission_mode="bypassPermissions"
+            ),
         ):
             if hasattr(message, "result"):
                 print(message.result)
+
 
     asyncio.run(main())
     ```
@@ -391,24 +407,26 @@ Everything that makes Claude Code powerful is available in the SDK:
     import asyncio
     from claude_agent_sdk import query, ClaudeAgentOptions
 
+
     async def main():
         session_id = None
 
         # First query: capture the session ID
         async for message in query(
             prompt="Read the authentication module",
-            options=ClaudeAgentOptions(allowed_tools=["Read", "Glob"])
+            options=ClaudeAgentOptions(allowed_tools=["Read", "Glob"]),
         ):
-            if hasattr(message, 'subtype') and message.subtype == 'init':
+            if hasattr(message, "subtype") and message.subtype == "init":
                 session_id = message.session_id
 
         # Resume with full context from the first query
         async for message in query(
             prompt="Now find all places that call it",  # "it" = auth module
-            options=ClaudeAgentOptions(resume=session_id)
+            options=ClaudeAgentOptions(resume=session_id),
         ):
             if hasattr(message, "result"):
                 print(message.result)
+
 
     asyncio.run(main())
     ```
@@ -430,7 +448,7 @@ Everything that makes Claude Code powerful is available in the SDK:
 
     // Resume with full context from the first query
     for await (const message of query({
-      prompt: "Now find all places that call it",  // "it" = auth module
+      prompt: "Now find all places that call it", // "it" = auth module
       options: { resume: sessionId }
     })) {
       if ("result" in message) console.log(message.result);
@@ -469,7 +487,7 @@ The Claude platform offers multiple ways to build with Claude. Here's how the Ag
     response = client.messages.create(...)
     while response.stop_reason == "tool_use":
         result = your_tool_executor(response.tool_use)
-        response = client.messages.create(tool_result=result, ...)
+        response = client.messages.create(tool_result=result, **params)
 
     # Agent SDK: Claude handles tools autonomously
     async for message in query(prompt="Fix the bug in auth.py"):
@@ -478,10 +496,10 @@ The Claude platform offers multiple ways to build with Claude. Here's how the Ag
 
     ```typescript TypeScript
     // Client SDK: You implement the tool loop
-    let response = await client.messages.create({...});
+    let response = await client.messages.create({ ...params });
     while (response.stop_reason === "tool_use") {
       const result = yourToolExecutor(response.tool_use);
-      response = await client.messages.create({ tool_result: result, ... });
+      response = await client.messages.create({ tool_result: result, ...params });
     }
 
     // Agent SDK: Claude handles tools autonomously

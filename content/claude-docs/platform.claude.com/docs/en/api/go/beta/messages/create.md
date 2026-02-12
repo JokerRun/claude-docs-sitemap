@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 34d7179cc7246b2a2450cbb6885a422d2390224381d398911bbd58ddc5c21edd
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 30109c634942c7c8d3d64af7a7ed83f765b708551487b0b00fdbae4ec7a19843
 ---
 
 ## Create
@@ -5073,39 +5073,3 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `const BetaUsageSpeedStandard BetaUsageSpeed = "standard"`
 
       - `const BetaUsageSpeedFast BetaUsageSpeed = "fast"`
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  betaMessage, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-    MaxTokens: 1024,
-    Messages: []anthropic.BetaMessageParam{anthropic.BetaMessageParam{
-      Content: []anthropic.BetaContentBlockParamUnion{anthropic.BetaContentBlockParamUnion{
-        OfText: &anthropic.BetaTextBlockParam{
-          Text: "x",
-        },
-      }},
-      Role: anthropic.BetaMessageParamRoleUser,
-    }},
-    Model: anthropic.ModelClaudeOpus4_6,
-  })
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", betaMessage.ID)
-}
-```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 80f2e7074ed48bca5af6314a678979583fe75e5c44b1842233c76eb2802a5d2b
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: bfe0413f6ee14adc6344af0652a86d05a4606ba449f85463db9e5828032b94e2
 ---
 
 # Messages
@@ -2433,42 +2433,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `const UsageServiceTierBatch UsageServiceTier = "batch"`
 
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-    MaxTokens: 1024,
-    Messages: []anthropic.MessageParam{anthropic.MessageParam{
-      Content: []anthropic.ContentBlockParamUnion{anthropic.ContentBlockParamUnion{
-        OfText: &anthropic.TextBlockParam{
-          Text: "x",
-        },
-      }},
-      Role: anthropic.MessageParamRoleUser,
-    }},
-    Model: anthropic.ModelClaudeOpus4_6,
-  })
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", message.ID)
-}
-```
-
 ## Count Tokens
 
 `client.Messages.CountTokens(ctx, body) (*MessageTokensCount, error)`
@@ -4408,41 +4372,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
   - `InputTokens int64`
 
     The total number of tokens across the provided list of messages, system prompt, and tools.
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  messageTokensCount, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-    Messages: []anthropic.MessageParam{anthropic.MessageParam{
-      Content: []anthropic.ContentBlockParamUnion{anthropic.ContentBlockParamUnion{
-        OfText: &anthropic.TextBlockParam{
-          Text: "x",
-        },
-      }},
-      Role: anthropic.MessageParamRoleUser,
-    }},
-    Model: anthropic.ModelClaudeOpus4_6,
-  })
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", messageTokensCount.InputTokens)
-}
-```
 
 ## Domain Types
 
@@ -15993,47 +15922,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `const MessageBatchMessageBatch MessageBatch = "message_batch"`
 
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  messageBatch, err := client.Messages.Batches.New(context.TODO(), anthropic.MessageBatchNewParams{
-    Requests: []anthropic.MessageBatchNewParamsRequest{anthropic.MessageBatchNewParamsRequest{
-      CustomID: "my-custom-id-1",
-      Params: anthropic.MessageBatchNewParamsRequestParams{
-        MaxTokens: 1024,
-        Messages: []anthropic.MessageParam{anthropic.MessageParam{
-          Content: []anthropic.ContentBlockParamUnion{anthropic.ContentBlockParamUnion{
-            OfText: &anthropic.TextBlockParam{
-              Text: "x",
-            },
-          }},
-          Role: anthropic.MessageParamRoleUser,
-        }},
-        Model: anthropic.ModelClaudeOpus4_6,
-      },
-    }},
-  })
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", messageBatch.ID)
-}
-```
-
 ## Retrieve
 
 `client.Messages.Batches.Get(ctx, messageBatchID) (*MessageBatch, error)`
@@ -16139,31 +16027,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `const MessageBatchMessageBatch MessageBatch = "message_batch"`
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  messageBatch, err := client.Messages.Batches.Get(context.TODO(), "message_batch_id")
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", messageBatch.ID)
-}
-```
 
 ## List
 
@@ -16283,33 +16146,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `const MessageBatchMessageBatch MessageBatch = "message_batch"`
 
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  page, err := client.Messages.Batches.List(context.TODO(), anthropic.MessageBatchListParams{
-
-  })
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", page)
-}
-```
-
 ## Cancel
 
 `client.Messages.Batches.Cancel(ctx, messageBatchID) (*MessageBatch, error)`
@@ -16418,31 +16254,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `const MessageBatchMessageBatch MessageBatch = "message_batch"`
 
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  messageBatch, err := client.Messages.Batches.Cancel(context.TODO(), "message_batch_id")
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", messageBatch.ID)
-}
-```
-
 ## Delete
 
 `client.Messages.Batches.Delete(ctx, messageBatchID) (*DeletedMessageBatch, error)`
@@ -16476,31 +16287,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch_deleted"`.
 
     - `const MessageBatchDeletedMessageBatchDeleted MessageBatchDeleted = "message_batch_deleted"`
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  deletedMessageBatch, err := client.Messages.Batches.Delete(context.TODO(), "message_batch_id")
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", deletedMessageBatch.ID)
-}
-```
 
 ## Results
 
@@ -17077,31 +16863,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `Type Expired`
 
         - `const ExpiredExpired Expired = "expired"`
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  stream := client.Messages.Batches.ResultsStreaming(context.TODO(), "message_batch_id")
-  if stream.Err() != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", messageBatchIndividualResponse.CustomID)
-}
-```
 
 ## Domain Types
 

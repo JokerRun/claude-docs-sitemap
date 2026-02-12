@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 24df2a0f329ef93b9403bfa1f28f4067a852e25921179e1b1a910a7bd87fdbf0
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: f0e97a2c3aa086d75b12509d47faba2ee7324932ca0c785ead4e4c9a9a22b3d7
 ---
 
 # Messages
@@ -5412,22 +5412,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:fast`
 
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_message = anthropic.beta.messages.create(
-  max_tokens: 1024,
-  messages: [{content: "Hello, world", role: :user}],
-  model: :"claude-opus-4-6"
-)
-
-puts(beta_message)
-```
-
 ## Count Tokens
 
 `beta.messages.count_tokens(**kwargs) -> BetaMessageTokensCount`
@@ -9610,21 +9594,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
   - `input_tokens: Integer`
 
     The total number of tokens across the provided list of messages, system prompt, and tools.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_message_tokens_count = anthropic.beta.messages.count_tokens(
-  messages: [{content: "string", role: :user}],
-  model: :"claude-opus-4-6"
-)
-
-puts(beta_message_tokens_count)
-```
 
 ## Domain Types
 
@@ -34396,25 +34365,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `:message_batch`
 
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_message_batch = anthropic.beta.messages.batches.create(
-  requests: [
-    {
-      custom_id: "my-custom-id-1",
-      params: {max_tokens: 1024, messages: [{content: "Hello, world", role: :user}], model: :"claude-opus-4-6"}
-    }
-  ]
-)
-
-puts(beta_message_batch)
-```
-
 ## Retrieve
 
 `beta.messages.batches.retrieve(message_batch_id, **kwargs) -> BetaMessageBatch`
@@ -34568,18 +34518,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `:message_batch`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_message_batch = anthropic.beta.messages.batches.retrieve("message_batch_id")
-
-puts(beta_message_batch)
-```
 
 ## List
 
@@ -34745,18 +34683,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `:message_batch`
 
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-page = anthropic.beta.messages.batches.list
-
-puts(page)
-```
-
 ## Cancel
 
 `beta.messages.batches.cancel(message_batch_id, **kwargs) -> BetaMessageBatch`
@@ -34913,18 +34839,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `:message_batch`
 
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_message_batch = anthropic.beta.messages.batches.cancel("message_batch_id")
-
-puts(beta_message_batch)
-```
-
 ## Delete
 
 `beta.messages.batches.delete(message_batch_id, **kwargs) -> BetaDeletedMessageBatch`
@@ -35006,18 +34920,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch_deleted"`.
 
     - `:message_batch_deleted`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_deleted_message_batch = anthropic.beta.messages.batches.delete("message_batch_id")
-
-puts(beta_deleted_message_batch)
-```
 
 ## Results
 
@@ -36334,18 +36236,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `type: :expired`
 
         - `:expired`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_message_batch_individual_response = anthropic.beta.messages.batches.results("message_batch_id")
-
-puts(beta_message_batch_individual_response)
-```
 
 ## Domain Types
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/count_tokens
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 9ba2b91650867ad2e1719e9ad58fe9c739038b68c984332c536631a517b7c829
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: d03c3aa6960597eccaa59af63a40918eb57dff35842dcd2b2db22aae63bdebd3
 ---
 
 ## Count Tokens
@@ -72,9 +72,9 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `content: Union[str, List[BetaContentBlockParam]]`
 
-    - `ContentUnionMember0 = str`
+    - `str`
 
-    - `ContentUnionMember1 = List[BetaContentBlockParam]`
+    - `List[BetaContentBlockParam]`
 
       - `class BetaTextBlockParam: …`
 
@@ -286,9 +286,9 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             - `content: Union[str, List[BetaContentBlockSourceContent]]`
 
-              - `ContentUnionMember0 = str`
+              - `str`
 
-              - `ContentBetaContentBlockSourceContent = List[BetaContentBlockSourceContent]`
+              - `List[BetaContentBlockSourceContent]`
 
                 - `class BetaTextBlockParam: …`
 
@@ -781,9 +781,9 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `content: Optional[Union[str, List[Content], null]]`
 
-          - `ContentUnionMember0 = str`
+          - `str`
 
-          - `Content = List[Content]`
+          - `List[Content]`
 
             - `class BetaTextBlockParam: …`
 
@@ -1145,9 +1145,9 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                   - `content: Union[str, List[BetaContentBlockSourceContent]]`
 
-                    - `ContentUnionMember0 = str`
+                    - `str`
 
-                    - `ContentBetaContentBlockSourceContent = List[BetaContentBlockSourceContent]`
+                    - `List[BetaContentBlockSourceContent]`
 
                       - `class BetaTextBlockParam: …`
 
@@ -1492,7 +1492,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `content: BetaWebSearchToolResultBlockParamContent`
 
-          - `ResultBlock = List[BetaWebSearchResultBlockParam]`
+          - `List[BetaWebSearchResultBlockParam]`
 
             - `encrypted_content: str`
 
@@ -1617,9 +1617,9 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                   - `content: Union[str, List[BetaContentBlockSourceContent]]`
 
-                    - `ContentUnionMember0 = str`
+                    - `str`
 
-                    - `ContentBetaContentBlockSourceContent = List[BetaContentBlockSourceContent]`
+                    - `List[BetaContentBlockSourceContent]`
 
                       - `class BetaTextBlockParam: …`
 
@@ -2292,9 +2292,9 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `content: Optional[Union[str, List[BetaTextBlockParam], null]]`
 
-          - `ContentUnionMember0 = str`
+          - `str`
 
-          - `ContentBetaMCPToolResultBlockParamContent = List[BetaTextBlockParam]`
+          - `List[BetaTextBlockParam]`
 
             - `text: str`
 
@@ -2496,7 +2496,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+  - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
     The model that will complete your prompt.
 
@@ -2608,7 +2608,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       Our previous most fast and cost-effective
 
-  - `UnionMember1 = str`
+  - `str`
 
 - `context_management: Optional[BetaContextManagementConfigParam]`
 
@@ -2640,9 +2640,9 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         Whether to clear all tool inputs (bool) or specific tool inputs to clear (list)
 
-        - `ClearToolInputsUnionMember0 = bool`
+        - `bool`
 
-        - `ClearToolInputsUnionMember1 = List[str]`
+        - `List[str]`
 
       - `exclude_tools: Optional[List[str]]`
 
@@ -2702,7 +2702,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             - `"all"`
 
-        - `KeepUnionMember2 = Literal["all"]`
+        - `Literal["all"]`
 
           - `"all"`
 
@@ -2804,9 +2804,9 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See our [guide to system prompts](https://docs.claude.com/en/docs/system-prompts).
 
-  - `SystemUnionMember0 = str`
+  - `str`
 
-  - `SystemUnionMember1 = Iterable[BetaTextBlockParam]`
+  - `Iterable[BetaTextBlockParam]`
 
     - `text: str`
 
@@ -4150,9 +4150,9 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -4209,22 +4209,3 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
   - `input_tokens: int`
 
     The total number of tokens across the provided list of messages, system prompt, and tools.
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-beta_message_tokens_count = client.beta.messages.count_tokens(
-    messages=[{
-        "content": "string",
-        "role": "user",
-    }],
-    model="claude-opus-4-6",
-)
-print(beta_message_tokens_count.context_management)
-```

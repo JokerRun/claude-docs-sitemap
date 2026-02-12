@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/cost_report
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: f831b8f8aa1953c1c59eb1662a5e611c332ed900e56d4a47d5576a412a7c0b2f
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 86544e6392cdf3c8e7afc874dc569db4980a4abab7e0e296fa15c5ea457bce3e
 ---
 
 # Cost Report
@@ -153,14 +153,6 @@ Get Cost Report
   - `next_page: string`
 
     Token to provide in as `page` in the subsequent request to retrieve the next page of data.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/organizations/cost_report \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
-```
 
 ## Domain Types
 

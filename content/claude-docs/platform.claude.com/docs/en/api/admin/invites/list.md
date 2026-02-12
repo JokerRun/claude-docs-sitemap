@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 1a6be1c732b0b73bba86862b661514b55425037c35f41a0b6066f9021d60bf44
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: d487ad768c8b8b9bf0a5d3916d209d10d14d78b9124a0385fabf3a99543724d2
 ---
 
 ## List
@@ -94,11 +94,3 @@ List Invites
 - `last_id: string`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/organizations/invites \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
-```

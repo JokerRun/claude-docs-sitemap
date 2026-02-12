@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: f3343c222f79d542e422f894e2d4c46293955a082f24c6367943255c643688d4
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 0687980f43a904c1c074f6fad5bbe6d940d42e64edb6b70d795c6f538a3f119c
 ---
 
 ## List
@@ -142,12 +142,3 @@ List Skills
   Token for fetching the next page of results.
 
   If `null`, there are no more results available. Pass this value to the `page_token` parameter in the next request to get the next page.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/skills \
-    -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: skills-2025-10-02' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```

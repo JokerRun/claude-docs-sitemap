@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 3b2e1edf85493cba1b3b5b194263f8954f2dfd9faf7b4a100a9bcff61d20ca81
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 9f6137ba3440eb3edbbd7007062ee885ab392623a1df1ee0646f09fd7a9676f8
 ---
 
 # Models
@@ -103,27 +103,6 @@ The Models API response can be used to determine which models are available for 
 
     - `MODEL("model")`
 
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.models.ModelListPage;
-import com.anthropic.models.models.ModelListParams;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        ModelListPage page = client.models().list();
-    }
-}
-```
-
 ## Retrieve
 
 `ModelInfo models().retrieve(ModelRetrieveParamsparams = ModelRetrieveParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
@@ -209,27 +188,6 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `MODEL("model")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.models.ModelInfo;
-import com.anthropic.models.models.ModelRetrieveParams;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        ModelInfo modelInfo = client.models().retrieve("model_id");
-    }
-}
-```
 
 ## Domain Types
 

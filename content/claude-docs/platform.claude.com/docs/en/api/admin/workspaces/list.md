@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/list
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: db96be5b4c56586a3e8fc2c32c51e79cfa86859b7e4aea059d32b86c4a79c3c8
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 9b8d2b08dbb044bcbf43186e969babfee9c618462f776b7d3d93f779522f4969
 ---
 
 ## List
@@ -96,11 +96,3 @@ List Workspaces
 - `last_id: string`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/organizations/workspaces \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
-```

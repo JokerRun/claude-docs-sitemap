@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 6061341e22b5ee90219c2bcfa571ce89d330da09e513880f5a8988e10f40a30d
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 2ae5612a3b90ba7e1d92af39fb63021bd961ee08ec2dcf253a09c3643ad15770
 ---
 
 ## Create
@@ -92,15 +92,3 @@ Create Workspace
     For Workspaces, this is always `"workspace"`.
 
     - `"workspace"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/organizations/workspaces \
-    -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
-    -d '{
-          "name": "x"
-        }'
-```

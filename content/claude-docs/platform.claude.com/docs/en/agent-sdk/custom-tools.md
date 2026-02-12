@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/custom-tools
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: d018c41eb7ff39ed00e26943858ac89e386b78c683a2a78b1432875e68023413
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 8916d944d9867b7ff868caa45fd1f98adf2a1dbe5b64557bcd55b67ac2706ecb
 ---
 
 # Custom Tools
@@ -52,12 +52,22 @@ const customServer = createSdkMcpServer({
 ```
 
 ```python Python
-from claude_agent_sdk import tool, create_sdk_mcp_server, ClaudeSDKClient, ClaudeAgentOptions
+from claude_agent_sdk import (
+    tool,
+    create_sdk_mcp_server,
+    ClaudeSDKClient,
+    ClaudeAgentOptions,
+)
 from typing import Any
 import aiohttp
 
+
 # Define a custom tool using the @tool decorator
-@tool("get_weather", "Get current temperature for a location using coordinates", {"latitude": float, "longitude": float})
+@tool(
+    "get_weather",
+    "Get current temperature for a location using coordinates",
+    {"latitude": float, "longitude": float},
+)
 async def get_weather(args: dict[str, Any]) -> dict[str, Any]:
     # Call weather API
     async with aiohttp.ClientSession() as session:
@@ -67,17 +77,20 @@ async def get_weather(args: dict[str, Any]) -> dict[str, Any]:
             data = await response.json()
 
     return {
-        "content": [{
-            "type": "text",
-            "text": f"Temperature: {data['current']['temperature_2m']}°F"
-        }]
+        "content": [
+            {
+                "type": "text",
+                "text": f"Temperature: {data['current']['temperature_2m']}°F",
+            }
+        ]
     }
+
 
 # Create an SDK MCP server with the custom tool
 custom_server = create_sdk_mcp_server(
     name="my-custom-tools",
     version="1.0.0",
-    tools=[get_weather]  # Pass the decorated function
+    tools=[get_weather],  # Pass the decorated function
 )
 ```
 
@@ -118,14 +131,14 @@ async function* generateMessages() {
 }
 
 for await (const message of query({
-  prompt: generateMessages(),  // Use async generator for streaming input
+  prompt: generateMessages(), // Use async generator for streaming input
   options: {
     mcpServers: {
-      "my-custom-tools": customServer  // Pass as object/dictionary, not array
+      "my-custom-tools": customServer // Pass as object/dictionary, not array
     },
     // Optionally specify which tools Claude can use
     allowedTools: [
-      "mcp__my-custom-tools__get_weather",  // Allow the weather tool
+      "mcp__my-custom-tools__get_weather" // Allow the weather tool
       // Add other tools as needed
     ],
     maxTurns: 3
@@ -147,8 +160,9 @@ options = ClaudeAgentOptions(
     allowed_tools=[
         "mcp__my-custom-tools__get_weather",  # Allow the weather tool
         # Add other tools as needed
-    ]
+    ],
 )
+
 
 async def main():
     async with ClaudeSDKClient(options=options) as client:
@@ -157,6 +171,7 @@ async def main():
         # Extract and print response
         async for msg in client.receive_response():
             print(msg)
+
 
 asyncio.run(main())
 ```
@@ -192,14 +207,14 @@ async function* generateMessages() {
 }
 
 for await (const message of query({
-  prompt: generateMessages(),  // Use async generator for streaming input
+  prompt: generateMessages(), // Use async generator for streaming input
   options: {
     mcpServers: {
       utilities: multiToolServer
     },
     allowedTools: [
-      "mcp__utilities__calculate",   // Allow calculator
-      "mcp__utilities__translate",   // Allow translator
+      "mcp__utilities__calculate", // Allow calculator
+      "mcp__utilities__translate" // Allow translator
       // "mcp__utilities__search_web" is NOT allowed
     ]
   }
@@ -209,9 +224,15 @@ for await (const message of query({
 ```
 
 ```python Python
-from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions, tool, create_sdk_mcp_server
+from claude_agent_sdk import (
+    ClaudeSDKClient,
+    ClaudeAgentOptions,
+    tool,
+    create_sdk_mcp_server,
+)
 from typing import Any
 import asyncio
+
 
 # Define multiple tools using the @tool decorator
 @tool("calculate", "Perform calculations", {"expression": str})
@@ -219,21 +240,27 @@ async def calculate(args: dict[str, Any]) -> dict[str, Any]:
     result = eval(args["expression"])  # Use safe eval in production
     return {"content": [{"type": "text", "text": f"Result: {result}"}]}
 
+
 @tool("translate", "Translate text", {"text": str, "target_lang": str})
 async def translate(args: dict[str, Any]) -> dict[str, Any]:
     # Translation logic here
     return {"content": [{"type": "text", "text": f"Translated: {args['text']}"}]}
 
+
 @tool("search_web", "Search the web", {"query": str})
 async def search_web(args: dict[str, Any]) -> dict[str, Any]:
     # Search logic here
-    return {"content": [{"type": "text", "text": f"Search results for: {args['query']}"}]}
+    return {
+        "content": [{"type": "text", "text": f"Search results for: {args['query']}"}]
+    }
+
 
 multi_tool_server = create_sdk_mcp_server(
     name="utilities",
     version="1.0.0",
-    tools=[calculate, translate, search_web]  # Pass decorated functions
+    tools=[calculate, translate, search_web],  # Pass decorated functions
 )
+
 
 # Allow only specific tools with streaming input
 async def message_generator():
@@ -241,22 +268,23 @@ async def message_generator():
         "type": "user",
         "message": {
             "role": "user",
-            "content": "Calculate 5 + 3 and translate 'hello' to Spanish"
-        }
+            "content": "Calculate 5 + 3 and translate 'hello' to Spanish",
+        },
     }
+
 
 async for message in query(
     prompt=message_generator(),  # Use async generator for streaming input
     options=ClaudeAgentOptions(
         mcp_servers={"utilities": multi_tool_server},
         allowed_tools=[
-            "mcp__utilities__calculate",   # Allow calculator
-            "mcp__utilities__translate",   # Allow translator
+            "mcp__utilities__calculate",  # Allow calculator
+            "mcp__utilities__translate",  # Allow translator
             # "mcp__utilities__search_web" is NOT allowed
-        ]
-    )
+        ],
+    ),
 ):
-    if hasattr(message, 'result'):
+    if hasattr(message, "result"):
         print(message.result)
 ```
 
@@ -288,7 +316,7 @@ tool(
     // args is fully typed based on the schema
     // TypeScript knows: args.data.name is string, args.data.age is number, etc.
     console.log(`Processing ${args.data.name}'s data as ${args.format}`);
-    
+
     // Your processing logic here
     return {
       content: [{
@@ -297,11 +325,12 @@ tool(
       }]
     };
   }
-)
+);
 ```
 
 ```python Python
 from typing import Any
+
 
 # Simple type mapping - recommended for most cases
 @tool(
@@ -311,8 +340,8 @@ from typing import Any
         "name": str,
         "age": int,
         "email": str,
-        "preferences": list  # Optional parameters can be handled in the function
-    }
+        "preferences": list,  # Optional parameters can be handled in the function
+    },
 )
 async def process_data(args: dict[str, Any]) -> dict[str, Any]:
     # Access arguments with type hints for IDE support
@@ -320,15 +349,11 @@ async def process_data(args: dict[str, Any]) -> dict[str, Any]:
     age = args["age"]
     email = args["email"]
     preferences = args.get("preferences", [])
-    
+
     print(f"Processing {name}'s data (age: {age})")
-    
-    return {
-        "content": [{
-            "type": "text",
-            "text": f"Processed data for {name}"
-        }]
-    }
+
+    return {"content": [{"type": "text", "text": f"Processed data for {name}"}]}
+
 
 # For more complex schemas, you can use JSON Schema format
 @tool(
@@ -340,18 +365,19 @@ async def process_data(args: dict[str, Any]) -> dict[str, Any]:
             "name": {"type": "string"},
             "age": {"type": "integer", "minimum": 0, "maximum": 150},
             "email": {"type": "string", "format": "email"},
-            "format": {"type": "string", "enum": ["json", "csv", "xml"], "default": "json"}
+            "format": {
+                "type": "string",
+                "enum": ["json", "csv", "xml"],
+                "default": "json",
+            },
         },
-        "required": ["name", "age", "email"]
-    }
+        "required": ["name", "age", "email"],
+    },
 )
 async def advanced_process(args: dict[str, Any]) -> dict[str, Any]:
     # Process with advanced schema validation
     return {
-        "content": [{
-            "type": "text",
-            "text": f"Advanced processing for {args['name']}"
-        }]
+        "content": [{"type": "text", "text": f"Advanced processing for {args['name']}"}]
     }
 ```
 
@@ -373,7 +399,7 @@ tool(
   async (args) => {
     try {
       const response = await fetch(args.endpoint);
-      
+
       if (!response.ok) {
         return {
           content: [{
@@ -382,7 +408,7 @@ tool(
           }]
         };
       }
-      
+
       const data = await response.json();
       return {
         content: [{
@@ -399,7 +425,7 @@ tool(
       };
     }
   }
-)
+);
 ```
 
 ```python Python
@@ -407,10 +433,11 @@ import json
 import aiohttp
 from typing import Any
 
+
 @tool(
     "fetch_data",
     "Fetch data from an API",
-    {"endpoint": str}  # Simple schema
+    {"endpoint": str},  # Simple schema
 )
 async def fetch_data(args: dict[str, Any]) -> dict[str, Any]:
     try:
@@ -418,25 +445,21 @@ async def fetch_data(args: dict[str, Any]) -> dict[str, Any]:
             async with session.get(args["endpoint"]) as response:
                 if response.status != 200:
                     return {
-                        "content": [{
-                            "type": "text",
-                            "text": f"API error: {response.status} {response.reason}"
-                        }]
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": f"API error: {response.status} {response.reason}",
+                            }
+                        ]
                     }
-                
+
                 data = await response.json()
                 return {
-                    "content": [{
-                        "type": "text",
-                        "text": json.dumps(data, indent=2)
-                    }]
+                    "content": [{"type": "text", "text": json.dumps(data, indent=2)}]
                 }
     except Exception as e:
         return {
-            "content": [{
-                "type": "text",
-                "text": f"Failed to fetch data: {str(e)}"
-            }]
+            "content": [{"type": "text", "text": f"Failed to fetch data: {str(e)}"}]
         }
 ```
 
@@ -478,24 +501,28 @@ const databaseServer = createSdkMcpServer({
 from typing import Any
 import json
 
+
 @tool(
     "query_database",
     "Execute a database query",
-    {"query": str, "params": list}  # Simple schema with list type
+    {"query": str, "params": list},  # Simple schema with list type
 )
 async def query_database(args: dict[str, Any]) -> dict[str, Any]:
     results = await db.query(args["query"], args.get("params", []))
     return {
-        "content": [{
-            "type": "text",
-            "text": f"Found {len(results)} rows:\n{json.dumps(results, indent=2)}"
-        }]
+        "content": [
+            {
+                "type": "text",
+                "text": f"Found {len(results)} rows:\n{json.dumps(results, indent=2)}",
+            }
+        ]
     }
+
 
 database_server = create_sdk_mcp_server(
     name="database-tools",
     version="1.0.0",
-    tools=[query_database]  # Pass the decorated function
+    tools=[query_database],  # Pass the decorated function
 )
 ```
 
@@ -527,20 +554,20 @@ const apiGatewayServer = createSdkMcpServer({
           openai: { baseUrl: "https://api.openai.com/v1", key: process.env.OPENAI_KEY },
           slack: { baseUrl: "https://slack.com/api", key: process.env.SLACK_TOKEN }
         };
-        
+
         const { baseUrl, key } = config[args.service];
         const url = new URL(`${baseUrl}${args.endpoint}`);
-        
+
         if (args.query) {
           Object.entries(args.query).forEach(([k, v]) => url.searchParams.set(k, v));
         }
-        
+
         const response = await fetch(url, {
           method: args.method,
           headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
           body: args.body ? JSON.stringify(args.body) : undefined
         });
-        
+
         const data = await response.json();
         return {
           content: [{
@@ -560,6 +587,7 @@ import json
 import aiohttp
 from typing import Any
 
+
 # For complex schemas with enums, use JSON Schema format
 @tool(
     "api_request",
@@ -567,48 +595,62 @@ from typing import Any
     {
         "type": "object",
         "properties": {
-            "service": {"type": "string", "enum": ["stripe", "github", "openai", "slack"]},
+            "service": {
+                "type": "string",
+                "enum": ["stripe", "github", "openai", "slack"],
+            },
             "endpoint": {"type": "string"},
             "method": {"type": "string", "enum": ["GET", "POST", "PUT", "DELETE"]},
             "body": {"type": "object"},
-            "query": {"type": "object"}
+            "query": {"type": "object"},
         },
-        "required": ["service", "endpoint", "method"]
-    }
+        "required": ["service", "endpoint", "method"],
+    },
 )
 async def api_request(args: dict[str, Any]) -> dict[str, Any]:
     config = {
-        "stripe": {"base_url": "https://api.stripe.com/v1", "key": os.environ["STRIPE_KEY"]},
-        "github": {"base_url": "https://api.github.com", "key": os.environ["GITHUB_TOKEN"]},
-        "openai": {"base_url": "https://api.openai.com/v1", "key": os.environ["OPENAI_KEY"]},
-        "slack": {"base_url": "https://slack.com/api", "key": os.environ["SLACK_TOKEN"]}
+        "stripe": {
+            "base_url": "https://api.stripe.com/v1",
+            "key": os.environ["STRIPE_KEY"],
+        },
+        "github": {
+            "base_url": "https://api.github.com",
+            "key": os.environ["GITHUB_TOKEN"],
+        },
+        "openai": {
+            "base_url": "https://api.openai.com/v1",
+            "key": os.environ["OPENAI_KEY"],
+        },
+        "slack": {
+            "base_url": "https://slack.com/api",
+            "key": os.environ["SLACK_TOKEN"],
+        },
     }
-    
+
     service_config = config[args["service"]]
     url = f"{service_config['base_url']}{args['endpoint']}"
-    
+
     if args.get("query"):
         params = "&".join([f"{k}={v}" for k, v in args["query"].items()])
         url += f"?{params}"
-    
-    headers = {"Authorization": f"Bearer {service_config['key']}", "Content-Type": "application/json"}
-    
+
+    headers = {
+        "Authorization": f"Bearer {service_config['key']}",
+        "Content-Type": "application/json",
+    }
+
     async with aiohttp.ClientSession() as session:
         async with session.request(
             args["method"], url, headers=headers, json=args.get("body")
         ) as response:
             data = await response.json()
-            return {
-                "content": [{
-                    "type": "text",
-                    "text": json.dumps(data, indent=2)
-                }]
-            }
+            return {"content": [{"type": "text", "text": json.dumps(data, indent=2)}]}
+
 
 api_gateway_server = create_sdk_mcp_server(
     name="api-gateway",
     version="1.0.0",
-    tools=[api_request]  # Pass the decorated function
+    tools=[api_request],  # Pass the decorated function
 )
 ```
 
@@ -635,7 +677,7 @@ const calculatorServer = createSdkMcpServer({
           // Use a safe math evaluation library in production
           const result = eval(args.expression); // Example only!
           const formatted = Number(result).toFixed(args.precision);
-          
+
           return {
             content: [{
               type: "text",
@@ -664,11 +706,11 @@ const calculatorServer = createSdkMcpServer({
       async (args) => {
         const amount = args.principal * Math.pow(1 + args.rate / args.n, args.n * args.time);
         const interest = amount - args.principal;
-        
+
         return {
           content: [{
             type: "text",
-            text: `Investment Analysis:\n` +
+            text: "Investment Analysis:\n" +
                   `Principal: $${args.principal.toFixed(2)}\n` +
                   `Rate: ${(args.rate * 100).toFixed(2)}%\n` +
                   `Time: ${args.time} years\n` +
@@ -688,10 +730,11 @@ const calculatorServer = createSdkMcpServer({
 import math
 from typing import Any
 
+
 @tool(
     "calculate",
     "Perform mathematical calculations",
-    {"expression": str, "precision": int}  # Simple schema
+    {"expression": str, "precision": int},  # Simple schema
 )
 async def calculate(args: dict[str, Any]) -> dict[str, Any]:
     try:
@@ -699,39 +742,37 @@ async def calculate(args: dict[str, Any]) -> dict[str, Any]:
         result = eval(args["expression"], {"__builtins__": {}})
         precision = args.get("precision", 2)
         formatted = round(result, precision)
-        
+
         return {
-            "content": [{
-                "type": "text",
-                "text": f"{args['expression']} = {formatted}"
-            }]
+            "content": [{"type": "text", "text": f"{args['expression']} = {formatted}"}]
         }
     except Exception as e:
         return {
-            "content": [{
-                "type": "text",
-                "text": f"Error: Invalid expression - {str(e)}"
-            }]
+            "content": [
+                {"type": "text", "text": f"Error: Invalid expression - {str(e)}"}
+            ]
         }
+
 
 @tool(
     "compound_interest",
     "Calculate compound interest for an investment",
-    {"principal": float, "rate": float, "time": float, "n": int}
+    {"principal": float, "rate": float, "time": float, "n": int},
 )
 async def compound_interest(args: dict[str, Any]) -> dict[str, Any]:
     principal = args["principal"]
     rate = args["rate"]
     time = args["time"]
     n = args.get("n", 12)
-    
+
     amount = principal * (1 + rate / n) ** (n * time)
     interest = amount - principal
-    
+
     return {
-        "content": [{
-            "type": "text",
-            "text": f"""Investment Analysis:
+        "content": [
+            {
+                "type": "text",
+                "text": f"""Investment Analysis:
 Principal: ${principal:.2f}
 Rate: {rate * 100:.2f}%
 Time: {time} years
@@ -739,14 +780,16 @@ Compounding: {n} times per year
 
 Final Amount: ${amount:.2f}
 Interest Earned: ${interest:.2f}
-Return: {(interest / principal) * 100:.2f}%"""
-        }]
+Return: {(interest / principal) * 100:.2f}%""",
+            }
+        ]
     }
+
 
 calculator_server = create_sdk_mcp_server(
     name="calculator",
     version="1.0.0",
-    tools=[calculate, compound_interest]  # Pass decorated functions
+    tools=[calculate, compound_interest],  # Pass decorated functions
 )
 ```
 

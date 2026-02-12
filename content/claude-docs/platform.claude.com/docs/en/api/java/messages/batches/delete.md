@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/delete
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: e0b8f507d75c528ba15e08056989139d14e0f70172ce518ec9105b5a2cfbb48d
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: b405fd90399b8b8a6e020f679369d6041a518bcea29ac9c6ad7377263317e547
 ---
 
 ## Delete
@@ -40,24 +40,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch_deleted"`.
 
     - `MESSAGE_BATCH_DELETED("message_batch_deleted")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.messages.batches.BatchDeleteParams;
-import com.anthropic.models.messages.batches.DeletedMessageBatch;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        DeletedMessageBatch deletedMessageBatch = client.messages().batches().delete("message_batch_id");
-    }
-}
-```

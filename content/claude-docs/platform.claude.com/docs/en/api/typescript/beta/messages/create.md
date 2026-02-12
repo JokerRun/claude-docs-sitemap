@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: efaa574812e88a597919c36520097356fc539ac330afd4f892f10287dcc2c681
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 676028dea39e78d33004e7a2d4cfedaebebfd3d5cd1746517c12a4d04aff5fa8
 ---
 
 ## Create
@@ -5425,21 +5425,3 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"standard"`
 
       - `"fast"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const betaMessage = await client.beta.messages.create({
-  max_tokens: 1024,
-  messages: [{ content: 'Hello, world', role: 'user' }],
-  model: 'claude-opus-4-6',
-});
-
-console.log(betaMessage.id);
-```

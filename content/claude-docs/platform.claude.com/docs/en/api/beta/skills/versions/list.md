@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 26a54558611c5404d321c76d900c22d3d859c4439e8cae96e589985330dc2cd2
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: aace02813ef88c64411cedcf96a00f2c79fb1748fa3453e2fe023d27b6ee32a1
 ---
 
 ## List
@@ -138,12 +138,3 @@ List Skill Versions
 - `next_page: string`
 
   Token to provide in as `page` in the subsequent request to retrieve the next page of data.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions \
-    -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: skills-2025-10-02' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```

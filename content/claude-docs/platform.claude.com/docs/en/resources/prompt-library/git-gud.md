@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/git-gud
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 105fdc4847b11f0e751b6940cecbb9d25a742f1b5639085e4457ed6c582717b2
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 9e6b6e8e118d4100a711152237e625c9c3a0dc9f63a51f2085a94c4746553142
 ---
 
 # Git gud
@@ -70,8 +70,6 @@ message = client.messages.create(
     ],
 )
 print(message.content)
-
-
 ````
 </Tab>
 <Tab title="TypeScript">
@@ -80,7 +78,7 @@ print(message.content)
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
-  apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
+  apiKey: "my_api_key" // defaults to process.env["ANTHROPIC_API_KEY"]
 });
 
 const msg = await anthropic.messages.create({
@@ -89,11 +87,11 @@ const msg = await anthropic.messages.create({
   temperature: 0,
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "I have made some changes to my local files and I want to save them in my local Git repository. What Git command should I use?"
+          type: "text",
+          text: "I have made some changes to my local files and I want to save them in my local Git repository. What Git command should I use?"
         }
       ]
     }
@@ -123,14 +121,13 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "I have made some changes to my local files and I want to save them in my local Git repository. What Git command should I use?"
+                    "text": "I have made some changes to my local files and I want to save them in my local Git repository. What Git command should I use?",
                 }
-            ]
+            ],
         }
-    ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
@@ -149,11 +146,11 @@ const msg = await client.messages.create({
   temperature: 0,
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "I have made some changes to my local files and I want to save them in my local Git repository. What Git command should I use?"
+          type: "text",
+          text: "I have made some changes to my local files and I want to save them in my local Git repository. What Git command should I use?"
         }
       ]
     }
@@ -181,21 +178,20 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "I have made some changes to my local files and I want to save them in my local Git repository. What Git command should I use?"
+                    "text": "I have made some changes to my local files and I want to save them in my local Git repository. What Git command should I use?",
                 }
-            ]
+            ],
         }
-    ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
 <Tab title="Vertex AI TypeScript">
 
 ```typescript
-import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
+import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 // Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
 // Additionally goes through the standard `google-auth-library` flow.
@@ -207,11 +203,11 @@ const msg = await client.messages.create({
   temperature: 0,
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "I have made some changes to my local files and I want to save them in my local Git repository. What Git command should I use?"
+          type: "text",
+          text: "I have made some changes to my local files and I want to save them in my local Git repository. What Git command should I use?"
         }
       ]
     }

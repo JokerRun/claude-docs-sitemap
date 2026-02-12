@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 36374743e2bdedf374c45192de023f2ce826e9946eea4a6db2183048ff4066af
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 0b76d3fc34fca4cef5e685bcc52364f9518b823da6eab8018d05f79514adf834
 ---
 
 ## List
@@ -86,11 +86,3 @@ List Users
 - `last_id: string`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/organizations/users \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
-```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: a76ba8e0fde00245c40dd3375a4b377b57b499445dcf41f87f0510404340af5b
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 107f0dd2ac43291627018a1e942c84864f6024b06495d2a6c635c117a299baf0
 ---
 
 ## Create
@@ -4383,28 +4383,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const betaMessageBatch = await client.beta.messages.batches.create({
-  requests: [
-    {
-      custom_id: 'my-custom-id-1',
-      params: {
-        max_tokens: 1024,
-        messages: [{ content: 'Hello, world', role: 'user' }],
-        model: 'claude-opus-4-6',
-      },
-    },
-  ],
-});
-
-console.log(betaMessageBatch.id);
-```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/models/retrieve
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: b581d94fc9e2e26625eedf545059a6a8f42e292f71914ade1332ca992c7b8546
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 789b1c8b1af997b71f48974631642b4b80438d8343485b57ccc30bb3fca8f039
 ---
 
 ## Retrieve
@@ -94,34 +94,3 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `const ModelModel Model = "model"`
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  modelInfo, err := client.Models.Get(
-    context.TODO(),
-    "model_id",
-    anthropic.ModelGetParams{
-
-    },
-  )
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", modelInfo.ID)
-}
-```

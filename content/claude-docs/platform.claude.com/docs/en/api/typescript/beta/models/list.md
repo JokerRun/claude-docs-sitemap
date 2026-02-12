@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/models/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: b84eb63f8c5e7051b008d6dfb6418631cfa2c4a4ad9acdfa2e76a44b0901b209
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: d35f17c7df3ff81e25a387f4d081023622f40ce28286a8f803b7073309ab7394
 ---
 
 ## List
@@ -104,18 +104,3 @@ The Models API response can be used to determine which models are available for 
     For Models, this is always `"model"`.
 
     - `"model"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-// Automatically fetches more pages as needed.
-for await (const betaModelInfo of client.beta.models.list()) {
-  console.log(betaModelInfo.id);
-}
-```

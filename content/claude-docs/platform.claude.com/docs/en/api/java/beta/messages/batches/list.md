@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 5e575cd0c298976fc45aec2f4e2c48af016ef2c404035dc72ad272951ede5c14
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: c39d5dc0caacd28efcf37a1d7ef9a5ce1f1f995c1736c3afa075630090957e61
 ---
 
 ## List
@@ -166,24 +166,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `MESSAGE_BATCH("message_batch")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.messages.batches.BatchListPage;
-import com.anthropic.models.beta.messages.batches.BatchListParams;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        BatchListPage page = client.beta().messages().batches().list();
-    }
-}
-```

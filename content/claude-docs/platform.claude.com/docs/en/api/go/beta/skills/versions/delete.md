@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions/delete
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 5b4e9c5f3d91fe65528864c6ddeb5a30c4dada8c537fdcd7ee48cef27ef761ec
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 2480c27261023b9f8f728275dc708c8b22c15285f60115b908af68d3531d2eaa
 ---
 
 ## Delete
@@ -92,34 +92,3 @@ Delete Skill Version
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  version, err := client.Beta.Skills.Versions.Delete(
-    context.TODO(),
-    "version",
-    anthropic.BetaSkillVersionDeleteParams{
-      SkillID: "skill_id",
-    },
-  )
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", version.ID)
-}
-```

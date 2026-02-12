@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/results
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: f8fa1c64b9c01f653b1b9f46ce6dc9cc0cd116cc7f09b105eecde18dde0be468
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: a93aab35df3fa507ad3df247b7e3119ef8549b1e9d94d33dcb8237f24a8f2602
 ---
 
 ## Results
@@ -1318,19 +1318,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `type: "expired"`
 
         - `"expired"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const betaMessageBatchIndividualResponse = await client.beta.messages.batches.results(
-  'message_batch_id',
-);
-
-console.log(betaMessageBatchIndividualResponse.custom_id);
-```

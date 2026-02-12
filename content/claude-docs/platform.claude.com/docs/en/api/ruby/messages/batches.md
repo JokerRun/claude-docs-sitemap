@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: e704c175be2505880fe14d2681771be0ea1707fac6421383a3d29b3f84a8025a
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: e94d605bdbe02e4890b0c47c31214321c5ec38c6d1d91cd6b60f16b6da7a65bb
 ---
 
 # Batches
@@ -2313,25 +2313,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `:message_batch`
 
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-message_batch = anthropic.messages.batches.create(
-  requests: [
-    {
-      custom_id: "my-custom-id-1",
-      params: {max_tokens: 1024, messages: [{content: "Hello, world", role: :user}], model: :"claude-opus-4-6"}
-    }
-  ]
-)
-
-puts(message_batch)
-```
-
 ## Retrieve
 
 `messages.batches.retrieve(message_batch_id) -> MessageBatch`
@@ -2437,18 +2418,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `:message_batch`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-message_batch = anthropic.messages.batches.retrieve("message_batch_id")
-
-puts(message_batch)
-```
 
 ## List
 
@@ -2566,18 +2535,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `:message_batch`
 
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-page = anthropic.messages.batches.list
-
-puts(page)
-```
-
 ## Cancel
 
 `messages.batches.cancel(message_batch_id) -> MessageBatch`
@@ -2686,18 +2643,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `:message_batch`
 
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-message_batch = anthropic.messages.batches.cancel("message_batch_id")
-
-puts(message_batch)
-```
-
 ## Delete
 
 `messages.batches.delete(message_batch_id) -> DeletedMessageBatch`
@@ -2731,18 +2676,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch_deleted"`.
 
     - `:message_batch_deleted`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-deleted_message_batch = anthropic.messages.batches.delete("message_batch_id")
-
-puts(deleted_message_batch)
-```
 
 ## Results
 
@@ -3319,18 +3252,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `type: :expired`
 
         - `:expired`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-message_batch_individual_response = anthropic.messages.batches.results("message_batch_id")
-
-puts(message_batch_individual_response)
-```
 
 ## Domain Types
 

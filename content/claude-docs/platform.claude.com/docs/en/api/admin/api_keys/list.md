@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/list
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 4e81c465b02b103ac195e7c629bc846f5a9f40ff473732e5c1d334bf77d249d5
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: c9710b86c55ad986c63a7330b561c6bba17f603828058d06c0800bae0d3357f5
 ---
 
 ## List
@@ -110,11 +110,3 @@ List API Keys
 - `last_id: string`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/organizations/api_keys \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
-```

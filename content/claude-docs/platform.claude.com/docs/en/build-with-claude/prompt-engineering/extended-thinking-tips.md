@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/extended-thinking-tips
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 1f2415c71c4630bb908622994c777d1c54a661607a4305e61e666297c031693b
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: c36a8a81a1ee4f495a32c0113acfb39216d94bf49c99800714e287ec673a085f
 ---
 
 # Extended thinking tips
 
 ---
 
-This guide provides advanced strategies and techniques for getting the most out of Claude's extended thinking features. Extended thinking allows Claude to work through complex problems step-by-step, improving performance on difficult tasks. 
+This guide provides advanced strategies and techniques for getting the most out of Claude's extended thinking features. Extended thinking allows Claude to work through complex problems step-by-step, improving performance on difficult tasks.
 
 See [Extended thinking](/docs/en/build-with-claude/extended-thinking) for guidance on deciding when to use extended thinking.
 
@@ -34,7 +34,7 @@ For example, instead of:
 
 <CodeGroup>
 ```text User
-Think through this math problem step by step: 
+Think through this math problem step by step:
 1. First, identify the variables
 2. Then, set up the equation
 3. Next, solve for x
@@ -46,7 +46,7 @@ Consider:
 
 <CodeGroup>
 ```text User
-Please think about this math problem thoroughly and in great detail. 
+Please think about this math problem thoroughly and in great detail.
 Consider multiple approaches and show your complete reasoning.
 Try different methods if your first approach doesn't work.
 ```
@@ -70,7 +70,7 @@ That said, Claude can still effectively follow complex structured execution step
 
 [Multishot prompting](/docs/en/build-with-claude/prompt-engineering/multishot-prompting) works well with extended thinking. When you provide Claude examples of how to think through problems, it will follow similar reasoning patterns within its extended thinking blocks.
 
-You can include few-shot examples in your prompt in extended thinking scenarios by using XML tags like `<thinking>` or `<scratchpad>` to indicate canonical patterns of extended thinking in those examples.  
+You can include few-shot examples in your prompt in extended thinking scenarios by using XML tags like `<thinking>` or `<scratchpad>` to indicate canonical patterns of extended thinking in those examples.
 
 Claude will generalize the pattern to the formal extended thinking process. However, it's possible you'll get better results by giving Claude free rein to think in the way it deems best.
 
@@ -113,7 +113,7 @@ The answer is 12.
 Now solve this one:
 Problem 2: What is 35% of 240?`
   }
-  thinkingBudgetTokens={16000} 
+  thinkingBudgetTokens={16000}
 >
   Try in Console
 </TryInConsoleButton>
@@ -158,7 +158,7 @@ Here are example use cases where Claude excels due to longer extended thinking:
   <section title="Complex STEM problems">
 
     Complex STEM problems require Claude to build mental models, apply specialized knowledge, and work through sequential logical steps—processes that benefit from longer reasoning time.
-    
+
     <Tabs>
       <Tab title="Standard prompt">
         <CodeGroup>
@@ -169,7 +169,7 @@ Here are example use cases where Claude excels due to longer extended thinking:
         ```
         />
         </CodeGroup>
-        
+
         <TryInConsoleButton
           userPrompt={
             `Write a python script for a bouncing yellow ball within a square,
@@ -187,14 +187,14 @@ Make the square slowly rotate.`
       <Tab title="Enhanced prompt">
         <CodeGroup>
         ```text User
-        Write a Python script for a bouncing yellow ball within a tesseract, 
-        making sure to handle collision detection properly. 
-        Make the tesseract slowly rotate. 
+        Write a Python script for a bouncing yellow ball within a tesseract,
+        making sure to handle collision detection properly.
+        Make the tesseract slowly rotate.
         Make sure the ball stays within the tesseract.
         ```
         />
         </CodeGroup>
-        
+
         <TryInConsoleButton
           userPrompt={
             `Write a Python script for a bouncing yellow ball within a tesseract, 
@@ -213,11 +213,11 @@ Make sure the ball stays within the tesseract.`
     </Tabs>
   
 </section>
-  
+
   <section title="Constraint optimization problems">
 
     Constraint optimization challenges Claude to satisfy multiple competing requirements simultaneously, which is best accomplished when allowing for long extended thinking time so that the model can methodically address each constraint.
-    
+
     <Tabs>
       <Tab title="Standard prompt">
         <CodeGroup>
@@ -226,7 +226,7 @@ Make sure the ball stays within the tesseract.`
         ```
         />
         </CodeGroup>
-        
+
         <TryInConsoleButton
           userPrompt="Plan a week-long vacation to Japan."
           thinkingBudgetTokens={16000}
@@ -252,7 +252,7 @@ Make sure the ball stays within the tesseract.`
         ```
         />
         </CodeGroup>
-        
+
         <TryInConsoleButton
           userPrompt={
             `Plan a 7-day trip to Japan with the following constraints:
@@ -276,21 +276,21 @@ Make sure the ball stays within the tesseract.`
     </Tabs>
   
 </section>
-  
+
   <section title="Thinking frameworks">
 
     Structured thinking frameworks give Claude an explicit methodology to follow, which may work best when Claude is given long extended thinking space to follow each step.
-    
+
     <Tabs>
       <Tab title="Standard prompt">
         <CodeGroup>
         ```text User
-        Develop a comprehensive strategy for Microsoft 
+        Develop a comprehensive strategy for Microsoft
         entering the personalized medicine market by 2027.
         ```
         />
         </CodeGroup>
-        
+
         <TryInConsoleButton
           userPrompt={
             `Develop a comprehensive strategy for Microsoft 
@@ -307,26 +307,26 @@ entering the personalized medicine market by 2027.`
       <Tab title="Enhanced prompt">
         <CodeGroup>
         ```text User
-        Develop a comprehensive strategy for Microsoft entering 
+        Develop a comprehensive strategy for Microsoft entering
         the personalized medicine market by 2027.
-        
+
         Begin with:
         1. A Blue Ocean Strategy canvas
         2. Apply Porter's Five Forces to identify competitive pressures
-        
-        Next, conduct a scenario planning exercise with four 
+
+        Next, conduct a scenario planning exercise with four
         distinct futures based on regulatory and technological variables.
-        
+
         For each scenario:
         - Develop strategic responses using the Ansoff Matrix
-        
+
         Finally, apply the Three Horizons framework to:
         - Map the transition pathway
         - Identify potential disruptive innovations at each stage
         ```
         />
         </CodeGroup>
-        
+
         <TryInConsoleButton
           userPrompt={
             `Develop a comprehensive strategy for Microsoft entering 
@@ -368,7 +368,7 @@ Example:
 
 <CodeGroup>
 ```text User
-Write a function to calculate the factorial of a number. 
+Write a function to calculate the factorial of a number.
 Before you finish, please verify your solution with test cases for:
 - n=0
 - n=1

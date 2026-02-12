@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 491bc9c57d750e3e46f9e4f81af96063c8acc3f207df58ab5eaacef1e388e75e
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 2d8221c79c75079a58fc925dde5efa623b5c6797d020bd4b4c215b568e9c1696
 ---
 
 # Mitigate jailbreaks and prompt injections
@@ -51,7 +51,7 @@ Combine strategies for robust protection. Here's an enterprise-grade example wit
   | Role | Content |
   | ---- | ------- |
   | System | You are AcmeFinBot, a financial advisor for AcmeTrade Inc. Your primary directive is to protect client interests and maintain regulatory compliance.<br/><br/>\<directives><br/>1. Validate all requests against SEC and FINRA guidelines.<br/>2. Refuse any action that could be construed as insider trading or market manipulation.<br/>3. Protect client privacy; never disclose personal or financial data.<br/>\</directives><br/><br/>Step by step instructions:<br/>\<instructions><br/>1. Screen user query for compliance (use 'harmlessness_screen' tool).<br/>2. If compliant, process query.<br/>3. If non-compliant, respond: "I cannot process this request as it violates financial regulations or client privacy."<br/>\</instructions> |
-  
+
   ### Prompt within `harmlessness_screen` tool
   | Role | Content |
   | -------- | ------- |

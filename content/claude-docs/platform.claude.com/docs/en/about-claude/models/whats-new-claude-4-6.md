@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-6
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 2c093edc3e86cb75afbb78e76ded4dfd27892d0fbe442e6dbc9e8e32997ea937
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: a2497867d9bafffb75f677b3cfa64c12ecca528ceb60d348a9553649580f9045
 ---
 
 # What's new in Claude 4.6
@@ -36,7 +36,7 @@ response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=16000,
     thinking={"type": "adaptive"},
-    messages=[{"role": "user", "content": "Solve this complex problem..."}]
+    messages=[{"role": "user", "content": "Solve this complex problem..."}],
 )
 ```
 
@@ -58,7 +58,7 @@ response = client.beta.messages.create(
     max_tokens=4096,
     speed="fast",
     betas=["fast-mode-2026-02-01"],
-    messages=[{"role": "user", "content": "Refactor this module..."}]
+    messages=[{"role": "user", "content": "Refactor this module..."}],
 )
 ```
 
@@ -92,13 +92,13 @@ The `output_format` parameter for [structured outputs](/docs/en/build-with-claud
 # Before
 response = client.messages.create(
     output_format={"type": "json_schema", "schema": {...}},
-    ...
+    # ...
 )
 
 # After
 response = client.messages.create(
     output_config={"format": {"type": "json_schema", "schema": {...}}},
-    ...
+    # ...
 )
 ```
 

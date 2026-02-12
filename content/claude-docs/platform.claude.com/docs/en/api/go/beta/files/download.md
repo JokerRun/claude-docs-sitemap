@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/download
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 010f558f73e51105738bfce9dfeeaead48b27bb2a42713bf1052af18e2c90fd4
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 60c8ddb0b633e4e200b145e3431816bdd57298bc90ab1a02d75c376244aab159
 ---
 
 ## Download
@@ -72,34 +72,3 @@ Download File
 ### Returns
 
 - `type BetaFileDownloadResponse interface{…}`
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  response, err := client.Beta.Files.Download(
-    context.TODO(),
-    "file_id",
-    anthropic.BetaFileDownloadParams{
-
-    },
-  )
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", response)
-}
-```

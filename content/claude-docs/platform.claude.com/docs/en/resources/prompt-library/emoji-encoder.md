@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/emoji-encoder
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 2642469d860f68acc6b1f28bb72fa51b371f7db0a745fef285b50b8dcd60e0dd
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: f65eb170e2d709c7a77ddf094dad5810dbb6399b2b6988e7ab142c6d714056da
 ---
 
 # Emoji encoder
@@ -52,8 +52,6 @@ message = client.messages.create(
     ],
 )
 print(message.content)
-
-
 ````
 </Tab>
 <Tab title="TypeScript">
@@ -62,7 +60,7 @@ print(message.content)
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
-  apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
+  apiKey: "my_api_key" // defaults to process.env["ANTHROPIC_API_KEY"]
 });
 
 const msg = await anthropic.messages.create({
@@ -72,11 +70,11 @@ const msg = await anthropic.messages.create({
   system: "Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "All the world’s a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts."
+          type: "text",
+          text: "All the world’s a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts."
         }
       ]
     }
@@ -107,14 +105,13 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "All the world’s a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts."
+                    "text": "All the world’s a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts.",
                 }
-            ]
+            ],
         }
-    ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
@@ -134,11 +131,11 @@ const msg = await client.messages.create({
   system: "Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "All the world’s a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts."
+          type: "text",
+          text: "All the world’s a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts."
         }
       ]
     }
@@ -167,21 +164,20 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "All the world’s a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts."
+                    "text": "All the world’s a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts.",
                 }
-            ]
+            ],
         }
-    ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
 <Tab title="Vertex AI TypeScript">
 
 ```typescript
-import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
+import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 // Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
 // Additionally goes through the standard `google-auth-library` flow.
@@ -194,11 +190,11 @@ const msg = await client.messages.create({
   system: "Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "All the world’s a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts."
+          type: "text",
+          text: "All the world’s a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts."
         }
       ]
     }

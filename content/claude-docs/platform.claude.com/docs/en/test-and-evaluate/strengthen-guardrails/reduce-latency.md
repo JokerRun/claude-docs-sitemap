@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c31a3c759ebc7d15aca097b7fa22758ecc43a59fe9acdff0f123f9cfcd3505bf
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: b3b8ffd9fc1c1a34d0475503769a0767a79adac7d0a733a5e056db7347996722
 ---
 
 # Reducing latency
@@ -45,10 +45,12 @@ client = anthropic.Anthropic()
 message = client.messages.create(
     model="claude-haiku-4-5",
     max_tokens=100,
-    messages=[{
-        "role": "user",
-        "content": "Summarize this customer feedback in 2 sentences: [feedback text]"
-    }]
+    messages=[
+        {
+            "role": "user",
+            "content": "Summarize this customer feedback in 2 sentences: [feedback text]",
+        }
+    ],
 )
 ```
 

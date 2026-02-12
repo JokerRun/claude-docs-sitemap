@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_claude_code
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 610a5cf4a0a3940e3d61bd77dcd6938c39dba46a16e131282f408f896183f9ac
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 289cb47899c4247ef043bec7aeaccc1aacd8318a4bd5ae659c8def2fa7ad5403
 ---
 
 ## Retrieve Claude Code
@@ -173,11 +173,3 @@ Enables organizations to analyze developer productivity and build custom dashboa
   - `next_page: string`
 
     Opaque cursor token for fetching the next page of results, or null if no more pages are available.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
-```

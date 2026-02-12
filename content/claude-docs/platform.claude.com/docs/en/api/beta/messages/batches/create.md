@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 56623330a2e635561a6c07474ab6daa4d2a98b0151632d1dcf37dfc9f0872fb4
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 882b4a5965a59fe05fea262383ed5dc463a4421ec6f2be95e522221663401ac3
 ---
 
 ## Create
@@ -4385,30 +4385,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages/batches \
-    -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: message-batches-2024-09-24' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{
-          "requests": [
-            {
-              "custom_id": "my-custom-id-1",
-              "params": {
-                "max_tokens": 1024,
-                "messages": [
-                  {
-                    "content": "Hello, world",
-                    "role": "user"
-                  }
-                ],
-                "model": "claude-opus-4-6"
-              }
-            }
-          ]
-        }'
-```

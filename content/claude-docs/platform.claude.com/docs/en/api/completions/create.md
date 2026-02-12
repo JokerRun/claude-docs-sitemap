@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 3bfa0d1765ae13821a8ac68bfc76c80883c4bc329fe049366eaac89a2e0a9e35
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 5ab68d3889ca1e8aeac202d875e0520e76cfeebc86ea1906c8f1459d982b38b4
 ---
 
 ## Create
@@ -367,18 +367,3 @@ Future models and features will not be compatible with Text Completions. See our
     For Text Completions, this is always `"completion"`.
 
     - `"completion"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/complete \
-    -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    --max-time 600 \
-    -d '{
-          "max_tokens_to_sample": 256,
-          "model": "claude-opus-4-6",
-          "prompt": "\\n\\nHuman: Hello, world!\\n\\nAssistant:"
-        }'
-```

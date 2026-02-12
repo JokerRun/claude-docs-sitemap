@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 5e17432b268ef04a4ae1a828c76b7aae42719659f4a3d1862c6baeae2394b1e5
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 7974ca96401388e2e222a6b26202d834aa214f2b4d8e8da0e007cc3a0c0c0bf9
 ---
 
 ## Create
@@ -31,9 +31,9 @@ Create Skill
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,16 +119,3 @@ Create Skill
   - `updated_at: str`
 
     ISO 8601 timestamp of when the skill was last updated.
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-skill = client.beta.skills.create()
-print(skill.id)
-```

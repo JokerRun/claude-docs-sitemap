@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 13a6e1b14f6e24d2341aec07d5b7165977c97978e60bf24c4b0307fa00624e7d
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 657b702efcd9c6625dc09559dd59151bf408a469a381a19ae9fbe1a213cfdb72
 ---
 
 ## List
@@ -180,12 +180,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 - `last_id: string`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages/batches \
-    -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: message-batches-2024-09-24' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```

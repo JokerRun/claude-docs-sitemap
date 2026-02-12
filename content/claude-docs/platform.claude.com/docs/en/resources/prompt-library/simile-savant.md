@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/simile-savant
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 8d8224cd22c666af149219899b2c356a864be07763d123fa9a866921edd68c66
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 8edde654a1b5c6113708d7b6737b1b36a54b151faef8d9a01c6c01b98e3a8bf4
 ---
 
 # Simile savant
@@ -33,27 +33,26 @@ Generate similes from basic descriptions.
 import anthropic
 
 client = anthropic.Anthropic(
-  # defaults to os.environ.get("ANTHROPIC_API_KEY")
-  api_key="my_api_key",
+    # defaults to os.environ.get("ANTHROPIC_API_KEY")
+    api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-opus-4-6",
-  max_tokens=1000,
-  temperature=1,
-  messages=[
-    {
-      "role": "user",
-      "content": [
+    model="claude-opus-4-6",
+    max_tokens=1000,
+    temperature=1,
+    messages=[
         {
-          "type": "text",
-          "text": "Help me create some similes to describe a person's laughter that is joyful and contagious?"
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Help me create some similes to describe a person's laughter that is joyful and contagious?",
+                }
+            ],
         }
-      ]
-    }
-  ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
@@ -63,7 +62,7 @@ print(message.content)
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
-  apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
+  apiKey: "my_api_key" // defaults to process.env["ANTHROPIC_API_KEY"]
 });
 
 const msg = await anthropic.messages.create({
@@ -72,11 +71,11 @@ const msg = await anthropic.messages.create({
   temperature: 1,
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Help me create some similes to describe a person's laughter that is joyful and contagious?"
+          type: "text",
+          text: "Help me create some similes to describe a person's laughter that is joyful and contagious?"
         }
       ]
     }
@@ -106,14 +105,13 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "Help me create some similes to describe a person's laughter that is joyful and contagious?"
+                    "text": "Help me create some similes to describe a person's laughter that is joyful and contagious?",
                 }
-            ]
+            ],
         }
-    ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
@@ -132,11 +130,11 @@ const msg = await client.messages.create({
   temperature: 1,
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Help me create some similes to describe a person's laughter that is joyful and contagious?"
+          type: "text",
+          text: "Help me create some similes to describe a person's laughter that is joyful and contagious?"
         }
       ]
     }
@@ -164,21 +162,20 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "Help me create some similes to describe a person's laughter that is joyful and contagious?"
+                    "text": "Help me create some similes to describe a person's laughter that is joyful and contagious?",
                 }
-            ]
+            ],
         }
-    ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
 <Tab title="Vertex AI TypeScript">
 
 ```typescript
-import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
+import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 // Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
 // Additionally goes through the standard `google-auth-library` flow.
@@ -190,11 +187,11 @@ const msg = await client.messages.create({
   temperature: 1,
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Help me create some similes to describe a person's laughter that is joyful and contagious?"
+          type: "text",
+          text: "Help me create some similes to describe a person's laughter that is joyful and contagious?"
         }
       ]
     }

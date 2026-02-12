@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: f5f9c52514ed4b704f032f4a208629604dd4675a2a38b271156d52fe4b6d23e1
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: c53dcccc0167df693fbe101964ac1c1d82a7efd043e3d1e46602602162df1957
 ---
 
 ## Create
@@ -5065,30 +5065,3 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `STANDARD("standard")`
 
       - `FAST("fast")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.messages.BetaMessage;
-import com.anthropic.models.beta.messages.MessageCreateParams;
-import com.anthropic.models.messages.Model;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        MessageCreateParams params = MessageCreateParams.builder()
-            .maxTokens(1024L)
-            .addUserMessage("Hello, world")
-            .model(Model.CLAUDE_OPUS_4_6)
-            .build();
-        BetaMessage betaMessage = client.beta().messages().create(params);
-    }
-}
-```

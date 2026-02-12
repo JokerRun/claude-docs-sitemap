@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/results
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: f9bc37f0571b97bcf4f89ed47e4f59a96cd2fdfea015038a01188f9c2de00057
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: da9a55a6c8e914203a90e1a3848ec44f8728b84eb98950f2690cb4707b717658
 ---
 
 ## Results
@@ -1320,15 +1320,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `type: :expired`
 
         - `:expired`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_message_batch_individual_response = anthropic.beta.messages.batches.results("message_batch_id")
-
-puts(beta_message_batch_individual_response)
-```

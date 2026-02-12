@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: a3aea052fefc4611ef99efdcdf0ef64b012ec6f22b12786392db56fb20b02b8d
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: b7135c8d9044284c02bdc068aee815d721d7ee1d939ebe0b3758da35335ae3c0
 ---
 
 # Programmatic tool calling
@@ -88,38 +88,34 @@ response = client.beta.messages.create(
     model="claude-opus-4-6",
     betas=["advanced-tool-use-2025-11-20"],
     max_tokens=4096,
-    messages=[{
-        "role": "user",
-        "content": "Query sales data for the West, East, and Central regions, then tell me which region had the highest revenue"
-    }],
-    tools=[
+    messages=[
         {
-            "type": "code_execution_20250825",
-            "name": "code_execution"
-        },
+            "role": "user",
+            "content": "Query sales data for the West, East, and Central regions, then tell me which region had the highest revenue",
+        }
+    ],
+    tools=[
+        {"type": "code_execution_20250825", "name": "code_execution"},
         {
             "name": "query_database",
             "description": "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
             "input_schema": {
                 "type": "object",
                 "properties": {
-                    "sql": {
-                        "type": "string",
-                        "description": "SQL query to execute"
-                    }
+                    "sql": {"type": "string", "description": "SQL query to execute"}
                 },
-                "required": ["sql"]
+                "required": ["sql"],
             },
-            "allowed_callers": ["code_execution_20250825"]
-        }
-    ]
+            "allowed_callers": ["code_execution_20250825"],
+        },
+    ],
 )
 
 print(response)
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -180,7 +176,7 @@ This approach is particularly useful for:
 - **Conditional logic**: Make decisions based on intermediate tool results
 
 <Note>
-Custom tools are converted to async Python functions to support parallel tool calling. When Claude writes code that calls your tools, it uses `await` (e.g., `result = await query_database("<sql>")`) and automatically includes the appropriate async wrapper function. 
+Custom tools are converted to async Python functions to support parallel tool calling. When Claude writes code that calls your tools, it uses `await` (e.g., `result = await query_database("<sql>")`) and automatically includes the appropriate async wrapper function.
 
 The async wrapper is omitted from code examples in this documentation for clarity.
 </Note>
@@ -271,22 +267,21 @@ response = client.beta.messages.create(
     model="claude-opus-4-6",
     betas=["advanced-tool-use-2025-11-20"],
     max_tokens=4096,
-    messages=[{
-        "role": "user",
-        "content": "Query customer purchase history from the last quarter and identify our top 5 customers by revenue"
-    }],
-    tools=[
+    messages=[
         {
-            "type": "code_execution_20250825",
-            "name": "code_execution"
-        },
+            "role": "user",
+            "content": "Query customer purchase history from the last quarter and identify our top 5 customers by revenue",
+        }
+    ],
+    tools=[
+        {"type": "code_execution_20250825", "name": "code_execution"},
         {
             "name": "query_database",
             "description": "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
             "input_schema": {...},
-            "allowed_callers": ["code_execution_20250825"]
-        }
-    ]
+            "allowed_callers": ["code_execution_20250825"],
+        },
+    ],
 )
 ```
 
@@ -307,7 +302,7 @@ const response = await anthropic.beta.messages.create({
     {
       name: "query_database",
       description: "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
-      input_schema: {...},
+      input_schema: { /* ... */ },
       allowed_callers: ["code_execution_20250825"]
     }
   ]
@@ -366,16 +361,22 @@ response = client.beta.messages.create(
     max_tokens=4096,
     container="container_xyz789",  # Reuse the container
     messages=[
-        {"role": "user", "content": "Query customer purchase history from the last quarter and identify our top 5 customers by revenue"},
+        {
+            "role": "user",
+            "content": "Query customer purchase history from the last quarter and identify our top 5 customers by revenue",
+        },
         {
             "role": "assistant",
             "content": [
-                {"type": "text", "text": "I'll query the purchase history and analyze the results."},
+                {
+                    "type": "text",
+                    "text": "I'll query the purchase history and analyze the results.",
+                },
                 {
                     "type": "server_tool_use",
                     "id": "srvtoolu_abc123",
                     "name": "code_execution",
-                    "input": {"code": "..."}
+                    "input": {"code": "..."},
                 },
                 {
                     "type": "tool_use",
@@ -384,10 +385,10 @@ response = client.beta.messages.create(
                     "input": {"sql": "<sql>"},
                     "caller": {
                         "type": "code_execution_20250825",
-                        "tool_id": "srvtoolu_abc123"
-                    }
-                }
-            ]
+                        "tool_id": "srvtoolu_abc123",
+                    },
+                },
+            ],
         },
         {
             "role": "user",
@@ -395,12 +396,12 @@ response = client.beta.messages.create(
                 {
                     "type": "tool_result",
                     "tool_use_id": "toolu_def456",
-                    "content": "[{\"customer_id\": \"C1\", \"revenue\": 45000}, {\"customer_id\": \"C2\", \"revenue\": 38000}, ...]"
+                    "content": '[{"customer_id": "C1", "revenue": 45000}, {"customer_id": "C2", "revenue": 38000}, ...]',
                 }
-            ]
-        }
+            ],
+        },
     ],
-    tools=[...]
+    tools=[...],
 )
 ```
 
@@ -409,7 +410,7 @@ const response = await anthropic.beta.messages.create({
   model: "claude-opus-4-6",
   betas: ["advanced-tool-use-2025-11-20"],
   max_tokens: 4096,
-  container: "container_xyz789",  // Reuse the container
+  container: "container_xyz789", // Reuse the container
   messages: [
     { role: "user", content: "Query customer purchase history from the last quarter and identify our top 5 customers by revenue" },
     {
@@ -445,7 +446,7 @@ const response = await anthropic.beta.messages.create({
       ]
     }
   ],
-  tools: [...]
+  tools: [/* ... */]
 });
 ```
 </CodeGroup>
@@ -638,7 +639,7 @@ If your tool returns an error:
 {
     "type": "tool_result",
     "tool_use_id": "toolu_abc123",
-    "content": "Error: Query timeout - table lock exceeded 30 seconds"
+    "content": "Error: Query timeout - table lock exceeded 30 seconds",
 }
 ```
 

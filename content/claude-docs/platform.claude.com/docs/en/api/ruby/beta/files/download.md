@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/download
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 04128b471349e450261feab4c71874c6982931d4b5c6f56f797670415c9e2509
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 6a5f1bdd112c86f74cb82e303442570b5a747d9f7b63c3226668a3a86a07f570
 ---
 
 ## Download
@@ -70,15 +70,3 @@ Download File
 ### Returns
 
 - `StringIO`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-response = anthropic.beta.files.download("file_id")
-
-puts(response)
-```

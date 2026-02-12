@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 6d667437d683fbf1e5087f6ca7b75c9eb2cbaf504f90e708cf53bea4895a22dd
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: a4d4a9eccedf10cd5df8ecd040e47f0d986d34ce72778d3f9d6425573a594ec4
 ---
 
 # Search results
@@ -96,7 +96,7 @@ from anthropic.types import (
     MessageParam,
     TextBlockParam,
     SearchResultBlockParam,
-    ToolResultBlockParam
+    ToolResultBlockParam,
 )
 
 client = Anthropic()
@@ -107,15 +107,11 @@ knowledge_base_tool = {
     "description": "Search the company knowledge base for information",
     "input_schema": {
         "type": "object",
-        "properties": {
-            "query": {
-                "type": "string",
-                "description": "The search query"
-            }
-        },
-        "required": ["query"]
-    }
+        "properties": {"query": {"type": "string", "description": "The search query"}},
+        "required": ["query"],
+    },
 }
+
 
 # Function to handle the tool call
 def search_knowledge_base(query):
@@ -129,10 +125,10 @@ def search_knowledge_base(query):
             content=[
                 TextBlockParam(
                     type="text",
-                    text="To configure the product, navigate to Settings > Configuration. The default timeout is 30 seconds, but can be adjusted between 10-120 seconds based on your needs."
+                    text="To configure the product, navigate to Settings > Configuration. The default timeout is 30 seconds, but can be adjusted between 10-120 seconds based on your needs.",
                 )
             ],
-            citations={"enabled": True}
+            citations={"enabled": True},
         ),
         SearchResultBlockParam(
             type="search_result",
@@ -141,12 +137,13 @@ def search_knowledge_base(query):
             content=[
                 TextBlockParam(
                     type="text",
-                    text="If you encounter timeout errors, first check the configuration settings. Common causes include network latency and incorrect timeout values."
+                    text="If you encounter timeout errors, first check the configuration settings. Common causes include network latency and incorrect timeout values.",
                 )
             ],
-            citations={"enabled": True}
-        )
+            citations={"enabled": True},
+        ),
     ]
+
 
 # Create a message with the tool
 response = client.messages.create(
@@ -154,23 +151,22 @@ response = client.messages.create(
     max_tokens=1024,
     tools=[knowledge_base_tool],
     messages=[
-        MessageParam(
-            role="user",
-            content="How do I configure the timeout settings?"
-        )
-    ]
+        MessageParam(role="user", content="How do I configure the timeout settings?")
+    ],
 )
 
 # When Claude calls the tool, provide the search results
 if response.content[0].type == "tool_use":
     tool_result = search_knowledge_base(response.content[0].input["query"])
-    
+
     # Send the tool result back
     final_response = client.messages.create(
         model="claude-opus-4-6",  # Works with all supported models
         max_tokens=1024,
         messages=[
-            MessageParam(role="user", content="How do I configure the timeout settings?"),
+            MessageParam(
+                role="user", content="How do I configure the timeout settings?"
+            ),
             MessageParam(role="assistant", content=response.content),
             MessageParam(
                 role="user",
@@ -178,16 +174,16 @@ if response.content[0].type == "tool_use":
                     ToolResultBlockParam(
                         type="tool_result",
                         tool_use_id=response.content[0].id,
-                        content=tool_result  # Search results go here
+                        content=tool_result,  # Search results go here
                     )
-                ]
-            )
-        ]
+                ],
+            ),
+        ],
     )
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -255,11 +251,11 @@ const response = await anthropic.messages.create({
 // Handle tool use and provide results
 if (response.content[0].type === "tool_use") {
   const toolResult = searchKnowledgeBase(response.content[0].input.query);
-  
+
   const finalResponse = await anthropic.messages.create({
     model: "claude-opus-4-6", // Works with all supported models
     max_tokens: 1024,
-      messages: [
+    messages: [
       { role: "user", content: "How do I configure the timeout settings?" },
       { role: "assistant", content: response.content },
       {
@@ -268,7 +264,7 @@ if (response.content[0].type === "tool_use") {
           {
             type: "tool_result" as const,
             tool_use_id: response.content[0].id,
-            content: toolResult  // Search results go here
+            content: toolResult // Search results go here
           }
         ]
       }
@@ -291,11 +287,7 @@ You can also provide search results directly in user messages. This is useful fo
 <CodeGroup>
 ```python Python
 from anthropic import Anthropic
-from anthropic.types import (
-    MessageParam,
-    TextBlockParam,
-    SearchResultBlockParam
-)
+from anthropic.types import MessageParam, TextBlockParam, SearchResultBlockParam
 
 client = Anthropic()
 
@@ -314,10 +306,10 @@ response = client.messages.create(
                     content=[
                         TextBlockParam(
                             type="text",
-                            text="All API requests must include an API key in the Authorization header. Keys can be generated from the dashboard. Rate limits: 1000 requests per hour for standard tier, 10000 for premium."
+                            text="All API requests must include an API key in the Authorization header. Keys can be generated from the dashboard. Rate limits: 1000 requests per hour for standard tier, 10000 for premium.",
                         )
                     ],
-                    citations={"enabled": True}
+                    citations={"enabled": True},
                 ),
                 SearchResultBlockParam(
                     type="search_result",
@@ -326,25 +318,25 @@ response = client.messages.create(
                     content=[
                         TextBlockParam(
                             type="text",
-                            text="To get started: 1) Sign up for an account, 2) Generate an API key from the dashboard, 3) Install our SDK using pip install company-sdk, 4) Initialize the client with your API key."
+                            text="To get started: 1) Sign up for an account, 2) Generate an API key from the dashboard, 3) Install our SDK using pip install company-sdk, 4) Initialize the client with your API key.",
                         )
                     ],
-                    citations={"enabled": True}
+                    citations={"enabled": True},
                 ),
                 TextBlockParam(
                     type="text",
-                    text="Based on these search results, how do I authenticate API requests and what are the rate limits?"
-                )
-            ]
+                    text="Based on these search results, how do I authenticate API requests and what are the rate limits?",
+                ),
+            ],
         )
-    ]
+    ],
 )
 
 print(response.model_dump_json(indent=2))
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -563,15 +555,17 @@ messages = [
                 source="https://docs.company.com/overview",
                 title="Product Overview",
                 content=[
-                    TextBlockParam(type="text", text="Our product helps teams collaborate...")
+                    TextBlockParam(
+                        type="text", text="Our product helps teams collaborate..."
+                    )
                 ],
-                citations={"enabled": True}
+                citations={"enabled": True},
             ),
             TextBlockParam(
                 type="text",
-                text="Tell me about this product and search for pricing information"
-            )
-        ]
+                text="Tell me about this product and search for pricing information",
+            ),
+        ],
     )
 ]
 
@@ -591,12 +585,11 @@ tool_result = [
         source="https://docs.company.com/guide",
         title="User Guide",
         content=[TextBlockParam(type="text", text="Configuration details...")],
-        citations={"enabled": True}
+        citations={"enabled": True},
     ),
     TextBlockParam(
-        type="text",
-        text="Additional context: This applies to version 2.0 and later."
-    )
+        type="text", text="Additional context: This applies to version 2.0 and later."
+    ),
 ]
 
 # In top-level content
@@ -606,16 +599,15 @@ user_content = [
         source="https://research.com/paper",
         title="Research Paper",
         content=[TextBlockParam(type="text", text="Key findings...")],
-        citations={"enabled": True}
+        citations={"enabled": True},
     ),
     {
         "type": "image",
-        "source": {"type": "url", "url": "https://example.com/chart.png"}
+        "source": {"type": "url", "url": "https://example.com/chart.png"},
     },
     TextBlockParam(
-        type="text",
-        text="How does the chart relate to the research findings?"
-    )
+        type="text", text="How does the chart relate to the research findings?"
+    ),
 ]
 ```
 

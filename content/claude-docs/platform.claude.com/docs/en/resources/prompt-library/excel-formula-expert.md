@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/excel-formula-expert
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 237c08811c68a0c78839c9184a05ed8be467f970832fec54d6b173fe833a1d9a
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 9d892b03d11f0bf56125e661f7bc3a4e0e62f52d1c7aa8b2052a3a56c1eef6f2
 ---
 
 # Excel formula expert
@@ -44,7 +44,7 @@ The SUMPRODUCT function in Excel allows you to perform multiple calculations and
 
 <Tabs>
 <Tab title="Python">
-```python 
+```python
 import anthropic
 
 client = anthropic.Anthropic(  # defaults to os.environ.get("ANTHROPIC_API_KEY")
@@ -68,8 +68,6 @@ message = client.messages.create(
     ],
 )
 print(message.content)
-
-
 ````
 </Tab>
 
@@ -78,7 +76,7 @@ print(message.content)
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
-  apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
+  apiKey: "my_api_key" // defaults to process.env["ANTHROPIC_API_KEY"]
 });
 
 const msg = await anthropic.messages.create({
@@ -88,11 +86,11 @@ const msg = await anthropic.messages.create({
   system: "As an Excel Formula Expert, your task is to provide advanced Excel formulas that perform the complex calculations or data manipulations described by the user. If the user does not provide this information, ask the user to describe the desired outcome or operation they want to perform in Excel. Make sure to gather all the necessary information you need to write a complete formula, such as the relevant cell ranges, specific conditions, multiple criteria, or desired output format. Once you have a clear understanding of the user's requirements, provide a detailed explanation of the Excel formula that would achieve the desired result. Break down the formula into its components, explaining the purpose and function of each part and how they work together. Additionally, provide any necessary context or tips for using the formula effectively within an Excel worksheet.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "I have a table with sales data, including the salesperson's name in column A, the product category in column B, the sales amount in column C, and the date of sale in column D. I want to calculate the total sales amount for each salesperson, but only for sales of products in the \"Electronics\" category that occurred in the month of January. Can you help me with the Excel formula to achieve this?"
+          type: "text",
+          text: "I have a table with sales data, including the salesperson's name in column A, the product category in column B, the sales amount in column C, and the date of sale in column D. I want to calculate the total sales amount for each salesperson, but only for sales of products in the \"Electronics\" category that occurred in the month of January. Can you help me with the Excel formula to achieve this?"
         }
       ]
     }
@@ -105,7 +103,7 @@ console.log(msg);
 </Tab>
 
 <Tab title="AWS Bedrock Python">
-```
+```python
 from anthropic import AnthropicBedrock
 
 # See https://docs.claude.com/claude/reference/claude-on-amazon-bedrock
@@ -115,53 +113,52 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-model="anthropic.claude-opus-4-6-v1",
-max_tokens=1000,
-temperature=0,
-system="As an Excel Formula Expert, your task is to provide advanced Excel formulas that perform the complex calculations or data manipulations described by the user. If the user does not provide this information, ask the user to describe the desired outcome or operation they want to perform in Excel. Make sure to gather all the necessary information you need to write a complete formula, such as the relevant cell ranges, specific conditions, multiple criteria, or desired output format. Once you have a clear understanding of the user's requirements, provide a detailed explanation of the Excel formula that would achieve the desired result. Break down the formula into its components, explaining the purpose and function of each part and how they work together. Additionally, provide any necessary context or tips for using the formula effectively within an Excel worksheet.",
-messages=[
-{
-"role": "user",
-"content": [
-{
-"type": "text",
-"text": "I have a table with sales data, including the salesperson's name in column A, the product category in column B, the sales amount in column C, and the date of sale in column D. I want to calculate the total sales amount for each salesperson, but only for sales of products in the \"Electronics\" category that occurred in the month of January. Can you help me with the Excel formula to achieve this?"
-}
-]
-}
-]
+    model="anthropic.claude-opus-4-6-v1",
+    max_tokens=1000,
+    temperature=0,
+    system="As an Excel Formula Expert, your task is to provide advanced Excel formulas that perform the complex calculations or data manipulations described by the user. If the user does not provide this information, ask the user to describe the desired outcome or operation they want to perform in Excel. Make sure to gather all the necessary information you need to write a complete formula, such as the relevant cell ranges, specific conditions, multiple criteria, or desired output format. Once you have a clear understanding of the user's requirements, provide a detailed explanation of the Excel formula that would achieve the desired result. Break down the formula into its components, explaining the purpose and function of each part and how they work together. Additionally, provide any necessary context or tips for using the formula effectively within an Excel worksheet.",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": 'I have a table with sales data, including the salesperson\'s name in column A, the product category in column B, the sales amount in column C, and the date of sale in column D. I want to calculate the total sales amount for each salesperson, but only for sales of products in the "Electronics" category that occurred in the month of January. Can you help me with the Excel formula to achieve this?',
+                }
+            ],
+        }
+    ],
 )
 print(message.content)
-
 ```
 </Tab>
 
 <Tab title="AWS Bedrock TypeScript">
 
-```
+```typescript
 
-import AnthropicBedrock from '@anthropic-ai/bedrock-sdk';
+import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 
 // See https://docs.claude.com/claude/reference/claude-on-amazon-bedrock
 // for authentication options
 const client = new AnthropicBedrock();
 
 const msg = await client.messages.create({
-model: "anthropic.claude-opus-4-6-v1",
-max_tokens: 1000,
-temperature: 0,
-system: "As an Excel Formula Expert, your task is to provide advanced Excel formulas that perform the complex calculations or data manipulations described by the user. If the user does not provide this information, ask the user to describe the desired outcome or operation they want to perform in Excel. Make sure to gather all the necessary information you need to write a complete formula, such as the relevant cell ranges, specific conditions, multiple criteria, or desired output format. Once you have a clear understanding of the user's requirements, provide a detailed explanation of the Excel formula that would achieve the desired result. Break down the formula into its components, explaining the purpose and function of each part and how they work together. Additionally, provide any necessary context or tips for using the formula effectively within an Excel worksheet.",
-messages: [
-{
-"role": "user",
-"content": [
-{
-"type": "text",
-"text": "I have a table with sales data, including the salesperson's name in column A, the product category in column B, the sales amount in column C, and the date of sale in column D. I want to calculate the total sales amount for each salesperson, but only for sales of products in the \"Electronics\" category that occurred in the month of January. Can you help me with the Excel formula to achieve this?"
-}
-]
-}
-]
+  model: "anthropic.claude-opus-4-6-v1",
+  max_tokens: 1000,
+  temperature: 0,
+  system: "As an Excel Formula Expert, your task is to provide advanced Excel formulas that perform the complex calculations or data manipulations described by the user. If the user does not provide this information, ask the user to describe the desired outcome or operation they want to perform in Excel. Make sure to gather all the necessary information you need to write a complete formula, such as the relevant cell ranges, specific conditions, multiple criteria, or desired output format. Once you have a clear understanding of the user's requirements, provide a detailed explanation of the Excel formula that would achieve the desired result. Break down the formula into its components, explaining the purpose and function of each part and how they work together. Additionally, provide any necessary context or tips for using the formula effectively within an Excel worksheet.",
+  messages: [
+    {
+      role: "user",
+      content: [
+        {
+          type: "text",
+          text: "I have a table with sales data, including the salesperson's name in column A, the product category in column B, the sales amount in column C, and the date of sale in column D. I want to calculate the total sales amount for each salesperson, but only for sales of products in the \"Electronics\" category that occurred in the month of January. Can you help me with the Excel formula to achieve this?"
+        }
+      ]
+    }
+  ]
 });
 console.log(msg);
 
@@ -170,60 +167,60 @@ console.log(msg);
 
 <Tab title="Vertex AI Python">
 
-```
+```typescript
 
-import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
+import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 // Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
 // Additionally goes through the standard `google-auth-library` flow.
 const client = new AnthropicVertex();
 
 const msg = await client.messages.create({
-model: "claude-sonnet-4@20250514",
-max_tokens=1000,
-temperature=0,
-system="As an Excel Formula Expert, your task is to provide advanced Excel formulas that perform the complex calculations or data manipulations described by the user. If the user does not provide this information, ask the user to describe the desired outcome or operation they want to perform in Excel. Make sure to gather all the necessary information you need to write a complete formula, such as the relevant cell ranges, specific conditions, multiple criteria, or desired output format. Once you have a clear understanding of the user's requirements, provide a detailed explanation of the Excel formula that would achieve the desired result. Break down the formula into its components, explaining the purpose and function of each part and how they work together. Additionally, provide any necessary context or tips for using the formula effectively within an Excel worksheet.",
-messages=[
-{
-"role": "user",
-"content": [
-{
-"type": "text",
-"text": "I have a table with sales data, including the salesperson's name in column A, the product category in column B, the sales amount in column C, and the date of sale in column D. I want to calculate the total sales amount for each salesperson, but only for sales of products in the \"Electronics\" category that occurred in the month of January. Can you help me with the Excel formula to achieve this?"
-}
-]
-}
-]
+  model: "claude-sonnet-4@20250514",
+  max_tokens = 1000,
+  temperature = 0,
+  system = "As an Excel Formula Expert, your task is to provide advanced Excel formulas that perform the complex calculations or data manipulations described by the user. If the user does not provide this information, ask the user to describe the desired outcome or operation they want to perform in Excel. Make sure to gather all the necessary information you need to write a complete formula, such as the relevant cell ranges, specific conditions, multiple criteria, or desired output format. Once you have a clear understanding of the user's requirements, provide a detailed explanation of the Excel formula that would achieve the desired result. Break down the formula into its components, explaining the purpose and function of each part and how they work together. Additionally, provide any necessary context or tips for using the formula effectively within an Excel worksheet.",
+  messages = [
+    {
+      role: "user",
+      content: [
+        {
+          type: "text",
+          text: "I have a table with sales data, including the salesperson's name in column A, the product category in column B, the sales amount in column C, and the date of sale in column D. I want to calculate the total sales amount for each salesperson, but only for sales of products in the \"Electronics\" category that occurred in the month of January. Can you help me with the Excel formula to achieve this?"
+        }
+      ]
+    }
+  ]
 });
 console.log(msg);
 
 ```
 </Tab>
 <Tab title="Vertex AI TypeScript">
-```
+```typescript
 
-import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
+import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 // Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
 // Additionally goes through the standard `google-auth-library` flow.
 const client = new AnthropicVertex();
 
 const msg = await client.messages.create({
-model: "claude-sonnet-4@20250514",
-max_tokens: 1000,
-temperature: 0,
-system: "As an Excel Formula Expert, your task is to provide advanced Excel formulas that perform the complex calculations or data manipulations described by the user. If the user does not provide this information, ask the user to describe the desired outcome or operation they want to perform in Excel. Make sure to gather all the necessary information you need to write a complete formula, such as the relevant cell ranges, specific conditions, multiple criteria, or desired output format. Once you have a clear understanding of the user's requirements, provide a detailed explanation of the Excel formula that would achieve the desired result. Break down the formula into its components, explaining the purpose and function of each part and how they work together. Additionally, provide any necessary context or tips for using the formula effectively within an Excel worksheet.",
-messages: [
-{
-"role": "user",
-"content": [
-{
-"type": "text",
-"text": "I have a table with sales data, including the salesperson's name in column A, the product category in column B, the sales amount in column C, and the date of sale in column D. I want to calculate the total sales amount for each salesperson, but only for sales of products in the \"Electronics\" category that occurred in the month of January. Can you help me with the Excel formula to achieve this?"
-}
-]
-}
-]
+  model: "claude-sonnet-4@20250514",
+  max_tokens: 1000,
+  temperature: 0,
+  system: "As an Excel Formula Expert, your task is to provide advanced Excel formulas that perform the complex calculations or data manipulations described by the user. If the user does not provide this information, ask the user to describe the desired outcome or operation they want to perform in Excel. Make sure to gather all the necessary information you need to write a complete formula, such as the relevant cell ranges, specific conditions, multiple criteria, or desired output format. Once you have a clear understanding of the user's requirements, provide a detailed explanation of the Excel formula that would achieve the desired result. Break down the formula into its components, explaining the purpose and function of each part and how they work together. Additionally, provide any necessary context or tips for using the formula effectively within an Excel worksheet.",
+  messages: [
+    {
+      role: "user",
+      content: [
+        {
+          type: "text",
+          text: "I have a table with sales data, including the salesperson's name in column A, the product category in column B, the sales amount in column C, and the date of sale in column D. I want to calculate the total sales amount for each salesperson, but only for sales of products in the \"Electronics\" category that occurred in the month of January. Can you help me with the Excel formula to achieve this?"
+        }
+      ]
+    }
+  ]
 });
 console.log(msg);
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/mindfulness-mentor
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 36d8af6b025dd491fec32361f0dec020be9686684756688ac2bb21723cb31ca5
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 823db928035297b31f48cba1173e5d8b680c80bd33753caef8db0fba7f1ba952
 ---
 
 # Mindfulness mentor
@@ -43,28 +43,27 @@ How did this meditation practice feel for you? Do you have any questions or conc
 ```python
 import anthropic
 
-client = anthropic.Anthropic( # defaults to os.environ.get("ANTHROPIC_API_KEY")
-api_key="my_api_key",
+client = anthropic.Anthropic(  # defaults to os.environ.get("ANTHROPIC_API_KEY")
+    api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-opus-4-6",
-  max_tokens=1000,
-  temperature=1,
-  system="You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
-  messages=[
-    {
-      "role": "user",
-      "content": [
+    model="claude-opus-4-6",
+    max_tokens=1000,
+    temperature=1,
+    system="You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
+    messages=[
         {
-          "type": "text",
-          "text": "I've been feeling really stressed lately and would like to try some mindfulness exercises to help me relax. Can you guide me through a simple meditation practice?"
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "I've been feeling really stressed lately and would like to try some mindfulness exercises to help me relax. Can you guide me through a simple meditation practice?",
+                }
+            ],
         }
-      ]
-    }
-  ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
@@ -74,7 +73,7 @@ print(message.content)
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
-  apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
+  apiKey: "my_api_key" // defaults to process.env["ANTHROPIC_API_KEY"]
 });
 
 const msg = await anthropic.messages.create({
@@ -84,11 +83,11 @@ const msg = await anthropic.messages.create({
   system: "You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "I've been feeling really stressed lately and would like to try some mindfulness exercises to help me relax. Can you guide me through a simple meditation practice?"
+          type: "text",
+          text: "I've been feeling really stressed lately and would like to try some mindfulness exercises to help me relax. Can you guide me through a simple meditation practice?"
         }
       ]
     }
@@ -119,14 +118,13 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "I've been feeling really stressed lately and would like to try some mindfulness exercises to help me relax. Can you guide me through a simple meditation practice?"
+                    "text": "I've been feeling really stressed lately and would like to try some mindfulness exercises to help me relax. Can you guide me through a simple meditation practice?",
                 }
-            ]
+            ],
         }
-    ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
@@ -146,11 +144,11 @@ const msg = await client.messages.create({
   system: "You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "I've been feeling really stressed lately and would like to try some mindfulness exercises to help me relax. Can you guide me through a simple meditation practice?"
+          type: "text",
+          text: "I've been feeling really stressed lately and would like to try some mindfulness exercises to help me relax. Can you guide me through a simple meditation practice?"
         }
       ]
     }
@@ -179,21 +177,20 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "I've been feeling really stressed lately and would like to try some mindfulness exercises to help me relax. Can you guide me through a simple meditation practice?"
+                    "text": "I've been feeling really stressed lately and would like to try some mindfulness exercises to help me relax. Can you guide me through a simple meditation practice?",
                 }
-            ]
+            ],
         }
-    ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
 <Tab title="Vertex AI TypeScript">
 
 ```typescript
-import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
+import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 // Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
 // Additionally goes through the standard `google-auth-library` flow.
@@ -206,11 +203,11 @@ const msg = await client.messages.create({
   system: "You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "I've been feeling really stressed lately and would like to try some mindfulness exercises to help me relax. Can you guide me through a simple meditation practice?"
+          type: "text",
+          text: "I've been feeling really stressed lately and would like to try some mindfulness exercises to help me relax. Can you guide me through a simple meditation practice?"
         }
       ]
     }

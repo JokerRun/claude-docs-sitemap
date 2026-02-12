@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 737b9495da6f5b9ca35dfbd89fe1007cc512daf65ddf73554fd428259402256a
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 92eb566c1b5e913833bf5cefa23d881296504ad72f246deb67c9575387bdbefc
 ---
 
 ## Create
@@ -267,32 +267,3 @@ Future models and features will not be compatible with Text Completions. See our
     For Text Completions, this is always `"completion"`.
 
     - `const CompletionCompletion Completion = "completion"`
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  completion, err := client.Completions.New(context.TODO(), anthropic.CompletionNewParams{
-    MaxTokensToSample: 256,
-    Model: anthropic.ModelClaudeOpus4_6,
-    Prompt: "\n\nHuman: Hello, world!\n\nAssistant:",
-  })
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", completion.ID)
-}
-```

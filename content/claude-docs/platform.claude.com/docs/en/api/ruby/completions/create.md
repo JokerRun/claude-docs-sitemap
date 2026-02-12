@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/completions/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: b7bd86430ed71cc775cf8734aa122e21b3eb036c27ecf3db2fb010bd62cd61c5
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 9b8c1a2041ada0a645614147274553ea290c59afb3d030db98381cb706343af5
 ---
 
 ## Create
@@ -369,19 +369,3 @@ Future models and features will not be compatible with Text Completions. See our
     For Text Completions, this is always `"completion"`.
 
     - `:completion`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-completion = anthropic.completions.create(
-  max_tokens_to_sample: 256,
-  model: :"claude-opus-4-6",
-  prompt: "\n\nHuman: Hello, world!\n\nAssistant:"
-)
-
-puts(completion)
-```

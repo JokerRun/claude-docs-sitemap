@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/retrieve
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 55b8d486b48e2dad0654240df85dbc74a09bc23d9d8187619d4ae6d269323a95
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 97d17cf1b5b5cc516da034e7fbf3f722d91df93033f2efaa60e959c9181f652a
 ---
 
 ## Retrieve
@@ -25,9 +25,9 @@ Get Skill
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -113,18 +113,3 @@ Get Skill
   - `updated_at: str`
 
     ISO 8601 timestamp of when the skill was last updated.
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-skill = client.beta.skills.retrieve(
-    skill_id="skill_id",
-)
-print(skill.id)
-```

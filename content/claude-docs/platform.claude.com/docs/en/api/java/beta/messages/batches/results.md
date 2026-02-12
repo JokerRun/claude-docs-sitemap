@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/results
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 6726a1628769f28bf04bf70e55abfb67265ae5c671fcb1faa74795e335101756
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: c613bd9e9b1232082aa7451f314d51d0a0c2805167bbe5113ecced10973fa835
 ---
 
 ## Results
@@ -1310,25 +1310,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `JsonValue; type "expired"constant`
 
         - `EXPIRED("expired")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.core.http.StreamResponse;
-import com.anthropic.models.beta.messages.batches.BatchResultsParams;
-import com.anthropic.models.beta.messages.batches.BetaMessageBatchIndividualResponse;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        StreamResponse<BetaMessageBatchIndividualResponse> betaMessageBatchIndividualResponse = client.beta().messages().batches().resultsStreaming("message_batch_id");
-    }
-}
-```

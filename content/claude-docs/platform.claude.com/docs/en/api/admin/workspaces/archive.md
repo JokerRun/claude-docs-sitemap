@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/archive
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: e41d06afeb11b84b87421155dc749bf22a7e8a568fa2b9d1f2c4429c2d932366
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 05595ed7f6dbf5bb12c0a547942e19b33c57e5211ee436ee8307f7fa759445cd
 ---
 
 ## Archive
@@ -70,12 +70,3 @@ Archive Workspace
     For Workspaces, this is always `"workspace"`.
 
     - `"workspace"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/archive \
-    -X POST \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
-```

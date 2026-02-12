@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/retrieve_metadata
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: d34b61c5b1b8e7a7f83de93a3019cb0b03cc1eb2e48b971f14938d3c34e0806d
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: de312bf972ae92fdf15ffec79b66041d496e6c936fe3e5499ff4a594aee78c73
 ---
 
 ## Retrieve Metadata
@@ -106,17 +106,3 @@ Get File Metadata
   - `downloadable?: boolean`
 
     Whether the file can be downloaded.
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const fileMetadata = await client.beta.files.retrieveMetadata('file_id');
-
-console.log(fileMetadata.id);
-```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: c112fdcd9dffa7d65b2a038595a1eeb9961404c673db12714fa3456521bab4a3
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: cc79fa47af98cc7acb89f16337c93bb07e99205e9edb9c1beea4be1b06e0b8d6
 ---
 
 # Messages
@@ -5068,33 +5068,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `FAST("fast")`
 
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.messages.BetaMessage;
-import com.anthropic.models.beta.messages.MessageCreateParams;
-import com.anthropic.models.messages.Model;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        MessageCreateParams params = MessageCreateParams.builder()
-            .maxTokens(1024L)
-            .addUserMessage("Hello, world")
-            .model(Model.CLAUDE_OPUS_4_6)
-            .build();
-        BetaMessage betaMessage = client.beta().messages().create(params);
-    }
-}
-```
-
 ## Count Tokens
 
 `BetaMessageTokensCount beta().messages().countTokens(MessageCountTokensParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
@@ -8955,32 +8928,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
   - `long inputTokens`
 
     The total number of tokens across the provided list of messages, system prompt, and tools.
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.messages.BetaMessageTokensCount;
-import com.anthropic.models.beta.messages.MessageCountTokensParams;
-import com.anthropic.models.messages.Model;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        MessageCountTokensParams params = MessageCountTokensParams.builder()
-            .addUserMessage("Hello, world")
-            .model(Model.CLAUDE_OPUS_4_6)
-            .build();
-        BetaMessageTokensCount betaMessageTokensCount = client.beta().messages().countTokens(params);
-    }
-}
-```
 
 ## Domain Types
 
@@ -33630,38 +33577,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `MESSAGE_BATCH("message_batch")`
 
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.messages.batches.BatchCreateParams;
-import com.anthropic.models.beta.messages.batches.BetaMessageBatch;
-import com.anthropic.models.messages.Model;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        BatchCreateParams params = BatchCreateParams.builder()
-            .addRequest(BatchCreateParams.Request.builder()
-                .customId("my-custom-id-1")
-                .params(BatchCreateParams.Request.Params.builder()
-                    .maxTokens(1024L)
-                    .addUserMessage("Hello, world")
-                    .model(Model.CLAUDE_OPUS_4_6)
-                    .build())
-                .build())
-            .build();
-        BetaMessageBatch betaMessageBatch = client.beta().messages().batches().create(params);
-    }
-}
-```
-
 ## Retrieve
 
 `BetaMessageBatch beta().messages().batches().retrieve(BatchRetrieveParamsparams = BatchRetrieveParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
@@ -33813,27 +33728,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `MESSAGE_BATCH("message_batch")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.messages.batches.BatchRetrieveParams;
-import com.anthropic.models.beta.messages.batches.BetaMessageBatch;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        BetaMessageBatch betaMessageBatch = client.beta().messages().batches().retrieve("message_batch_id");
-    }
-}
-```
 
 ## List
 
@@ -33997,27 +33891,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `MESSAGE_BATCH("message_batch")`
 
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.messages.batches.BatchListPage;
-import com.anthropic.models.beta.messages.batches.BatchListParams;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        BatchListPage page = client.beta().messages().batches().list();
-    }
-}
-```
-
 ## Cancel
 
 `BetaMessageBatch beta().messages().batches().cancel(BatchCancelParamsparams = BatchCancelParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
@@ -34172,27 +34045,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `MESSAGE_BATCH("message_batch")`
 
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.messages.batches.BatchCancelParams;
-import com.anthropic.models.beta.messages.batches.BetaMessageBatch;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        BetaMessageBatch betaMessageBatch = client.beta().messages().batches().cancel("message_batch_id");
-    }
-}
-```
-
 ## Delete
 
 `BetaDeletedMessageBatch beta().messages().batches().delete(BatchDeleteParamsparams = BatchDeleteParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
@@ -34272,27 +34124,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch_deleted"`.
 
     - `MESSAGE_BATCH_DELETED("message_batch_deleted")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.messages.batches.BatchDeleteParams;
-import com.anthropic.models.beta.messages.batches.BetaDeletedMessageBatch;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        BetaDeletedMessageBatch betaDeletedMessageBatch = client.beta().messages().batches().delete("message_batch_id");
-    }
-}
-```
 
 ## Results
 
@@ -35599,28 +35430,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `JsonValue; type "expired"constant`
 
         - `EXPIRED("expired")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.core.http.StreamResponse;
-import com.anthropic.models.beta.messages.batches.BatchResultsParams;
-import com.anthropic.models.beta.messages.batches.BetaMessageBatchIndividualResponse;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        StreamResponse<BetaMessageBatchIndividualResponse> betaMessageBatchIndividualResponse = client.beta().messages().batches().resultsStreaming("message_batch_id");
-    }
-}
-```
 
 ## Domain Types
 

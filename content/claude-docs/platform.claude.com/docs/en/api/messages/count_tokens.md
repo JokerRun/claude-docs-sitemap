@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/count_tokens
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: bf9d0dbdc0af24947c11cbf8abdc341bf4333c4f76799c3d0b5ebf4979f2d9d1
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 09882703e4f8e072d2535d87741b785e490b45b68e8bf9d4e537b8e2ffad4e4b
 ---
 
 ## Count Tokens
@@ -2140,21 +2140,3 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
   - `input_tokens: number`
 
     The total number of tokens across the provided list of messages, system prompt, and tools.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages/count_tokens \
-    -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{
-          "messages": [
-            {
-              "content": "string",
-              "role": "user"
-            }
-          ],
-          "model": "claude-opus-4-6"
-        }'
-```

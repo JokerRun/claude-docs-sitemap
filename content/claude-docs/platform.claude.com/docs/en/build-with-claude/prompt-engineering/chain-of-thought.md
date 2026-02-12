@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/chain-of-thought
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 297a74968ca6104996c6c4e298d206fdc890786e8c3862a4025c14daaa5b5324
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 73e333f43d9303b20e7fb046af98f0cf44a04bda53c7d84eedd7b23d9ba6b9f3
 ---
 
 # Let Claude think (chain of thought prompting) to increase performance
@@ -62,7 +62,7 @@ The chain of thought techniques below are **ordered from least to most complex**
         | User | Draft personalized emails to donors asking for contributions to this year's Care for Kids program.<br/><br/>Program information:<br/>\\{\{PROGRAM_DETAILS}}<br/>\</program><br/><br/>Donor information:<br/>\<donor>\{\{DONOR_DETAILS}}<br/>\</donor><br/><br/>Think before you write the email in \<thinking> tags. First, think through what messaging might appeal to this donor given their donation history and which campaigns they've supported in the past. Then, think through what aspects of the Care for Kids program would appeal to them, given their history. Finally, write the personalized donor email in \<email> tags, using your analysis. |
     
 </section>
-    
+
 ### Examples
 
   <section title="Example: Financial analysis without thinking">

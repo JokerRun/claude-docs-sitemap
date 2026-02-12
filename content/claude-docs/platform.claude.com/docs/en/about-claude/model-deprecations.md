@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/model-deprecations
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: fda0c17ab257c2cb53bab1347e36c31bcb83bc2f00dbd8450f89cbe023f17eaa
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: ac5f83e92fdd5889ab3eb8274782dfad66a0f0e6bb433e04e5641bbfbebd6e5c
 ---
 
 # Model deprecations
@@ -41,7 +41,7 @@ Anthropic notifies customers with active deployments for models with upcoming re
 
 To help identify usage of deprecated models, customers can access an audit of their API usage. Follow these steps:
 
-1. Go to the [Usage](/settings/usage) page in Console
+1. Go to the [Usage](/usage) page in Console
 2. Click the "Export" button
 3. Review the downloaded CSV to see usage broken down by API key and model
 
@@ -131,7 +131,7 @@ On June 30, 2025, we notified developers using Claude Opus 3 model of its upcomi
 These models were retired July 21, 2025.
 </Note>
 
-On January 21, 2025, we notified developers using Claude 2, Claude 2.1, and Claude Sonnet 3 models of their upcoming retirements. 
+On January 21, 2025, we notified developers using Claude 2, Claude 2.1, and Claude Sonnet 3 models of their upcoming retirements.
 
 | Retirement Date             | Deprecated Model            | Recommended Replacement         |
 |:----------------------------|:----------------------------|:--------------------------------|

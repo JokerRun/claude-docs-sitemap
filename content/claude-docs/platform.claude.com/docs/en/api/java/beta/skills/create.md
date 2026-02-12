@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: ecb72ab8e4feee0f7c981a3f1c91267b2a37c6d59f81f7eb9d5232db11c09189
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: d48943766c0cd71d8f08515ec5c98cfec9fb6163e9d4588c0a390faec5e9ccc7
 ---
 
 ## Create
@@ -117,24 +117,3 @@ Create Skill
   - `String updatedAt`
 
     ISO 8601 timestamp of when the skill was last updated.
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.skills.SkillCreateParams;
-import com.anthropic.models.beta.skills.SkillCreateResponse;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        SkillCreateResponse skill = client.beta().skills().create();
-    }
-}
-```

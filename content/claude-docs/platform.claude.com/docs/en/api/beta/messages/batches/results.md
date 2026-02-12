@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/results
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 73cc630a281c66d813ec972c1811b86f516befe05fd10c5e48079235d9418f45
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 7d6ba13ba4f5bb44649a9e4eae77f0ef099f6e084fc3c505b8d16ee314686e89
 ---
 
 ## Results
@@ -1320,12 +1320,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `type: "expired"`
 
         - `"expired"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
-    -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: message-batches-2024-09-24' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```

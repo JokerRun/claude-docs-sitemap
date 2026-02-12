@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/alien-anthropologist
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 0b60a248d3ecfa0158a20edc40d8c7e2d4fdc57519c52f323d9693ccfb523f64
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 44cb204c9a62c6069593821ce4f85e5a0354948b72ec9df8bbafe29fe4fe3c68
 ---
 
 # Alien anthropologist
@@ -39,7 +39,7 @@ Analyze human culture and customs from the perspective of an alien anthropologis
 <CodeGroup>
     ```python Python
     import anthropic
-    
+
     client = anthropic.Anthropic(
         # defaults to os.environ.get("ANTHROPIC_API_KEY")
         api_key="my_api_key",
@@ -53,26 +53,21 @@ Analyze human culture and customs from the perspective of an alien anthropologis
             {
                 "role": "user",
                 "content": [
-                    {
-                        "type": "text",
-                        "text": "Human social interactions and relationships"
-                    }
-                ]
+                    {"type": "text", "text": "Human social interactions and relationships"}
+                ],
             }
-        ]
+        ],
     )
     print(message.content)
-    
     ```
-    
-    
+
     ```typescript TypeScript
     import Anthropic from "@anthropic-ai/sdk";
-    
+
     const anthropic = new Anthropic({
-      apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
+      apiKey: "my_api_key" // defaults to process.env["ANTHROPIC_API_KEY"]
     });
-    
+
     const msg = await anthropic.messages.create({
       model: "claude-opus-4-6",
       max_tokens: 2000,
@@ -80,28 +75,27 @@ Analyze human culture and customs from the perspective of an alien anthropologis
       system: "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
       messages: [
         {
-          "role": "user",
-          "content": [
+          role: "user",
+          content: [
             {
-              "type": "text",
-              "text": "Human social interactions and relationships"
+              type: "text",
+              text: "Human social interactions and relationships"
             }
           ]
         }
       ]
     });
     console.log(msg);
-    
+
     ```
-    
-    
+
     ```python AWS Bedrock Python
     from anthropic import AnthropicBedrock
-    
+
     # See https://docs.claude.com/claude/reference/claude-on-amazon-bedrock
     # for authentication options
     client = AnthropicBedrock()
-    
+
     message = client.messages.create(
         model="anthropic.claude-opus-4-6-v1",
         max_tokens=2000,
@@ -111,26 +105,21 @@ Analyze human culture and customs from the perspective of an alien anthropologis
             {
                 "role": "user",
                 "content": [
-                    {
-                        "type": "text",
-                        "text": "Human social interactions and relationships"
-                    }
-                ]
+                    {"type": "text", "text": "Human social interactions and relationships"}
+                ],
             }
-        ]
+        ],
     )
     print(message.content)
-    
     ```
-    
-    
+
     ```typescript AWS Bedrock TypeScript
     import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
-    
+
     // See https://docs.claude.com/claude/reference/claude-on-amazon-bedrock
     // for authentication options
     const client = new AnthropicBedrock();
-    
+
     const msg = await client.messages.create({
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 2000,
@@ -138,26 +127,25 @@ Analyze human culture and customs from the perspective of an alien anthropologis
       system: "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
       messages: [
         {
-          "role": "user",
-          "content": [
+          role: "user",
+          content: [
             {
-              "type": "text",
-              "text": "Human social interactions and relationships"
+              type: "text",
+              text: "Human social interactions and relationships"
             }
           ]
         }
       ]
     });
     console.log(msg);
-    
+
     ```
-    
-    
+
     ```python Vertex AI Python
     from anthropic import AnthropicVertex
-    
+
     client = AnthropicVertex()
-    
+
     message = client.messages.create(
         model="claude-sonnet-4@20250514",
         max_tokens=2000,
@@ -167,26 +155,21 @@ Analyze human culture and customs from the perspective of an alien anthropologis
             {
                 "role": "user",
                 "content": [
-                    {
-                        "type": "text",
-                        "text": "Human social interactions and relationships"
-                    }
-                ]
+                    {"type": "text", "text": "Human social interactions and relationships"}
+                ],
             }
-        ]
+        ],
     )
     print(message.content)
-    
     ```
-    
-    
+
     ```typescript Vertex AI TypeScript
-    import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
-    
+    import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
+
     // Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
     // Additionally goes through the standard `google-auth-library` flow.
     const client = new AnthropicVertex();
-    
+
     const msg = await client.messages.create({
       model: "claude-sonnet-4@20250514",
       max_tokens: 2000,
@@ -194,17 +177,17 @@ Analyze human culture and customs from the perspective of an alien anthropologis
       system: "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
       messages: [
         {
-          "role": "user",
-          "content": [
+          role: "user",
+          content: [
             {
-              "type": "text",
-              "text": "Human social interactions and relationships"
+              type: "text",
+              text: "Human social interactions and relationships"
             }
           ]
         }
       ]
     });
     console.log(msg);
-    
+
     ```
 </CodeGroup>

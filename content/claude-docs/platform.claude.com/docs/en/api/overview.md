@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/overview
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 51fc242f97d1e071b7ca526195a9e1a0d941f21930bc35699f9c625ec93591b6
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: b8ecacd6bb29ef0c3129059fe37ee374f315c9afd0a90b7fd8ed28e27edf4d27
 ---
 
 # API Overview
@@ -77,7 +77,7 @@ client = Anthropic()  # Reads ANTHROPIC_API_KEY from environment
 message = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
-    messages=[{"role": "user", "content": "Hello, Claude"}]
+    messages=[{"role": "user", "content": "Hello, Claude"}],
 )
 ```
 

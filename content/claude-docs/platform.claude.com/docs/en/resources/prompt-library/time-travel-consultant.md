@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/time-travel-consultant
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: c6f46e98e57b0f8d9d65390dc091b5008264a5e05a1e3dc05e3fd6c37ff40ef7
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 70c323a07916ef9e5181db5bbc04b9d02e7644aad58026b7ba915de75f55a144
 ---
 
 # Time travel consultant
@@ -43,28 +43,27 @@ What are your thoughts on this scenario? What other aspects or implications do y
 import anthropic
 
 client = anthropic.Anthropic(
-  # defaults to os.environ.get("ANTHROPIC_API_KEY")
-  api_key="my_api_key",
+    # defaults to os.environ.get("ANTHROPIC_API_KEY")
+    api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-opus-4-6",
-  max_tokens=2000,
-  temperature=1,
-  system="You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
-  messages=[
-    {
-      "role": "user",
-      "content": [
+    model="claude-opus-4-6",
+    max_tokens=2000,
+    temperature=1,
+    system="You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
+    messages=[
         {
-          "type": "text",
-          "text": "Let's say I have a time machine and I travel back to the year 1900. While there, I accidentally prevent the invention of the airplane by the Wright brothers. What would be the potential implications of this action?"
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Let's say I have a time machine and I travel back to the year 1900. While there, I accidentally prevent the invention of the airplane by the Wright brothers. What would be the potential implications of this action?",
+                }
+            ],
         }
-      ]
-    }
-  ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
@@ -74,7 +73,7 @@ print(message.content)
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
-  apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
+  apiKey: "my_api_key" // defaults to process.env["ANTHROPIC_API_KEY"]
 });
 
 const msg = await anthropic.messages.create({
@@ -84,11 +83,11 @@ const msg = await anthropic.messages.create({
   system: "You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Let's say I have a time machine and I travel back to the year 1900. While there, I accidentally prevent the invention of the airplane by the Wright brothers. What would be the potential implications of this action?"
+          type: "text",
+          text: "Let's say I have a time machine and I travel back to the year 1900. While there, I accidentally prevent the invention of the airplane by the Wright brothers. What would be the potential implications of this action?"
         }
       ]
     }
@@ -111,24 +110,23 @@ from anthropic import AnthropicBedrock
 client = AnthropicBedrock()
 
 message = client.messages.create(
-model="anthropic.claude-opus-4-6-v1",
-max_tokens=2000,
-temperature=1,
-system="You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
-messages=[
-{
-"role": "user",
-"content": [
-{
-"type": "text",
-"text": "Let's say I have a time machine and I travel back to the year 1900. While there, I accidentally prevent the invention of the airplane by the Wright brothers. What would be the potential implications of this action?"
-}
-]
-}
-]
+    model="anthropic.claude-opus-4-6-v1",
+    max_tokens=2000,
+    temperature=1,
+    system="You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Let's say I have a time machine and I travel back to the year 1900. While there, I accidentally prevent the invention of the airplane by the Wright brothers. What would be the potential implications of this action?",
+                }
+            ],
+        }
+    ],
 )
 print(message.content)
-
 ````
 </Tab>
 
@@ -147,11 +145,11 @@ const msg = await client.messages.create({
   system: "You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Let's say I have a time machine and I travel back to the year 1900. While there, I accidentally prevent the invention of the airplane by the Wright brothers. What would be the potential implications of this action?"
+          type: "text",
+          text: "Let's say I have a time machine and I travel back to the year 1900. While there, I accidentally prevent the invention of the airplane by the Wright brothers. What would be the potential implications of this action?"
         }
       ]
     }
@@ -164,35 +162,34 @@ console.log(msg);
 </Tab>
 
 <Tab title=" Vertex AI Python">
-```
+```python
 from anthropic import AnthropicVertex
 
 client = AnthropicVertex()
 
 message = client.messages.create(
-model="claude-sonnet-4@20250514",
-max_tokens=2000,
-temperature=1,
-system="You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
-messages=[
-{
-"role": "user",
-"content": [
-{
-"type": "text",
-"text": "Let's say I have a time machine and I travel back to the year 1900. While there, I accidentally prevent the invention of the airplane by the Wright brothers. What would be the potential implications of this action?"
-}
-]
-}
-]
+    model="claude-sonnet-4@20250514",
+    max_tokens=2000,
+    temperature=1,
+    system="You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Let's say I have a time machine and I travel back to the year 1900. While there, I accidentally prevent the invention of the airplane by the Wright brothers. What would be the potential implications of this action?",
+                }
+            ],
+        }
+    ],
 )
 print(message.content)
-
 ````
 </Tab>
 <Tab title="Vertex AI TypeScript">
 ```typescript
-import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
+import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 // Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
 // Additionally goes through the standard `google-auth-library` flow.
@@ -205,11 +202,11 @@ const msg = await client.messages.create({
   system: "You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Let's say I have a time machine and I travel back to the year 1900. While there, I accidentally prevent the invention of the airplane by the Wright brothers. What would be the potential implications of this action?"
+          type: "text",
+          text: "Let's say I have a time machine and I travel back to the year 1900. While there, I accidentally prevent the invention of the airplane by the Wright brothers. What would be the potential implications of this action?"
         }
       ]
     }

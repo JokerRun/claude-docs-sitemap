@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/delete
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 36dd73ac3d05d40d2e74f6686dba29f21b69d606a81b14f584088cd7f0ee525c
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 4d9e343a983f3920315b501bf8d35ab00d510b9cf40a133e686e7e88d71d1189
 ---
 
 ## Delete
@@ -84,15 +84,3 @@ Delete Skill
     Deleted object type.
 
     For Skills, this is always `"skill_deleted"`.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-skill = anthropic.beta.skills.delete("skill_id")
-
-puts(skill)
-```

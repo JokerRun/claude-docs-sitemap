@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/delete
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 92f574c945df46aa90ecc12a55e32098ea295045939b96c88e6dac784a54d972
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: d1a909b935b106d8663251efe2513166f68d8d6c1022036fc8872f2feabc858d
 ---
 
 ## Delete
@@ -25,9 +25,9 @@ Delete Skill
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,18 +84,3 @@ Delete Skill
     Deleted object type.
 
     For Skills, this is always `"skill_deleted"`.
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-skill = client.beta.skills.delete(
-    skill_id="skill_id",
-)
-print(skill.id)
-```

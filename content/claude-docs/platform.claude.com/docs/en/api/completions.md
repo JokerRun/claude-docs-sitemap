@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: ddc911c29565d4278919b95e5d8d69bd96cd7e5d77530b140e40e36c4c0ab3d2
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 04c5b02f635427a05300e51e44f54a431903b3a342f713022d9017d3e5175993
 ---
 
 # Completions
@@ -369,21 +369,6 @@ Future models and features will not be compatible with Text Completions. See our
     For Text Completions, this is always `"completion"`.
 
     - `"completion"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/complete \
-    -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    --max-time 600 \
-    -d '{
-          "max_tokens_to_sample": 256,
-          "model": "claude-opus-4-6",
-          "prompt": "\\n\\nHuman: Hello, world!\\n\\nAssistant:"
-        }'
-```
 
 ## Domain Types
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/migration-guide
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 7db7dbc04dc74adf3d511dc646d078a3a1dafd2dc068b9c1ff902824adabb690
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: bdcea878b9dcef1f40fed373dcc0cf8851d043737d939dfe65d8e06312bd1337
 ---
 
 # Migration guide
@@ -19,8 +19,8 @@ Claude Opus 4.6 is a near drop-in replacement for Claude 4.5, with a few breakin
 
 ```python
 # Opus migration
-model="claude-opus-4-5"   # Before
-model="claude-opus-4-6"   # After
+model = "claude-opus-4-5"  # Before
+model = "claude-opus-4-6"  # After
 ```
 
 ### Breaking changes
@@ -40,12 +40,9 @@ These are not required but will improve your experience:
    response = client.beta.messages.create(
        model="claude-opus-4-5",
        max_tokens=16000,
-       thinking={
-           "type": "enabled",
-           "budget_tokens": 32000
-       },
+       thinking={"type": "enabled", "budget_tokens": 32000},
        betas=["interleaved-thinking-2025-05-14"],
-       messages=[...]
+       messages=[...],
    )
    ```
 
@@ -53,13 +50,9 @@ These are not required but will improve your experience:
    response = client.messages.create(
        model="claude-opus-4-6",
        max_tokens=16000,
-       thinking={
-           "type": "adaptive"
-       },
-       output_config={
-           "effort": "high"
-       },
-       messages=[...]
+       thinking={"type": "adaptive"},
+       output_config={"effort": "high"},
+       messages=[...],
    )
    ```
    </CodeGroup>
@@ -80,16 +73,16 @@ If you're migrating from Opus 4.1, Sonnet 4, or earlier models directly to Claud
 
 ```python
 # From Opus 4.1
-model="claude-opus-4-1-20250805"   # Before
-model="claude-opus-4-6"            # After
+model = "claude-opus-4-1-20250805"  # Before
+model = "claude-opus-4-6"  # After
 
 # From Sonnet 4
-model="claude-sonnet-4-20250514"   # Before
-model="claude-opus-4-6"            # After
+model = "claude-sonnet-4-20250514"  # Before
+model = "claude-opus-4-6"  # After
 
 # From Sonnet 3.7
-model="claude-3-7-sonnet-20250219"   # Before
-model="claude-opus-4-6"              # After
+model = "claude-3-7-sonnet-20250219"  # Before
+model = "claude-opus-4-6"  # After
 ```
 
 #### Additional breaking changes
@@ -108,14 +101,14 @@ model="claude-opus-4-6"              # After
        model="claude-3-7-sonnet-20250219",
        temperature=0.7,
        top_p=0.9,  # Cannot use both
-       ...
+       # ...
    )
 
    # After
    response = client.messages.create(
        model="claude-opus-4-6",
        temperature=0.7,  # Use temperature OR top_p, not both
-       ...
+       # ...
    )
    ```
 
@@ -129,10 +122,10 @@ model="claude-opus-4-6"              # After
 
    ```python
    # Before
-   tools=[{"type": "text_editor_20250124", "name": "str_replace_editor"}]
+   tools = [{"type": "text_editor_20250124", "name": "str_replace_editor"}]
 
    # After
-   tools=[{"type": "text_editor_20250728", "name": "str_replace_based_edit_tool"}]
+   tools = [{"type": "text_editor_20250728", "name": "str_replace_based_edit_tool"}]
    ```
 
    - **Text editor:** Use `text_editor_20250728` and `str_replace_based_edit_tool`. See [Text editor tool documentation](/docs/en/agents-and-tools/tool-use/text-editor-tool) for details.
@@ -209,12 +202,12 @@ Sonnet 4.5 pricing is $3 per million input tokens, $15 per million output tokens
 
 ```python
 # From Sonnet 4
-model="claude-sonnet-4-20250514"     # Before
-model="claude-sonnet-4-5-20250929"   # After
+model = "claude-sonnet-4-20250514"  # Before
+model = "claude-sonnet-4-5-20250929"  # After
 
 # From Sonnet 3.7
-model="claude-3-7-sonnet-20250219"   # Before
-model="claude-sonnet-4-5-20250929"   # After
+model = "claude-3-7-sonnet-20250219"  # Before
+model = "claude-sonnet-4-5-20250929"  # After
 ```
 
 ### Breaking changes
@@ -272,8 +265,8 @@ Haiku 4.5 pricing is $1 per million input tokens, $5 per million output tokens. 
 
 ```python
 # From Haiku 3.5
-model="claude-3-5-haiku-20241022"   # Before
-model="claude-haiku-4-5-20251001"   # After
+model = "claude-3-5-haiku-20241022"  # Before
+model = "claude-haiku-4-5-20251001"  # After
 ```
 
 **Review new rate limits:** Haiku 4.5 has separate rate limits from Haiku 3.5. See [Rate limits documentation](/docs/en/api/rate-limits) for details.

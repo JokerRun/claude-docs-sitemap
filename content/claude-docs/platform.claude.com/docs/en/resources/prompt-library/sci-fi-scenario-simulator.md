@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/sci-fi-scenario-simulator
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 63081307aeaeb4e216e82271eead7c6959e355e904227b7415f51901a2baebde
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 9ca9afd43f8a7de6d9b1becee4eb591c5f69228f3f2b93156f13ef459d360b99
 ---
 
 # Sci-fi scenario simulator
@@ -39,7 +39,7 @@ Discuss with the user various science fiction scenarios and associated challenge
 <CodeGroup>
     ```python Python
     import anthropic
-    
+
     client = anthropic.Anthropic(
         # defaults to os.environ.get("ANTHROPIC_API_KEY")
         api_key="my_api_key",
@@ -55,24 +55,22 @@ Discuss with the user various science fiction scenarios and associated challenge
                 "content": [
                     {
                         "type": "text",
-                        "text": "A future where humans can upload their consciousness into a digital realm."
+                        "text": "A future where humans can upload their consciousness into a digital realm.",
                     }
-                ]
+                ],
             }
-        ]
+        ],
     )
     print(message.content)
-    
     ```
-    
-    
+
     ```typescript TypeScript
     import Anthropic from "@anthropic-ai/sdk";
-    
+
     const anthropic = new Anthropic({
-      apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
+      apiKey: "my_api_key" // defaults to process.env["ANTHROPIC_API_KEY"]
     });
-    
+
     const msg = await anthropic.messages.create({
       model: "claude-opus-4-6",
       max_tokens: 2000,
@@ -80,28 +78,27 @@ Discuss with the user various science fiction scenarios and associated challenge
       system: "Your task is to explore a science fiction scenario and discuss the potential challenges and considerations that may arise. Briefly describe the scenario, identify the key technological, social, or ethical issues involved, and encourage the user to share their thoughts on how these challenges might be addressed.",
       messages: [
         {
-          "role": "user",
-          "content": [
+          role: "user",
+          content: [
             {
-              "type": "text",
-              "text": "A future where humans can upload their consciousness into a digital realm."
+              type: "text",
+              text: "A future where humans can upload their consciousness into a digital realm."
             }
           ]
         }
       ]
     });
     console.log(msg);
-    
+
     ```
-    
-    
+
     ```python AWS Bedrock Python
     from anthropic import AnthropicBedrock
-    
+
     # See https://docs.claude.com/claude/reference/claude-on-amazon-bedrock
     # for authentication options
     client = AnthropicBedrock()
-    
+
     message = client.messages.create(
         model="anthropic.claude-opus-4-6-v1",
         max_tokens=2000,
@@ -113,24 +110,22 @@ Discuss with the user various science fiction scenarios and associated challenge
                 "content": [
                     {
                         "type": "text",
-                        "text": "A future where humans can upload their consciousness into a digital realm."
+                        "text": "A future where humans can upload their consciousness into a digital realm.",
                     }
-                ]
+                ],
             }
-        ]
+        ],
     )
     print(message.content)
-    
     ```
-    
-    
+
     ```typescript AWS Bedrock TypeScript
     import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
-    
+
     // See https://docs.claude.com/claude/reference/claude-on-amazon-bedrock
     // for authentication options
     const client = new AnthropicBedrock();
-    
+
     const msg = await client.messages.create({
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 2000,
@@ -138,26 +133,25 @@ Discuss with the user various science fiction scenarios and associated challenge
       system: "Your task is to explore a science fiction scenario and discuss the potential challenges and considerations that may arise. Briefly describe the scenario, identify the key technological, social, or ethical issues involved, and encourage the user to share their thoughts on how these challenges might be addressed.",
       messages: [
         {
-          "role": "user",
-          "content": [
+          role: "user",
+          content: [
             {
-              "type": "text",
-              "text": "A future where humans can upload their consciousness into a digital realm."
+              type: "text",
+              text: "A future where humans can upload their consciousness into a digital realm."
             }
           ]
         }
       ]
     });
     console.log(msg);
-    
+
     ```
-    
-    
+
     ```python Vertex AI Python
     from anthropic import AnthropicVertex
-    
+
     client = AnthropicVertex()
-    
+
     message = client.messages.create(
         model="claude-sonnet-4@20250514",
         max_tokens=2000,
@@ -169,24 +163,22 @@ Discuss with the user various science fiction scenarios and associated challenge
                 "content": [
                     {
                         "type": "text",
-                        "text": "A future where humans can upload their consciousness into a digital realm."
+                        "text": "A future where humans can upload their consciousness into a digital realm.",
                     }
-                ]
+                ],
             }
-        ]
+        ],
     )
     print(message.content)
-    
     ```
-    
-    
+
     ```typescript Vertex AI TypeScript
-    import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
-    
+    import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
+
     // Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
     // Additionally goes through the standard `google-auth-library` flow.
     const client = new AnthropicVertex();
-    
+
     const msg = await client.messages.create({
       model: "claude-sonnet-4@20250514",
       max_tokens: 2000,
@@ -194,17 +186,17 @@ Discuss with the user various science fiction scenarios and associated challenge
       system: "Your task is to explore a science fiction scenario and discuss the potential challenges and considerations that may arise. Briefly describe the scenario, identify the key technological, social, or ethical issues involved, and encourage the user to share their thoughts on how these challenges might be addressed.",
       messages: [
         {
-          "role": "user",
-          "content": [
+          role: "user",
+          content: [
             {
-              "type": "text",
-              "text": "A future where humans can upload their consciousness into a digital realm."
+              type: "text",
+              text: "A future where humans can upload their consciousness into a digital realm."
             }
           ]
         }
       ]
     });
     console.log(msg);
-    
+
     ```
 </CodeGroup>

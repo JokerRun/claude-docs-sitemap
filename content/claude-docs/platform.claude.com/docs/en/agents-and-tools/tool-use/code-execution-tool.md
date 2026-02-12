@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 44415c3908d02aa2ed9541fd503f17e41eb61c8d348d42ede9efd8abb830dcbe
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 969ca7a1b2bcd1460dd5b78887b8a90ef0242cce2bb26b55afcd892ac399c466
 ---
 
 # Code execution tool
@@ -81,21 +81,20 @@ response = client.beta.messages.create(
     model="claude-opus-4-6",
     betas=["code-execution-2025-08-25"],
     max_tokens=4096,
-    messages=[{
-        "role": "user",
-        "content": "Calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-    }],
-    tools=[{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-    }]
+    messages=[
+        {
+            "role": "user",
+            "content": "Calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+        }
+    ],
+    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
 )
 
 print(response)
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -167,14 +166,13 @@ response = client.beta.messages.create(
     model="claude-opus-4-6",
     betas=["code-execution-2025-08-25"],
     max_tokens=4096,
-    messages=[{
-        "role": "user",
-        "content": "Check the Python version and list installed packages"
-    }],
-    tools=[{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-    }]
+    messages=[
+        {
+            "role": "user",
+            "content": "Check the Python version and list installed packages",
+        }
+    ],
+    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
 )
 ```
 
@@ -225,14 +223,13 @@ response = client.beta.messages.create(
     model="claude-opus-4-6",
     betas=["code-execution-2025-08-25"],
     max_tokens=4096,
-    messages=[{
-        "role": "user",
-        "content": "Create a config.yaml file with database settings, then update the port from 5432 to 3306"
-    }],
-    tools=[{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-    }]
+    messages=[
+        {
+            "role": "user",
+            "content": "Create a config.yaml file with database settings, then update the port from 5432 to 3306",
+        }
+    ],
+    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
 )
 ```
 
@@ -323,30 +320,29 @@ response = client.beta.messages.create(
     model="claude-opus-4-6",
     betas=["code-execution-2025-08-25", "files-api-2025-04-14"],
     max_tokens=4096,
-    messages=[{
-        "role": "user",
-        "content": [
-            {"type": "text", "text": "Analyze this CSV data"},
-            {"type": "container_upload", "file_id": file_object.id}
-        ]
-    }],
-    tools=[{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-    }]
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "Analyze this CSV data"},
+                {"type": "container_upload", "file_id": file_object.id},
+            ],
+        }
+    ],
+    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
 )
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
-import { createReadStream } from 'fs';
+import { Anthropic } from "@anthropic-ai/sdk";
+import { createReadStream } from "fs";
 
 const anthropic = new Anthropic();
 
 async function main() {
   // Upload a file
   const fileObject = await anthropic.beta.files.create({
-    file: createReadStream("data.csv"),
+    file: createReadStream("data.csv")
   });
 
   // Use the file_id with code execution
@@ -390,27 +386,28 @@ response = client.beta.messages.create(
     model="claude-opus-4-6",
     betas=["code-execution-2025-08-25", "files-api-2025-04-14"],
     max_tokens=4096,
-    messages=[{
-        "role": "user",
-        "content": "Create a matplotlib visualization and save it as output.png"
-    }],
-    tools=[{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-    }]
+    messages=[
+        {
+            "role": "user",
+            "content": "Create a matplotlib visualization and save it as output.png",
+        }
+    ],
+    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
 )
+
 
 # Extract file IDs from the response
 def extract_file_ids(response):
     file_ids = []
     for item in response.content:
-        if item.type == 'bash_code_execution_tool_result':
+        if item.type == "bash_code_execution_tool_result":
             content_item = item.content
-            if content_item.type == 'bash_code_execution_result':
+            if content_item.type == "bash_code_execution_result":
                 for file in content_item.content:
-                    if hasattr(file, 'file_id'):
+                    if hasattr(file, "file_id"):
                         file_ids.append(file.file_id)
     return file_ids
+
 
 # Download the created files
 for file_id in extract_file_ids(response):
@@ -421,8 +418,8 @@ for file_id in extract_file_ids(response):
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
-import { writeFileSync } from 'fs';
+import { Anthropic } from "@anthropic-ai/sdk";
+import { writeFile } from "fs/promises";
 
 // Initialize the client
 const anthropic = new Anthropic();
@@ -447,9 +444,9 @@ async function main() {
   function extractFileIds(response: any): string[] {
     const fileIds: string[] = [];
     for (const item of response.content) {
-      if (item.type === 'bash_code_execution_tool_result') {
+      if (item.type === "bash_code_execution_tool_result") {
         const contentItem = item.content;
-        if (contentItem.type === 'bash_code_execution_result' && contentItem.content) {
+        if (contentItem.type === "bash_code_execution_result" && contentItem.content) {
           for (const file of contentItem.content) {
             fileIds.push(file.file_id);
           }
@@ -471,7 +468,7 @@ async function main() {
       chunks.push(chunk);
     }
     const buffer = Buffer.concat(chunks);
-    writeFileSync(fileMetadata.filename, buffer);
+    await writeFile(fileMetadata.filename, buffer);
     console.log(`Downloaded: ${fileMetadata.filename}`);
   }
 }
@@ -510,11 +507,11 @@ curl https://api.anthropic.com/v1/messages \
             "role": "user",
             "content": [
                 {
-                    "type": "text", 
+                    "type": "text",
                     "text": "Analyze this CSV data: create a summary report, save visualizations, and create a README with the findings"
                 },
                 {
-                    "type": "container_upload", 
+                    "type": "container_upload",
                     "file_id": "'$FILE_ID'"
                 }
             ]
@@ -537,17 +534,19 @@ response = client.beta.messages.create(
     model="claude-opus-4-6",
     betas=["code-execution-2025-08-25", "files-api-2025-04-14"],
     max_tokens=4096,
-    messages=[{
-        "role": "user",
-        "content": [
-            {"type": "text", "text": "Analyze this CSV data: create a summary report, save visualizations, and create a README with the findings"},
-            {"type": "container_upload", "file_id": file_object.id}
-        ]
-    }],
-    tools=[{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-    }]
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Analyze this CSV data: create a summary report, save visualizations, and create a README with the findings",
+                },
+                {"type": "container_upload", "file_id": file_object.id},
+            ],
+        }
+    ],
+    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
 )
 
 # Claude might:
@@ -561,7 +560,7 @@ response = client.beta.messages.create(
 ```typescript TypeScript
 // Upload a file
 const fileObject = await anthropic.beta.files.create({
-  file: createReadStream("data.csv"),
+  file: createReadStream("data.csv")
 });
 
 // Use it with code execution
@@ -572,8 +571,8 @@ const response = await anthropic.beta.messages.create({
   messages: [{
     role: "user",
     content: [
-      {type: "text", text: "Analyze this CSV data: create a summary report, save visualizations, and create a README with the findings"},
-      {type: "container_upload", file_id: fileObject.id}
+      { type: "text", text: "Analyze this CSV data: create a summary report, save visualizations, and create a README with the findings" },
+      { type: "container_upload", file_id: fileObject.id }
     ]
   }],
   tools: [{
@@ -798,23 +797,20 @@ import os
 from anthropic import Anthropic
 
 # Initialize the client
-client = Anthropic(
-    api_key=os.getenv("ANTHROPIC_API_KEY")
-)
+client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 # First request: Create a file with a random number
 response1 = client.beta.messages.create(
     model="claude-opus-4-6",
     betas=["code-execution-2025-08-25"],
     max_tokens=4096,
-    messages=[{
-        "role": "user",
-        "content": "Write a file with a random number and save it to '/tmp/number.txt'"
-    }],
-    tools=[{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-    }]
+    messages=[
+        {
+            "role": "user",
+            "content": "Write a file with a random number and save it to '/tmp/number.txt'",
+        }
+    ],
+    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
 )
 
 # Extract the container ID from the first response
@@ -826,19 +822,18 @@ response2 = client.beta.messages.create(
     model="claude-opus-4-6",
     betas=["code-execution-2025-08-25"],
     max_tokens=4096,
-    messages=[{
-        "role": "user",
-        "content": "Read the number from '/tmp/number.txt' and calculate its square"
-    }],
-    tools=[{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-    }]
+    messages=[
+        {
+            "role": "user",
+            "content": "Read the number from '/tmp/number.txt' and calculate its square",
+        }
+    ],
+    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
 )
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -863,7 +858,7 @@ async function main() {
 
   // Second request: Reuse the container to read the file
   const response2 = await anthropic.beta.messages.create({
-    container: containerId,  // Reuse the same container
+    container: containerId, // Reuse the same container
     model: "claude-opus-4-6",
     betas: ["code-execution-2025-08-25"],
     max_tokens: 4096,
@@ -932,7 +927,7 @@ curl https://api.anthropic.com/v1/messages \
 
 With streaming enabled, you'll receive code execution events as they occur:
 
-```javascript
+```json
 event: content_block_start
 data: {"type": "content_block_start", "index": 1, "content_block": {"type": "server_tool_use", "id": "srvtoolu_xyz789", "name": "code_execution"}}
 
@@ -1007,22 +1002,20 @@ response = client.beta.messages.create(
     model="claude-opus-4-6",
     betas=["advanced-tool-use-2025-11-20"],
     max_tokens=4096,
-    messages=[{
-        "role": "user",
-        "content": "Get weather for 5 cities and find the warmest"
-    }],
+    messages=[
+        {"role": "user", "content": "Get weather for 5 cities and find the warmest"}
+    ],
     tools=[
-        {
-            "type": "code_execution_20250825",
-            "name": "code_execution"
-        },
+        {"type": "code_execution_20250825", "name": "code_execution"},
         {
             "name": "get_weather",
             "description": "Get weather for a city",
             "input_schema": {...},
-            "allowed_callers": ["code_execution_20250825"]  # Enable programmatic calling
-        }
-    ]
+            "allowed_callers": [
+                "code_execution_20250825"
+            ],  # Enable programmatic calling
+        },
+    ],
 )
 ```
 </CodeGroup>

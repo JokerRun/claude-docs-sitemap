@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: f5b416e0a6cb7f69e15a4b611ec7f6183a8b9aa021cd8c20400d5ca8a63d4ee2
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 9bb8934eb909fdaef88283a634afc06d3e635cbf2c5171c71221900700680be6
 ---
 
 # Fine-grained tool streaming
@@ -69,36 +69,40 @@ Here's an example of how to use fine-grained tool streaming with the API:
   response = client.messages.stream(
       max_tokens=65536,
       model="claude-opus-4-6",
-      tools=[{
-        "name": "make_file",
-        "description": "Write text to a file",
-        "eager_input_streaming": True,
-        "input_schema": {
-          "type": "object",
-          "properties": {
-            "filename": {
-              "type": "string",
-              "description": "The filename to write text to"
-            },
-            "lines_of_text": {
-              "type": "array",
-              "description": "An array of lines of text to write to the file"
-            }
-          },
-          "required": ["filename", "lines_of_text"]
-        }
-      }],
-      messages=[{
-        "role": "user",
-        "content": "Can you write a long poem and make a file called poem.txt?"
-      }]
+      tools=[
+          {
+              "name": "make_file",
+              "description": "Write text to a file",
+              "eager_input_streaming": True,
+              "input_schema": {
+                  "type": "object",
+                  "properties": {
+                      "filename": {
+                          "type": "string",
+                          "description": "The filename to write text to",
+                      },
+                      "lines_of_text": {
+                          "type": "array",
+                          "description": "An array of lines of text to write to the file",
+                      },
+                  },
+                  "required": ["filename", "lines_of_text"],
+              },
+          }
+      ],
+      messages=[
+          {
+              "role": "user",
+              "content": "Can you write a long poem and make a file called poem.txt?",
+          }
+      ],
   )
 
   print(response.usage)
   ```
 
   ```typescript TypeScript
-  import Anthropic from '@anthropic-ai/sdk';
+  import Anthropic from "@anthropic-ai/sdk";
 
   const anthropic = new Anthropic();
 
@@ -106,22 +110,22 @@ Here's an example of how to use fine-grained tool streaming with the API:
     model: "claude-opus-4-6",
     max_tokens: 65536,
     tools: [{
-      "name": "make_file",
-      "description": "Write text to a file",
-      "eager_input_streaming": true,
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "filename": {
-            "type": "string",
-            "description": "The filename to write text to"
+      name: "make_file",
+      description: "Write text to a file",
+      eager_input_streaming: true,
+      input_schema: {
+        type: "object",
+        properties: {
+          filename: {
+            type: "string",
+            description: "The filename to write text to"
           },
-          "lines_of_text": {
-            "type": "array",
-            "description": "An array of lines of text to write to the file"
+          lines_of_text: {
+            type: "array",
+            description: "An array of lines of text to write to the file"
           }
         },
-        "required": ["filename", "lines_of_text"]
+        required: ["filename", "lines_of_text"]
       }
     }],
     messages: [{
@@ -139,10 +143,10 @@ In this example, fine-grained tool streaming enables Claude to stream the lines 
 <Note>
 With fine-grained tool streaming, tool use chunks start streaming faster, and are often longer and contain fewer word breaks. This is due to differences in chunking behavior.
 
-Example: 
+Example:
 
 Without fine-grained streaming (15s delay):
-```
+```text
 Chunk 1: '{"'
 Chunk 2: 'query": "Ty'
 Chunk 3: 'peScri'
@@ -155,7 +159,7 @@ Chunk 9: 'eatur'
 ```
 
 With fine-grained streaming (3s delay):
-```
+```text
 Chunk 1: '{"query": "TypeScript 5.0 5.1 5.2 5.3'
 Chunk 2: ' new features comparison'
 ```

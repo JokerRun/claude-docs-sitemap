@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/count_tokens
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 823bb2e8072226c8839589f5d524829a3a03668d2f979112b976204ffa43edb5
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 54b9601aaec708d39935dde4b11c157dfc449ae397d10e33df5d3e912ce3c834
 ---
 
 ## Count Tokens
@@ -4185,20 +4185,3 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
   - `input_tokens: number`
 
     The total number of tokens across the provided list of messages, system prompt, and tools.
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const betaMessageTokensCount = await client.beta.messages.countTokens({
-  messages: [{ content: 'string', role: 'user' }],
-  model: 'claude-opus-4-6',
-});
-
-console.log(betaMessageTokensCount.context_management);
-```

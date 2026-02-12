@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 8cd13e2de5490219438a7931ac7dd57747a35b8648f764b55520e1e0ad8d5cd7
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 604f4e485994f1a385f9db2b6a185cb31c12cadc0ff604c4ae9e1402a7ab0ec3
 ---
 
 # Completions
@@ -387,24 +387,6 @@ Future models and features will not be compatible with Text Completions. See our
     For Text Completions, this is always `"completion"`.
 
     - `"completion"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const completion = await client.completions.create({
-  max_tokens_to_sample: 256,
-  model: 'claude-opus-4-6',
-  prompt: '\n\nHuman: Hello, world!\n\nAssistant:',
-});
-
-console.log(completion.id);
-```
 
 ## Domain Types
 

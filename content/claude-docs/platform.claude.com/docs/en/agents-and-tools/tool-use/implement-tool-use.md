@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 34f204230e4c60000de32d87c8637027fe47e824f28f4a64733e8737f2c5eba0
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 1bc1b3cd135fdbaa89136cede9b26c4d103831d54130ea0632702d5e136c3dd2
 ---
 
 # How to implement tool use
@@ -149,7 +149,7 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-response = client.messages.create(
+response = client.beta.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
     betas=["advanced-tool-use-2025-11-20"],
@@ -162,34 +162,26 @@ response = client.messages.create(
                 "properties": {
                     "location": {
                         "type": "string",
-                        "description": "The city and state, e.g. San Francisco, CA"
+                        "description": "The city and state, e.g. San Francisco, CA",
                     },
                     "unit": {
                         "type": "string",
                         "enum": ["celsius", "fahrenheit"],
-                        "description": "The unit of temperature"
-                    }
+                        "description": "The unit of temperature",
+                    },
                 },
-                "required": ["location"]
+                "required": ["location"],
             },
             "input_examples": [
-                {
-                    "location": "San Francisco, CA",
-                    "unit": "fahrenheit"
-                },
-                {
-                    "location": "Tokyo, Japan",
-                    "unit": "celsius"
-                },
+                {"location": "San Francisco, CA", "unit": "fahrenheit"},
+                {"location": "Tokyo, Japan", "unit": "celsius"},
                 {
                     "location": "New York, NY"  # 'unit' is optional
-                }
-            ]
+                },
+            ],
         }
     ],
-    messages=[
-        {"role": "user", "content": "What's the weather like in San Francisco?"}
-    ]
+    messages=[{"role": "user", "content": "What's the weather like in San Francisco?"}],
 )
 ```
 
@@ -198,7 +190,7 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
-const response = await client.messages.create({
+const response = await client.beta.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
   betas: ["advanced-tool-use-2025-11-20"],
@@ -211,33 +203,33 @@ const response = await client.messages.create({
         properties: {
           location: {
             type: "string",
-            description: "The city and state, e.g. San Francisco, CA",
+            description: "The city and state, e.g. San Francisco, CA"
           },
           unit: {
             type: "string",
             enum: ["celsius", "fahrenheit"],
-            description: "The unit of temperature",
-          },
+            description: "The unit of temperature"
+          }
         },
-        required: ["location"],
+        required: ["location"]
       },
       input_examples: [
         {
           location: "San Francisco, CA",
-          unit: "fahrenheit",
+          unit: "fahrenheit"
         },
         {
           location: "Tokyo, Japan",
-          unit: "celsius",
+          unit: "celsius"
         },
         {
-          location: "New York, NY",
+          location: "New York, NY"
           // Demonstrates that 'unit' is optional
-        },
-      ],
-    },
+        }
+      ]
+    }
   ],
-  messages: [{ role: "user", content: "What's the weather like in San Francisco?" }],
+  messages: [{ role: "user", content: "What's the weather like in San Francisco?" }]
 });
 ```
 </CodeGroup>
@@ -292,6 +284,7 @@ from anthropic import beta_tool
 # Initialize client
 client = anthropic.Anthropic()
 
+
 # Define tools using the decorator
 @beta_tool
 def get_weather(location: str, unit: str = "fahrenheit") -> str:
@@ -304,6 +297,7 @@ def get_weather(location: str, unit: str = "fahrenheit") -> str:
     # In a full implementation, you'd call a weather API here
     return json.dumps({"temperature": "20°C", "condition": "Sunny"})
 
+
 @beta_tool
 def calculate_sum(a: int, b: int) -> str:
     """Add two numbers together.
@@ -314,14 +308,18 @@ def calculate_sum(a: int, b: int) -> str:
     """
     return str(a + b)
 
+
 # Use the tool runner
 runner = client.beta.messages.tool_runner(
     model="claude-opus-4-6",
     max_tokens=1024,
     tools=[get_weather, calculate_sum],
     messages=[
-        {"role": "user", "content": "What's the weather like in Paris? Also, what's 15 + 27?"}
-    ]
+        {
+            "role": "user",
+            "content": "What's the weather like in Paris? Also, what's 15 + 27?",
+        }
+    ],
 )
 for message in runner:
     print(message.content[0].text)
@@ -363,31 +361,31 @@ TypeScript offers two approaches for defining tools:
 **Using Zod (recommended)** - Use `betaZodTool()` for type-safe tool definitions with Zod validation (requires Zod 3.25.0 or higher):
 
 ```typescript
-import { Anthropic } from '@anthropic-ai/sdk';
-import { betaZodTool } from '@anthropic-ai/sdk/helpers/beta/zod';
-import { z } from 'zod';
+import { Anthropic } from "@anthropic-ai/sdk";
+import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
+import { z } from "zod";
 
 const anthropic = new Anthropic();
 
 const getWeatherTool = betaZodTool({
-  name: 'get_weather',
-  description: 'Get the current weather in a given location',
+  name: "get_weather",
+  description: "Get the current weather in a given location",
   inputSchema: z.object({
-    location: z.string().describe('The city and state, e.g. San Francisco, CA'),
-    unit: z.enum(['celsius', 'fahrenheit']).default('fahrenheit')
-      .describe('Temperature unit')
+    location: z.string().describe("The city and state, e.g. San Francisco, CA"),
+    unit: z.enum(["celsius", "fahrenheit"]).default("fahrenheit")
+      .describe("Temperature unit")
   }),
   run: async (input) => {
     // In a full implementation, you'd call a weather API here
-    return JSON.stringify({temperature: '20°C', condition: 'Sunny'});
+    return JSON.stringify({ temperature: "20°C", condition: "Sunny" });
   }
 });
 
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [getWeatherTool],
-  messages: [{ role: 'user', content: "What's the weather like in Paris?" }]
+  messages: [{ role: "user", content: "What's the weather like in Paris?" }]
 });
 
 for await (const message of runner) {
@@ -402,21 +400,21 @@ The input generated by Claude will not be validated at runtime. Perform validati
 </Note>
 
 ```typescript
-import { Anthropic } from '@anthropic-ai/sdk';
-import { betaTool } from '@anthropic-ai/sdk/helpers/beta/json-schema';
+import { Anthropic } from "@anthropic-ai/sdk";
+import { betaTool } from "@anthropic-ai/sdk/helpers/beta/json-schema";
 
 const anthropic = new Anthropic();
 
 const calculateSumTool = betaTool({
-  name: 'calculate_sum',
-  description: 'Add two numbers together',
+  name: "calculate_sum",
+  description: "Add two numbers together",
   inputSchema: {
-    type: 'object',
+    type: "object",
     properties: {
-      a: { type: 'number', description: 'First number' },
-      b: { type: 'number', description: 'Second number' }
+      a: { type: "number", description: "First number" },
+      b: { type: "number", description: "Second number" }
     },
-    required: ['a', 'b']
+    required: ["a", "b"]
   },
   run: async (input) => {
     return String(input.a + input.b);
@@ -424,10 +422,10 @@ const calculateSumTool = betaTool({
 });
 
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [calculateSumTool],
-  messages: [{ role: 'user', content: "What's 15 + 27?" }]
+  messages: [{ role: "user", content: "What's 15 + 27?" }]
 });
 
 for await (const message of runner) {
@@ -521,8 +519,11 @@ runner = client.beta.messages.tool_runner(
     max_tokens=1024,
     tools=[get_weather, calculate_sum],
     messages=[
-        {"role": "user", "content": "What's the weather like in Paris? Also, what's 15 + 27?"}
-    ]
+        {
+            "role": "user",
+            "content": "What's the weather like in Paris? Also, what's 15 + 27?",
+        }
+    ],
 )
 final_message = runner.until_done()
 print(final_message.content[0].text)
@@ -535,10 +536,10 @@ Simply `await` the runner to get the final message.
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [getWeatherTool],
-  messages: [{ role: 'user', content: "What's the weather like in Paris?" }]
+  messages: [{ role: "user", content: "What's the weather like in Paris?" }]
 });
 
 const finalMessage = await runner;
@@ -581,7 +582,7 @@ runner = client.beta.messages.tool_runner(
     model="claude-opus-4-6",
     max_tokens=1024,
     tools=[get_weather],
-    messages=[{"role": "user", "content": "What's the weather in San Francisco?"}]
+    messages=[{"role": "user", "content": "What's the weather in San Francisco?"}],
 )
 for message in runner:
     # Optional: inspect the tool response (automatically appended by the runner)
@@ -590,10 +591,12 @@ for message in runner:
         print(f"Tool result: {tool_response}")
 
     # Customize the next request
-    runner.set_messages_params(lambda params: {
-        **params,
-        "max_tokens": 2048  # Increase tokens for next request
-    })
+    runner.set_messages_params(
+        lambda params: {
+            **params,
+            "max_tokens": 2048,  # Increase tokens for next request
+        }
+    )
 
     # Or add additional messages
     runner.append_messages(
@@ -608,28 +611,28 @@ Use `generateToolResponse()` to optionally inspect the tool result (the runner a
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [getWeatherTool],
-  messages: [{ role: 'user', content: "What's the weather in San Francisco?" }]
+  messages: [{ role: "user", content: "What's the weather in San Francisco?" }]
 });
 
 for await (const message of runner) {
   // Optional: inspect the tool result message (automatically appended by the runner)
   const toolResultMessage = await runner.generateToolResponse();
   if (toolResultMessage) {
-    console.log('Tool result:', toolResultMessage);
+    console.log("Tool result:", toolResultMessage);
   }
 
   // Customize the next request
   runner.setMessagesParams(params => ({
     ...params,
-    max_tokens: 2048  // Increase tokens for next request
+    max_tokens: 2048 // Increase tokens for next request
   }));
 
   // Or add additional messages
   runner.pushMessages(
-    { role: 'user', content: 'Please be concise in your response.' }
+    { role: "user", content: "Please be concise in your response." }
   );
 }
 ```
@@ -695,7 +698,7 @@ runner = client.beta.messages.tool_runner(
     model="claude-opus-4-6",
     max_tokens=1024,
     tools=[my_tool],
-    messages=[{"role": "user", "content": "Run the tool"}]
+    messages=[{"role": "user", "content": "Run the tool"}],
 )
 
 for message in runner:
@@ -720,10 +723,10 @@ for message in runner:
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [myTool],
-  messages: [{ role: 'user', content: 'Run the tool' }]
+  messages: [{ role: "user", content: "Run the tool" }]
 });
 
 for await (const message of runner) {
@@ -732,7 +735,7 @@ for await (const message of runner) {
   if (toolResultMessage) {
     // Check if any tool result has an error
     for (const block of toolResultMessage.content) {
-      if (block.type === 'tool_result' && block.is_error) {
+      if (block.type === "tool_result" && block.is_error) {
         // Option 1: Throw to stop the loop
         throw new Error(`Tool failed: ${JSON.stringify(block.content)}`);
 
@@ -797,7 +800,12 @@ runner = client.beta.messages.tool_runner(
     model="claude-opus-4-6",
     max_tokens=1024,
     tools=[search_documents],
-    messages=[{"role": "user", "content": "Search for information about the climate of San Francisco"}]
+    messages=[
+        {
+            "role": "user",
+            "content": "Search for information about the climate of San Francisco",
+        }
+    ],
 )
 
 for message in runner:
@@ -821,10 +829,10 @@ for message in runner:
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [searchDocuments],
-  messages: [{ role: 'user', content: 'Search for information about the climate of San Francisco' }]
+  messages: [{ role: "user", content: "Search for information about the climate of San Francisco" }]
 });
 
 for await (const message of runner) {
@@ -833,9 +841,9 @@ for await (const message of runner) {
   if (toolResultMessage) {
     // Modify the tool result to add cache control
     for (const block of toolResultMessage.content) {
-      if (block.type === 'tool_result') {
+      if (block.type === "tool_result") {
         // Add cache_control to cache this tool result
-        block.cache_control = { type: 'ephemeral' };
+        block.cache_control = { type: "ephemeral" };
       }
     }
 
@@ -902,14 +910,14 @@ runner = client.beta.messages.tool_runner(
     max_tokens=1024,
     tools=[calculate_sum],
     messages=[{"role": "user", "content": "What is 15 + 27?"}],
-    stream=True
+    stream=True,
 )
 
 # When streaming, the runner returns BetaMessageStream
 for message_stream in runner:
     for event in message_stream:
-        print('event:', event)
-    print('message:', message_stream.get_final_message())
+        print("event:", event)
+    print("message:", message_stream.get_final_message())
 
 print(runner.until_done())
 ```
@@ -921,19 +929,19 @@ Set `stream: true` and use `finalMessage()` to get the accumulated message.
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1000,
-  messages: [{ role: 'user', content: 'What is the weather in San Francisco?' }],
+  messages: [{ role: "user", content: "What is the weather in San Francisco?" }],
   tools: [getWeatherTool],
-  stream: true,
+  stream: true
 });
 
 // When streaming, the runner returns BetaMessageStream
 for await (const messageStream of runner) {
   for await (const event of messageStream) {
-    console.log('event:', event);
+    console.log("event:", event);
   }
-  console.log('message:', await messageStream.finalMessage());
+  console.log("message:", await messageStream.finalMessage());
 }
 
 console.log(await runner);
@@ -1073,11 +1081,11 @@ tools = [
             "properties": {
                 "location": {
                     "type": "string",
-                    "description": "The city and state, e.g. San Francisco, CA"
+                    "description": "The city and state, e.g. San Francisco, CA",
                 }
             },
-            "required": ["location"]
-        }
+            "required": ["location"],
+        },
     },
     {
         "name": "get_time",
@@ -1087,12 +1095,12 @@ tools = [
             "properties": {
                 "timezone": {
                     "type": "string",
-                    "description": "The timezone, e.g. America/New_York"
+                    "description": "The timezone, e.g. America/New_York",
                 }
             },
-            "required": ["timezone"]
-        }
-    }
+            "required": ["timezone"],
+        },
+    },
 ]
 
 # Initial request
@@ -1103,24 +1111,26 @@ response = client.messages.create(
     messages=[
         {
             "role": "user",
-            "content": "What's the weather in SF and NYC, and what time is it there?"
+            "content": "What's the weather in SF and NYC, and what time is it there?",
         }
-    ]
+    ],
 )
 
 # Claude's response with parallel tool calls
 print("Claude wants to use tools:", response.stop_reason == "tool_use")
-print("Number of tool calls:", len([c for c in response.content if c.type == "tool_use"]))
+print(
+    "Number of tool calls:", len([c for c in response.content if c.type == "tool_use"])
+)
 
 # Build the conversation with tool results
 messages = [
     {
         "role": "user",
-        "content": "What's the weather in SF and NYC, and what time is it there?"
+        "content": "What's the weather in SF and NYC, and what time is it there?",
     },
     {
         "role": "assistant",
-        "content": response.content  # Contains multiple tool_use blocks
+        "content": response.content,  # Contains multiple tool_use blocks
     },
     {
         "role": "user",
@@ -1128,40 +1138,37 @@ messages = [
             {
                 "type": "tool_result",
                 "tool_use_id": "toolu_01",  # Must match the ID from tool_use
-                "content": "San Francisco: 68°F, partly cloudy"
+                "content": "San Francisco: 68°F, partly cloudy",
             },
             {
                 "type": "tool_result",
                 "tool_use_id": "toolu_02",
-                "content": "New York: 45°F, clear skies"
+                "content": "New York: 45°F, clear skies",
             },
             {
                 "type": "tool_result",
                 "tool_use_id": "toolu_03",
-                "content": "San Francisco time: 2:30 PM PST"
+                "content": "San Francisco time: 2:30 PM PST",
             },
             {
                 "type": "tool_result",
                 "tool_use_id": "toolu_04",
-                "content": "New York time: 5:30 PM EST"
-            }
-        ]
-    }
+                "content": "New York time: 5:30 PM EST",
+            },
+        ],
+    },
 ]
 
 # Get final response
 final_response = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    tools=tools,
-    messages=messages
+    model="claude-opus-4-6", max_tokens=1024, tools=tools, messages=messages
 )
 
 print(final_response.content[0].text)
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -1218,14 +1225,14 @@ const messages = [
   },
   {
     role: "assistant",
-    content: response.content  // Contains multiple tool_use blocks
+    content: response.content // Contains multiple tool_use blocks
   },
   {
     role: "user",
     content: [
       {
         type: "tool_result",
-        tool_use_id: "toolu_01",  // Must match the ID from tool_use
+        tool_use_id: "toolu_01", // Must match the ID from tool_use
         content: "San Francisco: 68°F, partly cloudy"
       },
       {
@@ -1323,11 +1330,11 @@ tools = [
             "properties": {
                 "location": {
                     "type": "string",
-                    "description": "The city and state, e.g. San Francisco, CA"
+                    "description": "The city and state, e.g. San Francisco, CA",
                 }
             },
-            "required": ["location"]
-        }
+            "required": ["location"],
+        },
     },
     {
         "name": "get_time",
@@ -1337,29 +1344,26 @@ tools = [
             "properties": {
                 "timezone": {
                     "type": "string",
-                    "description": "The timezone, e.g. America/New_York"
+                    "description": "The timezone, e.g. America/New_York",
                 }
             },
-            "required": ["timezone"]
-        }
-    }
+            "required": ["timezone"],
+        },
+    },
 ]
 
 # Test conversation with parallel tool calls
 messages = [
     {
         "role": "user",
-        "content": "What's the weather in SF and NYC, and what time is it there?"
+        "content": "What's the weather in SF and NYC, and what time is it there?",
     }
 ]
 
 # Make initial request
 print("Requesting parallel tool calls...")
 response = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    messages=messages,
-    tools=tools
+    model="claude-opus-4-6", max_tokens=1024, messages=messages, tools=tools
 )
 
 # Check for parallel tool calls
@@ -1387,25 +1391,22 @@ for tool_use in tool_uses:
         else:
             result = "5:30 PM EST"
 
-    tool_results.append({
-        "type": "tool_result",
-        "tool_use_id": tool_use.id,
-        "content": result
-    })
+    tool_results.append(
+        {"type": "tool_result", "tool_use_id": tool_use.id, "content": result}
+    )
 
 # Continue conversation with tool results
-messages.extend([
-    {"role": "assistant", "content": response.content},
-    {"role": "user", "content": tool_results}  # All results in one message!
-])
+messages.extend(
+    [
+        {"role": "assistant", "content": response.content},
+        {"role": "user", "content": tool_results},  # All results in one message!
+    ]
+)
 
 # Get final response
 print("\nGetting final response...")
 final_response = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    messages=messages,
-    tools=tools
+    model="claude-opus-4-6", max_tokens=1024, messages=messages, tools=tools
 )
 
 print(f"\nClaude's response:\n{final_response.content[0].text}")
@@ -1421,7 +1422,7 @@ print("✓ Conversation formatted correctly for future parallel tool use")
 #!/usr/bin/env node
 // Test script to verify parallel tool calls with the Claude API
 
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY
@@ -1513,7 +1514,7 @@ async function testParallelTools() {
     messages: [
       { role: "user", content: "What's the weather in SF and NYC, and what time is it there?" },
       { role: "assistant", content: response.content },
-      { role: "user", content: toolResults }  // All results in one message!
+      { role: "user", content: toolResults } // All results in one message!
     ],
     tools: tools
   });
@@ -1779,7 +1780,7 @@ if response.stop_reason == "max_tokens":
             model="claude-opus-4-6",
             max_tokens=4096,  # Increased limit
             messages=messages,
-            tools=tools
+            tools=tools,
         )
 ```
 
@@ -1820,22 +1821,21 @@ response = client.messages.create(
     messages=[
         {
             "role": "user",
-            "content": "Search for comprehensive information about quantum computing breakthroughs in 2025"
+            "content": "Search for comprehensive information about quantum computing breakthroughs in 2025",
         }
     ],
-    tools=[{
-        "type": "web_search_20250305",
-        "name": "web_search",
-        "max_uses": 10
-    }]
+    tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 10}],
 )
 
 # Check if the response has pause_turn stop reason
 if response.stop_reason == "pause_turn":
     # Continue the conversation with the paused content
     messages = [
-        {"role": "user", "content": "Search for comprehensive information about quantum computing breakthroughs in 2025"},
-        {"role": "assistant", "content": response.content}
+        {
+            "role": "user",
+            "content": "Search for comprehensive information about quantum computing breakthroughs in 2025",
+        },
+        {"role": "assistant", "content": response.content},
     ]
 
     # Send the continuation request
@@ -1843,11 +1843,7 @@ if response.stop_reason == "pause_turn":
         model="claude-3-7-sonnet-latest",
         max_tokens=1024,
         messages=messages,
-        tools=[{
-            "type": "web_search_20250305",
-            "name": "web_search",
-            "max_uses": 10
-        }]
+        tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 10}],
     )
 
     print(continuation)
@@ -1856,7 +1852,7 @@ else:
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -2029,12 +2025,11 @@ To verify parallel tool calls are working:
 
 ```python
 # Calculate average tools per tool-calling message
-tool_call_messages = [msg for msg in messages if any(
-    block.type == "tool_use" for block in msg.content
-)]
+tool_call_messages = [
+    msg for msg in messages if any(block.type == "tool_use" for block in msg.content)
+]
 total_tool_calls = sum(
-    len([b for b in msg.content if b.type == "tool_use"])
-    for msg in tool_call_messages
+    len([b for b in msg.content if b.type == "tool_use"]) for msg in tool_call_messages
 )
 avg_tools_per_message = total_tool_calls / len(tool_call_messages)
 print(f"Average tools per message: {avg_tools_per_message}")

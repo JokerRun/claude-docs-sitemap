@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/models
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: f0d0b2b556cc98900436ff2ed24f3433c9856757faa89d6cae075167ef35edac
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 12286b970efb0048df3840c9bbf3ac0ed4610758789bc8add83435cab1ef686c
 ---
 
 # Models
@@ -105,18 +105,6 @@ The Models API response can be used to determine which models are available for 
 
     - `:model`
 
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-page = anthropic.models.list
-
-puts(page)
-```
-
 ## Retrieve
 
 `models.retrieve(model_id, **kwargs) -> ModelInfo`
@@ -204,18 +192,6 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `:model`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-model_info = anthropic.models.retrieve("model_id")
-
-puts(model_info)
-```
 
 ## Domain Types
 

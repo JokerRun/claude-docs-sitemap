@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: aa76a0af3536919cde12bc2bb0c1c1296a3dca9497a43e9c79d6197809803473
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 3584eb8329ec6806ab5751e7cabb226b23c58f0754b82cb2126133b0be306cab
 ---
 
 # Models
@@ -117,14 +117,6 @@ The Models API response can be used to determine which models are available for 
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 
-### Example
-
-```http
-curl https://api.anthropic.com/v1/models \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```
-
 ## Retrieve
 
 **get** `/v1/models/{model_id}`
@@ -212,14 +204,6 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `"model"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/models/$MODEL_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```
 
 ## Domain Types
 

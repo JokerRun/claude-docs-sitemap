@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/storytelling-sidekick
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 548a046e7fe16ae10b68d7a3fbed606b10e42af131de68dc79a411bb8006ca46
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: d5a0dada869fa27370b162ebe40ccea6e836c6f4ca31ece9abe7ef4ec559afd7
 ---
 
 # Storytelling sidekick
@@ -43,28 +43,27 @@ What do you think should happen next in the story? How could Lila's relationship
 import anthropic
 
 client = anthropic.Anthropic(
-  # defaults to os.environ.get("ANTHROPIC_API_KEY")
-  api_key="my_api_key",
+    # defaults to os.environ.get("ANTHROPIC_API_KEY")
+    api_key="my_api_key",
 )
 message = client.messages.create(
-  model="claude-opus-4-6",
-  max_tokens=2000,
-  temperature=1,
-  system="You are an AI assistant with a passion for creative writing and storytelling. Your task is to collaborate with users to create engaging stories, offering imaginative plot twists and dynamic character development. Encourage the user to contribute their ideas and build upon them to create a captivating narrative.",
-  messages=[
-    {
-      "role": "user",
-      "content": [
+    model="claude-opus-4-6",
+    max_tokens=2000,
+    temperature=1,
+    system="You are an AI assistant with a passion for creative writing and storytelling. Your task is to collaborate with users to create engaging stories, offering imaginative plot twists and dynamic character development. Encourage the user to contribute their ideas and build upon them to create a captivating narrative.",
+    messages=[
         {
-          "type": "text",
-          "text": "Let's create a story about a young woman named Lila who discovers she has the power to control the weather. She lives in a small town where everyone knows each other."
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Let's create a story about a young woman named Lila who discovers she has the power to control the weather. She lives in a small town where everyone knows each other.",
+                }
+            ],
         }
-      ]
-    }
-  ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
@@ -75,7 +74,7 @@ print(message.content)
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
-  apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
+  apiKey: "my_api_key" // defaults to process.env["ANTHROPIC_API_KEY"]
 });
 
 const msg = await anthropic.messages.create({
@@ -85,11 +84,11 @@ const msg = await anthropic.messages.create({
   system: "You are an AI assistant with a passion for creative writing and storytelling. Your task is to collaborate with users to create engaging stories, offering imaginative plot twists and dynamic character development. Encourage the user to contribute their ideas and build upon them to create a captivating narrative.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Let's create a story about a young woman named Lila who discovers she has the power to control the weather. She lives in a small town where everyone knows each other."
+          type: "text",
+          text: "Let's create a story about a young woman named Lila who discovers she has the power to control the weather. She lives in a small town where everyone knows each other."
         }
       ]
     }
@@ -121,14 +120,13 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "Let's create a story about a young woman named Lila who discovers she has the power to control the weather. She lives in a small town where everyone knows each other."
+                    "text": "Let's create a story about a young woman named Lila who discovers she has the power to control the weather. She lives in a small town where everyone knows each other.",
                 }
-            ]
+            ],
         }
-    ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
@@ -149,11 +147,11 @@ const msg = await client.messages.create({
   system: "You are an AI assistant with a passion for creative writing and storytelling. Your task is to collaborate with users to create engaging stories, offering imaginative plot twists and dynamic character development. Encourage the user to contribute their ideas and build upon them to create a captivating narrative.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Let's create a story about a young woman named Lila who discovers she has the power to control the weather. She lives in a small town where everyone knows each other."
+          type: "text",
+          text: "Let's create a story about a young woman named Lila who discovers she has the power to control the weather. She lives in a small town where everyone knows each other."
         }
       ]
     }
@@ -183,42 +181,41 @@ message = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": "Let's create a story about a young woman named Lila who discovers she has the power to control the weather. She lives in a small town where everyone knows each other."
+                    "text": "Let's create a story about a young woman named Lila who discovers she has the power to control the weather. She lives in a small town where everyone knows each other.",
                 }
-            ]
+            ],
         }
-    ]
+    ],
 )
 print(message.content)
-
 ```
 
 </Tab>
 
 <Tab title="Vertex AI TypeScript">
 ```typescript
-import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
+import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 // Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
 // Additionally goes through the standard `google-auth-library` flow.
 const client = new AnthropicVertex();
 
 const msg = await client.messages.create({
-model: "claude-sonnet-4@20250514",
-max_tokens: 2000,
-temperature: 1,
-system: "You are an AI assistant with a passion for creative writing and storytelling. Your task is to collaborate with users to create engaging stories, offering imaginative plot twists and dynamic character development. Encourage the user to contribute their ideas and build upon them to create a captivating narrative.",
-messages: [
-{
-"role": "user",
-"content": [
-{
-"type": "text",
-"text": "Let's create a story about a young woman named Lila who discovers she has the power to control the weather. She lives in a small town where everyone knows each other."
-}
-]
-}
-]
+  model: "claude-sonnet-4@20250514",
+  max_tokens: 2000,
+  temperature: 1,
+  system: "You are an AI assistant with a passion for creative writing and storytelling. Your task is to collaborate with users to create engaging stories, offering imaginative plot twists and dynamic character development. Encourage the user to contribute their ideas and build upon them to create a captivating narrative.",
+  messages: [
+    {
+      role: "user",
+      content: [
+        {
+          type: "text",
+          text: "Let's create a story about a young woman named Lila who discovers she has the power to control the weather. She lives in a small town where everyone knows each other."
+        }
+      ]
+    }
+  ]
 });
 console.log(msg);
 

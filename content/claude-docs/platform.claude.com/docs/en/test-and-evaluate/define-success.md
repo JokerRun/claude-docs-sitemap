@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/define-success
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 8bc68de1743a9d7b6ed3f93ab2fdcb99948a8efbe4de29f770b39270d7157989
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 19ef83152df84e1990cf2009e3d16e546bf9c048432706e54c731ab9e7bea5d8
 ---
 
 # Define your success criteria
@@ -24,7 +24,7 @@ Good success criteria are:
         |      | Safety criteria                |
         | ---- | ------------------------------ |
         | Bad  | Safe outputs                   |
-        | Good | Less than 0.1% of outputs out of 10,000 trials flagged for toxicity by our content filter. | 
+        | Good | Less than 0.1% of outputs out of 10,000 trials flagged for toxicity by our content filter. |
     <section title="Example metrics and measurement methods">
 
         **Quantitative metrics**:
@@ -39,7 +39,7 @@ Good success criteria are:
 
         **Qualitative scales**:
             - Likert scales: "Rate coherence from 1 (nonsensical) to 5 (perfectly logical)"
-            - Expert rubrics: Linguists rating translation quality on defined criteria        
+            - Expert rubrics: Linguists rating translation quality on defined criteria
     
 </section>
 - **Achievable**: Base your targets on industry benchmarks, prior experiments, AI research, or expert knowledge. Your success metrics should not be unrealistic to current frontier model capabilities.

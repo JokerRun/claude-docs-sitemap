@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/retrieve
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 5da1deb32f991e8b1003602d4dcfb5ac9674425c45050dc23c4e8487a9b2b58b
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 256d8db5a0e502acb54e19b459a7f46ff167e1b5cc0e246a32c72e2fb959c8f3
 ---
 
 ## Retrieve
@@ -92,11 +92,3 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `"model"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/models/$MODEL_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```

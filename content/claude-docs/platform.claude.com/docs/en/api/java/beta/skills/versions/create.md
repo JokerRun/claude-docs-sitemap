@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 9739c6e7461cf9293465ce937833437f89273d56166d632717c510bc367182d7
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: dcf6057c20e97502a1742946076a3e9552f5bc20be1a977ccdbf970137ae76a9
 ---
 
 ## Create
@@ -120,24 +120,3 @@ Create Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.skills.versions.VersionCreateParams;
-import com.anthropic.models.beta.skills.versions.VersionCreateResponse;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        VersionCreateResponse version = client.beta().skills().versions().create("skill_id");
-    }
-}
-```

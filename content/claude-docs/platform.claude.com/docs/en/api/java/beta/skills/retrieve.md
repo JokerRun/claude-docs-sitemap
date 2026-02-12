@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/retrieve
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 41ce54ad4daf4326dfb0dd0cb63852cb9349cbff7a6ae9f575219b6fa6e76199
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 09ca50d3b6ce08b7c225f228d20106b1b45db23e12f6becae6d5d4d4e3efe56a
 ---
 
 ## Retrieve
@@ -111,24 +111,3 @@ Get Skill
   - `String updatedAt`
 
     ISO 8601 timestamp of when the skill was last updated.
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.skills.SkillRetrieveParams;
-import com.anthropic.models.beta.skills.SkillRetrieveResponse;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        SkillRetrieveResponse skill = client.beta().skills().retrieve("skill_id");
-    }
-}
-```

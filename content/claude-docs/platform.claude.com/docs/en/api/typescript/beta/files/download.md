@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/download
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 09f9c77c2e022f42863720109ab064caf9bcb3cbe9ddf5f0c0c3e488d4255981
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: b724fad585b0fb58104d9177fc403ab468a07366863f924523266227236cfd04
 ---
 
 ## Download
@@ -72,20 +72,3 @@ Download File
 ### Returns
 
 - `unnamed_schema_2 = Response`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const response = await client.beta.files.download('file_id');
-
-console.log(response);
-
-const content = await response.blob();
-console.log(content);
-```

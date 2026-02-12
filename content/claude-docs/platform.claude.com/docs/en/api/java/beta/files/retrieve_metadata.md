@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/retrieve_metadata
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: b04c2f9fa687e364629d2ac30543bfea4d605383ad62913538fb2b65b8995f49
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 29ca52f44d2dbbed88aec4f2975e7b90552f3e6b425a2458729015fb9712b0d3
 ---
 
 ## Retrieve Metadata
@@ -102,24 +102,3 @@ Get File Metadata
   - `Optional<Boolean> downloadable`
 
     Whether the file can be downloaded.
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.files.FileMetadata;
-import com.anthropic.models.beta.files.FileRetrieveMetadataParams;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        FileMetadata fileMetadata = client.beta().files().retrieveMetadata("file_id");
-    }
-}
-```

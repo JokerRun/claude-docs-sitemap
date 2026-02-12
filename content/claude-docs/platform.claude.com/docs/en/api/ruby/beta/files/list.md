@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 6ea5ad518e828a17a740c65dd91b727c3e2d345881cfc4af42c35efe3b868608
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 01c4ebfcc6a7c279d97ec8020cb22494f3649f3966fb8abb2064654ce9f2273d
 ---
 
 ## List
@@ -114,15 +114,3 @@ List Files
   - `downloadable: bool`
 
     Whether the file can be downloaded.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-page = anthropic.beta.files.list
-
-puts(page)
-```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: fb545c84c6d48e96157f445d6725d4be947a9ebf884cf9af3c7348229f839191
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 23d297048a65541d6091812d3675f2d611fe24afd7183744c2191d34d56cec27
 ---
 
 ## List
@@ -130,30 +130,3 @@ List Skills
   - `UpdatedAt string`
 
     ISO 8601 timestamp of when the skill was last updated.
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  page, err := client.Beta.Skills.List(context.TODO(), anthropic.BetaSkillListParams{
-
-  })
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", page)
-}
-```

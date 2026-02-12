@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/models/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 54e51d1fb98bbe965a67a0876b068b3a7f0a3146ed8d12d3795dcde413729b28
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: c11dd536c77d797e740fae9ef4d1dcb1d9005a84cb4652c5490de2d971b30105
 ---
 
 ## List
@@ -35,9 +35,9 @@ The Models API response can be used to determine which models are available for 
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -102,17 +102,3 @@ The Models API response can be used to determine which models are available for 
     For Models, this is always `"model"`.
 
     - `"model"`
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-page = client.beta.models.list()
-page = page.data[0]
-print(page.id)
-```

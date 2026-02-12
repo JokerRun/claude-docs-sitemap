@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/models
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 498e3611e730d32a61f250547c0522a7bac72b78e8edacbc0b2cfbe0e5d89a66
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: a910cdea55206c22fbc20c23f89dfba0f276771c089fe476ef9e68809f9fd801
 ---
 
 # Models
@@ -107,21 +107,6 @@ The Models API response can be used to determine which models are available for 
 
     - `"model"`
 
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-// Automatically fetches more pages as needed.
-for await (const betaModelInfo of client.beta.models.list()) {
-  console.log(betaModelInfo.id);
-}
-```
-
 ## Retrieve
 
 `client.beta.models.retrieve(stringmodelID, ModelRetrieveParamsparams?, RequestOptionsoptions?): BetaModelInfo`
@@ -211,20 +196,6 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `"model"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const betaModelInfo = await client.beta.models.retrieve('model_id');
-
-console.log(betaModelInfo.id);
-```
 
 ## Domain Types
 

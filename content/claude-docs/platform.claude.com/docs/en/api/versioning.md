@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/versioning
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 3014ee9b4f1c37136bd9b6dd4b28ab1b54b9cfa8bf4eac64cb2ad4ca58c8abb9
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 426fd21267dbafb4f231f71fbb28ba3edc2d265fddab6b0ae7ee1c8538ecf2b6
 ---
 
 # Versions
@@ -29,10 +29,10 @@ Generally, if you are using the API as documented in this reference, we will not
 
 We always recommend using the latest API version whenever possible. Previous versions are considered deprecated and may be unavailable for new users.
 
-* `2023-06-01`  
-   * New format for [streaming](/docs/en/build-with-claude/streaming) server-sent events (SSE):  
-         * Completions are incremental. For example, `" Hello"`, `" my"`, `" name"`, `" is"`, `" Claude." ` instead of `" Hello"`, `" Hello my"`, `" Hello my name"`, `" Hello my name is"`, `" Hello my name is Claude."`.  
-         * All events are [named events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#named%5Fevents), rather than [data-only events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#data-only%5Fmessages).  
-         * Removed unnecessary `data: [DONE]` event.  
+* `2023-06-01`
+   * New format for [streaming](/docs/en/build-with-claude/streaming) server-sent events (SSE):
+         * Completions are incremental. For example, `" Hello"`, `" my"`, `" name"`, `" is"`, `" Claude." ` instead of `" Hello"`, `" Hello my"`, `" Hello my name"`, `" Hello my name is"`, `" Hello my name is Claude."`.
+         * All events are [named events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#named%5Fevents), rather than [data-only events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#data-only%5Fmessages).
+         * Removed unnecessary `data: [DONE]` event.
    * Removed legacy `exception` and `truncated` values in responses.
 * `2023-01-01`: Initial release.

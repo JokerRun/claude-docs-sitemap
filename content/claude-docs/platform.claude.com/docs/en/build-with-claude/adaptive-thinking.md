@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 4f37862a7294749f6ce4c777849ea121b5de7509e1231451fb2b2b2b255e748e
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: c8aa714a09d51f96ac7340bce9d304c597d4c63e831feebefa4832e9fc49d846
 ---
 
 # Adaptive thinking
@@ -69,13 +69,13 @@ client = anthropic.Anthropic()
 response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=16000,
-    thinking={
-        "type": "adaptive"
-    },
-    messages=[{
-        "role": "user",
-        "content": "Explain why the sum of two even numbers is always even."
-    }]
+    thinking={"type": "adaptive"},
+    messages=[
+        {
+            "role": "user",
+            "content": "Explain why the sum of two even numbers is always even.",
+        }
+    ],
 )
 
 for block in response.content:
@@ -86,7 +86,7 @@ for block in response.content:
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
@@ -132,23 +132,16 @@ client = anthropic.Anthropic()
 response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=16000,
-    thinking={
-        "type": "adaptive"
-    },
-    output_config={
-        "effort": "medium"
-    },
-    messages=[{
-        "role": "user",
-        "content": "What is the capital of France?"
-    }]
+    thinking={"type": "adaptive"},
+    output_config={"effort": "medium"},
+    messages=[{"role": "user", "content": "What is the capital of France?"}],
 )
 
 print(response.content[0].text)
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
@@ -209,7 +202,12 @@ with client.messages.stream(
     model="claude-opus-4-6",
     max_tokens=16000,
     thinking={"type": "adaptive"},
-    messages=[{"role": "user", "content": "What is the greatest common divisor of 1071 and 462?"}],
+    messages=[
+        {
+            "role": "user",
+            "content": "What is the greatest common divisor of 1071 and 462?",
+        }
+    ],
 ) as stream:
     for event in stream:
         if event.type == "content_block_start":
@@ -222,7 +220,7 @@ with client.messages.stream(
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 

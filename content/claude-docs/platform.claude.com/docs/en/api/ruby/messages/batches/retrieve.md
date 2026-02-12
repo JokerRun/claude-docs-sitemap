@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/retrieve
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 2792a2109abb099151501bf269e767895dc3e80e1d8a8362cb73367ee34b6948
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 4cc8eaed423d4ac2a7da1d72315e85850a7c7236c3d8368eb957b1025cf20f53
 ---
 
 ## Retrieve
@@ -110,15 +110,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `:message_batch`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-message_batch = anthropic.messages.batches.retrieve("message_batch_id")
-
-puts(message_batch)
-```

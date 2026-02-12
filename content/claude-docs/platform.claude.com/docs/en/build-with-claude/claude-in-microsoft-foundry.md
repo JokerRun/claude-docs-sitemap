@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 8bb1701d599b637385742084854894dacf1131d952fa2f90aac6ebcf6358a9eb
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: e33dba5d8855bcbe354619882df374370218af91ab67382028b106d47968d40c
 ---
 
 # Claude in Microsoft Foundry
@@ -116,13 +116,13 @@ from anthropic import AnthropicFoundry
 
 client = AnthropicFoundry(
     api_key=os.environ.get("ANTHROPIC_FOUNDRY_API_KEY"),
-    resource='example-resource', # your resource name
+    resource="example-resource",  # your resource name
 )
 
 message = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
-    messages=[{"role": "user", "content": "Hello!"}]
+    messages=[{"role": "user", "content": "Hello!"}],
 )
 print(message.content)
 ```
@@ -132,13 +132,13 @@ import AnthropicFoundry from "@anthropic-ai/foundry-sdk";
 
 const client = new AnthropicFoundry({
   apiKey: process.env.ANTHROPIC_FOUNDRY_API_KEY,
-  resource: 'example-resource', // your resource name
+  resource: "example-resource" // your resource name
 });
 
 const message = await client.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
-  messages: [{ role: "user", content: "Hello!" }],
+  messages: [{ role: "user", content: "Hello!" }]
 });
 console.log(message.content);
 ```
@@ -180,21 +180,20 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 # Get Azure Entra ID token using token provider pattern
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
 # Create client with Entra ID authentication
 client = AnthropicFoundry(
-    resource='example-resource', # your resource name
-    azure_ad_token_provider=token_provider  # Use token provider for Entra ID auth
+    resource="example-resource",  # your resource name
+    azure_ad_token_provider=token_provider,  # Use token provider for Entra ID auth
 )
 
 # Make request
 message = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
-    messages=[{"role": "user", "content": "Hello!"}]
+    messages=[{"role": "user", "content": "Hello!"}],
 )
 print(message.content)
 ```
@@ -203,7 +202,7 @@ print(message.content)
 import AnthropicFoundry from "@anthropic-ai/foundry-sdk";
 import {
   DefaultAzureCredential,
-  getBearerTokenProvider,
+  getBearerTokenProvider
 } from "@azure/identity";
 
 // Get Entra ID token using token provider pattern
@@ -215,15 +214,15 @@ const tokenProvider = getBearerTokenProvider(
 
 // Create client with Entra ID authentication
 const client = new AnthropicFoundry({
-  resource: 'example-resource', // your resource name
-  azureADTokenProvider: tokenProvider, // Use token provider for Entra ID auth
+  resource: "example-resource", // your resource name
+  azureADTokenProvider: tokenProvider // Use token provider for Entra ID auth
 });
 
 // Make request
 const message = await client.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
-  messages: [{ role: "user", content: "Hello!" }],
+  messages: [{ role: "user", content: "Hello!" }]
 });
 console.log(message.content);
 ```

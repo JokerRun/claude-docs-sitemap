@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 1cb6b1aca15fbf430347d08caf5009365f9f71cf0eb2f111fc4c1d2db89d773b
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 47e4abe78bf2eaf5ceef65eab3ebd7b224c12b64cde45c7356f26f7997ba83d9
 ---
 
 # Completions
@@ -255,33 +255,6 @@ Future models and features will not be compatible with Text Completions. See our
     For Text Completions, this is always `"completion"`.
 
     - `COMPLETION("completion")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.completions.Completion;
-import com.anthropic.models.completions.CompletionCreateParams;
-import com.anthropic.models.messages.Model;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        CompletionCreateParams params = CompletionCreateParams.builder()
-            .maxTokensToSample(256L)
-            .model(Model.CLAUDE_OPUS_4_6)
-            .prompt("\n\nHuman: Hello, world!\n\nAssistant:")
-            .build();
-        Completion completion = client.completions().create(params);
-    }
-}
-```
 
 ## Domain Types
 

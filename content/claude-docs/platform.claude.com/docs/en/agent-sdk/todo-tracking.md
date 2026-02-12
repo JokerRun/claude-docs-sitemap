@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/todo-tracking
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 394203a75f7e50a29fc636337c61425fda55dbfe6659b8f96aa139cef6eb0adf
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: e7d31c1734921373fcc4b3aecf4efaf51c88aa67a94d17960ba462bc613546a6
 ---
 
 # Todo Lists
@@ -51,7 +51,7 @@ for await (const message of query({
         console.log("Todo Status Update:");
         todos.forEach((todo, index) => {
           const status = todo.status === "completed" ? "✅" :
-                        todo.status === "in_progress" ? "🔧" : "❌";
+            todo.status === "in_progress" ? "🔧" : "❌";
           console.log(`${index + 1}. ${status} ${todo.content}`);
         });
       }
@@ -65,7 +65,7 @@ from claude_agent_sdk import query, AssistantMessage, ToolUseBlock
 
 async for message in query(
     prompt="Optimize my React app performance and track progress with todos",
-    options={"max_turns": 15}
+    options={"max_turns": 15},
 ):
     # Todo updates are reflected in the message stream
     if isinstance(message, AssistantMessage):
@@ -75,8 +75,13 @@ async for message in query(
 
                 print("Todo Status Update:")
                 for i, todo in enumerate(todos):
-                    status = "✅" if todo["status"] == "completed" else \
-                            "🔧" if todo["status"] == "in_progress" else "❌"
+                    status = (
+                        "✅"
+                        if todo["status"] == "completed"
+                        else "🔧"
+                        if todo["status"] == "in_progress"
+                        else "❌"
+                    )
                     print(f"{i + 1}. {status} {todo['content']}")
 ```
 
@@ -91,25 +96,25 @@ import { query } from "@anthropic-ai/claude-agent-sdk";
 
 class TodoTracker {
   private todos: any[] = [];
-  
+
   displayProgress() {
     if (this.todos.length === 0) return;
-    
+
     const completed = this.todos.filter(t => t.status === "completed").length;
     const inProgress = this.todos.filter(t => t.status === "in_progress").length;
     const total = this.todos.length;
-    
+
     console.log(`\nProgress: ${completed}/${total} completed`);
     console.log(`Currently working on: ${inProgress} task(s)\n`);
-    
+
     this.todos.forEach((todo, index) => {
-      const icon = todo.status === "completed" ? "✅" : 
-                  todo.status === "in_progress" ? "🔧" : "❌";
+      const icon = todo.status === "completed" ? "✅" :
+        todo.status === "in_progress" ? "🔧" : "❌";
       const text = todo.status === "in_progress" ? todo.activeForm : todo.content;
       console.log(`${index + 1}. ${icon} ${text}`);
     });
   }
-  
+
   async trackQuery(prompt: string) {
     for await (const message of query({
       prompt,
@@ -136,37 +141,45 @@ await tracker.trackQuery("Build a complete authentication system with todos");
 from claude_agent_sdk import query, AssistantMessage, ToolUseBlock
 from typing import List, Dict
 
+
 class TodoTracker:
     def __init__(self):
         self.todos: List[Dict] = []
-    
+
     def display_progress(self):
         if not self.todos:
             return
-        
+
         completed = len([t for t in self.todos if t["status"] == "completed"])
         in_progress = len([t for t in self.todos if t["status"] == "in_progress"])
         total = len(self.todos)
-        
+
         print(f"\nProgress: {completed}/{total} completed")
         print(f"Currently working on: {in_progress} task(s)\n")
-        
+
         for i, todo in enumerate(self.todos):
-            icon = "✅" if todo["status"] == "completed" else \
-                  "🔧" if todo["status"] == "in_progress" else "❌"
-            text = todo["activeForm"] if todo["status"] == "in_progress" else todo["content"]
+            icon = (
+                "✅"
+                if todo["status"] == "completed"
+                else "🔧"
+                if todo["status"] == "in_progress"
+                else "❌"
+            )
+            text = (
+                todo["activeForm"]
+                if todo["status"] == "in_progress"
+                else todo["content"]
+            )
             print(f"{i + 1}. {icon} {text}")
-    
+
     async def track_query(self, prompt: str):
-        async for message in query(
-            prompt=prompt,
-            options={"max_turns": 20}
-        ):
+        async for message in query(prompt=prompt, options={"max_turns": 20}):
             if isinstance(message, AssistantMessage):
                 for block in message.content:
                     if isinstance(block, ToolUseBlock) and block.name == "TodoWrite":
                         self.todos = block.input["todos"]
                         self.display_progress()
+
 
 # Usage
 tracker = TodoTracker()
@@ -178,6 +191,6 @@ await tracker.track_query("Build a complete authentication system with todos")
 ## Related Documentation
 
 - [TypeScript SDK Reference](/docs/en/agent-sdk/typescript)
-- [Python SDK Reference](/docs/en/agent-sdk/python) 
+- [Python SDK Reference](/docs/en/agent-sdk/python)
 - [Streaming vs Single Mode](/docs/en/agent-sdk/streaming-vs-single-mode)
 - [Custom Tools](/docs/en/agent-sdk/custom-tools)

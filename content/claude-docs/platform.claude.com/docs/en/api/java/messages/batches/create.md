@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: b5183076e3dc420bd21958d6c9b25c15438c81a03b3b8d710bcd792977a43c01
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: cdb04a92b94d15405b7c301c65784932c92b713cbafb63c3499110533f7fd079
 ---
 
 ## Create
@@ -2304,35 +2304,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `MESSAGE_BATCH("message_batch")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.messages.Model;
-import com.anthropic.models.messages.batches.BatchCreateParams;
-import com.anthropic.models.messages.batches.MessageBatch;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        BatchCreateParams params = BatchCreateParams.builder()
-            .addRequest(BatchCreateParams.Request.builder()
-                .customId("my-custom-id-1")
-                .params(BatchCreateParams.Request.Params.builder()
-                    .maxTokens(1024L)
-                    .addUserMessage("Hello, world")
-                    .model(Model.CLAUDE_OPUS_4_6)
-                    .build())
-                .build())
-            .build();
-        MessageBatch messageBatch = client.messages().batches().create(params);
-    }
-}
-```

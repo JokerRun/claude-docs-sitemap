@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/upload
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 5a00e2364808785a1b8a458a89161098e14f7514c5c128133ca0c96912743eaf
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 91a3156f32a3d46b4cf7f70be47c4ee694218cf15a8e609963c47fa935b25ec0
 ---
 
 ## Upload
@@ -98,14 +98,3 @@ Upload File
   - `downloadable: optional boolean`
 
     Whether the file can be downloaded.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/files \
-    -H 'Content-Type: multipart/form-data' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: files-api-2025-04-14' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -F 'file=@/path/to/file'
-```

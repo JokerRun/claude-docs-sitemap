@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 5851086df4f01467828787189b24e8bce1bbf3e86853a2169fc47f08a4d983d2
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 963ac8c649434e5816ea0a7bea154a132fd17965ad5f6c6c1395cf57b96cdd4c
 ---
 
 # Messages
@@ -5428,24 +5428,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"fast"`
 
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const betaMessage = await client.beta.messages.create({
-  max_tokens: 1024,
-  messages: [{ content: 'Hello, world', role: 'user' }],
-  model: 'claude-opus-4-6',
-});
-
-console.log(betaMessage.id);
-```
-
 ## Count Tokens
 
 `client.beta.messages.countTokens(MessageCountTokensParamsparams, RequestOptionsoptions?): BetaMessageTokensCount`
@@ -9626,23 +9608,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
   - `input_tokens: number`
 
     The total number of tokens across the provided list of messages, system prompt, and tools.
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const betaMessageTokensCount = await client.beta.messages.countTokens({
-  messages: [{ content: 'string', role: 'user' }],
-  model: 'claude-opus-4-6',
-});
-
-console.log(betaMessageTokensCount.context_management);
-```
 
 ## Domain Types
 
@@ -34400,31 +34365,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"message_batch"`
 
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const betaMessageBatch = await client.beta.messages.batches.create({
-  requests: [
-    {
-      custom_id: 'my-custom-id-1',
-      params: {
-        max_tokens: 1024,
-        messages: [{ content: 'Hello, world', role: 'user' }],
-        model: 'claude-opus-4-6',
-      },
-    },
-  ],
-});
-
-console.log(betaMessageBatch.id);
-```
-
 ## Retrieve
 
 `client.beta.messages.batches.retrieve(stringmessageBatchID, BatchRetrieveParamsparams?, RequestOptionsoptions?): BetaMessageBatch`
@@ -34580,20 +34520,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const betaMessageBatch = await client.beta.messages.batches.retrieve('message_batch_id');
-
-console.log(betaMessageBatch.id);
-```
 
 ## List
 
@@ -34761,21 +34687,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"message_batch"`
 
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-// Automatically fetches more pages as needed.
-for await (const betaMessageBatch of client.beta.messages.batches.list()) {
-  console.log(betaMessageBatch.id);
-}
-```
-
 ## Cancel
 
 `client.beta.messages.batches.cancel(stringmessageBatchID, BatchCancelParamsparams?, RequestOptionsoptions?): BetaMessageBatch`
@@ -34934,20 +34845,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"message_batch"`
 
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const betaMessageBatch = await client.beta.messages.batches.cancel('message_batch_id');
-
-console.log(betaMessageBatch.id);
-```
-
 ## Delete
 
 `client.beta.messages.batches.delete(stringmessageBatchID, BatchDeleteParamsparams?, RequestOptionsoptions?): BetaDeletedMessageBatch`
@@ -35031,20 +34928,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch_deleted"`.
 
     - `"message_batch_deleted"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const betaDeletedMessageBatch = await client.beta.messages.batches.delete('message_batch_id');
-
-console.log(betaDeletedMessageBatch.id);
-```
 
 ## Results
 
@@ -36359,22 +36242,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `type: "expired"`
 
         - `"expired"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const betaMessageBatchIndividualResponse = await client.beta.messages.batches.results(
-  'message_batch_id',
-);
-
-console.log(betaMessageBatchIndividualResponse.custom_id);
-```
 
 ## Domain Types
 

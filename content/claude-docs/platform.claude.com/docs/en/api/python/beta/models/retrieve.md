@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/models/retrieve
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: c21a9607cb5c92a5f88a7a756f02c464d8f0db9a7f0533f8d2d979d266d55593
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: caecd7424ec6f5285845cac4c250945f2c4ce8d49fa9f205f75e73555ce2520e
 ---
 
 ## Retrieve
@@ -25,9 +25,9 @@ The Models API response can be used to determine information about a specific mo
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -92,18 +92,3 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `"model"`
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-beta_model_info = client.beta.models.retrieve(
-    model_id="model_id",
-)
-print(beta_model_info.id)
-```

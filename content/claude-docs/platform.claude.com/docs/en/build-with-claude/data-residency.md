@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/data-residency
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: cf8fd4adaf01361cc6a8b02595e7baa1402b36a74acadf1184b55202eacb07e1
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: f8d0a38f6ff2dd23388ab55a95df7642df74756a16f8e026ae483045543bac6d
 ---
 
 # Data residency
@@ -53,10 +53,9 @@ response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
     inference_geo="us",
-    messages=[{
-        "role": "user",
-        "content": "Summarize the key points of this document."
-    }]
+    messages=[
+        {"role": "user", "content": "Summarize the key points of this document."}
+    ],
 )
 
 print(response.content[0].text)
@@ -65,7 +64,7 @@ print(f"Inference geo: {response.usage.inference_geo}")
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 

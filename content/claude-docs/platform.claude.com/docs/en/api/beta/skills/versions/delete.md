@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/delete
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 5697613021fe6ae0b7aa7fd29df1880f53c1b19b0bbd204a02fd492942a158b3
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: fed9b8c7d5994839effca60669b469f4eced0977a12502e2faf23106e1484515
 ---
 
 ## Delete
@@ -88,13 +88,3 @@ Delete Skill Version
   Deleted object type.
 
   For Skill Versions, this is always `"skill_version_deleted"`.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION \
-    -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: skills-2025-10-02' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```

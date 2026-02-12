@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/delete
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: eeb7a956c6c890ddf7fe1e3f1513e9326d9434a2db0eae1f84d96c6b359ba691
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: ae1a7cdb583ccbf051c212a6d1fe73a3a19cddb8dec61668a3d777f420eab667
 ---
 
 ## Delete
@@ -82,15 +82,3 @@ Delete File
     For file deletion, this is always `"file_deleted"`.
 
     - `:file_deleted`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-deleted_file = anthropic.beta.files.delete("file_id")
-
-puts(deleted_file)
-```

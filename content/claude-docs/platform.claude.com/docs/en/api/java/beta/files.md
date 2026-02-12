@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: b3c2bc2e1869345f19bf29edad0eb7b3cf8ed1f680bace1cf7698c99a66e43f6
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 68854fde9bdbaebb5ec37a10785e5248da3c647e59c3de4eaed797c340615ad5
 ---
 
 # Files
@@ -104,31 +104,6 @@ Upload File
   - `Optional<Boolean> downloadable`
 
     Whether the file can be downloaded.
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.files.FileMetadata;
-import com.anthropic.models.beta.files.FileUploadParams;
-import java.io.ByteArrayInputStream;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        FileUploadParams params = FileUploadParams.builder()
-            .file(ByteArrayInputStream("some content".getBytes()))
-            .build();
-        FileMetadata fileMetadata = client.beta().files().upload(params);
-    }
-}
-```
 
 ## List
 
@@ -238,27 +213,6 @@ List Files
 
     Whether the file can be downloaded.
 
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.files.FileListPage;
-import com.anthropic.models.beta.files.FileListParams;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        FileListPage page = client.beta().files().list();
-    }
-}
-```
-
 ## Download
 
 `HttpResponse beta().files().download(FileDownloadParamsparams = FileDownloadParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
@@ -318,27 +272,6 @@ Download File
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.core.http.HttpResponse;
-import com.anthropic.models.beta.files.FileDownloadParams;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        HttpResponse response = client.beta().files().download("file_id");
-    }
-}
-```
 
 ## Retrieve Metadata
 
@@ -438,27 +371,6 @@ Get File Metadata
 
     Whether the file can be downloaded.
 
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.files.FileMetadata;
-import com.anthropic.models.beta.files.FileRetrieveMetadataParams;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        FileMetadata fileMetadata = client.beta().files().retrieveMetadata("file_id");
-    }
-}
-```
-
 ## Delete
 
 `DeletedFile beta().files().delete(FileDeleteParamsparams = FileDeleteParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
@@ -534,27 +446,6 @@ Delete File
     For file deletion, this is always `"file_deleted"`.
 
     - `FILE_DELETED("file_deleted")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.files.DeletedFile;
-import com.anthropic.models.beta.files.FileDeleteParams;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        DeletedFile deletedFile = client.beta().files().delete("file_id");
-    }
-}
-```
 
 ## Domain Types
 

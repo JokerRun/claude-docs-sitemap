@@ -29,7 +29,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/authentication | 2026-02-03 |  |
 | code | https://code.claude.com/docs/en/best-practices | 2026-02-06 |  |
 | code | https://code.claude.com/docs/en/checkpointing | 2026-02-07 |  |
-| code | https://code.claude.com/docs/en/chrome | 2026-02-04 |  |
+| code | https://code.claude.com/docs/en/chrome | 2026-02-11 |  |
 | code | https://code.claude.com/docs/en/claude-code-on-the-web | 2026-02-09 |  |
 | code | https://code.claude.com/docs/en/cli-reference | 2026-02-07 |  |
 | code | https://code.claude.com/docs/en/common-workflows | 2026-02-05 |  |
@@ -38,7 +38,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/desktop | 2026-02-10 |  |
 | code | https://code.claude.com/docs/en/devcontainer | 2026-01-28 |  |
 | code | https://code.claude.com/docs/en/discover-plugins | 2026-01-28 |  |
-| ... | _(~778 more rows)_ | | |
+| ... | _(~958 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

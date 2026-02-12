@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 0d6e53fe8cfc3c12f924dc6431cece567ce21eba3dea737f24deeeede2272c45
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 1f8211ae07d4efa1068f022db42c9abfac3de48b9cbbe59509c49e4b5d4c3c10
 ---
 
 ## Create
@@ -2426,30 +2426,3 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `PRIORITY("priority")`
 
       - `BATCH("batch")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.messages.Message;
-import com.anthropic.models.messages.MessageCreateParams;
-import com.anthropic.models.messages.Model;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        MessageCreateParams params = MessageCreateParams.builder()
-            .maxTokens(1024L)
-            .addUserMessage("Hello, world")
-            .model(Model.CLAUDE_OPUS_4_6)
-            .build();
-        Message message = client.messages().create(params);
-    }
-}
-```

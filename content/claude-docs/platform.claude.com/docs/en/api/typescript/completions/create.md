@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: b3f93afb8c1a3217dfc8f56d1d8de14dcbcabeb368126580f6f3ae1be0ef53c0
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: b27628953f68343a9513a84a8f626c7f2ccdae6f7f28c94d0c201e854cfccddc
 ---
 
 ## Create
@@ -385,21 +385,3 @@ Future models and features will not be compatible with Text Completions. See our
     For Text Completions, this is always `"completion"`.
 
     - `"completion"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const completion = await client.completions.create({
-  max_tokens_to_sample: 256,
-  model: 'claude-opus-4-6',
-  prompt: '\n\nHuman: Hello, world!\n\nAssistant:',
-});
-
-console.log(completion.id);
-```

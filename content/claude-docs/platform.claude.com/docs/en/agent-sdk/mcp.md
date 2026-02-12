@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: c94403c7b7a2f376ab3a7afc40462acbd5cdf20c8122f5fffdeef7c37ecdb5a0
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 7dc9e71ce50e6bfa5fafee99dab6a6c1628cd84b254006fdbeaade2ba22efe64
 ---
 
 # Connect to external tools with MCP
@@ -46,20 +46,25 @@ for await (const message of query({
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 
+
 async def main():
     options = ClaudeAgentOptions(
         mcp_servers={
             "claude-code-docs": {
                 "type": "http",
-                "url": "https://code.claude.com/docs/mcp"
+                "url": "https://code.claude.com/docs/mcp",
             }
         },
-        allowed_tools=["mcp__claude-code-docs__*"]
+        allowed_tools=["mcp__claude-code-docs__*"],
     )
 
-    async for message in query(prompt="Use the docs MCP server to explain what hooks are in Claude Code", options=options):
+    async for message in query(
+        prompt="Use the docs MCP server to explain what hooks are in Claude Code",
+        options=options,
+    ):
         if isinstance(message, ResultMessage) and message.subtype == "success":
             print(message.result)
+
 
 asyncio.run(main())
 ```
@@ -85,7 +90,7 @@ for await (const message of query({
   prompt: "List files in my project",
   options: {
     mcpServers: {
-      "filesystem": {
+      filesystem: {
         command: "npx",
         args: ["-y", "@modelcontextprotocol/server-filesystem", "/Users/me/projects"]
       }
@@ -103,20 +108,26 @@ for await (const message of query({
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 
+
 async def main():
     options = ClaudeAgentOptions(
         mcp_servers={
             "filesystem": {
                 "command": "npx",
-                "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/me/projects"]
+                "args": [
+                    "-y",
+                    "@modelcontextprotocol/server-filesystem",
+                    "/Users/me/projects",
+                ],
             }
         },
-        allowed_tools=["mcp__filesystem__*"]
+        allowed_tools=["mcp__filesystem__*"],
     )
 
     async for message in query(prompt="List files in my project", options=options):
         if isinstance(message, ResultMessage) and message.subtype == "success":
             print(message.result)
+
 
 asyncio.run(main())
 ```
@@ -207,6 +218,7 @@ Local processes that communicate via stdin/stdout. Use this for MCP servers you 
   <Tab title="In code">
     <CodeGroup>
 
+    
     ```typescript TypeScript
     options: {
       mcpServers: {
@@ -228,12 +240,10 @@ Local processes that communicate via stdin/stdout. Use this for MCP servers you 
             "github": {
                 "command": "npx",
                 "args": ["-y", "@modelcontextprotocol/server-github"],
-                "env": {
-                    "GITHUB_TOKEN": os.environ["GITHUB_TOKEN"]
-                }
+                "env": {"GITHUB_TOKEN": os.environ["GITHUB_TOKEN"]},
             }
         },
-        allowed_tools=["mcp__github__list_issues", "mcp__github__search_issues"]
+        allowed_tools=["mcp__github__list_issues", "mcp__github__search_issues"],
     )
     ```
 
@@ -264,6 +274,7 @@ Use HTTP or SSE for cloud-hosted MCP servers and remote APIs:
   <Tab title="In code">
     <CodeGroup>
 
+    
     ```typescript TypeScript
     options: {
       mcpServers: {
@@ -285,12 +296,10 @@ Use HTTP or SSE for cloud-hosted MCP servers and remote APIs:
             "remote-api": {
                 "type": "sse",
                 "url": "https://api.example.com/mcp/sse",
-                "headers": {
-                    "Authorization": f"Bearer {os.environ['API_TOKEN']}"
-                }
+                "headers": {"Authorization": f"Bearer {os.environ['API_TOKEN']}"},
             }
         },
-        allowed_tools=["mcp__remote-api__*"]
+        allowed_tools=["mcp__remote-api__*"],
     )
     ```
 
@@ -352,17 +361,17 @@ Set the value in the `env` option:
 const options = {
   mcpServers: { /* your MCP servers */ },
   env: {
-    ENABLE_TOOL_SEARCH: "auto:5"  // Enable at 5% threshold
+    ENABLE_TOOL_SEARCH: "auto:5" // Enable at 5% threshold
   }
 };
 ```
 
 ```python Python
 options = ClaudeAgentOptions(
-    mcp_servers={ ... },  # your MCP servers
+    mcp_servers={...},  # your MCP servers
     env={
         "ENABLE_TOOL_SEARCH": "auto:5"  # Enable at 5% threshold
-    }
+    },
 )
 ```
 
@@ -380,6 +389,7 @@ Use the `env` field to pass API keys, tokens, and other credentials to the MCP s
   <Tab title="In code">
     <CodeGroup>
 
+    
     ```typescript TypeScript
     options: {
       mcpServers: {
@@ -401,12 +411,10 @@ Use the `env` field to pass API keys, tokens, and other credentials to the MCP s
             "github": {
                 "command": "npx",
                 "args": ["-y", "@modelcontextprotocol/server-github"],
-                "env": {
-                    "GITHUB_TOKEN": os.environ["GITHUB_TOKEN"]
-                }
+                "env": {"GITHUB_TOKEN": os.environ["GITHUB_TOKEN"]},
             }
         },
-        allowed_tools=["mcp__github__list_issues"]
+        allowed_tools=["mcp__github__list_issues"],
     )
     ```
 
@@ -441,6 +449,7 @@ For HTTP and SSE servers, pass authentication headers directly in the server con
   <Tab title="In code">
     <CodeGroup>
 
+    
     ```typescript TypeScript
     options: {
       mcpServers: {
@@ -462,12 +471,10 @@ For HTTP and SSE servers, pass authentication headers directly in the server con
             "secure-api": {
                 "type": "http",
                 "url": "https://api.example.com/mcp",
-                "headers": {
-                    "Authorization": f"Bearer {os.environ['API_TOKEN']}"
-                }
+                "headers": {"Authorization": f"Bearer {os.environ['API_TOKEN']}"},
             }
         },
-        allowed_tools=["mcp__secure-api__*"]
+        allowed_tools=["mcp__secure-api__*"],
     )
     ```
 
@@ -525,12 +532,10 @@ options = ClaudeAgentOptions(
         "oauth-api": {
             "type": "http",
             "url": "https://api.example.com/mcp",
-            "headers": {
-                "Authorization": f"Bearer {access_token}"
-            }
+            "headers": {"Authorization": f"Bearer {access_token}"},
         }
     },
-    allowed_tools=["mcp__oauth-api__*"]
+    allowed_tools=["mcp__oauth-api__*"],
 )
 ```
 
@@ -557,7 +562,7 @@ for await (const message of query({
   prompt: "List the 3 most recent issues in anthropics/claude-code",
   options: {
     mcpServers: {
-      "github": {
+      github: {
         command: "npx",
         args: ["-y", "@modelcontextprotocol/server-github"],
         env: {
@@ -592,7 +597,14 @@ for await (const message of query({
 ```python Python
 import asyncio
 import os
-from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage, SystemMessage, AssistantMessage
+from claude_agent_sdk import (
+    query,
+    ClaudeAgentOptions,
+    ResultMessage,
+    SystemMessage,
+    AssistantMessage,
+)
+
 
 async def main():
     options = ClaudeAgentOptions(
@@ -600,15 +612,16 @@ async def main():
             "github": {
                 "command": "npx",
                 "args": ["-y", "@modelcontextprotocol/server-github"],
-                "env": {
-                    "GITHUB_TOKEN": os.environ["GITHUB_TOKEN"]
-                }
+                "env": {"GITHUB_TOKEN": os.environ["GITHUB_TOKEN"]},
             }
         },
-        allowed_tools=["mcp__github__list_issues"]
+        allowed_tools=["mcp__github__list_issues"],
     )
 
-    async for message in query(prompt="List the 3 most recent issues in anthropics/claude-code", options=options):
+    async for message in query(
+        prompt="List the 3 most recent issues in anthropics/claude-code",
+        options=options,
+    ):
         # Verify MCP server connected successfully
         if isinstance(message, SystemMessage) and message.subtype == "init":
             print("MCP servers:", message.data.get("mcp_servers"))
@@ -622,6 +635,7 @@ async def main():
         # Print the final result
         if isinstance(message, ResultMessage) and message.subtype == "success":
             print(message.result)
+
 
 asyncio.run(main())
 ```
@@ -645,7 +659,7 @@ for await (const message of query({
   prompt: "How many users signed up last week? Break it down by day.",
   options: {
     mcpServers: {
-      "postgres": {
+      postgres: {
         command: "npx",
         // Pass connection string as argument to the server
         args: ["-y", "@modelcontextprotocol/server-postgres", connectionString]
@@ -666,6 +680,7 @@ import asyncio
 import os
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 
+
 async def main():
     # Connection string from environment variable
     connection_string = os.environ["DATABASE_URL"]
@@ -675,20 +690,25 @@ async def main():
             "postgres": {
                 "command": "npx",
                 # Pass connection string as argument to the server
-                "args": ["-y", "@modelcontextprotocol/server-postgres", connection_string]
+                "args": [
+                    "-y",
+                    "@modelcontextprotocol/server-postgres",
+                    connection_string,
+                ],
             }
         },
         # Allow only read queries, not writes
-        allowed_tools=["mcp__postgres__query"]
+        allowed_tools=["mcp__postgres__query"],
     )
 
     # Natural language query - Claude writes the SQL
     async for message in query(
         prompt="How many users signed up last week? Break it down by day.",
-        options=options
+        options=options,
     ):
         if isinstance(message, ResultMessage) and message.subtype == "success":
             print(message.result)
+
 
 asyncio.run(main())
 ```
@@ -734,25 +754,27 @@ for await (const message of query({
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage, ResultMessage
 
+
 async def main():
-    options = ClaudeAgentOptions(
-        mcp_servers={
-            "data-processor": data_server
-        }
-    )
+    options = ClaudeAgentOptions(mcp_servers={"data-processor": data_server})
 
     async for message in query(prompt="Process data", options=options):
         if isinstance(message, SystemMessage) and message.subtype == "init":
             failed_servers = [
-                s for s in message.data.get("mcp_servers", [])
+                s
+                for s in message.data.get("mcp_servers", [])
                 if s.get("status") != "connected"
             ]
 
             if failed_servers:
                 print(f"Failed to connect: {failed_servers}")
 
-        if isinstance(message, ResultMessage) and message.subtype == "error_during_execution":
+        if (
+            isinstance(message, ResultMessage)
+            and message.subtype == "error_during_execution"
+        ):
             print("Execution failed")
+
 
 asyncio.run(main())
 ```

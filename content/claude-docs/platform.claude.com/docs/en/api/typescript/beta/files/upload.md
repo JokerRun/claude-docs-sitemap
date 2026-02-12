@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/upload
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 73e35ea7715295fdda615959d816c036603b1305ed6f000baebc9b8858fd7657
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: bc87e3db068d2103b14192307fe9f36f84789fc3ba9defb1e0aa845d3d2b7db2
 ---
 
 ## Upload
@@ -106,17 +106,3 @@ Upload File
   - `downloadable?: boolean`
 
     Whether the file can be downloaded.
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const fileMetadata = await client.beta.files.upload({ file: fs.createReadStream('path/to/file') });
-
-console.log(fileMetadata.id);
-```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/overview
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: e6b21583a5c35fc30ea8f799984208ed721f91b740b0d20a67d7c9e6b043e22c
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 4e47f391462445a9c8075acd3b7872d1900d0d26be5701a83918517d730e1ed6
 ---
 
 <h2}>
@@ -79,7 +79,7 @@ sha256: e6b21583a5c35fc30ea8f799984208ed721f91b740b0d20a67d7c9e6b043e22c
   </h2>
   
 
-    <Card title="API primer for Claude ingestion" icon="settings" href="/docs/en/claude_api_primer.md">
+    <Card title="API primer for Claude ingestion" icon="settings" href="/docs/en/claude_api_primer">
       Concise API guide meant for ingestion by Claude.
     </Card>
 

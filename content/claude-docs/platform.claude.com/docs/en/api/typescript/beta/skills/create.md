@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 17b3b4c44418f47775bd8e8cca04b78911c43acc74b929f2441d4cdaf3fcfa34
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 447c1b36147954f66275bfec5fab41f0b65d19911dcb71383c1520b1c026c329
 ---
 
 ## Create
@@ -121,17 +121,3 @@ Create Skill
   - `updated_at: string`
 
     ISO 8601 timestamp of when the skill was last updated.
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const skill = await client.beta.skills.create();
-
-console.log(skill.id);
-```

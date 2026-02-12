@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 697765494237f230d5badae572b1195b4f4da46233d5d94a3e418f96e28ea9cf
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 996e5f7cafdcb4903ce6d90c3d4508983392cd4252a6cedb01aabdaa819a1386
 ---
 
 # Streaming refusals
@@ -81,11 +81,13 @@ import anthropic
 client = anthropic.Anthropic()
 messages = []
 
+
 def reset_conversation():
     """Reset conversation context after refusal"""
     global messages
     messages = []
     print("Conversation reset due to refusal")
+
 
 try:
     with client.messages.stream(
@@ -95,8 +97,8 @@ try:
     ) as stream:
         for event in stream:
             # Check for refusal in message delta
-            if hasattr(event, 'type') and event.type == 'message_delta':
-                if event.delta.stop_reason == 'refusal':
+            if hasattr(event, "type") and event.type == "message_delta":
+                if event.delta.stop_reason == "refusal":
                     reset_conversation()
                     break
 except Exception as e:
@@ -104,7 +106,7 @@ except Exception as e:
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 let messages: any[] = [];
@@ -112,25 +114,25 @@ let messages: any[] = [];
 function resetConversation() {
   // Reset conversation context after refusal
   messages = [];
-  console.log('Conversation reset due to refusal');
+  console.log("Conversation reset due to refusal");
 }
 
 try {
   const stream = await client.messages.stream({
-    messages: [...messages, { role: 'user', content: 'Hello' }],
-    model: 'claude-sonnet-4-5',
-    max_tokens: 1024,
+    messages: [...messages, { role: "user", content: "Hello" }],
+    model: "claude-sonnet-4-5",
+    max_tokens: 1024
   });
 
   for await (const event of stream) {
     // Check for refusal in message delta
-    if (event.type === 'message_delta' && event.delta.stop_reason === 'refusal') {
+    if (event.type === "message_delta" && event.delta.stop_reason === "refusal") {
       resetConversation();
       break;
     }
   }
 } catch (error) {
-  console.error('Error:', error);
+  console.error("Error:", error);
 }
 ```
 </CodeGroup>

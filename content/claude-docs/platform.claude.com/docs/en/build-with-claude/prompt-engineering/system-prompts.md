@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/system-prompts
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: f01f502c4edd187194c73dbc505be853d139bd3bd65647e2237eb132c7fb30e1
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 2b07b87f1aea0157e9b98b6b2ff4fefef8e94a2ef82474168c5a4c98f178bf87
 ---
 
 # Giving Claude a role with a system prompt
@@ -39,10 +39,13 @@ client = anthropic.Anthropic()
 response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=2048,
-    system="You are a seasoned data scientist at a Fortune 500 company.", # <-- role prompt
+    system="You are a seasoned data scientist at a Fortune 500 company.",  # <-- role prompt
     messages=[
-        {"role": "user", "content": "Analyze this dataset for anomalies: <dataset>{{DATASET}}</dataset>"}
-    ]
+        {
+            "role": "user",
+            "content": "Analyze this dataset for anomalies: <dataset>{{DATASET}}</dataset>",
+        }
+    ],
 )
 
 print(response.content)

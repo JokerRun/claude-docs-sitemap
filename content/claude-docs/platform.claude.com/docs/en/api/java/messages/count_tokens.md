@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/count_tokens
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 5c036ab5e8d714f562505798a2fb644c449ef35f54c525fc00c6e9a37b460603
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: c2ae5fa3e1deebbaeee39755e1846c92f2fae4cd4a209b82f6d184861dcbe320
 ---
 
 ## Count Tokens
@@ -1948,29 +1948,3 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
   - `long inputTokens`
 
     The total number of tokens across the provided list of messages, system prompt, and tools.
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.messages.MessageCountTokensParams;
-import com.anthropic.models.messages.MessageTokensCount;
-import com.anthropic.models.messages.Model;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        MessageCountTokensParams params = MessageCountTokensParams.builder()
-            .addUserMessage("Hello, world")
-            .model(Model.CLAUDE_OPUS_4_6)
-            .build();
-        MessageTokensCount messageTokensCount = client.messages().countTokens(params);
-    }
-}
-```

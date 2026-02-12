@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 1675c06a4b0cf665eef83a920cc078eed45ada0f1fc933d314e86de58fab8070
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: c465eaf3460a8ac5f40a3016abc4863e267f35ce862b410032d7223cc114ade7
 ---
 
 # Token counting
@@ -40,26 +40,23 @@ client = anthropic.Anthropic()
 response = client.messages.count_tokens(
     model="claude-opus-4-6",
     system="You are a scientist",
-    messages=[{
-        "role": "user",
-        "content": "Hello, Claude"
-    }],
+    messages=[{"role": "user", "content": "Hello, Claude"}],
 )
 
 print(response.json())
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
 const response = await client.messages.countTokens({
-  model: 'claude-opus-4-6',
-  system: 'You are a scientist',
+  model: "claude-opus-4-6",
+  system: "You are a scientist",
   messages: [{
-    role: 'user',
-    content: 'Hello, Claude'
+    role: "user",
+    content: "Hello, Claude"
   }]
 });
 
@@ -90,18 +87,18 @@ import com.anthropic.models.messages.Model;
 
 public class CountTokensExample {
 
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  public static void main(String[] args) {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        MessageCountTokensParams params = MessageCountTokensParams.builder()
-                .model(Model.CLAUDE_OPUS_4_6)
-                .system("You are a scientist")
-                .addUserMessage("Hello, Claude")
-                .build();
+    MessageCountTokensParams params = MessageCountTokensParams.builder()
+      .model(Model.CLAUDE_OPUS_4_6)
+      .system("You are a scientist")
+      .addUserMessage("Hello, Claude")
+      .build();
 
-        MessageTokensCount count = client.messages().countTokens(params);
-        System.out.println(count);
-    }
+    MessageTokensCount count = client.messages().countTokens(params);
+    System.out.println(count);
+  }
 }
 ```
 </CodeGroup>
@@ -141,19 +138,19 @@ response = client.messages.count_tokens(
             },
         }
     ],
-    messages=[{"role": "user", "content": "What's the weather like in San Francisco?"}]
+    messages=[{"role": "user", "content": "What's the weather like in San Francisco?"}],
 )
 
 print(response.json())
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
 const response = await client.messages.countTokens({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   tools: [
     {
       name: "get_weather",
@@ -163,10 +160,10 @@ const response = await client.messages.countTokens({
         properties: {
           location: {
             type: "string",
-            description: "The city and state, e.g. San Francisco, CA",
+            description: "The city and state, e.g. San Francisco, CA"
           }
         },
-        required: ["location"],
+        required: ["location"]
       }
     }
   ],
@@ -209,9 +206,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 ```
 
 ```java Java
-import java.util.List;
-import java.util.Map;
-
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
@@ -220,35 +214,46 @@ import com.anthropic.models.messages.MessageTokensCount;
 import com.anthropic.models.messages.Model;
 import com.anthropic.models.messages.Tool;
 import com.anthropic.models.messages.Tool.InputSchema;
+import java.util.List;
+import java.util.Map;
 
 public class CountTokensWithToolsExample {
 
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  public static void main(String[] args) {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        InputSchema schema = InputSchema.builder()
-                .properties(JsonValue.from(Map.of(
-                        "location", Map.of(
-                                "type", "string",
-                                "description", "The city and state, e.g. San Francisco, CA"
-                        )
-                )))
-                .putAdditionalProperty("required", JsonValue.from(List.of("location")))
-                .build();
+    InputSchema schema = InputSchema.builder()
+      .properties(
+        JsonValue.from(
+          Map.of(
+            "location",
+            Map.of(
+              "type",
+              "string",
+              "description",
+              "The city and state, e.g. San Francisco, CA"
+            )
+          )
+        )
+      )
+      .putAdditionalProperty("required", JsonValue.from(List.of("location")))
+      .build();
 
-        MessageCountTokensParams params = MessageCountTokensParams.builder()
-                .model(Model.CLAUDE_OPUS_4_6)
-                .addTool(Tool.builder()
-                        .name("get_weather")
-                        .description("Get the current weather in a given location")
-                        .inputSchema(schema)
-                        .build())
-                .addUserMessage("What's the weather like in San Francisco?")
-                .build();
+    MessageCountTokensParams params = MessageCountTokensParams.builder()
+      .model(Model.CLAUDE_OPUS_4_6)
+      .addTool(
+        Tool.builder()
+          .name("get_weather")
+          .description("Get the current weather in a given location")
+          .inputSchema(schema)
+          .build()
+      )
+      .addUserMessage("What's the weather like in San Francisco?")
+      .build();
 
-        MessageTokensCount count = client.messages().countTokens(params);
-        System.out.println(count);
-    }
+    MessageTokensCount count = client.messages().countTokens(params);
+    System.out.println(count);
+  }
 }
 ```
 </CodeGroup>
@@ -312,10 +317,7 @@ response = client.messages.count_tokens(
                         "data": image_data,
                     },
                 },
-                {
-                    "type": "text",
-                    "text": "Describe this image"
-                }
+                {"type": "text", "text": "Describe this image"},
             ],
         }
     ],
@@ -324,34 +326,34 @@ print(response.json())
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
-const image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
-const image_media_type = "image/jpeg"
+const image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+const image_media_type = "image/jpeg";
 const image_array_buffer = await ((await fetch(image_url)).arrayBuffer());
-const image_data = Buffer.from(image_array_buffer).toString('base64');
+const image_data = Buffer.from(image_array_buffer).toString("base64");
 
 const response = await anthropic.messages.countTokens({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "image",
-          "source": {
-            "type": "base64",
-            "media_type": image_media_type,
-            "data": image_data,
-          },
+          type: "image",
+          source: {
+            type: "base64",
+            media_type: image_media_type,
+            data: image_data
+          }
         }
-      ],
+      ]
     },
     {
-      "type": "text",
-      "text": "Describe this image"
+      type: "text",
+      text: "Describe this image"
     }
   ]
 });
@@ -359,9 +361,6 @@ console.log(response);
 ```
 
 ```java Java
-import java.util.Base64;
-import java.util.List;
-
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.Base64ImageSource;
@@ -371,48 +370,52 @@ import com.anthropic.models.messages.MessageCountTokensParams;
 import com.anthropic.models.messages.MessageTokensCount;
 import com.anthropic.models.messages.Model;
 import com.anthropic.models.messages.TextBlockParam;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Base64;
+import java.util.List;
 
 public class CountTokensImageExample {
 
-    public static void main(String[] args) throws Exception {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  public static void main(String[] args) throws Exception {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        String imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
-        String imageMediaType = "image/jpeg";
+    String imageUrl =
+      "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+    String imageMediaType = "image/jpeg";
 
-        HttpClient httpClient = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(imageUrl))
-                .build();
-        byte[] imageBytes = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray()).body();
-        String imageBase64 = Base64.getEncoder().encodeToString(imageBytes);
+    HttpClient httpClient = HttpClient.newHttpClient();
+    HttpRequest request = HttpRequest.newBuilder().uri(URI.create(imageUrl)).build();
+    byte[] imageBytes = httpClient
+      .send(request, HttpResponse.BodyHandlers.ofByteArray())
+      .body();
+    String imageBase64 = Base64.getEncoder().encodeToString(imageBytes);
 
-        ContentBlockParam imageBlock = ContentBlockParam.ofImage(
-                ImageBlockParam.builder()
-                        .source(Base64ImageSource.builder()
-                                .mediaType(Base64ImageSource.MediaType.IMAGE_JPEG)
-                                .data(imageBase64)
-                                .build())
-                        .build());
+    ContentBlockParam imageBlock = ContentBlockParam.ofImage(
+      ImageBlockParam.builder()
+        .source(
+          Base64ImageSource.builder()
+            .mediaType(Base64ImageSource.MediaType.IMAGE_JPEG)
+            .data(imageBase64)
+            .build()
+        )
+        .build()
+    );
 
-        ContentBlockParam textBlock = ContentBlockParam.ofText(
-                TextBlockParam.builder()
-                        .text("Describe this image")
-                        .build());
+    ContentBlockParam textBlock = ContentBlockParam.ofText(
+      TextBlockParam.builder().text("Describe this image").build()
+    );
 
-        MessageCountTokensParams params = MessageCountTokensParams.builder()
-                .model(Model.CLAUDE_OPUS_4_6)
-                .addUserMessageOfBlockParams(List.of(imageBlock, textBlock))
-                .build();
+    MessageCountTokensParams params = MessageCountTokensParams.builder()
+      .model(Model.CLAUDE_OPUS_4_6)
+      .addUserMessageOfBlockParams(List.of(imageBlock, textBlock))
+      .build();
 
-        MessageTokensCount count = client.messages().countTokens(params);
-        System.out.println(count);
-    }
+    MessageTokensCount count = client.messages().countTokens(params);
+    System.out.println(count);
+  }
 }
 ```
 </CodeGroup>
@@ -475,14 +478,11 @@ client = anthropic.Anthropic()
 
 response = client.messages.count_tokens(
     model="claude-sonnet-4-5",
-    thinking={
-        "type": "enabled",
-        "budget_tokens": 16000
-    },
+    thinking={"type": "enabled", "budget_tokens": 16000},
     messages=[
         {
             "role": "user",
-            "content": "Are there an infinite number of prime numbers such that n mod 4 == 3?"
+            "content": "Are there an infinite number of prime numbers such that n mod 4 == 3?",
         },
         {
             "role": "assistant",
@@ -490,57 +490,54 @@ response = client.messages.count_tokens(
                 {
                     "type": "thinking",
                     "thinking": "This is a nice number theory question. Let's think about it step by step...",
-                    "signature": "EuYBCkQYAiJAgCs1le6/Pol5Z4/JMomVOouGrWdhYNsH3ukzUECbB6iWrSQtsQuRHJID6lWV..."
+                    "signature": "EuYBCkQYAiJAgCs1le6/Pol5Z4/JMomVOouGrWdhYNsH3ukzUECbB6iWrSQtsQuRHJID6lWV...",
                 },
                 {
-                  "type": "text",
-                  "text": "Yes, there are infinitely many prime numbers p such that p mod 4 = 3..."
-                }
-            ]
+                    "type": "text",
+                    "text": "Yes, there are infinitely many prime numbers p such that p mod 4 = 3...",
+                },
+            ],
         },
-        {
-            "role": "user",
-            "content": "Can you write a formal proof?"
-        }
-    ]
+        {"role": "user", "content": "Can you write a formal proof?"},
+    ],
 )
 
 print(response.json())
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
 const response = await client.messages.countTokens({
-  model: 'claude-sonnet-4-5',
+  model: "claude-sonnet-4-5",
   thinking: {
-    'type': 'enabled',
-    'budget_tokens': 16000
+    type: "enabled",
+    budget_tokens: 16000
   },
   messages: [
     {
-      'role': 'user',
-      'content': 'Are there an infinite number of prime numbers such that n mod 4 == 3?'
+      role: "user",
+      content: "Are there an infinite number of prime numbers such that n mod 4 == 3?"
     },
     {
-      'role': 'assistant',
-      'content': [
+      role: "assistant",
+      content: [
         {
-          'type': 'thinking',
-          'thinking': "This is a nice number theory question. Let's think about it step by step...",
-          'signature': 'EuYBCkQYAiJAgCs1le6/Pol5Z4/JMomVOouGrWdhYNsH3ukzUECbB6iWrSQtsQuRHJID6lWV...'
+          type: "thinking",
+          thinking: "This is a nice number theory question. Let's think about it step by step...",
+          signature: "EuYBCkQYAiJAgCs1le6/Pol5Z4/JMomVOouGrWdhYNsH3ukzUECbB6iWrSQtsQuRHJID6lWV..."
         },
         {
-          'type': 'text',
-          'text': 'Yes, there are infinitely many prime numbers p such that p mod 4 = 3...',
+          type: "text",
+          text: "Yes, there are infinitely many prime numbers p such that p mod 4 = 3..."
         }
       ]
     },
     {
-      'role': 'user',
-      'content': 'Can you write a formal proof?'
+      role: "user",
+      content: "Can you write a formal proof?"
     }
   ]
 });
@@ -549,8 +546,6 @@ console.log(response);
 ```
 
 ```java Java
-import java.util.List;
-
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.ContentBlockParam;
@@ -559,33 +554,42 @@ import com.anthropic.models.messages.MessageTokensCount;
 import com.anthropic.models.messages.Model;
 import com.anthropic.models.messages.TextBlockParam;
 import com.anthropic.models.messages.ThinkingBlockParam;
+import java.util.List;
 
 public class CountTokensThinkingExample {
 
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  public static void main(String[] args) {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        List<ContentBlockParam> assistantBlocks = List.of(
-                ContentBlockParam.ofThinking(ThinkingBlockParam.builder()
-                        .thinking("This is a nice number theory question. Let's think about it step by step...")
-                        .signature("EuYBCkQYAiJAgCs1le6/Pol5Z4/JMomVOouGrWdhYNsH3ukzUECbB6iWrSQtsQuRHJID6lWV...")
-                        .build()),
-                ContentBlockParam.ofText(TextBlockParam.builder()
-                        .text("Yes, there are infinitely many prime numbers p such that p mod 4 = 3...")
-                        .build())
-        );
+    List<ContentBlockParam> assistantBlocks = List.of(
+      ContentBlockParam.ofThinking(
+        ThinkingBlockParam.builder()
+          .thinking(
+            "This is a nice number theory question. Let's think about it step by step..."
+          )
+          .signature(
+            "EuYBCkQYAiJAgCs1le6/Pol5Z4/JMomVOouGrWdhYNsH3ukzUECbB6iWrSQtsQuRHJID6lWV..."
+          )
+          .build()
+      ),
+      ContentBlockParam.ofText(
+        TextBlockParam.builder()
+          .text("Yes, there are infinitely many prime numbers p such that p mod 4 = 3...")
+          .build()
+      )
+    );
 
-        MessageCountTokensParams params = MessageCountTokensParams.builder()
-                .model(Model.CLAUDE_SONNET_4_20250514)
-                .enabledThinking(16000)
-                .addUserMessage("Are there an infinite number of prime numbers such that n mod 4 == 3?")
-                .addAssistantMessageOfBlockParams(assistantBlocks)
-                .addUserMessage("Can you write a formal proof?")
-                .build();
+    MessageCountTokensParams params = MessageCountTokensParams.builder()
+      .model(Model.CLAUDE_SONNET_4_20250514)
+      .enabledThinking(16000)
+      .addUserMessage("Are there an infinite number of prime numbers such that n mod 4 == 3?")
+      .addAssistantMessageOfBlockParams(assistantBlocks)
+      .addUserMessage("Can you write a formal proof?")
+      .build();
 
-        MessageTokensCount count = client.messages().countTokens(params);
-        System.out.println(count);
-    }
+    MessageTokensCount count = client.messages().countTokens(params);
+    System.out.println(count);
+  }
 }
 ```
 </CodeGroup>
@@ -598,7 +602,7 @@ public class CountTokensThinkingExample {
 
 <Note>
 Token counting supports PDFs with the same [limitations](/docs/en/build-with-claude/pdf-support#pdf-support-limitations) as the Messages API.
-</Note> 
+</Note>
 
 <CodeGroup>
 ```bash Shell
@@ -639,52 +643,51 @@ with open("document.pdf", "rb") as pdf_file:
 
 response = client.messages.count_tokens(
     model="claude-opus-4-6",
-    messages=[{
-        "role": "user",
-        "content": [
-            {
-                "type": "document",
-                "source": {
-                    "type": "base64",
-                    "media_type": "application/pdf",
-                    "data": pdf_base64
-                }
-            },
-            {
-                "type": "text",
-                "text": "Please summarize this document."
-            }
-        ]
-    }]
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "document",
+                    "source": {
+                        "type": "base64",
+                        "media_type": "application/pdf",
+                        "data": pdf_base64,
+                    },
+                },
+                {"type": "text", "text": "Please summarize this document."},
+            ],
+        }
+    ],
 )
 
 print(response.json())
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
-import { readFileSync } from 'fs';
+import Anthropic from "@anthropic-ai/sdk";
+import { readFile } from "fs/promises";
 
 const client = new Anthropic();
 
-const pdfBase64 = readFileSync('document.pdf', { encoding: 'base64' });
+const pdfBase64 = await readFile("document.pdf", { encoding: "base64" });
 
 const response = await client.messages.countTokens({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   messages: [{
-    role: 'user',
+    role: "user",
     content: [
       {
-        type: 'document',
+        type: "document",
         source: {
-          type: 'base64',
-          media_type: 'application/pdf',
+          type: "base64",
+          media_type: "application/pdf",
           data: pdfBase64
         }
       },
       {
-        type: 'text',
-        text: 'Please summarize this document.'
+        type: "text",
+        text: "Please summarize this document."
       }
     ]
   }]
@@ -694,11 +697,6 @@ console.log(response);
 ```
 
 ```java Java
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Base64;
-import java.util.List;
-
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.Base64PdfSource;
@@ -708,36 +706,42 @@ import com.anthropic.models.messages.MessageCountTokensParams;
 import com.anthropic.models.messages.MessageTokensCount;
 import com.anthropic.models.messages.Model;
 import com.anthropic.models.messages.TextBlockParam;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Base64;
+import java.util.List;
 
 public class CountTokensPdfExample {
 
-    public static void main(String[] args) throws Exception {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  public static void main(String[] args) throws Exception {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        byte[] fileBytes = Files.readAllBytes(Path.of("document.pdf"));
-        String pdfBase64 = Base64.getEncoder().encodeToString(fileBytes);
+    byte[] fileBytes = Files.readAllBytes(Path.of("document.pdf"));
+    String pdfBase64 = Base64.getEncoder().encodeToString(fileBytes);
 
-        ContentBlockParam documentBlock = ContentBlockParam.ofDocument(
-                DocumentBlockParam.builder()
-                        .source(Base64PdfSource.builder()
-                                .mediaType(Base64PdfSource.MediaType.APPLICATION_PDF)
-                                .data(pdfBase64)
-                                .build())
-                        .build());
+    ContentBlockParam documentBlock = ContentBlockParam.ofDocument(
+      DocumentBlockParam.builder()
+        .source(
+          Base64PdfSource.builder()
+            .mediaType(Base64PdfSource.MediaType.APPLICATION_PDF)
+            .data(pdfBase64)
+            .build()
+        )
+        .build()
+    );
 
-        ContentBlockParam textBlock = ContentBlockParam.ofText(
-                TextBlockParam.builder()
-                        .text("Please summarize this document.")
-                        .build());
+    ContentBlockParam textBlock = ContentBlockParam.ofText(
+      TextBlockParam.builder().text("Please summarize this document.").build()
+    );
 
-        MessageCountTokensParams params = MessageCountTokensParams.builder()
-                .model(Model.CLAUDE_OPUS_4_6)
-                .addUserMessageOfBlockParams(List.of(documentBlock, textBlock))
-                .build();
+    MessageCountTokensParams params = MessageCountTokensParams.builder()
+      .model(Model.CLAUDE_OPUS_4_6)
+      .addUserMessageOfBlockParams(List.of(documentBlock, textBlock))
+      .build();
 
-        MessageTokensCount count = client.messages().countTokens(params);
-        System.out.println(count);
-    }
+    MessageTokensCount count = client.messages().countTokens(params);
+    System.out.println(count);
+  }
 }
 ```
 </CodeGroup>

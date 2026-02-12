@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/pun-dit
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: cb2e4bb65cce1e4130210a6b678f29c3ef8cc0664416a6fa6e487c31959410c8
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 419d85fda6d40ab19a2b6bd7995325cb3877ff39f00df30bec713d896a03696e
 ---
 
 # Pun-dit
@@ -53,8 +53,6 @@ message = client.messages.create(
     messages=[{"role": "user", "content": [{"type": "text", "text": "Fishing"}]}],
 )
 print(message.content)
-
-
 ````
 </Tab>
 
@@ -64,7 +62,7 @@ print(message.content)
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
-  apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
+  apiKey: "my_api_key" // defaults to process.env["ANTHROPIC_API_KEY"]
 });
 
 const msg = await anthropic.messages.create({
@@ -74,11 +72,11 @@ const msg = await anthropic.messages.create({
   system: "You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Fishing"
+          type: "text",
+          text: "Fishing"
         }
       ]
     }
@@ -104,20 +102,9 @@ message = client.messages.create(
     max_tokens=1000,
     temperature=1,
     system="You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
-    messages=[
-        {
-            "role": "user",
-            "content": [
-                {
-                    "type": "text",
-                    "text": "Fishing"
-                }
-            ]
-        }
-    ]
+    messages=[{"role": "user", "content": [{"type": "text", "text": "Fishing"}]}],
 )
 print(message.content)
-
 ```
 
 </Tab>
@@ -138,11 +125,11 @@ const msg = await client.messages.create({
   system: "You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Fishing"
+          type: "text",
+          text: "Fishing"
         }
       ]
     }
@@ -166,20 +153,9 @@ message = client.messages.create(
     max_tokens=1000,
     temperature=1,
     system="You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
-    messages=[
-        {
-            "role": "user",
-            "content": [
-                {
-                    "type": "text",
-                    "text": "Fishing"
-                }
-            ]
-        }
-    ]
+    messages=[{"role": "user", "content": [{"type": "text", "text": "Fishing"}]}],
 )
 print(message.content)
-
 ```
 
 </Tab>
@@ -187,7 +163,7 @@ print(message.content)
 <Tab title="Vertex AI TypeScript">
 
 ```typescript
-import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
+import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 // Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
 // Additionally goes through the standard `google-auth-library` flow.
@@ -200,11 +176,11 @@ const msg = await client.messages.create({
   system: "You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Fishing"
+          type: "text",
+          text: "Fishing"
         }
       ]
     }

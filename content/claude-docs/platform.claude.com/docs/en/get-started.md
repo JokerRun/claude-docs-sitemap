@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 52d1b9b97129bd3c3445e6402eb11418c6cd3404a7a11d7e9d7f77ebade1f816
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: ece17a837c076697d4632f7639a50385f04785c67f1a23e5e2e30cb4f4aa2397
 ---
 
 # Get started with Claude
@@ -42,7 +42,7 @@ Make your first API call to Claude and build a simple web search assistant
             "max_tokens": 1000,
             "messages": [
               {
-                "role": "user", 
+                "role": "user",
                 "content": "What should I search for to find the latest developments in renewable energy?"
               }
             ]
@@ -53,7 +53,7 @@ Make your first API call to Claude and build a simple web search assistant
         ```json
         {
           "id": "msg_01HCDu5LRGeP2o7s2xGmxyx8",
-          "type": "message", 
+          "type": "message",
           "role": "assistant",
           "content": [
             {
@@ -105,9 +105,9 @@ Make your first API call to Claude and build a simple web search assistant
             messages=[
                 {
                     "role": "user",
-                    "content": "What should I search for to find the latest developments in renewable energy?"
+                    "content": "What should I search for to find the latest developments in renewable energy?",
                 }
-            ]
+            ],
         )
         print(message.content)
         ```
@@ -120,7 +120,12 @@ Make your first API call to Claude and build a simple web search assistant
 
         **Example output:**
         ```python
-        [TextBlock(text='Here are some effective search strategies for finding the latest renewable energy developments:\n\n**Search Terms to Use:**\n- "renewable energy news 2024"\n- "clean energy breakthroughs"\n- "solar/wind/battery technology advances"\n- "energy storage innovations"\n- "green hydrogen developments"\n- "renewable energy policy updates"\n\n**Reliable Sources to Check:**\n- **News & Analysis:** Reuters Energy, Bloomberg New Energy Finance, Greentech Media, Energy Storage News\n- **Industry Publications:** Renewable Energy World, PV Magazine, Wind Power Engineering\n- **Research Organizations:** International Energy Agency (IEA), National Renewable Energy Laboratory (NREL)\n- **Government Sources:** Department of Energy websites, EPA clean energy updates\n\n**Specific Topics to Explore:**\n- Perovskite and next-gen solar cells\n- Offshore wind expansion\n- Grid-scale battery storage\n- Green hydrogen production\n- Carbon capture technologies\n- Smart grid innovations\n- Energy policy changes and incentives...', type='text')]
+        [
+            TextBlock(
+                text='Here are some effective search strategies for finding the latest renewable energy developments:\n\n**Search Terms to Use:**\n- "renewable energy news 2024"\n- "clean energy breakthroughs"\n- "solar/wind/battery technology advances"\n- "energy storage innovations"\n- "green hydrogen developments"\n- "renewable energy policy updates"\n\n**Reliable Sources to Check:**\n- **News & Analysis:** Reuters Energy, Bloomberg New Energy Finance, Greentech Media, Energy Storage News\n- **Industry Publications:** Renewable Energy World, PV Magazine, Wind Power Engineering\n- **Research Organizations:** International Energy Agency (IEA), National Renewable Energy Laboratory (NREL)\n- **Government Sources:** Department of Energy websites, EPA clean energy updates\n\n**Specific Topics to Explore:**\n- Perovskite and next-gen solar cells\n- Offshore wind expansion\n- Grid-scale battery storage\n- Green hydrogen production\n- Carbon capture technologies\n- Smart grid innovations\n- Energy policy changes and incentives...',
+                type="text",
+            )
+        ]
         ```
       </Step>
     </Steps>
@@ -176,6 +181,7 @@ Make your first API call to Claude and build a simple web search assistant
         ```
 
         **Example output:**
+        
         ```javascript
         {
           id: 'msg_01ThFHzad6Bh4TpQ6cHux9t8',
@@ -252,18 +258,21 @@ Make your first API call to Claude and build a simple web search assistant
         import com.anthropic.models.messages.MessageCreateParams;
 
         public class QuickStart {
-            public static void main(String[] args) {
-                AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-                MessageCreateParams params = MessageCreateParams.builder()
-                        .model("claude-opus-4-6")
-                        .maxTokens(1000)
-                        .addUserMessage("What should I search for to find the latest developments in renewable energy?")
-                        .build();
+          public static void main(String[] args) {
+            AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-                Message message = client.messages().create(params);
-                System.out.println(message.content());
-            }
+            MessageCreateParams params = MessageCreateParams.builder()
+              .model("claude-opus-4-6")
+              .maxTokens(1000)
+              .addUserMessage(
+                "What should I search for to find the latest developments in renewable energy?"
+              )
+              .build();
+
+            Message message = client.messages().create(params);
+            System.out.println(message.content());
+          }
         }
         ```
       </Step>
@@ -280,7 +289,7 @@ Make your first API call to Claude and build a simple web search assistant
 
         ## Search Terms to Use:
         - "renewable energy news 2024"
-        - "clean energy breakthroughs"  
+        - "clean energy breakthroughs"
         - "solar/wind/battery technology advances"
         - "energy storage innovations"
         - "green hydrogen developments"

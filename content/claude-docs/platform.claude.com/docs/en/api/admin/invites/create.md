@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 01b769ec2c47e9572768381475edf4889db21ede8db67d5b74ce28ce51d303fd
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: c22555172c0176e525abe4fc0efab5a90a08be5ba53228b584a7dd7c20ea1c7a
 ---
 
 ## Create
@@ -86,16 +86,3 @@ Create Invite
     For Invites, this is always `"invite"`.
 
     - `"invite"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/organizations/invites \
-    -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
-    -d '{
-          "email": "user@emaildomain.com",
-          "role": "user"
-        }'
-```

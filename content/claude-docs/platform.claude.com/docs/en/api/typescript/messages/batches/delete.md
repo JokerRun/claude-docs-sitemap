@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/delete
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 119dfb75f469b9c2cf2b1c924b24d6b43af84ee6866f37933da5eaaad9da2159
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 8daca214c072d2db5eff7bcfe6e908b0945fc7ce2ed8fdafd387bdb931b1cea1
 ---
 
 ## Delete
@@ -38,17 +38,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch_deleted"`.
 
     - `"message_batch_deleted"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const deletedMessageBatch = await client.messages.batches.delete('message_batch_id');
-
-console.log(deletedMessageBatch.id);
-```

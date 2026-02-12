@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/delete
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 8430685dcdd72fd0a5198eee1171641286e42b6fc14a034785cf6803c1a757b9
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 67c65aa56e591d4e929887ee31931efffa68fbc1d84839719eec1c6f85206bd4
 ---
 
 ## Delete
@@ -80,24 +80,3 @@ Delete File
     For file deletion, this is always `"file_deleted"`.
 
     - `FILE_DELETED("file_deleted")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.files.DeletedFile;
-import com.anthropic.models.beta.files.FileDeleteParams;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        DeletedFile deletedFile = client.beta().files().delete("file_id");
-    }
-}
-```

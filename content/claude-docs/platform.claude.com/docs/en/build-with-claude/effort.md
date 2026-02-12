@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/effort
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 50fc7f98f71f7f4ec01c46ee476a74733d489430134381c8e0b3c3e4a3ec402c
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: e4ddc2af4d69ad689aeb8f6b82e8bd5f4b3bc819ced269077335a032c8bddfcf
 ---
 
 # Effort
@@ -64,20 +64,20 @@ client = anthropic.Anthropic()
 response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=4096,
-    messages=[{
-        "role": "user",
-        "content": "Analyze the trade-offs between microservices and monolithic architectures"
-    }],
-    output_config={
-        "effort": "medium"
-    }
+    messages=[
+        {
+            "role": "user",
+            "content": "Analyze the trade-offs between microservices and monolithic architectures",
+        }
+    ],
+    output_config={"effort": "medium"},
 )
 
 print(response.content[0].text)
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 

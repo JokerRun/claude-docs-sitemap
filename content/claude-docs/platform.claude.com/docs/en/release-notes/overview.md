@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 3fc720ca439bfac9b5ad8e52b6bd11cb7b6f9ec2db7184e752f9cfc5ad86129c
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: a3897502ce60966c4c610a4dd41c783db2d410a35ec10aa8862319a7a031d1cf
 ---
 
 # Claude Developer Platform
@@ -172,8 +172,8 @@ _<sup>* - Opus 4.1 does not allow both `temperature` and `top_p` parameters to b
 - We've launched [interleaved thinking](/docs/en/build-with-claude/extended-thinking#interleaved-thinking) in public beta, a feature that enables Claude to think in between tool calls. To enable interleaved thinking, use the [beta header](/docs/en/api/beta-headers) `interleaved-thinking-2025-05-14`.
 - We've launched the [Files API](/docs/en/build-with-claude/files) in public beta, enabling you to upload files and reference them in the Messages API and code execution tool.
 - We've launched the [Code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool) in public beta, a tool that enables Claude to execute Python code in a secure, sandboxed environment.
-- We've launched the [MCP connector](/docs/en/agents-and-tools/mcp-connector) in public beta, a feature that allows you to connect to remote MCP servers directly from the Messages API. 
-- To increase answer quality and decrease tool errors, we've changed the default value for the `top_p` [nucleus sampling](https://en.wikipedia.org/wiki/Top-p_sampling) parameter in the Messages API from 0.999 to 0.99 for all models. To revert this change, set `top_p` to 0.999. 
+- We've launched the [MCP connector](/docs/en/agents-and-tools/mcp-connector) in public beta, a feature that allows you to connect to remote MCP servers directly from the Messages API.
+- To increase answer quality and decrease tool errors, we've changed the default value for the `top_p` [nucleus sampling](https://en.wikipedia.org/wiki/Top-p_sampling) parameter in the Messages API from 0.999 to 0.99 for all models. To revert this change, set `top_p` to 0.999.
     Additionally, when extended thinking is enabled, you can now set `top_p` to values between 0.95 and 1.
 - We've moved our [Go SDK](https://github.com/anthropics/anthropic-sdk-go) from beta to GA.
 - We've included minute and hour level granularity to the [Usage](https://console.anthropic.com/settings/usage) page of Console alongside 429 error rates on the Usage page.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/retrieve
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 137a4b13ebb5330da7b22cc3334734b0aa6d33a15ee5dfe150d14803157cb4fc
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 63ed777dc36974160267caf20ac972d68a3234cb45c2e5d4e8bc8314492db3c1
 ---
 
 ## Retrieve
@@ -124,17 +124,3 @@ Get Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const version = await client.beta.skills.versions.retrieve('version', { skill_id: 'skill_id' });
-
-console.log(version.id);
-```

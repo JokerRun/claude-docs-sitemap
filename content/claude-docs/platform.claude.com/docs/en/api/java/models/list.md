@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models/list
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 1e8948a1504d2af746a8195b29c99cd2adb6da9f74b94a0d9fe67c0335a23e3a
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 85e3d0ac5bccfb49ad22e4ceb3d7feee3d3b0aea385cd6c77ce766bcfae3e80c
 ---
 
 ## List
@@ -100,24 +100,3 @@ The Models API response can be used to determine which models are available for 
     For Models, this is always `"model"`.
 
     - `MODEL("model")`
-
-### Example
-
-```java
-package com.anthropic.example;
-
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.models.ModelListPage;
-import com.anthropic.models.models.ModelListParams;
-
-public final class Main {
-    private Main() {}
-
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        ModelListPage page = client.models().list();
-    }
-}
-```

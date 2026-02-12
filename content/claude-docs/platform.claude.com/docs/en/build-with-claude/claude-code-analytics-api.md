@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-code-analytics-api
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: ea7e30883a9109d7caf112edf5ab145c58eb752d1ccd9de2147660d0db6c20b5
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 8a6bec99447e6d2fa9928dcc4b63faf68c78bb4e081ec5c81d1e9ad64f5f4722
 ---
 
 # Claude Code Analytics API
@@ -27,7 +27,7 @@ This API enables you to better monitor, analyze, and optimize your Claude Code a
 
 <Check>
   **Admin API key required**
-  
+
   This API is part of the [Admin API](/docs/en/build-with-claude/administration-api). These endpoints require an Admin API key (starting with `sk-ant-admin...`) that differs from standard API keys. Only organization members with the admin role can provision Admin API keys through the [Claude Console](/settings/admin-keys).
 </Check>
 
@@ -45,9 +45,9 @@ limit=20" \
 
 <Tip>
   **Set a User-Agent header for integrations**
-  
+
   If you're building an integration, set your User-Agent header to help us understand usage patterns:
-  ```
+  ```text
   User-Agent: YourApp/1.0.0 (https://yourapp.com)
   ```
 </Tip>

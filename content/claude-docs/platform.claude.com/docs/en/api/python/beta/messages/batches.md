@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 04268e1832dcf685cc85d1c83f124b994492bbc0c6ecfb4d70043d332c835181
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 69451b1929adf3d07548b21710d53034de73a1477b23fb4d234515728cb70d04
 ---
 
 # Batches
@@ -98,9 +98,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `content: Union[str, List[BetaContentBlockParam]]`
 
-        - `ContentUnionMember0 = str`
+        - `str`
 
-        - `ContentUnionMember1 = List[BetaContentBlockParam]`
+        - `List[BetaContentBlockParam]`
 
           - `class BetaTextBlockParam: …`
 
@@ -312,9 +312,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `content: Union[str, List[BetaContentBlockSourceContent]]`
 
-                  - `ContentUnionMember0 = str`
+                  - `str`
 
-                  - `ContentBetaContentBlockSourceContent = List[BetaContentBlockSourceContent]`
+                  - `List[BetaContentBlockSourceContent]`
 
                     - `class BetaTextBlockParam: …`
 
@@ -807,9 +807,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `content: Optional[Union[str, List[Content], null]]`
 
-              - `ContentUnionMember0 = str`
+              - `str`
 
-              - `Content = List[Content]`
+              - `List[Content]`
 
                 - `class BetaTextBlockParam: …`
 
@@ -1171,9 +1171,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                       - `content: Union[str, List[BetaContentBlockSourceContent]]`
 
-                        - `ContentUnionMember0 = str`
+                        - `str`
 
-                        - `ContentBetaContentBlockSourceContent = List[BetaContentBlockSourceContent]`
+                        - `List[BetaContentBlockSourceContent]`
 
                           - `class BetaTextBlockParam: …`
 
@@ -1518,7 +1518,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `content: BetaWebSearchToolResultBlockParamContent`
 
-              - `ResultBlock = List[BetaWebSearchResultBlockParam]`
+              - `List[BetaWebSearchResultBlockParam]`
 
                 - `encrypted_content: str`
 
@@ -1643,9 +1643,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                       - `content: Union[str, List[BetaContentBlockSourceContent]]`
 
-                        - `ContentUnionMember0 = str`
+                        - `str`
 
-                        - `ContentBetaContentBlockSourceContent = List[BetaContentBlockSourceContent]`
+                        - `List[BetaContentBlockSourceContent]`
 
                           - `class BetaTextBlockParam: …`
 
@@ -2318,9 +2318,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `content: Optional[Union[str, List[BetaTextBlockParam], null]]`
 
-              - `ContentUnionMember0 = str`
+              - `str`
 
-              - `ContentBetaMCPToolResultBlockParamContent = List[BetaTextBlockParam]`
+              - `List[BetaTextBlockParam]`
 
                 - `text: str`
 
@@ -2522,7 +2522,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+      - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
         The model that will complete your prompt.
 
@@ -2634,7 +2634,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Our previous most fast and cost-effective
 
-      - `UnionMember1 = str`
+      - `str`
 
     - `container: Optional[RequestParamsContainer]`
 
@@ -2668,7 +2668,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             Skill version or 'latest' for most recent version
 
-      - `RequestParamsContainerUnionMember1 = str`
+      - `str`
 
     - `context_management: Optional[BetaContextManagementConfigParam]`
 
@@ -2700,9 +2700,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             Whether to clear all tool inputs (bool) or specific tool inputs to clear (list)
 
-            - `ClearToolInputsUnionMember0 = bool`
+            - `bool`
 
-            - `ClearToolInputsUnionMember1 = List[str]`
+            - `List[str]`
 
           - `exclude_tools: Optional[List[str]]`
 
@@ -2762,7 +2762,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `"all"`
 
-            - `KeepUnionMember2 = Literal["all"]`
+            - `Literal["all"]`
 
               - `"all"`
 
@@ -2906,9 +2906,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See our [guide to system prompts](https://docs.claude.com/en/docs/system-prompts).
 
-      - `RequestParamsSystemUnionMember0 = str`
+      - `str`
 
-      - `RequestParamsSystemUnionMember1 = Iterable[BetaTextBlockParam]`
+      - `Iterable[BetaTextBlockParam]`
 
         - `text: str`
 
@@ -4276,9 +4276,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -4409,31 +4409,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-beta_message_batch = client.beta.messages.batches.create(
-    requests=[{
-        "custom_id": "my-custom-id-1",
-        "params": {
-            "max_tokens": 1024,
-            "messages": [{
-                "content": "Hello, world",
-                "role": "user",
-            }],
-            "model": "claude-opus-4-6",
-        },
-    }],
-)
-print(beta_message_batch.id)
-```
 
 ## Retrieve
 
@@ -4455,9 +4430,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -4588,21 +4563,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-beta_message_batch = client.beta.messages.batches.retrieve(
-    message_batch_id="message_batch_id",
-)
-print(beta_message_batch.id)
-```
 
 ## List
 
@@ -4634,9 +4594,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -4767,20 +4727,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-page = client.beta.messages.batches.list()
-page = page.data[0]
-print(page.id)
-```
 
 ## Cancel
 
@@ -4804,9 +4750,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -4938,21 +4884,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"message_batch"`
 
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-beta_message_batch = client.beta.messages.batches.cancel(
-    message_batch_id="message_batch_id",
-)
-print(beta_message_batch.id)
-```
-
 ## Delete
 
 `beta.messages.batches.delete(strmessage_batch_id, BatchDeleteParams**kwargs)  -> BetaDeletedMessageBatch`
@@ -4975,9 +4906,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -5035,21 +4966,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"message_batch_deleted"`
 
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-beta_deleted_message_batch = client.beta.messages.batches.delete(
-    message_batch_id="message_batch_id",
-)
-print(beta_deleted_message_batch.id)
-```
-
 ## Results
 
 `beta.messages.batches.results(strmessage_batch_id, BatchResultsParams**kwargs)  -> BetaMessageBatchIndividualResponse`
@@ -5072,9 +4988,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -5429,7 +5345,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"web_search_tool_result_error"`
 
-              - `UnionMember1 = List[BetaWebSearchResultBlock]`
+              - `List[BetaWebSearchResultBlock]`
 
                 - `encrypted_content: str`
 
@@ -5773,9 +5689,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `content: Union[str, List[BetaTextBlock]]`
 
-              - `ContentUnionMember0 = str`
+              - `str`
 
-              - `ContentBetaMCPToolResultBlockContent = List[BetaTextBlock]`
+              - `List[BetaTextBlock]`
 
                 - `citations: Optional[List[BetaTextCitation]]`
 
@@ -5957,7 +5873,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+          - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
             The model that will complete your prompt.
 
@@ -6069,7 +5985,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               Our previous most fast and cost-effective
 
-          - `UnionMember1 = str`
+          - `str`
 
         - `role: Literal["assistant"]`
 
@@ -6387,21 +6303,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `type: Literal["expired"]`
 
         - `"expired"`
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-beta_message_batch_individual_response = client.beta.messages.batches.results(
-    message_batch_id="message_batch_id",
-)
-print(beta_message_batch_individual_response.custom_id)
-```
 
 ## Domain Types
 
@@ -6930,7 +6831,7 @@ print(beta_message_batch_individual_response.custom_id)
 
                   - `"web_search_tool_result_error"`
 
-              - `UnionMember1 = List[BetaWebSearchResultBlock]`
+              - `List[BetaWebSearchResultBlock]`
 
                 - `encrypted_content: str`
 
@@ -7274,9 +7175,9 @@ print(beta_message_batch_individual_response.custom_id)
 
             - `content: Union[str, List[BetaTextBlock]]`
 
-              - `ContentUnionMember0 = str`
+              - `str`
 
-              - `ContentBetaMCPToolResultBlockContent = List[BetaTextBlock]`
+              - `List[BetaTextBlock]`
 
                 - `citations: Optional[List[BetaTextCitation]]`
 
@@ -7458,7 +7359,7 @@ print(beta_message_batch_individual_response.custom_id)
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+          - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
             The model that will complete your prompt.
 
@@ -7570,7 +7471,7 @@ print(beta_message_batch_individual_response.custom_id)
 
               Our previous most fast and cost-effective
 
-          - `UnionMember1 = str`
+          - `str`
 
         - `role: Literal["assistant"]`
 
@@ -7923,7 +7824,7 @@ print(beta_message_batch_individual_response.custom_id)
 
 ### Beta Message Batch Result
 
-- `BetaMessageBatchResult = BetaMessageBatchResult`
+- `BetaMessageBatchResult`
 
   Processing result for this request.
 
@@ -8224,7 +8125,7 @@ print(beta_message_batch_individual_response.custom_id)
 
                 - `"web_search_tool_result_error"`
 
-            - `UnionMember1 = List[BetaWebSearchResultBlock]`
+            - `List[BetaWebSearchResultBlock]`
 
               - `encrypted_content: str`
 
@@ -8568,9 +8469,9 @@ print(beta_message_batch_individual_response.custom_id)
 
           - `content: Union[str, List[BetaTextBlock]]`
 
-            - `ContentUnionMember0 = str`
+            - `str`
 
-            - `ContentBetaMCPToolResultBlockContent = List[BetaTextBlock]`
+            - `List[BetaTextBlock]`
 
               - `citations: Optional[List[BetaTextCitation]]`
 
@@ -8752,7 +8653,7 @@ print(beta_message_batch_individual_response.custom_id)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+        - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
           The model that will complete your prompt.
 
@@ -8864,7 +8765,7 @@ print(beta_message_batch_individual_response.custom_id)
 
             Our previous most fast and cost-effective
 
-        - `UnionMember1 = str`
+        - `str`
 
       - `role: Literal["assistant"]`
 
@@ -9480,7 +9381,7 @@ print(beta_message_batch_individual_response.custom_id)
 
               - `"web_search_tool_result_error"`
 
-          - `UnionMember1 = List[BetaWebSearchResultBlock]`
+          - `List[BetaWebSearchResultBlock]`
 
             - `encrypted_content: str`
 
@@ -9824,9 +9725,9 @@ print(beta_message_batch_individual_response.custom_id)
 
         - `content: Union[str, List[BetaTextBlock]]`
 
-          - `ContentUnionMember0 = str`
+          - `str`
 
-          - `ContentBetaMCPToolResultBlockContent = List[BetaTextBlock]`
+          - `List[BetaTextBlock]`
 
             - `citations: Optional[List[BetaTextCitation]]`
 
@@ -10008,7 +9909,7 @@ print(beta_message_batch_individual_response.custom_id)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+      - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
         The model that will complete your prompt.
 
@@ -10120,7 +10021,7 @@ print(beta_message_batch_individual_response.custom_id)
 
           Our previous most fast and cost-effective
 
-      - `UnionMember1 = str`
+      - `str`
 
     - `role: Literal["assistant"]`
 

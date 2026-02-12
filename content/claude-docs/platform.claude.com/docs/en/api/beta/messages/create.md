@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: cb79b6c6db69d10a3489763d3dcfab095ba27d3de7a4ec4f35f52a7be3feed62
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 2a68c939ccaf3aecd3f6c1a5483343e576370746cfb34c73d29878444585a564
 ---
 
 ## Create
@@ -5407,23 +5407,3 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"standard"`
 
       - `"fast"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages \
-    -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    --max-time 600 \
-    -d '{
-          "max_tokens": 1024,
-          "messages": [
-            {
-              "content": "Hello, world",
-              "role": "user"
-            }
-          ],
-          "model": "claude-opus-4-6"
-        }'
-```

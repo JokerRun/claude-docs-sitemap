@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 6b4e2ef905cea2a1f68064c9738dccffd5681b117e02738838b66639e074936e
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: fb3bddb7bd78431e39f9f69a1e7370274860989a01a1059eb5085086146e44ad
 ---
 
 ## Create
@@ -4385,22 +4385,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `:message_batch`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_message_batch = anthropic.beta.messages.batches.create(
-  requests: [
-    {
-      custom_id: "my-custom-id-1",
-      params: {max_tokens: 1024, messages: [{content: "Hello, world", role: :user}], model: :"claude-opus-4-6"}
-    }
-  ]
-)
-
-puts(beta_message_batch)
-```

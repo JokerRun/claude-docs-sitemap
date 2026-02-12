@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 0620471ec06215268265315d378d87dcf0c26c8f9d179014f0e436c1ff41d3e2
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: c192967d4fa7ea3a0ad9be67184d065e41eb2b960a6b3ba6b25ddd42d37dbd22
 ---
 
 # Skills
@@ -121,18 +121,6 @@ Create Skill
   - `updated_at: String`
 
     ISO 8601 timestamp of when the skill was last updated.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-skill = anthropic.beta.skills.create
-
-puts(skill)
-```
 
 ## List
 
@@ -258,18 +246,6 @@ List Skills
 
     ISO 8601 timestamp of when the skill was last updated.
 
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-page = anthropic.beta.skills.list
-
-puts(page)
-```
-
 ## Retrieve
 
 `beta.skills.retrieve(skill_id, **kwargs) -> SkillRetrieveResponse`
@@ -379,18 +355,6 @@ Get Skill
 
     ISO 8601 timestamp of when the skill was last updated.
 
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-skill = anthropic.beta.skills.retrieve("skill_id")
-
-puts(skill)
-```
-
 ## Delete
 
 `beta.skills.delete(skill_id, **kwargs) -> SkillDeleteResponse`
@@ -470,18 +434,6 @@ Delete Skill
     Deleted object type.
 
     For Skills, this is always `"skill_deleted"`.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-skill = anthropic.beta.skills.delete("skill_id")
-
-puts(skill)
-```
 
 # Versions
 
@@ -602,18 +554,6 @@ Create Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-version = anthropic.beta.skills.versions.create("skill_id")
-
-puts(version)
-```
 
 ## List
 
@@ -737,18 +677,6 @@ List Skill Versions
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-page = anthropic.beta.skills.versions.list("skill_id")
-
-puts(page)
-```
-
 ## Retrieve
 
 `beta.skills.versions.retrieve(version, **kwargs) -> VersionRetrieveResponse`
@@ -867,18 +795,6 @@ Get Skill Version
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-version = anthropic.beta.skills.versions.retrieve("version", skill_id: "skill_id")
-
-puts(version)
-```
-
 ## Delete
 
 `beta.skills.versions.delete(version, **kwargs) -> VersionDeleteResponse`
@@ -964,15 +880,3 @@ Delete Skill Version
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-version = anthropic.beta.skills.versions.delete("version", skill_id: "skill_id")
-
-puts(version)
-```

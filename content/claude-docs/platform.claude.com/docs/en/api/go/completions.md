@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: b6d5cd81924672bbb6189b72cd7c9a79f82a8ef46cbd00a6780c0e1291a7f08b
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 984187424dc3b95f7653e73d297ceecf94cd0dba10d3d1ea4ffb9146287e95b8
 ---
 
 # Completions
@@ -269,35 +269,6 @@ Future models and features will not be compatible with Text Completions. See our
     For Text Completions, this is always `"completion"`.
 
     - `const CompletionCompletion Completion = "completion"`
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  completion, err := client.Completions.New(context.TODO(), anthropic.CompletionNewParams{
-    MaxTokensToSample: 256,
-    Model: anthropic.ModelClaudeOpus4_6,
-    Prompt: "\n\nHuman: Hello, world!\n\nAssistant:",
-  })
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", completion.ID)
-}
-```
 
 ## Domain Types
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 67707b19ee46a769c7455372dcf3d752a4604b68f72310bb543dea66874d92dc
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: ddb2d41cfd81874c1505090af207c2cd26f38c2be83a20f2c5ac660b33b0beeb
 ---
 
 # Messages
@@ -2641,26 +2641,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"batch"`
 
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages \
-    -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    --max-time 600 \
-    -d '{
-          "max_tokens": 1024,
-          "messages": [
-            {
-              "content": "Hello, world",
-              "role": "user"
-            }
-          ],
-          "model": "claude-opus-4-6"
-        }'
-```
-
 ## Count Tokens
 
 **post** `/v1/messages/count_tokens`
@@ -4796,24 +4776,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
   - `input_tokens: number`
 
     The total number of tokens across the provided list of messages, system prompt, and tools.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages/count_tokens \
-    -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{
-          "messages": [
-            {
-              "content": "string",
-              "role": "user"
-            }
-          ],
-          "model": "claude-opus-4-6"
-        }'
-```
 
 ## Domain Types
 
@@ -16374,32 +16336,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"message_batch"`
 
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages/batches \
-    -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{
-          "requests": [
-            {
-              "custom_id": "my-custom-id-1",
-              "params": {
-                "max_tokens": 1024,
-                "messages": [
-                  {
-                    "content": "Hello, world",
-                    "role": "user"
-                  }
-                ],
-                "model": "claude-opus-4-6"
-              }
-            }
-          ]
-        }'
-```
-
 ## Retrieve
 
 **get** `/v1/messages/batches/{message_batch_id}`
@@ -16503,14 +16439,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```
 
 ## List
 
@@ -16638,14 +16566,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages/batches \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```
-
 ## Cancel
 
 **post** `/v1/messages/batches/{message_batch_id}/cancel`
@@ -16752,15 +16672,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"message_batch"`
 
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/cancel \
-    -X POST \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```
-
 ## Delete
 
 **delete** `/v1/messages/batches/{message_batch_id}`
@@ -16792,15 +16703,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch_deleted"`.
 
     - `"message_batch_deleted"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID \
-    -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```
 
 ## Results
 
@@ -17375,14 +17277,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `type: "expired"`
 
         - `"expired"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```
 
 ## Domain Types
 

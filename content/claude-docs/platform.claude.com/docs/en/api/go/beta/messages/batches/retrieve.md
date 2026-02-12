@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/retrieve
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 12c715fbd1e55f9d7c201487c56ad7ab4f537f964d3d3025a88d39a63a5e8f3e
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 9498549e822ed6d0aefb6c0f2a963254b4c0a7656ee0bf598fcccdfe256860d6
 ---
 
 ## Retrieve
@@ -160,34 +160,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `const MessageBatchMessageBatch MessageBatch = "message_batch"`
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  betaMessageBatch, err := client.Beta.Messages.Batches.Get(
-    context.TODO(),
-    "message_batch_id",
-    anthropic.BetaMessageBatchGetParams{
-
-    },
-  )
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", betaMessageBatch.ID)
-}
-```

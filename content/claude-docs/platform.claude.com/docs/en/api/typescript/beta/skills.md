@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 694095920dfa828be48ee85f5d39132e79ed9786df9ce43c3f5b487a65a50223
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 60212ac4f30d630262f2f8b7687d64d9b4e53053fc6ff8209a98422beea74c6c
 ---
 
 # Skills
@@ -123,20 +123,6 @@ Create Skill
   - `updated_at: string`
 
     ISO 8601 timestamp of when the skill was last updated.
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const skill = await client.beta.skills.create();
-
-console.log(skill.id);
-```
 
 ## List
 
@@ -264,21 +250,6 @@ List Skills
 
     ISO 8601 timestamp of when the skill was last updated.
 
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-// Automatically fetches more pages as needed.
-for await (const skillListResponse of client.beta.skills.list()) {
-  console.log(skillListResponse.id);
-}
-```
-
 ## Retrieve
 
 `client.beta.skills.retrieve(stringskillID, SkillRetrieveParamsparams?, RequestOptionsoptions?): SkillRetrieveResponse`
@@ -390,20 +361,6 @@ Get Skill
 
     ISO 8601 timestamp of when the skill was last updated.
 
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const skill = await client.beta.skills.retrieve('skill_id');
-
-console.log(skill.id);
-```
-
 ## Delete
 
 `client.beta.skills.delete(stringskillID, SkillDeleteParamsparams?, RequestOptionsoptions?): SkillDeleteResponse`
@@ -485,20 +442,6 @@ Delete Skill
     Deleted object type.
 
     For Skills, this is always `"skill_deleted"`.
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const skill = await client.beta.skills.delete('skill_id');
-
-console.log(skill.id);
-```
 
 # Versions
 
@@ -621,20 +564,6 @@ Create Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const version = await client.beta.skills.versions.create('skill_id');
-
-console.log(version.id);
-```
 
 ## List
 
@@ -760,21 +689,6 @@ List Skill Versions
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-// Automatically fetches more pages as needed.
-for await (const versionListResponse of client.beta.skills.versions.list('skill_id')) {
-  console.log(versionListResponse.id);
-}
-```
-
 ## Retrieve
 
 `client.beta.skills.versions.retrieve(stringversion, VersionRetrieveParamsparams, RequestOptionsoptions?): VersionRetrieveResponse`
@@ -895,20 +809,6 @@ Get Skill Version
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const version = await client.beta.skills.versions.retrieve('version', { skill_id: 'skill_id' });
-
-console.log(version.id);
-```
-
 ## Delete
 
 `client.beta.skills.versions.delete(stringversion, VersionDeleteParamsparams, RequestOptionsoptions?): VersionDeleteResponse`
@@ -996,17 +896,3 @@ Delete Skill Version
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const version = await client.beta.skills.versions.delete('version', { skill_id: 'skill_id' });
-
-console.log(version.id);
-```

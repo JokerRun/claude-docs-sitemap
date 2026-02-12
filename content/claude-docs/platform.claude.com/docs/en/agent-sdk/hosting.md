@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/hosting
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: e94915e46e17e9f9f8cc3fb06b0868513a4caf52e58adce19a551a981998e89d
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: d34837c5f5f0c2631547b5af3242b3af7fdcf6052ab0cac9a31ed14fa4770195
 ---
 
 # Hosting the Agent SDK
@@ -59,13 +59,13 @@ Several providers specialize in secure container environments for AI code execut
 - **[Fly Machines](https://fly.io/docs/machines/)**
 - **[Vercel Sandbox](https://vercel.com/docs/functions/sandbox)**
 
-For self-hosted options (Docker, gVisor, Firecracker) and detailed isolation configuration, see [Isolation Technologies](/docs/en/agent-sdk/secure-deployment#isolation-technologies). 
+For self-hosted options (Docker, gVisor, Firecracker) and detailed isolation configuration, see [Isolation Technologies](/docs/en/agent-sdk/secure-deployment#isolation-technologies).
 
 ## Production Deployment Patterns
 
 ### Pattern 1: Ephemeral Sessions
 
-Create a new container for each user task, then destroy it when complete. 
+Create a new container for each user task, then destroy it when complete.
 
 Best for one-off tasks, the user may still interact with the AI while the task is completing, but once completed the container is destroyed.
 
@@ -116,7 +116,7 @@ We have found that the dominant cost of serving agents is the tokens, containers
 
 ### When should I shut down idle containers vs. keeping them warm?
 This is likely provider dependent, different sandbox providers will let you set different criteria for idle timeouts after which a sandbox might spin down.
-You will want to tune this timeout based on how frequent you think user response might be. 
+You will want to tune this timeout based on how frequent you think user response might be.
 
 ### How often should I update the Claude Code CLI?
 The Claude Code CLI is versioned with semver, so any breaking changes will be versioned.

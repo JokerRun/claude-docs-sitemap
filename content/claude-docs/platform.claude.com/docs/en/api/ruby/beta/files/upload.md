@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/upload
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 6a3313c4ba4b59f1b7d90b940e6bdcf8f6c536cfd4e48ca4cae470111e835772
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 72d47a9c1817d6ef32178f55c786229a5da8110fc421674c1d07cda9494ec3a5
 ---
 
 ## Upload
@@ -104,15 +104,3 @@ Upload File
   - `downloadable: bool`
 
     Whether the file can be downloaded.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-file_metadata = anthropic.beta.files.upload(file: Pathname(__FILE__))
-
-puts(file_metadata)
-```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/retrieve
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 2dbe925200056ea666f8ce71425a7c6f01e4fdd0903115de36d66a66789c45e2
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 87ade47fcd14cdcd0fef9bbb684fe39b90336eb04d2282c2a0866b744ea8317d
 ---
 
 ## Retrieve
@@ -115,34 +115,3 @@ Get Skill
   - `UpdatedAt string`
 
     ISO 8601 timestamp of when the skill was last updated.
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  skill, err := client.Beta.Skills.Get(
-    context.TODO(),
-    "skill_id",
-    anthropic.BetaSkillGetParams{
-
-    },
-  )
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", skill.ID)
-}
-```

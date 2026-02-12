@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: f08b6a4ebd48b6f1b3867e11374ac83f89ab802efbf4cf1ed05b42f9d0abbd8c
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: b103d9706ae39c8b4c045510978b60f0cd45f49318491d76b2490351846eb8c7
 ---
 
 ## List
@@ -122,18 +122,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-// Automatically fetches more pages as needed.
-for await (const messageBatch of client.messages.batches.list()) {
-  console.log(messageBatch.id);
-}
-```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/delete
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 705952ef0428ee3107f6efa392174e45407289030e66f482e22185f220f3a7e3
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: c72b300ea5621c7fe1e3e75131460541c71941ee52cf5f723af652d8f9682aae
 ---
 
 ## Delete
@@ -84,17 +84,3 @@ Delete File
     For file deletion, this is always `"file_deleted"`.
 
     - `"file_deleted"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const deletedFile = await client.beta.files.delete('file_id');
-
-console.log(deletedFile.id);
-```

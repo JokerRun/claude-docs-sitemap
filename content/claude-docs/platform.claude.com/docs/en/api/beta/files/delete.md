@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/delete
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 8d3bb8bb8e29b9a23f9a8eb29d99ed0d16b5fb3d5118552870a03bab115c0de6
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: a96b8b90072b324fc399fd00af3c1e15ec05489e82d5fe164bbd2de906c70347
 ---
 
 ## Delete
@@ -82,13 +82,3 @@ Delete File
     For file deletion, this is always `"file_deleted"`.
 
     - `"file_deleted"`
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/files/$FILE_ID \
-    -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: files-api-2025-04-14' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/update
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 32a0bfd59094f100321ae9c27cfc120aae245a4ca635aab5f7e1f2cabdb3fae9
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 3f93fd3aa72e457fe47fbdfac3e569dfa515d291123fa61a2bd38c0504a0efac
 ---
 
 ## Update
@@ -86,13 +86,3 @@ Update API Key
   - `workspace_id: string`
 
     ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
-    -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
-    -d '{}'
-```

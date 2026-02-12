@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/list
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 13803b84761d4e03026bfa836b268d1f58ebf2708efa4815f72c762dd11cb110
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 00d5ea2cdcf5bd593d6187f380f992c4b79240108f39816c116f6768a322f7f7
 ---
 
 ## List
@@ -122,30 +122,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `const MessageBatchMessageBatch MessageBatch = "message_batch"`
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  page, err := client.Messages.Batches.List(context.TODO(), anthropic.MessageBatchListParams{
-
-  })
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", page)
-}
-```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/service-tiers
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 7f7e55893026bf0f331c2d1b760c6987372a110f7ec632ece022e8b1986904ef
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 88e377b63fa9c30806d6b25758526379b9d5c0998fbb60840d61bdb0f6ab81bc
 ---
 
 # Service tiers
@@ -67,7 +67,7 @@ message = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude!"}],
-    service_tier="auto"  # Automatically use Priority Tier when available, fallback to standard
+    service_tier="auto",  # Automatically use Priority Tier when available, fallback to standard
 )
 ```
 

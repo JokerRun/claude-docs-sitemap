@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/retrieve
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 2b5d6f5f699d3c2112bcbb59c0d62190b10a59da7a804913ff5e2394bdb79f98
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 403838652541556fe8d5931c170457bd616b6c1072fd32be17942fe2954c51b8
 ---
 
 ## Retrieve
@@ -25,9 +25,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -158,18 +158,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-beta_message_batch = client.beta.messages.batches.retrieve(
-    message_batch_id="message_batch_id",
-)
-print(beta_message_batch.id)
-```

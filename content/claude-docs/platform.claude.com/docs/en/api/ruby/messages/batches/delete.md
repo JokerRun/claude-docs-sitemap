@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/delete
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 58810ae26925e085742e6cc18a21a0c5b45ad8de4cea42d7828dfb3ff0a97e7f
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: f25f8aaec86b9012984f80b540fcce7414ee5d133b2a0577b5a8d446da6a1808
 ---
 
 ## Delete
@@ -38,15 +38,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch_deleted"`.
 
     - `:message_batch_deleted`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-deleted_message_batch = anthropic.messages.batches.delete("message_batch_id")
-
-puts(deleted_message_batch)
-```

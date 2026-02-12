@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/completions
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 6b38ae7e8bbbc961066ed6e6a676a118e815da50ecb350546b84e78d6d83b2d4
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: a3cefbcd10ed6e8a8ed6e2dbb957fe2d5acaa832d6c9f5964a12417f9ffa11ee
 ---
 
 # Completions
@@ -33,7 +33,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+  - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
     The model that will complete your prompt.
 
@@ -145,7 +145,7 @@ Future models and features will not be compatible with Text Completions. See our
 
       Our previous most fast and cost-effective
 
-  - `UnionMember1 = str`
+  - `str`
 
 - `prompt: str`
 
@@ -221,9 +221,9 @@ Future models and features will not be compatible with Text Completions. See our
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -285,7 +285,7 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+    - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
       The model that will complete your prompt.
 
@@ -397,7 +397,7 @@ Future models and features will not be compatible with Text Completions. See our
 
         Our previous most fast and cost-effective
 
-    - `UnionMember1 = str`
+    - `str`
 
   - `stop_reason: Optional[str]`
 
@@ -415,23 +415,6 @@ Future models and features will not be compatible with Text Completions. See our
     For Text Completions, this is always `"completion"`.
 
     - `"completion"`
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-completion = client.completions.create(
-    max_tokens_to_sample=256,
-    model="claude-opus-4-6",
-    prompt="\n\nHuman: Hello, world!\n\nAssistant:",
-)
-print(completion.id)
-```
 
 ## Domain Types
 
@@ -455,7 +438,7 @@ print(completion.id)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+    - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
       The model that will complete your prompt.
 
@@ -567,7 +550,7 @@ print(completion.id)
 
         Our previous most fast and cost-effective
 
-    - `UnionMember1 = str`
+    - `str`
 
   - `stop_reason: Optional[str]`
 

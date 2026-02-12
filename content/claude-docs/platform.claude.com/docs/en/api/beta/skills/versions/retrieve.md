@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 728c2a2d84ea05f7666b251bba6ca5fee6581a847478de879fe972b5f2a15d20
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: f5ced2b6170a72f930de0604dbe622476b34992fa67dc7735c9975bc6a2b3519
 ---
 
 ## Retrieve
@@ -120,12 +120,3 @@ Get Skill Version
   Version identifier for the skill.
 
   Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION \
-    -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: skills-2025-10-02' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```

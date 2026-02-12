@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/results
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: f375c00fe46f814a0c010b3d7cd69f298ad6807dd4530a3236d1cfb37320c378
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 45006d2a067ba4777e9929cf5a1703f5353b189c30ebfff5af787368cfa5c800
 ---
 
 ## Results
@@ -580,28 +580,3 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `Type Expired`
 
         - `const ExpiredExpired Expired = "expired"`
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  stream := client.Messages.Batches.ResultsStreaming(context.TODO(), "message_batch_id")
-  if stream.Err() != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", messageBatchIndividualResponse.CustomID)
-}
-```

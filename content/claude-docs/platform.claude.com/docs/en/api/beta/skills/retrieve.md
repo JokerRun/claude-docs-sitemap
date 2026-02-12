@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/retrieve
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: 3c4965c0b9dd0f03f0b351e4fe2d59940c7174ec9ba06977f9e2d19c25e03f70
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: a12643ab116a246500e3d995935f485f6da30028f176b2fb4992a69f3c4e8571
 ---
 
 ## Retrieve
@@ -111,12 +111,3 @@ Get Skill
 - `updated_at: string`
 
   ISO 8601 timestamp of when the skill was last updated.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/skills/$SKILL_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: skills-2025-10-02' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
-```

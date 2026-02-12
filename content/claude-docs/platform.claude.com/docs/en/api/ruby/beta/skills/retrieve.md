@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/retrieve
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: fa4d5c5d85d02a382e787a2252f3dd5d7726ed74694d2d87104c8ddec4371373
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: cd2dbfd447e39e95590fb975cc25f5addc37404aabae9a346fe845c946b579d2
 ---
 
 ## Retrieve
@@ -113,15 +113,3 @@ Get Skill
   - `updated_at: String`
 
     ISO 8601 timestamp of when the skill was last updated.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-skill = anthropic.beta.skills.retrieve("skill_id")
-
-puts(skill)
-```

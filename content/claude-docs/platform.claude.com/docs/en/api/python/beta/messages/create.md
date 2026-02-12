@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/create
-fetched_at: 2026-02-08T04:34:43.786498Z
-sha256: ef36164476c416a09b868e423b43a14b51d29e61b9cd86c96259bfe8d184c1fb
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 836f3557a91e7e04a7f66a7401a90b4c5a21c4247c5306700f83d8c1d0acf5c6
 ---
 
 ## Create
@@ -80,9 +80,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `content: Union[str, List[BetaContentBlockParam]]`
 
-    - `ContentUnionMember0 = str`
+    - `str`
 
-    - `ContentUnionMember1 = List[BetaContentBlockParam]`
+    - `List[BetaContentBlockParam]`
 
       - `class BetaTextBlockParam: …`
 
@@ -294,9 +294,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `content: Union[str, List[BetaContentBlockSourceContent]]`
 
-              - `ContentUnionMember0 = str`
+              - `str`
 
-              - `ContentBetaContentBlockSourceContent = List[BetaContentBlockSourceContent]`
+              - `List[BetaContentBlockSourceContent]`
 
                 - `class BetaTextBlockParam: …`
 
@@ -789,9 +789,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `content: Optional[Union[str, List[Content], null]]`
 
-          - `ContentUnionMember0 = str`
+          - `str`
 
-          - `Content = List[Content]`
+          - `List[Content]`
 
             - `class BetaTextBlockParam: …`
 
@@ -1153,9 +1153,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                   - `content: Union[str, List[BetaContentBlockSourceContent]]`
 
-                    - `ContentUnionMember0 = str`
+                    - `str`
 
-                    - `ContentBetaContentBlockSourceContent = List[BetaContentBlockSourceContent]`
+                    - `List[BetaContentBlockSourceContent]`
 
                       - `class BetaTextBlockParam: …`
 
@@ -1500,7 +1500,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `content: BetaWebSearchToolResultBlockParamContent`
 
-          - `ResultBlock = List[BetaWebSearchResultBlockParam]`
+          - `List[BetaWebSearchResultBlockParam]`
 
             - `encrypted_content: str`
 
@@ -1625,9 +1625,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                   - `content: Union[str, List[BetaContentBlockSourceContent]]`
 
-                    - `ContentUnionMember0 = str`
+                    - `str`
 
-                    - `ContentBetaContentBlockSourceContent = List[BetaContentBlockSourceContent]`
+                    - `List[BetaContentBlockSourceContent]`
 
                       - `class BetaTextBlockParam: …`
 
@@ -2300,9 +2300,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `content: Optional[Union[str, List[BetaTextBlockParam], null]]`
 
-          - `ContentUnionMember0 = str`
+          - `str`
 
-          - `ContentBetaMCPToolResultBlockParamContent = List[BetaTextBlockParam]`
+          - `List[BetaTextBlockParam]`
 
             - `text: str`
 
@@ -2504,7 +2504,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+  - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
     The model that will complete your prompt.
 
@@ -2616,7 +2616,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Our previous most fast and cost-effective
 
-  - `UnionMember1 = str`
+  - `str`
 
 - `container: Optional[Container]`
 
@@ -2650,7 +2650,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         Skill version or 'latest' for most recent version
 
-  - `ContainerUnionMember1 = str`
+  - `str`
 
 - `context_management: Optional[BetaContextManagementConfigParam]`
 
@@ -2682,9 +2682,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         Whether to clear all tool inputs (bool) or specific tool inputs to clear (list)
 
-        - `ClearToolInputsUnionMember0 = bool`
+        - `bool`
 
-        - `ClearToolInputsUnionMember1 = List[str]`
+        - `List[str]`
 
       - `exclude_tools: Optional[List[str]]`
 
@@ -2744,7 +2744,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"all"`
 
-        - `KeepUnionMember2 = Literal["all"]`
+        - `Literal["all"]`
 
           - `"all"`
 
@@ -2890,9 +2890,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See our [guide to system prompts](https://docs.claude.com/en/docs/system-prompts).
 
-  - `SystemUnionMember0 = str`
+  - `str`
 
-  - `SystemUnionMember1 = Iterable[BetaTextBlockParam]`
+  - `Iterable[BetaTextBlockParam]`
 
     - `text: str`
 
@@ -4260,9 +4260,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = str`
+  - `str`
 
-  - `UnionMember1 = Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -4599,7 +4599,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"web_search_tool_result_error"`
 
-        - `UnionMember1 = List[BetaWebSearchResultBlock]`
+        - `List[BetaWebSearchResultBlock]`
 
           - `encrypted_content: str`
 
@@ -4943,9 +4943,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `content: Union[str, List[BetaTextBlock]]`
 
-        - `ContentUnionMember0 = str`
+        - `str`
 
-        - `ContentBetaMCPToolResultBlockContent = List[BetaTextBlock]`
+        - `List[BetaTextBlock]`
 
           - `citations: Optional[List[BetaTextCitation]]`
 
@@ -5127,7 +5127,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `UnionMember0 = Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+    - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
 
       The model that will complete your prompt.
 
@@ -5239,7 +5239,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         Our previous most fast and cost-effective
 
-    - `UnionMember1 = str`
+    - `str`
 
   - `role: Literal["assistant"]`
 
@@ -5453,23 +5453,3 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"standard"`
 
       - `"fast"`
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-beta_message = client.beta.messages.create(
-    max_tokens=1024,
-    messages=[{
-        "content": "Hello, world",
-        "role": "user",
-    }],
-    model="claude-opus-4-6",
-)
-print(beta_message.id)
-```

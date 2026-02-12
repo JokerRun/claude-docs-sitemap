@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/idiom-illuminator
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 8caf9c324c95660a97cdd522329d2c1d904039b59bb25fc0b0687f4adc26a760
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: f00e840dc55ad5801eca209d0002e7bd25d7be4c31d8fb8b483597feee51c3b3
 ---
 
 # Idiom illuminator
@@ -44,8 +44,6 @@ message = client.messages.create(
     messages=[{"role": "user", "content": [{"type": "text", "text": "Break a leg"}]}],
 )
 print(message.content)
-
-
 ````
 </Tab>
 <Tab title="TypeScript">
@@ -54,7 +52,7 @@ print(message.content)
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
-  apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
+  apiKey: "my_api_key" // defaults to process.env["ANTHROPIC_API_KEY"]
 });
 
 const msg = await anthropic.messages.create({
@@ -64,11 +62,11 @@ const msg = await anthropic.messages.create({
   system: "Your task is to provide a clear explanation of the meaning and origin of an idioms and proverb that the user gives you. Offer a concise interpretation of its figurative meaning and how it is typically used in conversation or writing. Next, delve into the origin of the phrase, providing historical context, cultural references, or etymological information that explains how the idiom or proverb came to be. If there are any interesting stories, anecdotes, or theories associated with the origin, include those as well. Aim to provide a comprehensive understanding of both the meaning and the background of the idiom or proverb.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Break a leg"
+          type: "text",
+          text: "Break a leg"
         }
       ]
     }
@@ -93,20 +91,9 @@ message = client.messages.create(
     max_tokens=1000,
     temperature=1,
     system="Your task is to provide a clear explanation of the meaning and origin of an idioms and proverb that the user gives you. Offer a concise interpretation of its figurative meaning and how it is typically used in conversation or writing. Next, delve into the origin of the phrase, providing historical context, cultural references, or etymological information that explains how the idiom or proverb came to be. If there are any interesting stories, anecdotes, or theories associated with the origin, include those as well. Aim to provide a comprehensive understanding of both the meaning and the background of the idiom or proverb.",
-    messages=[
-        {
-            "role": "user",
-            "content": [
-                {
-                    "type": "text",
-                    "text": "Break a leg"
-                }
-            ]
-        }
-    ]
+    messages=[{"role": "user", "content": [{"type": "text", "text": "Break a leg"}]}],
 )
 print(message.content)
-
 ```
 
 </Tab>
@@ -126,11 +113,11 @@ const msg = await client.messages.create({
   system: "Your task is to provide a clear explanation of the meaning and origin of an idioms and proverb that the user gives you. Offer a concise interpretation of its figurative meaning and how it is typically used in conversation or writing. Next, delve into the origin of the phrase, providing historical context, cultural references, or etymological information that explains how the idiom or proverb came to be. If there are any interesting stories, anecdotes, or theories associated with the origin, include those as well. Aim to provide a comprehensive understanding of both the meaning and the background of the idiom or proverb.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Break a leg"
+          type: "text",
+          text: "Break a leg"
         }
       ]
     }
@@ -153,27 +140,16 @@ message = client.messages.create(
     max_tokens=1000,
     temperature=1,
     system="Your task is to provide a clear explanation of the meaning and origin of an idioms and proverb that the user gives you. Offer a concise interpretation of its figurative meaning and how it is typically used in conversation or writing. Next, delve into the origin of the phrase, providing historical context, cultural references, or etymological information that explains how the idiom or proverb came to be. If there are any interesting stories, anecdotes, or theories associated with the origin, include those as well. Aim to provide a comprehensive understanding of both the meaning and the background of the idiom or proverb.",
-    messages=[
-        {
-            "role": "user",
-            "content": [
-                {
-                    "type": "text",
-                    "text": "Break a leg"
-                }
-            ]
-        }
-    ]
+    messages=[{"role": "user", "content": [{"type": "text", "text": "Break a leg"}]}],
 )
 print(message.content)
-
 ```
 
 </Tab>
 <Tab title="Vertex AI TypeScript">
 
 ```typescript
-import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
+import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 // Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
 // Additionally goes through the standard `google-auth-library` flow.
@@ -186,11 +162,11 @@ const msg = await client.messages.create({
   system: "Your task is to provide a clear explanation of the meaning and origin of an idioms and proverb that the user gives you. Offer a concise interpretation of its figurative meaning and how it is typically used in conversation or writing. Next, delve into the origin of the phrase, providing historical context, cultural references, or etymological information that explains how the idiom or proverb came to be. If there are any interesting stories, anecdotes, or theories associated with the origin, include those as well. Aim to provide a comprehensive understanding of both the meaning and the background of the idiom or proverb.",
   messages: [
     {
-      "role": "user",
-      "content": [
+      role: "user",
+      content: [
         {
-          "type": "text",
-          "text": "Break a leg"
+          type: "text",
+          text: "Break a leg"
         }
       ]
     }

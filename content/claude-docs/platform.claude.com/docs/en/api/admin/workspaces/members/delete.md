@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/delete
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: d0ab41c43a79fd2a8bd3df2e1fec177227aec0dcd38c7d12a779bee1b380141f
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 3717b10778895a9cd3831f94f08446361af830386ed8c48a0858b9dfc939a4bd
 ---
 
 ## Delete
@@ -38,12 +38,3 @@ Delete Workspace Member
 - `workspace_id: string`
 
   ID of the Workspace.
-
-### Example
-
-```http
-curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
-    -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
-```

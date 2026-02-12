@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 01cb280456ad91285c8e71bb9b9eebdcdf4f2c83c6fa984816473045bb8eca90
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: e9d954500333f2d2911864872064f02b466de2a756a8fa287827c2641786943c
 ---
 
 ## Create
@@ -2658,21 +2658,3 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"priority"`
 
       - `"batch"`
-
-### Example
-
-```typescript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
-});
-
-const message = await client.messages.create({
-  max_tokens: 1024,
-  messages: [{ content: 'Hello, world', role: 'user' }],
-  model: 'claude-opus-4-6',
-});
-
-console.log(message.id);
-```

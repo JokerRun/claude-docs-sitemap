@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 72c5581ff39f428f445f72c09f2ed3dc7adce9f19f69fb03a74e4a29a93513ba
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 9179432facb91fda9e8bc44f9a4c1aa09003de81de7d11de2edc3754b2050eae
 ---
 
 ## Create
@@ -2430,39 +2430,3 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `const UsageServiceTierPriority UsageServiceTier = "priority"`
 
       - `const UsageServiceTierBatch UsageServiceTier = "batch"`
-
-### Example
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/anthropics/anthropic-sdk-go"
-  "github.com/anthropics/anthropic-sdk-go/option"
-)
-
-func main() {
-  client := anthropic.NewClient(
-    option.WithAPIKey("my-anthropic-api-key"),
-  )
-  message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-    MaxTokens: 1024,
-    Messages: []anthropic.MessageParam{anthropic.MessageParam{
-      Content: []anthropic.ContentBlockParamUnion{anthropic.ContentBlockParamUnion{
-        OfText: &anthropic.TextBlockParam{
-          Text: "x",
-        },
-      }},
-      Role: anthropic.MessageParamRoleUser,
-    }},
-    Model: anthropic.ModelClaudeOpus4_6,
-  })
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", message.ID)
-}
-```

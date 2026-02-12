@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/create
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: dcada570a88b2c1d26b1cf7d4c250f44d33c3350ee86a191ac550c397162ffa5
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 44e6478a894313e805a8a17a26fdb01cd1ab0c88042a3be57b77797ec3667445
 ---
 
 ## Create
@@ -2642,19 +2642,3 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `:priority`
 
       - `:batch`
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-message = anthropic.messages.create(
-  max_tokens: 1024,
-  messages: [{content: "Hello, world", role: :user}],
-  model: :"claude-opus-4-6"
-)
-
-puts(message)
-```

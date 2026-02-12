@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/python
-fetched_at: 2026-02-07T04:10:25.616975Z
-sha256: cee12273d2a1c4f2bae4a09c4f1a9d4650af9c24f18c15e72b5e490eeabf3975
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: 4117007a87185595afa9a31514b99dd074ee862ad930b85a49359c7213ca408c
 ---
 
 # Python SDK
@@ -75,6 +75,7 @@ client = AsyncAnthropic(
     api_key=os.environ.get("ANTHROPIC_API_KEY"),
 )
 
+
 async def main() -> None:
     message = await client.messages.create(
         max_tokens=1024,
@@ -88,6 +89,7 @@ async def main() -> None:
     )
     print(message.content)
 
+
 asyncio.run(main())
 ```
 
@@ -99,6 +101,7 @@ For improved async performance, you can use the `aiohttp` HTTP backend instead o
 import os
 import asyncio
 from anthropic import AsyncAnthropic, DefaultAioHttpClient
+
 
 async def main() -> None:
     async with AsyncAnthropic(
@@ -116,6 +119,7 @@ async def main() -> None:
             model="claude-opus-4-6",
         )
         print(message.content)
+
 
 asyncio.run(main())
 ```
@@ -154,6 +158,7 @@ from anthropic import AsyncAnthropic
 
 client = AsyncAnthropic()
 
+
 async def main() -> None:
     async with client.messages.stream(
         max_tokens=1024,
@@ -171,6 +176,7 @@ async def main() -> None:
 
         message = await stream.get_final_message()
         print(message.to_json())
+
 
 asyncio.run(main())
 ```
@@ -193,10 +199,7 @@ You can also count tokens before making a request:
 
 ```python
 count = client.messages.count_tokens(
-    model="claude-opus-4-6",
-    messages=[
-        {"role": "user", "content": "Hello, world"}
-    ]
+    model="claude-opus-4-6", messages=[{"role": "user", "content": "Hello, world"}]
 )
 print(count.input_tokens)  # 10
 ```
@@ -215,17 +218,21 @@ from anthropic import Anthropic
 
 client = Anthropic()
 
+
 def get_weather(location: str) -> str:
     """Get the weather for a given location.
 
     Args:
         location: The city and state, e.g. San Francisco, CA
     """
-    return json.dumps({
-        "location": location,
-        "temperature": "68°F",
-        "condition": "Sunny",
-    })
+    return json.dumps(
+        {
+            "location": location,
+            "temperature": "68°F",
+            "condition": "Sunny",
+        }
+    )
+
 
 # Use the tool_runner to automatically handle tool calls
 runner = client.beta.messages.tool_runner(
@@ -364,9 +371,7 @@ All object responses in the SDK provide a `_request_id` property which is added 
 ```python
 message = client.messages.create(
     max_tokens=1024,
-    messages=[
-        {"role": "user", "content": "Hello, Claude"}
-    ],
+    messages=[{"role": "user", "content": "Hello, Claude"}],
     model="claude-opus-4-6",
 )
 print(message._request_id)  # e.g., req_018EeWyXxfu5pfWkrYcMdjWG
@@ -389,9 +394,7 @@ client = Anthropic(
 # Or, configure per-request:
 client.with_options(max_retries=5).messages.create(
     max_tokens=1024,
-    messages=[
-        {"role": "user", "content": "Hello, Claude"}
-    ],
+    messages=[{"role": "user", "content": "Hello, Claude"}],
     model="claude-opus-4-6",
 )
 ```
@@ -417,9 +420,7 @@ client = Anthropic(
 # Override per-request:
 client.with_options(timeout=5.0).messages.create(
     max_tokens=1024,
-    messages=[
-        {"role": "user", "content": "Hello, Claude"}
-    ],
+    messages=[{"role": "user", "content": "Hello, Claude"}],
     model="claude-opus-4-6",
 )
 ```
@@ -464,11 +465,13 @@ from anthropic import AsyncAnthropic
 
 client = AsyncAnthropic()
 
+
 async def main() -> None:
     all_batches = []
     async for batch in client.messages.batches.list(limit=20):
         all_batches.append(batch)
     print(all_batches)
+
 
 asyncio.run(main())
 ```
@@ -499,9 +502,7 @@ client = Anthropic()
 
 client.messages.with_raw_response.create(
     max_tokens=1024,
-    messages=[
-        {"role": "user", "content": "Hello, Claude"}
-    ],
+    messages=[{"role": "user", "content": "Hello, Claude"}],
     model="claude-opus-4-6",
     extra_headers={"anthropic-version": "My-Custom-Value"},
 )
@@ -552,14 +553,14 @@ client = Anthropic()
 
 response = client.messages.with_raw_response.create(
     max_tokens=1024,
-    messages=[
-        {"role": "user", "content": "Hello, Claude"}
-    ],
+    messages=[{"role": "user", "content": "Hello, Claude"}],
     model="claude-opus-4-6",
 )
 
 print(response.headers.get("x-request-id"))
-message = response.parse()  # get the object that `messages.create()` would have returned
+message = (
+    response.parse()
+)  # get the object that `messages.create()` would have returned
 print(message.content)
 ```
 

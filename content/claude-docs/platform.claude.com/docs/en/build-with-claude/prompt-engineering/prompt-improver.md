@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompt-improver
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: f2a3ce20f8f04f2a2b09215abf9ec0bded3787f82019e4a71bb97e353e2c22dd
+fetched_at: 2026-02-12T04:27:12.104729Z
+sha256: b6c56aa2c554255ae718cd98c5cb2828884e1f84b25f635d32816237a4d04a3f
 ---
 
 # Use our prompt improver to optimize your prompts
@@ -81,7 +81,7 @@ Here's how the prompt improver enhances a basic classification prompt:
 
 <section title="Original prompt">
 
-```
+```text
 From the following list of Wikipedia article titles, identify which article this sentence came from.
 Respond with just the article title and nothing else.
 
@@ -96,7 +96,7 @@ Sentence to classify:
 
 <section title="Improved prompt">
 
-```
+```text
 You are an intelligent text classification system specialized in matching sentences to Wikipedia article titles. Your task is to identify which Wikipedia article a given sentence most likely belongs to, based on a provided list of article titles.
 
 First, review the following list of Wikipedia article titles:
