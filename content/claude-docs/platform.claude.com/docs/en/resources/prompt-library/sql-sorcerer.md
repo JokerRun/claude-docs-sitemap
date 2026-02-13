@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/sql-sorcerer
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 6bfc58b50bea4be7157ceda797e6b676be799dd5b2e0c789344f505af4c64760
+fetched_at: 2026-02-13T04:23:55.295784Z
+sha256: 84a6c28113bf7d4284f36cfd527810d71f23e17fb846e8eef87d31d637495376
 ---
 
 # SQL sorcerer
@@ -30,7 +30,7 @@ GROUP BY c.customer_id, c.first_name, c.last_name;
 
 ```
 
-## API Request
+## API request
 
 ---
 
@@ -220,4 +220,3 @@ console.log(msg);
 ```
 </Tab>
 </Tabs>
-```

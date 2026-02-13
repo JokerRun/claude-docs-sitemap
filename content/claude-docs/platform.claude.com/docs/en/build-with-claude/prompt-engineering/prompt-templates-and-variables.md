@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompt-templates-and-variables
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 5d0c29e305d38e5aff251b4a380f4e23328d18ba237b4dac4fdfa1a484db7776
+fetched_at: 2026-02-13T04:23:55.295784Z
+sha256: 74de425dfc30c1d23205fd163775cef9c965484f7805af990262f9ccdc114563
 ---
 
 # Use prompt templates and variables
@@ -43,7 +43,7 @@ The [Claude Console](/) heavily uses prompt templates and variables in order to 
 Let's consider a simple application that translates English text to Spanish. The translated text would be variable since you would expect this text to change between users or calls to Claude. This translated text could be dynamically retrieved from databases or the user's input.
 
 Thus, for your translation app, you might use this simple prompt template:
-```
+```text
 Translate this text from English to Spanish: {{text}}
 ```
 

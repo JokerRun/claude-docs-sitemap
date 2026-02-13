@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/git-gud
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 9e6b6e8e118d4100a711152237e625c9c3a0dc9f63a51f2085a94c4746553142
+fetched_at: 2026-02-13T04:23:55.295784Z
+sha256: 7cc7820b748820ccfdebf346be82c48b22eed9afbbc05162d32b5f4e86297ff9
 ---
 
 # Git gud
@@ -17,7 +17,7 @@ Generate appropriate Git commands based on user-described version control action
 | ---- | ----------------------------------------------------------------------------------------------------------------------------- |
 | User | I have made some changes to my local files and I want to save them in my local Git repository. What Git command should I use? |
 
-## Example Output
+## Example output
 
 To save the changes you've made to your local files in your local Git repository, you should use the following Git commands:
 
@@ -31,7 +31,7 @@ To save the changes you've made to your local files in your local Git repository
 
 For example, if you've made changes to a file named `example.txt`, you would run:
 
-```
+```bash
 git add example.txt
 git commit -m "Update example.txt with new content"
 
@@ -43,7 +43,7 @@ Remember to run these commands from within your Git repository directory in your
 
 ---
 
-## API Request
+## API request
 
 <Tabs>
 <Tab title="Python">

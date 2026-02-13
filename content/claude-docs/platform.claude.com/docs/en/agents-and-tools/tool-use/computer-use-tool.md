@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 2f0f31167d7d1e8849c67c97c7b6c5a02e4cebfa9c1a6e7e1f9f80b34be0f3a0
+fetched_at: 2026-02-13T04:23:55.295784Z
+sha256: 9c01f3a61fd5661d3392d55ccfb4b678f36902b8c8189d4b93b0a9e8104bf4d3
 ---
 
 # Computer use tool
@@ -168,7 +168,7 @@ The example above shows all three tools being used together, which requires the 
     icon="tool"
   >
     - Add the computer use tool (and optionally other tools) to your API request.
-    - Include a user prompt that requires desktop interaction, e.g., "Save a picture of a cat to my desktop."
+    - Include a user prompt that requires desktop interaction, for example, "Save a picture of a cat to my desktop."
   </Step>
   <Step title="Claude decides to use the computer use tool" icon="wrench">
     - Claude assesses if the computer use tool can help with the user's query.
@@ -193,7 +193,7 @@ The example above shows all three tools being used together, which requires the 
   </Step>
 </Steps>
 
-We refer to the repetition of steps 3 and 4 without user input as the "agent loop" - i.e., Claude responding with a tool use request and your application responding to Claude with the results of evaluating that request.
+We refer to the repetition of steps 3 and 4 without user input as the "agent loop" (that is, Claude responding with a tool use request and your application responding to Claude with the results of evaluating that request).
 
 ### The computing environment
 
@@ -355,7 +355,7 @@ The computer use tool supports these actions:
 - **screenshot** - Capture the current display
 - **left_click** - Click at coordinates `[x, y]`
 - **type** - Type text string
-- **key** - Press key or key combination (e.g., "ctrl+s")
+- **key** - Press key or key combination (for example, "ctrl+s")
 - **mouse_move** - Move cursor to coordinates
 
 **Enhanced actions (`computer_20250124`)**
@@ -489,7 +489,7 @@ When thinking is enabled, Claude will return its reasoning process as part of th
 
 Here's an example of what thinking output might look like:
 
-```
+```text
 [Thinking]
 I need to save a picture of a cat to the desktop. Let me break this down into steps:
 
@@ -1012,7 +1012,7 @@ def log_action(action_type, params, result):
 
 The computer use functionality is in beta. While Claude's capabilities are cutting edge, developers should be aware of its limitations:
 
-1. **Latency**: the current computer use latency for human-AI interactions may be too slow compared to regular human-directed computer actions. We recommend focusing on use cases where speed isn't critical (e.g., background information gathering, automated software testing) in trusted environments.
+1. **Latency**: the current computer use latency for human-AI interactions may be too slow compared to regular human-directed computer actions. We recommend focusing on use cases where speed isn't critical (for example, background information gathering, automated software testing) in trusted environments.
 2. **Computer vision accuracy and reliability**: Claude may make mistakes or hallucinate when outputting specific coordinates while generating actions. Claude Sonnet 3.7 introduces the thinking capability that can help you understand the model's reasoning and identify potential issues.
 3. **Tool selection accuracy and reliability**: Claude may make mistakes or hallucinate when selecting tools while generating actions or take unexpected actions to solve problems. Additionally, reliability may be lower when interacting with niche applications or multiple applications at once. We recommend that users prompt the model carefully when requesting complex tasks.
 4. **Scrolling reliability**: Claude Sonnet 3.7 introduced dedicated scroll actions with direction control that improves reliability. The model can now explicitly scroll in any direction (up/down/left/right) by a specified amount.

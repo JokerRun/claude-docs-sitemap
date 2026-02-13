@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/portmanteau-poet
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: ef78c0dd9543b4f00358c7159c33116bd57b37738c33aedc7d172c5bda3d153e
+fetched_at: 2026-02-13T04:23:55.295784Z
+sha256: 919f1c5587dc2b6085efc611b6733109a46885ebeb5b6439cc5c479de57aaf8b
 ---
 
 # Portmanteau poet
@@ -220,5 +220,3 @@ console.log(msg);
 ```
 </Tab>
 </Tabs>
-
-```

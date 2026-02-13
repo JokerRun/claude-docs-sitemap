@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: fa608bb2345d86b0356e6b0bc850bb90437c64af576c617a1a4eac08dbb42695
+fetched_at: 2026-02-13T04:23:55.295784Z
+sha256: 0ccf1677e112da8af1171819341d131684fcc231144e47b8df82af01d8af292d
 ---
 
 # Customer support agent
@@ -179,7 +179,7 @@ For customer support chat, Claude Opus 4.6 is well suited to balance intelligenc
 
 Using Claude for customer support requires Claude having enough direction and context to respond appropriately, while having enough flexibility to handle a wide range of customer inquiries.
 
-Let's start by writing the elements of a strong prompt, starting with a system prompt:
+Start by writing the elements of a strong prompt, starting with a system prompt:
 
 ```python
 IDENTITY = """You are Eva, a friendly and knowledgeable AI assistant for Acme Insurance
@@ -190,9 +190,9 @@ insurance. You can also help customers get quotes for their insurance needs."""
 
 <Tip>While you may be tempted to put all your information inside a system prompt as a way to separate instructions from the user conversation, Claude actually works best with the bulk of its prompt content written inside the first `User` turn (with the only exception being role prompting). Read more at [Giving Claude a role with a system prompt](/docs/en/build-with-claude/prompt-engineering/system-prompts).</Tip>
 
-It's best to break down complex prompts into subsections and write one part at a time. For each task, you might find greater success by following a step by step process to define the parts of the prompt Claude would need to do the task well. For this car insurance customer support example, we'll be writing piecemeal all the parts for a prompt starting with the "Greeting and general guidance" task. This also makes debugging your prompt easier as you can more quickly adjust individual parts of the overall prompt.
+It's best to break down complex prompts into subsections and write one part at a time. For each task, you might find greater success by following a step by step process to define the parts of the prompt Claude would need to do the task well. For this car insurance customer support example, you'll be writing piecemeal all the parts for a prompt starting with the "Greeting and general guidance" task. This also makes debugging your prompt easier as you can more quickly adjust individual parts of the overall prompt.
 
-We'll put all of these pieces in a file called `config.py`.
+Put all of these pieces in a file called `config.py`.
 
 ```python
 STATIC_GREETINGS_AND_GENERAL = """
@@ -222,7 +222,7 @@ Customer service number: 1-800-123-4567
 """
 ```
 
-We'll then do the same for our car insurance and electric car insurance information.
+Then do the same for your car insurance and electric car insurance information.
 
 ```python
 STATIC_CAR_INSURANCE = """
@@ -258,7 +258,7 @@ that gives you the confidence to enjoy every electron-powered mile.
 """
 ```
 
-Now that we have our static content, let's add at least 4-5 sample "good" interactions to guide Claude's responses. These examples should be representative of your ideal customer interaction and can include guardrails, tool calls, etc.
+Now that you have your static content, add at least 4-5 sample "good" interactions to guide Claude's responses. These examples should be representative of your ideal customer interaction and can include guardrails, tool calls, etc.
 
 ```python
 EXAMPLES = """
@@ -342,7 +342,7 @@ You only provide information and guidance.
 """
 ```
 
-Now let’s combine all these sections into a single string to use as our prompt.
+Now combine all these sections into a single string to use as your prompt.
 
 ```python
 TASK_SPECIFIC_INSTRUCTIONS = " ".join(
@@ -511,7 +511,7 @@ class ChatBot:
 
 Test deploying this code with Streamlit using a main method. This `main()` function sets up a Streamlit-based chat interface.
 
-We'll do this in a file called `app.py`
+Do this in a file called `app.py`
 
 ```python
 import streamlit as st
@@ -553,7 +553,7 @@ if __name__ == "__main__":
 
 Run the program with:
 
-```
+```bash
 streamlit run app.py
 ```
 

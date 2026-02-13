@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 56de81ef155552ff79aeb133278eed965256b4dee3e48f9ebef1ec77cd1a73e8
+fetched_at: 2026-02-13T04:23:55.295784Z
+sha256: 7b5ef521d822df892c1cc6840d988e4efd0ed27efefabb477d1491a5d3ebc1d7
 ---
 
 # Memory tool
@@ -37,12 +37,12 @@ Since this is a client-side tool, Claude makes tool calls to perform memory oper
 When you ask Claude to help with a task, Claude automatically checks its memory directory first. Here's what a typical interaction looks like:
 
 **1. User request:**
-```
+```text
 "Help me respond to this customer service ticket."
 ```
 
 **2. Claude checks the memory directory:**
-```
+```text
 "I'll help you respond to the customer service ticket. Let me check my memory for any previous context."
 ```
 
@@ -91,7 +91,7 @@ Claude calls the memory tool:
 ```
 
 **6. Claude uses the memory to help:**
-```
+```text
 "Based on your customer service guidelines, I can help you craft a response. Please share the ticket details..."
 ```
 
@@ -212,7 +212,7 @@ Shows directory contents or file contents with optional line ranges:
 #### Return values
 
 **For directories:** Return a listing that shows files and directories with their sizes:
-```
+```text
 Here're the files and directories up to 2 levels deep in {path}, excluding hidden items and node_modules:
 {size}    {path}
 {size}    {path}/{filename1}
@@ -220,12 +220,12 @@ Here're the files and directories up to 2 levels deep in {path}, excluding hidde
 ```
 
 - Lists files up to 2 levels deep
-- Shows human-readable sizes (e.g., `5.5K`, `1.2M`)
+- Shows human-readable sizes (for example, `5.5K`, `1.2M`)
 - Excludes hidden items (files starting with `.`) and `node_modules`
 - Uses tab character between size and path
 
 **For files:** Return file contents with a header and line numbers:
-```
+```text
 Here's the content of {path} with line numbers:
 {line_numbers}{tab}{content}
 ```
@@ -237,7 +237,7 @@ Line number formatting:
 - **Line limit**: Files with more than 999,999 lines should return an error: `"File {path} exceeds maximum line limit of 999,999 lines."`
 
 **Example output:**
-```
+```text
 Here's the content of /memories/notes.txt with line numbers:
      1	Hello World
      2	This is line two
@@ -369,7 +369,7 @@ Renames the directory.
 
 We automatically include this instruction to the system prompt when the memory tool is included:
 
-```
+```text
 IMPORTANT: ALWAYS VIEW YOUR MEMORY DIRECTORY BEFORE DOING ANYTHING ELSE.
 MEMORY PROTOCOL:
 1. Use the `view` command of your `memory` tool to check for earlier progress.
@@ -382,7 +382,7 @@ If you observe Claude creating cluttered memory files, you can include this inst
 
 > Note: when editing your memory folder, always try to keep its content up-to-date, coherent and organized. You can rename or delete files that are no longer relevant. Do not create new files unless necessary.
 
-You can also guide what Claude writes to memory, e.g., "Only write down information relevant to \<topic\> in your memory system."
+You can also guide what Claude writes to memory. For example: "Only write down information relevant to \<topic\> in your memory system."
 
 ## Security considerations
 
@@ -409,7 +409,7 @@ Consider these safeguards:
 - Resolve paths to their canonical form and verify they remain within the memory directory
 - Reject paths containing sequences like `../`, `..\\`, or other traversal patterns
 - Watch for URL-encoded traversal sequences (`%2e%2e%2f`)
-- Use your language's built-in path security utilities (e.g., Python's `pathlib.Path.resolve()` and `relative_to()`)
+- Use your language's built-in path security utilities (for example, Python's `pathlib.Path.resolve()` and `relative_to()`)
 
 ## Error handling
 
@@ -436,7 +436,7 @@ Consider a code refactoring project with many file operations:
 
 1. Claude makes numerous edits to files, generating many tool results
 2. As the context grows and approaches your threshold, Claude receives a warning
-3. Claude summarizes the changes made so far to a memory file (e.g., `/memories/refactoring_progress.xml`)
+3. Claude summarizes the changes made so far to a memory file (for example, `/memories/refactoring_progress.xml`)
 4. Context editing clears the older tool results automatically
 5. Claude continues working, referencing the memory file when it needs to recall what changes were already completed
 6. The workflow can continue indefinitely, with Claude managing both active context and persistent memory

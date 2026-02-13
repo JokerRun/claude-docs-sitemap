@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/service-tiers
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 88e377b63fa9c30806d6b25758526379b9d5c0998fbb60840d61bdb0f6ab81bc
+fetched_at: 2026-02-13T04:23:55.295784Z
+sha256: dcd3752788c867f463dfde87b2072411f54395cbdc14b575dfdaa1e3291063ab
 ---
 
 # Service tiers
@@ -11,18 +11,18 @@ Different tiers of service allow you to balance availability, performance, and p
 
 ---
 
-We offer three service tiers:
+Anthropic offers three service tiers:
 - **Priority Tier:** Best for workflows deployed in production where time, availability, and predictable pricing are important
 - **Standard:** Default tier for both piloting and scaling everyday use cases
 - **Batch:** Best for asynchronous workflows which can wait or benefit from being outside your normal capacity
 
 ## Standard Tier
 
-The standard tier is the default service tier for all API requests. Requests in this tier are prioritized alongside all other requests and observe best-effort availability.
+The standard tier is the default service tier for all API requests. The API prioritizes these requests alongside all other requests with best-effort availability.
 
 ## Priority Tier
 
-Requests in this tier are prioritized over all other requests to Anthropic. This prioritization helps minimize ["server overloaded" errors](/docs/en/api/errors#http-errors), even during peak times.
+The API prioritizes requests in this tier over all other requests. This prioritization helps minimize ["server overloaded" errors](/docs/en/api/errors#http-errors), even during peak times.
 
 For more information, see [Get started with Priority Tier](#get-started-with-priority-tier)
 
@@ -92,7 +92,7 @@ The response `usage` object also includes the service tier assigned to the reque
 This allows you to determine which service tier was assigned to the request.
 
 When requesting `service_tier="auto"` with a model with a Priority Tier commitment, these response headers provide insights:
-```
+```text
 anthropic-priority-input-tokens-limit: 10000
 anthropic-priority-input-tokens-remaining: 9618
 anthropic-priority-input-tokens-reset: 2025-01-12T23:11:59Z

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/subagents
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 93a5f78ff96e71611fe55a562c41fe77b16ca8d194d62b0dc1825a6b111abd7f
+fetched_at: 2026-02-13T04:23:55.295784Z
+sha256: cfc76114616156195c5462171310b3fb2a99487bc5fa193b78599f9e88036293
 ---
 
 # Subagents in the SDK
@@ -26,7 +26,7 @@ You can create subagents in three ways:
 
 This guide focuses on the programmatic approach, which is recommended for SDK applications.
 
-When you define subagents, Claude decides whether to invoke them based on each subagent's `description` field. Write clear descriptions that explain when the subagent should be used, and Claude will automatically delegate appropriate tasks. You can also explicitly request a subagent by name in your prompt (e.g., "Use the code-reviewer agent to...").
+When you define subagents, Claude determines whether to invoke them based on each subagent's `description` field. Write clear descriptions that explain when the subagent should be used, and Claude will automatically delegate appropriate tasks. You can also explicitly request a subagent by name in your prompt (for example, "Use the code-reviewer agent to...").
 
 ## Benefits of using subagents
 
@@ -189,7 +189,7 @@ Write clear, specific descriptions so Claude can match tasks to the right subage
 
 To guarantee Claude uses a specific subagent, mention it by name in your prompt:
 
-```
+```text
 "Use the code-reviewer agent to check the authentication module"
 ```
 
@@ -550,7 +550,7 @@ identify patterns, and suggest improvements without making changes.`,
 If Claude completes tasks directly instead of delegating to your subagent:
 
 1. **Include the Task tool**: subagents are invoked via the Task tool, so it must be in `allowedTools`
-2. **Use explicit prompting**: mention the subagent by name in your prompt (e.g., "Use the code-reviewer agent to...")
+2. **Use explicit prompting**: mention the subagent by name in your prompt (for example, "Use the code-reviewer agent to...")
 3. **Write a clear description**: explain exactly when the subagent should be used so Claude can match tasks appropriately
 
 ### Filesystem-based agents not loading

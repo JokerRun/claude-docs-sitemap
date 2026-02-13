@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 8efa8ef13c22d5dc56d2b9c5b3d0cc674a8a7be835d533050aa78437fe4e2f78
+fetched_at: 2026-02-13T04:23:55.295784Z
+sha256: 060459d3f8fa9046e569bcb41140a827b9d90ec2a3f546334bad36a344d43ecf
 ---
 
 # Compaction
@@ -175,7 +175,7 @@ const response = await client.beta.messages.create({
 
 By default, compaction uses the following summarization prompt:
 
-```
+```text
 You have written a partial transcript for the initial task above. Please write a summary of the transcript. The purpose of this summary is to provide continuity so you can continue to make progress towards solving the task in a future context, where the raw history above may not be accessible and will be replaced with this summary. Write down anything that would be helpful, including the state, next steps, learnings etc. You must wrap your summary in a <summary></summary> block.
 ```
 
@@ -840,7 +840,7 @@ console.log(await chat("Now add rate limiting and error handling"));
 
 ## Current limitations
 
-- **Same model for summarization:** The model specified in your request is used for summarization. There is no option to use a different (e.g., cheaper) model for the summary.
+- **Same model for summarization:** The model specified in your request is used for summarization. There is no option to use a different (for example, cheaper) model for the summary.
 
 ## Next steps
 

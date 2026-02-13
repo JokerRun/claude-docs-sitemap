@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: c63c07bb23478b224d18589901b27085e53f4322a6ada57bc0cee090acfcbe69
+fetched_at: 2026-02-13T04:23:55.295784Z
+sha256: b56347ac1753956746d1dfeb411e99692317713843c7db7d013b7cc4c887a988
 ---
 
 # Skill authoring best practices
@@ -253,7 +253,7 @@ As your Skill grows, you can bundle additional content that Claude loads only wh
 
 The complete Skill directory structure might look like this:
 
-```
+```text
 pdf/
 ├── SKILL.md              # Main instructions (loaded when triggered)
 ├── FORMS.md              # Form-filling guide (loaded as needed)
@@ -297,7 +297,7 @@ Claude loads FORMS.md, REFERENCE.md, or EXAMPLES.md only when needed.
 
 For Skills with multiple domains, organize content by domain to avoid loading irrelevant context. When a user asks about sales metrics, Claude only needs to read sales-related schemas, not finance or marketing data. This keeps token usage low and context focused.
 
-```
+```text
 bigquery-skill/
 ├── SKILL.md (overview and navigation)
 └── reference/
@@ -1018,7 +1018,7 @@ Skills run in a code execution environment with filesystem access, bash commands
 
 **Example:**
 
-```
+```text
 bigquery-skill/
 ├── SKILL.md (overview, points to reference files)
 └── reference/
