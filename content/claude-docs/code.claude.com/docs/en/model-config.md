@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-02-09T04:29:26.539361Z
-sha256: 50ed1fd79756dea4b8a007a5723944f127afd9e28732ee60a718c51dbc145a49
+fetched_at: 2026-02-14T04:12:21.202627Z
+sha256: 84160c81fa69ca8cbae414958177264b744e554f75f89a108fe09c9560bf184d
 ---
 
 > ## Documentation Index
@@ -70,6 +70,49 @@ Example settings file:
     "model": "opus"
 }
 ```
+
+## Restrict model selection
+
+Enterprise administrators can use `availableModels` in [managed or policy settings](/en/settings#settings-files) to restrict which models users can select.
+
+When `availableModels` is set, users cannot switch to models not in the list via `/model`, `--model` flag, Config tool, or `ANTHROPIC_MODEL` environment variable.
+
+```json  theme={null}
+{
+  "availableModels": ["sonnet", "haiku"]
+}
+```
+
+### Default model behavior
+
+The Default option in the model picker is not affected by `availableModels`. It always remains available and represents the system's runtime default based on the user's subscription tier:
+
+| User type                     | Default model |
+| :---------------------------- | :------------ |
+| Max, Team, or Pro subscribers | Opus 4.6      |
+| Pay-as-you-go (API) users     | Sonnet 4.5    |
+
+Even with `availableModels: []`, users can still use Claude Code with the Default model for their tier.
+
+### Control the model users run on
+
+To fully control the model experience, use `availableModels` together with the `model` setting:
+
+* **availableModels**: restricts what users can switch to
+* **model**: sets the explicit model override, taking precedence over the Default
+
+This example ensures all users run Sonnet 4.5 and can only choose between Sonnet and Haiku:
+
+```json  theme={null}
+{
+  "model": "sonnet",
+  "availableModels": ["sonnet", "haiku"]
+}
+```
+
+### Merge behavior
+
+When `availableModels` is set at multiple levels, such as user settings and project settings, arrays are merged and deduplicated. To enforce a strict allowlist, set `availableModels` in managed or policy settings which take highest priority.
 
 ## Special model behavior
 

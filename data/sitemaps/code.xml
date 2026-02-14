@@ -163,7 +163,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/network-config</loc>
-    <lastmod>2026-01-28T13:17:42.761Z</lastmod>
+    <lastmod>2026-02-13T20:15:10.731Z</lastmod>
   </url>
 
   <url>
@@ -263,7 +263,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/agent-teams</loc>
-    <lastmod>2026-02-07T00:03:19.077Z</lastmod>
+    <lastmod>2026-02-13T20:15:26.891Z</lastmod>
   </url>
 
   <url>
@@ -283,7 +283,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/best-practices</loc>
-    <lastmod>2026-02-06T19:30:56.286Z</lastmod>
+    <lastmod>2026-02-14T01:42:34.172Z</lastmod>
   </url>
 
   <url>
@@ -293,7 +293,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/chrome</loc>
-    <lastmod>2026-02-11T18:20:29.725Z</lastmod>
+    <lastmod>2026-02-14T01:42:35.407Z</lastmod>
   </url>
 
   <url>
@@ -323,7 +323,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/desktop</loc>
-    <lastmod>2026-02-10T00:45:49.372Z</lastmod>
+    <lastmod>2026-02-14T01:42:36.132Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/en/desktop-quickstart</loc>
+    <lastmod>2026-02-14T01:42:35.412Z</lastmod>
   </url>
 
   <url>
@@ -383,7 +388,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/interactive-mode</loc>
-    <lastmod>2026-02-06T19:30:56.283Z</lastmod>
+    <lastmod>2026-02-14T01:42:37.198Z</lastmod>
   </url>
 
   <url>
@@ -423,7 +428,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/model-config</loc>
-    <lastmod>2026-02-08T23:37:06.524Z</lastmod>
+    <lastmod>2026-02-14T01:42:38.019Z</lastmod>
   </url>
 
   <url>
@@ -433,7 +438,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/network-config</loc>
-    <lastmod>2026-01-28T13:17:42.877Z</lastmod>
+    <lastmod>2026-02-13T19:03:22.834Z</lastmod>
   </url>
 
   <url>
@@ -443,7 +448,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/overview</loc>
-    <lastmod>2026-02-09T21:52:44.868Z</lastmod>
+    <lastmod>2026-02-14T01:42:38.011Z</lastmod>
   </url>
 
   <url>
@@ -488,7 +493,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/settings</loc>
-    <lastmod>2026-02-10T22:02:21.936Z</lastmod>
+    <lastmod>2026-02-14T01:42:38.620Z</lastmod>
   </url>
 
   <url>
@@ -503,7 +508,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/slack</loc>
-    <lastmod>2026-02-03T23:01:39.928Z</lastmod>
+    <lastmod>2026-02-14T01:42:38.610Z</lastmod>
   </url>
 
   <url>
@@ -698,7 +703,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/network-config</loc>
-    <lastmod>2026-01-28T13:17:42.999Z</lastmod>
+    <lastmod>2026-02-13T20:15:11.111Z</lastmod>
   </url>
 
   <url>
@@ -958,7 +963,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/network-config</loc>
-    <lastmod>2026-01-28T13:17:43.151Z</lastmod>
+    <lastmod>2026-02-13T20:15:11.364Z</lastmod>
   </url>
 
   <url>
@@ -1218,7 +1223,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/network-config</loc>
-    <lastmod>2026-01-28T13:17:43.306Z</lastmod>
+    <lastmod>2026-02-13T20:15:11.539Z</lastmod>
   </url>
 
   <url>
@@ -1478,7 +1483,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/network-config</loc>
-    <lastmod>2026-01-28T13:17:43.681Z</lastmod>
+    <lastmod>2026-02-13T20:15:11.751Z</lastmod>
   </url>
 
   <url>
@@ -1738,7 +1743,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/network-config</loc>
-    <lastmod>2026-01-28T13:17:43.815Z</lastmod>
+    <lastmod>2026-02-13T20:15:11.931Z</lastmod>
   </url>
 
   <url>
@@ -1998,7 +2003,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/network-config</loc>
-    <lastmod>2026-01-28T13:17:43.937Z</lastmod>
+    <lastmod>2026-02-13T20:15:12.088Z</lastmod>
   </url>
 
   <url>
@@ -2258,7 +2263,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/network-config</loc>
-    <lastmod>2026-01-28T13:17:44.059Z</lastmod>
+    <lastmod>2026-02-13T20:15:12.275Z</lastmod>
   </url>
 
   <url>
@@ -2518,7 +2523,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/network-config</loc>
-    <lastmod>2026-01-28T13:17:44.177Z</lastmod>
+    <lastmod>2026-02-13T20:15:12.448Z</lastmod>
   </url>
 
   <url>
@@ -2778,7 +2783,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/network-config</loc>
-    <lastmod>2026-01-28T13:17:44.292Z</lastmod>
+    <lastmod>2026-02-13T20:15:12.611Z</lastmod>
   </url>
 
   <url>
@@ -3038,7 +3043,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/network-config</loc>
-    <lastmod>2026-01-28T13:17:44.407Z</lastmod>
+    <lastmod>2026-02-13T20:15:12.836Z</lastmod>
   </url>
 
   <url>

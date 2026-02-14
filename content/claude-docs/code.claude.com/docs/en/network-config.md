@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: 133f0a875c614419f41c0f03b6296696ab338e2490c092726514b0677d6ee5b9
+fetched_at: 2026-02-14T04:12:21.202627Z
+sha256: 1653265545973d1f91470dfacc79831f55b8fcfb15d9d41c662c9e322c961e8d
 ---
 
 > ## Documentation Index
@@ -87,10 +87,9 @@ export CLAUDE_CODE_CLIENT_KEY_PASSPHRASE="your-passphrase"
 
 Claude Code requires access to the following URLs:
 
-* `api.anthropic.com` - Claude API endpoints
-* `claude.ai` - WebFetch safeguards
-* `statsig.anthropic.com` - Telemetry and metrics
-* `sentry.io` - Error reporting
+* `api.anthropic.com`: Claude API endpoints
+* `claude.ai`: authentication for claude.ai accounts
+* `platform.claude.com`: authentication for Anthropic Console accounts
 
 Ensure these URLs are allowlisted in your proxy configuration and firewall rules. This is especially important when using Claude Code in containerized or restricted network environments.
 

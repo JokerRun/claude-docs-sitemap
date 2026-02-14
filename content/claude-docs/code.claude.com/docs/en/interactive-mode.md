@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-02-07T04:10:25.616975Z
-sha256: 3ce4a47e4ccf9f70d50d324d8869d8fa977b373e439297b0120eea8464cb909f
+fetched_at: 2026-02-14T04:12:21.202627Z
+sha256: 39655c910e8ba155c842bc4665f192805b424075af897717b6f8dc3519ccad14
 ---
 
 > ## Documentation Index
@@ -123,6 +123,7 @@ To create your own commands you can invoke with `/`, see [skills](/en/skills).
 | `/copy`                   | Copy the last assistant response to clipboard                                                                                                                                                                              |
 | `/tasks`                  | List and manage background tasks                                                                                                                                                                                           |
 | `/teleport`               | Resume a remote session from claude.ai (subscribers only)                                                                                                                                                                  |
+| `/desktop`                | Hand off the current CLI session to the Claude Code Desktop app (macOS and Windows only)                                                                                                                                   |
 | `/theme`                  | Change the color theme                                                                                                                                                                                                     |
 | `/todos`                  | List current TODO items                                                                                                                                                                                                    |
 | `/usage`                  | For subscription plans only: show plan usage limits and rate limit status                                                                                                                                                  |
