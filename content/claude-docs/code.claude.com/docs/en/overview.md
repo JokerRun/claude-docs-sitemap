@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-02-14T04:12:21.202627Z
-sha256: d33f5a875c86c0dc56468b0f3797a6310fca24d91536b9a5afc6ca31fe389372
+fetched_at: 2026-02-17T04:22:51.826953Z
+sha256: 3f3d5f6a18498dfc035b76150c26d179abaec5e19285d7872a95cc97e75a6030
 ---
 
 > ## Documentation Index
@@ -13,7 +13,7 @@ sha256: d33f5a875c86c0dc56468b0f3797a6310fca24d91536b9a5afc6ca31fe389372
 
 > Claude Code is an agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your development tools. Available in your terminal, IDE, desktop app, and browser.
 
-Claude Code is an agentic coding tool that reads your codebase, edits files, and runs commands. It works in your terminal, IDE, browser, and as a desktop app.
+Claude Code is an AI-powered coding assistant that helps you build features, fix bugs, and automate development tasks. It understands your entire codebase and can work across multiple files and tools to get things done.
 
 ## Get started
 
