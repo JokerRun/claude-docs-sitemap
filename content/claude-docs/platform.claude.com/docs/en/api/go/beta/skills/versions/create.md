@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions/create
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 62259cd323f6c784a18652bd659154a98765b341a73de338f7691d79cdc82916
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: a87dff03eccb16cdfe5155ad2be0ddff0237cd2441977daab491000a192ab3f5
 ---
 
 ## Create
@@ -124,3 +124,34 @@ Create Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  version, err := client.Beta.Skills.Versions.New(
+    context.TODO(),
+    "skill_id",
+    anthropic.BetaSkillVersionNewParams{
+
+    },
+  )
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", version.ID)
+}
+```

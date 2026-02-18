@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 398bbe889889f4a22052438bc0f8d2b91ae56edf895efeaeaa306c8e8ce9b14a
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 6e4fe3ef826b396eb367e12aae76d2202a8d7616073ad266f626c5ce03de261b
 ---
 
 # Skills
@@ -121,6 +121,19 @@ Create Skill
   - `updated_at: str`
 
     ISO 8601 timestamp of when the skill was last updated.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+skill = client.beta.skills.create()
+print(skill.id)
+```
 
 ## List
 
@@ -246,6 +259,20 @@ List Skills
 
     ISO 8601 timestamp of when the skill was last updated.
 
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+page = client.beta.skills.list()
+page = page.data[0]
+print(page.id)
+```
+
 ## Retrieve
 
 `beta.skills.retrieve(strskill_id, SkillRetrieveParams**kwargs)  -> SkillRetrieveResponse`
@@ -355,6 +382,21 @@ Get Skill
 
     ISO 8601 timestamp of when the skill was last updated.
 
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+skill = client.beta.skills.retrieve(
+    skill_id="skill_id",
+)
+print(skill.id)
+```
+
 ## Delete
 
 `beta.skills.delete(strskill_id, SkillDeleteParams**kwargs)  -> SkillDeleteResponse`
@@ -434,6 +476,21 @@ Delete Skill
     Deleted object type.
 
     For Skills, this is always `"skill_deleted"`.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+skill = client.beta.skills.delete(
+    skill_id="skill_id",
+)
+print(skill.id)
+```
 
 # Versions
 
@@ -554,6 +611,21 @@ Create Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+version = client.beta.skills.versions.create(
+    skill_id="skill_id",
+)
+print(version.id)
+```
 
 ## List
 
@@ -677,6 +749,22 @@ List Skill Versions
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+page = client.beta.skills.versions.list(
+    skill_id="skill_id",
+)
+page = page.data[0]
+print(page.id)
+```
+
 ## Retrieve
 
 `beta.skills.versions.retrieve(strversion, VersionRetrieveParams**kwargs)  -> VersionRetrieveResponse`
@@ -795,6 +883,22 @@ Get Skill Version
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+version = client.beta.skills.versions.retrieve(
+    version="version",
+    skill_id="skill_id",
+)
+print(version.id)
+```
+
 ## Delete
 
 `beta.skills.versions.delete(strversion, VersionDeleteParams**kwargs)  -> VersionDeleteResponse`
@@ -880,3 +984,19 @@ Delete Skill Version
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+version = client.beta.skills.versions.delete(
+    version="version",
+    skill_id="skill_id",
+)
+print(version.id)
+```

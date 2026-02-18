@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: dfc6f95809faa5682e76f5f8844f90862757d0394d66d5f1500e7fe6eff713a8
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: e5e3761ea41b5cb8224442524852b7b1131800da0460572a23258224e40d53df
 ---
 
 ## Delete
@@ -86,3 +86,17 @@ Delete Skill
     Deleted object type.
 
     For Skills, this is always `"skill_deleted"`.
+
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+const skill = await client.beta.skills.delete('skill_id');
+
+console.log(skill.id);
+```

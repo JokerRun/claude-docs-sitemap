@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/ethical-dilemma-navigator
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: a33bee0f4d7f311279118b15369928d00c267910eb696c024acd656a9957754f
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 0f5bf9b9ac6a84eba7e072bd3eaaeffe11ff7468417e757931f523e55e9a1dd6
 ---
 
 # Ethical dilemma navigator
@@ -11,7 +11,7 @@ Help the user think through complex ethical dilemmas and provide different persp
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

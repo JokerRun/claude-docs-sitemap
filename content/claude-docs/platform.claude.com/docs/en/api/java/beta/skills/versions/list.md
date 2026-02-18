@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: ec0f297fb22dd81288d1dde4935c834cc67b9dbbc5604c142efa2d1628f656c1
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 4aa5dd395266ae9bab0e7b0be64bdf6c3c09fa82c6e6efb4a58802923499c868
 ---
 
 ## List
@@ -124,3 +124,24 @@ List Skill Versions
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.skills.versions.VersionListPage;
+import com.anthropic.models.beta.skills.versions.VersionListParams;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        VersionListPage page = client.beta().skills().versions().list("skill_id");
+    }
+}
+```

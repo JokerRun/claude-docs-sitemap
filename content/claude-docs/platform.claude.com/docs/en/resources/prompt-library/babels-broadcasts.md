@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/babels-broadcasts
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 2a4e0bcb1562c87e2d2b780f72f741906366e61e9eca89ea3c61969086c1247c
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: bb59537e936ca265a2e93baad64e9d602d4c021cee13a77bb9dd609eb13dde49
 ---
 
 # Babel's broadcasts
@@ -11,7 +11,7 @@ Create compelling product announcement tweets in the world's 10 most spoken lang
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |      | Content                                                                                                                                                                                                                                                                                                      |
 | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

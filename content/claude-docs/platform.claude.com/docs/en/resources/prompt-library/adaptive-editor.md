@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/adaptive-editor
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 5ce70c7318f1cf7fc1d488eed7fdf4129667b2958441781df51be7fac074511e
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 213bd63912313d0579f194fb201ed0e51a378346a364bff870b8cf777bbb3f8f
 ---
 
 # Adaptive editor
@@ -11,7 +11,7 @@ Rewrite text following user-given instructions, such as with a different tone, a
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |      | Content                                                                                                                                                                                                                                                                                                                                                                              |
 | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

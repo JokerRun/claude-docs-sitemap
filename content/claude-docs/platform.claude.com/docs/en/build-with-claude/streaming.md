@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: 037cb418084ad405092d84ba564e0a14de187f5882f79aa9fe410a33423f19ac
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 20d0361732f37989eb9ff7c90fa205df7d788b34d40863633a7c6de23090d27a
 ---
 
 # Streaming Messages
@@ -631,6 +631,8 @@ data: {"type":"message_stop"}
 
 ## Error recovery
 
+### Claude 4.5 and earlier
+
 For Claude 4.5 models and earlier, you can recover a streaming request that was interrupted due to network issues, timeouts, or other errors by resuming from where the stream was interrupted. This approach saves you from re-processing the entire response.
 
 The basic recovery strategy involves:
@@ -639,8 +641,10 @@ The basic recovery strategy involves:
 2. **Construct a continuation request**: Create a new API request that includes the partial assistant response as the beginning of a new assistant message
 3. **Resume streaming**: Continue receiving the rest of the response from where it was interrupted
 
-For Claude Opus 4.6, you should add a user message that instructs the model to continue from where it left off. For example:
-```
+### Claude 4.6
+
+For Claude 4.6 models, you should add a user message that instructs the model to continue from where it left off. For example:
+```text Sample prompt
 Your previous response was interrupted and ended with [previous_response]. Continue from where you left off.
 ```
 

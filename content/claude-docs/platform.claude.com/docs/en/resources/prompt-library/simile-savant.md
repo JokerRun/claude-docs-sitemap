@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/simile-savant
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 8edde654a1b5c6113708d7b6737b1b36a54b151faef8d9a01c6c01b98e3a8bf4
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: b7f4109d301355b020f04e8e9b6b861861c2f8aec756faeaa64e4bb3535bc877
 ---
 
 # Simile savant
@@ -11,7 +11,7 @@ Generate similes from basic descriptions.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 | Role | Content                                                                                    |
 | ---- | ------------------------------------------------------------------------------------------ |

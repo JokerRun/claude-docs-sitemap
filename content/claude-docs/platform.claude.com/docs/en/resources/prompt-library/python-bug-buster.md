@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/python-bug-buster
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 7d64f6c71aa425d7f3345addc2cadcbfb5f16cb965d1538f8533482f6f88729f
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 01a12ae967a049aeae936eb9ae4b00b354fb257c12183ac58e97e9eecc00a8f8
 ---
 
 # Python bug buster
@@ -11,7 +11,7 @@ Detect and fix bugs in Python code.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                             |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

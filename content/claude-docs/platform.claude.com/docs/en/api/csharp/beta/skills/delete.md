@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: f875ac7bc3da735f07bd7aa39de10c086b07d697180cec1133924c2bf923e2c7
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 1637ce8517abd8e39fc498de4d5da8f6f395ce0fac19824e9d5316c996092074
 ---
 
 ## Delete
@@ -82,3 +82,13 @@ Delete Skill
     Deleted object type.
 
     For Skills, this is always `"skill_deleted"`.
+
+### Example
+
+```csharp
+SkillDeleteParams parameters = new() { SkillID = "skill_id" };
+
+var skill = await client.Beta.Skills.Delete(parameters);
+
+Console.WriteLine(skill);
+```

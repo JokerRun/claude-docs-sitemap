@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-02-14T04:12:21.202627Z
-sha256: 84160c81fa69ca8cbae414958177264b744e554f75f89a108fe09c9560bf184d
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 1fe0b7b92773c4d944cb8dd3b3c1cecaba81c63eebfa250a19a349d4fc1ea816
 ---
 
 > ## Documentation Index
@@ -32,7 +32,7 @@ remembering exact version numbers:
 | Model alias      | Behavior                                                                                                                                                             |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **`default`**    | Recommended model setting, depending on your account type                                                                                                            |
-| **`sonnet`**     | Uses the latest Sonnet model (currently Sonnet 4.5) for daily coding tasks                                                                                           |
+| **`sonnet`**     | Uses the latest Sonnet model (currently Sonnet 4.6) for daily coding tasks                                                                                           |
 | **`opus`**       | Uses the latest Opus model (currently Opus 4.6) for complex reasoning tasks                                                                                          |
 | **`haiku`**      | Uses the fast and efficient Haiku model for simple tasks                                                                                                             |
 | **`sonnet[1m]`** | Uses Sonnet with a [1 million token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#1m-token-context-window) for long sessions |
@@ -120,8 +120,8 @@ When `availableModels` is set at multiple levels, such as user settings and proj
 
 The behavior of `default` depends on your account type:
 
-* **Max and Teams**: defaults to Opus 4.6
-* **Pro**: defaults to Opus 4.6 in Claude Code
+* **Max and Team Premium**: defaults to Opus 4.6
+* **Pro and Team Standard**: defaults to Sonnet 4.6
 * **Enterprise**: Opus 4.6 is available but not the default
 
 Claude Code may automatically fall back to Sonnet if you hit a usage threshold with Opus.
@@ -167,7 +167,7 @@ You can use the `[1m]` suffix with model aliases or full model names:
 /model sonnet[1m]
 
 # Or append [1m] to a full model name
-/model claude-sonnet-4-5-20250929[1m]
+/model claude-sonnet-4-6[1m]
 ```
 
 Note: Extended context models have

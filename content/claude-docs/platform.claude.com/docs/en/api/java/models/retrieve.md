@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 3d2e434888094252f5f9bd03c62d57a089335559c64a2d8bb0a7b847610de813
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 160a15eb2d9b3b8d4b8279c39fef61885b8bdfe93c64e2c268326ca98a7d3cc4
 ---
 
 ## Retrieve
@@ -90,3 +90,24 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `MODEL("model")`
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.models.ModelInfo;
+import com.anthropic.models.models.ModelRetrieveParams;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        ModelInfo modelInfo = client.models().retrieve("model_id");
+    }
+}
+```

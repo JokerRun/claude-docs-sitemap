@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 6f9444df626d941eae79ade20d2006a28e5a9f4685e8bcc83bb45e6cb27aa37a
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: a674f506caa360c4fbff91740b5565fe36a1a83701a235e9c05c7cadbafa36e9
 ---
 
 > ## Documentation Index
@@ -15,7 +15,7 @@ sha256: 6f9444df626d941eae79ade20d2006a28e5a9f4685e8bcc83bb45e6cb27aa37a
 
 Claude Code consumes tokens for each interaction. Costs vary based on codebase size, query complexity, and conversation length. The average cost is \$6 per developer per day, with daily costs remaining below \$12 for 90% of users.
 
-For team usage, Claude Code charges by API token consumption. On average, Claude Code costs \~\$100-200/developer per month with Sonnet 4.5 though there is large variance depending on how many instances users are running and whether they're using it in automation.
+For team usage, Claude Code charges by API token consumption. On average, Claude Code costs \~\$100-200/developer per month with Sonnet 4.6 though there is large variance depending on how many instances users are running and whether they're using it in automation.
 
 This page covers how to [track your costs](#track-your-costs), [manage costs for teams](#managing-costs-for-teams), and [reduce token usage](#reduce-token-usage).
 

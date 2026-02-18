@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: a4d4a9eccedf10cd5df8ecd040e47f0d986d34ce72778d3f9d6425573a594ec4
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 1ef805b97e7c74103dff86fe6f32c0d8d113ff90ce17fdaecc2eeb18152989ef
 ---
 
 # Search results
@@ -16,6 +16,7 @@ Search result content blocks enable natural citations with proper source attribu
 The search results feature is available on the following models:
 
 - Claude Opus 4.6 (`claude-opus-4-6`)
+- Claude Sonnet 4.6 (`claude-sonnet-4-6`)
 - Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 - Claude Opus 4.1 (`claude-opus-4-1-20250805`)

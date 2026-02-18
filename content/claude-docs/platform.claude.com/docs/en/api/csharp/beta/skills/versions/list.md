@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 5f6d9fdf85c3fffcfe1a176f6411c1644fee464ce7bb37fea9d9b6bad21784ab
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: ab08c153302e1300a76198cbd07373ad4f82f4dfe26c1001697bc61aa6d58e41
 ---
 
 ## List
@@ -136,3 +136,15 @@ List Skill Versions
   - `required string? NextPage`
 
     Token to provide in as `page` in the subsequent request to retrieve the next page of data.
+
+### Example
+
+```csharp
+VersionListParams parameters = new() { SkillID = "skill_id" };
+
+var page = await client.Beta.Skills.Versions.List(parameters);
+await foreach (var item in page.Paginate())
+{
+    Console.WriteLine(item);
+}
+```

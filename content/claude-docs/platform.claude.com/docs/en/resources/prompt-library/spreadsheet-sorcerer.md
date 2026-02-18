@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/spreadsheet-sorcerer
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: dc6a428bad9aa2073297e8bb65a529f0aa581a237a66a0285620699681be4420
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 0bbbddb11b593a02e2f61edfb07f84e6fee8e969286c547c3c3bf85e4a64b29e
 ---
 
 # Spreadsheet sorcerer
@@ -11,7 +11,7 @@ Generate CSV spreadsheets with various types of data.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                      |
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

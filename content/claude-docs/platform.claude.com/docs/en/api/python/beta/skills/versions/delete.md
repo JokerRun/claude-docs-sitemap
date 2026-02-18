@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 2170f4476f9f59981fd852b7606e3e03a25727c4d0eb5c56b3523e38bcfa11b3
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: ea4b6f8f13759793a9531e55f237605278c6648312e3e8aef335145111c70d34
 ---
 
 ## Delete
@@ -90,3 +90,19 @@ Delete Skill Version
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+version = client.beta.skills.versions.delete(
+    version="version",
+    skill_id="skill_id",
+)
+print(version.id)
+```

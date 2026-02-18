@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 996e5f7cafdcb4903ce6d90c3d4508983392cd4252a6cedb01aabdaa819a1386
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 635b4dde6310e2605ccef0bf44378a3084b60a886529fd630d11446be6cc4f20
 ---
 
 # Streaming refusals
@@ -62,7 +62,7 @@ response=$(curl -N https://api.anthropic.com/v1/messages \
   --header "content-type: application/json" \
   --header "x-api-key: $ANTHROPIC_API_KEY" \
   --data '{
-    "model": "claude-sonnet-4-5",
+    "model": "claude-sonnet-4-6",
     "messages": [{"role": "user", "content": "Hello"}],
     "max_tokens": 256,
     "stream": true
@@ -93,7 +93,7 @@ try:
     with client.messages.stream(
         max_tokens=1024,
         messages=messages + [{"role": "user", "content": "Hello"}],
-        model="claude-sonnet-4-5",
+        model="claude-sonnet-4-6",
     ) as stream:
         for event in stream:
             # Check for refusal in message delta
@@ -120,7 +120,7 @@ function resetConversation() {
 try {
   const stream = await client.messages.stream({
     messages: [...messages, { role: "user", content: "Hello" }],
-    model: "claude-sonnet-4-5",
+    model: "claude-sonnet-4-6",
     max_tokens: 1024
   });
 

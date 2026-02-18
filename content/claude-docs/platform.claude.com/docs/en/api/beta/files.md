@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 612ac938f96ce0d1d4cd4207701766874de8f3079d88ed4cb55aa73ad47303f4
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 48a72a549287e7c1416312a082fd986b8aacfb4238988d821b1bb485be87a776
 ---
 
 # Files
@@ -100,6 +100,17 @@ Upload File
   - `downloadable: optional boolean`
 
     Whether the file can be downloaded.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/files?beta=true \
+    -H 'Content-Type: multipart/form-data' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: files-api-2025-04-14' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -F 'file=@/path/to/file'
+```
 
 ## List
 
@@ -225,6 +236,15 @@ List Files
 
   ID of the last file in this page of results.
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/files?beta=true \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: files-api-2025-04-14' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
 ## Download
 
 **get** `/v1/files/{file_id}/content`
@@ -286,6 +306,15 @@ Download File
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/files/$FILE_ID/content?beta=true \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: files-api-2025-04-14' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
 
 ## Retrieve Metadata
 
@@ -387,6 +416,15 @@ Get File Metadata
 
     Whether the file can be downloaded.
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/files/$FILE_ID?beta=true \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: files-api-2025-04-14' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
 ## Delete
 
 **delete** `/v1/files/{file_id}`
@@ -464,6 +502,16 @@ Delete File
     For file deletion, this is always `"file_deleted"`.
 
     - `"file_deleted"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/files/$FILE_ID?beta=true \
+    -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: files-api-2025-04-14' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
 
 ## Domain Types
 

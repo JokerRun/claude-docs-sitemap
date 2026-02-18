@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/retrieve_metadata
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 813f942c941954ec4dab9f51fcdf577753af40794ac5ebe7042239122ae4b7c4
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 02ade2e4c4f3138b62fb65b9c1f53918fcb940bda29571f05814f75f4fe4f69c
 ---
 
 ## Retrieve Metadata
@@ -100,3 +100,13 @@ Get File Metadata
   - `Boolean Downloadable`
 
     Whether the file can be downloaded.
+
+### Example
+
+```csharp
+FileRetrieveMetadataParams parameters = new() { FileID = "file_id" };
+
+var fileMetadata = await client.Beta.Files.RetrieveMetadata(parameters);
+
+Console.WriteLine(fileMetadata);
+```

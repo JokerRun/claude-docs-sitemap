@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/tweet-tone-detector
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: adeffd5feef218cc57d7908fb53e0b2fe5d8f3fb0713bce5f3d242535d74b938
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: f2d3792631f0dad27f316a8a679b66b13f2ba6fcbad83f4b1039e8dd5320a560
 ---
 
 # Tweet tone detector
@@ -11,7 +11,7 @@ Detect the tone and sentiment behind tweets.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

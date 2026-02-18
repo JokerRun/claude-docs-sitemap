@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: f7d15baf3dae7b9a07deb0f151d066b61bf74c7ec25f66bd8c3b74f504e78f94
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 8a25bfcae0462fe33aa272ea932d9a7289dd043a4b30ddc90ee4e7f151574187
 ---
 
 ## List
@@ -126,3 +126,15 @@ List Files
   - `string? LastID`
 
     ID of the last file in this page of results.
+
+### Example
+
+```csharp
+FileListParams parameters = new();
+
+var page = await client.Beta.Files.List(parameters);
+await foreach (var item in page.Paginate())
+{
+    Console.WriteLine(item);
+}
+```

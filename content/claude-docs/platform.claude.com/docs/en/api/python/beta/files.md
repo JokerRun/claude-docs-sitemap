@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: ce67b8a0179bb1769a8ad4926ed25dfaaeb60a8c1e817fb0663adc68996c93e9
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: c2ad4b7c534e1c2f3331c701bb32da8096cdf14c1485fb5fb0663f6ccd78f387
 ---
 
 # Files
@@ -106,6 +106,21 @@ Upload File
   - `downloadable: Optional[bool]`
 
     Whether the file can be downloaded.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+file_metadata = client.beta.files.upload(
+    file=b"raw file contents",
+)
+print(file_metadata.id)
+```
 
 ## List
 
@@ -217,6 +232,20 @@ List Files
 
     Whether the file can be downloaded.
 
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+page = client.beta.files.list()
+page = page.data[0]
+print(page.id)
+```
+
 ## Download
 
 `beta.files.download(strfile_id, FileDownloadParams**kwargs)  -> BinaryResponseContent`
@@ -282,6 +311,23 @@ Download File
 ### Returns
 
 - `BinaryResponseContent`
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+response = client.beta.files.download(
+    file_id="file_id",
+)
+print(response)
+content = response.read()
+print(content)
+```
 
 ## Retrieve Metadata
 
@@ -383,6 +429,21 @@ Get File Metadata
 
     Whether the file can be downloaded.
 
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+file_metadata = client.beta.files.retrieve_metadata(
+    file_id="file_id",
+)
+print(file_metadata.id)
+```
+
 ## Delete
 
 `beta.files.delete(strfile_id, FileDeleteParams**kwargs)  -> DeletedFile`
@@ -460,6 +521,21 @@ Delete File
     For file deletion, this is always `"file_deleted"`.
 
     - `"file_deleted"`
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+deleted_file = client.beta.files.delete(
+    file_id="file_id",
+)
+print(deleted_file.id)
+```
 
 ## Domain Types
 

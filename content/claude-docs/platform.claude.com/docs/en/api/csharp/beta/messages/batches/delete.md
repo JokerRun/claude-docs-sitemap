@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 4aa73d9b6afe0f4d7e633b2420ae4167c3d640c634ff0c98b157049fd561453c
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 9bc87017a76dc06279f394d39192bd8de689cc023d9737dab6a80a9c62094404
 ---
 
 ## Delete
@@ -82,3 +82,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     Deleted object type.
 
     For Message Batches, this is always `"message_batch_deleted"`.
+
+### Example
+
+```csharp
+BatchDeleteParams parameters = new() { MessageBatchID = "message_batch_id" };
+
+var betaDeletedMessageBatch = await client.Beta.Messages.Batches.Delete(parameters);
+
+Console.WriteLine(betaDeletedMessageBatch);
+```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/models/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: ae271f4c18f127bbfc360177b52a2fd0adef204445beb515e10d6d463ddadfe3
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: eecec8421c829d11bccfee20898ea6889544577fc4a748b5c9d492b7caad7bfc
 ---
 
 ## List
@@ -102,3 +102,15 @@ The Models API response can be used to determine which models are available for 
     For Models, this is always `"model"`.
 
     - `:model`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+page = anthropic.beta.models.list
+
+puts(page)
+```

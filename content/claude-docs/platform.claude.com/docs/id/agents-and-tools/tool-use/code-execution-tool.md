@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 80d3bb25897a72770f8342c3ae609d17b1a06c33dd63fe1284c595ef3c5d36e3
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 318d9fccfddcd7ea285c408b24a2e26b6c3b5c2d9446bf975b63bdbdcb4df610
 ---
 
 # Alat eksekusi kode
@@ -952,10 +952,26 @@ Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](/docs/id/
 
 ## Penggunaan dan harga
 
-Code execution tool usage is tracked separately from token usage. Execution time has a minimum of 5 minutes.
-If files are included in the request, execution time is billed even if the tool is not used due to files being preloaded onto the container.
+**Code execution is free when used with web search or web fetch.** When `web_search_20260209` or `web_fetch_20260209` is included in your API request, there are no additional charges for code execution tool calls beyond the standard input and output token costs.
 
-Each organization receives 1,550 free hours of usage with the code execution tool per month. Additional usage beyond the first 1,550 hours is billed at $0.05 per hour, per container.
+When used without these tools, code execution is billed by execution time, tracked separately from token usage:
+
+- Execution time has a minimum of 5 minutes
+- Each organization receives **1,550 free hours** of usage per month
+- Additional usage beyond 1,550 hours is billed at **$0.05 per hour, per container**
+- If files are included in the request, execution time is billed even if the tool is not invoked, due to files being preloaded onto the container
+
+Code execution usage is tracked in the response:
+
+```json
+"usage": {
+  "input_tokens": 105,
+  "output_tokens": 239,
+  "server_tool_use": {
+    "code_execution_requests": 1
+  }
+}
+```
 
 ## Tingkatkan ke versi alat terbaru
 

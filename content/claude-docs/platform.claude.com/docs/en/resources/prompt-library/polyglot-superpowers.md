@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/polyglot-superpowers
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 5be0076146f19ecf0d8e55803aabcd377b430d834de21995b5d354895f2c2616
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 1808e4a639b913e415730c342b555481e4a93897cef59a7c33633f7d1c668d7a
 ---
 
 # Polyglot superpowers
@@ -11,7 +11,7 @@ Translate text from any language into any language.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                    |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/second-grade-simplifier
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 8995c0088dc29f7217c635bfd9fee7060472d181a2b3a34c505a4f560edf0161
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: cf6855cbefe32b484bbfa216451dbcb887d8bdeaa9d435be0672dfcacdf268f4
 ---
 
 # Second-grade simplifier
@@ -11,7 +11,7 @@ Make complex text easy for young learners to understand.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                    |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/direction-decoder
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 11de5a2a65d65a1596d3451e9c056401042cbfdd78c1bc951ed48fc566f2ea1d
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 0ff66a26cd5e3f78a8c9868580b1b10723914d5854faf6cc69cd49e206b30a03
 ---
 
 # Direction decoder
@@ -11,7 +11,7 @@ Transform natural language into step-by-step directions.
 
 ---
 
-> Copy this prompt into our developer [Console](/login?selectAccount=true&returnTo=%2Fdashboard%3F) to try it for yourself!
+> Copy this prompt into the developer [Console](/login?selectAccount=true&returnTo=%2Fdashboard%3F) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

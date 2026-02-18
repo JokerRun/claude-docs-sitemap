@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/models/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 9dbc959b81e12f5a6245a620dea588a42c093277eac54c9e60038d801e9aa883
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: ef774468eab66284934fcd90f532a4357e4e753b867743acd37e039c95525342
 ---
 
 ## List
@@ -104,3 +104,30 @@ The Models API response can be used to determine which models are available for 
     For Models, this is always `"model"`.
 
     - `const ModelModel Model = "model"`
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  page, err := client.Models.List(context.TODO(), anthropic.ModelListParams{
+
+  })
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", page)
+}
+```

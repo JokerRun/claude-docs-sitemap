@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: afb5daf7a37ed7560d637c596fba631bc514b3bbbed0a4786e0fba4d0bb31f1c
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: e219f30d16b708c19a6e99bcd22589636621d05cea8edd44fdecf9d45b9d8b7a
 ---
 
 # Penggunaan alat dengan Claude
@@ -1117,6 +1117,7 @@ When you use `tools`, we also automatically include a special system prompt for 
 | Claude Opus 4.5            | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Opus 4.1            | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Opus 4            | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
+| Claude Sonnet 4.6          | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Sonnet 4.5          | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Sonnet 4          | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))        | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |

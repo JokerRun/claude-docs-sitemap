@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/product-naming-pro
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 70455380a4ce0957492380ccdbaeabda5e7e93943b3ef674059f3906c0155a1e
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 4e3db3ba9a2a71c40814f7fa0e26b0ddb3c040d9b60f233166c4372c5e81f049
 ---
 
 # Product naming pro
@@ -11,7 +11,7 @@ Create catchy product names from descriptions and keywords.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                          |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

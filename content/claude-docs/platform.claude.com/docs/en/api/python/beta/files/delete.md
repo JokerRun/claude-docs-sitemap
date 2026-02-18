@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: b6cdc3c1bf8bd310dcd57788daa972e037c9f4f56324397a02d1545cd6a644ad
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 0baf48e9206afbc6107627305a6aec1f7b0e1c85d41f196f2b9b10fc53dc00b3
 ---
 
 ## Delete
@@ -82,3 +82,18 @@ Delete File
     For file deletion, this is always `"file_deleted"`.
 
     - `"file_deleted"`
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+deleted_file = client.beta.files.delete(
+    file_id="file_id",
+)
+print(deleted_file.id)
+```

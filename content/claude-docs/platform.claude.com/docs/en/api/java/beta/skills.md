@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 0d3c8ad79a158fc005622bec662847762e74540023b4ad0a6e2b95967451587b
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: d64c0b11849cecdb6cd4a6d3c865e1aff52ae341a34bae7962896a2c2dd71ab7
 ---
 
 # Skills
@@ -119,6 +119,27 @@ Create Skill
   - `String updatedAt`
 
     ISO 8601 timestamp of when the skill was last updated.
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.skills.SkillCreateParams;
+import com.anthropic.models.beta.skills.SkillCreateResponse;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        SkillCreateResponse skill = client.beta().skills().create();
+    }
+}
+```
 
 ## List
 
@@ -242,6 +263,27 @@ List Skills
 
     ISO 8601 timestamp of when the skill was last updated.
 
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.skills.SkillListPage;
+import com.anthropic.models.beta.skills.SkillListParams;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        SkillListPage page = client.beta().skills().list();
+    }
+}
+```
+
 ## Retrieve
 
 `SkillRetrieveResponse beta().skills().retrieve(SkillRetrieveParamsparams = SkillRetrieveParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
@@ -349,6 +391,27 @@ Get Skill
 
     ISO 8601 timestamp of when the skill was last updated.
 
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.skills.SkillRetrieveParams;
+import com.anthropic.models.beta.skills.SkillRetrieveResponse;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        SkillRetrieveResponse skill = client.beta().skills().retrieve("skill_id");
+    }
+}
+```
+
 ## Delete
 
 `SkillDeleteResponse beta().skills().delete(SkillDeleteParamsparams = SkillDeleteParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
@@ -426,6 +489,27 @@ Delete Skill
     Deleted object type.
 
     For Skills, this is always `"skill_deleted"`.
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.skills.SkillDeleteParams;
+import com.anthropic.models.beta.skills.SkillDeleteResponse;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        SkillDeleteResponse skill = client.beta().skills().delete("skill_id");
+    }
+}
+```
 
 # Versions
 
@@ -544,6 +628,27 @@ Create Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.skills.versions.VersionCreateParams;
+import com.anthropic.models.beta.skills.versions.VersionCreateResponse;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        VersionCreateResponse version = client.beta().skills().versions().create("skill_id");
+    }
+}
+```
 
 ## List
 
@@ -665,6 +770,27 @@ List Skill Versions
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.skills.versions.VersionListPage;
+import com.anthropic.models.beta.skills.versions.VersionListParams;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        VersionListPage page = client.beta().skills().versions().list("skill_id");
+    }
+}
+```
+
 ## Retrieve
 
 `VersionRetrieveResponse beta().skills().versions().retrieve(VersionRetrieveParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
@@ -781,6 +907,31 @@ Get Skill Version
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.skills.versions.VersionRetrieveParams;
+import com.anthropic.models.beta.skills.versions.VersionRetrieveResponse;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        VersionRetrieveParams params = VersionRetrieveParams.builder()
+            .skillId("skill_id")
+            .version("version")
+            .build();
+        VersionRetrieveResponse version = client.beta().skills().versions().retrieve(params);
+    }
+}
+```
+
 ## Delete
 
 `VersionDeleteResponse beta().skills().versions().delete(VersionDeleteParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
@@ -864,3 +1015,28 @@ Delete Skill Version
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.skills.versions.VersionDeleteParams;
+import com.anthropic.models.beta.skills.versions.VersionDeleteResponse;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        VersionDeleteParams params = VersionDeleteParams.builder()
+            .skillId("skill_id")
+            .version("version")
+            .build();
+        VersionDeleteResponse version = client.beta().skills().versions().delete(params);
+    }
+}
+```

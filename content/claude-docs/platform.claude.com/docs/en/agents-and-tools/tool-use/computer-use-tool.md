@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: 9c01f3a61fd5661d3392d55ccfb4b678f36902b8c8189d4b93b0a9e8104bf4d3
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 60805cde45b3680ebf192232518ff1bf029b698432e4291b1c1c1e1f6d0480de
 ---
 
 # Computer use tool
@@ -14,9 +14,13 @@ Claude can interact with computer environments through the computer use tool, wh
 <Note>
 Computer use is currently in beta and requires a [beta header](/docs/en/api/beta-headers):
 - `"computer-use-2025-11-24"` for Claude Opus 4.6, Claude Opus 4.5
-- `"computer-use-2025-01-24"` for Claude Sonnet 4.5, Haiku 4.5, Opus 4.1, Sonnet 4, Opus 4, and Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
+- `"computer-use-2025-01-24"` for Claude Sonnet 4.6, Sonnet 4.5, Haiku 4.5, Opus 4.1, Sonnet 4, Opus 4, and Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
 
 Please reach out through our [feedback form](https://forms.gle/H6UFuXaaLywri9hz6) to share your feedback on this feature.
+</Note>
+
+<Note>
+This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
 </Note>
 
 ## Overview
@@ -40,7 +44,7 @@ Computer use is available for the following Claude models:
 | All other supported models | `computer_20250124` | `computer-use-2025-01-24` |
 
 <Note>
-Claude Opus 4.6 and Claude Opus 4.5 introduce the `computer_20251124` tool version with new capabilities including the zoom action for detailed screen region inspection. All other models (Sonnet 4.5, Haiku 4.5, Sonnet 4, Opus 4, Opus 4.1, and Sonnet 3.7) use the `computer_20250124` tool version.
+Claude Opus 4.6 and Claude Opus 4.5 introduce the `computer_20251124` tool version with new capabilities including the zoom action for detailed screen region inspection. All other models (Sonnet 4.6, Sonnet 4.5, Haiku 4.5, Sonnet 4, Opus 4, Opus 4.1, and Sonnet 3.7) use the `computer_20250124` tool version.
 </Note>
 
 <Warning>

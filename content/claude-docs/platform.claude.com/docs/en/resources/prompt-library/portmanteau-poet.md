@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/portmanteau-poet
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: 919f1c5587dc2b6085efc611b6733109a46885ebeb5b6439cc5c479de57aaf8b
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: ff72c1015abf7d66a4073c48c366031f4c82bf9a7cf2b3c10d9c9d1b838ef35c
 ---
 
 # Portmanteau poet
@@ -11,7 +11,7 @@ Blend two words together to create a new, meaningful portmanteau.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                            |
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/model-deprecations
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: ac5f83e92fdd5889ab3eb8274782dfad66a0f0e6bb433e04e5641bbfbebd6e5c
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 1e78da3d02073d0e1473afe8394bfe86e056973eaeaa7607aa64f84b58085987
 ---
 
 # Model deprecations
@@ -73,6 +73,7 @@ All publicly released models are listed below with their status:
 | `claude-opus-4-5-20251101`  | Active              | N/A               | Not sooner than November 24, 2026 |
 | `claude-opus-4-1-20250805`  | Active              | N/A               | Not sooner than August 5, 2026 |
 | `claude-opus-4-20250514`    | Active              | N/A               | Not sooner than May 14, 2026 |
+| `claude-sonnet-4-6`         | Active              | N/A               | Not sooner than February 17, 2027 |
 | `claude-sonnet-4-5-20250929`| Active              | N/A               | Not sooner than September 29, 2026 |
 | `claude-sonnet-4-20250514`  | Active              | N/A               | Not sooner than May 14, 2026 |
 | `claude-3-7-sonnet-20250219`| Deprecated          | October 28, 2025  | February 19, 2026          |

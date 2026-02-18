@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/models/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 5f7b3b69eedf8444f8716d08ba9a8d6de454f318b11a47a0a985e5e38bf9daeb
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: e3632a90fc17a00cccbcf0c61e1ebcc359b7cdb3ae4a301b42f53e4679099a74
 ---
 
 ## List
@@ -112,3 +112,15 @@ The Models API response can be used to determine which models are available for 
   - `required string? LastID`
 
     Last ID in the `data` list. Can be used as the `after_id` for the next page.
+
+### Example
+
+```csharp
+ModelListParams parameters = new();
+
+var page = await client.Models.List(parameters);
+await foreach (var item in page.Paginate())
+{
+    Console.WriteLine(item);
+}
+```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 0178fec9563ee4331334775977903c7990947a78dc615e911186f12ba4d6be6e
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 3d856d23e85a610a6005e936d9ba7dd013dddbdd7676e2dc2772d9acb27eb3ec
 ---
 
 ## List
@@ -116,3 +116,18 @@ List Files
   - `downloadable?: boolean`
 
     Whether the file can be downloaded.
+
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+// Automatically fetches more pages as needed.
+for await (const fileMetadata of client.beta.files.list()) {
+  console.log(fileMetadata.id);
+}
+```

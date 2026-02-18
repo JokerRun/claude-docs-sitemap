@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 2d0882f029f20142dc627856156fa7d90eae69e604c756bbe541b550e5865ccf
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 308612f48d9b50edddc0612f2c438a8349c13cf6d094256d3a6ce9c7c068eefb
 ---
 
 ## Delete
@@ -92,3 +92,17 @@ Delete Skill Version
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
+
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+const version = await client.beta.skills.versions.delete('version', { skill_id: 'skill_id' });
+
+console.log(version.id);
+```

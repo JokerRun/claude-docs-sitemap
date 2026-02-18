@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 90aa960dc29bb50adb06b7347280ea68c61d4a02d40c56e6122f5dc82a7014a5
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 33403c909c4b95a8b56b758442a70d20ede48a00a669ac42134b0934e2589761
 ---
 
 ## Retrieve
@@ -110,3 +110,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     Object type.
 
     For Message Batches, this is always `"message_batch"`.
+
+### Example
+
+```csharp
+BatchRetrieveParams parameters = new() { MessageBatchID = "message_batch_id" };
+
+var messageBatch = await client.Messages.Batches.Retrieve(parameters);
+
+Console.WriteLine(messageBatch);
+```

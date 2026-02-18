@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: bc313cc1943286539655aa3dd9b7a2cc55c6a34be17fae1d9a8bd5bd7612f25f
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 51f6eac052116ff9057ec9cae879578d8a98414e0ac873d8157c5db7439a8662
 ---
 
 # Versions
@@ -122,6 +122,16 @@ Create Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```csharp
+VersionCreateParams parameters = new() { SkillID = "skill_id" };
+
+var version = await client.Beta.Skills.Versions.Create(parameters);
+
+Console.WriteLine(version);
+```
 
 ## List
 
@@ -255,6 +265,18 @@ List Skill Versions
 
     Token to provide in as `page` in the subsequent request to retrieve the next page of data.
 
+### Example
+
+```csharp
+VersionListParams parameters = new() { SkillID = "skill_id" };
+
+var page = await client.Beta.Skills.Versions.List(parameters);
+await foreach (var item in page.Paginate())
+{
+    Console.WriteLine(item);
+}
+```
+
 ## Retrieve
 
 `VersionRetrieveResponse Beta.Skills.Versions.Retrieve(VersionRetrieveParamsparameters, CancellationTokencancellationToken = default)`
@@ -371,6 +393,20 @@ Get Skill Version
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
+### Example
+
+```csharp
+VersionRetrieveParams parameters = new()
+{
+    SkillID = "skill_id",
+    Version = "version",
+};
+
+var version = await client.Beta.Skills.Versions.Retrieve(parameters);
+
+Console.WriteLine(version);
+```
+
 ## Delete
 
 `VersionDeleteResponse Beta.Skills.Versions.Delete(VersionDeleteParamsparameters, CancellationTokencancellationToken = default)`
@@ -454,3 +490,17 @@ Delete Skill Version
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
+
+### Example
+
+```csharp
+VersionDeleteParams parameters = new()
+{
+    SkillID = "skill_id",
+    Version = "version",
+};
+
+var version = await client.Beta.Skills.Versions.Delete(parameters);
+
+Console.WriteLine(version);
+```

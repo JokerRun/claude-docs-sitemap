@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 54241c3ef22faada40f87acfc7e23d4190c055709ead4c6b61ffb58d013076b9
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: d11589bc97e6cdcd363683acbafdf8cae1095aaa9c8ed369640a938cc4ed4771
 ---
 
 # Beta headers
@@ -43,7 +43,7 @@ response = client.beta.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    betas=["code-execution-2025-08-25"],
+    betas=["files-api-2025-04-14"],
 )
 ```
 
@@ -58,7 +58,7 @@ const msg = await anthropic.beta.messages.create({
   messages: [
     { role: "user", content: "Hello, Claude" }
   ],
-  betas: ["code-execution-2025-08-25"]
+  betas: ["files-api-2025-04-14"]
 });
 ```
 
@@ -66,7 +66,7 @@ const msg = await anthropic.beta.messages.create({
 curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: code-execution-2025-08-25" \
+  -H "anthropic-beta: files-api-2025-04-14" \
   -H "content-type: application/json" \
   -d '{
     "model": "claude-opus-4-6",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/create
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: f487bcd89620ebe14920f6ba8cc4e81315beeeb316371cf7c9b15c16ea7e4509
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 1092cfbd6f7732ae1a2b749c934acbf29f0853e4c00dcf4ef301c51f73ab4a72
 ---
 
 ## Create
@@ -114,3 +114,13 @@ Create Skill Version
   Version identifier for the skill.
 
   Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions?beta=true \
+    -X POST \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: skills-2025-10-02' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```

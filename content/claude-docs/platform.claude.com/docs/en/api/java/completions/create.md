@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions/create
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 5bbdeb395838db96b81001b489afe495f2184c326cf31265d7a16506708a9618
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 4196e8a725e157fcbfab61346647d5dec0423540ee1f53ff45be85ba25b95fdb
 ---
 
 ## Create
@@ -157,6 +157,10 @@ Future models and features will not be compatible with Text Completions. See our
 
       Most intelligent model for building agents and coding
 
+    - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
+
+      Frontier intelligence at scale — built for coding, agents, and enterprise workflows
+
     - `CLAUDE_OPUS_4_5_20251101("claude-opus-4-5-20251101")`
 
       Premium model combining maximum intelligence with practical performance
@@ -253,3 +257,30 @@ Future models and features will not be compatible with Text Completions. See our
     For Text Completions, this is always `"completion"`.
 
     - `COMPLETION("completion")`
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.completions.Completion;
+import com.anthropic.models.completions.CompletionCreateParams;
+import com.anthropic.models.messages.Model;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        CompletionCreateParams params = CompletionCreateParams.builder()
+            .maxTokensToSample(256L)
+            .model(Model.CLAUDE_OPUS_4_6)
+            .prompt("\n\nHuman: Hello, world!\n\nAssistant:")
+            .build();
+        Completion completion = client.completions().create(params);
+    }
+}
+```

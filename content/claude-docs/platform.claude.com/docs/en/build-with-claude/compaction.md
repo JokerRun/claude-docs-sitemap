@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: 060459d3f8fa9046e569bcb41140a827b9d90ec2a3f546334bad36a344d43ecf
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 19a9a1cde811223c1e4cdb53136757272e2bae4a16baaeb31a706eba56dc9f96
 ---
 
 # Compaction
@@ -22,6 +22,10 @@ Compaction extends the effective context length for long-running conversations a
 
 <Note>
 Compaction is currently in beta. Include the [beta header](/docs/en/api/beta-headers) `compact-2026-01-12` in your API requests to use this feature.
+</Note>
+
+<Note>
+This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
 </Note>
 
 ## Supported models

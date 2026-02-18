@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/create
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 1cf8a7d160d938f8ab7dcd879f6374da60d695f154a8c2c766e23eb7c7bb8d47
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 35e8c3f6a7cb29605a739b07ce6a18894c70fadfb11dca76ced8cb7a3bed9462
 ---
 
 ## Create
@@ -120,3 +120,13 @@ Create Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```csharp
+VersionCreateParams parameters = new() { SkillID = "skill_id" };
+
+var version = await client.Beta.Skills.Versions.Create(parameters);
+
+Console.WriteLine(version);
+```

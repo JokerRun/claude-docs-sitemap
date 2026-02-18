@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: e983f0f14f623a2e6f14383f9a5a50a35040db15cea2eb906e56f1e53a294b7f
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 87ed4d808ec63aadf02bcc88172f5099ead759ec4309ff293ede258daf73c1b9
 ---
 
 ## Delete
@@ -86,3 +86,18 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch_deleted"`.
 
     - `"message_batch_deleted"`
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+beta_deleted_message_batch = client.beta.messages.batches.delete(
+    message_batch_id="message_batch_id",
+)
+print(beta_deleted_message_batch.id)
+```

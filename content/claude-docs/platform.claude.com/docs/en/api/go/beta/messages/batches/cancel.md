@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/cancel
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: f129c69af3c80996e8fd1d7540d5e8b6c14f9883215e676e19dbf451f24fed72
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: c542c2fcb3de87bb579afe478c38a09e8f9f70071ec2e5279b39f3f2c70c2954
 ---
 
 ## Cancel
@@ -162,3 +162,34 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `const MessageBatchMessageBatch MessageBatch = "message_batch"`
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  betaMessageBatch, err := client.Beta.Messages.Batches.Cancel(
+    context.TODO(),
+    "message_batch_id",
+    anthropic.BetaMessageBatchCancelParams{
+
+    },
+  )
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", betaMessageBatch.ID)
+}
+```

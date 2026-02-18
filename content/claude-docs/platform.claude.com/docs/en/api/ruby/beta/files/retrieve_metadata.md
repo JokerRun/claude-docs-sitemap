@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/retrieve_metadata
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 912121a867ef408ba2907b8723530dcaf2d941759bc922acdab8ec0cd84cb5ac
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 204134c4166277697d38ea399a7f4ebf60b89c98cb1de35da713a81887cdc963
 ---
 
 ## Retrieve Metadata
@@ -104,3 +104,15 @@ Get File Metadata
   - `downloadable: bool`
 
     Whether the file can be downloaded.
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+file_metadata = anthropic.beta.files.retrieve_metadata("file_id")
+
+puts(file_metadata)
+```

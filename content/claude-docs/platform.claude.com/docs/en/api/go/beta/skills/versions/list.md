@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 91877da9d1c086c5c68980d561220652777ce3960239268bdf75e913f6acf6f6
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: f13966d2a4b6122388e146aba635f82249aeb6b0a9282eb12bf141f7e64852ec
 ---
 
 ## List
@@ -128,3 +128,34 @@ List Skill Versions
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  page, err := client.Beta.Skills.Versions.List(
+    context.TODO(),
+    "skill_id",
+    anthropic.BetaSkillVersionListParams{
+
+    },
+  )
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", page)
+}
+```

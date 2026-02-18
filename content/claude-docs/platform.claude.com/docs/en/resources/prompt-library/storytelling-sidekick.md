@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/storytelling-sidekick
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: d5a0dada869fa27370b162ebe40ccea6e836c6f4ca31ece9abe7ef4ec559afd7
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: b6bbe8298d167db45bb410c0b48e91c46151bb004ce29323dbde85e68f034f4d
 ---
 
 # Storytelling sidekick
@@ -11,7 +11,7 @@ Collaboratively create engaging stories with the user, offering plot twists and 
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                  |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

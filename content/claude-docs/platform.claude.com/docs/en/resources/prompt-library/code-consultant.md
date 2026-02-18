@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/code-consultant
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: 354b2f68c18d488ee016ebc46354885f9c6e0a6d18a41b35ed8b54536ca2e409
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: c1f1aab7d75808311e33e0e814c46ea33a913fdb101a12e9af1ed15ca45eb68b
 ---
 
 # Code consultant
@@ -11,7 +11,7 @@ Suggest improvements to optimize Python code performance.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/cancel
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 5802e1d2f20ca655a61862d0568e5ef15d7c87c1ca4c4d4abc95bf0af56f38a2
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: f8a3faa297ffd83bb6b9fae7511f5d8d40605ea581ef67a84fac74d39ed929af
 ---
 
 ## Cancel
@@ -160,3 +160,18 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+beta_message_batch = client.beta.messages.batches.cancel(
+    message_batch_id="message_batch_id",
+)
+print(beta_message_batch.id)
+```

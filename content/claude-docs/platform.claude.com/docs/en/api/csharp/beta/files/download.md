@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/download
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: ec907a1a3e4a5c78e4c46666f39caa484e804c7c52e1668c442b94881a67caf4
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 93c6972387481aaf3817a2bb12f53665dfe6eecb05dc561efd1b8e7f26a7f076
 ---
 
 ## Download
@@ -64,3 +64,13 @@ Download File
     - `"skills-2025-10-02"Skills2025_10_02`
 
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+### Example
+
+```csharp
+FileDownloadParams parameters = new() { FileID = "file_id" };
+
+var response = await client.Beta.Files.Download(parameters);
+
+Console.WriteLine(response);
+```

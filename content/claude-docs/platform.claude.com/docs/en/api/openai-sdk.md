@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/openai-sdk
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: af71e060e95747cd435c6f0c292f6f12e4e9a9c5f920eb92101044d8ac8e1a89
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: ff9025c809ecb53429ab2ba9a00777707b77a9edd16acf3acb555195cfc50746
 ---
 
 # OpenAI SDK compatibility
@@ -103,7 +103,7 @@ You can enable [extended thinking](/docs/en/build-with-claude/extended-thinking)
 <CodeGroup>
     ```python Python
     response = client.chat.completions.create(
-        model="claude-sonnet-4-5",
+        model="claude-sonnet-4-6",
         messages=...,
         extra_body={"thinking": {"type": "enabled", "budget_tokens": 2000}},
     )
@@ -114,7 +114,7 @@ You can enable [extended thinking](/docs/en/build-with-claude/extended-thinking)
       messages: [
         { role: "user", content: "Who are you?" }
       ],
-      model: "claude-sonnet-4-5",
+      model: "claude-sonnet-4-6",
       // @ts-expect-error
       thinking: { type: "enabled", budget_tokens: 2000 }
     });

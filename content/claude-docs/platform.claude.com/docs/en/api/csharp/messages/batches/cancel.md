@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches/cancel
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: f22da7d86ee562ba175d10f6d035960d2a19eaba9f877cd53639e678bcc697f2
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: de247760e68f0309114ec1bf7b81b476ab47802e1589bca69675311dc5e6889d
 ---
 
 ## Cancel
@@ -112,3 +112,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     Object type.
 
     For Message Batches, this is always `"message_batch"`.
+
+### Example
+
+```csharp
+BatchCancelParams parameters = new() { MessageBatchID = "message_batch_id" };
+
+var messageBatch = await client.Messages.Batches.Cancel(parameters);
+
+Console.WriteLine(messageBatch);
+```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/latex-legend
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: 255fd308abba1f6bbba8f37dd6fde4f1b8d126e8886ec8f6bcb2f43bbbba3632
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 58be43f1c11700b308d59e04d4e89651143c9661ee664cbf663870dc147d5e3a
 ---
 
 # LaTeX legend
@@ -11,7 +11,7 @@ Write LaTeX documents, generating code for mathematical equations, tables, and m
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                              |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

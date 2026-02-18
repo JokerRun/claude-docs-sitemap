@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/email-extractor
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: f933557f79776d06ce3b225163ea093148e287b6535ade74d9da6eacc1a4d651
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: cb49c5fc28ccc77551510e3c919c6b5940a30a7879190151a843f75f8b246ba2
 ---
 
 # Email extractor
@@ -11,7 +11,7 @@ Extract email addresses from a document into a JSON-formatted list.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                        |
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

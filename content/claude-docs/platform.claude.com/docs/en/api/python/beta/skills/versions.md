@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 0e7ddd7a6f3a25602bbcec823ba01e3f4e47378e9aa0d378ba7ce6ba440db64d
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 4f6c900c7d325c5c5ecd053db936bac75399bd37b83046c1c1bd68b4e3a9125e
 ---
 
 # Versions
@@ -124,6 +124,21 @@ Create Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+version = client.beta.skills.versions.create(
+    skill_id="skill_id",
+)
+print(version.id)
+```
 
 ## List
 
@@ -247,6 +262,22 @@ List Skill Versions
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+page = client.beta.skills.versions.list(
+    skill_id="skill_id",
+)
+page = page.data[0]
+print(page.id)
+```
+
 ## Retrieve
 
 `beta.skills.versions.retrieve(strversion, VersionRetrieveParams**kwargs)  -> VersionRetrieveResponse`
@@ -365,6 +396,22 @@ Get Skill Version
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+version = client.beta.skills.versions.retrieve(
+    version="version",
+    skill_id="skill_id",
+)
+print(version.id)
+```
+
 ## Delete
 
 `beta.skills.versions.delete(strversion, VersionDeleteParams**kwargs)  -> VersionDeleteResponse`
@@ -450,3 +497,19 @@ Delete Skill Version
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+version = client.beta.skills.versions.delete(
+    version="version",
+    skill_id="skill_id",
+)
+print(version.id)
+```

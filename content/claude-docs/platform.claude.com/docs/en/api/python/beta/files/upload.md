@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/upload
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: d267f76a24bdd920d524ec52d6e92c857959aa4c3595c50b2885283bfb70a92d
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 30a8e194ed7b9f970fe08b677c67f86187c3a93264b256ffe33cb3c39e4d9e6a
 ---
 
 ## Upload
@@ -104,3 +104,18 @@ Upload File
   - `downloadable: Optional[bool]`
 
     Whether the file can be downloaded.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+file_metadata = client.beta.files.upload(
+    file=b"raw file contents",
+)
+print(file_metadata.id)
+```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: e8377f1da4ae0dc21a1605e122f6f07f187fd5e484508951cf235b1a6c8c5bdd
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: ac50ae414fc5b3e01c1ba64f447627341ad2dd84bdb01c6a29ea585ded2ef60c
 ---
 
 # MCP connector
@@ -15,6 +15,10 @@ Claude's Model Context Protocol (MCP) connector feature enables you to connect t
   **Current version**: This feature requires the beta header: `"anthropic-beta": "mcp-client-2025-11-20"`
 
   The previous version (`mcp-client-2025-04-04`) is deprecated. See the [deprecated version documentation](#deprecated-version-mcp-client-2025-04-04) below.
+</Note>
+
+<Note>
+This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
 </Note>
 
 ## Key features
@@ -488,7 +492,7 @@ await mcpClient.connect(transport);
 // List tools and convert them for the Claude API
 const { tools } = await mcpClient.listTools();
 const runner = await anthropic.beta.messages.toolRunner({
-  model: "claude-sonnet-4-5",
+  model: "claude-sonnet-4-6",
   max_tokens: 1024,
   messages: [{ role: "user", content: "What tools do you have available?" }],
   tools: mcpTools(tools, mcpClient)
@@ -504,7 +508,7 @@ import { mcpMessages } from "@anthropic-ai/sdk/helpers/beta/mcp";
 
 const { messages } = await mcpClient.getPrompt({ name: "my-prompt" });
 const response = await anthropic.beta.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-sonnet-4-6",
   max_tokens: 1024,
   messages: mcpMessages(messages)
 });
@@ -520,7 +524,7 @@ import { mcpResourceToContent, mcpResourceToFile } from "@anthropic-ai/sdk/helpe
 // As a content block in a message
 const resource = await mcpClient.readResource({ uri: "file:///path/to/doc.txt" });
 await anthropic.beta.messages.create({
-  model: "claude-sonnet-4-5",
+  model: "claude-sonnet-4-6",
   max_tokens: 1024,
   messages: [
     {

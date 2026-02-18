@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/models
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: fe4a2bcf797c7f76ea8ef6ba84b3eeb0b4ba65e20bc6f16e40b422fc83057efd
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 5371cdd64e2e2c6f81fbdc6201005d66479dc77c7e21347669dc2d9a8adc69b9
 ---
 
 # Models
@@ -115,6 +115,18 @@ The Models API response can be used to determine which models are available for 
 
     Last ID in the `data` list. Can be used as the `after_id` for the next page.
 
+### Example
+
+```csharp
+ModelListParams parameters = new();
+
+var page = await client.Beta.Models.List(parameters);
+await foreach (var item in page.Paginate())
+{
+    Console.WriteLine(item);
+}
+```
+
 ## Retrieve
 
 `BetaModelInfo Beta.Models.Retrieve(ModelRetrieveParamsparameters, CancellationTokencancellationToken = default)`
@@ -198,6 +210,16 @@ The Models API response can be used to determine information about a specific mo
     Object type.
 
     For Models, this is always `"model"`.
+
+### Example
+
+```csharp
+ModelRetrieveParams parameters = new() { ModelID = "model_id" };
+
+var betaModelInfo = await client.Beta.Models.Retrieve(parameters);
+
+Console.WriteLine(betaModelInfo);
+```
 
 ## Domain Types
 

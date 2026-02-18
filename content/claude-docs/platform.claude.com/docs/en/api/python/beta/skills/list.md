@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 3f52ccbe3d79701053bd3ad1f19179b5820e0ea1759900e2aab1ce172b0801d4
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 15c42c4aa221b11cfc4ec3de2a14486e77856c48d2b471e64152628487ebe002
 ---
 
 ## List
@@ -128,3 +128,17 @@ List Skills
   - `updated_at: str`
 
     ISO 8601 timestamp of when the skill was last updated.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+page = client.beta.skills.list()
+page = page.data[0]
+print(page.id)
+```

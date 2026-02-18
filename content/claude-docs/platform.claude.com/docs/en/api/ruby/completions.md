@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/completions
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: f52ad7025c8f18c973c1873e57b40401079eb4d1f22ea52e13a9aa13b42436fb
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 32a2a7e3abdbf4543fb28ef0f18a7941571ba25c8315b58d55b202b1ba59178e
 ---
 
 # Completions
@@ -33,7 +33,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `:"claude-opus-4-6" | :"claude-opus-4-5-20251101" | :"claude-opus-4-5" | 18 more`
+  - `:"claude-opus-4-6" | :"claude-sonnet-4-6" | :"claude-opus-4-5-20251101" | 19 more`
 
     The model that will complete your prompt.
 
@@ -42,6 +42,10 @@ Future models and features will not be compatible with Text Completions. See our
     - `:"claude-opus-4-6"`
 
       Most intelligent model for building agents and coding
+
+    - `:"claude-sonnet-4-6"`
+
+      Frontier intelligence at scale — built for coding, agents, and enterprise workflows
 
     - `:"claude-opus-4-5-20251101"`
 
@@ -263,7 +267,7 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `:"claude-opus-4-6" | :"claude-opus-4-5-20251101" | :"claude-opus-4-5" | 18 more`
+    - `:"claude-opus-4-6" | :"claude-sonnet-4-6" | :"claude-opus-4-5-20251101" | 19 more`
 
       The model that will complete your prompt.
 
@@ -272,6 +276,10 @@ Future models and features will not be compatible with Text Completions. See our
       - `:"claude-opus-4-6"`
 
         Most intelligent model for building agents and coding
+
+      - `:"claude-sonnet-4-6"`
+
+        Frontier intelligence at scale — built for coding, agents, and enterprise workflows
 
       - `:"claude-opus-4-5-20251101"`
 
@@ -372,6 +380,22 @@ Future models and features will not be compatible with Text Completions. See our
 
     - `:completion`
 
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+completion = anthropic.completions.create(
+  max_tokens_to_sample: 256,
+  model: :"claude-opus-4-6",
+  prompt: "\n\nHuman: Hello, world!\n\nAssistant:"
+)
+
+puts(completion)
+```
+
 ## Domain Types
 
 ### Completion
@@ -394,7 +418,7 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `:"claude-opus-4-6" | :"claude-opus-4-5-20251101" | :"claude-opus-4-5" | 18 more`
+    - `:"claude-opus-4-6" | :"claude-sonnet-4-6" | :"claude-opus-4-5-20251101" | 19 more`
 
       The model that will complete your prompt.
 
@@ -403,6 +427,10 @@ Future models and features will not be compatible with Text Completions. See our
       - `:"claude-opus-4-6"`
 
         Most intelligent model for building agents and coding
+
+      - `:"claude-sonnet-4-6"`
+
+        Frontier intelligence at scale — built for coding, agents, and enterprise workflows
 
       - `:"claude-opus-4-5-20251101"`
 

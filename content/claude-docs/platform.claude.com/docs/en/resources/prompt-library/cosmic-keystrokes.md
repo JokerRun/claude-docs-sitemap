@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/cosmic-keystrokes
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 840285918c6c1498f0f5f827f7162ad25c6eb56a7acd0346f353ab01f5f899e1
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: f2268496b0f642a29ba8e9c7ba7971bbce475b5a602030167e82cefabc767805
 ---
 
 # Cosmic Keystrokes
@@ -11,7 +11,7 @@ Generate an interactive speed typing game in a single HTML file, featuring side-
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

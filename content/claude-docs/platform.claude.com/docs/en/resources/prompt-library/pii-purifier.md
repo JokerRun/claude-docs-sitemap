@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/pii-purifier
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 2766388e4ffb320cb3fb09c61a7531d66ddac3ac80311f27c0d6b57a6dfbd290
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 58bdb750c0f9cc11ef423fcfa218d949ea93eb78529fe222a834c7b5b6b8390b
 ---
 
 # PII purifier
@@ -11,7 +11,7 @@ Automatically detect and remove personally identifiable information (PII) from t
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

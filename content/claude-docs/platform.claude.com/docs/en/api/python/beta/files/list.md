@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 60bb738bd8283bfed63573fdd81badf948566e699ddd12677470353d4f0e5277
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 1dade284d5f61b9fb03f5eaee7da5b398031d23dd14cec10f0d4514f58f05ad8
 ---
 
 ## List
@@ -114,3 +114,17 @@ List Files
   - `downloadable: Optional[bool]`
 
     Whether the file can be downloaded.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+page = client.beta.files.list()
+page = page.data[0]
+print(page.id)
+```

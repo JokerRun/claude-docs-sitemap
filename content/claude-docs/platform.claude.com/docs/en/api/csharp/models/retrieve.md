@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/models/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 42de03f8964ba7382ab5dc778b795d02be817cc8dacca4fd83e88696770059b7
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 8e4b34749e3b5358143759b036a3c285843fb0109cd47a821944848ea04789f0
 ---
 
 ## Retrieve
@@ -88,3 +88,13 @@ The Models API response can be used to determine information about a specific mo
     Object type.
 
     For Models, this is always `"model"`.
+
+### Example
+
+```csharp
+ModelRetrieveParams parameters = new() { ModelID = "model_id" };
+
+var modelInfo = await client.Models.Retrieve(parameters);
+
+Console.WriteLine(modelInfo);
+```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/google-apps-scripter
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: fd93936577f203f06c34e6287de42900f1eea3a0cd0b715ec06b1493f21dd305
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: da41c2564ee9cb994fda906f8696598025ae7f6f75a4c374474340edf72371e9
 ---
 
 # Google apps scripter
@@ -11,7 +11,7 @@ Generate Google Apps scripts to complete tasks based on user requirements.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |      | Content                                                                                               |
 | ---- | ----------------------------------------------------------------------------------------------------- |

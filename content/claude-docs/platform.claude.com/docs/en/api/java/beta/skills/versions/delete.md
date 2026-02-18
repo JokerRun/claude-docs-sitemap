@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: ef7e3c15222dd242352e9ac81739878cfa06eec58c58ba904d8f4e7ca09211fe
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 84ee1e26050025a84d5a31d60f5313be1ea1cd1882b6c5ba3e831c9c5be469d2
 ---
 
 ## Delete
@@ -88,3 +88,28 @@ Delete Skill Version
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.skills.versions.VersionDeleteParams;
+import com.anthropic.models.beta.skills.versions.VersionDeleteResponse;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        VersionDeleteParams params = VersionDeleteParams.builder()
+            .skillId("skill_id")
+            .version("version")
+            .build();
+        VersionDeleteResponse version = client.beta().skills().versions().delete(params);
+    }
+}
+```

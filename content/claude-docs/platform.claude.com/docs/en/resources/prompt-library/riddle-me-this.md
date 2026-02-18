@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/riddle-me-this
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 54629e7528cdee6741b552d8586b32a6fe312536c3f8593c428407da487a152d
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 78b07fd58b836d8e17c7551eb97111db0bb4a06271e1afd3a38b95313ebb47b5
 ---
 
 # Riddle me this
@@ -11,7 +11,7 @@ Generate riddles and guide the user to the solutions.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 | Role | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

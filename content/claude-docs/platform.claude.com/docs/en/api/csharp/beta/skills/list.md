@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 2dfe65f1e0ad8330f611ec6f1aca49539e477987c5632d133071a968ac9304b1
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 1dc7b6e0e457a83bba16ad6d1940d3f06e8645bdbaefbe6f53da40595e6e5816
 ---
 
 ## List
@@ -142,3 +142,15 @@ List Skills
     Token for fetching the next page of results.
 
     If `null`, there are no more results available. Pass this value to the `page_token` parameter in the next request to get the next page.
+
+### Example
+
+```csharp
+SkillListParams parameters = new();
+
+var page = await client.Beta.Skills.List(parameters);
+await foreach (var item in page.Paginate())
+{
+    Console.WriteLine(item);
+}
+```

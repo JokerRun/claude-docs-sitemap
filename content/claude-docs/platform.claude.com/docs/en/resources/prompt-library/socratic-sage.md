@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/socratic-sage
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: af9b73587446d7b3c44cfebdbf48dc721632652df762c478cf88ce71af48f14a
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: f8e025b677ba87c8d49582334c7e6973c7d3911a7a64447557fa9ee7f8a1e01c
 ---
 
 # Socratic sage
@@ -11,7 +11,7 @@ Engage in Socratic style conversation over a user-given topic.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                 |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

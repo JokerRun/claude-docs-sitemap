@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 32748e7c9a82a462e54e6dfc7da6cbf36179e9eb42c64737d26cb46289497701
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: da0d36e4c129fae602f66d78b5a8d3c4ca44f16d10d7cdcce1ada501d52acacd
 ---
 
 # Files
@@ -106,6 +106,18 @@ Upload File
   - `downloadable: bool`
 
     Whether the file can be downloaded.
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+file_metadata = anthropic.beta.files.upload(file: Pathname(__FILE__))
+
+puts(file_metadata)
+```
 
 ## List
 
@@ -217,6 +229,18 @@ List Files
 
     Whether the file can be downloaded.
 
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+page = anthropic.beta.files.list
+
+puts(page)
+```
+
 ## Download
 
 `beta.files.download(file_id, **kwargs) -> StringIO`
@@ -282,6 +306,18 @@ Download File
 ### Returns
 
 - `StringIO`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+response = anthropic.beta.files.download("file_id")
+
+puts(response)
+```
 
 ## Retrieve Metadata
 
@@ -383,6 +419,18 @@ Get File Metadata
 
     Whether the file can be downloaded.
 
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+file_metadata = anthropic.beta.files.retrieve_metadata("file_id")
+
+puts(file_metadata)
+```
+
 ## Delete
 
 `beta.files.delete(file_id, **kwargs) -> DeletedFile`
@@ -460,6 +508,18 @@ Delete File
     For file deletion, this is always `"file_deleted"`.
 
     - `:file_deleted`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+deleted_file = anthropic.beta.files.delete("file_id")
+
+puts(deleted_file)
+```
 
 ## Domain Types
 

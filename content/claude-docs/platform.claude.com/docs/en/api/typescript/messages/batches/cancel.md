@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/cancel
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 44f312f2b29a7d17d7fa8bd983682017e4e3ead697acd9d312191f0284f1cb69
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: a9b39fec2334f9cf14a3a68dff436006b889ecaf9b3f5b4d9252276422e8af90
 ---
 
 ## Cancel
@@ -112,3 +112,17 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
+
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+const messageBatch = await client.messages.batches.cancel('message_batch_id');
+
+console.log(messageBatch.id);
+```

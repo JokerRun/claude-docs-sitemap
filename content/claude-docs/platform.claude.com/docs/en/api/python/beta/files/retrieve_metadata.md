@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/retrieve_metadata
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 49caf344056705970aecdf31d7e54508436ba1f3efb23698a2103e8233ce7b85
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: f2156364b20ace90abc587cb36ebc79be14d4c5285026e724ebe1a92ae8cee41
 ---
 
 ## Retrieve Metadata
@@ -104,3 +104,18 @@ Get File Metadata
   - `downloadable: Optional[bool]`
 
     Whether the file can be downloaded.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+file_metadata = client.beta.files.retrieve_metadata(
+    file_id="file_id",
+)
+print(file_metadata.id)
+```

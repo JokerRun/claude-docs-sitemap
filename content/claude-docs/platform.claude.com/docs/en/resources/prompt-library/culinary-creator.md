@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/culinary-creator
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 7259befb75e793200f483d0d3cbb26fcd34d93c04709a62157043ba47ea1735b
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 21b711b88b9f10d61b75388dc049c1bf2735590c548ac13a6323a8fb112de32f
 ---
 
 # Culinary creator
@@ -11,7 +11,7 @@ Suggest recipe ideas based on the user's available ingredients and dietary prefe
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

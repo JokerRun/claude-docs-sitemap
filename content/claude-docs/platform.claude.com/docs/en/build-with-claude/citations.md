@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 44573752b8dcec47dff33034a396dda5a6790386e2f6a7d1124e302d5eb3771c
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 7e8dc48703eaa38afb0908f21145119239347d32b111613d8aa9c65f306c2846
 ---
 
 # Citations
@@ -13,13 +13,6 @@ Claude is capable of providing detailed citations when answering questions about
 
 All [active models](/docs/en/about-claude/models/overview) support citations, with the exception of Haiku 3.
 
-<Warning>
-*Citations with Claude Sonnet 3.7*
-
-Claude Sonnet 3.7 may be less likely to make citations compared to other Claude models without more explicit instructions from the user. When using citations with Claude Sonnet 3.7, we recommend including additional instructions in the `user` turn, like `"Use citations to back up your answer."` for example.
-
-We've also observed that when the model is asked to structure its response, it is unlikely to use citations unless explicitly told to use citations within that format. For example, if the model is asked to use `<result>` tags in its response, you should add something like `"Always use citations in your answer, even within <result> tags."`
-</Warning>
 <Tip>
   Please share your feedback and suggestions about the citations feature using this [form](https://forms.gle/9n9hSrKnKe3rpowH9).
 </Tip>

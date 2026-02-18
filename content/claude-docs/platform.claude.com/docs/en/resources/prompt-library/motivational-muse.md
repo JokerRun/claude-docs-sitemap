@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/motivational-muse
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 15f4263aaed59363e3264bbbc8936caf4a481b0188dbd767e05086103167cc4c
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: a1767a56bf0cf5ecc120cf2bd028f2988e5705c1ab55ddcf1d692e381ccbab83
 ---
 
 # Motivational muse
@@ -11,7 +11,7 @@ Provide personalized motivational messages and affirmations based on user input.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

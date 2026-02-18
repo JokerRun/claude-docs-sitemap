@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 16e3bf05701d65f76f461b6d01ae059ca2d663607761075cd9d7dab80de90350
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 562212d728e6109d9ae7ce5d4a3fb6520f15f0a43df323128c7997fa8d6f2366
 ---
 
 ## Retrieve
@@ -122,3 +122,19 @@ Get Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+version = client.beta.skills.versions.retrieve(
+    version="version",
+    skill_id="skill_id",
+)
+print(version.id)
+```

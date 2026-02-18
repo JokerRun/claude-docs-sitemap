@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 7a5005eff108975e21852626287acb0aa0fe912af23b923ca0c4fdd0189f7111
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: dd000172be62477b240aa911c38c9d8c58227b11caa05645ccb18edefd608872
 ---
 
 ## List
@@ -178,3 +178,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
   - `required string? LastID`
 
     Last ID in the `data` list. Can be used as the `after_id` for the next page.
+
+### Example
+
+```csharp
+BatchListParams parameters = new();
+
+var page = await client.Beta.Messages.Batches.List(parameters);
+await foreach (var item in page.Paginate())
+{
+    Console.WriteLine(item);
+}
+```

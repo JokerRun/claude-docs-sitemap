@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: d2b41dbd8978b5b1ba1b12bddc4a566bb6bb0c708b884e25478ba38f54a15042
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: da0ed11354fc5c820406b66bf3de7b282c08ee9ebc21b1e2d64adad1ee270d0b
 ---
 
 # Context editing
@@ -34,6 +34,10 @@ Context editing allows you to selectively clear specific content from conversati
 Context editing is currently in beta with support for tool result clearing and thinking block clearing. To enable it, use the beta header `context-management-2025-06-27` in your API requests.
 
 Share feedback on this feature through the [feedback form](https://forms.gle/YXC2EKGMhjN1c4L88).
+</Note>
+
+<Note>
+This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
 </Note>
 
 ### Tool result clearing
@@ -74,6 +78,7 @@ Context editing is available on:
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 - Claude Opus 4.1 (`claude-opus-4-1-20250805`)
 - Claude Opus 4 (`claude-opus-4-20250514`)
+- Claude Sonnet 4.6 (`claude-sonnet-4-6`)
 - Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Sonnet 4 (`claude-sonnet-4-20250514`)
 - Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)

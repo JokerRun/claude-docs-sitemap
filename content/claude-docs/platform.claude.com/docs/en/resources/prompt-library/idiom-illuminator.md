@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/idiom-illuminator
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: f00e840dc55ad5801eca209d0002e7bd25d7be4c31d8fb8b483597feee51c3b3
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: cdc5c776ac07a262ba0d04afc8f4b969840e9ec77a0ade22675c1eda6f0cb4c7
 ---
 
 # Idiom illuminator
@@ -11,7 +11,7 @@ Explain the meaning and origin of common idioms and proverbs.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

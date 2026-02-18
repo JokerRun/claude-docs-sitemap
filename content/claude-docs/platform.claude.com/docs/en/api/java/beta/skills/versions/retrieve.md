@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 6150591957c2ed98f36430694bbc3f3dee720fb919363cc7e6ff1e11c185e590
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 1f974142eba3cf3e735f905ac7dbb1d52a10099553f00ada57d304b28a84f28e
 ---
 
 ## Retrieve
@@ -120,3 +120,28 @@ Get Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.skills.versions.VersionRetrieveParams;
+import com.anthropic.models.beta.skills.versions.VersionRetrieveResponse;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        VersionRetrieveParams params = VersionRetrieveParams.builder()
+            .skillId("skill_id")
+            .version("version")
+            .build();
+        VersionRetrieveResponse version = client.beta().skills().versions().retrieve(params);
+    }
+}
+```

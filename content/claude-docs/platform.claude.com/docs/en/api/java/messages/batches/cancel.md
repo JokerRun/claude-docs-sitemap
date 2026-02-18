@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/cancel
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: db768d7991919c6228b01e23ba3c3944051479fb8f60486edaf6becd23a375bd
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 1839e1ce519275e06452a811f7eb16628dba51fee26deb770677aa8894b7a5b3
 ---
 
 ## Cancel
@@ -114,3 +114,24 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `MESSAGE_BATCH("message_batch")`
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.batches.BatchCancelParams;
+import com.anthropic.models.messages.batches.MessageBatch;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageBatch messageBatch = client.messages().batches().cancel("message_batch_id");
+    }
+}
+```

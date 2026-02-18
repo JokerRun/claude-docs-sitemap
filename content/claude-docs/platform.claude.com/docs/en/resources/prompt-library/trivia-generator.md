@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/trivia-generator
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 3f8822b44c0d8ac3f96712314ef041873579d4969b670c2f2202ab4d8f94f7a1
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: ced1233c72d897a010cb11ba8da9c4fb816cdb7d58db47be78c1186f861f2e0b
 ---
 
 # Trivia generator
@@ -11,7 +11,7 @@ Generate trivia questions on a wide range of topics and provide hints when neede
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 | Role | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/corporate-clairvoyant
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 1a5a27f125d0e8c1cfa118aa5706d2dab7e39eebbaf4f9dbba245152990b1355
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: b5aa3ef047ddb551d43419fffa638b107bdf7a00547e9b8077bad90b319dca2e
 ---
 
 # Corporate clairvoyant
@@ -11,7 +11,7 @@ Extract insights, identify risks, and distill key information from long corporat
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |      | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

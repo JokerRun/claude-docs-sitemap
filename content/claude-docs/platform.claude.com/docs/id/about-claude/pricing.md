@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 9fbd3783bd21edf7143ff88f40c6f5b454e3d0ff594e98293d066b31c8c04065
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 83caf5edaf2c8606919125abfdfe8912bafc6b327652665ce46697a618445628
 ---
 
 # Harga
@@ -25,6 +25,7 @@ Tabel berikut menunjukkan harga untuk semua model Claude di berbagai tingkat pen
 | Claude Opus 4.5   | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.1   | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
 | Claude Opus 4     | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
+| Claude Sonnet 4.6   | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
 | Claude Sonnet 4.5   | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
 | Claude Sonnet 4   | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
 | Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)) | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
@@ -85,6 +86,7 @@ Batch API memungkinkan pemrosesan asinkron volume besar permintaan dengan diskon
 | Claude Opus 4.5     | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.1     | $7.50 / MTok     | $37.50 / MTok   |
 | Claude Opus 4     | $7.50 / MTok     | $37.50 / MTok   |
+| Claude Sonnet 4.6   | $1.50 / MTok     | $7.50 / MTok    |
 | Claude Sonnet 4.5   | $1.50 / MTok     | $7.50 / MTok    |
 | Claude Sonnet 4   | $1.50 / MTok     | $7.50 / MTok    |
 | Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)) | $1.50 / MTok     | $7.50 / MTok    |
@@ -166,6 +168,7 @@ When you use `tools`, we also automatically include a special system prompt for 
 | Claude Opus 4.5            | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Opus 4.1            | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Opus 4            | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
+| Claude Sonnet 4.6          | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Sonnet 4.5          | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Sonnet 4          | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
 | Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))        | `auto`, `none`<hr />`any`, `tool`   | 346 tokens<hr />313 tokens |
@@ -196,10 +199,26 @@ Lihat [harga penggunaan alat](#tool-use-pricing) untuk detail harga lengkap.
 
 #### Alat eksekusi kode
 
-Code execution tool usage is tracked separately from token usage. Execution time has a minimum of 5 minutes.
-If files are included in the request, execution time is billed even if the tool is not used due to files being preloaded onto the container.
+**Code execution is free when used with web search or web fetch.** When `web_search_20260209` or `web_fetch_20260209` is included in your API request, there are no additional charges for code execution tool calls beyond the standard input and output token costs.
 
-Each organization receives 1,550 free hours of usage with the code execution tool per month. Additional usage beyond the first 1,550 hours is billed at $0.05 per hour, per container.
+When used without these tools, code execution is billed by execution time, tracked separately from token usage:
+
+- Execution time has a minimum of 5 minutes
+- Each organization receives **1,550 free hours** of usage per month
+- Additional usage beyond 1,550 hours is billed at **$0.05 per hour, per container**
+- If files are included in the request, execution time is billed even if the tool is not invoked, due to files being preloaded onto the container
+
+Code execution usage is tracked in the response:
+
+```json
+"usage": {
+  "input_tokens": 105,
+  "output_tokens": 239,
+  "server_tool_use": {
+    "code_execution_requests": 1
+  }
+}
+```
 
 #### Alat editor teks
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/download
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: c99e89543ccc608dd8fdac1470958388e7c70a41ec1ec4b8bbee89afa153ceda
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: f13ade7f31feccf801ecf8b6e3c82e32594a721a8695f04fa7243ee93270335c
 ---
 
 ## Download
@@ -70,3 +70,20 @@ Download File
 ### Returns
 
 - `BinaryResponseContent`
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+response = client.beta.files.download(
+    file_id="file_id",
+)
+print(response)
+content = response.read()
+print(content)
+```

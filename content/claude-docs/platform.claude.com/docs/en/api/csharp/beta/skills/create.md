@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/create
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: b127f86024623b92fdba9c7f9e26f85c900e8c5d444bf378470273b35437fe10
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 4a666c02626b531e94f1c578e06ba99c915dd8e5c0ce34504c32e80d05173b8b
 ---
 
 ## Create
@@ -117,3 +117,13 @@ Create Skill
   - `required string UpdatedAt`
 
     ISO 8601 timestamp of when the skill was last updated.
+
+### Example
+
+```csharp
+SkillCreateParams parameters = new();
+
+var skill = await client.Beta.Skills.Create(parameters);
+
+Console.WriteLine(skill);
+```

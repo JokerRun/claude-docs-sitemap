@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/php
-fetched_at: 2026-02-07T04:10:25.616975Z
-sha256: eb2f9a9b35bff2a52b3128233db05aacbf4ba21e251f5ad778cb97910bcc3658
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: ec0ec3880dd51f2000a81db9ea310d440cefc075d2a8fd60ea49c11c97a28eb2
 ---
 
 # PHP SDK
@@ -168,7 +168,7 @@ $client = new Client(
   apiKey: getenv("ANTHROPIC_API_KEY") ?: "my-anthropic-api-key"
 );
 
-$page = $client->beta->messages->batches->list();
+$page = $client->beta->messages->batches->list(limit: 20);
 
 var_dump($page);
 
@@ -228,6 +228,12 @@ $response = $client->request(
   body: ['hello' => 'world']
 );
 ```
+
+## Semantic versioning
+
+This package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions. As the library is in initial development and has a major version of `0`, APIs may change at any time.
+
+This package considers improvements to the (non-runtime) PHPDoc type definitions to be non-breaking changes.
 
 ## Additional resources
 

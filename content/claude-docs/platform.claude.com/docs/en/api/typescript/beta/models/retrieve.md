@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/models/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 8f700717fe56e79b10b44578d7a16ade28de38b9679135e7da35b6bb3f213710
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 051e8ed56de244ff2c5e8530068bac9ca0b7b47c493aec94ae15d14ce2cf1b4f
 ---
 
 ## Retrieve
@@ -94,3 +94,17 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `"model"`
+
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+const betaModelInfo = await client.beta.models.retrieve('model_id');
+
+console.log(betaModelInfo.id);
+```

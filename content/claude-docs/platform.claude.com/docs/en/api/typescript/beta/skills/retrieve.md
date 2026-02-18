@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: a095797e70d911cae85d9a999c24fbdb95361fdd3c72bd8ea2644fdc3e2ac2a5
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 119e21c811f2b162d60a40bb260a3dcc8dde591de407879aa26bb537f6e8afe1
 ---
 
 ## Retrieve
@@ -115,3 +115,17 @@ Get Skill
   - `updated_at: string`
 
     ISO 8601 timestamp of when the skill was last updated.
+
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+const skill = await client.beta.skills.retrieve('skill_id');
+
+console.log(skill.id);
+```

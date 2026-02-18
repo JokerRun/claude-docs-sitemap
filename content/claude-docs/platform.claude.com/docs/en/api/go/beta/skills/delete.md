@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: f013e85bee63b254f13e90526bb183163fe493296e2b75faaa1f8b2ff442a07f
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: a3938ea406aa531b087465253884f98b93a540f088ca51963344842bd15e92e7
 ---
 
 ## Delete
@@ -86,3 +86,34 @@ Delete Skill
     Deleted object type.
 
     For Skills, this is always `"skill_deleted"`.
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  skill, err := client.Beta.Skills.Delete(
+    context.TODO(),
+    "skill_id",
+    anthropic.BetaSkillDeleteParams{
+
+    },
+  )
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", skill.ID)
+}
+```

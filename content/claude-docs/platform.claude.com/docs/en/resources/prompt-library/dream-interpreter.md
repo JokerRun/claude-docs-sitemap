@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/dream-interpreter
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: b57e03fe36754129ad8d9e270a77716eeba2d700b569108ec0b3f4680df77804
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 59ca016a03e2b8bb86eb5933f5961f2e9b00da9da45a50bcaf8c7b31a764ad23
 ---
 
 # Dream interpreter
@@ -11,7 +11,7 @@ Offer interpretations and insights into the symbolism of the user's dreams.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

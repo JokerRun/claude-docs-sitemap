@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 3c96d00947bcca094b7a1c5b550f34618ac2cf5e4908d59719b27fb55ac9cf15
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 10bcf4146586a612c4462ffd5913cdf2f2a4871466d866f08dde66c1268f81e4
 ---
 
 ## Retrieve
@@ -111,3 +111,13 @@ Get Skill
   - `required string UpdatedAt`
 
     ISO 8601 timestamp of when the skill was last updated.
+
+### Example
+
+```csharp
+SkillRetrieveParams parameters = new() { SkillID = "skill_id" };
+
+var skill = await client.Beta.Skills.Retrieve(parameters);
+
+Console.WriteLine(skill);
+```

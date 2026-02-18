@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: d1a909b935b106d8663251efe2513166f68d8d6c1022036fc8872f2feabc858d
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 2bf37319aa595faae4d32231ff8cf5225d2ac16a75d4bd6ebd154097478914b9
 ---
 
 ## Delete
@@ -84,3 +84,18 @@ Delete Skill
     Deleted object type.
 
     For Skills, this is always `"skill_deleted"`.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+skill = client.beta.skills.delete(
+    skill_id="skill_id",
+)
+print(skill.id)
+```

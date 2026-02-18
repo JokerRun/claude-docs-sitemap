@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-02-04T04:12:50.357302Z
-sha256: 60a09b8e54b081c457b593dc9e4ff19faaf13452078677a742b99e8fa732ea46
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 8ab2b8016b021316bf8b40f6deac89d878c4d9f3b4d958f9640f303d3c7bf1c6
 ---
 
 > ## Documentation Index
@@ -296,7 +296,7 @@ Incremented after each API request.
 **Attributes**:
 
 * All [standard attributes](#standard-attributes)
-* `model`: Model identifier (for example, "claude-sonnet-4-5-20250929")
+* `model`: Model identifier (for example, "claude-sonnet-4-6")
 
 #### Token counter
 
@@ -306,7 +306,7 @@ Incremented after each API request.
 
 * All [standard attributes](#standard-attributes)
 * `type`: (`"input"`, `"output"`, `"cacheRead"`, `"cacheCreation"`)
-* `model`: Model identifier (for example, "claude-sonnet-4-5-20250929")
+* `model`: Model identifier (for example, "claude-sonnet-4-6")
 
 #### Code edit tool decision counter
 
@@ -381,7 +381,7 @@ Logged for each API request to Claude.
 * `event.name`: `"api_request"`
 * `event.timestamp`: ISO 8601 timestamp
 * `event.sequence`: monotonically increasing counter for ordering events within a session
-* `model`: Model used (for example, "claude-sonnet-4-5-20250929")
+* `model`: Model used (for example, "claude-sonnet-4-6")
 * `cost_usd`: Estimated cost in USD
 * `duration_ms`: Request duration in milliseconds
 * `input_tokens`: Number of input tokens
@@ -401,7 +401,7 @@ Logged when an API request to Claude fails.
 * `event.name`: `"api_error"`
 * `event.timestamp`: ISO 8601 timestamp
 * `event.sequence`: monotonically increasing counter for ordering events within a session
-* `model`: Model used (for example, "claude-sonnet-4-5-20250929")
+* `model`: Model used (for example, "claude-sonnet-4-6")
 * `error`: Error message
 * `status_code`: HTTP status code (if applicable)
 * `duration_ms`: Request duration in milliseconds

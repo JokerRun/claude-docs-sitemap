@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: d76e385d54bb0b9c69e318e68756c84550de4e956d652a733c02b5a51c33d2b5
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 863e79c31ac476a644d3b7d4117b01f9424f6d821f3eeb4e86320c976d605b2c
 ---
 
 ## Delete
@@ -84,3 +84,34 @@ Delete File
     For file deletion, this is always `"file_deleted"`.
 
     - `const DeletedFileTypeFileDeleted DeletedFileType = "file_deleted"`
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  deletedFile, err := client.Beta.Files.Delete(
+    context.TODO(),
+    "file_id",
+    anthropic.BetaFileDeleteParams{
+
+    },
+  )
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", deletedFile.ID)
+}
+```

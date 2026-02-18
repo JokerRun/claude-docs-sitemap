@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/create
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 9b1d5c02248fe2baf76879018916df86321e8eb748a8abf62c5ec4ba97ba266a
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 8143ca5e7fe8aed6c62cfc6d0bbd1d42e8382ed5e66b00d144da0e9bfe1de21b
 ---
 
 ## Create
@@ -121,3 +121,30 @@ Create Skill
   - `UpdatedAt string`
 
     ISO 8601 timestamp of when the skill was last updated.
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  skill, err := client.Beta.Skills.New(context.TODO(), anthropic.BetaSkillNewParams{
+
+  })
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", skill.ID)
+}
+```

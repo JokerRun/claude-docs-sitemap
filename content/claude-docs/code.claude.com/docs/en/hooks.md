@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-02-07T04:10:25.616975Z
-sha256: 2444850a0d5326c40c4e7e0a2bf6341f6db682f428424752a1cc91ea5088d359
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: c925d1b04ee1150b7d2eaf86cc18f800d3b65ed0b60f583258591ca76bb30af4
 ---
 
 > ## Documentation Index
@@ -586,7 +586,7 @@ In addition to the [common input fields](#common-input-fields), SessionStart hoo
   "permission_mode": "default",
   "hook_event_name": "SessionStart",
   "source": "startup",
-  "model": "claude-sonnet-4-5-20250929"
+  "model": "claude-sonnet-4-6"
 }
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/pun-dit
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 419d85fda6d40ab19a2b6bd7995325cb3877ff39f00df30bec713d896a03696e
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: c0fd62d3d1575cd00233bbc7529d627b7a61174bd7e6d7852cae825176c4a69b
 ---
 
 # Pun-dit
@@ -11,7 +11,7 @@ Generate clever puns and wordplay based on any given topic.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                  |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

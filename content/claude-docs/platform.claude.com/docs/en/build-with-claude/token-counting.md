@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: c465eaf3460a8ac5f40a3016abc4863e267f35ce862b410032d7223cc114ade7
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 3097ce608e1a88e74fb7bc3dde8f9027022b7b01a47d88f7c1560856b1597d0c
 ---
 
 # Token counting
@@ -13,6 +13,11 @@ Token counting enables you to determine the number of tokens in a message before
 - Proactively manage rate limits and costs
 - Make smart model routing decisions
 - Optimize prompts to be a specific length
+
+<Note>
+This feature is [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) eligible. When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+</Note>
+
 ---
 
 ## How to count message tokens
@@ -439,7 +444,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     --header "content-type: application/json" \
     --header "anthropic-version: 2023-06-01" \
     --data '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-sonnet-4-6",
       "thinking": {
         "type": "enabled",
         "budget_tokens": 16000
@@ -477,7 +482,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.count_tokens(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-4-6",
     thinking={"type": "enabled", "budget_tokens": 16000},
     messages=[
         {
@@ -511,7 +516,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.countTokens({
-  model: "claude-sonnet-4-5",
+  model: "claude-sonnet-4-6",
   thinking: {
     type: "enabled",
     budget_tokens: 16000

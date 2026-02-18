@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 51c07d7f4cf074076b5b41b5e0a456b239338b4caaaf70f53f5b5fbe6597b556
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 295ba4c25d912cf6f7244f9a591f97b7369c925ab668bf140e96c5a5346e1bb1
 ---
 
 # Using the Messages API
@@ -12,6 +12,10 @@ Practical patterns and examples for using the Messages API effectively
 ---
 
 This guide covers common patterns for working with the Messages API, including basic requests, multi-turn conversations, prefill techniques, and vision capabilities. For complete API specifications, see the [Messages API reference](/docs/en/api/messages).
+
+<Note>
+This feature is [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) eligible. When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+</Note>
 
 ## Basic request and response
 
@@ -234,7 +238,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
 ```
 
 <Warning>
-Prefilling is deprecated and not supported on Claude Opus 4.6 and Claude Sonnet 4.5. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) or system prompt instructions instead.
+Prefilling is deprecated and not supported on Claude Opus 4.6, Claude Sonnet 4.6, and Claude Sonnet 4.5. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) or system prompt instructions instead.
 </Warning>
 
 ## Vision

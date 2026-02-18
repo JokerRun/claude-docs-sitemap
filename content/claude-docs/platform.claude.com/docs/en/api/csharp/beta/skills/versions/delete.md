@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: b0bc569a3e634c887f4eece152b3e42873bd2d5983f5ebcc7cbc8a6059e99ffe
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 2bb49e0849e801a666adbf7f67c41174bfbec5fb0030342d283430454df3cfc5
 ---
 
 ## Delete
@@ -88,3 +88,17 @@ Delete Skill Version
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
+
+### Example
+
+```csharp
+VersionDeleteParams parameters = new()
+{
+    SkillID = "skill_id",
+    Version = "version",
+};
+
+var version = await client.Beta.Skills.Versions.Delete(parameters);
+
+Console.WriteLine(version);
+```

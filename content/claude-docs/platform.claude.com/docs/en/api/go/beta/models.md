@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/models
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 9c684e844110de98e44d3be56d3fcf9ae2b571545f76acea9e4109ad07792e52
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 7f2f4d8eb8814fad75bf5899d0730c841a3f70716b2e4da4a15914e79c367b5b
 ---
 
 # Models
@@ -107,6 +107,33 @@ The Models API response can be used to determine which models are available for 
 
     - `const ModelModel Model = "model"`
 
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  page, err := client.Beta.Models.List(context.TODO(), anthropic.BetaModelListParams{
+
+  })
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", page)
+}
+```
+
 ## Retrieve
 
 `client.Beta.Models.Get(ctx, modelID, query) (*BetaModelInfo, error)`
@@ -196,6 +223,37 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `const ModelModel Model = "model"`
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  betaModelInfo, err := client.Beta.Models.Get(
+    context.TODO(),
+    "model_id",
+    anthropic.BetaModelGetParams{
+
+    },
+  )
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", betaModelInfo.ID)
+}
+```
 
 ## Domain Types
 

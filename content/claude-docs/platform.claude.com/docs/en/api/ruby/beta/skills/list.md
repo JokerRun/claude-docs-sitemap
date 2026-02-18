@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 650637b713bf64f0b537e9290144e8c76e915b2d9ac533e87ac0c62cf45f3938
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 89c7b2378f6d56a5862939eddb7dd616dbe06ea78d652fc206fdc998dbbdef70
 ---
 
 ## List
@@ -128,3 +128,15 @@ List Skills
   - `updated_at: String`
 
     ISO 8601 timestamp of when the skill was last updated.
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+page = anthropic.beta.skills.list
+
+puts(page)
+```

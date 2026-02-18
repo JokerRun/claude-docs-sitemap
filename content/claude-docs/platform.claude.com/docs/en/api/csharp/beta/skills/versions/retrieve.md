@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: cd7557600236336606caa999565a9954d7ea039cd9846b0833a3961a78abcf6e
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 8f39412b366868d34d858df261f3555f4d0ab05484ff54e8801db1021ac5d8a7
 ---
 
 ## Retrieve
@@ -120,3 +120,17 @@ Get Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```csharp
+VersionRetrieveParams parameters = new()
+{
+    SkillID = "skill_id",
+    Version = "version",
+};
+
+var version = await client.Beta.Skills.Versions.Retrieve(parameters);
+
+Console.WriteLine(version);
+```

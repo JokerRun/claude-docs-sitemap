@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/legal-and-compliance
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: 773c24daa75cf3853f754f36125add8df53b9d00cafd8f188ebaba6161878a7e
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 255e31b55475481c4969dadad71392b896bd82937879daa831f1d25a3ebdc655
 ---
 
 > ## Documentation Index
@@ -20,7 +20,7 @@ sha256: 773c24daa75cf3853f754f36125add8df53b9d00cafd8f188ebaba6161878a7e
 Your use of Claude Code is subject to:
 
 * [Commercial Terms](https://www.anthropic.com/legal/commercial-terms) - for Team, Enterprise, and Claude API users
-* [Consumer Terms](https://www.anthropic.com/legal/consumer-terms) - for Free, Pro, and Max users
+* [Consumer Terms of Service](https://www.anthropic.com/legal/consumer-terms) - for Free, Pro, and Max users
 
 ### Commercial agreements
 
@@ -31,6 +31,23 @@ Whether you're using the Claude API directly (1P) or accessing it through AWS Be
 ### Healthcare compliance (BAA)
 
 If a customer has a Business Associate Agreement (BAA) with us, and wants to use Claude Code, the BAA will automatically extend to cover Claude Code if the customer has executed a BAA and has Zero Data Retention (ZDR) activated. The BAA will be applicable to that customer's API traffic flowing through Claude Code.
+
+## Usage policy
+
+### Acceptable use
+
+Claude Code usage is subject to the [Anthropic Usage Policy](https://www.anthropic.com/legal/aup). Advertised usage limits for Pro and Max plans assume ordinary, individual usage of Claude Code and the Agent SDK.
+
+### Authentication and credential use
+
+Claude Code authenticates with Anthropic's servers using OAuth tokens or API keys. These authentication methods serve different purposes:
+
+* **OAuth authentication** (used with Free, Pro, and Max plans) is intended exclusively for Claude Code and Claude.ai. Using OAuth tokens obtained through Claude Free, Pro, or Max accounts in any other product, tool, or service — including the [Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview) — is not permitted and constitutes a violation of the [Consumer Terms of Service](https://www.anthropic.com/legal/consumer-terms).
+* **Developers** building products or services that interact with Claude's capabilities, including those using the [Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview), should use API key authentication through [Claude Console](https://platform.claude.com/) or a supported cloud provider. Anthropic does not permit third-party developers to offer Claude.ai login or to route requests through Free, Pro, or Max plan credentials on behalf of their users.
+
+Anthropic reserves the right to take measures to enforce these restrictions and may do so without prior notice.
+
+For questions about permitted authentication methods for your use case, please [contact sales](https://www.anthropic.com/contact-sales).
 
 ## Security and trust
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/philosophical-musings
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 5ab0819196441c1c8ae50d13ecd9aabc89329694a470ebec09a88930bbf0bc8c
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 04cc7466ead39c8003d17d240060d227e0e106198f23200977ed76e473691959
 ---
 
 # Philosophical musings
@@ -11,7 +11,7 @@ Engage in deep philosophical discussions and thought experiments.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                      |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

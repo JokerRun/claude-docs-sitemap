@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/models/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 102ca23339141d2889d15df07888c607bee229d6e5edbf8076ada6f31dee0a71
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 72e5762f9221f891e053fb2bb3efa0839d65e9e418ed277c27deac6ed1b195f7
 ---
 
 ## Retrieve
@@ -88,3 +88,13 @@ The Models API response can be used to determine information about a specific mo
     Object type.
 
     For Models, this is always `"model"`.
+
+### Example
+
+```csharp
+ModelRetrieveParams parameters = new() { ModelID = "model_id" };
+
+var betaModelInfo = await client.Beta.Models.Retrieve(parameters);
+
+Console.WriteLine(betaModelInfo);
+```

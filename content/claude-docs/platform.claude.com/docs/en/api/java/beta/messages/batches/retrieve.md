@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 939e37499581279dd6e45fe83c9082e3829674323d2fc2f30e9245190ff3e166
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 457213a5bd13bcc87492f63527d80184a25e23a8126d74aa180e45bc09455fa6
 ---
 
 ## Retrieve
@@ -156,3 +156,24 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `MESSAGE_BATCH("message_batch")`
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.messages.batches.BatchRetrieveParams;
+import com.anthropic.models.beta.messages.batches.BetaMessageBatch;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        BetaMessageBatch betaMessageBatch = client.beta().messages().batches().retrieve("message_batch_id");
+    }
+}
+```

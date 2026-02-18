@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/airport-code-analyst
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 1d0eb2bdbb3c68102aadc9faf0050027b3ed611384fd96a840b535f8beb98b55
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: c14ea3c0159aba4f08ff0aab20c5b7066dcaea85629530125323390790d921da
 ---
 
 # Airport code analyst
@@ -11,7 +11,7 @@ Find and extract airport codes from text.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                        |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

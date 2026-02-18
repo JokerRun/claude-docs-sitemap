@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/code-clarifier
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 7269164578014cb2b77993593714381c3f1e241b1987dfb5b7bc4721446a5ec5
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 6363ed756ee77d4eff46d2beff1a47228f012d34110824d98322cf0c5349a1e7
 ---
 
 # Code clarifier
@@ -11,7 +11,7 @@ Simplify and explain complex code in plain language.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/interview-question-crafter
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 6697783a59fdbe9a4fd7454dbca71845121d41267086d5a33c7793c5d847eb7f
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 09b764ec2cdd5afcb8481dd9acfe51e7793d6dd4aa5aa200a50458158e4247ba
 ---
 
 # Interview question crafter
@@ -11,7 +11,7 @@ Generate questions for interviews.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

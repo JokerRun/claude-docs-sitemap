@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/alien-anthropologist
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 44cb204c9a62c6069593821ce4f85e5a0354948b72ec9df8bbafe29fe4fe3c68
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 1d58f605758d99079249d3c3910a6c664828e13e96fb496b98dcd3fafd42dbd8
 ---
 
 # Alien anthropologist
@@ -11,7 +11,7 @@ Analyze human culture and customs from the perspective of an alien anthropologis
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                           |
 | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

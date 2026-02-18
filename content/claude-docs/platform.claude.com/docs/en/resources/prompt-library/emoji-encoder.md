@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/emoji-encoder
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: f65eb170e2d709c7a77ddf094dad5810dbb6399b2b6988e7ab142c6d714056da
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 80944d4de1f2dc67f86c0d9c097061ba7cea87dbfc1af267a097bf1e2d7b7d9a
 ---
 
 # Emoji encoder
@@ -11,7 +11,7 @@ Convert plain text into fun and expressive emoji messages.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

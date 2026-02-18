@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/models/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 107f90e36ea4ef5c0d1002b35d8befbac8300d420b4191739ab451da22cd8f90
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: de98152e70d45f39b81fffa3d93890083e959780386212ef59eed1a89080df87
 ---
 
 ## Retrieve
@@ -94,3 +94,34 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `const ModelModel Model = "model"`
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  betaModelInfo, err := client.Beta.Models.Get(
+    context.TODO(),
+    "model_id",
+    anthropic.BetaModelGetParams{
+
+    },
+  )
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", betaModelInfo.ID)
+}
+```

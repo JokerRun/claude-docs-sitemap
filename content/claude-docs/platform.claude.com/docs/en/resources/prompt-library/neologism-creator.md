@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/neologism-creator
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 1bfc49a973f284324e51c4b15806472d914d7a0fe4b566763951c9812485a2c7
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: db0b2389b64383c7d609a72af2f6215f60e93cc1bb38a0f8d5b7c1230950e277
 ---
 
 # Neologism creator
@@ -11,7 +11,7 @@ Invent new words and provide their definitions based on user-provided concepts o
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |      | Content                                                                                                                               |
 | ---- | ------------------------------------------------------------------------------------------------------------------------------------- |

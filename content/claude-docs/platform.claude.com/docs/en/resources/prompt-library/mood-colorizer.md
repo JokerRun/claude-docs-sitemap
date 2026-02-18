@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/mood-colorizer
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: a469807be44688c5aab80793db042c488b551e24ffb558874baa872579500a74
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: aa1b94d35a06942beb377dd14862053f7d152dfbd2fdc528ef1c30b08bee0093
 ---
 
 # Mood colorizer
@@ -11,7 +11,7 @@ Transform text descriptions of moods into corresponding HEX codes.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

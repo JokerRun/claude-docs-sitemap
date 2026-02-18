@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 7e0eeb9ed5ef7bcafabc7130e1077305200cdcf39f9dfdfe8d5eee01b86d0a30
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: eda675c3e73f4a3b5d5e7b168cc9ca3fa383609674c1c18badbdbeb8b2709386
 ---
 
 ## Delete
@@ -82,3 +82,13 @@ Delete Skill
   Deleted object type.
 
   For Skills, this is always `"skill_deleted"`.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/skills/$SKILL_ID?beta=true \
+    -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: skills-2025-10-02' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```

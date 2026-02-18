@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/create
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 7974ca96401388e2e222a6b26202d834aa214f2b4d8e8da0e007cc3a0c0c0bf9
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 46c6d5b36bd7fb7ed92599fa60d1633bd6a47e7e5b4bf571ab6c47372978f3ea
 ---
 
 ## Create
@@ -119,3 +119,16 @@ Create Skill
   - `updated_at: str`
 
     ISO 8601 timestamp of when the skill was last updated.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+skill = client.beta.skills.create()
+print(skill.id)
+```

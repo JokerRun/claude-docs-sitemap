@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 7a850de1246fc3af24f26a8735bf8230f23f950f279129493292249f9207ae4f
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: f079765adb2ce48e3089b84d5d2b57384a251a2076966cdf2a7c5a4ae7133206
 ---
 
 ## List
@@ -126,3 +126,24 @@ List Skills
   - `String updatedAt`
 
     ISO 8601 timestamp of when the skill was last updated.
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.skills.SkillListPage;
+import com.anthropic.models.beta.skills.SkillListParams;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        SkillListPage page = client.beta().skills().list();
+    }
+}
+```

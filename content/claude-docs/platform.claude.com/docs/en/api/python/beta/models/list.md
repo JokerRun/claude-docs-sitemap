@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/models/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: c11dd536c77d797e740fae9ef4d1dcb1d9005a84cb4652c5490de2d971b30105
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: ac56ac047aeb0fed2230a137e7a589e2e67b869b6f93671189b6051874d28e87
 ---
 
 ## List
@@ -102,3 +102,17 @@ The Models API response can be used to determine which models are available for 
     For Models, this is always `"model"`.
 
     - `"model"`
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+page = client.beta.models.list()
+page = page.data[0]
+print(page.id)
+```

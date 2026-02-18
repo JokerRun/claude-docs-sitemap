@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 9ffd6ffa7a078a97f103a000e30c69c1130e7445c1a5aaa12005f4e46377c00e
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 6579b22f3e20de06d27770a6e67283ef56d661e53adad0aaad3fd852bb2ecf87
 ---
 
 # Files
@@ -108,6 +108,20 @@ Upload File
   - `downloadable?: boolean`
 
     Whether the file can be downloaded.
+
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+const fileMetadata = await client.beta.files.upload({ file: fs.createReadStream('path/to/file') });
+
+console.log(fileMetadata.id);
+```
 
 ## List
 
@@ -221,6 +235,21 @@ List Files
 
     Whether the file can be downloaded.
 
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+// Automatically fetches more pages as needed.
+for await (const fileMetadata of client.beta.files.list()) {
+  console.log(fileMetadata.id);
+}
+```
+
 ## Download
 
 `client.beta.files.download(stringfileID, FileDownloadParamsparams?, RequestOptionsoptions?): Response`
@@ -287,7 +316,24 @@ Download File
 
 ### Returns
 
-- `unnamed_schema_2 = Response`
+- `unnamed_schema_1 = Response`
+
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+const response = await client.beta.files.download('file_id');
+
+console.log(response);
+
+const content = await response.blob();
+console.log(content);
+```
 
 ## Retrieve Metadata
 
@@ -391,6 +437,20 @@ Get File Metadata
 
     Whether the file can be downloaded.
 
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+const fileMetadata = await client.beta.files.retrieveMetadata('file_id');
+
+console.log(fileMetadata.id);
+```
+
 ## Delete
 
 `client.beta.files.delete(stringfileID, FileDeleteParamsparams?, RequestOptionsoptions?): DeletedFile`
@@ -470,6 +530,20 @@ Delete File
     For file deletion, this is always `"file_deleted"`.
 
     - `"file_deleted"`
+
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+const deletedFile = await client.beta.files.delete('file_id');
+
+console.log(deletedFile.id);
+```
 
 ## Domain Types
 

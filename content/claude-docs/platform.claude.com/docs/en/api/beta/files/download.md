@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/download
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 1a9cedd61bdd9abba9c8af341cc6f3b6804ae997a569f878935da1a77e1c3fc7
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: fd9010af885df69f11e89f695c9d4ee4393c508df6d8eb5c941a03ff04e83f77
 ---
 
 ## Download
@@ -66,3 +66,12 @@ Download File
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/files/$FILE_ID/content?beta=true \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: files-api-2025-04-14' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```

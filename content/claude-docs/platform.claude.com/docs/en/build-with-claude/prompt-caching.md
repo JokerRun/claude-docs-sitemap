@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: f28f78616bb69a9d856ae1769e9c359816b4e9823e50feee04b8840d5f25cc57
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 7baa99cb4076a9858ecd7eb8a7dba8a3c3b83d36c67726b64567af9bf7293afb
 ---
 
 # Prompt caching
@@ -10,6 +10,10 @@ sha256: f28f78616bb69a9d856ae1769e9c359816b4e9823e50feee04b8840d5f25cc57
 ---
 
 Prompt caching is a powerful feature that optimizes your API usage by allowing resuming from specific prefixes in your prompts. This approach significantly reduces processing time and costs for repetitive tasks or prompts with consistent elements.
+
+<Note>
+Prompt caching stores KV cache representations and cryptographic hashes of cached content, but does not store the raw text of prompts or responses. This may be suitable for customers who require [ZDR-type data retention](/docs/en/build-with-claude/zero-data-retention) commitments. See [cache lifetime](/docs/en/build-with-claude/prompt-caching#what-is-the-cache-lifetime) for details.
+</Note>
 
 Here's an example of how to implement prompt caching with the Messages API using a `cache_control` block:
 
@@ -203,6 +207,7 @@ Prompt caching introduces a new pricing structure. The table below shows the pri
 | Claude Opus 4.5   | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.1   | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
 | Claude Opus 4     | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
+| Claude Sonnet 4.6   | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
 | Claude Sonnet 4.5   | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
 | Claude Sonnet 4   | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
 | Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)) | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
@@ -230,6 +235,7 @@ Prompt caching is currently supported on:
 - Claude Opus 4.5
 - Claude Opus 4.1
 - Claude Opus 4
+- Claude Sonnet 4.6
 - Claude Sonnet 4.5
 - Claude Sonnet 4
 - Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
@@ -282,7 +288,7 @@ You can define up to 4 cache breakpoints if you want to:
 ### Cache limitations
 The minimum cacheable prompt length is:
 - 4096 tokens for Claude Opus 4.6, Claude Opus 4.5
-- 1024 tokens for Claude Sonnet 4.5, Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4, and Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
+- 1024 tokens for Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4, and Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
 - 4096 tokens for Claude Haiku 4.5
 - 2048 tokens for Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations)) and Claude Haiku 3
 
@@ -1705,7 +1711,7 @@ This pattern is especially powerful for:
 
   <section title="Is prompt caching available for all models?">
 
-    No, prompt caching is currently only available for Claude Opus 4.6, Claude Opus 4.5, Claude Sonnet 4.5, Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4, Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)), Claude Haiku 4.5, Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations)), and Claude Haiku 3.
+    No, prompt caching is currently only available for Claude Opus 4.6, Claude Opus 4.5, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4, Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)), Claude Haiku 4.5, Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations)), and Claude Haiku 3.
   
 </section>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: b7135c8d9044284c02bdc068aee815d721d7ee1d939ebe0b3758da35335ae3c0
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 24ee30737711b43815dfe67040a00d7f24a23704b29c0d01268c7752fa427113
 ---
 
 # Programmatic tool calling
@@ -12,13 +12,11 @@ sha256: b7135c8d9044284c02bdc068aee815d721d7ee1d939ebe0b3758da35335ae3c0
 Programmatic tool calling allows Claude to write code that calls your tools programmatically within a [code execution](/docs/en/agents-and-tools/tool-use/code-execution-tool) container, rather than requiring round trips through the model for each tool invocation. This reduces latency for multi-tool workflows and decreases token consumption by allowing Claude to filter or process data before it reaches the model's context window.
 
 <Note>
-Programmatic tool calling is currently in public beta.
-
-To use this feature, add the `"advanced-tool-use-2025-11-20"` [beta header](/docs/en/api/beta-headers) to your API requests.
-
 This feature requires the code execution tool to be enabled.
+</Note>
 
-Please reach out through our [feedback form](https://forms.gle/MVGTnrHe73HpMiho8) to share your feedback on this feature.
+<Note>
+This feature is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Data is retained according to the feature's standard retention policy.
 </Note>
 
 ## Model compatibility
@@ -28,6 +26,7 @@ Programmatic tool calling is available on the following models:
 | Model | Tool Version |
 |-------|--------------|
 | Claude Opus 4.6 (`claude-opus-4-6`) | `code_execution_20250825` |
+| Claude Sonnet 4.6 (`claude-sonnet-4-6`) | `code_execution_20250825` |
 | Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`) | `code_execution_20250825` |
 | Claude Opus 4.5 (`claude-opus-4-5-20251101`) | `code_execution_20250825` |
 
@@ -44,7 +43,6 @@ Here's a simple example where Claude programmatically queries a database multipl
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: advanced-tool-use-2025-11-20" \
     --header "content-type: application/json" \
     --data '{
         "model": "claude-opus-4-6",
@@ -84,9 +82,8 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-response = client.beta.messages.create(
+response = client.messages.create(
     model="claude-opus-4-6",
-    betas=["advanced-tool-use-2025-11-20"],
     max_tokens=4096,
     messages=[
         {
@@ -120,9 +117,8 @@ import { Anthropic } from "@anthropic-ai/sdk";
 const anthropic = new Anthropic();
 
 async function main() {
-  const response = await anthropic.beta.messages.create({
+  const response = await anthropic.messages.create({
     model: "claude-opus-4-6",
-    betas: ["advanced-tool-use-2025-11-20"],
     max_tokens: 4096,
     messages: [
       {
@@ -263,9 +259,8 @@ Provide detailed descriptions of your tool's output format in the tool descripti
 
 <CodeGroup>
 ```python Python
-response = client.beta.messages.create(
+response = client.messages.create(
     model="claude-opus-4-6",
-    betas=["advanced-tool-use-2025-11-20"],
     max_tokens=4096,
     messages=[
         {
@@ -286,9 +281,8 @@ response = client.beta.messages.create(
 ```
 
 ```typescript TypeScript
-const response = await anthropic.beta.messages.create({
+const response = await anthropic.messages.create({
   model: "claude-opus-4-6",
-  betas: ["advanced-tool-use-2025-11-20"],
   max_tokens: 4096,
   messages: [{
     role: "user",
@@ -355,9 +349,8 @@ Include the full conversation history plus your tool result:
 
 <CodeGroup>
 ```python Python
-response = client.beta.messages.create(
+response = client.messages.create(
     model="claude-opus-4-6",
-    betas=["advanced-tool-use-2025-11-20"],
     max_tokens=4096,
     container="container_xyz789",  # Reuse the container
     messages=[
@@ -406,9 +399,8 @@ response = client.beta.messages.create(
 ```
 
 ```typescript TypeScript
-const response = await anthropic.beta.messages.create({
+const response = await anthropic.messages.create({
   model: "claude-opus-4-6",
-  betas: ["advanced-tool-use-2025-11-20"],
   max_tokens: 4096,
   container: "container_xyz789", // Reuse the container
   messages: [
@@ -605,7 +597,7 @@ When all tool calls are satisfied and code completes:
 |-------|-------------|----------|
 | `invalid_tool_input` | Tool input doesn't match schema | Validate your tool's input_schema |
 | `tool_not_allowed` | Tool doesn't allow the requested caller type | Check `allowed_callers` includes the right contexts |
-| `missing_beta_header` | PTC beta header not provided | Add both beta headers to your request |
+| `missing_beta_header` | Required beta header not provided | Add the required beta headers to your request |
 
 ### Container expiration during tool call
 
@@ -750,15 +742,11 @@ Token counting for programmatic tool calls: Tool results from programmatic invoc
 
 **"Tool not allowed" error**
 - Verify your tool definition includes `"allowed_callers": ["code_execution_20250825"]`
-- Check that you're using the correct beta headers
 
 **Container expiration**
 - Ensure you respond to tool calls within the container's lifetime (~4.5 minutes)
 - Monitor the `expires_at` field in responses
 - Consider implementing faster tool execution
-
-**Beta header issues**
-- You need the header: `"advanced-tool-use-2025-11-20"`
 
 **Tool result not parsed correctly**
 - Ensure your tool returns string data that Claude can deserialize

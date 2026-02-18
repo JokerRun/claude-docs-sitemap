@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/mindfulness-mentor
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 823db928035297b31f48cba1173e5d8b680c80bd33753caef8db0fba7f1ba952
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 5fbf83a1d4b4e6237704388620fb6886bacdb7ae6974ec15301d12a3e1fc6bd0
 ---
 
 # Mindfulness mentor
@@ -11,7 +11,7 @@ Guide the user through mindfulness exercises and techniques for stress reduction
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                            |
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 403838652541556fe8d5931c170457bd616b6c1072fd32be17942fe2954c51b8
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 517fe145d3b675f2a9da5c371e5205e9b71b8aa82a84bf47a1512a2ba9802817
 ---
 
 ## Retrieve
@@ -158,3 +158,18 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+beta_message_batch = client.beta.messages.batches.retrieve(
+    message_batch_id="message_batch_id",
+)
+print(beta_message_batch.id)
+```

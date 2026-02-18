@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 05da540da2560521bd9ef4fbfc27a17c451c7fa3afdef5e10ebee2a1209d0366
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: d64e66e4402139351c2749b7d1eb11430c0026ecb462f28f8c96599b1f160968
 ---
 
 # Versions
@@ -116,6 +116,16 @@ Create Skill Version
   Version identifier for the skill.
 
   Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions?beta=true \
+    -X POST \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: skills-2025-10-02' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
 
 ## List
 
@@ -251,6 +261,15 @@ List Skill Versions
 
   Token to provide in as `page` in the subsequent request to retrieve the next page of data.
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions?beta=true \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: skills-2025-10-02' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
 ## Retrieve
 
 **get** `/v1/skills/{skill_id}/versions/{version}`
@@ -367,6 +386,15 @@ Get Skill Version
 
   Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION?beta=true \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: skills-2025-10-02' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
 ## Delete
 
 **delete** `/v1/skills/{skill_id}/versions/{version}`
@@ -450,3 +478,13 @@ Delete Skill Version
   Deleted object type.
 
   For Skill Versions, this is always `"skill_version_deleted"`.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION?beta=true \
+    -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: skills-2025-10-02' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```

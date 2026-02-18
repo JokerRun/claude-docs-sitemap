@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 4484668eac9b8eb18cd3be23342e4a821dddfe6332ec0dbe99833d58925febdb
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 91fd7284ca7f476477251221ae174b1ee39abb6661150652963ebfa6cfe878a4
 ---
 
 ## List
@@ -130,3 +130,18 @@ List Skills
   - `updated_at: string`
 
     ISO 8601 timestamp of when the skill was last updated.
+
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+// Automatically fetches more pages as needed.
+for await (const skillListResponse of client.beta.skills.list()) {
+  console.log(skillListResponse.id);
+}
+```

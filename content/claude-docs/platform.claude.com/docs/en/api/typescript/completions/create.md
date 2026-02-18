@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions/create
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: b27628953f68343a9513a84a8f626c7f2ccdae6f7f28c94d0c201e854cfccddc
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 90f11cc6df48b87215c4f4a4f4907c433705eef014c6a83c52ecc5eb6aab96d6
 ---
 
 ## Create
@@ -35,11 +35,15 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-6" | "claude-opus-4-5-20251101" | "claude-opus-4-5" | 18 more`
+      - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-opus-4-5-20251101" | 19 more`
 
         - `"claude-opus-4-6"`
 
           Most intelligent model for building agents and coding
+
+        - `"claude-sonnet-4-6"`
+
+          Frontier intelligence at scale — built for coding, agents, and enterprise workflows
 
         - `"claude-opus-4-5-20251101"`
 
@@ -281,11 +285,15 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-6" | "claude-opus-4-5-20251101" | "claude-opus-4-5" | 18 more`
+    - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-opus-4-5-20251101" | 19 more`
 
       - `"claude-opus-4-6"`
 
         Most intelligent model for building agents and coding
+
+      - `"claude-sonnet-4-6"`
+
+        Frontier intelligence at scale — built for coding, agents, and enterprise workflows
 
       - `"claude-opus-4-5-20251101"`
 
@@ -385,3 +393,21 @@ Future models and features will not be compatible with Text Completions. See our
     For Text Completions, this is always `"completion"`.
 
     - `"completion"`
+
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+const completion = await client.completions.create({
+  max_tokens_to_sample: 256,
+  model: 'claude-opus-4-6',
+  prompt: '\n\nHuman: Hello, world!\n\nAssistant:',
+});
+
+console.log(completion.id);
+```

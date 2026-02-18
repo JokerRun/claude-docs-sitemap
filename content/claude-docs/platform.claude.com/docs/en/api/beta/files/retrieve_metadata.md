@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 5644216514b6dde78c0f8704e0c5266a0def83f5bffd35c2edca8e8a54395d4f
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 7c3fd51b6588afde4e6711a09c647bd1ea75135237f4a8117a35bf1da0cd8b7d
 ---
 
 ## Retrieve Metadata
@@ -104,3 +104,12 @@ Get File Metadata
   - `downloadable: optional boolean`
 
     Whether the file can be downloaded.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/files/$FILE_ID?beta=true \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: files-api-2025-04-14' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/create
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 3f4485046ef5372acef5019611bbc7918a90b4a69a450714b7cf792ed0ad718a
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: df44e8ab7a916af2eb914c0c55592f7170386a96e2880e7a4a35ea1277016b9c
 ---
 
 ## Create
@@ -119,3 +119,15 @@ Create Skill
   - `updated_at: String`
 
     ISO 8601 timestamp of when the skill was last updated.
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+skill = anthropic.beta.skills.create
+
+puts(skill)
+```

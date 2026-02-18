@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/models
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: a71e354e919342c4e228d62c2ca4cc8bcc084068b6bb1a4548d3468ea2a09b63
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 18b17f1499df34026b6970f58cd03096469908431f2a2ec847490acbb1836741
 ---
 
 # Models
@@ -105,6 +105,18 @@ The Models API response can be used to determine which models are available for 
 
     - `:model`
 
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+page = anthropic.beta.models.list
+
+puts(page)
+```
+
 ## Retrieve
 
 `beta.models.retrieve(model_id, **kwargs) -> BetaModelInfo`
@@ -192,6 +204,18 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `:model`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+beta_model_info = anthropic.beta.models.retrieve("model_id")
+
+puts(beta_model_info)
+```
 
 ## Domain Types
 

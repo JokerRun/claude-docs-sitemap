@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/perspectives-ponderer
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 2c0e48c0f2ebe6adc30fc7d99cd1f09257cfb5db6d115c674f9c423441deab60
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 0d5d8b5604f919fff0fef73511709716107384047f2fbec32b9a102e89c18420
 ---
 
 # Perspectives ponderer
@@ -11,7 +11,7 @@ Weigh the pros and cons of a user-provided topic.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 | Role | Content                                                                                                      |
 | ---- | ------------------------------------------------------------------------------------------------------------ |

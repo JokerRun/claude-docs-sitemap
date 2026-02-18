@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 97d17cf1b5b5cc516da034e7fbf3f722d91df93033f2efaa60e959c9181f652a
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: dccbb734cd635e0861a7562d09e5f64842c95e083b06bb9ab68bbde828bc3a56
 ---
 
 ## Retrieve
@@ -113,3 +113,18 @@ Get Skill
   - `updated_at: str`
 
     ISO 8601 timestamp of when the skill was last updated.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+skill = client.beta.skills.retrieve(
+    skill_id="skill_id",
+)
+print(skill.id)
+```

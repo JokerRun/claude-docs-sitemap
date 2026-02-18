@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/vr-fitness-innovator
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 374c3072ca4f8d504eb04fba5ed95872b9dbdf915b0c4df3069c38eaae0b4608
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 4c61292cff65ba5eb81ba5da47b4513a1b1136e91c8027431c5ce4c7af2b0749
 ---
 
 # VR fitness innovator
@@ -11,7 +11,7 @@ Brainstorm creative ideas for virtual reality fitness games.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 | Role | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

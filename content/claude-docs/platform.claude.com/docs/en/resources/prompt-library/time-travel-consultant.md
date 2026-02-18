@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/time-travel-consultant
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 70c323a07916ef9e5181db5bbc04b9d02e7644aad58026b7ba915de75f55a144
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: cab383a8bb3c5c7b84d840d4129c7701368b33d41464d3888d1a67ad22107215
 ---
 
 # Time travel consultant
@@ -11,7 +11,7 @@ Help the user navigate hypothetical time travel scenarios and their implications
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                  |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

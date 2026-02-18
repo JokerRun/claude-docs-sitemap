@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/git-gud
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: 7cc7820b748820ccfdebf346be82c48b22eed9afbbc05162d32b5f4e86297ff9
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 9c3e05f6f2f8e9aa8f0e6621cd022ed939872563a38b4cc5d09c8c14ca9f5507
 ---
 
 # Git gud
@@ -11,7 +11,7 @@ Generate appropriate Git commands based on user-described version control action
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 | Role | Content                                                                                                                       |
 | ---- | ----------------------------------------------------------------------------------------------------------------------------- |

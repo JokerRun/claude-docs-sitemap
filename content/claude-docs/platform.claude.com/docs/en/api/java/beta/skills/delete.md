@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/delete
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 1430c4a0899adb222cacf6184184c83c04e1ccd1ae71fb4b32a079b49e0b0ad7
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 07206f72b310c0d18293b7a694d46ef80679d9afc37f47967537c4c4e13c9c07
 ---
 
 ## Delete
@@ -82,3 +82,24 @@ Delete Skill
     Deleted object type.
 
     For Skills, this is always `"skill_deleted"`.
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.skills.SkillDeleteParams;
+import com.anthropic.models.beta.skills.SkillDeleteResponse;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        SkillDeleteResponse skill = client.beta().skills().delete("skill_id");
+    }
+}
+```

@@ -1,24 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 969ca7a1b2bcd1460dd5b78887b8a90ef0242cce2bb26b55afcd892ac399c466
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 320ec16ec2c92db94a16b34de508a33233892815352988664d88babc8b75cd81
 ---
 
 # Code execution tool
 
 ---
 
-Claude can analyze data, create visualizations, perform complex calculations, run system commands, create and edit files, and process uploaded
-files directly within the API conversation.
-The code execution tool allows Claude to run Bash commands and manipulate files, including writing code, in a secure, sandboxed environment.
+Claude can analyze data, create visualizations, perform complex calculations, run system commands, create and edit files, and process uploaded files directly within the API conversation. The code execution tool allows Claude to run Bash commands and manipulate files, including writing code, in a secure, sandboxed environment.
+
+**Code execution is free when used with web search or web fetch.** When `web_search_20260209` or `web_fetch_20260209` is included in your request, there are no additional charges for code execution tool calls beyond the standard input and output token costs. Standard code execution charges apply when these tools are not included.
+
+Code execution is a core primitive for building high-performance agents. It enables dynamic filtering in web search and web fetch tools, allowing Claude to process results before they reach the context window—improving accuracy while reducing token consumption.
 
 <Note>
-The code execution tool is currently in public beta.
-
-To use this feature, add the `"code-execution-2025-08-25"` [beta header](/docs/en/api/beta-headers) to your API requests.
-
 Please reach out through our [feedback form](https://forms.gle/LTAU6Xn2puCJMi1n6) to share your feedback on this feature.
+</Note>
+
+<Note>
+This feature is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Data is retained according to the feature's standard retention policy.
 </Note>
 
 ## Model compatibility
@@ -28,6 +30,7 @@ The code execution tool is available on the following models:
 | Model | Tool Version |
 |-------|--------------|
 | Claude Opus 4.6 (`claude-opus-4-6`) | `code_execution_20250825` |
+| Claude Sonnet 4.6 (`claude-sonnet-4-6`) | `code_execution_20250825` |
 | Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`) | `code_execution_20250825` |
 | Claude Opus 4.5 (`claude-opus-4-5-20251101`) | `code_execution_20250825` |
 | Claude Opus 4.1 (`claude-opus-4-1-20250805`) | `code_execution_20250825` |
@@ -45,6 +48,14 @@ The current version `code_execution_20250825` supports Bash commands and file op
 Older tool versions are not guaranteed to be backwards-compatible with newer models. Always use the tool version that corresponds to your model version.
 </Warning>
 
+## Platform availability
+
+Code execution is available on:
+- **Claude API** (Anthropic)
+- **Microsoft Azure AI Foundry**
+
+Code execution is not currently available on Amazon Bedrock or Google Vertex AI.
+
 ## Quick start
 
 Here's a simple example that asks Claude to perform a calculation:
@@ -54,7 +65,6 @@ Here's a simple example that asks Claude to perform a calculation:
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: code-execution-2025-08-25" \
     --header "content-type: application/json" \
     --data '{
         "model": "claude-opus-4-6",
@@ -77,9 +87,8 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-response = client.beta.messages.create(
+response = client.messages.create(
     model="claude-opus-4-6",
-    betas=["code-execution-2025-08-25"],
     max_tokens=4096,
     messages=[
         {
@@ -99,9 +108,8 @@ import { Anthropic } from "@anthropic-ai/sdk";
 const anthropic = new Anthropic();
 
 async function main() {
-  const response = await anthropic.beta.messages.create({
+  const response = await anthropic.messages.create({
     model: "claude-opus-4-6",
-    betas: ["code-execution-2025-08-25"],
     max_tokens: 4096,
     messages: [
       {
@@ -145,7 +153,6 @@ Ask Claude to check system information and install packages:
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: code-execution-2025-08-25" \
     --header "content-type: application/json" \
     --data '{
         "model": "claude-opus-4-6",
@@ -162,9 +169,8 @@ curl https://api.anthropic.com/v1/messages \
 ```
 
 ```python Python
-response = client.beta.messages.create(
+response = client.messages.create(
     model="claude-opus-4-6",
-    betas=["code-execution-2025-08-25"],
     max_tokens=4096,
     messages=[
         {
@@ -177,9 +183,8 @@ response = client.beta.messages.create(
 ```
 
 ```typescript TypeScript
-const response = await anthropic.beta.messages.create({
+const response = await anthropic.messages.create({
   model: "claude-opus-4-6",
-  betas: ["code-execution-2025-08-25"],
   max_tokens: 4096,
   messages: [{
     role: "user",
@@ -202,7 +207,6 @@ Claude can create, view, and edit files directly in the sandbox using the file m
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: code-execution-2025-08-25" \
     --header "content-type: application/json" \
     --data '{
         "model": "claude-opus-4-6",
@@ -219,9 +223,8 @@ curl https://api.anthropic.com/v1/messages \
 ```
 
 ```python Python
-response = client.beta.messages.create(
+response = client.messages.create(
     model="claude-opus-4-6",
-    betas=["code-execution-2025-08-25"],
     max_tokens=4096,
     messages=[
         {
@@ -234,9 +237,8 @@ response = client.beta.messages.create(
 ```
 
 ```typescript TypeScript
-const response = await anthropic.beta.messages.create({
+const response = await anthropic.messages.create({
   model: "claude-opus-4-6",
-  betas: ["code-execution-2025-08-25"],
   max_tokens: 4096,
   messages: [{
     role: "user",
@@ -255,7 +257,7 @@ const response = await anthropic.beta.messages.create({
 To analyze your own data files (CSV, Excel, images, etc.), upload them via the Files API and reference them in your request:
 
 <Note>
-Using the Files API with Code Execution requires two beta headers: `"anthropic-beta": "code-execution-2025-08-25,files-api-2025-04-14"`
+Using the Files API with Code Execution requires the Files API beta header: `"anthropic-beta": "files-api-2025-04-14"`
 </Note>
 
 The Python environment can process various file types uploaded via the Files API, including:
@@ -286,7 +288,7 @@ curl https://api.anthropic.com/v1/files \
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: code-execution-2025-08-25,files-api-2025-04-14" \
+    --header "anthropic-beta: files-api-2025-04-14" \
     --header "content-type: application/json" \
     --data '{
         "model": "claude-opus-4-6",
@@ -318,7 +320,7 @@ file_object = client.beta.files.upload(
 # Use the file_id with code execution
 response = client.beta.messages.create(
     model="claude-opus-4-6",
-    betas=["code-execution-2025-08-25", "files-api-2025-04-14"],
+    betas=["files-api-2025-04-14"],
     max_tokens=4096,
     messages=[
         {
@@ -348,7 +350,7 @@ async function main() {
   // Use the file_id with code execution
   const response = await anthropic.beta.messages.create({
     model: "claude-opus-4-6",
-    betas: ["code-execution-2025-08-25", "files-api-2025-04-14"],
+    betas: ["files-api-2025-04-14"],
     max_tokens: 4096,
     messages: [{
       role: "user",
@@ -384,7 +386,7 @@ client = Anthropic()
 # Request code execution that creates files
 response = client.beta.messages.create(
     model="claude-opus-4-6",
-    betas=["code-execution-2025-08-25", "files-api-2025-04-14"],
+    betas=["files-api-2025-04-14"],
     max_tokens=4096,
     messages=[
         {
@@ -428,7 +430,7 @@ async function main() {
   // Request code execution that creates files
   const response = await anthropic.beta.messages.create({
     model: "claude-opus-4-6",
-    betas: ["code-execution-2025-08-25", "files-api-2025-04-14"],
+    betas: ["files-api-2025-04-14"],
     max_tokens: 4096,
     messages: [{
       role: "user",
@@ -498,7 +500,7 @@ FILE_ID=$(jq -r '.id' file_response.json)
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: code-execution-2025-08-25,files-api-2025-04-14" \
+    --header "anthropic-beta: files-api-2025-04-14" \
     --header "content-type: application/json" \
     --data '{
         "model": "claude-opus-4-6",
@@ -532,7 +534,7 @@ file_object = client.beta.files.upload(
 # Use it with code execution
 response = client.beta.messages.create(
     model="claude-opus-4-6",
-    betas=["code-execution-2025-08-25", "files-api-2025-04-14"],
+    betas=["files-api-2025-04-14"],
     max_tokens=4096,
     messages=[
         {
@@ -563,10 +565,9 @@ const fileObject = await anthropic.beta.files.create({
   file: createReadStream("data.csv")
 });
 
-// Use it with code execution
 const response = await anthropic.beta.messages.create({
   model: "claude-opus-4-6",
-  betas: ["code-execution-2025-08-25", "files-api-2025-04-14"],
+  betas: ["files-api-2025-04-14"],
   max_tokens: 4096,
   messages: [{
     role: "user",
@@ -800,9 +801,8 @@ from anthropic import Anthropic
 client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 # First request: Create a file with a random number
-response1 = client.beta.messages.create(
+response1 = client.messages.create(
     model="claude-opus-4-6",
-    betas=["code-execution-2025-08-25"],
     max_tokens=4096,
     messages=[
         {
@@ -817,10 +817,9 @@ response1 = client.beta.messages.create(
 container_id = response1.container.id
 
 # Second request: Reuse the container to read the file
-response2 = client.beta.messages.create(
+response2 = client.messages.create(
     container=container_id,  # Reuse the same container
     model="claude-opus-4-6",
-    betas=["code-execution-2025-08-25"],
     max_tokens=4096,
     messages=[
         {
@@ -839,9 +838,8 @@ const anthropic = new Anthropic();
 
 async function main() {
   // First request: Create a file with a random number
-  const response1 = await anthropic.beta.messages.create({
+  const response1 = await anthropic.messages.create({
     model: "claude-opus-4-6",
-    betas: ["code-execution-2025-08-25"],
     max_tokens: 4096,
     messages: [{
       role: "user",
@@ -857,10 +855,9 @@ async function main() {
   const containerId = response1.container.id;
 
   // Second request: Reuse the container to read the file
-  const response2 = await anthropic.beta.messages.create({
+  const response2 = await anthropic.messages.create({
     container: containerId, // Reuse the same container
     model: "claude-opus-4-6",
-    betas: ["code-execution-2025-08-25"],
     max_tokens: 4096,
     messages: [{
       role: "user",
@@ -883,7 +880,6 @@ main().catch(console.error);
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: code-execution-2025-08-25" \
     --header "content-type: application/json" \
     --data '{
         "model": "claude-opus-4-6",
@@ -905,7 +901,6 @@ CONTAINER_ID=$(jq -r '.container.id' response1.json)
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: code-execution-2025-08-25" \
     --header "content-type: application/json" \
     --data '{
         "container": "'$CONTAINER_ID'",
@@ -948,10 +943,26 @@ You can include the code execution tool in the [Messages Batches API](/docs/en/b
 
 ## Usage and pricing
 
-Code execution tool usage is tracked separately from token usage. Execution time has a minimum of 5 minutes.
-If files are included in the request, execution time is billed even if the tool is not used due to files being preloaded onto the container.
+**Code execution is free when used with web search or web fetch.** When `web_search_20260209` or `web_fetch_20260209` is included in your API request, there are no additional charges for code execution tool calls beyond the standard input and output token costs.
 
-Each organization receives 1,550 free hours of usage with the code execution tool per month. Additional usage beyond the first 1,550 hours is billed at $0.05 per hour, per container.
+When used without these tools, code execution is billed by execution time, tracked separately from token usage:
+
+- Execution time has a minimum of 5 minutes
+- Each organization receives **1,550 free hours** of usage per month
+- Additional usage beyond 1,550 hours is billed at **$0.05 per hour, per container**
+- If files are included in the request, execution time is billed even if the tool is not invoked, due to files being preloaded onto the container
+
+Code execution usage is tracked in the response:
+
+```json
+"usage": {
+  "input_tokens": 105,
+  "output_tokens": 239,
+  "server_tool_use": {
+    "code_execution_requests": 1
+  }
+}
+```
 
 ## Upgrade to latest tool version
 
@@ -973,23 +984,16 @@ By upgrading to `code-execution-2025-08-25`, you get access to file manipulation
 
 ### Upgrade steps
 
-To upgrade, you need to make the following changes in your API requests:
+To upgrade, update the tool type in your API requests:
 
-1. **Update the beta header**:
-   ```diff
-   - "anthropic-beta": "code-execution-2025-05-22"
-   + "anthropic-beta": "code-execution-2025-08-25"
-   ```
+```diff
+- "type": "code_execution_20250522"
++ "type": "code_execution_20250825"
+```
 
-2. **Update the tool type**:
-   ```diff
-   - "type": "code_execution_20250522"
-   + "type": "code_execution_20250825"
-   ```
-
-3. **Review response handling** (if parsing responses programmatically):
-   - The previous blocks for Python execution responses will no longer be sent
-   - Instead, new response types for Bash and file operations will be sent (see Response Format section)
+**Review response handling** (if parsing responses programmatically):
+- The previous blocks for Python execution responses will no longer be sent
+- Instead, new response types for Bash and file operations will be sent (see Response Format section)
 
 ## Programmatic tool calling
 
@@ -998,9 +1002,8 @@ The code execution tool powers [programmatic tool calling](/docs/en/agents-and-t
 <CodeGroup>
 ```python Python
 # Enable programmatic calling for your tools
-response = client.beta.messages.create(
+response = client.messages.create(
     model="claude-opus-4-6",
-    betas=["advanced-tool-use-2025-11-20"],
     max_tokens=4096,
     messages=[
         {"role": "user", "content": "Get weather for 5 cities and find the warmest"}

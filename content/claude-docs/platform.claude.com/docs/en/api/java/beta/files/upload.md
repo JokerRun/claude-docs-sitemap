@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/upload
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 0d63bbb32541eaffa4790072c8fb3d05d6f80d6df686507251bf21bc1ba9138e
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: c5e80693ab3f20bc81b63434d17ed9ce3096e86381cae9e9332e89df21413d96
 ---
 
 ## Upload
@@ -102,3 +102,28 @@ Upload File
   - `Optional<Boolean> downloadable`
 
     Whether the file can be downloaded.
+
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.files.FileMetadata;
+import com.anthropic.models.beta.files.FileUploadParams;
+import java.io.ByteArrayInputStream;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        FileUploadParams params = FileUploadParams.builder()
+            .file(ByteArrayInputStream("some content".getBytes()))
+            .build();
+        FileMetadata fileMetadata = client.beta().files().upload(params);
+    }
+}
+```

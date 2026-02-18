@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/models/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 83ec3fc4fb62a450320cad9258fdb049fffeb57594b520dbeac622567b3bd60c
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: d40b34e6ef84a1e9c44ef500c91fd937c83a0466fe825a741e831dcfcaca4149
 ---
 
 ## Retrieve
@@ -92,3 +92,15 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `:model`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+model_info = anthropic.models.retrieve("model_id")
+
+puts(model_info)
+```

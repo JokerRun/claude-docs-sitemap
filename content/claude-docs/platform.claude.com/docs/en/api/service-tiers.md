@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/service-tiers
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: dcd3752788c867f463dfde87b2072411f54395cbdc14b575dfdaa1e3291063ab
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 05d9120d6088b96dadd6a1396726f4e9f37c9b59fa19787e2e13f022acabfc25
 ---
 
 # Service tiers
@@ -127,6 +127,7 @@ Priority Tier is supported by:
 - Claude Opus 4.5
 - Claude Opus 4.1
 - Claude Opus 4
+- Claude Sonnet 4.6
 - Claude Sonnet 4.5
 - Claude Sonnet 4
 - Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))

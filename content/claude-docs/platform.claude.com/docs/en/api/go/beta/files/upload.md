@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/upload
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 17a66f3535fb9b23e5ddd68ea4ea120c8faa5839d0e02611ebd5910365c61781
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: d889b836c05a81f8601ccc4fcc54c0d8baf5381ded0ec4e89f47f60628441055
 ---
 
 ## Upload
@@ -106,3 +106,32 @@ Upload File
   - `Downloadable bool`
 
     Whether the file can be downloaded.
+
+### Example
+
+```go
+package main
+
+import (
+  "bytes"
+  "context"
+  "fmt"
+  "io"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  fileMetadata, err := client.Beta.Files.Upload(context.TODO(), anthropic.BetaFileUploadParams{
+    File: io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+  })
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", fileMetadata.ID)
+}
+```

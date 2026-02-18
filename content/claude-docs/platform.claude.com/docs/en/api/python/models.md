@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/models
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 06e4573851f0fa5d116c754acb98d1f262fec6d2cc011244b3972caa1b0e533b
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: e755b910ed557fb25778f9adb8b03db6081245b47e7ca238720d788224b0b82e
 ---
 
 # Models
@@ -105,6 +105,20 @@ The Models API response can be used to determine which models are available for 
 
     - `"model"`
 
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+page = client.models.list()
+page = page.data[0]
+print(page.id)
+```
+
 ## Retrieve
 
 `models.retrieve(strmodel_id, ModelRetrieveParams**kwargs)  -> ModelInfo`
@@ -192,6 +206,21 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `"model"`
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+model_info = client.models.retrieve(
+    model_id="model_id",
+)
+print(model_info.id)
+```
 
 ## Domain Types
 

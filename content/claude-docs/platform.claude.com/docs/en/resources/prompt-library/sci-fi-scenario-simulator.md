@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/sci-fi-scenario-simulator
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 9ca9afd43f8a7de6d9b1becee4eb591c5f69228f3f2b93156f13ef459d360b99
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 7e9a1e1a367076e03beec1da46f1f2996d9aa191e99a5e4bff8e8783387cb2be
 ---
 
 # Sci-fi scenario simulator
@@ -11,7 +11,7 @@ Discuss with the user various science fiction scenarios and associated challenge
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                  |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

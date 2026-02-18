@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/models/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: caecd7424ec6f5285845cac4c250945f2c4ce8d49fa9f205f75e73555ce2520e
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 565cd8ffce314448a3ae01649d6c8943195c893c54a6dff5c7c0781362d2acdf
 ---
 
 ## Retrieve
@@ -92,3 +92,18 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `"model"`
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+beta_model_info = client.beta.models.retrieve(
+    model_id="model_id",
+)
+print(beta_model_info.id)
+```

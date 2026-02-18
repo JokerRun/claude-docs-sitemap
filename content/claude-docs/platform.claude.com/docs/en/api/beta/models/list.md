@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 5ec4adb36d1cd59551f112f54b59f81980333627921424db6209747d21027df9
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: c4322f0707053e3f9b16f78a89c3a6a58b094098cd37a7e448848dc6f0897045
 ---
 
 ## List
@@ -114,3 +114,11 @@ The Models API response can be used to determine which models are available for 
 - `last_id: string`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/models?beta=true \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```

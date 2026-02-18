@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/models/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 1d49e0e55d33f7c318623455d78053648391a1ac5f9a569367624c834ce5e3bd
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: ee41327ba3ac70efb112b446d94e800dd929bf2135c5363f2a7f2a5c62154d1f
 ---
 
 ## List
@@ -102,3 +102,17 @@ The Models API response can be used to determine which models are available for 
     For Models, this is always `"model"`.
 
     - `"model"`
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+page = client.models.list()
+page = page.data[0]
+print(page.id)
+```

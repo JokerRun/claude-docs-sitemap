@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/alliteration-alchemist
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 3e3f2294ff267e698175aed8bc76439071db7bf9afafc0798d6decd01f4e7e5d
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 7ef86fbe5b3232953cb13587830a72bd4fe3592fae1ed78832d99e2963aa1ed6
 ---
 
 # Alliteration alchemist
@@ -11,7 +11,7 @@ Generate alliterative phrases and sentences for any given subject.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                           |
 | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

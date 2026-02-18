@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/efficiency-estimator
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: 9d554726301eb1c6fa2ba2c7b22ed8bbe0614a18011fd26df7277df28d0954c3
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 56fcfbfdc2a7963addcef29a8d32ca05453077db7db50c251b69873c14c5b364
 ---
 
 # Efficiency estimator
@@ -11,7 +11,7 @@ Calculate the time complexity of functions and algorithms.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

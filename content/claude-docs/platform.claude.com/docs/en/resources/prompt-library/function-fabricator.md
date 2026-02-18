@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/function-fabricator
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 49fefcc5ad7d2d10ea0cef98673476f7080fc3e5bd3e1e1c42476965aec3cc30
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 6eb8c02c919c0de308f52ae5b8bc1aeec3f376090a033c9b4d1cce5b16e8aaff
 ---
 
 # Function fabricator
@@ -11,7 +11,7 @@ Create Python functions based on detailed specifications.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

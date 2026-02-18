@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 47e4abe78bf2eaf5ceef65eab3ebd7b224c12b64cde45c7356f26f7997ba83d9
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 762eac90ca8eabd29eb6090b67a5e60ae709171e83f3c5d3ccb0209ad25f1c44
 ---
 
 # Completions
@@ -159,6 +159,10 @@ Future models and features will not be compatible with Text Completions. See our
 
       Most intelligent model for building agents and coding
 
+    - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
+
+      Frontier intelligence at scale — built for coding, agents, and enterprise workflows
+
     - `CLAUDE_OPUS_4_5_20251101("claude-opus-4-5-20251101")`
 
       Premium model combining maximum intelligence with practical performance
@@ -256,6 +260,33 @@ Future models and features will not be compatible with Text Completions. See our
 
     - `COMPLETION("completion")`
 
+### Example
+
+```java
+package com.anthropic.example;
+
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.completions.Completion;
+import com.anthropic.models.completions.CompletionCreateParams;
+import com.anthropic.models.messages.Model;
+
+public final class Main {
+    private Main() {}
+
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        CompletionCreateParams params = CompletionCreateParams.builder()
+            .maxTokensToSample(256L)
+            .model(Model.CLAUDE_OPUS_4_6)
+            .prompt("\n\nHuman: Hello, world!\n\nAssistant:")
+            .build();
+        Completion completion = client.completions().create(params);
+    }
+}
+```
+
 ## Domain Types
 
 ### Completion
@@ -281,6 +312,10 @@ Future models and features will not be compatible with Text Completions. See our
     - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
       Most intelligent model for building agents and coding
+
+    - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
+
+      Frontier intelligence at scale — built for coding, agents, and enterprise workflows
 
     - `CLAUDE_OPUS_4_5_20251101("claude-opus-4-5-20251101")`
 

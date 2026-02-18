@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/completions
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: a3cefbcd10ed6e8a8ed6e2dbb957fe2d5acaa832d6c9f5964a12417f9ffa11ee
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: bbbc1b3723b0566a61311e5ece2cfb4ff6eb8be52da81188316b8724735d281f
 ---
 
 # Completions
@@ -33,13 +33,14 @@ Future models and features will not be compatible with Text Completions. See our
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+  - `Literal["claude-opus-4-6", "claude-sonnet-4-6", "claude-opus-4-5-20251101", 19 more]`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
     - `claude-opus-4-6` - Most intelligent model for building agents and coding
+    - `claude-sonnet-4-6` - Frontier intelligence at scale — built for coding, agents, and enterprise workflows
     - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
     - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
     - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -64,6 +65,10 @@ Future models and features will not be compatible with Text Completions. See our
     - `"claude-opus-4-6"`
 
       Most intelligent model for building agents and coding
+
+    - `"claude-sonnet-4-6"`
+
+      Frontier intelligence at scale — built for coding, agents, and enterprise workflows
 
     - `"claude-opus-4-5-20251101"`
 
@@ -285,13 +290,14 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+    - `Literal["claude-opus-4-6", "claude-sonnet-4-6", "claude-opus-4-5-20251101", 19 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
       - `claude-opus-4-6` - Most intelligent model for building agents and coding
+      - `claude-sonnet-4-6` - Frontier intelligence at scale — built for coding, agents, and enterprise workflows
       - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
       - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
       - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -316,6 +322,10 @@ Future models and features will not be compatible with Text Completions. See our
       - `"claude-opus-4-6"`
 
         Most intelligent model for building agents and coding
+
+      - `"claude-sonnet-4-6"`
+
+        Frontier intelligence at scale — built for coding, agents, and enterprise workflows
 
       - `"claude-opus-4-5-20251101"`
 
@@ -416,6 +426,23 @@ Future models and features will not be compatible with Text Completions. See our
 
     - `"completion"`
 
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+completion = client.completions.create(
+    max_tokens_to_sample=256,
+    model="claude-opus-4-6",
+    prompt="\n\nHuman: Hello, world!\n\nAssistant:",
+)
+print(completion.id)
+```
+
 ## Domain Types
 
 ### Completion
@@ -438,13 +465,14 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-opus-4-6", "claude-opus-4-5-20251101", "claude-opus-4-5", 18 more]`
+    - `Literal["claude-opus-4-6", "claude-sonnet-4-6", "claude-opus-4-5-20251101", 19 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
       - `claude-opus-4-6` - Most intelligent model for building agents and coding
+      - `claude-sonnet-4-6` - Frontier intelligence at scale — built for coding, agents, and enterprise workflows
       - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
       - `claude-opus-4-5` - Premium model combining maximum intelligence with practical performance
       - `claude-3-7-sonnet-latest` - Deprecated: Will reach end-of-life on February 19th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
@@ -469,6 +497,10 @@ Future models and features will not be compatible with Text Completions. See our
       - `"claude-opus-4-6"`
 
         Most intelligent model for building agents and coding
+
+      - `"claude-sonnet-4-6"`
+
+        Frontier intelligence at scale — built for coding, agents, and enterprise workflows
 
       - `"claude-opus-4-5-20251101"`
 

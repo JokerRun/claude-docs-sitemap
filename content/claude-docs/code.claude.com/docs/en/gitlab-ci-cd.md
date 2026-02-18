@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/gitlab-ci-cd
-fetched_at: 2026-02-04T04:12:50.357302Z
-sha256: 087906d8dca900f684a878bac8dc6d037db5889ee63e5900711c01fdf055d762
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 0515a9fa44dc50c2659940c5f3d1f03247e163d501725b12f5f5ce70fa9ac697
 ---
 
 > ## Documentation Index
@@ -326,7 +326,7 @@ claude-bedrock:
 ```
 
 <Note>
-  Model IDs for Bedrock include region-specific prefixes and version suffixes (for example, `us.anthropic.claude-sonnet-4-5-20250929-v1:0`). Pass the desired model via your job configuration or prompt if your workflow supports it.
+  Model IDs for Bedrock include region-specific prefixes (for example, `us.anthropic.claude-sonnet-4-6`). Pass the desired model via your job configuration or prompt if your workflow supports it.
 </Note>
 
 ### Google Vertex AI job example (Workload Identity Federation)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/retrieve_metadata
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 8a32fdcd25c0e29fc8f2ec1a72b8258139a387d4f7d249446e240da766765757
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: f15629b1117140d563e88f46bc943b5ccec357ce6cae404174df64a500dedbbb
 ---
 
 ## Retrieve Metadata
@@ -106,3 +106,34 @@ Get File Metadata
   - `Downloadable bool`
 
     Whether the file can be downloaded.
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  fileMetadata, err := client.Beta.Files.GetMetadata(
+    context.TODO(),
+    "file_id",
+    anthropic.BetaFileGetMetadataParams{
+
+    },
+  )
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", fileMetadata.ID)
+}
+```

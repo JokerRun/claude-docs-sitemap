@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 1848990cba9e2e6d0681a3e4885cb0149b2a62f6c8693e9303285b075e5d1f34
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 2c381834d44784e5b91060bc842574bd9e88414c4dbf809eac2ee4fa1a190205
 ---
 
 # Using Agent Skills with the API
@@ -17,6 +17,10 @@ Agent Skills extend Claude's capabilities through organized folders of instructi
 For complete API reference including request/response schemas and all parameters, see:
 - [Skill Management API Reference](/docs/en/api/skills/list-skills) - CRUD operations for Skills
 - [Skill Versions API Reference](/docs/en/api/skills/list-skill-versions) - Version management
+</Note>
+
+<Note>
+This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
 </Note>
 
 ## Quick Links

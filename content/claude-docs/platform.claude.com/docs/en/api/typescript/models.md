@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/models
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 38247abf153f16bc5c45473b9da452cc1cb58c2f2f06fdf2d1d98691348069f6
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 96403f44fc7363c31c62ace64a4e2c177486f8dcc720b2962bdf8368175f8870
 ---
 
 # Models
@@ -107,6 +107,21 @@ The Models API response can be used to determine which models are available for 
 
     - `"model"`
 
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+// Automatically fetches more pages as needed.
+for await (const modelInfo of client.models.list()) {
+  console.log(modelInfo.id);
+}
+```
+
 ## Retrieve
 
 `client.models.retrieve(stringmodelID, ModelRetrieveParamsparams?, RequestOptionsoptions?): ModelInfo`
@@ -196,6 +211,20 @@ The Models API response can be used to determine information about a specific mo
     For Models, this is always `"model"`.
 
     - `"model"`
+
+### Example
+
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const client = new Anthropic({
+  apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
+});
+
+const modelInfo = await client.models.retrieve('model_id');
+
+console.log(modelInfo.id);
+```
 
 ## Domain Types
 

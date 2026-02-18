@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 2d72ef5e663c52b9328a79fbe806ce7f6369bc0e4f6a22e967a40800bf6c4066
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 60f567fd8153a4c1a923960ea30005206feedfe14e6796ccf3b558c221ad6e32
 ---
 
 ## List
@@ -128,3 +128,12 @@ List Files
 - `last_id: optional string`
 
   ID of the last file in this page of results.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/files?beta=true \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: files-api-2025-04-14' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```

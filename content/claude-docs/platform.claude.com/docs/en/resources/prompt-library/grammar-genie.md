@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/grammar-genie
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 857f044200464e2879b0847e64f07e905445f22670c30303faa50999f8087c5d
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 24391b86c1a462ebc018e134268895603dade10ee2e654cbc436670b9ac70a89
 ---
 
 # Grammar genie
@@ -11,7 +11,7 @@ Transform grammatically incorrect sentences into proper English.
 
 ---
 
-> Copy this prompt into our developer [Console](/dashboard) to try it for yourself!
+> Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 
 |        | Content                                                                                                                                                                                                                                                                                     |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

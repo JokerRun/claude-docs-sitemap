@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-02-07T04:10:25.616975Z
-sha256: 38e6faa928d542b1e6546d04906797b5b4d809a3696423fa38fddd962cf5825c
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 4a5cd85b709b922183c0b2a0de0b7ba78f09876ce79d582e9adb72d1a415ad3c
 ---
 
 > ## Documentation Index
@@ -60,7 +60,7 @@ Customize Claude Code's behavior with these command-line flags:
 | `--max-budget-usd`                     | Maximum dollar amount to spend on API calls before stopping (print mode only)                                                                                                                             | `claude -p --max-budget-usd 5.00 "query"`                                                          |
 | `--max-turns`                          | Limit the number of agentic turns (print mode only). Exits with an error when the limit is reached. No limit by default                                                                                   | `claude -p --max-turns 3 "query"`                                                                  |
 | `--mcp-config`                         | Load MCP servers from JSON files or strings (space-separated)                                                                                                                                             | `claude --mcp-config ./mcp.json`                                                                   |
-| `--model`                              | Sets the model for the current session with an alias for the latest model (`sonnet` or `opus`) or a model's full name                                                                                     | `claude --model claude-sonnet-4-5-20250929`                                                        |
+| `--model`                              | Sets the model for the current session with an alias for the latest model (`sonnet` or `opus`) or a model's full name                                                                                     | `claude --model claude-sonnet-4-6`                                                                 |
 | `--no-chrome`                          | Disable [Chrome browser integration](/en/chrome) for this session                                                                                                                                         | `claude --no-chrome`                                                                               |
 | `--no-session-persistence`             | Disable session persistence so sessions are not saved to disk and cannot be resumed (print mode only)                                                                                                     | `claude -p --no-session-persistence "query"`                                                       |
 | `--output-format`                      | Specify output format for print mode (options: `text`, `json`, `stream-json`)                                                                                                                             | `claude -p "query" --output-format json`                                                           |

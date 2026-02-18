@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: e0f2a953e34f33582a222e369974f8bf1e0cc6c1198f7ed653e0e0cf6ce8b986
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 75ea599e613466767825e6a66dbc5f9669d17bb0f747e486c2de3540160d32df
 ---
 
 ## List
@@ -126,3 +126,19 @@ List Skill Versions
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+page = client.beta.skills.versions.list(
+    skill_id="skill_id",
+)
+page = page.data[0]
+print(page.id)
+```

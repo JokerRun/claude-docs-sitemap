@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: e360e2ece600d3be60b8d637475e71aab76bf4e9be51a4bc7696c83b22aa475a
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 760f0a732f4b1cf7d874c4566a998c230edd2c57f551693ad97b3998096d7ee6
 ---
 
 ## Retrieve
@@ -122,3 +122,15 @@ Get Skill Version
     Version identifier for the skill.
 
     Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+version = anthropic.beta.skills.versions.retrieve("version", skill_id: "skill_id")
+
+puts(version)
+```

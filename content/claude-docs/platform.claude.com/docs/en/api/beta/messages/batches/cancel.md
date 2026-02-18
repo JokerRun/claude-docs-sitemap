@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/cancel
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: e2f5639b71b5fb1853471e7898aaa27f71a741a8d988d0f9225348555919884e
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 6ee0767999d4e413981b24dbeb6d16e559347e43d0ac73057752623c0ba107ca
 ---
 
 ## Cancel
@@ -160,3 +160,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     For Message Batches, this is always `"message_batch"`.
 
     - `"message_batch"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/cancel?beta=true \
+    -X POST \
+    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: message-batches-2024-09-24' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```

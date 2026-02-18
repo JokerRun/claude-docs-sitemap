@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: b30b21c60b753ae9bee612f070a3a207005990d074808978261a84940ff2ef0b
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: ba7aa1d81584fcd62feae5db7ba96562c85c171812f5b2171bfec9797d4f227f
 ---
 
 # Pengenalan Claude
@@ -15,9 +15,9 @@ Claude adalah platform AI yang sangat berkinerja, dapat dipercaya, dan cerdas ya
 
 The latest generation of Claude models:
 
-**Claude Opus 4.6** - Claude Opus 4.6 is the latest version of our most intelligent model, and the world’s best model for coding, enterprise agents, and professional work. [Learn more](https://www.anthropic.com/news/claude-opus-4-6).
+**Claude Opus 4.6** - Our most intelligent model, and the world’s best model for coding, enterprise agents, and professional work. [Learn more](https://www.anthropic.com/news/claude-opus-4-6).
 
-**Claude Sonnet 4.5** - Balanced performance and practicality for most uses, including coding and agents. [Learn more](https://www.anthropic.com/news/claude-sonnet-4-5).
+**Claude Sonnet 4.6** - Frontier intelligence at scale—built for coding, agents, and enterprise workflows. [Learn more](https://www.anthropic.com/news/claude-sonnet-4-6).
 
 **Claude Haiku 4.5** - Fastest model with near-frontier intelligence. [Learn more](https://www.anthropic.com/news/claude-haiku-4-5).
 

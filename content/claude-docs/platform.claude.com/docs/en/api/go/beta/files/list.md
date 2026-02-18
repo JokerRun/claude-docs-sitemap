@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: b34e7fd90c6bd0fa5a02039886964c417aae7b77f219337fc456612d5c8a1d22
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: 52bc49ff5a03dfbd104e3d81f02c3c1f26a604d253d1d1fe6550b8c30889b52c
 ---
 
 ## List
@@ -116,3 +116,30 @@ List Files
   - `Downloadable bool`
 
     Whether the file can be downloaded.
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  page, err := client.Beta.Files.List(context.TODO(), anthropic.BetaFileListParams{
+
+  })
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", page)
+}
+```

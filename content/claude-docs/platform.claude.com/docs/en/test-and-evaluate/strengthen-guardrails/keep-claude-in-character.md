@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/keep-claude-in-character
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 120e2c9b333486624dfbfb397921abebfba92e0c097f0b0d43d7ee7c84bdd2c3
+fetched_at: 2026-02-18T04:24:24.092866Z
+sha256: ec3c8ff07fe505a3d740d19bb3302f9fa0e8039f78e13d513a45b97690bf6798
 ---
 
 # Keep Claude in character with role prompting and prefilling
@@ -11,7 +11,7 @@ sha256: 120e2c9b333486624dfbfb397921abebfba92e0c097f0b0d43d7ee7c84bdd2c3
 
 This guide provides actionable tips to keep Claude in character, even during long, complex interactions.
 
-<Note>Prefilling is deprecated and not supported on Claude Opus 4.6 and Claude Sonnet 4.5. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) or system prompt instructions instead.</Note>
+<Note>Prefilling is deprecated and not supported on Claude Opus 4.6, Claude Sonnet 4.6, and Claude Sonnet 4.5. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) or system prompt instructions instead.</Note>
 
 - **Use system prompts to set the role:** Use [system prompts](/docs/en/build-with-claude/prompt-engineering/system-prompts) to define Claude's role and personality. This sets a strong foundation for consistent responses.
     <Tip>When setting up the character, provide detailed information about the personality, background, and any specific traits or quirks. This will help the model better emulate and generalize the character's traits.</Tip>
