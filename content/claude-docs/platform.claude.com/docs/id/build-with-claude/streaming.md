@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: c7e90d27cfa693e30bc09cacb71e911300c62d05179cbd9b439345dc717ddc13
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 3382bfb1b662d4c7f2715e935b2f9fd8ac212c698450158162c67a6e4af4e7a8
 ---
 
-# Streaming Pesan
+# Pesan Streaming
 
-Pelajari cara melakukan streaming respons pesan secara inkremental menggunakan server-sent events (SSE).
+Pelajari cara melakukan streaming respons pesan secara bertahap menggunakan server-sent events (SSE).
 
 ---
 
-Saat membuat Pesan, Anda dapat mengatur `"stream": true` untuk melakukan streaming respons secara inkremental menggunakan [server-sent events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents) (SSE).
+Saat membuat Pesan, Anda dapat mengatur `"stream": true` untuk melakukan streaming respons secara bertahap menggunakan [server-sent events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents) (SSE).
 
 ## Streaming dengan SDK
 
-SDK [Python](https://github.com/anthropics/anthropic-sdk-python) dan [TypeScript](https://github.com/anthropics/anthropic-sdk-typescript) kami menawarkan berbagai cara untuk melakukan streaming. SDK Python memungkinkan streaming sinkron dan asinkron. Lihat dokumentasi di setiap SDK untuk detail lebih lanjut.
+SDK [Python](https://github.com/anthropics/anthropic-sdk-python) dan [TypeScript](https://github.com/anthropics/anthropic-sdk-typescript) kami menawarkan beberapa cara untuk melakukan streaming. SDK Python memungkinkan streaming sinkron dan asinkron. Lihat dokumentasi di setiap SDK untuk detail lebih lanjut.
 
 <CodeGroup>
     ```python Python
@@ -28,26 +28,26 @@ SDK [Python](https://github.com/anthropics/anthropic-sdk-python) dan [TypeScript
         messages=[{"role": "user", "content": "Hello"}],
         model="claude-opus-4-6",
     ) as stream:
-      for text in stream.text_stream:
-          print(text, end="", flush=True)
+        for text in stream.text_stream:
+            print(text, end="", flush=True)
     ```
 
     ```typescript TypeScript
-    import Anthropic from '@anthropic-ai/sdk';
+    import Anthropic from "@anthropic-ai/sdk";
 
     const client = new Anthropic();
 
     await client.messages.stream({
-        messages: [{role: 'user', content: "Hello"}],
-        model: 'claude-opus-4-6',
-        max_tokens: 1024,
-    }).on('text', (text) => {
-        console.log(text);
+      messages: [{ role: "user", content: "Hello" }],
+      model: "claude-opus-4-6",
+      max_tokens: 1024
+    }).on("text", (text) => {
+      console.log(text);
     });
     ```
 </CodeGroup>
 
-## Dapatkan pesan final tanpa menangani acara
+## Dapatkan pesan akhir tanpa menangani acara
 
 Jika Anda tidak perlu memproses teks saat tiba, SDK menyediakan cara untuk menggunakan streaming di balik layar sambil mengembalikan objek `Message` lengkap — identik dengan apa yang dikembalikan oleh `.create()`. Ini sangat berguna untuk permintaan dengan nilai `max_tokens` besar, di mana SDK memerlukan streaming untuk menghindari timeout HTTP.
 
@@ -68,14 +68,14 @@ Jika Anda tidak perlu memproses teks saat tiba, SDK menyediakan cara untuk mengg
     ```
 
     ```typescript TypeScript
-    import Anthropic from '@anthropic-ai/sdk';
+    import Anthropic from "@anthropic-ai/sdk";
 
     const client = new Anthropic();
 
     const stream = client.messages.stream({
-        max_tokens: 128000,
-        messages: [{role: 'user', content: 'Write a detailed analysis...'}],
-        model: 'claude-opus-4-6',
+      max_tokens: 128000,
+      messages: [{ role: "user", content: "Write a detailed analysis..." }],
+      model: "claude-opus-4-6"
     });
 
     const message = await stream.finalMessage();
@@ -83,18 +83,18 @@ Jika Anda tidak perlu memproses teks saat tiba, SDK menyediakan cara untuk mengg
     ```
 </CodeGroup>
 
-Panggilan `.stream()` menjaga koneksi HTTP tetap aktif dengan server-sent events, kemudian `.get_final_message()` (Python) atau `.finalMessage()` (TypeScript) mengumpulkan semua acara dan mengembalikan objek `Message` lengkap. Tidak ada kode penanganan acara yang diperlukan.
+Panggilan `.stream()` menjaga koneksi HTTP tetap aktif dengan server-sent events, kemudian `.get_final_message()` (Python) atau `.finalMessage()` (TypeScript) mengumpulkan semua acara dan mengembalikan objek `Message` lengkap. Tidak diperlukan kode penanganan acara.
 
 ## Jenis acara
 
-Setiap server-sent event mencakup jenis acara bernama dan data JSON terkait. Setiap acara akan menggunakan nama acara SSE (misalnya `event: message_stop`), dan menyertakan `type` acara yang cocok dalam datanya.
+Setiap server-sent event mencakup nama jenis acara dan data JSON terkait. Setiap acara akan menggunakan nama acara SSE (misalnya `event: message_stop`), dan menyertakan `type` acara yang sesuai dalam datanya.
 
 Setiap aliran menggunakan alur acara berikut:
 
 1. `message_start`: berisi objek `Message` dengan `content` kosong.
-2. Serangkaian blok konten, masing-masing memiliki acara `content_block_start`, satu atau lebih acara `content_block_delta`, dan acara `content_block_stop`. Setiap blok konten akan memiliki `index` yang sesuai dengan indeksnya dalam array `content` Pesan final.
-3. Satu atau lebih acara `message_delta`, menunjukkan perubahan tingkat atas pada objek `Message` final.
-4. Acara `message_stop` final.
+2. Serangkaian blok konten, masing-masing memiliki `content_block_start`, satu atau lebih acara `content_block_delta`, dan acara `content_block_stop`. Setiap blok konten akan memiliki `index` yang sesuai dengan indeksnya dalam array `content` Pesan akhir.
+3. Satu atau lebih acara `message_delta`, menunjukkan perubahan tingkat atas pada objek `Message` akhir.
+4. Acara `message_stop` akhir.
 
   <Warning>
   Hitungan token yang ditampilkan di bidang `usage` acara `message_delta` adalah *kumulatif*.
@@ -131,7 +131,7 @@ data: {"type": "content_block_delta","index": 0,"delta": {"type": "text_delta", 
 
 ### Delta JSON input
 
-Delta untuk blok konten `tool_use` sesuai dengan pembaruan untuk bidang `input` blok. Untuk mendukung granularitas maksimal, delta adalah *string JSON parsial*, sedangkan `tool_use.input` final selalu merupakan *objek*.
+Delta untuk blok konten `tool_use` sesuai dengan pembaruan untuk bidang `input` blok. Untuk mendukung granularitas maksimal, delta adalah *string JSON parsial*, sedangkan `tool_use.input` akhir selalu merupakan *objek*.
 
 Anda dapat mengumpulkan delta string dan mengurai JSON setelah menerima acara `content_block_stop`, dengan menggunakan perpustakaan seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan parsing JSON parsial, atau dengan menggunakan [SDK](/docs/id/api/client-sdks) kami, yang menyediakan pembantu untuk mengakses nilai inkremental yang diurai.
 
@@ -140,15 +140,15 @@ Delta blok konten `tool_use` terlihat seperti:
 event: content_block_delta
 data: {"type": "content_block_delta","index": 1,"delta": {"type": "input_json_delta","partial_json": "{\"location\": \"San Fra"}}
 ```
-Catatan: Model kami saat ini hanya mendukung pemancaraan satu properti kunci dan nilai lengkap dari `input` pada satu waktu. Dengan demikian, saat menggunakan alat, mungkin ada penundaan antara acara streaming saat model sedang bekerja. Setelah kunci dan nilai `input` terakumulasi, kami memancarkannya sebagai beberapa acara `content_block_delta` dengan json parsial yang dipotong sehingga format dapat secara otomatis mendukung granularitas lebih halus di model masa depan.
+Catatan: Model kami saat ini hanya mendukung pemancarannya satu properti kunci dan nilai lengkap dari `input` pada satu waktu. Dengan demikian, saat menggunakan alat, mungkin ada penundaan antara acara streaming saat model bekerja. Setelah kunci dan nilai `input` terakumulasi, kami memancarkannya sebagai beberapa acara `content_block_delta` dengan json parsial yang dipotong sehingga format dapat secara otomatis mendukung granularitas yang lebih halus di model masa depan.
 
 ### Delta pemikiran
 
-Saat menggunakan [extended thinking](/docs/id/build-with-claude/extended-thinking#streaming-thinking) dengan streaming diaktifkan, Anda akan menerima konten pemikiran melalui acara `thinking_delta`. Delta ini sesuai dengan bidang `thinking` dari blok konten `thinking`.
+Saat menggunakan [pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking#streaming-thinking) dengan streaming diaktifkan, Anda akan menerima konten pemikiran melalui acara `thinking_delta`. Delta ini sesuai dengan bidang `thinking` dari blok konten `thinking`.
 
 Untuk konten pemikiran, acara `signature_delta` khusus dikirim tepat sebelum acara `content_block_stop`. Tanda tangan ini digunakan untuk memverifikasi integritas blok pemikiran.
 
-Delta pemikiran tipikal terlihat seperti:
+Delta pemikiran khas terlihat seperti:
 ```json Delta pemikiran
 event: content_block_delta
 data: {"type": "content_block_delta", "index": 0, "delta": {"type": "thinking_delta", "thinking": "I need to find the GCD of 1071 and 462 using the Euclidean algorithm.\n\n1071 = 2 × 462 + 147"}}
@@ -292,11 +292,11 @@ tools = [
             "properties": {
                 "location": {
                     "type": "string",
-                    "description": "The city and state, e.g. San Francisco, CA"
+                    "description": "The city and state, e.g. San Francisco, CA",
                 }
             },
-            "required": ["location"]
-        }
+            "required": ["location"],
+        },
     }
 ]
 
@@ -306,10 +306,7 @@ with client.messages.stream(
     tools=tools,
     tool_choice={"type": "any"},
     messages=[
-        {
-            "role": "user",
-            "content": "What is the weather like in San Francisco?"
-        }
+        {"role": "user", "content": "What is the weather like in San Francisco?"}
     ],
 ) as stream:
     for text in stream.text_stream:
@@ -409,9 +406,9 @@ event: message_stop
 data: {"type":"message_stop"}
 ```
 
-### Permintaan streaming dengan extended thinking
+### Permintaan streaming dengan pemikiran diperpanjang
 
-Dalam permintaan ini, kami mengaktifkan extended thinking dengan streaming untuk melihat penalaran langkah demi langkah Claude.
+Dalam permintaan ini, kami mengaktifkan pemikiran diperpanjang dengan streaming untuk melihat penalaran langkah demi langkah Claude.
 
 <CodeGroup>
 ```bash Shell
@@ -445,14 +442,11 @@ client = anthropic.Anthropic()
 with client.messages.stream(
     model="claude-opus-4-6",
     max_tokens=20000,
-    thinking={
-        "type": "enabled",
-        "budget_tokens": 16000
-    },
+    thinking={"type": "enabled", "budget_tokens": 16000},
     messages=[
         {
             "role": "user",
-            "content": "What is the greatest common divisor of 1071 and 462?"
+            "content": "What is the greatest common divisor of 1071 and 462?",
         }
     ],
 ) as stream:
@@ -545,18 +539,9 @@ client = anthropic.Anthropic()
 with client.messages.stream(
     model="claude-opus-4-6",
     max_tokens=1024,
-    tools=[
-        {
-            "type": "web_search_20250305",
-            "name": "web_search",
-            "max_uses": 5
-        }
-    ],
+    tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 5}],
     messages=[
-        {
-            "role": "user",
-            "content": "What is the weather like in New York City today?"
-        }
+        {"role": "user", "content": "What is the weather like in New York City today?"}
     ],
 ) as stream:
     for text in stream.text_stream:
@@ -648,7 +633,9 @@ data: {"type":"message_stop"}
 
 ## Pemulihan kesalahan
 
-Ketika permintaan streaming terputus karena masalah jaringan, timeout, atau kesalahan lainnya, Anda dapat memulihkan dengan melanjutkan dari tempat aliran terputus. Pendekatan ini menghemat Anda dari memproses ulang seluruh respons.
+### Claude 4.5 dan lebih awal
+
+Untuk model Claude 4.5 dan lebih awal, Anda dapat memulihkan permintaan streaming yang terputus karena masalah jaringan, timeout, atau kesalahan lainnya dengan melanjutkan dari tempat aliran terputus. Pendekatan ini menghemat Anda dari pemrosesan ulang seluruh respons.
 
 Strategi pemulihan dasar melibatkan:
 
@@ -656,7 +643,14 @@ Strategi pemulihan dasar melibatkan:
 2. **Buat permintaan kelanjutan**: Buat permintaan API baru yang mencakup respons asisten parsial sebagai awal dari pesan asisten baru
 3. **Lanjutkan streaming**: Terus menerima sisa respons dari tempat terputus
 
+### Claude 4.6
+
+Untuk model Claude 4.6, Anda harus menambahkan pesan pengguna yang menginstruksikan model untuk melanjutkan dari tempat terakhir. Misalnya:
+```text Contoh prompt
+Your previous response was interrupted and ended with [previous_response]. Continue from where you left off.
+```
+
 ### Praktik terbaik pemulihan kesalahan
 
 1. **Gunakan fitur SDK**: Manfaatkan kemampuan akumulasi pesan dan penanganan kesalahan bawaan SDK
-2. **Tangani jenis konten**: Ketahui bahwa pesan dapat berisi beberapa blok konten (`text`, `tool_use`, `thinking`). Blok penggunaan alat dan extended thinking tidak dapat dipulihkan sebagian. Anda dapat melanjutkan streaming dari blok teks paling terbaru.
+2. **Tangani jenis konten**: Ketahui bahwa pesan dapat berisi beberapa blok konten (`text`, `tool_use`, `thinking`). Blok penggunaan alat dan pemikiran diperpanjang tidak dapat dipulihkan sebagian. Anda dapat melanjutkan streaming dari blok teks paling baru.

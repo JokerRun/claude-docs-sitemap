@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/administration-api
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 637019c5d004eb3cb7df2205920f66dfa84ed6c3c41cd795bad46c90f55580ec
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 764f69c23517227e5e0a93e205ef811bde91d4509b4a3bca5e22fdd0962f3eaa
 ---
 
 # Admin API overview
@@ -39,7 +39,7 @@ This is useful for:
 
 ## Organization roles and permissions
 
-There are five organization-level roles. See more details [here](https://support.claude.com/en/articles/10186004-api-console-roles-and-permissions).
+There are five organization-level roles. See more details in the [API Console roles and permissions](https://support.claude.com/en/articles/10186004-api-console-roles-and-permissions) article.
 
 | Role | Permissions |
 |------|-------------|

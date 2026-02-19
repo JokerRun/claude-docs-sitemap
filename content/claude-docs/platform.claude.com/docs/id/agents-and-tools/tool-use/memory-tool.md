@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 49ce4349ab9a8cded77fe2cbc93970d7d68ebfe69e7969453c96a8487bf2a3f4
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 2ebc82063332a0aac2054cfe71a7f6ccbbd2301fd8c16279f587f8e0ba578337
 ---
 
 # Alat memori
@@ -11,41 +11,43 @@ Alat memori memungkinkan Claude untuk menyimpan dan mengambil informasi di selur
 
 ---
 
-Alat memori memungkinkan Claude untuk menyimpan dan mengambil informasi di seluruh percakapan melalui direktori file memori. Claude dapat membuat, membaca, memperbarui, dan menghapus file yang bertahan antar sesi, memungkinkannya membangun pengetahuan seiring waktu tanpa menyimpan semuanya di jendela konteks.
+Alat memori memungkinkan Claude untuk menyimpan dan mengambil informasi di seluruh percakapan melalui direktori file memori. Claude dapat membuat, membaca, memperbarui, dan menghapus file yang bertahan di antara sesi, memungkinkannya untuk membangun pengetahuan seiring waktu tanpa menyimpan semuanya di jendela konteks.
 
 Alat memori beroperasi di sisi klien—Anda mengontrol di mana dan bagaimana data disimpan melalui infrastruktur Anda sendiri.
 
 <Note>
-Alat memori saat ini dalam beta. Untuk mengaktifkannya, gunakan header beta `context-management-2025-06-27` dalam permintaan API Anda.
-
 Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/YXC2EKGMhjN1c4L88) kami untuk berbagi umpan balik Anda tentang fitur ini.
+</Note>
+
+<Note>
+This feature is [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) eligible. When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
 </Note>
 
 ## Kasus penggunaan
 
 - Pertahankan konteks proyek di seluruh eksekusi agen yang berbeda
-- Belajar dari interaksi, keputusan, dan umpan balik masa lalu
+- Pelajari dari interaksi, keputusan, dan umpan balik masa lalu
 - Bangun basis pengetahuan seiring waktu
 - Aktifkan pembelajaran lintas percakapan di mana Claude meningkat dalam alur kerja yang berulang
 
 ## Cara kerjanya
 
-Ketika diaktifkan, Claude secara otomatis memeriksa direktori memorinya sebelum memulai tugas. Claude dapat membuat, membaca, memperbarui, dan menghapus file di direktori `/memories` untuk menyimpan apa yang dipelajarinya saat bekerja, kemudian mereferensikan memori tersebut dalam percakapan masa depan untuk menangani tugas serupa dengan lebih efektif atau melanjutkan dari tempat ia berhenti.
+Ketika diaktifkan, Claude secara otomatis memeriksa direktori memorinya sebelum memulai tugas. Claude dapat membuat, membaca, memperbarui, dan menghapus file di direktori `/memories` untuk menyimpan apa yang dipelajarinya saat bekerja, kemudian mereferensikan memori tersebut dalam percakapan masa depan untuk menangani tugas serupa dengan lebih efektif atau melanjutkan dari mana ia berhenti.
 
 Karena ini adalah alat sisi klien, Claude membuat panggilan alat untuk melakukan operasi memori, dan aplikasi Anda menjalankan operasi tersebut secara lokal. Ini memberi Anda kontrol penuh atas di mana dan bagaimana memori disimpan. Untuk keamanan, Anda harus membatasi semua operasi memori ke direktori `/memories`.
 
-### Contoh: Cara panggilan alat memori bekerja
+### Contoh: Cara kerja panggilan alat memori
 
-Ketika Anda meminta Claude untuk membantu dengan tugas, Claude secara otomatis memeriksa direktori memorinya terlebih dahulu. Berikut adalah tampilan interaksi tipikal:
+Ketika Anda meminta Claude untuk membantu dengan tugas, Claude secara otomatis memeriksa direktori memorinya terlebih dahulu. Berikut adalah apa yang terlihat seperti interaksi khas:
 
 **1. Permintaan pengguna:**
-```
+```text
 "Bantu saya merespons tiket layanan pelanggan ini."
 ```
 
 **2. Claude memeriksa direktori memori:**
-```
-"Saya akan membantu Anda merespons tiket layanan pelanggan. Biarkan saya memeriksa memori saya untuk konteks sebelumnya."
+```text
+"Saya akan membantu Anda merespons tiket layanan pelanggan. Biarkan saya memeriksa memori saya untuk konteks sebelumnya apa pun."
 ```
 
 Claude memanggil alat memori:
@@ -88,13 +90,13 @@ Claude memanggil alat memori:
 {
   "type": "tool_result",
   "tool_use_id": "toolu_01D5E6F7G8H9I0J1K2L3M4N5",
-  "content": "Berikut adalah isi /memories/customer_service_guidelines.xml dengan nomor baris:\n     1\t<guidelines>\n     2\t<addressing_customers>\n     3\t- Selalu panggil pelanggan dengan nama depan mereka\n     4\t- Gunakan bahasa yang empatik\n..."
+  "content": "Berikut adalah isi /memories/customer_service_guidelines.xml dengan nomor baris:\n     1\t<guidelines>\n     2\t<addressing_customers>\n     3\t- Selalu panggil pelanggan dengan nama depan mereka\n     4\t- Gunakan bahasa yang berempati\n..."
 }
 ```
 
 **6. Claude menggunakan memori untuk membantu:**
-```
-"Berdasarkan panduan layanan pelanggan Anda, saya dapat membantu Anda menyusun respons. Silakan bagikan detail tiketnya..."
+```text
+"Berdasarkan pedoman layanan pelanggan Anda, saya dapat membantu Anda menyusun respons. Silakan bagikan detail tiketnya..."
 ```
 
 ## Model yang didukung
@@ -105,6 +107,7 @@ Alat memori tersedia di:
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 - Claude Opus 4.1 (`claude-opus-4-1-20250805`)
 - Claude Opus 4 (`claude-opus-4-20250514`)
+- Claude Sonnet 4.6 (`claude-sonnet-4-6`)
 - Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Sonnet 4 (`claude-sonnet-4-20250514`)
 - Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
@@ -113,14 +116,13 @@ Alat memori tersedia di:
 
 Untuk menggunakan alat memori:
 
-1. Sertakan header beta `context-management-2025-06-27` dalam permintaan API Anda
-2. Tambahkan alat memori ke permintaan Anda
-3. Implementasikan penanganan sisi klien untuk operasi memori
+1. Tambahkan alat memori ke permintaan Anda
+2. Implementasikan penanganan sisi klien untuk operasi memori
 
 <Note>
 Untuk menangani operasi alat memori di aplikasi Anda, Anda perlu mengimplementasikan penanganan untuk setiap perintah memori. SDK kami menyediakan pembantu alat memori yang menangani antarmuka alat—Anda dapat membuat subkelas `BetaAbstractMemoryTool` (Python) atau menggunakan `betaMemoryTool` (TypeScript) untuk mengimplementasikan backend memori Anda sendiri (berbasis file, database, penyimpanan cloud, file terenkripsi, dll.).
 
-Untuk contoh kerja, lihat:
+Untuk contoh yang berfungsi, lihat:
 - Python: [examples/memory/basic.py](https://github.com/anthropics/anthropic-sdk-python/blob/main/examples/memory/basic.py)
 - TypeScript: [examples/tools-helpers-memory.ts](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/examples/tools-helpers-memory.ts)
 </Note>
@@ -134,7 +136,6 @@ curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
     --header "content-type: application/json" \
-    --header "anthropic-beta: context-management-2025-06-27" \
     --data '{
         "model": "claude-opus-4-6",
         "max_tokens": 2048,
@@ -156,31 +157,27 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-message = client.beta.messages.create(
+message = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=2048,
     messages=[
         {
             "role": "user",
-            "content": "I'm working on a Python web scraper that keeps crashing with a timeout error. Here's the problematic function:\n\n```python\ndef fetch_page(url, retries=3):\n    for i in range(retries):\n        try:\n            response = requests.get(url, timeout=5)\n            return response.text\n        except requests.exceptions.Timeout:\n            if i == retries - 1:\n                raise\n            time.sleep(1)\n```\n\nPlease help me debug this."
+            "content": "I'm working on a Python web scraper that keeps crashing with a timeout error. Here's the problematic function:\n\n```python\ndef fetch_page(url, retries=3):\n    for i in range(retries):\n        try:\n            response = requests.get(url, timeout=5)\n            return response.text\n        except requests.exceptions.Timeout:\n            if i == retries - 1:\n                raise\n            time.sleep(1)\n```\n\nPlease help me debug this.",
         }
     ],
-    tools=[{
-        "type": "memory_20250818",
-        "name": "memory"
-    }],
-    betas=["context-management-2025-06-27"]
+    tools=[{"type": "memory_20250818", "name": "memory"}],
 )
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
+  apiKey: process.env.ANTHROPIC_API_KEY
 });
 
-const message = await anthropic.beta.messages.create({
+const message = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 2048,
   messages: [
@@ -192,8 +189,7 @@ const message = await anthropic.beta.messages.create({
   tools: [{
     type: "memory_20250818",
     name: "memory"
-  }],
-  betas: ["context-management-2025-06-27"]
+  }]
 });
 ```
 
@@ -217,7 +213,7 @@ Menampilkan isi direktori atau isi file dengan rentang baris opsional:
 #### Nilai pengembalian
 
 **Untuk direktori:** Kembalikan daftar yang menunjukkan file dan direktori dengan ukurannya:
-```
+```text
 Berikut adalah file dan direktori hingga 2 level dalam {path}, tidak termasuk item tersembunyi dan node_modules:
 {size}    {path}
 {size}    {path}/{filename1}
@@ -230,7 +226,7 @@ Berikut adalah file dan direktori hingga 2 level dalam {path}, tidak termasuk it
 - Gunakan karakter tab antara ukuran dan jalur
 
 **Untuk file:** Kembalikan isi file dengan header dan nomor baris:
-```
+```text
 Berikut adalah isi {path} dengan nomor baris:
 {line_numbers}{tab}{content}
 ```
@@ -242,7 +238,7 @@ Pemformatan nomor baris:
 - **Batas baris**: File dengan lebih dari 999.999 baris harus mengembalikan kesalahan: `"File {path} exceeds maximum line limit of 999,999 lines."`
 
 **Contoh keluaran:**
-```
+```text
 Berikut adalah isi /memories/notes.txt dengan nomor baris:
      1	Hello World
      2	This is line two
@@ -374,7 +370,7 @@ Mengubah nama direktori.
 
 Kami secara otomatis menyertakan instruksi ini ke prompt sistem ketika alat memori disertakan:
 
-```
+```text
 IMPORTANT: ALWAYS VIEW YOUR MEMORY DIRECTORY BEFORE DOING ANYTHING ELSE.
 MEMORY PROTOCOL:
 1. Use the `view` command of your `memory` tool to check for earlier progress.
@@ -385,16 +381,16 @@ ASSUME INTERRUPTION: Your context window might be reset at any moment, so you ri
 
 Jika Anda mengamati Claude membuat file memori yang berantakan, Anda dapat menyertakan instruksi ini:
 
-> Catatan: saat mengedit folder memori Anda, selalu coba simpan kontennya tetap terkini, koheren, dan terorganisir. Anda dapat mengubah nama atau menghapus file yang tidak lagi relevan. Jangan buat file baru kecuali diperlukan.
+> Catatan: saat mengedit folder memori Anda, selalu coba simpan kontennya tetap terbaru, koheren, dan terorganisir. Anda dapat mengubah nama atau menghapus file yang tidak lagi relevan. Jangan buat file baru kecuali diperlukan.
 
-Anda juga dapat memandu apa yang Claude tulis ke memori, misalnya, "Hanya tulis informasi yang relevan dengan \<topic\> dalam sistem memori Anda."
+Anda juga dapat memandu apa yang Claude tulis ke memori. Misalnya: "Hanya tulis informasi yang relevan dengan \<topic\> dalam sistem memori Anda."
 
 ## Pertimbangan keamanan
 
-Berikut adalah kekhawatiran keamanan penting saat mengimplementasikan penyimpanan memori Anda:
+Berikut adalah masalah keamanan penting saat mengimplementasikan penyimpanan memori Anda:
 
 ### Informasi sensitif
-Claude biasanya akan menolak untuk menulis informasi sensitif dalam file memori. Namun, Anda mungkin ingin mengimplementasikan validasi yang lebih ketat yang menghilangkan informasi yang berpotensi sensitif.
+Claude biasanya akan menolak untuk menuliskan informasi sensitif dalam file memori. Namun, Anda mungkin ingin mengimplementasikan validasi yang lebih ketat yang menghilangkan informasi yang berpotensi sensitif.
 
 ### Ukuran penyimpanan file memori
 Pertimbangkan pelacakan ukuran file memori dan mencegah file tumbuh terlalu besar. Pertimbangkan menambahkan jumlah karakter maksimum yang dapat dikembalikan perintah baca memori, dan biarkan Claude membuat halaman melalui konten.
@@ -422,86 +418,75 @@ Alat memori menggunakan pola penanganan kesalahan yang serupa dengan [alat edito
 
 ## Menggunakan dengan Context Editing
 
-Alat memori dapat digabungkan dengan [context editing](/docs/id/build-with-claude/context-editing), yang secara otomatis menghapus hasil alat lama ketika konteks percakapan tumbuh melampaui ambang yang dikonfigurasi. Kombinasi ini memungkinkan alur kerja agentic jangka panjang yang sebaliknya akan melampaui batas konteks.
+Alat memori dapat digabungkan dengan [context editing](/docs/id/build-with-claude/context-editing), yang secara otomatis menghapus hasil alat lama ketika konteks percakapan tumbuh melampaui ambang batas yang dikonfigurasi. Kombinasi ini memungkinkan alur kerja agentic jangka panjang yang sebaliknya akan melampaui batas konteks.
 
 ### Cara mereka bekerja bersama
 
-Ketika context editing diaktifkan dan percakapan Anda mendekati ambang pembersihan, Claude secara otomatis menerima notifikasi peringatan. Ini mendorong Claude untuk menyimpan informasi penting dari hasil alat ke file memori sebelum hasil tersebut dihapus dari jendela konteks.
+Ketika context editing diaktifkan dan percakapan Anda mendekati ambang batas pembersihan, Claude secara otomatis menerima notifikasi peringatan. Ini mendorong Claude untuk menyimpan informasi penting dari hasil alat ke file memori sebelum hasil tersebut dihapus dari jendela konteks.
 
 Setelah hasil alat dihapus, Claude dapat mengambil informasi yang disimpan dari file memori kapan pun diperlukan, secara efektif memperlakukan memori sebagai perpanjangan dari konteks kerjanya. Ini memungkinkan Claude untuk:
 
-- Melanjutkan alur kerja multi-langkah yang kompleks tanpa kehilangan informasi penting
+- Melanjutkan alur kerja kompleks multi-langkah tanpa kehilangan informasi kritis
 - Mereferensikan pekerjaan dan keputusan masa lalu bahkan setelah hasil alat dihapus
-- Mempertahankan konteks yang koheren di seluruh percakapan yang akan melampaui batas konteks tipikal
+- Mempertahankan konteks yang koheren di seluruh percakapan yang akan melampaui batas konteks khas
 - Membangun basis pengetahuan seiring waktu sambil menjaga jendela konteks aktif tetap dapat dikelola
 
 ### Contoh alur kerja
 
 Pertimbangkan proyek refactoring kode dengan banyak operasi file:
 
-1. Claude membuat banyak edit ke file, menghasilkan banyak hasil alat
-2. Saat konteks tumbuh dan mendekati ambang Anda, Claude menerima peringatan
+1. Claude membuat banyak pengeditan ke file, menghasilkan banyak hasil alat
+2. Saat konteks tumbuh dan mendekati ambang batas Anda, Claude menerima peringatan
 3. Claude merangkum perubahan yang dibuat sejauh ini ke file memori (misalnya, `/memories/refactoring_progress.xml`)
-4. Context editing menghapus hasil alat yang lebih lama secara otomatis
+4. Context editing secara otomatis menghapus hasil alat yang lebih lama
 5. Claude terus bekerja, mereferensikan file memori ketika perlu mengingat perubahan apa yang sudah selesai
 6. Alur kerja dapat berlanjut tanpa batas, dengan Claude mengelola konteks aktif dan memori persisten
 
 ### Konfigurasi
 
-Untuk menggunakan kedua fitur bersama:
+Untuk menggunakan kedua fitur bersama-sama:
 
 <CodeGroup>
 
 ```python Python
-response = client.beta.messages.create(
+response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=4096,
     messages=[...],
     tools=[
-        {
-            "type": "memory_20250818",
-            "name": "memory"
-        },
+        {"type": "memory_20250818", "name": "memory"},
         # Your other tools
     ],
-    betas=["context-management-2025-06-27"],
     context_management={
         "edits": [
             {
                 "type": "clear_tool_uses_20250919",
-                "trigger": {
-                    "type": "input_tokens",
-                    "value": 100000
-                },
-                "keep": {
-                    "type": "tool_uses",
-                    "value": 3
-                }
+                "trigger": {"type": "input_tokens", "value": 100000},
+                "keep": {"type": "tool_uses", "value": 3},
             }
         ]
-    }
+    },
 )
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
+  apiKey: process.env.ANTHROPIC_API_KEY
 });
 
-const response = await anthropic.beta.messages.create({
+const response = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 4096,
-  messages: [...],
+  messages: [/* ... */],
   tools: [
     {
       type: "memory_20250818",
       name: "memory"
-    },
+    }
     // Your other tools
   ],
-  betas: ["context-management-2025-06-27"],
   context_management: {
     edits: [
       {
@@ -527,13 +512,8 @@ Anda juga dapat mengecualikan panggilan alat memori dari pembersihan untuk memas
 <CodeGroup>
 
 ```python Python
-context_management={
-    "edits": [
-        {
-            "type": "clear_tool_uses_20250919",
-            "exclude_tools": ["memory"]
-        }
-    ]
+context_management = {
+    "edits": [{"type": "clear_tool_uses_20250919", "exclude_tools": ["memory"]}]
 }
 ```
 
@@ -544,7 +524,7 @@ context_management: {
       type: "clear_tool_uses_20250919",
       exclude_tools: ["memory"]
     }
-  ]
+  ];
 }
 ```
 

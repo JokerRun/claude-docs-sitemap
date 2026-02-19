@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/service-tiers
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 05d9120d6088b96dadd6a1396726f4e9f37c9b59fa19787e2e13f022acabfc25
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: dd20eaf79876ff02f41027de4368958114ef73494cb253e702d7e9adfd04b675
 ---
 
 # Service tiers
@@ -50,7 +50,7 @@ Anthropic counts usage against Priority Tier capacity as follows:
 Otherwise, requests proceed at standard tier.
 
 <Note>
-These burndown rates reflect the relative pricing of each token type. For example, US-only inference is priced at 1.1x, so each token consumed with `inference_geo: "us"` draws down 1.1 tokens from your Priority Tier capacity. Multipliers stack — a long-context request with US-only inference draws down input tokens at 2.2 tokens per token (2 × 1.1).
+These burndown rates reflect the relative pricing of each token type. For example, US-only inference is priced at 1.1x, so each token consumed with `inference_geo: "us"` draws down 1.1 tokens from your Priority Tier capacity. Multipliers stack: a long-context request with US-only inference draws down input tokens at 2.2 tokens per token (2 × 1.1).
 </Note>
 
 <Note>
@@ -134,7 +134,7 @@ Priority Tier is supported by:
 - Claude Haiku 4.5
 - Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations))
 
-Check the [model overview page](/docs/en/about-claude/models/overview) for more details on our models.
+Check the [model overview page](/docs/en/about-claude/models/overview) for more details on available models.
 
 ### How to access Priority Tier
 

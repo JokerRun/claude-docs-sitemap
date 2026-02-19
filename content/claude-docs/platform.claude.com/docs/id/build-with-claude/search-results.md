@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: d90bc269bb99f86b4df2be5c3b6317899f67c250efd89dc13bcd1a493e17db6c
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: e0ac88c179dd47aa9e24da055ab5f35e361747962421fdeb67ab0a0db6a672ed
 ---
 
 # Hasil pencarian
@@ -16,6 +16,7 @@ Blok konten hasil pencarian memungkinkan kutipan alami dengan atribusi sumber ya
 Fitur hasil pencarian tersedia pada model berikut:
 
 - Claude Opus 4.6 (`claude-opus-4-6`)
+- Claude Sonnet 4.6 (`claude-sonnet-4-6`)
 - Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 - Claude Opus 4.1 (`claude-opus-4-1-20250805`)
@@ -28,17 +29,17 @@ Fitur hasil pencarian tersedia pada model berikut:
 ## Manfaat utama
 
 - **Kutipan alami** - Capai kualitas kutipan yang sama seperti pencarian web untuk konten apa pun
-- **Integrasi fleksibel** - Gunakan dalam pengembalian alat untuk RAG dinamis atau sebagai konten tingkat atas untuk data yang telah diambil sebelumnya
+- **Integrasi fleksibel** - Gunakan dalam pengembalian alat untuk RAG dinamis atau sebagai konten tingkat atas untuk data yang sudah diambil
 - **Atribusi sumber yang tepat** - Setiap hasil mencakup informasi sumber dan judul untuk atribusi yang jelas
 - **Tidak perlu solusi berbasis dokumen** - Menghilangkan kebutuhan akan solusi berbasis dokumen
 - **Format kutipan yang konsisten** - Cocok dengan kualitas dan format kutipan dari fungsi pencarian web Claude
 
 ## Cara kerjanya
 
-Hasil pencarian dapat disediakan dalam dua cara:
+Hasil pencarian dapat disediakan dengan dua cara:
 
 1. **Dari panggilan alat** - Alat kustom Anda mengembalikan hasil pencarian, memungkinkan aplikasi RAG dinamis
-2. **Sebagai konten tingkat atas** - Anda menyediakan hasil pencarian langsung dalam pesan pengguna untuk konten yang telah diambil sebelumnya atau di-cache
+2. **Sebagai konten tingkat atas** - Anda menyediakan hasil pencarian langsung dalam pesan pengguna untuk konten yang sudah diambil atau di-cache
 
 Dalam kedua kasus, Claude dapat secara otomatis mengutip informasi dari hasil pencarian dengan atribusi sumber yang tepat.
 
@@ -65,21 +66,21 @@ Hasil pencarian menggunakan struktur berikut:
 
 ### Bidang yang diperlukan
 
-| Field | Type | Description |
+| Bidang | Tipe | Deskripsi |
 |-------|------|-------------|
 | `type` | string | Harus `"search_result"` |
 | `source` | string | URL sumber atau pengenal untuk konten |
 | `title` | string | Judul deskriptif untuk hasil pencarian |
-| `content` | array | Larik blok teks yang berisi konten sebenarnya |
+| `content` | array | Array blok teks yang berisi konten sebenarnya |
 
 ### Bidang opsional
 
-| Field | Type | Description |
+| Bidang | Tipe | Deskripsi |
 |-------|------|-------------|
 | `citations` | object | Konfigurasi kutipan dengan bidang boolean `enabled` |
 | `cache_control` | object | Pengaturan kontrol cache (misalnya, `{"type": "ephemeral"}`) |
 
-Setiap item dalam larik `content` harus berupa blok teks dengan:
+Setiap item dalam array `content` harus berupa blok teks dengan:
 - `type`: Harus `"text"`
 - `text`: Konten teks sebenarnya (string tidak kosong)
 
@@ -96,7 +97,7 @@ from anthropic.types import (
     MessageParam,
     TextBlockParam,
     SearchResultBlockParam,
-    ToolResultBlockParam
+    ToolResultBlockParam,
 )
 
 client = Anthropic()
@@ -107,15 +108,11 @@ knowledge_base_tool = {
     "description": "Search the company knowledge base for information",
     "input_schema": {
         "type": "object",
-        "properties": {
-            "query": {
-                "type": "string",
-                "description": "The search query"
-            }
-        },
-        "required": ["query"]
-    }
+        "properties": {"query": {"type": "string", "description": "The search query"}},
+        "required": ["query"],
+    },
 }
+
 
 # Function to handle the tool call
 def search_knowledge_base(query):
@@ -129,10 +126,10 @@ def search_knowledge_base(query):
             content=[
                 TextBlockParam(
                     type="text",
-                    text="To configure the product, navigate to Settings > Configuration. The default timeout is 30 seconds, but can be adjusted between 10-120 seconds based on your needs."
+                    text="To configure the product, navigate to Settings > Configuration. The default timeout is 30 seconds, but can be adjusted between 10-120 seconds based on your needs.",
                 )
             ],
-            citations={"enabled": True}
+            citations={"enabled": True},
         ),
         SearchResultBlockParam(
             type="search_result",
@@ -141,12 +138,13 @@ def search_knowledge_base(query):
             content=[
                 TextBlockParam(
                     type="text",
-                    text="If you encounter timeout errors, first check the configuration settings. Common causes include network latency and incorrect timeout values."
+                    text="If you encounter timeout errors, first check the configuration settings. Common causes include network latency and incorrect timeout values.",
                 )
             ],
-            citations={"enabled": True}
-        )
+            citations={"enabled": True},
+        ),
     ]
+
 
 # Create a message with the tool
 response = client.messages.create(
@@ -154,23 +152,22 @@ response = client.messages.create(
     max_tokens=1024,
     tools=[knowledge_base_tool],
     messages=[
-        MessageParam(
-            role="user",
-            content="How do I configure the timeout settings?"
-        )
-    ]
+        MessageParam(role="user", content="How do I configure the timeout settings?")
+    ],
 )
 
 # When Claude calls the tool, provide the search results
 if response.content[0].type == "tool_use":
     tool_result = search_knowledge_base(response.content[0].input["query"])
-    
+
     # Send the tool result back
     final_response = client.messages.create(
         model="claude-opus-4-6",  # Works with all supported models
         max_tokens=1024,
         messages=[
-            MessageParam(role="user", content="How do I configure the timeout settings?"),
+            MessageParam(
+                role="user", content="How do I configure the timeout settings?"
+            ),
             MessageParam(role="assistant", content=response.content),
             MessageParam(
                 role="user",
@@ -178,16 +175,16 @@ if response.content[0].type == "tool_use":
                     ToolResultBlockParam(
                         type="tool_result",
                         tool_use_id=response.content[0].id,
-                        content=tool_result  # Search results go here
+                        content=tool_result,  # Search results go here
                     )
-                ]
-            )
-        ]
+                ],
+            ),
+        ],
     )
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -255,11 +252,11 @@ const response = await anthropic.messages.create({
 // Handle tool use and provide results
 if (response.content[0].type === "tool_use") {
   const toolResult = searchKnowledgeBase(response.content[0].input.query);
-  
+
   const finalResponse = await anthropic.messages.create({
     model: "claude-opus-4-6", // Works with all supported models
     max_tokens: 1024,
-      messages: [
+    messages: [
       { role: "user", content: "How do I configure the timeout settings?" },
       { role: "assistant", content: response.content },
       {
@@ -268,7 +265,7 @@ if (response.content[0].type === "tool_use") {
           {
             type: "tool_result" as const,
             tool_use_id: response.content[0].id,
-            content: toolResult  // Search results go here
+            content: toolResult // Search results go here
           }
         ]
       }
@@ -281,7 +278,7 @@ if (response.content[0].type === "tool_use") {
 ## Metode 2: Hasil pencarian sebagai konten tingkat atas
 
 Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini berguna untuk:
-- Konten yang telah diambil sebelumnya dari infrastruktur pencarian Anda
+- Konten yang sudah diambil dari infrastruktur pencarian Anda
 - Hasil pencarian yang di-cache dari kueri sebelumnya
 - Konten dari layanan pencarian eksternal
 - Pengujian dan pengembangan
@@ -291,11 +288,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
 <CodeGroup>
 ```python Python
 from anthropic import Anthropic
-from anthropic.types import (
-    MessageParam,
-    TextBlockParam,
-    SearchResultBlockParam
-)
+from anthropic.types import MessageParam, TextBlockParam, SearchResultBlockParam
 
 client = Anthropic()
 
@@ -314,10 +307,10 @@ response = client.messages.create(
                     content=[
                         TextBlockParam(
                             type="text",
-                            text="All API requests must include an API key in the Authorization header. Keys can be generated from the dashboard. Rate limits: 1000 requests per hour for standard tier, 10000 for premium."
+                            text="All API requests must include an API key in the Authorization header. Keys can be generated from the dashboard. Rate limits: 1000 requests per hour for standard tier, 10000 for premium.",
                         )
                     ],
-                    citations={"enabled": True}
+                    citations={"enabled": True},
                 ),
                 SearchResultBlockParam(
                     type="search_result",
@@ -326,25 +319,25 @@ response = client.messages.create(
                     content=[
                         TextBlockParam(
                             type="text",
-                            text="To get started: 1) Sign up for an account, 2) Generate an API key from the dashboard, 3) Install our SDK using pip install company-sdk, 4) Initialize the client with your API key."
+                            text="To get started: 1) Sign up for an account, 2) Generate an API key from the dashboard, 3) Install our SDK using pip install company-sdk, 4) Initialize the client with your API key.",
                         )
                     ],
-                    citations={"enabled": True}
+                    citations={"enabled": True},
                 ),
                 TextBlockParam(
                     type="text",
-                    text="Based on these search results, how do I authenticate API requests and what are the rate limits?"
-                )
-            ]
+                    text="Based on these search results, how do I authenticate API requests and what are the rate limits?",
+                ),
+            ],
         )
-    ]
+    ],
 )
 
 print(response.model_dump_json(indent=2))
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -447,7 +440,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ## Respons Claude dengan kutipan
 
-Terlepas dari cara hasil pencarian disediakan, Claude secara otomatis menyertakan kutipan saat menggunakan informasi dari mereka:
+Terlepas dari bagaimana hasil pencarian disediakan, Claude secara otomatis menyertakan kutipan saat menggunakan informasi dari hasil tersebut:
 
 ```json
 {
@@ -506,21 +499,21 @@ Terlepas dari cara hasil pencarian disediakan, Claude secara otomatis menyertaka
 
 Setiap kutipan mencakup:
 
-| Field | Type | Description |
+| Bidang | Tipe | Deskripsi |
 |-------|------|-------------|
 | `type` | string | Selalu `"search_result_location"` untuk kutipan hasil pencarian |
 | `source` | string | Sumber dari hasil pencarian asli |
-| `title` | string or null | Judul dari hasil pencarian asli |
+| `title` | string atau null | Judul dari hasil pencarian asli |
 | `cited_text` | string | Teks yang tepat sedang dikutip |
 | `search_result_index` | integer | Indeks hasil pencarian (berbasis 0) |
-| `start_block_index` | integer | Posisi awal dalam larik konten |
-| `end_block_index` | integer | Posisi akhir dalam larik konten |
+| `start_block_index` | integer | Posisi awal dalam array konten |
+| `end_block_index` | integer | Posisi akhir dalam array konten |
 
-Catatan: `search_result_index` mengacu pada indeks blok konten hasil pencarian (berbasis 0), terlepas dari cara hasil pencarian disediakan (panggilan alat atau konten tingkat atas).
+Catatan: `search_result_index` mengacu pada indeks blok konten hasil pencarian (berbasis 0), terlepas dari bagaimana hasil pencarian disediakan (panggilan alat atau konten tingkat atas).
 
-## Blok konten ganda
+## Blok konten berganda
 
-Hasil pencarian dapat berisi beberapa blok teks dalam larik `content`:
+Hasil pencarian dapat berisi beberapa blok teks dalam array `content`:
 
 ```json
 {
@@ -544,7 +537,7 @@ Hasil pencarian dapat berisi beberapa blok teks dalam larik `content`:
 }
 ```
 
-Claude dapat mengutip blok spesifik menggunakan bidang `start_block_index` dan `end_block_index`.
+Claude dapat mengutip blok tertentu menggunakan bidang `start_block_index` dan `end_block_index`.
 
 ## Penggunaan lanjutan
 
@@ -563,15 +556,17 @@ messages = [
                 source="https://docs.company.com/overview",
                 title="Product Overview",
                 content=[
-                    TextBlockParam(type="text", text="Our product helps teams collaborate...")
+                    TextBlockParam(
+                        type="text", text="Our product helps teams collaborate..."
+                    )
                 ],
-                citations={"enabled": True}
+                citations={"enabled": True},
             ),
             TextBlockParam(
                 type="text",
-                text="Tell me about this product and search for pricing information"
-            )
-        ]
+                text="Tell me about this product and search for pricing information",
+            ),
+        ],
     )
 ]
 
@@ -579,9 +574,9 @@ messages = [
 # Then you provide tool results with more search results
 ```
 
-### Menggabungkan dengan jenis konten lain
+### Menggabungkan dengan tipe konten lainnya
 
-Kedua metode mendukung pencampuran hasil pencarian dengan konten lain:
+Kedua metode mendukung pencampuran hasil pencarian dengan konten lainnya:
 
 ```python
 # In tool results
@@ -591,12 +586,11 @@ tool_result = [
         source="https://docs.company.com/guide",
         title="User Guide",
         content=[TextBlockParam(type="text", text="Configuration details...")],
-        citations={"enabled": True}
+        citations={"enabled": True},
     ),
     TextBlockParam(
-        type="text",
-        text="Additional context: This applies to version 2.0 and later."
-    )
+        type="text", text="Additional context: This applies to version 2.0 and later."
+    ),
 ]
 
 # In top-level content
@@ -606,16 +600,15 @@ user_content = [
         source="https://research.com/paper",
         title="Research Paper",
         content=[TextBlockParam(type="text", text="Key findings...")],
-        citations={"enabled": True}
+        citations={"enabled": True},
     ),
     {
         "type": "image",
-        "source": {"type": "url", "url": "https://example.com/chart.png"}
+        "source": {"type": "url", "url": "https://example.com/chart.png"},
     },
     TextBlockParam(
-        type="text",
-        text="How does the chart relate to the research findings?"
-    )
+        type="text", text="How does the chart relate to the research findings?"
+    ),
 ]
 ```
 
@@ -653,7 +646,7 @@ Secara default, kutipan dinonaktifkan untuk hasil pencarian. Anda dapat mengakti
 
 Ketika `citations.enabled` diatur ke `true`, Claude akan menyertakan referensi kutipan saat menggunakan informasi dari hasil pencarian. Ini memungkinkan:
 - Kutipan alami untuk aplikasi RAG kustom Anda
-- Atribusi sumber saat berinteraksi dengan basis pengetahuan proprietary
+- Atribusi sumber saat antarmuka dengan basis pengetahuan proprietary
 - Kutipan berkualitas pencarian web untuk alat kustom apa pun yang mengembalikan hasil pencarian
 
 Jika bidang `citations` dihilangkan, kutipan dinonaktifkan secara default.
@@ -672,7 +665,7 @@ Kutipan adalah semua atau tidak sama sekali: baik semua hasil pencarian dalam pe
 
 ### Untuk pencarian tingkat atas (Metode 2)
 
-- **Konten yang telah diambil sebelumnya**: Gunakan ketika Anda sudah memiliki hasil pencarian
+- **Konten yang sudah diambil**: Gunakan ketika Anda sudah memiliki hasil pencarian
 - **Pemrosesan batch**: Ideal untuk memproses beberapa hasil pencarian sekaligus
 - **Pengujian**: Bagus untuk menguji perilaku kutipan dengan konten yang diketahui
 
@@ -681,12 +674,12 @@ Kutipan adalah semua atau tidak sama sekali: baik semua hasil pencarian dalam pe
 1. **Struktur hasil secara efektif**
    - Gunakan URL sumber yang jelas dan permanen
    - Berikan judul deskriptif
-   - Pisahkan konten panjang menjadi blok teks logis
+   - Pecah konten panjang menjadi blok teks logis
 
 2. **Pertahankan konsistensi**
    - Gunakan format sumber yang konsisten di seluruh aplikasi Anda
    - Pastikan judul secara akurat mencerminkan konten
-   - Pertahankan pemformatan yang konsisten
+   - Jaga pemformatan tetap konsisten
 
 3. **Tangani kesalahan dengan baik**
    ```python
@@ -703,5 +696,5 @@ Kutipan adalah semua atau tidak sama sekali: baik semua hasil pencarian dalam pe
 ## Keterbatasan
 
 - Blok konten hasil pencarian tersedia di Claude API, Amazon Bedrock, dan Google Cloud's Vertex AI
-- Hanya konten teks yang didukung dalam hasil pencarian (tidak ada gambar atau media lain)
-- Larik `content` harus berisi setidaknya satu blok teks
+- Hanya konten teks yang didukung dalam hasil pencarian (tidak ada gambar atau media lainnya)
+- Array `content` harus berisi setidaknya satu blok teks

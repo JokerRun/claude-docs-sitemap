@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 3097ce608e1a88e74fb7bc3dde8f9027022b7b01a47d88f7c1560856b1597d0c
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 96899013fe3505e4ac2dc333f8587fa6e953694e8fd1a3318fe0153e644b31a2
 ---
 
 # Token counting
@@ -432,7 +432,7 @@ public class CountTokensImageExample {
 ### Count tokens in messages with extended thinking
 
 <Note>
-See [here](/docs/en/build-with-claude/extended-thinking#how-context-window-is-calculated-with-extended-thinking) for more details about how the context window is calculated with extended thinking
+See [how the context window is calculated with extended thinking](/docs/en/build-with-claude/extended-thinking#how-context-window-is-calculated-with-extended-thinking) for more details
 - Thinking blocks from **previous** assistant turns are ignored and **do not** count toward your input tokens
 - **Current** assistant turn thinking **does** count toward your input tokens
 </Note>

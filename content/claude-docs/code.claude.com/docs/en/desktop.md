@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-02-14T04:12:21.202627Z
-sha256: 02c44028caf96fb72222f9566f917f25762817577515d841e79742fd2bec0dc2
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 8e057e4fe79baab1aaebacf6513bac25b982850cd8285f51aa81798480e6505c
 ---
 
 > ## Documentation Index
@@ -60,7 +60,7 @@ Permission modes control how much autonomy Claude has during a session: whether 
 | **Plan** | `plan`              | Claude analyzes your code and creates a plan without modifying files or running commands. Good for complex tasks where you want to review the approach first.                                                                                                                |
 | **Act**  | `bypassPermissions` | Claude runs without any permission prompts, equivalent to `--dangerously-skip-permissions` in the CLI. Enable in your Settings → Claude Code under "Allow bypass permissions mode". Only use this in sandboxed containers or VMs. Enterprise admins can disable this option. |
 
-The `delegate` and `dontAsk` permission modes are available only in the [CLI](/en/permissions#permission-modes).
+The `dontAsk` permission mode is available only in the [CLI](/en/permissions#permission-modes).
 
 <Tip title="Best practice">
   Start complex tasks in Plan mode so Claude maps out an approach before making changes. Once you approve the plan, switch to Code or Ask mode to execute it. See [explore first, then plan, then code](/en/best-practices#explore-first-then-plan-then-code) for more on this workflow.
@@ -272,7 +272,7 @@ This table compares core capabilities between the CLI and Desktop. For a full li
 
 | Feature                                               | CLI                                                       | Desktop                                                      |
 | ----------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------ |
-| Permission modes                                      | all modes including `delegate` and `dontAsk`              | Ask, Code, Plan, and Act via Settings                        |
+| Permission modes                                      | all modes including `dontAsk`                             | Ask, Code, Plan, and Act via Settings                        |
 | `--dangerously-skip-permissions`                      | CLI flag                                                  | Settings → Claude Code → "Allow bypass permissions mode"     |
 | [Third-party providers](/en/third-party-integrations) | Bedrock, Vertex, Foundry                                  | not available. Desktop connects to Anthropic's API directly. |
 | [MCP servers](/en/mcp)                                | configure in settings files                               | Connectors UI for local and SSH sessions, or settings files  |
@@ -288,7 +288,7 @@ This table compares core capabilities between the CLI and Desktop. For a full li
 * **Third-party providers**: Desktop connects to Anthropic's API directly. Use the [CLI](/en/quickstart) with Bedrock, Vertex, or Foundry instead.
 * **Linux**: the desktop app is available on macOS and Windows only.
 * **Inline code suggestions**: Desktop does not provide autocomplete-style suggestions. It works through conversational prompts and explicit code changes.
-* **Agent teams and `delegate` mode**: multi-agent orchestration and the `delegate` permission mode are available via the [CLI](/en/agent-teams) and [Agent SDK](/en/headless), not in Desktop.
+* **Agent teams**: multi-agent orchestration is available via the [CLI](/en/agent-teams) and [Agent SDK](/en/headless), not in Desktop.
 
 ## Troubleshooting
 

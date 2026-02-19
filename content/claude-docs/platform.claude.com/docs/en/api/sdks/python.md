@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/python
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 8e8f898436883eb0af1b9f8c56e36775152f44ea38a3037fc66ed70347f490a6
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 3e9b6e72e0f5adcfd906ddb2394cebf5c1539ac46b2262275e0963e2e43545ae
 ---
 
 # Python SDK
@@ -469,7 +469,7 @@ Note that requests which time out will be [retried twice by default](#retries).
 ## Long requests
 
 <Warning>
-Anthropic highly encourages using the streaming [Messages API](#streaming-responses) for longer running requests.
+Consider using the streaming [Messages API](#streaming-responses) for longer running requests.
 </Warning>
 
 Avoid setting a large `max_tokens` value without using streaming. Some networks may drop idle connections after a certain period of time, which can cause the request to fail or [timeout](#timeouts) without receiving a response from Anthropic.
@@ -730,7 +730,7 @@ with Anthropic() as client:
 
 ## Beta features
 
-Anthropic introduces beta features before they are generally available to get early feedback and test new functionality. You can check the availability of all of Claude's capabilities and tools in the [build with Claude overview](/docs/en/build-with-claude/overview).
+Beta features are available before general release to get early feedback and test new functionality. You can check the availability of all of Claude's capabilities and tools in the [build with Claude overview](/docs/en/build-with-claude/overview).
 
 You can access most beta API features through the `beta` property of the client. To enable a particular beta feature, you need to add the appropriate [beta header](/docs/en/api/beta-headers) to the `betas` field when creating a message.
 

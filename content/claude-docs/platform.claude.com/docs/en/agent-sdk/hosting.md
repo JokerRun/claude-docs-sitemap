@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/hosting
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: d34837c5f5f0c2631547b5af3242b3af7fdcf6052ab0cac9a31ed14fa4770195
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: afb4a41ebbc565f69d106a21ebd0ad5ad0134c9bc01d5fc0ada1ceea6f60147b
 ---
 
 # Hosting the Agent SDK
@@ -14,7 +14,7 @@ Deploy and host Claude Agent SDK in production environments
 The Claude Agent SDK differs from traditional stateless LLM APIs in that it maintains conversational state and executes commands in a persistent environment. This guide covers the architecture, hosting considerations, and best practices for deploying SDK-based agents in production.
 
 <Info>
-For security hardening beyond basic sandboxing—including network controls, credential management, and isolation options—see [Secure Deployment](/docs/en/agent-sdk/secure-deployment).
+For security hardening beyond basic sandboxing (including network controls, credential management, and isolation options), see [Secure Deployment](/docs/en/agent-sdk/secure-deployment).
 </Info>
 
 ## Hosting Requirements
@@ -106,13 +106,13 @@ Best for agents that must collaborate closely together. This is likely the least
 **Examples:**
 - **Simulations**: Agents that interact with each other in simulations such as video games.
 
-# FAQ
+## FAQ
 
 ### How do I communicate with my sandboxes?
 When hosting in containers, expose ports to communicate with your SDK instances. Your application can expose HTTP/WebSocket endpoints for external clients while the SDK runs internally within the container.
 
 ### What is the cost of hosting a container?
-We have found that the dominant cost of serving agents is the tokens, containers vary based on what you provision but a minimum cost is roughly 5 cents per hour running.
+The dominant cost of serving agents is the tokens; containers vary based on what you provision, but a minimum cost is roughly 5 cents per hour running.
 
 ### When should I shut down idle containers vs. keeping them warm?
 This is likely provider dependent, different sandbox providers will let you set different criteria for idle timeouts after which a sandbox might spin down.
@@ -125,7 +125,7 @@ The Claude Code CLI is versioned with semver, so any breaking changes will be ve
 Since containers are just servers the same logging infrastructure you use for the backend will work for containers.
 
 ### How long can an agent session run before timing out?
-An agent session will not timeout, but we recommend setting a 'maxTurns' property to prevent Claude from getting stuck in a loop.
+An agent session will not timeout, but consider setting a 'maxTurns' property to prevent Claude from getting stuck in a loop.
 
 ## Next Steps
 

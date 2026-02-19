@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/cite-your-sources
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: c861297c8a39550d7c3772a705cdf4e199bd51046cb39be6d8584e5d6fb8a032
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: c443f88fda03d60ae01d16b9cd4492d261c1efa6775d775bbd063fa1a7a6a548
 ---
 
 # Cite your sources
@@ -11,7 +11,7 @@ Get answers to questions about a document's content with relevant citations supp
 
 ---
 
-<Tip>We recommend using the [citation feature](/docs/en/build-with-claude/citations) built into the API instead of a prompt based approach. Using the API citation feature will improve citation quality, ensure that all returned citations are valid, and potentially reduce the number of needed output tokens.</Tip>
+<Tip>Consider using the [citation feature](/docs/en/build-with-claude/citations) built into the API instead of a prompt based approach. Using the API citation feature will improve citation quality, ensure that all returned citations are valid, and potentially reduce the number of needed output tokens.</Tip>
 
 > Copy this prompt into the developer [Console](/dashboard) to try it for yourself!
 

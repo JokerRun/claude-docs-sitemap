@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-02-07T04:10:25.616975Z
-sha256: 694d71089128663f6bbcbdffa0d783dfba1dff2b477d56304186a308db9e2ffa
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 2eb7f37f7d605fd3ca800ccd3aa1b2a30e57d941bb025501e0045018d49a1dfd
 ---
 
 > ## Documentation Index
@@ -218,7 +218,7 @@ The following fields can be used in the YAML frontmatter. Only `name` and `descr
 | `tools`           | No       | [Tools](#available-tools) the subagent can use. Inherits all tools if omitted                                                                                                                                                                                               |
 | `disallowedTools` | No       | Tools to deny, removed from inherited or specified list                                                                                                                                                                                                                     |
 | `model`           | No       | [Model](#choose-a-model) to use: `sonnet`, `opus`, `haiku`, or `inherit`. Defaults to `inherit`                                                                                                                                                                             |
-| `permissionMode`  | No       | [Permission mode](#permission-modes): `default`, `acceptEdits`, `delegate`, `dontAsk`, `bypassPermissions`, or `plan`                                                                                                                                                       |
+| `permissionMode`  | No       | [Permission mode](#permission-modes): `default`, `acceptEdits`, `dontAsk`, `bypassPermissions`, or `plan`                                                                                                                                                                   |
 | `maxTurns`        | No       | Maximum number of agentic turns before the subagent stops                                                                                                                                                                                                                   |
 | `skills`          | No       | [Skills](/en/skills) to load into the subagent's context at startup. The full skill content is injected, not just made available for invocation. Subagents don't inherit skills from the parent conversation                                                                |
 | `mcpServers`      | No       | [MCP servers](/en/mcp) available to this subagent. Each entry is either a server name referencing an already-configured server (e.g., `"slack"`) or an inline definition with the server name as key and a full [MCP server config](/en/mcp#configure-mcp-servers) as value |
@@ -278,14 +278,13 @@ If `Task` is omitted from the `tools` list entirely, the agent cannot spawn any 
 
 The `permissionMode` field controls how the subagent handles permission prompts. Subagents inherit the permission context from the main conversation but can override the mode.
 
-| Mode                | Behavior                                                                                                             |
-| :------------------ | :------------------------------------------------------------------------------------------------------------------- |
-| `default`           | Standard permission checking with prompts                                                                            |
-| `acceptEdits`       | Auto-accept file edits                                                                                               |
-| `dontAsk`           | Auto-deny permission prompts (explicitly allowed tools still work)                                                   |
-| `delegate`          | Coordination-only mode for [agent team](/en/agent-teams#use-delegate-mode) leads. Restricts to team management tools |
-| `bypassPermissions` | Skip all permission checks                                                                                           |
-| `plan`              | Plan mode (read-only exploration)                                                                                    |
+| Mode                | Behavior                                                           |
+| :------------------ | :----------------------------------------------------------------- |
+| `default`           | Standard permission checking with prompts                          |
+| `acceptEdits`       | Auto-accept file edits                                             |
+| `dontAsk`           | Auto-deny permission prompts (explicitly allowed tools still work) |
+| `bypassPermissions` | Skip all permission checks                                         |
+| `plan`              | Plan mode (read-only exploration)                                  |
 
 <Warning>
   Use `bypassPermissions` with caution. It skips all permission checks, allowing the subagent to execute any operation without approval.

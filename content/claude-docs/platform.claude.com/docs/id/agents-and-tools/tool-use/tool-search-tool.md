@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 6bef81f1470f034c9665abee8aeea86944ff5e7c26e7cf49364cae07891fbdb9
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 38027aa81943e6926a63af98abac6ba8e2c00ab31cbcb1b4a14968b08c4b459f
 ---
 
 # Alat pencarian alat
@@ -18,26 +18,23 @@ Pendekatan ini mengatasi dua tantangan kritis saat perpustakaan alat berkembang:
 - **Efisiensi konteks**: Definisi alat dapat mengonsumsi bagian besar dari jendela konteks Anda (50 alat ≈ 10-20K token), meninggalkan lebih sedikit ruang untuk pekerjaan sebenarnya
 - **Akurasi pemilihan alat**: Kemampuan Claude untuk memilih alat dengan benar menurun secara signifikan dengan lebih dari 30-50 alat yang tersedia secara konvensional
 
-Meskipun ini disediakan sebagai alat sisi server, Anda juga dapat mengimplementasikan fungsionalitas pencarian alat sisi klien Anda sendiri. Lihat [Implementasi pencarian alat khusus](#custom-tool-search-implementation) untuk detail.
+Meskipun ini disediakan sebagai alat sisi server, Anda juga dapat menerapkan fungsionalitas pencarian alat sisi klien Anda sendiri. Lihat [Implementasi pencarian alat khusus](#custom-tool-search-implementation) untuk detail.
 
 <Note>
-Alat pencarian alat saat ini dalam beta publik. Sertakan [header beta](/docs/id/api/beta-headers) yang sesuai untuk penyedia Anda:
-
-| Penyedia                 | Header beta                    | Model yang didukung                       |
-| ------------------------ | ------------------------------ | -------------------------------------- |
-| Claude API<br/>Microsoft Foundry  | `advanced-tool-use-2025-11-20` | Claude Opus 4.6<br />Claude Opus 4.5<br />Claude Sonnet 4.5 |
-| Google Cloud's Vertex AI | `tool-search-tool-2025-10-19`  | Claude Opus 4.6<br />Claude Opus 4.5<br />Claude Sonnet 4.5 |
-| Amazon Bedrock           | `tool-search-tool-2025-10-19`  | Claude Opus 4.6<br />Claude Opus 4.5<br />Claude Sonnet 4.5 |
-
 Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/MhcGFFwLxuwnWTkYA) kami untuk berbagi umpan balik Anda tentang fitur ini.
 </Note>
 
+<Note>
+Pencarian alat sisi server **tidak** tercakup oleh pengaturan [Zero Data Retention (ZDR)](/docs/id/build-with-claude/zero-data-retention). Data disimpan sesuai dengan kebijakan retensi standar fitur. [Implementasi pencarian alat sisi klien khusus](#custom-tool-search-implementation) menggunakan Messages API standar dan memenuhi syarat ZDR.
+</Note>
+
 <Warning>
-  Di Amazon Bedrock, pencarian alat sisi server hanya tersedia melalui [API invoke](https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-runtime_example_bedrock-runtime_InvokeModel_AnthropicClaude_section.html),
-  bukan API converse.
+  Di Amazon Bedrock, pencarian alat sisi server hanya tersedia melalui [invoke
+  API](https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-runtime_example_bedrock-runtime_InvokeModel_AnthropicClaude_section.html),
+  bukan converse API.
 </Warning>
 
-Anda juga dapat mengimplementasikan [pencarian alat sisi klien](#custom-tool-search-implementation) dengan mengembalikan blok `tool_reference` dari implementasi pencarian Anda sendiri.
+Anda juga dapat menerapkan [pencarian alat sisi klien](#custom-tool-search-implementation) dengan mengembalikan blok `tool_reference` dari implementasi pencarian Anda sendiri.
 
 ## Cara kerja pencarian alat
 
@@ -46,7 +43,7 @@ Ada dua varian pencarian alat:
 - **Regex** (`tool_search_tool_regex_20251119`): Claude membuat pola regex untuk mencari alat
 - **BM25** (`tool_search_tool_bm25_20251119`): Claude menggunakan kueri bahasa alami untuk mencari alat
 
-Saat Anda mengaktifkan alat pencarian alat:
+Ketika Anda mengaktifkan alat pencarian alat:
 
 1. Anda menyertakan alat pencarian alat (misalnya, `tool_search_tool_regex_20251119` atau `tool_search_tool_bm25_20251119`) dalam daftar alat Anda
 2. Anda menyediakan semua definisi alat dengan `defer_loading: true` untuk alat yang tidak boleh dimuat segera
@@ -54,7 +51,7 @@ Saat Anda mengaktifkan alat pencarian alat:
 4. Ketika Claude membutuhkan alat tambahan, ia mencari menggunakan alat pencarian alat
 5. API mengembalikan 3-5 blok `tool_reference` paling relevan
 6. Referensi ini secara otomatis diperluas menjadi definisi alat lengkap
-7. Claude memilih dari alat yang ditemukan dan menjalankannya
+7. Claude memilih dari alat yang ditemukan dan mengemuanya
 
 Ini menjaga jendela konteks Anda tetap efisien sambil mempertahankan akurasi pemilihan alat yang tinggi.
 
@@ -67,7 +64,6 @@ Berikut adalah contoh sederhana dengan alat yang ditangguhkan:
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: advanced-tool-use-2025-11-20" \
     --header "content-type: application/json" \
     --data '{
         "model": "claude-opus-4-6",
@@ -124,21 +120,12 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-response = client.beta.messages.create(
+response = client.messages.create(
     model="claude-opus-4-6",
-    betas=["advanced-tool-use-2025-11-20"],
     max_tokens=2048,
-    messages=[
-        {
-            "role": "user",
-            "content": "What is the weather in San Francisco?"
-        }
-    ],
+    messages=[{"role": "user", "content": "What is the weather in San Francisco?"}],
     tools=[
-        {
-            "type": "tool_search_tool_regex_20251119",
-            "name": "tool_search_tool_regex"
-        },
+        {"type": "tool_search_tool_regex_20251119", "name": "tool_search_tool_regex"},
         {
             "name": "get_weather",
             "description": "Get the weather at a specific location",
@@ -146,14 +133,11 @@ response = client.beta.messages.create(
                 "type": "object",
                 "properties": {
                     "location": {"type": "string"},
-                    "unit": {
-                        "type": "string",
-                        "enum": ["celsius", "fahrenheit"]
-                    }
+                    "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
                 },
-                "required": ["location"]
+                "required": ["location"],
             },
-            "defer_loading": True
+            "defer_loading": True,
         },
         {
             "name": "search_files",
@@ -162,16 +146,13 @@ response = client.beta.messages.create(
                 "type": "object",
                 "properties": {
                     "query": {"type": "string"},
-                    "file_types": {
-                        "type": "array",
-                        "items": {"type": "string"}
-                    }
+                    "file_types": {"type": "array", "items": {"type": "string"}},
                 },
-                "required": ["query"]
+                "required": ["query"],
             },
-            "defer_loading": True
-        }
-    ]
+            "defer_loading": True,
+        },
+    ],
 )
 
 print(response)
@@ -183,20 +164,19 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 async function main() {
-  const response = await client.beta.messages.create({
+  const response = await client.messages.create({
     model: "claude-opus-4-6",
-    betas: ["advanced-tool-use-2025-11-20"],
     max_tokens: 2048,
     messages: [
       {
         role: "user",
-        content: "What is the weather in San Francisco?",
-      },
+        content: "What is the weather in San Francisco?"
+      }
     ],
     tools: [
       {
         type: "tool_search_tool_regex_20251119",
-        name: "tool_search_tool_regex",
+        name: "tool_search_tool_regex"
       },
       {
         name: "get_weather",
@@ -207,12 +187,12 @@ async function main() {
             location: { type: "string" },
             unit: {
               type: "string",
-              enum: ["celsius", "fahrenheit"],
-            },
+              enum: ["celsius", "fahrenheit"]
+            }
           },
-          required: ["location"],
+          required: ["location"]
         },
-        defer_loading: true,
+        defer_loading: true
       },
       {
         name: "search_files",
@@ -223,14 +203,14 @@ async function main() {
             query: { type: "string" },
             file_types: {
               type: "array",
-              items: { type: "string" },
-            },
+              items: { type: "string" }
+            }
           },
-          required: ["query"],
+          required: ["query"]
         },
-        defer_loading: true,
-      },
-    ],
+        defer_loading: true
+      }
+    ]
   });
 
   console.log(JSON.stringify(response, null, 2));
@@ -269,7 +249,7 @@ Saat menggunakan `tool_search_tool_regex_20251119`, Claude membuat pola regex me
 - `"database.*query|query.*database"` - pola OR untuk fleksibilitas
 - `"(?i)slack"` - pencarian tidak peka huruf besar-kecil
 
-Panjang kueri maksimum: 200 karakter
+Panjang kueri maksimal: 200 karakter
 
 </Warning>
 
@@ -305,13 +285,13 @@ Tandai alat untuk pemuatan sesuai permintaan dengan menambahkan `defer_loading: 
 - Alat tanpa `defer_loading` dimuat ke konteks segera
 - Alat dengan `defer_loading: true` hanya dimuat ketika Claude menemukannya melalui pencarian
 - Alat pencarian alat itu sendiri **tidak boleh** memiliki `defer_loading: true`
-- Simpan 3-5 alat yang paling sering digunakan sebagai non-deferred untuk kinerja optimal
+- Pertahankan 3-5 alat yang paling sering digunakan sebagai non-deferred untuk kinerja optimal
 
 Kedua varian pencarian alat (`regex` dan `bm25`) mencari nama alat, deskripsi, nama argumen, dan deskripsi argumen.
 
 ## Format respons
 
-Ketika Claude menggunakan alat pencarian alat, respons mencakup jenis blok baru:
+Ketika Claude menggunakan alat pencarian alat, respons mencakup tipe blok baru:
 
 ```json JSON
 {
@@ -359,7 +339,7 @@ Ketika Claude menggunakan alat pencarian alat, respons mencakup jenis blok baru:
 - **`tool_references`**: Array objek `tool_reference` yang menunjuk ke alat yang ditemukan
 - **`tool_use`**: Claude menjalankan alat yang ditemukan
 
-Blok `tool_reference` secara otomatis diperluas menjadi definisi alat lengkap sebelum ditampilkan kepada Claude. Anda tidak perlu menangani ekspansi ini sendiri. Ini terjadi secara otomatis di API selama Anda menyediakan semua definisi alat yang cocok dalam parameter `tools`.
+Blok `tool_reference` secara otomatis diperluas menjadi definisi alat lengkap sebelum ditampilkan ke Claude. Anda tidak perlu menangani ekspansi ini sendiri. Ini terjadi secara otomatis di API selama Anda menyediakan semua definisi alat yang cocok dalam parameter `tools`.
 
 ## Integrasi MCP
 
@@ -370,7 +350,7 @@ Alat pencarian alat bekerja dengan [server MCP](/docs/id/agents-and-tools/mcp-co
 curl https://api.anthropic.com/v1/messages \
   --header "x-api-key: $ANTHROPIC_API_KEY" \
   --header "anthropic-version: 2023-06-01" \
-  --header "anthropic-beta: advanced-tool-use-2025-11-20,mcp-client-2025-11-20" \
+  --header "anthropic-beta: mcp-client-2025-11-20" \
   --header "content-type: application/json" \
   --data '{
     "model": "claude-opus-4-6",
@@ -416,39 +396,21 @@ client = anthropic.Anthropic()
 
 response = client.beta.messages.create(
     model="claude-opus-4-6",
-    betas=["advanced-tool-use-2025-11-20", "mcp-client-2025-11-20"],
+    betas=["mcp-client-2025-11-20"],
     max_tokens=2048,
     mcp_servers=[
-        {
-            "type": "url",
-            "name": "database-server",
-            "url": "https://mcp-db.example.com"
-        }
+        {"type": "url", "name": "database-server", "url": "https://mcp-db.example.com"}
     ],
     tools=[
-        {
-            "type": "tool_search_tool_regex_20251119",
-            "name": "tool_search_tool_regex"
-        },
+        {"type": "tool_search_tool_regex_20251119", "name": "tool_search_tool_regex"},
         {
             "type": "mcp_toolset",
             "mcp_server_name": "database-server",
-            "default_config": {
-                "defer_loading": True
-            },
-            "configs": {
-                "search_events": {
-                    "defer_loading": False
-                }
-            }
-        }
+            "default_config": {"defer_loading": True},
+            "configs": {"search_events": {"defer_loading": False}},
+        },
     ],
-    messages=[
-        {
-            "role": "user",
-            "content": "What events are in my database?"
-        }
-    ]
+    messages=[{"role": "user", "content": "What events are in my database?"}],
 )
 
 print(response)
@@ -462,39 +424,39 @@ const client = new Anthropic();
 async function main() {
   const response = await client.beta.messages.create({
     model: "claude-opus-4-6",
-    betas: ["advanced-tool-use-2025-11-20", "mcp-client-2025-11-20"],
+    betas: ["mcp-client-2025-11-20"],
     max_tokens: 2048,
     mcp_servers: [
       {
         type: "url",
         name: "database-server",
-        url: "https://mcp-db.example.com",
-      },
+        url: "https://mcp-db.example.com"
+      }
     ],
     tools: [
       {
         type: "tool_search_tool_regex_20251119",
-        name: "tool_search_tool_regex",
+        name: "tool_search_tool_regex"
       },
       {
         type: "mcp_toolset",
         mcp_server_name: "database-server",
         default_config: {
-          defer_loading: true,
+          defer_loading: true
         },
         configs: {
           search_events: {
-            defer_loading: false,
-          },
-        },
-      },
+            defer_loading: false
+          }
+        }
+      }
     ],
     messages: [
       {
         role: "user",
-        content: "What events are in my database?",
-      },
-    ],
+        content: "What events are in my database?"
+      }
+    ]
   });
 
   console.log(JSON.stringify(response, null, 2));
@@ -513,7 +475,7 @@ main();
 
 ## Implementasi pencarian alat khusus
 
-Anda dapat mengimplementasikan logika pencarian alat Anda sendiri (misalnya, menggunakan embeddings atau pencarian semantik) dengan mengembalikan blok `tool_reference` dari alat khusus. Ketika Claude memanggil alat pencarian khusus Anda, kembalikan `tool_result` standar dengan blok `tool_reference` dalam array konten:
+Anda dapat menerapkan logika pencarian alat Anda sendiri (misalnya, menggunakan embeddings atau pencarian semantik) dengan mengembalikan blok `tool_reference` dari alat khusus. Ketika Claude memanggil alat pencarian khusus Anda, kembalikan `tool_result` standar dengan blok `tool_reference` dalam array konten:
 
 ```json JSON
 {
@@ -525,13 +487,13 @@ Anda dapat mengimplementasikan logika pencarian alat Anda sendiri (misalnya, men
 }
 ```
 
-Setiap alat yang dirujuk harus memiliki definisi alat yang sesuai dalam parameter `tools` tingkat atas dengan `defer_loading: true`. Pendekatan ini memungkinkan Anda menggunakan algoritma pencarian yang lebih canggih sambil mempertahankan kompatibilitas dengan sistem pencarian alat.
+Setiap alat yang direferensikan harus memiliki definisi alat yang sesuai dalam parameter `tools` tingkat atas dengan `defer_loading: true`. Pendekatan ini memungkinkan Anda menggunakan algoritma pencarian yang lebih canggih sambil mempertahankan kompatibilitas dengan sistem pencarian alat.
 
 <Note>
-Format `tool_search_tool_result` yang ditampilkan di bagian [Format respons](#response-format) adalah format sisi server yang digunakan secara internal oleh pencarian alat bawaan Anthropic. Untuk implementasi sisi klien khusus, selalu gunakan format `tool_result` standar dengan blok konten `tool_reference` seperti yang ditunjukkan di atas.
+Format `tool_search_tool_result` yang ditunjukkan di bagian [Format respons](#response-format) adalah format sisi server yang digunakan secara internal oleh pencarian alat bawaan Anthropic. Untuk implementasi sisi klien khusus, selalu gunakan format `tool_result` standar dengan blok konten `tool_reference` seperti yang ditunjukkan di atas.
 </Note>
 
-Untuk contoh lengkap menggunakan embeddings, lihat [buku masak pencarian alat dengan embeddings](https://platform.claude.com/cookbooks) kami.
+Untuk contoh lengkap menggunakan embeddings, lihat [buku resep pencarian alat dengan embeddings](https://platform.claude.com/cookbooks) kami.
 
 ## Penanganan kesalahan
 
@@ -571,7 +533,7 @@ Kesalahan ini mencegah permintaan diproses:
 
 ### Kesalahan hasil alat (status 200)
 
-Kesalahan selama eksekusi alat mengembalikan respons 200 dengan informasi kesalahan di badan:
+Kesalahan selama eksekusi alat mengembalikan respons 200 dengan informasi kesalahan dalam badan:
 
 ```json JSON
 {
@@ -642,9 +604,9 @@ Kesalahan selama eksekusi alat mengembalikan respons 200 dengan informasi kesala
 
 </section>
 
-## Caching prompt
+## Penyimpanan prompt dalam cache
 
-Pencarian alat bekerja dengan [caching prompt](/docs/id/build-with-claude/prompt-caching). Tambahkan titik henti `cache_control` untuk mengoptimalkan percakapan multi-putaran:
+Pencarian alat bekerja dengan [penyimpanan prompt dalam cache](/docs/id/build-with-claude/prompt-caching). Tambahkan titik henti `cache_control` untuk mengoptimalkan percakapan multi-putaran:
 
 <CodeGroup>
 ```python Python
@@ -652,75 +614,57 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-# Permintaan pertama dengan pencarian alat
-messages = [
-    {
-        "role": "user",
-        "content": "What's the weather in Seattle?"
-    }
-]
+# First request with tool search
+messages = [{"role": "user", "content": "What's the weather in Seattle?"}]
 
-response1 = client.beta.messages.create(
+response1 = client.messages.create(
     model="claude-opus-4-6",
-    betas=["advanced-tool-use-2025-11-20"],
     max_tokens=2048,
     messages=messages,
     tools=[
-        {
-            "type": "tool_search_tool_regex_20251119",
-            "name": "tool_search_tool_regex"
-        },
+        {"type": "tool_search_tool_regex_20251119", "name": "tool_search_tool_regex"},
         {
             "name": "get_weather",
             "description": "Get weather for a location",
             "input_schema": {
                 "type": "object",
-                "properties": {
-                    "location": {"type": "string"}
-                },
-                "required": ["location"]
+                "properties": {"location": {"type": "string"}},
+                "required": ["location"],
             },
-            "defer_loading": True
-        }
-    ]
+            "defer_loading": True,
+        },
+    ],
 )
 
-# Tambahkan respons Claude ke percakapan
-messages.append({
-    "role": "assistant",
-    "content": response1.content
-})
+# Add Claude's response to conversation
+messages.append({"role": "assistant", "content": response1.content})
 
-# Permintaan kedua dengan titik henti cache
-messages.append({
-    "role": "user",
-    "content": "What about New York?",
-    "cache_control": {"type": "ephemeral"}
-})
+# Second request with cache breakpoint
+messages.append(
+    {
+        "role": "user",
+        "content": "What about New York?",
+        "cache_control": {"type": "ephemeral"},
+    }
+)
 
-response2 = client.beta.messages.create(
+response2 = client.messages.create(
     model="claude-opus-4-6",
-    betas=["advanced-tool-use-2025-11-20"],
     max_tokens=2048,
     messages=messages,
     tools=[
-        {
-            "type": "tool_search_tool_regex_20251119",
-            "name": "tool_search_tool_regex"
-        },
+        {"type": "tool_search_tool_regex_20251119", "name": "tool_search_tool_regex"},
         {
             "name": "get_weather",
             "description": "Get weather for a location",
             "input_schema": {
                 "type": "object",
-                "properties": {
-                    "location": {"type": "string"}
-                },
-                "required": ["location"]
+                "properties": {"location": {"type": "string"}},
+                "required": ["location"],
             },
-            "defer_loading": True
-        }
-    ]
+            "defer_loading": True,
+        },
+    ],
 )
 
 print(f"Cache read tokens: {response2.usage.get('cache_read_input_tokens', 0)}")
@@ -733,21 +677,21 @@ Sistem secara otomatis memperluas blok tool_reference di seluruh riwayat percaka
 
 Dengan streaming diaktifkan, Anda akan menerima peristiwa pencarian alat sebagai bagian dari aliran:
 
-```javascript
+```json
 event: content_block_start
 data: {"type": "content_block_start", "index": 1, "content_block": {"type": "server_tool_use", "id": "srvtoolu_xyz789", "name": "tool_search_tool_regex"}}
 
-// Kueri pencarian dialirkan
+// Search query streamed
 event: content_block_delta
 data: {"type": "content_block_delta", "index": 1, "delta": {"type": "input_json_delta", "partial_json": "{\"query\":\"weather\"}"}}
 
-// Jeda saat pencarian dijalankan
+// Pause while search executes
 
-// Hasil pencarian dialirkan
+// Search results streamed
 event: content_block_start
 data: {"type": "content_block_start", "index": 2, "content_block": {"type": "tool_search_tool_result", "tool_use_id": "srvtoolu_xyz789", "content": {"type": "tool_search_tool_search_result", "tool_references": [{"type": "tool_reference", "tool_name": "get_weather"}]}}}
 
-// Claude melanjutkan dengan alat yang ditemukan
+// Claude continues with discovered tools
 ```
 
 ## Permintaan batch
@@ -758,16 +702,16 @@ Anda dapat menyertakan alat pencarian alat dalam [Messages Batches API](/docs/id
 
 ### Batas
 
-- **Alat maksimum**: 10.000 alat dalam katalog Anda
+- **Alat maksimal**: 10.000 alat dalam katalog Anda
 - **Hasil pencarian**: Mengembalikan 3-5 alat paling relevan per pencarian
-- **Panjang pola**: Maksimum 200 karakter untuk pola regex
+- **Panjang pola**: Maksimal 200 karakter untuk pola regex
 - **Dukungan model**: Sonnet 4.0+, Opus 4.0+ saja (tidak ada Haiku)
 
 ### Kapan menggunakan pencarian alat
 
 **Kasus penggunaan yang baik:**
 
-- 10+ alat tersedia dalam sistem Anda
+- 10+ alat tersedia di sistem Anda
 - Definisi alat mengonsumsi >10K token
 - Mengalami masalah akurasi pemilihan alat dengan set alat besar
 - Membangun sistem bertenaga MCP dengan beberapa server (200+ alat)
@@ -777,14 +721,14 @@ Anda dapat menyertakan alat pencarian alat dalam [Messages Batches API](/docs/id
 
 - Kurang dari 10 alat total
 - Semua alat sering digunakan dalam setiap permintaan
-- Definisi alat sangat kecil (\<100 token total)
+- Definisi alat yang sangat kecil (\<100 token total)
 
 ### Tips optimasi
 
-- Simpan 3-5 alat yang paling sering digunakan sebagai non-deferred
+- Pertahankan 3-5 alat yang paling sering digunakan sebagai non-deferred
 - Tulis nama dan deskripsi alat yang jelas dan deskriptif
-- Gunakan kata kunci semantik dalam deskripsi yang cocok dengan cara pengguna menggambarkan tugas
-- Tambahkan bagian prompt sistem yang menggambarkan kategori alat yang tersedia: "Anda dapat mencari alat untuk berinteraksi dengan Slack, GitHub, dan Jira"
+- Gunakan kata kunci semantik dalam deskripsi yang sesuai dengan cara pengguna mendeskripsikan tugas
+- Tambahkan bagian prompt sistem yang mendeskripsikan kategori alat yang tersedia: "Anda dapat mencari alat untuk berinteraksi dengan Slack, GitHub, dan Jira"
 - Pantau alat mana yang Claude temukan untuk menyempurnakan deskripsi
 
 ## Penggunaan

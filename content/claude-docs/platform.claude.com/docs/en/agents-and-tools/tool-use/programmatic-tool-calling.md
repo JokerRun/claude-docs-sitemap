@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 24ee30737711b43815dfe67040a00d7f24a23704b29c0d01268c7752fa427113
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 50c599e20172a745d9013152d73472d42f769f4c3e584752ce23671850a5da76
 ---
 
 # Programmatic tool calling
@@ -198,7 +198,7 @@ The `allowed_callers` field specifies which contexts can invoke a tool:
 - `["direct", "code_execution_20250825"]` - Callable both directly and from code execution
 
 <Tip>
-We recommend choosing either `["direct"]` or `["code_execution_20250825"]` for each tool rather than enabling both, as this provides clearer guidance to Claude for how best to use the tool.
+Choose either `["direct"]` or `["code_execution_20250825"]` for each tool rather than enabling both, as this provides clearer guidance to Claude for how best to use the tool.
 </Tip>
 
 ### The `caller` field in responses
@@ -767,7 +767,7 @@ Claude's training includes extensive exposure to code, making it effective at re
 - **Process large results efficiently**: Filter down large tool outputs, extract only relevant data, or write intermediate results to files before returning summaries to the context window
 - **Reduce latency significantly**: Eliminate the overhead of re-sampling Claude between each tool call in multi-step workflows
 
-This approach enables workflows that would be impractical with traditional tool use—such as processing files over 1M tokens—by allowing Claude to work with data programmatically rather than loading everything into the conversation context.
+This approach enables workflows that would be impractical with traditional tool use (such as processing files over 1M tokens) by allowing Claude to work with data programmatically rather than loading everything into the conversation context.
 
 ## Alternative implementations
 
@@ -810,7 +810,7 @@ Anthropic's programmatic tool calling is a managed version of sandboxed executio
 - Easy to enable with minimal configuration
 - Environment and instructions optimized for Claude
 
-We recommend using Anthropic's managed solution if you're using the Claude API.
+Consider using Anthropic's managed solution if you're using the Claude API.
 
 ## Related features
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/overview
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 4665f4e9eb06b25f7d9d14b268c9ce640677fcca7e405f70992ab3175a3ea4a1
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: fb4a56885744a8aa0b85ee039e67e891f596491a1671535eab07e172eaaff695
 ---
 
 <h2}>
@@ -54,7 +54,7 @@ sha256: 4665f4e9eb06b25f7d9d14b268c9ce640677fcca7e405f70992ab3175a3ea4a1
   
 
     <Card title="Quickstarts" icon="lightning" href="https://github.com/anthropics/anthropic-quickstarts">
-      Deployable applications built with our API.
+      Deployable applications built with the API.
     </Card>
 
     <Card title="Courses" icon="graduation-cap" href="https://anthropic.skilljar.com/">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 37d450d61ce19f74f29cdf8ef19230f5b389d298e4bfd0ea3fd118fb42910006
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: b3bbdfc226c23599e4e163fc4779384e9f3a3ed81e96c5834058c0c3aa1d2013
 ---
 
 # Reduce prompt leak
@@ -12,7 +12,7 @@ sha256: 37d450d61ce19f74f29cdf8ef19230f5b389d298e4bfd0ea3fd118fb42910006
 Prompt leaks can expose sensitive information that you expect to be "hidden" in your prompt. While no method is foolproof, the strategies below can significantly reduce the risk.
 
 ## Before you try to reduce prompt leak
-We recommend using leak-resistant prompt engineering strategies only when **absolutely necessary**. Attempts to leak-proof your prompt can add complexity that may degrade performance in other parts of the task due to increasing the complexity of the LLM’s overall task.
+Consider using leak-resistant prompt engineering strategies only when **absolutely necessary**. Attempts to leak-proof your prompt can add complexity that may degrade performance in other parts of the task due to increasing the complexity of the LLM’s overall task.
 
 If you decide to implement leak-resistant techniques, be sure to test your prompts thoroughly to ensure that the added complexity does not negatively impact the model’s performance or the quality of its outputs.
 

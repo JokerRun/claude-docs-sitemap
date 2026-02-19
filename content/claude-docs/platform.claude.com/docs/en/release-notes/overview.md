@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 05aba9a491b84d404a9eeb2c86dc67cf02318f167d4e5f7b2986230067e34433
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 2244212bbc713edaaff72b1d374c1147768f2f88592605a392641ca472029695
 ---
 
 # Claude Developer Platform
@@ -20,7 +20,7 @@ For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/a
 ### February 17, 2026
 - We've launched [Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6), our latest balanced model combining speed and intelligence for everyday tasks. Sonnet 4.6 delivers improved agentic search performance while consuming fewer tokens. Sonnet 4.6 supports [extended thinking](/docs/en/build-with-claude/extended-thinking) and a [1M token context window](/docs/en/build-with-claude/context-windows#1m-token-context-window) (beta). See [Models & Pricing](/docs/en/about-claude/models) for details.
 - API [code execution](/docs/en/agents-and-tools/tool-use/code-execution-tool) is now **free when used with web search or web fetch**. Sandboxed code execution improves model capability and token efficiency. See the [pricing details](/docs/en/agents-and-tools/tool-use/code-execution-tool#usage-and-pricing) for standalone usage.
-- The [web search tool](/docs/en/agents-and-tools/tool-use/web-search-tool) and [programmatic tool calling](/docs/en/agents-and-tools/tool-use/programmatic-tool-calling) are now generally available (no beta header required). Web search and web fetch now support [dynamic filtering](/docs/en/agents-and-tools/tool-use/web-search-tool#dynamic-filtering-with-opus-46-and-sonnet-46) in public beta, which uses code execution to filter results before they reach the context window for better performance and reduced token cost.
+- The [web search tool](/docs/en/agents-and-tools/tool-use/web-search-tool) and [programmatic tool calling](/docs/en/agents-and-tools/tool-use/programmatic-tool-calling) are now generally available (no beta header required). Web search and web fetch now support [dynamic filtering](/docs/en/agents-and-tools/tool-use/web-search-tool#dynamic-filtering-with-opus-46-and-sonnet-46), which uses code execution to filter results before they reach the context window for better performance and reduced token cost.
 - The [code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool), [web fetch tool](/docs/en/agents-and-tools/tool-use/web-fetch-tool), [tool search tool](/docs/en/agents-and-tools/tool-use/tool-search-tool), [tool use examples](/docs/en/agents-and-tools/tool-use/implement-tool-use#providing-tool-use-examples), and [memory tool](/docs/en/agents-and-tools/tool-use/memory-tool) are now generally available (no beta header required).
 
 ### February 7, 2026

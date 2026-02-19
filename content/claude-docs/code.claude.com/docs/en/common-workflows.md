@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 29a76bbf7dce75282aad1868bae1d9f884fca9bfb5e03d4e75053ea1befbc411
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 79029abbe9aefd12f08023a4a2bd3e25ce3d86c4200f1343c381047af5657ea6
 ---
 
 > ## Documentation Index
@@ -247,7 +247,7 @@ Plan Mode instructs Claude to create a plan by analyzing the codebase with read-
 
 You can switch into Plan Mode during a session using **Shift+Tab** to cycle through permission modes.
 
-If you are in Normal Mode, **Shift+Tab** first switches into Auto-Accept Mode, indicated by `⏵⏵ accept edits on` at the bottom of the terminal. A subsequent **Shift+Tab** will switch into Plan Mode, indicated by `⏸ plan mode on`. When an [agent team](/en/agent-teams) is active, the cycle also includes Delegate Mode.
+If you are in Normal Mode, **Shift+Tab** first switches into Auto-Accept Mode, indicated by `⏵⏵ accept edits on` at the bottom of the terminal. A subsequent **Shift+Tab** will switch into Plan Mode, indicated by `⏸ plan mode on`.
 
 **Start a new session in Plan Mode**
 

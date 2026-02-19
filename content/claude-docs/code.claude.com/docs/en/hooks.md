@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: c925d1b04ee1150b7d2eaf86cc18f800d3b65ed0b60f583258591ca76bb30af4
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: eb5160ede1d522936a24250900fcfac8c8fa63e1e6405eeaede9f6512aba0789
 ---
 
 > ## Documentation Index
@@ -1092,7 +1092,7 @@ Runs when a Claude Code subagent has finished responding. Matches on agent type,
 
 #### SubagentStop input
 
-In addition to the [common input fields](#common-input-fields), SubagentStop hooks receive `stop_hook_active`, `agent_id`, `agent_type`, and `agent_transcript_path`. The `agent_type` field is the value used for matcher filtering. The `transcript_path` is the main session's transcript, while `agent_transcript_path` is the subagent's own transcript stored in a nested `subagents/` folder.
+In addition to the [common input fields](#common-input-fields), SubagentStop hooks receive `stop_hook_active`, `agent_id`, `agent_type`, `agent_transcript_path`, and `last_assistant_message`. The `agent_type` field is the value used for matcher filtering. The `transcript_path` is the main session's transcript, while `agent_transcript_path` is the subagent's own transcript stored in a nested `subagents/` folder. The `last_assistant_message` field contains the text content of the subagent's final response, so hooks can access it without parsing the transcript file.
 
 ```json  theme={null}
 {
@@ -1104,7 +1104,8 @@ In addition to the [common input fields](#common-input-fields), SubagentStop hoo
   "stop_hook_active": false,
   "agent_id": "def456",
   "agent_type": "Explore",
-  "agent_transcript_path": "~/.claude/projects/.../abc123/subagents/agent-def456.jsonl"
+  "agent_transcript_path": "~/.claude/projects/.../abc123/subagents/agent-def456.jsonl",
+  "last_assistant_message": "Analysis complete. Found 3 potential issues..."
 }
 ```
 
@@ -1117,7 +1118,7 @@ the stoppage occurred due to a user interrupt.
 
 #### Stop input
 
-In addition to the [common input fields](#common-input-fields), Stop hooks receive `stop_hook_active`. This field is `true` when Claude Code is already continuing as a result of a stop hook. Check this value or process the transcript to prevent Claude Code from running indefinitely.
+In addition to the [common input fields](#common-input-fields), Stop hooks receive `stop_hook_active` and `last_assistant_message`. The `stop_hook_active` field is `true` when Claude Code is already continuing as a result of a stop hook. Check this value or process the transcript to prevent Claude Code from running indefinitely. The `last_assistant_message` field contains the text content of Claude's final response, so hooks can access it without parsing the transcript file.
 
 ```json  theme={null}
 {
@@ -1126,7 +1127,8 @@ In addition to the [common input fields](#common-input-fields), Stop hooks recei
   "cwd": "/Users/...",
   "permission_mode": "default",
   "hook_event_name": "Stop",
-  "stop_hook_active": true
+  "stop_hook_active": true,
+  "last_assistant_message": "I've completed the refactoring. Here's a summary..."
 }
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: bc555e5dd7dda9a17e6a79b4428af05bcd9ecddd074bba0c37fc0153f841d034
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 34d6161caa8667ee48215877e976ebd16e1730252fafd72ef4771a7c45362757
 ---
 
 # Memory tool
@@ -11,10 +11,10 @@ sha256: bc555e5dd7dda9a17e6a79b4428af05bcd9ecddd074bba0c37fc0153f841d034
 
 The memory tool enables Claude to store and retrieve information across conversations through a memory file directory. Claude can create, read, update, and delete files that persist between sessions, allowing it to build knowledge over time without keeping everything in the context window.
 
-The memory tool operates client-side—you control where and how the data is stored through your own infrastructure.
+The memory tool operates client-side: you control where and how the data is stored through your own infrastructure.
 
 <Note>
-Please reach out through our [feedback form](https://forms.gle/YXC2EKGMhjN1c4L88) to share your feedback on this feature.
+Please reach out through the [feedback form](https://forms.gle/YXC2EKGMhjN1c4L88) to share your feedback on this feature.
 </Note>
 
 <Note>
@@ -118,7 +118,7 @@ To use the memory tool:
 2. Implement client-side handlers for memory operations
 
 <Note>
-To handle memory tool operations in your application, you need to implement handlers for each memory command. Our SDKs provide memory tool helpers that handle the tool interface—you can subclass `BetaAbstractMemoryTool` (Python) or use `betaMemoryTool` (TypeScript) to implement your own memory backend (file-based, database, cloud storage, encrypted files, etc.).
+To handle memory tool operations in your application, you need to implement handlers for each memory command. The SDKs provide memory tool helpers that handle the tool interface. You can subclass `BetaAbstractMemoryTool` (Python) or use `betaMemoryTool` (TypeScript) to implement your own memory backend (file-based, database, cloud storage, encrypted files, etc.).
 
 For working examples, see:
 - Python: [examples/memory/basic.py](https://github.com/anthropics/anthropic-sdk-python/blob/main/examples/memory/basic.py)
@@ -366,7 +366,7 @@ Renames the directory.
 
 ## Prompting guidance
 
-We automatically include this instruction to the system prompt when the memory tool is included:
+This instruction is automatically included in the system prompt when the memory tool is enabled:
 
 ```text
 IMPORTANT: ALWAYS VIEW YOUR MEMORY DIRECTORY BEFORE DOING ANYTHING ELSE.

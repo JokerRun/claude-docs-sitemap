@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 19a9a1cde811223c1e4cdb53136757272e2bae4a16baaeb31a706eba56dc9f96
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: f004160741981d74e986f138062301f41a284d912a67b1b3dd61a0c2645c154a
 ---
 
 # Compaction
@@ -25,7 +25,7 @@ Compaction is currently in beta. Include the [beta header](/docs/en/api/beta-hea
 </Note>
 
 <Note>
-This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
+Compaction is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements.
 </Note>
 
 ## Supported models
@@ -33,6 +33,7 @@ This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/d
 Compaction is supported on the following models:
 
 - Claude Opus 4.6 (`claude-opus-4-6`)
+- Claude Sonnet 4.6 (`claude-sonnet-4-6`)
 
 ## How compaction works
 

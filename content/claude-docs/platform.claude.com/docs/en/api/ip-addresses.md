@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ip-addresses
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: 2801630b1acad57c7fa2b7e1b839e261a2c523dd9beadbb4610523fd885bd30b
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: c4d739a6f1edb018fd4d22c33001bc6f39ab48b939dbb5b6cc09c5c13e1f9cec
 ---
 
 # IP addresses
@@ -15,11 +15,11 @@ Anthropic services use fixed IP addresses for both inbound and outbound connecti
 
 These are the IP addresses where Anthropic services receive incoming connections.
 
-#### IPv4
+### IPv4
 
 `160.79.104.0/23`
 
-#### IPv6
+### IPv6
 
 `2607:6bc0::/48`
 
@@ -27,7 +27,7 @@ These are the IP addresses where Anthropic services receive incoming connections
 
 These are the stable IP addresses that Anthropic uses for outbound requests (for example, when making MCP tool calls to external servers).
 
-#### IPv4
+### IPv4
 
 `160.79.104.0/21`
 
@@ -38,5 +38,12 @@ These are the stable IP addresses that Anthropic uses for outbound requests (for
 34.162.102.82/32
 34.162.136.91/32
 34.162.142.92/32
+```
+
+### Phased out IP addresses
+
+The following IP addresses are no longer in use by Anthropic. If you have previously allowlisted these addresses, you should remove them from your firewall rules.
+
+```text
 34.162.183.95/32
 ```

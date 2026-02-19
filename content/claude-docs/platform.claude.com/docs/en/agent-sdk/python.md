@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 30d7e5a3688d5222c530b9f11d011226d975d511f2956f78da402259d0d867a3
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 5e9758e563b714ce7a5dc27d626c48ca699b14107f4c8346797937b4623003fe
 ---
 
 # Agent SDK reference - Python
@@ -954,7 +954,7 @@ Stream event for partial message updates during streaming. Only received when `i
 class StreamEvent:
     uuid: str
     session_id: str
-    event: dict[str, Any]  # The raw Anthropic API stream event
+    event: dict[str, Any]  # The raw Claude API stream event
     parent_tool_use_id: str | None = None
 ```
 
@@ -962,7 +962,7 @@ class StreamEvent:
 |:------|:-----|:------------|
 | `uuid` | `str` | Unique identifier for this event |
 | `session_id` | `str` | Session identifier |
-| `event` | `dict[str, Any]` | The raw Anthropic API stream event data |
+| `event` | `dict[str, Any]` | The raw Claude API stream event data |
 | `parent_tool_use_id` | `str \| None` | Parent tool use ID if this event is from a subagent |
 
 ## Content Block Types

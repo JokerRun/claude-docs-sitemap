@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 851c0b04971c505e50aa4b461a3d37a9a6531e788c31cee96ac1af49fb9e8f21
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 0207825c2894d94aff80f15736d7cd5d3abdc75dbd4e00b25368684eec342efd
 ---
 
 # Get started with Agent Skills in the API
@@ -15,7 +15,7 @@ This tutorial shows you how to use Agent Skills to create a PowerPoint presentat
 
 ## Prerequisites
 
-- [Anthropic API key](/settings/keys)
+- [Claude API key](/settings/keys)
 - Python 3.7+ or curl installed
 - Basic familiarity with making API requests
 
@@ -34,7 +34,7 @@ Pre-built Agent Skills extend Claude's capabilities with specialized expertise f
 
 ## Step 1: List available Skills
 
-First, let's see what Skills are available. We'll use the Skills API to list all Anthropic-managed Skills:
+First, check what Skills are available. Use the Skills API to list all Anthropic-managed Skills:
 
 <CodeGroup>
 ```python Python
@@ -79,7 +79,7 @@ This API returns each Skill's metadata: its name and description. Claude loads t
 
 ## Step 2: Create a presentation
 
-Now we'll use the PowerPoint Skill to create a presentation about renewable energy. We specify Skills using the `container` parameter in the Messages API:
+Now use the PowerPoint Skill to create a presentation about renewable energy. Specify Skills using the `container` parameter in the Messages API:
 
 <CodeGroup>
 ```python Python

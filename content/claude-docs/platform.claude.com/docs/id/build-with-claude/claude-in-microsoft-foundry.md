@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 50a5ce346591005ce4cc0d97d79c95b05957b68375b4f41577216f9205488a05
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 6b0e51798165ccabdd49017460f79e37dd561756e3c1ebe52e16fcadd0c88a45
 ---
 
 # Claude di Microsoft Foundry
@@ -13,7 +13,7 @@ Akses model Claude melalui Microsoft Foundry dengan endpoint asli Azure dan aute
 
 Panduan ini akan memandu Anda melalui proses pengaturan dan pembuatan panggilan API ke Claude di Foundry dalam Python, TypeScript, atau menggunakan permintaan HTTP langsung. Ketika Anda dapat mengakses Claude di Foundry, Anda akan ditagih untuk penggunaan Claude di Microsoft Marketplace dengan langganan Azure Anda, memungkinkan Anda mengakses kemampuan terbaru Claude sambil mengelola biaya melalui langganan Azure Anda.
 
-Ketersediaan regional: Saat peluncuran, Claude tersedia sebagai jenis penyebaran Global Standard dalam sumber daya Foundry (US DataZone akan segera hadir). Harga Claude di Microsoft Marketplace menggunakan harga API standar Anthropic. Kunjungi [halaman harga](https://claude.com/pricing#api) untuk detail.
+Ketersediaan regional: Saat peluncuran, Claude tersedia sebagai jenis penyebaran Global Standard dalam sumber daya Foundry (US DataZone akan segera hadir). Harga untuk Claude di Microsoft Marketplace menggunakan harga API standar Anthropic. Kunjungi [halaman harga](https://claude.com/pricing#api) untuk detail.
 
 ## Pratinjau
 
@@ -63,18 +63,18 @@ Untuk menyediakan sumber daya Anda:
 
 1. Navigasikan ke [portal Foundry](https://ai.azure.com/)
 2. Buat sumber daya Foundry baru atau pilih yang sudah ada
-3. Konfigurasi manajemen akses menggunakan kunci API yang dikeluarkan Azure atau Entra ID untuk kontrol akses berbasis peran
-4. Secara opsional konfigurasi sumber daya untuk menjadi bagian dari jaringan pribadi (Azure Virtual Network) untuk keamanan yang ditingkatkan
+3. Konfigurasikan manajemen akses menggunakan kunci API yang dikeluarkan Azure atau Entra ID untuk kontrol akses berbasis peran
+4. Secara opsional konfigurasikan sumber daya untuk menjadi bagian dari jaringan pribadi (Azure Virtual Network) untuk keamanan yang ditingkatkan
 5. Catat nama sumber daya Anda—Anda akan menggunakannya sebagai `{resource}` dalam endpoint API (misalnya, `https://{resource}.services.ai.azure.com/anthropic/v1/*`)
 
 ### Membuat penyebaran Foundry
 
-Setelah membuat sumber daya Anda, sebarkan model Claude untuk membuatnya tersedia untuk panggilan API:
+Setelah membuat sumber daya Anda, penyebarkan model Claude untuk membuatnya tersedia untuk panggilan API:
 
 1. Di portal Foundry, navigasikan ke sumber daya Anda
 2. Buka **Models + endpoints** dan pilih **+ Deploy model** > **Deploy base model**
-3. Cari dan pilih model Claude (misalnya, `claude-sonnet-4-5`)
-4. Konfigurasi pengaturan penyebaran:
+3. Cari dan pilih model Claude (misalnya, `claude-sonnet-4-6`)
+4. Konfigurasikan pengaturan penyebaran:
    - **Deployment name**: Secara default ke ID model, tetapi Anda dapat menyesuaikannya (misalnya, `my-claude-deployment`). Nama penyebaran tidak dapat diubah setelah dibuat.
    - **Deployment type**: Pilih Global Standard (direkomendasikan untuk Claude)
 5. Pilih **Deploy** dan tunggu penyediaan selesai
@@ -116,13 +116,13 @@ from anthropic import AnthropicFoundry
 
 client = AnthropicFoundry(
     api_key=os.environ.get("ANTHROPIC_FOUNDRY_API_KEY"),
-    resource='example-resource', # your resource name
+    resource="example-resource",  # your resource name
 )
 
 message = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
-    messages=[{"role": "user", "content": "Hello!"}]
+    messages=[{"role": "user", "content": "Hello!"}],
 )
 print(message.content)
 ```
@@ -132,13 +132,13 @@ import AnthropicFoundry from "@anthropic-ai/foundry-sdk";
 
 const client = new AnthropicFoundry({
   apiKey: process.env.ANTHROPIC_FOUNDRY_API_KEY,
-  resource: 'example-resource', // your resource name
+  resource: "example-resource" // your resource name
 });
 
 const message = await client.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
-  messages: [{ role: "user", content: "Hello!" }],
+  messages: [{ role: "user", content: "Hello!" }]
 });
 console.log(message.content);
 ```
@@ -159,7 +159,7 @@ curl https://{resource}.services.ai.azure.com/anthropic/v1/messages \
 </CodeGroup>
 
 <Warning>
-Jaga keamanan kunci API Anda. Jangan pernah menerapkannya ke kontrol versi atau bagikan secara publik. Siapa pun yang memiliki akses ke kunci API Anda dapat membuat permintaan ke Claude melalui sumber daya Foundry Anda.
+Jaga keamanan kunci API Anda. Jangan pernah komitkan ke kontrol versi atau bagikan secara publik. Siapa pun yang memiliki akses ke kunci API Anda dapat membuat permintaan ke Claude melalui sumber daya Foundry Anda.
 </Warning>
 
 ## Autentikasi Microsoft Entra
@@ -180,21 +180,20 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 # Get Azure Entra ID token using token provider pattern
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
 # Create client with Entra ID authentication
 client = AnthropicFoundry(
-    resource='example-resource', # your resource name
-    azure_ad_token_provider=token_provider  # Use token provider for Entra ID auth
+    resource="example-resource",  # your resource name
+    azure_ad_token_provider=token_provider,  # Use token provider for Entra ID auth
 )
 
 # Make request
 message = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
-    messages=[{"role": "user", "content": "Hello!"}]
+    messages=[{"role": "user", "content": "Hello!"}],
 )
 print(message.content)
 ```
@@ -203,7 +202,7 @@ print(message.content)
 import AnthropicFoundry from "@anthropic-ai/foundry-sdk";
 import {
   DefaultAzureCredential,
-  getBearerTokenProvider,
+  getBearerTokenProvider
 } from "@azure/identity";
 
 // Get Entra ID token using token provider pattern
@@ -215,15 +214,15 @@ const tokenProvider = getBearerTokenProvider(
 
 // Create client with Entra ID authentication
 const client = new AnthropicFoundry({
-  resource: 'example-resource', // your resource name
-  azureADTokenProvider: tokenProvider, // Use token provider for Entra ID auth
+  resource: "example-resource", // your resource name
+  azureADTokenProvider: tokenProvider // Use token provider for Entra ID auth
 });
 
 // Make request
 const message = await client.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
-  messages: [{ role: "user", content: "Hello!" }],
+  messages: [{ role: "user", content: "Hello!" }]
 });
 console.log(message.content);
 ```
@@ -273,17 +272,18 @@ Untuk detail tentang header respons khusus Foundry, lihat [bagian ID permintaan 
 
 ## ID model API dan penyebaran
 
-Model Claude berikut tersedia melalui Foundry. Model generasi terbaru (Opus 4.6, Sonnet 4.5, dan Haiku 4.5) menawarkan kemampuan paling canggih:
+Model Claude berikut tersedia melalui Foundry. Model generasi terbaru (Opus 4.6, Sonnet 4.6, dan Haiku 4.5) menawarkan kemampuan paling canggih:
 
 | Model             | Nama Penyebaran Default     |
 | :---------------- | :-------------------------- |
 | Claude Opus 4.6     | `claude-opus-4-6`             |
 | Claude Opus 4.5   | `claude-opus-4-5`           |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6`         |
 | Claude Sonnet 4.5 | `claude-sonnet-4-5`         |
 | Claude Opus 4.1   | `claude-opus-4-1`           |
 | Claude Haiku 4.5  | `claude-haiku-4-5`          |
 
-Secara default, nama penyebaran cocok dengan ID model yang ditunjukkan di atas. Namun, Anda dapat membuat penyebaran khusus dengan nama berbeda di portal Foundry untuk mengelola konfigurasi, versi, atau batas laju yang berbeda. Gunakan nama penyebaran (tidak harus ID model) dalam permintaan API Anda.
+Secara default, nama penyebaran cocok dengan ID model yang ditunjukkan di atas. Namun, Anda dapat membuat penyebaran kustom dengan nama berbeda di portal Foundry untuk mengelola konfigurasi, versi, atau batas laju yang berbeda. Gunakan nama penyebaran (tidak harus ID model) dalam permintaan API Anda.
 
 ## Pemantauan dan logging
 
@@ -306,7 +306,7 @@ Layanan logging Azure dikonfigurasi dalam langganan Azure Anda. Mengaktifkan log
 **Kesalahan**: `401 Unauthorized` atau `Invalid API key`
 
 - **Solusi**: Verifikasi kunci API Anda benar. Anda dapat memperoleh kunci API baru dari portal Azure di bawah **Keys and Endpoint** untuk sumber daya Claude Anda.
-- **Solusi**: Jika menggunakan Azure Entra ID, pastikan token akses Anda valid dan belum kedaluwarsa. Token biasanya kedaluwarsa setelah 1 jam.
+- **Solusi**: Jika menggunakan Azure Entra ID, pastikan token akses Anda valid dan belum kadaluarsa. Token biasanya kadaluarsa setelah 1 jam.
 
 **Kesalahan**: `403 Forbidden`
 
@@ -327,7 +327,7 @@ Foundry tidak menyertakan header batas laju standar Anthropic (`anthropic-rateli
 
 **Kesalahan**: `Model not found` atau `Deployment not found`
 
-- **Solusi**: Verifikasi Anda menggunakan nama penyebaran yang benar. Jika Anda belum membuat penyebaran khusus, gunakan ID model default (misalnya, `claude-sonnet-4-5`).
+- **Solusi**: Verifikasi Anda menggunakan nama penyebaran yang benar. Jika Anda belum membuat penyebaran kustom, gunakan ID model default (misalnya, `claude-sonnet-4-6`).
 - **Solusi**: Pastikan model/penyebaran tersedia di wilayah Azure Anda.
 
 **Kesalahan**: `Invalid model parameter`

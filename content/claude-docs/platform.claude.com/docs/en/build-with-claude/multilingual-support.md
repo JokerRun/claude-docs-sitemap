@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/multilingual-support
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: f60b9e15b27c915ae5ccc0b93cc6b4d274390043ebb784a1bd0463c508ba3c7d
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 70791dc984b5c3d33f9278ac54793b87f540a486ef1f30d7a8c29157e3a3f21a
 ---
 
 # Multilingual support
@@ -15,7 +15,7 @@ Claude excels at tasks across multiple languages, maintaining strong cross-lingu
 
 Claude demonstrates robust multilingual capabilities, with particularly strong performance in zero-shot tasks across languages. The model maintains consistent relative performance across both widely-spoken and lower-resource languages, making it a reliable choice for multilingual applications.
 
-Note that Claude is capable in many languages beyond those benchmarked below. We encourage testing with any languages relevant to your specific use cases.
+Note that Claude is capable in many languages beyond those benchmarked below. Consider testing with any languages relevant to your specific use cases.
 
 ## Performance data
 
@@ -55,7 +55,7 @@ When working with multilingual content:
 2. **Use native scripts**: Submit text in its native script rather than transliteration for optimal results
 3. **Consider cultural context**: Effective communication often requires cultural and regional awareness beyond pure translation
 
-We also suggest following our general [prompt engineering guidelines](/docs/en/build-with-claude/prompt-engineering/overview) to better improve Claude's performance.
+Also follow the general [prompt engineering guidelines](/docs/en/build-with-claude/prompt-engineering/overview) to better improve Claude's performance.
 
 ***
 

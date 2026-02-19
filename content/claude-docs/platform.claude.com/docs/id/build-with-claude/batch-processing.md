@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 5fae45bda2eddb77e0ede832830e7675dbeb9e5d4419bab492e7d905e9cbf181
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 4d005836a20c6f735c6ebf757ea5601ba9359199895995528b2b405a178091bd
 ---
 
 # Pemrosesan batch
@@ -11,20 +11,24 @@ Pemrosesan batch adalah pendekatan yang kuat untuk menangani volume permintaan b
 
 ---
 
-Pemrosesan batch adalah pendekatan yang kuat untuk menangani volume permintaan besar secara efisien. Alih-alih memproses permintaan satu per satu dengan respons langsung, pemrosesan batch memungkinkan Anda mengirimkan beberapa permintaan sekaligus untuk pemrosesan asinkron. Pola ini sangat berguna ketika:
+Pemrosesan batch adalah pendekatan yang kuat untuk menangani volume permintaan besar secara efisien. Alih-alih memproses permintaan satu per satu dengan respons segera, pemrosesan batch memungkinkan Anda mengirimkan beberapa permintaan sekaligus untuk pemrosesan asinkron. Pola ini sangat berguna ketika:
 
 - Anda perlu memproses volume data besar
-- Respons langsung tidak diperlukan
+- Respons segera tidak diperlukan
 - Anda ingin mengoptimalkan efisiensi biaya
 - Anda menjalankan evaluasi atau analisis skala besar
 
 Message Batches API adalah implementasi pertama kami dari pola ini.
 
+<Note>
+This feature is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Data is retained according to the feature's standard retention policy.
+</Note>
+
 ---
 
 # Message Batches API
 
-Message Batches API adalah cara yang kuat dan hemat biaya untuk memproses secara asinkron volume besar permintaan [Messages](/docs/id/api/messages). Pendekatan ini sangat cocok untuk tugas-tugas yang tidak memerlukan respons langsung, dengan sebagian besar batch selesai dalam waktu kurang dari 1 jam sambil mengurangi biaya sebesar 50% dan meningkatkan throughput.
+Message Batches API adalah cara yang kuat dan hemat biaya untuk memproses secara asinkron volume besar permintaan [Messages](/docs/id/api/messages). Pendekatan ini sangat cocok untuk tugas yang tidak memerlukan respons segera, dengan sebagian besar batch selesai dalam waktu kurang dari 1 jam sambil mengurangi biaya sebesar 50% dan meningkatkan throughput.
 
 Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/creating-message-batches), selain panduan ini.
 
@@ -34,21 +38,21 @@ Ketika Anda mengirimkan permintaan ke Message Batches API:
 
 1. Sistem membuat Message Batch baru dengan permintaan Messages yang disediakan.
 2. Batch kemudian diproses secara asinkron, dengan setiap permintaan ditangani secara independen.
-3. Anda dapat melakukan polling untuk status batch dan mengambil hasil ketika pemrosesan telah selesai untuk semua permintaan.
+3. Anda dapat melakukan polling untuk status batch dan mengambil hasil ketika pemrosesan telah berakhir untuk semua permintaan.
 
-Ini sangat berguna untuk operasi massal yang tidak memerlukan hasil langsung, seperti:
+Ini sangat berguna untuk operasi massal yang tidak memerlukan hasil segera, seperti:
 - Evaluasi skala besar: Proses ribuan kasus uji secara efisien.
-- Moderasi konten: Analisis volume besar konten buatan pengguna secara asinkron.
+- Moderasi konten: Analisis volume besar konten yang dibuat pengguna secara asinkron.
 - Analisis data: Hasilkan wawasan atau ringkasan untuk dataset besar.
 - Pembuatan konten massal: Buat jumlah besar teks untuk berbagai tujuan (misalnya, deskripsi produk, ringkasan artikel).
 
 ### Batasan batch
 - Message Batch dibatasi hingga 100.000 permintaan Message atau 256 MB ukuran, mana pun yang tercapai terlebih dahulu.
 - Kami memproses setiap batch secepat mungkin, dengan sebagian besar batch selesai dalam 1 jam. Anda akan dapat mengakses hasil batch ketika semua pesan telah selesai atau setelah 24 jam, mana pun yang lebih dulu. Batch akan kedaluwarsa jika pemrosesan tidak selesai dalam 24 jam.
-- Hasil batch tersedia selama 29 hari setelah pembuatan. Setelah itu, Anda masih dapat melihat Batch, tetapi hasilnya tidak akan lagi tersedia untuk diunduh.
-- Batch dibatasi pada [Workspace](/settings/workspaces). Anda dapat melihat semua batch—dan hasilnya—yang dibuat dalam Workspace tempat kunci API Anda berada.
+- Hasil batch tersedia selama 29 hari setelah pembuatan. Setelah itu, Anda masih dapat melihat Batch, tetapi hasilnya tidak lagi tersedia untuk diunduh.
+- Batch dibatasi pada [Workspace](/settings/workspaces). Anda dapat melihat semua batch—dan hasilnya—yang dibuat dalam Workspace yang kunci API Anda miliki.
 - Batas laju berlaku untuk permintaan HTTP Batches API dan jumlah permintaan dalam batch yang menunggu untuk diproses. Lihat [batas laju Message Batches API](/docs/id/api/rate-limits#message-batches-api). Selain itu, kami dapat memperlambat pemrosesan berdasarkan permintaan saat ini dan volume permintaan Anda. Dalam hal itu, Anda mungkin melihat lebih banyak permintaan kedaluwarsa setelah 24 jam.
-- Karena throughput tinggi dan pemrosesan bersamaan, batch dapat sedikit melampaui [batas pengeluaran](/settings/limits) Workspace Anda yang dikonfigurasi.
+- Karena throughput tinggi dan pemrosesan bersamaan, batch dapat sedikit melampaui [batas pengeluaran](/settings/limits) yang dikonfigurasi Workspace Anda.
 
 ### Model yang didukung
 
@@ -57,10 +61,10 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung Message Bat
 ### Apa yang dapat di-batch
 Permintaan apa pun yang dapat Anda buat ke Messages API dapat disertakan dalam batch. Ini termasuk:
 
-- Visi
-- Penggunaan alat
+- Vision
+- Tool use
 - Pesan sistem
-- Percakapan multi-putaran
+- Percakapan multi-turn
 - Fitur beta apa pun
 
 Karena setiap permintaan dalam batch diproses secara independen, Anda dapat mencampur berbagai jenis permintaan dalam satu batch.
@@ -148,23 +152,27 @@ message_batch = client.messages.batches.create(
             params=MessageCreateParamsNonStreaming(
                 model="claude-opus-4-6",
                 max_tokens=1024,
-                messages=[{
-                    "role": "user",
-                    "content": "Hello, world",
-                }]
-            )
+                messages=[
+                    {
+                        "role": "user",
+                        "content": "Hello, world",
+                    }
+                ],
+            ),
         ),
         Request(
             custom_id="my-second-request",
             params=MessageCreateParamsNonStreaming(
                 model="claude-opus-4-6",
                 max_tokens=1024,
-                messages=[{
-                    "role": "user",
-                    "content": "Hi again, friend",
-                }]
-            )
-        )
+                messages=[
+                    {
+                        "role": "user",
+                        "content": "Hi again, friend",
+                    }
+                ],
+            ),
+        ),
     ]
 )
 
@@ -172,7 +180,7 @@ print(message_batch)
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -183,7 +191,7 @@ const messageBatch = await anthropic.messages.batches.create({
       model: "claude-opus-4-6",
       max_tokens: 1024,
       messages: [
-        {"role": "user", "content": "Hello, world"}
+        { role: "user", content: "Hello, world" }
       ]
     }
   }, {
@@ -192,13 +200,13 @@ const messageBatch = await anthropic.messages.batches.create({
       model: "claude-opus-4-6",
       max_tokens: 1024,
       messages: [
-        {"role": "user", "content": "Hi again, friend"}
+        { role: "user", content: "Hi again, friend" }
       ]
     }
   }]
 });
 
-console.log(messageBatch)
+console.log(messageBatch);
 ```
 
 ```java Java
@@ -208,33 +216,201 @@ import com.anthropic.models.messages.Model;
 import com.anthropic.models.messages.batches.*;
 
 public class BatchExample {
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        BatchCreateParams params = BatchCreateParams.builder()
-            .addRequest(BatchCreateParams.Request.builder()
-                .customId("my-first-request")
-                .params(BatchCreateParams.Request.Params.builder()
-                    .model(Model.CLAUDE_OPUS_4_6)
-                    .maxTokens(1024)
-                    .addUserMessage("Hello, world")
-                    .build())
-                .build())
-            .addRequest(BatchCreateParams.Request.builder()
-                .customId("my-second-request")
-                .params(BatchCreateParams.Request.Params.builder()
-                    .model(Model.CLAUDE_OPUS_4_6)
-                    .maxTokens(1024)
-                    .addUserMessage("Hi again, friend")
-                    .build())
-                .build())
-            .build();
+  public static void main(String[] args) {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        MessageBatch messageBatch = client.messages().batches().create(params);
+    BatchCreateParams params = BatchCreateParams.builder()
+      .addRequest(
+        BatchCreateParams.Request.builder()
+          .customId("my-first-request")
+          .params(
+            BatchCreateParams.Request.Params.builder()
+              .model(Model.CLAUDE_OPUS_4_6)
+              .maxTokens(1024)
+              .addUserMessage("Hello, world")
+              .build()
+          )
+          .build()
+      )
+      .addRequest(
+        BatchCreateParams.Request.builder()
+          .customId("my-second-request")
+          .params(
+            BatchCreateParams.Request.Params.builder()
+              .model(Model.CLAUDE_OPUS_4_6)
+              .maxTokens(1024)
+              .addUserMessage("Hi again, friend")
+              .build()
+          )
+          .build()
+      )
+      .build();
 
-        System.out.println(messageBatch);
-    }
+    MessageBatch messageBatch = client.messages().batches().create(params);
+
+    System.out.println(messageBatch);
+  }
 }
+```
+
+```go Go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	batch, _ := client.Messages.Batches.New(context.Background(),
+		anthropic.BatchCreateParams{
+			Requests: []anthropic.BatchCreateParamsRequest{
+				{
+					CustomID: "my-first-request",
+					Params: anthropic.BatchCreateParamsRequestParams{
+						Model:     anthropic.ModelClaudeOpus4_6,
+						MaxTokens: 1024,
+						Messages: []anthropic.MessageParam{
+							anthropic.NewUserMessage(
+								anthropic.NewTextBlock("Hello, world"),
+							),
+						},
+					},
+				},
+				{
+					CustomID: "my-second-request",
+					Params: anthropic.BatchCreateParamsRequestParams{
+						Model:     anthropic.ModelClaudeOpus4_6,
+						MaxTokens: 1024,
+						Messages: []anthropic.MessageParam{
+							anthropic.NewUserMessage(
+								anthropic.NewTextBlock("Hi again, friend"),
+							),
+						},
+					},
+				},
+			},
+		})
+
+	fmt.Println(batch.ID)
+}
+```
+
+```ruby Ruby
+require "anthropic"
+
+client = Anthropic::Client.new
+
+batch = client.messages.batches.create(
+  requests: [
+    {
+      custom_id: "my-first-request",
+      params: {
+        model: "claude-opus-4-6",
+        max_tokens: 1024,
+        messages: [
+          { role: "user", content: "Hello, world" }
+        ]
+      }
+    },
+    {
+      custom_id: "my-second-request",
+      params: {
+        model: "claude-opus-4-6",
+        max_tokens: 1024,
+        messages: [
+          { role: "user", content: "Hi again, friend" }
+        ]
+      }
+    }
+  ]
+)
+
+puts batch
+```
+
+```csharp C#
+using Anthropic;
+
+var client = new AnthropicClient();
+
+var batch = await client.Messages.Batches.CreateAsync(
+    new BatchCreateParams
+    {
+        Requests = new[]
+        {
+            new BatchCreateParams.Request
+            {
+                CustomId = "my-first-request",
+                Params = new BatchCreateParams.Request.Params
+                {
+                    Model = "claude-opus-4-6",
+                    MaxTokens = 1024,
+                    Messages = new[]
+                    {
+                        new MessageParam { Role = "user", Content = "Hello, world" }
+                    }
+                }
+            },
+            new BatchCreateParams.Request
+            {
+                CustomId = "my-second-request",
+                Params = new BatchCreateParams.Request.Params
+                {
+                    Model = "claude-opus-4-6",
+                    MaxTokens = 1024,
+                    Messages = new[]
+                    {
+                        new MessageParam { Role = "user", Content = "Hi again, friend" }
+                    }
+                }
+            }
+        }
+    });
+
+Console.WriteLine(batch);
+```
+
+```php PHP
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(
+    apiKey: getenv("ANTHROPIC_API_KEY")
+);
+
+$batch = $client->messages->batches->create([
+    'requests' => [
+        [
+            'custom_id' => 'my-first-request',
+            'params' => [
+                'model' => 'claude-opus-4-6',
+                'max_tokens' => 1024,
+                'messages' => [
+                    ['role' => 'user', 'content' => 'Hello, world']
+                ]
+            ]
+        ],
+        [
+            'custom_id' => 'my-second-request',
+            'params' => [
+                'model' => 'claude-opus-4-6',
+                'max_tokens' => 1024,
+                'messages' => [
+                    ['role' => 'user', 'content' => 'Hi again, friend']
+                ]
+            ]
+        ]
+    ]
+]);
+
+print_r($batch);
 ```
 
 </CodeGroup>
@@ -244,7 +420,7 @@ Dalam contoh ini, dua permintaan terpisah di-batch bersama untuk pemrosesan asin
 <Tip>
   **Uji permintaan batch Anda dengan Messages API**
 
-Validasi objek `params` untuk setiap permintaan pesan dilakukan secara asinkron, dan kesalahan validasi dikembalikan ketika pemrosesan seluruh batch telah selesai. Anda dapat memastikan bahwa Anda membangun input dengan benar dengan terlebih dahulu memverifikasi bentuk permintaan Anda dengan [Messages API](/docs/id/api/messages).
+Validasi objek `params` untuk setiap permintaan pesan dilakukan secara asinkron, dan kesalahan validasi dikembalikan ketika pemrosesan seluruh batch telah berakhir. Anda dapat memastikan bahwa Anda membangun input dengan benar dengan memverifikasi bentuk permintaan Anda dengan [Messages API](/docs/id/api/messages) terlebih dahulu.
 </Tip>
 
 Ketika batch pertama kali dibuat, respons akan memiliki status pemrosesan `in_progress`.
@@ -275,7 +451,7 @@ Bidang `processing_status` Message Batch menunjukkan tahap pemrosesan batch. Dim
 
 #### Polling untuk penyelesaian Message Batch
 
-Untuk melakukan polling Message Batch, Anda memerlukan `id`-nya, yang disediakan dalam respons saat membuat batch atau dengan membuat daftar batch. Anda dapat mengimplementasikan loop polling yang memeriksa status batch secara berkala hingga pemrosesan selesai:
+Untuk melakukan polling Message Batch, Anda memerlukan `id`-nya, yang disediakan dalam respons saat membuat batch atau dengan membuat daftar batch. Anda dapat menerapkan loop polling yang memeriksa status batch secara berkala hingga pemrosesan berakhir:
 
 <CodeGroup>
 ```python Python
@@ -286,9 +462,7 @@ client = anthropic.Anthropic()
 
 message_batch = None
 while True:
-    message_batch = client.messages.batches.retrieve(
-        MESSAGE_BATCH_ID
-    )
+    message_batch = client.messages.batches.retrieve(MESSAGE_BATCH_ID)
     if message_batch.processing_status == "ended":
         break
 
@@ -298,7 +472,7 @@ print(message_batch)
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -307,7 +481,7 @@ while (true) {
   messageBatch = await anthropic.messages.batches.retrieve(
     MESSAGE_BATCH_ID
   );
-  if (messageBatch.processing_status === 'ended') {
+  if (messageBatch.processing_status === "ended") {
     break;
   }
 
@@ -344,14 +518,12 @@ import anthropic
 client = anthropic.Anthropic()
 
 # Automatically fetches more pages as needed.
-for message_batch in client.messages.batches.list(
-    limit=20
-):
+for message_batch in client.messages.batches.list(limit=20):
     print(message_batch)
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -405,36 +577,36 @@ import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.batches.*;
 
 public class BatchListExample {
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        // Automatically fetches more pages as needed
-        for (MessageBatch messageBatch : client.messages().batches().list(
-                BatchListParams.builder()
-                        .limit(20)
-                        .build()
-        )) {
-            System.out.println(messageBatch);
-        }
+  public static void main(String[] args) {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+    // Automatically fetches more pages as needed
+    for (MessageBatch messageBatch : client
+      .messages()
+      .batches()
+      .list(BatchListParams.builder().limit(20).build())) {
+      System.out.println(messageBatch);
     }
+  }
 }
 ```
 </CodeGroup>
 
 ### Mengambil hasil batch
 
-Setelah pemrosesan batch selesai, setiap permintaan Messages dalam batch akan memiliki hasil. Ada 4 jenis hasil:
+Setelah pemrosesan batch berakhir, setiap permintaan Messages dalam batch akan memiliki hasil. Ada 4 jenis hasil:
 
 | Jenis Hasil | Deskripsi |
 |-------------|-------------|
 | `succeeded` | Permintaan berhasil. Mencakup hasil pesan. |
-| `errored`   | Permintaan mengalami kesalahan dan pesan tidak dibuat. Kemungkinan kesalahan termasuk permintaan tidak valid dan kesalahan server internal. Anda tidak akan ditagih untuk permintaan ini. |
-| `canceled`  | Pengguna membatalkan batch sebelum permintaan ini dapat dikirim ke model. Anda tidak akan ditagih untuk permintaan ini. |
-| `expired`   | Batch mencapai kedaluwarsa 24 jam sebelum permintaan ini dapat dikirim ke model. Anda tidak akan ditagih untuk permintaan ini. |
+| `errored`   | Permintaan mengalami kesalahan dan pesan tidak dibuat. Kemungkinan kesalahan termasuk permintaan tidak valid dan kesalahan server internal. Anda tidak akan dikenakan biaya untuk permintaan ini. |
+| `canceled`  | Pengguna membatalkan batch sebelum permintaan ini dapat dikirim ke model. Anda tidak akan dikenakan biaya untuk permintaan ini. |
+| `expired`   | Batch mencapai kedaluwarsa 24 jam sebelum permintaan ini dapat dikirim ke model. Anda tidak akan dikenakan biaya untuk permintaan ini. |
 
 Anda akan melihat gambaran umum hasil Anda dengan `request_counts` batch, yang menunjukkan berapa banyak permintaan yang mencapai masing-masing dari empat status ini.
 
-Hasil batch tersedia untuk diunduh di properti `results_url` pada Message Batch, dan jika izin organisasi memungkinkan, di Console. Karena ukuran hasil yang berpotensi besar, disarankan untuk [streaming hasil](/docs/id/api/retrieving-message-batch-results) kembali daripada mengunduh semuanya sekaligus.
+Hasil batch tersedia untuk diunduh di properti `results_url` pada Message Batch, dan jika izin organisasi memungkinkan, di Console. Karena ukuran hasil yang berpotensi besar, disarankan untuk [streaming hasil](/docs/id/api/retrieving-message-batch-results) kembali daripada mengunduhnya sekaligus.
 
 <CodeGroup>
 
@@ -501,19 +673,19 @@ for result in client.messages.batches.results(
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
 // Stream results file in memory-efficient chunks, processing one at a time
 for await (const result of await anthropic.messages.batches.results(
-    "msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d"
+  "msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d"
 )) {
   switch (result.result.type) {
-    case 'succeeded':
+    case "succeeded":
       console.log(`Success! ${result.custom_id}`);
       break;
-    case 'errored':
+    case "errored":
       if (result.result.error.type == "invalid_request") {
         // Request body must be fixed before re-sending request
         console.log(`Validation error: ${result.custom_id}`);
@@ -522,7 +694,7 @@ for await (const result of await anthropic.messages.batches.results(
         console.log(`Server error: ${result.custom_id}`);
       }
       break;
-    case 'expired':
+    case "expired":
       console.log(`Request expired: ${result.custom_id}`);
       break;
   }
@@ -533,39 +705,44 @@ for await (const result of await anthropic.messages.batches.results(
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.http.StreamResponse;
-import com.anthropic.models.messages.batches.MessageBatchIndividualResponse;
 import com.anthropic.models.messages.batches.BatchResultsParams;
+import com.anthropic.models.messages.batches.MessageBatchIndividualResponse;
 
 public class BatchResultsExample {
 
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  public static void main(String[] args) {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        // Stream results file in memory-efficient chunks, processing one at a time
-        try (StreamResponse<MessageBatchIndividualResponse> streamResponse = client.messages()
-                .batches()
-                .resultsStreaming(
-                        BatchResultsParams.builder()
-                                .messageBatchId("msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d")
-                                .build())) {
-
-            streamResponse.stream().forEach(result -> {
-                if (result.result().isSucceeded()) {
-                    System.out.println("Success! " + result.customId());
-                } else if (result.result().isErrored()) {
-                    if (result.result().asErrored().error().error().isInvalidRequestError()) {
-                        // Request body must be fixed before re-sending request
-                        System.out.println("Validation error: " + result.customId());
-                    } else {
-                        // Request can be retried directly
-                        System.out.println("Server error: " + result.customId());
-                    }
-                } else if (result.result().isExpired()) {
-                    System.out.println("Request expired: " + result.customId());
-                }
-            });
-        }
+    // Stream results file in memory-efficient chunks, processing one at a time
+    try (
+      StreamResponse<MessageBatchIndividualResponse> streamResponse = client
+        .messages()
+        .batches()
+        .resultsStreaming(
+          BatchResultsParams.builder()
+            .messageBatchId("msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d")
+            .build()
+        )
+    ) {
+      streamResponse
+        .stream()
+        .forEach(result -> {
+          if (result.result().isSucceeded()) {
+            System.out.println("Success! " + result.customId());
+          } else if (result.result().isErrored()) {
+            if (result.result().asErrored().error().error().isInvalidRequestError()) {
+              // Request body must be fixed before re-sending request
+              System.out.println("Validation error: " + result.customId());
+            } else {
+              // Request can be retried directly
+              System.out.println("Server error: " + result.customId());
+            }
+          } else if (result.result().isExpired()) {
+            System.out.println("Request expired: " + result.customId());
+          }
+        });
     }
+  }
 }
 ```
 
@@ -581,9 +758,9 @@ Hasil akan dalam format `.jsonl`, di mana setiap baris adalah objek JSON yang va
 Jika hasil Anda memiliki kesalahan, `result.error`-nya akan diatur ke [bentuk kesalahan](/docs/id/api/errors#error-shapes) standar kami.
 
 <Tip>
-  **Hasil batch mungkin tidak sesuai dengan urutan input**
+  **Hasil batch mungkin tidak cocok dengan urutan input**
 
-Hasil batch dapat dikembalikan dalam urutan apa pun, dan mungkin tidak sesuai dengan urutan permintaan saat batch dibuat. Dalam contoh di atas, hasil untuk permintaan batch kedua dikembalikan sebelum yang pertama. Untuk dengan benar mencocokkan hasil dengan permintaan yang sesuai, selalu gunakan bidang `custom_id`.
+Hasil batch dapat dikembalikan dalam urutan apa pun, dan mungkin tidak cocok dengan urutan permintaan saat batch dibuat. Dalam contoh di atas, hasil untuk permintaan batch kedua dikembalikan sebelum yang pertama. Untuk mencocokkan hasil dengan benar dengan permintaan yang sesuai, selalu gunakan bidang `custom_id`.
 </Tip>
 
 ### Membatalkan Message Batch
@@ -603,12 +780,12 @@ print(message_batch)
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
 const messageBatch = await anthropic.messages.batches.cancel(
-    MESSAGE_BATCH_ID
+  MESSAGE_BATCH_ID
 );
 console.log(messageBatch);
 ```
@@ -626,16 +803,16 @@ import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.batches.*;
 
 public class BatchCancelExample {
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        MessageBatch messageBatch = client.messages().batches().cancel(
-                BatchCancelParams.builder()
-                        .messageBatchId(MESSAGE_BATCH_ID)
-                        .build()
-        );
-        System.out.println(messageBatch);
-    }
+  public static void main(String[] args) {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+    MessageBatch messageBatch = client
+      .messages()
+      .batches()
+      .cancel(BatchCancelParams.builder().messageBatchId(MESSAGE_BATCH_ID).build());
+    System.out.println(messageBatch);
+  }
 }
 ```
 </CodeGroup>
@@ -668,7 +845,7 @@ Message Batches API mendukung prompt caching, memungkinkan Anda untuk berpotensi
 
 Untuk memaksimalkan kemungkinan cache hits dalam permintaan batch Anda:
 
-1. Sertakan blok `cache_control` yang identik dalam setiap permintaan Message dalam batch Anda
+1. Sertakan blok `cache_control` yang identik di setiap permintaan Message dalam batch Anda
 2. Pertahankan aliran permintaan yang stabil untuk mencegah entri cache kedaluwarsa setelah masa hidup 5 menit mereka
 3. Struktur permintaan Anda untuk berbagi sebanyak mungkin konten yang di-cache
 
@@ -747,19 +924,21 @@ message_batch = client.messages.batches.create(
                 system=[
                     {
                         "type": "text",
-                        "text": "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n"
+                        "text": "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n",
                     },
                     {
                         "type": "text",
                         "text": "<the entire contents of Pride and Prejudice>",
-                        "cache_control": {"type": "ephemeral"}
+                        "cache_control": {"type": "ephemeral"},
+                    },
+                ],
+                messages=[
+                    {
+                        "role": "user",
+                        "content": "Analyze the major themes in Pride and Prejudice.",
                     }
                 ],
-                messages=[{
-                    "role": "user",
-                    "content": "Analyze the major themes in Pride and Prejudice."
-                }]
-            )
+            ),
         ),
         Request(
             custom_id="my-second-request",
@@ -769,26 +948,28 @@ message_batch = client.messages.batches.create(
                 system=[
                     {
                         "type": "text",
-                        "text": "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n"
+                        "text": "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n",
                     },
                     {
                         "type": "text",
                         "text": "<the entire contents of Pride and Prejudice>",
-                        "cache_control": {"type": "ephemeral"}
+                        "cache_control": {"type": "ephemeral"},
+                    },
+                ],
+                messages=[
+                    {
+                        "role": "user",
+                        "content": "Write a summary of Pride and Prejudice.",
                     }
                 ],
-                messages=[{
-                    "role": "user",
-                    "content": "Write a summary of Pride and Prejudice."
-                }]
-            )
-        )
+            ),
+        ),
     ]
 )
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -806,11 +987,11 @@ const messageBatch = await anthropic.messages.batches.create({
         {
           type: "text",
           text: "<the entire contents of Pride and Prejudice>",
-          cache_control: {type: "ephemeral"}
+          cache_control: { type: "ephemeral" }
         }
       ],
       messages: [
-        {"role": "user", "content": "Analyze the major themes in Pride and Prejudice."}
+        { role: "user", content: "Analyze the major themes in Pride and Prejudice." }
       ]
     }
   }, {
@@ -826,11 +1007,11 @@ const messageBatch = await anthropic.messages.batches.create({
         {
           type: "text",
           text: "<the entire contents of Pride and Prejudice>",
-          cache_control: {type: "ephemeral"}
+          cache_control: { type: "ephemeral" }
         }
       ],
       messages: [
-        {"role": "user", "content": "Write a summary of Pride and Prejudice."}
+        { role: "user", content: "Write a summary of Pride and Prejudice." }
       ]
     }
   }]
@@ -838,59 +1019,74 @@ const messageBatch = await anthropic.messages.batches.create({
 ```
 
 ```java Java
-import java.util.List;
-
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.CacheControlEphemeral;
 import com.anthropic.models.messages.Model;
 import com.anthropic.models.messages.TextBlockParam;
 import com.anthropic.models.messages.batches.*;
+import java.util.List;
 
 public class BatchExample {
 
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  public static void main(String[] args) {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        BatchCreateParams createParams = BatchCreateParams.builder()
-                .addRequest(BatchCreateParams.Request.builder()
-                        .customId("my-first-request")
-                        .params(BatchCreateParams.Request.Params.builder()
-                                .model(Model.CLAUDE_OPUS_4_6)
-                                .maxTokens(1024)
-                                .systemOfTextBlockParams(List.of(
-                                        TextBlockParam.builder()
-                                                .text("You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n")
-                                                .build(),
-                                        TextBlockParam.builder()
-                                                .text("<the entire contents of Pride and Prejudice>")
-                                                .cacheControl(CacheControlEphemeral.builder().build())
-                                                .build()
-                                ))
-                                .addUserMessage("Analyze the major themes in Pride and Prejudice.")
-                                .build())
-                        .build())
-                .addRequest(BatchCreateParams.Request.builder()
-                        .customId("my-second-request")
-                        .params(BatchCreateParams.Request.Params.builder()
-                                .model(Model.CLAUDE_OPUS_4_6)
-                                .maxTokens(1024)
-                                .systemOfTextBlockParams(List.of(
-                                        TextBlockParam.builder()
-                                                .text("You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n")
-                                                .build(),
-                                        TextBlockParam.builder()
-                                                .text("<the entire contents of Pride and Prejudice>")
-                                                .cacheControl(CacheControlEphemeral.builder().build())
-                                                .build()
-                                ))
-                                .addUserMessage("Write a summary of Pride and Prejudice.")
-                                .build())
-                        .build())
-                .build();
+    BatchCreateParams createParams = BatchCreateParams.builder()
+      .addRequest(
+        BatchCreateParams.Request.builder()
+          .customId("my-first-request")
+          .params(
+            BatchCreateParams.Request.Params.builder()
+              .model(Model.CLAUDE_OPUS_4_6)
+              .maxTokens(1024)
+              .systemOfTextBlockParams(
+                List.of(
+                  TextBlockParam.builder()
+                    .text(
+                      "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n"
+                    )
+                    .build(),
+                  TextBlockParam.builder()
+                    .text("<the entire contents of Pride and Prejudice>")
+                    .cacheControl(CacheControlEphemeral.builder().build())
+                    .build()
+                )
+              )
+              .addUserMessage("Analyze the major themes in Pride and Prejudice.")
+              .build()
+          )
+          .build()
+      )
+      .addRequest(
+        BatchCreateParams.Request.builder()
+          .customId("my-second-request")
+          .params(
+            BatchCreateParams.Request.Params.builder()
+              .model(Model.CLAUDE_OPUS_4_6)
+              .maxTokens(1024)
+              .systemOfTextBlockParams(
+                List.of(
+                  TextBlockParam.builder()
+                    .text(
+                      "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n"
+                    )
+                    .build(),
+                  TextBlockParam.builder()
+                    .text("<the entire contents of Pride and Prejudice>")
+                    .cacheControl(CacheControlEphemeral.builder().build())
+                    .build()
+                )
+              )
+              .addUserMessage("Write a summary of Pride and Prejudice.")
+              .build()
+          )
+          .build()
+      )
+      .build();
 
-        MessageBatch messageBatch = client.messages().batches().create(createParams);
-    }
+    MessageBatch messageBatch = client.messages().batches().create(createParams);
+  }
 }
 ```
 
@@ -902,22 +1098,22 @@ Dalam contoh ini, kedua permintaan dalam batch mencakup pesan sistem yang identi
 
 Untuk memanfaatkan Batches API sebaik-baiknya:
 
-- Pantau status pemrosesan batch secara teratur dan terapkan logika retry yang sesuai untuk permintaan yang gagal.
+- Pantau status pemrosesan batch secara teratur dan implementasikan logika retry yang sesuai untuk permintaan yang gagal.
 - Gunakan nilai `custom_id` yang bermakna untuk dengan mudah mencocokkan hasil dengan permintaan, karena urutan tidak dijamin.
-- Pertimbangkan untuk memecah dataset yang sangat besar menjadi beberapa batch untuk manageability yang lebih baik.
+- Pertimbangkan untuk memecah dataset yang sangat besar menjadi beberapa batch untuk manajemen yang lebih baik.
 - Lakukan dry run dengan bentuk permintaan tunggal menggunakan Messages API untuk menghindari kesalahan validasi.
 
 ### Pemecahan masalah untuk masalah umum
 
 Jika mengalami perilaku yang tidak terduga:
 
-- Verifikasi bahwa ukuran total permintaan batch tidak melebihi 256 MB. Jika ukuran permintaan terlalu besar, Anda mungkin mendapatkan kesalahan 413 `request_too_large`.
+- Verifikasi bahwa ukuran permintaan batch total tidak melebihi 256 MB. Jika ukuran permintaan terlalu besar, Anda mungkin mendapatkan kesalahan 413 `request_too_large`.
 - Periksa bahwa Anda menggunakan [model yang didukung](#supported-models) untuk semua permintaan dalam batch.
 - Pastikan setiap permintaan dalam batch memiliki `custom_id` yang unik.
-- Pastikan bahwa kurang dari 29 hari telah berlalu sejak waktu batch `created_at` (bukan `ended_at` pemrosesan). Jika lebih dari 29 hari telah berlalu, hasil tidak akan lagi dapat dilihat.
+- Pastikan bahwa kurang dari 29 hari telah berlalu sejak waktu batch `created_at` (bukan waktu pemrosesan `ended_at`). Jika lebih dari 29 hari telah berlalu, hasil tidak akan lagi dapat dilihat.
 - Konfirmasi bahwa batch belum dibatalkan.
 
-Perhatikan bahwa kegagalan satu permintaan dalam batch tidak mempengaruhi pemrosesan permintaan lain.
+Perhatikan bahwa kegagalan satu permintaan dalam batch tidak mempengaruhi pemrosesan permintaan lainnya.
 
 ---
 ## Penyimpanan dan privasi batch
@@ -955,7 +1151,7 @@ Perhatikan bahwa kegagalan satu permintaan dalam batch tidak mempengaruhi pemros
 
   <section title="Bisakah saya memperbarui batch setelah dikirimkan?">
 
-    Tidak, setelah batch dikirimkan, batch tidak dapat dimodifikasi. Jika Anda perlu membuat perubahan, Anda harus membatalkan batch saat ini dan mengirimkan yang baru. Perhatikan bahwa pembatalan mungkin tidak langsung berlaku.
+    Tidak, setelah batch dikirimkan, batch tidak dapat dimodifikasi. Jika Anda perlu membuat perubahan, Anda harus membatalkan batch saat ini dan mengirimkan batch baru. Perhatikan bahwa pembatalan mungkin tidak langsung berlaku.
   
 </section>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 2477de9f3e7181bb33b1b277463373cc69ff8ba3d1dc7e4b7b6a67ab3b58969d
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 9ceb98b3ec6bbf19424b75fd9ab39bf9d800b810e1f4201e8b862a6282a572aa
 ---
 
 # Tool use with Claude
@@ -12,7 +12,7 @@ sha256: 2477de9f3e7181bb33b1b277463373cc69ff8ba3d1dc7e4b7b6a67ab3b58969d
 Claude is capable of interacting with tools and functions, allowing you to extend Claude's capabilities to perform a wider variety of tasks.
 
 <Tip>
-  Learn everything you need to master tool use with Claude as part of our new [courses](https://anthropic.skilljar.com/)! Please
+  Learn everything you need to master tool use with Claude as part of the new [courses](https://anthropic.skilljar.com/)! Please
   continue to share your ideas and suggestions using this
   [form](https://forms.gle/BFnYc6iCkWoRzFgk7).
 </Tip>
@@ -20,7 +20,7 @@ Claude is capable of interacting with tools and functions, allowing you to exten
 <Tip>
 **Guarantee schema conformance with strict tool use**
 
-[Structured Outputs](/docs/en/build-with-claude/structured-outputs) provides guaranteed schema validation for tool inputs. Add `strict: true` to your tool definitions to ensure Claude's tool calls always match your schema exactly—no more type mismatches or missing fields.
+[Structured Outputs](/docs/en/build-with-claude/structured-outputs) provides guaranteed schema validation for tool inputs. Add `strict: true` to your tool definitions to ensure Claude's tool calls always match your schema exactly, eliminating type mismatches or missing fields.
 
 Perfect for production agents where invalid tool parameters would cause failures. [Learn when to use strict tool use →](/docs/en/build-with-claude/structured-outputs#when-to-use-json-outputs-vs-strict-tool-use)
 </Tip>
@@ -743,10 +743,10 @@ This will print Claude's final response, incorporating the weather data:
 Claude can call multiple tools in parallel within a single response, which is useful for tasks that require multiple independent operations. When using parallel tools, all `tool_use` blocks are included in a single assistant message, and all corresponding `tool_result` blocks must be provided in the subsequent user message.
 
 <Note>
-**Important**: Tool results must be formatted correctly to avoid API errors and ensure Claude continues using parallel tools. See our [implementation guide](/docs/en/agents-and-tools/tool-use/implement-tool-use#parallel-tool-use) for detailed formatting requirements and complete code examples.
+**Important**: Tool results must be formatted correctly to avoid API errors and ensure Claude continues using parallel tools. See the [implementation guide](/docs/en/agents-and-tools/tool-use/implement-tool-use#parallel-tool-use) for detailed formatting requirements and complete code examples.
 </Note>
 
-For comprehensive examples, test scripts, and best practices for implementing parallel tool calls, see the [parallel tool use section](/docs/en/agents-and-tools/tool-use/implement-tool-use#parallel-tool-use) in our implementation guide.
+For comprehensive examples, test scripts, and best practices for implementing parallel tool calls, see the [parallel tool use section](/docs/en/agents-and-tools/tool-use/implement-tool-use#parallel-tool-use) in the implementation guide.
 
 </section>
 <section title="Multiple tool example">
@@ -949,8 +949,8 @@ You can provide Claude with multiple tools to choose from in a single request. H
 </CodeGroup>
 
 In this case, Claude may either:
-- Use the tools sequentially (one at a time) — calling `get_weather` first, then `get_time` after receiving the weather result
-- Use parallel tool calls — outputting multiple `tool_use` blocks in a single response when the operations are independent
+- Use the tools sequentially (one at a time), calling `get_weather` first, then `get_time` after receiving the weather result
+- Use parallel tool calls, outputting multiple `tool_use` blocks in a single response when the operations are independent
 
 When Claude makes parallel tool calls, you must return all tool results in a single `user` message, with each result in its own `tool_result` block.
 
@@ -1208,7 +1208,7 @@ When you use `tools`, we also automatically include a special system prompt for 
 
 These token counts are added to your normal input and output tokens to calculate the total cost of a request.
 
-Refer to our [models overview table](/docs/en/about-claude/models/overview#latest-models-comparison) for current per-model prices.
+Refer to the [models overview table](/docs/en/about-claude/models/overview#latest-models-comparison) for current per-model prices.
 
 When you send a tool use prompt, just like any other API request, the response will output both input and output token counts as part of the reported `usage` metrics.
 
@@ -1216,7 +1216,7 @@ When you send a tool use prompt, just like any other API request, the response w
 
 ## Next Steps
 
-Explore our repository of ready-to-implement tool use code examples in our cookbooks:
+Explore the repository of ready-to-implement tool use code examples in the cookbooks:
 
 <CardGroup cols={3}>
   <Card

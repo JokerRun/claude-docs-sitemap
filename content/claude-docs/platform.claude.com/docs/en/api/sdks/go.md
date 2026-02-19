@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/go
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 506daa58f7bc98d46626f4bc0253fb36e8db9872fbd6586b7b2f5e577ca739ac
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: cf032f5929052b0230586cc9d4e8f93a42cd47ac41a053ac15244dd511b737b2
 ---
 
 # Go SDK
@@ -623,7 +623,7 @@ client.Messages.New(
 ## Long requests
 
 <Warning>
-Anthropic highly encourages using the streaming Messages API for longer running requests.
+Consider using the streaming Messages API for longer running requests.
 </Warning>
 
 Avoid setting a large `MaxTokens` value without using streaming as some networks may drop idle connections after a certain period of time, which

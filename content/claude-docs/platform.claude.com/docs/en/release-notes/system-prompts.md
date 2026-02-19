@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/system-prompts
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 004e5e3843a7e9e2a0e8b89758e23ce69866d61a75c526a1e5f11f7bf9afc937
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 688eebd75e8703bbe002655b7fbdb37215ea6d8276e5fff6c8370fe6b8c81d40
 ---
 
 # System Prompts
 
-See updates to the core system prompts on [Claude.ai](https://www.claude.ai) and the Claude [iOS](http://anthropic.com/ios) and [Android](http://anthropic.com/android) apps.
+See updates to the core system prompts on [claude.ai](https://www.claude.ai) and the Claude [iOS](http://anthropic.com/ios) and [Android](http://anthropic.com/android) apps.
 
 ---
 
-Claude's web interface ([Claude.ai](https://www.claude.ai)) and mobile apps use a system prompt to provide up-to-date information, such as the current date, to Claude at the start of every conversation. We also use the system prompt to encourage certain behaviors, such as always providing code snippets in Markdown. We periodically update this prompt as we continue to improve Claude's responses. These system prompt updates do not apply to the Anthropic API. Updates between versions are bolded.
+Claude's web interface ([claude.ai](https://www.claude.ai)) and mobile apps use a system prompt to provide up-to-date information, such as the current date, to Claude at the start of every conversation. The system prompt also encourages certain behaviors, such as always providing code snippets in Markdown. This prompt is periodically updated to improve Claude's responses. These system prompt updates do not apply to the Claude API. Updates between versions are bolded.
 
 ## Claude Sonnet 4.6
 

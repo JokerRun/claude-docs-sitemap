@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/implement-tool-use
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 282851219387868a759cc3c286e3c815609b685017be40ef687910fd572248c7
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 27ea6b89b0ee29ac9f888f3162babbfaf03937cc374e73da0722610e64d24287
 ---
 
 # Cara mengimplementasikan penggunaan alat
 
-Panduan lengkap untuk mengimplementasikan penggunaan alat dengan Claude, termasuk definisi alat, contoh, dan penggunaan tool runner.
+Panduan lengkap untuk mengimplementasikan penggunaan alat dengan Claude, termasuk definisi alat, contoh, dan praktik terbaik.
 
 ---
 
@@ -18,7 +18,7 @@ Kami merekomendasikan menggunakan model Claude Opus terbaru (4.6) untuk alat kom
 Gunakan model Claude Haiku untuk alat yang sederhana, tetapi perhatikan bahwa mereka mungkin menyimpulkan parameter yang hilang.
 
 <Tip>
-Jika menggunakan Claude dengan penggunaan alat dan pemikiran yang diperpanjang, lihat panduan kami [di sini](/docs/id/build-with-claude/extended-thinking) untuk informasi lebih lanjut.
+Jika menggunakan Claude dengan penggunaan alat dan pemikiran yang diperluas, lihat [panduan pemikiran yang diperluas](/docs/id/build-with-claude/extended-thinking) untuk informasi lebih lanjut.
 </Tip>
 
 ## Menentukan alat klien
@@ -30,7 +30,7 @@ Alat klien (baik yang ditentukan Anthropic maupun yang ditentukan pengguna) dite
 | `name`         | Nama alat. Harus cocok dengan regex `^[a-zA-Z0-9_-]{1,64}$`.                                 |
 | `description`  | Deskripsi plaintext terperinci tentang apa yang dilakukan alat, kapan harus digunakan, dan bagaimana perilakunya. |
 | `input_schema` | Objek [JSON Schema](https://json-schema.org/) yang mendefinisikan parameter yang diharapkan untuk alat.     |
-| `input_examples` | (Opsional, beta) Larik objek input contoh untuk membantu Claude memahami cara menggunakan alat. Lihat [Memberikan contoh penggunaan alat](#providing-tool-use-examples). |
+| `input_examples` | (Opsional) Larik objek input contoh untuk membantu Claude memahami cara menggunakan alat. Lihat [Memberikan contoh penggunaan alat](#providing-tool-use-examples). |
 
 <section title="Contoh definisi alat sederhana">
 
@@ -62,9 +62,9 @@ Alat ini, bernama `get_weather`, mengharapkan objek input dengan string `locatio
 
 ### Prompt sistem penggunaan alat
 
-Ketika Anda memanggil Claude API dengan parameter `tools`, kami membuat prompt sistem khusus dari definisi alat, konfigurasi alat, dan prompt sistem yang ditentukan pengguna. Prompt yang dibangun dirancang untuk menginstruksikan model untuk menggunakan alat yang ditentukan dan memberikan konteks yang diperlukan agar alat beroperasi dengan baik:
+Ketika Anda memanggil API Claude dengan parameter `tools`, kami membuat prompt sistem khusus dari definisi alat, konfigurasi alat, dan prompt sistem yang ditentukan pengguna. Prompt yang dibangun dirancang untuk menginstruksikan model menggunakan alat yang ditentukan dan memberikan konteks yang diperlukan agar alat beroperasi dengan baik:
 
-```
+```text
 In this environment you have access to a set of tools you can use to answer the user's question.
 {{ FORMATTING INSTRUCTIONS }}
 String and scalar parameters should be specified as is, while lists and objects should use JSON format. Note that spaces for string values are not stripped. The output is not expected to be valid XML and is parsed with regular expressions.
@@ -76,14 +76,14 @@ Here are the functions available in JSONSchema format:
 
 ### Praktik terbaik untuk definisi alat
 
-Untuk mendapatkan kinerja terbaik dari Claude saat menggunakan alat, ikuti pedoman berikut:
+Untuk mendapatkan kinerja terbaik dari Claude saat menggunakan alat, ikuti panduan ini:
 
 - **Berikan deskripsi yang sangat terperinci.** Ini adalah faktor paling penting dalam kinerja alat. Deskripsi Anda harus menjelaskan setiap detail tentang alat, termasuk:
   - Apa yang dilakukan alat
   - Kapan harus digunakan (dan kapan tidak boleh)
   - Apa arti setiap parameter dan bagaimana pengaruhnya terhadap perilaku alat
-  - Peringatan atau batasan penting, seperti informasi apa yang tidak dikembalikan alat jika nama alat tidak jelas. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik dalam memutuskan kapan dan bagaimana menggunakannya. Targetkan setidaknya 3-4 kalimat per deskripsi alat, lebih banyak jika alat kompleks.
-- **Prioritaskan deskripsi, tetapi pertimbangkan menggunakan `input_examples` untuk alat kompleks.** Deskripsi yang jelas paling penting, tetapi untuk alat dengan input kompleks, objek bersarang, atau parameter sensitif format, Anda dapat menggunakan bidang `input_examples` (beta) untuk memberikan contoh yang divalidasi skema. Lihat [Memberikan contoh penggunaan alat](#providing-tool-use-examples) untuk detail.
+  - Peringatan atau batasan penting, seperti informasi apa yang tidak dikembalikan alat jika nama alat tidak jelas. Semakin banyak konteks yang dapat Anda berikan Claude tentang alat Anda, semakin baik dalam memutuskan kapan dan bagaimana menggunakannya. Targetkan setidaknya 3-4 kalimat per deskripsi alat, lebih banyak jika alat kompleks.
+- **Prioritaskan deskripsi, tetapi pertimbangkan menggunakan `input_examples` untuk alat kompleks.** Deskripsi yang jelas paling penting, tetapi untuk alat dengan input kompleks, objek bersarang, atau parameter sensitif format, Anda dapat menggunakan bidang `input_examples` untuk memberikan contoh yang divalidasi skema. Lihat [Memberikan contoh penggunaan alat](#providing-tool-use-examples) untuk detail.
 
 <section title="Contoh deskripsi alat yang baik">
 
@@ -130,16 +130,7 @@ Deskripsi yang baik dengan jelas menjelaskan apa yang dilakukan alat, kapan meng
 
 ## Memberikan contoh penggunaan alat
 
-Anda dapat memberikan contoh konkret dari input alat yang valid untuk membantu Claude memahami cara menggunakan alat Anda dengan lebih efektif. Ini sangat berguna untuk alat kompleks dengan objek bersarang, parameter opsional, atau input sensitif format.
-
-<Info>
-Contoh penggunaan alat adalah fitur beta. Sertakan [header beta](/docs/id/api/beta-headers) yang sesuai untuk penyedia Anda:
-
-| Penyedia | Header beta | Model yang didukung |
-|----------|-------------|------------------|
-| Claude API,<br/>Microsoft Foundry | `advanced-tool-use-2025-11-20` | Semua model |
-| Vertex AI,<br/>Amazon Bedrock | `tool-examples-2025-10-29` | Claude Opus 4.6, Claude Opus 4.5 |
-</Info>
+Anda dapat memberikan contoh konkret input alat yang valid untuk membantu Claude memahami cara menggunakan alat Anda dengan lebih efektif. Ini sangat berguna untuk alat kompleks dengan objek bersarang, parameter opsional, atau input sensitif format.
 
 ### Penggunaan dasar
 
@@ -154,7 +145,6 @@ client = anthropic.Anthropic()
 response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
-    betas=["advanced-tool-use-2025-11-20"],
     tools=[
         {
             "name": "get_weather",
@@ -164,34 +154,26 @@ response = client.messages.create(
                 "properties": {
                     "location": {
                         "type": "string",
-                        "description": "The city and state, e.g. San Francisco, CA"
+                        "description": "The city and state, e.g. San Francisco, CA",
                     },
                     "unit": {
                         "type": "string",
                         "enum": ["celsius", "fahrenheit"],
-                        "description": "The unit of temperature"
-                    }
+                        "description": "The unit of temperature",
+                    },
                 },
-                "required": ["location"]
+                "required": ["location"],
             },
             "input_examples": [
-                {
-                    "location": "San Francisco, CA",
-                    "unit": "fahrenheit"
-                },
-                {
-                    "location": "Tokyo, Japan",
-                    "unit": "celsius"
-                },
+                {"location": "San Francisco, CA", "unit": "fahrenheit"},
+                {"location": "Tokyo, Japan", "unit": "celsius"},
                 {
                     "location": "New York, NY"  # 'unit' is optional
-                }
-            ]
+                },
+            ],
         }
     ],
-    messages=[
-        {"role": "user", "content": "What's the weather like in San Francisco?"}
-    ]
+    messages=[{"role": "user", "content": "What's the weather like in San Francisco?"}],
 )
 ```
 
@@ -203,7 +185,6 @@ const client = new Anthropic();
 const response = await client.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
-  betas: ["advanced-tool-use-2025-11-20"],
   tools: [
     {
       name: "get_weather",
@@ -213,38 +194,38 @@ const response = await client.messages.create({
         properties: {
           location: {
             type: "string",
-            description: "The city and state, e.g. San Francisco, CA",
+            description: "The city and state, e.g. San Francisco, CA"
           },
           unit: {
             type: "string",
             enum: ["celsius", "fahrenheit"],
-            description: "The unit of temperature",
-          },
+            description: "The unit of temperature"
+          }
         },
-        required: ["location"],
+        required: ["location"]
       },
       input_examples: [
         {
           location: "San Francisco, CA",
-          unit: "fahrenheit",
+          unit: "fahrenheit"
         },
         {
           location: "Tokyo, Japan",
-          unit: "celsius",
+          unit: "celsius"
         },
         {
-          location: "New York, NY",
+          location: "New York, NY"
           // Demonstrates that 'unit' is optional
-        },
-      ],
-    },
+        }
+      ]
+    }
   ],
-  messages: [{ role: "user", content: "What's the weather like in San Francisco?" }],
+  messages: [{ role: "user", content: "What's the weather like in San Francisco?" }]
 });
 ```
 </CodeGroup>
 
-Contoh disertakan dalam prompt bersama skema alat Anda, menunjukkan kepada Claude pola konkret untuk panggilan alat yang terbentuk dengan baik. Ini membantu Claude memahami kapan harus menyertakan parameter opsional, format apa yang digunakan, dan cara menyusun input kompleks.
+Contoh disertakan dalam prompt bersama skema alat Anda, menunjukkan Claude pola konkret untuk panggilan alat yang terbentuk dengan baik. Ini membantu Claude memahami kapan harus menyertakan parameter opsional, format apa yang harus digunakan, dan cara menyusun input kompleks.
 
 ### Persyaratan dan batasan
 
@@ -252,30 +233,30 @@ Contoh disertakan dalam prompt bersama skema alat Anda, menunjukkan kepada Claud
 - **Tidak didukung untuk alat sisi server** - Hanya alat yang ditentukan pengguna yang dapat memiliki contoh input
 - **Biaya token** - Contoh menambah token prompt: ~20-50 token untuk contoh sederhana, ~100-200 token untuk objek bersarang kompleks
 
-## Tool runner (beta)
+## Pelari alat (beta)
 
-Tool runner menyediakan solusi siap pakai untuk menjalankan alat dengan Claude. Alih-alih menangani panggilan alat, hasil alat, dan manajemen percakapan secara manual, tool runner secara otomatis:
+Pelari alat menyediakan solusi siap pakai untuk menjalankan alat dengan Claude. Alih-alih menangani panggilan alat, hasil alat, dan manajemen percakapan secara manual, pelari alat secara otomatis:
 
 - Menjalankan alat ketika Claude memanggilnya
 - Menangani siklus permintaan/respons
 - Mengelola status percakapan
 - Menyediakan keamanan tipe dan validasi
 
-Kami merekomendasikan agar Anda menggunakan tool runner untuk sebagian besar implementasi penggunaan alat.
+Kami merekomendasikan agar Anda menggunakan pelari alat untuk sebagian besar implementasi penggunaan alat.
 
 <Note>
-Tool runner saat ini dalam beta dan tersedia di SDK [Python](https://github.com/anthropics/anthropic-sdk-python/blob/main/tools.md), [TypeScript](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/helpers.md#tool-helpers), dan [Ruby](https://github.com/anthropics/anthropic-sdk-ruby/blob/main/helpers.md#3-auto-looping-tool-runner-beta).
+Pelari alat saat ini dalam beta dan tersedia di SDK [Python](https://github.com/anthropics/anthropic-sdk-python/blob/main/tools.md), [TypeScript](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/helpers.md#tool-helpers), dan [Ruby](https://github.com/anthropics/anthropic-sdk-ruby/blob/main/helpers.md#3-auto-looping-tool-runner-beta).
 </Note>
 
 <Tip>
 **Manajemen konteks otomatis dengan pemadatan**
 
-Tool runner mendukung [pemadatan](/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas. Ini memungkinkan tugas agentic jangka panjang untuk melanjutkan melampaui batas jendela konteks.
+Pelari alat mendukung [pemadatan](/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas. Ini memungkinkan tugas agentic jangka panjang untuk melanjutkan melampaui batas jendela konteks.
 </Tip>
 
 ### Penggunaan dasar
 
-Tentukan alat menggunakan pembantu SDK, kemudian gunakan tool runner untuk menjalankannya.
+Tentukan alat menggunakan pembantu SDK, kemudian gunakan pelari alat untuk menjalankannya.
 
 <Tabs>
 <Tab title="Python">
@@ -294,6 +275,7 @@ from anthropic import beta_tool
 # Initialize client
 client = anthropic.Anthropic()
 
+
 # Define tools using the decorator
 @beta_tool
 def get_weather(location: str, unit: str = "fahrenheit") -> str:
@@ -306,6 +288,7 @@ def get_weather(location: str, unit: str = "fahrenheit") -> str:
     # In a full implementation, you'd call a weather API here
     return json.dumps({"temperature": "20°C", "condition": "Sunny"})
 
+
 @beta_tool
 def calculate_sum(a: int, b: int) -> str:
     """Add two numbers together.
@@ -316,20 +299,24 @@ def calculate_sum(a: int, b: int) -> str:
     """
     return str(a + b)
 
+
 # Use the tool runner
 runner = client.beta.messages.tool_runner(
     model="claude-opus-4-6",
     max_tokens=1024,
     tools=[get_weather, calculate_sum],
     messages=[
-        {"role": "user", "content": "What's the weather like in Paris? Also, what's 15 + 27?"}
-    ]
+        {
+            "role": "user",
+            "content": "What's the weather like in Paris? Also, what's 15 + 27?",
+        }
+    ],
 )
 for message in runner:
     print(message.content[0].text)
 ```
 
-Dekorator `@beta_tool` memeriksa argumen fungsi dan docstring untuk mengekstrak representasi skema JSON. Sebagai contoh, `calculate_sum` menjadi:
+Dekorator `@beta_tool` memeriksa argumen fungsi dan docstring untuk mengekstrak representasi skema JSON. Misalnya, `calculate_sum` menjadi:
 
 ```json
 {
@@ -365,31 +352,31 @@ TypeScript menawarkan dua pendekatan untuk mendefinisikan alat:
 **Menggunakan Zod (direkomendasikan)** - Gunakan `betaZodTool()` untuk definisi alat yang aman tipe dengan validasi Zod (memerlukan Zod 3.25.0 atau lebih tinggi):
 
 ```typescript
-import { Anthropic } from '@anthropic-ai/sdk';
-import { betaZodTool } from '@anthropic-ai/sdk/helpers/beta/zod';
-import { z } from 'zod';
+import { Anthropic } from "@anthropic-ai/sdk";
+import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
+import { z } from "zod";
 
 const anthropic = new Anthropic();
 
 const getWeatherTool = betaZodTool({
-  name: 'get_weather',
-  description: 'Get the current weather in a given location',
+  name: "get_weather",
+  description: "Get the current weather in a given location",
   inputSchema: z.object({
-    location: z.string().describe('The city and state, e.g. San Francisco, CA'),
-    unit: z.enum(['celsius', 'fahrenheit']).default('fahrenheit')
-      .describe('Temperature unit')
+    location: z.string().describe("The city and state, e.g. San Francisco, CA"),
+    unit: z.enum(["celsius", "fahrenheit"]).default("fahrenheit")
+      .describe("Temperature unit")
   }),
   run: async (input) => {
     // In a full implementation, you'd call a weather API here
-    return JSON.stringify({temperature: '20°C', condition: 'Sunny'});
+    return JSON.stringify({ temperature: "20°C", condition: "Sunny" });
   }
 });
 
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [getWeatherTool],
-  messages: [{ role: 'user', content: "What's the weather like in Paris?" }]
+  messages: [{ role: "user", content: "What's the weather like in Paris?" }]
 });
 
 for await (const message of runner) {
@@ -400,25 +387,25 @@ for await (const message of runner) {
 **Menggunakan JSON Schema** - Gunakan `betaTool()` untuk definisi alat yang aman tipe tanpa Zod:
 
 <Note>
-Input yang dihasilkan oleh Claude tidak akan divalidasi pada waktu berjalan. Lakukan validasi di dalam fungsi `run` jika diperlukan.
+Input yang dihasilkan oleh Claude tidak akan divalidasi saat runtime. Lakukan validasi di dalam fungsi `run` jika diperlukan.
 </Note>
 
 ```typescript
-import { Anthropic } from '@anthropic-ai/sdk';
-import { betaTool } from '@anthropic-ai/sdk/helpers/beta/json-schema';
+import { Anthropic } from "@anthropic-ai/sdk";
+import { betaTool } from "@anthropic-ai/sdk/helpers/beta/json-schema";
 
 const anthropic = new Anthropic();
 
 const calculateSumTool = betaTool({
-  name: 'calculate_sum',
-  description: 'Add two numbers together',
+  name: "calculate_sum",
+  description: "Add two numbers together",
   inputSchema: {
-    type: 'object',
+    type: "object",
     properties: {
-      a: { type: 'number', description: 'First number' },
-      b: { type: 'number', description: 'Second number' }
+      a: { type: "number", description: "First number" },
+      b: { type: "number", description: "Second number" }
     },
-    required: ['a', 'b']
+    required: ["a", "b"]
   },
   run: async (input) => {
     return String(input.a + input.b);
@@ -426,10 +413,10 @@ const calculateSumTool = betaTool({
 });
 
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [calculateSumTool],
-  messages: [{ role: 'user', content: "What's 15 + 27?" }]
+  messages: [{ role: "user", content: "What's 15 + 27?" }]
 });
 
 for await (const message of runner) {
@@ -504,11 +491,11 @@ Kelas `Anthropic::BaseTool` menggunakan metode `doc` untuk deskripsi alat dan `i
 
 Fungsi alat harus mengembalikan blok konten atau larik blok konten, termasuk teks, gambar, atau blok dokumen. Ini memungkinkan alat untuk mengembalikan respons multimodal yang kaya. String yang dikembalikan akan dikonversi ke blok konten teks. Jika Anda ingin mengembalikan objek JSON terstruktur ke Claude, enkode ke string JSON sebelum mengembalikannya. Angka, boolean, atau primitif non-string lainnya juga harus dikonversi ke string.
 
-### Iterasi di atas tool runner
+### Iterasi di atas pelari alat
 
-Tool runner adalah iterable yang menghasilkan pesan dari Claude. Ini sering disebut sebagai "tool call loop". Setiap iterasi, runner memeriksa apakah Claude meminta penggunaan alat. Jika demikian, ia memanggil alat dan mengirim hasilnya kembali ke Claude secara otomatis, kemudian menghasilkan pesan berikutnya dari Claude untuk melanjutkan loop Anda.
+Pelari alat adalah iterable yang menghasilkan pesan dari Claude. Ini sering disebut sebagai "tool call loop". Setiap iterasi, pelari memeriksa apakah Claude meminta penggunaan alat. Jika ya, ia memanggil alat dan mengirim hasilnya kembali ke Claude secara otomatis, kemudian menghasilkan pesan berikutnya dari Claude untuk melanjutkan loop Anda.
 
-Anda dapat mengakhiri loop di iterasi mana pun dengan pernyataan `break`. Runner akan loop sampai Claude mengembalikan pesan tanpa penggunaan alat.
+Anda dapat mengakhiri loop pada iterasi apa pun dengan pernyataan `break`. Pelari akan berulang sampai Claude mengembalikan pesan tanpa penggunaan alat.
 
 Jika Anda tidak memerlukan pesan perantara, Anda dapat mendapatkan pesan akhir secara langsung:
 
@@ -523,8 +510,11 @@ runner = client.beta.messages.tool_runner(
     max_tokens=1024,
     tools=[get_weather, calculate_sum],
     messages=[
-        {"role": "user", "content": "What's the weather like in Paris? Also, what's 15 + 27?"}
-    ]
+        {
+            "role": "user",
+            "content": "What's the weather like in Paris? Also, what's 15 + 27?",
+        }
+    ],
 )
 final_message = runner.until_done()
 print(final_message.content[0].text)
@@ -533,14 +523,14 @@ print(final_message.content[0].text)
 </Tab>
 <Tab title="TypeScript">
 
-Cukup `await` runner untuk mendapatkan pesan akhir.
+Cukup `await` pelari untuk mendapatkan pesan akhir.
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [getWeatherTool],
-  messages: [{ role: 'user', content: "What's the weather like in Paris?" }]
+  messages: [{ role: "user", content: "What's the weather like in Paris?" }]
 });
 
 const finalMessage = await runner;
@@ -571,19 +561,19 @@ all_messages.each { |msg| puts msg.content }
 
 ### Penggunaan lanjutan
 
-Dalam loop, Anda dapat sepenuhnya menyesuaikan permintaan berikutnya tool runner ke Messages API. Runner secara otomatis menambahkan hasil alat ke riwayat pesan, jadi Anda tidak perlu mengelolanya secara manual. Anda dapat secara opsional memeriksa hasil alat untuk logging atau debugging, dan memodifikasi parameter permintaan sebelum panggilan API berikutnya.
+Dalam loop, Anda dapat sepenuhnya menyesuaikan permintaan berikutnya pelari alat ke API Pesan. Pelari secara otomatis menambahkan hasil alat ke riwayat pesan, jadi Anda tidak perlu mengelolanya secara manual. Anda dapat secara opsional memeriksa hasil alat untuk logging atau debugging, dan memodifikasi parameter permintaan sebelum panggilan API berikutnya.
 
 <Tabs>
 <Tab title="Python">
 
-Gunakan `generate_tool_call_response()` untuk secara opsional memeriksa hasil alat (runner menambahkannya secara otomatis). Gunakan `set_messages_params()` dan `append_messages()` untuk memodifikasi permintaan.
+Gunakan `generate_tool_call_response()` untuk secara opsional memeriksa hasil alat (pelari menambahkannya secara otomatis). Gunakan `set_messages_params()` dan `append_messages()` untuk memodifikasi permintaan.
 
 ```python
 runner = client.beta.messages.tool_runner(
     model="claude-opus-4-6",
     max_tokens=1024,
     tools=[get_weather],
-    messages=[{"role": "user", "content": "What's the weather in San Francisco?"}]
+    messages=[{"role": "user", "content": "What's the weather in San Francisco?"}],
 )
 for message in runner:
     # Optional: inspect the tool response (automatically appended by the runner)
@@ -592,10 +582,12 @@ for message in runner:
         print(f"Tool result: {tool_response}")
 
     # Customize the next request
-    runner.set_messages_params(lambda params: {
-        **params,
-        "max_tokens": 2048  # Increase tokens for next request
-    })
+    runner.set_messages_params(
+        lambda params: {
+            **params,
+            "max_tokens": 2048,  # Increase tokens for next request
+        }
+    )
 
     # Or add additional messages
     runner.append_messages(
@@ -606,32 +598,32 @@ for message in runner:
 </Tab>
 <Tab title="TypeScript">
 
-Gunakan `generateToolResponse()` untuk secara opsional memeriksa hasil alat (runner menambahkannya secara otomatis). Gunakan `setMessagesParams()` dan `pushMessages()` untuk memodifikasi permintaan.
+Gunakan `generateToolResponse()` untuk secara opsional memeriksa hasil alat (pelari menambahkannya secara otomatis). Gunakan `setMessagesParams()` dan `pushMessages()` untuk memodifikasi permintaan.
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [getWeatherTool],
-  messages: [{ role: 'user', content: "What's the weather in San Francisco?" }]
+  messages: [{ role: "user", content: "What's the weather in San Francisco?" }]
 });
 
 for await (const message of runner) {
   // Optional: inspect the tool result message (automatically appended by the runner)
   const toolResultMessage = await runner.generateToolResponse();
   if (toolResultMessage) {
-    console.log('Tool result:', toolResultMessage);
+    console.log("Tool result:", toolResultMessage);
   }
 
   // Customize the next request
   runner.setMessagesParams(params => ({
     ...params,
-    max_tokens: 2048  // Increase tokens for next request
+    max_tokens: 2048 // Increase tokens for next request
   }));
 
   // Or add additional messages
   runner.pushMessages(
-    { role: 'user', content: 'Please be concise in your response.' }
+    { role: "user", content: "Please be concise in your response." }
   );
 }
 ```
@@ -667,7 +659,7 @@ puts runner.params
 
 #### Debugging eksekusi alat
 
-Ketika alat melempar pengecualian, tool runner menangkapnya dan mengembalikan kesalahan ke Claude sebagai hasil alat dengan `is_error: true`. Secara default, hanya pesan pengecualian yang disertakan, bukan stack trace lengkap.
+Ketika alat melempar pengecualian, pelari alat menangkapnya dan mengembalikan kesalahan ke Claude sebagai hasil alat dengan `is_error: true`. Secara default, hanya pesan pengecualian yang disertakan, bukan stack trace lengkap.
 
 Untuk melihat stack trace lengkap dan informasi debug, atur variabel lingkungan `ANTHROPIC_LOG`:
 
@@ -697,7 +689,7 @@ runner = client.beta.messages.tool_runner(
     model="claude-opus-4-6",
     max_tokens=1024,
     tools=[my_tool],
-    messages=[{"role": "user", "content": "Run the tool"}]
+    messages=[{"role": "user", "content": "Run the tool"}],
 )
 
 for message in runner:
@@ -722,10 +714,10 @@ for message in runner:
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [myTool],
-  messages: [{ role: 'user', content: 'Run the tool' }]
+  messages: [{ role: "user", content: "Run the tool" }]
 });
 
 for await (const message of runner) {
@@ -734,7 +726,7 @@ for await (const message of runner) {
   if (toolResultMessage) {
     // Check if any tool result has an error
     for (const block of toolResultMessage.content) {
-      if (block.type === 'tool_result' && block.is_error) {
+      if (block.type === "tool_result" && block.is_error) {
         // Option 1: Throw to stop the loop
         throw new Error(`Tool failed: ${JSON.stringify(block.content)}`);
 
@@ -799,7 +791,12 @@ runner = client.beta.messages.tool_runner(
     model="claude-opus-4-6",
     max_tokens=1024,
     tools=[search_documents],
-    messages=[{"role": "user", "content": "Search for information about the climate of San Francisco"}]
+    messages=[
+        {
+            "role": "user",
+            "content": "Search for information about the climate of San Francisco",
+        }
+    ],
 )
 
 for message in runner:
@@ -823,10 +820,10 @@ for message in runner:
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [searchDocuments],
-  messages: [{ role: 'user', content: 'Search for information about the climate of San Francisco' }]
+  messages: [{ role: "user", content: "Search for information about the climate of San Francisco" }]
 });
 
 for await (const message of runner) {
@@ -835,9 +832,9 @@ for await (const message of runner) {
   if (toolResultMessage) {
     // Modify the tool result to add cache control
     for (const block of toolResultMessage.content) {
-      if (block.type === 'tool_result') {
+      if (block.type === "tool_result") {
         // Add cache_control to cache this tool result
-        block.cache_control = { type: 'ephemeral' };
+        block.cache_control = { type: "ephemeral" };
       }
     }
 
@@ -904,14 +901,14 @@ runner = client.beta.messages.tool_runner(
     max_tokens=1024,
     tools=[calculate_sum],
     messages=[{"role": "user", "content": "What is 15 + 27?"}],
-    stream=True
+    stream=True,
 )
 
 # When streaming, the runner returns BetaMessageStream
 for message_stream in runner:
     for event in message_stream:
-        print('event:', event)
-    print('message:', message_stream.get_final_message())
+        print("event:", event)
+    print("message:", message_stream.get_final_message())
 
 print(runner.until_done())
 ```
@@ -923,19 +920,19 @@ Atur `stream: true` dan gunakan `finalMessage()` untuk mendapatkan pesan yang te
 
 ```typescript
 const runner = anthropic.beta.messages.toolRunner({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 1000,
-  messages: [{ role: 'user', content: 'What is the weather in San Francisco?' }],
+  messages: [{ role: "user", content: "What is the weather in San Francisco?" }],
   tools: [getWeatherTool],
-  stream: true,
+  stream: true
 });
 
 // When streaming, the runner returns BetaMessageStream
 for await (const messageStream of runner) {
   for await (const event of messageStream) {
-    console.log('event:', event);
+    console.log("event:", event);
   }
-  console.log('message:', await messageStream.finalMessage());
+  console.log("message:", await messageStream.finalMessage());
 }
 
 console.log(await runner);
@@ -968,7 +965,7 @@ end
 </Tabs>
 
 <Note>
-SDK tool runner dalam beta. Sisa dokumen ini mencakup implementasi alat manual.
+Pelari alat SDK dalam beta. Sisa dokumen ini mencakup implementasi alat manual.
 </Note>
 
 ## Mengontrol output Claude
@@ -977,7 +974,7 @@ SDK tool runner dalam beta. Sisa dokumen ini mencakup implementasi alat manual.
 
 Dalam beberapa kasus, Anda mungkin ingin Claude menggunakan alat tertentu untuk menjawab pertanyaan pengguna, bahkan jika Claude berpikir dapat memberikan jawaban tanpa menggunakan alat. Anda dapat melakukan ini dengan menentukan alat dalam bidang `tool_choice` seperti ini:
 
-```
+```text
 tool_choice = {"type": "tool", "name": "get_weather"}
 ```
 
@@ -998,29 +995,29 @@ Diagram ini mengilustrasikan cara kerja setiap opsi:
   ![Image](/docs/images/tool_choice.png)
 </Frame>
 
-Perhatikan bahwa ketika Anda memiliki `tool_choice` sebagai `any` atau `tool`, kami akan mengisi sebelumnya pesan asisten untuk memaksa alat digunakan. Ini berarti bahwa model tidak akan mengeluarkan respons bahasa alami atau penjelasan sebelum blok konten `tool_use`, bahkan jika secara eksplisit diminta untuk melakukannya.
+Perhatikan bahwa ketika Anda memiliki `tool_choice` sebagai `any` atau `tool`, kami akan mengisi pesan asisten sebelumnya untuk memaksa alat digunakan. Ini berarti model tidak akan mengeluarkan respons bahasa alami atau penjelasan sebelum blok konten `tool_use`, bahkan jika secara eksplisit diminta untuk melakukannya.
 
 <Note>
-Saat menggunakan [extended thinking](/docs/id/build-with-claude/extended-thinking) dengan penggunaan alat, `tool_choice: {"type": "any"}` dan `tool_choice: {"type": "tool", "name": "..."}` tidak didukung dan akan menghasilkan kesalahan. Hanya `tool_choice: {"type": "auto"}` (default) dan `tool_choice: {"type": "none"}` yang kompatibel dengan extended thinking.
+Saat menggunakan [pemikiran yang diperluas](/docs/id/build-with-claude/extended-thinking) dengan penggunaan alat, `tool_choice: {"type": "any"}` dan `tool_choice: {"type": "tool", "name": "..."}` tidak didukung dan akan menghasilkan kesalahan. Hanya `tool_choice: {"type": "auto"}` (default) dan `tool_choice: {"type": "none"}` yang kompatibel dengan pemikiran yang diperluas.
 </Note>
 
-Pengujian kami telah menunjukkan bahwa ini tidak boleh mengurangi kinerja. Jika Anda ingin model memberikan konteks bahasa alami atau penjelasan sambil tetap meminta model menggunakan alat tertentu, Anda dapat menggunakan `{"type": "auto"}` untuk `tool_choice` (default) dan menambahkan instruksi eksplisit dalam pesan `user`. Misalnya: `What's the weather like in London? Use the get_weather tool in your response.`
+Pengujian kami menunjukkan bahwa ini seharusnya tidak mengurangi kinerja. Jika Anda ingin model memberikan konteks bahasa alami atau penjelasan sambil tetap meminta model menggunakan alat tertentu, Anda dapat menggunakan `{"type": "auto"}` untuk `tool_choice` (default) dan menambahkan instruksi eksplisit dalam pesan `user`. Misalnya: `What's the weather like in London? Use the get_weather tool in your response.`
 
 <Tip>
 **Panggilan alat yang dijamin dengan alat ketat**
 
-Gabungkan `tool_choice: {"type": "any"}` dengan [penggunaan alat ketat](/docs/id/build-with-claude/structured-outputs) untuk menjamin bahwa salah satu alat Anda akan dipanggil DAN input alat akan ketat mengikuti skema Anda. Atur `strict: true` pada definisi alat Anda untuk mengaktifkan validasi skema.
+Gabungkan `tool_choice: {"type": "any"}` dengan [penggunaan alat ketat](/docs/id/build-with-claude/structured-outputs) untuk menjamin bahwa salah satu alat Anda akan dipanggil DAN input alat akan mengikuti skema Anda dengan ketat. Atur `strict: true` pada definisi alat Anda untuk mengaktifkan validasi skema.
 </Tip>
 
 ### Output JSON
 
-Alat tidak harus berupa fungsi klien — Anda dapat menggunakan alat kapan saja Anda ingin model mengembalikan output JSON yang mengikuti skema yang disediakan. Misalnya, Anda mungkin menggunakan alat `record_summary` dengan skema tertentu. Lihat [Tool use with Claude](/docs/id/agents-and-tools/tool-use/overview) untuk contoh kerja lengkap.
+Alat tidak perlu menjadi fungsi klien — Anda dapat menggunakan alat kapan saja Anda ingin model mengembalikan output JSON yang mengikuti skema yang disediakan. Misalnya, Anda mungkin menggunakan alat `record_summary` dengan skema tertentu. Lihat [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview) untuk contoh kerja lengkap.
 
 ### Respons model dengan alat
 
-Saat menggunakan alat, Claude sering kali akan mengomentari apa yang sedang dilakukannya atau merespons secara alami kepada pengguna sebelum memanggil alat.
+Saat menggunakan alat, Claude sering kali akan mengomentari apa yang sedang dilakukan atau merespons secara alami kepada pengguna sebelum memanggil alat.
 
-Misalnya, diberikan prompt "What's the weather like in San Francisco right now, and what time is it there?", Claude mungkin merespons dengan:
+Misalnya, diberikan prompt "Bagaimana cuaca di San Francisco sekarang, dan jam berapa di sana?", Claude mungkin merespons dengan:
 
 ```json JSON
 {
@@ -1057,7 +1054,7 @@ Secara default, Claude dapat menggunakan beberapa alat untuk menjawab pertanyaan
 **Lebih sederhana dengan Tool runner**: Contoh di bawah ini menunjukkan penanganan alat paralel manual. Untuk sebagian besar kasus penggunaan, [tool runner](#tool-runner-beta) secara otomatis menangani eksekusi alat paralel dengan kode yang jauh lebih sedikit.
 </Note>
 
-Berikut adalah contoh lengkap yang menunjukkan cara memformat dengan benar panggilan alat paralel dalam riwayat pesan:
+Berikut adalah contoh lengkap yang menunjukkan cara memformat panggilan alat paralel dengan benar dalam riwayat pesan:
 
 <CodeGroup>
 ```python Python
@@ -1075,11 +1072,11 @@ tools = [
             "properties": {
                 "location": {
                     "type": "string",
-                    "description": "The city and state, e.g. San Francisco, CA"
+                    "description": "The city and state, e.g. San Francisco, CA",
                 }
             },
-            "required": ["location"]
-        }
+            "required": ["location"],
+        },
     },
     {
         "name": "get_time",
@@ -1089,12 +1086,12 @@ tools = [
             "properties": {
                 "timezone": {
                     "type": "string",
-                    "description": "The timezone, e.g. America/New_York"
+                    "description": "The timezone, e.g. America/New_York",
                 }
             },
-            "required": ["timezone"]
-        }
-    }
+            "required": ["timezone"],
+        },
+    },
 ]
 
 # Initial request
@@ -1105,24 +1102,26 @@ response = client.messages.create(
     messages=[
         {
             "role": "user",
-            "content": "What's the weather in SF and NYC, and what time is it there?"
+            "content": "What's the weather in SF and NYC, and what time is it there?",
         }
-    ]
+    ],
 )
 
 # Claude's response with parallel tool calls
 print("Claude wants to use tools:", response.stop_reason == "tool_use")
-print("Number of tool calls:", len([c for c in response.content if c.type == "tool_use"]))
+print(
+    "Number of tool calls:", len([c for c in response.content if c.type == "tool_use"])
+)
 
 # Build the conversation with tool results
 messages = [
     {
         "role": "user",
-        "content": "What's the weather in SF and NYC, and what time is it there?"
+        "content": "What's the weather in SF and NYC, and what time is it there?",
     },
     {
         "role": "assistant",
-        "content": response.content  # Contains multiple tool_use blocks
+        "content": response.content,  # Contains multiple tool_use blocks
     },
     {
         "role": "user",
@@ -1130,40 +1129,37 @@ messages = [
             {
                 "type": "tool_result",
                 "tool_use_id": "toolu_01",  # Must match the ID from tool_use
-                "content": "San Francisco: 68°F, partly cloudy"
+                "content": "San Francisco: 68°F, partly cloudy",
             },
             {
                 "type": "tool_result",
                 "tool_use_id": "toolu_02",
-                "content": "New York: 45°F, clear skies"
+                "content": "New York: 45°F, clear skies",
             },
             {
                 "type": "tool_result",
                 "tool_use_id": "toolu_03",
-                "content": "San Francisco time: 2:30 PM PST"
+                "content": "San Francisco time: 2:30 PM PST",
             },
             {
                 "type": "tool_result",
                 "tool_use_id": "toolu_04",
-                "content": "New York time: 5:30 PM EST"
-            }
-        ]
-    }
+                "content": "New York time: 5:30 PM EST",
+            },
+        ],
+    },
 ]
 
 # Get final response
 final_response = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    tools=tools,
-    messages=messages
+    model="claude-opus-4-6", max_tokens=1024, tools=tools, messages=messages
 )
 
 print(final_response.content[0].text)
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -1220,14 +1216,14 @@ const messages = [
   },
   {
     role: "assistant",
-    content: response.content  // Contains multiple tool_use blocks
+    content: response.content // Contains multiple tool_use blocks
   },
   {
     role: "user",
     content: [
       {
         type: "tool_result",
-        tool_use_id: "toolu_01",  // Must match the ID from tool_use
+        tool_use_id: "toolu_01", // Must match the ID from tool_use
         content: "San Francisco: 68°F, partly cloudy"
       },
       {
@@ -1300,7 +1296,7 @@ Pesan asisten dengan panggilan alat paralel akan terlihat seperti ini:
 ```
 
 </section>
-<section title="Skrip pengujian lengkap untuk alat paralel">
+<section title="Skrip uji lengkap untuk alat paralel">
 
 Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifikasi bahwa panggilan alat paralel berfungsi dengan benar:
 
@@ -1325,11 +1321,11 @@ tools = [
             "properties": {
                 "location": {
                     "type": "string",
-                    "description": "The city and state, e.g. San Francisco, CA"
+                    "description": "The city and state, e.g. San Francisco, CA",
                 }
             },
-            "required": ["location"]
-        }
+            "required": ["location"],
+        },
     },
     {
         "name": "get_time",
@@ -1339,29 +1335,26 @@ tools = [
             "properties": {
                 "timezone": {
                     "type": "string",
-                    "description": "The timezone, e.g. America/New_York"
+                    "description": "The timezone, e.g. America/New_York",
                 }
             },
-            "required": ["timezone"]
-        }
-    }
+            "required": ["timezone"],
+        },
+    },
 ]
 
 # Test conversation with parallel tool calls
 messages = [
     {
         "role": "user",
-        "content": "What's the weather in SF and NYC, and what time is it there?"
+        "content": "What's the weather in SF and NYC, and what time is it there?",
     }
 ]
 
 # Make initial request
 print("Requesting parallel tool calls...")
 response = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    messages=messages,
-    tools=tools
+    model="claude-opus-4-6", max_tokens=1024, messages=messages, tools=tools
 )
 
 # Check for parallel tool calls
@@ -1389,25 +1382,22 @@ for tool_use in tool_uses:
         else:
             result = "5:30 PM EST"
 
-    tool_results.append({
-        "type": "tool_result",
-        "tool_use_id": tool_use.id,
-        "content": result
-    })
+    tool_results.append(
+        {"type": "tool_result", "tool_use_id": tool_use.id, "content": result}
+    )
 
 # Continue conversation with tool results
-messages.extend([
-    {"role": "assistant", "content": response.content},
-    {"role": "user", "content": tool_results}  # All results in one message!
-])
+messages.extend(
+    [
+        {"role": "assistant", "content": response.content},
+        {"role": "user", "content": tool_results},  # All results in one message!
+    ]
+)
 
 # Get final response
 print("\nGetting final response...")
 final_response = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    messages=messages,
-    tools=tools
+    model="claude-opus-4-6", max_tokens=1024, messages=messages, tools=tools
 )
 
 print(f"\nClaude's response:\n{final_response.content[0].text}")
@@ -1423,7 +1413,7 @@ print("✓ Conversation formatted correctly for future parallel tool use")
 #!/usr/bin/env node
 // Test script to verify parallel tool calls with the Claude API
 
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY
@@ -1515,7 +1505,7 @@ async function testParallelTools() {
     messages: [
       { role: "user", content: "What's the weather in SF and NYC, and what time is it there?" },
       { role: "assistant", content: response.content },
-      { role: "user", content: toolResults }  // All results in one message!
+      { role: "user", content: toolResults } // All results in one message!
     ],
     tools: tools
   });
@@ -1534,7 +1524,7 @@ testParallelTools().catch(console.error);
 </CodeGroup>
 
 Skrip ini mendemonstrasikan:
-- Cara memformat dengan benar panggilan alat paralel dan hasil
+- Cara memformat panggilan alat paralel dan hasil dengan benar
 - Cara memverifikasi bahwa panggilan paralel sedang dilakukan
 - Struktur pesan yang benar yang mendorong penggunaan alat paralel di masa depan
 - Kesalahan umum yang harus dihindari (seperti teks sebelum hasil alat)
@@ -1554,7 +1544,7 @@ Untuk model Claude 4 (Opus 4, dan Sonnet 4), tambahkan ini ke prompt sistem Anda
 For maximum efficiency, whenever you need to perform multiple independent operations, invoke all relevant tools simultaneously rather than sequentially.
 ```
 
-Untuk penggunaan alat paralel yang lebih kuat (direkomendasikan jika default tidak cukup), gunakan:
+Untuk penggunaan alat paralel yang bahkan lebih kuat (direkomendasikan jika default tidak cukup), gunakan:
 ```text
 <use_parallel_tool_calls>
 For maximum efficiency, whenever you perform multiple independent operations, invoke all relevant tools simultaneously rather than sequentially. Prioritize calling tools in parallel whenever possible. For example, when reading 3 files, run 3 tool calls in parallel to read all 3 files into context at the same time. When running multiple read-only commands like `ls` or `list_dir`, always run all of the commands in parallel. Err on the side of maximizing parallel tool calls rather than running too many tools sequentially.
@@ -1584,9 +1574,9 @@ Anda juga dapat mendorong penggunaan alat paralel dalam pesan pengguna tertentu:
 
 Claude Sonnet 3.7 mungkin kurang mungkin membuat panggilan alat paralel dalam respons, bahkan ketika Anda belum mengatur `disable_parallel_tool_use`. Kami merekomendasikan [upgrade ke model Claude 4](/docs/id/about-claude/models/migration-guide), yang memiliki penggunaan alat yang efisien token dan pemanggilan alat paralel yang ditingkatkan.
 
-Jika Anda masih menggunakan Claude Sonnet 3.7, Anda dapat mengaktifkan header beta `token-efficient-tools-2025-02-19` [beta header](/docs/id/api/beta-headers), yang membantu mendorong Claude untuk menggunakan alat paralel. Anda juga dapat memperkenalkan "alat batch" yang dapat bertindak sebagai meta-alat untuk membungkus invokasi ke alat lain secara bersamaan.
+Jika Anda masih menggunakan Claude Sonnet 3.7, Anda dapat mengaktifkan [header beta](/docs/id/api/beta-headers) `token-efficient-tools-2025-02-19`, yang membantu mendorong Claude untuk menggunakan alat paralel. Anda juga dapat memperkenalkan "alat batch" yang dapat bertindak sebagai meta-alat untuk membungkus invokasi ke alat lain secara bersamaan.
 
-Lihat [contoh ini](https://platform.claude.com/cookbook/tool-use-parallel-tools) di cookbook kami untuk cara menggunakan solusi ini.
+Lihat [contoh ini](https://platform.claude.com/cookbook/tool-use-parallel-tools) dalam cookbook kami untuk cara menggunakan solusi ini.
 
 </Warning>
 
@@ -1596,7 +1586,7 @@ Lihat [contoh ini](https://platform.claude.com/cookbook/tool-use-parallel-tools)
 **Lebih sederhana dengan Tool runner**: Penanganan alat manual yang dijelaskan di bagian ini secara otomatis dikelola oleh [tool runner](#tool-runner-beta). Gunakan bagian ini ketika Anda memerlukan kontrol khusus atas eksekusi alat.
 </Note>
 
-Respons Claude berbeda berdasarkan apakah menggunakan alat klien atau server.
+Respons Claude berbeda berdasarkan apakah menggunakan alat klien atau alat server.
 
 ### Menangani hasil dari alat klien
 
@@ -1634,10 +1624,10 @@ Respons akan memiliki `stop_reason` dari `tool_use` dan satu atau lebih blok kon
 Ketika Anda menerima respons penggunaan alat untuk alat klien, Anda harus:
 
 1. Ekstrak `name`, `id`, dan `input` dari blok `tool_use`.
-2. Jalankan alat aktual dalam codebase Anda yang sesuai dengan nama alat itu, meneruskan `input` alat.
-3. Lanjutkan percakapan dengan mengirim pesan baru dengan `role` dari `user`, dan blok `content` yang berisi tipe `tool_result` dan informasi berikut:
-   - `tool_use_id`: `id` dari permintaan penggunaan alat yang merupakan hasil ini.
-   - `content`: Hasil alat, sebagai string (misalnya `"content": "15 degrees"`), daftar blok konten bersarang (misalnya `"content": [{"type": "text", "text": "15 degrees"}]`), atau daftar blok dokumen (misalnya `"content": ["type": "document", "source": {"type": "text", "media_type": "text/plain", "data": "15 degrees"}]`). Blok konten ini dapat menggunakan tipe `text`, `image`, atau `document`.
+2. Jalankan alat aktual dalam codebase Anda yang sesuai dengan nama alat tersebut, meneruskan `input` alat.
+3. Lanjutkan percakapan dengan mengirim pesan baru dengan `role` dari `user`, dan blok `content` yang berisi jenis `tool_result` dan informasi berikut:
+   - `tool_use_id`: `id` dari permintaan penggunaan alat ini adalah hasil untuk.
+   - `content`: Hasil alat, sebagai string (misalnya, `"content": "15 degrees"`), daftar blok konten bersarang (misalnya, `"content": [{"type": "text", "text": "15 degrees"}]`), atau daftar blok dokumen (misalnya, `"content": ["type": "document", "source": {"type": "text", "media_type": "text/plain", "data": "15 degrees"}]`). Blok konten ini dapat menggunakan jenis `text`, `image`, atau `document`.
    - `is_error` (opsional): Atur ke `true` jika eksekusi alat menghasilkan kesalahan.
 
 <Note>
@@ -1750,11 +1740,11 @@ Jika Anda menerima kesalahan seperti "tool_use ids were found without tool_resul
 
 </section>
 
-Setelah menerima hasil alat, Claude akan menggunakan informasi itu untuk melanjutkan menghasilkan respons terhadap prompt pengguna asli.
+Setelah menerima hasil alat, Claude akan menggunakan informasi tersebut untuk melanjutkan menghasilkan respons terhadap prompt pengguna asli.
 
 ### Menangani hasil dari alat server
 
-Claude menjalankan alat secara internal dan menggabungkan hasil langsung ke dalam responsnya tanpa memerlukan interaksi pengguna tambahan.
+Claude mengeksekusi alat secara internal dan menggabungkan hasil langsung ke dalam responsnya tanpa memerlukan interaksi pengguna tambahan.
 
 <Tip>
   **Perbedaan dari API lain**
@@ -1767,7 +1757,7 @@ Pesan berisi array blok `text`, `image`, `tool_use`, dan `tool_result`. Pesan `u
 
 ### Menangani alasan penghentian `max_tokens`
 
-Jika [respons Claude terpotong karena mencapai batas `max_tokens`](/docs/id/build-with-claude/handling-stop-reasons#max-tokens), dan respons yang terpotong berisi blok penggunaan alat yang tidak lengkap, Anda perlu mencoba ulang permintaan dengan nilai `max_tokens` yang lebih tinggi untuk mendapatkan penggunaan alat lengkap.
+Jika [respons Claude terpotong karena mencapai batas `max_tokens`](/docs/id/build-with-claude/handling-stop-reasons#max-tokens), dan respons terpotong berisi blok penggunaan alat yang tidak lengkap, Anda perlu mengulangi permintaan dengan nilai `max_tokens` yang lebih tinggi untuk mendapatkan penggunaan alat lengkap.
 
 <CodeGroup>
 ```python Python
@@ -1781,7 +1771,7 @@ if response.stop_reason == "max_tokens":
             model="claude-opus-4-6",
             max_tokens=4096,  # Increased limit
             messages=messages,
-            tools=tools
+            tools=tools,
         )
 ```
 
@@ -1822,22 +1812,21 @@ response = client.messages.create(
     messages=[
         {
             "role": "user",
-            "content": "Search for comprehensive information about quantum computing breakthroughs in 2025"
+            "content": "Search for comprehensive information about quantum computing breakthroughs in 2025",
         }
     ],
-    tools=[{
-        "type": "web_search_20250305",
-        "name": "web_search",
-        "max_uses": 10
-    }]
+    tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 10}],
 )
 
 # Check if the response has pause_turn stop reason
 if response.stop_reason == "pause_turn":
     # Continue the conversation with the paused content
     messages = [
-        {"role": "user", "content": "Search for comprehensive information about quantum computing breakthroughs in 2025"},
-        {"role": "assistant", "content": response.content}
+        {
+            "role": "user",
+            "content": "Search for comprehensive information about quantum computing breakthroughs in 2025",
+        },
+        {"role": "assistant", "content": response.content},
     ]
 
     # Send the continuation request
@@ -1845,11 +1834,7 @@ if response.stop_reason == "pause_turn":
         model="claude-3-7-sonnet-latest",
         max_tokens=1024,
         messages=messages,
-        tools=[{
-            "type": "web_search_20250305",
-            "name": "web_search",
-            "max_uses": 10
-        }]
+        tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 10}],
     )
 
     print(continuation)
@@ -1858,7 +1843,7 @@ else:
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -1907,11 +1892,11 @@ if (response.stop_reason === "pause_turn") {
 </CodeGroup>
 
 Saat menangani `pause_turn`:
-- **Lanjutkan percakapan**: Teruskan respons yang dijeda sesuai adanya dalam permintaan berikutnya untuk membiarkan Claude melanjutkan gilirannya
-- **Ubah jika diperlukan**: Anda dapat secara opsional mengubah konten sebelum melanjutkan jika Anda ingin mengganggu atau mengarahkan ulang percakapan
+- **Lanjutkan percakapan**: Teruskan respons yang dijeda kembali apa adanya dalam permintaan berikutnya untuk membiarkan Claude melanjutkan gilirannya
+- **Ubah jika diperlukan**: Anda dapat secara opsional mengubah konten sebelum melanjutkan jika Anda ingin mengganggu atau mengarahkan kembali percakapan
 - **Pertahankan status alat**: Sertakan alat yang sama dalam permintaan lanjutan untuk mempertahankan fungsionalitas
 
-## Mengatasi kesalahan
+## Pemecahan masalah kesalahan
 
 <Note>
 **Penanganan Kesalahan Bawaan**: [Tool runner](#tool-runner-beta) menyediakan penanganan kesalahan otomatis untuk sebagian besar skenario umum. Bagian ini mencakup penanganan kesalahan manual untuk kasus penggunaan lanjutan.
@@ -1921,7 +1906,7 @@ Ada beberapa jenis kesalahan berbeda yang dapat terjadi saat menggunakan alat de
 
 <section title="Kesalahan eksekusi alat">
 
-Jika alat itu sendiri melempar kesalahan selama eksekusi (misalnya kesalahan jaringan saat mengambil data cuaca), Anda dapat mengembalikan pesan kesalahan dalam `content` bersama dengan `"is_error": true`:
+Jika alat itu sendiri melempar kesalahan selama eksekusi (misalnya, kesalahan jaringan saat mengambil data cuaca), Anda dapat mengembalikan pesan kesalahan dalam `content` bersama dengan `"is_error": true`:
 
 ```json JSON
 {
@@ -1937,14 +1922,14 @@ Jika alat itu sendiri melempar kesalahan selama eksekusi (misalnya kesalahan jar
 }
 ```
 
-Claude kemudian akan menggabungkan kesalahan ini ke dalam responsnya kepada pengguna, misalnya "I'm sorry, I was unable to retrieve the current weather because the weather service API is not available. Please try again later."
+Claude kemudian akan menggabungkan kesalahan ini ke dalam responsnya kepada pengguna. Misalnya: "Maaf, saya tidak dapat mengambil cuaca saat ini karena API layanan cuaca tidak tersedia. Silakan coba lagi nanti."
 
 </section>
 <section title="Nama alat tidak valid">
 
-Jika upaya Claude menggunakan alat tidak valid (misalnya parameter yang diperlukan hilang), biasanya berarti tidak ada cukup informasi bagi Claude untuk menggunakan alat dengan benar. Taruhan terbaik Anda selama pengembangan adalah mencoba permintaan lagi dengan nilai `description` yang lebih terperinci dalam definisi alat Anda.
+Jika penggunaan alat yang dicoba oleh Claude tidak valid (misalnya, parameter yang diperlukan hilang), biasanya berarti tidak ada cukup informasi bagi Claude untuk menggunakan alat dengan benar. Taruhan terbaik Anda selama pengembangan adalah mencoba permintaan lagi dengan nilai `description` yang lebih terperinci dalam definisi alat Anda.
 
-Namun, Anda juga dapat melanjutkan percakapan dengan `tool_result` yang menunjukkan kesalahan, dan Claude akan mencoba menggunakan alat lagi dengan informasi yang hilang diisi:
+Namun, Anda juga dapat melanjutkan percakapan maju dengan `tool_result` yang menunjukkan kesalahan, dan Claude akan mencoba menggunakan alat lagi dengan informasi yang hilang diisi:
 
 ```json JSON
 {
@@ -1963,18 +1948,18 @@ Namun, Anda juga dapat melanjutkan percakapan dengan `tool_result` yang menunjuk
 Jika permintaan alat tidak valid atau parameter hilang, Claude akan mencoba 2-3 kali dengan koreksi sebelum meminta maaf kepada pengguna.
 
 <Tip>
-Untuk menghilangkan panggilan alat yang tidak valid sepenuhnya, gunakan [penggunaan alat ketat](/docs/id/build-with-claude/structured-outputs) dengan `strict: true` pada definisi alat Anda. Ini menjamin bahwa input alat akan selalu cocok dengan skema Anda dengan tepat, mencegah parameter yang hilang dan ketidakcocokan tipe.
+Untuk menghilangkan panggilan alat yang tidak valid sepenuhnya, gunakan [penggunaan alat ketat](/docs/id/build-with-claude/structured-outputs) dengan `strict: true` pada definisi alat Anda. Ini menjamin bahwa input alat akan selalu sesuai dengan skema Anda dengan tepat, mencegah parameter yang hilang dan ketidakcocokan tipe.
 </Tip>
 
 </section>
 <section title="Tag \<search_quality_reflection>">
 
-Untuk mencegah Claude merefleksikan kualitas hasil pencarian dengan tag \<search_quality_reflection>, tambahkan "Do not reflect on the quality of the returned search results in your response" ke prompt Anda.
+Untuk mencegah Claude dari mencerminkan kualitas hasil pencarian dengan tag \<search_quality_reflection>, tambahkan "Do not reflect on the quality of the returned search results in your response" ke prompt Anda.
 
 </section>
 <section title="Kesalahan alat server">
 
-Ketika alat server mengalami kesalahan (misalnya masalah jaringan dengan Pencarian Web), Claude akan menangani kesalahan ini secara transparan dan mencoba memberikan respons alternatif atau penjelasan kepada pengguna. Tidak seperti alat klien, Anda tidak perlu menangani hasil `is_error` untuk alat server.
+Ketika alat server mengalami kesalahan (misalnya, masalah jaringan dengan Pencarian Web), Claude akan menangani kesalahan ini secara transparan dan mencoba memberikan respons alternatif atau penjelasan kepada pengguna. Tidak seperti alat klien, Anda tidak perlu menangani hasil `is_error` untuk alat server.
 
 Untuk pencarian web khususnya, kode kesalahan yang mungkin termasuk:
 - `too_many_requests`: Batas laju terlampaui
@@ -1984,7 +1969,7 @@ Untuk pencarian web khususnya, kode kesalahan yang mungkin termasuk:
 - `unavailable`: Kesalahan internal terjadi
 
 </section>
-<section title="Panggilan alat paralel tidak berfungsi">
+<section title="Penggunaan alat paralel tidak berfungsi">
 
 Jika Claude tidak membuat panggilan alat paralel saat diharapkan, periksa masalah umum ini:
 
@@ -2031,12 +2016,11 @@ Untuk memverifikasi panggilan alat paralel berfungsi:
 
 ```python
 # Calculate average tools per tool-calling message
-tool_call_messages = [msg for msg in messages if any(
-    block.type == "tool_use" for block in msg.content
-)]
+tool_call_messages = [
+    msg for msg in messages if any(block.type == "tool_use" for block in msg.content)
+]
 total_tool_calls = sum(
-    len([b for b in msg.content if b.type == "tool_use"])
-    for msg in tool_call_messages
+    len([b for b in msg.content if b.type == "tool_use"]) for msg in tool_call_messages
 )
 avg_tools_per_message = total_tool_calls / len(tool_call_messages)
 print(f"Average tools per message: {avg_tools_per_message}")
@@ -2045,8 +2029,8 @@ print(f"Average tools per message: {avg_tools_per_message}")
 
 **4. Perilaku khusus model**
 
-- Claude Opus 4.6, Sonnet 4.5, Opus 4.5, Opus 4.1, dan Sonnet 4: Unggul dalam penggunaan alat paralel dengan prompting minimal
-- Claude Sonnet 3.7: Mungkin memerlukan prompting yang lebih kuat atau header beta `token-efficient-tools-2025-02-19` [beta header](/docs/id/api/beta-headers). Pertimbangkan [upgrade ke Claude 4](/docs/id/about-claude/models/migration-guide).
+- Claude Opus 4.6, Sonnet 4.6, Sonnet 4.5, Opus 4.5, Opus 4.1, dan Sonnet 4: Unggul dalam penggunaan alat paralel dengan prompting minimal
+- Claude Sonnet 3.7: Mungkin memerlukan prompting yang lebih kuat atau [header beta](/docs/id/api/beta-headers) `token-efficient-tools-2025-02-19`. Pertimbangkan [upgrade ke Claude 4](/docs/id/about-claude/models/migration-guide).
 - Claude Haiku: Kurang mungkin menggunakan alat paralel tanpa prompting eksplisit
 
 </section>

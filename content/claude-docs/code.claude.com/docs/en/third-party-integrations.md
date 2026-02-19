@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/third-party-integrations
-fetched_at: 2026-02-03T04:18:49.576480Z
-sha256: 6a6484722d5c1ed05dc49ac74fe23b52f477d91454e7f9cea6967cc62d61d31c
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 1c38f361b7da7355c75e4097848be4c47a68ee0a0ee8a3e4f862cefaeffd6591
 ---
 
 > ## Documentation Index
@@ -245,6 +245,10 @@ If you have a custom development environment, we find that creating a "one click
 ### Start with guided usage
 
 Encourage new users to try Claude Code for codebase Q\&A, or on smaller bug fixes or feature requests. Ask Claude Code to make a plan. Check Claude's suggestions and give feedback if it's off-track. Over time, as users understand this new paradigm better, then they'll be more effective at letting Claude Code run more agentically.
+
+### Pin model versions for cloud providers
+
+If you deploy through [Bedrock](/en/amazon-bedrock), [Vertex AI](/en/google-vertex-ai), or [Foundry](/en/microsoft-foundry), pin specific model versions using `ANTHROPIC_DEFAULT_OPUS_MODEL`, `ANTHROPIC_DEFAULT_SONNET_MODEL`, and `ANTHROPIC_DEFAULT_HAIKU_MODEL`. Without pinning, Claude Code aliases resolve to the latest version, which can break users when Anthropic releases a new model that isn't yet enabled in your account. See [Model configuration](/en/model-config#pin-models-for-third-party-deployments) for details.
 
 ### Configure security policies
 

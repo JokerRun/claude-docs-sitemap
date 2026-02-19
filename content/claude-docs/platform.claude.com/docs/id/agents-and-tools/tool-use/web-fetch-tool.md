@@ -1,30 +1,34 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: f20564e26196e0e5280058d34277bb39adabe330c9cdd64040ef6ea691bd6480
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: a917dd1f33b865492a8ba70ee8db0d509d7837fd7ff548224bf0454173c05ac4
 ---
 
 # Alat pengambilan web
 
-Alat pengambilan web memungkinkan Claude untuk mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan.
+Alat pengambilan web memungkinkan Claude mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan.
 
 ---
 
-Alat pengambilan web memungkinkan Claude untuk mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan.
+Alat pengambilan web memungkinkan Claude mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan.
+
+Versi alat pengambilan web terbaru (`web_fetch_20260209`) mendukung **penyaringan dinamis** dengan Claude Opus 4.6 dan Sonnet 4.6. Claude dapat menulis dan menjalankan kode untuk menyaring konten yang diambil sebelum mencapai jendela konteks, menyimpan hanya informasi yang relevan dan membuang sisanya. Ini mengurangi konsumsi token sambil mempertahankan kualitas respons. Versi alat sebelumnya (`web_fetch_20250910`) tetap tersedia tanpa penyaringan dinamis.
 
 <Note>
-Alat pengambilan web saat ini dalam versi beta. Untuk mengaktifkannya, gunakan header beta `web-fetch-2025-09-10` dalam permintaan API Anda.
-
 Silakan gunakan [formulir ini](https://forms.gle/NhWcgmkcvPCMmPE86) untuk memberikan umpan balik tentang kualitas respons model, API itu sendiri, atau kualitas dokumentasi.
 </Note>
 
+<Note>
+This feature is [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) eligible. When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+</Note>
+
 <Warning>
-Mengaktifkan alat pengambilan web di lingkungan di mana Claude memproses input yang tidak terpercaya bersama dengan data sensitif menimbulkan risiko eksfiltrasi data. Kami merekomendasikan hanya menggunakan alat ini di lingkungan terpercaya atau saat menangani data non-sensitif.
+Mengaktifkan alat pengambilan web di lingkungan tempat Claude memproses input yang tidak dipercaya bersama data sensitif menimbulkan risiko exfiltration data. Kami merekomendasikan hanya menggunakan alat ini di lingkungan terpercaya atau saat menangani data non-sensitif.
 
-Untuk meminimalkan risiko eksfiltrasi, Claude tidak diizinkan untuk secara dinamis membuat URL. Claude hanya dapat mengambil URL yang telah secara eksplisit disediakan oleh pengguna atau yang berasal dari hasil pencarian web atau pengambilan web sebelumnya. Namun, masih ada risiko sisa yang harus dipertimbangkan dengan hati-hati saat menggunakan alat ini.
+Untuk meminimalkan risiko exfiltration, Claude tidak diizinkan untuk secara dinamis membangun URL. Claude hanya dapat mengambil URL yang telah secara eksplisit disediakan oleh pengguna atau yang berasal dari hasil pencarian web atau pengambilan web sebelumnya. Namun, masih ada risiko residual yang harus dipertimbangkan dengan hati-hati saat menggunakan alat ini.
 
-Jika eksfiltrasi data menjadi perhatian, pertimbangkan:
+Jika exfiltration data menjadi perhatian, pertimbangkan:
 - Menonaktifkan alat pengambilan web sepenuhnya
 - Menggunakan parameter `max_uses` untuk membatasi jumlah permintaan
 - Menggunakan parameter `allowed_domains` untuk membatasi ke domain yang diketahui aman
@@ -38,6 +42,7 @@ Pengambilan web tersedia di:
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 - Claude Opus 4.1 (`claude-opus-4-1-20250805`)
 - Claude Opus 4 (`claude-opus-4-20250514`)
+- Claude Sonnet 4.6 (`claude-sonnet-4-6`)
 - Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Sonnet 4 (`claude-sonnet-4-20250514`)
 - Claude Sonnet 3.7 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-3-7-sonnet-20250219`)
@@ -46,7 +51,7 @@ Pengambilan web tersedia di:
 
 ## Cara kerja pengambilan web
 
-Ketika Anda menambahkan alat pengambilan web ke permintaan API Anda:
+Saat Anda menambahkan alat pengambilan web ke permintaan API Anda:
 
 1. Claude memutuskan kapan harus mengambil konten berdasarkan prompt dan URL yang tersedia.
 2. API mengambil konten teks lengkap dari URL yang ditentukan.
@@ -57,6 +62,92 @@ Ketika Anda menambahkan alat pengambilan web ke permintaan API Anda:
 Alat pengambilan web saat ini tidak mendukung situs web yang dirender secara dinamis melalui Javascript.
 </Note>
 
+### Penyaringan dinamis dengan Opus 4.6 dan Sonnet 4.6
+
+Mengambil halaman web dan PDF lengkap dapat dengan cepat mengonsumsi token, terutama ketika hanya informasi spesifik yang diperlukan dari dokumen besar. Dengan versi alat `web_fetch_20260209`, Claude dapat menulis dan menjalankan kode untuk menyaring konten yang diambil sebelum memuatnya ke dalam konteks.
+
+Penyaringan dinamis ini sangat berguna untuk:
+- Mengekstrak bagian spesifik dari dokumen panjang
+- Memproses data terstruktur dari halaman web
+- Menyaring informasi yang relevan dari PDF
+- Mengurangi biaya token saat bekerja dengan dokumen besar
+
+<Note>
+Penyaringan dinamis memerlukan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk diaktifkan. Alat pengambilan web (dengan dan tanpa penyaringan dinamis) tersedia di Claude API dan Microsoft Azure.
+</Note>
+
+Untuk mengaktifkan penyaringan dinamis, gunakan versi alat `web_fetch_20260209` dengan header beta `code-execution-web-tools-2026-02-09`:
+
+<CodeGroup>
+```bash Shell
+curl https://api.anthropic.com/v1/messages \
+    --header "x-api-key: $ANTHROPIC_API_KEY" \
+    --header "anthropic-version: 2023-06-01" \
+    --header "anthropic-beta: code-execution-web-tools-2026-02-09" \
+    --header "content-type: application/json" \
+    --data '{
+        "model": "claude-opus-4-6",
+        "max_tokens": 4096,
+        "messages": [
+            {
+                "role": "user",
+                "content": "Fetch the content at https://example.com/research-paper and extract the key findings."
+            }
+        ],
+        "tools": [{
+            "type": "web_fetch_20260209",
+            "name": "web_fetch"
+        }]
+    }'
+```
+
+```python Python
+import anthropic
+
+client = anthropic.Anthropic()
+
+response = client.beta.messages.create(
+    model="claude-opus-4-6",
+    max_tokens=4096,
+    betas=["code-execution-web-tools-2026-02-09"],
+    messages=[
+        {
+            "role": "user",
+            "content": "Fetch the content at https://example.com/research-paper and extract the key findings.",
+        }
+    ],
+    tools=[{"type": "web_fetch_20260209", "name": "web_fetch"}],
+)
+print(response)
+```
+
+```typescript TypeScript
+import { Anthropic } from "@anthropic-ai/sdk";
+
+const anthropic = new Anthropic();
+
+async function main() {
+  const response = await anthropic.beta.messages.create({
+    model: "claude-opus-4-6",
+    max_tokens: 4096,
+    betas: ["code-execution-web-tools-2026-02-09"],
+    messages: [
+      {
+        role: "user",
+        content:
+          "Fetch the content at https://example.com/research-paper and extract the key findings."
+      }
+    ],
+    tools: [{ type: "web_fetch_20260209", name: "web_fetch" }]
+  });
+
+  console.log(response);
+}
+
+main().catch(console.error);
+```
+</CodeGroup>
+
 ## Cara menggunakan pengambilan web
 
 Sediakan alat pengambilan web dalam permintaan API Anda:
@@ -66,7 +157,6 @@ Sediakan alat pengambilan web dalam permintaan API Anda:
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: web-fetch-2025-09-10" \
     --header "content-type: application/json" \
     --data '{
         "model": "claude-opus-4-6",
@@ -96,23 +186,16 @@ response = client.messages.create(
     messages=[
         {
             "role": "user",
-            "content": "Please analyze the content at https://example.com/article"
+            "content": "Please analyze the content at https://example.com/article",
         }
     ],
-    tools=[{
-        "type": "web_fetch_20250910",
-        "name": "web_fetch",
-        "max_uses": 5
-    }],
-    extra_headers={
-        "anthropic-beta": "web-fetch-2025-09-10"
-    }
+    tools=[{"type": "web_fetch_20250910", "name": "web_fetch", "max_uses": 5}],
 )
 print(response)
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -130,10 +213,7 @@ async function main() {
       type: "web_fetch_20250910",
       name: "web_fetch",
       max_uses: 5
-    }],
-    headers: {
-      "anthropic-beta": "web-fetch-2025-09-10"
-    }
+    }]
   });
 
   console.log(response);
@@ -152,26 +232,26 @@ Alat pengambilan web mendukung parameter berikut:
   "type": "web_fetch_20250910",
   "name": "web_fetch",
 
-  // Opsional: Batasi jumlah pengambilan per permintaan
+  // Optional: Limit the number of fetches per request
   "max_uses": 10,
 
-  // Opsional: Hanya ambil dari domain ini
+  // Optional: Only fetch from these domains
   "allowed_domains": ["example.com", "docs.example.com"],
 
-  // Opsional: Jangan pernah ambil dari domain ini
+  // Optional: Never fetch from these domains
   "blocked_domains": ["private.example.com"],
 
-  // Opsional: Aktifkan kutipan untuk konten yang diambil
+  // Optional: Enable citations for fetched content
   "citations": {
     "enabled": true
   },
 
-  // Opsional: Panjang konten maksimum dalam token
+  // Optional: Maximum content length in tokens
   "max_content_tokens": 100000
 }
 ```
 
-#### Penggunaan maksimum
+#### Penggunaan maksimal
 
 Parameter `max_uses` membatasi jumlah pengambilan web yang dilakukan. Jika Claude mencoba lebih banyak pengambilan daripada yang diizinkan, `web_fetch_tool_result` akan menjadi kesalahan dengan kode kesalahan `max_uses_exceeded`. Saat ini tidak ada batas default.
 
@@ -191,7 +271,7 @@ Saat mengonfigurasi daftar izin/blokir domain:
 - Gunakan nama domain ASCII-only jika memungkinkan
 - Pertimbangkan bahwa parser URL dapat menangani normalisasi Unicode secara berbeda
 - Uji filter domain Anda dengan variasi homograf potensial
-- Audit konfigurasi domain Anda secara teratur untuk karakter Unicode yang mencurigakan
+- Audit secara teratur konfigurasi domain Anda untuk karakter Unicode yang mencurigakan
 </Warning>
 
 #### Batas konten
@@ -218,12 +298,12 @@ Berikut adalah contoh struktur respons:
 {
   "role": "assistant",
   "content": [
-    // 1. Keputusan Claude untuk mengambil
+    // 1. Claude's decision to fetch
     {
       "type": "text",
       "text": "I'll fetch the content from the article to analyze it."
     },
-    // 2. Permintaan pengambilan
+    // 2. The fetch request
     {
       "type": "server_tool_use",
       "id": "srvtoolu_01234567890abcdef",
@@ -232,7 +312,7 @@ Berikut adalah contoh struktur respons:
         "url": "https://example.com/article"
       }
     },
-    // 3. Hasil pengambilan
+    // 3. Fetch results
     {
       "type": "web_fetch_tool_result",
       "tool_use_id": "srvtoolu_01234567890abcdef",
@@ -252,7 +332,7 @@ Berikut adalah contoh struktur respons:
         "retrieved_at": "2025-08-25T10:30:00Z"
       }
     },
-    // 4. Analisis Claude dengan kutipan (jika diaktifkan)
+    // 4. Claude's analysis with citations (if enabled)
     {
       "text": "Based on the article, ",
       "type": "text"
@@ -293,7 +373,7 @@ Hasil pengambilan mencakup:
 - `retrieved_at`: Stempel waktu saat konten diambil
 
 <Note>
-Alat pengambilan web menyimpan hasil dalam cache untuk meningkatkan kinerja dan mengurangi permintaan yang berlebihan. Ini berarti konten yang dikembalikan mungkin bukan selalu versi terbaru yang tersedia di URL. Perilaku cache dikelola secara otomatis dan dapat berubah seiring waktu untuk mengoptimalkan jenis konten dan pola penggunaan yang berbeda.
+Alat pengambilan web menyimpan hasil dalam cache untuk meningkatkan kinerja dan mengurangi permintaan yang berlebihan. Ini berarti konten yang dikembalikan mungkin tidak selalu merupakan versi terbaru yang tersedia di URL. Perilaku cache dikelola secara otomatis dan dapat berubah seiring waktu untuk mengoptimalkan jenis konten dan pola penggunaan yang berbeda.
 </Note>
 
 Untuk dokumen PDF, konten akan dikembalikan sebagai data yang dikodekan base64:
@@ -321,7 +401,7 @@ Untuk dokumen PDF, konten akan dikembalikan sebagai data yang dikodekan base64:
 
 #### Kesalahan
 
-Ketika alat pengambilan web mengalami kesalahan, Claude API mengembalikan respons 200 (sukses) dengan kesalahan yang diwakili dalam badan respons:
+Ketika alat pengambilan web mengalami kesalahan, Claude API mengembalikan respons 200 (berhasil) dengan kesalahan yang diwakili dalam badan respons:
 
 ```json
 {
@@ -370,25 +450,18 @@ response = client.messages.create(
     messages=[
         {
             "role": "user",
-            "content": "Find recent articles about quantum computing and analyze the most relevant one in detail"
+            "content": "Find recent articles about quantum computing and analyze the most relevant one in detail",
         }
     ],
     tools=[
-        {
-            "type": "web_search_20250305",
-            "name": "web_search",
-            "max_uses": 3
-        },
+        {"type": "web_search_20250305", "name": "web_search", "max_uses": 3},
         {
             "type": "web_fetch_20250910",
             "name": "web_fetch",
             "max_uses": 5,
-            "citations": {"enabled": True}
-        }
+            "citations": {"enabled": True},
+        },
     ],
-    extra_headers={
-        "anthropic-beta": "web-fetch-2025-09-10"
-    }
 )
 ```
 
@@ -398,20 +471,20 @@ Dalam alur kerja ini, Claude akan:
 3. Menggunakan pengambilan web untuk mengambil konten lengkap
 4. Memberikan analisis terperinci dengan kutipan
 
-## Penyimpanan cache prompt
+## Caching prompt
 
-Pengambilan web bekerja dengan [penyimpanan cache prompt](/docs/id/build-with-claude/prompt-caching). Untuk mengaktifkan penyimpanan cache prompt, tambahkan titik henti `cache_control` dalam permintaan Anda. Hasil pengambilan yang disimpan dalam cache dapat digunakan kembali di seluruh putaran percakapan.
+Pengambilan web bekerja dengan [caching prompt](/docs/id/build-with-claude/prompt-caching). Untuk mengaktifkan caching prompt, tambahkan titik henti `cache_control` dalam permintaan Anda. Hasil pengambilan yang di-cache dapat digunakan kembali di seluruh putaran percakapan.
 
 ```python
 import anthropic
 
 client = anthropic.Anthropic()
 
-# Permintaan pertama dengan pengambilan web
+# First request with web fetch
 messages = [
     {
         "role": "user",
-        "content": "Analyze this research paper: https://arxiv.org/abs/2024.12345"
+        "content": "Analyze this research paper: https://arxiv.org/abs/2024.12345",
     }
 ]
 
@@ -419,42 +492,29 @@ response1 = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
     messages=messages,
-    tools=[{
-        "type": "web_fetch_20250910",
-        "name": "web_fetch"
-    }],
-    extra_headers={
-        "anthropic-beta": "web-fetch-2025-09-10"
-    }
+    tools=[{"type": "web_fetch_20250910", "name": "web_fetch"}],
 )
 
-# Tambahkan respons Claude ke percakapan
-messages.append({
-    "role": "assistant",
-    "content": response1.content
-})
+# Add Claude's response to conversation
+messages.append({"role": "assistant", "content": response1.content})
 
-# Permintaan kedua dengan titik henti cache
-messages.append({
-    "role": "user",
-    "content": "What methodology does the paper use?",
-    "cache_control": {"type": "ephemeral"}
-})
+# Second request with cache breakpoint
+messages.append(
+    {
+        "role": "user",
+        "content": "What methodology does the paper use?",
+        "cache_control": {"type": "ephemeral"},
+    }
+)
 
 response2 = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
     messages=messages,
-    tools=[{
-        "type": "web_fetch_20250910",
-        "name": "web_fetch"
-    }],
-    extra_headers={
-        "anthropic-beta": "web-fetch-2025-09-10"
-    }
+    tools=[{"type": "web_fetch_20250910", "name": "web_fetch"}],
 )
 
-# Respons kedua mendapat manfaat dari hasil pengambilan yang disimpan dalam cache
+# The second response benefits from cached fetch results
 print(f"Cache read tokens: {response2.usage.get('cache_read_input_tokens', 0)}")
 ```
 
@@ -462,34 +522,34 @@ print(f"Cache read tokens: {response2.usage.get('cache_read_input_tokens', 0)}")
 
 Dengan streaming diaktifkan, acara pengambilan adalah bagian dari aliran dengan jeda selama pengambilan konten:
 
-```javascript
+```json
 event: message_start
 data: {"type": "message_start", "message": {"id": "msg_abc123", "type": "message"}}
 
 event: content_block_start
 data: {"type": "content_block_start", "index": 0, "content_block": {"type": "text", "text": ""}}
 
-// Keputusan Claude untuk mengambil
+// Claude's decision to fetch
 
 event: content_block_start
 data: {"type": "content_block_start", "index": 1, "content_block": {"type": "server_tool_use", "id": "srvtoolu_xyz789", "name": "web_fetch"}}
 
-// URL pengambilan dialirkan
+// Fetch URL streamed
 event: content_block_delta
 data: {"type": "content_block_delta", "index": 1, "delta": {"type": "input_json_delta", "partial_json": "{\"url\":\"https://example.com/article\"}"}}
 
-// Jeda saat pengambilan dieksekusi
+// Pause while fetch executes
 
-// Hasil pengambilan dialirkan
+// Fetch results streamed
 event: content_block_start
 data: {"type": "content_block_start", "index": 2, "content_block": {"type": "web_fetch_tool_result", "tool_use_id": "srvtoolu_xyz789", "content": {"type": "web_fetch_result", "url": "https://example.com/article", "content": {"type": "document", "source": {"type": "text", "media_type": "text/plain", "data": "Article content..."}}}}}
 
-// Respons Claude berlanjut...
+// Claude's response continues...
 ```
 
 ## Permintaan batch
 
-Anda dapat menyertakan alat pengambilan web dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat pengambilan web melalui Messages Batches API dihargai sama dengan yang ada dalam permintaan Messages API biasa.
+Anda dapat menyertakan alat pengambilan web dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat pengambilan web melalui Messages Batches API dihargai sama dengan yang ada dalam permintaan Messages API reguler.
 
 ## Penggunaan dan harga
 

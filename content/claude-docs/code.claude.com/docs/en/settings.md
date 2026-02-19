@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: a5cd2c85c875c83911a006e865a0e86701f05f79f3e12bdd0c1b20ee13842642
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 8a9efdae9fe9e38baaa8c6b88ba0aa136dfd8c4b141cda2b84bf579308774513
 ---
 
 > ## Documentation Index
@@ -183,6 +183,7 @@ The `$schema` line in the example above points to the [official JSON schema](htt
 | `language`                        | Configure Claude's preferred response language (e.g., `"japanese"`, `"spanish"`, `"french"`). Claude will respond in this language by default                                                                                                                                   | `"japanese"`                                                            |
 | `autoUpdatesChannel`              | Release channel to follow for updates. Use `"stable"` for a version that is typically about one week old and skips versions with major regressions, or `"latest"` (default) for the most recent release                                                                         | `"stable"`                                                              |
 | `spinnerTipsEnabled`              | Show tips in the spinner while Claude is working. Set to `false` to disable tips (default: `true`)                                                                                                                                                                              | `false`                                                                 |
+| `spinnerTipsOverride`             | Override spinner tips with custom strings. `tips`: array of tip strings. `excludeDefault`: if `true`, only show custom tips; if `false` or absent, custom tips are merged with built-in tips                                                                                    | `{ "excludeDefault": true, "tips": ["Use our internal tool X"] }`       |
 | `terminalProgressBarEnabled`      | Enable the terminal progress bar that shows progress in supported terminals like Windows Terminal and iTerm2 (default: `true`)                                                                                                                                                  | `false`                                                                 |
 | `prefersReducedMotion`            | Reduce or disable UI animations (spinners, shimmer, flash effects) for accessibility                                                                                                                                                                                            | `true`                                                                  |
 | `teammateMode`                    | How [agent team](/en/agent-teams) teammates display: `auto` (picks split panes in tmux or iTerm2, in-process otherwise), `in-process`, or `tmux`. See [set up agent teams](/en/agent-teams#set-up-agent-teams)                                                                  | `"in-process"`                                                          |

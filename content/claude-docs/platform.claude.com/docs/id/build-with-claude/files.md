@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: c98dfcaddac6dab7147df30ba1529e2252688e6b591735d79c30f79ae51e8abe
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: af7839deade5653f1e86b288f419e37949fcd55d3dad81fb7aa04fefbb3b574c
 ---
 
 # Files API
@@ -11,10 +11,14 @@ Unggah dan kelola file untuk digunakan dengan Claude API tanpa perlu mengunggah 
 
 ---
 
-Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa perlu mengunggah ulang konten dengan setiap permintaan. Ini sangat berguna ketika menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya dataset dan dokumen) dan kemudian mengunduh output (misalnya bagan). Anda juga dapat menggunakan Files API untuk menghindari harus terus mengunggah ulang dokumen dan gambar yang sering digunakan di berbagai panggilan API. Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/files-create), selain panduan ini.
+Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa perlu mengunggah ulang konten dengan setiap permintaan. Ini sangat berguna ketika menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk memberikan input (misalnya dataset dan dokumen) dan kemudian mengunduh output (misalnya bagan). Anda juga dapat menggunakan Files API untuk menghindari harus terus mengunggah ulang dokumen dan gambar yang sering digunakan di berbagai panggilan API. Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/files-create), selain panduan ini.
 
 <Note>
-Files API saat ini dalam beta. Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/tisHyierGwgN4DUE9) untuk berbagi pengalaman Anda dengan Files API.
+Files API saat ini dalam beta. Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/tisHyierGwgN4DUE9) kami untuk berbagi pengalaman Anda dengan Files API.
+</Note>
+
+<Note>
+This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
 </Note>
 
 ## Model yang didukung
@@ -29,7 +33,7 @@ Files API menyediakan pendekatan buat-sekali-gunakan-berkali-kali yang sederhana
 
 - **Unggah file** ke penyimpanan aman kami dan terima `file_id` unik
 - **Unduh file** yang dibuat dari skill atau alat eksekusi kode
-- **Referensikan file** dalam permintaan [Messages](/docs/id/api/messages) menggunakan `file_id` alih-alih mengunggah ulang konten
+- **Referensikan file** dalam permintaan [Messages](/docs/id/api/messages) menggunakan `file_id` daripada mengunggah ulang konten
 - **Kelola file Anda** dengan operasi daftar, ambil, dan hapus
 
 ## Cara menggunakan Files API
@@ -40,7 +44,7 @@ Untuk menggunakan Files API, Anda perlu menyertakan header fitur beta: `anthropi
 
 ### Mengunggah file
 
-Unggah file untuk direferensikan dalam panggilan API di masa depan:
+Unggah file untuk direferensikan dalam panggilan API mendatang:
 
 <CodeGroup>
 ```bash Shell
@@ -56,21 +60,103 @@ import anthropic
 
 client = anthropic.Anthropic()
 client.beta.files.upload(
-  file=("document.pdf", open("/path/to/document.pdf", "rb"), "application/pdf"),
+    file=("document.pdf", open("/path/to/document.pdf", "rb"), "application/pdf"),
 )
 ```
 
 ```typescript TypeScript
-import Anthropic, { toFile } from '@anthropic-ai/sdk';
+import Anthropic, { toFile } from "@anthropic-ai/sdk";
 import fs from "fs";
 
 const anthropic = new Anthropic();
 
 await anthropic.beta.files.upload({
-  file: await toFile(fs.createReadStream('/path/to/document.pdf'), undefined, { type: 'application/pdf' })
+  file: await toFile(fs.createReadStream("/path/to/document.pdf"), undefined, { type: "application/pdf" })
 }, {
-  betas: ['files-api-2025-04-14']
+  betas: ["files-api-2025-04-14"]
 });
+```
+
+```java Java
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import java.nio.file.Path;
+
+AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+var file = client.beta().files().upload(
+    Path.of("/path/to/document.pdf")
+);
+
+System.out.println(file.id());
+```
+
+```go Go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	file, _ := os.Open("/path/to/document.pdf")
+	defer file.Close()
+
+	response, _ := client.Beta.Files.Upload(context.Background(),
+		anthropic.BetaFileUploadParams{
+			File: file,
+		})
+
+	fmt.Println(response.ID)
+}
+```
+
+```ruby Ruby
+require "anthropic"
+
+client = Anthropic::Client.new
+
+file = client.beta.files.upload(
+  file: File.open("/path/to/document.pdf", "rb")
+)
+
+puts file.id
+```
+
+```csharp C#
+using Anthropic;
+
+var client = new AnthropicClient();
+
+var file = await client.Beta.Files.UploadAsync(
+    new FileUploadParams
+    {
+        File = File.OpenRead("/path/to/document.pdf")
+    });
+
+Console.WriteLine(file.Id);
+```
+
+```php PHP
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(
+    apiKey: getenv("ANTHROPIC_API_KEY")
+);
+
+$file = $client->beta->files->upload([
+    'file' => fopen('/path/to/document.pdf', 'r')
+]);
+
+echo $file->id;
 ```
 </CodeGroup>
 
@@ -108,7 +194,7 @@ curl -X POST https://api.anthropic.com/v1/messages \
         "content": [
           {
             "type": "text",
-            "text": "Please summarize this document for me."          
+            "text": "Please summarize this document for me."
           },
           {
             "type": "document",
@@ -135,18 +221,15 @@ response = client.beta.messages.create(
         {
             "role": "user",
             "content": [
-                {
-                    "type": "text",
-                    "text": "Please summarize this document for me."
-                },
+                {"type": "text", "text": "Please summarize this document for me."},
                 {
                     "type": "document",
                     "source": {
                         "type": "file",
-                        "file_id": "file_011CNha8iCJcU1wXNR6q4V8w"
-                    }
-                }
-            ]
+                        "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+                    },
+                },
+            ],
         }
     ],
     betas=["files-api-2025-04-14"],
@@ -155,7 +238,7 @@ print(response)
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
@@ -180,10 +263,173 @@ const response = await anthropic.beta.messages.create({
       ]
     }
   ],
-  betas: ["files-api-2025-04-14"],
+  betas: ["files-api-2025-04-14"]
 });
 
 console.log(response);
+```
+
+```java Java
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.*;
+
+AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+MessageCreateParams params = MessageCreateParams.builder()
+    .model(Model.CLAUDE_OPUS_4_6)
+    .maxTokens(1024)
+    .addMessage(MessageParam.builder()
+        .role(Role.USER)
+        .content(ContentBlockParam.ofText("Please summarize this document for me."))
+        .content(ContentBlockParam.ofDocument(DocumentBlockParam.builder()
+            .source(DocumentBlockParam.Source.ofFile(
+                DocumentBlockParam.Source.File.builder()
+                    .fileId("file_011CNha8iCJcU1wXNR6q4V8w")
+                    .build()))
+            .build()))
+        .build())
+    .build();
+
+Message message = client.beta().messages().create(params);
+System.out.println(message);
+```
+
+```go Go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, _ := client.Beta.Messages.New(context.Background(),
+		anthropic.BetaMessageNewParams{
+			Model:     anthropic.ModelClaudeOpus4_6,
+			MaxTokens: 1024,
+			Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
+			Messages: []anthropic.BetaMessageParam{
+				{
+					Role: "user",
+					Content: []anthropic.BetaContentBlockParam{
+						anthropic.NewBetaTextBlock("Please summarize this document for me."),
+						{
+							Type: "document",
+							Source: &anthropic.BetaDocumentSourceParam{
+								Type:   "file",
+								FileID: "file_011CNha8iCJcU1wXNR6q4V8w",
+							},
+						},
+					},
+				},
+			},
+		})
+
+	fmt.Println(response)
+}
+```
+
+```ruby Ruby
+require "anthropic"
+
+client = Anthropic::Client.new
+
+response = client.beta.messages.create(
+  model: "claude-opus-4-6",
+  max_tokens: 1024,
+  betas: ["files-api-2025-04-14"],
+  messages: [
+    {
+      role: "user",
+      content: [
+        { type: "text", text: "Please summarize this document for me." },
+        {
+          type: "document",
+          source: {
+            type: "file",
+            file_id: "file_011CNha8iCJcU1wXNR6q4V8w"
+          }
+        }
+      ]
+    }
+  ]
+)
+
+puts response
+```
+
+```csharp C#
+using Anthropic;
+
+var client = new AnthropicClient();
+
+var response = await client.Beta.Messages.CreateAsync(
+    new BetaMessageCreateParams
+    {
+        Model = "claude-opus-4-6",
+        MaxTokens = 1024,
+        Betas = new[] { "files-api-2025-04-14" },
+        Messages = new[]
+        {
+            new BetaMessageParam
+            {
+                Role = "user",
+                Content = new object[]
+                {
+                    new { type = "text", text = "Please summarize this document for me." },
+                    new
+                    {
+                        type = "document",
+                        source = new
+                        {
+                            type = "file",
+                            file_id = "file_011CNha8iCJcU1wXNR6q4V8w"
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+Console.WriteLine(response);
+```
+
+```php PHP
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(
+    apiKey: getenv("ANTHROPIC_API_KEY")
+);
+
+$response = $client->beta->messages->create([
+    'model' => 'claude-opus-4-6',
+    'max_tokens' => 1024,
+    'betas' => ['files-api-2025-04-14'],
+    'messages' => [
+        [
+            'role' => 'user',
+            'content' => [
+                ['type' => 'text', 'text' => 'Please summarize this document for me.'],
+                [
+                    'type' => 'document',
+                    'source' => [
+                        'type' => 'file',
+                        'file_id' => 'file_011CNha8iCJcU1wXNR6q4V8w'
+                    ]
+                ]
+            ]
+        ]
+    ]
+]);
+
+print_r($response);
 ```
 </CodeGroup>
 
@@ -200,7 +446,7 @@ Files API mendukung berbagai jenis file yang sesuai dengan jenis blok konten yan
 
 ### Bekerja dengan format file lainnya
 
-Untuk jenis file yang tidak didukung sebagai blok `document` (.csv, .txt, .md, .docx, .xlsx), konversikan file ke teks biasa, dan sertakan konten langsung dalam pesan Anda:
+Untuk jenis file yang tidak didukung sebagai blok `document` (.csv, .txt, .md, .docx, .xlsx), konversi file ke teks biasa, dan sertakan konten langsung dalam pesan Anda:
 
 <CodeGroup>
 ```bash Shell
@@ -238,7 +484,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 # Contoh: Membaca file CSV
-df = pd.read_csv('data.csv')
+df = pd.read_csv("data.csv")
 csv_content = df.to_string()
 
 # Kirim sebagai teks biasa dalam pesan
@@ -251,36 +497,36 @@ response = client.messages.create(
             "content": [
                 {
                     "type": "text",
-                    "text": f"Here's the CSV data:\n\n{csv_content}\n\nPlease analyze this data."
+                    "text": f"Here's the CSV data:\n\n{csv_content}\n\nPlease analyze this data.",
                 }
-            ]
+            ],
         }
-    ]
+    ],
 )
 
 print(response.content[0].text)
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
-import fs from 'fs';
+import { Anthropic } from "@anthropic-ai/sdk";
+import fs from "fs/promises";
 
 const anthropic = new Anthropic();
 
 async function analyzeDocument() {
   // Contoh: Membaca file teks
-  const textContent = fs.readFileSync('document.txt', 'utf-8');
+  const textContent = await fs.readFile("document.txt", "utf-8");
 
   // Kirim sebagai teks biasa dalam pesan
   const response = await anthropic.messages.create({
-    model: 'claude-opus-4-6',
+    model: "claude-opus-4-6",
     max_tokens: 1024,
     messages: [
       {
-        role: 'user',
+        role: "user",
         content: [
           {
-            type: 'text',
+            type: "text",
             text: `Here's the document content:\n\n${textContent}\n\nPlease summarize this document.`
           }
         ]
@@ -296,7 +542,7 @@ analyzeDocument();
 </CodeGroup>
 
 <Note>
-Untuk file .docx yang berisi gambar, konversikan terlebih dahulu ke format PDF, kemudian gunakan [dukungan PDF](/docs/id/build-with-claude/pdf-support) untuk memanfaatkan penguraian gambar bawaan. Ini memungkinkan penggunaan kutipan dari dokumen PDF.
+Untuk file .docx yang berisi gambar, konversi terlebih dahulu ke format PDF, kemudian gunakan [dukungan PDF](/docs/id/build-with-claude/pdf-support) untuk memanfaatkan penguraian gambar bawaan. Ini memungkinkan penggunaan kutipan dari dokumen PDF.
 </Note>
 
 #### Blok dokumen
@@ -311,7 +557,7 @@ Untuk PDF dan file teks, gunakan blok konten `document`:
     "file_id": "file_011CNha8iCJcU1wXNR6q4V8w"
   },
   "title": "Document Title", // Opsional
-  "context": "Context about the document", // Opsional  
+  "context": "Context about the document", // Opsional
   "citations": {"enabled": true} // Opsional, mengaktifkan kutipan
 }
 ```
@@ -334,7 +580,7 @@ Untuk gambar, gunakan blok konten `image`:
 
 #### Daftar file
 
-Ambil daftar file yang telah Anda unggah:
+Ambil daftar file yang diunggah Anda:
 
 <CodeGroup>
 ```bash Shell
@@ -352,11 +598,11 @@ files = client.beta.files.list()
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 const files = await anthropic.beta.files.list({
-  betas: ['files-api-2025-04-14'],
+  betas: ["files-api-2025-04-14"]
 });
 ```
 </CodeGroup>
@@ -381,12 +627,12 @@ file = client.beta.files.retrieve_metadata("file_011CNha8iCJcU1wXNR6q4V8w")
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 const file = await anthropic.beta.files.retrieveMetadata(
   "file_011CNha8iCJcU1wXNR6q4V8w",
-  { betas: ['files-api-2025-04-14'] },
+  { betas: ["files-api-2025-04-14"] }
 );
 ```
 </CodeGroup>
@@ -411,12 +657,12 @@ result = client.beta.files.delete("file_011CNha8iCJcU1wXNR6q4V8w")
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
+import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 const result = await anthropic.beta.files.delete(
   "file_011CNha8iCJcU1wXNR6q4V8w",
-  { betas: ['files-api-2025-04-14'] },
+  { betas: ["files-api-2025-04-14"] }
 );
 ```
 </CodeGroup>
@@ -442,22 +688,22 @@ file_content = client.beta.files.download("file_011CNha8iCJcU1wXNR6q4V8w")
 
 # Simpan ke file
 with open("downloaded_file.txt", "w") as f:
-    f.write(file_content.decode('utf-8'))
+    f.write(file_content.decode("utf-8"))
 ```
 
 ```typescript TypeScript
-import { Anthropic } from '@anthropic-ai/sdk';
-import fs from 'fs';
+import { Anthropic } from "@anthropic-ai/sdk";
+import fs from "fs/promises";
 
 const anthropic = new Anthropic();
 
 const fileContent = await anthropic.beta.files.download(
   "file_011CNha8iCJcU1wXNR6q4V8w",
-  { betas: ['files-api-2025-04-14'] },
+  { betas: ["files-api-2025-04-14"] }
 );
 
 // Simpan ke file
-fs.writeFileSync("downloaded_file.txt", fileContent);
+await fs.writeFile("downloaded_file.txt", fileContent);
 ```
 </CodeGroup>
 
@@ -471,7 +717,7 @@ Anda hanya dapat mengunduh file yang dibuat oleh [skill](/docs/id/build-with-cla
 
 ### Batas penyimpanan
 
-- **Ukuran file maksimal:** 500 MB per file
+- **Ukuran file maksimum:** 500 MB per file
 - **Total penyimpanan:** 100 GB per organisasi
 
 ### Siklus hidup file
@@ -480,7 +726,7 @@ Anda hanya dapat mengunduh file yang dibuat oleh [skill](/docs/id/build-with-cla
 - File bertahan sampai Anda menghapusnya
 - File yang dihapus tidak dapat dipulihkan
 - File tidak dapat diakses melalui API segera setelah penghapusan, tetapi mungkin tetap ada dalam panggilan API `Messages` aktif dan penggunaan alat terkait
-- File yang dihapus pengguna akan dihapus sesuai dengan [kebijakan retensi data](/docs/id/build-with-claude/privacy-policy) kami.
+- File yang dihapus pengguna akan dihapus sesuai dengan [kebijakan retensi data](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) kami.
 
 ---
 
@@ -507,11 +753,11 @@ Kesalahan umum saat menggunakan Files API meliputi:
 
 ## Penggunaan dan penagihan
 
-Operasi File API adalah **gratis**:
+Operasi File API **gratis**:
 - Mengunggah file
 - Mengunduh file
 - Mendaftar file
-- Mendapatkan metadata file  
+- Mendapatkan metadata file
 - Menghapus file
 
 Konten file yang digunakan dalam permintaan `Messages` ditagih sebagai token input. Anda hanya dapat mengunduh file yang dibuat oleh [skill](/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool).

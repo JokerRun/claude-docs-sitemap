@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/typescript
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 80587db72c82d6dfb08cc6cc4f20d938186c0ee99a2ce9cfb86cb7f2f31c1506
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: ea7a2102e3ccb1d2c15bcf74fc848390e5ad209ee4bbf508ac1766442efebf36
 ---
 
 # TypeScript SDK
@@ -335,7 +335,7 @@ Request parameters that correspond to file uploads can be passed in many differe
 - an `fs.ReadStream`
 - the return value of the `toFile` helper
 
-Note that you should set the content-type explicitly as the files API will not infer it for you:
+Set the content-type explicitly as the files API will not infer it for you:
 
 ```typescript
 import fs from "fs";
@@ -481,7 +481,7 @@ Note that requests which time out will be [retried twice by default](#retries).
 ## Long requests
 
 <Warning>
-Anthropic highly encourages using the streaming [Messages API](#streaming-responses) for longer running requests.
+Consider using the streaming [Messages API](#streaming-responses) for longer running requests.
 </Warning>
 
 Avoid setting a large `max_tokens` value without using streaming.
@@ -764,7 +764,7 @@ const client = new Anthropic({
 
 ## Beta features
 
-Anthropic introduces beta features before they are generally available to get early feedback and test new functionality. You can check the availability of all of Claude's capabilities and tools in the [build with Claude overview](/docs/en/build-with-claude/overview).
+Beta features are available before general release to get early feedback and test new functionality. You can check the availability of all of Claude's capabilities and tools in the [build with Claude overview](/docs/en/build-with-claude/overview).
 
 You can access most beta API features through the beta property of the client. To enable a particular beta feature, you need to add the appropriate [beta header](/docs/en/api/beta-headers) to the `betas` field when creating a message.
 

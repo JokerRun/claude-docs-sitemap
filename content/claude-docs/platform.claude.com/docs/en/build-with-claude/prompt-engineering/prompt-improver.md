@@ -1,16 +1,16 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompt-improver
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: b6c56aa2c554255ae718cd98c5cb2828884e1f84b25f635d32816237a4d04a3f
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 67edbc9f8e30dffa3ec9ee15b85b99a5e0b84e0ecbfc7d16847cb6f9d2d20460
 ---
 
-# Use our prompt improver to optimize your prompts
+# Use the prompt improver to optimize your prompts
 
 ---
 
 <Note>
-Our prompt improver is compatible with all Claude models, including those with extended thinking capabilities. For prompting tips specific to extended thinking models, see [here](/docs/en/build-with-claude/extended-thinking).
+The prompt improver is compatible with all Claude models, including those with extended thinking capabilities. For prompting tips specific to extended thinking models, see the [extended thinking documentation](/docs/en/build-with-claude/extended-thinking).
 </Note>
 
 The prompt improver helps you quickly iterate and improve your prompts through automated analysis and enhancement. It excels at making prompts more robust for complex tasks that require high accuracy.
@@ -58,7 +58,7 @@ While examples appear separately in the Workbench UI, they're included at the st
 
 ## Generate test examples
 
-Don't have examples yet? Use our [Test Case Generator](/docs/en/test-and-evaluate/eval-tool#creating-test-cases) to:
+Don't have examples yet? Use the [Test Case Generator](/docs/en/test-and-evaluate/eval-tool#creating-test-cases) to:
 1. Generate sample inputs
 2. Get Claude's responses
 3. Edit the responses to match your ideal outputs
@@ -152,9 +152,9 @@ Common issues and solutions:
     Get inspired by example prompts for various tasks.
   </Card>
   <Card title="GitHub prompting tutorial" icon="link" href="https://github.com/anthropics/prompt-eng-interactive-tutorial">
-    Learn prompting best practices with our interactive tutorial.
+    Learn prompting best practices with the interactive tutorial.
   </Card>
   <Card title="Test your prompts" icon="link" href="/docs/en/test-and-evaluate/eval-tool">
-    Use our evaluation tool to test your improved prompts.
+    Use the evaluation tool to test your improved prompts.
   </Card>
 </CardGroup>

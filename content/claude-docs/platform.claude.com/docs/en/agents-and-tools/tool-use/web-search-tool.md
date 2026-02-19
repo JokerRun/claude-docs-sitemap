@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 3e21c15e740262514dd774db8eba6f241dfb886908a061582929217a77513a5d
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 42d38a2efb0fbb11f231990d9c70f33506ed54f9f6bc3105f54139dde413c79e
 ---
 
 # Web search tool
@@ -56,14 +56,13 @@ Dynamic filtering is particularly effective for:
 Dynamic filtering requires the [code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool) to be enabled. The improved web search tool is available on the Claude API and Microsoft Azure. On Google Vertex AI, the basic web search tool (without dynamic filtering) is available.
 </Note>
 
-To enable dynamic filtering, use the `web_search_20260209` tool version with the `code-execution-web-tools-2026-02-09` beta header:
+To enable dynamic filtering, use the `web_search_20260209` tool version:
 
 <CodeGroup>
 ```bash Shell
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: code-execution-web-tools-2026-02-09" \
     --header "content-type: application/json" \
     --data '{
         "model": "claude-opus-4-6",
@@ -86,10 +85,9 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-response = client.beta.messages.create(
+response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=4096,
-    betas=["code-execution-web-tools-2026-02-09"],
     messages=[
         {
             "role": "user",
@@ -107,10 +105,9 @@ import { Anthropic } from "@anthropic-ai/sdk";
 const anthropic = new Anthropic();
 
 async function main() {
-  const response = await anthropic.beta.messages.create({
+  const response = await anthropic.messages.create({
     model: "claude-opus-4-6",
     max_tokens: 4096,
-    betas: ["code-execution-web-tools-2026-02-09"],
     messages: [
       {
         role: "user",

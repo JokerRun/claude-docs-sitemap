@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/java
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 72052fdc2e7009ec0ae3144099ac2de36f06f10178486d7070c6aa768c85d013
+fetched_at: 2026-02-19T04:23:04.153807Z
+sha256: 222e42c0b8c21525199d855c426138ae0dfef247bcedaf52c4281f119e896f45
 ---
 
 # Java SDK
@@ -722,7 +722,7 @@ AnthropicClient client = AnthropicOkHttpClient.builder()
 ## Long requests
 
 <Warning>
-Anthropic highly encourages using [streaming](#streaming) for longer running requests.
+Consider using [streaming](#streaming) for longer running requests.
 </Warning>
 
 Avoid setting a large `maxTokens` value without using streaming. Some networks may drop idle connections after a certain period of time, which can cause the request to fail or [timeout](#timeouts) without receiving a response from Anthropic. The SDK periodically pings the API to keep the connection alive and reduce the impact of these networks.
