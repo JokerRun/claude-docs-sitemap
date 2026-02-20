@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/results
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: c6ee7a74bafd1fc2d654c7452036bcae6e5af34cfb6e57caf8baa2184aa542f4
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: 642e505e3c31db6acd014334335b43f64e9f8533681c2e08508e5e1f4f072329
 ---
 
 ## Results
@@ -236,7 +236,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
 
-              - `type ToolUseBlockCallerCodeExecution20260120 struct{…}`
+              - `type ServerToolCaller20260120 struct{…}`
 
                 - `ToolID string`
 
@@ -278,7 +278,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
 
-              - `type ServerToolUseBlockCallerCodeExecution20260120 struct{…}`
+              - `type ServerToolCaller20260120 struct{…}`
 
                 - `ToolID string`
 
@@ -332,7 +332,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
 
-              - `type WebSearchToolResultBlockCallerCodeExecution20260120 struct{…}`
+              - `type ServerToolCaller20260120 struct{…}`
 
                 - `ToolID string`
 
@@ -344,19 +344,19 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `type WebSearchToolResultError struct{…}`
 
-                - `ErrorCode WebSearchToolResultErrorErrorCode`
+                - `ErrorCode WebSearchToolResultErrorCode`
 
-                  - `const WebSearchToolResultErrorErrorCodeInvalidToolInput WebSearchToolResultErrorErrorCode = "invalid_tool_input"`
+                  - `const WebSearchToolResultErrorCodeInvalidToolInput WebSearchToolResultErrorCode = "invalid_tool_input"`
 
-                  - `const WebSearchToolResultErrorErrorCodeUnavailable WebSearchToolResultErrorErrorCode = "unavailable"`
+                  - `const WebSearchToolResultErrorCodeUnavailable WebSearchToolResultErrorCode = "unavailable"`
 
-                  - `const WebSearchToolResultErrorErrorCodeMaxUsesExceeded WebSearchToolResultErrorErrorCode = "max_uses_exceeded"`
+                  - `const WebSearchToolResultErrorCodeMaxUsesExceeded WebSearchToolResultErrorCode = "max_uses_exceeded"`
 
-                  - `const WebSearchToolResultErrorErrorCodeTooManyRequests WebSearchToolResultErrorErrorCode = "too_many_requests"`
+                  - `const WebSearchToolResultErrorCodeTooManyRequests WebSearchToolResultErrorCode = "too_many_requests"`
 
-                  - `const WebSearchToolResultErrorErrorCodeQueryTooLong WebSearchToolResultErrorErrorCode = "query_too_long"`
+                  - `const WebSearchToolResultErrorCodeQueryTooLong WebSearchToolResultErrorCode = "query_too_long"`
 
-                  - `const WebSearchToolResultErrorErrorCodeRequestTooLarge WebSearchToolResultErrorErrorCode = "request_too_large"`
+                  - `const WebSearchToolResultErrorCodeRequestTooLarge WebSearchToolResultErrorCode = "request_too_large"`
 
                 - `Type WebSearchToolResultError`
 
@@ -406,7 +406,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `const CodeExecution20250825CodeExecution20250825 CodeExecution20250825 = "code_execution_20250825"`
 
-              - `type WebFetchToolResultBlockCallerCodeExecution20260120 struct{…}`
+              - `type ServerToolCaller20260120 struct{…}`
 
                 - `ToolID string`
 
@@ -964,14 +964,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `const UsageServiceTierPriority UsageServiceTier = "priority"`
 
             - `const UsageServiceTierBatch UsageServiceTier = "batch"`
-
-          - `Speed UsageSpeed`
-
-            The inference speed mode used for this request.
-
-            - `const UsageSpeedStandard UsageSpeed = "standard"`
-
-            - `const UsageSpeedFast UsageSpeed = "fast"`
 
       - `Type Succeeded`
 

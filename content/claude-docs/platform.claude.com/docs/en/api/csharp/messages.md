@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 77467b6aa0635a08d7f13c483faedee67e0d652d8de7f5297dd8a81670f04009
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: 7e5e2fa9198903f07ee9d3569261376d91c2bca917dbbc5f020d5459207ed554
 ---
 
 # Messages
@@ -646,7 +646,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -1274,7 +1274,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -1298,7 +1298,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `class WebSearchToolRequestError:`
 
-              - `required ErrorCode ErrorCode`
+              - `required WebSearchToolResultErrorCode ErrorCode`
 
                 - `"invalid_tool_input"InvalidToolInput`
 
@@ -1357,7 +1357,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -1659,7 +1659,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -2008,6 +2008,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+  - `CacheControlEphemeral? cacheControl`
+
+    Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
   - `string? container`
 
     Container identifier for reuse across requests.
@@ -2033,14 +2037,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"auto"Auto`
 
     - `"standard_only"StandardOnly`
-
-  - `Speed? speed`
-
-    The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
-
-    - `"standard"Standard`
-
-    - `"fast"Fast`
 
   - `IReadOnlyList<string> stopSequences`
 
@@ -2267,6 +2263,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2328,6 +2326,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2375,6 +2375,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2420,6 +2422,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2449,7 +2453,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         When true, guarantees schema validation on tool names and inputs
 
-    - `CodeExecutionTool20260120`
+    - `class CodeExecutionTool20260120:`
+
+      Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
       - `JsonElement Name "code_execution"constant`
 
@@ -2464,6 +2470,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `CacheControlEphemeral? CacheControl`
 
@@ -2509,6 +2517,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `CacheControlEphemeral? CacheControl`
 
@@ -2557,6 +2567,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2604,6 +2616,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2650,6 +2664,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `CacheControlEphemeral? CacheControl`
 
@@ -2701,6 +2717,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `IReadOnlyList<string>? AllowedDomains`
 
@@ -2781,6 +2799,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `IReadOnlyList<string>? AllowedDomains`
 
         List of domains to allow fetching from
@@ -2832,7 +2852,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         When true, guarantees schema validation on tool names and inputs
 
-    - `WebSearchTool20260209`
+    - `class WebSearchTool20260209:`
 
       - `JsonElement Name "web_search"constant`
 
@@ -2847,6 +2867,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `IReadOnlyList<string>? AllowedDomains`
 
@@ -2911,7 +2933,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           The [IANA timezone](https://nodatime.org/TimeZones) of the user.
 
-    - `WebFetchTool20260209`
+    - `class WebFetchTool20260209:`
 
       - `JsonElement Name "web_fetch"constant`
 
@@ -2926,6 +2948,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `IReadOnlyList<string>? AllowedDomains`
 
@@ -2998,6 +3022,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3046,6 +3072,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `CacheControlEphemeral? CacheControl`
 
@@ -3267,7 +3295,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           - `JsonElement Type "code_execution_20250825"constant`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `required string ToolID`
 
@@ -3301,7 +3329,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           - `JsonElement Type "code_execution_20250825"constant`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `required string ToolID`
 
@@ -3347,7 +3375,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           - `JsonElement Type "code_execution_20250825"constant`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `required string ToolID`
 
@@ -3357,7 +3385,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `class WebSearchToolResultError:`
 
-          - `required ErrorCode ErrorCode`
+          - `required WebSearchToolResultErrorCode ErrorCode`
 
             - `"invalid_tool_input"InvalidToolInput`
 
@@ -3409,7 +3437,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           - `JsonElement Type "code_execution_20250825"constant`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `required string ToolID`
 
@@ -3897,14 +3925,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"priority"Priority`
 
       - `"batch"Batch`
-
-    - `required Speed? Speed`
-
-      The inference speed mode used for this request.
-
-      - `"standard"Standard`
-
-      - `"fast"Fast`
 
 ### Example
 
@@ -4559,7 +4579,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -5187,7 +5207,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -5211,7 +5231,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             - `class WebSearchToolRequestError:`
 
-              - `required ErrorCode ErrorCode`
+              - `required WebSearchToolResultErrorCode ErrorCode`
 
                 - `"invalid_tool_input"InvalidToolInput`
 
@@ -5270,7 +5290,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -5572,7 +5592,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -5921,17 +5941,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+  - `CacheControlEphemeral? cacheControl`
+
+    Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
   - `OutputConfig outputConfig`
 
     Configuration options for the model's output, such as the output format.
-
-  - `Speed? speed`
-
-    The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
-
-    - `"standard"Standard`
-
-    - `"fast"Fast`
 
   - `System system`
 
@@ -6142,6 +6158,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -6203,6 +6221,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -6250,6 +6270,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -6295,6 +6317,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -6324,7 +6348,9 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         When true, guarantees schema validation on tool names and inputs
 
-    - `CodeExecutionTool20260120`
+    - `class CodeExecutionTool20260120:`
+
+      Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
       - `JsonElement Name "code_execution"constant`
 
@@ -6339,6 +6365,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `CacheControlEphemeral? CacheControl`
 
@@ -6384,6 +6412,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `CacheControlEphemeral? CacheControl`
 
@@ -6432,6 +6462,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -6479,6 +6511,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -6525,6 +6559,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `CacheControlEphemeral? CacheControl`
 
@@ -6576,6 +6612,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `IReadOnlyList<string>? AllowedDomains`
 
@@ -6656,6 +6694,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `IReadOnlyList<string>? AllowedDomains`
 
         List of domains to allow fetching from
@@ -6707,7 +6747,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         When true, guarantees schema validation on tool names and inputs
 
-    - `WebSearchTool20260209`
+    - `class WebSearchTool20260209:`
 
       - `JsonElement Name "web_search"constant`
 
@@ -6722,6 +6762,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `IReadOnlyList<string>? AllowedDomains`
 
@@ -6786,7 +6828,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           The [IANA timezone](https://nodatime.org/TimeZones) of the user.
 
-    - `WebFetchTool20260209`
+    - `class WebFetchTool20260209:`
 
       - `JsonElement Name "web_fetch"constant`
 
@@ -6801,6 +6843,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `IReadOnlyList<string>? AllowedDomains`
 
@@ -6873,6 +6917,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -6921,6 +6967,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `CacheControlEphemeral? CacheControl`
 
@@ -7582,6 +7630,8 @@ Console.WriteLine(messageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `CacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -7628,6 +7678,59 @@ Console.WriteLine(messageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
+
+  - `CacheControlEphemeral? CacheControl`
+
+    Create a cache control breakpoint at this content block.
+
+    - `JsonElement Type "ephemeral"constant`
+
+    - `Ttl Ttl`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `"5m"Ttl5m`
+
+      - `"1h"Ttl1h`
+
+  - `Boolean DeferLoading`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `Boolean Strict`
+
+    When true, guarantees schema validation on tool names and inputs
+
+### Code Execution Tool 20260120
+
+- `class CodeExecutionTool20260120:`
+
+  Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
+
+  - `JsonElement Name "code_execution"constant`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+  - `JsonElement Type "code_execution_20260120"constant`
+
+  - `IReadOnlyList<AllowedCaller> AllowedCallers`
+
+    - `"direct"Direct`
+
+    - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `CacheControlEphemeral? CacheControl`
 
@@ -8137,7 +8240,7 @@ Console.WriteLine(messageTokensCount);
 
         - `JsonElement Type "code_execution_20250825"constant`
 
-      - `class CodeExecution20260120:`
+      - `class ServerToolCaller20260120:`
 
         - `required string ToolID`
 
@@ -8171,7 +8274,7 @@ Console.WriteLine(messageTokensCount);
 
         - `JsonElement Type "code_execution_20250825"constant`
 
-      - `class CodeExecution20260120:`
+      - `class ServerToolCaller20260120:`
 
         - `required string ToolID`
 
@@ -8217,7 +8320,7 @@ Console.WriteLine(messageTokensCount);
 
         - `JsonElement Type "code_execution_20250825"constant`
 
-      - `class CodeExecution20260120:`
+      - `class ServerToolCaller20260120:`
 
         - `required string ToolID`
 
@@ -8227,7 +8330,7 @@ Console.WriteLine(messageTokensCount);
 
       - `class WebSearchToolResultError:`
 
-        - `required ErrorCode ErrorCode`
+        - `required WebSearchToolResultErrorCode ErrorCode`
 
           - `"invalid_tool_input"InvalidToolInput`
 
@@ -8279,7 +8382,7 @@ Console.WriteLine(messageTokensCount);
 
         - `JsonElement Type "code_execution_20250825"constant`
 
-      - `class CodeExecution20260120:`
+      - `class ServerToolCaller20260120:`
 
         - `required string ToolID`
 
@@ -9127,7 +9230,7 @@ Console.WriteLine(messageTokensCount);
 
         - `JsonElement Type "code_execution_20250825"constant`
 
-      - `class CodeExecution20260120:`
+      - `class ServerToolCaller20260120:`
 
         - `required string ToolID`
 
@@ -9755,7 +9858,7 @@ Console.WriteLine(messageTokensCount);
 
         - `JsonElement Type "code_execution_20250825"constant`
 
-      - `class CodeExecution20260120:`
+      - `class ServerToolCaller20260120:`
 
         - `required string ToolID`
 
@@ -9779,7 +9882,7 @@ Console.WriteLine(messageTokensCount);
 
       - `class WebSearchToolRequestError:`
 
-        - `required ErrorCode ErrorCode`
+        - `required WebSearchToolResultErrorCode ErrorCode`
 
           - `"invalid_tool_input"InvalidToolInput`
 
@@ -9838,7 +9941,7 @@ Console.WriteLine(messageTokensCount);
 
         - `JsonElement Type "code_execution_20250825"constant`
 
-      - `class CodeExecution20260120:`
+      - `class ServerToolCaller20260120:`
 
         - `required string ToolID`
 
@@ -10140,7 +10243,7 @@ Console.WriteLine(messageTokensCount);
 
         - `JsonElement Type "code_execution_20250825"constant`
 
-      - `class CodeExecution20260120:`
+      - `class ServerToolCaller20260120:`
 
         - `required string ToolID`
 
@@ -11175,6 +11278,8 @@ Console.WriteLine(messageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `CacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -11381,7 +11486,7 @@ Console.WriteLine(messageTokensCount);
 
           - `JsonElement Type "code_execution_20250825"constant`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `required string ToolID`
 
@@ -11415,7 +11520,7 @@ Console.WriteLine(messageTokensCount);
 
           - `JsonElement Type "code_execution_20250825"constant`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `required string ToolID`
 
@@ -11461,7 +11566,7 @@ Console.WriteLine(messageTokensCount);
 
           - `JsonElement Type "code_execution_20250825"constant`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `required string ToolID`
 
@@ -11471,7 +11576,7 @@ Console.WriteLine(messageTokensCount);
 
         - `class WebSearchToolResultError:`
 
-          - `required ErrorCode ErrorCode`
+          - `required WebSearchToolResultErrorCode ErrorCode`
 
             - `"invalid_tool_input"InvalidToolInput`
 
@@ -11523,7 +11628,7 @@ Console.WriteLine(messageTokensCount);
 
           - `JsonElement Type "code_execution_20250825"constant`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `required string ToolID`
 
@@ -12012,14 +12117,6 @@ Console.WriteLine(messageTokensCount);
 
       - `"batch"Batch`
 
-    - `required Speed? Speed`
-
-      The inference speed mode used for this request.
-
-      - `"standard"Standard`
-
-      - `"fast"Fast`
-
 ### Message Count Tokens Tool
 
 - `class MessageCountTokensTool: A class that can be one of several variants.union`
@@ -12051,6 +12148,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `CacheControlEphemeral? CacheControl`
 
@@ -12113,6 +12212,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `CacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -12160,6 +12261,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `CacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -12205,6 +12308,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `CacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -12234,7 +12339,9 @@ Console.WriteLine(messageTokensCount);
 
       When true, guarantees schema validation on tool names and inputs
 
-  - `CodeExecutionTool20260120`
+  - `class CodeExecutionTool20260120:`
+
+    Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
     - `JsonElement Name "code_execution"constant`
 
@@ -12249,6 +12356,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `CacheControlEphemeral? CacheControl`
 
@@ -12294,6 +12403,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `CacheControlEphemeral? CacheControl`
 
@@ -12342,6 +12453,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `CacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -12389,6 +12502,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `CacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -12435,6 +12550,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `CacheControlEphemeral? CacheControl`
 
@@ -12486,6 +12603,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `IReadOnlyList<string>? AllowedDomains`
 
@@ -12566,6 +12685,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `IReadOnlyList<string>? AllowedDomains`
 
       List of domains to allow fetching from
@@ -12617,7 +12738,7 @@ Console.WriteLine(messageTokensCount);
 
       When true, guarantees schema validation on tool names and inputs
 
-  - `WebSearchTool20260209`
+  - `class WebSearchTool20260209:`
 
     - `JsonElement Name "web_search"constant`
 
@@ -12632,6 +12753,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `IReadOnlyList<string>? AllowedDomains`
 
@@ -12696,7 +12819,7 @@ Console.WriteLine(messageTokensCount);
 
         The [IANA timezone](https://nodatime.org/TimeZones) of the user.
 
-  - `WebFetchTool20260209`
+  - `class WebFetchTool20260209:`
 
     - `JsonElement Name "web_fetch"constant`
 
@@ -12711,6 +12834,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `IReadOnlyList<string>? AllowedDomains`
 
@@ -12783,6 +12908,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `CacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -12831,6 +12958,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `CacheControlEphemeral? CacheControl`
 
@@ -13461,7 +13590,7 @@ Console.WriteLine(messageTokensCount);
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -14089,7 +14218,7 @@ Console.WriteLine(messageTokensCount);
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -14113,7 +14242,7 @@ Console.WriteLine(messageTokensCount);
 
           - `class WebSearchToolRequestError:`
 
-            - `required ErrorCode ErrorCode`
+            - `required WebSearchToolResultErrorCode ErrorCode`
 
               - `"invalid_tool_input"InvalidToolInput`
 
@@ -14172,7 +14301,7 @@ Console.WriteLine(messageTokensCount);
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -14474,7 +14603,7 @@ Console.WriteLine(messageTokensCount);
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -15229,7 +15358,7 @@ Console.WriteLine(messageTokensCount);
 
           - `JsonElement Type "code_execution_20250825"constant`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `required string ToolID`
 
@@ -15263,7 +15392,7 @@ Console.WriteLine(messageTokensCount);
 
           - `JsonElement Type "code_execution_20250825"constant`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `required string ToolID`
 
@@ -15309,7 +15438,7 @@ Console.WriteLine(messageTokensCount);
 
           - `JsonElement Type "code_execution_20250825"constant`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `required string ToolID`
 
@@ -15319,7 +15448,7 @@ Console.WriteLine(messageTokensCount);
 
         - `class WebSearchToolResultError:`
 
-          - `required ErrorCode ErrorCode`
+          - `required WebSearchToolResultErrorCode ErrorCode`
 
             - `"invalid_tool_input"InvalidToolInput`
 
@@ -15371,7 +15500,7 @@ Console.WriteLine(messageTokensCount);
 
           - `JsonElement Type "code_execution_20250825"constant`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `required string ToolID`
 
@@ -15920,7 +16049,7 @@ Console.WriteLine(messageTokensCount);
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -15954,7 +16083,7 @@ Console.WriteLine(messageTokensCount);
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -16000,7 +16129,7 @@ Console.WriteLine(messageTokensCount);
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -16010,7 +16139,7 @@ Console.WriteLine(messageTokensCount);
 
           - `class WebSearchToolResultError:`
 
-            - `required ErrorCode ErrorCode`
+            - `required WebSearchToolResultErrorCode ErrorCode`
 
               - `"invalid_tool_input"InvalidToolInput`
 
@@ -16062,7 +16191,7 @@ Console.WriteLine(messageTokensCount);
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -16551,14 +16680,6 @@ Console.WriteLine(messageTokensCount);
 
         - `"batch"Batch`
 
-      - `required Speed? Speed`
-
-        The inference speed mode used for this request.
-
-        - `"standard"Standard`
-
-        - `"fast"Fast`
-
   - `JsonElement Type "message_start"constant`
 
 ### Raw Message Stop Event
@@ -16746,7 +16867,7 @@ Console.WriteLine(messageTokensCount);
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -16780,7 +16901,7 @@ Console.WriteLine(messageTokensCount);
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -16826,7 +16947,7 @@ Console.WriteLine(messageTokensCount);
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -16836,7 +16957,7 @@ Console.WriteLine(messageTokensCount);
 
             - `class WebSearchToolResultError:`
 
-              - `required ErrorCode ErrorCode`
+              - `required WebSearchToolResultErrorCode ErrorCode`
 
                 - `"invalid_tool_input"InvalidToolInput`
 
@@ -16888,7 +17009,7 @@ Console.WriteLine(messageTokensCount);
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -17377,14 +17498,6 @@ Console.WriteLine(messageTokensCount);
 
           - `"batch"Batch`
 
-        - `required Speed? Speed`
-
-          The inference speed mode used for this request.
-
-          - `"standard"Standard`
-
-          - `"fast"Fast`
-
     - `JsonElement Type "message_start"constant`
 
   - `class RawMessageDeltaEvent:`
@@ -17595,7 +17708,7 @@ Console.WriteLine(messageTokensCount);
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -17629,7 +17742,7 @@ Console.WriteLine(messageTokensCount);
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -17675,7 +17788,7 @@ Console.WriteLine(messageTokensCount);
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -17685,7 +17798,7 @@ Console.WriteLine(messageTokensCount);
 
           - `class WebSearchToolResultError:`
 
-            - `required ErrorCode ErrorCode`
+            - `required WebSearchToolResultErrorCode ErrorCode`
 
               - `"invalid_tool_input"InvalidToolInput`
 
@@ -17737,7 +17850,7 @@ Console.WriteLine(messageTokensCount);
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -18305,6 +18418,14 @@ Console.WriteLine(messageTokensCount);
 
   - `JsonElement Type "code_execution_20250825"constant`
 
+### Server Tool Caller 20260120
+
+- `class ServerToolCaller20260120:`
+
+  - `required string ToolID`
+
+  - `JsonElement Type "code_execution_20260120"constant`
+
 ### Server Tool Usage
 
 - `class ServerToolUsage:`
@@ -18341,7 +18462,7 @@ Console.WriteLine(messageTokensCount);
 
       - `JsonElement Type "code_execution_20250825"constant`
 
-    - `class CodeExecution20260120:`
+    - `class ServerToolCaller20260120:`
 
       - `required string ToolID`
 
@@ -18432,7 +18553,7 @@ Console.WriteLine(messageTokensCount);
 
       - `JsonElement Type "code_execution_20250825"constant`
 
-    - `class CodeExecution20260120:`
+    - `class ServerToolCaller20260120:`
 
       - `required string ToolID`
 
@@ -19230,6 +19351,8 @@ Console.WriteLine(messageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `CacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -19292,6 +19415,8 @@ Console.WriteLine(messageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `CacheControlEphemeral? CacheControl`
 
@@ -20052,6 +20177,8 @@ Console.WriteLine(messageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `CacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -20102,6 +20229,8 @@ Console.WriteLine(messageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `CacheControlEphemeral? CacheControl`
 
@@ -20353,6 +20482,8 @@ Console.WriteLine(messageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `CacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -20402,6 +20533,8 @@ Console.WriteLine(messageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `CacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -20450,6 +20583,8 @@ Console.WriteLine(messageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `CacheControlEphemeral? CacheControl`
 
@@ -20518,6 +20653,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `CacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -20579,6 +20716,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `CacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -20626,6 +20765,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `CacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -20671,6 +20812,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `CacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -20700,7 +20843,9 @@ Console.WriteLine(messageTokensCount);
 
       When true, guarantees schema validation on tool names and inputs
 
-  - `CodeExecutionTool20260120`
+  - `class CodeExecutionTool20260120:`
+
+    Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
     - `JsonElement Name "code_execution"constant`
 
@@ -20715,6 +20860,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `CacheControlEphemeral? CacheControl`
 
@@ -20760,6 +20907,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `CacheControlEphemeral? CacheControl`
 
@@ -20808,6 +20957,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `CacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -20855,6 +21006,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `CacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -20901,6 +21054,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `CacheControlEphemeral? CacheControl`
 
@@ -20952,6 +21107,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `IReadOnlyList<string>? AllowedDomains`
 
@@ -21032,6 +21189,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `IReadOnlyList<string>? AllowedDomains`
 
       List of domains to allow fetching from
@@ -21083,7 +21242,7 @@ Console.WriteLine(messageTokensCount);
 
       When true, guarantees schema validation on tool names and inputs
 
-  - `WebSearchTool20260209`
+  - `class WebSearchTool20260209:`
 
     - `JsonElement Name "web_search"constant`
 
@@ -21098,6 +21257,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `IReadOnlyList<string>? AllowedDomains`
 
@@ -21162,7 +21323,7 @@ Console.WriteLine(messageTokensCount);
 
         The [IANA timezone](https://nodatime.org/TimeZones) of the user.
 
-  - `WebFetchTool20260209`
+  - `class WebFetchTool20260209:`
 
     - `JsonElement Name "web_fetch"constant`
 
@@ -21177,6 +21338,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `IReadOnlyList<string>? AllowedDomains`
 
@@ -21249,6 +21412,8 @@ Console.WriteLine(messageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `CacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -21297,6 +21462,8 @@ Console.WriteLine(messageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `CacheControlEphemeral? CacheControl`
 
@@ -21351,7 +21518,7 @@ Console.WriteLine(messageTokensCount);
 
       - `JsonElement Type "code_execution_20250825"constant`
 
-    - `class CodeExecution20260120:`
+    - `class ServerToolCaller20260120:`
 
       - `required string ToolID`
 
@@ -21414,7 +21581,7 @@ Console.WriteLine(messageTokensCount);
 
       - `JsonElement Type "code_execution_20250825"constant`
 
-    - `class CodeExecution20260120:`
+    - `class ServerToolCaller20260120:`
 
       - `required string ToolID`
 
@@ -21494,13 +21661,27 @@ Console.WriteLine(messageTokensCount);
 
     - `"batch"Batch`
 
-  - `required Speed? Speed`
+### User Location
 
-    The inference speed mode used for this request.
+- `class UserLocation:`
 
-    - `"standard"Standard`
+  - `JsonElement Type "approximate"constant`
 
-    - `"fast"Fast`
+  - `string? City`
+
+    The city of the user.
+
+  - `string? Country`
+
+    The two letter [ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) of the user.
+
+  - `string? Region`
+
+    The region of the user.
+
+  - `string? Timezone`
+
+    The [IANA timezone](https://nodatime.org/TimeZones) of the user.
 
 ### Web Fetch Block
 
@@ -21795,6 +21976,79 @@ Console.WriteLine(messageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
+  - `IReadOnlyList<string>? AllowedDomains`
+
+    List of domains to allow fetching from
+
+  - `IReadOnlyList<string>? BlockedDomains`
+
+    List of domains to block fetching from
+
+  - `CacheControlEphemeral? CacheControl`
+
+    Create a cache control breakpoint at this content block.
+
+    - `JsonElement Type "ephemeral"constant`
+
+    - `Ttl Ttl`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `"5m"Ttl5m`
+
+      - `"1h"Ttl1h`
+
+  - `CitationsConfigParam? Citations`
+
+    Citations configuration for fetched documents. Citations are disabled by default.
+
+    - `Boolean Enabled`
+
+  - `Boolean DeferLoading`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `Long? MaxContentTokens`
+
+    Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+  - `Long? MaxUses`
+
+    Maximum number of times the tool can be used in the API request.
+
+  - `Boolean Strict`
+
+    When true, guarantees schema validation on tool names and inputs
+
+### Web Fetch Tool 20260209
+
+- `class WebFetchTool20260209:`
+
+  - `JsonElement Name "web_fetch"constant`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+  - `JsonElement Type "web_fetch_20260209"constant`
+
+  - `IReadOnlyList<AllowedCaller> AllowedCallers`
+
+    - `"direct"Direct`
+
+    - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `IReadOnlyList<string>? AllowedDomains`
 
     List of domains to allow fetching from
@@ -21868,7 +22122,7 @@ Console.WriteLine(messageTokensCount);
 
       - `JsonElement Type "code_execution_20250825"constant`
 
-    - `class CodeExecution20260120:`
+    - `class ServerToolCaller20260120:`
 
       - `required string ToolID`
 
@@ -22244,7 +22498,7 @@ Console.WriteLine(messageTokensCount);
 
       - `JsonElement Type "code_execution_20250825"constant`
 
-    - `class CodeExecution20260120:`
+    - `class ServerToolCaller20260120:`
 
       - `required string ToolID`
 
@@ -22364,6 +22618,91 @@ Console.WriteLine(messageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
+  - `IReadOnlyList<string>? AllowedDomains`
+
+    If provided, only these domains will be included in results. Cannot be used alongside `blocked_domains`.
+
+  - `IReadOnlyList<string>? BlockedDomains`
+
+    If provided, these domains will never appear in results. Cannot be used alongside `allowed_domains`.
+
+  - `CacheControlEphemeral? CacheControl`
+
+    Create a cache control breakpoint at this content block.
+
+    - `JsonElement Type "ephemeral"constant`
+
+    - `Ttl Ttl`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `"5m"Ttl5m`
+
+      - `"1h"Ttl1h`
+
+  - `Boolean DeferLoading`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `Long? MaxUses`
+
+    Maximum number of times the tool can be used in the API request.
+
+  - `Boolean Strict`
+
+    When true, guarantees schema validation on tool names and inputs
+
+  - `UserLocation? UserLocation`
+
+    Parameters for the user's location. Used to provide more relevant search results.
+
+    - `JsonElement Type "approximate"constant`
+
+    - `string? City`
+
+      The city of the user.
+
+    - `string? Country`
+
+      The two letter [ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) of the user.
+
+    - `string? Region`
+
+      The region of the user.
+
+    - `string? Timezone`
+
+      The [IANA timezone](https://nodatime.org/TimeZones) of the user.
+
+### Web Search Tool 20260209
+
+- `class WebSearchTool20260209:`
+
+  - `JsonElement Name "web_search"constant`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+  - `JsonElement Type "web_search_20260209"constant`
+
+  - `IReadOnlyList<AllowedCaller> AllowedCallers`
+
+    - `"direct"Direct`
+
+    - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `IReadOnlyList<string>? AllowedDomains`
 
     If provided, only these domains will be included in results. Cannot be used alongside `blocked_domains`.
@@ -22431,7 +22770,7 @@ Console.WriteLine(messageTokensCount);
 
 - `class WebSearchToolRequestError:`
 
-  - `required ErrorCode ErrorCode`
+  - `required WebSearchToolResultErrorCode ErrorCode`
 
     - `"invalid_tool_input"InvalidToolInput`
 
@@ -22469,7 +22808,7 @@ Console.WriteLine(messageTokensCount);
 
       - `JsonElement Type "code_execution_20250825"constant`
 
-    - `class CodeExecution20260120:`
+    - `class ServerToolCaller20260120:`
 
       - `required string ToolID`
 
@@ -22479,7 +22818,7 @@ Console.WriteLine(messageTokensCount);
 
     - `class WebSearchToolResultError:`
 
-      - `required ErrorCode ErrorCode`
+      - `required WebSearchToolResultErrorCode ErrorCode`
 
         - `"invalid_tool_input"InvalidToolInput`
 
@@ -22517,7 +22856,7 @@ Console.WriteLine(messageTokensCount);
 
   - `class WebSearchToolResultError:`
 
-    - `required ErrorCode ErrorCode`
+    - `required WebSearchToolResultErrorCode ErrorCode`
 
       - `"invalid_tool_input"InvalidToolInput`
 
@@ -22565,7 +22904,7 @@ Console.WriteLine(messageTokensCount);
 
     - `class WebSearchToolRequestError:`
 
-      - `required ErrorCode ErrorCode`
+      - `required WebSearchToolResultErrorCode ErrorCode`
 
         - `"invalid_tool_input"InvalidToolInput`
 
@@ -22624,7 +22963,7 @@ Console.WriteLine(messageTokensCount);
 
       - `JsonElement Type "code_execution_20250825"constant`
 
-    - `class CodeExecution20260120:`
+    - `class ServerToolCaller20260120:`
 
       - `required string ToolID`
 
@@ -22648,7 +22987,7 @@ Console.WriteLine(messageTokensCount);
 
   - `class WebSearchToolRequestError:`
 
-    - `required ErrorCode ErrorCode`
+    - `required WebSearchToolResultErrorCode ErrorCode`
 
       - `"invalid_tool_input"InvalidToolInput`
 
@@ -22668,7 +23007,7 @@ Console.WriteLine(messageTokensCount);
 
 - `class WebSearchToolResultError:`
 
-  - `required ErrorCode ErrorCode`
+  - `required WebSearchToolResultErrorCode ErrorCode`
 
     - `"invalid_tool_input"InvalidToolInput`
 
@@ -22683,6 +23022,22 @@ Console.WriteLine(messageTokensCount);
     - `"request_too_large"RequestTooLarge`
 
   - `JsonElement Type "web_search_tool_result_error"constant`
+
+### Web Search Tool Result Error Code
+
+- `enum WebSearchToolResultErrorCode:`
+
+  - `"invalid_tool_input"InvalidToolInput`
+
+  - `"unavailable"Unavailable`
+
+  - `"max_uses_exceeded"MaxUsesExceeded`
+
+  - `"too_many_requests"TooManyRequests`
+
+  - `"query_too_long"QueryTooLong`
+
+  - `"request_too_large"RequestTooLarge`
 
 # Batches
 
@@ -23341,7 +23696,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `JsonElement Type "code_execution_20250825"constant`
 
-                - `class CodeExecution20260120:`
+                - `class ServerToolCaller20260120:`
 
                   - `required string ToolID`
 
@@ -23969,7 +24324,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `JsonElement Type "code_execution_20250825"constant`
 
-                - `class CodeExecution20260120:`
+                - `class ServerToolCaller20260120:`
 
                   - `required string ToolID`
 
@@ -23993,7 +24348,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `class WebSearchToolRequestError:`
 
-                  - `required ErrorCode ErrorCode`
+                  - `required WebSearchToolResultErrorCode ErrorCode`
 
                     - `"invalid_tool_input"InvalidToolInput`
 
@@ -24052,7 +24407,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `JsonElement Type "code_execution_20250825"constant`
 
-                - `class CodeExecution20260120:`
+                - `class ServerToolCaller20260120:`
 
                   - `required string ToolID`
 
@@ -24354,7 +24709,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `JsonElement Type "code_execution_20250825"constant`
 
-                - `class CodeExecution20260120:`
+                - `class ServerToolCaller20260120:`
 
                   - `required string ToolID`
 
@@ -24791,6 +25146,27 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Our previous most fast and cost-effective
 
+      - `CacheControlEphemeral? CacheControl`
+
+        Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+        - `JsonElement Type "ephemeral"constant`
+
+        - `Ttl Ttl`
+
+          The time-to-live for the cache control breakpoint.
+
+          This may be one the following values:
+
+          - `5m`: 5 minutes
+          - `1h`: 1 hour
+
+          Defaults to `5m`.
+
+          - `"5m"Ttl5m`
+
+          - `"1h"Ttl1h`
+
       - `string? Container`
 
         Container identifier for reuse across requests.
@@ -24844,14 +25220,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `"auto"Auto`
 
         - `"standard_only"StandardOnly`
-
-      - `Speed? Speed`
-
-        The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
-
-        - `"standard"Standard`
-
-        - `"fast"Fast`
 
       - `IReadOnlyList<string> StopSequences`
 
@@ -25150,6 +25518,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -25211,6 +25581,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -25258,6 +25630,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -25303,6 +25677,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -25332,7 +25708,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             When true, guarantees schema validation on tool names and inputs
 
-        - `CodeExecutionTool20260120`
+        - `class CodeExecutionTool20260120:`
+
+          Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
           - `JsonElement Name "code_execution"constant`
 
@@ -25347,6 +25725,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `CacheControlEphemeral? CacheControl`
 
@@ -25392,6 +25772,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `CacheControlEphemeral? CacheControl`
 
@@ -25440,6 +25822,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -25487,6 +25871,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -25533,6 +25919,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `CacheControlEphemeral? CacheControl`
 
@@ -25584,6 +25972,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `IReadOnlyList<string>? AllowedDomains`
 
@@ -25664,6 +26054,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `IReadOnlyList<string>? AllowedDomains`
 
             List of domains to allow fetching from
@@ -25715,7 +26107,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             When true, guarantees schema validation on tool names and inputs
 
-        - `WebSearchTool20260209`
+        - `class WebSearchTool20260209:`
 
           - `JsonElement Name "web_search"constant`
 
@@ -25730,6 +26122,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `IReadOnlyList<string>? AllowedDomains`
 
@@ -25794,7 +26188,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               The [IANA timezone](https://nodatime.org/TimeZones) of the user.
 
-        - `WebFetchTool20260209`
+        - `class WebFetchTool20260209:`
 
           - `JsonElement Name "web_fetch"constant`
 
@@ -25809,6 +26203,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `IReadOnlyList<string>? AllowedDomains`
 
@@ -25881,6 +26277,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -25929,6 +26327,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `CacheControlEphemeral? CacheControl`
 
@@ -26085,6 +26485,7 @@ BatchCreateParams parameters = new()
                     },
                 ],
                 Model = Model.ClaudeOpus4_6,
+                CacheControl = new() { Ttl = Ttl.Ttl5m },
                 Container = "container",
                 InferenceGeo = "inference_geo",
                 Metadata = new()
@@ -26103,7 +26504,6 @@ BatchCreateParams parameters = new()
                     },
                 },
                 ServiceTier = ServiceTier.Auto,
-                Speed = Speed.Standard,
                 StopSequences =
                 [
                     "string"
@@ -26817,7 +27217,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `JsonElement Type "code_execution_20250825"constant`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `required string ToolID`
 
@@ -26851,7 +27251,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `JsonElement Type "code_execution_20250825"constant`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `required string ToolID`
 
@@ -26897,7 +27297,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `JsonElement Type "code_execution_20250825"constant`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `required string ToolID`
 
@@ -26907,7 +27307,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `class WebSearchToolResultError:`
 
-                - `required ErrorCode ErrorCode`
+                - `required WebSearchToolResultErrorCode ErrorCode`
 
                   - `"invalid_tool_input"InvalidToolInput`
 
@@ -26959,7 +27359,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `JsonElement Type "code_execution_20250825"constant`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `required string ToolID`
 
@@ -27447,14 +27847,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"priority"Priority`
 
             - `"batch"Batch`
-
-          - `required Speed? Speed`
-
-            The inference speed mode used for this request.
-
-            - `"standard"Standard`
-
-            - `"fast"Fast`
 
       - `JsonElement Type "succeeded"constant`
 
@@ -27920,7 +28312,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
                 - `JsonElement Type "code_execution_20250825"constant`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `required string ToolID`
 
@@ -27954,7 +28346,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
                 - `JsonElement Type "code_execution_20250825"constant`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `required string ToolID`
 
@@ -28000,7 +28392,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
                 - `JsonElement Type "code_execution_20250825"constant`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `required string ToolID`
 
@@ -28010,7 +28402,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
               - `class WebSearchToolResultError:`
 
-                - `required ErrorCode ErrorCode`
+                - `required WebSearchToolResultErrorCode ErrorCode`
 
                   - `"invalid_tool_input"InvalidToolInput`
 
@@ -28062,7 +28454,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
                 - `JsonElement Type "code_execution_20250825"constant`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `required string ToolID`
 
@@ -28551,14 +28943,6 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
             - `"batch"Batch`
 
-          - `required Speed? Speed`
-
-            The inference speed mode used for this request.
-
-            - `"standard"Standard`
-
-            - `"fast"Fast`
-
       - `JsonElement Type "succeeded"constant`
 
     - `class MessageBatchErroredResult:`
@@ -28850,7 +29234,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -28884,7 +29268,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -28930,7 +29314,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -28940,7 +29324,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
             - `class WebSearchToolResultError:`
 
-              - `required ErrorCode ErrorCode`
+              - `required WebSearchToolResultErrorCode ErrorCode`
 
                 - `"invalid_tool_input"InvalidToolInput`
 
@@ -28992,7 +29376,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
               - `JsonElement Type "code_execution_20250825"constant`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `required string ToolID`
 
@@ -29481,14 +29865,6 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
           - `"batch"Batch`
 
-        - `required Speed? Speed`
-
-          The inference speed mode used for this request.
-
-          - `"standard"Standard`
-
-          - `"fast"Fast`
-
     - `JsonElement Type "succeeded"constant`
 
   - `class MessageBatchErroredResult:`
@@ -29742,7 +30118,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -29776,7 +30152,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -29822,7 +30198,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -29832,7 +30208,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
           - `class WebSearchToolResultError:`
 
-            - `required ErrorCode ErrorCode`
+            - `required WebSearchToolResultErrorCode ErrorCode`
 
               - `"invalid_tool_input"InvalidToolInput`
 
@@ -29884,7 +30260,7 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
             - `JsonElement Type "code_execution_20250825"constant`
 
-          - `class CodeExecution20260120:`
+          - `class ServerToolCaller20260120:`
 
             - `required string ToolID`
 
@@ -30372,13 +30748,5 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
         - `"priority"Priority`
 
         - `"batch"Batch`
-
-      - `required Speed? Speed`
-
-        The inference speed mode used for this request.
-
-        - `"standard"Standard`
-
-        - `"fast"Fast`
 
   - `JsonElement Type "succeeded"constant`

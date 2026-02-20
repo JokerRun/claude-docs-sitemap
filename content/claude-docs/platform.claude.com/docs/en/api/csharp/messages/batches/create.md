@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches/create
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: ba25c5347eea65d4925f07b77b3fee59621aabdeab9463bce67b4d76e395e2fa
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: d2f29af5e84b8f2d39046fc7217567e17d4c59f49dc28820dd0b62f7af398add
 ---
 
 ## Create
@@ -660,7 +660,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `JsonElement Type "code_execution_20250825"constant`
 
-                - `class CodeExecution20260120:`
+                - `class ServerToolCaller20260120:`
 
                   - `required string ToolID`
 
@@ -1288,7 +1288,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `JsonElement Type "code_execution_20250825"constant`
 
-                - `class CodeExecution20260120:`
+                - `class ServerToolCaller20260120:`
 
                   - `required string ToolID`
 
@@ -1312,7 +1312,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `class WebSearchToolRequestError:`
 
-                  - `required ErrorCode ErrorCode`
+                  - `required WebSearchToolResultErrorCode ErrorCode`
 
                     - `"invalid_tool_input"InvalidToolInput`
 
@@ -1371,7 +1371,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `JsonElement Type "code_execution_20250825"constant`
 
-                - `class CodeExecution20260120:`
+                - `class ServerToolCaller20260120:`
 
                   - `required string ToolID`
 
@@ -1673,7 +1673,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `JsonElement Type "code_execution_20250825"constant`
 
-                - `class CodeExecution20260120:`
+                - `class ServerToolCaller20260120:`
 
                   - `required string ToolID`
 
@@ -2110,6 +2110,27 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Our previous most fast and cost-effective
 
+      - `CacheControlEphemeral? CacheControl`
+
+        Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+        - `JsonElement Type "ephemeral"constant`
+
+        - `Ttl Ttl`
+
+          The time-to-live for the cache control breakpoint.
+
+          This may be one the following values:
+
+          - `5m`: 5 minutes
+          - `1h`: 1 hour
+
+          Defaults to `5m`.
+
+          - `"5m"Ttl5m`
+
+          - `"1h"Ttl1h`
+
       - `string? Container`
 
         Container identifier for reuse across requests.
@@ -2163,14 +2184,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `"auto"Auto`
 
         - `"standard_only"StandardOnly`
-
-      - `Speed? Speed`
-
-        The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
-
-        - `"standard"Standard`
-
-        - `"fast"Fast`
 
       - `IReadOnlyList<string> StopSequences`
 
@@ -2469,6 +2482,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -2530,6 +2545,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -2577,6 +2594,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -2622,6 +2641,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -2651,7 +2672,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             When true, guarantees schema validation on tool names and inputs
 
-        - `CodeExecutionTool20260120`
+        - `class CodeExecutionTool20260120:`
+
+          Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
           - `JsonElement Name "code_execution"constant`
 
@@ -2666,6 +2689,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `CacheControlEphemeral? CacheControl`
 
@@ -2711,6 +2736,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `CacheControlEphemeral? CacheControl`
 
@@ -2759,6 +2786,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -2806,6 +2835,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -2852,6 +2883,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `CacheControlEphemeral? CacheControl`
 
@@ -2903,6 +2936,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `IReadOnlyList<string>? AllowedDomains`
 
@@ -2983,6 +3018,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `IReadOnlyList<string>? AllowedDomains`
 
             List of domains to allow fetching from
@@ -3034,7 +3071,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             When true, guarantees schema validation on tool names and inputs
 
-        - `WebSearchTool20260209`
+        - `class WebSearchTool20260209:`
 
           - `JsonElement Name "web_search"constant`
 
@@ -3049,6 +3086,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `IReadOnlyList<string>? AllowedDomains`
 
@@ -3113,7 +3152,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               The [IANA timezone](https://nodatime.org/TimeZones) of the user.
 
-        - `WebFetchTool20260209`
+        - `class WebFetchTool20260209:`
 
           - `JsonElement Name "web_fetch"constant`
 
@@ -3128,6 +3167,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `IReadOnlyList<string>? AllowedDomains`
 
@@ -3200,6 +3241,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `CacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -3248,6 +3291,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `CacheControlEphemeral? CacheControl`
 
@@ -3404,6 +3449,7 @@ BatchCreateParams parameters = new()
                     },
                 ],
                 Model = Model.ClaudeOpus4_6,
+                CacheControl = new() { Ttl = Ttl.Ttl5m },
                 Container = "container",
                 InferenceGeo = "inference_geo",
                 Metadata = new()
@@ -3422,7 +3468,6 @@ BatchCreateParams parameters = new()
                     },
                 },
                 ServiceTier = ServiceTier.Auto,
-                Speed = Speed.Standard,
                 StopSequences =
                 [
                     "string"

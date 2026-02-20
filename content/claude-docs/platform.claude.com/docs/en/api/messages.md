@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 00e910c590f3798e479a76a3d812bfa0b5e1a27f1c56f7a176f00bb653546342
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: 726b6be58f2a73cb5fd95dd61f71185c529165c59eb4ae9b6d4b8bc726f49bc1
 ---
 
 # Messages
@@ -710,7 +710,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"1h"`
 
-        - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -732,7 +732,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -1434,7 +1434,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"1h"`
 
-        - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -1456,7 +1456,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -1484,7 +1484,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           - `WebSearchToolRequestError = object { error_code, type }`
 
-            - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+            - `error_code: WebSearchToolResultErrorCode`
 
               - `"invalid_tool_input"`
 
@@ -1531,7 +1531,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"1h"`
 
-        - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -1553,7 +1553,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -1885,7 +1885,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"1h"`
 
-        - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -1907,7 +1907,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -2406,6 +2406,29 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `UnionMember1 = string`
 
+- `cache_control: optional CacheControlEphemeral`
+
+  Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+  - `type: "ephemeral"`
+
+    - `"ephemeral"`
+
+  - `ttl: optional "5m" or "1h"`
+
+    The time-to-live for the cache control breakpoint.
+
+    This may be one the following values:
+
+    - `5m`: 5 minutes
+    - `1h`: 1 hour
+
+    Defaults to `5m`.
+
+    - `"5m"`
+
+    - `"1h"`
+
 - `container: optional string`
 
   Container identifier for reuse across requests.
@@ -2461,14 +2484,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
   - `"auto"`
 
   - `"standard_only"`
-
-- `speed: optional "standard" or "fast"`
-
-  The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
-
-  - `"standard"`
-
-  - `"fast"`
 
 - `stop_sequences: optional array of string`
 
@@ -2791,11 +2806,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       This is how the tool will be called by the model and in `tool_use` blocks.
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -2858,11 +2875,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"bash_20250124"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -2911,11 +2930,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"code_execution_20250522"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -2962,11 +2983,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"code_execution_20250825"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -3015,11 +3038,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"code_execution_20260120"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -3066,11 +3091,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"memory_20250818"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -3119,11 +3146,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"text_editor_20250124"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -3172,11 +3201,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"text_editor_20250429"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -3225,11 +3256,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"text_editor_20250728"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -3282,11 +3315,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"web_search_20250305"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -3331,7 +3366,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       When true, guarantees schema validation on tool names and inputs
 
-    - `user_location: optional object { type, city, country, 2 more }`
+    - `user_location: optional UserLocation`
 
       Parameters for the user's location. Used to provide more relevant search results.
 
@@ -3369,11 +3404,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"web_fetch_20250910"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -3442,11 +3479,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"web_search_20260209"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -3491,7 +3530,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       When true, guarantees schema validation on tool names and inputs
 
-    - `user_location: optional object { type, city, country, 2 more }`
+    - `user_location: optional UserLocation`
 
       Parameters for the user's location. Used to provide more relevant search results.
 
@@ -3529,11 +3568,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"web_fetch_20260209"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -3604,11 +3645,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"tool_search_tool_bm25"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -3657,11 +3700,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"tool_search_tool_regex"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -3883,7 +3928,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `id: string`
 
-      - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+      - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
         Tool invocation directly from the model.
 
@@ -3905,7 +3950,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"code_execution_20250825"`
 
-        - `CodeExecution20260120 = object { tool_id, type }`
+        - `ServerToolCaller20260120 = object { tool_id, type }`
 
           - `tool_id: string`
 
@@ -3925,7 +3970,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `id: string`
 
-      - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+      - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
         Tool invocation directly from the model.
 
@@ -3947,7 +3992,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"code_execution_20250825"`
 
-        - `CodeExecution20260120 = object { tool_id, type }`
+        - `ServerToolCaller20260120 = object { tool_id, type }`
 
           - `tool_id: string`
 
@@ -3979,7 +4024,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `WebSearchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-      - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+      - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
         Tool invocation directly from the model.
 
@@ -4001,7 +4046,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"code_execution_20250825"`
 
-        - `CodeExecution20260120 = object { tool_id, type }`
+        - `ServerToolCaller20260120 = object { tool_id, type }`
 
           - `tool_id: string`
 
@@ -4013,7 +4058,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `WebSearchToolResultError = object { error_code, type }`
 
-          - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+          - `error_code: WebSearchToolResultErrorCode`
 
             - `"invalid_tool_input"`
 
@@ -4053,7 +4098,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `WebFetchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-      - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+      - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
         Tool invocation directly from the model.
 
@@ -4075,7 +4120,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"code_execution_20250825"`
 
-        - `CodeExecution20260120 = object { tool_id, type }`
+        - `ServerToolCaller20260120 = object { tool_id, type }`
 
           - `tool_id: string`
 
@@ -4633,14 +4678,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"priority"`
 
       - `"batch"`
-
-    - `speed: "standard" or "fast"`
-
-      The inference speed mode used for this request.
-
-      - `"standard"`
-
-      - `"fast"`
 
 ### Example
 
@@ -5357,7 +5394,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             - `"1h"`
 
-        - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -5379,7 +5416,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -6081,7 +6118,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             - `"1h"`
 
-        - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -6103,7 +6140,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -6131,7 +6168,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           - `WebSearchToolRequestError = object { error_code, type }`
 
-            - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+            - `error_code: WebSearchToolResultErrorCode`
 
               - `"invalid_tool_input"`
 
@@ -6178,7 +6215,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             - `"1h"`
 
-        - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -6200,7 +6237,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -6532,7 +6569,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             - `"1h"`
 
-        - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -6554,7 +6591,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -7053,6 +7090,29 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `UnionMember1 = string`
 
+- `cache_control: optional CacheControlEphemeral`
+
+  Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+  - `type: "ephemeral"`
+
+    - `"ephemeral"`
+
+  - `ttl: optional "5m" or "1h"`
+
+    The time-to-live for the cache control breakpoint.
+
+    This may be one the following values:
+
+    - `5m`: 5 minutes
+    - `1h`: 1 hour
+
+    Defaults to `5m`.
+
+    - `"5m"`
+
+    - `"1h"`
+
 - `output_config: optional OutputConfig`
 
   Configuration options for the model's output, such as the output format.
@@ -7080,14 +7140,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `type: "json_schema"`
 
       - `"json_schema"`
-
-- `speed: optional "standard" or "fast"`
-
-  The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
-
-  - `"standard"`
-
-  - `"fast"`
 
 - `system: optional string or array of TextBlockParam`
 
@@ -7388,11 +7440,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       This is how the tool will be called by the model and in `tool_use` blocks.
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -7455,11 +7509,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"bash_20250124"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -7508,11 +7564,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"code_execution_20250522"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -7559,11 +7617,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"code_execution_20250825"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -7612,11 +7672,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"code_execution_20260120"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -7663,11 +7725,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"memory_20250818"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -7716,11 +7780,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"text_editor_20250124"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -7769,11 +7835,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"text_editor_20250429"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -7822,11 +7890,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"text_editor_20250728"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -7879,11 +7949,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"web_search_20250305"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -7928,7 +8000,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       When true, guarantees schema validation on tool names and inputs
 
-    - `user_location: optional object { type, city, country, 2 more }`
+    - `user_location: optional UserLocation`
 
       Parameters for the user's location. Used to provide more relevant search results.
 
@@ -7966,11 +8038,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"web_fetch_20250910"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -8039,11 +8113,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"web_search_20260209"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -8088,7 +8164,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       When true, guarantees schema validation on tool names and inputs
 
-    - `user_location: optional object { type, city, country, 2 more }`
+    - `user_location: optional UserLocation`
 
       Parameters for the user's location. Used to provide more relevant search results.
 
@@ -8126,11 +8202,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"web_fetch_20260209"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -8201,11 +8279,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"tool_search_tool_bm25"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -8254,11 +8334,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"tool_search_tool_regex"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -9003,11 +9085,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"code_execution_20250522"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
 
   - `cache_control: optional CacheControlEphemeral`
 
@@ -9056,11 +9140,70 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"code_execution_20250825"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
+
+  - `cache_control: optional CacheControlEphemeral`
+
+    Create a cache control breakpoint at this content block.
+
+    - `type: "ephemeral"`
+
+      - `"ephemeral"`
+
+    - `ttl: optional "5m" or "1h"`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `"5m"`
+
+      - `"1h"`
+
+  - `defer_loading: optional boolean`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `strict: optional boolean`
+
+    When true, guarantees schema validation on tool names and inputs
+
+### Code Execution Tool 20260120
+
+- `CodeExecutionTool20260120 = object { name, type, allowed_callers, 3 more }`
+
+  Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
+
+  - `name: "code_execution"`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `"code_execution"`
+
+  - `type: "code_execution_20260120"`
+
+    - `"code_execution_20260120"`
+
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+
+    - `"direct"`
+
+    - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
 
   - `cache_control: optional CacheControlEphemeral`
 
@@ -9626,7 +9769,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `id: string`
 
-    - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+    - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
       Tool invocation directly from the model.
 
@@ -9648,7 +9791,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `"code_execution_20250825"`
 
-      - `CodeExecution20260120 = object { tool_id, type }`
+      - `ServerToolCaller20260120 = object { tool_id, type }`
 
         - `tool_id: string`
 
@@ -9668,7 +9811,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `id: string`
 
-    - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+    - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
       Tool invocation directly from the model.
 
@@ -9690,7 +9833,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `"code_execution_20250825"`
 
-      - `CodeExecution20260120 = object { tool_id, type }`
+      - `ServerToolCaller20260120 = object { tool_id, type }`
 
         - `tool_id: string`
 
@@ -9722,7 +9865,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `WebSearchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-    - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+    - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
       Tool invocation directly from the model.
 
@@ -9744,7 +9887,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `"code_execution_20250825"`
 
-      - `CodeExecution20260120 = object { tool_id, type }`
+      - `ServerToolCaller20260120 = object { tool_id, type }`
 
         - `tool_id: string`
 
@@ -9756,7 +9899,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `WebSearchToolResultError = object { error_code, type }`
 
-        - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+        - `error_code: WebSearchToolResultErrorCode`
 
           - `"invalid_tool_input"`
 
@@ -9796,7 +9939,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `WebFetchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-    - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+    - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
       Tool invocation directly from the model.
 
@@ -9818,7 +9961,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `"code_execution_20250825"`
 
-      - `CodeExecution20260120 = object { tool_id, type }`
+      - `ServerToolCaller20260120 = object { tool_id, type }`
 
         - `tool_id: string`
 
@@ -10792,7 +10935,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"1h"`
 
-    - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+    - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
       Tool invocation directly from the model.
 
@@ -10814,7 +10957,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `"code_execution_20250825"`
 
-      - `CodeExecution20260120 = object { tool_id, type }`
+      - `ServerToolCaller20260120 = object { tool_id, type }`
 
         - `tool_id: string`
 
@@ -11516,7 +11659,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"1h"`
 
-    - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+    - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
       Tool invocation directly from the model.
 
@@ -11538,7 +11681,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `"code_execution_20250825"`
 
-      - `CodeExecution20260120 = object { tool_id, type }`
+      - `ServerToolCaller20260120 = object { tool_id, type }`
 
         - `tool_id: string`
 
@@ -11566,7 +11709,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `WebSearchToolRequestError = object { error_code, type }`
 
-        - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+        - `error_code: WebSearchToolResultErrorCode`
 
           - `"invalid_tool_input"`
 
@@ -11613,7 +11756,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"1h"`
 
-    - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+    - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
       Tool invocation directly from the model.
 
@@ -11635,7 +11778,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `"code_execution_20250825"`
 
-      - `CodeExecution20260120 = object { tool_id, type }`
+      - `ServerToolCaller20260120 = object { tool_id, type }`
 
         - `tool_id: string`
 
@@ -11967,7 +12110,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"1h"`
 
-    - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+    - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
       Tool invocation directly from the model.
 
@@ -11989,7 +12132,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `"code_execution_20250825"`
 
-      - `CodeExecution20260120 = object { tool_id, type }`
+      - `ServerToolCaller20260120 = object { tool_id, type }`
 
         - `tool_id: string`
 
@@ -13192,11 +13335,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"memory_20250818"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
 
   - `cache_control: optional CacheControlEphemeral`
 
@@ -13404,7 +13549,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `id: string`
 
-      - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+      - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
         Tool invocation directly from the model.
 
@@ -13426,7 +13571,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"code_execution_20250825"`
 
-        - `CodeExecution20260120 = object { tool_id, type }`
+        - `ServerToolCaller20260120 = object { tool_id, type }`
 
           - `tool_id: string`
 
@@ -13446,7 +13591,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `id: string`
 
-      - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+      - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
         Tool invocation directly from the model.
 
@@ -13468,7 +13613,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"code_execution_20250825"`
 
-        - `CodeExecution20260120 = object { tool_id, type }`
+        - `ServerToolCaller20260120 = object { tool_id, type }`
 
           - `tool_id: string`
 
@@ -13500,7 +13645,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `WebSearchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-      - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+      - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
         Tool invocation directly from the model.
 
@@ -13522,7 +13667,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"code_execution_20250825"`
 
-        - `CodeExecution20260120 = object { tool_id, type }`
+        - `ServerToolCaller20260120 = object { tool_id, type }`
 
           - `tool_id: string`
 
@@ -13534,7 +13679,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `WebSearchToolResultError = object { error_code, type }`
 
-          - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+          - `error_code: WebSearchToolResultErrorCode`
 
             - `"invalid_tool_input"`
 
@@ -13574,7 +13719,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `WebFetchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-      - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+      - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
         Tool invocation directly from the model.
 
@@ -13596,7 +13741,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"code_execution_20250825"`
 
-        - `CodeExecution20260120 = object { tool_id, type }`
+        - `ServerToolCaller20260120 = object { tool_id, type }`
 
           - `tool_id: string`
 
@@ -14155,14 +14300,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"batch"`
 
-    - `speed: "standard" or "fast"`
-
-      The inference speed mode used for this request.
-
-      - `"standard"`
-
-      - `"fast"`
-
 ### Message Count Tokens Tool
 
 - `MessageCountTokensTool = Tool or ToolBash20250124 or CodeExecutionTool20250522 or 12 more`
@@ -14191,11 +14328,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       This is how the tool will be called by the model and in `tool_use` blocks.
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -14258,11 +14397,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"bash_20250124"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -14311,11 +14452,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"code_execution_20250522"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -14362,11 +14505,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"code_execution_20250825"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -14415,11 +14560,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"code_execution_20260120"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -14466,11 +14613,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"memory_20250818"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -14519,11 +14668,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"text_editor_20250124"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -14572,11 +14723,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"text_editor_20250429"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -14625,11 +14778,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"text_editor_20250728"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -14682,11 +14837,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"web_search_20250305"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -14731,7 +14888,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       When true, guarantees schema validation on tool names and inputs
 
-    - `user_location: optional object { type, city, country, 2 more }`
+    - `user_location: optional UserLocation`
 
       Parameters for the user's location. Used to provide more relevant search results.
 
@@ -14769,11 +14926,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"web_fetch_20250910"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -14842,11 +15001,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"web_search_20260209"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -14891,7 +15052,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       When true, guarantees schema validation on tool names and inputs
 
-    - `user_location: optional object { type, city, country, 2 more }`
+    - `user_location: optional UserLocation`
 
       Parameters for the user's location. Used to provide more relevant search results.
 
@@ -14929,11 +15090,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"web_fetch_20260209"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -15004,11 +15167,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"tool_search_tool_bm25"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -15057,11 +15222,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"tool_search_tool_regex"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -15762,7 +15929,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"1h"`
 
-        - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -15784,7 +15951,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -16486,7 +16653,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"1h"`
 
-        - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -16508,7 +16675,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -16536,7 +16703,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `WebSearchToolRequestError = object { error_code, type }`
 
-            - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+            - `error_code: WebSearchToolResultErrorCode`
 
               - `"invalid_tool_input"`
 
@@ -16583,7 +16750,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"1h"`
 
-        - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -16605,7 +16772,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -16937,7 +17104,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"1h"`
 
-        - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -16959,7 +17126,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -17918,7 +18085,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `id: string`
 
-      - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+      - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
         Tool invocation directly from the model.
 
@@ -17940,7 +18107,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"code_execution_20250825"`
 
-        - `CodeExecution20260120 = object { tool_id, type }`
+        - `ServerToolCaller20260120 = object { tool_id, type }`
 
           - `tool_id: string`
 
@@ -17960,7 +18127,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `id: string`
 
-      - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+      - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
         Tool invocation directly from the model.
 
@@ -17982,7 +18149,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"code_execution_20250825"`
 
-        - `CodeExecution20260120 = object { tool_id, type }`
+        - `ServerToolCaller20260120 = object { tool_id, type }`
 
           - `tool_id: string`
 
@@ -18014,7 +18181,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `WebSearchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-      - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+      - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
         Tool invocation directly from the model.
 
@@ -18036,7 +18203,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"code_execution_20250825"`
 
-        - `CodeExecution20260120 = object { tool_id, type }`
+        - `ServerToolCaller20260120 = object { tool_id, type }`
 
           - `tool_id: string`
 
@@ -18048,7 +18215,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `WebSearchToolResultError = object { error_code, type }`
 
-          - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+          - `error_code: WebSearchToolResultErrorCode`
 
             - `"invalid_tool_input"`
 
@@ -18088,7 +18255,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `WebFetchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-      - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+      - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
         Tool invocation directly from the model.
 
@@ -18110,7 +18277,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"code_execution_20250825"`
 
-        - `CodeExecution20260120 = object { tool_id, type }`
+        - `ServerToolCaller20260120 = object { tool_id, type }`
 
           - `tool_id: string`
 
@@ -18721,7 +18888,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `id: string`
 
-        - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -18743,7 +18910,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -18763,7 +18930,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `id: string`
 
-        - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -18785,7 +18952,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -18817,7 +18984,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `WebSearchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-        - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -18839,7 +19006,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -18851,7 +19018,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `WebSearchToolResultError = object { error_code, type }`
 
-            - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+            - `error_code: WebSearchToolResultErrorCode`
 
               - `"invalid_tool_input"`
 
@@ -18891,7 +19058,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `WebFetchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-        - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -18913,7 +19080,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -19472,14 +19639,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"batch"`
 
-      - `speed: "standard" or "fast"`
-
-        The inference speed mode used for this request.
-
-        - `"standard"`
-
-        - `"fast"`
-
   - `type: "message_start"`
 
     - `"message_start"`
@@ -19669,7 +19828,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `id: string`
 
-          - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+          - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
             Tool invocation directly from the model.
 
@@ -19691,7 +19850,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
                 - `"code_execution_20250825"`
 
-            - `CodeExecution20260120 = object { tool_id, type }`
+            - `ServerToolCaller20260120 = object { tool_id, type }`
 
               - `tool_id: string`
 
@@ -19711,7 +19870,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `id: string`
 
-          - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+          - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
             Tool invocation directly from the model.
 
@@ -19733,7 +19892,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
                 - `"code_execution_20250825"`
 
-            - `CodeExecution20260120 = object { tool_id, type }`
+            - `ServerToolCaller20260120 = object { tool_id, type }`
 
               - `tool_id: string`
 
@@ -19765,7 +19924,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `WebSearchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-          - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+          - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
             Tool invocation directly from the model.
 
@@ -19787,7 +19946,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
                 - `"code_execution_20250825"`
 
-            - `CodeExecution20260120 = object { tool_id, type }`
+            - `ServerToolCaller20260120 = object { tool_id, type }`
 
               - `tool_id: string`
 
@@ -19799,7 +19958,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `WebSearchToolResultError = object { error_code, type }`
 
-              - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+              - `error_code: WebSearchToolResultErrorCode`
 
                 - `"invalid_tool_input"`
 
@@ -19839,7 +19998,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `WebFetchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-          - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+          - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
             Tool invocation directly from the model.
 
@@ -19861,7 +20020,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
                 - `"code_execution_20250825"`
 
-            - `CodeExecution20260120 = object { tool_id, type }`
+            - `ServerToolCaller20260120 = object { tool_id, type }`
 
               - `tool_id: string`
 
@@ -20420,14 +20579,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `"batch"`
 
-        - `speed: "standard" or "fast"`
-
-          The inference speed mode used for this request.
-
-          - `"standard"`
-
-          - `"fast"`
-
     - `type: "message_start"`
 
       - `"message_start"`
@@ -20642,7 +20793,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `id: string`
 
-        - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -20664,7 +20815,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -20684,7 +20835,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `id: string`
 
-        - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -20706,7 +20857,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -20738,7 +20889,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `WebSearchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-        - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -20760,7 +20911,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -20772,7 +20923,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `WebSearchToolResultError = object { error_code, type }`
 
-            - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+            - `error_code: WebSearchToolResultErrorCode`
 
               - `"invalid_tool_input"`
 
@@ -20812,7 +20963,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `WebFetchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-        - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -20834,7 +20985,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -21510,6 +21661,16 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"code_execution_20250825"`
 
+### Server Tool Caller 20260120
+
+- `ServerToolCaller20260120 = object { tool_id, type }`
+
+  - `tool_id: string`
+
+  - `type: "code_execution_20260120"`
+
+    - `"code_execution_20260120"`
+
 ### Server Tool Usage
 
 - `ServerToolUsage = object { web_fetch_requests, web_search_requests }`
@@ -21528,7 +21689,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `id: string`
 
-  - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+  - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
     Tool invocation directly from the model.
 
@@ -21550,7 +21711,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"code_execution_20250825"`
 
-    - `CodeExecution20260120 = object { tool_id, type }`
+    - `ServerToolCaller20260120 = object { tool_id, type }`
 
       - `tool_id: string`
 
@@ -21631,7 +21792,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"1h"`
 
-  - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+  - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
     Tool invocation directly from the model.
 
@@ -21653,7 +21814,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"code_execution_20250825"`
 
-    - `CodeExecution20260120 = object { tool_id, type }`
+    - `ServerToolCaller20260120 = object { tool_id, type }`
 
       - `tool_id: string`
 
@@ -22555,11 +22716,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     This is how the tool will be called by the model and in `tool_use` blocks.
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
 
   - `cache_control: optional CacheControlEphemeral`
 
@@ -22624,11 +22787,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"bash_20250124"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
 
   - `cache_control: optional CacheControlEphemeral`
 
@@ -23495,11 +23660,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"tool_search_tool_bm25"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
 
   - `cache_control: optional CacheControlEphemeral`
 
@@ -23550,11 +23717,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"tool_search_tool_regex"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
 
   - `cache_control: optional CacheControlEphemeral`
 
@@ -23840,11 +24009,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"text_editor_20250124"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
 
   - `cache_control: optional CacheControlEphemeral`
 
@@ -23895,11 +24066,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"text_editor_20250429"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
 
   - `cache_control: optional CacheControlEphemeral`
 
@@ -23950,11 +24123,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"text_editor_20250728"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
 
   - `cache_control: optional CacheControlEphemeral`
 
@@ -24021,11 +24196,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       This is how the tool will be called by the model and in `tool_use` blocks.
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -24088,11 +24265,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"bash_20250124"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -24141,11 +24320,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"code_execution_20250522"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -24192,11 +24373,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"code_execution_20250825"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -24245,11 +24428,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"code_execution_20260120"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -24296,11 +24481,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"memory_20250818"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -24349,11 +24536,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"text_editor_20250124"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -24402,11 +24591,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"text_editor_20250429"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -24455,11 +24646,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"text_editor_20250728"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -24512,11 +24705,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"web_search_20250305"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -24561,7 +24756,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       When true, guarantees schema validation on tool names and inputs
 
-    - `user_location: optional object { type, city, country, 2 more }`
+    - `user_location: optional UserLocation`
 
       Parameters for the user's location. Used to provide more relevant search results.
 
@@ -24599,11 +24794,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"web_fetch_20250910"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -24672,11 +24869,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"web_search_20260209"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -24721,7 +24920,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       When true, guarantees schema validation on tool names and inputs
 
-    - `user_location: optional object { type, city, country, 2 more }`
+    - `user_location: optional UserLocation`
 
       Parameters for the user's location. Used to provide more relevant search results.
 
@@ -24759,11 +24958,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"web_fetch_20260209"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: optional array of string`
 
@@ -24834,11 +25035,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"tool_search_tool_bm25"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -24887,11 +25090,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"tool_search_tool_regex"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: optional CacheControlEphemeral`
 
@@ -24930,7 +25135,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `id: string`
 
-  - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+  - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
     Tool invocation directly from the model.
 
@@ -24952,7 +25157,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"code_execution_20250825"`
 
-    - `CodeExecution20260120 = object { tool_id, type }`
+    - `ServerToolCaller20260120 = object { tool_id, type }`
 
       - `tool_id: string`
 
@@ -25005,7 +25210,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"1h"`
 
-  - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+  - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
     Tool invocation directly from the model.
 
@@ -25027,7 +25232,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"code_execution_20250825"`
 
-    - `CodeExecution20260120 = object { tool_id, type }`
+    - `ServerToolCaller20260120 = object { tool_id, type }`
 
       - `tool_id: string`
 
@@ -25057,7 +25262,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 ### Usage
 
-- `Usage = object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 6 more }`
+- `Usage = object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 5 more }`
 
   - `cache_creation: CacheCreation`
 
@@ -25113,13 +25318,29 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"batch"`
 
-  - `speed: "standard" or "fast"`
+### User Location
 
-    The inference speed mode used for this request.
+- `UserLocation = object { type, city, country, 2 more }`
 
-    - `"standard"`
+  - `type: "approximate"`
 
-    - `"fast"`
+    - `"approximate"`
+
+  - `city: optional string`
+
+    The city of the user.
+
+  - `country: optional string`
+
+    The two letter [ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) of the user.
+
+  - `region: optional string`
+
+    The region of the user.
+
+  - `timezone: optional string`
+
+    The [IANA timezone](https://nodatime.org/TimeZones) of the user.
 
 ### Web Fetch Block
 
@@ -25464,11 +25685,90 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"web_fetch_20250910"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
+
+  - `allowed_domains: optional array of string`
+
+    List of domains to allow fetching from
+
+  - `blocked_domains: optional array of string`
+
+    List of domains to block fetching from
+
+  - `cache_control: optional CacheControlEphemeral`
+
+    Create a cache control breakpoint at this content block.
+
+    - `type: "ephemeral"`
+
+      - `"ephemeral"`
+
+    - `ttl: optional "5m" or "1h"`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `"5m"`
+
+      - `"1h"`
+
+  - `citations: optional CitationsConfigParam`
+
+    Citations configuration for fetched documents. Citations are disabled by default.
+
+    - `enabled: optional boolean`
+
+  - `defer_loading: optional boolean`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `max_content_tokens: optional number`
+
+    Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+  - `max_uses: optional number`
+
+    Maximum number of times the tool can be used in the API request.
+
+  - `strict: optional boolean`
+
+    When true, guarantees schema validation on tool names and inputs
+
+### Web Fetch Tool 20260209
+
+- `WebFetchTool20260209 = object { name, type, allowed_callers, 8 more }`
+
+  - `name: "web_fetch"`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `"web_fetch"`
+
+  - `type: "web_fetch_20260209"`
+
+    - `"web_fetch_20260209"`
+
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+
+    - `"direct"`
+
+    - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
 
   - `allowed_domains: optional array of string`
 
@@ -25527,7 +25827,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 - `WebFetchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-  - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+  - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
     Tool invocation directly from the model.
 
@@ -25549,7 +25849,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"code_execution_20250825"`
 
-    - `CodeExecution20260120 = object { tool_id, type }`
+    - `ServerToolCaller20260120 = object { tool_id, type }`
 
       - `tool_id: string`
 
@@ -25971,7 +26271,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"1h"`
 
-  - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+  - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
     Tool invocation directly from the model.
 
@@ -25993,7 +26293,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"code_execution_20250825"`
 
-    - `CodeExecution20260120 = object { tool_id, type }`
+    - `ServerToolCaller20260120 = object { tool_id, type }`
 
       - `tool_id: string`
 
@@ -26121,11 +26421,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"web_search_20250305"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
 
   - `allowed_domains: optional array of string`
 
@@ -26170,7 +26472,98 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     When true, guarantees schema validation on tool names and inputs
 
-  - `user_location: optional object { type, city, country, 2 more }`
+  - `user_location: optional UserLocation`
+
+    Parameters for the user's location. Used to provide more relevant search results.
+
+    - `type: "approximate"`
+
+      - `"approximate"`
+
+    - `city: optional string`
+
+      The city of the user.
+
+    - `country: optional string`
+
+      The two letter [ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) of the user.
+
+    - `region: optional string`
+
+      The region of the user.
+
+    - `timezone: optional string`
+
+      The [IANA timezone](https://nodatime.org/TimeZones) of the user.
+
+### Web Search Tool 20260209
+
+- `WebSearchTool20260209 = object { name, type, allowed_callers, 7 more }`
+
+  - `name: "web_search"`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `"web_search"`
+
+  - `type: "web_search_20260209"`
+
+    - `"web_search_20260209"`
+
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+
+    - `"direct"`
+
+    - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
+
+  - `allowed_domains: optional array of string`
+
+    If provided, only these domains will be included in results. Cannot be used alongside `blocked_domains`.
+
+  - `blocked_domains: optional array of string`
+
+    If provided, these domains will never appear in results. Cannot be used alongside `allowed_domains`.
+
+  - `cache_control: optional CacheControlEphemeral`
+
+    Create a cache control breakpoint at this content block.
+
+    - `type: "ephemeral"`
+
+      - `"ephemeral"`
+
+    - `ttl: optional "5m" or "1h"`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `"5m"`
+
+      - `"1h"`
+
+  - `defer_loading: optional boolean`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `max_uses: optional number`
+
+    Maximum number of times the tool can be used in the API request.
+
+  - `strict: optional boolean`
+
+    When true, guarantees schema validation on tool names and inputs
+
+  - `user_location: optional UserLocation`
 
     Parameters for the user's location. Used to provide more relevant search results.
 
@@ -26198,7 +26591,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 - `WebSearchToolRequestError = object { error_code, type }`
 
-  - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+  - `error_code: WebSearchToolResultErrorCode`
 
     - `"invalid_tool_input"`
 
@@ -26220,7 +26613,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 - `WebSearchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-  - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+  - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
     Tool invocation directly from the model.
 
@@ -26242,7 +26635,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"code_execution_20250825"`
 
-    - `CodeExecution20260120 = object { tool_id, type }`
+    - `ServerToolCaller20260120 = object { tool_id, type }`
 
       - `tool_id: string`
 
@@ -26254,7 +26647,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `WebSearchToolResultError = object { error_code, type }`
 
-      - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+      - `error_code: WebSearchToolResultErrorCode`
 
         - `"invalid_tool_input"`
 
@@ -26298,7 +26691,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `WebSearchToolResultError = object { error_code, type }`
 
-    - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+    - `error_code: WebSearchToolResultErrorCode`
 
       - `"invalid_tool_input"`
 
@@ -26352,7 +26745,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `WebSearchToolRequestError = object { error_code, type }`
 
-      - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+      - `error_code: WebSearchToolResultErrorCode`
 
         - `"invalid_tool_input"`
 
@@ -26399,7 +26792,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"1h"`
 
-  - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+  - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
     Tool invocation directly from the model.
 
@@ -26421,7 +26814,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"code_execution_20250825"`
 
-    - `CodeExecution20260120 = object { tool_id, type }`
+    - `ServerToolCaller20260120 = object { tool_id, type }`
 
       - `tool_id: string`
 
@@ -26449,7 +26842,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `WebSearchToolRequestError = object { error_code, type }`
 
-    - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+    - `error_code: WebSearchToolResultErrorCode`
 
       - `"invalid_tool_input"`
 
@@ -26471,7 +26864,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 - `WebSearchToolResultError = object { error_code, type }`
 
-  - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+  - `error_code: WebSearchToolResultErrorCode`
 
     - `"invalid_tool_input"`
 
@@ -26488,6 +26881,22 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
   - `type: "web_search_tool_result_error"`
 
     - `"web_search_tool_result_error"`
+
+### Web Search Tool Result Error Code
+
+- `WebSearchToolResultErrorCode = "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+
+  - `"invalid_tool_input"`
+
+  - `"unavailable"`
+
+  - `"max_uses_exceeded"`
+
+  - `"too_many_requests"`
+
+  - `"query_too_long"`
+
+  - `"request_too_large"`
 
 # Batches
 
@@ -27210,7 +27619,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `"1h"`
 
-            - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -27232,7 +27641,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -27934,7 +28343,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `"1h"`
 
-            - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -27956,7 +28365,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -27984,7 +28393,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `WebSearchToolRequestError = object { error_code, type }`
 
-                - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+                - `error_code: WebSearchToolResultErrorCode`
 
                   - `"invalid_tool_input"`
 
@@ -28031,7 +28440,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `"1h"`
 
-            - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -28053,7 +28462,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -28385,7 +28794,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `"1h"`
 
-            - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -28407,7 +28816,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -28906,6 +29315,29 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `UnionMember1 = string`
 
+    - `cache_control: optional CacheControlEphemeral`
+
+      Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+      - `type: "ephemeral"`
+
+        - `"ephemeral"`
+
+      - `ttl: optional "5m" or "1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `"5m"`
+
+        - `"1h"`
+
     - `container: optional string`
 
       Container identifier for reuse across requests.
@@ -28961,14 +29393,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"auto"`
 
       - `"standard_only"`
-
-    - `speed: optional "standard" or "fast"`
-
-      The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
-
-      - `"standard"`
-
-      - `"fast"`
 
     - `stop_sequences: optional array of string`
 
@@ -29291,11 +29715,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           This is how the tool will be called by the model and in `tool_use` blocks.
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -29358,11 +29784,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"bash_20250124"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -29411,11 +29839,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"code_execution_20250522"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -29462,11 +29892,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"code_execution_20250825"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -29515,11 +29947,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"code_execution_20260120"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -29566,11 +30000,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"memory_20250818"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -29619,11 +30055,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"text_editor_20250124"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -29672,11 +30110,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"text_editor_20250429"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -29725,11 +30165,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"text_editor_20250728"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -29782,11 +30224,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"web_search_20250305"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `allowed_domains: optional array of string`
 
@@ -29831,7 +30275,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           When true, guarantees schema validation on tool names and inputs
 
-        - `user_location: optional object { type, city, country, 2 more }`
+        - `user_location: optional UserLocation`
 
           Parameters for the user's location. Used to provide more relevant search results.
 
@@ -29869,11 +30313,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"web_fetch_20250910"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `allowed_domains: optional array of string`
 
@@ -29942,11 +30388,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"web_search_20260209"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `allowed_domains: optional array of string`
 
@@ -29991,7 +30439,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           When true, guarantees schema validation on tool names and inputs
 
-        - `user_location: optional object { type, city, country, 2 more }`
+        - `user_location: optional UserLocation`
 
           Parameters for the user's location. Used to provide more relevant search results.
 
@@ -30029,11 +30477,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"web_fetch_20260209"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `allowed_domains: optional array of string`
 
@@ -30104,11 +30554,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"tool_search_tool_bm25"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -30157,11 +30609,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"tool_search_tool_regex"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -30935,7 +31389,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `id: string`
 
-            - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -30957,7 +31411,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -30977,7 +31431,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `id: string`
 
-            - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -30999,7 +31453,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -31031,7 +31485,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `WebSearchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-            - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -31053,7 +31507,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -31065,7 +31519,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `WebSearchToolResultError = object { error_code, type }`
 
-                - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+                - `error_code: WebSearchToolResultErrorCode`
 
                   - `"invalid_tool_input"`
 
@@ -31105,7 +31559,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `WebFetchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-            - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -31127,7 +31581,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -31685,14 +32139,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"priority"`
 
             - `"batch"`
-
-          - `speed: "standard" or "fast"`
-
-            The inference speed mode used for this request.
-
-            - `"standard"`
-
-            - `"fast"`
 
       - `type: "succeeded"`
 
@@ -32211,7 +32657,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             - `id: string`
 
-            - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -32233,7 +32679,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -32253,7 +32699,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             - `id: string`
 
-            - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -32275,7 +32721,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -32307,7 +32753,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `WebSearchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-            - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -32329,7 +32775,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -32341,7 +32787,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
               - `WebSearchToolResultError = object { error_code, type }`
 
-                - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+                - `error_code: WebSearchToolResultErrorCode`
 
                   - `"invalid_tool_input"`
 
@@ -32381,7 +32827,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `WebFetchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-            - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -32403,7 +32849,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -32962,14 +33408,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             - `"batch"`
 
-          - `speed: "standard" or "fast"`
-
-            The inference speed mode used for this request.
-
-            - `"standard"`
-
-            - `"fast"`
-
       - `type: "succeeded"`
 
         - `"succeeded"`
@@ -33287,7 +33725,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `id: string`
 
-          - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+          - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
             Tool invocation directly from the model.
 
@@ -33309,7 +33747,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                 - `"code_execution_20250825"`
 
-            - `CodeExecution20260120 = object { tool_id, type }`
+            - `ServerToolCaller20260120 = object { tool_id, type }`
 
               - `tool_id: string`
 
@@ -33329,7 +33767,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `id: string`
 
-          - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+          - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
             Tool invocation directly from the model.
 
@@ -33351,7 +33789,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                 - `"code_execution_20250825"`
 
-            - `CodeExecution20260120 = object { tool_id, type }`
+            - `ServerToolCaller20260120 = object { tool_id, type }`
 
               - `tool_id: string`
 
@@ -33383,7 +33821,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         - `WebSearchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-          - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+          - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
             Tool invocation directly from the model.
 
@@ -33405,7 +33843,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                 - `"code_execution_20250825"`
 
-            - `CodeExecution20260120 = object { tool_id, type }`
+            - `ServerToolCaller20260120 = object { tool_id, type }`
 
               - `tool_id: string`
 
@@ -33417,7 +33855,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             - `WebSearchToolResultError = object { error_code, type }`
 
-              - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+              - `error_code: WebSearchToolResultErrorCode`
 
                 - `"invalid_tool_input"`
 
@@ -33457,7 +33895,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         - `WebFetchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-          - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+          - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
             Tool invocation directly from the model.
 
@@ -33479,7 +33917,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                 - `"code_execution_20250825"`
 
-            - `CodeExecution20260120 = object { tool_id, type }`
+            - `ServerToolCaller20260120 = object { tool_id, type }`
 
               - `tool_id: string`
 
@@ -34038,14 +34476,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `"batch"`
 
-        - `speed: "standard" or "fast"`
-
-          The inference speed mode used for this request.
-
-          - `"standard"`
-
-          - `"fast"`
-
     - `type: "succeeded"`
 
       - `"succeeded"`
@@ -34325,7 +34755,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         - `id: string`
 
-        - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -34347,7 +34777,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -34367,7 +34797,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         - `id: string`
 
-        - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -34389,7 +34819,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -34421,7 +34851,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
       - `WebSearchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-        - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -34443,7 +34873,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -34455,7 +34885,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `WebSearchToolResultError = object { error_code, type }`
 
-            - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+            - `error_code: WebSearchToolResultErrorCode`
 
               - `"invalid_tool_input"`
 
@@ -34495,7 +34925,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
       - `WebFetchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-        - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+        - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
           Tool invocation directly from the model.
 
@@ -34517,7 +34947,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
               - `"code_execution_20250825"`
 
-          - `CodeExecution20260120 = object { tool_id, type }`
+          - `ServerToolCaller20260120 = object { tool_id, type }`
 
             - `tool_id: string`
 
@@ -35075,14 +35505,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
         - `"priority"`
 
         - `"batch"`
-
-      - `speed: "standard" or "fast"`
-
-        The inference speed mode used for this request.
-
-        - `"standard"`
-
-        - `"fast"`
 
   - `type: "succeeded"`
 

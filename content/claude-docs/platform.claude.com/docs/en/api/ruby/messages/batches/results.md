@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/results
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: dd898925c6a7ceaaf71652ccdf4c4217f318ba05797c218d23d81932fcde410e
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: c5618a57245a921e6fc8194d7f2015fb08a16cb878891061b813d91b65112a36
 ---
 
 ## Results
@@ -214,7 +214,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `id: String`
 
-            - `caller_: DirectCaller | ServerToolCaller | { tool_id, type}`
+            - `caller_: DirectCaller | ServerToolCaller | ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -236,7 +236,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `:code_execution_20250825`
 
-              - `class CodeExecution20260120`
+              - `class ServerToolCaller20260120`
 
                 - `tool_id: String`
 
@@ -256,7 +256,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `id: String`
 
-            - `caller_: DirectCaller | ServerToolCaller | { tool_id, type}`
+            - `caller_: DirectCaller | ServerToolCaller | ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -278,7 +278,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `:code_execution_20250825`
 
-              - `class CodeExecution20260120`
+              - `class ServerToolCaller20260120`
 
                 - `tool_id: String`
 
@@ -310,7 +310,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `class WebSearchToolResultBlock`
 
-            - `caller_: DirectCaller | ServerToolCaller | { tool_id, type}`
+            - `caller_: DirectCaller | ServerToolCaller | ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -332,7 +332,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `:code_execution_20250825`
 
-              - `class CodeExecution20260120`
+              - `class ServerToolCaller20260120`
 
                 - `tool_id: String`
 
@@ -344,7 +344,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `class WebSearchToolResultError`
 
-                - `error_code: :invalid_tool_input | :unavailable | :max_uses_exceeded | 3 more`
+                - `error_code: WebSearchToolResultErrorCode`
 
                   - `:invalid_tool_input`
 
@@ -384,7 +384,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `class WebFetchToolResultBlock`
 
-            - `caller_: DirectCaller | ServerToolCaller | { tool_id, type}`
+            - `caller_: DirectCaller | ServerToolCaller | ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -406,7 +406,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `:code_execution_20250825`
 
-              - `class CodeExecution20260120`
+              - `class ServerToolCaller20260120`
 
                 - `tool_id: String`
 
@@ -964,14 +964,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `:priority`
 
             - `:batch`
-
-          - `speed: :standard | :fast`
-
-            The inference speed mode used for this request.
-
-            - `:standard`
-
-            - `:fast`
 
       - `type: :succeeded`
 

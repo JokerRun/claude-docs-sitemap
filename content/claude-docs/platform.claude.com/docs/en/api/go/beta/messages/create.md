@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/create
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 22114aa92004f31b3a00ce02e449158b002258df616e7881e8bf96d4496aa45d
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: 63f60f92df768e65c8209fcfe6ab6538d484c4bca4dab98d263d812ff4c4c220
 ---
 
 ## Create
@@ -2602,6 +2602,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+  - `CacheControl param.Field[BetaCacheControlEphemeral]`
+
+    Body param: Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
   - `Container param.Field[BetaMessageNewParamsContainerUnion]`
 
     Body param: Container identifier for reuse across requests.
@@ -2939,6 +2943,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const BetaToolAllowedCallerCodeExecution20250825 BetaToolAllowedCaller = "code_execution_20250825"`
 
+        - `const BetaToolAllowedCallerCodeExecution20260120 BetaToolAllowedCaller = "code_execution_20260120"`
+
       - `CacheControl BetaCacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -3006,6 +3012,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const BetaToolBash20241022AllowedCallerCodeExecution20250825 BetaToolBash20241022AllowedCaller = "code_execution_20250825"`
 
+        - `const BetaToolBash20241022AllowedCallerCodeExecution20260120 BetaToolBash20241022AllowedCaller = "code_execution_20260120"`
+
       - `CacheControl BetaCacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -3058,6 +3066,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `const BetaToolBash20250124AllowedCallerDirect BetaToolBash20250124AllowedCaller = "direct"`
 
         - `const BetaToolBash20250124AllowedCallerCodeExecution20250825 BetaToolBash20250124AllowedCaller = "code_execution_20250825"`
+
+        - `const BetaToolBash20250124AllowedCallerCodeExecution20260120 BetaToolBash20250124AllowedCaller = "code_execution_20260120"`
 
       - `CacheControl BetaCacheControlEphemeral`
 
@@ -3112,6 +3122,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const BetaCodeExecutionTool20250522AllowedCallerCodeExecution20250825 BetaCodeExecutionTool20250522AllowedCaller = "code_execution_20250825"`
 
+        - `const BetaCodeExecutionTool20250522AllowedCallerCodeExecution20260120 BetaCodeExecutionTool20250522AllowedCaller = "code_execution_20260120"`
+
       - `CacheControl BetaCacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -3162,6 +3174,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `const BetaCodeExecutionTool20250825AllowedCallerDirect BetaCodeExecutionTool20250825AllowedCaller = "direct"`
 
         - `const BetaCodeExecutionTool20250825AllowedCallerCodeExecution20250825 BetaCodeExecutionTool20250825AllowedCaller = "code_execution_20250825"`
+
+        - `const BetaCodeExecutionTool20250825AllowedCallerCodeExecution20260120 BetaCodeExecutionTool20250825AllowedCaller = "code_execution_20260120"`
 
       - `CacheControl BetaCacheControlEphemeral`
 
@@ -3215,6 +3229,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `const BetaCodeExecutionTool20260120AllowedCallerDirect BetaCodeExecutionTool20260120AllowedCaller = "direct"`
 
         - `const BetaCodeExecutionTool20260120AllowedCallerCodeExecution20250825 BetaCodeExecutionTool20260120AllowedCaller = "code_execution_20250825"`
+
+        - `const BetaCodeExecutionTool20260120AllowedCallerCodeExecution20260120 BetaCodeExecutionTool20260120AllowedCaller = "code_execution_20260120"`
 
       - `CacheControl BetaCacheControlEphemeral`
 
@@ -3275,6 +3291,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const BetaToolComputerUse20241022AllowedCallerCodeExecution20250825 BetaToolComputerUse20241022AllowedCaller = "code_execution_20250825"`
 
+        - `const BetaToolComputerUse20241022AllowedCallerCodeExecution20260120 BetaToolComputerUse20241022AllowedCaller = "code_execution_20260120"`
+
       - `CacheControl BetaCacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -3331,6 +3349,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `const BetaMemoryTool20250818AllowedCallerDirect BetaMemoryTool20250818AllowedCaller = "direct"`
 
         - `const BetaMemoryTool20250818AllowedCallerCodeExecution20250825 BetaMemoryTool20250818AllowedCaller = "code_execution_20250825"`
+
+        - `const BetaMemoryTool20250818AllowedCallerCodeExecution20260120 BetaMemoryTool20250818AllowedCaller = "code_execution_20260120"`
 
       - `CacheControl BetaCacheControlEphemeral`
 
@@ -3393,6 +3413,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const BetaToolComputerUse20250124AllowedCallerCodeExecution20250825 BetaToolComputerUse20250124AllowedCaller = "code_execution_20250825"`
 
+        - `const BetaToolComputerUse20250124AllowedCallerCodeExecution20260120 BetaToolComputerUse20250124AllowedCaller = "code_execution_20260120"`
+
       - `CacheControl BetaCacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -3449,6 +3471,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `const BetaToolTextEditor20241022AllowedCallerDirect BetaToolTextEditor20241022AllowedCaller = "direct"`
 
         - `const BetaToolTextEditor20241022AllowedCallerCodeExecution20250825 BetaToolTextEditor20241022AllowedCaller = "code_execution_20250825"`
+
+        - `const BetaToolTextEditor20241022AllowedCallerCodeExecution20260120 BetaToolTextEditor20241022AllowedCaller = "code_execution_20260120"`
 
       - `CacheControl BetaCacheControlEphemeral`
 
@@ -3511,6 +3535,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const BetaToolComputerUse20251124AllowedCallerCodeExecution20250825 BetaToolComputerUse20251124AllowedCaller = "code_execution_20250825"`
 
+        - `const BetaToolComputerUse20251124AllowedCallerCodeExecution20260120 BetaToolComputerUse20251124AllowedCaller = "code_execution_20260120"`
+
       - `CacheControl BetaCacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -3572,6 +3598,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const BetaToolTextEditor20250124AllowedCallerCodeExecution20250825 BetaToolTextEditor20250124AllowedCaller = "code_execution_20250825"`
 
+        - `const BetaToolTextEditor20250124AllowedCallerCodeExecution20260120 BetaToolTextEditor20250124AllowedCaller = "code_execution_20260120"`
+
       - `CacheControl BetaCacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -3625,6 +3653,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const BetaToolTextEditor20250429AllowedCallerCodeExecution20250825 BetaToolTextEditor20250429AllowedCaller = "code_execution_20250825"`
 
+        - `const BetaToolTextEditor20250429AllowedCallerCodeExecution20260120 BetaToolTextEditor20250429AllowedCaller = "code_execution_20260120"`
+
       - `CacheControl BetaCacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -3677,6 +3707,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `const BetaToolTextEditor20250728AllowedCallerDirect BetaToolTextEditor20250728AllowedCaller = "direct"`
 
         - `const BetaToolTextEditor20250728AllowedCallerCodeExecution20250825 BetaToolTextEditor20250728AllowedCaller = "code_execution_20250825"`
+
+        - `const BetaToolTextEditor20250728AllowedCallerCodeExecution20260120 BetaToolTextEditor20250728AllowedCaller = "code_execution_20260120"`
 
       - `CacheControl BetaCacheControlEphemeral`
 
@@ -3734,6 +3766,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `const BetaWebSearchTool20250305AllowedCallerDirect BetaWebSearchTool20250305AllowedCaller = "direct"`
 
         - `const BetaWebSearchTool20250305AllowedCallerCodeExecution20250825 BetaWebSearchTool20250305AllowedCaller = "code_execution_20250825"`
+
+        - `const BetaWebSearchTool20250305AllowedCallerCodeExecution20260120 BetaWebSearchTool20250305AllowedCaller = "code_execution_20260120"`
 
       - `AllowedDomains []string`
 
@@ -3822,6 +3856,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const BetaWebFetchTool20250910AllowedCallerCodeExecution20250825 BetaWebFetchTool20250910AllowedCaller = "code_execution_20250825"`
 
+        - `const BetaWebFetchTool20250910AllowedCallerCodeExecution20260120 BetaWebFetchTool20250910AllowedCaller = "code_execution_20260120"`
+
       - `AllowedDomains []string`
 
         List of domains to allow fetching from
@@ -3894,6 +3930,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `const BetaWebSearchTool20260209AllowedCallerDirect BetaWebSearchTool20260209AllowedCaller = "direct"`
 
         - `const BetaWebSearchTool20260209AllowedCallerCodeExecution20250825 BetaWebSearchTool20260209AllowedCaller = "code_execution_20250825"`
+
+        - `const BetaWebSearchTool20260209AllowedCallerCodeExecution20260120 BetaWebSearchTool20260209AllowedCaller = "code_execution_20260120"`
 
       - `AllowedDomains []string`
 
@@ -3982,6 +4020,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const BetaWebFetchTool20260209AllowedCallerCodeExecution20250825 BetaWebFetchTool20260209AllowedCaller = "code_execution_20250825"`
 
+        - `const BetaWebFetchTool20260209AllowedCallerCodeExecution20260120 BetaWebFetchTool20260209AllowedCaller = "code_execution_20260120"`
+
       - `AllowedDomains []string`
 
         List of domains to allow fetching from
@@ -4057,6 +4097,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `const BetaToolSearchToolBm25_20251119AllowedCallerCodeExecution20250825 BetaToolSearchToolBm25_20251119AllowedCaller = "code_execution_20250825"`
 
+        - `const BetaToolSearchToolBm25_20251119AllowedCallerCodeExecution20260120 BetaToolSearchToolBm25_20251119AllowedCaller = "code_execution_20260120"`
+
       - `CacheControl BetaCacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -4109,6 +4151,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `const BetaToolSearchToolRegex20251119AllowedCallerDirect BetaToolSearchToolRegex20251119AllowedCaller = "direct"`
 
         - `const BetaToolSearchToolRegex20251119AllowedCallerCodeExecution20250825 BetaToolSearchToolRegex20251119AllowedCaller = "code_execution_20250825"`
+
+        - `const BetaToolSearchToolRegex20251119AllowedCallerCodeExecution20260120 BetaToolSearchToolRegex20251119AllowedCaller = "code_execution_20260120"`
 
       - `CacheControl BetaCacheControlEphemeral`
 

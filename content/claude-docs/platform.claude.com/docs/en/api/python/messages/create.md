@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/create
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: d682ebe5c8b01641c57c31d3051083f3da7e8811d997a83477544a944cb16961
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: 7dc4787ae40d8b991b0e64ea08d6859ee03313e173454119d1ec5133a0856377
 ---
 
 ## Create
@@ -732,7 +732,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `"code_execution_20250825"`
 
-          - `class CallerServerToolCaller20260120: …`
+          - `class ServerToolCaller20260120: …`
 
             - `tool_id: str`
 
@@ -1456,7 +1456,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `"code_execution_20250825"`
 
-          - `class CallerServerToolCaller20260120: …`
+          - `class ServerToolCaller20260120: …`
 
             - `tool_id: str`
 
@@ -1484,7 +1484,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           - `class WebSearchToolRequestError: …`
 
-            - `error_code: Literal["invalid_tool_input", "unavailable", "max_uses_exceeded", 3 more]`
+            - `error_code: WebSearchToolResultErrorCode`
 
               - `"invalid_tool_input"`
 
@@ -1553,7 +1553,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `"code_execution_20250825"`
 
-          - `class CallerServerToolCaller20260120: …`
+          - `class ServerToolCaller20260120: …`
 
             - `tool_id: str`
 
@@ -1907,7 +1907,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `"code_execution_20250825"`
 
-          - `class CallerServerToolCaller20260120: …`
+          - `class ServerToolCaller20260120: …`
 
             - `tool_id: str`
 
@@ -2429,6 +2429,29 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `str`
 
+- `cache_control: Optional[CacheControlEphemeralParam]`
+
+  Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+  - `type: Literal["ephemeral"]`
+
+    - `"ephemeral"`
+
+  - `ttl: Optional[Literal["5m", "1h"]]`
+
+    The time-to-live for the cache control breakpoint.
+
+    This may be one the following values:
+
+    - `5m`: 5 minutes
+    - `1h`: 1 hour
+
+    Defaults to `5m`.
+
+    - `"5m"`
+
+    - `"1h"`
+
 - `container: Optional[str]`
 
   Container identifier for reuse across requests.
@@ -2484,14 +2507,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
   - `"auto"`
 
   - `"standard_only"`
-
-- `speed: Optional[Literal["standard", "fast"]]`
-
-  The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
-
-  - `"standard"`
-
-  - `"fast"`
 
 - `stop_sequences: Optional[SequenceNotStr[str]]`
 
@@ -2816,11 +2831,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       This is how the tool will be called by the model and in `tool_use` blocks.
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: Optional[CacheControlEphemeral]`
 
@@ -2883,11 +2900,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"bash_20250124"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: Optional[CacheControlEphemeral]`
 
@@ -2936,11 +2955,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"code_execution_20250522"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: Optional[CacheControlEphemeral]`
 
@@ -2987,11 +3008,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"code_execution_20250825"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: Optional[CacheControlEphemeral]`
 
@@ -3040,11 +3063,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"code_execution_20260120"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: Optional[CacheControlEphemeral]`
 
@@ -3091,11 +3116,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"memory_20250818"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: Optional[CacheControlEphemeral]`
 
@@ -3144,11 +3171,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"text_editor_20250124"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: Optional[CacheControlEphemeral]`
 
@@ -3197,11 +3226,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"text_editor_20250429"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: Optional[CacheControlEphemeral]`
 
@@ -3250,11 +3281,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"text_editor_20250728"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: Optional[CacheControlEphemeral]`
 
@@ -3307,11 +3340,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"web_search_20250305"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: Optional[List[str]]`
 
@@ -3394,11 +3429,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"web_fetch_20250910"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: Optional[List[str]]`
 
@@ -3467,11 +3504,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"web_search_20260209"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: Optional[List[str]]`
 
@@ -3516,7 +3555,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       When true, guarantees schema validation on tool names and inputs
 
-    - `user_location: Optional[WebSearchTool20260209UserLocation]`
+    - `user_location: Optional[UserLocation]`
 
       Parameters for the user's location. Used to provide more relevant search results.
 
@@ -3554,11 +3593,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"web_fetch_20260209"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `allowed_domains: Optional[List[str]]`
 
@@ -3629,11 +3670,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"tool_search_tool_bm25"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: Optional[CacheControlEphemeral]`
 
@@ -3682,11 +3725,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"tool_search_tool_regex"`
 
-    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825"]]]`
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
 
     - `cache_control: Optional[CacheControlEphemeral]`
 
@@ -3930,7 +3975,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"code_execution_20250825"`
 
-        - `class CallerServerToolCaller20260120: …`
+        - `class ServerToolCaller20260120: …`
 
           - `tool_id: str`
 
@@ -3972,7 +4017,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"code_execution_20250825"`
 
-        - `class CallerServerToolCaller20260120: …`
+        - `class ServerToolCaller20260120: …`
 
           - `tool_id: str`
 
@@ -4026,7 +4071,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"code_execution_20250825"`
 
-        - `class CallerServerToolCaller20260120: …`
+        - `class ServerToolCaller20260120: …`
 
           - `tool_id: str`
 
@@ -4038,7 +4083,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `class WebSearchToolResultError: …`
 
-          - `error_code: Literal["invalid_tool_input", "unavailable", "max_uses_exceeded", 3 more]`
+          - `error_code: WebSearchToolResultErrorCode`
 
             - `"invalid_tool_input"`
 
@@ -4100,7 +4145,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"code_execution_20250825"`
 
-        - `class CallerServerToolCaller20260120: …`
+        - `class ServerToolCaller20260120: …`
 
           - `tool_id: str`
 
@@ -4681,14 +4726,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"priority"`
 
       - `"batch"`
-
-    - `speed: Optional[Literal["standard", "fast"]]`
-
-      The inference speed mode used for this request.
-
-      - `"standard"`
-
-      - `"fast"`
 
 ### Example
 

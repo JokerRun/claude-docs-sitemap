@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/count_tokens
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: b3d4fa4f50a6eb68d19336a14d74ac67c0125802320d43e38371b60537660770
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: c9fd5693f27e67e04a9794bb7f741f2f7b42dbc8a529bfe507e98aeba87bbf91
 ---
 
 ## Count Tokens
@@ -1478,7 +1478,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             - `WebSearchToolRequestError`
 
-              - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
+              - `error_code: WebSearchToolResultErrorCode`
 
                 - `"invalid_tool_input"`
 
@@ -2396,6 +2396,29 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `(string & {})`
 
+  - `cache_control?: CacheControlEphemeral | null`
+
+    Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+    - `type: "ephemeral"`
+
+      - `"ephemeral"`
+
+    - `ttl?: "5m" | "1h"`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `"5m"`
+
+      - `"1h"`
+
   - `output_config?: OutputConfig`
 
     Configuration options for the model's output, such as the output format.
@@ -2423,14 +2446,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `type: "json_schema"`
 
         - `"json_schema"`
-
-  - `speed?: "standard" | "fast" | null`
-
-    The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
-
-    - `"standard"`
-
-    - `"fast"`
 
   - `system?: string | Array<TextBlockParam>`
 
@@ -2731,11 +2746,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         This is how the tool will be called by the model and in `tool_use` blocks.
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `cache_control?: CacheControlEphemeral | null`
 
@@ -2798,11 +2815,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"bash_20250124"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `cache_control?: CacheControlEphemeral | null`
 
@@ -2851,11 +2870,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250522"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `cache_control?: CacheControlEphemeral | null`
 
@@ -2902,11 +2923,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `cache_control?: CacheControlEphemeral | null`
 
@@ -2955,11 +2978,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20260120"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `cache_control?: CacheControlEphemeral | null`
 
@@ -3006,11 +3031,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"memory_20250818"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `cache_control?: CacheControlEphemeral | null`
 
@@ -3059,11 +3086,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"text_editor_20250124"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `cache_control?: CacheControlEphemeral | null`
 
@@ -3112,11 +3141,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"text_editor_20250429"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `cache_control?: CacheControlEphemeral | null`
 
@@ -3165,11 +3196,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"text_editor_20250728"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `cache_control?: CacheControlEphemeral | null`
 
@@ -3222,11 +3255,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"web_search_20250305"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `allowed_domains?: Array<string> | null`
 
@@ -3309,11 +3344,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"web_fetch_20250910"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `allowed_domains?: Array<string> | null`
 
@@ -3382,11 +3419,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"web_search_20260209"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `allowed_domains?: Array<string> | null`
 
@@ -3469,11 +3508,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"web_fetch_20260209"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `allowed_domains?: Array<string> | null`
 
@@ -3544,11 +3585,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"tool_search_tool_bm25"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `cache_control?: CacheControlEphemeral | null`
 
@@ -3597,11 +3640,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"tool_search_tool_regex"`
 
-      - `allowed_callers?: Array<"direct" | "code_execution_20250825">`
+      - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
 
         - `"direct"`
 
         - `"code_execution_20250825"`
+
+        - `"code_execution_20260120"`
 
       - `cache_control?: CacheControlEphemeral | null`
 

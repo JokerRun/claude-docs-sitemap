@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/create
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 5cfbe26ba316bc8c507415814b5df6ddd050ec2200e675dcd33fe8d8e26e441f
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: ee93884d5c60f364da19b09a499f041794935c83cf0c966cb2287700d2c5af1f
 ---
 
 ## Create
@@ -724,7 +724,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `"1h"`
 
-            - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -746,7 +746,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -1448,7 +1448,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `"1h"`
 
-            - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -1470,7 +1470,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -1498,7 +1498,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `WebSearchToolRequestError = object { error_code, type }`
 
-                - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+                - `error_code: WebSearchToolResultErrorCode`
 
                   - `"invalid_tool_input"`
 
@@ -1545,7 +1545,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `"1h"`
 
-            - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -1567,7 +1567,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -1899,7 +1899,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `"1h"`
 
-            - `caller: optional DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -1921,7 +1921,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -2420,6 +2420,29 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `UnionMember1 = string`
 
+    - `cache_control: optional CacheControlEphemeral`
+
+      Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+      - `type: "ephemeral"`
+
+        - `"ephemeral"`
+
+      - `ttl: optional "5m" or "1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `"5m"`
+
+        - `"1h"`
+
     - `container: optional string`
 
       Container identifier for reuse across requests.
@@ -2475,14 +2498,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"auto"`
 
       - `"standard_only"`
-
-    - `speed: optional "standard" or "fast"`
-
-      The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
-
-      - `"standard"`
-
-      - `"fast"`
 
     - `stop_sequences: optional array of string`
 
@@ -2805,11 +2820,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           This is how the tool will be called by the model and in `tool_use` blocks.
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -2872,11 +2889,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"bash_20250124"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -2925,11 +2944,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"code_execution_20250522"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -2976,11 +2997,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"code_execution_20250825"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -3029,11 +3052,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"code_execution_20260120"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -3080,11 +3105,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"memory_20250818"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -3133,11 +3160,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"text_editor_20250124"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -3186,11 +3215,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"text_editor_20250429"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -3239,11 +3270,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"text_editor_20250728"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -3296,11 +3329,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"web_search_20250305"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `allowed_domains: optional array of string`
 
@@ -3345,7 +3380,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           When true, guarantees schema validation on tool names and inputs
 
-        - `user_location: optional object { type, city, country, 2 more }`
+        - `user_location: optional UserLocation`
 
           Parameters for the user's location. Used to provide more relevant search results.
 
@@ -3383,11 +3418,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"web_fetch_20250910"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `allowed_domains: optional array of string`
 
@@ -3456,11 +3493,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"web_search_20260209"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `allowed_domains: optional array of string`
 
@@ -3505,7 +3544,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           When true, guarantees schema validation on tool names and inputs
 
-        - `user_location: optional object { type, city, country, 2 more }`
+        - `user_location: optional UserLocation`
 
           Parameters for the user's location. Used to provide more relevant search results.
 
@@ -3543,11 +3582,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"web_fetch_20260209"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `allowed_domains: optional array of string`
 
@@ -3618,11 +3659,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"tool_search_tool_bm25"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 
@@ -3671,11 +3714,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"tool_search_tool_regex"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
 
         - `cache_control: optional CacheControlEphemeral`
 

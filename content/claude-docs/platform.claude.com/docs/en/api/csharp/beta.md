@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: e15e93240594416e718d616049f5c82c23eea4d32e53822997556067d8cab61b
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: 45596d3c1b001d7a63df8490f80bcf7e068d717fbb68bab1c4acfc8895339792
 ---
 
 # Beta
@@ -2698,6 +2698,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+  - `BetaCacheControlEphemeral? cacheControl`
+
+    Body param: Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
   - `Container? container`
 
     Body param: Container identifier for reuse across requests.
@@ -3017,6 +3021,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3078,6 +3084,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3124,6 +3132,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -3172,6 +3182,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3216,6 +3228,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -3263,6 +3277,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -3317,6 +3333,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3367,6 +3385,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -3423,6 +3443,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3473,6 +3495,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -3529,6 +3553,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3584,6 +3610,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3631,6 +3659,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3677,6 +3707,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -3728,6 +3760,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `IReadOnlyList<string>? AllowedDomains`
 
@@ -3808,6 +3842,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `IReadOnlyList<string>? AllowedDomains`
 
         List of domains to allow fetching from
@@ -3874,6 +3910,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `IReadOnlyList<string>? AllowedDomains`
 
@@ -3954,6 +3992,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `IReadOnlyList<string>? AllowedDomains`
 
         List of domains to allow fetching from
@@ -4025,6 +4065,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -4073,6 +4115,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -7568,6 +7612,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+  - `BetaCacheControlEphemeral? cacheControl`
+
+    Body param: Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
   - `BetaContextManagementConfig? contextManagement`
 
     Body param: Context management configuration.
@@ -7819,6 +7867,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -7880,6 +7930,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -7926,6 +7978,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -7974,6 +8028,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -8018,6 +8074,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -8065,6 +8123,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -8119,6 +8179,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -8169,6 +8231,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -8225,6 +8289,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -8275,6 +8341,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -8331,6 +8399,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -8386,6 +8456,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -8433,6 +8505,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -8479,6 +8553,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -8530,6 +8606,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `IReadOnlyList<string>? AllowedDomains`
 
@@ -8610,6 +8688,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `IReadOnlyList<string>? AllowedDomains`
 
         List of domains to allow fetching from
@@ -8676,6 +8756,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `IReadOnlyList<string>? AllowedDomains`
 
@@ -8756,6 +8838,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `IReadOnlyList<string>? AllowedDomains`
 
         List of domains to allow fetching from
@@ -8827,6 +8911,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20250825"CodeExecution20250825`
 
+        - `"code_execution_20260120"CodeExecution20260120`
+
       - `BetaCacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -8875,6 +8961,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"direct"Direct`
 
         - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -9734,6 +9822,8 @@ Console.WriteLine(betaMessageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `BetaCacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -9780,6 +9870,8 @@ Console.WriteLine(betaMessageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `BetaCacheControlEphemeral? CacheControl`
 
@@ -9829,6 +9921,8 @@ Console.WriteLine(betaMessageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `BetaCacheControlEphemeral? CacheControl`
 
@@ -14136,6 +14230,8 @@ Console.WriteLine(betaMessageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `BetaCacheControlEphemeral? CacheControl`
 
@@ -23746,6 +23842,8 @@ Console.WriteLine(betaMessageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `BetaCacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -23809,6 +23907,8 @@ Console.WriteLine(betaMessageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `BetaCacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -23857,6 +23957,8 @@ Console.WriteLine(betaMessageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `BetaCacheControlEphemeral? CacheControl`
 
@@ -24021,6 +24123,8 @@ Console.WriteLine(betaMessageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `BetaCacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -24082,6 +24186,8 @@ Console.WriteLine(betaMessageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `BetaCacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -24142,6 +24248,8 @@ Console.WriteLine(betaMessageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `BetaCacheControlEphemeral? CacheControl`
 
@@ -24822,6 +24930,8 @@ Console.WriteLine(betaMessageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `BetaCacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -24872,6 +24982,8 @@ Console.WriteLine(betaMessageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `BetaCacheControlEphemeral? CacheControl`
 
@@ -25111,6 +25223,8 @@ Console.WriteLine(betaMessageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `BetaCacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -25159,6 +25273,8 @@ Console.WriteLine(betaMessageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `BetaCacheControlEphemeral? CacheControl`
 
@@ -25209,6 +25325,8 @@ Console.WriteLine(betaMessageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `BetaCacheControlEphemeral? CacheControl`
 
     Create a cache control breakpoint at this content block.
@@ -25257,6 +25375,8 @@ Console.WriteLine(betaMessageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `BetaCacheControlEphemeral? CacheControl`
 
@@ -25325,6 +25445,8 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `BetaCacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -25386,6 +25508,8 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `BetaCacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -25432,6 +25556,8 @@ Console.WriteLine(betaMessageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `BetaCacheControlEphemeral? CacheControl`
 
@@ -25480,6 +25606,8 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `BetaCacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -25524,6 +25652,8 @@ Console.WriteLine(betaMessageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `BetaCacheControlEphemeral? CacheControl`
 
@@ -25571,6 +25701,8 @@ Console.WriteLine(betaMessageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `BetaCacheControlEphemeral? CacheControl`
 
@@ -25625,6 +25757,8 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `BetaCacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -25675,6 +25809,8 @@ Console.WriteLine(betaMessageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `BetaCacheControlEphemeral? CacheControl`
 
@@ -25731,6 +25867,8 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `BetaCacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -25781,6 +25919,8 @@ Console.WriteLine(betaMessageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `BetaCacheControlEphemeral? CacheControl`
 
@@ -25837,6 +25977,8 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `BetaCacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -25892,6 +26034,8 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `BetaCacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -25939,6 +26083,8 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `BetaCacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -25985,6 +26131,8 @@ Console.WriteLine(betaMessageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `BetaCacheControlEphemeral? CacheControl`
 
@@ -26036,6 +26184,8 @@ Console.WriteLine(betaMessageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `IReadOnlyList<string>? AllowedDomains`
 
@@ -26116,6 +26266,8 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `IReadOnlyList<string>? AllowedDomains`
 
       List of domains to allow fetching from
@@ -26182,6 +26334,8 @@ Console.WriteLine(betaMessageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `IReadOnlyList<string>? AllowedDomains`
 
@@ -26262,6 +26416,8 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `IReadOnlyList<string>? AllowedDomains`
 
       List of domains to allow fetching from
@@ -26333,6 +26489,8 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `"code_execution_20250825"CodeExecution20250825`
 
+      - `"code_execution_20260120"CodeExecution20260120`
+
     - `BetaCacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
@@ -26381,6 +26539,8 @@ Console.WriteLine(betaMessageTokensCount);
       - `"direct"Direct`
 
       - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
 
     - `BetaCacheControlEphemeral? CacheControl`
 
@@ -27061,6 +27221,8 @@ Console.WriteLine(betaMessageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `IReadOnlyList<string>? AllowedDomains`
 
     List of domains to allow fetching from
@@ -27129,6 +27291,8 @@ Console.WriteLine(betaMessageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `IReadOnlyList<string>? AllowedDomains`
 
@@ -27711,6 +27875,8 @@ Console.WriteLine(betaMessageTokensCount);
 
     - `"code_execution_20250825"CodeExecution20250825`
 
+    - `"code_execution_20260120"CodeExecution20260120`
+
   - `IReadOnlyList<string>? AllowedDomains`
 
     If provided, only these domains will be included in results. Cannot be used alongside `blocked_domains`.
@@ -27791,6 +27957,8 @@ Console.WriteLine(betaMessageTokensCount);
     - `"direct"Direct`
 
     - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
 
   - `IReadOnlyList<string>? AllowedDomains`
 
@@ -30487,6 +30655,27 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Our previous most fast and cost-effective
 
+      - `BetaCacheControlEphemeral? CacheControl`
+
+        Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+        - `JsonElement Type "ephemeral"constant`
+
+        - `Ttl Ttl`
+
+          The time-to-live for the cache control breakpoint.
+
+          This may be one the following values:
+
+          - `5m`: 5 minutes
+          - `1h`: 1 hour
+
+          Defaults to `5m`.
+
+          - `"5m"Ttl5m`
+
+          - `"1h"Ttl1h`
+
       - `Container? Container`
 
         Container identifier for reuse across requests.
@@ -31006,6 +31195,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `BetaCacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -31067,6 +31258,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `BetaCacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -31113,6 +31306,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `BetaCacheControlEphemeral? CacheControl`
 
@@ -31161,6 +31356,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `BetaCacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -31205,6 +31402,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `BetaCacheControlEphemeral? CacheControl`
 
@@ -31252,6 +31451,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `BetaCacheControlEphemeral? CacheControl`
 
@@ -31306,6 +31507,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `BetaCacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -31356,6 +31559,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `BetaCacheControlEphemeral? CacheControl`
 
@@ -31412,6 +31617,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `BetaCacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -31462,6 +31669,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `BetaCacheControlEphemeral? CacheControl`
 
@@ -31518,6 +31727,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `BetaCacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -31573,6 +31784,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `BetaCacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -31620,6 +31833,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `BetaCacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -31666,6 +31881,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `BetaCacheControlEphemeral? CacheControl`
 
@@ -31717,6 +31934,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `IReadOnlyList<string>? AllowedDomains`
 
@@ -31797,6 +32016,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `IReadOnlyList<string>? AllowedDomains`
 
             List of domains to allow fetching from
@@ -31863,6 +32084,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `IReadOnlyList<string>? AllowedDomains`
 
@@ -31943,6 +32166,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `IReadOnlyList<string>? AllowedDomains`
 
             List of domains to allow fetching from
@@ -32014,6 +32239,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"code_execution_20250825"CodeExecution20250825`
 
+            - `"code_execution_20260120"CodeExecution20260120`
+
           - `BetaCacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
@@ -32062,6 +32289,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"direct"Direct`
 
             - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
 
           - `BetaCacheControlEphemeral? CacheControl`
 
@@ -32312,6 +32541,7 @@ BatchCreateParams parameters = new()
                     },
                 ],
                 Model = Model.ClaudeOpus4_6,
+                CacheControl = new() { Ttl = Ttl.Ttl5m },
                 Container = new BetaContainerParams()
                 {
                     ID = "id",

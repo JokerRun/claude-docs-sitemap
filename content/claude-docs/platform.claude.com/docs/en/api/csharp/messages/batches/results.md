@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches/results
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: e49253c019dbcdb6aad46785a7e94d6e13539aeacdcb9c2e2a6e525e27426c63
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: 6497f2bfe328b9e1f72f0cf601a77f449342306f8d8628e36335f5eb7be399de
 ---
 
 ## Results
@@ -218,7 +218,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `JsonElement Type "code_execution_20250825"constant`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `required string ToolID`
 
@@ -252,7 +252,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `JsonElement Type "code_execution_20250825"constant`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `required string ToolID`
 
@@ -298,7 +298,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `JsonElement Type "code_execution_20250825"constant`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `required string ToolID`
 
@@ -308,7 +308,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `class WebSearchToolResultError:`
 
-                - `required ErrorCode ErrorCode`
+                - `required WebSearchToolResultErrorCode ErrorCode`
 
                   - `"invalid_tool_input"InvalidToolInput`
 
@@ -360,7 +360,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `JsonElement Type "code_execution_20250825"constant`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `required string ToolID`
 
@@ -848,14 +848,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"priority"Priority`
 
             - `"batch"Batch`
-
-          - `required Speed? Speed`
-
-            The inference speed mode used for this request.
-
-            - `"standard"Standard`
-
-            - `"fast"Fast`
 
       - `JsonElement Type "succeeded"constant`
 

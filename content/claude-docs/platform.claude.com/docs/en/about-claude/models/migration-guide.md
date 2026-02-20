@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/migration-guide
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 08d8e47355b5a8d08fd4e6858b0a12d1d2a53490a9c91c6b501910367d587885
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: e01be73b831f7c91c3d51d2ec022fbb25f29d4d531cc965e5ea0b8415907e7ad
 ---
 
 # Migration guide
@@ -594,9 +594,13 @@ Haiku 4.5 pricing is $1 per million input tokens, $5 per million output tokens. 
 # From Haiku 3.5
 model = "claude-3-5-haiku-20241022"  # Before
 model = "claude-haiku-4-5-20251001"  # After
+
+# From Haiku 3
+model = "claude-3-haiku-20240307"  # Before
+model = "claude-haiku-4-5-20251001"  # After
 ```
 
-**Review new rate limits:** Haiku 4.5 has separate rate limits from Haiku 3.5. See [Rate limits documentation](/docs/en/api/rate-limits) for details.
+**Review new rate limits:** Haiku 4.5 has separate rate limits from Haiku 3.5 and Haiku 3. See [Rate limits documentation](/docs/en/api/rate-limits) for details.
 
 <Tip>
 For significant performance improvements on coding and reasoning tasks, consider enabling extended thinking with `thinking: {type: "enabled", budget_tokens: N}`.

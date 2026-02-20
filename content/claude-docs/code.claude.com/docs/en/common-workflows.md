@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 79029abbe9aefd12f08023a4a2bd3e25ce3d86c4200f1343c381047af5657ea6
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: 6558bd693fc00481eff523df82a96e5b1e2e4c09827ff556ec7e655b7d20adfa
 ---
 
 > ## Documentation Index
@@ -715,6 +715,65 @@ Suppose you need to work on multiple tasks simultaneously with complete code iso
 </Tip>
 
 For automated coordination of parallel sessions with shared tasks and messaging, see [agent teams](/en/agent-teams).
+
+***
+
+## Get notified when Claude needs your attention
+
+When you kick off a long-running task and switch to another window, you can set up desktop notifications so you know when Claude finishes or needs your input. This uses the `Notification` [hook event](/en/hooks-guide#get-notified-when-claude-needs-input), which fires whenever Claude is waiting for permission, idle and ready for a new prompt, or completing authentication.
+
+<Steps>
+  <Step title="Open the hooks menu">
+    Type `/hooks` and select `Notification` from the list of events.
+  </Step>
+
+  <Step title="Configure the matcher">
+    Select `+ Match all (no filter)` to fire on all notification types. To notify only for specific events, select `+ Add new matcher…` and enter one of these values:
+
+    | Matcher              | Fires when                                      |
+    | :------------------- | :---------------------------------------------- |
+    | `permission_prompt`  | Claude needs you to approve a tool use          |
+    | `idle_prompt`        | Claude is done and waiting for your next prompt |
+    | `auth_success`       | Authentication completes                        |
+    | `elicitation_dialog` | Claude is asking you a question                 |
+  </Step>
+
+  <Step title="Add your notification command">
+    Select `+ Add new hook…` and enter the command for your OS:
+
+    <Tabs>
+      <Tab title="macOS">
+        Uses [`osascript`](https://ss64.com/mac/osascript.html) to trigger a native macOS notification through AppleScript:
+
+        ```
+        osascript -e 'display notification "Claude Code needs your attention" with title "Claude Code"'
+        ```
+      </Tab>
+
+      <Tab title="Linux">
+        Uses `notify-send`, which is pre-installed on most Linux desktops with a notification daemon:
+
+        ```
+        notify-send 'Claude Code' 'Claude Code needs your attention'
+        ```
+      </Tab>
+
+      <Tab title="Windows (PowerShell)">
+        Uses PowerShell to show a native message box through .NET's Windows Forms:
+
+        ```
+        powershell.exe -Command "[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); [System.Windows.Forms.MessageBox]::Show('Claude Code needs your attention', 'Claude Code')"
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+
+  <Step title="Save to user settings">
+    Select `User settings` to apply the notification across all your projects.
+  </Step>
+</Steps>
+
+For the full walkthrough with JSON configuration examples, see [Automate workflows with hooks](/en/hooks-guide#get-notified-when-claude-needs-input). For the complete event schema and notification types, see the [Notification reference](/en/hooks#notification).
 
 ***
 

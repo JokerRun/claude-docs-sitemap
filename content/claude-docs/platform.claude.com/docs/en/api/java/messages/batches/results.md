@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/results
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: cf915cf54bab3ae31e6149f1fc334198074247363187f91e0a9591d39fbe7b8c
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: b5d8024d19fc907b5863a21a9a80a9d9f1e06c978569c93c7011128b19ec540f
 ---
 
 ## Results
@@ -238,7 +238,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `String toolId`
 
@@ -280,7 +280,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `String toolId`
 
@@ -334,7 +334,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `String toolId`
 
@@ -346,7 +346,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `class WebSearchToolResultError:`
 
-                - `ErrorCode errorCode`
+                - `WebSearchToolResultErrorCode errorCode`
 
                   - `INVALID_TOOL_INPUT("invalid_tool_input")`
 
@@ -408,7 +408,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
-              - `class CodeExecution20260120:`
+              - `class ServerToolCaller20260120:`
 
                 - `String toolId`
 
@@ -958,14 +958,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `PRIORITY("priority")`
 
             - `BATCH("batch")`
-
-          - `Optional<Speed> speed`
-
-            The inference speed mode used for this request.
-
-            - `STANDARD("standard")`
-
-            - `FAST("fast")`
 
       - `JsonValue; type "succeeded"constant`
 

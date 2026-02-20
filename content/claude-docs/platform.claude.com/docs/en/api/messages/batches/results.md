@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/results
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: a3aad7db770e2a847d2ee80466617ff6e12ba4d8d4bba941e95ff12aa5d7f5f9
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: 11e2a3381b8ebec99c4488d4e1edc994de57d00e6057daaedaf14c360ab0f7e3
 ---
 
 ## Results
@@ -212,7 +212,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `id: string`
 
-            - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -234,7 +234,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -254,7 +254,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `id: string`
 
-            - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -276,7 +276,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -308,7 +308,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `WebSearchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-            - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -330,7 +330,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -342,7 +342,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `WebSearchToolResultError = object { error_code, type }`
 
-                - `error_code: "invalid_tool_input" or "unavailable" or "max_uses_exceeded" or 3 more`
+                - `error_code: WebSearchToolResultErrorCode`
 
                   - `"invalid_tool_input"`
 
@@ -382,7 +382,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `WebFetchToolResultBlock = object { caller, content, tool_use_id, type }`
 
-            - `caller: DirectCaller or ServerToolCaller or object { tool_id, type }`
+            - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
               Tool invocation directly from the model.
 
@@ -404,7 +404,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `CodeExecution20260120 = object { tool_id, type }`
+              - `ServerToolCaller20260120 = object { tool_id, type }`
 
                 - `tool_id: string`
 
@@ -962,14 +962,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"priority"`
 
             - `"batch"`
-
-          - `speed: "standard" or "fast"`
-
-            The inference speed mode used for this request.
-
-            - `"standard"`
-
-            - `"fast"`
 
       - `type: "succeeded"`
 

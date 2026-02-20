@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/create
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: c860403a5c88461f069319869d209d9102209c7393903dedf1b149927c188a7f
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: b98eee032026bac46cd1acd6ff46fd0a945fda102853bdaff588e963fe56c1ed
 ---
 
 ## Create
@@ -734,7 +734,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `String toolId`
 
@@ -1458,7 +1458,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `String toolId`
 
@@ -1486,7 +1486,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `class WebSearchToolRequestError:`
 
-              - `ErrorCode errorCode`
+              - `WebSearchToolResultErrorCode errorCode`
 
                 - `INVALID_TOOL_INPUT("invalid_tool_input")`
 
@@ -1555,7 +1555,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `String toolId`
 
@@ -1909,7 +1909,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
-            - `class CodeExecution20260120:`
+            - `class ServerToolCaller20260120:`
 
               - `String toolId`
 
@@ -2312,6 +2312,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+  - `Optional<CacheControlEphemeral> cacheControl`
+
+    Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
   - `Optional<String> container`
 
     Container identifier for reuse across requests.
@@ -2337,14 +2341,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `AUTO("auto")`
 
     - `STANDARD_ONLY("standard_only")`
-
-  - `Optional<Speed> speed`
-
-    The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
-
-    - `STANDARD("standard")`
-
-    - `FAST("fast")`
 
   - `Optional<List<String>> stopSequences`
 
@@ -2587,6 +2583,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<CacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2654,6 +2652,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<CacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2707,6 +2707,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<CacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2758,6 +2760,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<CacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2789,7 +2793,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         When true, guarantees schema validation on tool names and inputs
 
-    - `CodeExecutionTool20260120`
+    - `class CodeExecutionTool20260120:`
+
+      Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
       - `JsonValue; name "code_execution"constant`
 
@@ -2808,6 +2814,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<CacheControlEphemeral> cacheControl`
 
@@ -2859,6 +2867,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<CacheControlEphemeral> cacheControl`
 
@@ -2913,6 +2923,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<CacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2966,6 +2978,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<CacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3018,6 +3032,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<CacheControlEphemeral> cacheControl`
 
@@ -3075,6 +3091,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<List<String>> allowedDomains`
 
@@ -3163,6 +3181,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<List<String>> allowedDomains`
 
         List of domains to allow fetching from
@@ -3216,7 +3236,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         When true, guarantees schema validation on tool names and inputs
 
-    - `WebSearchTool20260209`
+    - `class WebSearchTool20260209:`
 
       - `JsonValue; name "web_search"constant`
 
@@ -3235,6 +3255,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<List<String>> allowedDomains`
 
@@ -3303,7 +3325,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           The [IANA timezone](https://nodatime.org/TimeZones) of the user.
 
-    - `WebFetchTool20260209`
+    - `class WebFetchTool20260209:`
 
       - `JsonValue; name "web_fetch"constant`
 
@@ -3322,6 +3344,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<List<String>> allowedDomains`
 
@@ -3398,6 +3422,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<CacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3450,6 +3476,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<CacheControlEphemeral> cacheControl`
 
@@ -3693,7 +3721,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `String toolId`
 
@@ -3735,7 +3763,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `String toolId`
 
@@ -3789,7 +3817,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `String toolId`
 
@@ -3801,7 +3829,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `class WebSearchToolResultError:`
 
-          - `ErrorCode errorCode`
+          - `WebSearchToolResultErrorCode errorCode`
 
             - `INVALID_TOOL_INPUT("invalid_tool_input")`
 
@@ -3863,7 +3891,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
-        - `class CodeExecution20260120:`
+        - `class ServerToolCaller20260120:`
 
           - `String toolId`
 
@@ -4413,14 +4441,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `PRIORITY("priority")`
 
       - `BATCH("batch")`
-
-    - `Optional<Speed> speed`
-
-      The inference speed mode used for this request.
-
-      - `STANDARD("standard")`
-
-      - `FAST("fast")`
 
 ### Example
 

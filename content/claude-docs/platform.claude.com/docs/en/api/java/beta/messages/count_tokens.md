@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 7262d2a5bf0815b11f8a614b7d9008f9054d23d75972580cd058f41c8182dbe4
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: ec1b63d9da5a7ff8b00ed6b7db82ab50f93ea03b02555e3f4ed661d68a73b4f3
 ---
 
 ## Count Tokens
@@ -2642,6 +2642,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+  - `Optional<BetaCacheControlEphemeral> cacheControl`
+
+    Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
   - `Optional<BetaContextManagementConfig> contextManagement`
 
     Context management configuration.
@@ -2911,6 +2915,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2978,6 +2984,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3030,6 +3038,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
@@ -3084,6 +3094,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3134,6 +3146,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
@@ -3187,6 +3201,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
@@ -3247,6 +3263,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3303,6 +3321,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
@@ -3365,6 +3385,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3421,6 +3443,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
@@ -3483,6 +3507,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3544,6 +3570,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3597,6 +3625,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -3649,6 +3679,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
@@ -3706,6 +3738,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<List<String>> allowedDomains`
 
@@ -3794,6 +3828,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<List<String>> allowedDomains`
 
         List of domains to allow fetching from
@@ -3866,6 +3902,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<List<String>> allowedDomains`
 
@@ -3954,6 +3992,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<List<String>> allowedDomains`
 
         List of domains to allow fetching from
@@ -4029,6 +4069,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -4081,6 +4123,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `DIRECT("direct")`
 
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 

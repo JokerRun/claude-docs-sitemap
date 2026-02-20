@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 60b31813cdc6ccf317b6482d670ffbd03ae3499baaa5b2b228ef415835bce081
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: 235236e11503864b2c8798466683e514c26de7fefb17c570b8db19d41932ff71
 ---
 
 > ## Documentation Index
@@ -129,13 +129,13 @@ This quickstart walks you through creating a plugin with a custom skill. You'll 
     claude --plugin-dir ./my-first-plugin
     ```
 
-    Once Claude Code starts, try your new command:
+    Once Claude Code starts, try your new skill:
 
     ```shell  theme={null}
     /my-first-plugin:hello
     ```
 
-    You'll see Claude respond with a greeting. Run `/help` to see your command listed under the plugin namespace.
+    You'll see Claude respond with a greeting. Run `/help` to see your skill listed under the plugin namespace.
 
     <Note>
       **Why namespacing?** Plugin skills are always namespaced (like `/greet:hello`) to prevent conflicts when multiple plugins have skills with the same name.
@@ -147,19 +147,19 @@ This quickstart walks you through creating a plugin with a custom skill. You'll 
   <Step title="Add skill arguments">
     Make your skill dynamic by accepting user input. The `$ARGUMENTS` placeholder captures any text the user provides after the skill name.
 
-    Update your `hello.md` file:
+    Update your `SKILL.md` file:
 
-    ```markdown my-first-plugin/commands/hello.md theme={null}
+    ```markdown my-first-plugin/skills/hello/SKILL.md theme={null}
     ---
     description: Greet the user with a personalized message
     ---
 
-    # Hello Command
+    # Hello Skill
 
     Greet the user named "$ARGUMENTS" warmly and ask how you can help them today. Make the greeting personal and encouraging.
     ```
 
-    Restart Claude Code to pick up the changes, then try the command with your name:
+    Restart Claude Code to pick up the changes, then try the skill with your name:
 
     ```shell  theme={null}
     /my-first-plugin:hello Alex
@@ -172,7 +172,7 @@ This quickstart walks you through creating a plugin with a custom skill. You'll 
 You've successfully created and tested a plugin with these key components:
 
 * **Plugin manifest** (`.claude-plugin/plugin.json`): describes your plugin's metadata
-* **Commands directory** (`commands/`): contains your custom skills
+* **Skills directory** (`skills/`): contains your custom skills
 * **Skill arguments** (`$ARGUMENTS`): captures user input for dynamic behavior
 
 <Tip>
@@ -275,7 +275,7 @@ claude --plugin-dir ./my-plugin
 
 As you make changes to your plugin, restart Claude Code to pick up the updates. Test your plugin components:
 
-* Try your commands with `/command-name`
+* Try your skills with `/plugin-name:skill-name`
 * Check that agents appear in `/agents`
 * Verify hooks work as expected
 

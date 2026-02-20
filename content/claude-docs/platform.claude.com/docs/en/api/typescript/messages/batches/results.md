@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/results
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: f2d70b860f0808622d398f3cefb2dfc7eb1ab1038e04da4df169e8d1f48834f7
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: c58f85515bed352bca3d757224485d9c885bf684d4930c78ddb9ea6d79d34c52
 ---
 
 ## Results
@@ -344,7 +344,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `WebSearchToolResultError`
 
-                - `error_code: "invalid_tool_input" | "unavailable" | "max_uses_exceeded" | 3 more`
+                - `error_code: WebSearchToolResultErrorCode`
 
                   - `"invalid_tool_input"`
 
@@ -960,14 +960,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"priority"`
 
             - `"batch"`
-
-          - `speed: "standard" | "fast" | null`
-
-            The inference speed mode used for this request.
-
-            - `"standard"`
-
-            - `"fast"`
 
       - `type: "succeeded"`
 

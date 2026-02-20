@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/batches/results
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: c97df0d9550f3a1ec3d1799a7bf14aa1e83408d7314d5836c1b83d560901872f
+fetched_at: 2026-02-20T04:18:13.878022Z
+sha256: a105a18d40bd7463754c8a4f16fe521a22f655a9abea8ba87dfa132f6f836dd3
 ---
 
 ## Results
@@ -236,7 +236,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `class CallerServerToolCaller20260120: …`
+              - `class ServerToolCaller20260120: …`
 
                 - `tool_id: str`
 
@@ -278,7 +278,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `class CallerServerToolCaller20260120: …`
+              - `class ServerToolCaller20260120: …`
 
                 - `tool_id: str`
 
@@ -332,7 +332,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `class CallerServerToolCaller20260120: …`
+              - `class ServerToolCaller20260120: …`
 
                 - `tool_id: str`
 
@@ -344,7 +344,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `class WebSearchToolResultError: …`
 
-                - `error_code: Literal["invalid_tool_input", "unavailable", "max_uses_exceeded", 3 more]`
+                - `error_code: WebSearchToolResultErrorCode`
 
                   - `"invalid_tool_input"`
 
@@ -406,7 +406,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"code_execution_20250825"`
 
-              - `class CallerServerToolCaller20260120: …`
+              - `class ServerToolCaller20260120: …`
 
                 - `tool_id: str`
 
@@ -987,14 +987,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"priority"`
 
             - `"batch"`
-
-          - `speed: Optional[Literal["standard", "fast"]]`
-
-            The inference speed mode used for this request.
-
-            - `"standard"`
-
-            - `"fast"`
 
       - `type: Literal["succeeded"]`
 
