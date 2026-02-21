@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 023ffdd8a001312ce181a99efb3006aae8da3c91ff356bda947d407ca1dcef9e
+fetched_at: 2026-02-21T04:09:20.845903Z
+sha256: f270042814a8c4a7c374311a10f3027d6cc319cd4384586c163c1a3626a46fdd
 ---
 
 # Intro to Claude
@@ -24,40 +24,51 @@ The latest generation of Claude models:
 </Tip>
 
 <Note>
-Looking to chat with Claude? Visit [claude.ai](http://www.claude.ai)!
+Looking to chat with Claude? Visit [claude.ai](https://www.claude.ai).
 </Note>
 
-## Get started
+## Recommended path for new developers
 
-If you’re new to Claude, start here to learn the essentials and make your first API call.
+Follow these steps to go from zero to a working Claude integration.
 
-<CardGroup cols={3}>
-  <Card title="Get started" icon="check" href="/docs/en/get-started">
-    Set up your development environment for building with Claude.
-  </Card>
-  <Card title="Learn about Claude" icon="settings" href="/docs/en/about-claude/models/overview">
-    Learn about the family of Claude models.
-  </Card>
-  <Card title="Prompt Library" icon="books" href="/docs/en/resources/prompt-library/library">
-    Explore example prompts for inspiration.
-  </Card>
-</CardGroup>
+<Steps>
+  <Step title="Make your first API call">
+    Set up your environment, install an SDK, and send your first message to Claude.
+
+    [Go to the quickstart](/docs/en/get-started)
+  </Step>
+  <Step title="Understand the Messages API">
+    Learn the core request and response structure, including multi-turn conversations, system prompts, and stop reasons.
+
+    [Read the Messages API guide](/docs/en/build-with-claude/working-with-messages)
+  </Step>
+  <Step title="Choose the right model">
+    Compare Claude models by capability and cost to pick the best fit for your use case.
+
+    [See the models overview](/docs/en/about-claude/models/overview)
+  </Step>
+  <Step title="Explore features and tools">
+    Discover what Claude can do: extended thinking, web search, file handling, structured outputs, and more.
+
+    [Browse the features overview](/docs/en/build-with-claude/overview)
+  </Step>
+</Steps>
 
 ---
 
 ## Develop with Claude
 
-Anthropic has best-in-class developer tools to build scalable applications with Claude.
+Anthropic provides developer tools to help you build and scale applications with Claude.
 
 <CardGroup cols={3}>
   <Card title="Developer Console" icon="computer" href="/">
-    Enjoy easier, more powerful prompting in your browser with the Workbench and the prompt generator tool.
+    Prototype and test prompts in your browser with the Workbench and prompt generator.
   </Card>
   <Card title="API Reference" icon="code" href="/docs/en/api/overview">
-    Explore, implement, and scale with the Claude API and SDKs.
+    Explore the full Claude API and client SDK documentation.
   </Card>
   <Card title="Claude Cookbook" icon="chef-hat" href="https://platform.claude.com/cookbooks">
-    Learn with interactive Jupyter notebooks that demonstrate uploading PDFs, embeddings, and more.
+    Learn with interactive Jupyter notebooks covering PDFs, embeddings, and more.
   </Card>
 </CardGroup>
 

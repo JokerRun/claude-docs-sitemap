@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 4a5cd85b709b922183c0b2a0de0b7ba78f09876ce79d582e9adb72d1a415ad3c
+fetched_at: 2026-02-21T04:09:20.845903Z
+sha256: a43f504748205be6b324f73ef4c9a904d4a49e999cb855268b2f126805ba63e7
 ---
 
 > ## Documentation Index
@@ -70,6 +70,7 @@ Customize Claude Code's behavior with these command-line flags:
 | `--print`, `-p`                        | Print response without interactive mode (see [Agent SDK documentation](https://platform.claude.com/docs/en/agent-sdk/overview) for programmatic usage details)                                            | `claude -p "query"`                                                                                |
 | `--remote`                             | Create a new [web session](/en/claude-code-on-the-web) on claude.ai with the provided task description                                                                                                    | `claude --remote "Fix the login bug"`                                                              |
 | `--resume`, `-r`                       | Resume a specific session by ID or name, or show an interactive picker to choose a session                                                                                                                | `claude --resume auth-refactor`                                                                    |
+| `--worktree`, `-w`                     | Start Claude in an isolated [git worktree](/en/common-workflows#run-parallel-claude-code-sessions-with-git-worktrees) at `<repo>/.claude/worktrees/<name>`. If no name is given, one is auto-generated    | `claude -w feature-auth`                                                                           |
 | `--session-id`                         | Use a specific session ID for the conversation (must be a valid UUID)                                                                                                                                     | `claude --session-id "550e8400-e29b-41d4-a716-446655440000"`                                       |
 | `--setting-sources`                    | Comma-separated list of setting sources to load (`user`, `project`, `local`)                                                                                                                              | `claude --setting-sources user,project`                                                            |
 | `--settings`                           | Path to a settings JSON file or a JSON string to load additional settings from                                                                                                                            | `claude --settings ./settings.json`                                                                |

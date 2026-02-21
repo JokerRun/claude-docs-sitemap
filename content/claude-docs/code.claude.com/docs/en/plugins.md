@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-02-20T04:18:13.878022Z
-sha256: 235236e11503864b2c8798466683e514c26de7fefb17c570b8db19d41932ff71
+fetched_at: 2026-02-21T04:09:20.845903Z
+sha256: 3d5866b5d748a85c1ccb5d694e90c1e0a355c512488b2405f168b7f49a542edd
 ---
 
 > ## Documentation Index
@@ -196,6 +196,7 @@ You've created a plugin with a skill, but plugins can include much more: custom 
 | `hooks/`          | Plugin root | Event handlers in `hooks.json`                                                 |
 | `.mcp.json`       | Plugin root | MCP server configurations                                                      |
 | `.lsp.json`       | Plugin root | LSP server configurations for code intelligence                                |
+| `settings.json`   | Plugin root | Default [settings](/en/settings) applied when the plugin is enabled            |
 
 <Note>
   **Next steps**: Ready to add more features? Jump to [Develop more complex plugins](#develop-more-complex-plugins) to add agents, hooks, MCP servers, and LSP servers. For complete technical specifications of all plugin components, see [Plugins reference](/en/plugins-reference).
@@ -260,6 +261,20 @@ LSP (Language Server Protocol) plugins give Claude real-time code intelligence. 
 Users installing your plugin must have the language server binary installed on their machine.
 
 For complete LSP configuration options, see [LSP servers](/en/plugins-reference#lsp-servers).
+
+### Ship default settings with your plugin
+
+Plugins can include a `settings.json` file at the plugin root to apply default configuration when the plugin is enabled. Currently, only the `agent` key is supported.
+
+Setting `agent` activates one of the plugin's [custom agents](/en/sub-agents) as the main thread, applying its system prompt, tool restrictions, and model. This lets a plugin change how Claude Code behaves by default when enabled.
+
+```json settings.json theme={null}
+{
+  "agent": "security-reviewer"
+}
+```
+
+This example activates the `security-reviewer` agent defined in the plugin's `agents/` directory. Settings from `settings.json` take priority over `settings` declared in `plugin.json`. Unknown keys are silently ignored.
 
 ### Organize complex plugins
 

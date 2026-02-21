@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 320ec16ec2c92db94a16b34de508a33233892815352988664d88babc8b75cd81
+fetched_at: 2026-02-21T04:09:20.845903Z
+sha256: 3e1bd1e0c622605d82e631dc06a371215b4ebc21ed971a7ac2a26ebcb93010a0
 ---
 
 # Code execution tool
@@ -141,6 +141,22 @@ When you add the code execution tool to your API request:
 3. Claude can use any combination of these capabilities in a single request
 4. All operations run in a secure sandbox environment
 5. Claude provides results with any generated charts, calculations, or analysis
+
+## Using code execution with other execution tools
+
+When you provide code execution alongside client-provided tools that also run code (such as a [bash tool](/docs/en/agents-and-tools/tool-use/bash-tool) or custom REPL), Claude is operating in a multi-computer environment. The code execution tool runs in Anthropic's sandboxed container, while your client-provided tools run in a separate environment that you control. Claude can sometimes confuse these environments, attempting to use the wrong tool or assuming state is shared between them.
+
+To avoid this, add instructions to your system prompt that clarify the distinction:
+
+```text
+When multiple code execution environments are available, be aware that:
+- Variables, files, and state do NOT persist between different execution environments
+- Use the code_execution tool for general-purpose computation in Anthropic's sandboxed environment
+- Use client-provided execution tools (e.g., bash) when you need access to the user's local system, files, or data
+- If you need to pass results between environments, explicitly include outputs in subsequent tool calls rather than assuming shared state
+```
+
+This is especially important when combining code execution with [web search](/docs/en/agents-and-tools/tool-use/web-search-tool) or [web fetch](/docs/en/agents-and-tools/tool-use/web-fetch-tool), which enable code execution automatically. If your application already provides a client-side shell tool, the automatic code execution creates a second execution environment that Claude needs to distinguish between.
 
 ## How to use the tool
 

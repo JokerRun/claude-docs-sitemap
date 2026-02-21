@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/zero-data-retention
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 3cd89583ce7863c0a93a02a00382e6f8ca108452c55d1fa3aadcce4464a9c902
+fetched_at: 2026-02-21T04:09:20.845903Z
+sha256: 590d2b6a3a956e4aa7190163def06b8e217c6c91f98a7e2ef73b8e622a5d53ee
 ---
 
 # Zero Data Retention (ZDR)
@@ -53,6 +53,7 @@ These API endpoints process data in real-time:
 | Memory Tool | `/v1/messages` (with `memory` tool) | Client-side memory storage where you control data retention. |
 | Tool Search (client-side) | `/v1/messages` | [Custom client-side tool search](/docs/en/agents-and-tools/tool-use/tool-search-tool#custom-tool-search-implementation) uses the standard Messages API. |
 | Context Management (compaction) | `/v1/messages` (with `context_management`) | Server-side compaction summarizes conversation context in real-time. |
+| Fast Mode | `/v1/messages` (with `speed: "fast"`) | Same Messages API endpoint with faster inference. ZDR applies regardless of speed setting. |
 
 ### Not ZDR-eligible
 

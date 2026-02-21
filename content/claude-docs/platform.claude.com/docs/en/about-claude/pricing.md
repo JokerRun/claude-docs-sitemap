@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 71cf4d0bea64a82561571f0ef8d0399a251573985a0a1a16dea949f25a6690b0
+fetched_at: 2026-02-21T04:09:20.845903Z
+sha256: c4a00da5c8d99c288c86e906ab9947687378ac049c7cc1cf6ad526bc502914d7
 ---
 
 # Pricing
@@ -78,12 +78,11 @@ For more information, see the [data residency documentation](/docs/en/build-with
 
 ### Fast mode pricing
 
-[Fast mode](/docs/en/build-with-claude/fast-mode) for Claude Opus 4.6 (research preview) provides significantly faster output at premium pricing (6x standard rates). Currently supported on Opus 4.6:
+[Fast mode](/docs/en/build-with-claude/fast-mode) for Claude Opus 4.6 (research preview) provides significantly faster output at premium pricing (6x standard rates). Fast mode pricing applies across the full context window, including requests over 200K input tokens. Currently supported on Opus 4.6:
 
-| Context window | Input | Output |
-|:---------------|:------|:-------|
-| ≤ 200K input tokens | $30 / MTok | $150 / MTok |
-| > 200K input tokens | $60 / MTok | $225 / MTok |
+| Input | Output |
+|:------|:-------|
+| $30 / MTok | $150 / MTok |
 
 Fast mode pricing stacks with other pricing modifiers:
 - [Prompt caching multipliers](#model-pricing) apply on top of fast mode pricing
@@ -116,7 +115,7 @@ For more information about batch processing, see the [batch processing documenta
 
 ### Long context pricing
 
-When using Claude Opus 4.6, Sonnet 4.6, Sonnet 4.5, or Sonnet 4 with the [1M token context window enabled](/docs/en/build-with-claude/context-windows#1m-token-context-window), requests that exceed 200K input tokens are automatically charged at premium long context rates:
+When using Claude Opus 4.6, Sonnet 4.6, Sonnet 4.5, or Sonnet 4 at standard speed with the [1M token context window enabled](/docs/en/build-with-claude/context-windows#1m-token-context-window), requests that exceed 200K input tokens are automatically charged at premium long context rates. [Fast mode](#fast-mode-pricing) includes the full 1M context window at no additional long context charge.
 
 <Note>
 The 1M token context window is currently in beta for organizations in [usage tier](/docs/en/api/rate-limits) 4 and organizations with custom rate limits. The 1M token context window is only available for Claude Opus 4.6, Sonnet 4.6, Sonnet 4.5, and Sonnet 4.

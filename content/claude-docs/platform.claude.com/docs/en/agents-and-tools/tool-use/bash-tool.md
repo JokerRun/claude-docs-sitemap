@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 9f6f467fd1a6ddc1c9f74de15be3e1f060e65271571dfc85e75336187aaa8969
+fetched_at: 2026-02-21T04:09:20.845903Z
+sha256: b3999e64904d1338d2cf38c8f7804d039ce4bbdb81115c96e1a852c3df662c12
 ---
 
 # Bash tool
@@ -411,6 +411,10 @@ See [tool use pricing](/docs/en/agents-and-tools/tool-use/overview#pricing) for 
 ## Combining with other tools
 
 The bash tool is most powerful when combined with the [text editor](/docs/en/agents-and-tools/tool-use/text-editor-tool) and other tools.
+
+<Note>
+If you're also using the [code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool), Claude has access to two separate execution environments: your local bash session and Anthropic's sandboxed container. State is not shared between them. See [Using code execution with other execution tools](/docs/en/agents-and-tools/tool-use/code-execution-tool#using-code-execution-with-other-execution-tools) for guidance on prompting Claude to distinguish between environments.
+</Note>
 
 ## Next steps
 

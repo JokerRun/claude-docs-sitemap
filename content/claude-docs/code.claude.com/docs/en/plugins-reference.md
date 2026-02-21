@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-02-17T04:22:51.826953Z
-sha256: 5e5da4891fdba69b775ed83c647687bb3df5535cfd794c9dffb02729e330f2d6
+fetched_at: 2026-02-21T04:09:20.845903Z
+sha256: 1150acf0d3a6c57526ffa113a2497cbdbb575ebec1f4cba2e1fa69b807e4e52f
 ---
 
 > ## Documentation Index
@@ -435,6 +435,7 @@ enterprise-plugin/
 ├── hooks/                    # Hook configurations
 │   ├── hooks.json           # Main hook config
 │   └── security-hooks.json  # Additional hooks
+├── settings.json            # Default settings for the plugin
 ├── .mcp.json                # MCP server definitions
 ├── .lsp.json                # LSP server configurations
 ├── scripts/                 # Hook and utility scripts
@@ -451,15 +452,16 @@ enterprise-plugin/
 
 ### File locations reference
 
-| Component       | Default Location             | Purpose                                                     |
-| :-------------- | :--------------------------- | :---------------------------------------------------------- |
-| **Manifest**    | `.claude-plugin/plugin.json` | Plugin metadata and configuration (optional)                |
-| **Commands**    | `commands/`                  | Skill Markdown files (legacy; use `skills/` for new skills) |
-| **Agents**      | `agents/`                    | Subagent Markdown files                                     |
-| **Skills**      | `skills/`                    | Skills with `<name>/SKILL.md` structure                     |
-| **Hooks**       | `hooks/hooks.json`           | Hook configuration                                          |
-| **MCP servers** | `.mcp.json`                  | MCP server definitions                                      |
-| **LSP servers** | `.lsp.json`                  | Language server configurations                              |
+| Component       | Default Location             | Purpose                                                                                                                   |
+| :-------------- | :--------------------------- | :------------------------------------------------------------------------------------------------------------------------ |
+| **Manifest**    | `.claude-plugin/plugin.json` | Plugin metadata and configuration (optional)                                                                              |
+| **Commands**    | `commands/`                  | Skill Markdown files (legacy; use `skills/` for new skills)                                                               |
+| **Agents**      | `agents/`                    | Subagent Markdown files                                                                                                   |
+| **Skills**      | `skills/`                    | Skills with `<name>/SKILL.md` structure                                                                                   |
+| **Hooks**       | `hooks/hooks.json`           | Hook configuration                                                                                                        |
+| **MCP servers** | `.mcp.json`                  | MCP server definitions                                                                                                    |
+| **LSP servers** | `.lsp.json`                  | Language server configurations                                                                                            |
+| **Settings**    | `settings.json`              | Default configuration applied when the plugin is enabled. Only [`agent`](/en/sub-agents) settings are currently supported |
 
 ***
 
