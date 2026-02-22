@@ -373,10 +373,6 @@
 <priority>0.8</priority>
 </url>
 <url>
-<loc>https://platform.claude.com/docs/en/test-and-evaluate/define-success</loc>
-<priority>0.8</priority>
-</url>
-<url>
 <loc>https://platform.claude.com/docs/en/test-and-evaluate/develop-tests</loc>
 <priority>0.8</priority>
 </url>
@@ -406,10 +402,6 @@
 </url>
 <url>
 <loc>https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak</loc>
-<priority>0.8</priority>
-</url>
-<url>
-<loc>https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/keep-claude-in-character</loc>
 <priority>0.8</priority>
 </url>
 <url>

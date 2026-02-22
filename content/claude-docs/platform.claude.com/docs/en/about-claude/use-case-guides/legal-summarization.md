@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 23b3f948c801ac6209ea0e1b2db7ba7f0cb635d008c217c194ef608eee6dec75
+fetched_at: 2026-02-22T04:20:57.944963Z
+sha256: c08eb3a6cb1924f9134599408e9f90d68caad9b87bb559fe80f165520d8aca46
 ---
 
 # Legal summarization
@@ -74,7 +74,7 @@ The text should be clear and easy to understand. If the audience is not legal ex
 The summary should present an unbiased and fair depiction of the legal arguments and positions.
 </section>
 
-See our guide on [establishing success criteria](/docs/en/test-and-evaluate/define-success) for more information.
+See our guide on [establishing success criteria](/docs/en/test-and-evaluate/develop-tests) for more information.
 
 ---
 

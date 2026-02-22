@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-02-21T04:09:20.845903Z
-sha256: 4ca06100acc36b65c44a9cc6d0ca3efe44741018d38566935dff0b5efa9c148e
+fetched_at: 2026-02-22T04:20:57.944963Z
+sha256: 88d504f04abf8a76b4597dd6bd940c8709326fd37167f81708211e7d62f8b5be
 ---
 
 > ## Documentation Index
@@ -29,19 +29,19 @@ Choose your environment to get started. Most surfaces require a [Claude subscrip
       <Tab title="Native Install (Recommended)">
         **macOS, Linux, WSL:**
 
-        ```bash theme={null} theme={null}
+        ```bash  theme={null}
         curl -fsSL https://claude.ai/install.sh | bash
         ```
 
         **Windows PowerShell:**
 
-        ```powershell theme={null} theme={null}
+        ```powershell  theme={null}
         irm https://claude.ai/install.ps1 | iex
         ```
 
         **Windows CMD:**
 
-        ```batch theme={null} theme={null}
+        ```batch  theme={null}
         curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
         ```
 
@@ -51,7 +51,7 @@ Choose your environment to get started. Most surfaces require a [Claude subscrip
       </Tab>
 
       <Tab title="Homebrew">
-        ```sh theme={null} theme={null}
+        ```sh  theme={null}
         brew install --cask claude-code
         ```
 
@@ -61,7 +61,7 @@ Choose your environment to get started. Most surfaces require a [Claude subscrip
       </Tab>
 
       <Tab title="WinGet">
-        ```powershell theme={null} theme={null}
+        ```powershell  theme={null}
         winget install Anthropic.ClaudeCode
         ```
 

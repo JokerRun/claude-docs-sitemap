@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 0f8128c5525b276cf9b6077d29cc9192f01f47223cb0e9603fce4ddb427cd19e
+fetched_at: 2026-02-22T04:20:57.944963Z
+sha256: 76cee951d5d8ab664c0c766098cdd2afc1885a1c7fbcc9c6b4075b469fcc8219
 ---
 
 # Prompt engineering overview
@@ -20,7 +20,7 @@ This guide assumes that you have:
 2. Some ways to empirically test against those criteria
 3. A first draft prompt you want to improve
 
-If not, we highly suggest you spend time establishing that first. Check out [Define your success criteria](/docs/en/test-and-evaluate/define-success) and [Create strong empirical evaluations](/docs/en/test-and-evaluate/develop-tests) for tips and guidance.
+If not, we highly suggest you spend time establishing that first. Check out [Define success criteria and build evaluations](/docs/en/test-and-evaluate/develop-tests) for tips and guidance.
 
 <Card title="Prompt generator" icon="link" href="/dashboard">
   Don't have a first draft prompt? Try the prompt generator in the Claude Console!

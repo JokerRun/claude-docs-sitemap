@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 097e64de6f810fafb9d64b5a90894d2e76e88ea3d156be3a47efb5aed156a7cf
+fetched_at: 2026-02-22T04:20:57.944963Z
+sha256: eaa1a47fc8b420e0ec23b384549114636205b4597a4d7450b9105d3abe02c08d
 ---
 
 # Ticket routing
@@ -168,7 +168,7 @@ In addition to intent, ticket routing and prioritization may also be influenced 
 
 ### Establish success criteria
 
-Work with your support team to [define clear success criteria](/docs/en/test-and-evaluate/define-success) with measurable benchmarks, thresholds, and goals.
+Work with your support team to [define clear success criteria](/docs/en/test-and-evaluate/develop-tests) with measurable benchmarks, thresholds, and goals.
 
 Here are some standard criteria and benchmarks when using LLMs for support ticket routing:
 

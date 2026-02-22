@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-02-21T04:09:20.845903Z
-sha256: 0ef5036a757b1e91ae748342d0c39de0936c0d3d77c31307d5966486f02ef24e
+fetched_at: 2026-02-22T04:20:57.944963Z
+sha256: 0e548d6798dc62eb32900f56efe6f5634463320067edaaf66525d25038dce31b
 ---
 
 > ## Documentation Index
@@ -337,10 +337,10 @@ When creating pull requests, Claude generates descriptions based on the actual c
 
 ### Use git worktrees for parallel tasks
 
-Use the `--worktree` flag to start Claude in an isolated worktree with its own files and branch:
+Use the `--worktree` (`-w`) flag to start Claude in an isolated worktree with its own files and branch:
 
 ```bash  theme={null}
-claude -w feature-auth
+claude --worktree feature-auth
 ```
 
 Each worktree maintains independent file state while sharing git history. This prevents Claude instances from interfering with each other when working on different tasks. For more details, see [Run parallel sessions with Git worktrees](/en/common-workflows#run-parallel-claude-code-sessions-with-git-worktrees).

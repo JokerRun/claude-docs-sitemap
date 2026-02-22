@@ -25,10 +25,10 @@
   lastmod: '2026-02-09T22:05:55.335Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
-  lastmod: '2026-02-20T04:23:19.137Z'
+  lastmod: '2026-02-21T17:58:29.508Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
-  lastmod: '2026-02-20T04:23:19.139Z'
+  lastmod: '2026-02-21T17:58:29.513Z'
 - source: code
   loc: https://code.claude.com/docs/en/costs
   lastmod: '2026-02-17T18:23:33.301Z'
@@ -67,10 +67,10 @@
   lastmod: '2026-01-30T18:03:04.291Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
-  lastmod: '2026-02-20T04:23:19.208Z'
+  lastmod: '2026-02-21T17:58:31.472Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks-guide
-  lastmod: '2026-02-20T04:23:19.182Z'
+  lastmod: '2026-02-21T17:58:31.446Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
   lastmod: '2026-02-19T23:26:12.525Z'
@@ -100,7 +100,7 @@
   lastmod: '2026-02-18T22:23:19.996Z'
 - source: code
   loc: https://code.claude.com/docs/en/model-config
-  lastmod: '2026-02-18T23:26:56.184Z'
+  lastmod: '2026-02-21T17:58:35.458Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
   lastmod: '2026-02-19T01:49:45.040Z'
@@ -112,7 +112,7 @@
   lastmod: '2026-01-28T13:17:42.880Z'
 - source: code
   loc: https://code.claude.com/docs/en/overview
-  lastmod: '2026-02-20T19:30:24.555Z'
+  lastmod: '2026-02-21T17:58:35.459Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
   lastmod: '2026-02-18T21:53:17.144Z'
@@ -139,7 +139,7 @@
   lastmod: '2026-02-20T04:23:23.200Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-02-20T04:23:23.231Z'
+  lastmod: '2026-02-21T17:58:36.359Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-02-04T18:02:58.128Z'
@@ -154,7 +154,7 @@
   lastmod: '2026-02-05T23:03:44.079Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-02-20T04:23:23.214Z'
+  lastmod: '2026-02-21T17:58:36.357Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
   lastmod: '2026-01-28T13:17:42.919Z'
@@ -166,7 +166,7 @@
   lastmod: '2026-02-03T03:00:25.989Z'
 - source: code
   loc: https://code.claude.com/docs/en/vs-code
-  lastmod: '2026-02-20T04:23:23.257Z'
+  lastmod: '2026-02-21T04:36:26.266Z'
 - source: platform
   loc: https://platform.claude.com/docs
   priority: '0.8'
@@ -2322,9 +2322,6 @@
   loc: https://platform.claude.com/docs/en/resources/prompt-library/website-wizard
   priority: '0.8'
 - source: platform
-  loc: https://platform.claude.com/docs/en/test-and-evaluate/define-success
-  priority: '0.8'
-- source: platform
   loc: https://platform.claude.com/docs/en/test-and-evaluate/develop-tests
   priority: '0.8'
 - source: platform
@@ -2335,9 +2332,6 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/keep-claude-in-character
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
