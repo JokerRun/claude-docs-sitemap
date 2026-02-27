@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/second-grade-simplifier
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: cf6855cbefe32b484bbfa216451dbcb887d8bdeaa9d435be0672dfcacdf268f4
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 508566491529b45357c218742ca7e8b556f4d68b613f515882f0698369016e8b
 ---
 
 # Second-grade simplifier
@@ -70,7 +70,8 @@ const msg = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 0,
-  system: "Your task is to take the text provided and rewrite it in a way that is easy for young learners in grades 3-5 to read and understand. Simplify advanced vocabulary, break down long sentences, explain difficult concepts in plain language, and present the information in a clear, engaging way. The short rewritten text should convey the core ideas of the original text in an age-appropriate manner.",
+  system:
+    "Your task is to take the text provided and rewrite it in a way that is easy for young learners in grades 3-5 to read and understand. Simplify advanced vocabulary, break down long sentences, explain difficult concepts in plain language, and present the information in a clear, engaging way. The short rewritten text should convey the core ideas of the original text in an age-appropriate manner.",
   messages: [
     {
       role: "user",
@@ -84,7 +85,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -131,7 +131,8 @@ const msg = await client.messages.create({
   model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 1000,
   temperature: 0,
-  system: "Your task is to take the text provided and rewrite it in a way that is easy for young learners in grades 3-5 to read and understand. Simplify advanced vocabulary, break down long sentences, explain difficult concepts in plain language, and present the information in a clear, engaging way. The short rewritten text should convey the core ideas of the original text in an age-appropriate manner.",
+  system:
+    "Your task is to take the text provided and rewrite it in a way that is easy for young learners in grades 3-5 to read and understand. Simplify advanced vocabulary, break down long sentences, explain difficult concepts in plain language, and present the information in a clear, engaging way. The short rewritten text should convey the core ideas of the original text in an age-appropriate manner.",
   messages: [
     {
       role: "user",
@@ -145,7 +146,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -188,7 +188,8 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 1000,
   temperature: 0,
-  system: "Your task is to take the text provided and rewrite it in a way that is easy for young learners in grades 3-5 to read and understand. Simplify advanced vocabulary, break down long sentences, explain difficult concepts in plain language, and present the information in a clear, engaging way. The short rewritten text should convey the core ideas of the original text in an age-appropriate manner.",
+  system:
+    "Your task is to take the text provided and rewrite it in a way that is easy for young learners in grades 3-5 to read and understand. Simplify advanced vocabulary, break down long sentences, explain difficult concepts in plain language, and present the information in a clear, engaging way. The short rewritten text should convey the core ideas of the original text in an age-appropriate manner.",
   messages: [
     {
       role: "user",
@@ -202,7 +203,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>

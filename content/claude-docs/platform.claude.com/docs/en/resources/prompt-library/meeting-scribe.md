@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/meeting-scribe
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: de7cfd65ae0d43fef73f8bc570da716616cbb28f52a8fc0dfa4dc51fe0550e62
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 0340dcb8cbb1177f3d2d6b1fd0a620a4079cc36b0ca70a282d200f562942e5ef
 ---
 
 # Meeting scribe
@@ -100,7 +100,8 @@ const msg = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 4000,
   temperature: 0.5,
-  system: "Your task is to review the provided meeting notes and create a concise summary that captures the essential information, focusing on key takeaways and action items assigned to specific individuals or departments during the meeting. Use clear and professional language, and organize the summary in a logical manner using appropriate formatting such as headings, subheadings, and bullet points. Ensure that the summary is easy to understand and provides a comprehensive but succinct overview of the meeting's content, with a particular focus on clearly indicating who is responsible for each action item.",
+  system:
+    "Your task is to review the provided meeting notes and create a concise summary that captures the essential information, focusing on key takeaways and action items assigned to specific individuals or departments during the meeting. Use clear and professional language, and organize the summary in a logical manner using appropriate formatting such as headings, subheadings, and bullet points. Ensure that the summary is easy to understand and provides a comprehensive but succinct overview of the meeting's content, with a particular focus on clearly indicating who is responsible for each action item.",
   messages: [
     {
       role: "user",
@@ -114,7 +115,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -161,7 +161,8 @@ const msg = await client.messages.create({
   model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 4000,
   temperature: 0.5,
-  system: "Your task is to review the provided meeting notes and create a concise summary that captures the essential information, focusing on key takeaways and action items assigned to specific individuals or departments during the meeting. Use clear and professional language, and organize the summary in a logical manner using appropriate formatting such as headings, subheadings, and bullet points. Ensure that the summary is easy to understand and provides a comprehensive but succinct overview of the meeting's content, with a particular focus on clearly indicating who is responsible for each action item.",
+  system:
+    "Your task is to review the provided meeting notes and create a concise summary that captures the essential information, focusing on key takeaways and action items assigned to specific individuals or departments during the meeting. Use clear and professional language, and organize the summary in a logical manner using appropriate formatting such as headings, subheadings, and bullet points. Ensure that the summary is easy to understand and provides a comprehensive but succinct overview of the meeting's content, with a particular focus on clearly indicating who is responsible for each action item.",
   messages: [
     {
       role: "user",
@@ -175,7 +176,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -220,7 +220,8 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 4000,
   temperature: 0.5,
-  system: "Your task is to review the provided meeting notes and create a concise summary that captures the essential information, focusing on key takeaways and action items assigned to specific individuals or departments during the meeting. Use clear and professional language, and organize the summary in a logical manner using appropriate formatting such as headings, subheadings, and bullet points. Ensure that the summary is easy to understand and provides a comprehensive but succinct overview of the meeting's content, with a particular focus on clearly indicating who is responsible for each action item.",
+  system:
+    "Your task is to review the provided meeting notes and create a concise summary that captures the essential information, focusing on key takeaways and action items assigned to specific individuals or departments during the meeting. Use clear and professional language, and organize the summary in a logical manner using appropriate formatting such as headings, subheadings, and bullet points. Ensure that the summary is easy to understand and provides a comprehensive but succinct overview of the meeting's content, with a particular focus on clearly indicating who is responsible for each action item.",
   messages: [
     {
       role: "user",
@@ -234,7 +235,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 943af4ab40d925d04f8d4fbc9ed02604e3da6672fc07a84852522541145c0cf0
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 569f39c7810b9c68716b7fcd7d31ee7783c8d99aae3bf36323ef5bc29e5c8683
 ---
 
 # Computer use tool
 
 ---
 
-Claude can interact with computer environments through the computer use tool, which provides screenshot capabilities and mouse/keyboard control for autonomous desktop interaction.
+Claude can interact with computer environments through the computer use tool, which provides screenshot capabilities and mouse/keyboard control for autonomous desktop interaction. On [WebArena](https://webarena.dev/), a benchmark for autonomous web navigation across real websites, Claude achieves state-of-the-art results among single-agent systems, demonstrating strong ability to complete multi-step browser tasks end to end.
 
 <Note>
 Computer use is currently in beta and requires a [beta header](/docs/en/api/beta-headers):
@@ -345,6 +345,14 @@ Here are some tips on how to get the best quality outputs:
   explicit tips or instructions on how to do the tasks successfully.
 </Tip>
 
+<Tip>
+  For agents that span multiple sessions, run end-to-end verification at the
+  start of each session, not only after implementation. Browser-based checks
+  catch regressions from prior sessions that code-level review alone misses. See
+  [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
+  for details.
+</Tip>
+
 ### System prompts
 
 When one of the Anthropic-defined tools is requested via the Claude API, a computer use-specific system prompt is generated. It's similar to the [tool use system prompt](/docs/en/agents-and-tools/tool-use/implement-tool-use#tool-use-system-prompt) but starts with:
@@ -381,33 +389,46 @@ Available in Claude Opus 4.6 and Claude Opus 4.5:
 
 <section title="Example actions">
 
+Take a screenshot:
+
 ```json
-// Take a screenshot
 {
   "action": "screenshot"
 }
+```
 
-// Click at position
+Click at position:
+
+```json
 {
   "action": "left_click",
   "coordinate": [500, 300]
 }
+```
 
-// Type text
+Type text:
+
+```json
 {
   "action": "type",
   "text": "Hello, world!"
 }
+```
 
-// Scroll down (Claude 4/3.7)
+Scroll down (Claude 4/3.7):
+
+```json
 {
   "action": "scroll",
   "coordinate": [500, 400],
   "scroll_direction": "down",
   "scroll_amount": 3
 }
+```
 
-// Zoom to view region in detail (Opus 4.5)
+Zoom to view region in detail (Opus 4.5):
+
+```json
 {
   "action": "zoom",
   "region": [100, 200, 400, 350]
@@ -420,29 +441,39 @@ Available in Claude Opus 4.6 and Claude Opus 4.5:
 
 To hold modifier keys (like Shift, Ctrl, or Alt) while performing click or scroll actions, use the `text` parameter on those actions. This is different from `hold_key`, which simply holds a key for a duration without performing other actions.
 
+Shift+click (e.g., for selecting a range of items):
+
 ```json
-// Shift+click (e.g., for selecting a range of items)
 {
   "action": "left_click",
   "coordinate": [500, 300],
   "text": "shift"
 }
+```
 
-// Ctrl+click (e.g., for multi-select on Windows/Linux)
+Ctrl+click (e.g., for multi-select on Windows/Linux):
+
+```json
 {
   "action": "left_click",
   "coordinate": [500, 300],
   "text": "ctrl"
 }
+```
 
-// Cmd+click (e.g., for multi-select on macOS)
+Cmd+click (e.g., for multi-select on macOS):
+
+```json
 {
   "action": "left_click",
   "coordinate": [500, 300],
   "text": "super"
 }
+```
 
-// Shift+scroll (e.g., for horizontal scrolling)
+Shift+scroll (e.g., for horizontal scrolling):
+
+```json
 {
   "action": "scroll",
   "coordinate": [500, 400],
@@ -477,10 +508,12 @@ Claude Sonnet 3.7 introduced a new "thinking" capability that allows you to see 
 
 To enable thinking, add a `thinking` parameter to your API request:
 
-```json
-"thinking": {
-  "type": "enabled",
-  "budget_tokens": 1024
+```json hidelines={1,-1}
+{
+  "thinking": {
+    "type": "enabled",
+    "budget_tokens": 1024
+  }
 }
 ```
 
@@ -666,7 +699,12 @@ const message = await anthropic.beta.messages.create({
       }
     }
   ],
-  messages: [{ role: "user", content: "Find flights from San Francisco to a place with warmer weather." }],
+  messages: [
+    {
+      role: "user",
+      content: "Find flights from San Francisco to a place with warmer weather."
+    }
+  ],
   betas: ["computer-use-2025-11-24"],
   thinking: { type: "enabled", budget_tokens: 1024 }
 });

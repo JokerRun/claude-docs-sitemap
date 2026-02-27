@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/emoji-encoder
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 80944d4de1f2dc67f86c0d9c097061ba7cea87dbfc1af267a097bf1e2d7b7d9a
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: a3072c049b7733789080b7b13b7678665bb6102aac6fff304b79b86357deb9e2
 ---
 
 # Emoji encoder
@@ -67,7 +67,8 @@ const msg = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 0,
-  system: "Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
+  system:
+    "Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
   messages: [
     {
       role: "user",
@@ -81,7 +82,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -128,7 +128,8 @@ const msg = await client.messages.create({
   model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 1000,
   temperature: 0,
-  system: "Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
+  system:
+    "Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
   messages: [
     {
       role: "user",
@@ -142,7 +143,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -187,7 +187,8 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 1000,
   temperature: 0,
-  system: "Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
+  system:
+    "Your task is to take the plain text message provided and convert it into an expressive, emoji-rich message that conveys the same meaning and intent. Replace key words and phrases with relevant emojis where appropriate to add visual interest and emotion. Use emojis creatively but ensure the message remains clear and easy to understand. Do not change the core message or add new information.",
   messages: [
     {
       role: "user",
@@ -201,7 +202,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

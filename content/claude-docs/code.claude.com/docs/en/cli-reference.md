@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-02-22T04:20:57.944963Z
-sha256: bfed35696d38da3a9bd3b0f841584365ec35fa80dc78d468bee924d1e6278700
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 2a904c8538a38f564fd7ae974c59f4604c33f68e8909837ee50d2f90f02612aa
 ---
 
 > ## Documentation Index
@@ -15,18 +15,24 @@ sha256: bfed35696d38da3a9bd3b0f841584365ec35fa80dc78d468bee924d1e6278700
 
 ## CLI commands
 
-| Command                         | Description                                                        | Example                                           |
-| :------------------------------ | :----------------------------------------------------------------- | :------------------------------------------------ |
-| `claude`                        | Start interactive REPL                                             | `claude`                                          |
-| `claude "query"`                | Start REPL with initial prompt                                     | `claude "explain this project"`                   |
-| `claude -p "query"`             | Query via SDK, then exit                                           | `claude -p "explain this function"`               |
-| `cat file \| claude -p "query"` | Process piped content                                              | `cat logs.txt \| claude -p "explain"`             |
-| `claude -c`                     | Continue most recent conversation in current directory             | `claude -c`                                       |
-| `claude -c -p "query"`          | Continue via SDK                                                   | `claude -c -p "Check for type errors"`            |
-| `claude -r "<session>" "query"` | Resume session by ID or name                                       | `claude -r "auth-refactor" "Finish this PR"`      |
-| `claude update`                 | Update to latest version                                           | `claude update`                                   |
-| `claude agents`                 | List all configured [subagents](/en/sub-agents), grouped by source | `claude agents`                                   |
-| `claude mcp`                    | Configure Model Context Protocol (MCP) servers                     | See the [Claude Code MCP documentation](/en/mcp). |
+You can start sessions, pipe content, resume conversations, and manage updates with these commands:
+
+| Command                         | Description                                                                                                                                                                            | Example                                            |
+| :------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------- |
+| `claude`                        | Start interactive session                                                                                                                                                              | `claude`                                           |
+| `claude "query"`                | Start interactive session with initial prompt                                                                                                                                          | `claude "explain this project"`                    |
+| `claude -p "query"`             | Query via SDK, then exit                                                                                                                                                               | `claude -p "explain this function"`                |
+| `cat file \| claude -p "query"` | Process piped content                                                                                                                                                                  | `cat logs.txt \| claude -p "explain"`              |
+| `claude -c`                     | Continue most recent conversation in current directory                                                                                                                                 | `claude -c`                                        |
+| `claude -c -p "query"`          | Continue via SDK                                                                                                                                                                       | `claude -c -p "Check for type errors"`             |
+| `claude -r "<session>" "query"` | Resume session by ID or name                                                                                                                                                           | `claude -r "auth-refactor" "Finish this PR"`       |
+| `claude update`                 | Update to latest version                                                                                                                                                               | `claude update`                                    |
+| `claude auth login`             | Sign in to your Anthropic account. Use `--email` to pre-fill your email address and `--sso` to force SSO authentication                                                                | `claude auth login --email user@example.com --sso` |
+| `claude auth logout`            | Log out from your Anthropic account                                                                                                                                                    | `claude auth logout`                               |
+| `claude auth status`            | Show authentication status as JSON. Use `--text` for human-readable output. Exits with code 0 if logged in, 1 if not                                                                   | `claude auth status`                               |
+| `claude agents`                 | List all configured [subagents](/en/sub-agents), grouped by source                                                                                                                     | `claude agents`                                    |
+| `claude mcp`                    | Configure Model Context Protocol (MCP) servers                                                                                                                                         | See the [Claude Code MCP documentation](/en/mcp).  |
+| `claude remote-control`         | Start a [Remote Control session](/en/remote-control) to control Claude Code from Claude.ai or the Claude app while running locally. See [Remote Control](/en/remote-control) for flags | `claude remote-control`                            |
 
 ## CLI flags
 
@@ -136,22 +142,22 @@ Claude Code provides four flags for customizing the system prompt, each serving 
 
 **When to use each:**
 
-* **`--system-prompt`**: Use when you need complete control over Claude's system prompt. This removes all default Claude Code instructions, giving you a blank slate.
+* **`--system-prompt`**: use when you need complete control over Claude's system prompt. This removes all default Claude Code instructions, giving you a blank slate.
   ```bash  theme={null}
   claude --system-prompt "You are a Python expert who only writes type-annotated code"
   ```
 
-* **`--system-prompt-file`**: Use when you want to load a custom prompt from a file, useful for team consistency or version-controlled prompt templates.
+* **`--system-prompt-file`**: use when you want to load a custom prompt from a file, useful for team consistency or version-controlled prompt templates.
   ```bash  theme={null}
   claude -p --system-prompt-file ./prompts/code-review.txt "Review this PR"
   ```
 
-* **`--append-system-prompt`**: Use when you want to add specific instructions while keeping Claude Code's default capabilities intact. This is the safest option for most use cases.
+* **`--append-system-prompt`**: use when you want to add specific instructions while keeping Claude Code's default capabilities intact. This is the safest option for most use cases.
   ```bash  theme={null}
   claude --append-system-prompt "Always use TypeScript and include JSDoc comments"
   ```
 
-* **`--append-system-prompt-file`**: Use when you want to append instructions from a file while keeping Claude Code's defaults. Useful for version-controlled additions.
+* **`--append-system-prompt-file`**: use when you want to append instructions from a file while keeping Claude Code's defaults. Useful for version-controlled additions.
   ```bash  theme={null}
   claude -p --append-system-prompt-file ./prompts/style-rules.txt "Review this PR"
   ```

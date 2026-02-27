@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/babels-broadcasts
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: bb59537e936ca265a2e93baad64e9d602d4c021cee13a77bb9dd609eb13dde49
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 1948b4f81777598e5217942bdc6505f28b8846450a4eda6edfa3a775a6a74645
 ---
 
 # Babel's broadcasts
@@ -107,7 +107,6 @@ Create compelling product announcement tweets in the world's 10 most spoken lang
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -160,7 +159,6 @@ Create compelling product announcement tweets in the world's 10 most spoken lang
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -211,6 +209,5 @@ Create compelling product announcement tweets in the world's 10 most spoken lang
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

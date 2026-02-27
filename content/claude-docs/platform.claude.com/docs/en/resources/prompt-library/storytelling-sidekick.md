@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/storytelling-sidekick
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: b6bbe8298d167db45bb410c0b48e91c46151bb004ce29323dbde85e68f034f4d
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: a4737c8a7771facd2234ed6c121dbdd069fe59049d005c109120ad2b482cf52f
 ---
 
 # Storytelling sidekick
@@ -81,7 +81,8 @@ const msg = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 1,
-  system: "You are an AI assistant with a passion for creative writing and storytelling. Your task is to collaborate with users to create engaging stories, offering imaginative plot twists and dynamic character development. Encourage the user to contribute their ideas and build upon them to create a captivating narrative.",
+  system:
+    "You are an AI assistant with a passion for creative writing and storytelling. Your task is to collaborate with users to create engaging stories, offering imaginative plot twists and dynamic character development. Encourage the user to contribute their ideas and build upon them to create a captivating narrative.",
   messages: [
     {
       role: "user",
@@ -95,7 +96,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -144,7 +144,8 @@ const msg = await client.messages.create({
   model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 2000,
   temperature: 1,
-  system: "You are an AI assistant with a passion for creative writing and storytelling. Your task is to collaborate with users to create engaging stories, offering imaginative plot twists and dynamic character development. Encourage the user to contribute their ideas and build upon them to create a captivating narrative.",
+  system:
+    "You are an AI assistant with a passion for creative writing and storytelling. Your task is to collaborate with users to create engaging stories, offering imaginative plot twists and dynamic character development. Encourage the user to contribute their ideas and build upon them to create a captivating narrative.",
   messages: [
     {
       role: "user",
@@ -158,7 +159,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -204,7 +204,8 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 2000,
   temperature: 1,
-  system: "You are an AI assistant with a passion for creative writing and storytelling. Your task is to collaborate with users to create engaging stories, offering imaginative plot twists and dynamic character development. Encourage the user to contribute their ideas and build upon them to create a captivating narrative.",
+  system:
+    "You are an AI assistant with a passion for creative writing and storytelling. Your task is to collaborate with users to create engaging stories, offering imaginative plot twists and dynamic character development. Encourage the user to contribute their ideas and build upon them to create a captivating narrative.",
   messages: [
     {
       role: "user",
@@ -218,7 +219,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 </Tab>
 </Tabs>

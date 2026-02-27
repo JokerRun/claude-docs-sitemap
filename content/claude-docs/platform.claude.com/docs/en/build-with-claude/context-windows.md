@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: f552a0251710f19684fac19f350718ee12aae5b9cb23c47c377052236468f91b
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: b646ff59ef043f7e9f2e7c625b1b0c6bb7ebe68bbeb903f78edbf3c0bd554b0a
 ---
 
 # Context windows
@@ -15,7 +15,13 @@ For long-running conversations and agentic workflows, [server-side compaction](/
 
 ## Understanding the context window
 
-The "context window" refers to all the text a language model can reference when generating a response, including the response itself. This is different from the large corpus of data the language model was trained on, and instead represents a "working memory" for the model. A larger context window allows the model to handle more complex and lengthy prompts. A smaller context window may limit the model's ability to maintain coherence over extended conversations.
+The "context window" refers to all the text a language model can reference when generating a response, including the response itself. This is different from the large corpus of data the language model was trained on, and instead represents a "working memory" for the model. A larger context window allows the model to handle more complex and lengthy prompts, but more context isn't automatically better. As token count grows, accuracy and recall degrade, a phenomenon known as *context rot*. This makes curating what's in context just as important as how much space is available.
+
+Claude achieves state-of-the-art results on long-context retrieval benchmarks like [MRCR](https://arxiv.org/abs/2501.03276) and [GraphWalks](https://arxiv.org/abs/2412.04360), but these gains depend on what's in context, not just how much fits.
+
+<Tip>
+For a deep dive into why long contexts degrade and how to engineer around it, see [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+</Tip>
 
 The diagram below illustrates the standard context window behavior for API requests<sup>1</sup>:
 
@@ -140,9 +146,7 @@ const anthropic = new Anthropic();
 const msg = await anthropic.beta.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
-  messages: [
-    { role: "user", content: "Process this large document..." }
-  ],
+  messages: [{ role: "user", content: "Process this large document..." }],
   betas: ["context-1m-2025-08-07"]
 });
 ```
@@ -185,6 +189,10 @@ Context awareness is particularly valuable for:
 - Long-running agent sessions that require sustained focus
 - Multi-context-window workflows where state transitions matter
 - Complex tasks requiring careful token management
+
+<Tip>
+For agents that span multiple sessions, design your state artifacts so that context recovery is fast when a new session starts. The [memory tool's multi-session pattern](/docs/en/agents-and-tools/tool-use/memory-tool#multi-session-software-development-pattern) walks through a concrete approach. See also [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
+</Tip>
 
 For prompting guidance on leveraging context awareness, see the [prompting best practices guide](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#context-awareness-and-multi-window-workflows).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: d11589bc97e6cdcd363683acbafdf8cae1095aaa9c8ed369640a938cc4ed4771
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 2d3a6f68d35839940c4d9c97e4429f9444f8a38ba9ea2474336c281f7922bd85
 ---
 
 # Beta headers
@@ -55,9 +55,7 @@ const anthropic = new Anthropic();
 const msg = await anthropic.beta.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
-  messages: [
-    { role: "user", content: "Hello, Claude" }
-  ],
+  messages: [{ role: "user", content: "Hello, Claude" }],
   betas: ["files-api-2025-04-14"]
 });
 ```

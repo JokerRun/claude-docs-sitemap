@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 34d6161caa8667ee48215877e976ebd16e1730252fafd72ef4771a7c45362757
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: b87b632ffbed505c19d27304da4c6c8d2c6274c320749e5c2e22bf6507d82e20
 ---
 
 # Memory tool
@@ -10,6 +10,8 @@ sha256: 34d6161caa8667ee48215877e976ebd16e1730252fafd72ef4771a7c45362757
 ---
 
 The memory tool enables Claude to store and retrieve information across conversations through a memory file directory. Claude can create, read, update, and delete files that persist between sessions, allowing it to build knowledge over time without keeping everything in the context window.
+
+This is the key primitive for just-in-time context retrieval: rather than loading all relevant information upfront, agents store what they learn in memory and pull it back on demand. This keeps the active context focused on what's currently relevant, critical for long-running workflows where loading everything at once would overwhelm the context window. See [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) for the broader pattern.
 
 The memory tool operates client-side: you control where and how the data is stored through your own infrastructure.
 
@@ -181,13 +183,16 @@ const message = await anthropic.messages.create({
   messages: [
     {
       role: "user",
-      content: "I'm working on a Python web scraper that keeps crashing with a timeout error. Here's the problematic function:\n\n```python\ndef fetch_page(url, retries=3):\n    for i in range(retries):\n        try:\n            response = requests.get(url, timeout=5)\n            return response.text\n        except requests.exceptions.Timeout:\n            if i == retries - 1:\n                raise\n            time.sleep(1)\n```\n\nPlease help me debug this."
+      content:
+        "I'm working on a Python web scraper that keeps crashing with a timeout error. Here's the problematic function:\n\n```python\ndef fetch_page(url, retries=3):\n    for i in range(retries):\n        try:\n            response = requests.get(url, timeout=5)\n            return response.text\n        except requests.exceptions.Timeout:\n            if i == retries - 1:\n                raise\n            time.sleep(1)\n```\n\nPlease help me debug this."
     }
   ],
-  tools: [{
-    type: "memory_20250818",
-    name: "memory"
-  }]
+  tools: [
+    {
+      type: "memory_20250818",
+      name: "memory"
+    }
+  ]
 });
 ```
 
@@ -204,7 +209,7 @@ Shows directory contents or file contents with optional line ranges:
 {
   "command": "view",
   "path": "/memories",
-  "view_range": [1, 10]  // Optional: view specific lines
+  "view_range": [1, 10] // Optional: view specific lines
 }
 ```
 
@@ -477,7 +482,9 @@ const anthropic = new Anthropic({
 const response = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 4096,
-  messages: [/* ... */],
+  messages: [
+    // ...
+  ],
   tools: [
     {
       type: "memory_20250818",
@@ -533,3 +540,23 @@ context_management: {
 The memory tool can also be paired with [compaction](/docs/en/build-with-claude/compaction), which provides server-side summarization of older conversation context. While context editing clears specific tool results on the client side, compaction automatically summarizes the entire conversation on the server side when it approaches the context window limit.
 
 For long-running agentic workflows, consider using both: compaction keeps the active context manageable without client-side bookkeeping, and memory persists important information across compaction boundaries so that nothing critical is lost in the summary.
+
+## Multi-session software development pattern
+
+For long-running software projects that span multiple agent sessions, memory files need to be bootstrapped deliberately, not just written ad hoc as work progresses. The pattern below turns memory into a structured recovery mechanism, so each new session can pick up exactly where the last one left off.
+
+### How it works
+
+1. **Initializer session:** The first session sets up the memory artifacts before any substantive work begins. This includes a progress log (tracking what has been done and what comes next), a feature checklist (defining the scope of work), and a reference to any startup or initialization script the project needs.
+
+2. **Subsequent sessions:** Each new session opens by reading those memory artifacts. This recovers the full state of the project in seconds, without needing to re-explore the codebase or retrace earlier decisions.
+
+3. **End-of-session update:** Before a session ends, it updates the progress log with what was completed and what remains. This ensures the next session has an accurate starting point.
+
+### Key principle
+
+Work on one feature at a time. Only mark a feature complete after end-to-end verification confirms it works, not just after the code is written. This keeps the progress log trustworthy and prevents scope creep from compounding across sessions.
+
+<Tip>
+For a detailed case study of this pattern in practice, including the initializer script, progress file structure, and git-based recovery, see [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
+</Tip>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-02-21T04:09:20.845903Z
-sha256: c79465b61a7d53ded013f1e1bfd40638948acc65d8b7f9a2492b4b23bf37f372
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: c7987a89abadc1740d8056a455f873b188c58ab2c3e166f8ad1ceaaa4861c835
 ---
 
 > ## Documentation Index
@@ -376,9 +376,9 @@ These settings are configured through the [admin settings console](https://claud
 
 Managed settings override project and user settings and apply when Desktop spawns CLI sessions. You can set these keys in your organization's [managed settings](/en/settings#settings-precedence) file or push them remotely through the admin console.
 
-| Key                            | Description                                                                                                                     |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| `disableBypassPermissionsMode` | set to `"disable"` to prevent users from enabling Bypass permissions mode. See [permissions](/en/permissions#managed-settings). |
+| Key                            | Description                                                                                                                               |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `disableBypassPermissionsMode` | set to `"disable"` to prevent users from enabling Bypass permissions mode. See [managed settings](/en/permissions#managed-only-settings). |
 
 For the complete list of managed-only settings including `allowManagedPermissionRulesOnly` and `allowManagedHooksOnly`, see [managed-only settings](/en/permissions#managed-only-settings).
 
@@ -469,6 +469,8 @@ This table compares core capabilities between the CLI and Desktop. For a full li
 | Scripting and automation                              | [`--print`](/en/cli-reference), [Agent SDK](/en/headless) | not available                                                                               |
 
 ### What's not available in Desktop
+
+The following features are only available in the CLI or VS Code extension:
 
 * **Third-party providers**: Desktop connects to Anthropic's API directly. Use the [CLI](/en/quickstart) with Bedrock, Vertex, or Foundry instead.
 * **Linux**: the desktop app is available on macOS and Windows only.

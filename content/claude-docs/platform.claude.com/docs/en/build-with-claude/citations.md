@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 85ab8b5d2b6b2619075518b2d8ff153f9f5e5567e718902f5901dae9abf0afb6
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 280ec6b8aa452c17ec06d732a6e7221c08049c4b64091eb5479bacb21a5b4751
 ---
 
 # Citations
@@ -255,7 +255,8 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 // Long document content (e.g., technical documentation)
-const longDocument = "This is a very long document with thousands of words..." + " ... ".repeat(1000); // Minimum cacheable length
+const longDocument =
+  "This is a very long document with thousands of words..." + " ... ".repeat(1000); // Minimum cacheable length
 
 const response = await client.messages.create({
   model: "claude-opus-4-6",
@@ -555,7 +556,7 @@ For streaming responses, a `citations_delta` type is included that contains a si
 
 <section title="Example streaming events">
 
-```json
+```sse
 event: message_start
 data: {"type": "message_start", ...}
 

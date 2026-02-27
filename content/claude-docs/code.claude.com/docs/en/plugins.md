@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-02-21T04:09:20.845903Z
-sha256: 3d5866b5d748a85c1ccb5d694e90c1e0a355c512488b2405f168b7f49a542edd
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 27348fb357a565262475a9a2c437fd162dcce96cf0996c1b05c5079b7bf97691
 ---
 
 > ## Documentation Index
@@ -212,7 +212,7 @@ Plugins can include [Agent Skills](/en/skills) to extend Claude's capabilities. 
 
 Add a `skills/` directory at your plugin root with Skill folders containing `SKILL.md` files:
 
-```
+```text  theme={null}
 my-plugin/
 ├── .claude-plugin/
 │   └── plugin.json
@@ -320,6 +320,13 @@ When your plugin is ready to share:
 4. **Test with others**: Have team members test the plugin before wider distribution
 
 Once your plugin is in a marketplace, others can install it using the instructions in [Discover and install plugins](/en/discover-plugins).
+
+### Submit your plugin to the official marketplace
+
+To submit a plugin to the official Anthropic marketplace, use one of the in-app submission forms:
+
+* **Claude.ai**: [claude.ai/settings/plugins/submit](https://claude.ai/settings/plugins/submit)
+* **Console**: [platform.claude.com/plugins/submit](https://platform.claude.com/plugins/submit)
 
 <Note>
   For complete technical specifications, debugging techniques, and distribution strategies, see [Plugins reference](/en/plugins-reference).

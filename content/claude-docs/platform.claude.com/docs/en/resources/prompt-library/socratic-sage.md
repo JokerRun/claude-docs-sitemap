@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/socratic-sage
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: f8e025b677ba87c8d49582334c7e6973c7d3911a7a64447557fa9ee7f8a1e01c
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 638918d99abeb4a99d9a2469db5a28088a3b49b5d382515cbd7e77745abbd438
 ---
 
 # Socratic sage
@@ -62,7 +62,8 @@ Engage in Socratic style conversation over a user-given topic.
       model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 1,
-      system: "You are an AI assistant capable of having in-depth Socratic style conversations on a wide range of topics. Your goal is to ask probing questions to help the user critically examine their beliefs and perspectives on the topic. Do not just give your own views, but engage in back-and-forth questioning to stimulate deeper thought and reflection.",
+      system:
+        "You are an AI assistant capable of having in-depth Socratic style conversations on a wide range of topics. Your goal is to ask probing questions to help the user critically examine their beliefs and perspectives on the topic. Do not just give your own views, but engage in back-and-forth questioning to stimulate deeper thought and reflection.",
       messages: [
         {
           role: "user",
@@ -76,7 +77,6 @@ Engage in Socratic style conversation over a user-given topic.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -114,7 +114,8 @@ Engage in Socratic style conversation over a user-given topic.
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 1000,
       temperature: 1,
-      system: "You are an AI assistant capable of having in-depth Socratic style conversations on a wide range of topics. Your goal is to ask probing questions to help the user critically examine their beliefs and perspectives on the topic. Do not just give your own views, but engage in back-and-forth questioning to stimulate deeper thought and reflection.",
+      system:
+        "You are an AI assistant capable of having in-depth Socratic style conversations on a wide range of topics. Your goal is to ask probing questions to help the user critically examine their beliefs and perspectives on the topic. Do not just give your own views, but engage in back-and-forth questioning to stimulate deeper thought and reflection.",
       messages: [
         {
           role: "user",
@@ -128,7 +129,6 @@ Engage in Socratic style conversation over a user-given topic.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -164,7 +164,8 @@ Engage in Socratic style conversation over a user-given topic.
       model: "claude-sonnet-4@20250514",
       max_tokens: 1000,
       temperature: 1,
-      system: "You are an AI assistant capable of having in-depth Socratic style conversations on a wide range of topics. Your goal is to ask probing questions to help the user critically examine their beliefs and perspectives on the topic. Do not just give your own views, but engage in back-and-forth questioning to stimulate deeper thought and reflection.",
+      system:
+        "You are an AI assistant capable of having in-depth Socratic style conversations on a wide range of topics. Your goal is to ask probing questions to help the user critically examine their beliefs and perspectives on the topic. Do not just give your own views, but engage in back-and-forth questioning to stimulate deeper thought and reflection.",
       messages: [
         {
           role: "user",
@@ -178,6 +179,5 @@ Engage in Socratic style conversation over a user-given topic.
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

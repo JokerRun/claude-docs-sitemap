@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/adaptive-editor
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 213bd63912313d0579f194fb201ed0e51a378346a364bff870b8cf777bbb3f8f
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 3dd440c2fc8bfda0e3b06c4c84db9b657717c2b120b16ce60a1bb654d33a1404
 ---
 
 # Adaptive editor
@@ -69,14 +69,13 @@ Rewrite text following user-given instructions, such as with a different tone, a
           content: [
             {
               type: "text",
-              text: "Rewrite the following paragraph using the following instructions: in the style of a pirate.  \n  \nParagraph:  \nIn 1758, the Swedish botanist and zoologist Carl Linnaeus published in his Systema Naturae, the two-word naming of species (binomial nomenclature). Canis is the Latin word meaning \"dog\", and under this genus, he listed the domestic dog, the wolf, and the golden jackal."
+              text: 'Rewrite the following paragraph using the following instructions: in the style of a pirate.  \n  \nParagraph:  \nIn 1758, the Swedish botanist and zoologist Carl Linnaeus published in his Systema Naturae, the two-word naming of species (binomial nomenclature). Canis is the Latin word meaning "dog", and under this genus, he listed the domestic dog, the wolf, and the golden jackal.'
             }
           ]
         }
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -122,14 +121,13 @@ Rewrite text following user-given instructions, such as with a different tone, a
           content: [
             {
               type: "text",
-              text: "Rewrite the following paragraph using the following instructions: in the style of a pirate.  \n  \nParagraph:  \nIn 1758, the Swedish botanist and zoologist Carl Linnaeus published in his Systema Naturae, the two-word naming of species (binomial nomenclature). Canis is the Latin word meaning \"dog\", and under this genus, he listed the domestic dog, the wolf, and the golden jackal."
+              text: 'Rewrite the following paragraph using the following instructions: in the style of a pirate.  \n  \nParagraph:  \nIn 1758, the Swedish botanist and zoologist Carl Linnaeus published in his Systema Naturae, the two-word naming of species (binomial nomenclature). Canis is the Latin word meaning "dog", and under this genus, he listed the domestic dog, the wolf, and the golden jackal.'
             }
           ]
         }
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -173,13 +171,12 @@ Rewrite text following user-given instructions, such as with a different tone, a
           content: [
             {
               type: "text",
-              text: "Rewrite the following paragraph using the following instructions: in the style of a pirate.  \n  \nParagraph:  \nIn 1758, the Swedish botanist and zoologist Carl Linnaeus published in his Systema Naturae, the two-word naming of species (binomial nomenclature). Canis is the Latin word meaning \"dog\", and under this genus, he listed the domestic dog, the wolf, and the golden jackal."
+              text: 'Rewrite the following paragraph using the following instructions: in the style of a pirate.  \n  \nParagraph:  \nIn 1758, the Swedish botanist and zoologist Carl Linnaeus published in his Systema Naturae, the two-word naming of species (binomial nomenclature). Canis is the Latin word meaning "dog", and under this genus, he listed the domestic dog, the wolf, and the golden jackal.'
             }
           ]
         }
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

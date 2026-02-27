@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: b3bbdfc226c23599e4e163fc4779384e9f3a3ed81e96c5834058c0c3aa1d2013
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 8d518ed7799004d6ba5f115d691441935ad98be5fd7650eba4475e90a310f32d
 ---
 
 # Reduce prompt leak
@@ -27,7 +27,7 @@ You can try using system prompts to isolate key information and context from use
 
 <section title="Example: Safeguarding proprietary analytics">
 
-    Notice that this system prompt is still predominantly a role prompt, which is the [most effective way to use system prompts](/docs/en/build-with-claude/prompt-engineering/system-prompts).
+    Notice that this system prompt is still predominantly a role prompt, which is the [most effective way to use system prompts](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).
 
     | Role | Content |
     | ---- | ------- |

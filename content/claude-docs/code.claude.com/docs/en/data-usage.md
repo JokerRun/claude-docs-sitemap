@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/data-usage
-fetched_at: 2026-02-20T04:18:13.878022Z
-sha256: f536bb85b8d8e596c62071cd3533fe82b20b4b0139115e7b269f49235302e721
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 0a5bfd4efd5b5727057c47016bf29a9dbc70290bce4eb35ee813ba632baaefc8
 ---
 
 > ## Documentation Index
@@ -58,7 +58,7 @@ For full details, please review our [Commercial Terms of Service](https://www.an
 
 ## Data access
 
-For all first party users, you can learn more about what data is logged for [local Claude Code](#local-claude-code-data-flow-and-dependencies) and [remote Claude Code](#cloud-execution-data-flow-and-dependencies). Note for remote Claude Code, Claude accesses the repository where you initiate your Claude Code session. Claude does not access repositories that you have connected but have not started a session in.
+For all first party users, you can learn more about what data is logged for [local Claude Code](#local-claude-code-data-flow-and-dependencies) and [remote Claude Code](#cloud-execution-data-flow-and-dependencies). [Remote Control](/en/remote-control) sessions follow the local data flow since all execution happens on your machine. Note for remote Claude Code, Claude accesses the repository where you initiate your Claude Code session. Claude does not access repositories that you have connected but have not started a session in.
 
 ## Local Claude Code: Data flow and dependencies
 

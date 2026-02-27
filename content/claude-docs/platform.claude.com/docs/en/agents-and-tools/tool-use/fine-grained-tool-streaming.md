@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 9bb8934eb909fdaef88283a634afc06d3e635cbf2c5171c71221900700680be6
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 86e6d9cb29161b2a66772fca84bca738f76b83082774ae69c258bed8bc5e8450
 ---
 
 # Fine-grained tool streaming
@@ -109,29 +109,33 @@ Here's an example of how to use fine-grained tool streaming with the API:
   const message = await anthropic.messages.stream({
     model: "claude-opus-4-6",
     max_tokens: 65536,
-    tools: [{
-      name: "make_file",
-      description: "Write text to a file",
-      eager_input_streaming: true,
-      input_schema: {
-        type: "object",
-        properties: {
-          filename: {
-            type: "string",
-            description: "The filename to write text to"
+    tools: [
+      {
+        name: "make_file",
+        description: "Write text to a file",
+        eager_input_streaming: true,
+        input_schema: {
+          type: "object",
+          properties: {
+            filename: {
+              type: "string",
+              description: "The filename to write text to"
+            },
+            lines_of_text: {
+              type: "array",
+              description: "An array of lines of text to write to the file"
+            }
           },
-          lines_of_text: {
-            type: "array",
-            description: "An array of lines of text to write to the file"
-          }
-        },
-        required: ["filename", "lines_of_text"]
+          required: ["filename", "lines_of_text"]
+        }
       }
-    }],
-    messages: [{
-      role: "user",
-      content: "Can you write a long poem and make a file called poem.txt?"
-    }]
+    ],
+    messages: [
+      {
+        role: "user",
+        content: "Can you write a long poem and make a file called poem.txt?"
+      }
+    ]
   });
 
   console.log(message.usage);

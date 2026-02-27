@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/brand-builder
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 802786c636ed2d92828f5164ce4ce377692008bb26247016e4cc1cc4b02a972d
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 6e02800c3dde452b20f3f8781fc766e70cf04687a1d7559d693d55879374858e
 ---
 
 # Brand builder
@@ -96,7 +96,8 @@ Craft a design brief for a holistic brand identity.
       model: "claude-opus-4-6",
       max_tokens: 2000,
       temperature: 1,
-      system: "Your task is to create a comprehensive design brief for a holistic brand identity based on the given specifications. The brand identity should encompass various elements such as suggestions for the brand name, logo, color palette, typography, visual style, tone of voice, and overall brand personality. Ensure that all elements work together harmoniously to create a cohesive and memorable brand experience that effectively communicates the brand's values, mission, and unique selling proposition to its target audience. Be detailed and comprehensive and provide enough specific details for someone to create a truly unique brand identity.",
+      system:
+        "Your task is to create a comprehensive design brief for a holistic brand identity based on the given specifications. The brand identity should encompass various elements such as suggestions for the brand name, logo, color palette, typography, visual style, tone of voice, and overall brand personality. Ensure that all elements work together harmoniously to create a cohesive and memorable brand experience that effectively communicates the brand's values, mission, and unique selling proposition to its target audience. Be detailed and comprehensive and provide enough specific details for someone to create a truly unique brand identity.",
       messages: [
         {
           role: "user",
@@ -110,7 +111,6 @@ Craft a design brief for a holistic brand identity.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -151,7 +151,8 @@ Craft a design brief for a holistic brand identity.
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 2000,
       temperature: 1,
-      system: "Your task is to create a comprehensive design brief for a holistic brand identity based on the given specifications. The brand identity should encompass various elements such as suggestions for the brand name, logo, color palette, typography, visual style, tone of voice, and overall brand personality. Ensure that all elements work together harmoniously to create a cohesive and memorable brand experience that effectively communicates the brand's values, mission, and unique selling proposition to its target audience. Be detailed and comprehensive and provide enough specific details for someone to create a truly unique brand identity.",
+      system:
+        "Your task is to create a comprehensive design brief for a holistic brand identity based on the given specifications. The brand identity should encompass various elements such as suggestions for the brand name, logo, color palette, typography, visual style, tone of voice, and overall brand personality. Ensure that all elements work together harmoniously to create a cohesive and memorable brand experience that effectively communicates the brand's values, mission, and unique selling proposition to its target audience. Be detailed and comprehensive and provide enough specific details for someone to create a truly unique brand identity.",
       messages: [
         {
           role: "user",
@@ -165,7 +166,6 @@ Craft a design brief for a holistic brand identity.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -204,7 +204,8 @@ Craft a design brief for a holistic brand identity.
       model: "claude-sonnet-4@20250514",
       max_tokens: 2000,
       temperature: 1,
-      system: "Your task is to create a comprehensive design brief for a holistic brand identity based on the given specifications. The brand identity should encompass various elements such as suggestions for the brand name, logo, color palette, typography, visual style, tone of voice, and overall brand personality. Ensure that all elements work together harmoniously to create a cohesive and memorable brand experience that effectively communicates the brand's values, mission, and unique selling proposition to its target audience. Be detailed and comprehensive and provide enough specific details for someone to create a truly unique brand identity.",
+      system:
+        "Your task is to create a comprehensive design brief for a holistic brand identity based on the given specifications. The brand identity should encompass various elements such as suggestions for the brand name, logo, color palette, typography, visual style, tone of voice, and overall brand personality. Ensure that all elements work together harmoniously to create a cohesive and memorable brand experience that effectively communicates the brand's values, mission, and unique selling proposition to its target audience. Be detailed and comprehensive and provide enough specific details for someone to create a truly unique brand identity.",
       messages: [
         {
           role: "user",
@@ -218,6 +219,5 @@ Craft a design brief for a holistic brand identity.
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

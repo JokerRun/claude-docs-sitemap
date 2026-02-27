@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: ac50ae414fc5b3e01c1ba64f447627341ad2dd84bdb01c6a29ea585ded2ef60c
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 8b2789c556855bc34e650f9797cc864a8b42515d62a0ab9f6530a1d716542677
 ---
 
 # MCP connector
@@ -232,7 +232,7 @@ The simplest pattern - enable all tools from a server:
 ```json
 {
   "type": "mcp_toolset",
-  "mcp_server_name": "google-calendar-mcp",
+  "mcp_server_name": "google-calendar-mcp"
 }
 ```
 
@@ -564,7 +564,9 @@ If you're using the deprecated `mcp-client-2025-04-04` beta header, follow this 
 {
   "model": "claude-opus-4-6",
   "max_tokens": 1000,
-  "messages": [...],
+  "messages": [
+    // ...
+  ],
   "mcp_servers": [
     {
       "type": "url",
@@ -586,7 +588,9 @@ If you're using the deprecated `mcp-client-2025-04-04` beta header, follow this 
 {
   "model": "claude-opus-4-6",
   "max_tokens": 1000,
-  "messages": [...],
+  "messages": [
+    // ...
+  ],
   "mcp_servers": [
     {
       "type": "url",

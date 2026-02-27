@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/gitlab-ci-cd
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 0515a9fa44dc50c2659940c5f3d1f03247e163d501725b12f5f5ce70fa9ac697
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: ea2982a52c6669996bec5537e55b9645398f5c4304c7e65ec34752051b0fcff0
 ---
 
 > ## Documentation Index
@@ -133,7 +133,7 @@ If you prefer a more controlled setup or need enterprise providers:
 
 In an issue comment:
 
-```
+```text  theme={null}
 @claude implement this feature based on the issue description
 ```
 
@@ -143,7 +143,7 @@ Claude analyzes the issue and codebase, writes changes in a branch, and opens an
 
 In an MR discussion:
 
-```
+```text  theme={null}
 @claude suggest a concrete approach to cache the results of this API call
 ```
 
@@ -153,7 +153,7 @@ Claude proposes changes, adds code with appropriate caching, and updates the MR.
 
 In an issue or MR comment:
 
-```
+```text  theme={null}
 @claude fix the TypeError in the user dashboard component
 ```
 

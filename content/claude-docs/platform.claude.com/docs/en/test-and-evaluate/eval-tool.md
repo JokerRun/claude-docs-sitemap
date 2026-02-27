@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/eval-tool
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 42ae97d2991ecf654f5bbd37393c322f12da63d0e4b4c48eb380a883e4fee968
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: c4e35d37b91ddff07c53cb655c84cb1a13570de04328b3382dfeb96a65c4c614
 ---
 
 # Using the Evaluation Tool
@@ -26,7 +26,7 @@ Ensure your prompt includes at least 1-2 dynamic variables using the double brac
 
 ## Generating Prompts
 
-The Console offers a built-in [prompt generator](/docs/en/build-with-claude/prompt-engineering/prompt-generator) powered by Claude Opus 4.1:
+The Console offers a built-in [prompt generator](/docs/en/build-with-claude/prompt-engineering/prompting-tools) powered by Claude Opus 4.1:
 
 <Steps>
   <Step title="Click 'Generate Prompt'">

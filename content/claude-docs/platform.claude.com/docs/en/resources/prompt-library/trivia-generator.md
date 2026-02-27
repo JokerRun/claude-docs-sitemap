@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/trivia-generator
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: ced1233c72d897a010cb11ba8da9c4fb816cdb7d58db47be78c1186f861f2e0b
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: fd88e9a644a90a7c21d843c3d98c087507a08350d5d2111b5e5f12b75367c093
 ---
 
 # Trivia generator
@@ -123,7 +123,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -182,7 +181,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -239,7 +237,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

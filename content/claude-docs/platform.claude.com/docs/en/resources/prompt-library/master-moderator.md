@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/master-moderator
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: ed3c226cdf089db05c403ad6e34b488dd600b6d6b44d50a5cadf4085f85995bf
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 809673a42ae9dc3cbc8d0a66ec82f78083513a69c48dc5dadc331a27a14ad5c7
 ---
 
 # Master moderator
@@ -76,7 +76,6 @@ Evaluate user inputs for potential harmful or illegal content.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -129,7 +128,6 @@ Evaluate user inputs for potential harmful or illegal content.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -180,7 +178,6 @@ Evaluate user inputs for potential harmful or illegal content.
       ]
     });
     console.log(msg);
-
     ```
 
 </CodeGroup>

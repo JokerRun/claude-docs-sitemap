@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: f004160741981d74e986f138062301f41a284d912a67b1b3dd61a0c2645c154a
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 591bc2bbca2c5ffe7603a295fc6316789a69614aed6a2736ff1646c3fd30fe07
 ---
 
 # Compaction
@@ -15,7 +15,14 @@ Server-side context compaction for managing long conversations that approach con
 Server-side compaction is the recommended strategy for managing context in long-running conversations and agentic workflows. It handles context management automatically with minimal integration work.
 </Tip>
 
-Compaction extends the effective context length for long-running conversations and tasks by automatically summarizing older context when approaching the context window limit. This is ideal for:
+Compaction extends the effective context length for long-running conversations and tasks by automatically summarizing older context when approaching the context window limit. This isn't just about staying under a token cap. As conversations get longer, models struggle to maintain focus across the full history. Compaction keeps the active context focused and performant by replacing stale content with concise summaries.
+
+<Tip>
+For a deeper look at why long contexts degrade and how compaction helps, see
+[Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+</Tip>
+
+This is ideal for:
 
 - Chat-based, multi-turn conversations where you want users to use one chat for a long period of time
 - Task-oriented prompts that require a lot of follow-up work (often tool use) that may exceed the 200K context window
@@ -111,11 +118,7 @@ const response = await client.beta.messages.create({
   max_tokens: 4096,
   messages,
   context_management: {
-    edits: [
-      {
-        type: "compact_20260112"
-      }
-    ]
+    edits: [{ type: "compact_20260112" }]
   }
 });
 
@@ -214,7 +217,8 @@ const response = await client.beta.messages.create({
     edits: [
       {
         type: "compact_20260112",
-        instructions: "Focus on preserving code snippets, variable names, and technical decisions."
+        instructions:
+          "Focus on preserving code snippets, variable names, and technical decisions."
       }
     ]
   }
@@ -473,18 +477,18 @@ Compaction works well with [prompt caching](/docs/en/build-with-claude/prompt-ca
 
 ```json
 {
-    "role": "assistant",
-    "content": [
-        {
-            "type": "compaction",
-            "content": "[summary text]",
-            "cache_control": {"type": "ephemeral"}
-        },
-        {
-            "type": "text",
-            "text": "Based on our conversation..."
-        }
-    ]
+  "role": "assistant",
+  "content": [
+    {
+      "type": "compaction",
+      "content": "[summary text]",
+      "cache_control": { "type": "ephemeral" }
+    },
+    {
+      "type": "text",
+      "text": "Based on our conversation..."
+    }
+  ]
 }
 ```
 
@@ -567,7 +571,7 @@ Compaction requires an additional sampling step, which contributes to rate limit
 The `iterations` array shows usage for each sampling iteration. When compaction occurs, you'll see a `compaction` iteration followed by the main `message` iteration. The final iteration's token counts reflect the effective context size after compaction.
 
 <Note>
-The top-level `input_tokens` and `output_tokens` do not include compaction iteration usage—they reflect the sum of all non-compaction iterations. To calculate total tokens consumed and billed for a request, sum across all entries in the `usage.iterations` array.
+The top-level `input_tokens` and `output_tokens` do not include compaction iteration usage. They reflect the sum of all non-compaction iterations. To calculate total tokens consumed and billed for a request, sum across all entries in the `usage.iterations` array.
 
 If you previously relied on `usage.input_tokens` and `usage.output_tokens` for cost tracking or auditing, you'll need to update your tracking logic to aggregate across `usage.iterations` when compaction is enabled. The `iterations` array is only populated when a new compaction is triggered during the request. Re-applying a previous `compaction` block incurs no additional compaction cost, and the top-level usage fields remain accurate in that case.
 </Note>
@@ -684,7 +688,7 @@ async function chat(userMessage: string): Promise<string> {
   messages.push({ role: "assistant", content: response.content });
 
   // Return the text content
-  const textBlock = response.content.find(block => block.type === "text");
+  const textBlock = response.content.find((block) => block.type === "text");
   return textBlock?.text ?? "";
 }
 
@@ -802,9 +806,7 @@ async function chat(userMessage: string): Promise<string> {
 
     // Preserve the last 2 messages (1 user + 1 assistant turn)
     // by including them after the compaction block
-    const preservedMessages = messages.length >= 2
-      ? messages.slice(-2)
-      : [...messages];
+    const preservedMessages = messages.length >= 2 ? messages.slice(-2) : [...messages];
 
     // Build new message list: compaction + preserved messages
     const messagesAfterCompaction: Anthropic.Beta.BetaMessageParam[] = [
@@ -831,7 +833,7 @@ async function chat(userMessage: string): Promise<string> {
   messages.push({ role: "assistant", content: response.content });
 
   // Return the text content
-  const textBlock = response.content.find(block => block.type === "text");
+  const textBlock = response.content.find((block) => block.type === "text");
   return textBlock?.text ?? "";
 }
 

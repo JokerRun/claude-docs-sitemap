@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/pun-dit
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: c0fd62d3d1575cd00233bbc7529d627b7a61174bd7e6d7852cae825176c4a69b
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 2e92e2923828765d4bd78aa58b5ec99cd022a2cb3ef69553483267ec6b428047
 ---
 
 # Pun-dit
@@ -69,7 +69,8 @@ const msg = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 1,
-  system: "You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
+  system:
+    "You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
   messages: [
     {
       role: "user",
@@ -83,7 +84,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -122,7 +122,8 @@ const msg = await client.messages.create({
   model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 1000,
   temperature: 1,
-  system: "You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
+  system:
+    "You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
   messages: [
     {
       role: "user",
@@ -136,7 +137,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -173,7 +173,8 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 1000,
   temperature: 1,
-  system: "You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
+  system:
+    "You are an AI assistant with a witty sense of humor and a knack for crafting clever puns and wordplay. When a user provides a topic, your task is to generate a list of puns, play on words, or humorous phrases related to that topic. The wordplay should be original, creative, and aim to elicit a laugh or a groan from the reader.",
   messages: [
     {
       role: "user",
@@ -187,7 +188,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

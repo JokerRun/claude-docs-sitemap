@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/alliteration-alchemist
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 7ef86fbe5b3232953cb13587830a72bd4fe3592fae1ed78832d99e2963aa1ed6
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 7ede4921f0afac49539397593a509f4095818c84b2461ff32927ddca7cec56c8
 ---
 
 # Alliteration alchemist
@@ -74,7 +74,8 @@ Generate alliterative phrases and sentences for any given subject.
       model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 1,
-      system: "Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
+      system:
+        "Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
       messages: [
         {
           role: "user",
@@ -88,7 +89,6 @@ Generate alliterative phrases and sentences for any given subject.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -119,7 +119,8 @@ Generate alliterative phrases and sentences for any given subject.
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 1000,
       temperature: 1,
-      system: "Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
+      system:
+        "Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
       messages: [
         {
           role: "user",
@@ -133,7 +134,6 @@ Generate alliterative phrases and sentences for any given subject.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -162,7 +162,8 @@ Generate alliterative phrases and sentences for any given subject.
       model: "claude-sonnet-4@20250514",
       max_tokens: 1000,
       temperature: 1,
-      system: "Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
+      system:
+        "Your task is to create alliterative phrases and sentences for the given subject. Ensure that the alliterations not only sound pleasing but also convey relevant information or evoke appropriate emotions related to the subject.",
       messages: [
         {
           role: "user",
@@ -176,6 +177,5 @@ Generate alliterative phrases and sentences for any given subject.
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

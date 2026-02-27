@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-02-21T04:09:20.845903Z
-sha256: da260bdaaad2a78bf3e8147d15ac67f73f9824952cf72ee104f57d3bcf5585da
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 96f60a9cfe1a18b3e353d7a0e3878cdd0e6aff0046e1d2457852f7777af09d43
 ---
 
 # Fast mode (research preview)
@@ -83,10 +83,12 @@ const response = await client.beta.messages.create({
   max_tokens: 4096,
   speed: "fast",
   betas: ["fast-mode-2026-02-01"],
-  messages: [{
-    role: "user",
-    content: "Refactor this module to use dependency injection"
-  }]
+  messages: [
+    {
+      role: "user",
+      content: "Refactor this module to use dependency injection"
+    }
+  ]
 });
 
 console.log(response.content[0].text);

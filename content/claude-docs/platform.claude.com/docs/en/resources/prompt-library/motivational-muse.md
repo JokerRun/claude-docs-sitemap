@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/motivational-muse
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: a1767a56bf0cf5ecc120cf2bd028f2988e5705c1ab55ddcf1d692e381ccbab83
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 9ed7d4663533ddb154534b2bc800b2bb5b5731845481a47f3fe4005310cb6fb9
 ---
 
 # Motivational muse
@@ -77,7 +77,8 @@ Provide personalized motivational messages and affirmations based on user input.
       model: "claude-opus-4-6",
       max_tokens: 2000,
       temperature: 1,
-      system: "Your task is to generate a personalized motivational message or affirmation based on the user's input. Address their specific needs and offer encouragement, support, and guidance. Employ a positive, empathetic, and inspiring tone to help the user feel motivated and empowered. Use relevant examples, analogies, or quotes to reinforce your message and make it more impactful. Ensure that the message is concise, authentic, and easy to understand.",
+      system:
+        "Your task is to generate a personalized motivational message or affirmation based on the user's input. Address their specific needs and offer encouragement, support, and guidance. Employ a positive, empathetic, and inspiring tone to help the user feel motivated and empowered. Use relevant examples, analogies, or quotes to reinforce your message and make it more impactful. Ensure that the message is concise, authentic, and easy to understand.",
       messages: [
         {
           role: "user",
@@ -91,7 +92,6 @@ Provide personalized motivational messages and affirmations based on user input.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -132,7 +132,8 @@ Provide personalized motivational messages and affirmations based on user input.
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 2000,
       temperature: 1,
-      system: "Your task is to generate a personalized motivational message or affirmation based on the user's input. Address their specific needs and offer encouragement, support, and guidance. Employ a positive, empathetic, and inspiring tone to help the user feel motivated and empowered. Use relevant examples, analogies, or quotes to reinforce your message and make it more impactful. Ensure that the message is concise, authentic, and easy to understand.",
+      system:
+        "Your task is to generate a personalized motivational message or affirmation based on the user's input. Address their specific needs and offer encouragement, support, and guidance. Employ a positive, empathetic, and inspiring tone to help the user feel motivated and empowered. Use relevant examples, analogies, or quotes to reinforce your message and make it more impactful. Ensure that the message is concise, authentic, and easy to understand.",
       messages: [
         {
           role: "user",
@@ -146,7 +147,6 @@ Provide personalized motivational messages and affirmations based on user input.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -185,7 +185,8 @@ Provide personalized motivational messages and affirmations based on user input.
       model: "claude-sonnet-4@20250514",
       max_tokens: 2000,
       temperature: 1,
-      system: "Your task is to generate a personalized motivational message or affirmation based on the user's input. Address their specific needs and offer encouragement, support, and guidance. Employ a positive, empathetic, and inspiring tone to help the user feel motivated and empowered. Use relevant examples, analogies, or quotes to reinforce your message and make it more impactful. Ensure that the message is concise, authentic, and easy to understand.",
+      system:
+        "Your task is to generate a personalized motivational message or affirmation based on the user's input. Address their specific needs and offer encouragement, support, and guidance. Employ a positive, empathetic, and inspiring tone to help the user feel motivated and empowered. Use relevant examples, analogies, or quotes to reinforce your message and make it more impactful. Ensure that the message is concise, authentic, and easy to understand.",
       messages: [
         {
           role: "user",
@@ -199,7 +200,6 @@ Provide personalized motivational messages and affirmations based on user input.
       ]
     });
     console.log(msg);
-
     ```
 
 </CodeGroup>

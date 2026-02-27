@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/code-clarifier
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 6363ed756ee77d4eff46d2beff1a47228f012d34110824d98322cf0c5349a1e7
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 6932bd38a479d7683b784226e6481bce5fa19201f388ed9044a455ec224e229a
 ---
 
 # Code clarifier
@@ -82,21 +82,21 @@ Simplify and explain complex code in plain language.
       model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to take the code snippet provided and explain it in simple, easy-to-understand language. Break down the code's functionality, purpose, and key components. Use analogies, examples, and plain terms to make the explanation accessible to someone with minimal coding knowledge. Avoid using technical jargon unless absolutely necessary, and provide clear explanations for any jargon used. The goal is to help the reader understand what the code does and how it works at a high level.",
+      system:
+        "Your task is to take the code snippet provided and explain it in simple, easy-to-understand language. Break down the code's functionality, purpose, and key components. Use analogies, examples, and plain terms to make the explanation accessible to someone with minimal coding knowledge. Avoid using technical jargon unless absolutely necessary, and provide clear explanations for any jargon used. The goal is to help the reader understand what the code does and how it works at a high level.",
       messages: [
         {
           role: "user",
           content: [
             {
               type: "text",
-              text: "import random\n\ndef bubble_sort(arr):\n    n = len(arr)\n    for i in range(n-1):\n        for j in range(n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr\n\nnumbers = [random.randint(1, 100) for _ in range(10)]\nprint(\"Unsorted array:\", numbers)\nsorted_numbers = bubble_sort(numbers)\nprint(\"Sorted array:\", sorted_numbers)"
+              text: 'import random\n\ndef bubble_sort(arr):\n    n = len(arr)\n    for i in range(n-1):\n        for j in range(n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr\n\nnumbers = [random.randint(1, 100) for _ in range(10)]\nprint("Unsorted array:", numbers)\nsorted_numbers = bubble_sort(numbers)\nprint("Sorted array:", sorted_numbers)'
             }
           ]
         }
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -137,21 +137,21 @@ Simplify and explain complex code in plain language.
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to take the code snippet provided and explain it in simple, easy-to-understand language. Break down the code's functionality, purpose, and key components. Use analogies, examples, and plain terms to make the explanation accessible to someone with minimal coding knowledge. Avoid using technical jargon unless absolutely necessary, and provide clear explanations for any jargon used. The goal is to help the reader understand what the code does and how it works at a high level.",
+      system:
+        "Your task is to take the code snippet provided and explain it in simple, easy-to-understand language. Break down the code's functionality, purpose, and key components. Use analogies, examples, and plain terms to make the explanation accessible to someone with minimal coding knowledge. Avoid using technical jargon unless absolutely necessary, and provide clear explanations for any jargon used. The goal is to help the reader understand what the code does and how it works at a high level.",
       messages: [
         {
           role: "user",
           content: [
             {
               type: "text",
-              text: "import random\n\ndef bubble_sort(arr):\n    n = len(arr)\n    for i in range(n-1):\n        for j in range(n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr\n\nnumbers = [random.randint(1, 100) for _ in range(10)]\nprint(\"Unsorted array:\", numbers)\nsorted_numbers = bubble_sort(numbers)\nprint(\"Sorted array:\", sorted_numbers)"
+              text: 'import random\n\ndef bubble_sort(arr):\n    n = len(arr)\n    for i in range(n-1):\n        for j in range(n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr\n\nnumbers = [random.randint(1, 100) for _ in range(10)]\nprint("Unsorted array:", numbers)\nsorted_numbers = bubble_sort(numbers)\nprint("Sorted array:", sorted_numbers)'
             }
           ]
         }
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -190,21 +190,21 @@ Simplify and explain complex code in plain language.
       model: "claude-sonnet-4@20250514",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to take the code snippet provided and explain it in simple, easy-to-understand language. Break down the code's functionality, purpose, and key components. Use analogies, examples, and plain terms to make the explanation accessible to someone with minimal coding knowledge. Avoid using technical jargon unless absolutely necessary, and provide clear explanations for any jargon used. The goal is to help the reader understand what the code does and how it works at a high level.",
+      system:
+        "Your task is to take the code snippet provided and explain it in simple, easy-to-understand language. Break down the code's functionality, purpose, and key components. Use analogies, examples, and plain terms to make the explanation accessible to someone with minimal coding knowledge. Avoid using technical jargon unless absolutely necessary, and provide clear explanations for any jargon used. The goal is to help the reader understand what the code does and how it works at a high level.",
       messages: [
         {
           role: "user",
           content: [
             {
               type: "text",
-              text: "import random\n\ndef bubble_sort(arr):\n    n = len(arr)\n    for i in range(n-1):\n        for j in range(n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr\n\nnumbers = [random.randint(1, 100) for _ in range(10)]\nprint(\"Unsorted array:\", numbers)\nsorted_numbers = bubble_sort(numbers)\nprint(\"Sorted array:\", sorted_numbers)"
+              text: 'import random\n\ndef bubble_sort(arr):\n    n = len(arr)\n    for i in range(n-1):\n        for j in range(n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr\n\nnumbers = [random.randint(1, 100) for _ in range(10)]\nprint("Unsorted array:", numbers)\nsorted_numbers = bubble_sort(numbers)\nprint("Sorted array:", sorted_numbers)'
             }
           ]
         }
       ]
     });
     console.log(msg);
-
     ```
 
 </CodeGroup>

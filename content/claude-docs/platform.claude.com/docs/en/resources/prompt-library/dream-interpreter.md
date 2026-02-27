@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/dream-interpreter
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 59ca016a03e2b8bb86eb5933f5961f2e9b00da9da45a50bcaf8c7b31a764ad23
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 21801ddc57baff771be5952db2c2e8ef842955b9bb6a592c257fe51d12e71d9e
 ---
 
 # Dream interpreter
@@ -80,7 +80,8 @@ const msg = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 1,
-  system: "You are an AI assistant with a deep understanding of dream interpretation and symbolism. Your task is to provide users with insightful and meaningful analyses of the symbols, emotions, and narratives present in their dreams. Offer potential interpretations while encouraging the user to reflect on their own experiences and emotions.",
+  system:
+    "You are an AI assistant with a deep understanding of dream interpretation and symbolism. Your task is to provide users with insightful and meaningful analyses of the symbols, emotions, and narratives present in their dreams. Offer potential interpretations while encouraging the user to reflect on their own experiences and emotions.",
   messages: [
     {
       role: "user",
@@ -94,7 +95,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -143,7 +143,8 @@ const msg = await client.messages.create({
   model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 2000,
   temperature: 1,
-  system: "You are an AI assistant with a deep understanding of dream interpretation and symbolism. Your task is to provide users with insightful and meaningful analyses of the symbols, emotions, and narratives present in their dreams. Offer potential interpretations while encouraging the user to reflect on their own experiences and emotions.",
+  system:
+    "You are an AI assistant with a deep understanding of dream interpretation and symbolism. Your task is to provide users with insightful and meaningful analyses of the symbols, emotions, and narratives present in their dreams. Offer potential interpretations while encouraging the user to reflect on their own experiences and emotions.",
   messages: [
     {
       role: "user",
@@ -157,7 +158,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -204,7 +204,8 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 2000,
   temperature: 1,
-  system: "You are an AI assistant with a deep understanding of dream interpretation and symbolism. Your task is to provide users with insightful and meaningful analyses of the symbols, emotions, and narratives present in their dreams. Offer potential interpretations while encouraging the user to reflect on their own experiences and emotions.",
+  system:
+    "You are an AI assistant with a deep understanding of dream interpretation and symbolism. Your task is to provide users with insightful and meaningful analyses of the symbols, emotions, and narratives present in their dreams. Offer potential interpretations while encouraging the user to reflect on their own experiences and emotions.",
   messages: [
     {
       role: "user",
@@ -218,7 +219,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/todo-tracking
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: e7d31c1734921373fcc4b3aecf4efaf51c88aa67a94d17960ba462bc613546a6
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 68a0609de5b8f3775de1c7e06c0ed605bd1854317d90aaa5b1f880e8184ddd37
 ---
 
 # Todo Lists
@@ -50,8 +50,8 @@ for await (const message of query({
 
         console.log("Todo Status Update:");
         todos.forEach((todo, index) => {
-          const status = todo.status === "completed" ? "✅" :
-            todo.status === "in_progress" ? "🔧" : "❌";
+          const status =
+            todo.status === "completed" ? "✅" : todo.status === "in_progress" ? "🔧" : "❌";
           console.log(`${index + 1}. ${status} ${todo.content}`);
         });
       }
@@ -100,16 +100,16 @@ class TodoTracker {
   displayProgress() {
     if (this.todos.length === 0) return;
 
-    const completed = this.todos.filter(t => t.status === "completed").length;
-    const inProgress = this.todos.filter(t => t.status === "in_progress").length;
+    const completed = this.todos.filter((t) => t.status === "completed").length;
+    const inProgress = this.todos.filter((t) => t.status === "in_progress").length;
     const total = this.todos.length;
 
     console.log(`\nProgress: ${completed}/${total} completed`);
     console.log(`Currently working on: ${inProgress} task(s)\n`);
 
     this.todos.forEach((todo, index) => {
-      const icon = todo.status === "completed" ? "✅" :
-        todo.status === "in_progress" ? "🔧" : "❌";
+      const icon =
+        todo.status === "completed" ? "✅" : todo.status === "in_progress" ? "🔧" : "❌";
       const text = todo.status === "in_progress" ? todo.activeForm : todo.content;
       console.log(`${index + 1}. ${icon} ${text}`);
     });

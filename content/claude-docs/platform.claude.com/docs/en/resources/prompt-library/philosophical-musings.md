@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/philosophical-musings
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 04cc7466ead39c8003d17d240060d227e0e106198f23200977ed76e473691959
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 57a2348b704ef8e90da9442fd3cef7d4d1b2f69b27d899a75bc4014a0f83cc52
 ---
 
 # Philosophical musings
@@ -77,7 +77,8 @@ Engage in deep philosophical discussions and thought experiments.
       model: "claude-opus-4-6",
       max_tokens: 2000,
       temperature: 1,
-      system: "Your task is to discuss a philosophical concept or thought experiment on the given topic. Briefly explain the concept, present the main arguments and implications, and encourage critical thinking by posing open-ended questions. Maintain a balanced, objective tone that fosters intellectual curiosity.",
+      system:
+        "Your task is to discuss a philosophical concept or thought experiment on the given topic. Briefly explain the concept, present the main arguments and implications, and encourage critical thinking by posing open-ended questions. Maintain a balanced, objective tone that fosters intellectual curiosity.",
       messages: [
         {
           role: "user",
@@ -91,7 +92,6 @@ Engage in deep philosophical discussions and thought experiments.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -132,7 +132,8 @@ Engage in deep philosophical discussions and thought experiments.
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 2000,
       temperature: 1,
-      system: "Your task is to discuss a philosophical concept or thought experiment on the given topic. Briefly explain the concept, present the main arguments and implications, and encourage critical thinking by posing open-ended questions. Maintain a balanced, objective tone that fosters intellectual curiosity.",
+      system:
+        "Your task is to discuss a philosophical concept or thought experiment on the given topic. Briefly explain the concept, present the main arguments and implications, and encourage critical thinking by posing open-ended questions. Maintain a balanced, objective tone that fosters intellectual curiosity.",
       messages: [
         {
           role: "user",
@@ -146,7 +147,6 @@ Engage in deep philosophical discussions and thought experiments.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -185,7 +185,8 @@ Engage in deep philosophical discussions and thought experiments.
       model: "claude-sonnet-4@20250514",
       max_tokens: 2000,
       temperature: 1,
-      system: "Your task is to discuss a philosophical concept or thought experiment on the given topic. Briefly explain the concept, present the main arguments and implications, and encourage critical thinking by posing open-ended questions. Maintain a balanced, objective tone that fosters intellectual curiosity.",
+      system:
+        "Your task is to discuss a philosophical concept or thought experiment on the given topic. Briefly explain the concept, present the main arguments and implications, and encourage critical thinking by posing open-ended questions. Maintain a balanced, objective tone that fosters intellectual curiosity.",
       messages: [
         {
           role: "user",
@@ -199,6 +200,5 @@ Engage in deep philosophical discussions and thought experiments.
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

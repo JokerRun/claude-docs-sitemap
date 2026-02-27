@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: fa4821c5ddf5d5d7089dd54f0b37fac0e3444ee6f439ef969f191d8cd075f2d8
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: cec0ebce5341a63031a11ed2abf1402f43aacbbaa04e44ec276cafb08a947317
 ---
 
 # Adaptive thinking
@@ -99,10 +99,12 @@ const response = await client.messages.create({
   thinking: {
     type: "adaptive"
   },
-  messages: [{
-    role: "user",
-    content: "Explain why the sum of two even numbers is always even."
-  }]
+  messages: [
+    {
+      role: "user",
+      content: "Explain why the sum of two even numbers is always even."
+    }
+  ]
 });
 
 for (const block of response.content) {
@@ -157,10 +159,12 @@ const response = await client.messages.create({
   output_config: {
     effort: "medium"
   },
-  messages: [{
-    role: "user",
-    content: "What is the capital of France?"
-  }]
+  messages: [
+    {
+      role: "user",
+      content: "What is the capital of France?"
+    }
+  ]
 });
 
 console.log(response.content[0].text);

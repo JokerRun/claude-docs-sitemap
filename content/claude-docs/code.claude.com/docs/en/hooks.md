@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-02-22T04:20:57.944963Z
-sha256: 9d4ed1818e1de2c744483522a265a10d741b238c51b66640a17673c72a3dfeb7
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: db70fffe8813b67f2bf9ba24e75eae1c164b54c20fb2d36ae4e87f5ef151cf8f
 ---
 
 > ## Documentation Index
@@ -1738,7 +1738,7 @@ Keep these practices in mind when writing hooks:
 
 Run `claude --debug` to see hook execution details, including which hooks matched, their exit codes, and output. Toggle verbose mode with `Ctrl+O` to see hook progress in the transcript.
 
-```
+```text  theme={null}
 [DEBUG] Executing hooks for PostToolUse:Write
 [DEBUG] Getting matching hook commands for PostToolUse with query: Write
 [DEBUG] Found 1 hook matchers in settings

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: ecc4f3d86a86c72336c45ad6eeba5435152486422cc3b85aa0401f7179c7592a
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: c89689b20659e507e0d88748ac3999039c362541b9fb812dacfbb7bc941bca26
 ---
 
 > ## Documentation Index
@@ -207,7 +207,7 @@ jobs:
 
 In issue or PR comments:
 
-```
+```text  theme={null}
 @claude implement this feature based on the issue description
 @claude how should I implement user authentication for this endpoint?
 @claude fix the TypeError in the user dashboard component

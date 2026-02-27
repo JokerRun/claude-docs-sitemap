@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/grading-guru
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 2857ebd185e8f3aadc1a3013c773ae904306c3142fc32915c69866c679bc2c15
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 93a87ce7da7fcfb20a441030ade1446e129121f20b99fcee655c5452fa97df58
 ---
 
 # Grading guru
@@ -95,7 +95,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -154,7 +153,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -211,7 +209,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

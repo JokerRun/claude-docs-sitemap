@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 7dc9e71ce50e6bfa5fafee99dab6a6c1628cd84b254006fdbeaade2ba22efe64
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: c5980a3a2c9f94a60674412c5883269ee43504747f5a3e2dbdb69b9702478c9d
 ---
 
 # Connect to external tools with MCP
@@ -161,15 +161,19 @@ MCP tools follow the naming pattern `mcp__<server-name>__<tool-name>`. For examp
 
 Use `allowedTools` to specify which MCP tools Claude can use:
 
-```typescript
-options: {
-  mcpServers: { /* your servers */ },
-  allowedTools: [
-    "mcp__github__*",              // All tools from the github server
-    "mcp__db__query",              // Only the query tool from db server
-    "mcp__slack__send_message"     // Only send_message from slack server
-  ]
-}
+```typescript hidelines={1,-1}
+const _ = {
+  options: {
+    mcpServers: {
+      // your servers
+    },
+    allowedTools: [
+      "mcp__github__*", // All tools from the github server
+      "mcp__db__query", // Only the query tool from db server
+      "mcp__slack__send_message" // Only send_message from slack server
+    ]
+  }
+};
 ```
 
 Wildcards (`*`) let you allow all tools from a server without listing each one individually.
@@ -181,11 +185,15 @@ Instead of listing allowed tools, you can change the permission mode to grant br
 - `permissionMode: "acceptEdits"`: Automatically approves tool usage (still prompts for destructive operations)
 - `permissionMode: "bypassPermissions"`: Skips all safety prompts, including for destructive operations like file deletion or running shell commands. Use with caution, especially in production. This mode propagates to subagents spawned by the Task tool.
 
-```typescript
-options: {
-  mcpServers: { /* your servers */ },
-  permissionMode: "acceptEdits"  // No need for allowedTools
-}
+```typescript hidelines={1,-1}
+const _ = {
+  options: {
+    mcpServers: {
+      // your servers
+    },
+    permissionMode: "acceptEdits" // No need for allowedTools
+  }
+};
 ```
 
 See [Permissions](/docs/en/agent-sdk/permissions) for more details on permission modes.
@@ -218,20 +226,21 @@ Local processes that communicate via stdin/stdout. Use this for MCP servers you 
   <Tab title="In code">
     <CodeGroup>
 
-    
-    ```typescript TypeScript
-    options: {
-      mcpServers: {
-        "github": {
-          command: "npx",
-          args: ["-y", "@modelcontextprotocol/server-github"],
-          env: {
-            GITHUB_TOKEN: process.env.GITHUB_TOKEN
+        ```typescript TypeScript hidelines={1,-1}
+        const _ = {
+          options: {
+            mcpServers: {
+              github: {
+                command: "npx",
+                args: ["-y", "@modelcontextprotocol/server-github"],
+                env: {
+                  GITHUB_TOKEN: process.env.GITHUB_TOKEN
+                }
+              }
+            },
+            allowedTools: ["mcp__github__list_issues", "mcp__github__search_issues"]
           }
-        }
-      },
-      allowedTools: ["mcp__github__list_issues", "mcp__github__search_issues"]
-    }
+        };
     ```
 
     ```python Python
@@ -274,20 +283,21 @@ Use HTTP or SSE for cloud-hosted MCP servers and remote APIs:
   <Tab title="In code">
     <CodeGroup>
 
-    
-    ```typescript TypeScript
-    options: {
-      mcpServers: {
-        "remote-api": {
-          type: "sse",
-          url: "https://api.example.com/mcp/sse",
-          headers: {
-            Authorization: `Bearer ${process.env.API_TOKEN}`
+        ```typescript TypeScript hidelines={1,-1}
+        const _ = {
+          options: {
+            mcpServers: {
+              "remote-api": {
+                type: "sse",
+                url: "https://api.example.com/mcp/sse",
+                headers: {
+                  Authorization: `Bearer ${process.env.API_TOKEN}`
+                }
+              }
+            },
+            allowedTools: ["mcp__remote-api__*"]
           }
-        }
-      },
-      allowedTools: ["mcp__remote-api__*"]
-    }
+        };
     ```
 
     ```python Python
@@ -359,7 +369,9 @@ Set the value in the `env` option:
 
 ```typescript TypeScript
 const options = {
-  mcpServers: { /* your MCP servers */ },
+  mcpServers: {
+    // your MCP servers
+  },
   env: {
     ENABLE_TOOL_SEARCH: "auto:5" // Enable at 5% threshold
   }
@@ -389,20 +401,21 @@ Use the `env` field to pass API keys, tokens, and other credentials to the MCP s
   <Tab title="In code">
     <CodeGroup>
 
-    
-    ```typescript TypeScript
-    options: {
-      mcpServers: {
-        "github": {
-          command: "npx",
-          args: ["-y", "@modelcontextprotocol/server-github"],
-          env: {
-            GITHUB_TOKEN: process.env.GITHUB_TOKEN
+        ```typescript TypeScript hidelines={1,-1}
+        const _ = {
+          options: {
+            mcpServers: {
+              github: {
+                command: "npx",
+                args: ["-y", "@modelcontextprotocol/server-github"],
+                env: {
+                  GITHUB_TOKEN: process.env.GITHUB_TOKEN
+                }
+              }
+            },
+            allowedTools: ["mcp__github__list_issues"]
           }
-        }
-      },
-      allowedTools: ["mcp__github__list_issues"]
-    }
+        };
     ```
 
     ```python Python
@@ -449,20 +462,21 @@ For HTTP and SSE servers, pass authentication headers directly in the server con
   <Tab title="In code">
     <CodeGroup>
 
-    
-    ```typescript TypeScript
-    options: {
-      mcpServers: {
-        "secure-api": {
-          type: "http",
-          url: "https://api.example.com/mcp",
-          headers: {
-            Authorization: `Bearer ${process.env.API_TOKEN}`
+        ```typescript TypeScript hidelines={1,-1}
+        const _ = {
+          options: {
+            mcpServers: {
+              "secure-api": {
+                type: "http",
+                url: "https://api.example.com/mcp",
+                headers: {
+                  Authorization: `Bearer ${process.env.API_TOKEN}`
+                }
+              }
+            },
+            allowedTools: ["mcp__secure-api__*"]
           }
-        }
-      },
-      allowedTools: ["mcp__secure-api__*"]
-    }
+        };
     ```
 
     ```python Python
@@ -735,9 +749,7 @@ for await (const message of query({
   }
 })) {
   if (message.type === "system" && message.subtype === "init") {
-    const failedServers = message.mcp_servers.filter(
-      s => s.status !== "connected"
-    );
+    const failedServers = message.mcp_servers.filter((s) => s.status !== "connected");
 
     if (failedServers.length > 0) {
       console.warn("Failed to connect:", failedServers);
@@ -808,11 +820,15 @@ Common causes:
 
 If Claude sees tools but doesn't use them, check that you've granted permission with `allowedTools` or by [changing the permission mode](#alternative-change-the-permission-mode):
 
-```typescript
-options: {
-  mcpServers: { /* your servers */ },
-  allowedTools: ["mcp__servername__*"]  // Required for Claude to use the tools
-}
+```typescript hidelines={1,-1}
+const _ = {
+  options: {
+    mcpServers: {
+      // your servers
+    },
+    allowedTools: ["mcp__servername__*"] // Required for Claude to use the tools
+  }
+};
 ```
 
 ### Connection timeouts

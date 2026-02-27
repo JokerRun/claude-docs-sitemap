@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-02-07T04:10:25.616975Z
-sha256: 2ad46a2a53c60ea9df7b589f954d41553f50c1efe9f1db44eb79dbcd33807084
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: e841f74d0dbac14b26b3b89b12e6f52e5719e5b4ad1befc02f63aeb1a7165acb
 ---
 
 > ## Documentation Index
@@ -44,7 +44,7 @@ CLAUDE.md files in the directory hierarchy above the working directory are loade
 Auto memory is a persistent directory where Claude records learnings, patterns, and insights as it works. Unlike CLAUDE.md files that contain instructions you write for Claude, auto memory contains notes Claude writes for itself based on what it discovers during sessions.
 
 <Note>
-  Auto memory is being rolled out gradually. If you aren't seeing auto memory, you can opt in by setting `CLAUDE_CODE_DISABLE_AUTO_MEMORY=0` in your environment.
+  Auto memory is enabled by default. To toggle it on or off, use `/memory` and select the auto-memory toggle.
 </Note>
 
 ### What Claude remembers
@@ -80,11 +80,27 @@ The directory contains a `MEMORY.md` entrypoint and optional topic files:
 
 ### Manage auto memory
 
-Auto memory files are markdown files you can edit at any time. Use `/memory` to open the file selector, which includes your auto memory entrypoint alongside your CLAUDE.md files.
+Auto memory files are markdown files you can edit at any time. Use `/memory` to open the file selector, which includes your auto memory entrypoint alongside your CLAUDE.md files. The `/memory` selector also includes an auto-memory toggle to turn the feature on or off.
 
 To ask Claude to save something specific, tell it directly: "remember that we use pnpm, not npm" or "save to memory that the API tests require a local Redis instance".
 
-When neither variable is set, auto memory follows the gradual rollout. The variable name uses double-negative logic: `DISABLE=0` means "don't disable" and forces auto memory on.
+You can also control auto memory through settings or environment variables.
+
+Disable auto memory for all projects by adding `autoMemoryEnabled` to your user settings:
+
+```json  theme={null}
+// ~/.claude/settings.json
+{ "autoMemoryEnabled": false }
+```
+
+Disable auto memory for a single project by adding `autoMemoryEnabled` to the project settings:
+
+```json  theme={null}
+// .claude/settings.json
+{ "autoMemoryEnabled": false }
+```
+
+Override all other settings with the `CLAUDE_CODE_DISABLE_AUTO_MEMORY` environment variable. This takes precedence over both the `/memory` toggle and `settings.json`, making it useful for CI or managed environments:
 
 ```bash  theme={null}
 export CLAUDE_CODE_DISABLE_AUTO_MEMORY=1  # Force off

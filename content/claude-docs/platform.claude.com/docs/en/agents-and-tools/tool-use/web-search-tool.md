@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 42d38a2efb0fbb11f231990d9c70f33506ed54f9f6bc3105f54139dde413c79e
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: f0d67db82c1025cd12ae469908e0abc250fd826c5dc3d78b87c868e234b38200
 ---
 
 # Web search tool
@@ -185,11 +185,13 @@ async function main() {
         content: "What's the weather in NYC?"
       }
     ],
-    tools: [{
-      type: "web_search_20250305",
-      name: "web_search",
-      max_uses: 5
-    }]
+    tools: [
+      {
+        type: "web_search_20250305",
+        name: "web_search",
+        max_uses: 5
+      }
+    ]
   });
 
   console.log(response);
@@ -461,7 +463,7 @@ print(f"Cache read tokens: {response2.usage.get('cache_read_input_tokens', 0)}")
 
 With streaming enabled, you'll receive search events as part of the stream. There will be a pause while the search executes:
 
-```json
+```sse
 event: message_start
 data: {"type": "message_start", "message": {"id": "msg_abc123", "type": "message"}}
 

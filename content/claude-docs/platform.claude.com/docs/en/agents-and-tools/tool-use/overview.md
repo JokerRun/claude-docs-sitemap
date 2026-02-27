@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 9ceb98b3ec6bbf19424b75fd9ab39bf9d800b810e1f4201e8b862a6282a572aa
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: d54336a677a8024c6261cfe750259057809aa3a7e9b97e4d09c066f1c238d2f4
 ---
 
 # Tool use with Claude
 
 ---
 
-Claude is capable of interacting with tools and functions, allowing you to extend Claude's capabilities to perform a wider variety of tasks.
+Claude is capable of interacting with tools and functions, allowing you to extend Claude's capabilities to perform a wider variety of tasks. Each tool defines a contract: you specify what operations are available and what they return; Claude decides when and how to call them. Tool access is one of the highest-leverage primitives you can give an agent. On benchmarks like [LAB-Bench FigQA](https://lab-bench.org/) (scientific figure interpretation) and [SWE-bench](https://www.swebench.com/) (real-world software engineering), adding even simple tools produces outsized capability gains, often surpassing human expert baselines.
 
 <Tip>
   Learn everything you need to master tool use with Claude as part of the new [courses](https://anthropic.skilljar.com/)! Please
@@ -102,24 +102,28 @@ async function main() {
   const response = await anthropic.messages.create({
     model: "claude-opus-4-6",
     max_tokens: 1024,
-    tools: [{
-      name: "get_weather",
-      description: "Get the current weather in a given location",
-      input_schema: {
-        type: "object",
-        properties: {
-          location: {
-            type: "string",
-            description: "The city and state, e.g. San Francisco, CA"
-          }
-        },
-        required: ["location"]
+    tools: [
+      {
+        name: "get_weather",
+        description: "Get the current weather in a given location",
+        input_schema: {
+          type: "object",
+          properties: {
+            location: {
+              type: "string",
+              description: "The city and state, e.g. San Francisco, CA"
+            }
+          },
+          required: ["location"]
+        }
       }
-    }],
-    messages: [{
-      role: "user",
-      content: "Tell me the weather in San Francisco."
-    }]
+    ],
+    messages: [
+      {
+        role: "user",
+        content: "Tell me the weather in San Francisco."
+      }
+    ]
   });
 
   console.log(response);
@@ -498,7 +502,7 @@ Claude will return a response similar to:
       "type": "tool_use",
       "id": "toolu_01A09q90qw90lq917835lq9",
       "name": "get_weather",
-      "input": {"location": "San Francisco, CA", "unit": "celsius"}
+      "input": { "location": "San Francisco, CA", "unit": "celsius" }
     }
   ]
 }
@@ -966,7 +970,7 @@ For example, using the `get_weather` tool above, if you ask Claude "What's the w
   "type": "tool_use",
   "id": "toolu_01A09q90qw90lq917835lq9",
   "name": "get_weather",
-  "input": {"location": "New York, NY", "unit": "fahrenheit"}
+  "input": { "location": "New York, NY", "unit": "fahrenheit" }
 }
 ```
 
@@ -1215,6 +1219,10 @@ When you send a tool use prompt, just like any other API request, the response w
 ---
 
 ## Next Steps
+
+<Tip>
+Once your tool workflows grow beyond a handful of tools, explore [Advanced tool use](https://www.anthropic.com/engineering/advanced-tool-use) to learn how [tool search](/docs/en/agents-and-tools/tool-use/tool-search-tool) and [programmatic tool calling](/docs/en/agents-and-tools/tool-use/programmatic-tool-calling) scale tool orchestration to hundreds of tools without blowing up your context window.
+</Tip>
 
 Explore the repository of ready-to-implement tool use code examples in the cookbooks:
 

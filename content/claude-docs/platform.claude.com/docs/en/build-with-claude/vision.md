@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 52e143238295935a630ce05277cd04d1b8b316071ab51d61e3fc81dad42c19cf
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: c10789f4b83764ab2a5cdbaf64cf0ec25d6954ef741259c85e7758d9ccead372
 ---
 
 # Vision
@@ -144,7 +144,9 @@ async function getBase64Image(url: string): Promise<string> {
 
 // Usage
 async function prepareImages() {
-  const imageData = await getBase64Image("https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg");
+  const imageData = await getBase64Image(
+    "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  );
   // Now you can use imageData in your API calls
 }
 
@@ -614,11 +616,12 @@ const anthropic = new Anthropic();
 
 async function main() {
   // Upload the image file
-  const fileUpload = await anthropic.beta.files.upload({
-    file: toFile(fs.createReadStream("image.jpg"), undefined, { type: "image/jpeg" })
-  }, {
-    betas: ["files-api-2025-04-14"]
-  });
+  const fileUpload = await anthropic.beta.files.upload(
+    {
+      file: toFile(fs.createReadStream("image.jpg"), undefined, { type: "image/jpeg" })
+    },
+    { betas: ["files-api-2025-04-14"] }
+  );
 
   // Use the uploaded file in a message
   const response = await anthropic.beta.messages.create({

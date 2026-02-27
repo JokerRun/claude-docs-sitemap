@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 7d222a46d87080d2a05695f681168678e4c13f08799a4c99d4535172ccc93d3c
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 0393c0f92a472f5e5e39d267b3cd9a9c64f165fd42676b779d11c28e0c4a3504
 ---
 
 # Errors
@@ -88,9 +88,7 @@ The official SDKs provide this value as a property on top-level response objects
   const message = await client.messages.create({
     model: "claude-opus-4-6",
     max_tokens: 1024,
-    messages: [
-      { role: "user", content: "Hello, Claude" }
-    ]
+    messages: [{ role: "user", content: "Hello, Claude" }]
   });
   console.log("Request ID:", message._request_id);
   ```

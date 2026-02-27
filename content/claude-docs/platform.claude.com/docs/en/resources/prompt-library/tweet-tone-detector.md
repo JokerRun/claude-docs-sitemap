@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/tweet-tone-detector
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: f2d3792631f0dad27f316a8a679b66b13f2ba6fcbad83f4b1039e8dd5320a560
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 3ba93a65aa4821ce4b6c6a8353966d7cc2cafc17055b051cfc96ac0ec7735ab1
 ---
 
 # Tweet tone detector
@@ -64,7 +64,8 @@ Detect the tone and sentiment behind tweets.
       model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to analyze the provided tweet and identify the primary tone and sentiment expressed by the author. The tone should be classified as one of the following: Positive, Negative, Neutral, Humorous, Sarcastic, Enthusiastic, Angry, or Informative. The sentiment should be classified as Positive, Negative, or Neutral. Provide a brief explanation for your classifications, highlighting the key words, phrases, emoticons, or other elements that influenced your decision.",
+      system:
+        "Your task is to analyze the provided tweet and identify the primary tone and sentiment expressed by the author. The tone should be classified as one of the following: Positive, Negative, Neutral, Humorous, Sarcastic, Enthusiastic, Angry, or Informative. The sentiment should be classified as Positive, Negative, or Neutral. Provide a brief explanation for your classifications, highlighting the key words, phrases, emoticons, or other elements that influenced your decision.",
       messages: [
         {
           role: "user",
@@ -78,7 +79,6 @@ Detect the tone and sentiment behind tweets.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -119,7 +119,8 @@ Detect the tone and sentiment behind tweets.
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to analyze the provided tweet and identify the primary tone and sentiment expressed by the author. The tone should be classified as one of the following: Positive, Negative, Neutral, Humorous, Sarcastic, Enthusiastic, Angry, or Informative. The sentiment should be classified as Positive, Negative, or Neutral. Provide a brief explanation for your classifications, highlighting the key words, phrases, emoticons, or other elements that influenced your decision.",
+      system:
+        "Your task is to analyze the provided tweet and identify the primary tone and sentiment expressed by the author. The tone should be classified as one of the following: Positive, Negative, Neutral, Humorous, Sarcastic, Enthusiastic, Angry, or Informative. The sentiment should be classified as Positive, Negative, or Neutral. Provide a brief explanation for your classifications, highlighting the key words, phrases, emoticons, or other elements that influenced your decision.",
       messages: [
         {
           role: "user",
@@ -133,7 +134,6 @@ Detect the tone and sentiment behind tweets.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -172,7 +172,8 @@ Detect the tone and sentiment behind tweets.
       model: "claude-sonnet-4@20250514",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to analyze the provided tweet and identify the primary tone and sentiment expressed by the author. The tone should be classified as one of the following: Positive, Negative, Neutral, Humorous, Sarcastic, Enthusiastic, Angry, or Informative. The sentiment should be classified as Positive, Negative, or Neutral. Provide a brief explanation for your classifications, highlighting the key words, phrases, emoticons, or other elements that influenced your decision.",
+      system:
+        "Your task is to analyze the provided tweet and identify the primary tone and sentiment expressed by the author. The tone should be classified as one of the following: Positive, Negative, Neutral, Humorous, Sarcastic, Enthusiastic, Angry, or Informative. The sentiment should be classified as Positive, Negative, or Neutral. Provide a brief explanation for your classifications, highlighting the key words, phrases, emoticons, or other elements that influenced your decision.",
       messages: [
         {
           role: "user",
@@ -186,6 +187,5 @@ Detect the tone and sentiment behind tweets.
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

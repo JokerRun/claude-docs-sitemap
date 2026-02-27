@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security
-fetched_at: 2026-02-21T04:09:20.845903Z
-sha256: ea52aca6d3743f5e36865eaeecdf1326fad12bd704eb45d80a438dc551ac50dc
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 96bf28f93b0e657392461ed8fed90abe845c6621bed376656b4826a8bb9b5a59
 ---
 
 > ## Documentation Index
@@ -113,6 +113,8 @@ When using [Claude Code on the web](/en/claude-code-on-the-web), additional secu
 
 For more details on cloud execution, see [Claude Code on the web](/en/claude-code-on-the-web).
 
+[Remote Control](/en/remote-control) sessions work differently: the web interface connects to a Claude Code process running on your local machine. All code execution and file access stays local, and the same data that flows during any local Claude Code session travels through the Anthropic API over TLS. No cloud VMs or sandboxing are involved. The connection uses multiple short-lived, narrowly scoped credentials, each limited to a specific purpose and expiring independently, to limit the blast radius of any single compromised credential.
+
 ## Security best practices
 
 ### Working with sensitive code
@@ -124,7 +126,7 @@ For more details on cloud execution, see [Claude Code on the web](/en/claude-cod
 
 ### Team security
 
-* Use [managed settings](/en/permissions#managed-settings) to enforce organizational standards
+* Use [managed settings](/en/settings#settings-files) to enforce organizational standards
 * Share approved permission configurations through version control
 * Train team members on security best practices
 * Monitor Claude Code usage through [OpenTelemetry metrics](/en/monitoring-usage)

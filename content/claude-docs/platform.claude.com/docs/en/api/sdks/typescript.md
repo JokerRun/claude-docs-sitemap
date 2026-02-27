@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/typescript
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: ea7a2102e3ccb1d2c15bcf74fc848390e5ad209ee4bbf508ac1766442efebf36
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: e9f77419a05da06142cd6408588c2b4efa7564b99d8ce69839a7f9a3457287de
 ---
 
 # TypeScript SDK
@@ -201,10 +201,16 @@ const screenshotTool = betaZodTool({
       // Include the error screenshot so the model can see what went wrong
       throw new ToolError([
         { type: "text", text: `Failed to load page: ${result.error}` },
-        { type: "image", source: { type: "base64", data: result.screenshot, media_type: "image/png" } }
+        {
+          type: "image",
+          source: { type: "base64", data: result.screenshot, media_type: "image/png" }
+        }
       ]);
     }
-    return { type: "image", source: { type: "base64", data: result.screenshot, media_type: "image/png" } };
+    return {
+      type: "image",
+      source: { type: "base64", data: result.screenshot, media_type: "image/png" }
+    };
   }
 });
 ```
@@ -268,7 +274,10 @@ await anthropic.beta.messages.create({
   messages: [
     {
       role: "user",
-      content: [mcpResourceToContent(resource), { type: "text", text: "Summarize this document" }]
+      content: [
+        mcpResourceToContent(resource),
+        { type: "text", text: "Summarize this document" }
+      ]
     }
   ]
 });
@@ -345,7 +354,9 @@ const client = new Anthropic();
 
 // If you have access to Node `fs` we recommend using `fs.createReadStream()`:
 await client.beta.files.upload({
-  file: await toFile(fs.createReadStream("/path/to/file"), undefined, { type: "application/json" }),
+  file: await toFile(fs.createReadStream("/path/to/file"), undefined, {
+    type: "application/json"
+  }),
   betas: ["files-api-2025-04-14"]
 });
 
@@ -442,9 +453,14 @@ const client = new Anthropic({
 });
 
 // Or, configure per-request:
-await client.messages.create({ max_tokens: 1024, messages: [{ role: "user", content: "Hello, Claude" }], model: "claude-opus-4-6" }, {
-  maxRetries: 5
-});
+await client.messages.create(
+  {
+    max_tokens: 1024,
+    messages: [{ role: "user", content: "Hello, Claude" }],
+    model: "claude-opus-4-6"
+  },
+  { maxRetries: 5 }
+);
 ```
 
 ## Timeouts
@@ -469,9 +485,14 @@ const client = new Anthropic({
 });
 
 // Override per-request:
-await client.messages.create({ max_tokens: 1024, messages: [{ role: "user", content: "Hello, Claude" }], model: "claude-opus-4-6" }, {
-  timeout: 5 * 1000
-});
+await client.messages.create(
+  {
+    max_tokens: 1024,
+    messages: [{ role: "user", content: "Hello, Claude" }],
+    model: "claude-opus-4-6"
+  },
+  { timeout: 5 * 1000 }
+);
 ```
 
 On timeout, an `APIConnectionTimeoutError` is thrown.

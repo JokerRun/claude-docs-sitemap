@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: ffc9844021892c8130c7840b2db7683116fe9edd27ca7b8d5538d945b90c5e1b
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 9206bde1381a70f1bb7264f2750350580354248b675af7b234dd908a2626dcb5
 ---
 
 > ## Documentation Index
@@ -38,7 +38,7 @@ Use the [`/statusline` command](#use-the-statusline-command) to have Claude Code
 
 The `/statusline` command accepts natural language instructions describing what you want displayed. Claude Code generates a script file in `~/.claude/` and updates your settings automatically:
 
-```
+```text  theme={null}
 /statusline show model name and context percentage with a progress bar
 ```
 

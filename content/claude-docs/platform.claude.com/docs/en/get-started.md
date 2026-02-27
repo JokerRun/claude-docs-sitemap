@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-02-21T04:09:20.845903Z
-sha256: 39ac1b523e2c2f8b027c279b64ad40537d588edb844fe8791f6b1dde6e89fe81
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: a6db6bb73c4e8e8647b7510264dd6d792f7f8fe3ec534f24d4ae612bd3a47720
 ---
 
 # Get started with Claude
@@ -164,7 +164,8 @@ Make your first API call to Claude and build a simple web search assistant.
             messages: [
               {
                 role: "user",
-                content: "What should I search for to find the latest developments in renewable energy?"
+                content:
+                  "What should I search for to find the latest developments in renewable energy?"
               }
             ]
           });
@@ -181,40 +182,42 @@ Make your first API call to Claude and build a simple web search assistant.
         ```
 
         **Example output:**
-        
-        ```javascript
-        {
-          id: 'msg_01ThFHzad6Bh4TpQ6cHux9t8',
-          type: 'message',
-          role: 'assistant',
-          model: 'claude-opus-4-6',
-          content: [
-            {
-              type: 'text',
-              text: 'Here are some effective search strategies to find the latest renewable energy developments:\n\n' +
-                '## Search Terms to Use:\n' +
-                '- "renewable energy news 2024"\n' +
-                '- "clean energy breakthroughs"\n' +
-                '- "solar wind technology advances"\n' +
-                '- "energy storage innovations"\n' +
-                '- "green hydrogen developments"\n' +
-                '- "offshore wind projects"\n' +
-                '- "battery technology renewable"\n\n' +
-                '## Best Sources to Check:\n\n' +
-                '**News & Industry Sites:**\n' +
-                '- Renewable Energy World\n' +
-                '- CleanTechnica\n' +
-                '- GreenTech Media (now Wood Mackenzie)\n' +
-                '- Energy Storage News\n' +
-                '- PV Magazine (for solar)...'
+        ```javascript hidelines={1..2}
+        const _ =
+          // output
+          {
+            id: "msg_01ThFHzad6Bh4TpQ6cHux9t8",
+            type: "message",
+            role: "assistant",
+            model: "claude-opus-4-6",
+            content: [
+              {
+                type: "text",
+                text:
+                  "Here are some effective search strategies to find the latest renewable energy developments:\n\n" +
+                  "## Search Terms to Use:\n" +
+                  '- "renewable energy news 2024"\n' +
+                  '- "clean energy breakthroughs"\n' +
+                  '- "solar wind technology advances"\n' +
+                  '- "energy storage innovations"\n' +
+                  '- "green hydrogen developments"\n' +
+                  '- "offshore wind projects"\n' +
+                  '- "battery technology renewable"\n\n' +
+                  "## Best Sources to Check:\n\n" +
+                  "**News & Industry Sites:**\n" +
+                  "- Renewable Energy World\n" +
+                  "- CleanTechnica\n" +
+                  "- GreenTech Media (now Wood Mackenzie)\n" +
+                  "- Energy Storage News\n" +
+                  "- PV Magazine (for solar)..."
+              }
+            ],
+            stop_reason: "end_turn",
+            usage: {
+              input_tokens: 21,
+              output_tokens: 302
             }
-          ],
-          stop_reason: 'end_turn',
-          usage: {
-            input_tokens: 21,
-            output_tokens: 302
           }
-        }
         ```
       </Step>
     </Steps>

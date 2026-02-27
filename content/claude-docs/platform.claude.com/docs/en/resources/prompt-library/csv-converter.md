@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/csv-converter
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: cd42cc949726ae063fb9cee008d95f23e4c9791e85d34b81a42d6eeae5febeb8
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: b2df70f4581089f34f706ed4ed2b7ede6dbc61e09c7f3b596fcc4ede42969188
 ---
 
 # CSV converter
@@ -92,21 +92,21 @@ const msg = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 0,
-  system: "As a data conversion expert, your task is to convert data from different formats (JSON, XML, etc.) into properly formatted CSV files. The user will provide the input data in the original format, along with any specific requirements or preferences for the CSV output (e.g., column order, delimiter, encoding). Ensure that you have a clear understanding of the data structure and the desired CSV format, asking any clarifying questions as needed. Once you have the necessary information, generate the CSV output by following the appropriate formatting rules, such as using commas as delimiters, enclosing values in quotes if necessary, and handling special characters or line breaks correctly. Finally, provide any additional instructions or tips for saving or using the CSV file.",
+  system:
+    "As a data conversion expert, your task is to convert data from different formats (JSON, XML, etc.) into properly formatted CSV files. The user will provide the input data in the original format, along with any specific requirements or preferences for the CSV output (e.g., column order, delimiter, encoding). Ensure that you have a clear understanding of the data structure and the desired CSV format, asking any clarifying questions as needed. Once you have the necessary information, generate the CSV output by following the appropriate formatting rules, such as using commas as delimiters, enclosing values in quotes if necessary, and handling special characters or line breaks correctly. Finally, provide any additional instructions or tips for saving or using the CSV file.",
   messages: [
     {
       role: "user",
       content: [
         {
           type: "text",
-          text: "Please convert the following JSON data into a CSV file:  \n  \n[  \n  {  \n    \"name\": \"John Doe\",  \n    \"age\": 30,  \n    \"city\": \"New York\",  \n    \"email\": \"[email protected]\"  \n  },  \n  {  \n    \"name\": \"Jane Smith\",  \n    \"age\": 25,  \n    \"city\": \"London\",  \n    \"email\": \"[email protected]\"  \n  },  \n  {  \n    \"name\": \"Bob Johnson\",  \n    \"age\": 35,  \n    \"city\": \"Paris\",  \n    \"email\": \"[email protected]\"  \n  }  \n]  \n  \nRequirements:  \n- Columns in the CSV should be in the order: name, age, city, email  \n- Use semicolons (;) as delimiters  \n- Enclose all values in double quotes (\")"
+          text: 'Please convert the following JSON data into a CSV file:  \n  \n[  \n  {  \n    "name": "John Doe",  \n    "age": 30,  \n    "city": "New York",  \n    "email": "[email protected]"  \n  },  \n  {  \n    "name": "Jane Smith",  \n    "age": 25,  \n    "city": "London",  \n    "email": "[email protected]"  \n  },  \n  {  \n    "name": "Bob Johnson",  \n    "age": 35,  \n    "city": "Paris",  \n    "email": "[email protected]"  \n  }  \n]  \n  \nRequirements:  \n- Columns in the CSV should be in the order: name, age, city, email  \n- Use semicolons (;) as delimiters  \n- Enclose all values in double quotes (")'
         }
       ]
     }
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -153,21 +153,21 @@ const msg = await client.messages.create({
   model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 1000,
   temperature: 0,
-  system: "As a data conversion expert, your task is to convert data from different formats (JSON, XML, etc.) into properly formatted CSV files. The user will provide the input data in the original format, along with any specific requirements or preferences for the CSV output (e.g., column order, delimiter, encoding). Ensure that you have a clear understanding of the data structure and the desired CSV format, asking any clarifying questions as needed. Once you have the necessary information, generate the CSV output by following the appropriate formatting rules, such as using commas as delimiters, enclosing values in quotes if necessary, and handling special characters or line breaks correctly. Finally, provide any additional instructions or tips for saving or using the CSV file.",
+  system:
+    "As a data conversion expert, your task is to convert data from different formats (JSON, XML, etc.) into properly formatted CSV files. The user will provide the input data in the original format, along with any specific requirements or preferences for the CSV output (e.g., column order, delimiter, encoding). Ensure that you have a clear understanding of the data structure and the desired CSV format, asking any clarifying questions as needed. Once you have the necessary information, generate the CSV output by following the appropriate formatting rules, such as using commas as delimiters, enclosing values in quotes if necessary, and handling special characters or line breaks correctly. Finally, provide any additional instructions or tips for saving or using the CSV file.",
   messages: [
     {
       role: "user",
       content: [
         {
           type: "text",
-          text: "Please convert the following JSON data into a CSV file:  \n  \n[  \n  {  \n    \"name\": \"John Doe\",  \n    \"age\": 30,  \n    \"city\": \"New York\",  \n    \"email\": \"[email protected]\"  \n  },  \n  {  \n    \"name\": \"Jane Smith\",  \n    \"age\": 25,  \n    \"city\": \"London\",  \n    \"email\": \"[email protected]\"  \n  },  \n  {  \n    \"name\": \"Bob Johnson\",  \n    \"age\": 35,  \n    \"city\": \"Paris\",  \n    \"email\": \"[email protected]\"  \n  }  \n]  \n  \nRequirements:  \n- Columns in the CSV should be in the order: name, age, city, email  \n- Use semicolons (;) as delimiters  \n- Enclose all values in double quotes (\")"
+          text: 'Please convert the following JSON data into a CSV file:  \n  \n[  \n  {  \n    "name": "John Doe",  \n    "age": 30,  \n    "city": "New York",  \n    "email": "[email protected]"  \n  },  \n  {  \n    "name": "Jane Smith",  \n    "age": 25,  \n    "city": "London",  \n    "email": "[email protected]"  \n  },  \n  {  \n    "name": "Bob Johnson",  \n    "age": 35,  \n    "city": "Paris",  \n    "email": "[email protected]"  \n  }  \n]  \n  \nRequirements:  \n- Columns in the CSV should be in the order: name, age, city, email  \n- Use semicolons (;) as delimiters  \n- Enclose all values in double quotes (")'
         }
       ]
     }
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -212,21 +212,21 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 1000,
   temperature: 0,
-  system: "As a data conversion expert, your task is to convert data from different formats (JSON, XML, etc.) into properly formatted CSV files. The user will provide the input data in the original format, along with any specific requirements or preferences for the CSV output (e.g., column order, delimiter, encoding). Ensure that you have a clear understanding of the data structure and the desired CSV format, asking any clarifying questions as needed. Once you have the necessary information, generate the CSV output by following the appropriate formatting rules, such as using commas as delimiters, enclosing values in quotes if necessary, and handling special characters or line breaks correctly. Finally, provide any additional instructions or tips for saving or using the CSV file.",
+  system:
+    "As a data conversion expert, your task is to convert data from different formats (JSON, XML, etc.) into properly formatted CSV files. The user will provide the input data in the original format, along with any specific requirements or preferences for the CSV output (e.g., column order, delimiter, encoding). Ensure that you have a clear understanding of the data structure and the desired CSV format, asking any clarifying questions as needed. Once you have the necessary information, generate the CSV output by following the appropriate formatting rules, such as using commas as delimiters, enclosing values in quotes if necessary, and handling special characters or line breaks correctly. Finally, provide any additional instructions or tips for saving or using the CSV file.",
   messages: [
     {
       role: "user",
       content: [
         {
           type: "text",
-          text: "Please convert the following JSON data into a CSV file:  \n  \n[  \n  {  \n    \"name\": \"John Doe\",  \n    \"age\": 30,  \n    \"city\": \"New York\",  \n    \"email\": \"[email protected]\"  \n  },  \n  {  \n    \"name\": \"Jane Smith\",  \n    \"age\": 25,  \n    \"city\": \"London\",  \n    \"email\": \"[email protected]\"  \n  },  \n  {  \n    \"name\": \"Bob Johnson\",  \n    \"age\": 35,  \n    \"city\": \"Paris\",  \n    \"email\": \"[email protected]\"  \n  }  \n]  \n  \nRequirements:  \n- Columns in the CSV should be in the order: name, age, city, email  \n- Use semicolons (;) as delimiters  \n- Enclose all values in double quotes (\")"
+          text: 'Please convert the following JSON data into a CSV file:  \n  \n[  \n  {  \n    "name": "John Doe",  \n    "age": 30,  \n    "city": "New York",  \n    "email": "[email protected]"  \n  },  \n  {  \n    "name": "Jane Smith",  \n    "age": 25,  \n    "city": "London",  \n    "email": "[email protected]"  \n  },  \n  {  \n    "name": "Bob Johnson",  \n    "age": 35,  \n    "city": "Paris",  \n    "email": "[email protected]"  \n  }  \n]  \n  \nRequirements:  \n- Columns in the CSV should be in the order: name, age, city, email  \n- Use semicolons (;) as delimiters  \n- Enclose all values in double quotes (")'
         }
       ]
     }
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/google-apps-scripter
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: da41c2564ee9cb994fda906f8696598025ae7f6f75a4c374474340edf72371e9
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 9e7d0f820ba662a9bf14614c2fb3ecbb50dabc66e1dc97a6145ba95d3ca23468
 ---
 
 # Google apps scripter
@@ -144,7 +144,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -205,7 +204,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -264,7 +262,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 </Tab>
 </Tabs>

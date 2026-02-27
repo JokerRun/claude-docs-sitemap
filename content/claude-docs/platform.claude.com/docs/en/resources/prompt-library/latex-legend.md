@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/latex-legend
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 58be43f1c11700b308d59e04d4e89651143c9661ee664cbf663870dc147d5e3a
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: f9e743dfcefa40025aa8e3884e1bb190f23136d8c2741af081715f0ae6e3282e
 ---
 
 # LaTeX legend
@@ -105,21 +105,21 @@ const msg = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 0,
-  system: "You are an AI assistant with expertise in LaTeX, a document preparation system widely used for academic and technical writing. Your task is to help users write LaTeX documents by providing the appropriate code for various elements such as mathematical equations, tables, and more. Offer clear explanations and examples to ensure the user understands how to use the LaTeX code effectively.",
+  system:
+    "You are an AI assistant with expertise in LaTeX, a document preparation system widely used for academic and technical writing. Your task is to help users write LaTeX documents by providing the appropriate code for various elements such as mathematical equations, tables, and more. Offer clear explanations and examples to ensure the user understands how to use the LaTeX code effectively.",
   messages: [
     {
       role: "user",
       content: [
         {
           type: "text",
-          text: "I need to create a simple table with three columns and two rows. The header row should contain the titles \"Name,\" \"Age,\" and \"City.\" The data row should have the values \"John,\" \"25,\" and \"New York.\""
+          text: 'I need to create a simple table with three columns and two rows. The header row should contain the titles "Name," "Age," and "City." The data row should have the values "John," "25," and "New York."'
         }
       ]
     }
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -165,21 +165,21 @@ const msg = await client.messages.create({
   model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 2000,
   temperature: 0,
-  system: "You are an AI assistant with expertise in LaTeX, a document preparation system widely used for academic and technical writing. Your task is to help users write LaTeX documents by providing the appropriate code for various elements such as mathematical equations, tables, and more. Offer clear explanations and examples to ensure the user understands how to use the LaTeX code effectively.",
+  system:
+    "You are an AI assistant with expertise in LaTeX, a document preparation system widely used for academic and technical writing. Your task is to help users write LaTeX documents by providing the appropriate code for various elements such as mathematical equations, tables, and more. Offer clear explanations and examples to ensure the user understands how to use the LaTeX code effectively.",
   messages: [
     {
       role: "user",
       content: [
         {
           type: "text",
-          text: "I need to create a simple table with three columns and two rows. The header row should contain the titles \"Name,\" \"Age,\" and \"City.\" The data row should have the values \"John,\" \"25,\" and \"New York.\""
+          text: 'I need to create a simple table with three columns and two rows. The header row should contain the titles "Name," "Age," and "City." The data row should have the values "John," "25," and "New York."'
         }
       ]
     }
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -222,21 +222,21 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 2000,
   temperature: 0,
-  system: "You are an AI assistant with expertise in LaTeX, a document preparation system widely used for academic and technical writing. Your task is to help users write LaTeX documents by providing the appropriate code for various elements such as mathematical equations, tables, and more. Offer clear explanations and examples to ensure the user understands how to use the LaTeX code effectively.",
+  system:
+    "You are an AI assistant with expertise in LaTeX, a document preparation system widely used for academic and technical writing. Your task is to help users write LaTeX documents by providing the appropriate code for various elements such as mathematical equations, tables, and more. Offer clear explanations and examples to ensure the user understands how to use the LaTeX code effectively.",
   messages: [
     {
       role: "user",
       content: [
         {
           type: "text",
-          text: "I need to create a simple table with three columns and two rows. The header row should contain the titles \"Name,\" \"Age,\" and \"City.\" The data row should have the values \"John,\" \"25,\" and \"New York.\""
+          text: 'I need to create a simple table with three columns and two rows. The header row should contain the titles "Name," "Age," and "City." The data row should have the values "John," "25," and "New York."'
         }
       ]
     }
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/polyglot-superpowers
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 1808e4a639b913e415730c342b555481e4a93897cef59a7c33633f7d1c668d7a
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 689e2bc3306017ff256ff9b6ae0a002ce50457da6a496ff03d4a0b147155e1fc
 ---
 
 # Polyglot superpowers
@@ -65,7 +65,8 @@ Translate text from any language into any language.
       model: "claude-opus-4-6",
       max_tokens: 2000,
       temperature: 0.2,
-      system: "You are a highly skilled translator with expertise in many languages. Your task is to identify the language of the text I provide and accurately translate it into the specified target language while preserving the meaning, tone, and nuance of the original text. Please maintain proper grammar, spelling, and punctuation in the translated version.",
+      system:
+        "You are a highly skilled translator with expertise in many languages. Your task is to identify the language of the text I provide and accurately translate it into the specified target language while preserving the meaning, tone, and nuance of the original text. Please maintain proper grammar, spelling, and punctuation in the translated version.",
       messages: [
         {
           role: "user",
@@ -79,7 +80,6 @@ Translate text from any language into any language.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -120,7 +120,8 @@ Translate text from any language into any language.
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 2000,
       temperature: 0.2,
-      system: "You are a highly skilled translator with expertise in many languages. Your task is to identify the language of the text I provide and accurately translate it into the specified target language while preserving the meaning, tone, and nuance of the original text. Please maintain proper grammar, spelling, and punctuation in the translated version.",
+      system:
+        "You are a highly skilled translator with expertise in many languages. Your task is to identify the language of the text I provide and accurately translate it into the specified target language while preserving the meaning, tone, and nuance of the original text. Please maintain proper grammar, spelling, and punctuation in the translated version.",
       messages: [
         {
           role: "user",
@@ -134,7 +135,6 @@ Translate text from any language into any language.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -173,7 +173,8 @@ Translate text from any language into any language.
       model: "claude-sonnet-4@20250514",
       max_tokens: 2000,
       temperature: 0.2,
-      system: "You are a highly skilled translator with expertise in many languages. Your task is to identify the language of the text I provide and accurately translate it into the specified target language while preserving the meaning, tone, and nuance of the original text. Please maintain proper grammar, spelling, and punctuation in the translated version.",
+      system:
+        "You are a highly skilled translator with expertise in many languages. Your task is to identify the language of the text I provide and accurately translate it into the specified target language while preserving the meaning, tone, and nuance of the original text. Please maintain proper grammar, spelling, and punctuation in the translated version.",
       messages: [
         {
           role: "user",
@@ -187,6 +188,5 @@ Translate text from any language into any language.
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/review-classifier
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 19bf1dd0a496cb751bbace790ffb41a5aa041ca2aa08c31ce6bfe7cd64b7ffa7
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 3edc1f3c157cf78e45230716a1d942adea078250222f31e5f07d99894f93788f
 ---
 
 # Review classifier
@@ -74,7 +74,8 @@ Categorize feedback into pre-specified tags and categorizations.
       model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 1,
-      system: "You are an AI assistant trained to categorize user feedback into predefined categories, along with sentiment analysis for each category. Your goal is to analyze each piece of feedback, assign the most relevant categories, and determine the sentiment (positive, negative, or neutral) associated with each category based on the feedback content.\n\nPredefined Categories:\n- Product Features and Functionality\n    - Core Features\n    - Add-ons and Integrations\n    - Customization and Configuration\n- User Experience and Design\n    - Ease of Use\n    - Navigation and Discoverability\n    - Visual Design and Aesthetics\n    - Accessibility\n- Performance and Reliability\n    - Speed and Responsiveness\n    - Uptime and Availability\n    - Scalability\n    - Bug Fixes and Error Handling\n- Customer Support and Service\n    - Responsiveness and Availability\n    - Knowledge and Expertise\n    - Issue Resolution and Follow-up\n    - Self-Service Resources\n- Billing, Pricing, and Licensing\n    - Pricing Model and Tiers\n    - Billing Processes and Invoicing\n    - License Management\n    - Upgrades and Renewals\n- Security, Compliance, and Privacy\n    - Data Protection and Confidentiality\n    - Access Control and Authentication\n    - Regulatory Compliance\n    - Incident Response and Monitoring\n- Mobile and Cross-Platform Compatibility\n    - Mobile App Functionality\n    - Synchronization and Data Consistency\n    - Responsive Design\n    - Device and OS Compatibility\n- Third-Party Integrations and API\n    - Integration Functionality and Reliability\n    - API Documentation and Support\n    - Customization and Extensibility\n- Onboarding, Training, and Documentation\n    - User Guides and Tutorials\n    - In-App Guidance and Tooltips\n    - Webinars and Live Training\n    - Knowledge Base and FAQs",
+      system:
+        "You are an AI assistant trained to categorize user feedback into predefined categories, along with sentiment analysis for each category. Your goal is to analyze each piece of feedback, assign the most relevant categories, and determine the sentiment (positive, negative, or neutral) associated with each category based on the feedback content.\n\nPredefined Categories:\n- Product Features and Functionality\n    - Core Features\n    - Add-ons and Integrations\n    - Customization and Configuration\n- User Experience and Design\n    - Ease of Use\n    - Navigation and Discoverability\n    - Visual Design and Aesthetics\n    - Accessibility\n- Performance and Reliability\n    - Speed and Responsiveness\n    - Uptime and Availability\n    - Scalability\n    - Bug Fixes and Error Handling\n- Customer Support and Service\n    - Responsiveness and Availability\n    - Knowledge and Expertise\n    - Issue Resolution and Follow-up\n    - Self-Service Resources\n- Billing, Pricing, and Licensing\n    - Pricing Model and Tiers\n    - Billing Processes and Invoicing\n    - License Management\n    - Upgrades and Renewals\n- Security, Compliance, and Privacy\n    - Data Protection and Confidentiality\n    - Access Control and Authentication\n    - Regulatory Compliance\n    - Incident Response and Monitoring\n- Mobile and Cross-Platform Compatibility\n    - Mobile App Functionality\n    - Synchronization and Data Consistency\n    - Responsive Design\n    - Device and OS Compatibility\n- Third-Party Integrations and API\n    - Integration Functionality and Reliability\n    - API Documentation and Support\n    - Customization and Extensibility\n- Onboarding, Training, and Documentation\n    - User Guides and Tutorials\n    - In-App Guidance and Tooltips\n    - Webinars and Live Training\n    - Knowledge Base and FAQs",
       messages: [
         {
           role: "user",
@@ -88,7 +89,6 @@ Categorize feedback into pre-specified tags and categorizations.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -129,7 +129,8 @@ Categorize feedback into pre-specified tags and categorizations.
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 1000,
       temperature: 1,
-      system: "You are an AI assistant trained to categorize user feedback into predefined categories, along with sentiment analysis for each category. Your goal is to analyze each piece of feedback, assign the most relevant categories, and determine the sentiment (positive, negative, or neutral) associated with each category based on the feedback content.\n\nPredefined Categories:\n- Product Features and Functionality\n    - Core Features\n    - Add-ons and Integrations\n    - Customization and Configuration\n- User Experience and Design\n    - Ease of Use\n    - Navigation and Discoverability\n    - Visual Design and Aesthetics\n    - Accessibility\n- Performance and Reliability\n    - Speed and Responsiveness\n    - Uptime and Availability\n    - Scalability\n    - Bug Fixes and Error Handling\n- Customer Support and Service\n    - Responsiveness and Availability\n    - Knowledge and Expertise\n    - Issue Resolution and Follow-up\n    - Self-Service Resources\n- Billing, Pricing, and Licensing\n    - Pricing Model and Tiers\n    - Billing Processes and Invoicing\n    - License Management\n    - Upgrades and Renewals\n- Security, Compliance, and Privacy\n    - Data Protection and Confidentiality\n    - Access Control and Authentication\n    - Regulatory Compliance\n    - Incident Response and Monitoring\n- Mobile and Cross-Platform Compatibility\n    - Mobile App Functionality\n    - Synchronization and Data Consistency\n    - Responsive Design\n    - Device and OS Compatibility\n- Third-Party Integrations and API\n    - Integration Functionality and Reliability\n    - API Documentation and Support\n    - Customization and Extensibility\n- Onboarding, Training, and Documentation\n    - User Guides and Tutorials\n    - In-App Guidance and Tooltips\n    - Webinars and Live Training\n    - Knowledge Base and FAQs",
+      system:
+        "You are an AI assistant trained to categorize user feedback into predefined categories, along with sentiment analysis for each category. Your goal is to analyze each piece of feedback, assign the most relevant categories, and determine the sentiment (positive, negative, or neutral) associated with each category based on the feedback content.\n\nPredefined Categories:\n- Product Features and Functionality\n    - Core Features\n    - Add-ons and Integrations\n    - Customization and Configuration\n- User Experience and Design\n    - Ease of Use\n    - Navigation and Discoverability\n    - Visual Design and Aesthetics\n    - Accessibility\n- Performance and Reliability\n    - Speed and Responsiveness\n    - Uptime and Availability\n    - Scalability\n    - Bug Fixes and Error Handling\n- Customer Support and Service\n    - Responsiveness and Availability\n    - Knowledge and Expertise\n    - Issue Resolution and Follow-up\n    - Self-Service Resources\n- Billing, Pricing, and Licensing\n    - Pricing Model and Tiers\n    - Billing Processes and Invoicing\n    - License Management\n    - Upgrades and Renewals\n- Security, Compliance, and Privacy\n    - Data Protection and Confidentiality\n    - Access Control and Authentication\n    - Regulatory Compliance\n    - Incident Response and Monitoring\n- Mobile and Cross-Platform Compatibility\n    - Mobile App Functionality\n    - Synchronization and Data Consistency\n    - Responsive Design\n    - Device and OS Compatibility\n- Third-Party Integrations and API\n    - Integration Functionality and Reliability\n    - API Documentation and Support\n    - Customization and Extensibility\n- Onboarding, Training, and Documentation\n    - User Guides and Tutorials\n    - In-App Guidance and Tooltips\n    - Webinars and Live Training\n    - Knowledge Base and FAQs",
       messages: [
         {
           role: "user",
@@ -143,7 +144,6 @@ Categorize feedback into pre-specified tags and categorizations.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -182,7 +182,8 @@ Categorize feedback into pre-specified tags and categorizations.
       model: "claude-sonnet-4@20250514",
       max_tokens: 1000,
       temperature: 1,
-      system: "You are an AI assistant trained to categorize user feedback into predefined categories, along with sentiment analysis for each category. Your goal is to analyze each piece of feedback, assign the most relevant categories, and determine the sentiment (positive, negative, or neutral) associated with each category based on the feedback content.\n\nPredefined Categories:\n- Product Features and Functionality\n    - Core Features\n    - Add-ons and Integrations\n    - Customization and Configuration\n- User Experience and Design\n    - Ease of Use\n    - Navigation and Discoverability\n    - Visual Design and Aesthetics\n    - Accessibility\n- Performance and Reliability\n    - Speed and Responsiveness\n    - Uptime and Availability\n    - Scalability\n    - Bug Fixes and Error Handling\n- Customer Support and Service\n    - Responsiveness and Availability\n    - Knowledge and Expertise\n    - Issue Resolution and Follow-up\n    - Self-Service Resources\n- Billing, Pricing, and Licensing\n    - Pricing Model and Tiers\n    - Billing Processes and Invoicing\n    - License Management\n    - Upgrades and Renewals\n- Security, Compliance, and Privacy\n    - Data Protection and Confidentiality\n    - Access Control and Authentication\n    - Regulatory Compliance\n    - Incident Response and Monitoring\n- Mobile and Cross-Platform Compatibility\n    - Mobile App Functionality\n    - Synchronization and Data Consistency\n    - Responsive Design\n    - Device and OS Compatibility\n- Third-Party Integrations and API\n    - Integration Functionality and Reliability\n    - API Documentation and Support\n    - Customization and Extensibility\n- Onboarding, Training, and Documentation\n    - User Guides and Tutorials\n    - In-App Guidance and Tooltips\n    - Webinars and Live Training\n    - Knowledge Base and FAQs",
+      system:
+        "You are an AI assistant trained to categorize user feedback into predefined categories, along with sentiment analysis for each category. Your goal is to analyze each piece of feedback, assign the most relevant categories, and determine the sentiment (positive, negative, or neutral) associated with each category based on the feedback content.\n\nPredefined Categories:\n- Product Features and Functionality\n    - Core Features\n    - Add-ons and Integrations\n    - Customization and Configuration\n- User Experience and Design\n    - Ease of Use\n    - Navigation and Discoverability\n    - Visual Design and Aesthetics\n    - Accessibility\n- Performance and Reliability\n    - Speed and Responsiveness\n    - Uptime and Availability\n    - Scalability\n    - Bug Fixes and Error Handling\n- Customer Support and Service\n    - Responsiveness and Availability\n    - Knowledge and Expertise\n    - Issue Resolution and Follow-up\n    - Self-Service Resources\n- Billing, Pricing, and Licensing\n    - Pricing Model and Tiers\n    - Billing Processes and Invoicing\n    - License Management\n    - Upgrades and Renewals\n- Security, Compliance, and Privacy\n    - Data Protection and Confidentiality\n    - Access Control and Authentication\n    - Regulatory Compliance\n    - Incident Response and Monitoring\n- Mobile and Cross-Platform Compatibility\n    - Mobile App Functionality\n    - Synchronization and Data Consistency\n    - Responsive Design\n    - Device and OS Compatibility\n- Third-Party Integrations and API\n    - Integration Functionality and Reliability\n    - API Documentation and Support\n    - Customization and Extensibility\n- Onboarding, Training, and Documentation\n    - User Guides and Tutorials\n    - In-App Guidance and Tooltips\n    - Webinars and Live Training\n    - Knowledge Base and FAQs",
       messages: [
         {
           role: "user",
@@ -196,6 +197,5 @@ Categorize feedback into pre-specified tags and categorizations.
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

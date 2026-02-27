@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/spreadsheet-sorcerer
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 0bbbddb11b593a02e2f61edfb07f84e6fee8e969286c547c3c3bf85e4a64b29e
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 313f6bf0c7fc07d1a2325795d0689412b8c0ebeaa98a0abfce8e0aa1c2dfafaf
 ---
 
 # Spreadsheet sorcerer
@@ -82,7 +82,8 @@ Generate CSV spreadsheets with various types of data.
       model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to generate a CSV spreadsheet containing the specified type of data. The spreadsheet should be well-organized, with clear column headers and appropriate data types for each column. Ensure that the data is realistic, diverse, and formatted consistently. Include a minimum of 10 rows of data, not counting the header row.",
+      system:
+        "Your task is to generate a CSV spreadsheet containing the specified type of data. The spreadsheet should be well-organized, with clear column headers and appropriate data types for each column. Ensure that the data is realistic, diverse, and formatted consistently. Include a minimum of 10 rows of data, not counting the header row.",
       messages: [
         {
           role: "user",
@@ -96,7 +97,6 @@ Generate CSV spreadsheets with various types of data.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -137,7 +137,8 @@ Generate CSV spreadsheets with various types of data.
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to generate a CSV spreadsheet containing the specified type of data. The spreadsheet should be well-organized, with clear column headers and appropriate data types for each column. Ensure that the data is realistic, diverse, and formatted consistently. Include a minimum of 10 rows of data, not counting the header row.",
+      system:
+        "Your task is to generate a CSV spreadsheet containing the specified type of data. The spreadsheet should be well-organized, with clear column headers and appropriate data types for each column. Ensure that the data is realistic, diverse, and formatted consistently. Include a minimum of 10 rows of data, not counting the header row.",
       messages: [
         {
           role: "user",
@@ -151,7 +152,6 @@ Generate CSV spreadsheets with various types of data.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -190,7 +190,8 @@ Generate CSV spreadsheets with various types of data.
       model: "claude-sonnet-4@20250514",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to generate a CSV spreadsheet containing the specified type of data. The spreadsheet should be well-organized, with clear column headers and appropriate data types for each column. Ensure that the data is realistic, diverse, and formatted consistently. Include a minimum of 10 rows of data, not counting the header row.",
+      system:
+        "Your task is to generate a CSV spreadsheet containing the specified type of data. The spreadsheet should be well-organized, with clear column headers and appropriate data types for each column. Ensure that the data is realistic, diverse, and formatted consistently. Include a minimum of 10 rows of data, not counting the header row.",
       messages: [
         {
           role: "user",
@@ -204,6 +205,5 @@ Generate CSV spreadsheets with various types of data.
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

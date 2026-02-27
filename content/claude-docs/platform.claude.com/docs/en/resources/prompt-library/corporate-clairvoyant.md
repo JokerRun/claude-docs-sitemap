@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/corporate-clairvoyant
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: b5aa3ef047ddb551d43419fffa638b107bdf7a00547e9b8077bad90b319dca2e
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 339117179eb79843b5d99c5e5dcbc7694ff9eff29236e883da08edc9f206a43e
 ---
 
 # Corporate clairvoyant
@@ -112,7 +112,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
   </Tab>
@@ -170,7 +169,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
   </Tab>
@@ -229,7 +227,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
   </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/embeddings
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 20d8189b4a5301cbfc5d525352d32e48bdbefdfcb2b0028d02d80e078836cefe
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: e036881044dab26272e781dcf8d242a0248377c9cd47a1ea38bbb782efb3d014
 ---
 
 # Embeddings
@@ -118,11 +118,11 @@ The response you would get is a JSON object containing the embeddings and the to
   "object": "list",
   "data": [
     {
-      "embedding": [-0.013131560757756233, 0.019828535616397858, ...],
+      "embedding": [-0.013131560757756233, 0.019828535616397858 /* ... */],
       "index": 0
     },
     {
-      "embedding": [-0.0069352793507277966, 0.020878976210951805, ...],
+      "embedding": [-0.0069352793507277966, 0.020878976210951805 /* ... */],
       "index": 1
     }
   ],
@@ -131,7 +131,6 @@ The response you would get is a JSON object containing the embeddings and the to
     "total_tokens": 10
   }
 }
-
 ```
 
 For more information on the Voyage HTTP API, see [the Voyage documentation](https://docs.voyageai.com/reference/embeddings-api).

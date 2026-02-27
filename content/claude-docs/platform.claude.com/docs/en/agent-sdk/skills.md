@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 628d117a0c5069fae316c25e92e43d7091815c90a21a56915b0840246bc9972a
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 4771d69e12d163ad4b09369e0fe20be0998ecb4e4a072ccb72b0360d689c8829
 ---
 
 # Agent Skills in the SDK
@@ -245,7 +245,7 @@ const options = {
 
 </CodeGroup>
 
-For more details on `settingSources`/`setting_sources`, see the [TypeScript SDK reference](/docs/en/agent-sdk/typescript#settingsource) or [Python SDK reference](/docs/en/agent-sdk/python#settingsource).
+For more details on `settingSources`/`setting_sources`, see the [TypeScript SDK reference](/docs/en/agent-sdk/typescript#setting-source) or [Python SDK reference](/docs/en/agent-sdk/python#setting-source).
 
 **Check working directory**: The SDK loads Skills relative to the `cwd` option. Ensure it points to a directory containing `.claude/skills/`:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/client-sdks
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 5db57c6826647a7d92600817bf42da788598562210c65e0fa7ca04d1d1b32943
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 06c72adaa42be56ea13993c5f53238c2b81b136561e9bd35662dc07a0cf34bec
 ---
 
 # Client SDKs
@@ -111,9 +111,7 @@ const client = new Anthropic();
 const message = await client.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
-  messages: [
-    { role: "user", content: "Hello, Claude" }
-  ]
+  messages: [{ role: "user", content: "Hello, Claude" }]
 });
 console.log(message.content);
 ```

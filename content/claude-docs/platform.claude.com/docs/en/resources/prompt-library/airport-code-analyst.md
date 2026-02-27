@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/airport-code-analyst
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: c14ea3c0159aba4f08ff0aab20c5b7066dcaea85629530125323390790d921da
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: e3d622f77c9c2028c8338d299ef3e4d89afc733cc2d59fe108fbbe2fa4375e6f
 ---
 
 # Airport code analyst
@@ -68,7 +68,8 @@ Find and extract airport codes from text.
       model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to analyze the provided text and identify any airport codes mentioned within it. Present these airport codes as a list in the order they appear in the text. If no airport codes are found, return an empty list.",
+      system:
+        "Your task is to analyze the provided text and identify any airport codes mentioned within it. Present these airport codes as a list in the order they appear in the text. If no airport codes are found, return an empty list.",
       messages: [
         {
           role: "user",
@@ -82,7 +83,6 @@ Find and extract airport codes from text.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -123,7 +123,8 @@ Find and extract airport codes from text.
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to analyze the provided text and identify any airport codes mentioned within it. Present these airport codes as a list in the order they appear in the text. If no airport codes are found, return an empty list.",
+      system:
+        "Your task is to analyze the provided text and identify any airport codes mentioned within it. Present these airport codes as a list in the order they appear in the text. If no airport codes are found, return an empty list.",
       messages: [
         {
           role: "user",
@@ -137,7 +138,6 @@ Find and extract airport codes from text.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -176,7 +176,8 @@ Find and extract airport codes from text.
       model: "claude-sonnet-4@20250514",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to analyze the provided text and identify any airport codes mentioned within it. Present these airport codes as a list in the order they appear in the text. If no airport codes are found, return an empty list.",
+      system:
+        "Your task is to analyze the provided text and identify any airport codes mentioned within it. Present these airport codes as a list in the order they appear in the text. If no airport codes are found, return an empty list.",
       messages: [
         {
           role: "user",
@@ -190,6 +191,5 @@ Find and extract airport codes from text.
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/tongue-twister
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 3c0831c2a31c0806abb7a193954c1ba16b8c33756b2e8651cf23abaf0de5dd7c
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: c8755ffd9838e73787ed9cc977922e09fba5ea91876a48ece56b690a78e304be
 ---
 
 # Tongue twister
@@ -91,7 +91,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -150,7 +149,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -207,7 +205,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

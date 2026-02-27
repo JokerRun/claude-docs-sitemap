@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/perspectives-ponderer
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 0d5d8b5604f919fff0fef73511709716107384047f2fbec32b9a102e89c18420
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 6ff8a4589fd2447d706dc42194de0d32bc4732a3df9680bef48e52128440b8d1
 ---
 
 # Perspectives ponderer
@@ -99,7 +99,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -158,7 +157,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -215,7 +213,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

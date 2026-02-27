@@ -1,15 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-02-21T04:09:20.845903Z
-sha256: 52cdc990b4c111e6ef8d0d388e96657ade386b182d0607b54cd21816cd77b375
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: d1907c815f466b169d2485dcea0ae432915dc6e8f43c8a2a57510f24764d2b53
 ---
 
 # Programmatic tool calling
 
 ---
 
-Programmatic tool calling allows Claude to write code that calls your tools programmatically within a [code execution](/docs/en/agents-and-tools/tool-use/code-execution-tool) container, rather than requiring round trips through the model for each tool invocation. This reduces latency for multi-tool workflows and decreases token consumption by allowing Claude to filter or process data before it reaches the model's context window.
+Programmatic tool calling allows Claude to write code that calls your tools programmatically within a [code execution](/docs/en/agents-and-tools/tool-use/code-execution-tool) container, rather than requiring round trips through the model for each tool invocation. This reduces latency for multi-tool workflows and decreases token consumption by allowing Claude to filter or process data before it reaches the model's context window. On agentic search benchmarks like [BrowseComp](https://arxiv.org/abs/2504.12516) and [DeepSearchQA](https://github.com/google-deepmind/deepsearchqa), which test multi-step web research and complex information retrieval, adding programmatic tool calling on top of basic search tools was the key factor that fully unlocked agent performance.
+
+The difference compounds fast in real workflows. Consider checking budget compliance across 20 employees: the traditional approach requires 20 separate model round-trips, pulling thousands of expense line items into the context along the way. With programmatic tool calling, a single script runs all 20 lookups, filters the results, and returns only the employees who exceeded their limits, shrinking what Claude needs to reason over from hundreds of kilobytes down to a handful of lines.
+
+<Tip>
+For a deeper look at the inference and context costs that programmatic tool calling addresses, see [Advanced tool use](https://www.anthropic.com/engineering/advanced-tool-use).
+</Tip>
 
 <Note>
 This feature requires the code execution tool to be enabled.
@@ -123,7 +129,8 @@ async function main() {
     messages: [
       {
         role: "user",
-        content: "Query sales data for the West, East, and Central regions, then tell me which region had the highest revenue"
+        content:
+          "Query sales data for the West, East, and Central regions, then tell me which region had the highest revenue"
       }
     ],
     tools: [
@@ -133,7 +140,8 @@ async function main() {
       },
       {
         name: "query_database",
-        description: "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
+        description:
+          "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
         input_schema: {
           type: "object",
           properties: {
@@ -187,7 +195,9 @@ The `allowed_callers` field specifies which contexts can invoke a tool:
 {
   "name": "query_database",
   "description": "Execute a SQL query against the database",
-  "input_schema": {...},
+  "input_schema": {
+    // ...
+  },
   "allowed_callers": ["code_execution_20260120"]
 }
 ```
@@ -211,8 +221,8 @@ Every tool use block includes a `caller` field indicating how it was invoked:
   "type": "tool_use",
   "id": "toolu_abc123",
   "name": "query_database",
-  "input": {"sql": "<sql>"},
-  "caller": {"type": "direct"}
+  "input": { "sql": "<sql>" },
+  "caller": { "type": "direct" }
 }
 ```
 
@@ -222,7 +232,7 @@ Every tool use block includes a `caller` field indicating how it was invoked:
   "type": "tool_use",
   "id": "toolu_xyz789",
   "name": "query_database",
-  "input": {"sql": "<sql>"},
+  "input": { "sql": "<sql>" },
   "caller": {
     "type": "code_execution_20260120",
     "tool_id": "srvtoolu_abc123"
@@ -273,7 +283,9 @@ response = client.messages.create(
         {
             "name": "query_database",
             "description": "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
-            "input_schema": {...},
+            "input_schema": {
+                # ...
+            },
             "allowed_callers": ["code_execution_20260120"],
         },
     ],
@@ -284,10 +296,13 @@ response = client.messages.create(
 const response = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 4096,
-  messages: [{
-    role: "user",
-    content: "Query customer purchase history from the last quarter and identify our top 5 customers by revenue"
-  }],
+  messages: [
+    {
+      role: "user",
+      content:
+        "Query customer purchase history from the last quarter and identify our top 5 customers by revenue"
+    }
+  ],
   tools: [
     {
       type: "code_execution_20260120",
@@ -295,8 +310,11 @@ const response = await anthropic.messages.create({
     },
     {
       name: "query_database",
-      description: "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
-      input_schema: { /* ... */ },
+      description:
+        "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
+      input_schema: {
+        // ...
+      },
       allowed_callers: ["code_execution_20260120"]
     }
   ]
@@ -328,7 +346,7 @@ Claude writes code that calls your tool. The API pauses and returns:
       "type": "tool_use",
       "id": "toolu_def456",
       "name": "query_database",
-      "input": {"sql": "<sql>"},
+      "input": { "sql": "<sql>" },
       "caller": {
         "type": "code_execution_20260120",
         "tool_id": "srvtoolu_abc123"
@@ -404,7 +422,11 @@ const response = await anthropic.messages.create({
   max_tokens: 4096,
   container: "container_xyz789", // Reuse the container
   messages: [
-    { role: "user", content: "Query customer purchase history from the last quarter and identify our top 5 customers by revenue" },
+    {
+      role: "user",
+      content:
+        "Query customer purchase history from the last quarter and identify our top 5 customers by revenue"
+    },
     {
       role: "assistant",
       content: [
@@ -433,12 +455,15 @@ const response = await anthropic.messages.create({
         {
           type: "tool_result",
           tool_use_id: "toolu_def456",
-          content: "[{\"customer_id\": \"C1\", \"revenue\": 45000}, {\"customer_id\": \"C2\", \"revenue\": 38000}, ...]"
+          content:
+            '[{"customer_id": "C1", "revenue": 45000}, {"customer_id": "C2", "revenue": 38000}, ...]'
         }
       ]
     }
   ],
-  tools: [/* ... */]
+  tools: [
+    // ...
+  ]
 });
 ```
 </CodeGroup>
@@ -546,7 +571,7 @@ When code execution calls a tool:
   "type": "tool_use",
   "id": "toolu_abc123",
   "name": "query_database",
-  "input": {"sql": "<sql>"},
+  "input": { "sql": "<sql>" },
   "caller": {
     "type": "code_execution_20260120",
     "tool_id": "srvtoolu_xyz789"
@@ -657,21 +682,33 @@ When responding to programmatic tool calls, there are strict formatting requirem
 
 **Tool result only responses**: If there are pending programmatic tool calls waiting for results, your response message must contain **only** `tool_result` blocks. You cannot include any text content, even after the tool results.
 
+Invalid - Cannot include text when responding to programmatic tool calls:
+
 ```json
-// ❌ INVALID - Cannot include text when responding to programmatic tool calls
 {
   "role": "user",
   "content": [
-    {"type": "tool_result", "tool_use_id": "toolu_01", "content": "[{\"customer_id\": \"C1\", \"revenue\": 45000}]"},
-    {"type": "text", "text": "What should I do next?"}  // This will cause an error
+    {
+      "type": "tool_result",
+      "tool_use_id": "toolu_01",
+      "content": "[{\"customer_id\": \"C1\", \"revenue\": 45000}]"
+    },
+    { "type": "text", "text": "What should I do next?" }
   ]
 }
+```
 
-// ✅ VALID - Only tool results when responding to programmatic tool calls
+Valid - Only tool results when responding to programmatic tool calls:
+
+```json
 {
   "role": "user",
   "content": [
-    {"type": "tool_result", "tool_use_id": "toolu_01", "content": "[{\"customer_id\": \"C1\", \"revenue\": 45000}]"}
+    {
+      "type": "tool_result",
+      "tool_use_id": "toolu_01",
+      "content": "[{\"customer_id\": \"C1\", \"revenue\": 45000}]"
+    }
   ]
 }
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 87ce0da3ff82742496151cf7d5080fd2833aa89ba9443ffe8632134010905d28
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: bfc10a80ac9615748e95a82bfe42429e9bfad8c7e470334027e7420763679cd9
 ---
 
 # Batch processing
@@ -183,25 +183,24 @@ import Anthropic from "@anthropic-ai/sdk";
 const anthropic = new Anthropic();
 
 const messageBatch = await anthropic.messages.batches.create({
-  requests: [{
-    custom_id: "my-first-request",
-    params: {
-      model: "claude-opus-4-6",
-      max_tokens: 1024,
-      messages: [
-        { role: "user", content: "Hello, world" }
-      ]
+  requests: [
+    {
+      custom_id: "my-first-request",
+      params: {
+        model: "claude-opus-4-6",
+        max_tokens: 1024,
+        messages: [{ role: "user", content: "Hello, world" }]
+      }
+    },
+    {
+      custom_id: "my-second-request",
+      params: {
+        model: "claude-opus-4-6",
+        max_tokens: 1024,
+        messages: [{ role: "user", content: "Hi again, friend" }]
+      }
     }
-  }, {
-    custom_id: "my-second-request",
-    params: {
-      model: "claude-opus-4-6",
-      max_tokens: 1024,
-      messages: [
-        { role: "user", content: "Hi again, friend" }
-      ]
-    }
-  }]
+  ]
 });
 
 console.log(messageBatch);
@@ -476,15 +475,13 @@ const anthropic = new Anthropic();
 
 let messageBatch;
 while (true) {
-  messageBatch = await anthropic.messages.batches.retrieve(
-    MESSAGE_BATCH_ID
-  );
+  messageBatch = await anthropic.messages.batches.retrieve(MESSAGE_BATCH_ID);
   if (messageBatch.processing_status === "ended") {
     break;
   }
 
   console.log(`Batch ${messageBatch} is still processing... waiting`);
-  await new Promise(resolve => setTimeout(resolve, 60_000));
+  await new Promise((resolve) => setTimeout(resolve, 60_000));
 }
 console.log(messageBatch);
 ```
@@ -748,7 +745,7 @@ public class BatchResultsExample {
 
 The results will be in `.jsonl` format, where each line is a valid JSON object representing the result of a single request in the Message Batch. For each streamed result, you can do something different depending on its `custom_id` and result type. Here is an example set of results:
 
-```json .jsonl file
+```jsonl .jsonl file
 {"custom_id":"my-second-request","result":{"type":"succeeded","message":{"id":"msg_014VwiXbi91y3JMjcpyGBHX5","type":"message","role":"assistant","model":"claude-opus-4-6","content":[{"type":"text","text":"Hello again! It's nice to see you. How can I assist you today? Is there anything specific you'd like to chat about or any questions you have?"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":11,"output_tokens":36}}}}
 {"custom_id":"my-first-request","result":{"type":"succeeded","message":{"id":"msg_01FqfsLoHwgeFbguDgpz48m7","type":"message","role":"assistant","model":"claude-opus-4-6","content":[{"type":"text","text":"Hello! How can I assist you today? Feel free to ask me any questions or let me know if there's anything you'd like to chat about."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":10,"output_tokens":34}}}}
 ```
@@ -782,9 +779,7 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
-const messageBatch = await anthropic.messages.batches.cancel(
-  MESSAGE_BATCH_ID
-);
+const messageBatch = await anthropic.messages.batches.cancel(MESSAGE_BATCH_ID);
 console.log(messageBatch);
 ```
 
@@ -972,47 +967,48 @@ import Anthropic from "@anthropic-ai/sdk";
 const anthropic = new Anthropic();
 
 const messageBatch = await anthropic.messages.batches.create({
-  requests: [{
-    custom_id: "my-first-request",
-    params: {
-      model: "claude-opus-4-6",
-      max_tokens: 1024,
-      system: [
-        {
-          type: "text",
-          text: "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n"
-        },
-        {
-          type: "text",
-          text: "<the entire contents of Pride and Prejudice>",
-          cache_control: { type: "ephemeral" }
-        }
-      ],
-      messages: [
-        { role: "user", content: "Analyze the major themes in Pride and Prejudice." }
-      ]
+  requests: [
+    {
+      custom_id: "my-first-request",
+      params: {
+        model: "claude-opus-4-6",
+        max_tokens: 1024,
+        system: [
+          {
+            type: "text",
+            text: "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n"
+          },
+          {
+            type: "text",
+            text: "<the entire contents of Pride and Prejudice>",
+            cache_control: { type: "ephemeral" }
+          }
+        ],
+        messages: [
+          { role: "user", content: "Analyze the major themes in Pride and Prejudice." }
+        ]
+      }
+    },
+    {
+      custom_id: "my-second-request",
+      params: {
+        model: "claude-opus-4-6",
+        max_tokens: 1024,
+        system: [
+          {
+            type: "text",
+            text: "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n"
+          },
+          {
+            type: "text",
+            text: "<the entire contents of Pride and Prejudice>",
+            cache_control: { type: "ephemeral" }
+          }
+        ],
+        messages: [{ role: "user", content: "Write a summary of Pride and Prejudice." }]
+      }
     }
-  }, {
-    custom_id: "my-second-request",
-    params: {
-      model: "claude-opus-4-6",
-      max_tokens: 1024,
-      system: [
-        {
-          type: "text",
-          text: "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n"
-        },
-        {
-          type: "text",
-          text: "<the entire contents of Pride and Prejudice>",
-          cache_control: { type: "ephemeral" }
-        }
-      ],
-      messages: [
-        { role: "user", content: "Write a summary of Pride and Prejudice." }
-      ]
-    }
-  }]
+  ]
 });
 ```
 

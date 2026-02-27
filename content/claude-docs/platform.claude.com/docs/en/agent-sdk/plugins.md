@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: a2fcaafc90a3e8f4e1e0366b13c25b80936cbb991a30e8e7a2b3b63d9a01ebaf
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: ca7bb6c53f95d87b45d0a543eaf487b28334b892587781f92cd8636084221ce4
 ---
 
 # Plugins in the SDK
@@ -199,9 +199,7 @@ async function runWithPlugin() {
   for await (const message of query({
     prompt: "What custom commands do you have available?",
     options: {
-      plugins: [
-        { type: "local", path: pluginPath }
-      ],
+      plugins: [{ type: "local", path: pluginPath }],
       maxTurns: 3
     }
   })) {
@@ -294,9 +292,7 @@ For detailed information on creating plugins, see:
 Load plugins during development without installing them globally:
 
 ```typescript
-plugins: [
-  { type: "local", path: "./dev-plugins/my-plugin" }
-];
+plugins: [{ type: "local", path: "./dev-plugins/my-plugin" }];
 ```
 
 ### Project-specific extensions
@@ -304,9 +300,7 @@ plugins: [
 Include plugins in your project repository for team-wide consistency:
 
 ```typescript
-plugins: [
-  { type: "local", path: "./project-plugins/team-workflows" }
-];
+plugins: [{ type: "local", path: "./project-plugins/team-workflows" }];
 ```
 
 ### Multiple plugin sources

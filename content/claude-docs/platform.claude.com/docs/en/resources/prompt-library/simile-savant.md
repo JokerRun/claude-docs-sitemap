@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/simile-savant
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: b7f4109d301355b020f04e8e9b6b861861c2f8aec756faeaa64e4bb3535bc877
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 4bf21e1526ccab00902d84434a4cc183b90c13aef81ab1871d9874eaae2bb7c9
 ---
 
 # Simile savant
@@ -82,7 +82,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -141,7 +140,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -198,7 +196,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

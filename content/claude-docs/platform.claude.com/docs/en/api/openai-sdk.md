@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/openai-sdk
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 99ce0bcb53644efb857b400aa3cc3c39deda36c1547b0d3a44c8826f8cb8c14c
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: d3c17976d0581de0fb307dd775cb4acf98df40871943c1a53b395e6c54f4a223
 ---
 
 # OpenAI SDK compatibility
@@ -65,9 +65,7 @@ To use the OpenAI SDK compatibility feature, you'll need to:
     });
 
     const response = await openai.chat.completions.create({
-      messages: [
-        { role: "user", content: "Who are you?" }
-      ],
+      messages: [{ role: "user", content: "Who are you?" }],
       model: "claude-opus-4-6" // Claude model name
     });
 
@@ -111,14 +109,11 @@ You can enable [extended thinking](/docs/en/build-with-claude/extended-thinking)
 
     ```typescript TypeScript
     const response = await openai.chat.completions.create({
-      messages: [
-        { role: "user", content: "Who are you?" }
-      ],
+      messages: [{ role: "user", content: "Who are you?" }],
       model: "claude-sonnet-4-6",
       // @ts-expect-error
       thinking: { type: "enabled", budget_tokens: 2000 }
     });
-
     ```
 </CodeGroup>
 

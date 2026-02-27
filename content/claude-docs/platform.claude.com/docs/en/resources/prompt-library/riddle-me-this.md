@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/riddle-me-this
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 78b07fd58b836d8e17c7551eb97111db0bb4a06271e1afd3a38b95313ebb47b5
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 3c16afdbe4ef27ca4b5b8c46561eb0aed7ba74f80e28a50989e6fb47a1bfef04
 ---
 
 # Riddle me this
@@ -87,7 +87,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -146,7 +145,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -203,7 +201,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

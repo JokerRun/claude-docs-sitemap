@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 9c180b985954d6cc88f64300b28e546bab6234d129365b33f520c4faa552d501
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: aaa28bd44ffa62d1b4ccfda0a201e83a4670a86427d938c726ae3be97bab6db1
 ---
 
 # How to implement tool use
@@ -82,6 +82,9 @@ To get the best performance out of Claude when using tools, follow these guideli
   - What each parameter means and how it affects the tool's behavior
   - Any important caveats or limitations, such as what information the tool does not return if the tool name is unclear. The more context you can give Claude about your tools, the better it will be at deciding when and how to use them. Aim for at least 3-4 sentences per tool description, more if the tool is complex.
 - **Prioritize descriptions, but consider using `input_examples` for complex tools.** Clear descriptions are most important, but for tools with complex inputs, nested objects, or format-sensitive parameters, you can use the `input_examples` field to provide schema-validated examples. See [Providing tool use examples](#providing-tool-use-examples) for details.
+- **Consolidate related operations into fewer tools.** Rather than creating a separate tool for every action (`create_pr`, `review_pr`, `merge_pr`), group them into a single tool with an `action` parameter. Fewer, more capable tools reduce selection ambiguity and make your tool surface easier for Claude to navigate.
+- **Use meaningful namespacing in tool names.** When your tools span multiple services or resources, prefix names with the service (e.g., `github_list_prs`, `slack_send_message`). This makes tool selection unambiguous as your library grows, and is especially important when using [tool search](/docs/en/agents-and-tools/tool-use/tool-search-tool).
+- **Design tool responses to return only high-signal information.** Return semantic, stable identifiers (e.g., slugs or UUIDs) rather than opaque internal references, and include only the fields Claude needs to reason about its next step. Bloated responses waste context and make it harder for Claude to extract what matters.
 
 <section title="Example of a good tool description">
 
@@ -125,6 +128,10 @@ To get the best performance out of Claude when using tools, follow these guideli
 </section>
 
 The good description clearly explains what the tool does, when to use it, what data it returns, and what the `ticker` parameter means. The poor description is too brief and leaves Claude with many open questions about the tool's behavior and usage.
+
+<Tip>
+For deeper guidance on tool design (consolidation, naming, and response shaping), see [Writing tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents).
+</Tip>
 
 ## Providing tool use examples
 
@@ -361,8 +368,7 @@ const getWeatherTool = betaZodTool({
   description: "Get the current weather in a given location",
   inputSchema: z.object({
     location: z.string().describe("The city and state, e.g. San Francisco, CA"),
-    unit: z.enum(["celsius", "fahrenheit"]).default("fahrenheit")
-      .describe("Temperature unit")
+    unit: z.enum(["celsius", "fahrenheit"]).default("fahrenheit").describe("Temperature unit")
   }),
   run: async (input) => {
     // In a full implementation, you'd call a weather API here
@@ -614,15 +620,13 @@ for await (const message of runner) {
   }
 
   // Customize the next request
-  runner.setMessagesParams(params => ({
+  runner.setMessagesParams((params) => ({
     ...params,
     max_tokens: 2048 // Increase tokens for next request
   }));
 
   // Or add additional messages
-  runner.pushMessages(
-    { role: "user", content: "Please be concise in your response." }
-  );
+  runner.pushMessages({ role: "user", content: "Please be concise in your response." });
 }
 ```
 
@@ -821,7 +825,9 @@ const runner = anthropic.beta.messages.toolRunner({
   model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [searchDocuments],
-  messages: [{ role: "user", content: "Search for information about the climate of San Francisco" }]
+  messages: [
+    { role: "user", content: "Search for information about the climate of San Francisco" }
+  ]
 });
 
 for await (const message of runner) {
@@ -1029,7 +1035,7 @@ For example, given the prompt "What's the weather like in San Francisco right no
       "type": "tool_use",
       "id": "toolu_01A09q90qw90lq917835lq9",
       "name": "get_weather",
-      "input": {"location": "San Francisco, CA"}
+      "input": { "location": "San Francisco, CA" }
     }
   ]
 }
@@ -1269,25 +1275,25 @@ The assistant message with parallel tool calls would look like this:
       "type": "tool_use",
       "id": "toolu_01",
       "name": "get_weather",
-      "input": {"location": "San Francisco, CA"}
+      "input": { "location": "San Francisco, CA" }
     },
     {
       "type": "tool_use",
       "id": "toolu_02",
       "name": "get_weather",
-      "input": {"location": "New York, NY"}
+      "input": { "location": "New York, NY" }
     },
     {
       "type": "tool_use",
       "id": "toolu_03",
       "name": "get_time",
-      "input": {"timezone": "America/Los_Angeles"}
+      "input": { "timezone": "America/Los_Angeles" }
     },
     {
       "type": "tool_use",
       "id": "toolu_04",
       "name": "get_time",
-      "input": {"timezone": "America/New_York"}
+      "input": { "timezone": "America/New_York" }
     }
   ]
 }
@@ -1455,20 +1461,22 @@ async function testParallelTools() {
   const response = await anthropic.messages.create({
     model: "claude-opus-4-6",
     max_tokens: 1024,
-    messages: [{
-      role: "user",
-      content: "What's the weather in SF and NYC, and what time is it there?"
-    }],
+    messages: [
+      {
+        role: "user",
+        content: "What's the weather in SF and NYC, and what time is it there?"
+      }
+    ],
     tools: tools
   });
 
   // Check for parallel tool calls
-  const toolUses = response.content.filter(block => block.type === "tool_use");
+  const toolUses = response.content.filter((block) => block.type === "tool_use");
   console.log(`\n✓ Claude made ${toolUses.length} tool calls`);
 
   if (toolUses.length > 1) {
     console.log("✓ Parallel tool calls detected!");
-    toolUses.forEach(tool => {
+    toolUses.forEach((tool) => {
       console.log(`  - ${tool.name}: ${JSON.stringify(tool.input)}`);
     });
   } else {
@@ -1476,16 +1484,14 @@ async function testParallelTools() {
   }
 
   // Simulate tool execution and format results correctly
-  const toolResults = toolUses.map(toolUse => {
+  const toolResults = toolUses.map((toolUse) => {
     let result;
     if (toolUse.name === "get_weather") {
       result = toolUse.input.location.includes("San Francisco")
         ? "San Francisco: 68°F, partly cloudy"
         : "New York: 45°F, clear skies";
     } else {
-      result = toolUse.input.timezone.includes("Los_Angeles")
-        ? "2:30 PM PST"
-        : "5:30 PM EST";
+      result = toolUse.input.timezone.includes("Los_Angeles") ? "2:30 PM PST" : "5:30 PM EST";
     }
 
     return {
@@ -1501,7 +1507,10 @@ async function testParallelTools() {
     model: "claude-opus-4-6",
     max_tokens: 1024,
     messages: [
-      { role: "user", content: "What's the weather in SF and NYC, and what time is it there?" },
+      {
+        role: "user",
+        content: "What's the weather in SF and NYC, and what time is it there?"
+      },
       { role: "assistant", content: response.content },
       { role: "user", content: toolResults } // All results in one message!
     ],
@@ -1611,7 +1620,7 @@ The response will have a `stop_reason` of `tool_use` and one or more `tool_use` 
       "type": "tool_use",
       "id": "toolu_01A09q90qw90lq917835lq9",
       "name": "get_weather",
-      "input": {"location": "San Francisco, CA", "unit": "celsius"}
+      "input": { "location": "San Francisco, CA", "unit": "celsius" }
     }
   ]
 }
@@ -1635,18 +1644,24 @@ When you receive a tool use response for a client tool, you should:
 
 For example, this will cause a 400 error:
 ```json
-{"role": "user", "content": [
-  {"type": "text", "text": "Here are the results:"},  // ❌ Text before tool_result
-  {"type": "tool_result", "tool_use_id": "toolu_01", ...}
-]}
+{
+  "role": "user",
+  "content": [
+    { "type": "text", "text": "Here are the results:" }, // ❌ Text before tool_result
+    { "type": "tool_result", "tool_use_id": "toolu_01" /* ... */ }
+  ]
+}
 ```
 
 This is correct:
 ```json
-{"role": "user", "content": [
-  {"type": "tool_result", "tool_use_id": "toolu_01", ...},
-  {"type": "text", "text": "What should I do next?"}  // ✅ Text after tool_result
-]}
+{
+  "role": "user",
+  "content": [
+    { "type": "tool_result", "tool_use_id": "toolu_01" /* ... */ },
+    { "type": "text", "text": "What should I do next?" } // ✅ Text after tool_result
+  ]
+}
 ```
 
 If you receive an error like "tool_use ids were found without tool_result blocks immediately after", check that your tool results are formatted correctly.
@@ -1679,13 +1694,13 @@ If you receive an error like "tool_use ids were found without tool_result blocks
       "type": "tool_result",
       "tool_use_id": "toolu_01A09q90qw90lq917835lq9",
       "content": [
-        {"type": "text", "text": "15 degrees"},
+        { "type": "text", "text": "15 degrees" },
         {
           "type": "image",
           "source": {
             "type": "base64",
             "media_type": "image/jpeg",
-            "data": "/9j/4AAQSkZJRg...",
+            "data": "/9j/4AAQSkZJRg..."
           }
         }
       ]
@@ -1703,7 +1718,7 @@ If you receive an error like "tool_use ids were found without tool_result blocks
   "content": [
     {
       "type": "tool_result",
-      "tool_use_id": "toolu_01A09q90qw90lq917835lq9",
+      "tool_use_id": "toolu_01A09q90qw90lq917835lq9"
     }
   ]
 }
@@ -1721,7 +1736,7 @@ If you receive an error like "tool_use ids were found without tool_result blocks
       "type": "tool_result",
       "tool_use_id": "toolu_01A09q90qw90lq917835lq9",
       "content": [
-        {"type": "text", "text": "The weather is"},
+        { "type": "text", "text": "The weather is" },
         {
           "type": "document",
           "source": {
@@ -1852,21 +1867,28 @@ const response = await anthropic.messages.create({
   messages: [
     {
       role: "user",
-      content: "Search for comprehensive information about quantum computing breakthroughs in 2025"
+      content:
+        "Search for comprehensive information about quantum computing breakthroughs in 2025"
     }
   ],
-  tools: [{
-    type: "web_search_20250305",
-    name: "web_search",
-    max_uses: 10
-  }]
+  tools: [
+    {
+      type: "web_search_20250305",
+      name: "web_search",
+      max_uses: 10
+    }
+  ]
 });
 
 // Check if the response has pause_turn stop reason
 if (response.stop_reason === "pause_turn") {
   // Continue the conversation with the paused content
   const messages = [
-    { role: "user", content: "Search for comprehensive information about quantum computing breakthroughs in 2025" },
+    {
+      role: "user",
+      content:
+        "Search for comprehensive information about quantum computing breakthroughs in 2025"
+    },
     { role: "assistant", content: response.content }
   ];
 
@@ -1875,11 +1897,13 @@ if (response.stop_reason === "pause_turn") {
     model: "claude-3-7-sonnet-latest",
     max_tokens: 1024,
     messages: messages,
-    tools: [{
-      type: "web_search_20250305",
-      name: "web_search",
-      max_uses: 10
-    }]
+    tools: [
+      {
+        type: "web_search_20250305",
+        name: "web_search",
+        max_uses: 10
+      }
+    ]
   });
 
   console.log(continuation);
@@ -1921,6 +1945,10 @@ If the tool itself throws an error during execution (for example, a network erro
 ```
 
 Claude will then incorporate this error into its response to the user. For example: "I'm sorry, I was unable to retrieve the current weather because the weather service API is not available. Please try again later."
+
+<Tip>
+Write instructive error messages. Instead of generic errors like `"failed"`, include what went wrong and what Claude should try next, e.g., `"Rate limit exceeded. Retry after 60 seconds."` This gives Claude the context it needs to recover or adapt without guessing.
+</Tip>
 
 </section>
 <section title="Invalid tool name">

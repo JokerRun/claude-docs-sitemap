@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/ip-addresses
-fetched_at: 2026-02-20T04:18:13.878022Z
-sha256: ee49dcc15e2c60b5a780599cdb8fb0d250d6ac03bd54bd6a1d31292474000616
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: ab29e4eef728b714ce6df591225169c5626b4600183b44a278db0a291ecfd33d
 ---
 
 # Alamat IP
@@ -31,19 +31,14 @@ Ini adalah alamat IP stabil yang digunakan Anthropic untuk permintaan keluar (mi
 
 `160.79.104.0/21`
 
-*Alamat IP individual berikut masih digunakan, tetapi akan dihentikan secara bertahap mulai 15 Januari 2026.*
+### Alamat IP yang dihentikan
+
+Alamat IP berikut tidak lagi digunakan oleh Anthropic. Jika Anda sebelumnya telah memasukkan alamat-alamat ini ke daftar putih, Anda harus menghapusnya dari aturan firewall Anda.
 
 ```text
 34.162.46.92/32
 34.162.102.82/32
 34.162.136.91/32
 34.162.142.92/32
-```
-
-### Alamat IP yang dihentikan
-
-Alamat IP berikut tidak lagi digunakan oleh Anthropic. Jika Anda sebelumnya telah memasukkan alamat-alamat ini ke daftar putih, Anda harus menghapusnya dari aturan firewall Anda.
-
-```text
 34.162.183.95/32
 ```

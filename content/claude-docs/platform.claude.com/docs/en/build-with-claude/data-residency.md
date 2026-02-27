@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/data-residency
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: f8d0a38f6ff2dd23388ab55a95df7642df74756a16f8e026ae483045543bac6d
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: ad48d91fc44641b550e6b762a962a10c3d9ed5deb7cdc93e9b9aa11585632e06
 ---
 
 # Data residency
@@ -72,10 +72,12 @@ const response = await client.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
   inference_geo: "us",
-  messages: [{
-    role: "user",
-    content: "Summarize the key points of this document."
-  }]
+  messages: [
+    {
+      role: "user",
+      content: "Summarize the key points of this document."
+    }
+  ]
 });
 
 console.log(response.content[0].text);

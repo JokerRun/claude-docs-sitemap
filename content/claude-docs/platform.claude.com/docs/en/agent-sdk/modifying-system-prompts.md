@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/modifying-system-prompts
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: fe4b1ba78b69af15faeb49d81dac0f41552e243cdeb546666003e8d99bc1e777
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: a6d98fe2611720a367b7b80cdd522d62ee191c2cd2d748205a256e498362bd4c
 ---
 
 # Modifying system prompts
@@ -163,11 +163,7 @@ import { writeFile, mkdir } from "fs/promises";
 import { join } from "path";
 import { homedir } from "os";
 
-async function createOutputStyle(
-  name: string,
-  description: string,
-  prompt: string
-) {
+async function createOutputStyle(name: string, description: string, prompt: string) {
   // User-level: ~/.claude/output-styles
   // Project-level: .claude/output-styles
   const outputStylesDir = join(homedir(), ".claude", "output-styles");
@@ -181,10 +177,7 @@ description: ${description}
 
 ${prompt}`;
 
-  const filePath = join(
-    outputStylesDir,
-    `${name.toLowerCase().replace(/\s+/g, "-")}.md`
-  );
+  const filePath = join(outputStylesDir, `${name.toLowerCase().replace(/\s+/g, "-")}.md`);
   await writeFile(filePath, content, "utf-8");
 }
 
@@ -268,8 +261,7 @@ for await (const message of query({
     systemPrompt: {
       type: "preset",
       preset: "claude_code",
-      append:
-        "Always include detailed docstrings and type hints in Python code."
+      append: "Always include detailed docstrings and type hints in Python code."
     }
   }
 })) {

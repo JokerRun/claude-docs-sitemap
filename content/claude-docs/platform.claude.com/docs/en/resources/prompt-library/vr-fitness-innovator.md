@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/vr-fitness-innovator
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 4c61292cff65ba5eb81ba5da47b4513a1b1136e91c8027431c5ce4c7af2b0749
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: c1d24eb30cb739d27412f944d9346ecb115ea86048de6364c239965f2bfb3170
 ---
 
 # VR fitness innovator
@@ -92,7 +92,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -151,7 +150,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -208,7 +206,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/data-organizer
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 4ae8b0a1587aba8a2f9e098715ef2573149cd2d61bed664c5ff6bf5ad39491d0
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 8c350f6c85fb80828b68abf9f3b7554f055aa1cdd12210a02637c3d183b1635d
 ---
 
 # Data organizer
@@ -94,7 +94,8 @@ Turn unstructured text into bespoke JSON tables.
       model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to take the unstructured text provided and convert it into a well-organized table format using JSON. Identify the main entities, attributes, or categories mentioned in the text and use them as keys in the JSON object. Then, extract the relevant information from the text and populate the corresponding values in the JSON object. Ensure that the data is accurately represented and properly formatted within the JSON structure. The resulting JSON table should provide a clear, structured overview of the information presented in the original text.",
+      system:
+        "Your task is to take the unstructured text provided and convert it into a well-organized table format using JSON. Identify the main entities, attributes, or categories mentioned in the text and use them as keys in the JSON object. Then, extract the relevant information from the text and populate the corresponding values in the JSON object. Ensure that the data is accurately represented and properly formatted within the JSON structure. The resulting JSON table should provide a clear, structured overview of the information presented in the original text.",
       messages: [
         {
           role: "user",
@@ -108,7 +109,6 @@ Turn unstructured text into bespoke JSON tables.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -149,7 +149,8 @@ Turn unstructured text into bespoke JSON tables.
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to take the unstructured text provided and convert it into a well-organized table format using JSON. Identify the main entities, attributes, or categories mentioned in the text and use them as keys in the JSON object. Then, extract the relevant information from the text and populate the corresponding values in the JSON object. Ensure that the data is accurately represented and properly formatted within the JSON structure. The resulting JSON table should provide a clear, structured overview of the information presented in the original text.",
+      system:
+        "Your task is to take the unstructured text provided and convert it into a well-organized table format using JSON. Identify the main entities, attributes, or categories mentioned in the text and use them as keys in the JSON object. Then, extract the relevant information from the text and populate the corresponding values in the JSON object. Ensure that the data is accurately represented and properly formatted within the JSON structure. The resulting JSON table should provide a clear, structured overview of the information presented in the original text.",
       messages: [
         {
           role: "user",
@@ -163,7 +164,6 @@ Turn unstructured text into bespoke JSON tables.
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -202,7 +202,8 @@ Turn unstructured text into bespoke JSON tables.
       model: "claude-sonnet-4@20250514",
       max_tokens: 1000,
       temperature: 0,
-      system: "Your task is to take the unstructured text provided and convert it into a well-organized table format using JSON. Identify the main entities, attributes, or categories mentioned in the text and use them as keys in the JSON object. Then, extract the relevant information from the text and populate the corresponding values in the JSON object. Ensure that the data is accurately represented and properly formatted within the JSON structure. The resulting JSON table should provide a clear, structured overview of the information presented in the original text.",
+      system:
+        "Your task is to take the unstructured text provided and convert it into a well-organized table format using JSON. Identify the main entities, attributes, or categories mentioned in the text and use them as keys in the JSON object. Then, extract the relevant information from the text and populate the corresponding values in the JSON object. Ensure that the data is accurately represented and properly formatted within the JSON structure. The resulting JSON table should provide a clear, structured overview of the information presented in the original text.",
       messages: [
         {
           role: "user",
@@ -216,6 +217,5 @@ Turn unstructured text into bespoke JSON tables.
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

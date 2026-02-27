@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 7487059fa31d403a8a25ced4bf48d2dafadb26f8f0e4be9540f02c82f1fe22e5
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: a59822b1edd34bfb36e7b513eabf99d258a9dbfe4dc1ea8443371ab11a4bb201
 ---
 
 # Claude in Microsoft Foundry
@@ -269,10 +269,7 @@ print(message.content)
 
 ```typescript TypeScript
 import AnthropicFoundry from "@anthropic-ai/foundry-sdk";
-import {
-  DefaultAzureCredential,
-  getBearerTokenProvider
-} from "@azure/identity";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
 
 // Get Entra ID token using token provider pattern
 const credential = new DefaultAzureCredential();

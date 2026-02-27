@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-02-21T04:09:20.845903Z
-sha256: 1150acf0d3a6c57526ffa113a2497cbdbb575ebec1f4cba2e1fa69b807e4e52f
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 886d9ccb1578fe26f8eb5a9f36bf24e095b275ee8c2295941b25f2221248cbea
 ---
 
 > ## Documentation Index
@@ -33,7 +33,7 @@ Plugins add skills to Claude Code, creating `/name` shortcuts that you or Claude
 
 **Skill structure**:
 
-```
+```text  theme={null}
 skills/
 ├── pdf-processor/
 │   ├── SKILL.md
@@ -257,12 +257,12 @@ Install the language server first, then install the plugin from the marketplace.
 
 When you install a plugin, you choose a **scope** that determines where the plugin is available and who else can use it:
 
-| Scope     | Settings file                 | Use case                                                 |
-| :-------- | :---------------------------- | :------------------------------------------------------- |
-| `user`    | `~/.claude/settings.json`     | Personal plugins available across all projects (default) |
-| `project` | `.claude/settings.json`       | Team plugins shared via version control                  |
-| `local`   | `.claude/settings.local.json` | Project-specific plugins, gitignored                     |
-| `managed` | `managed-settings.json`       | Managed plugins (read-only, update only)                 |
+| Scope     | Settings file                                   | Use case                                                 |
+| :-------- | :---------------------------------------------- | :------------------------------------------------------- |
+| `user`    | `~/.claude/settings.json`                       | Personal plugins available across all projects (default) |
+| `project` | `.claude/settings.json`                         | Team plugins shared via version control                  |
+| `local`   | `.claude/settings.local.json`                   | Project-specific plugins, gitignored                     |
+| `managed` | [Managed settings](/en/settings#settings-files) | Managed plugins (read-only, update only)                 |
 
 Plugins use the same scope system as other Claude Code configurations. For installation instructions and scope flags, see [Install plugins](/en/discover-plugins#install-plugins). For a complete explanation of scopes, see [Configuration scopes](/en/settings#configuration-scopes).
 
@@ -415,7 +415,7 @@ The symlinked content will be copied into the plugin cache. This provides flexib
 
 A complete plugin follows this structure:
 
-```
+```text  theme={null}
 enterprise-plugin/
 ├── .claude-plugin/           # Metadata directory (optional)
 │   └── plugin.json             # plugin manifest
@@ -657,7 +657,7 @@ This shows:
 
 **Correct structure**: Components must be at the plugin root, not inside `.claude-plugin/`. Only `plugin.json` belongs in `.claude-plugin/`.
 
-```
+```text  theme={null}
 my-plugin/
 ├── .claude-plugin/
 │   └── plugin.json      ← Only manifest here

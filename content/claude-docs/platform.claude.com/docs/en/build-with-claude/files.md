@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 32156b53d0a49d1a1a65ec7686f0ae6b1944da927029ec47882f50b078f0044a
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 2da0a5f5f9bd783741b171736fc4d6a1bd49f3c8158083833e5fcc1cbd7c8c37
 ---
 
 # Files API
@@ -68,11 +68,14 @@ import fs from "fs";
 
 const anthropic = new Anthropic();
 
-await anthropic.beta.files.upload({
-  file: await toFile(fs.createReadStream("/path/to/document.pdf"), undefined, { type: "application/pdf" })
-}, {
-  betas: ["files-api-2025-04-14"]
-});
+await anthropic.beta.files.upload(
+  {
+    file: await toFile(fs.createReadStream("/path/to/document.pdf"), undefined, {
+      type: "application/pdf"
+    })
+  },
+  { betas: ["files-api-2025-04-14"] }
+);
 ```
 
 ```java Java
@@ -556,7 +559,7 @@ For PDFs and text files, use the `document` content block:
   },
   "title": "Document Title", // Optional
   "context": "Context about the document", // Optional
-  "citations": {"enabled": true} // Optional, enables citations
+  "citations": { "enabled": true } // Optional, enables citations
 }
 ```
 
@@ -628,10 +631,9 @@ file = client.beta.files.retrieve_metadata("file_011CNha8iCJcU1wXNR6q4V8w")
 import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
-const file = await anthropic.beta.files.retrieveMetadata(
-  "file_011CNha8iCJcU1wXNR6q4V8w",
-  { betas: ["files-api-2025-04-14"] }
-);
+const file = await anthropic.beta.files.retrieveMetadata("file_011CNha8iCJcU1wXNR6q4V8w", {
+  betas: ["files-api-2025-04-14"]
+});
 ```
 </CodeGroup>
 
@@ -658,10 +660,9 @@ result = client.beta.files.delete("file_011CNha8iCJcU1wXNR6q4V8w")
 import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
-const result = await anthropic.beta.files.delete(
-  "file_011CNha8iCJcU1wXNR6q4V8w",
-  { betas: ["files-api-2025-04-14"] }
-);
+const result = await anthropic.beta.files.delete("file_011CNha8iCJcU1wXNR6q4V8w", {
+  betas: ["files-api-2025-04-14"]
+});
 ```
 </CodeGroup>
 
@@ -695,10 +696,9 @@ import fs from "fs/promises";
 
 const anthropic = new Anthropic();
 
-const fileContent = await anthropic.beta.files.download(
-  "file_011CNha8iCJcU1wXNR6q4V8w",
-  { betas: ["files-api-2025-04-14"] }
-);
+const fileContent = await anthropic.beta.files.download("file_011CNha8iCJcU1wXNR6q4V8w", {
+  betas: ["files-api-2025-04-14"]
+});
 
 // Save to file
 await fs.writeFile("downloaded_file.txt", fileContent);

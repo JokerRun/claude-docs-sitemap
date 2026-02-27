@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/streaming-output
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: caff649f2de7b4831ce720ce45c1320351a7c945e3ffdae863f84fb0a10758d9
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 26ff7769a888bec8d19806a3a371b1273780d2b4a64b1839e85c581f244059e6
 ---
 
 # Stream responses in real-time
@@ -104,7 +104,7 @@ type SDKPartialAssistantMessage = {
   parent_tool_use_id: string | null;
   uuid: UUID;
   session_id: string;
-}
+};
 ```
 
 </CodeGroup>

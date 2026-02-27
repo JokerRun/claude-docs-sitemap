@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/alien-anthropologist
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 1d58f605758d99079249d3c3910a6c664828e13e96fb496b98dcd3fafd42dbd8
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 29402cb6a5cd8e0daf3eabc424f025a70e959e401804a28aaeb92b0e614dd3bf
 ---
 
 # Alien anthropologist
@@ -72,7 +72,8 @@ Analyze human culture and customs from the perspective of an alien anthropologis
       model: "claude-opus-4-6",
       max_tokens: 2000,
       temperature: 1,
-      system: "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
+      system:
+        "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
       messages: [
         {
           role: "user",
@@ -86,7 +87,6 @@ Analyze human culture and customs from the perspective of an alien anthropologis
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -124,7 +124,8 @@ Analyze human culture and customs from the perspective of an alien anthropologis
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 2000,
       temperature: 1,
-      system: "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
+      system:
+        "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
       messages: [
         {
           role: "user",
@@ -138,7 +139,6 @@ Analyze human culture and customs from the perspective of an alien anthropologis
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -174,7 +174,8 @@ Analyze human culture and customs from the perspective of an alien anthropologis
       model: "claude-sonnet-4@20250514",
       max_tokens: 2000,
       temperature: 1,
-      system: "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
+      system:
+        "Imagine you are an alien anthropologist studying human culture and customs. Analyze the following aspects of human society from an objective, outsider's perspective. Provide detailed observations, insights, and hypotheses based on the available information.",
       messages: [
         {
           role: "user",
@@ -188,6 +189,5 @@ Analyze human culture and customs from the perspective of an alien anthropologis
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-01-31T04:07:43.551719Z
-sha256: 00815a715c67ca86199360c61e6c6f135d3905aca0eb88207b4eca58f95d01ef
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 86c17fbf43129c9fadec09f267f79d2b389683f270c73448659859623700d0bc
 ---
 
 > ## Documentation Index
@@ -159,20 +159,7 @@ claude -p "Continue that review" --resume "$session_id"
 
 ## Next steps
 
-<CardGroup cols={2}>
-  <Card title="Agent SDK quickstart" icon="play" href="https://platform.claude.com/docs/en/agent-sdk/quickstart">
-    Build your first agent with Python or TypeScript
-  </Card>
-
-  <Card title="CLI reference" icon="terminal" href="/en/cli-reference">
-    Explore all CLI flags and options
-  </Card>
-
-  <Card title="GitHub Actions" icon="github" href="/en/github-actions">
-    Use the Agent SDK in GitHub workflows
-  </Card>
-
-  <Card title="GitLab CI/CD" icon="gitlab" href="/en/gitlab-ci-cd">
-    Use the Agent SDK in GitLab pipelines
-  </Card>
-</CardGroup>
+* [Agent SDK quickstart](https://platform.claude.com/docs/en/agent-sdk/quickstart): build your first agent with Python or TypeScript
+* [CLI reference](/en/cli-reference): all CLI flags and options
+* [GitHub Actions](/en/github-actions): use the Agent SDK in GitHub workflows
+* [GitLab CI/CD](/en/gitlab-ci-cd): use the Agent SDK in GitLab pipelines

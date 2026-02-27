@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-02-20T04:18:13.878022Z
-sha256: b0b5d422906618bc915d2aebf9c8c3847542239462b4a186d4011e85726f0bf7
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 8ef585367002d0a0ae87ad4b287ce38e5a699589c37291590eb4c8a50899b5b6
 ---
 
 > ## Documentation Index
@@ -41,7 +41,7 @@ When this guide says "Claude chooses" or "Claude decides," it's the model doing 
 
 Tools are what make Claude Code agentic. Without tools, Claude can only respond with text. With tools, Claude can act: read your code, edit files, run commands, search the web, and interact with external services. Each tool use returns information that feeds back into the loop, informing Claude's next decision.
 
-The built-in tools generally fall into four categories, each representing a different kind of agency.
+The built-in tools generally fall into five categories, each representing a different kind of agency.
 
 | Category              | What Claude can do                                                                                                                                            |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -68,8 +68,6 @@ Each tool use gives Claude new information that informs the next step. This is t
 
 ## What Claude can access
 
-This guide focuses on the terminal. Claude Code also runs in [VS Code, JetBrains IDEs, and other environments](/en/ide-integrations).
-
 When you run `claude` in a directory, Claude Code gains access to:
 
 * **Your project.** Files in your directory and subdirectories, plus files elsewhere with your permission.
@@ -79,6 +77,24 @@ When you run `claude` in a directory, Claude Code gains access to:
 * **Extensions you configure.** [MCP servers](/en/mcp) for external services, [skills](/en/skills) for workflows, [subagents](/en/sub-agents) for delegated work, and [Claude in Chrome](/en/chrome) for browser interaction.
 
 Because Claude sees your whole project, it can work across it. When you ask Claude to "fix the authentication bug," it searches for relevant files, reads multiple files to understand context, makes coordinated edits across them, runs tests to verify the fix, and commits the changes if you ask. This is different from inline code assistants that only see the current file.
+
+## Environments and interfaces
+
+The agentic loop, tools, and capabilities described above are the same everywhere you use Claude Code. What changes is where the code executes and how you interact with it.
+
+### Execution environments
+
+Claude Code runs in three environments, each with different tradeoffs for where your code executes.
+
+| Environment        | Where code runs                         | Use case                                                   |
+| ------------------ | --------------------------------------- | ---------------------------------------------------------- |
+| **Local**          | Your machine                            | Default. Full access to your files, tools, and environment |
+| **Cloud**          | Anthropic-managed VMs                   | Offload tasks, work on repos you don't have locally        |
+| **Remote Control** | Your machine, controlled from a browser | Use the web UI while keeping everything local              |
+
+### Interfaces
+
+You can access Claude Code through the terminal, the [desktop app](/en/desktop), [IDE extensions](/en/ide-integrations), [claude.ai/code](https://claude.ai/code), [Remote Control](/en/remote-control), [Slack](/en/slack), and [CI/CD pipelines](/en/github-actions). The interface determines how you see and interact with Claude, but the underlying agentic loop is identical. See [Use Claude Code everywhere](/en/overview#use-claude-code-everywhere) for the full list.
 
 ## Work with sessions
 

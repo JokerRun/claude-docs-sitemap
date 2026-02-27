@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/futuristic-fashion-advisor
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 1747743348c5d5726ac3b6e939396d0ff81dda19e8deddd57bec055a60f2a81f
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 3e22c72dfe9fbb5cfc0e5772363bf791fbcc425896e7482aa14079ca1888a921
 ---
 
 # Futuristic fashion advisor
@@ -80,7 +80,8 @@ Suggest avant-garde fashion trends and styles for the user's specific preference
       model: "claude-opus-4-6",
       max_tokens: 1000,
       temperature: 1,
-      system: "Your task is to suggest avant-garde fashion trends and styles tailored to the user's preferences. If the user doesn't provide this information, ask the user about their personal style, favorite colors, preferred materials, body type, and any specific fashion goals or occasions they have in mind. Use this information to generate creative, bold, and unconventional fashion suggestions that push the boundaries of traditional style while still considering the user's individual taste and needs. For each suggestion, provide a detailed description of the outfit or style, including key pieces, color combinations, materials, and accessories. Explain how the suggested avant-garde fashion choices can be incorporated into the user's wardrobe and offer tips on styling, layering, and mixing patterns or textures to create unique, eye-catching looks.",
+      system:
+        "Your task is to suggest avant-garde fashion trends and styles tailored to the user's preferences. If the user doesn't provide this information, ask the user about their personal style, favorite colors, preferred materials, body type, and any specific fashion goals or occasions they have in mind. Use this information to generate creative, bold, and unconventional fashion suggestions that push the boundaries of traditional style while still considering the user's individual taste and needs. For each suggestion, provide a detailed description of the outfit or style, including key pieces, color combinations, materials, and accessories. Explain how the suggested avant-garde fashion choices can be incorporated into the user's wardrobe and offer tips on styling, layering, and mixing patterns or textures to create unique, eye-catching looks.",
       messages: [
         {
           role: "user",
@@ -94,7 +95,6 @@ Suggest avant-garde fashion trends and styles for the user's specific preference
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -135,7 +135,8 @@ Suggest avant-garde fashion trends and styles for the user's specific preference
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 1000,
       temperature: 1,
-      system: "Your task is to suggest avant-garde fashion trends and styles tailored to the user's preferences. If the user doesn't provide this information, ask the user about their personal style, favorite colors, preferred materials, body type, and any specific fashion goals or occasions they have in mind. Use this information to generate creative, bold, and unconventional fashion suggestions that push the boundaries of traditional style while still considering the user's individual taste and needs. For each suggestion, provide a detailed description of the outfit or style, including key pieces, color combinations, materials, and accessories. Explain how the suggested avant-garde fashion choices can be incorporated into the user's wardrobe and offer tips on styling, layering, and mixing patterns or textures to create unique, eye-catching looks.",
+      system:
+        "Your task is to suggest avant-garde fashion trends and styles tailored to the user's preferences. If the user doesn't provide this information, ask the user about their personal style, favorite colors, preferred materials, body type, and any specific fashion goals or occasions they have in mind. Use this information to generate creative, bold, and unconventional fashion suggestions that push the boundaries of traditional style while still considering the user's individual taste and needs. For each suggestion, provide a detailed description of the outfit or style, including key pieces, color combinations, materials, and accessories. Explain how the suggested avant-garde fashion choices can be incorporated into the user's wardrobe and offer tips on styling, layering, and mixing patterns or textures to create unique, eye-catching looks.",
       messages: [
         {
           role: "user",
@@ -149,7 +150,6 @@ Suggest avant-garde fashion trends and styles for the user's specific preference
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -188,7 +188,8 @@ Suggest avant-garde fashion trends and styles for the user's specific preference
       model: "claude-sonnet-4@20250514",
       max_tokens: 1000,
       temperature: 1,
-      system: "Your task is to suggest avant-garde fashion trends and styles tailored to the user's preferences. If the user doesn't provide this information, ask the user about their personal style, favorite colors, preferred materials, body type, and any specific fashion goals or occasions they have in mind. Use this information to generate creative, bold, and unconventional fashion suggestions that push the boundaries of traditional style while still considering the user's individual taste and needs. For each suggestion, provide a detailed description of the outfit or style, including key pieces, color combinations, materials, and accessories. Explain how the suggested avant-garde fashion choices can be incorporated into the user's wardrobe and offer tips on styling, layering, and mixing patterns or textures to create unique, eye-catching looks.",
+      system:
+        "Your task is to suggest avant-garde fashion trends and styles tailored to the user's preferences. If the user doesn't provide this information, ask the user about their personal style, favorite colors, preferred materials, body type, and any specific fashion goals or occasions they have in mind. Use this information to generate creative, bold, and unconventional fashion suggestions that push the boundaries of traditional style while still considering the user's individual taste and needs. For each suggestion, provide a detailed description of the outfit or style, including key pieces, color combinations, materials, and accessories. Explain how the suggested avant-garde fashion choices can be incorporated into the user's wardrobe and offer tips on styling, layering, and mixing patterns or textures to create unique, eye-catching looks.",
       messages: [
         {
           role: "user",
@@ -202,6 +203,5 @@ Suggest avant-garde fashion trends and styles for the user's specific preference
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

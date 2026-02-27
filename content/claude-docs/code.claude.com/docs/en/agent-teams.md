@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 4039f763cba7636ce065cef33f8fb43debbd409b435700daa86be331691eb637
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 86dc31709d102d67aab12bf7c096fcf12ae7aa9b9bce34155057f4c50a15aa74
 ---
 
 > ## Documentation Index
@@ -77,7 +77,7 @@ After enabling agent teams, tell Claude to create an agent team and describe the
 
 This example works well because the three roles are independent and can explore the problem without waiting on each other:
 
-```
+```text  theme={null}
 I'm designing a CLI tool that helps developers track TODO comments across
 their codebase. Create an agent team to explore this from different angles: one
 teammate on UX, one on technical architecture, one playing devil's advocate.
@@ -127,7 +127,7 @@ Split-pane mode requires either [tmux](https://github.com/tmux/tmux/wiki) or iTe
 
 Claude decides the number of teammates to spawn based on your task, or you can specify exactly what you want:
 
-```
+```text  theme={null}
 Create a team with 4 teammates to refactor these modules in parallel.
 Use Sonnet for each teammate.
 ```
@@ -136,7 +136,7 @@ Use Sonnet for each teammate.
 
 For complex or risky tasks, you can require teammates to plan before implementing. The teammate works in read-only plan mode until the lead approves their approach:
 
-```
+```text  theme={null}
 Spawn an architect teammate to refactor the authentication module.
 Require plan approval before they make any changes.
 ```
@@ -167,7 +167,7 @@ Task claiming uses file locking to prevent race conditions when multiple teammat
 
 To gracefully end a teammate's session:
 
-```
+```text  theme={null}
 Ask the researcher teammate to shut down
 ```
 
@@ -177,7 +177,7 @@ The lead sends a shutdown request. The teammate can approve, exiting gracefully,
 
 When you're done, ask the lead to clean up:
 
-```
+```text  theme={null}
 Clean up the team
 ```
 
@@ -260,7 +260,7 @@ These examples show how agent teams handle tasks where parallel exploration adds
 
 A single reviewer tends to gravitate toward one type of issue at a time. Splitting review criteria into independent domains means security, performance, and test coverage all get thorough attention simultaneously. The prompt assigns each teammate a distinct lens so they don't overlap:
 
-```
+```text  theme={null}
 Create an agent team to review PR #142. Spawn three reviewers:
 - One focused on security implications
 - One checking performance impact
@@ -274,7 +274,7 @@ Each reviewer works from the same PR but applies a different filter. The lead sy
 
 When the root cause is unclear, a single agent tends to find one plausible explanation and stop looking. The prompt fights this by making teammates explicitly adversarial: each one's job is not only to investigate its own theory but to challenge the others'.
 
-```
+```text  theme={null}
 Users report the app exits after one message instead of staying connected.
 Spawn 5 agent teammates to investigate different hypotheses. Have them talk to
 each other to try to disprove each other's theories, like a scientific
@@ -291,12 +291,26 @@ With multiple independent investigators actively trying to disprove each other, 
 
 Teammates load project context automatically, including CLAUDE.md, MCP servers, and skills, but they don't inherit the lead's conversation history. See [Context and communication](#context-and-communication) for details. Include task-specific details in the spawn prompt:
 
-```
+```text  theme={null}
 Spawn a security reviewer teammate with the prompt: "Review the authentication module
 at src/auth/ for security vulnerabilities. Focus on token handling, session
 management, and input validation. The app uses JWT tokens stored in
 httpOnly cookies. Report any issues with severity ratings."
 ```
+
+### Choose an appropriate team size
+
+There's no hard limit on the number of teammates, but practical constraints apply:
+
+* **Token costs scale linearly**: each teammate has its own context window and consumes tokens independently. See [agent team token costs](/en/costs#agent-team-token-costs) for details.
+* **Coordination overhead increases**: more teammates means more communication, task coordination, and potential for conflicts
+* **Diminishing returns**: beyond a certain point, additional teammates don't speed up work proportionally
+
+Start with 3-5 teammates for most workflows. This balances parallel work with manageable coordination. The examples in this guide use 3-5 teammates because that range works well across different task types.
+
+Having 5-6 [tasks](/en/agent-teams#architecture) per teammate keeps everyone productive without excessive context switching. If you have 15 independent tasks, 3 teammates is a good starting point.
+
+Scale up only when the work genuinely benefits from having teammates work simultaneously. Three focused teammates often outperform five scattered ones.
 
 ### Size tasks appropriately
 
@@ -312,7 +326,7 @@ httpOnly cookies. Report any issues with severity ratings."
 
 Sometimes the lead starts implementing tasks itself instead of waiting for teammates. If you notice this:
 
-```
+```text  theme={null}
 Wait for your teammates to complete their tasks before proceeding
 ```
 

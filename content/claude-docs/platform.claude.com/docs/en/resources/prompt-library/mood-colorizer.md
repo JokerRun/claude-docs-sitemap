@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/mood-colorizer
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: aa1b94d35a06942beb377dd14862053f7d152dfbd2fdc528ef1c30b08bee0093
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 269791236f6d511d352348b780cb7c35931c0ab737e89ae8a00f01390afd8eda
 ---
 
 # Mood colorizer
@@ -72,7 +72,8 @@ const msg = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 500,
   temperature: 0.5,
-  system: "Your task is to take the provided text description of a mood or emotion and generate a HEX color code that visually represents that mood. Use color psychology principles and common associations to determine the most appropriate color for the given mood. If the text description is unclear, ambiguous, or does not provide enough information to determine a suitable color, respond with \"Unable to determine a HEX color code for the given mood.\"",
+  system:
+    'Your task is to take the provided text description of a mood or emotion and generate a HEX color code that visually represents that mood. Use color psychology principles and common associations to determine the most appropriate color for the given mood. If the text description is unclear, ambiguous, or does not provide enough information to determine a suitable color, respond with "Unable to determine a HEX color code for the given mood."',
   messages: [
     {
       role: "user",
@@ -86,7 +87,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -133,7 +133,8 @@ const msg = await client.messages.create({
   model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 500,
   temperature: 0.5,
-  system: "Your task is to take the provided text description of a mood or emotion and generate a HEX color code that visually represents that mood. Use color psychology principles and common associations to determine the most appropriate color for the given mood. If the text description is unclear, ambiguous, or does not provide enough information to determine a suitable color, respond with \"Unable to determine a HEX color code for the given mood.\"",
+  system:
+    'Your task is to take the provided text description of a mood or emotion and generate a HEX color code that visually represents that mood. Use color psychology principles and common associations to determine the most appropriate color for the given mood. If the text description is unclear, ambiguous, or does not provide enough information to determine a suitable color, respond with "Unable to determine a HEX color code for the given mood."',
   messages: [
     {
       role: "user",
@@ -147,7 +148,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -192,7 +192,8 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 500,
   temperature: 0.5,
-  system: "Your task is to take the provided text description of a mood or emotion and generate a HEX color code that visually represents that mood. Use color psychology principles and common associations to determine the most appropriate color for the given mood. If the text description is unclear, ambiguous, or does not provide enough information to determine a suitable color, respond with \"Unable to determine a HEX color code for the given mood.\"",
+  system:
+    'Your task is to take the provided text description of a mood or emotion and generate a HEX color code that visually represents that mood. Use color psychology principles and common associations to determine the most appropriate color for the given mood. If the text description is unclear, ambiguous, or does not provide enough information to determine a suitable color, respond with "Unable to determine a HEX color code for the given mood."',
   messages: [
     {
       role: "user",
@@ -206,7 +207,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: ff9b483de44f6ff05334c58a4f2d117954a37076b46d9a6b60d3b66a6d11bd46
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 7e4aea59c1ef17eef7f4e6626de537c3e6ea8b316fc19b4e264b322ecc656d20
 ---
 
 # Quickstart
@@ -228,11 +228,13 @@ options = ClaudeAgentOptions(
 )
 ```
 
-```typescript TypeScript
-options: {
-  allowedTools: ["Read", "Edit", "Glob", "WebSearch"],
-  permissionMode: "acceptEdits"
-}
+```typescript TypeScript hidelines={1,-1}
+const _ = {
+  options: {
+    allowedTools: ["Read", "Edit", "Glob", "WebSearch"],
+    permissionMode: "acceptEdits"
+  }
+};
 ```
 </CodeGroup>
 
@@ -247,12 +249,14 @@ options = ClaudeAgentOptions(
 )
 ```
 
-```typescript TypeScript
-options: {
-  allowedTools: ["Read", "Edit", "Glob"],
-  permissionMode: "acceptEdits",
-  systemPrompt: "You are a senior Python developer. Always follow PEP 8 style guidelines."
-}
+```typescript TypeScript hidelines={1,-1}
+const _ = {
+  options: {
+    allowedTools: ["Read", "Edit", "Glob"],
+    permissionMode: "acceptEdits",
+    systemPrompt: "You are a senior Python developer. Always follow PEP 8 style guidelines."
+  }
+};
 ```
 </CodeGroup>
 
@@ -265,11 +269,13 @@ options = ClaudeAgentOptions(
 )
 ```
 
-```typescript TypeScript
-options: {
-  allowedTools: ["Read", "Edit", "Glob", "Bash"],
-  permissionMode: "acceptEdits"
-}
+```typescript TypeScript hidelines={1,-1}
+const _ = {
+  options: {
+    allowedTools: ["Read", "Edit", "Glob", "Bash"],
+    permissionMode: "acceptEdits"
+  }
+};
 ```
 </CodeGroup>
 

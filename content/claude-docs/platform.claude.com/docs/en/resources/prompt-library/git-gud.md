@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/git-gud
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 9c3e05f6f2f8e9aa8f0e6621cd022ed939872563a38b4cc5d09c8c14ca9f5507
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: d1059dfde389d257fe91c5421c7b6e8b79d0675413054d3770e6e95a494aaa6d
 ---
 
 # Git gud
@@ -98,7 +98,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -157,7 +156,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -214,7 +212,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

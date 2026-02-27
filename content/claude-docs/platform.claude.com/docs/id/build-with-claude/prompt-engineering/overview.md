@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: f4af126a30e96ab8c6aee742f0b34590a0f97b5c91022b710f305b0ebcc76597
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 3bec3f4dcc203f6da7305ba940b9e3627362ad06504d4c7498cb8052eafd99a2
 ---
 
 # Gambaran umum prompt engineering
@@ -12,7 +12,7 @@ Panduan komprehensif tentang teknik prompt engineering untuk meningkatkan kinerj
 ---
 
 <Note>
-While these tips apply broadly to all Claude models, you can find prompting tips specific to extended thinking models [here](/docs/en/build-with-claude/prompt-engineering/extended-thinking-tips).
+While these tips apply broadly to all Claude models, you can find [prompting tips specific to extended thinking models](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#leverage-thinking-and-interleaved-thinking-capabilities).
 </Note>
 
 ## Sebelum prompt engineering

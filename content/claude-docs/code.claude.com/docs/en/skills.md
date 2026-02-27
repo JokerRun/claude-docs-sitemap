@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-02-07T04:10:25.616975Z
-sha256: 04885f27ebe84bd7cec927824c7fb25a0f82086c89c57c51bc020d0b44aaef8e
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 26906edeaf16fe9827e45747aa19089673bd843d7abbe9056c9d811157cd82fe
 ---
 
 > ## Documentation Index
@@ -65,13 +65,13 @@ This example creates a skill that teaches Claude to explain code using visual di
 
     **Let Claude invoke it automatically** by asking something that matches the description:
 
-    ```
+    ```text  theme={null}
     How does this code work?
     ```
 
     **Or invoke it directly** with the skill name:
 
-    ```
+    ```text  theme={null}
     /explain-code src/auth/login.ts
     ```
 
@@ -83,12 +83,12 @@ This example creates a skill that teaches Claude to explain code using visual di
 
 Where you store a skill determines who can use it:
 
-| Location   | Path                                                     | Applies to                     |
-| :--------- | :------------------------------------------------------- | :----------------------------- |
-| Enterprise | See [managed settings](/en/permissions#managed-settings) | All users in your organization |
-| Personal   | `~/.claude/skills/<skill-name>/SKILL.md`                 | All your projects              |
-| Project    | `.claude/skills/<skill-name>/SKILL.md`                   | This project only              |
-| Plugin     | `<plugin>/skills/<skill-name>/SKILL.md`                  | Where plugin is enabled        |
+| Location   | Path                                                | Applies to                     |
+| :--------- | :-------------------------------------------------- | :----------------------------- |
+| Enterprise | See [managed settings](/en/settings#settings-files) | All users in your organization |
+| Personal   | `~/.claude/skills/<skill-name>/SKILL.md`            | All your projects              |
+| Project    | `.claude/skills/<skill-name>/SKILL.md`              | This project only              |
+| Plugin     | `<plugin>/skills/<skill-name>/SKILL.md`             | Where plugin is enabled        |
 
 When skills share the same name across levels, higher-priority locations win: enterprise > personal > project. Plugin skills use a `plugin-name:skill-name` namespace, so they cannot conflict with other levels. If you have files in `.claude/commands/`, those work the same way, but if a skill and a command share the same name, the skill takes precedence.
 
@@ -98,7 +98,7 @@ When you work with files in subdirectories, Claude Code automatically discovers 
 
 Each skill is a directory with `SKILL.md` as the entrypoint:
 
-```
+```text  theme={null}
 my-skill/
 ├── SKILL.md           # Main instructions (required)
 ├── template.md        # Template for Claude to fill in
@@ -220,7 +220,7 @@ $ARGUMENTS
 
 Skills can include multiple files in their directory. This keeps `SKILL.md` focused on the essentials while letting Claude access detailed reference material only when needed. Large reference docs, API specifications, or example collections don't need to load into context every time the skill runs.
 
-```
+```text  theme={null}
 my-skill/
 ├── SKILL.md (required - overview and navigation)
 ├── reference.md (detailed API docs - loaded when needed)
@@ -430,14 +430,14 @@ Three ways to control which skills Claude can invoke:
 
 **Disable all skills** by denying the Skill tool in `/permissions`:
 
-```
+```text  theme={null}
 # Add to deny rules:
 Skill
 ```
 
 **Allow or deny specific skills** using [permission rules](/en/permissions):
 
-```
+```text  theme={null}
 # Allow only specific skills
 Skill(commit)
 Skill(review-pr *)
@@ -460,7 +460,7 @@ Skills can be distributed at different scopes depending on your audience:
 
 * **Project skills**: Commit `.claude/skills/` to version control
 * **Plugins**: Create a `skills/` directory in your [plugin](/en/plugins)
-* **Managed**: Deploy organization-wide through [managed settings](/en/permissions#managed-settings)
+* **Managed**: Deploy organization-wide through [managed settings](/en/settings#settings-files)
 
 ### Generate visual output
 
@@ -493,7 +493,7 @@ Run the visualization script from your project root:
 
 ```bash
 python ~/.claude/skills/codebase-visualizer/scripts/visualize.py .
-```
+```text
 
 This creates `codebase-map.html` in the current directory and opens it in your default browser.
 

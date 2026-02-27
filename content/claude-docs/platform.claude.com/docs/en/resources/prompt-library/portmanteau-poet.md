@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/portmanteau-poet
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: ff72c1015abf7d66a4073c48c366031f4c82bf9a7cf2b3c10d9c9d1b838ef35c
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: f32c7e2cd0f18db39f871dec1f1857f6ae6a4c30c0334351f20a6830cc6acb42
 ---
 
 # Portmanteau poet
@@ -71,7 +71,6 @@ print(message.content)
 <Tab title="TypeScript">
 
 ```typescript
-
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
@@ -82,21 +81,21 @@ const msg = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 1,
-  system: "You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",
+  system:
+    "You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",
   messages: [
     {
       role: "user",
       content: [
         {
           type: "text",
-          text: "How about blending the words \"music\" and \"therapy\" to create a new word that represents the idea of using music to promote healing and well-being?"
+          text: 'How about blending the words "music" and "therapy" to create a new word that represents the idea of using music to promote healing and well-being?'
         }
       ]
     }
   ]
 });
 console.log(msg);
-
 ```
 </Tab>
 <Tab title="AWS Bedrock Python">
@@ -133,7 +132,6 @@ print(message.content)
 <Tab title="AWS Bedrock TypeScript">
 
 ```typescript
-
 import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 
 // See https://docs.claude.com/claude/reference/claude-on-amazon-bedrock
@@ -144,21 +142,21 @@ const msg = await client.messages.create({
   model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 1000,
   temperature: 1,
-  system: "You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",
+  system:
+    "You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",
   messages: [
     {
       role: "user",
       content: [
         {
           type: "text",
-          text: "How about blending the words \"music\" and \"therapy\" to create a new word that represents the idea of using music to promote healing and well-being?"
+          text: 'How about blending the words "music" and "therapy" to create a new word that represents the idea of using music to promote healing and well-being?'
         }
       ]
     }
   ]
 });
 console.log(msg);
-
 ```
 </Tab>
 <Tab title="Vertex AI Python">
@@ -191,7 +189,6 @@ print(message.content)
 <Tab title="Vertex AI TypeScript">
 
 ```typescript
-
 import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 // Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
@@ -202,21 +199,21 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 1000,
   temperature: 1,
-  system: "You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",
+  system:
+    "You are an AI assistant with a knack for creating innovative portmanteaus. Your task is to help users blend two words together to form a new, meaningful word that captures the essence of both original words. Offer several options if possible.",
   messages: [
     {
       role: "user",
       content: [
         {
           type: "text",
-          text: "How about blending the words \"music\" and \"therapy\" to create a new word that represents the idea of using music to promote healing and well-being?"
+          text: 'How about blending the words "music" and "therapy" to create a new word that represents the idea of using music to promote healing and well-being?'
         }
       ]
     }
   ]
 });
 console.log(msg);
-
 ```
 </Tab>
 </Tabs>

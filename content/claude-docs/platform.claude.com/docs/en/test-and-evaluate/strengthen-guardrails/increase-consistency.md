@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency
-fetched_at: 2026-02-22T04:20:57.944963Z
-sha256: 6c9e6fb6eafe993d9294f9c11c0c8cb7d8e5197f8a540bc12d77435ef71621a1
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: e26fa9f1c3e9324e37d53e78325e930d6a74f304c683a5bc3cecd31b5f55ab78
 ---
 
 # Increase output consistency
@@ -78,7 +78,7 @@ Break down complex tasks into smaller, consistent subtasks. Each subtask gets Cl
 
 For role-based applications, maintaining consistent character requires deliberate prompting.
 
-- **Use system prompts to set the role:** Use [system prompts](/docs/en/build-with-claude/prompt-engineering/system-prompts) to define Claude's role and personality. This sets a strong foundation for consistent responses.
+- **Use system prompts to set the role:** Use [system prompts](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) to define Claude's role and personality. This sets a strong foundation for consistent responses.
     <Tip>When setting up the character, provide detailed information about the personality, background, and any specific traits or quirks. This will help the model better emulate and generalize the character's traits.</Tip>
 - **Prepare Claude for possible scenarios:** Provide a list of common scenarios and expected responses in your prompts. This "trains" Claude to handle diverse situations without breaking character.
 

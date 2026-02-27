@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: a674f506caa360c4fbff91740b5565fe36a1a83701a235e9c05c7cadbafa36e9
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 2ce3c759d77e44ab898b431cc38e6a3b3b698c7ac5b5ceaa5e5d917964c10b8c
 ---
 
 > ## Documentation Index
@@ -29,7 +29,7 @@ This page covers how to [track your costs](#track-your-costs), [manage costs for
 
 The `/cost` command provides detailed token usage statistics for your current session:
 
-```
+```text  theme={null}
 Total cost:            $0.55
 Total duration (API):  6m 19.7s
 Total duration (wall): 6h 33m 10.2s

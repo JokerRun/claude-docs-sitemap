@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/effort
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 50792d5fa08cf1dea188101f8e667f0a8cba18b6fcc00f0bc800832ab6f97b81
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 5815433156a94616c557e82c30d96a909eb1206cfafd67253ed38915f6ce4c6a
 ---
 
 # Effort
@@ -92,10 +92,12 @@ const client = new Anthropic();
 const response = await client.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 4096,
-  messages: [{
-    role: "user",
-    content: "Analyze the trade-offs between microservices and monolithic architectures"
-  }],
+  messages: [
+    {
+      role: "user",
+      content: "Analyze the trade-offs between microservices and monolithic architectures"
+    }
+  ],
   output_config: {
     effort: "medium"
   }

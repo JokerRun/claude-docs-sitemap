@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-02-22T04:20:57.944963Z
-sha256: f4130563e80e15972cafc015c3d19710c41e36c12345ac207484169d141d6dc0
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 27896391af34d487b11c2f1209938ac28e1b9d9c43ce48008809ca7a892e8c17
 ---
 
 > ## Documentation Index
@@ -43,7 +43,7 @@ The fastest way to create a hook is through the `/hooks` interactive menu in Cla
       <Tab title="macOS">
         Uses [`osascript`](https://ss64.com/mac/osascript.html) to trigger a native macOS notification through AppleScript:
 
-        ```
+        ```bash  theme={null}
         osascript -e 'display notification "Claude Code needs your attention" with title "Claude Code"'
         ```
       </Tab>
@@ -51,7 +51,7 @@ The fastest way to create a hook is through the `/hooks` interactive menu in Cla
       <Tab title="Linux">
         Uses `notify-send`, which is pre-installed on most Linux desktops with a notification daemon:
 
-        ```
+        ```bash  theme={null}
         notify-send 'Claude Code' 'Claude Code needs your attention'
         ```
       </Tab>
@@ -59,7 +59,7 @@ The fastest way to create a hook is through the `/hooks` interactive menu in Cla
       <Tab title="Windows (PowerShell)">
         Uses PowerShell to show a native message box through .NET's Windows Forms:
 
-        ```
+        ```powershell  theme={null}
         powershell.exe -Command "[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); [System.Windows.Forms.MessageBox]::Show('Claude Code needs your attention', 'Claude Code')"
         ```
       </Tab>
@@ -644,7 +644,7 @@ Claude Code shows a JSON parsing error even though your hook script outputs vali
 
 When Claude Code runs a hook, it spawns a shell that sources your profile (`~/.zshrc` or `~/.bashrc`). If your profile contains unconditional `echo` statements, that output gets prepended to your hook's JSON:
 
-```
+```text  theme={null}
 Shell ready on arm64
 {"decision": "block", "reason": "Not allowed"}
 ```

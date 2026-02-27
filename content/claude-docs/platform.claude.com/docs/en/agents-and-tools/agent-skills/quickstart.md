@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 0207825c2894d94aff80f15736d7cd5d3abdc75dbd4e00b25368684eec342efd
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 54d9389a84295437264b6b9456f0c09269439384ebdd8fbe0f52fe124498896e
 ---
 
 # Get started with Agent Skills in the API
@@ -126,14 +126,18 @@ const response = await client.beta.messages.create({
       }
     ]
   },
-  messages: [{
-    role: "user",
-    content: "Create a presentation about renewable energy with 5 slides"
-  }],
-  tools: [{
-    type: "code_execution_20250825",
-    name: "code_execution"
-  }]
+  messages: [
+    {
+      role: "user",
+      content: "Create a presentation about renewable energy with 5 slides"
+    }
+  ],
+  tools: [
+    {
+      type: "code_execution_20250825",
+      name: "code_execution"
+    }
+  ]
 });
 
 console.log(response.content);
@@ -296,14 +300,18 @@ const response = await client.beta.messages.create({
       }
     ]
   },
-  messages: [{
-    role: "user",
-    content: "Create a quarterly sales tracking spreadsheet with sample data"
-  }],
-  tools: [{
-    type: "code_execution_20250825",
-    name: "code_execution"
-  }]
+  messages: [
+    {
+      role: "user",
+      content: "Create a quarterly sales tracking spreadsheet with sample data"
+    }
+  ],
+  tools: [
+    {
+      type: "code_execution_20250825",
+      name: "code_execution"
+    }
+  ]
 });
 ```
 
@@ -372,14 +380,18 @@ const response = await client.beta.messages.create({
       }
     ]
   },
-  messages: [{
-    role: "user",
-    content: "Write a 2-page report on the benefits of renewable energy"
-  }],
-  tools: [{
-    type: "code_execution_20250825",
-    name: "code_execution"
-  }]
+  messages: [
+    {
+      role: "user",
+      content: "Write a 2-page report on the benefits of renewable energy"
+    }
+  ],
+  tools: [
+    {
+      type: "code_execution_20250825",
+      name: "code_execution"
+    }
+  ]
 });
 ```
 
@@ -443,14 +455,18 @@ const response = await client.beta.messages.create({
       }
     ]
   },
-  messages: [{
-    role: "user",
-    content: "Generate a PDF invoice template"
-  }],
-  tools: [{
-    type: "code_execution_20250825",
-    name: "code_execution"
-  }]
+  messages: [
+    {
+      role: "user",
+      content: "Generate a PDF invoice template"
+    }
+  ],
+  tools: [
+    {
+      type: "code_execution_20250825",
+      name: "code_execution"
+    }
+  ]
 });
 ```
 

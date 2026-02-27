@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-02-20T04:18:13.878022Z
-sha256: 38410c1a3f4b2f2298f7b7ed89dc1d8e853046ccc8eecc69739a4e846952812a
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: cc2f389c58fe45252ed98e0822e9fdf4b8ba20e168126e086da4b133666246bb
 ---
 
 # Prompt caching
@@ -72,7 +72,8 @@ const response = await client.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
   cache_control: { type: "ephemeral" },
-  system: "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.",
+  system:
+    "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.",
   messages: [
     {
       role: "user",
@@ -251,7 +252,10 @@ const response = await client.messages.create({
   system: "You are a helpful assistant that remembers our conversation.",
   messages: [
     { role: "user", content: "My name is Alex. I work on machine learning." },
-    { role: "assistant", content: "Nice to meet you, Alex! How can I help with your ML work today?" },
+    {
+      role: "assistant",
+      content: "Nice to meet you, Alex! How can I help with your ML work today?"
+    },
     { role: "user", content: "What did I say I work on?" }
   ]
 });
@@ -294,9 +298,9 @@ With automatic caching, the cache point moves forward automatically as conversat
 
 | Request | Content | Cache behavior |
 |---------|---------|----------------|
-| Request 1 | System + User:A + Asst:B + **User:C** ◀ cache | Everything written to cache |
-| Request 2 | System + User:A + Asst:B + User:C + Asst:D + **User:E** ◀ cache | System through User:C read from cache; Asst:D + User:E written to cache |
-| Request 3 | System + User:A + Asst:B + User:C + Asst:D + User:E + Asst:F + **User:G** ◀ cache | System through User:E read from cache; Asst:F + User:G written to cache |
+| Request 1 | System <br/> + User(1) + Asst(1) <br/> + **User(2)** ◀ cache | Everything written to cache |
+| Request 2 | System <br/> + User(1) + Asst(1) <br/> + User(2) + Asst(2) <br/> + **User(3)** ◀ cache | System through User(2) read from cache; <br/> Asst(2) + User(3) written to cache |
+| Request 3 | System <br/> + User(1) + Asst(1) <br/> + User(2) + Asst(2) <br/> + User(3) + Asst(3) <br/> + **User(4)** ◀ cache | System through User(3) read from cache; <br/> Asst(3) + User(4) written to cache |
 
 The cache breakpoint automatically moves to the last cacheable block in each request, so you don't need to update any `cache_control` markers as the conversation grows.
 
@@ -409,7 +413,8 @@ Adding more `cache_control` breakpoints doesn't increase your costs - you still 
 ### Cache limitations
 The minimum cacheable prompt length is:
 - 4096 tokens for Claude Opus 4.6, Claude Opus 4.5
-- 1024 tokens for Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4, and Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
+- 2048 tokens for Claude Sonnet 4.6
+- 1024 tokens for Claude Sonnet 4.5, Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4, and Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
 - 4096 tokens for Claude Haiku 4.5
 - 2048 tokens for Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations)) and Claude Haiku 3
 
@@ -588,27 +593,29 @@ Changes to `tool_choice` or the presence/absence of images anywhere in the promp
 If you find that 5 minutes is too short, Anthropic also offers a 1-hour cache duration [at additional cost](#pricing).
 
 To use the extended cache, include `ttl` in the `cache_control` definition like this:
-```json
-"cache_control": {
+```json hidelines={1,-1}
+{
+  "cache_control": {
     "type": "ephemeral",
-    "ttl": "5m" | "1h"
+    "ttl": "1h"
+  }
 }
 ```
 
 The response will include detailed cache information like the following:
 ```json
 {
-    "usage": {
-        "input_tokens": ...,
-        "cache_read_input_tokens": ...,
-        "cache_creation_input_tokens": ...,
-        "output_tokens": ...,
+  "usage": {
+    "input_tokens": 2048,
+    "cache_read_input_tokens": 1800,
+    "cache_creation_input_tokens": 248,
+    "output_tokens": 503,
 
-        "cache_creation": {
-            "ephemeral_5m_input_tokens": 456,
-            "ephemeral_1h_input_tokens": 100,
-        }
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 456,
+      "ephemeral_1h_input_tokens": 100
     }
+  }
 }
 ```
 
@@ -1199,7 +1206,8 @@ const response = await client.messages.create({
     },
     {
       role: "assistant",
-      content: "Certainly! The solar system is the collection of celestial bodies that orbit our Sun. It consists of eight planets, numerous moons, asteroids, comets, and other objects. The planets, in order from closest to farthest from the Sun, are: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. Each planet has its own unique characteristics and features. Is there a specific aspect of the solar system you'd like to know more about?"
+      content:
+        "Certainly! The solar system is the collection of celestial bodies that orbit our Sun. It consists of eight planets, numerous moons, asteroids, comets, and other objects. The planets, in order from closest to farthest from the Sun, are: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. Each planet has its own unique characteristics and features. Is there a specific aspect of the solar system you'd like to know more about?"
     },
     {
       role: "user",
@@ -1562,7 +1570,8 @@ const response = await client.messages.create({
         {
           type: "tool_result",
           tool_use_id: "tool_1",
-          content: "Found 3 relevant documents: Document 3 (Mars Exploration), Document 7 (Rover Technology), Document 9 (Mission History)"
+          content:
+            "Found 3 relevant documents: Document 3 (Mars Exploration), Document 7 (Rover Technology), Document 9 (Mission History)"
         }
       ]
     },

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/sci-fi-scenario-simulator
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 7e9a1e1a367076e03beec1da46f1f2996d9aa191e99a5e4bff8e8783387cb2be
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 3e1c889a56a60d181a664c45dd917e2e6d462caed1b097e2f354ad6bc8f76996
 ---
 
 # Sci-fi scenario simulator
@@ -75,7 +75,8 @@ Discuss with the user various science fiction scenarios and associated challenge
       model: "claude-opus-4-6",
       max_tokens: 2000,
       temperature: 1,
-      system: "Your task is to explore a science fiction scenario and discuss the potential challenges and considerations that may arise. Briefly describe the scenario, identify the key technological, social, or ethical issues involved, and encourage the user to share their thoughts on how these challenges might be addressed.",
+      system:
+        "Your task is to explore a science fiction scenario and discuss the potential challenges and considerations that may arise. Briefly describe the scenario, identify the key technological, social, or ethical issues involved, and encourage the user to share their thoughts on how these challenges might be addressed.",
       messages: [
         {
           role: "user",
@@ -89,7 +90,6 @@ Discuss with the user various science fiction scenarios and associated challenge
       ]
     });
     console.log(msg);
-
     ```
 
     ```python AWS Bedrock Python
@@ -130,7 +130,8 @@ Discuss with the user various science fiction scenarios and associated challenge
       model: "anthropic.claude-opus-4-6-v1",
       max_tokens: 2000,
       temperature: 1,
-      system: "Your task is to explore a science fiction scenario and discuss the potential challenges and considerations that may arise. Briefly describe the scenario, identify the key technological, social, or ethical issues involved, and encourage the user to share their thoughts on how these challenges might be addressed.",
+      system:
+        "Your task is to explore a science fiction scenario and discuss the potential challenges and considerations that may arise. Briefly describe the scenario, identify the key technological, social, or ethical issues involved, and encourage the user to share their thoughts on how these challenges might be addressed.",
       messages: [
         {
           role: "user",
@@ -144,7 +145,6 @@ Discuss with the user various science fiction scenarios and associated challenge
       ]
     });
     console.log(msg);
-
     ```
 
     ```python Vertex AI Python
@@ -183,7 +183,8 @@ Discuss with the user various science fiction scenarios and associated challenge
       model: "claude-sonnet-4@20250514",
       max_tokens: 2000,
       temperature: 1,
-      system: "Your task is to explore a science fiction scenario and discuss the potential challenges and considerations that may arise. Briefly describe the scenario, identify the key technological, social, or ethical issues involved, and encourage the user to share their thoughts on how these challenges might be addressed.",
+      system:
+        "Your task is to explore a science fiction scenario and discuss the potential challenges and considerations that may arise. Briefly describe the scenario, identify the key technological, social, or ethical issues involved, and encourage the user to share their thoughts on how these challenges might be addressed.",
       messages: [
         {
           role: "user",
@@ -197,6 +198,5 @@ Discuss with the user various science fiction scenarios and associated challenge
       ]
     });
     console.log(msg);
-
     ```
 </CodeGroup>

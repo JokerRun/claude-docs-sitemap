@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: f729038c6fd8b862aaf86c3a22a8e2fb23d531ff8550102b01f177c55f97c269
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 0f586a531e52e8ef7330d6c7dc8b256a092cb7ad15db7f4726f51c89044161a4
 ---
 
 # Using the Messages API
@@ -55,9 +55,7 @@ This feature is [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data
   const message = await anthropic.messages.create({
     model: "claude-opus-4-6",
     max_tokens: 1024,
-    messages: [
-      { role: "user", content: "Hello, Claude" }
-    ]
+    messages: [{ role: "user", content: "Hello, Claude" }]
   });
   console.log(message);
   ```
@@ -142,21 +140,21 @@ await anthropic.messages.create({
 
 ```json JSON
 {
-    "id": "msg_018gCsTGsXkYJVqYPxTgDHBU",
-    "type": "message",
-    "role": "assistant",
-    "content": [
-        {
-            "type": "text",
-            "text": "Sure, I'd be happy to provide..."
-        }
-    ],
-    "stop_reason": "end_turn",
-    "stop_sequence": null,
-    "usage": {
-      "input_tokens": 30,
-      "output_tokens": 309
+  "id": "msg_018gCsTGsXkYJVqYPxTgDHBU",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "text",
+      "text": "Sure, I'd be happy to provide..."
     }
+  ],
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "usage": {
+    "input_tokens": 30,
+    "output_tokens": 309
+  }
 }
 ```
 
@@ -208,7 +206,10 @@ You can pre-fill part of Claude's response in the last position of the input mes
     model: "claude-opus-4-6",
     max_tokens: 1,
     messages: [
-      { role: "user", content: "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae" },
+      {
+        role: "user",
+        content: "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"
+      },
       { role: "assistant", content: "The answer is (" }
     ]
   });
@@ -356,9 +357,10 @@ Claude can read both text and images in requests. Both `base64` and `url` source
   const anthropic = new Anthropic();
 
   // Option 1: Base64-encoded image
-  const image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+  const image_url =
+    "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
   const image_media_type = "image/jpeg";
-  const image_array_buffer = await ((await fetch(image_url)).arrayBuffer());
+  const image_array_buffer = await (await fetch(image_url)).arrayBuffer();
   const image_data = Buffer.from(image_array_buffer).toString("base64");
 
   const message = await anthropic.messages.create({

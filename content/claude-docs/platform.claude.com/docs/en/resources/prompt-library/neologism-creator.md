@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/neologism-creator
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: db0b2389b64383c7d609a72af2f6215f60e93cc1bb38a0f8d5b7c1230950e277
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 65e45ee200daf24fc6a6623e477b845a3c6fd785396f81922c4b4601effc5faa
 ---
 
 # Neologism creator
@@ -86,7 +86,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -145,7 +144,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -202,7 +200,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

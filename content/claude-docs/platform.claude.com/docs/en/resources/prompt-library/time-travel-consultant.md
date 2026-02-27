@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/time-travel-consultant
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: cab383a8bb3c5c7b84d840d4129c7701368b33d41464d3888d1a67ad22107215
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: afac4b0e951b1153fcafe683648c3d93bff68b04109a152751334468c5e39d4c
 ---
 
 # Time travel consultant
@@ -80,7 +80,8 @@ const msg = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 2000,
   temperature: 1,
-  system: "You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
+  system:
+    "You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
   messages: [
     {
       role: "user",
@@ -94,7 +95,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -142,7 +142,8 @@ const msg = await client.messages.create({
   model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 2000,
   temperature: 1,
-  system: "You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
+  system:
+    "You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
   messages: [
     {
       role: "user",
@@ -156,7 +157,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -199,7 +199,8 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 2000,
   temperature: 1,
-  system: "You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
+  system:
+    "You are an AI assistant with expertise in physics, philosophy, and science fiction. Your task is to help users explore and understand the implications of hypothetical time travel scenarios. Provide detailed insights on the potential consequences, paradoxes, and ethical considerations involved in each specific scenario, while maintaining a friendly and engaging conversation.",
   messages: [
     {
       role: "user",
@@ -213,7 +214,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/prompt-library/mindfulness-mentor
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 5fbf83a1d4b4e6237704388620fb6886bacdb7ae6974ec15301d12a3e1fc6bd0
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 0ba9c531240195e68f1268cba2004ba51a62ec66da9aefb9f0d48526638f84a6
 ---
 
 # Mindfulness mentor
@@ -80,7 +80,8 @@ const msg = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1000,
   temperature: 1,
-  system: "You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
+  system:
+    "You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
   messages: [
     {
       role: "user",
@@ -94,7 +95,6 @@ const msg = await anthropic.messages.create({
   ]
 });
 console.log(msg);
-
 ````
 
 </Tab>
@@ -141,7 +141,8 @@ const msg = await client.messages.create({
   model: "anthropic.claude-opus-4-6-v1",
   max_tokens: 1000,
   temperature: 1,
-  system: "You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
+  system:
+    "You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
   messages: [
     {
       role: "user",
@@ -155,7 +156,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>
@@ -200,7 +200,8 @@ const msg = await client.messages.create({
   model: "claude-sonnet-4@20250514",
   max_tokens: 1000,
   temperature: 1,
-  system: "You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
+  system:
+    "You are an AI assistant with expertise in mindfulness and stress management. Your task is to guide users through various mindfulness exercises and techniques to help them reduce stress, increase self-awareness, and cultivate a sense of inner peace. Offer clear instructions, explanations, and encouragement to support the user's practice.",
   messages: [
     {
       role: "user",
@@ -214,7 +215,6 @@ const msg = await client.messages.create({
   ]
 });
 console.log(msg);
-
 ```
 
 </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/user-input
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: a339325ea14c22ba918ea989a497754a32138698101bf7ffbd5365fc572898cb
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: cff6b6edca9918d8079d6ffe8be6eae236b1b76c14c5a2c85ff3d40c210c08ea
 ---
 
 # Handle approvals and user input
@@ -351,7 +351,8 @@ Beyond allowing or denying, you can modify the tool's input or provide context t
         // User doesn't want to delete, suggest archiving instead
         return {
           behavior: "deny",
-          message: "User doesn't want to delete files. They asked if you could compress them into an archive instead."
+          message:
+            "User doesn't want to delete files. They asked if you could compress them into an archive instead."
         };
       }
       return { behavior: "allow", updatedInput: input };
@@ -555,7 +556,9 @@ For multi-select questions, join multiple labels with `", "`. For free-text inpu
 
 ```json
 {
-  "questions": [...],
+  "questions": [
+    // ...
+  ],
   "answers": {
     "How should I format the output?": "Summary",
     "Which sections should I include?": "Introduction, Conclusion"

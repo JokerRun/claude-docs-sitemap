@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 446e2e5b4740a9039c1e06c6ce04512e00964beed7af11ae2f7bca12f65cbebe
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: bf91388f446249d5f9a258899940a9abdd01463d04b7b1ea7b2ba935567cf008
 ---
 
 # PDF support
@@ -305,7 +305,8 @@ If you need to send PDFs from your local system or when a URL isn't available:
 
     async function main() {
       // Method 1: Fetch and encode a remote PDF
-      const pdfURL = "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf";
+      const pdfURL =
+        "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf";
       const pdfResponse = await fetch(pdfURL);
       const arrayBuffer = await pdfResponse.arrayBuffer();
       const pdfBase64 = Buffer.from(arrayBuffer).toString("base64");
@@ -494,11 +495,12 @@ const anthropic = new Anthropic();
 
 async function main() {
   // Upload the PDF file
-  const fileUpload = await anthropic.beta.files.upload({
-    file: toFile(fs.createReadStream("document.pdf"), undefined, { type: "application/pdf" })
-  }, {
-    betas: ["files-api-2025-04-14"]
-  });
+  const fileUpload = await anthropic.beta.files.upload(
+    {
+      file: toFile(fs.createReadStream("document.pdf"), undefined, { type: "application/pdf" })
+    },
+    { betas: ["files-api-2025-04-14"] }
+  );
 
   // Use the uploaded file in a message
   const response = await anthropic.beta.messages.create({

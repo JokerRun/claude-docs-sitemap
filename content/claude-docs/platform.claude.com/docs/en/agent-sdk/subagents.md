@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/subagents
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: cfc76114616156195c5462171310b3fb2a99487bc5fa193b78599f9e88036293
+fetched_at: 2026-02-27T04:15:49.278525Z
+sha256: 26364c5cc33c4900b460658ff98a2a59bd31d359dbc3b2beb518eb04b6f7f058
 ---
 
 # Subagents in the SDK
@@ -120,7 +120,8 @@ for await (const message of query({
     agents: {
       "code-reviewer": {
         // description tells Claude when to use this subagent
-        description: "Expert code review specialist. Use for quality, security, and maintainability reviews.",
+        description:
+          "Expert code review specialist. Use for quality, security, and maintainability reviews.",
         // prompt defines the subagent's behavior and expertise
         prompt: `You are a code review specialist with expertise in security, performance, and best practices.
 
@@ -137,7 +138,8 @@ Be thorough but concise in your feedback.`,
         model: "sonnet"
       },
       "test-runner": {
-        description: "Runs and analyzes test suites. Use for test execution and coverage analysis.",
+        description:
+          "Runs and analyzes test suites. Use for test execution and coverage analysis.",
         prompt: `You are a test execution specialist. Run tests and provide clear analysis of results.
 
 Focus on:
