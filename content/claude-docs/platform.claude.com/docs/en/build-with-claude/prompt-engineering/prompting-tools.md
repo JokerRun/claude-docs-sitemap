@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-tools
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 1c794315956d5c41353092db3093dfcc63a4dda3466f5efc303fa463d5a6adca
+fetched_at: 2026-02-28T03:57:25.349641Z
+sha256: c3f4b8f1cc7d81a29daddd109c1d6c86af4cbc4e625e97cc16e3bef669960776
 ---
 
 # Console prompting tools
@@ -59,7 +59,7 @@ The Console uses prompt templates and variables to power its tooling:
 
 Consider a simple application that translates English text to Spanish. The translated text would be variable since it changes between users or calls to Claude. You might use this prompt template:
 
-```
+```text
 Translate this text from English to Spanish: {{text}}
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 8873be8ad0539a48e9e300915eea0e59573986650ad67d1fe0299c0b5c80f372
+fetched_at: 2026-02-28T03:57:25.349641Z
+sha256: b33c733831e8be5685571de320e06cf5636d84fe6888425da67f8ac0d3ef86c3
 ---
 
 # Intercept and control agent behavior with hooks
@@ -48,8 +48,11 @@ The following example puts these steps together. It registers a `PreToolUse` hoo
 ```python Python
 import asyncio
 from claude_agent_sdk import (
-    AssistantMessage, ClaudeSDKClient, ClaudeAgentOptions,
-    HookMatcher, ResultMessage,
+    AssistantMessage,
+    ClaudeSDKClient,
+    ClaudeAgentOptions,
+    HookMatcher,
+    ResultMessage,
 )
 
 
@@ -78,9 +81,7 @@ async def main():
         hooks={
             # Register the hook for PreToolUse events
             # The matcher filters to only Write and Edit tool calls
-            "PreToolUse": [
-                HookMatcher(matcher="Write|Edit", hooks=[protect_env_files])
-            ]
+            "PreToolUse": [HookMatcher(matcher="Write|Edit", hooks=[protect_env_files])]
         }
     )
 
@@ -561,10 +562,12 @@ from datetime import datetime
 
 def _send_webhook(tool_name):
     """Synchronous helper that POSTs tool usage data to an external webhook."""
-    data = json.dumps({
-        "tool": tool_name,
-        "timestamp": datetime.now().isoformat(),
-    }).encode()
+    data = json.dumps(
+        {
+            "tool": tool_name,
+            "timestamp": datetime.now().isoformat(),
+        }
+    ).encode()
     req = urllib.request.Request(
         "https://api.example.com/webhook",
         data=data,
@@ -664,9 +667,7 @@ def _send_slack_notification(message):
 async def notification_handler(input_data, tool_use_id, context):
     try:
         # Run the blocking HTTP call in a thread to avoid blocking the event loop
-        await asyncio.to_thread(
-            _send_slack_notification, input_data.get("message", "")
-        )
+        await asyncio.to_thread(_send_slack_notification, input_data.get("message", ""))
     except Exception as e:
         print(f"Failed to send notification: {e}")
 
@@ -804,7 +805,7 @@ options = ClaudeAgentOptions(
 
 ```typescript TypeScript
 const options = {
-  settingSources: ["project"],  // Loads .claude/settings.json including hooks
+  settingSources: ["project"] // Loads .claude/settings.json including hooks
 };
 ```
 

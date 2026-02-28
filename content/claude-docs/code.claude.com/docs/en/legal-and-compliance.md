@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/legal-and-compliance
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 255e31b55475481c4969dadad71392b896bd82937879daa831f1d25a3ebdc655
+fetched_at: 2026-02-28T03:57:25.349641Z
+sha256: 2ef1dd8d49a9d3f2b4a027e40524f30c92597cf0488d7df1368f798767a7dc9c
 ---
 
 > ## Documentation Index
@@ -30,7 +30,7 @@ Whether you're using the Claude API directly (1P) or accessing it through AWS Be
 
 ### Healthcare compliance (BAA)
 
-If a customer has a Business Associate Agreement (BAA) with us, and wants to use Claude Code, the BAA will automatically extend to cover Claude Code if the customer has executed a BAA and has Zero Data Retention (ZDR) activated. The BAA will be applicable to that customer's API traffic flowing through Claude Code.
+If a customer has a Business Associate Agreement (BAA) with us, and wants to use Claude Code, the BAA will automatically extend to cover Claude Code if the customer has executed a BAA and has [Zero Data Retention (ZDR)](/en/zero-data-retention) activated. The BAA will be applicable to that customer's API traffic flowing through Claude Code. ZDR is enabled on a per-organization basis, so each organization must have ZDR enabled separately to be covered under the BAA.
 
 ## Usage policy
 

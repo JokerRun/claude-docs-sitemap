@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 322a4540bf02226df459be30df58499bc688c51a7a98fae22ce113459174075d
+fetched_at: 2026-02-28T03:57:25.349641Z
+sha256: 76e3ed557abf10a970a699b5d4afbc9cd4b62efda197eef4bda3e2171c538b4a
 ---
 
 > ## Documentation Index
@@ -168,6 +168,23 @@ verification is not enabled by default.
 
 Enable repository access verification and/or withhold your name from your shared
 sessions by going to Settings > Claude Code > Sharing settings.
+
+## Managing sessions
+
+### Archiving sessions
+
+You can archive sessions to keep your session list organized. Archived sessions are hidden from the default session list but can be viewed by filtering for archived sessions.
+
+To archive a session, hover over the session in the sidebar and click the archive icon.
+
+### Deleting sessions
+
+Deleting a session permanently removes the session and its data. This action cannot be undone. You can delete a session in two ways:
+
+* **From the sidebar**: Filter for archived sessions, then hover over the session you want to delete and click the delete icon
+* **From the session menu**: Open a session, click the dropdown next to the session title, and select **Delete**
+
+You will be asked to confirm before a session is deleted.
 
 ## Cloud environment
 

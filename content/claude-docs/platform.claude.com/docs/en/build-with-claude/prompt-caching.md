@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: cc2f389c58fe45252ed98e0822e9fdf4b8ba20e168126e086da4b133666246bb
+fetched_at: 2026-02-28T03:57:25.349641Z
+sha256: cbd2cae8b0a3fab383f9581d532f5c89a2b39930f4e612c7726163f7c6722ea2
 ---
 
 # Prompt caching
@@ -309,7 +309,7 @@ The cache breakpoint automatically moves to the last cacheable block in each req
 By default, automatic caching uses a 5-minute TTL. You can specify a 1-hour TTL at 2x the base input token price:
 
 ```json
-"cache_control": {"type": "ephemeral", "ttl": "1h"}
+{ "cache_control": { "type": "ephemeral", "ttl": "1h" } }
 ```
 
 ### Combining with block-level caching
@@ -322,15 +322,15 @@ This lets you combine both approaches. For example, use explicit breakpoints to 
 {
   "model": "claude-opus-4-6",
   "max_tokens": 1024,
-  "cache_control": {"type": "ephemeral"},
+  "cache_control": { "type": "ephemeral" },
   "system": [
     {
       "type": "text",
       "text": "You are a helpful assistant.",
-      "cache_control": {"type": "ephemeral"}
+      "cache_control": { "type": "ephemeral" }
     }
   ],
-  "messages": [...]
+  "messages": [{ "role": "user", "content": "What are the key terms?" }]
 }
 ```
 
