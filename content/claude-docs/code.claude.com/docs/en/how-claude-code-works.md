@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 8ef585367002d0a0ae87ad4b287ce38e5a699589c37291590eb4c8a50899b5b6
+fetched_at: 2026-03-01T04:24:52.859568Z
+sha256: b570629c66a03b56116b28128f29896545e35357ae8cc1b709b48d057b1d86a2
 ---
 
 > ## Documentation Index
@@ -68,12 +68,15 @@ Each tool use gives Claude new information that informs the next step. This is t
 
 ## What Claude can access
 
+This guide focuses on the terminal. Claude Code also runs in [VS Code](/en/vs-code), [JetBrains IDEs](/en/jetbrains), and other environments.
+
 When you run `claude` in a directory, Claude Code gains access to:
 
 * **Your project.** Files in your directory and subdirectories, plus files elsewhere with your permission.
 * **Your terminal.** Any command you could run: build tools, git, package managers, system utilities, scripts. If you can do it from the command line, Claude can too.
 * **Your git state.** Current branch, uncommitted changes, and recent commit history.
 * **Your [CLAUDE.md](/en/memory).** A markdown file where you store project-specific instructions, conventions, and context that Claude should know every session.
+* **[Auto memory](/en/memory#auto-memory).** Learnings Claude saves automatically as you work, like project patterns and your preferences. The first 200 lines of MEMORY.md are loaded at the start of each session.
 * **Extensions you configure.** [MCP servers](/en/mcp) for external services, [skills](/en/skills) for workflows, [subagents](/en/sub-agents) for delegated work, and [Claude in Chrome](/en/chrome) for browser interaction.
 
 Because Claude sees your whole project, it can work across it. When you ask Claude to "fix the authentication bug," it searches for relevant files, reads multiple files to understand context, makes coordinated edits across them, runs tests to verify the fix, and commits the changes if you ask. This is different from inline code assistants that only see the current file.

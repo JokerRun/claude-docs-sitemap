@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: ac2b5f76a6ec0533c593dcb2b33ca7a84ed80d26084b6f8951a5aed0cfea5a2d
+fetched_at: 2026-03-01T04:24:52.859568Z
+sha256: ccc406df22c31de6e9a919fb80ccb0418f936a19f4ff8c91a02a48938c926d1f
 ---
 
 > ## Documentation Index
@@ -174,20 +174,20 @@ Examples:
 * `mcp__puppeteer__*` wildcard syntax that also matches all tools from the `puppeteer` server
 * `mcp__puppeteer__puppeteer_navigate` matches the `puppeteer_navigate` tool provided by the `puppeteer` server
 
-### Task (subagents)
+### Agent (subagents)
 
-Use `Task(AgentName)` rules to control which [subagents](/en/sub-agents) Claude can use:
+Use `Agent(AgentName)` rules to control which [subagents](/en/sub-agents) Claude can use:
 
-* `Task(Explore)` matches the Explore subagent
-* `Task(Plan)` matches the Plan subagent
-* `Task(my-custom-agent)` matches a custom subagent named `my-custom-agent`
+* `Agent(Explore)` matches the Explore subagent
+* `Agent(Plan)` matches the Plan subagent
+* `Agent(my-custom-agent)` matches a custom subagent named `my-custom-agent`
 
 Add these rules to the `deny` array in your settings or use the `--disallowedTools` CLI flag to disable specific agents. To disable the Explore agent:
 
 ```json  theme={null}
 {
   "permissions": {
-    "deny": ["Task(Explore)"]
+    "deny": ["Agent(Explore)"]
   }
 }
 ```

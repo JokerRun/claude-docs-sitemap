@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 83d85e6d101421e4d2da7ce009e72b7fe0a912c69b310cc3029482f90a88e7c3
+fetched_at: 2026-03-01T04:24:52.859568Z
+sha256: 205d5139914beb32602d5a57a97b7e967ece73c10220cc7675b543cdcc04fc6a
 ---
 
 > ## Documentation Index
@@ -113,7 +113,7 @@ You can also hold `Shift` while dragging files into the prompt box to add them a
 
 ### Resume past conversations
 
-Click the dropdown at the top of the Claude Code panel to access your conversation history. You can search by keyword or browse by time (Today, Yesterday, Last 7 days, etc.). Click any conversation to resume it with the full message history. For more on resuming sessions, see [Common workflows](/en/common-workflows#resume-previous-conversations).
+Click the dropdown at the top of the Claude Code panel to access your conversation history. You can search by keyword or browse by time (Today, Yesterday, Last 7 days, etc.). Click any conversation to resume it with the full message history. Hover over a session to reveal rename and remove actions: rename to give it a descriptive title, or remove to delete it from the list. For more on resuming sessions, see [Common workflows](/en/common-workflows#resume-previous-conversations).
 
 ### Resume remote sessions from Claude.ai
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/remote-control
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: ccab0957eee049f4fb6e988cb099d32ee74ca92aca1890589cedbc59629d0814
+fetched_at: 2026-03-01T04:24:52.859568Z
+sha256: 4c17738ef91dbf37b77c9cf001dce303f553a2b173783ce05c2e163344826856
 ---
 
 > ## Documentation Index
@@ -14,7 +14,7 @@ sha256: ccab0957eee049f4fb6e988cb099d32ee74ca92aca1890589cedbc59629d0814
 > Continue a local Claude Code session from your phone, tablet, or any browser using Remote Control. Works with claude.ai/code and the Claude mobile app.
 
 <Note>
-  Remote Control is available as a research preview on Max plans and will be rolling out to Pro plans soon. It is not available on Team or Enterprise plans.
+  Remote Control is available as a research preview on Max and Pro plans. It is not available on Team or Enterprise plans.
 </Note>
 
 Remote Control connects [claude.ai/code](https://claude.ai/code) or the Claude app for [iOS](https://apps.apple.com/us/app/claude-by-anthropic/id6473753684) and [Android](https://play.google.com/store/apps/details?id=com.anthropic.claude) to a Claude Code session running on your machine. Start a task at your desk, then pick it up from your phone on the couch or a browser on another computer.

@@ -31,7 +31,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/checkpointing | 2026-02-07 |  |
 | code | https://code.claude.com/docs/en/chrome | 2026-02-14 |  |
 | code | https://code.claude.com/docs/en/claude-code-on-the-web | 2026-02-27 |  |
-| code | https://code.claude.com/docs/en/cli-reference | 2026-02-26 |  |
+| code | https://code.claude.com/docs/en/cli-reference | 2026-03-01 |  |
 | code | https://code.claude.com/docs/en/common-workflows | 2026-02-26 |  |
 | code | https://code.claude.com/docs/en/costs | 2026-02-26 |  |
 | code | https://code.claude.com/docs/en/data-usage | 2026-02-27 |  |
