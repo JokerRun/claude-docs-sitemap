@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: b87b632ffbed505c19d27304da4c6c8d2c6274c320749e5c2e22bf6507d82e20
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 448edaa1eda50acfdbb821023957725548ccdd157f9e847900f46c083d476378
 ---
 
 # Memory tool
@@ -16,7 +16,7 @@ This is the key primitive for just-in-time context retrieval: rather than loadin
 The memory tool operates client-side: you control where and how the data is stored through your own infrastructure.
 
 <Note>
-Please reach out through the [feedback form](https://forms.gle/YXC2EKGMhjN1c4L88) to share your feedback on this feature.
+Reach out through the [feedback form](https://forms.gle/YXC2EKGMhjN1c4L88) to share your feedback on this feature.
 </Note>
 
 <Note>

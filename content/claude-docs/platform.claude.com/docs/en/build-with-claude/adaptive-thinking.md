@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: cec0ebce5341a63031a11ed2abf1402f43aacbbaa04e44ec276cafb08a947317
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: f58afc8cd65b4b58955405c0c7f5c6f1f923835a05da8b203a30d20567969b30
 ---
 
 # Adaptive thinking
@@ -34,7 +34,7 @@ Older models (Sonnet 4.5, Opus 4.5, etc.) do not support adaptive thinking and r
 
 ## How adaptive thinking works
 
-In adaptive mode, thinking is optional for the model. Claude evaluates the complexity of each request and determines whether and how much to use extended thinking. At the default effort level (`high`), Claude will almost always think. At lower effort levels, Claude may skip thinking for simpler problems.
+In adaptive mode, thinking is optional for the model. Claude evaluates the complexity of each request and determines whether and how much to use extended thinking. At the default effort level (`high`), Claude almost always thinks. At lower effort levels, Claude may skip thinking for simpler problems.
 
 Adaptive thinking also automatically enables [interleaved thinking](/docs/en/build-with-claude/extended-thinking#interleaved-thinking). This means Claude can think between tool calls, making it especially effective for agentic workflows.
 
@@ -123,7 +123,7 @@ You can combine adaptive thinking with the [effort parameter](/docs/en/build-wit
 
 | Effort level | Thinking behavior |
 |:-------------|:------------------|
-| `max` | Claude always thinks with no constraints on thinking depth. Opus 4.6 only. Requests using `max` on other models will return an error. |
+| `max` | Claude always thinks with no constraints on thinking depth. Opus 4.6 only. Requests using `max` on other models return an error. |
 | `high` (default) | Claude always thinks. Provides deep reasoning on complex tasks. |
 | `medium` | Claude uses moderate thinking. May skip thinking for very simple queries. |
 | `low` | Claude minimizes thinking. Skips thinking for simple tasks where speed matters most. |

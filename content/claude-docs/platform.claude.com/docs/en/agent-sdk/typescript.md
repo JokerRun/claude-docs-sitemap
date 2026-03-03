@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-03-01T04:24:52.859568Z
-sha256: 19ac7443e2ed9a0aad54fe12266a857b5b0c0956fa199e1ca86d8aa0c6252cac
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 7717a94dab8a325a2131c17d210e8695c869bc9e3e8e46b4f60921de91cc88b0
 ---
 
 # Agent SDK reference - TypeScript
@@ -2499,7 +2499,7 @@ for await (const message of query({
 ```
 
 <Warning>
-**Unix socket security**: The `allowUnixSockets` option can grant access to powerful system services. For example, allowing `/var/run/docker.sock` effectively grants full host system access through the Docker API, bypassing sandbox isolation. Only allow Unix sockets that are strictly necessary and understand the security implications of each.
+**Unix socket security:** The `allowUnixSockets` option can grant access to powerful system services. For example, allowing `/var/run/docker.sock` effectively grants full host system access through the Docker API, bypassing sandbox isolation. Only allow Unix sockets that are strictly necessary and understand the security implications of each.
 </Warning>
 
 ### `SandboxNetworkConfig`
@@ -2548,7 +2548,7 @@ type SandboxFilesystemConfig = {
 
 ### Permissions Fallback for Unsandboxed Commands
 
-When `allowUnsandboxedCommands` is enabled, the model can request to run commands outside the sandbox by setting `dangerouslyDisableSandbox: true` in the tool input. These requests fall back to the existing permissions system, meaning your `canUseTool` handler will be invoked, allowing you to implement custom authorization logic.
+When `allowUnsandboxedCommands` is enabled, the model can request to run commands outside the sandbox by setting `dangerouslyDisableSandbox: true` in the tool input. These requests fall back to the existing permissions system, meaning your `canUseTool` handler is invoked, allowing you to implement custom authorization logic.
 
 <Note>
 **`excludedCommands` vs `allowUnsandboxedCommands`:**
@@ -2591,9 +2591,9 @@ for await (const message of query({
 
 This pattern enables you to:
 
-- **Audit model requests**: Log when the model requests unsandboxed execution
-- **Implement allowlists**: Only permit specific commands to run unsandboxed
-- **Add approval workflows**: Require explicit authorization for privileged operations
+- **Audit model requests:** Log when the model requests unsandboxed execution
+- **Implement allowlists:** Only permit specific commands to run unsandboxed
+- **Add approval workflows:** Require explicit authorization for privileged operations
 
 <Warning>
 Commands running with `dangerouslyDisableSandbox: true` have full system access. Ensure your `canUseTool` handler validates these requests carefully.

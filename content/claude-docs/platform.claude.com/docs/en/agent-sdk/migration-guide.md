@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/migration-guide
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: fdb875d3a695cb88d43e4d4ce9b47b5d4525942023a55ccd082fcf9dec7cced1
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 4636a4d6a837c51eaf4174af53c12fa7428b4a805afdbe75a9b349ca986004d3
 ---
 
 # Migrate to Claude Agent SDK
@@ -64,7 +64,7 @@ Before:
 ```json
 {
   "dependencies": {
-    "@anthropic-ai/claude-code": "^1.0.0"
+    "@anthropic-ai/claude-code": "^0.0.42"
   }
 }
 ```
@@ -74,7 +74,7 @@ After:
 ```json
 {
   "dependencies": {
-    "@anthropic-ai/claude-agent-sdk": "^0.1.0"
+    "@anthropic-ai/claude-agent-sdk": "^0.2.0"
   }
 }
 ```
@@ -113,7 +113,7 @@ Change `ClaudeCodeOptions` to `ClaudeAgentOptions`:
 
 ```python
 # Before
-from claude_agent_sdk import query, ClaudeCodeOptions
+from claude_code_sdk import query, ClaudeCodeOptions
 
 options = ClaudeCodeOptions(model="claude-opus-4-6")
 
@@ -140,12 +140,12 @@ To improve isolation and explicit configuration, Claude Agent SDK v0.1.0 introdu
 **Migration:**
 
 ```python
-# BEFORE (v0.0.x)
-from claude_agent_sdk import query, ClaudeCodeOptions
+# BEFORE (claude-code-sdk)
+from claude_code_sdk import query, ClaudeCodeOptions
 
 options = ClaudeCodeOptions(model="claude-opus-4-6", permission_mode="acceptEdits")
 
-# AFTER (v0.1.0)
+# AFTER (claude-agent-sdk)
 from claude_agent_sdk import query, ClaudeAgentOptions
 
 options = ClaudeAgentOptions(model="claude-opus-4-6", permission_mode="acceptEdits")

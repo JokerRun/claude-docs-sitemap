@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 280ec6b8aa452c17ec06d732a6e7221c08049c4b64091eb5479bacb21a5b4751
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: dd4f36f2b402141b7a1408c25b2bbdcf6145d7972adaf73fa68963f210549e2f
 ---
 
 # Citations
@@ -14,7 +14,7 @@ Claude is capable of providing detailed citations when answering questions about
 All [active models](/docs/en/about-claude/models/overview) support citations, with the exception of Haiku 3.
 
 <Tip>
-  Please share your feedback and suggestions about the citations feature using this [form](https://forms.gle/9n9hSrKnKe3rpowH9).
+  Share your feedback and suggestions about the citations feature using this [form](https://forms.gle/9n9hSrKnKe3rpowH9).
 </Tip>
 
 Here's an example of how to use citations with the Messages API:
@@ -160,9 +160,9 @@ Integrate citations with Claude in these steps:
   <Step title="Claude provides cited response">
     - Responses may now include multiple text blocks where each text block can contain a claim that Claude is making and a list of citations that support the claim.
     - Citations reference specific locations in source documents. The format of these citations are dependent on the type of document being cited from.
-      - **For PDFs:** citations will include the page number range (1-indexed).
-      - **For plain text documents:** Citations will include the character index range (0-indexed).
-      - **For custom content documents:** Citations will include the content block index range (0-indexed) corresponding to the original content list provided.
+      - **For PDFs:** Citations include the page number range (1-indexed).
+      - **For plain text documents:** Citations include the character index range (0-indexed).
+      - **For custom content documents:** Citations include the content block index range (0-indexed) corresponding to the original content list provided.
     - Document indices are provided to indicate the reference source and are 0-indexed according to the list of all documents in your original request.
   </Step>
 </Steps>

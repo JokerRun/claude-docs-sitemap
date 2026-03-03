@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/php
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: ec0ec3880dd51f2000a81db9ea310d440cefc075d2a8fd60ea49c11c97a28eb2
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 6ad112189042ca81b97f7a1a22e2e1843e2acba8634d71e62ffff426cc2a793f
 ---
 
 # PHP SDK
@@ -85,7 +85,7 @@ foreach ($stream as $message) {
 
 ## Error handling
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Anthropic\Core\Exceptions\APIException` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Anthropic\Core\Exceptions\APIException` is thrown:
 
 ```php
 <?php

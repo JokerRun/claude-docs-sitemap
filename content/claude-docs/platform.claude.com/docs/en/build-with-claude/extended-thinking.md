@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 3aaba321723848515c798f1262fc19b0c23647ffab05deb189d0f558031d0107
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 2e1423b665901124b6bf115f1b2b0bcba6d2f2f33f24e28dcace6e53093f0e65
 ---
 
 # Building with extended thinking
@@ -184,7 +184,7 @@ You can stream extended thinking responses using [server-sent events (SSE)](http
 
 When streaming is enabled for extended thinking, you receive thinking content via `thinking_delta` events.
 
-For more documention on streaming via the Messages API, see [Streaming Messages](/docs/en/build-with-claude/streaming).
+For more documentation on streaming via the Messages API, see [Streaming Messages](/docs/en/build-with-claude/streaming).
 
 Here's how to handle streaming with thinking:
 

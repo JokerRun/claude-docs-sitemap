@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 75c83c8522d8bb143f58edd38ee5f46306a4d30bde76e5fd699980e552dd03c5
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 0175e869627cbebf98cadfc13154eb1500bdaff5dd65630a7df70db2012b312c
 ---
 
 # Handling stop reasons
@@ -13,7 +13,7 @@ When you make a request to the Messages API, Claude's response includes a `stop_
 
 For details about `stop_reason` in the API response, see the [Messages API reference](/docs/en/api/messages).
 
-## What is stop_reason?
+## The stop_reason field
 
 The `stop_reason` field is part of every successful Messages API response. Unlike errors, which indicate failures in processing your request, `stop_reason` tells you why Claude successfully completed its response generation.
 

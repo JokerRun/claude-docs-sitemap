@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-02-28T03:57:25.349641Z
-sha256: cbd2cae8b0a3fab383f9581d532f5c89a2b39930f4e612c7726163f7c6722ea2
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: a34583934479ced8b68378e76302eef047eddb6c62c018669c96701e6701ac4a
 ---
 
 # Prompt caching
@@ -1912,7 +1912,7 @@ Note: Starting February 5, 2026, caches will be isolated per workspace instead o
     - Send a batch request with just a single request that has this shared prefix and a 1-hour cache block. This will get written to the 1-hour cache.
     - As soon as this is complete, submit the rest of the requests. You will have to monitor the job to know when it completes.
 
-    This is typically better than using the 5-minute cache simply because it’s common for batch requests to take between 5 minutes and 1 hour to complete. We’re considering ways to improve these cache hit rates and making this process more straightforward.
+    This is typically better than using the 5-minute cache simply because it's common for batch requests to take between 5 minutes and 1 hour to complete. Anthropic is considering ways to improve these cache hit rates and making this process more straightforward.
   
 </section>
   <section title="Why am I seeing the error `AttributeError: 'Beta' object has no attribute 'prompt_caching'` in Python?">

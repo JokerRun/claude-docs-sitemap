@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/typescript
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: e9f77419a05da06142cd6408588c2b4efa7564b99d8ce69839a7f9a3457287de
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 7ab9c7b7fee044a6cc3940a999d05d99a8b85e2ad8d0d2cc8f8152eb97a106c5
 ---
 
 # TypeScript SDK
@@ -843,9 +843,9 @@ For detailed platform setup guides with code examples, see:
 
 The TypeScript SDK supports Bedrock, Vertex AI, and Foundry through separate npm packages:
 
-- **Bedrock**: `npm install @anthropic-ai/bedrock-sdk`: Provides `AnthropicBedrock` client
-- **Vertex AI**: `npm install @anthropic-ai/vertex-sdk`: Provides `AnthropicVertex` client
-- **Foundry**: `npm install @anthropic-ai/foundry-sdk`: Provides `AnthropicFoundry` client
+- **Bedrock:** `npm install @anthropic-ai/bedrock-sdk`: Provides `AnthropicBedrock` client
+- **Vertex AI:** `npm install @anthropic-ai/vertex-sdk`: Provides `AnthropicVertex` client
+- **Foundry:** `npm install @anthropic-ai/foundry-sdk`: Provides `AnthropicFoundry` client
 
 ## Semantic versioning
 

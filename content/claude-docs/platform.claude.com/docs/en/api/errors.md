@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 0393c0f92a472f5e5e39d267b3cd9a9c64f165fd42676b779d11c28e0c4a3504
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 8acf9fa64f282f56d7a2202bcb82b286f2f7dfa1a175472745e031dad7780dcf
 ---
 
 # Errors
@@ -62,7 +62,7 @@ In accordance with the [versioning](/docs/en/api/versioning) policy, the values 
 
 ## Request id
 
-Every API response includes a unique `request-id` header. This header contains a value such as `req_018EeWyXxfu5pfWkrYcMdjWG`. When contacting support about a specific request, please include this ID to help quickly resolve your issue.
+Every API response includes a unique `request-id` header. This header contains a value such as `req_018EeWyXxfu5pfWkrYcMdjWG`. When contacting support about a specific request, include this ID to help quickly resolve your issue.
 
 The official SDKs provide this value as a property on top-level response objects, containing the value of the `request-id` header:
 

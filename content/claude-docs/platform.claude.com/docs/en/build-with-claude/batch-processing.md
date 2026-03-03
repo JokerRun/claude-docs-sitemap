@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: bfc10a80ac9615748e95a82bfe42429e9bfad8c7e470334027e7420763679cd9
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: a15c2de0028788cc7b3302af97316be833f314ff12112503b8db4575cdc22f12
 ---
 
 # Batch processing
@@ -46,7 +46,7 @@ This is especially useful for bulk operations that don't require immediate resul
 
 ### Batch limitations
 - A Message Batch is limited to either 100,000 Message requests or 256 MB in size, whichever is reached first.
-- The system processes each batch as fast as possible, with most batches completing within 1 hour. You will be able to access batch results when all messages have completed or after 24 hours, whichever comes first. Batches will expire if processing does not complete within 24 hours.
+- The system processes each batch as fast as possible, with most batches completing within 1 hour. You can access batch results when all messages have completed or after 24 hours, whichever comes first. Batches expire if processing does not complete within 24 hours.
 - Batch results are available for 29 days after creation. After that, you may still view the Batch, but its results will no longer be available for download.
 - Batches are scoped to a [Workspace](/settings/workspaces). You may view all batches (and their results) that were created within the Workspace that your API key belongs to.
 - Rate limits apply to both Batches API HTTP requests and the number of requests within a batch waiting to be processed. See [Message Batches API rate limits](/docs/en/api/rate-limits#message-batches-api). Additionally, processing may be slowed down based on current demand and your request volume. In that case, you may see more requests expiring after 24 hours.
@@ -590,7 +590,7 @@ public class BatchListExample {
 
 ### Retrieving batch results
 
-Once batch processing has ended, each Messages request in the batch will have a result. There are 4 result types:
+Once batch processing has ended, each Messages request in the batch has a result. There are 4 result types:
 
 | Result Type | Description |
 |-------------|-------------|
@@ -743,7 +743,7 @@ public class BatchResultsExample {
 
 </CodeGroup>
 
-The results will be in `.jsonl` format, where each line is a valid JSON object representing the result of a single request in the Message Batch. For each streamed result, you can do something different depending on its `custom_id` and result type. Here is an example set of results:
+The results are in `.jsonl` format, where each line is a valid JSON object representing the result of a single request in the Message Batch. For each streamed result, you can do something different depending on its `custom_id` and result type. Here is an example set of results:
 
 ```jsonl .jsonl file
 {"custom_id":"my-second-request","result":{"type":"succeeded","message":{"id":"msg_014VwiXbi91y3JMjcpyGBHX5","type":"message","role":"assistant","model":"claude-opus-4-6","content":[{"type":"text","text":"Hello again! It's nice to see you. How can I assist you today? Is there anything specific you'd like to chat about or any questions you have?"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":11,"output_tokens":36}}}}
@@ -1121,7 +1121,7 @@ Note that the failure of one request in a batch does not affect the processing o
 
   <section title="How long does it take for a batch to process?">
 
-    Batches may take up to 24 hours for processing, but many will finish sooner. Actual processing time depends on the size of the batch, current demand, and your request volume. It is possible for a batch to expire and not complete within 24 hours.
+    Batches may take up to 24 hours for processing, but many finish sooner. Actual processing time depends on the size of the batch, current demand, and your request volume. It is possible for a batch to expire and not complete within 24 hours.
   
 </section>
 

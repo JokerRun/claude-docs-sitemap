@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: f0d67db82c1025cd12ae469908e0abc250fd826c5dc3d78b87c868e234b38200
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: cbeb0a38b9a1f56a91c29c4897a766fb77f5f6a52577e009dbb66b8ef48c2605
 ---
 
 # Web search tool
@@ -128,7 +128,7 @@ main().catch(console.error);
 ## How to use web search
 
 <Note>
-Your organization's administrator must enable web search in [Console](/settings/privacy).
+Your organization's administrator must enable web search in the [Claude Console](/settings/privacy).
 </Note>
 
 Provide the web search tool in your API request:
@@ -232,7 +232,7 @@ The web search tool supports the following parameters:
 
 #### Max uses
 
-The `max_uses` parameter limits the number of searches performed. If Claude attempts more searches than allowed, the `web_search_tool_result` will be an error with the `max_uses_exceeded` error code.
+The `max_uses` parameter limits the number of searches performed. If Claude attempts more searches than allowed, the `web_search_tool_result` is an error with the `max_uses_exceeded` error code.
 
 #### Domain filtering
 
@@ -250,10 +250,10 @@ When using domain filters:
 - Valid: `example.com/*`, `example.com/*/articles`
 - Invalid: `*.example.com`, `ex*.com`, `example.com/*/news/*`
 
-Invalid domain formats will return an `invalid_tool_input` tool error.
+Invalid domain formats return an `invalid_tool_input` tool error.
 
 <Note>
-Request-level domain restrictions must be compatible with organization-level domain restrictions configured in the Console. Request-level domains can only further restrict domains, not override or expand beyond the organization-level list. If your request includes domains that conflict with organization settings, the API will return a validation error.
+Request-level domain restrictions must be compatible with organization-level domain restrictions configured in the Console. Request-level domains can only further restrict domains, not override or expand beyond the organization-level list. If your request includes domains that conflict with organization settings, the API returns a validation error.
 </Note>
 
 #### Localization

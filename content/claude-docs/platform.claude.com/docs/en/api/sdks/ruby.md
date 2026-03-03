@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/ruby
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: f55a02d2bc8caebc14475cff8a5f2cacfe441466eebac4b6215ee71cc22d8ea9
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: a402fceceb2f5142a5ea738a5f4225efe0b9493003e9c9a3cd32377be833e5b9
 ---
 
 # Ruby SDK
@@ -384,8 +384,8 @@ For detailed platform setup guides with code examples, see:
 
 The Ruby SDK supports Bedrock and Vertex AI through dedicated client classes:
 
-- **Bedrock**: `Anthropic::BedrockClient`. Requires the `aws-sdk-bedrockruntime` gem.
-- **Vertex AI**: `Anthropic::VertexClient`. Requires the `googleauth` gem.
+- **Bedrock:** `Anthropic::BedrockClient`. Requires the `aws-sdk-bedrockruntime` gem.
+- **Vertex AI:** `Anthropic::VertexClient`. Requires the `googleauth` gem.
 
 ## Semantic versioning
 

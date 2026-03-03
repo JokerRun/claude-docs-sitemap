@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 2da0a5f5f9bd783741b171736fc4d6a1bd49f3c8158083833e5fcc1cbd7c8c37
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 154d49bbe4a7127a789bd1c37ebad1a24e045d0c876b48f60dff78b26a937cca
 ---
 
 # Files API
@@ -12,7 +12,7 @@ sha256: 2da0a5f5f9bd783741b171736fc4d6a1bd49f3c8158083833e5fcc1cbd7c8c37
 The Files API lets you upload and manage files to use with the Claude API without re-uploading content with each request. This is particularly useful when using the [code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool) to provide inputs (e.g. datasets and documents) and then download outputs (e.g. charts). You can also use the Files API to prevent having to continually re-upload frequently used documents and images across multiple API calls. You can [explore the API reference directly](/docs/en/api/files-create), in addition to this guide.
 
 <Note>
-The Files API is currently in beta. Please reach out through our [feedback form](https://forms.gle/tisHyierGwgN4DUE9) to share your experience with the Files API.
+The Files API is in beta. Reach out through the [feedback form](https://forms.gle/tisHyierGwgN4DUE9) to share your experience with the Files API.
 </Note>
 
 <Note>

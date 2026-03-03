@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: c109d708b7b6b025106597e3aa990b4912b486ed4c7da71c160648d22208b51a
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: fc94cad5d4cebdd588ecf1f675a4ef75f784a4946d1b835dcf5ec3a272b2836c
 ---
 
 # Streaming Messages
@@ -87,12 +87,12 @@ The `.stream()` call keeps the HTTP connection alive with server-sent events, th
 
 ## Event types
 
-Each server-sent event includes a named event type and associated JSON data. Each event will use an SSE event name (e.g. `event: message_stop`), and include the matching event `type` in its data.
+Each server-sent event includes a named event type and associated JSON data. Each event uses an SSE event name (e.g. `event: message_stop`), and includes the matching event `type` in its data.
 
 Each stream uses the following event flow:
 
 1. `message_start`: contains a `Message` object with empty `content`.
-2. A series of content blocks, each of which have a `content_block_start`, one or more `content_block_delta` events, and a `content_block_stop` event. Each content block will have an `index` that corresponds to its index in the final Message `content` array.
+2. A series of content blocks, each of which have a `content_block_start`, one or more `content_block_delta` events, and a `content_block_stop` event. Each content block has an `index` that corresponds to its index in the final Message `content` array.
 3. One or more `message_delta` events, indicating top-level changes to the final `Message` object.
 4. A final `message_stop` event.
 
@@ -162,7 +162,7 @@ data: {"type": "content_block_delta", "index": 0, "delta": {"type": "signature_d
 
 ## Full HTTP Stream response
 
-Use the [client SDKs](/docs/en/api/client-sdks) when using streaming mode. However, if you are building a direct API integration, you will need to handle these events yourself.
+Use the [client SDKs](/docs/en/api/client-sdks) when using streaming mode. However, if you are building a direct API integration, you need to handle these events yourself.
 
 A stream response is comprised of:
 1. A `message_start` event

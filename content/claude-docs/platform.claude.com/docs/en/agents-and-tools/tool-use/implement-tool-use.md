@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: aaa28bd44ffa62d1b4ccfda0a201e83a4670a86427d938c726ae3be97bab6db1
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: c86827cce3c99eb05cc475085eee221c91c6bad2f65ee0f86cff0316acb8fe8d
 ---
 
 # How to implement tool use
@@ -996,7 +996,7 @@ When using [prompt caching](/docs/en/build-with-claude/prompt-caching#what-inval
 This diagram illustrates how each option works:
 
 <Frame>
-  ![Image](/docs/images/tool_choice.png)
+  ![Diagram showing the four tool_choice options: auto, any, tool, and none](/docs/images/tool_choice.png)
 </Frame>
 
 Note that when you have `tool_choice` as `any` or `tool`, the API prefills the assistant message to force a tool to be used. This means that the models will not emit a natural language response or explanation before `tool_use` content blocks, even if explicitly asked to do so.

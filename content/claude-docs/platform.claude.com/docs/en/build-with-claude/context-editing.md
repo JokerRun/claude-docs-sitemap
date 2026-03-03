@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 2861f226dede37b5a3a1e7bd3a0c019b8df466291a5197a7d13140472456dc79
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: e8e2dae697b7c7922ee76c8dbcdc7e6ff272424730756391c8bfa2262ee76fc6
 ---
 
 # Context editing
@@ -31,7 +31,7 @@ Context editing allows you to selectively clear specific content from conversati
 ## Server-side strategies
 
 <Note>
-Context editing is currently in beta with support for tool result clearing and thinking block clearing. To enable it, use the beta header `context-management-2025-06-27` in your API requests.
+Context editing is in beta with support for tool result clearing and thinking block clearing. To enable it, use the beta header `context-management-2025-06-27` in your API requests.
 
 Share feedback on this feature through the [feedback form](https://forms.gle/YXC2EKGMhjN1c4L88).
 </Note>

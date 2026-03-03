@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 66174ccf844ef60cb9510d32069af33ca8d984b467bcd968171167123741fa5d
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: db4c034b010d738366a4f8f36078e3c14376dd1d905ece290d90ebf9d4f10bb7
 ---
 
 # Using Agent Skills with the API
@@ -71,7 +71,7 @@ Both skill sources are returned by the [List Skills endpoint](/docs/en/api/skill
 To use Skills, you need:
 
 1. **Claude API key** from the [Console](/settings/keys)
-2. **Beta headers**:
+2. **Beta headers:**
    - `code-execution-2025-08-25` - Enables code execution (required for Skills)
    - `skills-2025-10-02` - Enables Skills API
    - `files-api-2025-04-14` - For uploading/downloading files to/from container
@@ -974,18 +974,18 @@ curl -X DELETE "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrSt
 ```
 </CodeGroup>
 
-Attempting to delete a Skill with existing versions will return a 400 error.
+Attempting to delete a Skill with existing versions returns a 400 error.
 
 ### Versioning
 
 Skills support versioning to manage updates safely:
 
-**Anthropic-Managed Skills**:
+**Anthropic-Managed Skills:**
 - Versions use date format: `20251013`
 - New versions released as updates are made
 - Specify exact versions for stability
 
-**Custom Skills**:
+**Custom Skills:**
 - Auto-generated epoch timestamps: `1759178010641129`
 - Use `"latest"` to always get the most recent version
 - Create new versions when updating Skill files
@@ -1144,10 +1144,10 @@ See the [Create Skill Version API reference](/docs/en/api/skills/create-skill-ve
 
 When you specify Skills in a container:
 
-1. **Metadata Discovery**: Claude sees metadata for each Skill (name, description) in the system prompt
-2. **File Loading**: Skill files are copied into the container at `/skills/{directory}/`
-3. **Automatic Use**: Claude automatically loads and uses Skills when relevant to your request
-4. **Composition**: Multiple Skills compose together for complex workflows
+1. **Metadata Discovery:** Claude sees metadata for each Skill (name, description) in the system prompt
+2. **File Loading:** Skill files are copied into the container at `/skills/{directory}/`
+3. **Automatic Use:** Claude automatically loads and uses Skills when relevant to your request
+4. **Composition:** Multiple Skills compose together for complex workflows
 
 The progressive disclosure architecture ensures efficient context usage: Claude only loads full Skill instructions when needed.
 
@@ -1308,9 +1308,9 @@ curl https://api.anthropic.com/v1/messages \
 ## Limits and Constraints
 
 ### Request Limits
-- **Maximum Skills per request**: 8
-- **Maximum Skill upload size**: 8MB (all files combined)
-- **YAML frontmatter requirements**:
+- **Maximum Skills per request:** 8
+- **Maximum Skill upload size:** 8MB (all files combined)
+- **YAML frontmatter requirements:**
   - `name`: Maximum 64 characters, lowercase letters/numbers/hyphens only, no XML tags, no reserved words
   - `description`: Maximum 1024 characters, non-empty, no XML tags
 
@@ -1370,7 +1370,7 @@ container = {
 
 ### Prompt Caching Considerations
 
-When using prompt caching, note that changing the Skills list in your container will break the cache:
+When using prompt caching, note that changing the Skills list in your container breaks the cache:
 
 <CodeGroup>
 ```python Python

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: d54336a677a8024c6261cfe750259057809aa3a7e9b97e4d09c066f1c238d2f4
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 75fdc0bbb0850698d92d0a030e26875d5505130a778332984302784e92bcab9f
 ---
 
 # Tool use with Claude
@@ -12,8 +12,8 @@ sha256: d54336a677a8024c6261cfe750259057809aa3a7e9b97e4d09c066f1c238d2f4
 Claude is capable of interacting with tools and functions, allowing you to extend Claude's capabilities to perform a wider variety of tasks. Each tool defines a contract: you specify what operations are available and what they return; Claude decides when and how to call them. Tool access is one of the highest-leverage primitives you can give an agent. On benchmarks like [LAB-Bench FigQA](https://lab-bench.org/) (scientific figure interpretation) and [SWE-bench](https://www.swebench.com/) (real-world software engineering), adding even simple tools produces outsized capability gains, often surpassing human expert baselines.
 
 <Tip>
-  Learn everything you need to master tool use with Claude as part of the new [courses](https://anthropic.skilljar.com/)! Please
-  continue to share your ideas and suggestions using this
+  Learn everything you need to master tool use with Claude as part of the new [courses](https://anthropic.skilljar.com/). Continue
+  to share your ideas and suggestions using this
   [form](https://forms.gle/BFnYc6iCkWoRzFgk7).
 </Tip>
 

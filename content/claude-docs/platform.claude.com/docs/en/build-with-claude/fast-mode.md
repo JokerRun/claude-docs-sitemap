@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 96f60a9cfe1a18b3e353d7a0e3878cdd0e6aff0046e1d2457852f7777af09d43
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 960952047510bb593e4770554dd4c208200f7d4ee2ad3b144dacdcf64b57e191
 ---
 
 # Fast mode (research preview)
@@ -14,7 +14,7 @@ Higher output speed for Claude Opus 4.6, delivering significantly faster token g
 Fast mode provides significantly faster output token generation for Claude Opus 4.6. By setting `speed: "fast"` in your API request, you get up to 2.5x higher output tokens per second from the same model at premium pricing.
 
 <Note>
-Fast mode is currently in research preview. [Join the waitlist](https://claude.com/fast-mode) to request access. Availability is limited while we gather feedback.
+Fast mode is in research preview. [Join the waitlist](https://claude.com/fast-mode) to request access. Availability is limited while Anthropic gathers feedback.
 </Note>
 
 <Note>
@@ -358,11 +358,11 @@ message = create_message_with_fast_fallback(
 
 ## Considerations
 
-- **Prompt caching**: Switching between fast and standard speed invalidates the prompt cache. Requests at different speeds do not share cached prefixes.
-- **Supported models**: Fast mode is currently supported on Opus 4.6 only. Sending `speed: "fast"` with an unsupported model returns an error.
-- **TTFT**: Fast mode's benefits are focused on output tokens per second (OTPS), not time to first token (TTFT).
-- **Batch API**: Fast mode is not available with the [Batch API](/docs/en/build-with-claude/batch-processing).
-- **Priority Tier**: Fast mode is not available with [Priority Tier](/docs/en/api/service-tiers).
+- **Prompt caching:** Switching between fast and standard speed invalidates the prompt cache. Requests at different speeds do not share cached prefixes.
+- **Supported models:** Fast mode is currently supported on Opus 4.6 only. Sending `speed: "fast"` with an unsupported model returns an error.
+- **TTFT:** Fast mode's benefits are focused on output tokens per second (OTPS), not time to first token (TTFT).
+- **Batch API:** Fast mode is not available with the [Batch API](/docs/en/build-with-claude/batch-processing).
+- **Priority Tier:** Fast mode is not available with [Priority Tier](/docs/en/api/service-tiers).
 
 ## Next steps
 

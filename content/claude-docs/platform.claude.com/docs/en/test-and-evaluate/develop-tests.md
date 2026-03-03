@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/develop-tests
-fetched_at: 2026-02-22T04:20:57.944963Z
-sha256: 6d2ddc7e9a9b78c494675cad1310f92400e95f2da2aad6467afaec7012ee9f45
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: a6ff6e29246cd20b8550d049627667e35579f00e85d34771043fb5d281207cf5
 ---
 
 # Define success criteria and build evaluations
@@ -16,8 +16,8 @@ Building a successful LLM-based application starts with clearly defining your su
 ## Define your success criteria
 
 Good success criteria are:
-- **Specific**: Clearly define what you want to achieve. Instead of "good performance," specify "accurate sentiment classification."
-- **Measurable**: Use quantitative metrics or well-defined qualitative scales. Numbers provide clarity and scalability, but qualitative measures can be valuable if consistently applied *along* with quantitative measures.
+- **Specific:** Clearly define what you want to achieve. Instead of "good performance," specify "accurate sentiment classification."
+- **Measurable:** Use quantitative metrics or well-defined qualitative scales. Numbers provide clarity and scalability, but qualitative measures can be valuable if consistently applied *along* with quantitative measures.
     - Even "hazy" topics such as ethics and safety can be quantified:
         |      | Safety criteria                |
         | ---- | ------------------------------ |
@@ -25,23 +25,23 @@ Good success criteria are:
         | Good | Less than 0.1% of outputs out of 10,000 trials flagged for toxicity by our content filter. |
     <section title="Example metrics and measurement methods">
 
-        **Quantitative metrics**:
+        **Quantitative metrics:**
             - Task-specific: F1 score, BLEU score, perplexity
             - Generic: Accuracy, precision, recall
             - Operational: Response time (ms), uptime (%)
 
-        **Quantitative methods**:
+        **Quantitative methods:**
             - A/B testing: Compare performance against a baseline model or earlier version.
             - User feedback: Implicit measures like task completion rates.
             - Edge case analysis: Percentage of edge cases handled without errors.
 
-        **Qualitative scales**:
+        **Qualitative scales:**
             - Likert scales: "Rate coherence from 1 (nonsensical) to 5 (perfectly logical)"
             - Expert rubrics: Linguists rating translation quality on defined criteria
     
 </section>
-- **Achievable**: Base your targets on industry benchmarks, prior experiments, AI research, or expert knowledge. Your success metrics should not be unrealistic to current frontier model capabilities.
-- **Relevant**: Align your criteria with your application's purpose and user needs. Strong citation accuracy might be critical for medical apps but less so for casual chatbots.
+- **Achievable:** Base your targets on industry benchmarks, prior experiments, AI research, or expert knowledge. Your success metrics should not be unrealistic to current frontier model capabilities.
+- **Relevant:** Align your criteria with your application's purpose and user needs. Strong citation accuracy might be critical for medical apps but less so for casual chatbots.
 
 <section title="Example task fidelity criteria for sentiment analysis">
 
@@ -118,7 +118,7 @@ Most use cases will need multidimensional evaluation along several success crite
 
 ### Eval design principles
 
-1. **Be task-specific**: Design evals that mirror your real-world task distribution. Don't forget to factor in edge cases!
+1. **Be task-specific:** Design evals that mirror your real-world task distribution. Don't forget to factor in edge cases!
     <section title="Example edge cases">
 
        - Irrelevant or nonexistent input data
@@ -127,8 +127,8 @@ Most use cases will need multidimensional evaluation along several success crite
        - Ambiguous test cases where even humans would find it hard to reach an assessment consensus
     
 </section>
-2. **Automate when possible**: Structure questions to allow for automated grading (e.g., multiple-choice, string match, code-graded, LLM-graded).
-3. **Prioritize volume over quality**: More questions with slightly lower signal automated grading is better than fewer questions with high-quality human hand-graded evals.
+2. **Automate when possible:** Structure questions to allow for automated grading (e.g., multiple-choice, string match, code-graded, LLM-graded).
+3. **Prioritize volume over quality:** More questions with slightly lower signal automated grading is better than fewer questions with high-quality human hand-graded evals.
 
 ### Example evals
 
@@ -549,19 +549,19 @@ Most use cases will need multidimensional evaluation along several success crite
 
 When deciding which method to use to grade evals, choose the fastest, most reliable, most scalable method:
 
-1. **Code-based grading**: Fastest and most reliable, extremely scalable, but also lacks nuance for more complex judgements that require less rule-based rigidity.
+1. **Code-based grading:** Fastest and most reliable, extremely scalable, but also lacks nuance for more complex judgements that require less rule-based rigidity.
    - Exact match: `output == golden_answer`
    - String match: `key_phrase in output`
 
-2. **Human grading**: Most flexible and high quality, but slow and expensive. Avoid if possible.
+2. **Human grading:** Most flexible and high quality, but slow and expensive. Avoid if possible.
 
-3. **LLM-based grading**: Fast and flexible, scalable and suitable for complex judgement. Test to ensure reliability first then scale.
+3. **LLM-based grading:** Fast and flexible, scalable and suitable for complex judgement. Test to ensure reliability first then scale.
 
 ### Tips for LLM-based grading
-- **Have detailed, clear rubrics**: "The answer should always mention 'Acme Inc.' in the first sentence. If it does not, the answer is automatically graded as 'incorrect.'"
+- **Have detailed, clear rubrics:** "The answer should always mention 'Acme Inc.' in the first sentence. If it does not, the answer is automatically graded as 'incorrect.'"
     <Note>A given use case, or even a specific success criteria for that use case, might require several rubrics for holistic evaluation.</Note>
-- **Empirical or specific**: For example, instruct the LLM to output only 'correct' or 'incorrect', or to judge from a scale of 1-5. Purely qualitative evaluations are hard to assess quickly and at scale.
-- **Encourage reasoning**: Ask the LLM to think first before deciding an evaluation score, and then discard the reasoning. This increases evaluation performance, particularly for tasks requiring complex judgement.
+- **Empirical or specific:** For example, instruct the LLM to output only 'correct' or 'incorrect', or to judge from a scale of 1-5. Purely qualitative evaluations are hard to assess quickly and at scale.
+- **Encourage reasoning:** Ask the LLM to think first before deciding an evaluation score, and then discard the reasoning. This increases evaluation performance, particularly for tasks requiring complex judgement.
 
 <section title="Example: LLM-based grading">
 

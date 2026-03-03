@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: bf91388f446249d5f9a258899940a9abdd01463d04b7b1ea7b2ba935567cf008
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 423880cfa6ac7162395b04bf53b1b8f93ea8b73f7ae52fd0469953d572aafa0a
 ---
 
 # PDF support
@@ -28,7 +28,7 @@ Claude works with any standard PDF. However, you should ensure your request size
 | Maximum pages per request | 100 |
 | Format | Standard PDF (no passwords/encryption) |
 
-Please note that both limits are on the entire request payload, including any other content sent alongside PDFs.
+Both limits are on the entire request payload, including any other content sent alongside PDFs.
 
 Since PDF support relies on Claude's vision capabilities, it is subject to the same [limitations and considerations](/docs/en/build-with-claude/vision#limitations) as other vision tasks.
 
@@ -43,7 +43,7 @@ PDF support is now available on Amazon Bedrock with the following considerations
 When using PDF support through Amazon Bedrock's Converse API, there are two distinct document processing modes:
 
 <Note>
-**Important**: To access Claude's full visual PDF understanding capabilities in the Converse API, you must enable citations. Without citations enabled, the API falls back to basic text extraction only. Learn more about [working with citations](/docs/en/build-with-claude/citations).
+**Important:** To access Claude's full visual PDF understanding capabilities in the Converse API, you must enable citations. Without citations enabled, the API falls back to basic text extraction only. Learn more about [working with citations](/docs/en/build-with-claude/citations).
 </Note>
 
 #### Document Processing Modes

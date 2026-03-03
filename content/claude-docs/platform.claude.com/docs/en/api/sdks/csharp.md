@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/csharp
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: cae4df9dc55fec3b259a1786d029a92b390be7211f7897dbfad5ac26e8d540d1
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 9a882372ff1c5ae25749a93ebbcef865e632273e13570cd8aa98aefbf60c1071
 ---
 
 # C# SDK
@@ -282,7 +282,7 @@ while (true)
 
 ## Response validation
 
-In rare cases, the API may return a response that doesn't match the expected type. By default, the SDK will not throw an exception in this case. It will throw `AnthropicInvalidDataException` only if you directly access the property.
+In rare cases, the API may return a response that doesn't match the expected type. By default, the SDK does not throw an exception in this case. It throws `AnthropicInvalidDataException` only if you directly access the property.
 
 If you would prefer to check that the response is completely well-typed upfront, then either call `Validate`:
 
@@ -434,8 +434,8 @@ For detailed platform setup guides with code examples, see:
 
 The C# SDK supports Bedrock and Foundry through separate NuGet packages:
 
-- **Bedrock**: `Anthropic.Bedrock`. Uses `AnthropicBedrockClient` with `AnthropicBedrockCredentialsHelper.FromEnv()` or explicit credentials.
-- **Foundry**: `Anthropic.Foundry`. Uses `AnthropicFoundryClient` with `DefaultAnthropicFoundryCredentials.FromEnv()` or explicit credentials.
+- **Bedrock:** `Anthropic.Bedrock`. Uses `AnthropicBedrockClient` with `AnthropicBedrockCredentialsHelper.FromEnv()` or explicit credentials.
+- **Foundry:** `Anthropic.Foundry`. Uses `AnthropicFoundryClient` with `DefaultAnthropicFoundryCredentials.FromEnv()` or explicit credentials.
 
 ## Semantic versioning
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 591bc2bbca2c5ffe7603a295fc6316789a69614aed6a2736ff1646c3fd30fe07
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: ecbc3c8c927d94731ff5ee5c8aa5bc9538ed48e2b3f99192965903cef11bd6e2
 ---
 
 # Compaction
@@ -28,7 +28,7 @@ This is ideal for:
 - Task-oriented prompts that require a lot of follow-up work (often tool use) that may exceed the 200K context window
 
 <Note>
-Compaction is currently in beta. Include the [beta header](/docs/en/api/beta-headers) `compact-2026-01-12` in your API requests to use this feature.
+Compaction is in beta. Include the [beta header](/docs/en/api/beta-headers) `compact-2026-01-12` in your API requests to use this feature.
 </Note>
 
 <Note>

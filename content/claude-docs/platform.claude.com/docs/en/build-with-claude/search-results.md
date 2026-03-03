@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: d0cdea63a95694a215682a41259f23743116b68d618bfae2fb1f5373eec46700
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: b0557f6b71056c6e5daa911ef591df0b0d7fde07617895989a087d008a518f4b
 ---
 
 # Search results
@@ -646,7 +646,7 @@ By default, citations are disabled for search results. You can enable citations 
 }
 ```
 
-When `citations.enabled` is set to `true`, Claude will include citation references when using information from the search result. This enables:
+When `citations.enabled` is set to `true`, Claude includes citation references when using information from the search result. This enables:
 - Natural citations for your custom RAG applications
 - Source attribution when interfacing with proprietary knowledge bases
 - Web search-quality citations for any custom tool that returns search results
@@ -654,22 +654,22 @@ When `citations.enabled` is set to `true`, Claude will include citation referenc
 If the `citations` field is omitted, citations are disabled by default.
 
 <Warning>
-Citations are all-or-nothing: either all search results in a request must have citations enabled, or all must have them disabled. Mixing search results with different citation settings will result in an error. If you need to disable citations for some sources, you must disable them for all search results in that request.
+Citations are all-or-nothing: either all search results in a request must have citations enabled, or all must have them disabled. Mixing search results with different citation settings results in an error. If you need to disable citations for some sources, you must disable them for all search results in that request.
 </Warning>
 
 ## Best practices
 
 ### For tool-based search (Method 1)
 
-- **Dynamic content**: Use for real-time searches and dynamic RAG applications
-- **Error handling**: Return appropriate messages when searches fail
-- **Result limits**: Return only the most relevant results to avoid context overflow
+- **Dynamic content:** Use for real-time searches and dynamic RAG applications
+- **Error handling:** Return appropriate messages when searches fail
+- **Result limits:** Return only the most relevant results to avoid context overflow
 
 ### For top-level search (Method 2)
 
-- **Pre-fetched content**: Use when you already have search results
-- **Batch processing**: Ideal for processing multiple search results at once
-- **Testing**: Great for testing citation behavior with known content
+- **Pre-fetched content:** Use when you already have search results
+- **Batch processing:** Ideal for processing multiple search results at once
+- **Testing:** Great for testing citation behavior with known content
 
 ### General best practices
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/embeddings
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: e036881044dab26272e781dcf8d242a0248377c9cd47a1ea38bbb782efb3d014
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 1e2059262d151e7af9f63d7546b54a36ef089f28cef7241e4d6fac6f0db24d2a
 ---
 
 # Embeddings
@@ -244,7 +244,7 @@ If you are looking for a detailed set of cookbooks on how to do RAG with embeddi
 
   <section title="What is the relationship between characters, words, and tokens?">
 
-    Please see this [page](https://docs.voyageai.com/docs/tokenization?ref=anthropic).
+    See this [page](https://docs.voyageai.com/docs/tokenization?ref=anthropic).
   
 </section>
 

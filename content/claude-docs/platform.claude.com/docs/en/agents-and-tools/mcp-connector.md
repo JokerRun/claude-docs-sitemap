@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 8b2789c556855bc34e650f9797cc864a8b42515d62a0ab9f6530a1d716542677
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: f36f63a4210b0bacf90712cdf929f92fa09ee945ee73f4b9bc8c59da0a753ae6
 ---
 
 # MCP connector
@@ -630,7 +630,7 @@ If you're using the deprecated `mcp-client-2025-04-04` beta header, follow this 
 ## Deprecated version: mcp-client-2025-04-04
 
 <Note type="warning">
-  This version is deprecated. Please migrate to `mcp-client-2025-11-20` using the [migration guide](#migration-guide) above.
+  This version is deprecated. Migrate to `mcp-client-2025-11-20` using the [migration guide](#migration-guide) above.
 </Note>
 
 The previous version of the MCP connector included tool configuration directly in the MCP server definition:

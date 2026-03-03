@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: ec72aa889c9e6b0d4adc4bda6698fe44b071f7e43b3e025671ca56c7311a7734
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: 42b874b8ba90ebb1d46b4f1c4bafdeed410564643bf275dd5f071eed3ef7198c
 ---
 
 # Bash tool
@@ -31,10 +31,10 @@ Older tool versions are not guaranteed to be backwards-compatible with newer mod
 
 ## Use cases
 
-- **Development workflows**: Run build commands, tests, and development tools
-- **System automation**: Execute scripts, manage files, automate tasks
-- **Data processing**: Process files, run analysis scripts, manage datasets
-- **Environment setup**: Install packages, configure environments
+- **Development workflows:** Run build commands, tests, and development tools
+- **System automation:** Execute scripts, manage files, automate tasks
+- **Data processing:** Process files, run analysis scripts, manage datasets
+- **Environment setup:** Install packages, configure environments
 
 ## Quick start
 
@@ -415,11 +415,11 @@ Git serves as a structured recovery mechanism in long-running agent workflows, n
 
 ## Limitations
 
-- **No interactive commands**: Cannot handle `vim`, `less`, or password prompts
-- **No GUI applications**: Command-line only
-- **Session scope**: Persists within conversation, lost between API calls
-- **Output limits**: Large outputs may be truncated
-- **No streaming**: Results returned after completion
+- **No interactive commands:** Cannot handle `vim`, `less`, or password prompts
+- **No GUI applications:** Command-line only
+- **Session scope:** Persists within conversation, lost between API calls
+- **Output limits:** Large outputs may be truncated
+- **No streaming:** Results returned after completion
 
 ## Combining with other tools
 

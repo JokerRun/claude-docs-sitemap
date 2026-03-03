@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 4aca71f49cb4de372c53ee03fcec76a342051f0f5d5ea0ce607d956ca9e42cb8
+fetched_at: 2026-03-03T04:17:54.263687Z
+sha256: a1eb7c6e096cd93fe72e27262ccc50d562e7d597c7d9a575d07f4671d0fadd1a
 ---
 
 # Code execution tool
@@ -16,7 +16,7 @@ Claude can analyze data, create visualizations, perform complex calculations, ru
 Code execution is a core primitive for building high-performance agents. It enables dynamic filtering in web search and web fetch tools, allowing Claude to process results before they reach the context window—improving accuracy while reducing token consumption.
 
 <Note>
-Please reach out through our [feedback form](https://forms.gle/LTAU6Xn2puCJMi1n6) to share your feedback on this feature.
+Reach out through the [feedback form](https://forms.gle/LTAU6Xn2puCJMi1n6) to share your feedback on this feature.
 </Note>
 
 <Note>
