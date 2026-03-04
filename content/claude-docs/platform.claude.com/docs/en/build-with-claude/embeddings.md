@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/embeddings
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: 1e2059262d151e7af9f63d7546b54a36ef089f28cef7241e4d6fac6f0db24d2a
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 1e94a92de3d5332b1bebf9de4f9b2c250fc216a3b535038081a42231e831a3d0
 ---
 
 # Embeddings
@@ -72,7 +72,7 @@ pip install -U voyageai
 
 Then, you can create a client object and start using it to embed your texts:
 
-```python
+```python nocheck
 import voyageai
 
 vo = voyageai.Client()
@@ -145,7 +145,7 @@ The following brief example shows how to use embeddings.
 
 Suppose you have a small corpus of six documents to retrieve from
 
-```python
+```python nocheck
 documents = [
     "The Mediterranean diet emphasizes fish, olive oil, and vegetables, believed to reduce chronic diseases.",
     "Photosynthesis in plants converts light energy into glucose and produces essential oxygen.",
@@ -158,7 +158,7 @@ documents = [
 
 First, use Voyage to convert each document into an embedding vector
 
-```python
+```python nocheck
 import voyageai
 
 vo = voyageai.Client()
@@ -175,7 +175,7 @@ query = "When is Apple's conference call scheduled?"
 
 Next, convert it into an embedding and conduct a nearest neighbor search to find the most relevant document based on the distance in the embedding space.
 
-```python
+```python nocheck
 import numpy as np
 
 # Embed the query
@@ -286,7 +286,8 @@ If you are looking for a detailed set of cookbooks on how to do RAG with embeddi
 
     Matryoshka learning creates embeddings with coarse-to-fine representations within a single vector. Voyage models, such as `voyage-code-3`, that support multiple output dimensions generate such Matryoshka embeddings. You can truncate these vectors by keeping the leading subset of dimensions. For example, the following Python code demonstrates how to truncate 1024-dimensional vectors to 256 dimensions:
 
-    ```python
+    
+    ```python nocheck
     import voyageai
     import numpy as np
 

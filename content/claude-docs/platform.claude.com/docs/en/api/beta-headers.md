@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 2d3a6f68d35839940c4d9c97e4429f9444f8a38ba9ea2474336c281f7922bd85
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: e5d3e5020ee855f39edc937008e6f47741eb79429c849b3ea2a890f338c96825
 ---
 
 # Beta headers
@@ -47,7 +47,7 @@ response = client.beta.messages.create(
 )
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();

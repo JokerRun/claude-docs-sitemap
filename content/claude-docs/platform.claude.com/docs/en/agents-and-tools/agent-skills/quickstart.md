@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: de10e4f92fc2a1796e6a1f00385a56ea7514b5f139d75e1a7b9010d0bc594cb0
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 47ecf633a76850b8c3499b2b0c0292372a68382a392dcbb0dfd05d0bfa42885f
 ---
 
 # Get started with Agent Skills in the API
@@ -49,7 +49,7 @@ for skill in skills.data:
     print(f"{skill.id}: {skill.display_title}")
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -82,7 +82,7 @@ This API returns each Skill's metadata: its name and description. Claude loads t
 Now use the PowerPoint Skill to create a presentation about renewable energy. Specify Skills using the `container` parameter in the Messages API:
 
 <CodeGroup>
-```python Python
+```python Python hidelines={1..4,-1}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -107,7 +107,7 @@ response = client.beta.messages.create(
 print(response.content)
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -189,7 +189,11 @@ When you make this request, Claude automatically matches your task to the releva
 The presentation was created in the code execution container and saved as a file. The response includes a file reference with a file ID. Extract the file ID and download it using the Files API:
 
 <CodeGroup>
-```python Python
+
+```python Python nocheck
+from typing import Any
+
+response: Any = None
 # Extract file ID from response
 file_id = None
 for block in response.content:
@@ -213,7 +217,7 @@ if file_id:
     print(f"Presentation saved to renewable_energy.pptx")
 ```
 
-```typescript TypeScript
+```typescript TypeScript nocheck
 // Extract file ID from response
 let fileId: string | null = null;
 for (const block of response.content) {

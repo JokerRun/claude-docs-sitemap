@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/typescript
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: 7ab9c7b7fee044a6cc3940a999d05d99a8b85e2ad8d0d2cc8f8152eb97a106c5
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 96407e03506b3513a431d1ce4bdeda7ed671301b1d0f5cf3d797152448e42d8a
 ---
 
 # TypeScript SDK
@@ -44,7 +44,7 @@ If you are interested in other runtime environments, please open or upvote an is
 
 ## Usage
 
-```typescript
+```typescript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -64,7 +64,7 @@ console.log(message.content);
 
 This library includes TypeScript definitions for all request params and response fields. You may import and use them like so:
 
-```typescript
+```typescript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -95,7 +95,7 @@ console.log(message.usage);
 
 The SDK provides support for streaming responses using Server Sent Events (SSE).
 
-```typescript
+```typescript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -117,7 +117,7 @@ If you need to cancel a stream, you can `break` from the loop or call `stream.co
 
 This library provides several conveniences for streaming messages, for example:
 
-```typescript
+```typescript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -155,7 +155,7 @@ This SDK provides helpers for making it easy to create and run tools in the Mess
 
 For more details on tool use, see the [tool use overview](/docs/en/agents-and-tools/tool-use/overview).
 
-```typescript
+```typescript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
@@ -186,7 +186,7 @@ const finalMessage = await anthropic.beta.messages.toolRunner({
 
 To report an error from a tool back to the model, throw a `ToolError` from the `run` function. Unlike a plain `Error`, `ToolError` accepts content blocks, allowing you to include images or other structured content in the error response:
 
-```typescript
+```typescript nocheck
 import { ToolError } from "@anthropic-ai/sdk/lib/tools/BetaRunnableTool";
 
 const screenshotTool = betaZodTool({
@@ -231,7 +231,7 @@ The Claude API also supports an [`mcp_servers` parameter](/docs/en/agents-and-to
 
 For the Claude API's built-in remote MCP server support, see [MCP Connector](/docs/en/agents-and-tools/mcp-connector).
 
-```typescript
+```typescript nocheck hidelines={1}
 import Anthropic from "@anthropic-ai/sdk";
 import {
   mcpTools,
@@ -300,7 +300,7 @@ This SDK provides support for the [Message Batches API](/docs/en/build-with-clau
 Message Batches takes an array of requests, where each object has a `custom_id` identifier, and the exact same request `params` as the standard Messages API:
 
 ```typescript
-await anthropic.messages.batches.create({
+await client.messages.batches.create({
   requests: [
     {
       custom_id: "my-first-request",
@@ -326,8 +326,8 @@ await anthropic.messages.batches.create({
 
 Once a Message Batch has been processed, indicated by `.processing_status === 'ended'`, you can access the results with `.batches.results()`
 
-```typescript
-const results = await anthropic.messages.batches.results(batch_id);
+```typescript nocheck
+const results = await client.messages.batches.results(batch_id);
 for await (const entry of results) {
   if (entry.result.type === "succeeded") {
     console.log(entry.result.message.content);
@@ -346,7 +346,7 @@ Request parameters that correspond to file uploads can be passed in many differe
 
 Set the content-type explicitly as the files API will not infer it for you:
 
-```typescript
+```typescript nocheck
 import fs from "fs";
 import Anthropic, { toFile } from "@anthropic-ai/sdk";
 
@@ -388,7 +388,7 @@ When the library is unable to connect to the API,
 or if the API returns a non-success status code (i.e., 4xx or 5xx response),
 a subclass of `APIError` will be thrown:
 
-```typescript
+```typescript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -468,7 +468,7 @@ await client.messages.create(
 By default requests time out after 10 minutes. However if you have specified a large `max_tokens` value and are
 _not_ streaming, the default timeout will be calculated dynamically using the formula:
 
-```typescript
+```typescript nocheck
 const minimum = 10 * 60;
 const calculated = (60 * 60 * maxTokens) / 128_000;
 return calculated < minimum ? minimum * 1000 : calculated * 1000;
@@ -525,7 +525,7 @@ List methods in the Claude API are paginated.
 You can use the `for await ... of` syntax to iterate through items across all pages:
 
 ```typescript
-async function fetchAllMessageBatches(params) {
+async function fetchAllMessageBatches(params: Record<string, unknown>) {
   const allMessageBatches = [];
   // Automatically fetches more pages as needed.
   for await (const messageBatch of client.messages.batches.list({ limit: 20 })) {
@@ -558,7 +558,7 @@ If you need to, you can override it by setting default headers on a per-request 
 
 Be aware that doing so may result in incorrect types and other unexpected or undefined behavior in the SDK.
 
-```typescript
+```typescript nocheck hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -583,7 +583,7 @@ This method returns as soon as the headers for a successful response are receive
 You can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.
 Unlike `.asResponse()` this method consumes the body, returning once it is parsed.
 
-```typescript
+```typescript hidelines={1..2}
 const client = new Anthropic();
 
 const response = await client.messages
@@ -649,7 +649,7 @@ Most logging libraries are supported, including [pino](https://www.npmjs.com/pac
 When providing a custom logger, the `logLevel` option still controls which messages are emitted, messages
 below the configured level will not be sent to your logger.
 
-```typescript
+```typescript nocheck hidelines={1}
 import Anthropic from "@anthropic-ai/sdk";
 import pino from "pino";
 
@@ -671,7 +671,7 @@ endpoints, params, or response properties, the library can still be used.
 To make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs.
 Options on the client, such as retries, will be respected when making these requests.
 
-```typescript
+```typescript nocheck
 await client.post("/some/path", {
   body: { some_prop: "foo" },
   query: { some_query_arg: "bar" }
@@ -710,7 +710,7 @@ By default, this library expects a global `fetch` function is defined.
 
 If you want to use a different `fetch` function, you can either polyfill the global:
 
-```typescript
+```typescript nocheck
 import fetch from "my-fetch";
 
 globalThis.fetch = fetch;
@@ -718,7 +718,7 @@ globalThis.fetch = fetch;
 
 Or pass it to the client:
 
-```typescript
+```typescript nocheck
 import Anthropic from "@anthropic-ai/sdk";
 import fetch from "my-fetch";
 
@@ -729,7 +729,7 @@ const client = new Anthropic({ fetch });
 
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
-```typescript
+```typescript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -746,7 +746,8 @@ options to requests:
 
 <Tabs>
 <Tab title="Node.js">
-```typescript
+
+```typescript nocheck hidelines={1}
 import Anthropic from "@anthropic-ai/sdk";
 import * as undici from "undici";
 
@@ -759,7 +760,8 @@ const client = new Anthropic({
 ```
 </Tab>
 <Tab title="Bun">
-```typescript
+
+```typescript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -770,7 +772,8 @@ const client = new Anthropic({
 ```
 </Tab>
 <Tab title="Deno">
-```typescript
+
+```typescript nocheck
 import Anthropic from "npm:@anthropic-ai/sdk";
 
 const httpClient = Deno.createHttpClient({ proxy: { url: "http://localhost:8888" } });
@@ -791,7 +794,7 @@ You can access most beta API features through the beta property of the client. T
 
 For example, to use the [Files API](/docs/en/build-with-claude/files):
 
-```typescript
+```typescript nocheck hidelines={1..3}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();

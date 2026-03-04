@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: 0a0a854f514f09d2dd2d0f2fa08627d11d52bf60edf1502607fc987a9c0f2288
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: f6524f29a417d4393a19572ffd1e427b58e83617d9746e41532943359033a031
 ---
 
 # Text editor tool
@@ -96,7 +96,7 @@ response = client.messages.create(
 )
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -176,7 +176,7 @@ curl https://api.anthropic.com/v1/messages \
   }'
 ```
 
-```python Python
+```python Python nocheck
 import anthropic
 
 client = anthropic.Anthropic()
@@ -194,7 +194,7 @@ response = client.messages.create(
 )
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -466,7 +466,7 @@ curl https://api.anthropic.com/v1/messages \
   }'
 ```
 
-```python Python
+```python Python hidelines={1..4}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -484,7 +484,7 @@ response = client.messages.create(
 )
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -655,7 +655,7 @@ response = client.messages.create(
 )
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -960,7 +960,7 @@ This example demonstrates how Claude Sonnet 3.7 uses the text editor tool to fix
 
 First, your application provides Claude with the text editor tool and a prompt to fix a syntax error:
 
-```python
+```python nocheck hidelines={1..4,-1}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -1002,7 +1002,8 @@ The tool type depends on the model version:
   </Step>
   <Step title="Handle editor tool calls">
     Create a function that processes tool calls from Claude based on the command type:
-    ```python
+    
+    ```python nocheck
     def handle_editor_tool(tool_call, model_version):
         input_params = tool_call.input
         command = input_params.get("command", "")
@@ -1037,7 +1038,8 @@ The tool type depends on the model version:
   </Step>
   <Step title="Process Claude's responses">
     Extract and handle tool calls from Claude's responses:
-    ```python
+    
+    ```python nocheck
     # Process tool use in Claude's response
     for content in response.content:
         if content.type == "tool_use":
@@ -1173,7 +1175,7 @@ Specify file paths clearly when needed, especially if you're working with multip
 
 Implement a backup system in your application that creates copies of files before allowing Claude to edit them, especially for important or production code.
 
-```python
+```python nocheck
 def backup_file(file_path):
     """Create a backup of a file before editing."""
     backup_path = f"{file_path}.backup"

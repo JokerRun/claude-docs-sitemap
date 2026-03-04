@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: a34583934479ced8b68378e76302eef047eddb6c62c018669c96701e6701ac4a
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 9b3c7d3538869a05bef2f8151ffa30bff5a778305db7985457cf2ac266c43d0d
 ---
 
 # Prompt caching
@@ -63,7 +63,7 @@ response = client.messages.create(
 print(response.usage.model_dump_json())
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -82,6 +82,40 @@ const response = await client.messages.create({
   ]
 });
 console.log(response.usage);
+```
+
+```csharp C# hidelines={1..8,-1}
+using System;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        AnthropicClient client = new();
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 1024,
+            CacheControl = new CacheControlEphemeral(),
+            System = "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.",
+            Messages =
+            [
+                new()
+                {
+                    Role = Role.User,
+                    Content = "Analyze the major themes in 'Pride and Prejudice'."
+                }
+            ]
+        };
+
+        var message = await client.Messages.Create(parameters);
+        Console.WriteLine(message.Usage);
+    }
+}
 ```
 
 ```java Java
@@ -218,7 +252,7 @@ curl https://api.anthropic.com/v1/messages \
   }'
 ```
 
-```python Python
+```python Python hidelines={1..4,-1}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -240,7 +274,7 @@ response = client.messages.create(
 print(response.usage.model_dump_json())
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -694,7 +728,7 @@ curl https://api.anthropic.com/v1/messages \
 }'
 ```
 
-```python Python
+```python Python hidelines={1..4,-1}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -723,7 +757,7 @@ response = client.messages.create(
 print(response.model_dump_json())
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -750,6 +784,54 @@ const response = await client.messages.create({
   ]
 });
 console.log(response);
+```
+
+```csharp C#
+using System;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        AnthropicClient client = new()
+        {
+            ApiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")
+        };
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 1024,
+            System = new MessageCreateParamsSystem(new List<TextBlockParam>
+            {
+                new TextBlockParam()
+                {
+                    Text = "You are an AI assistant tasked with analyzing legal documents.",
+                },
+                new TextBlockParam()
+                {
+                    Text = "Here is the full text of a complex legal agreement: [Insert full text of a 50-page legal agreement here]",
+                    CacheControl = new CacheControlEphemeral(),
+                },
+            }),
+            Messages =
+            [
+                new()
+                {
+                    Role = Role.User,
+                    Content = "What are the key terms and conditions in this agreement?"
+                }
+            ]
+        };
+
+        var message = await client.Messages.Create(parameters);
+        Console.WriteLine(message);
+    }
+}
 ```
 
 ```java Java
@@ -864,7 +946,7 @@ curl https://api.anthropic.com/v1/messages \
 }'
 ```
 
-```python Python
+```python Python hidelines={1..4,-1}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -914,7 +996,7 @@ response = client.messages.create(
 print(response.model_dump_json())
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -922,7 +1004,7 @@ const client = new Anthropic();
 const response = await client.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
-  tools = [
+  tools: [
     {
       name: "get_weather",
       description: "Get the current weather in a given location",
@@ -967,6 +1049,69 @@ const response = await client.messages.create({
   ]
 });
 console.log(response);
+```
+
+```csharp C#
+using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        AnthropicClient client = new()
+        {
+            ApiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")
+        };
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 1024,
+            Tools =
+            [
+                new ToolUnion(new Tool()
+                {
+                    Name = "get_weather",
+                    Description = "Get the current weather in a given location",
+                    InputSchema = new InputSchema()
+                    {
+                        Properties = new Dictionary<string, JsonElement>
+                        {
+                            ["location"] = JsonSerializer.SerializeToElement(new { type = "string", description = "The city and state, e.g. San Francisco, CA" }),
+                            ["unit"] = JsonSerializer.SerializeToElement(new { type = "string", @enum = new[] { "celsius", "fahrenheit" }, description = "The unit of temperature, either celsius or fahrenheit" }),
+                        },
+                        Required = ["location"],
+                    },
+                }),
+                new ToolUnion(new Tool()
+                {
+                    Name = "get_time",
+                    Description = "Get the current time in a given time zone",
+                    InputSchema = new InputSchema()
+                    {
+                        Properties = new Dictionary<string, JsonElement>
+                        {
+                            ["timezone"] = JsonSerializer.SerializeToElement(new { type = "string", description = "The IANA time zone name, e.g. America/Los_Angeles" }),
+                        },
+                        Required = ["timezone"],
+                    },
+                    CacheControl = new CacheControlEphemeral(),
+                }),
+            ],
+            Messages =
+            [
+                new() { Role = Role.User, Content = "What is the weather and time in New York?" }
+            ]
+        };
+
+        var message = await client.Messages.Create(parameters);
+        Console.WriteLine(message);
+    }
+}
 ```
 
 ```java Java
@@ -1132,7 +1277,7 @@ curl https://api.anthropic.com/v1/messages \
 }'
 ```
 
-```python Python
+```python Python hidelines={1..4,-1}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -1178,7 +1323,7 @@ response = client.messages.create(
 print(response.model_dump_json())
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -1186,14 +1331,14 @@ const client = new Anthropic();
 const response = await client.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
-  system = [
+  system: [
     {
       type: "text",
       text: "...long system prompt",
       cache_control: { type: "ephemeral" }
     }
   ],
-  messages = [
+  messages: [
     // ...long conversation so far
     {
       role: "user",
@@ -1226,6 +1371,60 @@ const response = await client.messages.create({
   ]
 });
 console.log(response);
+```
+
+```csharp C#
+using Anthropic;
+using Anthropic.Models.Messages;
+using System.Collections.Generic;
+
+AnthropicClient client = new();
+
+var parameters = new MessageCreateParams
+{
+    Model = Model.ClaudeOpus4_6,
+    MaxTokens = 1024,
+    System = new MessageCreateParamsSystem(new List<TextBlockParam>
+    {
+        new TextBlockParam()
+        {
+            Text = "...long system prompt",
+            CacheControl = new CacheControlEphemeral(),
+        },
+    }),
+    Messages =
+    [
+        new()
+        {
+            Role = Role.User,
+            Content = new MessageParamContent(new List<ContentBlockParam>
+            {
+                new ContentBlockParam(new TextBlockParam("Hello, can you tell me more about the solar system?")),
+            }),
+        },
+        new()
+        {
+            Role = Role.Assistant,
+            Content = "Certainly! The solar system is the collection of celestial bodies that orbit our Sun. It consists of eight planets, numerous moons, asteroids, comets, and other objects. The planets, in order from closest to farthest from the Sun, are: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. Each planet has its own unique characteristics and features. Is there a specific aspect of the solar system you would like to know more about?"
+        },
+        new()
+        {
+            Role = Role.User,
+            Content = new MessageParamContent(new List<ContentBlockParam>
+            {
+                new ContentBlockParam(new TextBlockParam("Good to know.")),
+                new ContentBlockParam(new TextBlockParam()
+                {
+                    Text = "Tell me more about Mars.",
+                    CacheControl = new CacheControlEphemeral(),
+                }),
+            })
+        }
+    ]
+};
+
+var message = await client.Messages.Create(parameters);
+Console.WriteLine(message);
 ```
 
 ```java Java
@@ -1402,7 +1601,7 @@ curl https://api.anthropic.com/v1/messages \
 }'
 ```
 
-```python Python
+```python Python hidelines={1..4,-1}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -1497,7 +1696,7 @@ response = client.messages.create(
 print(response.model_dump_json())
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -1597,6 +1796,124 @@ const response = await client.messages.create({
   ]
 });
 console.log(response);
+```
+
+```csharp C#
+using System;
+using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        AnthropicClient client = new()
+        {
+            ApiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")
+        };
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 1024,
+            Tools =
+            [
+                new ToolUnion(new Tool()
+                {
+                    Name = "search_documents",
+                    Description = "Search through the knowledge base",
+                    InputSchema = new InputSchema()
+                    {
+                        Properties = new Dictionary<string, JsonElement>
+                        {
+                            ["query"] = JsonSerializer.SerializeToElement(new { type = "string", description = "Search query" }),
+                        },
+                        Required = ["query"],
+                    },
+                }),
+                new ToolUnion(new Tool()
+                {
+                    Name = "get_document",
+                    Description = "Retrieve a specific document by ID",
+                    InputSchema = new InputSchema()
+                    {
+                        Properties = new Dictionary<string, JsonElement>
+                        {
+                            ["doc_id"] = JsonSerializer.SerializeToElement(new { type = "string", description = "Document ID" }),
+                        },
+                        Required = ["doc_id"],
+                    },
+                    CacheControl = new CacheControlEphemeral(),
+                }),
+            ],
+            System = new MessageCreateParamsSystem(new List<TextBlockParam>
+            {
+                new TextBlockParam()
+                {
+                    Text = "You are a helpful research assistant with access to a document knowledge base.\n\n# Instructions\n- Always search for relevant documents before answering\n- Provide citations for your sources\n- Be objective and accurate in your responses\n- If multiple documents contain relevant information, synthesize them\n- Acknowledge when information is not available in the knowledge base",
+                    CacheControl = new CacheControlEphemeral(),
+                },
+                new TextBlockParam()
+                {
+                    Text = "# Knowledge Base Context\n\nHere are the relevant documents for this conversation:\n\n## Document 1: Solar System Overview\nThe solar system consists of the Sun and all objects that orbit it...\n\n## Document 2: Planetary Characteristics\nEach planet has unique features. Mercury is the smallest planet...\n\n## Document 3: Mars Exploration\nMars has been a target of exploration for decades...\n\n[Additional documents...]",
+                    CacheControl = new CacheControlEphemeral(),
+                },
+            }),
+            Messages =
+            [
+                new() { Role = Role.User, Content = "Can you search for information about Mars rovers?" },
+                new()
+                {
+                    Role = Role.Assistant,
+                    Content = new MessageParamContent(new List<ContentBlockParam>
+                    {
+                        new ContentBlockParam(new ToolUseBlockParam()
+                        {
+                            Id = "tool_1",
+                            Name = "search_documents",
+                            Input = JsonSerializer.SerializeToElement(new { query = "Mars rovers" }),
+                        }),
+                    }),
+                },
+                new()
+                {
+                    Role = Role.User,
+                    Content = new MessageParamContent(new List<ContentBlockParam>
+                    {
+                        new ContentBlockParam(new ToolResultBlockParam()
+                        {
+                            ToolUseID = "tool_1",
+                            Content = "Found 3 relevant documents: Document 3 (Mars Exploration), Document 7 (Rover Technology), Document 9 (Mission History)",
+                        }),
+                    }),
+                },
+                new()
+                {
+                    Role = Role.Assistant,
+                    Content = "I found 3 relevant documents about Mars rovers. Let me get more details from the Mars Exploration document.",
+                },
+                new()
+                {
+                    Role = Role.User,
+                    Content = new MessageParamContent(new List<ContentBlockParam>
+                    {
+                        new ContentBlockParam(new TextBlockParam()
+                        {
+                            Text = "Yes, please tell me about the Perseverance rover specifically.",
+                            CacheControl = new CacheControlEphemeral(),
+                        }),
+                    }),
+                },
+            ]
+        };
+
+        var message = await client.Messages.Create(parameters);
+        Console.WriteLine(message);
+    }
+}
 ```
 
 ```java Java
@@ -1922,11 +2239,52 @@ Note: Starting February 5, 2026, caches will be isolated per workspace instead o
       ```python
       client.beta.prompt_caching.messages.create(**params)
       ```
+      
+      ```typescript TypeScript nocheck hidelines={1..4}
+      import Anthropic from "@anthropic-ai/sdk";
+
+      const client = new Anthropic();
+
+      const response = await client.beta.promptCaching.messages.create({
+        model: "claude-opus-4-6",
+        max_tokens: 1024,
+        system: [
+          {
+            type: "text",
+            text: "You are an expert on this large document...",
+            cache_control: { type: "ephemeral" }
+          }
+        ],
+        messages: [{ role: "user", content: "Summarize the key points" }]
+      });
+
+      console.log(response);
+      ```
     </CodeGroup>
     Simply use:
     <CodeGroup>
       ```python
       client.messages.create(**params)
+      ```
+      ```typescript TypeScript hidelines={1..4}
+      import Anthropic from "@anthropic-ai/sdk";
+
+      const client = new Anthropic();
+
+      const response = await client.messages.create({
+        model: "claude-opus-4-6",
+        max_tokens: 1024,
+        system: [
+          {
+            type: "text",
+            text: "You are an expert on this large document...",
+            cache_control: { type: "ephemeral" }
+          }
+        ],
+        messages: [{ role: "user", content: "Summarize the key points" }]
+      });
+
+      console.log(response);
       ```
     </CodeGroup>
   

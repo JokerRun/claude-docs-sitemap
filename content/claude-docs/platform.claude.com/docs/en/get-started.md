@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: a6db6bb73c4e8e8647b7510264dd6d792f7f8fe3ec534f24d4ae612bd3a47720
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: c3b12160f0d86957dc57fac69635aac52847f111a5e23c345964f011dee3b756
 ---
 
 # Get started with Claude
@@ -152,27 +152,27 @@ Make your first API call to Claude and build a simple web search assistant.
       <Step title="Create your code">
         Save this as `quickstart.ts`:
 
-        ```typescript
-        import Anthropic from "@anthropic-ai/sdk";
+```typescript
+import Anthropic from "@anthropic-ai/sdk";
 
-        async function main() {
-          const anthropic = new Anthropic();
+async function main() {
+  const anthropic = new Anthropic();
 
-          const msg = await anthropic.messages.create({
-            model: "claude-opus-4-6",
-            max_tokens: 1000,
-            messages: [
-              {
-                role: "user",
-                content:
-                  "What should I search for to find the latest developments in renewable energy?"
-              }
-            ]
-          });
-          console.log(msg);
-        }
+  const msg = await anthropic.messages.create({
+    model: "claude-opus-4-6",
+    max_tokens: 1000,
+    messages: [
+      {
+        role: "user",
+        content:
+          "What should I search for to find the latest developments in renewable energy?"
+      }
+    ]
+  });
+  console.log(msg);
+}
 
-        main().catch(console.error);
+main().catch(console.error);
         ```
       </Step>
 

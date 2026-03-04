@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-02-28T03:57:25.349641Z
-sha256: 84d6ae201ec26729cdc188adfeef3c4b35c44e9785e8f176fbd13aa8afa5f0c0
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: fad1176c430533b078df3904cdcb5f1a8305024cce919e96c1f807dafe269085
 ---
 
 # Agent SDK reference - Python
@@ -558,7 +558,7 @@ class ClaudeAgentOptions:
 | Property                      | Type                                         | Default              | Description                                                                                                                                                                             |
 | :---------------------------- | :------------------------------------------- | :------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `tools`                       | `list[str] \| ToolsPreset \| None`           | `None`               | Tools configuration. Use `{"type": "preset", "preset": "claude_code"}` for Claude Code's default tools                                                                                  |
-| `allowed_tools`               | `list[str]`                                  | `[]`                 | List of allowed tool names                                                                                                                                                              |
+| `allowed_tools`               | `list[str]`                                  | `[]`                 | Tools to auto-approve without prompting. This does not restrict Claude to only these tools; unlisted tools fall through to `permission_mode` and `can_use_tool`. Use `disallowed_tools` to block tools. See [Permissions](/docs/en/agent-sdk/permissions#allow-and-deny-rules) |
 | `system_prompt`               | `str \| SystemPromptPreset \| None`          | `None`               | System prompt configuration. Pass a string for custom prompt, or use `{"type": "preset", "preset": "claude_code"}` for Claude Code's system prompt. Add `"append"` to extend the preset |
 | `mcp_servers`                 | `dict[str, McpServerConfig] \| str \| Path`  | `{}`                 | MCP server configurations or path to config file                                                                                                                                        |
 | `permission_mode`             | `PermissionMode \| None`                     | `None`               | Permission mode for tool usage                                                                                                                                                          |
@@ -566,7 +566,7 @@ class ClaudeAgentOptions:
 | `resume`                      | `str \| None`                                | `None`               | Session ID to resume                                                                                                                                                                    |
 | `max_turns`                   | `int \| None`                                | `None`               | Maximum conversation turns                                                                                                                                                              |
 | `max_budget_usd`              | `float \| None`                              | `None`               | Maximum budget in USD for the session                                                                                                                                                   |
-| `disallowed_tools`            | `list[str]`                                  | `[]`                 | List of disallowed tool names                                                                                                                                                           |
+| `disallowed_tools`            | `list[str]`                                  | `[]`                 | Tools to always deny. Deny rules are checked first and override `allowed_tools` and `permission_mode` (including `bypassPermissions`)                                                   |
 | `enable_file_checkpointing`   | `bool`                                       | `False`              | Enable file change tracking for rewinding. See [File checkpointing](/docs/en/agent-sdk/file-checkpointing)                                                                              |
 | `model`                       | `str \| None`                                | `None`               | Claude model to use                                                                                                                                                                     |
 | `fallback_model`              | `str \| None`                                | `None`               | Fallback model to use if the primary model fails                                                                                                                                        |

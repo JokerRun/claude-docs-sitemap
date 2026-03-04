@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/overview
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: fb4a56885744a8aa0b85ee039e67e891f596491a1671535eab07e172eaaff695
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 280026320e987d90bf5e4f2fbceb49e77f3fed6581d06afc38d1645bc25d2d8d
 ---
 
 <h2}>
@@ -63,10 +63,6 @@ sha256: fb4a56885744a8aa0b85ee039e67e891f596491a1671535eab07e172eaaff695
 
     <Card title="Cookbook" icon="fork-knife" href="https://platform.claude.com/cookbooks">
       Replicable code samples and implementations.
-    </Card>
-
-    <Card title="Prompt library" icon="book" href="/docs/en/resources/prompt-library/library">
-      Explore optimized prompts for a breadth of business and personal tasks.
     </Card>
 
     <Card title="Use case guides" icon="compass" href="/docs/en/about-claude/use-case-guides/overview">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/data-residency
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: c7c0530a37e444b2a25cfbdd681583d060a49d96af5a40e92cc62e0ba5b01545
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 4b84f1d51239a9f5f9dd8d17af5d8057fbf63bc77e015b606f7a8e2ded5a32ac
 ---
 
 # Data residency
@@ -63,7 +63,7 @@ print(response.content[0].text)
 print(f"Inference geo: {response.usage.inference_geo}")
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -80,7 +80,10 @@ const response = await client.messages.create({
   ]
 });
 
-console.log(response.content[0].text);
+const textBlock = response.content.find(
+  (block): block is Anthropic.TextBlock => block.type === "text"
+);
+console.log(textBlock?.text);
 // Check where inference actually ran
 console.log(`Inference geo: ${response.usage.inference_geo}`);
 ```

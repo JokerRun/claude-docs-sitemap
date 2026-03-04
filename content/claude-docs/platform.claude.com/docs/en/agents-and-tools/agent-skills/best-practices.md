@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: 4200dfe1a5d13bb7ab282a3d23ed28907ae1c7a4bc9ff4db33bcb024e88270a1
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: a18fc6d0b3d803da50de339176bfc6a147f3bec350292bbd7f821899af5a18f3
 ---
 
 # Skill authoring best practices
@@ -846,7 +846,8 @@ The sections below focus on Skills that include executable scripts. If your Skil
 When writing scripts for Skills, handle error conditions rather than punting to Claude.
 
 **Good example: Handle errors explicitly:**
-```python
+
+```python nocheck
 def process_file(path):
     """Process a file, creating it if it doesn't exist."""
     try:
@@ -865,7 +866,8 @@ def process_file(path):
 ```
 
 **Bad example: Punt to Claude:**
-```python
+
+```python nocheck
 def process_file(path):
     # Just fail and let Claude figure it out
     return open(path).read()
@@ -874,7 +876,8 @@ def process_file(path):
 Configuration parameters should also be justified and documented to avoid "voodoo constants" (Ousterhout's law). If you don't know the right value, how will Claude determine it?
 
 **Good example: Self-documenting:**
-```python
+
+```python nocheck
 # HTTP requests typically complete within 30 seconds
 # Longer timeout accounts for slow connections
 REQUEST_TIMEOUT = 30
@@ -885,7 +888,8 @@ MAX_RETRIES = 3
 ```
 
 **Bad example: Magic numbers:**
-```python
+
+```python nocheck
 TIMEOUT = 47  # Why 47?
 RETRIES = 5  # Why 5?
 ```

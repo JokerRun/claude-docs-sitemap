@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 635b4dde6310e2605ccef0bf44378a3084b60a886529fd630d11446be6cc4f20
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: bf9ee08271243b469e24042296572fe11b6876318a8a0cb3cd6788a92292d51a
 ---
 
 # Streaming refusals
@@ -75,7 +75,7 @@ if echo "$response" | grep -q '"stop_reason":"refusal"'; then
 fi
 ```
 
-```python Python
+```python Python hidelines={1..4}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -105,7 +105,7 @@ except Exception as e:
     print(f"Error: {e}")
 ```
 
-```typescript TypeScript
+```typescript TypeScript nocheck hidelines={1..3}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -133,6 +133,53 @@ try {
   }
 } catch (error) {
   console.error("Error:", error);
+}
+```
+
+```csharp C# nocheck
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+class Program
+{
+    private static List<Message> messages = new();
+
+    static async Task Main(string[] args)
+    {
+        AnthropicClient client = new();
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeSonnet4_6,
+            MaxTokens = 1024,
+            Messages = [new() { Role = Role.User, Content = "Hello" }]
+        };
+
+        try
+        {
+            await foreach (var msg in client.Messages.CreateStreaming(parameters))
+            {
+                if (msg.Type == "message_delta" && msg.Delta?.StopReason == "refusal")
+                {
+                    ResetConversation();
+                    break;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error: {e.Message}");
+        }
+    }
+
+    private static void ResetConversation()
+    {
+        messages.Clear();
+        Console.WriteLine("Conversation reset due to refusal");
+    }
 }
 ```
 </CodeGroup>

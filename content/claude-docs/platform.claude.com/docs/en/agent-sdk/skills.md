@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 4771d69e12d163ad4b09369e0fe20be0998ecb4e4a072ccb72b0360d689c8829
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 1d2fa2919901165816457ebb4bf51207a14b9e5286325221265fb85d7ba7cc5c
 ---
 
 # Agent Skills in the SDK
@@ -112,7 +112,7 @@ The `allowed-tools` frontmatter field in SKILL.md is only supported when using C
 When using the SDK, control tool access through the main `allowedTools` option in your query configuration.
 </Note>
 
-To restrict tools for Skills in SDK applications, use the `allowedTools` option:
+To control tool access for Skills in SDK applications, use `allowedTools` to pre-approve specific tools. Without a `canUseTool` callback, anything not in the list is denied:
 
 <Note>
 Import statements from the first example are assumed in the following code snippets.
@@ -123,7 +123,7 @@ Import statements from the first example are assumed in the following code snipp
 ```python Python
 options = ClaudeAgentOptions(
     setting_sources=["user", "project"],  # Load Skills from filesystem
-    allowed_tools=["Skill", "Read", "Grep", "Glob"],  # Restricted toolset
+    allowed_tools=["Skill", "Read", "Grep", "Glob"],
 )
 
 async for message in query(prompt="Analyze the codebase structure", options=options):
@@ -131,12 +131,12 @@ async for message in query(prompt="Analyze the codebase structure", options=opti
 ```
 
 ```typescript TypeScript
-// Skills can only use Read, Grep, and Glob tools
 for await (const message of query({
   prompt: "Analyze the codebase structure",
   options: {
     settingSources: ["user", "project"], // Load Skills from filesystem
-    allowedTools: ["Skill", "Read", "Grep", "Glob"] // Restricted toolset
+    allowedTools: ["Skill", "Read", "Grep", "Glob"],
+    permissionMode: "dontAsk" // Deny anything not in allowedTools
   }
 })) {
   console.log(message);

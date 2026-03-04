@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: dd4f36f2b402141b7a1408c25b2bbdcf6145d7972adaf73fa68963f210549e2f
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 0175bacccbd96a45feb1523744b126bae07a01ee8375b390e91b9a74343513a1
 ---
 
 # Citations
@@ -54,7 +54,7 @@ curl https://api.anthropic.com/v1/messages \
   }'
 ```
 
-```python Python
+```python Python hidelines={1..4,-1}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -210,7 +210,7 @@ Citations and prompt caching can be used together effectively.
 The citation blocks generated in responses cannot be cached directly, but the source documents they reference can be cached. To optimize performance, apply `cache_control` to your top-level document content blocks.
 
 <CodeGroup>
-```python Python
+```python Python hidelines={1..4,-1}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -247,9 +247,10 @@ response = client.messages.create(
         }
     ],
 )
+print(response)
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();

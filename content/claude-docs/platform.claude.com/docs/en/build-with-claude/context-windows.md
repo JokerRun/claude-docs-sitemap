@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: 4a357d739873ac07e0d2b4257715946d56d344164866e43dc841484467c4be4d
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 562cdea84befa6233b38e54f18431ec52c02f7e4129119d7db0cac5dd8226e0c
 ---
 
 # Context windows
@@ -142,7 +142,7 @@ response = client.beta.messages.create(
 )
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -153,6 +153,32 @@ const msg = await anthropic.beta.messages.create({
   messages: [{ role: "user", content: "Process this large document..." }],
   betas: ["context-1m-2025-08-07"]
 });
+```
+
+```csharp C# nocheck
+using System;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Beta.Messages;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        AnthropicClient client = new();
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 1024,
+            Messages = [new() { Role = Role.User, Content = "Process this large document..." }],
+            Betas = ["context-1m-2025-08-07"]
+        };
+
+        var message = await client.Beta.Messages.Create(parameters);
+        Console.WriteLine(message);
+    }
+}
 ```
 
 </CodeGroup>

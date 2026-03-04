@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/effort
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: ecf30cd83c9bcfdaa837f201549f3a7197336d2832ce99e27fc8142a215efd4b
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: b82c67904f01e76491e8ba634c4bf1aebb979d419a4389fe428155a9d9222233
 ---
 
 # Effort
@@ -64,6 +64,24 @@ Sonnet 4.6 defaults to `high` effort. Explicitly set effort when using Sonnet 4.
 ## Basic usage
 
 <CodeGroup>
+```bash Shell
+curl https://api.anthropic.com/v1/messages \
+    --header "x-api-key: $ANTHROPIC_API_KEY" \
+    --header "anthropic-version: 2023-06-01" \
+    --header "content-type: application/json" \
+    --data '{
+        "model": "claude-opus-4-6",
+        "max_tokens": 4096,
+        "messages": [{
+            "role": "user",
+            "content": "Analyze the trade-offs between microservices and monolithic architectures"
+        }],
+        "output_config": {
+            "effort": "medium"
+        }
+    }'
+```
+
 ```python Python
 import anthropic
 
@@ -84,7 +102,7 @@ response = client.messages.create(
 print(response.content[0].text)
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -103,25 +121,39 @@ const response = await client.messages.create({
   }
 });
 
-console.log(response.content[0].text);
+const textBlock = response.content.find(
+  (block): block is Anthropic.TextBlock => block.type === "text"
+);
+console.log(textBlock?.text);
 ```
 
-```bash Shell
-curl https://api.anthropic.com/v1/messages \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    --header "anthropic-version: 2023-06-01" \
-    --header "content-type: application/json" \
-    --data '{
-        "model": "claude-opus-4-6",
-        "max_tokens": 4096,
-        "messages": [{
-            "role": "user",
-            "content": "Analyze the trade-offs between microservices and monolithic architectures"
-        }],
-        "output_config": {
-            "effort": "medium"
-        }
-    }'
+```csharp C#
+using System;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        AnthropicClient client = new();
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 4096,
+            Messages = [new() { Role = Role.User, Content = "Analyze the trade-offs between microservices and monolithic architectures" }],
+            OutputConfig = new OutputConfig
+            {
+                Effort = Effort.Medium
+            }
+        };
+
+        var message = await client.Messages.Create(parameters);
+        Console.WriteLine(message);
+    }
+}
 ```
 
 </CodeGroup>

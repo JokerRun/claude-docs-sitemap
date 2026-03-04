@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: fc94cad5d4cebdd588ecf1f675a4ef75f784a4946d1b835dcf5ec3a272b2836c
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: b9c3a89760642faad725688ba926f058934a61017a5dedde93df4cb3dd0925fa
 ---
 
 # Streaming Messages
@@ -30,7 +30,7 @@ The [Python](https://github.com/anthropics/anthropic-sdk-python) and [TypeScript
             print(text, end="", flush=True)
     ```
 
-    ```typescript TypeScript
+    ```typescript TypeScript hidelines={1..4}
     import Anthropic from "@anthropic-ai/sdk";
 
     const client = new Anthropic();
@@ -45,6 +45,31 @@ The [Python](https://github.com/anthropics/anthropic-sdk-python) and [TypeScript
         console.log(text);
       });
     ```
+
+    ```csharp C#
+    using Anthropic;
+    using Anthropic.Models.Messages;
+
+    class Program
+    {
+        static async Task Main(string[] args)
+        {
+            AnthropicClient client = new();
+
+            var parameters = new MessageCreateParams
+            {
+                Model = Model.ClaudeOpus4_6,
+                MaxTokens = 1024,
+                Messages = [new() { Role = Role.User, Content = "Hello" }]
+            };
+
+            await foreach (var msg in client.Messages.CreateStreaming(parameters))
+            {
+                Console.Write(msg);
+            }
+        }
+    }
+    ```
 </CodeGroup>
 
 ## Get the final message without handling events
@@ -52,7 +77,7 @@ The [Python](https://github.com/anthropics/anthropic-sdk-python) and [TypeScript
 If you don't need to process text as it arrives, the SDKs provide a way to use streaming under the hood while returning the complete `Message` object, identical to what `.create()` returns. This is especially useful for requests with large `max_tokens` values, where the SDKs require streaming to avoid HTTP timeouts.
 
 <CodeGroup>
-    ```python Python
+    ```python Python hidelines={1..4,-1}
     import anthropic
 
     client = anthropic.Anthropic()
@@ -67,7 +92,7 @@ If you don't need to process text as it arrives, the SDKs provide a way to use s
     print(message.content[0].text)
     ```
 
-    ```typescript TypeScript
+    ```typescript TypeScript hidelines={1..4}
     import Anthropic from "@anthropic-ai/sdk";
 
     const client = new Anthropic();
@@ -79,7 +104,41 @@ If you don't need to process text as it arrives, the SDKs provide a way to use s
     });
 
     const message = await stream.finalMessage();
-    console.log(message.content[0].text);
+    const textBlock = message.content.find((block) => block.type === "text");
+    if (textBlock && textBlock.type === "text") {
+      console.log(textBlock.text);
+    }
+    ```
+
+    
+    ```csharp C# nocheck
+    using System;
+    using System.Threading.Tasks;
+    using Anthropic;
+    using Anthropic.Models.Messages;
+
+    class Program
+    {
+        static async Task Main()
+        {
+            AnthropicClient client = new();
+
+            var parameters = new MessageCreateParams
+            {
+                Model = Model.ClaudeOpus4_6,
+                MaxTokens = 128000,
+                Messages = [new() { Role = Role.User, Content = "Write a detailed analysis..." }]
+            };
+
+            var fullText = "";
+            await foreach (var msg in client.Messages.CreateStreaming(parameters))
+            {
+                fullText += msg;
+            }
+
+            Console.WriteLine(fullText);
+        }
+    }
     ```
 </CodeGroup>
 
@@ -192,7 +251,7 @@ curl https://api.anthropic.com/v1/messages \
 }'
 ```
 
-```python Python
+```python Python hidelines={1..4}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -204,6 +263,51 @@ with client.messages.stream(
 ) as stream:
     for text in stream.text_stream:
         print(text, end="", flush=True)
+```
+
+```typescript TypeScript hidelines={1..4}
+import Anthropic from "@anthropic-ai/sdk";
+
+const client = new Anthropic();
+
+const stream = client.messages.stream({
+  model: "claude-opus-4-6",
+  messages: [{ role: "user", content: "Hello" }],
+  max_tokens: 256
+});
+
+for await (const event of stream) {
+  if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
+    process.stdout.write(event.delta.text);
+  }
+}
+```
+
+```csharp C#
+using System;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        AnthropicClient client = new();
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 256,
+            Messages = [new() { Role = Role.User, Content = "Hello" }]
+        };
+
+        await foreach (var msg in client.Messages.CreateStreaming(parameters))
+        {
+            Console.Write(msg);
+        }
+    }
+}
 ```
 </CodeGroup>
 
@@ -278,7 +382,7 @@ This request asks Claude to use a tool to report the weather.
     }'
 ```
 
-```python Python
+```python Python hidelines={1..4}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -311,6 +415,94 @@ with client.messages.stream(
 ) as stream:
     for text in stream.text_stream:
         print(text, end="", flush=True)
+```
+
+```typescript TypeScript hidelines={1..4}
+import Anthropic from "@anthropic-ai/sdk";
+
+const client = new Anthropic();
+
+const tools: Anthropic.Tool[] = [
+  {
+    name: "get_weather",
+    description: "Get the current weather in a given location",
+    input_schema: {
+      type: "object",
+      properties: {
+        location: {
+          type: "string",
+          description: "The city and state, e.g. San Francisco, CA"
+        }
+      },
+      required: ["location"]
+    }
+  }
+];
+
+const stream = client.messages.stream({
+  model: "claude-opus-4-6",
+  max_tokens: 1024,
+  tools: tools,
+  tool_choice: { type: "any" },
+  messages: [
+    {
+      role: "user",
+      content: "What is the weather like in San Francisco?"
+    }
+  ]
+});
+
+for await (const event of stream) {
+  if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
+    process.stdout.write(event.delta.text);
+  }
+}
+```
+
+```csharp C#
+using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        AnthropicClient client = new();
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 1024,
+            Tools = [
+                new ToolUnion(new Tool()
+                {
+                    Name = "get_weather",
+                    Description = "Get the current weather in a given location",
+                    InputSchema = new InputSchema()
+                    {
+                        Properties = new Dictionary<string, JsonElement>
+                        {
+                            ["location"] = JsonSerializer.SerializeToElement(new { type = "string", description = "The city and state, e.g. San Francisco, CA" }),
+                        },
+                        Required = ["location"],
+                    },
+                }),
+            ],
+            ToolChoice = new ToolChoiceAny(),
+            Messages = [
+                new() { Role = Role.User, Content = "What is the weather like in San Francisco?" }
+            ]
+        };
+
+        await foreach (var msg in client.Messages.CreateStreaming(parameters))
+        {
+            Console.Write(msg);
+        }
+    }
+}
 ```
 </CodeGroup>
 
@@ -434,7 +626,7 @@ curl https://api.anthropic.com/v1/messages \
 }'
 ```
 
-```python Python
+```python Python hidelines={1..4}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -456,6 +648,54 @@ with client.messages.stream(
                 print(event.delta.thinking, end="", flush=True)
             elif event.delta.type == "text_delta":
                 print(event.delta.text, end="", flush=True)
+```
+
+```typescript TypeScript hidelines={1..4}
+import Anthropic from "@anthropic-ai/sdk";
+
+const client = new Anthropic();
+
+const stream = client.messages.stream({
+  model: "claude-opus-4-6",
+  max_tokens: 20000,
+  thinking: { type: "enabled", budget_tokens: 16000 },
+  messages: [
+    {
+      role: "user",
+      content: "What is the greatest common divisor of 1071 and 462?"
+    }
+  ]
+});
+
+for await (const event of stream) {
+  if (event.type === "content_block_delta") {
+    if (event.delta.type === "thinking_delta") {
+      process.stdout.write(event.delta.thinking);
+    } else if (event.delta.type === "text_delta") {
+      process.stdout.write(event.delta.text);
+    }
+  }
+}
+```
+
+```csharp C#
+using Anthropic;
+using Anthropic.Models.Messages;
+
+AnthropicClient client = new();
+
+var parameters = new MessageCreateParams
+{
+    Model = Model.ClaudeOpus4_6,
+    MaxTokens = 20000,
+    Thinking = new ThinkingConfigEnabled(budgetTokens: 16000),
+    Messages = [new() { Role = Role.User, Content = "What is the greatest common divisor of 1071 and 462?" }]
+};
+
+await foreach (var msg in client.Messages.CreateStreaming(parameters))
+{
+    Console.Write(msg);
+}
 ```
 </CodeGroup>
 
@@ -531,7 +771,7 @@ curl https://api.anthropic.com/v1/messages \
 }'
 ```
 
-```python Python
+```python Python hidelines={1..4}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -548,36 +788,42 @@ with client.messages.stream(
         print(text, end="", flush=True)
 ```
 
-```java Java
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.messages.MessageCreateParams;
-import com.anthropic.models.messages.Model;
-import com.anthropic.models.messages.WebSearchTool20250305;
+```typescript TypeScript hidelines={1..4}
+import Anthropic from "@anthropic-ai/sdk";
 
-public class WebSearchStreaming {
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+const client = new Anthropic();
 
-        MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
-            .maxTokens(1024L)
-            .addTool(WebSearchTool20250305.builder()
-                .maxUses(5L)
-                .build())
-            .addUserMessage("What is the weather like in New York City today?")
-            .build();
+const stream = client.messages.stream({
+  model: "claude-opus-4-6",
+  max_tokens: 1024,
+  tools: [{ type: "web_search_20250305", name: "web_search", max_uses: 5 }],
+  messages: [{ role: "user", content: "What is the weather like in New York City today?" }]
+});
 
-        try (var streamResponse = client.messages().createStreaming(params)) {
-            streamResponse.stream().forEach(event -> {
-                event.contentBlockDelta().ifPresent(deltaEvent ->
-                    deltaEvent.delta().text().ifPresent(td ->
-                        System.out.print(td.text())
-                    )
-                );
-            });
-        }
-    }
+for await (const event of stream) {
+  if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
+    process.stdout.write(event.delta.text);
+  }
+}
+```
+
+```csharp C#
+using Anthropic;
+using Anthropic.Models.Messages;
+
+AnthropicClient client = new();
+
+var parameters = new MessageCreateParams
+{
+    Model = Model.ClaudeOpus4_6,
+    MaxTokens = 1024,
+    Tools = [new ToolUnion(new WebSearchTool20250305() { MaxUses = 5 })],
+    Messages = [new() { Role = Role.User, Content = "What is the weather like in New York City today?" }]
+};
+
+await foreach (var msg in client.Messages.CreateStreaming(parameters))
+{
+    Console.Write(msg);
 }
 ```
 
@@ -623,6 +869,39 @@ func main() {
 	if err := stream.Err(); err != nil {
 		log.Fatal(err)
 	}
+}
+```
+
+```java Java
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.anthropic.models.messages.WebSearchTool20250305;
+
+public class WebSearchStreaming {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageCreateParams params = MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_4_6)
+            .maxTokens(1024L)
+            .addTool(WebSearchTool20250305.builder()
+                .maxUses(5L)
+                .build())
+            .addUserMessage("What is the weather like in New York City today?")
+            .build();
+
+        try (var streamResponse = client.messages().createStreaming(params)) {
+            streamResponse.stream().forEach(event -> {
+                event.contentBlockDelta().ifPresent(deltaEvent ->
+                    deltaEvent.delta().text().ifPresent(td ->
+                        System.out.print(td.text())
+                    )
+                );
+            });
+        }
+    }
 }
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/python
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: 13616935eca4735a02da05c9305c27e6416cedcb465c1e461fe5ca5f9ede7af8
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: aba6d7f6b2d0ff3e04ca2a2ced032d1d9d9c9f2ad2508f6511b688c420c4e4b5
 ---
 
 # Python SDK
@@ -101,7 +101,7 @@ asyncio.run(main())
 
 For improved async performance, you can use the `aiohttp` HTTP backend instead of the default `httpx`:
 
-```python
+```python nocheck
 import os
 import asyncio
 from anthropic import AsyncAnthropic, DefaultAioHttpClient
@@ -132,7 +132,7 @@ asyncio.run(main())
 
 The SDK provides support for streaming responses using Server-Sent Events (SSE).
 
-```python
+```python hidelines={1..3}
 from anthropic import Anthropic
 
 client = Anthropic()
@@ -154,7 +154,7 @@ for event in stream:
 
 The async client uses the exact same interface:
 
-```python
+```python hidelines={1..3}
 from anthropic import AsyncAnthropic
 
 client = AsyncAnthropic()
@@ -178,7 +178,7 @@ async for event in stream:
 
 The SDK also provides streaming helpers that use context managers and provide access to the accumulated text and the final message:
 
-```python
+```python hidelines={1..4}
 import asyncio
 from anthropic import AsyncAnthropic
 
@@ -215,7 +215,7 @@ Alternatively, you can use `client.messages.create(..., stream=True)` which only
 
 You can see the exact usage for a given request through the `usage` response property:
 
-```python
+```python nocheck
 message = client.messages.create(...)
 print(message.usage)
 # Usage(input_tokens=25, output_tokens=13)
@@ -313,7 +313,11 @@ client.messages.batches.create(
 
 Once a Message Batch has been processed, indicated by `.processing_status == 'ended'`, you can access the results with `.batches.results()`:
 
-```python
+```python nocheck hidelines={1..4}
+import anthropic
+
+client = anthropic.Anthropic()
+batch_id = "batch_abc123"
 result_stream = client.messages.batches.results(batch_id)
 for entry in result_stream:
     if entry.result.type == "succeeded":
@@ -329,7 +333,7 @@ Request parameters that correspond to file uploads can be passed in many differe
 - A `BinaryIO` file-like object
 - The return value of the `toFile` helper
 
-```python
+```python nocheck
 from pathlib import Path
 from anthropic import Anthropic
 
@@ -354,7 +358,7 @@ The async client uses the exact same interface. If you pass a `PathLike` instanc
 
 When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `APIError` is raised:
 
-```python
+```python hidelines={2..4}
 import anthropic
 from anthropic import Anthropic
 
@@ -420,7 +424,7 @@ Certain errors are automatically retried 2 times by default, with a short expone
 
 You can use the `max_retries` option to configure or disable this:
 
-```python
+```python hidelines={1..2}
 from anthropic import Anthropic
 
 # Configure the default for all requests:
@@ -484,7 +488,7 @@ The SDK sets a [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWT
 
 List methods in the Claude API are paginated. You can use the `for` syntax to iterate through items across all pages:
 
-```python
+```python hidelines={1..3}
 from anthropic import Anthropic
 
 client = Anthropic()
@@ -498,7 +502,7 @@ print(all_batches)
 
 For async iteration:
 
-```python
+```python hidelines={1..4}
 import asyncio
 from anthropic import AsyncAnthropic
 
@@ -517,7 +521,7 @@ asyncio.run(main())
 
 Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
 
-```python
+```python nocheck
 first_page = await client.messages.batches.list(limit=20)
 
 if first_page.has_next_page():
@@ -530,7 +534,7 @@ if first_page.has_next_page():
 
 Or work directly with the returned data:
 
-```python
+```python nocheck
 first_page = await client.messages.batches.list(limit=20)
 
 print(f"next page cursor: {first_page.last_id}")
@@ -550,7 +554,7 @@ If you need to, you can override it by setting default headers on the client obj
 Overriding default headers may result in incorrect types and other unexpected or undefined behavior in the SDK.
 </Warning>
 
-```python
+```python nocheck hidelines={1..2}
 from anthropic import Anthropic
 
 # Set default headers for all requests on the client
@@ -579,7 +583,7 @@ Typed requests and responses provide autocomplete and documentation within your 
 
 To convert a Pydantic model to a dictionary, use the helper methods:
 
-```python
+```python nocheck
 message = client.messages.create(...)
 
 # Convert to JSON string
@@ -593,7 +597,12 @@ data = message.to_dict()
 
 In responses, you can distinguish between fields that are explicitly `null` versus fields that were not returned (missing):
 
-```python
+```python nocheck
+response = client.messages.create(
+    model="claude-opus-4-6",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Hello"}],
+)
 if response.my_field is None:
     if "my_field" not in response.model_fields_set:
         print("field was not in the response")
@@ -607,7 +616,7 @@ if response.my_field is None:
 
 The "raw" `Response` returned by `httpx` can be accessed via the `.with_raw_response` property on the client. This is useful for accessing response headers or other metadata:
 
-```python
+```python hidelines={1..3}
 from anthropic import Anthropic
 
 client = Anthropic()
@@ -663,7 +672,7 @@ This library is typed for convenient access to the documented API. If you need t
 
 To make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs. Options on the client, such as retries, will be respected when making these requests.
 
-```python
+```python nocheck
 import httpx
 
 response = client.post(
@@ -719,7 +728,7 @@ Use `DefaultHttpxClient` and `DefaultAsyncHttpxClient` instead of raw `httpx.Cli
 
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
-```python
+```python nocheck
 from anthropic import Anthropic
 
 with Anthropic() as client:
@@ -736,7 +745,7 @@ You can access most beta API features through the `beta` property of the client.
 
 For example, to use the [Files API](/docs/en/build-with-claude/files):
 
-```python
+```python nocheck hidelines={1..3}
 from anthropic import Anthropic
 
 client = Anthropic()

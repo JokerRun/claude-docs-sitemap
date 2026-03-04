@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: 42b874b8ba90ebb1d46b4f1c4bafdeed410564643bf275dd5f071eed3ef7198c
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 17ffee61aa0950903c74ff4097e8facd723021d18227cd248319806ed8be5cf8
 ---
 
 # Bash tool
@@ -120,7 +120,7 @@ Restart the session:
 
 Claude can chain commands to complete complex tasks:
 
-```python
+```python nocheck
 # User request
 "Install the requests library and create a simple Python script that fetches a joke from an API, then run it."
 
@@ -148,7 +148,8 @@ The bash tool is implemented as a schema-less tool. When using this tool, you do
 <Steps>
   <Step title="Set up a bash environment">
     Create a persistent bash session that Claude can interact with:
-    ```python
+
+    ```python nocheck
     import subprocess
     import threading
     import queue
@@ -171,7 +172,8 @@ The bash tool is implemented as a schema-less tool. When using this tool, you do
   </Step>
   <Step title="Handle command execution">
     Create a function to execute commands and capture output:
-    ```python
+
+    ```python nocheck
     def execute_command(self, command):
         # Send command to bash
         self.process.stdin.write(command + "\n")
@@ -184,7 +186,8 @@ The bash tool is implemented as a schema-less tool. When using this tool, you do
   </Step>
   <Step title="Process Claude's tool calls">
     Extract and execute commands from Claude's responses:
-    ```python
+
+    ```python nocheck
     for content in response.content:
         if content.type == "tool_use" and content.name == "bash":
             if content.input.get("restart"):
@@ -287,7 +290,8 @@ If there are permission issues:
 <section title="Use command timeouts">
 
 Implement timeouts to prevent hanging commands:
-```python
+
+```python nocheck
 def execute_with_timeout(command, timeout=30):
     try:
         result = subprocess.run(

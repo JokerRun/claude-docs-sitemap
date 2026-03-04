@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/develop-tests
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: a6ff6e29246cd20b8550d049627667e35579f00e85d34771043fb5d281207cf5
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: f53d8f3ae7a46cae179b8b3472bf1de9e05060914a69baf5dc3579e3d08984cc
 ---
 
 # Define success criteria and build evaluations
@@ -567,6 +567,8 @@ When deciding which method to use to grade evals, choose the fastest, most relia
 
 ```python
 import anthropic
+
+client = anthropic.Anthropic()
 
 
 def build_grader_prompt(answer, rubric):

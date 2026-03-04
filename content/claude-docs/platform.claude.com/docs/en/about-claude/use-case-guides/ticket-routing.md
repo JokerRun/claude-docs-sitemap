@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: de9bb78aa3ee6ad12e9f11504d03e1a5ed2f2df75edfc8ed6ab815a966126a66
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: aa47155788a6c15020189575facf72decb97eb1d2c87a601a293704bc721243a
 ---
 
 # Ticket routing
@@ -278,7 +278,8 @@ Try the [prompt generator](/docs/en/prompt-generator) on the [Claude Console](/l
 </Tip>
 
 Here's an example ticket routing classification prompt:
-```python
+
+```python nocheck
 def classify_support_request(ticket_contents):
     # Define the prompt for the classification task
     classification_prompt = f"""You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with your reasoning.
@@ -350,7 +351,7 @@ It’s hard to know how well your prompt works without deploying it in a test pr
 
 Let’s build the deployment structure. Start by defining the method signature for wrapping our call to Claude. We'll take the method we’ve already begun to write, which has `ticket_contents` as input, and now return a tuple of `reasoning` and `intent` as output. If you have an existing automation using traditional ML, you'll want to follow that method signature instead.
 
-```python
+```python nocheck
 import anthropic
 import re
 
@@ -416,7 +417,7 @@ You may need to assess Claude on other axes depending on what factors that are i
 
 To assess this, we first have to modify the script we wrote and add a function to compare the predicted intent with the actual intent and calculate the percentage of correct predictions. We also have to add in cost calculation and time measurement functionality.
 
-```python
+```python nocheck hidelines={1..8}
 import anthropic
 import re
 

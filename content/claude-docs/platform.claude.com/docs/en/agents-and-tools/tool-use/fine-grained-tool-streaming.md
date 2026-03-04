@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: 019936b0f086ba9e433b24314e9aaee53dded6791d7f8780735c88b9a736d1d7
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 07b7bb8ced9d780ca323f4b412a30839a91afd70559d4a17d9fd4b8379c7f5db
 ---
 
 # Fine-grained tool streaming
@@ -66,7 +66,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
 
   client = anthropic.Anthropic()
 
-  response = client.messages.stream(
+  with client.messages.stream(
       max_tokens=65536,
       model="claude-opus-4-6",
       tools=[
@@ -96,17 +96,20 @@ Here's an example of how to use fine-grained tool streaming with the API:
               "content": "Can you write a long poem and make a file called poem.txt?",
           }
       ],
-  )
+  ) as stream:
+      for event in stream:
+          pass
+      final_message = stream.get_final_message()
 
-  print(response.usage)
+  print(final_message.usage)
   ```
 
-  ```typescript TypeScript
+  ```typescript TypeScript hidelines={1..4}
   import Anthropic from "@anthropic-ai/sdk";
 
   const anthropic = new Anthropic();
 
-  const message = await anthropic.messages.stream({
+  const stream = anthropic.messages.stream({
     model: "claude-opus-4-6",
     max_tokens: 65536,
     tools: [
@@ -138,6 +141,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
     ]
   });
 
+  const message = await stream.finalMessage();
   console.log(message.usage);
   ```
 </CodeGroup>

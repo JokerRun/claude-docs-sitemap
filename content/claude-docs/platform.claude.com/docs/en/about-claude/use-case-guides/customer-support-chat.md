@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: 6abaaa582c6aca7f39cf96d940bc5be18e7cefd6df9850f26e5bafb6f0812ca6
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 9a135f75f371fe2595a34d32f83b8e396f7092f144911d5febed74503d566567
 ---
 
 # Customer support agent
@@ -344,7 +344,7 @@ You only provide information and guidance.
 
 Now combine all these sections into a single string to use as your prompt.
 
-```python
+```python nocheck
 TASK_SPECIFIC_INSTRUCTIONS = " ".join(
     [
         STATIC_GREETINGS_AND_GENERAL,
@@ -411,7 +411,7 @@ In a file called `chatbot.py`, start by setting up the ChatBot class, which will
 
 The class should have two main methods: `generate_message` and `process_user_input`.
 
-```python
+```python nocheck
 from anthropic import Anthropic
 from config import IDENTITY, TOOLS, MODEL, get_quote
 from dotenv import load_dotenv
@@ -513,7 +513,7 @@ Test deploying this code with Streamlit using a main method. This `main()` funct
 
 Do this in a file called `app.py`
 
-```python
+```python nocheck
 import streamlit as st
 from chatbot import ChatBot
 from config import TASK_SPECIFIC_INSTRUCTIONS

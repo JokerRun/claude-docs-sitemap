@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-tools
-fetched_at: 2026-02-28T03:57:25.349641Z
-sha256: c3f4b8f1cc7d81a29daddd109c1d6c86af4cbc4e625e97cc16e3bef669960776
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 91eb182b1eda6cfba521739fdfff08de17d773c224a735a66ec5f84e0ae7577f
 ---
 
 # Console prompting tools
@@ -210,9 +210,6 @@ Common issues and solutions:
 <CardGroup cols={2}>
   <Card title="Start prompt engineering" icon="link" href="/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">
     Learn core techniques with worked examples.
-  </Card>
-  <Card title="Prompt library" icon="link" href="/docs/en/resources/prompt-library/library">
-    Get inspired by a curated selection of prompts for various tasks and use cases.
   </Card>
   <Card title="Test your prompts" icon="link" href="/docs/en/test-and-evaluate/eval-tool">
     Use the evaluation tool to test your improved prompts.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: 423880cfa6ac7162395b04bf53b1b8f93ea8b73f7ae52fd0469953d572aafa0a
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 163a1ff82597aba15245aef51ddbafa31749e1d30a8c982bc0ac8b85bab98cb7
 ---
 
 # PDF support
@@ -144,7 +144,7 @@ The simplest approach is to reference a PDF directly from a URL:
 
     print(message.content)
     ```
-    ```typescript TypeScript
+    ```typescript TypeScript hidelines={1..4}
     import Anthropic from "@anthropic-ai/sdk";
 
     const anthropic = new Anthropic();
@@ -298,10 +298,8 @@ If you need to send PDFs from your local system or when a URL isn't available:
 
     print(message.content)
     ```
-    ```typescript TypeScript
+    ```typescript TypeScript hidelines={1..2}
     import Anthropic from "@anthropic-ai/sdk";
-    import fetch from "node-fetch";
-    import fs from "fs";
 
     async function main() {
       // Method 1: Fetch and encode a remote PDF
@@ -312,6 +310,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
       const pdfBase64 = Buffer.from(arrayBuffer).toString("base64");
 
       // Method 2: Load from a local file
+      // import fs from "fs";
       // const pdfBase64 = (await fs.readFile('document.pdf')).toString('base64');
 
       // Send the API request with base64-encoded PDF
@@ -456,7 +455,7 @@ curl https://api.anthropic.com/v1/messages \
   }'
 ```
 
-```python Python
+```python Python nocheck hidelines={1..4,-1}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -487,20 +486,20 @@ message = client.beta.messages.create(
 print(message.content)
 ```
 
-```typescript TypeScript
-import { Anthropic, toFile } from "@anthropic-ai/sdk";
+```typescript TypeScript nocheck
+import Anthropic, { toFile } from "@anthropic-ai/sdk";
 import fs from "fs";
 
 const anthropic = new Anthropic();
 
 async function main() {
   // Upload the PDF file
-  const fileUpload = await anthropic.beta.files.upload(
-    {
-      file: toFile(fs.createReadStream("document.pdf"), undefined, { type: "application/pdf" })
-    },
-    { betas: ["files-api-2025-04-14"] }
-  );
+  const fileUpload = await anthropic.beta.files.upload({
+    file: await toFile(fs.createReadStream("document.pdf"), undefined, {
+      type: "application/pdf"
+    }),
+    betas: ["files-api-2025-04-14"]
+  });
 
   // Use the uploaded file in a message
   const response = await anthropic.beta.messages.create({
@@ -662,7 +661,21 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -d @request.json
 ```
-```python Python
+
+```python Python nocheck hidelines={1..12}
+import anthropic
+import base64
+from pypdf import PdfWriter
+import io
+
+client = anthropic.Anthropic()
+
+buf = io.BytesIO()
+writer = PdfWriter()
+writer.add_blank_page(width=72, height=72)
+writer.write(buf)
+pdf_data = base64.standard_b64encode(buf.getvalue()).decode("utf-8")
+
 message = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
@@ -686,7 +699,7 @@ message = client.messages.create(
 )
 ```
 
-```typescript TypeScript
+```typescript TypeScript nocheck
 const response = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
@@ -839,7 +852,21 @@ curl https://api.anthropic.com/v1/messages/batches \
   -H "anthropic-version: 2023-06-01" \
   -d @request.json
 ```
-```python Python
+
+```python Python nocheck hidelines={1..12}
+import anthropic
+import base64
+from pypdf import PdfWriter
+import io
+
+client = anthropic.Anthropic()
+
+buf = io.BytesIO()
+writer = PdfWriter()
+writer.add_blank_page(width=72, height=72)
+writer.write(buf)
+pdf_data = base64.standard_b64encode(buf.getvalue()).decode("utf-8")
+
 message_batch = client.messages.batches.create(
     requests=[
         {
@@ -869,7 +896,7 @@ message_batch = client.messages.batches.create(
 )
 ```
 
-```typescript TypeScript
+```typescript TypeScript nocheck
 const response = await anthropic.messages.batches.create({
   requests: [
     {

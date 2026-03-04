@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-03-03T04:17:54.263687Z
-sha256: 8acf9fa64f282f56d7a2202bcb82b286f2f7dfa1a175472745e031dad7780dcf
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 534bf2bd0c2d1aaa801cd60a377592f7e4e160dbca8fd498639ab58eae965ac5
 ---
 
 # Errors
@@ -80,7 +80,7 @@ The official SDKs provide this value as a property on top-level response objects
   print(f"Request ID: {message._request_id}")
   ```
 
-  ```typescript TypeScript
+  ```typescript TypeScript hidelines={1..4}
   import Anthropic from "@anthropic-ai/sdk";
 
   const client = new Anthropic();
@@ -116,7 +116,8 @@ also will set a socket option for TCP keep-alive.
 If you don't need to process events incrementally, use `.stream()` with `.get_final_message()` (Python) or `.finalMessage()` (TypeScript) to get the complete `Message` object without writing event-handling code:
 
 <CodeGroup>
-    ```python Python
+    
+    ```python Python nocheck
     with client.messages.stream(
         max_tokens=128000,
         messages=[{"role": "user", "content": "Write a detailed analysis..."}],

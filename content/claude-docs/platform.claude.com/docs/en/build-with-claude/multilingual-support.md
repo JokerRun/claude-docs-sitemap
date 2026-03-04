@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/multilingual-support
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 70791dc984b5c3d33f9278ac54793b87f540a486ef1f30d7a8c29157e3a3f21a
+fetched_at: 2026-03-04T04:10:50.573217Z
+sha256: 1fda7688add21d09411abbbe754e5a651f6e23795f7cb7d1f7624b015fd8f36e
 ---
 
 # Multilingual support
@@ -65,11 +65,8 @@ Also follow the general [prompt engineering guidelines](/docs/en/build-with-clau
 - Performance varies by language, with particularly strong capabilities in widely-spoken languages
 - Even in languages with fewer digital resources, Claude maintains meaningful capabilities
 
-<CardGroup cols={2}>
+<CardGroup cols={1}>
   <Card title="Prompt Engineering Guide" icon="edit" href="/docs/en/build-with-claude/prompt-engineering/overview">
     Master the art of prompt crafting to get the most out of Claude.
-  </Card>
-  <Card title="Prompt Library" icon="books" href="/docs/en/resources/prompt-library">
-    Find a wide range of pre-crafted prompts for various tasks and industries. Perfect for inspiration or quick starts.
   </Card>
 </CardGroup>
