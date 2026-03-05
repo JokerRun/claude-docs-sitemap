@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/adaptive-thinking
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 50581283bdc52382b7efabcf70bb49a1b1f6d006a1f59545efa21d053a3b271b
+fetched_at: 2026-03-05T04:15:05.873964Z
+sha256: b6b802442a302450ea5f2335a4183038e0fdfabcfc2d9d25d33117d886b48b70
 ---
 
 # Pemikiran adaptif
@@ -327,48 +327,6 @@ Here are some important considerations on thinking encryption:
 - `signature` values are significantly longer in Claude 4 models than in previous models.
 - The `signature` field is an opaque field and should not be interpreted or parsed - it exists solely for verification purposes.
 - `signature` values are compatible across platforms (Claude APIs, [Amazon Bedrock](/docs/en/build-with-claude/claude-on-amazon-bedrock), and [Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai)). Values generated on one platform will be compatible with another.
-
-### Redaksi pemikiran
-
-Occasionally Claude's internal reasoning will be flagged by our safety systems. When this occurs, we encrypt some or all of the `thinking` block and return it to you as a `redacted_thinking` block. `redacted_thinking` blocks are decrypted when passed back to the API, allowing Claude to continue its response without losing context.
-
-When building customer-facing applications that use extended thinking:
-
-- Be aware that redacted thinking blocks contain encrypted content that isn't human-readable
-- Consider providing a simple explanation like: "Some of Claude's internal reasoning has been automatically encrypted for safety reasons. This doesn't affect the quality of responses."
-- If showing thinking blocks to users, you can filter out redacted blocks while preserving normal thinking blocks
-- Be transparent that using extended thinking features may occasionally result in some reasoning being encrypted
-- Implement appropriate error handling to gracefully manage redacted thinking without breaking your UI
-
-Here's an example showing both normal and redacted thinking blocks:
-
-```json
-{
-  "content": [
-    {
-      "type": "thinking",
-      "thinking": "Let me analyze this step by step...",
-      "signature": "WaUjzkypQ2mUEVM36O2TxuC06KN8xyfbJwyem2dw3URve/op91XWHOEBLLqIOMfFG/UvLEczmEsUjavL...."
-    },
-    {
-      "type": "redacted_thinking",
-      "data": "EmwKAhgBEgy3va3pzix/LafPsn4aDFIT2Xlxh0L5L8rLVyIwxtE3rAFBa8cr3qpPkNRj2YfWXGmKDxH4mPnZ5sQ7vB9URj2pLmN3kF8/dW5hR7xJ0aP1oLs9yTcMnKVf2wRpEGjH9XZaBt4UvDcPrQ..."
-    },
-    {
-      "type": "text",
-      "text": "Based on my analysis..."
-    }
-  ]
-}
-```
-
-<Note>
-Seeing redacted thinking blocks in your output is expected behavior. The model can still use this redacted reasoning to inform its responses while maintaining safety guardrails.
-
-If you need to test redacted thinking handling in your application, you can use this special test string as your prompt: `ANTHROPIC_MAGIC_STRING_TRIGGER_REDACTED_THINKING_46C9A13E193C177646C7398A98432ECCCE4C1253D5E2D82641AC0E52CC2876CB`
-</Note>
-
-When passing `thinking` and `redacted_thinking` blocks back to the API in a multi-turn conversation, you must include the complete unmodified block back to the API for the last assistant turn. This is critical for maintaining the model's reasoning flow. We suggest always passing back all thinking blocks to the API. For more details, see the [Preserving thinking blocks](/docs/en/build-with-claude/extended-thinking#preserving-thinking-blocks) section.
 
 ### Harga
 

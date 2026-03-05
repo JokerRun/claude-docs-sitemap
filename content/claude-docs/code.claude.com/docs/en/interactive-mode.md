@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-03-01T04:24:52.859568Z
-sha256: 1acbbb3cc2871caeae880a8a0384a14b566b3a5a1cf838aa3364f520b44e0482
+fetched_at: 2026-03-05T04:15:05.873964Z
+sha256: 3315ffab8f21c7f5428055f99cabef52b548715061f51c103ec3fb502781190e
 ---
 
 > ## Documentation Index
@@ -141,6 +141,7 @@ In the table below, `<arg>` indicates a required argument and `[arg]` indicates 
 | `/pr-comments [PR]`       | Fetch and display comments from a GitHub pull request. Automatically detects the PR for the current branch, or pass a PR URL or number. Requires the `gh` CLI                                                                                                                                                                                                      |
 | `/privacy-settings`       | View and update your privacy settings. Only available for Pro and Max plan subscribers                                                                                                                                                                                                                                                                             |
 | `/release-notes`          | View the full changelog, with the most recent version closest to your prompt                                                                                                                                                                                                                                                                                       |
+| `/reload-plugins`         | Reload all active [plugins](/en/plugins) to apply pending changes without restarting. Reports what was loaded and notes any changes that require a restart                                                                                                                                                                                                         |
 | `/remote-control`         | Make this session available for [remote control](/en/remote-control) from claude.ai. Alias: `/rc`                                                                                                                                                                                                                                                                  |
 | `/remote-env`             | Configure the default remote environment for [teleport sessions](/en/claude-code-on-the-web#teleport-a-web-session-to-your-terminal)                                                                                                                                                                                                                               |
 | `/rename [name]`          | Rename the current session. Without a name, auto-generates one from conversation history                                                                                                                                                                                                                                                                           |
@@ -310,6 +311,7 @@ Bash mode:
 * Supports the same `Ctrl+B` backgrounding for long-running commands
 * Does not require Claude to interpret or approve the command
 * Supports history-based autocomplete: type a partial command and press **Tab** to complete from previous `!` commands in the current project
+* Exit with `Escape`, `Backspace`, or `Ctrl+U` on an empty prompt
 
 This is useful for quick shell operations while maintaining conversation context.
 

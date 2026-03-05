@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: f6524f29a417d4393a19572ffd1e427b58e83617d9746e41532943359033a031
+fetched_at: 2026-03-05T04:15:05.873964Z
+sha256: 4c5ce30aaf300504596d463463a150cddd62ab7546fb4aca3045791bffed0914
 ---
 
 # Text editor tool
@@ -120,24 +120,26 @@ const response = await anthropic.messages.create({
 });
 ```
 
-```java Java
+```java Java hidelines={1..10,-1}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.Message;
 import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
-import com.anthropic.models.messages.ToolStrReplaceBasedEditTool20250728;
+import com.anthropic.models.messages.ToolTextEditor20250728;
 
 public class TextEditorToolExample {
 
   public static void main(String[] args) {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-    ToolStrReplaceBasedEditTool20250728 editorTool =
-      ToolStrReplaceBasedEditTool20250728.builder().build();
+    ToolTextEditor20250728 editorTool =
+      ToolTextEditor20250728.builder()
+        .maxCharacters(10000L)
+        .build();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_SONNET_4_0)
+      .model(Model.CLAUDE_OPUS_4_6)
       .maxTokens(1024)
       .addTool(editorTool)
       .addUserMessage("There's a syntax error in my primes.py file. Can you help me fix it?")
@@ -194,7 +196,7 @@ response = client.messages.create(
 )
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript nocheck hidelines={1..4}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -217,7 +219,7 @@ const response = await anthropic.messages.create({
 });
 ```
 
-```java Java
+```java Java nocheck hidelines={1..10,-1}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.Message;
@@ -507,24 +509,24 @@ const response = await anthropic.messages.create({
 });
 ```
 
-```java Java
+```java Java hidelines={1..10,-1}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.Message;
 import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
-import com.anthropic.models.messages.ToolStrReplaceBasedEditTool20250728;
+import com.anthropic.models.messages.ToolTextEditor20250728;
 
 public class TextEditorToolExample {
 
   public static void main(String[] args) {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-    ToolStrReplaceBasedEditTool20250728 editorTool =
-      ToolStrReplaceBasedEditTool20250728.builder().build();
+    ToolTextEditor20250728 editorTool =
+      ToolTextEditor20250728.builder().build();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_SONNET_4_0)
+      .model(Model.CLAUDE_OPUS_4_6)
       .maxTokens(1024)
       .addTool(editorTool)
       .addUserMessage("There's a syntax error in my primes.py file. Can you help me fix it?")
@@ -707,24 +709,24 @@ const response = await anthropic.messages.create({
 });
 ```
 
-```java Java
+```java Java hidelines={1..10,-1}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.Message;
 import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
-import com.anthropic.models.messages.ToolStrReplaceBasedEditTool20250728;
+import com.anthropic.models.messages.ToolTextEditor20250728;
 
 public class TextEditorToolExample {
 
   public static void main(String[] args) {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-    ToolStrReplaceBasedEditTool20250728 editorTool =
-      ToolStrReplaceBasedEditTool20250728.builder().build();
+    ToolTextEditor20250728 editorTool =
+      ToolTextEditor20250728.builder().build();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_SONNET_4_0)
+      .model(Model.CLAUDE_OPUS_4_6)
       .maxTokens(1024)
       .addTool(editorTool)
       .addUserMessage("There's a syntax error in my primes.py file. Can you help me fix it?")
@@ -816,7 +818,7 @@ response = client.messages.create(
 ```
 
 ```typescript TypeScript
-const response = await anthropic.messages.create({
+const response = await client.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
   tools: [
@@ -861,21 +863,19 @@ const response = await anthropic.messages.create({
 });
 ```
 
-```java Java
+```java Java hidelines={1..16,-1}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
 import com.anthropic.models.messages.ContentBlockParam;
 import com.anthropic.models.messages.Message;
 import com.anthropic.models.messages.MessageCreateParams;
-import com.anthropic.models.messages.MessageParam;
 import com.anthropic.models.messages.Model;
 import com.anthropic.models.messages.TextBlockParam;
 import com.anthropic.models.messages.ToolResultBlockParam;
-import com.anthropic.models.messages.ToolStrReplaceBasedEditTool20250728;
+import com.anthropic.models.messages.ToolTextEditor20250728;
 import com.anthropic.models.messages.ToolUseBlockParam;
 import java.util.List;
-import java.util.Map;
 
 public class TextEditorConversationExample {
 
@@ -883,9 +883,9 @@ public class TextEditorConversationExample {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_SONNET_4_0)
+      .model(Model.CLAUDE_OPUS_4_6)
       .maxTokens(1024)
-      .addTool(ToolStrReplaceBasedEditTool20250728.builder().build())
+      .addTool(ToolTextEditor20250728.builder().build())
       // Previous messages would go here
       .addAssistantMessageOfBlockParams(
         List.of(
@@ -901,18 +901,18 @@ public class TextEditorConversationExample {
               .id("toolu_01PqRsTuVwXyZAbCdEfGh")
               .name("str_replace_based_edit_tool")
               .input(
-                JsonValue.from(
-                  Map.of(
-                    "command",
-                    "str_replace",
-                    "path",
-                    "primes.py",
+                ToolUseBlockParam.Input.builder()
+                  .putAdditionalProperty("command", JsonValue.from("str_replace"))
+                  .putAdditionalProperty("path", JsonValue.from("primes.py"))
+                  .putAdditionalProperty(
                     "old_str",
-                    "    for num in range(2, limit + 1)",
-                    "new_str",
-                    "    for num in range(2, limit + 1):"
+                    JsonValue.from("    for num in range(2, limit + 1)")
                   )
-                )
+                  .putAdditionalProperty(
+                    "new_str",
+                    JsonValue.from("    for num in range(2, limit + 1):")
+                  )
+                  .build()
               )
               .build()
           )

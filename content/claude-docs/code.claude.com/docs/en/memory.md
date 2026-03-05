@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-03-01T04:24:52.859568Z
-sha256: 520899734bbd42701a17b1b1d361ed8d10ccce1d6b16e0b6ca88859ab22dee43
+fetched_at: 2026-03-05T04:15:05.873964Z
+sha256: 01b0a728fc2079419bc6a6b1830c851a0acfd6eb57326f41aa2999527d31c740
 ---
 
 > ## Documentation Index
@@ -325,6 +325,10 @@ To debug:
 * Check that the relevant CLAUDE.md is in a location that gets loaded for your session (see [Choose where to put CLAUDE.md files](#choose-where-to-put-claudemd-files)).
 * Make instructions more specific. "Use 2-space indentation" works better than "format code nicely."
 * Look for conflicting instructions across CLAUDE.md files. If two files give different guidance for the same behavior, Claude may pick one arbitrarily.
+
+<Tip>
+  Use the [`InstructionsLoaded` hook](/en/hooks#instructionsloaded) to log exactly which instruction files are loaded, when they load, and why. This is useful for debugging path-specific rules or lazy-loaded files in subdirectories.
+</Tip>
 
 ### I don't know what auto memory saved
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: d756a68382d59e7766f3d635edee887e710b15d4ebbcf0da1dae00f3ab3499c3
+fetched_at: 2026-03-05T04:15:05.873964Z
+sha256: 7e443cb81c3b53e2ca4b5726fc1f00a4fd839f8cbbd517863246c26efa6c4ad3
 ---
 
 > ## Documentation Index
@@ -301,6 +301,18 @@ claude plugin install formatter@your-org --scope project
 claude plugin uninstall formatter@your-org --scope project
 ```
 
+### Apply plugin changes without restarting
+
+When you install, enable, or disable plugins during a session, some changes (like new commands and hooks) take effect immediately. Others, including LSP server updates, require a restart.
+
+To activate all pending plugin changes without restarting, run:
+
+```shell  theme={null}
+/reload-plugins
+```
+
+Claude Code reloads all active plugins and reports what was loaded. If any LSP servers were added or updated, it will let you know those require a restart to take effect.
+
 ## Manage marketplaces
 
 You can manage marketplaces through the interactive `/plugin` interface or with CLI commands.
@@ -384,6 +396,10 @@ Add `extraKnownMarketplaces` to your project's `.claude/settings.json`:
 ```
 
 For full configuration options including `extraKnownMarketplaces` and `enabledPlugins`, see [Plugin settings](/en/settings#plugin-settings).
+
+## Security
+
+Plugins and marketplaces are highly trusted components that can execute arbitrary code on your machine with your user privileges. Only install plugins and add marketplaces from sources you trust. Organizations can restrict which marketplaces users are allowed to add using [managed marketplace restrictions](/en/plugin-marketplaces#managed-marketplace-restrictions).
 
 ## Troubleshooting
 

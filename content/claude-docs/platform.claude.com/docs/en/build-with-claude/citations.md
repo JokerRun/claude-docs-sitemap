@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 0175bacccbd96a45feb1523744b126bae07a01ee8375b390e91b9a74343513a1
+fetched_at: 2026-03-05T04:15:05.873964Z
+sha256: 038a0d29a83a3af362b50b3e7e1d992d084bf838421e296657443be250a02a48
 ---
 
 # Citations
@@ -85,7 +85,7 @@ response = client.messages.create(
 print(response)
 ```
 
-```java Java
+```java Java hidelines={1..8,-1}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.*;
@@ -210,6 +210,38 @@ Citations and prompt caching can be used together effectively.
 The citation blocks generated in responses cannot be cached directly, but the source documents they reference can be cached. To optimize performance, apply `cache_control` to your top-level document content blocks.
 
 <CodeGroup>
+```bash Shell
+curl https://api.anthropic.com/v1/messages \
+     --header "x-api-key: $ANTHROPIC_API_KEY" \
+     --header "anthropic-version: 2023-06-01" \
+     --header "content-type: application/json" \
+     --data '{
+    "model": "claude-opus-4-6",
+    "max_tokens": 1024,
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "document",
+                    "source": {
+                        "type": "text",
+                        "media_type": "text/plain",
+                        "data": "This is a very long document with thousands of words..."
+                    },
+                    "citations": {"enabled": true},
+                    "cache_control": {"type": "ephemeral"}
+                },
+                {
+                    "type": "text",
+                    "text": "What does this document say about API features?"
+                }
+            ]
+        }
+    ]
+}'
+```
+
 ```python Python hidelines={1..4,-1}
 import anthropic
 
@@ -284,38 +316,6 @@ const response = await client.messages.create({
     }
   ]
 });
-```
-
-```bash Shell
-curl https://api.anthropic.com/v1/messages \
-     --header "x-api-key: $ANTHROPIC_API_KEY" \
-     --header "anthropic-version: 2023-06-01" \
-     --header "content-type: application/json" \
-     --data '{
-    "model": "claude-opus-4-6",
-    "max_tokens": 1024,
-    "messages": [
-        {
-            "role": "user",
-            "content": [
-                {
-                    "type": "document",
-                    "source": {
-                        "type": "text",
-                        "media_type": "text/plain",
-                        "data": "This is a very long document with thousands of words..."
-                    },
-                    "citations": {"enabled": true},
-                    "cache_control": {"type": "ephemeral"}
-                },
-                {
-                    "type": "text",
-                    "text": "What does this document say about API features?"
-                }
-            ]
-        }
-    ]
-}'
 ```
 </CodeGroup>
 

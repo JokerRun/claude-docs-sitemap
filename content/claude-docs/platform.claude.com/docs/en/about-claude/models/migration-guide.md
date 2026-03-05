@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/migration-guide
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 81187d014147afaddfd21fcca234ee7143f51a2d193685852e8927048b28a7ba
+fetched_at: 2026-03-05T04:15:05.873964Z
+sha256: dcff5c63499467ac4a66b01a13467248419503d33147ca7a82b6de89361a2f26
 ---
 
 # Migration guide
@@ -95,6 +95,99 @@ These are not required but will improve your experience:
            Console.WriteLine(response);
        }
    }
+   ```
+
+   ```go Go hidelines={1..13,-1}
+   package main
+
+   import (
+   	"context"
+   	"fmt"
+   	"log"
+
+   	"github.com/anthropics/anthropic-sdk-go"
+   )
+
+   func main() {
+   	client := anthropic.NewClient()
+
+   	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+   		Model:     anthropic.ModelClaudeOpus4_6,
+   		MaxTokens: 16000,
+   		Thinking: anthropic.ThinkingConfigParamUnion{
+   			OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
+   		},
+   		OutputConfig: anthropic.OutputConfigParam{
+   			Effort: anthropic.OutputConfigEffortHigh,
+   		},
+   		Messages: []anthropic.MessageParam{
+   			anthropic.NewUserMessage(anthropic.NewTextBlock("Your prompt here")),
+   		},
+   	})
+   	if err != nil {
+   		log.Fatal(err)
+   	}
+   	fmt.Println(response)
+   }
+   ```
+
+   ```java Java hidelines={1..10,-1}
+   import com.anthropic.client.AnthropicClient;
+   import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+   import com.anthropic.models.messages.MessageCreateParams;
+   import com.anthropic.models.messages.Message;
+   import com.anthropic.models.messages.Model;
+   import com.anthropic.models.messages.OutputConfig;
+   import com.anthropic.models.messages.ThinkingConfigAdaptive;
+
+   public class AdaptiveThinkingExample {
+       public static void main(String[] args) {
+           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+           MessageCreateParams params = MessageCreateParams.builder()
+               .model(Model.CLAUDE_OPUS_4_6)
+               .maxTokens(16000L)
+               .thinking(ThinkingConfigAdaptive.builder().build())
+               .outputConfig(OutputConfig.builder()
+                   .effort(OutputConfig.Effort.HIGH)
+                   .build())
+               .addUserMessage("Your prompt here")
+               .build();
+
+           Message response = client.messages().create(params);
+           System.out.println(response);
+       }
+   }
+   ```
+
+   ```php PHP
+   <?php
+
+   use Anthropic\Client;
+
+   $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+   $response = $client->messages->create(
+       maxTokens: 16000,
+       messages: [['role' => 'user', 'content' => 'Your prompt here']],
+       model: 'claude-opus-4-6',
+       thinking: ['type' => 'adaptive'],
+       outputConfig: ['effort' => 'high'],
+   );
+   ```
+
+   ```ruby Ruby
+   require "anthropic"
+
+   client = Anthropic::Client.new
+
+   response = client.messages.create(
+     model: "claude-opus-4-6",
+     max_tokens: 16000,
+     thinking: { type: "adaptive" },
+     output_config: { effort: "high" },
+     messages: [{ role: "user", content: "Your prompt here" }]
+   )
    ```
    </CodeGroup>
 
@@ -396,6 +489,99 @@ class Program
     }
 }
 ```
+
+```go Go hidelines={1..13,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+		Model:     anthropic.Model("claude-sonnet-4-6"),
+		MaxTokens: 8192,
+		OutputConfig: anthropic.OutputConfigParam{
+			Effort: anthropic.OutputConfigEffortLow,
+		},
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("Your prompt here")),
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(response.Content[0].Text)
+}
+```
+
+```java Java hidelines={1..10,-1}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.OutputConfig;
+
+public class Main {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageCreateParams params = MessageCreateParams.builder()
+            .model("claude-sonnet-4-6")
+            .maxTokens(8192L)
+            .outputConfig(OutputConfig.builder()
+                .effort(OutputConfig.Effort.LOW)
+                .build())
+            .addUserMessage("Your prompt here")
+            .build();
+
+        Message response = client.messages().create(params);
+        response.content().stream()
+            .flatMap(block -> block.text().stream())
+            .forEach(textBlock -> System.out.println(textBlock.text()));
+    }
+}
+```
+
+```php PHP hidelines={1..6}
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+$message = $client->messages->create(
+    maxTokens: 8192,
+    messages: [['role' => 'user', 'content' => 'Your prompt here']],
+    model: 'claude-sonnet-4-6',
+    outputConfig: ['effort' => 'low'],
+);
+echo $message->content[0]->text;
+```
+
+```ruby Ruby
+require "anthropic"
+
+client = Anthropic::Client.new
+
+message = client.messages.create(
+  model: "claude-sonnet-4-6",
+  max_tokens: 8192,
+  output_config: {
+    effort: "low"
+  },
+  messages: [
+    { role: "user", content: "Your prompt here" }
+  ]
+)
+puts message.content.first.text
+```
 </CodeGroup>
 
 #### If you're using extended thinking
@@ -476,13 +662,120 @@ class Program
             {
                 Effort = Effort.Medium
             },
+            Betas = ["interleaved-thinking-2025-05-14"],
             Messages = [new() { Role = Role.User, Content = "Your prompt here" }]
         };
 
-        var message = await client.Messages.Create(parameters);
+        var message = await client.Beta.Messages.Create(parameters);
         Console.WriteLine(message);
     }
 }
+```
+
+```go Go hidelines={1..13,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+		Model:     "claude-sonnet-4-6",
+		MaxTokens: 16384,
+		Thinking:  anthropic.BetaThinkingConfigParamOfEnabled(16384),
+		OutputConfig: anthropic.BetaOutputConfigParam{
+			Effort: anthropic.BetaOutputConfigEffortMedium,
+		},
+		Messages: []anthropic.BetaMessageParam{
+			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Your prompt here")),
+		},
+		Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaInterleavedThinking2025_05_14},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java Java hidelines={1..10,-1}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.messages.MessageCreateParams;
+import com.anthropic.models.beta.messages.BetaMessage;
+import com.anthropic.models.beta.messages.BetaThinkingConfigEnabled;
+import com.anthropic.models.beta.messages.BetaOutputConfig;
+
+public class Main {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageCreateParams params = MessageCreateParams.builder()
+            .model("claude-sonnet-4-6")
+            .maxTokens(16384L)
+            .thinking(BetaThinkingConfigEnabled.builder()
+                .budgetTokens(16384L)
+                .build())
+            .outputConfig(BetaOutputConfig.builder()
+                .effort(BetaOutputConfig.Effort.MEDIUM)
+                .build())
+            .addBeta("interleaved-thinking-2025-05-14")
+            .addUserMessage("Your prompt here")
+            .build();
+
+        BetaMessage response = client.beta().messages().create(params);
+        System.out.println(response);
+    }
+}
+```
+
+```php PHP hidelines={1..6}
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+$message = $client->beta->messages->create(
+    maxTokens: 16384,
+    messages: [['role' => 'user', 'content' => 'Your prompt here']],
+    model: 'claude-sonnet-4-6',
+    thinking: ['type' => 'enabled', 'budget_tokens' => 16384],
+    outputConfig: ['effort' => 'medium'],
+    betas: ['interleaved-thinking-2025-05-14'],
+);
+
+echo $message;
+```
+
+```ruby Ruby
+require "anthropic"
+
+client = Anthropic::Client.new
+
+message = client.beta.messages.create(
+  model: "claude-sonnet-4-6",
+  max_tokens: 16384,
+  thinking: {
+    type: "enabled",
+    budget_tokens: 16384
+  },
+  output_config: {
+    effort: "medium"
+  },
+  betas: ["interleaved-thinking-2025-05-14"],
+  messages: [
+    { role: "user", content: "Your prompt here" }
+  ]
+)
+puts message
 ```
 </CodeGroup>
 
@@ -560,13 +853,120 @@ class Program
             {
                 Effort = Effort.Low
             },
+            Betas = ["interleaved-thinking-2025-05-14"],
             Messages = [new() { Role = Role.User, Content = "Your prompt here" }]
         };
 
-        var message = await client.Messages.Create(parameters);
+        var message = await client.Beta.Messages.Create(parameters);
         Console.WriteLine(message);
     }
 }
+```
+
+```go Go hidelines={1..13,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+		Model:     "claude-sonnet-4-6",
+		MaxTokens: 8192,
+		Thinking:  anthropic.BetaThinkingConfigParamOfEnabled(16384),
+		OutputConfig: anthropic.BetaOutputConfigParam{
+			Effort: anthropic.BetaOutputConfigEffortLow,
+		},
+		Messages: []anthropic.BetaMessageParam{
+			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Your prompt here")),
+		},
+		Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaInterleavedThinking2025_05_14},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java Java hidelines={1..10,-1}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.messages.MessageCreateParams;
+import com.anthropic.models.beta.messages.BetaMessage;
+import com.anthropic.models.beta.messages.BetaThinkingConfigEnabled;
+import com.anthropic.models.beta.messages.BetaOutputConfig;
+
+public class Main {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageCreateParams params = MessageCreateParams.builder()
+            .model("claude-sonnet-4-6")
+            .maxTokens(8192L)
+            .thinking(BetaThinkingConfigEnabled.builder()
+                .budgetTokens(16384L)
+                .build())
+            .outputConfig(BetaOutputConfig.builder()
+                .effort(BetaOutputConfig.Effort.LOW)
+                .build())
+            .addBeta("interleaved-thinking-2025-05-14")
+            .addUserMessage("Your prompt here")
+            .build();
+
+        BetaMessage response = client.beta().messages().create(params);
+        System.out.println(response);
+    }
+}
+```
+
+```php PHP hidelines={1..6}
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+$message = $client->beta->messages->create(
+    maxTokens: 8192,
+    messages: [['role' => 'user', 'content' => 'Your prompt here']],
+    model: 'claude-sonnet-4-6',
+    thinking: ['type' => 'enabled', 'budget_tokens' => 16384],
+    outputConfig: ['effort' => 'low'],
+    betas: ['interleaved-thinking-2025-05-14'],
+);
+
+echo $message;
+```
+
+```ruby Ruby
+require "anthropic"
+
+client = Anthropic::Client.new
+
+message = client.beta.messages.create(
+  model: "claude-sonnet-4-6",
+  max_tokens: 8192,
+  thinking: {
+    type: "enabled",
+    budget_tokens: 16384
+  },
+  output_config: {
+    effort: "low"
+  },
+  betas: ["interleaved-thinking-2025-05-14"],
+  messages: [
+    { role: "user", content: "Your prompt here" }
+  ]
+)
+puts message
 ```
 </CodeGroup>
 
@@ -625,7 +1025,7 @@ const response = await client.messages.create({
 });
 ```
 
-```csharp C#
+```csharp C# nocheck
 using Anthropic;
 using Anthropic.Models.Messages;
 using System;
@@ -650,6 +1050,107 @@ class Program
         Console.WriteLine(message);
     }
 }
+```
+
+```go Go nocheck hidelines={1..13,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+		Model:     "claude-sonnet-4-6",
+		MaxTokens: 64000,
+		Thinking: anthropic.ThinkingConfigParamUnion{
+			OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
+		},
+		OutputConfig: anthropic.OutputConfigParam{
+			Effort: anthropic.OutputConfigEffortMedium,
+		},
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("Your prompt here")),
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java Java nocheck hidelines={1..10,-1}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.OutputConfig;
+import com.anthropic.models.messages.ThinkingConfigAdaptive;
+
+public class Main {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageCreateParams params = MessageCreateParams.builder()
+            .model("claude-sonnet-4-6")
+            .maxTokens(64000L)
+            .thinking(ThinkingConfigAdaptive.builder().build())
+            .outputConfig(OutputConfig.builder()
+                .effort(OutputConfig.Effort.MEDIUM)
+                .build())
+            .addUserMessage("Your prompt here")
+            .build();
+
+        Message response = client.messages().create(params);
+        System.out.println(response);
+    }
+}
+```
+
+```php PHP hidelines={1..6} nocheck
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+$message = $client->messages->create(
+    maxTokens: 64000,
+    messages: [['role' => 'user', 'content' => 'Your prompt here']],
+    model: 'claude-sonnet-4-6',
+    thinking: ['type' => 'adaptive'],
+    outputConfig: ['effort' => 'medium'],
+);
+
+echo $message->content[0]->text;
+```
+
+```ruby Ruby nocheck
+require "anthropic"
+
+client = Anthropic::Client.new
+
+message = client.messages.create(
+  model: "claude-sonnet-4-6",
+  max_tokens: 64000,
+  thinking: {
+    type: "adaptive"
+  },
+  output_config: {
+    effort: "medium"
+  },
+  messages: [
+    { role: "user", content: "Your prompt here" }
+  ]
+)
+puts message
 ```
 </CodeGroup>
 

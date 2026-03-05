@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: c3b12160f0d86957dc57fac69635aac52847f111a5e23c345964f011dee3b756
+fetched_at: 2026-03-05T04:15:05.873964Z
+sha256: ccbe17a3e623cdb35afb13f3ef01028a83e95beeb0a87f7a1f25c61813f506ac
 ---
 
 # Get started with Claude
@@ -238,7 +238,7 @@ main().catch(console.error);
 
         **Gradle:**
         ```groovy
-        implementation("com.anthropic:anthropic-java:1.0.0")
+        implementation("com.anthropic:anthropic-java:2.15.0")
         ```
 
         **Maven:**
@@ -246,7 +246,7 @@ main().catch(console.error);
         <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>1.0.0</version>
+          <version>2.15.0</version>
         </dependency>
         ```
       </Step>
@@ -287,7 +287,8 @@ main().catch(console.error);
         ```
 
         **Example output:**
-        ```java
+        
+        ```java nocheck
         [ContentBlock{text=TextBlock{text=Here are some effective search strategies to find the latest renewable energy developments:
 
         ## Search Terms to Use:

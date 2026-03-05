@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-windows
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: afe5c015520e2b7fabfe789211e324511821560dbc619d54a69a892349081fbd
+fetched_at: 2026-03-05T04:15:05.873964Z
+sha256: ceddbc85a60d08e2aaa6d966b2ca1bddce841b65b3aa7f501499a55a31c78a8a
 ---
 
 # Jendela konteks
@@ -49,7 +49,7 @@ Diagram di bawah menunjukkan manajemen token khusus saat pemikiran yang diperpan
   - API secara otomatis mengecualikan blok pemikiran dari giliran sebelumnya saat Anda meneruskannya kembali sebagai bagian dari riwayat percakapan.
   - Token pemikiran yang diperpanjang ditagih sebagai token output hanya sekali, selama pembuatannya.
   - Perhitungan jendela konteks yang efektif menjadi: `context_window = (input_tokens - previous_thinking_tokens) + current_turn_tokens`.
-  - Token pemikiran mencakup blok `thinking` dan blok `redacted_thinking`.
+  - Token pemikiran mencakup blok `thinking`.
 
 Arsitektur ini efisien token dan memungkinkan penalaran ekstensif tanpa pemborosan token, karena blok pemikiran dapat memiliki panjang yang substansial.
 
@@ -82,7 +82,7 @@ Diagram di bawah mengilustrasikan manajemen token jendela konteks saat menggabun
 </Steps>
 
 * **Pertimbangan untuk penggunaan alat dengan pemikiran yang diperpanjang:**
-  - Saat memposting hasil alat, seluruh blok pemikiran yang tidak dimodifikasi yang menyertai permintaan alat spesifik itu (termasuk bagian tanda tangan/redaksi) harus disertakan.
+  - Saat memposting hasil alat, seluruh blok pemikiran yang tidak dimodifikasi yang menyertai permintaan alat spesifik itu (termasuk bagian tanda tangan) harus disertakan.
   - Perhitungan jendela konteks yang efektif untuk pemikiran yang diperpanjang dengan penggunaan alat menjadi: `context_window = input_tokens + current_turn_tokens`.
   - Sistem menggunakan tanda tangan kriptografi untuk memverifikasi keaslian blok pemikiran. Gagal mempertahankan blok pemikiran selama penggunaan alat dapat memecah kontinuitas penalaran Claude. Jadi, jika Anda memodifikasi blok pemikiran, API akan mengembalikan kesalahan.
 

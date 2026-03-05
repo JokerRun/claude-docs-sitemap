@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 477f4794f53fcf72b7c733ccddd9eb9a306412b5df5cf14b812922538dbf2926
+fetched_at: 2026-03-05T04:15:05.873964Z
+sha256: b06c9b8b13827abda4ca2753126597f4405d755e8ebca7f75db0903b6845c305
 ---
 
 # Web fetch tool
@@ -246,6 +246,108 @@ class Program
         Console.WriteLine(message);
     }
 }
+```
+
+```go Go hidelines={1..13,-5..-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_6,
+		MaxTokens: 1024,
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("Please analyze the content at https://example.com/article")),
+		},
+		Tools: []anthropic.ToolUnionParam{
+			{OfWebFetchTool20250910: &anthropic.WebFetchTool20250910Param{
+				MaxUses: anthropic.Int(5),
+			}},
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java Java hidelines={1..9,-1}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.anthropic.models.messages.WebFetchTool20250910;
+
+public class WebFetchExample {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageCreateParams params = MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_4_6)
+            .maxTokens(1024L)
+            .addUserMessage("Please analyze the content at https://example.com/article")
+            .addTool(WebFetchTool20250910.builder()
+                .maxUses(5L)
+                .build())
+            .build();
+
+        Message response = client.messages().create(params);
+        System.out.println(response);
+    }
+}
+```
+
+```php PHP
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+$message = $client->messages->create(
+    maxTokens: 1024,
+    messages: [
+        ['role' => 'user', 'content' => 'Please analyze the content at https://example.com/article']
+    ],
+    model: 'claude-opus-4-6',
+    tools: [[
+        'type' => 'web_fetch_20250910',
+        'name' => 'web_fetch',
+        'max_uses' => 5,
+    ]],
+);
+echo $message;
+```
+
+```ruby Ruby
+require "anthropic"
+
+client = Anthropic::Client.new
+
+message = client.messages.create(
+  model: "claude-opus-4-6",
+  max_tokens: 1024,
+  messages: [
+    { role: "user", content: "Please analyze the content at https://example.com/article" }
+  ],
+  tools: [{
+    type: "web_fetch_20250910",
+    name: "web_fetch",
+    max_uses: 5
+  }]
+)
+puts message
 ```
 </CodeGroup>
 

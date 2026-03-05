@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/client-sdks
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 27ca3b4590c05608d65ffa589246a7e52ef4d3c8e1a758ffaaf4f25b674375b2
+fetched_at: 2026-03-05T04:15:05.873964Z
+sha256: fe8609ddb21e5dd7078c7989cb1e948e0193797fb9178c390ca9d69467ef1866
 ---
 
 # Client SDKs
@@ -63,14 +63,14 @@ go get github.com/anthropics/anthropic-sdk-go
 <Tab title="Java">
 <CodeGroup>
 ```groovy Gradle
-implementation("com.anthropic:anthropic-java:2.11.1")
+implementation("com.anthropic:anthropic-java:2.15.0")
 ```
 
 ```xml Maven
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java</artifactId>
-    <version>2.11.1</version>
+    <version>2.15.0</version>
 </dependency>
 ```
 </CodeGroup>
@@ -131,30 +131,55 @@ var message = await client.Messages.Create(new MessageCreateParams
 Console.WriteLine(message.Content);
 ```
 
-```go Go
-client := anthropic.NewClient()
+```go Go hidelines={1..10,22}
+package main
 
-message, _ := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-	Model:     anthropic.ModelClaudeOpus4_6,
-	MaxTokens: 1024,
-	Messages: []anthropic.MessageParam{
-		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
-	},
-})
-fmt.Println(message.Content)
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_6,
+		MaxTokens: 1024,
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(message.Content)
+}
 ```
 
-```java Java
-AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+```java Java hidelines={1..8,-1}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
 
-MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_4_6)
-    .maxTokens(1024L)
-    .addUserMessage("Hello, Claude")
-    .build();
+public class Main {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-Message message = client.messages().create(params);
-System.out.println(message.content());
+        MessageCreateParams params = MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_4_6)
+            .maxTokens(1024L)
+            .addUserMessage("Hello, Claude")
+            .build();
+
+        Message message = client.messages().create(params);
+        System.out.println(message.content());
+    }
+}
 ```
 
 ```php PHP hidelines={1}
@@ -234,7 +259,7 @@ var message = await client.Beta.Messages.Create(new MessageCreateParams
 });
 ```
 
-```go Go
+```go Go nocheck hidelines={9}
 message, _ := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
 	Model:     anthropic.ModelClaudeOpus4_6,
 	MaxTokens: 1024,
@@ -243,9 +268,10 @@ message, _ := client.Beta.Messages.New(context.Background(), anthropic.BetaMessa
 	},
 	Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBeta("feature-name")},
 })
+fmt.Println(message)
 ```
 
-```java Java
+```java Java nocheck
 import com.anthropic.models.beta.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
 
@@ -268,8 +294,8 @@ $message = $client->beta->messages->create(
 );
 ```
 
-```ruby Ruby
-message = anthropic.beta.messages.create(
+```ruby Ruby nocheck
+message = client.beta.messages.create(
   model: "claude-opus-4-6",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello" }],

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-03-01T04:24:52.859568Z
-sha256: 1af82283f128a4075f4747c3b8834d12df227d0e005bef9bcf9b88a96476bacd
+fetched_at: 2026-03-05T04:15:05.873964Z
+sha256: 3b9a06b344f7c010e44ae3e2fce521000bf082cc6ee23fc8416ae2d5e0544c5c
 ---
 
 > ## Documentation Index
@@ -626,6 +626,19 @@ Many cloud-based MCP servers require authentication. Claude Code supports OAuth 
   * OAuth authentication works with HTTP servers
 </Tip>
 
+### Use a fixed OAuth callback port
+
+Some MCP servers require a specific redirect URI registered in advance. By default, Claude Code picks a random available port for the OAuth callback. Use `--callback-port` to fix the port so it matches a pre-registered redirect URI of the form `http://localhost:PORT/callback`.
+
+You can use `--callback-port` on its own (with dynamic client registration) or together with `--client-id` (with pre-configured credentials).
+
+```bash  theme={null}
+# Fixed callback port with dynamic client registration
+claude mcp add --transport http \
+  --callback-port 8080 \
+  my-server https://mcp.example.com/mcp
+```
+
 ### Use pre-configured OAuth credentials
 
 Some MCP servers don't support automatic OAuth setup. If you see an error like "Incompatible auth server: does not support dynamic client registration," the server requires pre-configured credentials. Register an OAuth app through the server's developer portal first, then provide the credentials when adding the server.
@@ -661,6 +674,15 @@ Some MCP servers don't support automatic OAuth setup. If you see an error like "
         ```
       </Tab>
 
+      <Tab title="claude mcp add-json (callback port only)">
+        Use `--callback-port` without a client ID to fix the port while using dynamic client registration:
+
+        ```bash  theme={null}
+        claude mcp add-json my-server \
+          '{"type":"http","url":"https://mcp.example.com/mcp","oauth":{"callbackPort":8080}}'
+        ```
+      </Tab>
+
       <Tab title="CI / env var">
         Set the secret via environment variable to skip the interactive prompt:
 
@@ -683,9 +705,32 @@ Some MCP servers don't support automatic OAuth setup. If you see an error like "
 
   * The client secret is stored securely in your system keychain (macOS) or a credentials file, not in your config
   * If the server uses a public OAuth client with no secret, use only `--client-id` without `--client-secret`
+  * `--callback-port` can be used with or without `--client-id`
   * These flags only apply to HTTP and SSE transports. They have no effect on stdio servers
   * Use `claude mcp get <name>` to verify that OAuth credentials are configured for a server
 </Tip>
+
+### Override OAuth metadata discovery
+
+If your MCP server returns errors on the standard OAuth metadata endpoint (`/.well-known/oauth-authorization-server`) but exposes a working OIDC endpoint, you can tell Claude Code to fetch OAuth metadata directly from a URL you specify, bypassing the standard discovery chain.
+
+Set `authServerMetadataUrl` in the `oauth` object of your server's config in `.mcp.json`:
+
+```json  theme={null}
+{
+  "mcpServers": {
+    "my-server": {
+      "type": "http",
+      "url": "https://mcp.example.com/mcp",
+      "oauth": {
+        "authServerMetadataUrl": "https://auth.example.com/.well-known/openid-configuration"
+      }
+    }
+  }
+}
+```
+
+The URL must use `https://`. This option requires Claude Code v2.1.64 or later.
 
 ## Add MCP servers from JSON configuration
 
