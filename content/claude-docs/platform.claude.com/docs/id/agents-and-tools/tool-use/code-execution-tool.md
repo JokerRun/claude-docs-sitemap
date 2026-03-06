@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 084701f21129dfbe2d97bdd63280292443a29dbcf1aa4015791f4da226250b30
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 57594408f5973244fa44b6ccf1bd7411d077100c07c915987ec0ca54214b8c84
 ---
 
 # Alat eksekusi kode
@@ -22,7 +22,7 @@ Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/LTAU6Xn2pu
 </Note>
 
 <Note>
-This feature is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Data is retained according to the feature's standard retention policy.
+This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Data is retained according to the feature's standard retention policy.
 </Note>
 
 ## Kompatibilitas model

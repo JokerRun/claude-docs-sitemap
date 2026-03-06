@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 4d005836a20c6f735c6ebf757ea5601ba9359199895995528b2b405a178091bd
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 5dd19b0a68f89cb389a2351b4e70456c347eab0362573b8c39ca28edf014a761
 ---
 
 # Pemrosesan batch
@@ -21,7 +21,7 @@ Pemrosesan batch adalah pendekatan yang kuat untuk menangani volume permintaan b
 Message Batches API adalah implementasi pertama kami dari pola ini.
 
 <Note>
-This feature is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Data is retained according to the feature's standard retention policy.
+This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Data is retained according to the feature's standard retention policy.
 </Note>
 
 ---

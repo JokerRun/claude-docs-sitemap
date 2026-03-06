@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 534bf2bd0c2d1aaa801cd60a377592f7e4e160dbca8fd498639ab58eae965ac5
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: d1c150cc2b7041f1da83c6fd69bdabc0ad49e815b7a607111e6bea7fb0570e3f
 ---
 
 # Errors
@@ -116,8 +116,7 @@ also will set a socket option for TCP keep-alive.
 If you don't need to process events incrementally, use `.stream()` with `.get_final_message()` (Python) or `.finalMessage()` (TypeScript) to get the complete `Message` object without writing event-handling code:
 
 <CodeGroup>
-    
-    ```python Python nocheck
+    ```python Python
     with client.messages.stream(
         max_tokens=128000,
         messages=[{"role": "user", "content": "Write a detailed analysis..."}],

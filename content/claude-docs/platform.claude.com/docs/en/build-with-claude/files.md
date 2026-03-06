@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 3421ba1d5f2abd213d728bfa1d81e4581c7cf7a284878f5e71b4849679d9b433
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 82289e24e1e274f1e272e8e9b3644c9a0cfbb57f4509f3fe8aadaf182f6263ee
 ---
 
 # Files API
@@ -16,7 +16,7 @@ The Files API is in beta. Reach out through the [feedback form](https://forms.gl
 </Note>
 
 <Note>
-This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
+This feature is in beta and is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Beta features are excluded from ZDR.
 </Note>
 
 ## Supported models

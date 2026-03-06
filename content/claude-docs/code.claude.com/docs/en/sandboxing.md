@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 72371b9ed0722c335ae8bc49afc5199262d7a1c486ccae9655056fea440d9c75
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 981f613c6852427f055b4e2e8d84edb97a1292d0896ee6ad5d518c4fcc56b976
 ---
 
 > ## Documentation Index
@@ -99,7 +99,7 @@ On **Linux and WSL2**, install the required packages first:
 You can enable sandboxing by running the `/sandbox` command:
 
 ```text  theme={null}
-> /sandbox
+/sandbox
 ```
 
 This opens a menu where you can choose between sandbox modes. If required dependencies are missing (such as `bubblewrap` or `socat` on Linux), the menu displays installation instructions for your platform.

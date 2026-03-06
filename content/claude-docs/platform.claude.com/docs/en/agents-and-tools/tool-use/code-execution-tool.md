@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: ef42371483965e6d21347468e801e99ab5431a7d5af6bea07465cb7364f64ba8
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 46a6d9155e6b96a3a5c8d623290e25d98f5ae9fc094703d48ff515a109c421b7
 ---
 
 # Code execution tool
@@ -20,7 +20,7 @@ Reach out through the [feedback form](https://forms.gle/LTAU6Xn2puCJMi1n6) to sh
 </Note>
 
 <Note>
-This feature is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Data is retained according to the feature's standard retention policy.
+This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Data is retained according to the feature's standard retention policy.
 </Note>
 
 ## Model compatibility
@@ -2129,7 +2129,7 @@ class Program
         };
 
         var response1 = await client.Messages.Create(parameters1);
-        var containerId = response1.Container.Id;
+        var containerId = response1.Container!.ID;
 
         var parameters2 = new MessageCreateParams
         {

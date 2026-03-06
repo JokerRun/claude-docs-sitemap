@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 0d527e14eb5cf56a61ea31e99fc164c8b899bea0fe87acccb263553a1627262b
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 34e0dcd9e873cdb6ed6d5ea507b7f5a754a740569a976d4814630fd8421c6cea
 ---
 
 # Compaction
@@ -1924,7 +1924,7 @@ $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
 
 $response = $client->beta->messages->create(
     maxTokens: 4096,
-    messages: [],
+    messages: [['role' => 'user', 'content' => 'Hello, Claude']],
     model: 'claude-opus-4-6',
     betas: ['compact-2026-01-12'],
     system: [

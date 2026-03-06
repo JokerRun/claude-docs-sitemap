@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 258c258559f0dbb28b578a2771ae3f5a879857de8f1776d8be00192d3a7609f0
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: cc24b201972cf0a4d14013d85264cd4ecba3f6bd8e787147e091c00dd4bc143e
 ---
 
 # Programmatic tool calling
@@ -22,7 +22,7 @@ This feature requires the code execution tool to be enabled.
 </Note>
 
 <Note>
-This feature is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Data is retained according to the feature's standard retention policy.
+This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Data is retained according to the feature's standard retention policy.
 </Note>
 
 ## Model compatibility
@@ -188,12 +188,7 @@ class Program
                 }
             ],
             Tools = [
-                new ToolUnion(new Tool()
-                {
-                    Type = "code_execution_20260120",
-                    Name = "code_execution",
-                    InputSchema = new InputSchema(),
-                }),
+                new CodeExecutionTool20260120(),
                 new ToolUnion(new Tool()
                 {
                     Name = "query_database",

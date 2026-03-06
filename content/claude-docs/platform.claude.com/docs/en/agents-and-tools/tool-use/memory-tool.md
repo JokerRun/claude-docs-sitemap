@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: fb029a94f653adc539bbb6cd6c19c0c16718a768cf0a65e774294e3a36235c56
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 326792b2cab7276227a4265bbf4524de702034dd33776fe21133c161d8a4c328
 ---
 
 # Memory tool
@@ -20,7 +20,7 @@ Reach out through the [feedback form](https://forms.gle/YXC2EKGMhjN1c4L88) to sh
 </Note>
 
 <Note>
-This feature is [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) eligible. When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
 </Note>
 
 ## Use cases

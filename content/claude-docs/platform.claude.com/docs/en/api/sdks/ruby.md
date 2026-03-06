@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/ruby
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 882d0f3279e0f5dd4abb81dc8b000b69c16fec251a235b7c2effe7d97f1491b4
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 13ad9447529fccd2e6ca21e2cba3b2cfb399ca566f7f609296ec464b53168f43
 ---
 
 # Ruby SDK
@@ -226,7 +226,8 @@ end
 
 Alternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.
 
-```ruby
+```ruby hidelines={1}
+page = client.messages.batches.list(limit: 20)
 if page.next_page?
   new_page = page.next_page
   puts(new_page.data[0].id)
@@ -237,7 +238,9 @@ end
 
 Request parameters that correspond to file uploads can be passed as raw contents, a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance, [`StringIO`](https://rubyapi.org/3.2/o/stringio), or more.
 
-```ruby
+```ruby hidelines={1..2}
+require "anthropic"
+anthropic = Anthropic::Client.new
 require "pathname"
 
 # Use `Pathname` to send the filename and/or avoid paging a large file into memory:
@@ -296,7 +299,7 @@ anthropic.messages.create(**params)
 
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, the SDK provides "tagged symbols", which is always a primitive at runtime:
 
-```ruby
+```ruby nocheck
 # :auto
 puts(Anthropic::MessageCreateParams::ServiceTier::AUTO)
 
@@ -352,7 +355,10 @@ You can send undocumented parameters to any endpoint, and read undocumented resp
 The `extra_` parameters of the same name override the documented parameters. For security reasons, ensure these methods are only used with trusted input data.
 </Warning>
 
-```ruby
+```ruby hidelines={1..3}
+require "anthropic"
+anthropic = Anthropic::Client.new
+value = "example"
 message =
   anthropic.messages.create(
     max_tokens: 1024,

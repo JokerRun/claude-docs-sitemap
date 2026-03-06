@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: a917dd1f33b865492a8ba70ee8db0d509d7837fd7ff548224bf0454173c05ac4
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: eb3f8d79c47b3a826180a509dd33b1b50a5c84637a8fe17998b1f1a8537c443c
 ---
 
 # Alat pengambilan web
@@ -20,7 +20,7 @@ Silakan gunakan [formulir ini](https://forms.gle/NhWcgmkcvPCMmPE86) untuk member
 </Note>
 
 <Note>
-This feature is [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) eligible. When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
 </Note>
 
 <Warning>

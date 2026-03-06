@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 0d1d2d6d3c7775581fec125578daf95b71d0846246839ef76d9384e37defff35
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 4e2166f5e1301badd965a5971a31aa7ca6eab4a1d242156c1d646cb96a4b3e41
 ---
 
 # Tool use with Claude
@@ -1207,7 +1207,11 @@ You would then need to execute the `get_weather` function with the provided inpu
                             {
                                 ID = "toolu_01A09q90qw90lq917835lq9",
                                 Name = "get_weather",
-                                Input = JsonSerializer.SerializeToElement(new { location = "San Francisco, CA", unit = "celsius" }),
+                                Input = new Dictionary<string, JsonElement>
+                                {
+                                    ["location"] = JsonSerializer.SerializeToElement("San Francisco, CA"),
+                                    ["unit"] = JsonSerializer.SerializeToElement("celsius"),
+                                },
                             }),
                         }),
                     },

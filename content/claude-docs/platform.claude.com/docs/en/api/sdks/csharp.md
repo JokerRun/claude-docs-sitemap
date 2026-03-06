@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/csharp
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: e4e0877537857843129911a2fb7554bab2ec30b45178c3e258456d4a6ebef82d
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 3ccee941bd0f7e5c47e9ad2b5dccf35b14bc97f19b23f17ded8e674e654aebed
 ---
 
 # C# SDK
@@ -262,7 +262,7 @@ await foreach (var item in page.Paginate())
 
 To access individual page items and manually request the next page, use the `Items` property, and `HasNext` and `Next` methods:
 
-```csharp nocheck
+```csharp
 using System;
 
 var page = await client.Messages.Batches.List();

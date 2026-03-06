@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 1676818abd1d8a3d4042f857a783578a71ad1cffbb2691dd1170d5a4dd490702
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: f199f36046a4af51c58999bffb72de4588b86962e7a6c34eb360419ff412591d
 ---
 
 # Building with extended thinking
@@ -495,34 +495,34 @@ public class Program
 
         await foreach (var streamEvent in client.Messages.CreateStreaming(parameters))
         {
-            if (streamEvent.Type == "content_block_start")
+            if (streamEvent.TryPickContentBlockStart(out var blockStart))
             {
-                Console.WriteLine($"\nStarting {streamEvent.ContentBlock?.Type} block...");
+                Console.WriteLine($"\nStarting {blockStart.ContentBlock.Type} block...");
                 thinkingStarted = false;
                 responseStarted = false;
             }
-            else if (streamEvent.Type == "content_block_delta")
+            else if (streamEvent.TryPickContentBlockDelta(out var blockDelta))
             {
-                if (streamEvent.Delta?.Type == "thinking_delta")
+                if (blockDelta.Delta.TryPickThinking(out var thinkingDelta))
                 {
                     if (!thinkingStarted)
                     {
                         Console.Write("Thinking: ");
                         thinkingStarted = true;
                     }
-                    Console.Write(streamEvent.Delta.Thinking);
+                    Console.Write(thinkingDelta.Thinking);
                 }
-                else if (streamEvent.Delta?.Type == "text_delta")
+                else if (blockDelta.Delta.TryPickText(out var textDelta))
                 {
                     if (!responseStarted)
                     {
                         Console.Write("Response: ");
                         responseStarted = true;
                     }
-                    Console.Write(streamEvent.Delta.Text);
+                    Console.Write(textDelta.Text);
                 }
             }
-            else if (streamEvent.Type == "content_block_stop")
+            else if (streamEvent.TryPickContentBlockStop(out _))
             {
                 Console.WriteLine("\nBlock complete.");
             }
@@ -855,7 +855,7 @@ response = client.messages.create(
 )
 ```
 
-```typescript TypeScript nocheck
+```typescript TypeScript
 const weatherTool: Anthropic.Tool = {
   name: "get_weather",
   description: "Get current weather for a location",
@@ -3325,7 +3325,7 @@ The billed output token count will **not** match the visible token count in the 
 
 - **Task selection:** Use extended thinking for particularly complex tasks that benefit from step-by-step reasoning like math, coding, and analysis.
 - **Context handling:** You do not need to remove previous thinking blocks yourself. The Claude API automatically ignores thinking blocks from previous turns and they are not included when calculating context usage.
-- **Prompt engineering:** Review our [extended thinking prompting tips](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#leverage-thinking-and-interleaved-thinking-capabilities) if you want to maximize Claude's thinking capabilities.
+- **Prompt engineering:** Review the [extended thinking prompting tips](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#leverage-thinking-and-interleaved-thinking-capabilities) if you want to maximize Claude's thinking capabilities.
 
 ## Next steps
 

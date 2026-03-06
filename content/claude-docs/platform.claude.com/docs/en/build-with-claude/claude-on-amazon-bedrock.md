@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 8d2e94e473dab91a7b6ea6b6dd56d6bdb3561504a74ac8d93064711419a01abc
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 5222f27a5689c6bc81a65ac443a613fcf80d26846e33e5abbf1287e1742b83f4
 ---
 
 # Claude on Amazon Bedrock
@@ -151,7 +151,9 @@ The following examples show how to print a list of all the Claude models availab
   ```bash AWS CLI
   aws bedrock list-foundation-models --region=us-west-2 --by-provider anthropic --query "modelSummaries[*].modelId"
   ```
-  ```python Boto3 (Python)
+
+  
+  ```python Boto3 (Python) nocheck
   import boto3
 
   bedrock = boto3.client(service_name="bedrock")
@@ -311,7 +313,8 @@ The following examples show how to print a list of all the Claude models availab
 The following examples show how to generate text from Claude on Bedrock:
 
 <CodeGroup>
-  ```python Python
+  
+  ```python Python nocheck
   from anthropic import AnthropicBedrock
 
   client = AnthropicBedrock(
@@ -392,7 +395,8 @@ The following examples show how to generate text from Claude on Bedrock:
           .Select(c => (c.Value as TextBlock)!.Text)));
   ```
 
-  ```go Go hidelines={1..2,10..11,-1}
+  
+  ```go Go nocheck hidelines={1..2,10..11,-1}
   package main
 
   import (
@@ -477,7 +481,8 @@ The following examples show how to generate text from Claude on Bedrock:
   echo $message->content[0]->text;
   ```
 
-  ```ruby Ruby
+  
+  ```ruby Ruby nocheck
   require "anthropic"
 
   client = Anthropic::BedrockClient.new
@@ -491,7 +496,8 @@ The following examples show how to generate text from Claude on Bedrock:
   puts message.content.first.text
   ```
 
-  ```python Boto3 (Python)
+  
+  ```python Boto3 (Python) nocheck
   import boto3
   import json
 
@@ -681,7 +687,8 @@ This applies to Claude Sonnet 4.5 and future models only. Older models (Claude S
 The model IDs for Claude Sonnet 4.5 and 4 already include the `global.` prefix:
 
 <CodeGroup>
-```python Python
+
+```python Python nocheck
 from anthropic import AnthropicBedrock
 
 client = AnthropicBedrock(aws_region="us-west-2")
@@ -791,7 +798,7 @@ $message = $client->messages->create(
 );
 ```
 
-```ruby Ruby
+```ruby Ruby nocheck
 require "anthropic"
 
 # Default credentials resolve region from AWS_REGION env var
@@ -811,7 +818,8 @@ message = client.messages.create(
 To use regional endpoints, remove the `global.` prefix from the model ID:
 
 <CodeGroup>
-```python Python
+
+```python Python nocheck
 from anthropic import AnthropicBedrock
 
 client = AnthropicBedrock(aws_region="us-west-2")
@@ -923,7 +931,7 @@ $message = $client->messages->create(
 );
 ```
 
-```ruby Ruby
+```ruby Ruby nocheck
 require "anthropic"
 
 # Using US regional endpoint (CRIS)

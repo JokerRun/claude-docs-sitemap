@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-03-01T04:24:52.859568Z
-sha256: b570629c66a03b56116b28128f29896545e35357ae8cc1b709b48d057b1d86a2
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 571964af0d9624429f9569e976927df9c072dd4ab8f678d21dfafaee407d7d07
 ---
 
 > ## Documentation Index
@@ -191,15 +191,17 @@ Built-in commands also guide you through setup:
 
 Claude Code is conversational. You don't need perfect prompts. Start with what you want, then refine:
 
+```text  theme={null}
+Fix the login bug
 ```
-> Fix the login bug
 
-[Claude investigates, tries something]
+\[Claude investigates, tries something]
 
-> That's not quite right. The issue is in the session handling.
-
-[Claude adjusts approach]
+```text  theme={null}
+That's not quite right. The issue is in the session handling.
 ```
+
+\[Claude adjusts approach]
 
 When the first attempt isn't right, you don't start over. You iterate.
 
@@ -211,10 +213,10 @@ You can interrupt Claude at any point. If it's going down the wrong path, just t
 
 The more precise your initial prompt, the fewer corrections you'll need. Reference specific files, mention constraints, and point to example patterns.
 
-```
-> The checkout flow is broken for users with expired cards.
-> Check src/payments/ for the issue, especially token refresh.
-> Write a failing test first, then fix it.
+```text  theme={null}
+The checkout flow is broken for users with expired cards.
+Check src/payments/ for the issue, especially token refresh.
+Write a failing test first, then fix it.
 ```
 
 Vague prompts like "fix the login bug" work, but you'll spend more time steering. Specific prompts like the above often succeed on the first attempt.
@@ -223,9 +225,9 @@ Vague prompts like "fix the login bug" work, but you'll spend more time steering
 
 Claude performs better when it can check its own work. Include test cases, paste screenshots of expected UI, or define the output you want.
 
-```
-> Implement validateEmail. Test cases: 'user@example.com' → true,
-> 'invalid' → false, 'user@.com' → false. Run the tests after.
+```text  theme={null}
+Implement validateEmail. Test cases: 'user@example.com' → true,
+'invalid' → false, 'user@.com' → false. Run the tests after.
 ```
 
 For visual work, paste a screenshot of the design and ask Claude to compare its implementation against it.
@@ -234,9 +236,9 @@ For visual work, paste a screenshot of the design and ask Claude to compare its 
 
 For complex problems, separate research from coding. Use plan mode (`Shift+Tab` twice) to analyze the codebase first:
 
-```
-> Read src/auth/ and understand how we handle sessions.
-> Then create a plan for adding OAuth support.
+```text  theme={null}
+Read src/auth/ and understand how we handle sessions.
+Then create a plan for adding OAuth support.
 ```
 
 Review the plan, refine it through conversation, then let Claude implement. This two-phase approach produces better results than jumping straight to code.
@@ -245,9 +247,9 @@ Review the plan, refine it through conversation, then let Claude implement. This
 
 Think of delegating to a capable colleague. Give context and direction, then trust Claude to figure out the details:
 
-```
-> The checkout flow is broken for users with expired cards.
-> The relevant code is in src/payments/. Can you investigate and fix it?
+```text  theme={null}
+The checkout flow is broken for users with expired cards.
+The relevant code is in src/payments/. Can you investigate and fix it?
 ```
 
 You don't need to specify which files to read or what commands to run. Claude figures that out.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 709b7f225f8822c9b6f7321160de335e54f703430d40e2e5c7254a7f4ad764bc
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 6fff93ad536edda29764c4e0b61d2b45f21194c0f633466a299b75c3a649c1dc
 ---
 
 # Context editing
@@ -37,7 +37,7 @@ Share feedback on this feature through the [feedback form](https://forms.gle/YXC
 </Note>
 
 <Note>
-This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
+This feature is in beta and is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Beta features are excluded from ZDR.
 </Note>
 
 ### Tool result clearing

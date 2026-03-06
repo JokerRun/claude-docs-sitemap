@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 6b14d24d8d1d6f1d350120d3b1735abb32487059fca5e323a229ffc0dde1fc29
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 8ab3d2f74bd42e743a057f36b19f8a7e9e6410783b2d11b42074bb9272ca2020
 ---
 
 # Computer use tool
@@ -20,7 +20,7 @@ Reach out through the [feedback form](https://forms.gle/H6UFuXaaLywri9hz6) to sh
 </Note>
 
 <Note>
-This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
+This feature is in beta and is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Beta features are excluded from ZDR.
 </Note>
 
 ## Overview

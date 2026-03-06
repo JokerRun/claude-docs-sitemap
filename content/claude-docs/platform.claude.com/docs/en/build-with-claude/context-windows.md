@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 47d3a83e6acbf6115c315831a7e9b7785199e6ce08f26bfa52ddb930802225e5
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 40ab060202b59df17a28eae48fccc2254dff58565e7ba236e68b0e3b0191717c
 ---
 
 # Context windows
@@ -107,7 +107,7 @@ The 1M token context window is in beta for organizations in [usage tier](/docs/e
 </Note>
 
 <Note>
-This feature is [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) eligible. When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
 </Note>
 
 To use the 1M token context window, include the `context-1m-2025-08-07` [beta header](/docs/en/api/beta-headers) in your API requests:

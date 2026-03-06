@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 56126d4f68a3af87d2916c18b8a6511d3e6649b8c8da4aec57a085b9b268129b
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 0e799734f3e5457357d0b1ce6e3f692494b9e600d8351e094d68c19f8eeb1c19
 ---
 
 # Handling stop reasons
@@ -145,7 +145,7 @@ def handle_empty_response(client, messages):
 ### max_tokens
 Claude stopped because it reached the `max_tokens` limit specified in your request.
 
-```python nocheck
+```python
 # Request with limited tokens
 response = client.messages.create(
     model="claude-opus-4-6",
@@ -162,7 +162,7 @@ if response.stop_reason == "max_tokens":
 ### stop_sequence
 Claude encountered one of your custom stop sequences.
 
-```python nocheck
+```python
 response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
@@ -251,7 +251,7 @@ Your application should handle `pause_turn` in any agent loop that uses server t
 ### refusal
 Claude refused to generate a response due to safety concerns.
 
-```python nocheck
+```python
 response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
@@ -279,7 +279,7 @@ Claude stopped because it reached the model's context window limit. This allows 
 # Request with maximum tokens to get as much as possible
 response = client.messages.create(
     model="claude-opus-4-6",
-    max_tokens=64000,  # Model's maximum output tokens
+    max_tokens=64000,  # Practical non-streaming ceiling (Opus 4.6 supports 128K with streaming)
     messages=[
         {"role": "user", "content": "Large input that uses most of context window..."}
     ],
@@ -509,7 +509,7 @@ def get_max_possible_tokens(client, prompt):
     response = client.messages.create(
         model="claude-opus-4-6",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=64000,  # Set to model's maximum output tokens
+        max_tokens=64000,  # Practical non-streaming ceiling (Opus 4.6 supports 128K with streaming)
     )
 
     if response.stop_reason == "model_context_window_exceeded":

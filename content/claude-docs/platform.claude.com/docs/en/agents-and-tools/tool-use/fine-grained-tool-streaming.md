@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 07b7bb8ced9d780ca323f4b412a30839a91afd70559d4a17d9fd4b8379c7f5db
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: c96f0246e496d5718668129ef66b19eaa53171cb28847e6d43aac823c95b7605
 ---
 
 # Fine-grained tool streaming
@@ -58,7 +58,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
         }
       ],
       "stream": true
-    }' | jq '.usage'
+    }'
   ```
 
   ```python Python

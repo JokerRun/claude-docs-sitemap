@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: af7839deade5653f1e86b288f419e37949fcd55d3dad81fb7aa04fefbb3b574c
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 59f8268d6e9c302b6ecfa67d5d4630c2ef62c7bac7e6ba5ab38909353b00ebfe
 ---
 
 # Files API
@@ -18,7 +18,7 @@ Files API saat ini dalam beta. Silakan hubungi kami melalui [formulir umpan bali
 </Note>
 
 <Note>
-This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
+This feature is in beta and is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Beta features are excluded from ZDR.
 </Note>
 
 ## Model yang didukung

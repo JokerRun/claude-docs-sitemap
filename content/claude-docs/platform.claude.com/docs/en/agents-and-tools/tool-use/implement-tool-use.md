@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 98f396317f90afd20f45d81573a08b037464791df62d2515ce70c5498e817e48
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 0de92bb84a9ea09d31ed442dddb8294c56a3eede7d58685df290ada93a691ca8
 ---
 
 # How to implement tool use
@@ -2377,7 +2377,14 @@ public class Program
 
         var response = await client.Messages.Create(parameters);
 
-        var toolUses = response.Content.Where(block => block.Type == "tool_use").ToList();
+        var toolUses = new List<ToolUseBlock>();
+        foreach (var block in response.Content)
+        {
+            if (block.TryPickToolUse(out var toolUse))
+            {
+                toolUses.Add(toolUse);
+            }
+        }
         Console.WriteLine($"\n\u2713 Claude made {toolUses.Count} tool calls");
 
         if (toolUses.Count > 1)
@@ -2412,7 +2419,7 @@ public class Program
 
             toolResults.Add(new ContentBlockParam(new ToolResultBlockParam()
             {
-                ToolUseID = toolUse.Id,
+                ToolUseID = toolUse.ID,
                 Content = result,
             }));
         }
@@ -2424,14 +2431,15 @@ public class Program
             MaxTokens = 1024,
             Messages = [
                 new() { Role = Role.User, Content = "What's the weather in SF and NYC, and what time is it there?" },
-                new() { Role = Role.Assistant, Content = response.Content },
+                new() { Role = Role.Assistant, Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
                 new() { Role = Role.User, Content = new MessageParamContent(toolResults) }
             ],
             Tools = tools
         };
 
         var finalResponse = await client.Messages.Create(finalParameters);
-        Console.WriteLine($"\nClaude's response:\n{finalResponse.Content[0].Text}");
+        finalResponse.Content[0].TryPickText(out var text);
+        Console.WriteLine($"\nClaude's response:\n{text?.Text}");
 
         Console.WriteLine("\n--- Verification ---");
         Console.WriteLine($"\u2713 Tool results sent in single user message: {toolResults.Count} results");
@@ -3474,6 +3482,7 @@ main().catch(console.error);
 using Anthropic;
 using Anthropic.Models.Messages;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 class Program
@@ -3510,7 +3519,7 @@ class Program
                     },
                     new() {
                         Role = Role.Assistant,
-                        Content = response.Content
+                        Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
                     }
                 ],
                 Tools = [new ToolUnion(new WebSearchTool20250305() { MaxUses = 10 })]

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: ec1038f3abad03246cfcd539066368cf30bdc19c223bbddd83fee2fc991041a6
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: beac176db69f699a1fa8a349e3b89f3423cae5d1c8af984604e2cfe7f05a1445
 ---
 
 # MCP connector
@@ -18,7 +18,7 @@ Claude's Model Context Protocol (MCP) connector feature enables you to connect t
 </Note>
 
 <Note>
-This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
+This feature is in beta and is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Beta features are excluded from ZDR.
 </Note>
 
 ## Key features

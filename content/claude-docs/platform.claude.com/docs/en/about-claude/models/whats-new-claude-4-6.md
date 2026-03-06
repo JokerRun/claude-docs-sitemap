@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-6
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: b6e77621e528dde57a0ab6bc2f4c8df96d62fd47bae5020da5958bb522068dd4
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 698a8c5b5d370cc96028cba9731a635875d5658ce7f480b6a1db587a9065414b
 ---
 
 # What's new in Claude 4.6
@@ -34,7 +34,7 @@ For complete pricing and specs, see the [models overview](/docs/en/about-claude/
 
 `thinking: {type: "enabled"}` and `budget_tokens` are **deprecated** on Opus 4.6 and Sonnet 4.6. They remain functional but will be removed in a future model release. Use adaptive thinking and the [effort parameter](/docs/en/build-with-claude/effort) to control thinking depth instead. Adaptive thinking also automatically enables interleaved thinking.
 
-```python nocheck
+```python
 response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=16000,
@@ -75,7 +75,7 @@ The following tools are now generally available:
 
 [Fast mode](/docs/en/build-with-claude/fast-mode) (`speed: "fast"`) delivers significantly faster output token generation for Opus models. Fast mode is up to 2.5x as fast at premium pricing ($30/$150 per MTok). This is the same model running with faster inference (no change to intelligence or capabilities).
 
-```python nocheck
+```python
 response = client.beta.messages.create(
     model="claude-opus-4-6",
     max_tokens=4096,

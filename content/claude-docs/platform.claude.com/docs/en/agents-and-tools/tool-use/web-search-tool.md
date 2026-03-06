@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: be2e3b016bcf4a7215c6bcf7bac3c8297876e90759c3e0a4bf3d1d1c906e419d
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 36dd6c3d751b59c973ea3fd88159c8db4ad789dec6a17958bf79e471827b24b7
 ---
 
 # Web search tool
@@ -14,7 +14,21 @@ The web search tool gives Claude direct access to real-time web content, allowin
 The latest web search tool version (`web_search_20260209`) supports **dynamic filtering** with Claude Opus 4.6 and Sonnet 4.6. Claude can write and execute code to filter search results before they reach the context window, keeping only relevant information and discarding the rest. This leads to more accurate responses while reducing token consumption. The previous tool version (`web_search_20250305`) remains available without dynamic filtering.
 
 <Note>
-This feature is [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) eligible. When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+The basic web search tool (`web_search_20250305`) is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention).
+
+The `web_search_20260209` version with dynamic filtering is **not** ZDR-eligible by default because dynamic filtering relies on code execution internally.
+
+To use `web_search_20260209` with ZDR, disable dynamic filtering by setting `"allowed_callers": ["direct"]` on the tool:
+
+```json
+{
+  "type": "web_search_20260209",
+  "name": "web_search",
+  "allowed_callers": ["direct"]
+}
+```
+
+This restricts the tool to direct invocation only, bypassing the internal code execution step.
 </Note>
 
 ## Supported models
@@ -122,6 +136,131 @@ async function main() {
 }
 
 main().catch(console.error);
+```
+
+```csharp C#
+using System;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        AnthropicClient client = new();
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 4096,
+            Messages = [new() { Role = Role.User, Content = "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }],
+            Tools = [new ToolUnion(new WebSearchTool20260209())]
+        };
+
+        var message = await client.Messages.Create(parameters);
+        Console.WriteLine(message);
+    }
+}
+```
+
+```go Go hidelines={1..11,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_6,
+		MaxTokens: 4096,
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.")),
+		},
+		Tools: []anthropic.ToolUnionParam{
+			{OfWebSearchTool20260209: &anthropic.WebSearchTool20260209Param{}},
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java Java hidelines={1..9,-1}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.anthropic.models.messages.WebSearchTool20260209;
+
+public class WebSearchExample {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageCreateParams params = MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_4_6)
+            .maxTokens(4096L)
+            .addUserMessage("Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.")
+            .addTool(WebSearchTool20260209.builder().build())
+            .build();
+
+        Message response = client.messages().create(params);
+        System.out.println(response);
+    }
+}
+```
+
+```php PHP
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+$message = $client->messages->create(
+    maxTokens: 4096,
+    messages: [
+        ['role' => 'user', 'content' => 'Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.'],
+    ],
+    model: 'claude-opus-4-6',
+    tools: [
+        [
+            'type' => 'web_search_20260209',
+            'name' => 'web_search',
+        ],
+    ],
+);
+
+echo $message;
+```
+
+```ruby Ruby
+require "anthropic"
+
+client = Anthropic::Client.new
+
+message = client.messages.create(
+  model: "claude-opus-4-6",
+  max_tokens: 4096,
+  messages: [
+    { role: "user", content: "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }
+  ],
+  tools: [{
+    type: "web_search_20260209",
+    name: "web_search"
+  }]
+)
+puts message
 ```
 </CodeGroup>
 
@@ -626,8 +765,13 @@ async function main() {
 
   messages.push({
     role: "user",
-    content: "Should I expect rain later this week?",
-    cache_control: { type: "ephemeral" }
+    content: [
+      {
+        type: "text",
+        text: "Should I expect rain later this week?",
+        cache_control: { type: "ephemeral" }
+      }
+    ]
   });
 
   const response2 = await client.messages.create({

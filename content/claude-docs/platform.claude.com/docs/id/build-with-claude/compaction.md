@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 3ac62aa617be568a896ff4212ed49b70ad3283e378e734a350c1186c68f47218
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 1d9e229167307f1e076543e9e3dab5b8b9592d5d1674e3e1da95990c85041f8a
 ---
 
 # Pemadatan
@@ -25,7 +25,7 @@ Pemadatan saat ini dalam beta. Sertakan [header beta](/docs/id/api/beta-headers)
 </Note>
 
 <Note>
-This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
+This feature is in beta and is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Beta features are excluded from ZDR.
 </Note>
 
 ## Model yang didukung

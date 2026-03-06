@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 640a94f48aa07ba27730b0d1d8f5685c101b7de6de58d79215b2ad47120d1ee7
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 0740e9e323ee3ae1d0dbdfddce1c8b6ed4faeeff4c6f0cb27aa84d30e2a87e56
 ---
 
 > ## Documentation Index
@@ -231,14 +231,14 @@ These are the most frequently encountered installation problems and their soluti
 
 When running the install command, you may see one of these errors:
 
-```
+```text  theme={null}
 bash: line 1: syntax error near unexpected token `<'
 bash: line 1: `<!DOCTYPE html>'
 ```
 
 On PowerShell, the same problem appears as:
 
-```
+```text  theme={null}
 Invoke-Expression: Missing argument in parameter list.
 ```
 
@@ -393,7 +393,7 @@ If you see `'irm' is not recognized` or `The token '&&' is not valid`, you're ru
 
 If you see `Killed` during installation on a VPS or cloud instance:
 
-```
+```text  theme={null}
 Setting up Claude Code...
 Installing Claude Code native build latest...
 bash: line 142: 34803 Killed    "$binary_path" install ${TARGET:+"$TARGET"}
@@ -469,7 +469,7 @@ If your Git is installed somewhere else, find the path by running `where.exe git
 
 If you see errors about missing shared libraries like `libstdc++.so.6` or `libgcc_s.so.1` after installation, the installer may have downloaded the wrong binary variant for your system.
 
-```
+```text  theme={null}
 Error loading shared library libstdc++.so.6: No such file or directory
 ```
 
@@ -494,7 +494,7 @@ This can happen on glibc-based systems that have musl cross-compilation packages
 
 If the installer prints `Illegal instruction` instead of the OOM `Killed` message, the downloaded binary doesn't match your CPU architecture. This commonly happens on ARM servers that receive an x86 binary, or on older CPUs that lack required instruction sets.
 
-```
+```text  theme={null}
 bash: line 142: 2238232 Illegal instruction    "$binary_path" install ${TARGET:+"$TARGET"}
 ```
 
@@ -515,7 +515,7 @@ bash: line 142: 2238232 Illegal instruction    "$binary_path" install ${TARGET:+
 
 If you see `dyld: cannot load` or `Abort trap: 6` during installation, the binary is incompatible with your macOS version or hardware.
 
-```
+```text  theme={null}
 dyld: cannot load 'claude-2.1.42-darwin-x64' (load command 0x80000034 is unknown)
 Abort trap: 6
 ```

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/jetbrains
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: adb2806c44ce69d528edef1b280912634006a3ea0e32137ab4f2ab945c05345f
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 5833d19b4d4bce7b19e89f4ab1b03348b91b1f31534575d18b4319763be2a046
 ---
 
 > ## Documentation Index
@@ -58,7 +58,10 @@ Use the `/ide` command in any external terminal to connect Claude Code to your J
 
 ```bash  theme={null}
 claude
-> /ide
+```
+
+```text  theme={null}
+/ide
 ```
 
 If you want Claude to have access to the same files as your IDE, start Claude Code from the same directory as your IDE project root.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: a08705333b253c1fc330891d5aad4cc9955c00f6631c5fa2ad17e6cdea67334c
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: bf12800e72423a29e805c45d13dae53c74bceab27c81bcb573ac29b4827ae91b
 ---
 
 # Pemanggilan alat secara terprogram
@@ -18,7 +18,7 @@ Fitur ini memerlukan alat eksekusi kode untuk diaktifkan.
 </Note>
 
 <Note>
-This feature is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Data is retained according to the feature's standard retention policy.
+This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Data is retained according to the feature's standard retention policy.
 </Note>
 
 ## Kompatibilitas model

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: a6d5879c4a0b754c526afdd10a2f9e74a3ac3a76b6b9fc8194ebb47c564a3313
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: cabeb5df39e766bae2cd69cc12a28be260be4b76740475c3083e6625c5c0e03a
 ---
 
 # Using the Messages API
@@ -14,7 +14,7 @@ Practical patterns and examples for using the Messages API effectively
 This guide covers common patterns for working with the Messages API, including basic requests, multi-turn conversations, prefill techniques, and vision capabilities. For complete API specifications, see the [Messages API reference](/docs/en/api/messages).
 
 <Note>
-This feature is [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) eligible. When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
 </Note>
 
 ## Basic request and response

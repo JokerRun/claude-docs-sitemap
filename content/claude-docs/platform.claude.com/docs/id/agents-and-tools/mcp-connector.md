@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: c897fb16efc7c6ecf907984f99ab310e37febe66922f7913da4c536c2a093f8d
+fetched_at: 2026-03-06T04:11:40.036970Z
+sha256: 1d02f1b77c0c1232f8f6c719fa9029337b8f2dadb380635d664f9f3ffed36658
 ---
 
 # Konektor MCP
@@ -20,7 +20,7 @@ Fitur konektor Model Context Protocol (MCP) Claude memungkinkan Anda terhubung k
 </Note>
 
 <Note>
-This feature is in beta and is **not** covered by [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements. Beta features are excluded from ZDR.
+This feature is in beta and is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Beta features are excluded from ZDR.
 </Note>
 
 ## Fitur utama
