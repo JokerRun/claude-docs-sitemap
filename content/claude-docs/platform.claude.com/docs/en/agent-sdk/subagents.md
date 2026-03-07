@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/subagents
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 26364c5cc33c4900b460658ff98a2a59bd31d359dbc3b2beb518eb04b6f7f058
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: bea24235c52672225ba7500f70369f76697a6db629a4f8562cb9b48948569e3e
 ---
 
 # Subagents in the SDK
@@ -30,25 +30,26 @@ When you define subagents, Claude determines whether to invoke them based on eac
 
 ## Benefits of using subagents
 
-### Context management
-Subagents maintain separate context from the main agent, preventing information overload and keeping interactions focused. This isolation ensures that specialized tasks don't pollute the main conversation context with irrelevant details.
+### Context isolation
 
-**Example**: a `research-assistant` subagent can explore dozens of files and documentation pages without cluttering the main conversation with all the intermediate search results, returning only the relevant findings.
+Each subagent runs in its own fresh conversation. Intermediate tool calls and results stay inside the subagent; only its final message returns to the parent. See [What subagents inherit](#what-subagents-inherit) for exactly what's in the subagent's context.
+
+**Example:** a `research-assistant` subagent can explore dozens of files without any of that content accumulating in the main conversation. The parent receives a concise summary, not every file the subagent read.
 
 ### Parallelization
 Multiple subagents can run concurrently, dramatically speeding up complex workflows.
 
-**Example**: during a code review, you can run `style-checker`, `security-scanner`, and `test-coverage` subagents simultaneously, reducing review time from minutes to seconds.
+**Example:** during a code review, you can run `style-checker`, `security-scanner`, and `test-coverage` subagents simultaneously, reducing review time from minutes to seconds.
 
 ### Specialized instructions and knowledge
 Each subagent can have tailored system prompts with specific expertise, best practices, and constraints.
 
-**Example**: a `database-migration` subagent can have detailed knowledge about SQL best practices, rollback strategies, and data integrity checks that would be unnecessary noise in the main agent's instructions.
+**Example:** a `database-migration` subagent can have detailed knowledge about SQL best practices, rollback strategies, and data integrity checks that would be unnecessary noise in the main agent's instructions.
 
 ### Tool restrictions
 Subagents can be limited to specific tools, reducing the risk of unintended actions.
 
-**Example**: a `doc-reviewer` subagent might only have access to Read and Grep tools, ensuring it can analyze but never accidentally modify your documentation files.
+**Example:** a `doc-reviewer` subagent might only have access to Read and Grep tools, ensuring it can analyze but never accidentally modify your documentation files.
 
 ## Creating subagents
 
@@ -177,6 +178,20 @@ You can also define subagents as markdown files in `.claude/agents/` directories
 
 <Note>
 Even without defining custom subagents, Claude can spawn the built-in `general-purpose` subagent when `Task` is in your `allowedTools`. This is useful for delegating research or exploration tasks without creating specialized agents.
+</Note>
+
+## What subagents inherit
+
+A subagent's context window starts fresh (no parent conversation) but isn't empty. The only channel from parent to subagent is the Task prompt string, so include any file paths, error messages, or decisions the subagent needs directly in that prompt.
+
+| The subagent receives | The subagent does not receive |
+|:---|:---|
+| Its own system prompt (`AgentDefinition.prompt`) and the Task prompt | The parent's conversation history or tool results |
+| Project CLAUDE.md (loaded via `settingSources`) | Skills (unless listed in `AgentDefinition.skills`, TypeScript only) |
+| Tool definitions (inherited from parent, or the subset in `tools`) | The parent's system prompt |
+
+<Note>
+The parent receives the subagent's final message verbatim as the Task tool result, but may summarize it in its own response. To preserve subagent output verbatim in the user-facing response, include an instruction to do so in the prompt or `systemPrompt` option you pass to the **main** `query()` call.
 </Note>
 
 ## Invoking subagents

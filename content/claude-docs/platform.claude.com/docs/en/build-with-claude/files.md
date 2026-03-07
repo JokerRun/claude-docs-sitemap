@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 82289e24e1e274f1e272e8e9b3644c9a0cfbb57f4509f3fe8aadaf182f6263ee
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: 25cbc0a559e74b55671ef63f10f385fd32ca93eb9772cd6410156d0b1e8c70fb
 ---
 
 # Files API
@@ -477,10 +477,10 @@ The Files API supports different file types that correspond to different content
 For file types that are not supported as `document` blocks (.csv, .txt, .md, .docx, .xlsx), convert the files to plain text, and include the content directly in your message:
 
 <CodeGroup>
-```bash Shell
+```bash Shell hidelines={3}
 # Example: Reading a text file and sending it as plain text
 # Note: For files with special characters, consider base64 encoding
-TEXT_CONTENT=$(cat document.txt | jq -Rs .)
+TEXT_CONTENT="This is a sample document. It has multiple lines."
 
 curl https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \

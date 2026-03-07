@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/csharp
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 3ccee941bd0f7e5c47e9ad2b5dccf35b14bc97f19b23f17ded8e674e654aebed
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: a3e86414a12cd79dd09c644de418fb8abbc3abeab21b73bfbd93a5626c7083cb
 ---
 
 # C# SDK
@@ -262,8 +262,11 @@ await foreach (var item in page.Paginate())
 
 To access individual page items and manually request the next page, use the `Items` property, and `HasNext` and `Next` methods:
 
-```csharp
+```csharp hidelines={1..5}
+using Anthropic;
 using System;
+
+AnthropicClient client = new();
 
 var page = await client.Messages.Batches.List();
 while (true)

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 571964af0d9624429f9569e976927df9c072dd4ab8f678d21dfafaee407d7d07
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: a4258d549cc361d17461124d9caa5cfb712df3dc847cb797350bf8e2836a53f2
 ---
 
 > ## Documentation Index
@@ -219,7 +219,7 @@ Check src/payments/ for the issue, especially token refresh.
 Write a failing test first, then fix it.
 ```
 
-Vague prompts like "fix the login bug" work, but you'll spend more time steering. Specific prompts like the above often succeed on the first attempt.
+Vague prompts work, but you'll spend more time steering. Specific prompts like the one above often succeed on the first attempt.
 
 ### Give Claude something to verify against
 

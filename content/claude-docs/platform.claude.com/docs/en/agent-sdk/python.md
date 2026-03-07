@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: fad1176c430533b078df3904cdcb5f1a8305024cce919e96c1f807dafe269085
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: 4ec27455e8a3912b2c5dfa6ab386a7f54f926beffb6324a137f0c33c7126bcb1
 ---
 
 # Agent SDK reference - Python
@@ -564,7 +564,7 @@ class ClaudeAgentOptions:
 | `permission_mode`             | `PermissionMode \| None`                     | `None`               | Permission mode for tool usage                                                                                                                                                          |
 | `continue_conversation`       | `bool`                                       | `False`              | Continue the most recent conversation                                                                                                                                                   |
 | `resume`                      | `str \| None`                                | `None`               | Session ID to resume                                                                                                                                                                    |
-| `max_turns`                   | `int \| None`                                | `None`               | Maximum conversation turns                                                                                                                                                              |
+| `max_turns`                   | `int \| None`                                | `None`               | Maximum agentic turns (tool-use round trips)                                                                                                                                            |
 | `max_budget_usd`              | `float \| None`                              | `None`               | Maximum budget in USD for the session                                                                                                                                                   |
 | `disallowed_tools`            | `list[str]`                                  | `[]`                 | Tools to always deny. Deny rules are checked first and override `allowed_tools` and `permission_mode` (including `bypassPermissions`)                                                   |
 | `enable_file_checkpointing`   | `bool`                                       | `False`              | Enable file change tracking for rewinding. See [File checkpointing](/docs/en/agent-sdk/file-checkpointing)                                                                              |
@@ -1103,6 +1103,7 @@ class ResultMessage:
     total_cost_usd: float | None = None
     usage: dict[str, Any] | None = None
     result: str | None = None
+    stop_reason: str | None = None
     structured_output: Any = None
 ```
 

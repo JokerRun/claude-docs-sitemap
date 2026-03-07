@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: b60bb8067a99b9aa25aee2fe499394b5ac8223d9ce21f087fabacfa954b829ec
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: 739b6d70da21dcb833dcc673b4e1e1c4e7c62353d57b5fb1c034863e56452bb8
 ---
 
 # Claude on Vertex AI
@@ -137,7 +137,8 @@ Before running requests you may need to run `gcloud auth application-default log
 The following examples show how to generate text from Claude on Vertex AI:
 <CodeGroup>
 
-  ```bash Shell
+  
+  ```bash Shell nocheck
   MODEL_ID=claude-opus-4-6
   LOCATION=global
   PROJECT_ID=MY_PROJECT_ID

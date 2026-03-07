@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 4e2166f5e1301badd965a5971a31aa7ca6eab4a1d242156c1d646cb96a4b3e41
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: 91a63f91911ef7c3167b44c809a3dbde0f2d90c39df7c9b730ced012f81cc2d3
 ---
 
 # Tool use with Claude
@@ -1018,7 +1018,7 @@ You would then need to execute the `get_weather` function with the provided inpu
                 "content": [
                     {
                         "type": "text",
-                        "text": "I'll check the current weather in San Francisco for you."
+                        "text": "I'\''ll check the current weather in San Francisco for you."
                     },
                     {
                         "type": "tool_use",

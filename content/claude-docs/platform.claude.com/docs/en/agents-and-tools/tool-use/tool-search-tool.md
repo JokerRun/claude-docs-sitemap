@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: a9e2a3b4785f531730597bd1b10c5ee90e6575ee79928b261a24f9573a313e11
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: 1048aeffd66277e3d5582f8fd54dee112fb13069e2c6a02f90b646c97deb7d20
 ---
 
 # Tool search tool
@@ -648,7 +648,8 @@ The `tool_reference` blocks are automatically expanded into full tool definition
 The tool search tool works with [MCP servers](/docs/en/agents-and-tools/mcp-connector). Add the `"mcp-client-2025-11-20"` [beta header](/docs/en/api/beta-headers) to your API request, and then use `mcp_toolset` with `default_config` to defer loading MCP tools:
 
 <CodeGroup>
-```bash Shell
+
+```bash Shell nocheck
 curl https://api.anthropic.com/v1/messages \
   --header "x-api-key: $ANTHROPIC_API_KEY" \
   --header "anthropic-version: 2023-06-01" \

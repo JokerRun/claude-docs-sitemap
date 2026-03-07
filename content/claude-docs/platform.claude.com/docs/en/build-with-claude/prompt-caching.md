@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: f6ed0e56608a7f0ad848424b95d8ed3ec0d63fa4f098206bd3c121f44e021d32
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: ffe3d303b8e2f37a18d52579872bac8eb1f0b7cd74921f89db4854be4c5bc255
 ---
 
 # Prompt caching
@@ -1209,7 +1209,6 @@ curl https://api.anthropic.com/v1/messages \
                 "required": ["location"]
             }
         },
-        # many more tools
         {
             "name": "get_time",
             "description": "Get the current time in a given time zone",
@@ -1707,7 +1706,7 @@ curl https://api.anthropic.com/v1/messages \
             "content": [
                 {
                     "type": "text",
-                    "text": "Hello, can you tell me more about the solar system?",
+                    "text": "Hello, can you tell me more about the solar system?"
                 }
             ]
         },

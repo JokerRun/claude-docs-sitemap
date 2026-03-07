@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-03-02T04:17:41.989334Z
-sha256: f12a366f9590dfe01a548130246e6468d862bf5fe14a50e8cfcf5026cea5debd
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: 121857c1f962f4dcec8166c5a1e360fbb420d1a916bacd68c89b530eb89cb1d3
 ---
 
 > ## Documentation Index
@@ -99,7 +99,7 @@ Choose your environment to get started. Most surfaces require a [Claude subscrip
   </Tab>
 
   <Tab title="Desktop app">
-    A standalone app for running Claude Code outside your IDE or terminal. Review diffs visually, run multiple sessions side by side, and kick off cloud sessions.
+    A standalone app for running Claude Code outside your IDE or terminal. Review diffs visually, run multiple sessions side by side, schedule recurring tasks, and kick off cloud sessions.
 
     Download and install:
 

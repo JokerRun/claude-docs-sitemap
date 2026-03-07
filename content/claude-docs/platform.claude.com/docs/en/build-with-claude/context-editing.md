@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 6fff93ad536edda29764c4e0b61d2b45f21194c0f633466a299b75c3a649c1dc
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: fa671cc9ae8875191fc48957285965d4fe6cc9368b87c64784f9fe0f99a7c352
 ---
 
 # Context editing
@@ -763,7 +763,7 @@ curl https://api.anthropic.com/v1/messages \
     --data '{
         "model": "claude-opus-4-6",
         "max_tokens": 16000,
-        "messages": [/* ... */],
+        "messages": [{"role": "user", "content": "Hello"}],
         "thinking": {
             "type": "enabled",
             "budget_tokens": 10000
@@ -1450,7 +1450,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
                 "content": "Continue our conversation..."
             }
         ],
-        "tools": [...],
+        "tools": [],
         "context_management": {
             "edits": [
                 {

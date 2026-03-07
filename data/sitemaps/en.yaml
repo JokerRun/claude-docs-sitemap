@@ -22,7 +22,7 @@
   lastmod: '2026-02-14T01:42:35.407Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-code-on-the-web
-  lastmod: '2026-02-27T21:02:10.668Z'
+  lastmod: '2026-03-06T22:57:49.791Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
   lastmod: '2026-03-05T02:05:27.165Z'
@@ -37,10 +37,10 @@
   lastmod: '2026-02-27T21:02:10.669Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
-  lastmod: '2026-02-26T20:21:09.404Z'
+  lastmod: '2026-03-06T22:14:20.077Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-quickstart
-  lastmod: '2026-02-20T19:30:24.552Z'
+  lastmod: '2026-03-06T22:14:20.072Z'
 - source: code
   loc: https://code.claude.com/docs/en/devcontainer
   lastmod: '2026-01-28T13:17:42.832Z'
@@ -73,7 +73,7 @@
   lastmod: '2026-03-05T02:05:28.945Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
-  lastmod: '2026-03-05T22:29:08.217Z'
+  lastmod: '2026-03-06T04:33:21.738Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
   lastmod: '2026-03-05T02:05:28.946Z'
@@ -112,7 +112,7 @@
   lastmod: '2026-01-28T13:17:42.880Z'
 - source: code
   loc: https://code.claude.com/docs/en/overview
-  lastmod: '2026-03-01T04:32:09.100Z'
+  lastmod: '2026-03-07T01:12:10.232Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
   lastmod: '2026-03-05T01:42:34.397Z'
@@ -135,6 +135,9 @@
   loc: https://code.claude.com/docs/en/sandboxing
   lastmod: '2026-03-05T22:29:08.268Z'
 - source: code
+  loc: https://code.claude.com/docs/en/scheduled-tasks
+  lastmod: '2026-03-07T01:12:10.260Z'
+- source: code
   loc: https://code.claude.com/docs/en/security
   lastmod: '2026-02-24T18:45:42.075Z'
 - source: code
@@ -142,13 +145,13 @@
   lastmod: '2026-03-05T01:42:34.396Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-03-05T02:05:32.456Z'
+  lastmod: '2026-03-07T01:12:10.266Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-02-24T21:45:16.553Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
-  lastmod: '2026-03-05T02:05:32.448Z'
+  lastmod: '2026-03-07T01:12:10.289Z'
 - source: code
   loc: https://code.claude.com/docs/en/slack
   lastmod: '2026-02-14T01:42:38.610Z'
@@ -213,6 +216,12 @@
   loc: https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing
   priority: '0.8'
 - source: platform
+  loc: https://platform.claude.com/docs/en/agent-sdk/agent-loop
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/agent-sdk/claude-code-features
+  priority: '0.8'
+- source: platform
   loc: https://platform.claude.com/docs/en/agent-sdk/cost-tracking
   priority: '0.8'
 - source: platform
@@ -262,9 +271,6 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/agent-sdk/slash-commands
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/stop-reasons
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/agent-sdk/streaming-output

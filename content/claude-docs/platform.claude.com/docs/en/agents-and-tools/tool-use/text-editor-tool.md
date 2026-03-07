@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 4c5ce30aaf300504596d463463a150cddd62ab7546fb4aca3045791bffed0914
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: 8db668235e9508f5dc931ab11b55f8fce75759fe53a67773866a555bc53fec02
 ---
 
 # Text editor tool
@@ -155,7 +155,7 @@ public class TextEditorToolExample {
 Provide the text editor tool (named `str_replace_editor`) to Claude using the Messages API:
 <CodeGroup>
 
-```bash Shell
+```bash Shell nocheck
 curl https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \

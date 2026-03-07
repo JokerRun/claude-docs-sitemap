@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: beac176db69f699a1fa8a349e3b89f3423cae5d1c8af984604e2cfe7f05a1445
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: 672c3b3c3b7986724f626da460d4860286b9a103340c6433b36e3f3d79811f62
 ---
 
 # MCP connector
@@ -48,7 +48,8 @@ The MCP connector uses two components:
 This example enables all tools from an MCP server with default configuration:
 
 <CodeGroup>
-```bash Shell
+
+```bash Shell nocheck
 curl https://api.anthropic.com/v1/messages \
   -H "Content-Type: application/json" \
   -H "X-API-Key: $ANTHROPIC_API_KEY" \

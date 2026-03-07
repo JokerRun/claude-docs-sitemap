@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: daf4d66554f10ee2b0b740eb3aec5dbc0ef22405ee38b7c7bc58b5dd0dcf59ab
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: abca0c1f0ae6ad438a3d46b43eff4bc4c2738c981c63f8dd91bf5e3b58bad70c
 ---
 
 # Vision
@@ -282,34 +282,38 @@ Below are examples of how to include images in a Messages API request using base
 ### Base64-encoded image example
 
 <CodeGroup>
-    ```bash Shell
+    ```bash Shell hidelines={1..2}
+    BASE64_IMAGE_DATA=$(curl -s "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg" | base64 | tr -d '\n')
+
     curl https://api.anthropic.com/v1/messages \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
       -H "anthropic-version: 2023-06-01" \
       -H "content-type: application/json" \
-      -d '{
-        "model": "claude-opus-4-6",
-        "max_tokens": 1024,
-        "messages": [
-          {
-            "role": "user",
-            "content": [
-              {
-                "type": "image",
-                "source": {
-                  "type": "base64",
-                  "media_type": "image/jpeg",
-                  "data": "'"$BASE64_IMAGE_DATA"'"
-                }
-              },
-              {
-                "type": "text",
-                "text": "Describe this image."
+      -d @- <<EOF
+    {
+      "model": "claude-opus-4-6",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "$BASE64_IMAGE_DATA"
               }
-            ]
-          }
-        ]
-      }'
+            },
+            {
+              "type": "text",
+              "text": "Describe this image."
+            }
+          ]
+        }
+      ]
+    }
+    EOF
     ```
     ```python Python hidelines={3..5,-1}
     import anthropic
@@ -807,7 +811,16 @@ Below are examples of how to include images in a Messages API request using base
 
 ### Files API image example
 
-For images you'll use repeatedly or when you want to avoid encoding overhead, use the [Files API](/docs/en/build-with-claude/files):
+For images you'll use repeatedly or when you want to avoid encoding overhead, use the [Files API](/docs/en/build-with-claude/files). Upload the image once, then reference the returned `file_id` in subsequent messages instead of resending base64 data.
+
+<Tip>
+  In multi-turn conversations and agentic workflows, each request resends the
+  full conversation history. If images are base64-encoded, the full image bytes
+  are included in the payload on every turn, which can significantly increase
+  request size and latency as the conversation grows. Uploading images to the
+  Files API and referencing them by `file_id` keeps request payloads small
+  regardless of how many images accumulate in the conversation history.
+</Tip>
 
 <CodeGroup>
 ```bash Shell

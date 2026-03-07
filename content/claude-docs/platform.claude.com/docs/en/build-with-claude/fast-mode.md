@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 4fe56737fa35bf944081a5a1f68e037a42264761afc6ed12befe4eb30f8d7621
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: 5ec83b33bfa4e064b77847d7d0ba6005ecd424f2387dd9200c46ed2246bc2af9
 ---
 
 # Fast mode (research preview)
@@ -260,18 +260,6 @@ curl https://api.anthropic.com/v1/messages \
         "speed": "fast",
         "messages": [{"role": "user", "content": "Hello"}]
     }'
-
-{
-  "id": "msg_01XFDUDYJgAACzvnptvVoYEL",
-  "type": "message",
-  "role": "assistant",
-  ...
-  "usage": {
-    "input_tokens": 523,
-    "output_tokens": 1842,
-    "speed": "fast"
-  }
-}
 ```
 
 ```python Python nocheck
@@ -403,6 +391,20 @@ puts(response.usage.speed)  # "fast" or "standard"
 ```
 </CodeGroup>
 
+```json JSON
+{
+  "id": "msg_01XFDUDYJgAACzvnptvVoYEL",
+  "type": "message",
+  "role": "assistant",
+  ...
+  "usage": {
+    "input_tokens": 523,
+    "output_tokens": 1842,
+    "speed": "fast"
+  }
+}
+```
+
 To track fast mode usage and costs across your organization, see the [Usage and Cost API](/docs/en/build-with-claude/usage-cost-api).
 
 ## Retries and fallback
@@ -503,8 +505,9 @@ const client = new Anthropic();
 })();
 ```
 
-```csharp C# hidelines={1..5}
+```csharp C# hidelines={1..6}
 using Anthropic;
+using Anthropic.Exceptions;
 using Anthropic.Models.Beta.Messages;
 
 AnthropicClient client = new();
@@ -616,36 +619,34 @@ func main() {
 ```java Java hidelines={1..11,-1}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.core.RequestOptions;
 import com.anthropic.errors.InternalServerException;
 import com.anthropic.errors.RateLimitException;
 import com.anthropic.models.beta.AnthropicBeta;
 import com.anthropic.models.beta.messages.BetaMessage;
 import com.anthropic.models.beta.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
+import java.util.Optional;
 
 public class FastModeFallback {
-    static AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+    // Disable SDK auto-retry so the fallback logic below handles it
+    static AnthropicClient client =
+            AnthropicOkHttpClient.builder().fromEnv().maxRetries(0).build();
 
     static BetaMessage createMessageWithFastFallback(
-            MessageCreateParams params,
-            RequestOptions requestOptions,
-            int maxAttempts) {
+            MessageCreateParams params, int maxAttempts) {
         try {
-            return client.beta().messages().create(params, requestOptions);
+            return client.beta().messages().create(params);
         } catch (RateLimitException e) {
             if (params.speed().isPresent()) {
                 MessageCreateParams retryParams = params.toBuilder()
-                        .speed(null)
+                        .speed(Optional.empty())
                         .build();
-                return createMessageWithFastFallback(
-                        retryParams, RequestOptions.none(), maxAttempts);
+                return createMessageWithFastFallback(retryParams, maxAttempts);
             }
             throw e;
         } catch (InternalServerException e) {
             if (maxAttempts > 1) {
-                return createMessageWithFastFallback(
-                        params, RequestOptions.none(), maxAttempts - 1);
+                return createMessageWithFastFallback(params, maxAttempts - 1);
             }
             throw e;
         }
@@ -660,7 +661,6 @@ public class FastModeFallback {
                         .addBeta(AnthropicBeta.FAST_MODE_2026_02_01)
                         .speed(MessageCreateParams.Speed.FAST)
                         .build(),
-                RequestOptions.builder().maxRetries(0).build(),
                 3);
     }
 }

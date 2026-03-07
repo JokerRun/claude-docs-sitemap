@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/typescript
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 96407e03506b3513a431d1ce4bdeda7ed671301b1d0f5cf3d797152448e42d8a
+fetched_at: 2026-03-07T04:03:06.555504Z
+sha256: 84569923026d80ab37c59c6cdfb1abbd6e0550847b0f38a02c8d68690bdbd989
 ---
 
 # TypeScript SDK
@@ -388,11 +388,7 @@ When the library is unable to connect to the API,
 or if the API returns a non-success status code (i.e., 4xx or 5xx response),
 a subclass of `APIError` will be thrown:
 
-```typescript hidelines={1..4}
-import Anthropic from "@anthropic-ai/sdk";
-
-const client = new Anthropic();
-
+```typescript
 const message = await client.messages
   .create({
     max_tokens: 1024,
