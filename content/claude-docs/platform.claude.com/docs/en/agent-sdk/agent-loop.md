@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/agent-loop
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: b1f6a1fda8e225cfec2e6546cdcf63a125c753d8338f9014fac5a441bd6ddab4
+fetched_at: 2026-03-08T04:13:48.900839Z
+sha256: 6bf96039bcd0f159ea737a1c6535120cc1c48e4d7fef0b6f40533953345a48ed
 ---
 
 # How the agent loop works
@@ -126,7 +126,7 @@ The SDK includes the same tools that power Claude Code:
 | **Execution** | `Bash` | Run shell commands, scripts, git operations |
 | **Web** | `WebSearch`, `WebFetch` | Search the web, fetch and parse pages |
 | **Discovery** | `ToolSearch` | Dynamically find and load tools on-demand instead of preloading all of them |
-| **Orchestration** | `Task`, `Skill`, `AskUserQuestion`, `TodoWrite` | Spawn subagents, invoke skills, ask the user, track tasks |
+| **Orchestration** | `Agent`, `Skill`, `AskUserQuestion`, `TodoWrite` | Spawn subagents, invoke skills, ask the user, track tasks |
 
 Beyond built-in tools, you can:
 

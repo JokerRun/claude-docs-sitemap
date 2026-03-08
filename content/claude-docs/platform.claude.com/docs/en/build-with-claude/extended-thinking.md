@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: f199f36046a4af51c58999bffb72de4588b86962e7a6c34eb360419ff412591d
+fetched_at: 2026-03-08T04:13:48.900839Z
+sha256: b8a6d213aa78627f18e42dcf9a709c609eac3491107dc33c1d10542508ae9b98
 ---
 
 # Building with extended thinking
@@ -1132,7 +1132,7 @@ tool_use_block = next(
 )
 
 # Call your actual weather API, here is where your actual API call would go
-# let's pretend this is what we get back
+# Let's pretend this is what we get back
 weather_data = {"temperature": 88}
 
 # Second request - Include thinking block and tool result
@@ -1171,7 +1171,7 @@ const toolUseBlock = response.content.find(
 );
 
 // Call your actual weather API, here is where your actual API call would go
-// let's pretend this is what we get back
+// Let's pretend this is what we get back
 const weatherData = { temperature: 88 };
 
 if (thinkingBlock && toolUseBlock) {

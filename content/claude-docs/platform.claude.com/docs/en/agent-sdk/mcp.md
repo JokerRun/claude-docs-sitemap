@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: c5980a3a2c9f94a60674412c5883269ee43504747f5a3e2dbdb69b9702478c9d
+fetched_at: 2026-03-08T04:13:48.900839Z
+sha256: ca09a5daef76363f8509cb958455841c07aa91c9183a07efbe618a629a6108fe
 ---
 
 # Connect to external tools with MCP
@@ -183,7 +183,7 @@ Wildcards (`*`) let you allow all tools from a server without listing each one i
 Instead of listing allowed tools, you can change the permission mode to grant broader access:
 
 - `permissionMode: "acceptEdits"`: Automatically approves tool usage (still prompts for destructive operations)
-- `permissionMode: "bypassPermissions"`: Skips all safety prompts, including for destructive operations like file deletion or running shell commands. Use with caution, especially in production. This mode propagates to subagents spawned by the Task tool.
+- `permissionMode: "bypassPermissions"`: Skips all safety prompts, including for destructive operations like file deletion or running shell commands. Use with caution, especially in production. This mode propagates to subagents spawned by the Agent tool.
 
 ```typescript hidelines={1,-1}
 const _ = {

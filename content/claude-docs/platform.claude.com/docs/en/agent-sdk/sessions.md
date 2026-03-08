@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/sessions
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: ee9d66318fe851efd2e7793fba73519b6892b14d3f6417d0dd9e546a5ac0ca2c
+fetched_at: 2026-03-08T04:13:48.900839Z
+sha256: 635af467bd4265e1c24c74f96c7766e73cf2991a58d4c14ba98ee4f146574426
 ---
 
 # Work with sessions
@@ -321,7 +321,7 @@ Session files are local to the machine that created them. To resume a session on
 - **Move the session file.** Persist `~/.claude/projects/<encoded-cwd>/<session-id>.jsonl` from the first run and restore it to the same path on the new host before calling `resume`. The `cwd` must match.
 - **Don't rely on session resume.** Capture the results you need (analysis output, decisions, file diffs) as application state and pass them into a fresh session's prompt. This is often more robust than shipping transcript files around.
 
-The TypeScript SDK exposes [`listSessions()`](/docs/en/agent-sdk/typescript#list-sessions) for enumerating sessions on disk, which is useful for building custom session pickers or cleanup logic.
+Both SDKs expose functions for enumerating sessions on disk and reading their messages: [`listSessions()`](/docs/en/agent-sdk/typescript#list-sessions) and [`getSessionMessages()`](/docs/en/agent-sdk/typescript#get-session-messages) in TypeScript, [`list_sessions()`](/docs/en/agent-sdk/python#list-sessions) and [`get_session_messages()`](/docs/en/agent-sdk/python#get-session-messages) in Python. Use them to build custom session pickers, cleanup logic, or transcript viewers.
 
 ## Related resources
 
