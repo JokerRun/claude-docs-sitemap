@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/data-residency
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 9ca6faf121413fa00432c84ab7839a05e7ac209952725855545e5c28f9beb5a7
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: c18334f5f32ed6145f439f231e74b405409ecac5cffc550220dea6e698e36d05
 ---
 
 # Residensi data
@@ -134,7 +134,7 @@ Harga residensi data bervariasi menurut generasi model:
 - **Routing global** (`inference_geo: "global"` atau dihilangkan): Harga standar berlaku.
 - **Model yang lebih lama**: Harga yang ada tidak berubah terlepas dari pengaturan `inference_geo`.
 
-Harga ini berlaku untuk Claude API (1P) saja. Platform pihak ketiga (AWS Bedrock, Google Vertex AI, Microsoft Foundry) memiliki harga regional mereka sendiri. Lihat [halaman harga](/docs/id/about-claude/pricing#data-residency-pricing) untuk detail.
+Harga ini berlaku untuk Claude API (1P) saja. Platform pihak ketiga (AWS Bedrock, Google Vertex AI) memiliki harga regional mereka sendiri. Lihat [halaman harga](/docs/id/about-claude/pricing#data-residency-pricing) untuk detail.
 
 <Note>
 Jika Anda menggunakan [Priority Tier](/docs/id/api/service-tiers), pengganda 1,1x untuk inferensi hanya AS juga mempengaruhi cara token dihitung terhadap kapasitas Priority Tier Anda. Setiap token yang dikonsumsi dengan `inference_geo: "us"` mengurangi 1,1 token dari TPM yang berkomitmen, konsisten dengan cara pengganda harga lainnya (prompt caching, long context) mempengaruhi tingkat burndown.

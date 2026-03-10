@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: fbe866eba72543eaf29434aa320c6947be23f0619c6f420dc8f6cf7bb3963f02
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: 0aa7589e1f3dc7e3578a9d6d7d7810c695ca046f736e8993f8dc15df9d887b57
 ---
 
 > ## Documentation Index
@@ -202,7 +202,7 @@ See @README.md for project overview and @package.json for available npm commands
 You can place CLAUDE.md files in several locations:
 
 * **Home folder (`~/.claude/CLAUDE.md`)**: applies to all Claude sessions
-* **Project root (`./CLAUDE.md`)**: check into git to share with your team, or name it `CLAUDE.local.md` and `.gitignore` it
+* **Project root (`./CLAUDE.md`)**: check into git to share with your team
 * **Parent directories**: useful for monorepos where both `root/CLAUDE.md` and `root/foo/CLAUDE.md` are pulled in automatically
 * **Child directories**: Claude pulls in child CLAUDE.md files on demand when working with files in those directories
 

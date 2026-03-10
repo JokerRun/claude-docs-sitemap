@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: 5ec83b33bfa4e064b77847d7d0ba6005ecd424f2387dd9200c46ed2246bc2af9
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: 11c0e875ba6d0398a493bea84a65b54f191b8d0a589515601736a90265df973c
 ---
 
 # Fast mode (research preview)
@@ -391,12 +391,15 @@ puts(response.usage.speed)  # "fast" or "standard"
 ```
 </CodeGroup>
 
-```json JSON
+```json JSON hidelines={5..8}
 {
   "id": "msg_01XFDUDYJgAACzvnptvVoYEL",
   "type": "message",
   "role": "assistant",
-  ...
+  "content": [{ "type": "text", "text": "Hello!" }],
+  "model": "claude-opus-4-6",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
   "usage": {
     "input_tokens": 523,
     "output_tokens": 1842,

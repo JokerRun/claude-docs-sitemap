@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: 121857c1f962f4dcec8166c5a1e360fbb420d1a916bacd68c89b530eb89cb1d3
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: bce3d9653a2f9ca445a6b066fb434387ffa1e428e7672f48efb533326353dced
 ---
 
 > ## Documentation Index
@@ -214,6 +214,7 @@ Beyond the [Terminal](/en/quickstart), [VS Code](/en/vs-code), [JetBrains](/en/j
 | Continue a local session from my phone or another device | [Remote Control](/en/remote-control)                                                                               |
 | Start a task locally, continue on mobile                 | [Web](/en/claude-code-on-the-web) or [Claude iOS app](https://apps.apple.com/app/claude-by-anthropic/id6473753684) |
 | Automate PR reviews and issue triage                     | [GitHub Actions](/en/github-actions) or [GitLab CI/CD](/en/gitlab-ci-cd)                                           |
+| Get automatic code review on every PR                    | [GitHub Code Review](/en/code-review)                                                                              |
 | Route bug reports from Slack to pull requests            | [Slack](/en/slack)                                                                                                 |
 | Debug live web applications                              | [Chrome](/en/chrome)                                                                                               |
 | Build custom agents for your own workflows               | [Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview)                                                |

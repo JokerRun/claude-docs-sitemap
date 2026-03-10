@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 3315ffab8f21c7f5428055f99cabef52b548715061f51c103ec3fb502781190e
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: c1c805d38acf6c081c049b99196a8d0b173f899f11710e94d832c4ef19435708
 ---
 
 > ## Documentation Index
@@ -146,7 +146,7 @@ In the table below, `<arg>` indicates a required argument and `[arg]` indicates 
 | `/remote-env`             | Configure the default remote environment for [teleport sessions](/en/claude-code-on-the-web#teleport-a-web-session-to-your-terminal)                                                                                                                                                                                                                               |
 | `/rename [name]`          | Rename the current session. Without a name, auto-generates one from conversation history                                                                                                                                                                                                                                                                           |
 | `/resume [session]`       | Resume a conversation by ID or name, or open the session picker. Alias: `/continue`                                                                                                                                                                                                                                                                                |
-| `/review`                 | Review a pull request for code quality, correctness, security, and test coverage. Pass a PR number, or omit to list open PRs. Requires the `gh` CLI                                                                                                                                                                                                                |
+| `/review`                 | Deprecated. Install the [`code-review` plugin](https://github.com/anthropics/claude-code-marketplace/blob/main/code-review/README.md) instead: `claude plugin install code-review@claude-code-marketplace`                                                                                                                                                         |
 | `/rewind`                 | Rewind the conversation and/or code to a previous point, or summarize from a selected message. See [checkpointing](/en/checkpointing). Alias: `/checkpoint`                                                                                                                                                                                                        |
 | `/sandbox`                | Toggle [sandbox mode](/en/sandboxing). Available on supported platforms only                                                                                                                                                                                                                                                                                       |
 | `/security-review`        | Analyze pending changes on the current branch for security vulnerabilities. Reviews the git diff and identifies risks like injection, auth issues, and data exposure                                                                                                                                                                                               |

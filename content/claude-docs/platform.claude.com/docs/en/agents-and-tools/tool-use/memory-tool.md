@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 326792b2cab7276227a4265bbf4524de702034dd33776fe21133c161d8a4c328
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: 715e4400c384576ab1c340a7b11180bbcc15f06fc43a9d3f5701734faaa836dc
 ---
 
 # Memory tool
@@ -131,7 +131,7 @@ For working examples, see:
 
 <CodeGroup>
 
-```bash cURL
+```bash Shell
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \

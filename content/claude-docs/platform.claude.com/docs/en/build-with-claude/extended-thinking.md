@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-03-08T04:13:48.900839Z
-sha256: b8a6d213aa78627f18e42dcf9a709c609eac3491107dc33c1d10542508ae9b98
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: 346d38ff6157995c5cde52aa37ecbd2f9f43c7bee12ec6175fb2158c0f4e8c18
 ---
 
 # Building with extended thinking
@@ -1791,7 +1791,7 @@ def fetch_article_content(url):
 book_url = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt"
 book_content = fetch_article_content(book_url)
 # Use just enough text for caching (first few chapters)
-LARGE_TEXT = book_content[:5000]
+LARGE_TEXT = book_content[:10000]
 
 SYSTEM_PROMPT = [
     {
@@ -1865,7 +1865,7 @@ async function fetchArticleContent(url: string): Promise<string> {
 async function main(): Promise<void> {
   const bookUrl = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt";
   const bookContent = await fetchArticleContent(bookUrl);
-  const LARGE_TEXT = bookContent.slice(0, 5000);
+  const LARGE_TEXT = bookContent.slice(0, 10000);
 
   const SYSTEM_PROMPT: Anthropic.TextBlockParam[] = [
     {
@@ -1949,7 +1949,7 @@ public class Program
         // Fetch book content
         using var httpClient = new HttpClient();
         var bookContent = await httpClient.GetStringAsync("https://www.gutenberg.org/cache/epub/1342/pg1342.txt");
-        var largeText = bookContent.Substring(0, Math.Min(5000, bookContent.Length));
+        var largeText = bookContent.Substring(0, Math.Min(10000, bookContent.Length));
 
         var systemPrompt = new MessageCreateParamsSystem(new List<TextBlockParam>
         {
@@ -2046,8 +2046,8 @@ func main() {
 	}
 
 	largeText := string(body)
-	if len(largeText) > 5000 {
-		largeText = largeText[:5000]
+	if len(largeText) > 10000 {
+		largeText = largeText[:10000]
 	}
 
 	systemPrompt := []anthropic.TextBlockParam{
@@ -2137,7 +2137,7 @@ public class ThinkingCacheExample {
             .build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         String bookContent = response.body();
-        String largeText = bookContent.substring(0, Math.min(5000, bookContent.length()));
+        String largeText = bookContent.substring(0, Math.min(10000, bookContent.length()));
 
         List<TextBlockParam> systemPrompt = List.of(
             TextBlockParam.builder()
@@ -2209,7 +2209,7 @@ $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
 
 // Fetch book content
 $bookContent = file_get_contents("https://www.gutenberg.org/cache/epub/1342/pg1342.txt");
-$largeText = substr($bookContent, 0, 5000);
+$largeText = substr($bookContent, 0, 10000);
 
 $systemPrompt = [
     [
@@ -2278,7 +2278,7 @@ client = Anthropic::Client.new
 uri = URI("https://www.gutenberg.org/cache/epub/1342/pg1342.txt")
 response = Net::HTTP.get_response(uri)
 book_content = response.body
-large_text = book_content[0...5000]
+large_text = book_content[0...10000]
 
 system_prompt = [
   {
@@ -2384,7 +2384,7 @@ def fetch_article_content(url):
 book_url = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt"
 book_content = fetch_article_content(book_url)
 # Use just enough text for caching (first few chapters)
-LARGE_TEXT = book_content[:5000]
+LARGE_TEXT = book_content[:10000]
 
 # No system prompt - caching in messages instead
 MESSAGES = [
@@ -2474,7 +2474,7 @@ async function fetchArticleContent(url: string): Promise<string> {
 async function main(): Promise<void> {
   const bookUrl = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt";
   const bookContent = await fetchArticleContent(bookUrl);
-  const LARGE_TEXT = bookContent.substring(0, 5000);
+  const LARGE_TEXT = bookContent.substring(0, 10000);
 
   // No system prompt - caching in messages instead
   const messages: Anthropic.MessageParam[] = [
@@ -2557,7 +2557,7 @@ public class Program
 
         string bookUrl = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt";
         string bookContent = await FetchArticleContent(bookUrl);
-        string largeText = bookContent.Substring(0, Math.Min(5000, bookContent.Length));
+        string largeText = bookContent.Substring(0, Math.Min(10000, bookContent.Length));
 
         Console.WriteLine("First request - establishing cache");
         var parameters1 = new MessageCreateParams
@@ -2738,8 +2738,8 @@ func main() {
 	}
 
 	largeText := bookContent
-	if len(largeText) > 5000 {
-		largeText = largeText[:5000]
+	if len(largeText) > 10000 {
+		largeText = largeText[:10000]
 	}
 
 	// No system prompt - caching in messages instead
@@ -2821,7 +2821,7 @@ public class CachingThinkingExample {
 
         String bookUrl = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt";
         String bookContent = fetchArticleContent(bookUrl);
-        String largeText = bookContent.substring(0, Math.min(5000, bookContent.length()));
+        String largeText = bookContent.substring(0, Math.min(10000, bookContent.length()));
 
         // First request - establishing cache
         System.out.println("First request - establishing cache");
@@ -2925,7 +2925,7 @@ $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
 
 $bookUrl = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt";
 $bookContent = fetchArticleContent($bookUrl);
-$largeText = substr($bookContent, 0, 5000);
+$largeText = substr($bookContent, 0, 10000);
 
 echo "First request - establishing cache\n";
 $response1 = $client->messages->create(
@@ -3043,7 +3043,7 @@ client = Anthropic::Client.new
 
 book_url = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt"
 book_content = fetch_article_content(book_url)
-large_text = book_content[0...5000]
+large_text = book_content[0...10000]
 
 puts "First request - establishing cache"
 response1 = client.messages.create(

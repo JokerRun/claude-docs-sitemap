@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: e55d1534864a82c8b6b921d8deac1f13054cb3c41088d3765eb62df457c2b752
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: 11bd4f36594229391bc51f105e99abfbd86c0619325aff3c8840c8b3426ca7a7
 ---
 
 > ## Documentation Index
@@ -30,21 +30,21 @@ Once your marketplace is live, you can update it by pushing changes to your repo
 
 ## Walkthrough: create a local marketplace
 
-This example creates a marketplace with one plugin: a `/review` skill for code reviews. You'll create the directory structure, add a skill, create the plugin manifest and marketplace catalog, then install and test it.
+This example creates a marketplace with one plugin: a `/quality-review` skill for code reviews. You'll create the directory structure, add a skill, create the plugin manifest and marketplace catalog, then install and test it.
 
 <Steps>
   <Step title="Create the directory structure">
     ```bash  theme={null}
     mkdir -p my-marketplace/.claude-plugin
-    mkdir -p my-marketplace/plugins/review-plugin/.claude-plugin
-    mkdir -p my-marketplace/plugins/review-plugin/skills/review
+    mkdir -p my-marketplace/plugins/quality-review-plugin/.claude-plugin
+    mkdir -p my-marketplace/plugins/quality-review-plugin/skills/quality-review
     ```
   </Step>
 
   <Step title="Create the skill">
-    Create a `SKILL.md` file that defines what the `/review` skill does.
+    Create a `SKILL.md` file that defines what the `/quality-review` skill does.
 
-    ```markdown my-marketplace/plugins/review-plugin/skills/review/SKILL.md theme={null}
+    ```markdown my-marketplace/plugins/quality-review-plugin/skills/quality-review/SKILL.md theme={null}
     ---
     description: Review code for bugs, security, and performance
     disable-model-invocation: true
@@ -63,10 +63,10 @@ This example creates a marketplace with one plugin: a `/review` skill for code r
   <Step title="Create the plugin manifest">
     Create a `plugin.json` file that describes the plugin. The manifest goes in the `.claude-plugin/` directory.
 
-    ```json my-marketplace/plugins/review-plugin/.claude-plugin/plugin.json theme={null}
+    ```json my-marketplace/plugins/quality-review-plugin/.claude-plugin/plugin.json theme={null}
     {
-      "name": "review-plugin",
-      "description": "Adds a /review skill for quick code reviews",
+      "name": "quality-review-plugin",
+      "description": "Adds a /quality-review skill for quick code reviews",
       "version": "1.0.0"
     }
     ```
@@ -83,9 +83,9 @@ This example creates a marketplace with one plugin: a `/review` skill for code r
       },
       "plugins": [
         {
-          "name": "review-plugin",
-          "source": "./plugins/review-plugin",
-          "description": "Adds a /review skill for quick code reviews"
+          "name": "quality-review-plugin",
+          "source": "./plugins/quality-review-plugin",
+          "description": "Adds a /quality-review skill for quick code reviews"
         }
       ]
     }
@@ -97,7 +97,7 @@ This example creates a marketplace with one plugin: a `/review` skill for code r
 
     ```shell  theme={null}
     /plugin marketplace add ./my-marketplace
-    /plugin install review-plugin@my-plugins
+    /plugin install quality-review-plugin@my-plugins
     ```
   </Step>
 

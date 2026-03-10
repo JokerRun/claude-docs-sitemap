@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 83caf5edaf2c8606919125abfdfe8912bafc6b327652665ce46697a618445628
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: 4407949fe1efde6b8000451e44a10a8d0426758b27fe0427b4fd9a642d5c0a1a
 ---
 
 # Harga
@@ -72,7 +72,7 @@ Untuk detail implementasi dan contoh kode:
 
 Untuk Claude Opus 4.6 dan model yang lebih baru, menentukan inferensi hanya-AS melalui parameter `inference_geo` menimbulkan pengganda 1,1x pada semua kategori harga token, termasuk token input, token output, cache write, dan cache read. Perutean global (default) menggunakan harga standar.
 
-Ini berlaku hanya untuk Claude API (1P). Platform pihak ketiga memiliki harga regional mereka sendiri — lihat [AWS Bedrock](https://aws.amazon.com/bedrock/pricing/), [Google Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/pricing), dan [Microsoft Foundry](https://azure.microsoft.com/en-us/pricing/details/ai-foundry/#pricing) untuk detail. Model sebelumnya mempertahankan harga yang ada terlepas dari pengaturan `inference_geo`.
+Ini berlaku hanya untuk Claude API (1P). Platform pihak ketiga memiliki harga regional mereka sendiri — lihat [AWS Bedrock](https://aws.amazon.com/bedrock/pricing/) dan [Google Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/pricing) untuk detail. Model sebelumnya mempertahankan harga yang ada terlepas dari pengaturan `inference_geo`.
 
 Untuk informasi lebih lanjut, lihat [dokumentasi residensi data](/docs/id/build-with-claude/data-residency) kami.
 

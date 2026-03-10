@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: e5d3e5020ee855f39edc937008e6f47741eb79429c849b3ea2a890f338c96825
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: 84e45e21c90269cd98be29d95547a32eacb9b3ca72e432d2420d8feef31fc689
 ---
 
 # Beta headers
@@ -60,7 +60,7 @@ const msg = await anthropic.beta.messages.create({
 });
 ```
 
-```bash cURL
+```bash Shell
 curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \

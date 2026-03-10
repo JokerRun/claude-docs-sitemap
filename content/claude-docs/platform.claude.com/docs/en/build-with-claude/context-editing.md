@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: fa671cc9ae8875191fc48957285965d4fe6cc9368b87c64784f9fe0f99a7c352
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: 62de9d72abe5681f20ffdc2495a69b053fe91b1919806c3aa17410afaa52584e
 ---
 
 # Context editing
@@ -89,7 +89,7 @@ The simplest way to enable tool result clearing is to specify only the strategy 
 
 <CodeGroup>
 
-```bash cURL
+```bash Shell
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
@@ -315,7 +315,7 @@ You can customize the tool result clearing behavior with additional parameters:
 
 <CodeGroup>
 
-```bash cURL
+```bash Shell
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
@@ -754,7 +754,7 @@ Enable thinking block clearing to manage context and prompt caching effectively 
 
 <CodeGroup>
 
-```bash cURL
+```bash Shell
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
@@ -1436,7 +1436,7 @@ The [token counting](/docs/en/build-with-claude/token-counting) endpoint support
 
 <CodeGroup>
 
-```bash cURL
+```bash Shell
 curl https://api.anthropic.com/v1/messages/count_tokens \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \

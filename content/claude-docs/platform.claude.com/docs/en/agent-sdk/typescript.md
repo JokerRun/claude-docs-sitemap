@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-03-08T04:13:48.900839Z
-sha256: c021b68ee21bfcd51381894ca4259fde04f02c092262a0f315def4e1d06b4b72
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: 3d3b543ebdcea33826baf5dfaf7b9432e2def0fa67b82caf440c41e23b5ea299
 ---
 
 # Agent SDK reference - TypeScript
@@ -177,7 +177,7 @@ const [latest] = await listSessions({ dir: "/path/to/project", limit: 1 });
 if (latest) {
   const messages = await getSessionMessages(latest.sessionId, {
     dir: "/path/to/project",
-    limit: 20,
+    limit: 20
   });
 
   for (const msg of messages) {

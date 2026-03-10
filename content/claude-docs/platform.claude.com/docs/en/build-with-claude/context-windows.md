@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 40ab060202b59df17a28eae48fccc2254dff58565e7ba236e68b0e3b0191717c
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: 3f6992b0ee2a32ded915b7d78a46b0a5765333549a7f15a99d109c809575fed5
 ---
 
 # Context windows
@@ -114,7 +114,7 @@ To use the 1M token context window, include the `context-1m-2025-08-07` [beta he
 
 <CodeGroup>
 
-```bash cURL
+```bash Shell
 curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \

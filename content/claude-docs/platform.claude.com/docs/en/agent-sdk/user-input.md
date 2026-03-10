@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/user-input
-fetched_at: 2026-03-08T04:13:48.900839Z
-sha256: 6887e8b0de077e192dbcf1bdd8725c83390096cf16ef4ef2e161b88417f051a6
+fetched_at: 2026-03-10T04:12:00.389607Z
+sha256: a3e0c7c957ff343f884aac5cbf3fb3ba85fd1a2ffe97bd315451501e525c1a63
 ---
 
 # Handle approvals and user input
@@ -563,13 +563,13 @@ for await (const message of query({
   prompt: "Help me choose a card layout",
   options: {
     toolConfig: {
-      askUserQuestion: { previewFormat: "html" },
+      askUserQuestion: { previewFormat: "html" }
     },
     canUseTool: async (toolName, input) => {
       // input.questions[].options[].preview is an HTML string or undefined
       return { behavior: "allow", updatedInput: input };
-    },
-  },
+    }
+  }
 })) {
   // ...
 }
