@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/subagents
-fetched_at: 2026-03-08T04:13:48.900839Z
-sha256: 8da42a175969379f5f58430d6bcb455a7c7c88939641bf2d21b821b89e801f45
+fetched_at: 2026-03-11T04:12:15.541644Z
+sha256: 9de035544a653e9b1122d5d57c39a81990cf1fd4e60b516c7b8b467c37ccd743
 ---
 
 # Subagents in the SDK
@@ -20,7 +20,7 @@ This guide explains how to define and use subagents in the SDK using the `agents
 
 You can create subagents in three ways:
 
-- **Programmatically**: use the `agents` parameter in your `query()` options ([TypeScript](/docs/en/agent-sdk/typescript#agentdefinition), [Python](/docs/en/agent-sdk/python#agentdefinition))
+- **Programmatically**: use the `agents` parameter in your `query()` options ([TypeScript](/docs/en/agent-sdk/typescript#agent-definition), [Python](/docs/en/agent-sdk/python#agent-definition))
 - **Filesystem-based**: define agents as markdown files in `.claude/agents/` directories (see [defining subagents as files](https://code.claude.com/docs/en/sub-agents))
 - **Built-in general-purpose**: Claude can invoke the built-in `general-purpose` subagent at any time via the Agent tool without you defining anything
 

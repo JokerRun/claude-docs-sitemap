@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 7e443cb81c3b53e2ca4b5726fc1f00a4fd839f8cbbd517863246c26efa6c4ad3
+fetched_at: 2026-03-11T04:12:15.541644Z
+sha256: d2b8480661fb9754caf53381671551ebbfbb73c07997587c3b4b95b582b022ec
 ---
 
 > ## Documentation Index
@@ -354,7 +354,7 @@ Remove a marketplace:
 
 ### Configure auto-updates
 
-Claude Code can automatically update marketplaces and their installed plugins at startup. When auto-update is enabled for a marketplace, Claude Code refreshes the marketplace data and updates installed plugins to their latest versions. If any plugins were updated, you'll see a notification suggesting you restart Claude Code.
+Claude Code can automatically update marketplaces and their installed plugins at startup. When auto-update is enabled for a marketplace, Claude Code refreshes the marketplace data and updates installed plugins to their latest versions. If any plugins were updated, you'll see a notification prompting you to run `/reload-plugins`.
 
 Toggle auto-update for individual marketplaces through the UI:
 

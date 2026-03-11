@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-03-10T04:12:00.389607Z
-sha256: 0aa7589e1f3dc7e3578a9d6d7d7810c695ca046f736e8993f8dc15df9d887b57
+fetched_at: 2026-03-11T04:12:15.541644Z
+sha256: 9eae183a13e11f33a17bf9871566927ff351fecf324ccec93fb4efb7b2666afd
 ---
 
 > ## Documentation Index
@@ -409,6 +409,7 @@ During long sessions, Claude's context window can fill with irrelevant conversat
 * For more control, run `/compact <instructions>`, like `/compact Focus on the API changes`
 * To compact only part of the conversation, use `Esc + Esc` or `/rewind`, select a message checkpoint, and choose **Summarize from here**. This condenses messages from that point forward while keeping earlier context intact.
 * Customize compaction behavior in CLAUDE.md with instructions like `"When compacting, always preserve the full list of modified files and any test commands"` to ensure critical context survives summarization
+* For quick questions that don't need to stay in context, use [`/btw`](/en/interactive-mode#side-questions-with-btw). The answer appears in a dismissible overlay and never enters conversation history, so you can check a detail without growing context.
 
 ### Use subagents for investigation
 

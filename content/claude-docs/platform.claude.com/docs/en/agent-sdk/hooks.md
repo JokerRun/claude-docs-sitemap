@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-03-08T04:13:48.900839Z
-sha256: ae2b6464cbbef1b20747369c6c12f833edd1cb25259a51bff534f80f5bed122f
+fetched_at: 2026-03-11T04:12:15.541644Z
+sha256: 8d87a3278b8c43a0084f1ecf14cc29390033f9154aea8f08f18ba87022baf1af
 ---
 
 # Intercept and control agent behavior with hooks
@@ -748,7 +748,7 @@ for await (const message of query({
 - Check that your matcher pattern matches the tool name exactly
 - Ensure the hook is under the correct event type in `options.hooks`
 - For non-tool hooks like `Stop` and `SubagentStop`, matchers match against different fields (see [matcher patterns](https://code.claude.com/docs/en/hooks#matcher-patterns))
-- Hooks may not fire when the agent hits the [`max_turns`](/docs/en/agent-sdk/python#configuration-options) limit because the session ends before hooks can execute
+- Hooks may not fire when the agent hits the [`max_turns`](/docs/en/agent-sdk/python#claude-agent-options) limit because the session ends before hooks can execute
 
 ### Matcher not filtering as expected
 

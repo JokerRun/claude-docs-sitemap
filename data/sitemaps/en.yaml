@@ -13,7 +13,7 @@
   lastmod: '2026-02-24T21:45:16.458Z'
 - source: code
   loc: https://code.claude.com/docs/en/best-practices
-  lastmod: '2026-03-10T01:09:13.438Z'
+  lastmod: '2026-03-10T23:04:47.732Z'
 - source: code
   loc: https://code.claude.com/docs/en/checkpointing
   lastmod: '2026-02-07T00:03:19.104Z'
@@ -49,7 +49,7 @@
   lastmod: '2026-01-28T13:17:42.832Z'
 - source: code
   loc: https://code.claude.com/docs/en/discover-plugins
-  lastmod: '2026-03-05T02:05:27.186Z'
+  lastmod: '2026-03-10T21:42:27.159Z'
 - source: code
   loc: https://code.claude.com/docs/en/fast-mode
   lastmod: '2026-02-27T17:23:08.839Z'
@@ -79,7 +79,7 @@
   lastmod: '2026-03-06T04:33:21.738Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
-  lastmod: '2026-03-09T19:00:06.678Z'
+  lastmod: '2026-03-10T23:24:26.829Z'
 - source: code
   loc: https://code.claude.com/docs/en/jetbrains
   lastmod: '2026-03-05T22:29:08.218Z'
@@ -124,7 +124,7 @@
   lastmod: '2026-03-09T19:00:06.734Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins
-  lastmod: '2026-03-09T19:00:06.729Z'
+  lastmod: '2026-03-10T21:42:27.168Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins-reference
   lastmod: '2026-02-26T20:21:10.274Z'
@@ -163,7 +163,7 @@
   lastmod: '2026-03-05T02:05:35.217Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-02-28T18:15:43.613Z'
+  lastmod: '2026-03-10T23:04:47.737Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
   lastmod: '2026-02-23T19:21:30.792Z'

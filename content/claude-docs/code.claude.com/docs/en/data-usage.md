@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/data-usage
-fetched_at: 2026-02-28T03:57:25.349641Z
-sha256: 796f15b960bcf84e8af82667a9be82ab16551ab131ded76ae9dcc7ea63e5fecb
+fetched_at: 2026-03-11T04:12:15.541644Z
+sha256: 8e7c2b9f2255f32909cf0178ab6e555ac4207c0ce6fbe40c3e4271a58c16a927
 ---
 
 > ## Documentation Index
@@ -66,7 +66,7 @@ For all first party users, you can learn more about what data is logged for [loc
 
 The diagram below shows how Claude Code connects to external services during installation and normal operation. Solid lines indicate required connections, while dashed lines represent optional or user-initiated data flows.
 
-<img src="https://mintcdn.com/claude-code/TBPmHzr19mDCuhZi/images/claude-code-data-flow.svg?fit=max&auto=format&n=TBPmHzr19mDCuhZi&q=85&s=e0239c69a0bbae485b726338e50f1082" alt="Diagram showing Claude Code's external connections: install/update connects to NPM, and user requests connect to Anthropic services including Console auth, public-api, and optionally Statsig, Sentry, and bug reporting" data-og-width="720" width="720" data-og-height="520" height="520" data-path="images/claude-code-data-flow.svg" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/claude-code/TBPmHzr19mDCuhZi/images/claude-code-data-flow.svg?w=280&fit=max&auto=format&n=TBPmHzr19mDCuhZi&q=85&s=06435e080df22e66a454e99af1b6040b 280w, https://mintcdn.com/claude-code/TBPmHzr19mDCuhZi/images/claude-code-data-flow.svg?w=560&fit=max&auto=format&n=TBPmHzr19mDCuhZi&q=85&s=8261c15b4ffc12504e0a6e3f0ccd8c7d 560w, https://mintcdn.com/claude-code/TBPmHzr19mDCuhZi/images/claude-code-data-flow.svg?w=840&fit=max&auto=format&n=TBPmHzr19mDCuhZi&q=85&s=163bfaa8d4727a1bbb492cb086e5f083 840w, https://mintcdn.com/claude-code/TBPmHzr19mDCuhZi/images/claude-code-data-flow.svg?w=1100&fit=max&auto=format&n=TBPmHzr19mDCuhZi&q=85&s=ea3c2f801dfa5ad956b18b5f72df5c50 1100w, https://mintcdn.com/claude-code/TBPmHzr19mDCuhZi/images/claude-code-data-flow.svg?w=1650&fit=max&auto=format&n=TBPmHzr19mDCuhZi&q=85&s=91d743def7a8d074c93001b351f23037 1650w, https://mintcdn.com/claude-code/TBPmHzr19mDCuhZi/images/claude-code-data-flow.svg?w=2500&fit=max&auto=format&n=TBPmHzr19mDCuhZi&q=85&s=df68b2dd6de83316f70fd7f61c3a3bbd 2500w" />
+<img src="https://mintcdn.com/claude-code/TBPmHzr19mDCuhZi/images/claude-code-data-flow.svg?fit=max&auto=format&n=TBPmHzr19mDCuhZi&q=85&s=e0239c69a0bbae485b726338e50f1082" alt="Diagram showing Claude Code's external connections: install/update connects to NPM, and user requests connect to Anthropic services including Console auth, public-api, and optionally Statsig, Sentry, and bug reporting" width="720" height="520" data-path="images/claude-code-data-flow.svg" />
 
 Claude Code is installed from [NPM](https://www.npmjs.com/package/@anthropic-ai/claude-code). Claude Code runs locally. In order to interact with the LLM, Claude Code sends data over the network. This data includes all user prompts and model outputs. The data is encrypted in transit via TLS and is not encrypted at rest. Claude Code is compatible with most popular VPNs and LLM proxies.
 
