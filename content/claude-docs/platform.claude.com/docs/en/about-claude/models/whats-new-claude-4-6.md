@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-6
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 698a8c5b5d370cc96028cba9731a635875d5658ce7f480b6a1db587a9065414b
+fetched_at: 2026-03-12T04:16:29.501696Z
+sha256: e8e224d85ba8b763211033efd4b9ceedfe2e208b562a07baefef5c2cf3f175a7
 ---
 
 # What's new in Claude 4.6
@@ -17,8 +17,8 @@ Claude 4.6 represents the next generation of Claude models, bringing significant
 
 | Model | API model ID | Description |
 |:------|:-------------|:------------|
-| Claude Opus 4.6 | `claude-opus-4-6` | Our most intelligent model for building agents and coding |
-| Claude Sonnet 4.6 | `claude-sonnet-4-6` | Our best combination of speed and intelligence |
+| Claude Opus 4.6 | `claude-opus-4-6` | The most intelligent model for building agents and coding |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6` | The best combination of speed and intelligence |
 
 Claude Opus 4.6 supports a 200K context window (with [1M token context window](/docs/en/build-with-claude/context-windows#1m-token-context-window) available in beta), 128K max output tokens, extended thinking, and all existing Claude API features.
 

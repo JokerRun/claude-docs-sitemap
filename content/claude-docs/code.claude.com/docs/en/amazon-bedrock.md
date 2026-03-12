@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: aedc96511695de0b0cc1c2ce3b072644b7a45a6adda497a4b8480cfb98ad73c0
+fetched_at: 2026-03-12T04:16:29.501696Z
+sha256: c1a4ae679cba83ed7a425ea2166f536daaa64e088488484fe0b5fec4544231fa
 ---
 
 > ## Documentation Index
@@ -169,6 +169,24 @@ export DISABLE_PROMPT_CACHING=1
 ```
 
 <Note>[Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) may not be available in all regions.</Note>
+
+#### Map each model version to an inference profile
+
+The `ANTHROPIC_DEFAULT_*_MODEL` environment variables configure one inference profile per model family. If your organization needs to expose several versions of the same family in the `/model` picker, each routed to its own application inference profile ARN, use the `modelOverrides` setting in your [settings file](/en/settings#settings-files) instead.
+
+This example maps three Opus versions to distinct ARNs so users can switch between them without bypassing your organization's inference profiles:
+
+```json  theme={null}
+{
+  "modelOverrides": {
+    "claude-opus-4-6": "arn:aws:bedrock:us-east-2:123456789012:application-inference-profile/opus-46-prod",
+    "claude-opus-4-5-20251101": "arn:aws:bedrock:us-east-2:123456789012:application-inference-profile/opus-45-prod",
+    "claude-opus-4-1-20250805": "arn:aws:bedrock:us-east-2:123456789012:application-inference-profile/opus-41-prod"
+  }
+}
+```
+
+When a user selects one of these versions in `/model`, Claude Code calls Bedrock with the mapped ARN. Versions without an override fall back to the built-in Bedrock model ID or any matching inference profile discovered at startup. See [Override model IDs per version](/en/model-config#override-model-ids-per-version) for details on how overrides interact with `availableModels` and other model settings.
 
 ## IAM configuration
 

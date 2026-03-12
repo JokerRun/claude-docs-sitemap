@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 4c0ea6c243573b200fef0ae405d1cded06e86608c04acfbc07ead552167f4fe9
+fetched_at: 2026-03-12T04:16:29.501696Z
+sha256: 5cafa0c54464eb1b8418c784ba72617c6fcd253e2552940b3504ea4b34262aa4
 ---
 
 # PDF support
@@ -71,7 +71,7 @@ When using PDF support through Amazon Bedrock's Converse API, there are two dist
 If customers report that Claude isn't seeing images or charts in their PDFs when using the Converse API, they likely need to enable the citations flag. Without it, Converse falls back to basic text extraction only.
 
 <Note>
-This is a known constraint with the Converse API that we're working to address. For applications that require visual PDF analysis without citations, consider using the InvokeModel API instead.
+This is a known constraint with the Converse API. For applications that require visual PDF analysis without citations, consider using the InvokeModel API instead.
 </Note>
 
 <Note>
@@ -1052,7 +1052,7 @@ public class MessagesBatchDocumentExample {
     icon="file"
     href="https://platform.claude.com/cookbook/multimodal-getting-started-with-vision"
   >
-    Explore practical examples of PDF processing in our cookbook recipe.
+    Explore practical examples of PDF processing in the cookbook recipe.
   </Card>
 
   <Card

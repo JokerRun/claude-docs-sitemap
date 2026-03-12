@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-03-10T04:12:00.389607Z
-sha256: d2a174368cb427716685fa11d576796ebba6bd0691bd32cf783ea350563bcd29
+fetched_at: 2026-03-12T04:16:29.501696Z
+sha256: 6b48922c3c855fc7994e2f5a09903af492d9509ecc454749e5f322b6ba89c1b7
 ---
 
 > ## Documentation Index
@@ -167,6 +167,7 @@ The `$schema` line in the example above points to the [official JSON schema](htt
 | `allowManagedMcpServersOnly`      | (Managed settings only) Only `allowedMcpServers` from managed settings are respected. `deniedMcpServers` still merges from all sources. Users can still add MCP servers, but only the admin-defined allowlist applies. See [Managed MCP configuration](/en/mcp#managed-mcp-configuration)                       | `true`                                                                  |
 | `model`                           | Override the default model to use for Claude Code                                                                                                                                                                                                                                                               | `"claude-sonnet-4-6"`                                                   |
 | `availableModels`                 | Restrict which models users can select via `/model`, `--model`, Config tool, or `ANTHROPIC_MODEL`. Does not affect the Default option. See [Restrict model selection](/en/model-config#restrict-model-selection)                                                                                                | `["sonnet", "haiku"]`                                                   |
+| `modelOverrides`                  | Map Anthropic model IDs to provider-specific model IDs such as Bedrock inference profile ARNs. Each model picker entry uses its mapped value when calling the provider API. See [Override model IDs per version](/en/model-config#override-model-ids-per-version)                                               | `{"claude-opus-4-6": "arn:aws:bedrock:..."}`                            |
 | `otelHeadersHelper`               | Script to generate dynamic OpenTelemetry headers. Runs at startup and periodically (see [Dynamic headers](/en/monitoring-usage#dynamic-headers))                                                                                                                                                                | `/bin/generate_otel_headers.sh`                                         |
 | `statusLine`                      | Configure a custom status line to display context. See [`statusLine` documentation](/en/statusline)                                                                                                                                                                                                             | `{"type": "command", "command": "~/.claude/statusline.sh"}`             |
 | `fileSuggestion`                  | Configure a custom script for `@` file autocomplete. See [File suggestion settings](#file-suggestion-settings)                                                                                                                                                                                                  | `{"type": "command", "command": "~/.claude/file-suggestion.sh"}`        |

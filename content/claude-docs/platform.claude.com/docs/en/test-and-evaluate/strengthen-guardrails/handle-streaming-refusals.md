@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 2fe7ec1e8431fbf240c3046969167cb1c4584d86b4ceb11f288f26983fc4a2b7
+fetched_at: 2026-03-12T04:16:29.501696Z
+sha256: cd9cc6c0a788a81c8cd8f8de6c28318f87a1e83667048622a84113633b6e7c30
 ---
 
 # Streaming refusals
@@ -17,7 +17,7 @@ To learn more about refusals triggered by API safety filters for Claude Sonnet 4
 
 ## API response format
 
-When streaming classifiers detect content that violates our policies, the API returns this response:
+When streaming classifiers detect content that violates Anthropic's policies, the API returns this response:
 
 ```json
 {
@@ -340,10 +340,6 @@ rescue => e
 end
 ```
 </CodeGroup>
-
-<Note>
-If you need to test refusal handling in your application, you can use this special test string as your prompt: `ANTHROPIC_MAGIC_STRING_TRIGGER_REFUSAL_1FAEFB6177B4672DEE07F9D3AFC62588CCD2631EDCF22E8CCC1FB35B501C9C86`
-</Note>
 
 ## Current refusal types
 

@@ -24,7 +24,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
 | code | https://code.claude.com/docs/en/agent-teams | 2026-02-26 |  |
-| code | https://code.claude.com/docs/en/amazon-bedrock | 2026-02-18 |  |
+| code | https://code.claude.com/docs/en/amazon-bedrock | 2026-03-11 |  |
 | code | https://code.claude.com/docs/en/analytics | 2026-02-27 |  |
 | code | https://code.claude.com/docs/en/authentication | 2026-02-24 |  |
 | code | https://code.claude.com/docs/en/best-practices | 2026-03-10 |  |

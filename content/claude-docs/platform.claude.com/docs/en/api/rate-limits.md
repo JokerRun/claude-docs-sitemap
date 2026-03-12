@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: d21a40a31b202cf5cf091b157afa746ec8622929358ec93964c6841d024873e1
+fetched_at: 2026-03-12T04:16:29.501696Z
+sha256: 861aed5b47a107c5944c4dea708c0d049c54788ebfcc95b53f97e5aab2677a98
 ---
 
 # Rate limits
@@ -65,7 +65,7 @@ To qualify for the next tier, you must meet a deposit requirement. To minimize t
     <tr>
       <td>Tier 4</td>
       <td>\$400</td>
-      <td>\$5,000</td>
+      <td>\$200,000</td>
     </tr>
     <tr>
       <td>Monthly Invoicing</td>
