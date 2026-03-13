@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-03-11T04:12:15.541644Z
-sha256: 4fcf4baa55d399f6e00ea7fec641dc0fec57a19b83519e51d9830e9ed17a7472
+fetched_at: 2026-03-13T04:15:04.763927Z
+sha256: 7d1407517f2e16facb6cd116b80c321a75b9c2cc6de9df35c3a7db3cac236bec
 ---
 
 > ## Documentation Index
@@ -47,7 +47,7 @@ Once installed, you can start using Claude Code through the VS Code interface:
 
 <Steps>
   <Step title="Open the Claude Code panel">
-    Throughout VS Code, the Spark icon indicates Claude Code: <img src="https://mintcdn.com/claude-code/mfM-EyoZGnQv8JTc/images/vs-code-spark-icon.svg?fit=max&auto=format&n=mfM-EyoZGnQv8JTc&q=85&s=a734d84e785140016672f08e0abb236c" alt="Spark icon" style={{display: "inline", height: "0.85em", verticalAlign: "middle"}} width="16" height="16" data-path="images/vs-code-spark-icon.svg" />
+    Throughout VS Code, the Spark icon indicates Claude Code: <img src="https://mintcdn.com/claude-code/c5r9_6tjPMzFdDDT/images/vs-code-spark-icon.svg?fit=max&auto=format&n=c5r9_6tjPMzFdDDT&q=85&s=3ca45e00deadec8c8f4b4f807da94505" alt="Spark icon" style={{display: "inline", height: "0.85em", verticalAlign: "middle"}} width="16" height="16" data-path="images/vs-code-spark-icon.svg" />
 
     The quickest way to open Claude is to click the Spark icon in the **Editor Toolbar** (top-right corner of the editor). The icon only appears when you have a file open.
 

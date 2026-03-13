@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: c52c572d3ba2abd66853ed0d02979d2b0d3e71d51298c6bfe0c53d92ad2eb16e
+fetched_at: 2026-03-13T04:15:04.763927Z
+sha256: 31b9f1112a5a437e20ecb8364b230890580b2fa28a743c42887651be3a16aa75
 ---
 
 > ## Documentation Index
@@ -12,6 +12,10 @@ sha256: c52c572d3ba2abd66853ed0d02979d2b0d3e71d51298c6bfe0c53d92ad2eb16e
 # Customize keyboard shortcuts
 
 > Customize keyboard shortcuts in Claude Code with a keybindings configuration file.
+
+<Note>
+  Customizable keyboard shortcuts require Claude Code v2.1.18 or later. Check your version with `claude --version`.
+</Note>
 
 Claude Code supports customizable keyboard shortcuts. Run `/keybindings` to create or open your configuration file at `~/.claude/keybindings.json`.
 
@@ -228,8 +232,8 @@ Actions available in the `MessageSelector` context:
 
 | Action                   | Default                                   | Description       |
 | :----------------------- | :---------------------------------------- | :---------------- |
-| `messageSelector:up`     | Up, K                                     | Move up in list   |
-| `messageSelector:down`   | Down, J                                   | Move down in list |
+| `messageSelector:up`     | Up, K, Ctrl+P                             | Move up in list   |
+| `messageSelector:down`   | Down, J, Ctrl+N                           | Move down in list |
 | `messageSelector:top`    | Ctrl+Up, Shift+Up, Meta+Up, Shift+K       | Jump to top       |
 | `messageSelector:bottom` | Ctrl+Down, Shift+Down, Meta+Down, Shift+J | Jump to bottom    |
 | `messageSelector:select` | Enter                                     | Select message    |

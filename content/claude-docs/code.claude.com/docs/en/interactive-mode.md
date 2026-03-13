@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-03-12T04:16:29.501696Z
-sha256: 2a620a9216c88a167a43c54e20726e24815366636b2e247fef36ada14042d715
+fetched_at: 2026-03-13T04:15:04.763927Z
+sha256: c4feba50dece3c318a8667ce0ff2acb011eb5d91668db5b97848c0f8ae49b0ed
 ---
 
 > ## Documentation Index
@@ -108,7 +108,7 @@ In the table below, `<arg>` indicates a required argument and `[arg]` indicates 
 | `/clear`                  | Clear conversation history and free up context. Aliases: `/reset`, `/new`                                                                                                                                                               |
 | `/compact [instructions]` | Compact conversation with optional focus instructions                                                                                                                                                                                   |
 | `/config`                 | Open the [Settings](/en/settings) interface to adjust theme, model, [output style](/en/output-styles), and other preferences. Alias: `/settings`                                                                                        |
-| `/context`                | Visualize current context usage as a colored grid                                                                                                                                                                                       |
+| `/context`                | Visualize current context usage as a colored grid. Shows optimization suggestions for context-heavy tools, memory bloat, and capacity warnings                                                                                          |
 | `/copy`                   | Copy the last assistant response to clipboard. When code blocks are present, shows an interactive picker to select individual blocks or the full response                                                                               |
 | `/cost`                   | Show token usage statistics. See [cost tracking guide](/en/costs#using-the-cost-command) for subscription-specific details                                                                                                              |
 | `/desktop`                | Continue the current session in the Claude Code Desktop app. macOS and Windows only. Alias: `/app`                                                                                                                                      |
@@ -361,7 +361,6 @@ When working on complex, multi-step work, Claude creates a task list to track pr
 * To see all tasks or clear them, ask Claude directly: "show me all tasks" or "clear all tasks"
 * Tasks persist across context compactions, helping Claude stay organized on larger projects
 * To share a task list across sessions, set `CLAUDE_CODE_TASK_LIST_ID` to use a named directory in `~/.claude/tasks/`: `CLAUDE_CODE_TASK_LIST_ID=my-project claude`
-* To revert to the previous TODO list, set `CLAUDE_CODE_ENABLE_TASKS=false`.
 
 ## PR review status
 

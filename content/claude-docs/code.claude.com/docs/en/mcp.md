@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 621e2024c983f6faf77043dfbc625a834b66fba2e26bf00783c971e03bab337a
+fetched_at: 2026-03-13T04:15:04.763927Z
+sha256: f4e949ca71c5fc2155d48b26c1616cf229d689c92bf955cb668f939ccf475b29
 ---
 
 > ## Documentation Index
@@ -1017,15 +1017,16 @@ Add clear, descriptive server instructions that explain:
 
 ### Configure tool search
 
-Tool search runs in auto mode by default, meaning it activates only when your MCP tool definitions exceed the context threshold. If you have few tools, they load normally without tool search. This feature requires models that support `tool_reference` blocks: Sonnet 4 and later, or Opus 4 and later. Haiku models do not support tool search.
+Tool search is enabled by default: MCP tools are deferred and discovered on demand. When `ANTHROPIC_BASE_URL` points to a non-first-party host, tool search is disabled by default because most proxies do not forward `tool_reference` blocks. Set `ENABLE_TOOL_SEARCH` explicitly if your proxy does. This feature requires models that support `tool_reference` blocks: Sonnet 4 and later, or Opus 4 and later. Haiku models do not support tool search.
 
 Control tool search behavior with the `ENABLE_TOOL_SEARCH` environment variable:
 
 | Value      | Behavior                                                                           |
 | :--------- | :--------------------------------------------------------------------------------- |
-| `auto`     | Activates when MCP tools exceed 10% of context (default)                           |
+| (unset)    | Enabled by default. Disabled when `ANTHROPIC_BASE_URL` is a non-first-party host   |
+| `true`     | Always enabled, including for non-first-party `ANTHROPIC_BASE_URL`                 |
+| `auto`     | Activates when MCP tools exceed 10% of context                                     |
 | `auto:<N>` | Activates at custom threshold, where `<N>` is a percentage (e.g., `auto:5` for 5%) |
-| `true`     | Always enabled                                                                     |
 | `false`    | Disabled, all MCP tools loaded upfront                                             |
 
 ```bash  theme={null}

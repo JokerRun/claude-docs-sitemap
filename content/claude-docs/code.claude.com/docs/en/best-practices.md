@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-03-11T04:12:15.541644Z
-sha256: 9eae183a13e11f33a17bf9871566927ff351fecf324ccec93fb4efb7b2666afd
+fetched_at: 2026-03-13T04:15:04.763927Z
+sha256: 5c458ea858f40ceb576d5bea89f3baa08ee56c488b222fcdc8a68287a49d403d
 ---
 
 > ## Documentation Index
@@ -546,16 +546,6 @@ claude -p "<your prompt>" --output-format json | your_command
 ```
 
 Use `--verbose` for debugging during development, and turn it off in production.
-
-### Safe autonomous mode
-
-Use `claude --dangerously-skip-permissions` to bypass all permission checks and let Claude work uninterrupted. This works well for workflows like fixing lint errors or generating boilerplate code.
-
-<Warning>
-  Letting Claude run arbitrary commands is risky and can result in data loss, system corruption, or data exfiltration (e.g., via prompt injection attacks). To minimize these risks, use `--dangerously-skip-permissions` in a container without internet access.
-
-  With sandboxing enabled (`/sandbox`), you get similar autonomy with better security. Sandbox defines upfront boundaries rather than bypassing all checks.
-</Warning>
 
 ***
 

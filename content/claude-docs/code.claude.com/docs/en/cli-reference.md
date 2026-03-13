@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: f0334ed018d9a5ad5bfa5eaf2a52bd4f71fe4490d156dc01ca441be91ca6fa14
+fetched_at: 2026-03-13T04:15:04.763927Z
+sha256: c80fad2d717fadf4d42ad9b7844bdb869c5dc0efcfe3e690693800258dc0ec40
 ---
 
 > ## Documentation Index
@@ -105,7 +105,7 @@ The `--agents` flag accepts a JSON object that defines one or more custom subage
 | `prompt`          | Yes      | The system prompt that guides the subagent's behavior                                                                                                                                                               |
 | `tools`           | No       | Array of specific tools the subagent can use, for example `["Read", "Edit", "Bash"]`. If omitted, inherits all tools. Supports [`Agent(agent_type)`](/en/sub-agents#restrict-which-subagents-can-be-spawned) syntax |
 | `disallowedTools` | No       | Array of tool names to explicitly deny for this subagent                                                                                                                                                            |
-| `model`           | No       | Model alias to use: `sonnet`, `opus`, `haiku`, or `inherit`. If omitted, defaults to `inherit`                                                                                                                      |
+| `model`           | No       | Model to use: a short alias (`sonnet`, `opus`, `haiku`), a full model ID (for example, `claude-opus-4-6`), or `inherit`. If omitted, defaults to `inherit`                                                          |
 | `skills`          | No       | Array of [skill](/en/skills) names to preload into the subagent's context                                                                                                                                           |
 | `mcpServers`      | No       | Array of [MCP servers](/en/mcp) for this subagent. Each entry is a server name string or a `{name: config}` object                                                                                                  |
 | `maxTurns`        | No       | Maximum number of agentic turns before the subagent stops                                                                                                                                                           |

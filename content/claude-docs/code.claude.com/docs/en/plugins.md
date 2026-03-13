@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-03-11T04:12:15.541644Z
-sha256: 9684e83bd4ab58198406bb8b659acdbcecdf58b0ef44d6c5276ef13ae5785662
+fetched_at: 2026-03-13T04:15:04.763927Z
+sha256: 0c6bd0a745385c1de82c1c70e882d0290cf02e29306d43d3d5b64086509ca7c1
 ---
 
 > ## Documentation Index
@@ -287,6 +287,8 @@ Use the `--plugin-dir` flag to test plugins during development. This loads your 
 ```bash  theme={null}
 claude --plugin-dir ./my-plugin
 ```
+
+When a `--plugin-dir` plugin has the same name as an installed marketplace plugin, the local copy takes precedence for that session. This lets you test changes to a plugin you already have installed without uninstalling it first. Marketplace plugins force-enabled by managed settings are the only exception and cannot be overridden.
 
 As you make changes to your plugin, run `/reload-plugins` to pick up the updates without restarting. Changes to LSP server configuration still require a full restart. Test your plugin components:
 
