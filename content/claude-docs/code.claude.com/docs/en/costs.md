@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 2ce3c759d77e44ab898b431cc38e6a3b3b698c7ac5b5ceaa5e5d917964c10b8c
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: d48baeebada423f103de90ba860c2a56f36140059b36f7089278ca91c75dd2c5
 ---
 
 > ## Documentation Index
@@ -172,7 +172,7 @@ Your [CLAUDE.md](/en/memory) file is loaded into context at session start. If it
 
 ### Adjust extended thinking
 
-Extended thinking is enabled by default with a budget of 31,999 tokens because it significantly improves performance on complex planning and reasoning tasks. However, thinking tokens are billed as output tokens, so for simpler tasks where deep reasoning isn't needed, you can reduce costs by lowering the [effort level](/en/model-config#adjust-effort-level) in `/model` for Opus 4.6, disabling thinking in `/config`, or lowering the budget (for example, `MAX_THINKING_TOKENS=8000`).
+Extended thinking is enabled by default with a budget of 31,999 tokens because it significantly improves performance on complex planning and reasoning tasks. However, thinking tokens are billed as output tokens, so for simpler tasks where deep reasoning isn't needed, you can reduce costs by lowering the [effort level](/en/model-config#adjust-effort-level) with `/effort` or in `/model`, disabling thinking in `/config`, or lowering the budget (for example, `MAX_THINKING_TOKENS=8000`).
 
 ### Delegate verbose operations to subagents
 

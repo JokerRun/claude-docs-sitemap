@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 5222f27a5689c6bc81a65ac443a613fcf80d26846e33e5abbf1287e1742b83f4
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: f9245a1e4dc5a08915cf5170581e7a2497fadf2191ec7b31a28cb8069a39a67f
 ---
 
 # Claude on Amazon Bedrock
@@ -645,13 +645,15 @@ PDF support is available on Amazon Bedrock through both the Converse API and Inv
 
 For more details on the two document processing modes and their limitations, refer to the [PDF support guide](/docs/en/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
 
-### 1M token context window
+### Context window
 
-Claude Opus 4.6, Sonnet 4.5, and Sonnet 4 support the [1M token context window](/docs/en/build-with-claude/context-windows#1m-token-context-window) on Amazon Bedrock.
+Claude Opus 4.6, Sonnet 4.6, Sonnet 4.5, and Sonnet 4 have a [1M-token context window](/docs/en/build-with-claude/context-windows) on Amazon Bedrock.
 
 <Note>
-The 1M token context window is in beta. To use the extended context window, include the `context-1m-2025-08-07` beta header in your [Bedrock API requests](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages-request-response.html).
+For Claude Sonnet 4.5 and Sonnet 4, the 1M-token context window is in beta. To use, include the `context-1m-2025-08-07` beta header in your [Bedrock API requests](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages-request-response.html).
 </Note>
+
+Amazon Bedrock limits request payloads to 20 MB. When sending large documents or many images, you may reach this limit before the token limit.
 
 ## Global vs regional endpoints
 

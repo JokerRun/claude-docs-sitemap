@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-02-14T04:12:21.202627Z
-sha256: 1653265545973d1f91470dfacc79831f55b8fcfb15d9d41c662c9e322c961e8d
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: a4138548d58b47282f55b62ffd6785856f104db38a07c5ff303917f63fcd7f20
 ---
 
 > ## Documentation Index
@@ -93,8 +93,10 @@ Claude Code requires access to the following URLs:
 
 Ensure these URLs are allowlisted in your proxy configuration and firewall rules. This is especially important when using Claude Code in containerized or restricted network environments.
 
+[Claude Code on the web](/en/claude-code-on-the-web) and [Code Review](/en/code-review) connect to your repositories from Anthropic-managed infrastructure. If your GitHub Enterprise Cloud organization restricts access by IP address, enable [IP allow list inheritance for installed GitHub Apps](https://docs.github.com/en/enterprise-cloud@latest/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-allowed-ip-addresses-for-your-organization#allowing-access-by-github-apps). The Claude GitHub App registers its IP ranges, so enabling this setting allows access without manual configuration. To [add the ranges to your allow list manually](https://docs.github.com/en/enterprise-cloud@latest/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-allowed-ip-addresses-for-your-organization#adding-an-allowed-ip-address) instead, or to configure other firewalls, see the [Anthropic API IP addresses](https://platform.claude.com/docs/en/api/ip-addresses).
+
 ## Additional resources
 
 * [Claude Code settings](/en/settings)
-* [Environment variables reference](/en/settings#environment-variables)
+* [Environment variables reference](/en/env-vars)
 * [Troubleshooting guide](/en/troubleshooting)

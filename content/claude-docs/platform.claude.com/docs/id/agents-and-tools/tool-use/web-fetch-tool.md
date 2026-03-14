@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: eb3f8d79c47b3a826180a509dd33b1b50a5c84637a8fe17998b1f1a8537c443c
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: b90c366120a844d343fa30e6e5eb44f7239a29d287988583256e4ff899010431
 ---
 
 # Alat pengambilan web
@@ -572,6 +572,6 @@ The web fetch tool is available on the Claude API at **no additional cost**. You
 To protect against inadvertently fetching large content that would consume excessive tokens, use the `max_content_tokens` parameter to set appropriate limits based on your use case and budget considerations.
 
 Example token usage for typical content:
-- Average web page (10KB): ~2,500 tokens
-- Large documentation page (100KB): ~25,000 tokens  
-- Research paper PDF (500KB): ~125,000 tokens
+- Average web page (10&nbsp;kB): ~2,500 tokens
+- Large documentation page (100&nbsp;kB): ~25,000 tokens
+- Research paper PDF (500&nbsp;kB): ~125,000 tokens

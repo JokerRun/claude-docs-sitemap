@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-03-10T04:12:00.389607Z
-sha256: dc03255bd443b78b3efdfdf1d263264f52d1ac0531b4b4ac0779e0e60146b719
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: d896cd5e8a089833da1ad4e02e6b3f4711dd289b9b8fc36897ad4fca135c6b8d
 ---
 
 # Structured outputs
@@ -2480,7 +2480,12 @@ client = Anthropic()
 response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
-    messages=[{"role": "user", "content": "Search for flights to Tokyo departing June 1, 2026"}],
+    messages=[
+        {
+            "role": "user",
+            "content": "Search for flights to Tokyo departing June 1, 2026",
+        }
+    ],
     tools=[
         {
             "name": "search_flights",
@@ -2852,8 +2857,8 @@ const response = await client.messages.create({
     {
       role: "user",
       content:
-        "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026",
-    },
+        "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026"
+    }
   ],
   tools: tools
 });
@@ -3163,7 +3168,10 @@ response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,
     messages=[
-        {"role": "user", "content": "Help me plan a trip to Paris departing May 15, 2026"}
+        {
+            "role": "user",
+            "content": "Help me plan a trip to Paris departing May 15, 2026",
+        }
     ],
     # JSON outputs: structured response format
     output_config={

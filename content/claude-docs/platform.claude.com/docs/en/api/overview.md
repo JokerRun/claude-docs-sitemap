@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/overview
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: b8ecacd6bb29ef0c3129059fe37ee374f315c9afd0a90b7fd8ed28e27edf4d27
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 4ae7935dda920bef62f181547a6d66392427e65f0b377868b346902c55ef7617
 ---
 
 # API Overview
@@ -123,6 +123,10 @@ The API has different maximum request sizes depending on the endpoint:
 | [Files API](/docs/en/build-with-claude/files) | 500 MB |
 
 If you exceed these limits, you'll receive a 413 `request_too_large` error.
+
+<Note>
+Third-party platforms have their own request size limits: Vertex AI limits requests to 30 MB, and Amazon Bedrock limits requests to 20 MB. Consult your platform's documentation for current values.
+</Note>
 
 ### Response Headers
 

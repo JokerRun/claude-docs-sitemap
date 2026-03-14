@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: ea177b23ee461cd4ee44a9701295a6f331babedce53d7a891675bdaeb0aa6150
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 3571e01534d78155fbe8f20f776e7a18a98263c4ce98318c36df9983726531de
 ---
 
 > ## Documentation Index
@@ -132,7 +132,7 @@ This example installs the required packages on Alpine:
 apk add libgcc libstdc++ ripgrep
 ```
 
-Then set `USE_BUILTIN_RIPGREP` to `0` in your [settings.json file](/en/settings#environment-variables):
+Then set `USE_BUILTIN_RIPGREP` to `0` in your [`settings.json`](/en/settings#available-settings) file:
 
 ```json  theme={null}
 {
@@ -197,7 +197,7 @@ For enterprise deployments, you can enforce a consistent release channel across 
 
 ### Disable auto-updates
 
-Set `DISABLE_AUTOUPDATER` to `"1"` in the `env` key of your [settings.json file](/en/settings#environment-variables):
+Set `DISABLE_AUTOUPDATER` to `"1"` in the `env` key of your [`settings.json`](/en/settings#available-settings) file:
 
 ```json  theme={null}
 {

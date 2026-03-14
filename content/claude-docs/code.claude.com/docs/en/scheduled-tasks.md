@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/scheduled-tasks
-fetched_at: 2026-03-13T04:15:04.763927Z
-sha256: 6be55fb68b49f71f6f73956bf666cbb1420c0e61a6e7730d4b287560e0cf5c1d
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: f9b984aa4d5c27dbd2582fd109ef109a3713f903ec9ec0b71d44efd4a7763438
 ---
 
 > ## Documentation Index
@@ -127,7 +127,7 @@ When both day-of-month and day-of-week are constrained, a date matches if either
 
 ## Disable scheduled tasks
 
-Set `CLAUDE_CODE_DISABLE_CRON=1` in your environment to disable the scheduler entirely. The cron tools and `/loop` become unavailable, and any already-scheduled tasks stop firing. See [Environment variables](/en/settings#environment-variables) for the full list of disable flags.
+Set `CLAUDE_CODE_DISABLE_CRON=1` in your environment to disable the scheduler entirely. The cron tools and `/loop` become unavailable, and any already-scheduled tasks stop firing. See [Environment variables](/en/env-vars) for the full list of disable flags.
 
 ## Limitations
 

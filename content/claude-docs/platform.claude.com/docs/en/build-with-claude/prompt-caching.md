@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: ffe3d303b8e2f37a18d52579872bac8eb1f0b7cd74921f89db4854be4c5bc255
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: a597dfb0e1e6d4922910f0c3519a713f96e9db70c002818759cedaa9b746802b
 ---
 
 # Prompt caching
@@ -3012,7 +3012,7 @@ This pattern is especially powerful for:
 
     **Important:** `input_tokens` does NOT represent all input tokens - only the portion after your last cache breakpoint. If you have cached content, `input_tokens` will typically be much smaller than your total input.
 
-    **Example:** With a 200K token document cached and a 50 token user question:
+    **Example:** With a 200k token document cached and a 50 token user question:
     - `cache_read_input_tokens`: 200,000
     - `cache_creation_input_tokens`: 0
     - `input_tokens`: 50

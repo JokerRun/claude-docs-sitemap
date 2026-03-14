@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: a85722444bfc3bd0dac3530e096d55e73ee6aabbb211393ff5cd1719edd30073
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: d3cec78ce5144f491aef632f668aeb901813b4a77cff006a480d4049e62fdcd3
 ---
 
 # Claude in Microsoft Foundry
@@ -475,6 +475,14 @@ Foundry includes request identifiers in HTTP response headers for debugging and 
 ## Supported features
 
 Claude on Foundry supports most of Claude's powerful features. You can find all the features currently supported in the [overview documentation](/docs/en/build-with-claude/overview).
+
+### Context window
+
+Claude Opus 4.6, Sonnet 4.6, and Sonnet 4.5 have a [1M-token context window](/docs/en/build-with-claude/context-windows) on Microsoft Foundry.
+
+<Note>
+For Claude Sonnet 4.5, the 1M-token context window is in beta. To use, include the `context-1m-2025-08-07` [beta header](/docs/en/api/beta-headers) in your API requests.
+</Note>
 
 ### Features not supported
 

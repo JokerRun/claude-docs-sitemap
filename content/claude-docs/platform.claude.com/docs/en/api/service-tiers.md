@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/service-tiers
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: dd20eaf79876ff02f41027de4368958114ef73494cb253e702d7e9adfd04b675
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 3f33cd88b66914837ed5f7b5de595a6050d8a73ae4a48e4093734fec6aa3d728
 ---
 
 # Service tiers
@@ -38,19 +38,19 @@ Anthropic counts usage against Priority Tier capacity as follows:
 - Cache reads as 0.1 tokens per token read from the cache
 - Cache writes as 1.25 tokens per token written to the cache with a 5 minute TTL
 - Cache writes as 2.00 tokens per token written to the cache with a 1 hour TTL
-- For [long-context](/docs/en/build-with-claude/context-windows) (>200k input tokens) requests, input tokens are 2 tokens per token
-- For [US-only inference](/docs/en/build-with-claude/data-residency) (`inference_geo: "us"`) requests, input tokens are 1.1 tokens per token
+- For [long-context](/docs/en/build-with-claude/context-windows) (>200k input tokens) requests on Claude Sonnet 4.5 and Sonnet 4, input tokens are 2 tokens per token
+- For [US-only inference](/docs/en/build-with-claude/data-residency) (`inference_geo: "us"`) requests on Claude Opus 4.6 and newer models, input tokens are 1.1 tokens per token
 - All other input tokens are 1 token per token
 
 **Output Tokens**
-- For [long-context](/docs/en/build-with-claude/context-windows) (>200k input tokens) requests, output tokens are 1.5 tokens per token
-- For [US-only inference](/docs/en/build-with-claude/data-residency) (`inference_geo: "us"`) requests, output tokens are 1.1 tokens per token
+- For [long-context](/docs/en/build-with-claude/context-windows) (>200k input tokens) requests on Claude Sonnet 4.5 and Sonnet 4, output tokens are 1.5 tokens per token
+- For [US-only inference](/docs/en/build-with-claude/data-residency) (`inference_geo: "us"`) requests on Claude Opus 4.6 and newer models, output tokens are 1.1 tokens per token
 - All other output tokens are 1 token per token
 
 Otherwise, requests proceed at standard tier.
 
 <Note>
-These burndown rates reflect the relative pricing of each token type. For example, US-only inference is priced at 1.1x, so each token consumed with `inference_geo: "us"` draws down 1.1 tokens from your Priority Tier capacity. Multipliers stack: a long-context request with US-only inference draws down input tokens at 2.2 tokens per token (2 × 1.1).
+These burndown rates reflect the relative pricing of each token type. For example, US-only inference is priced at 1.1x on Opus 4.6 and newer models, so each token consumed with `inference_geo: "us"` draws down 1.1 tokens from your Priority Tier capacity. For Claude Sonnet 4.5 and Sonnet 4, long-context requests (>200k input tokens) draw down input tokens at 2 tokens per token and output tokens at 1.5 tokens per token.
 </Note>
 
 <Note>

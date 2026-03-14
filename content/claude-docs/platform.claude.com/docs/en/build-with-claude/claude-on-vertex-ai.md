@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: 739b6d70da21dcb833dcc673b4e1e1c4e7c62353d57b5fb1c034863e56452bb8
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 7e9f639b0246802066599aa1e7ee2000406ec10608b0e559602cc8f59a9f4275
 ---
 
 # Claude on Vertex AI
@@ -354,6 +354,16 @@ Turning on this service does not give Google or Anthropic any access to your con
 
 ## Feature support
 For all currently supported features on Vertex AI, see [API features overview](/docs/en/api/overview).
+
+### Context window
+
+Claude Opus 4.6, Sonnet 4.6, Sonnet 4.5, and Sonnet 4 have a [1M-token context window](/docs/en/build-with-claude/context-windows) on Vertex AI.
+
+<Note>
+For Claude Sonnet 4.5 and Sonnet 4, the 1M-token context window is in beta. To use, include the `context-1m-2025-08-07` [beta header](/docs/en/api/beta-headers) in your API requests.
+</Note>
+
+Vertex AI limits request payloads to 30 MB. When sending large documents or many images, you may reach this limit before the token limit.
 
 ## Global vs regional endpoints
 

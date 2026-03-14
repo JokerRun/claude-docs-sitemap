@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 2ddda05c8ac5af7140be52fb9b725342c4a70bcb240ce920e5aa0c7b08afb22d
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 32760d421159fe18dc2c87912338efeab5582a43f66aa5a5d2adef3c7d834074
 ---
 
 # Reduce hallucinations
@@ -24,7 +24,7 @@ This guide will explore techniques to minimize hallucinations and ensure Claude'
 
 </section>
 
-- **Use direct quotes for factual grounding:** For tasks involving long documents (>20K tokens), ask Claude to extract word-for-word quotes first before performing its task. This grounds its responses in the actual text, reducing hallucinations.
+- **Use direct quotes for factual grounding:** For tasks involving long documents (>20k tokens), ask Claude to extract word-for-word quotes first before performing its task. This grounds its responses in the actual text, reducing hallucinations.
 
 <section title="Example: Auditing a data privacy policy">
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/zero-data-retention
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 0e654519e8d17a8ad76c3cdda9dbbf4592ae5ca3f3bf185488ca74ac7b7dceac
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 58fd834a92f4582d25e7f1198758692c84446b7ae9a110caa6698b6e1e48660d
 ---
 
 # Zero Data Retention (ZDR)
@@ -54,7 +54,7 @@ These API endpoints process data in real-time:
 | Tool Search (client-side) | `/v1/messages` | [Custom client-side tool search](/docs/en/agents-and-tools/tool-use/tool-search-tool#custom-tool-search-implementation) uses the standard Messages API. |
 | Context Management (compaction) | `/v1/messages` (with `context_management`) | Server-side compaction summarizes conversation context in real-time. |
 | Fast Mode | `/v1/messages` (with `speed: "fast"`) | Same Messages API endpoint with faster inference. ZDR applies regardless of speed setting. |
-| 1M Token Context Window | `/v1/messages` (with `anthropic-beta: context-1m-2025-08-07`) | Extended context processing uses the standard Messages API. ZDR applies even though this feature is in beta. |
+| 1M Token Context Window | `/v1/messages` | Extended context processing uses the standard Messages API. ZDR applies for all supported models, including beta access on Claude Sonnet 4.5 and Sonnet 4. |
 
 ### Not ZDR-eligible
 

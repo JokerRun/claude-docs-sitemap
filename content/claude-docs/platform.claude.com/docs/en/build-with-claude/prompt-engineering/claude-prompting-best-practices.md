@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 4954f11e176010c285f5643fc263fa8f9fe34e3f020d5e331744518063985606
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: fa661bfd88c6a10f26af964291419fd140dd14c67dcf0a19ade6294d597b8ce2
 ---
 
 # Prompting best practices
@@ -105,7 +105,7 @@ print(message.content)
 
 ### Long context prompting
 
-When working with large documents or data-rich inputs (20K+ tokens), structure your prompt carefully to get the best results:
+When working with large documents or data-rich inputs (20k+ tokens), structure your prompt carefully to get the best results:
 
 - **Put longform data at the top**: Place your long documents and inputs near the top of your prompt, above your query, instructions, and examples. This can significantly improve performance across all models.
 

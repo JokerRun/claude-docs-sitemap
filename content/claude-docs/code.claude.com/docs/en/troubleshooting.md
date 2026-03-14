@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 0740e9e323ee3ae1d0dbdfddce1c8b6ed4faeeff4c6f0cb27aa84d30e2a87e56
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 922668b3ad17823b304a49c57f2c78b769fc1a9b445c82b7182470237b25fc63
 ---
 
 > ## Documentation Index
@@ -740,7 +740,7 @@ apk add ripgrep
 pacman -S ripgrep
 ```
 
-Then set `USE_BUILTIN_RIPGREP=0` in your [environment](/en/settings#environment-variables).
+Then set `USE_BUILTIN_RIPGREP=0` in your [environment](/en/env-vars).
 
 ### Slow or incomplete search results on WSL
 

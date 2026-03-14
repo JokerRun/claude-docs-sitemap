@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/migration-guide
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 21988ed7ea1b36843157d0626509e5243908a531497ee18728198387827a1ac5
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: eb5780cd8fcdc271332429ae12a1d27ce6e2683a4ed3bb56039b2c4a79ff6b36
 ---
 
 # Migration guide
@@ -1273,7 +1273,7 @@ Extended thinking impacts [prompt caching](/docs/en/build-with-claude/prompt-cac
 Extended thinking is deprecated in Claude 4.6 or newer models. If using newer models, use [adaptive thinking](/docs/en/build-with-claude/adaptive-thinking) instead.
 </Note>
 
-**Explore new capabilities:** See the [models overview](/docs/en/about-claude/models/overview) for details on context awareness, increased output capacity (64K tokens), higher intelligence, and improved speed.
+**Explore new capabilities:** See the [models overview](/docs/en/about-claude/models/overview) for details on context awareness, increased output capacity (64k tokens), higher intelligence, and improved speed.
 
 ### Breaking changes
 

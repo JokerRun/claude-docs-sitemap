@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-03-10T04:12:00.389607Z
-sha256: 346d38ff6157995c5cde52aa37ecbd2f9f43c7bee12ec6175fb2158c0f4e8c18
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 722c567091d13b30f2958af36819a08fef822c98534e3f664e9a0e097bd847b6
 ---
 
 # Building with extended thinking
@@ -323,10 +323,10 @@ The `budget_tokens` parameter determines the maximum number of tokens Claude is 
 </Warning>
 
 <Note>
-Claude Opus 4.6 supports up to 128K output tokens. Earlier models support up to 64K output tokens.
+Claude Opus 4.6 supports up to 128k output tokens. Earlier models support up to 64k output tokens.
 </Note>
 
-`budget_tokens` must be set to a value less than `max_tokens`. However, when using [interleaved thinking with tools](#interleaved-thinking), you can exceed this limit as the token limit becomes your entire context window (200k tokens).
+`budget_tokens` must be set to a value less than `max_tokens`. However, when using [interleaved thinking with tools](#interleaved-thinking), you can exceed this limit as the token limit becomes your entire context window.
 
 ### Summarized thinking
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 34e0dcd9e873cdb6ed6d5ea507b7f5a754a740569a976d4814630fd8421c6cea
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 35a588785a5de462f77df08f45dee27451eddb835e042fa3aff9f14f8a2af316
 ---
 
 # Compaction
@@ -25,7 +25,7 @@ For a deeper look at why long contexts degrade and how compaction helps, see
 This is ideal for:
 
 - Chat-based, multi-turn conversations where you want users to use one chat for a long period of time
-- Task-oriented prompts that require a lot of follow-up work (often tool use) that may exceed the 200K context window
+- Task-oriented prompts that require a lot of follow-up work (often tool use) that may exceed the context window
 
 <Note>
 Compaction is in beta. Include the [beta header](/docs/en/api/beta-headers) `compact-2026-01-12` in your API requests to use this feature.

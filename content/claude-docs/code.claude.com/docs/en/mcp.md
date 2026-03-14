@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-03-13T04:15:04.763927Z
-sha256: f4e949ca71c5fc2155d48b26c1616cf229d689c92bf955cb668f939ccf475b29
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: b8f74c2915ca461d75f6ce5b35bea6cef088f7ac84e4fcdc1d77aa2170806017
 ---
 
 > ## Documentation Index
@@ -950,6 +950,19 @@ This is particularly useful when working with MCP servers that:
 <Warning>
   If you frequently encounter output warnings with specific MCP servers, consider increasing the limit or configuring the server to paginate or filter its responses.
 </Warning>
+
+## Respond to MCP elicitation requests
+
+MCP servers can request structured input from you mid-task using elicitation. When a server needs information it can't get on its own, Claude Code displays an interactive dialog and passes your response back to the server. No configuration is required on your side: elicitation dialogs appear automatically when a server requests them.
+
+Servers can request input in two ways:
+
+* **Form mode**: Claude Code shows a dialog with form fields defined by the server (for example, a username and password prompt). Fill in the fields and submit.
+* **URL mode**: Claude Code opens a browser URL for authentication or approval. Complete the flow in the browser, then confirm in the CLI.
+
+To auto-respond to elicitation requests without showing a dialog, use the [`Elicitation` hook](/en/hooks#elicitation).
+
+If you're building an MCP server that uses elicitation, see the [MCP elicitation specification](https://modelcontextprotocol.io/docs/learn/client-concepts#elicitation) for protocol details and schema examples.
 
 ## Use MCP resources
 

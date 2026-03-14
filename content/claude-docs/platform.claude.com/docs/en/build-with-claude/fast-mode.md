@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-03-10T04:12:00.389607Z
-sha256: 11c0e875ba6d0398a493bea84a65b54f191b8d0a589515601736a90265df973c
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 93cf14efc9e92b2063f67a93f6300ffd1a83bb9243f8998527ac3a947e785216
 ---
 
 # Fast mode (research preview)
@@ -228,7 +228,7 @@ For complete pricing details, see the [pricing page](/docs/en/about-claude/prici
 
 ## Rate limits
 
-Fast mode has a dedicated rate limit that is separate from standard Opus rate limits. Unlike standard speed, which has separate limits for ≤200K and >200K input tokens, fast mode uses a single rate limit that covers the full context range. When your fast mode rate limit is exceeded, the API returns a `429` error with a `retry-after` header indicating when capacity will be available.
+Fast mode has a dedicated rate limit that is separate from standard Opus rate limits. When your fast mode rate limit is exceeded, the API returns a `429` error with a `retry-after` header indicating when capacity will be available.
 
 The response includes headers that indicate your fast mode rate limit status:
 

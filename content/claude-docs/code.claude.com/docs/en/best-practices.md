@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-03-13T04:15:04.763927Z
-sha256: 5c458ea858f40ceb576d5bea89f3baa08ee56c488b222fcdc8a68287a49d403d
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 30e611a4f87e7651bf7b089e51dee8934cbdc9e39b6df3fe0ff22a4156575ba4
 ---
 
 > ## Documentation Index
@@ -251,7 +251,7 @@ With [MCP servers](/en/mcp), you can ask Claude to implement features from issue
 
 [Hooks](/en/hooks-guide) run scripts automatically at specific points in Claude's workflow. Unlike CLAUDE.md instructions which are advisory, hooks are deterministic and guarantee the action happens.
 
-Claude can write hooks for you. Try prompts like *"Write a hook that runs eslint after every file edit"* or *"Write a hook that blocks writes to the migrations folder."* Run `/hooks` for interactive configuration, or edit `.claude/settings.json` directly.
+Claude can write hooks for you. Try prompts like *"Write a hook that runs eslint after every file edit"* or *"Write a hook that blocks writes to the migrations folder."* Edit `.claude/settings.json` directly to configure hooks by hand, and run `/hooks` to browse what's configured.
 
 ### Create skills
 

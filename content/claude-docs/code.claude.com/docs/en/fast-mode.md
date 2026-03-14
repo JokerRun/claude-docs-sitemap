@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-03-13T04:15:04.763927Z
-sha256: f299d65615e8af6e8e1b93ab6516752ce807adefae6676a45de5d40375365d99
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 9bd85bdacd37122d38fc3d6ca5d80c5775d035d58539192ae587a6d6e42d96fb
 ---
 
 > ## Documentation Index
@@ -116,11 +116,11 @@ Admins can enable fast mode in:
 * **Console** (API customers): [Claude Code preferences](https://platform.claude.com/claude-code/preferences)
 * **Claude AI** (Teams and Enterprise): [Admin Settings > Claude Code](https://claude.ai/admin-settings/claude-code)
 
-Another option to disable fast mode entirely is to set `CLAUDE_CODE_DISABLE_FAST_MODE=1`. See [Environment variables](/en/settings#environment-variables).
+Another option to disable fast mode entirely is to set `CLAUDE_CODE_DISABLE_FAST_MODE=1`. See [Environment variables](/en/env-vars).
 
 ### Require per-session opt-in
 
-By default, fast mode persists across sessions: if a user enables fast mode, it stays on in future sessions. Administrators on [Teams](https://claude.com/pricing#team-&-enterprise) or [Enterprise](https://anthropic.com/contact-sales) plans can prevent this by setting `fastModePerSessionOptIn` to `true` in [managed settings](/en/settings#settings-files) or [server-managed settings](/en/server-managed-settings). This causes each session to start with fast mode off, requiring users to explicitly enable it with `/fast`.
+By default, fast mode persists across sessions: if a user enables fast mode, it stays on in future sessions. Administrators on [Teams](https://claude.com/pricing?utm_source=claude_code\&utm_medium=docs\&utm_content=fast_mode_teams#team-&-enterprise) or [Enterprise](https://anthropic.com/contact-sales?utm_source=claude_code\&utm_medium=docs\&utm_content=fast_mode_enterprise) plans can prevent this by setting `fastModePerSessionOptIn` to `true` in [managed settings](/en/settings#settings-files) or [server-managed settings](/en/server-managed-settings). This causes each session to start with fast mode off, requiring users to explicitly enable it with `/fast`.
 
 ```json  theme={null}
 {

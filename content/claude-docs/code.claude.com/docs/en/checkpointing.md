@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/checkpointing
-fetched_at: 2026-02-07T04:10:25.616975Z
-sha256: a82cbc87afdcda70d19a06d623de057663950820a56a24eb675f655d02ceb1c4
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 3a77b4152189a9d0389be6eabbe503f1885a18af6f855acac11f38c9c22556e3
 ---
 
 > ## Documentation Index
@@ -92,5 +92,5 @@ Checkpoints are designed for quick, session-level recovery. For permanent versio
 ## See also
 
 * [Interactive mode](/en/interactive-mode) - Keyboard shortcuts and session controls
-* [Built-in commands](/en/interactive-mode#built-in-commands) - Accessing checkpoints using `/rewind`
+* [Built-in commands](/en/commands) - Accessing checkpoints using `/rewind`
 * [CLI reference](/en/cli-reference) - Command-line options

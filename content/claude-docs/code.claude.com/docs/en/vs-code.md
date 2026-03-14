@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-03-13T04:15:04.763927Z
-sha256: 7d1407517f2e16facb6cd116b80c321a75b9c2cc6de9df35c3a7db3cac236bec
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 60e7cb367fa784ab652d78f25e76f08ca4ab18b53cbd21242a5596399dfd3fe5
 ---
 
 > ## Documentation Index
@@ -274,13 +274,13 @@ The extension has two types of settings:
 
 Claude Code is available as both a VS Code extension (graphical panel) and a CLI (command-line interface in the terminal). Some features are only available in the CLI. If you need a CLI-only feature, run `claude` in VS Code's integrated terminal.
 
-| Feature             | CLI                                           | VS Code Extension                                                                    |
-| ------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------ |
-| Commands and skills | [All](/en/interactive-mode#built-in-commands) | Subset (type `/` to see available)                                                   |
-| MCP server config   | Yes                                           | Partial (add servers via CLI; manage existing servers with `/mcp` in the chat panel) |
-| Checkpoints         | Yes                                           | Yes                                                                                  |
-| `!` bash shortcut   | Yes                                           | No                                                                                   |
-| Tab completion      | Yes                                           | No                                                                                   |
+| Feature             | CLI                 | VS Code Extension                                                                    |
+| ------------------- | ------------------- | ------------------------------------------------------------------------------------ |
+| Commands and skills | [All](/en/commands) | Subset (type `/` to see available)                                                   |
+| MCP server config   | Yes                 | Partial (add servers via CLI; manage existing servers with `/mcp` in the chat panel) |
+| Checkpoints         | Yes                 | Yes                                                                                  |
+| `!` bash shortcut   | Yes                 | No                                                                                   |
+| Tab completion      | Yes                 | No                                                                                   |
 
 ### Rewind with checkpoints
 

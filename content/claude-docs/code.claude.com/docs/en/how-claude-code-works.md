@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-03-13T04:15:04.763927Z
-sha256: dba00ebd05391942dc9c4a640e5e12286fefa0ed7476aba5c63109285e0094c7
+fetched_at: 2026-03-14T04:13:07.773495Z
+sha256: 3d0820f35fe3c70846237e9db2570846c8e667ce768f2e7dcca66ecd22db2fa2
 ---
 
 > ## Documentation Index
@@ -51,7 +51,7 @@ The built-in tools generally fall into five categories, each representing a diff
 | **Web**               | Search the web, fetch documentation, look up error messages                                                                                                   |
 | **Code intelligence** | See type errors and warnings after edits, jump to definitions, find references (requires [code intelligence plugins](/en/discover-plugins#code-intelligence)) |
 
-These are the primary capabilities. Claude also has tools for spawning subagents, asking you questions, and other orchestration tasks. See [Tools available to Claude](/en/settings#tools-available-to-claude) for the complete list.
+These are the primary capabilities. Claude also has tools for spawning subagents, asking you questions, and other orchestration tasks. See [Tools available to Claude](/en/tools-reference) for the complete list.
 
 Claude chooses which tools to use based on your prompt and what it learns along the way. When you say "fix the failing tests," Claude might:
 
