@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: 1742d25eb3964ce4e66bd4fc4f0028ffd2f0aa1f593e473d8d87888e70ad99d9
+fetched_at: 2026-03-17T04:21:46.272545Z
+sha256: 9f8518ec29a71e29f22c0572e90fd022c3a131518f5986489333c9bc6fdc1af7
 ---
 
 # Rate limits
@@ -44,6 +44,7 @@ To qualify for the next tier, you must meet a deposit requirement. To minimize t
       <th>Usage Tier</th>
       <th>Credit Purchase</th>
       <th>Max Credit Purchase</th>
+      <th>Monthly Spend Limit</th>
     </tr>
   </thead>
   <tbody>
@@ -51,26 +52,31 @@ To qualify for the next tier, you must meet a deposit requirement. To minimize t
       <td>Tier 1</td>
       <td>\$5</td>
       <td>\$100</td>
+      <td>\$100</td>
     </tr>
     <tr>
       <td>Tier 2</td>
       <td>\$40</td>
+      <td>\$500</td>
       <td>\$500</td>
     </tr>
     <tr>
       <td>Tier 3</td>
       <td>\$200</td>
       <td>\$1,000</td>
+      <td>\$1,000</td>
     </tr>
     <tr>
       <td>Tier 4</td>
       <td>\$400</td>
+      <td>\$200,000</td>
       <td>\$200,000</td>
     </tr>
     <tr>
       <td>Monthly Invoicing</td>
       <td>N/A</td>
       <td>N/A</td>
+      <td>No limit</td>
     </tr>
   </tbody>
 </table>
@@ -79,6 +85,8 @@ To qualify for the next tier, you must meet a deposit requirement. To minimize t
 **Credit Purchase** shows the cumulative credit purchases (excluding tax) required to advance to that tier. You advance immediately upon reaching the threshold.
 
 **Max Credit Purchase** limits the maximum amount you can add to your account in a single transaction to prevent account overfunding.
+
+**Monthly Spend Limit** is the maximum you can spend on the API each calendar month at that tier.
 </Note>
 
 ## Increasing your spend limits

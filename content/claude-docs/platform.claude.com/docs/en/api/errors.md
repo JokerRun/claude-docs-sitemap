@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: d1c150cc2b7041f1da83c6fd69bdabc0ad49e815b7a607111e6bea7fb0570e3f
+fetched_at: 2026-03-17T04:21:46.272545Z
+sha256: 1d22e17ec5aeffe25fb51104ee7c553aadf369d161e09f419783405b57395b14
 ---
 
 # Errors
@@ -15,6 +15,7 @@ The API follows a predictable HTTP error code format:
 
 * 400 - `invalid_request_error`: There was an issue with the format or content of your request. This error type may also be used for other 4XX status codes not listed below.
 * 401 - `authentication_error`: There's an issue with your API key.
+* 402 - `billing_error`: There's an issue with your billing or payment information. Check your payment details in the [Console](https://platform.claude.com).
 * 403 - `permission_error`: Your API key does not have permission to use the specified resource.
 * 404 - `not_found_error`: The requested resource was not found.
 * 413 - `request_too_large`: Request exceeds the maximum allowed number of bytes. The maximum request size is 32 MB for standard API endpoints.

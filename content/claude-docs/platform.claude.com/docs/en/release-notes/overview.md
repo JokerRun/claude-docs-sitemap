@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: 24c889defa17a48720d3fda212d5154cbe2130e7a472db7fc50f77204bb375d0
+fetched_at: 2026-03-17T04:21:46.272545Z
+sha256: abef2d217e1f5ffd5514be6f85e58c993d7bd2a7f583716ac1e91bbecbfb5acf
 ---
 
 # Claude Developer Platform
@@ -16,6 +16,9 @@ For release notes on Claude Apps, see the [Release notes for Claude Apps in the 
 
 For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### March 16, 2026
+- We've launched the `display` field for extended thinking, letting you omit thinking content from responses for faster streaming. Set `thinking.display: "omitted"` to receive thinking blocks with an empty `thinking` field and the `signature` preserved for multi-turn continuity. Billing is unchanged. Learn more in [Controlling thinking display](/docs/en/build-with-claude/extended-thinking#controlling-thinking-display).
 
 ### March 13, 2026
 - The [1M token context window](/docs/en/build-with-claude/context-windows) is now generally available for Claude Opus 4.6 and Sonnet 4.6 at standard pricing. Requests over 200k tokens work automatically for these models with no beta header required. The 1M token context window remains in beta for Claude Sonnet 4.5 and Sonnet 4.
