@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/remote-control
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: 8f2506c9da3896f764d7ca7e7603cbc824a4642005604921d8e20fc55731429a
+fetched_at: 2026-03-18T03:09:14.254898Z
+sha256: 582b37d145e5cb90c2def8ca1c5d5ffc88a447348bd358956df700774dc037a5
 ---
 
 > ## Documentation Index
@@ -134,6 +134,20 @@ Use Remote Control when you're in the middle of local work and want to keep goin
 * **One remote session per interactive process**: outside of server mode, each Claude Code instance supports one remote session at a time. Use server mode with `--spawn` to run multiple concurrent sessions from a single process.
 * **Terminal must stay open**: Remote Control runs as a local process. If you close the terminal or stop the `claude` process, the session ends. Run `claude remote-control` again to start a new one.
 * **Extended network outage**: if your machine is awake but unable to reach the network for more than roughly 10 minutes, the session times out and the process exits. Run `claude remote-control` again to start a new session.
+
+## Troubleshooting
+
+If your terminal shows `Remote credentials fetch failed — see debug log`, Claude Code could not obtain a short-lived credential from the Anthropic API to establish the Remote Control connection. To see the full error detail, re-run with the `--verbose` flag:
+
+```bash  theme={null}
+claude remote-control --verbose
+```
+
+Common causes:
+
+* Not signed in: run `claude` and use `/login` to authenticate with your claude.ai account. API key authentication is not supported for Remote Control.
+* Network or proxy issue: a firewall or proxy may be blocking the outbound HTTPS request. Remote Control requires access to the Anthropic API on port 443.
+* Session creation failed: if you also see `Session creation failed — see debug log`, the failure happened earlier in setup. Check that your subscription (Pro, Max, Team, or Enterprise) is active.
 
 ## Related resources
 

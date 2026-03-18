@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: 3b1c701b2caf46200902da88afd90c8648e41fc0dd9f1ca0ee24dc27c8adde09
+fetched_at: 2026-03-18T03:09:14.254898Z
+sha256: 16df64837072f406d59733b8f3412cba6ad8445a708efe396986c0a5386ef1a5
 ---
 
 > ## Documentation Index
@@ -98,6 +98,20 @@ The following example uses [jq](https://jqlang.github.io/jq/) to filter for text
 claude -p "Write a poem" --output-format stream-json --verbose --include-partial-messages | \
   jq -rj 'select(.type == "stream_event" and .event.delta.type? == "text_delta") | .event.delta.text'
 ```
+
+When an API request fails with a retryable error, Claude Code emits a `system/api_retry` event before retrying. You can use this to surface retry progress or implement custom backoff logic.
+
+| Field            | Type            | Description                                                                                                                                  |
+| ---------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`           | `"system"`      | message type                                                                                                                                 |
+| `subtype`        | `"api_retry"`   | identifies this as a retry event                                                                                                             |
+| `attempt`        | integer         | current attempt number, starting at 1                                                                                                        |
+| `max_retries`    | integer         | total retries permitted                                                                                                                      |
+| `retry_delay_ms` | integer         | milliseconds until the next attempt                                                                                                          |
+| `error_status`   | integer or null | HTTP status code, or `null` for connection errors with no HTTP response                                                                      |
+| `error`          | string          | error category: `authentication_failed`, `billing_error`, `rate_limit`, `invalid_request`, `server_error`, `max_output_tokens`, or `unknown` |
+| `uuid`           | string          | unique event identifier                                                                                                                      |
+| `session_id`     | string          | session the event belongs to                                                                                                                 |
 
 For programmatic streaming with callbacks and message objects, see [Stream responses in real-time](https://platform.claude.com/docs/en/agent-sdk/streaming-output) in the Agent SDK documentation.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: e979718d3cb1ead0c23ab81be3ffc633a7be5d4bf4fbf666bdea3d85a2da68d5
+fetched_at: 2026-03-18T03:09:14.254898Z
+sha256: 1232bf50c2baa1355ccecbe1f318e24093a7b69957054f64a0b0fe791ed66b6f
 ---
 
 > ## Documentation Index
@@ -90,6 +90,12 @@ sha256: e979718d3cb1ead0c23ab81be3ffc633a7be5d4bf4fbf666bdea3d85a2da68d5
 | `/` at start | Command or skill  | See [built-in commands](#built-in-commands) and [skills](/en/skills) |
 | `!` at start | Bash mode         | Run commands directly and add execution output to the session        |
 | `@`          | File path mention | Trigger file path autocomplete                                       |
+
+### Voice input
+
+| Shortcut     | Description            | Notes                                                                                                                                                      |
+| :----------- | :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hold `Space` | Push-to-talk dictation | Requires [voice dictation](/en/voice-dictation) to be enabled. Transcript inserts at cursor. [Rebindable](/en/voice-dictation#rebind-the-push-to-talk-key) |
 
 ## Built-in commands
 
@@ -214,6 +220,7 @@ To run commands in the background, you can either:
 * Output is buffered and Claude can retrieve it using the TaskOutput tool
 * Background tasks have unique IDs for tracking and output retrieval
 * Background tasks are automatically cleaned up when Claude Code exits
+* Background tasks are automatically terminated if output exceeds 5GB, with a note in stderr explaining why
 
 To disable all background task functionality, set the `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` environment variable to `1`. See [Environment variables](/en/env-vars) for details.
 

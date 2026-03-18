@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-03-13T04:15:04.763927Z
-sha256: 31b9f1112a5a437e20ecb8364b230890580b2fa28a743c42887651be3a16aa75
+fetched_at: 2026-03-18T03:09:14.254898Z
+sha256: 290af2a807a1663aede435c910a1ab0267757d661027be919cf58e58deeb3f42
 ---
 
 > ## Documentation Index
@@ -289,6 +289,14 @@ Actions available in the `Settings` context:
 | :---------------- | :------ | :---------------------------------- |
 | `settings:search` | /       | Enter search mode                   |
 | `settings:retry`  | R       | Retry loading usage data (on error) |
+
+### Voice actions
+
+Actions available in the `Chat` context when [voice dictation](/en/voice-dictation) is enabled:
+
+| Action             | Default | Description              |
+| :----------------- | :------ | :----------------------- |
+| `voice:pushToTalk` | Space   | Hold to dictate a prompt |
 
 ## Keystroke syntax
 

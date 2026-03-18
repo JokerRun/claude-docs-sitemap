@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: a4138548d58b47282f55b62ffd6785856f104db38a07c5ff303917f63fcd7f20
+fetched_at: 2026-03-18T03:09:14.254898Z
+sha256: 6a11d33be6807885cd5cff82dc9bf3b26cccc2ecb2e08403848e06f9980b9442
 ---
 
 > ## Documentation Index
@@ -92,6 +92,11 @@ Claude Code requires access to the following URLs:
 * `platform.claude.com`: authentication for Anthropic Console accounts
 
 Ensure these URLs are allowlisted in your proxy configuration and firewall rules. This is especially important when using Claude Code in containerized or restricted network environments.
+
+The native installer and update checks also require the following URLs. If you install Claude Code through npm or manage your own binary distribution, end users may not need access:
+
+* `downloads.claude.ai`: CDN hosting the install script, version pointers, manifests, and executables
+* `storage.googleapis.com`: legacy download bucket, deprecation in progress
 
 [Claude Code on the web](/en/claude-code-on-the-web) and [Code Review](/en/code-review) connect to your repositories from Anthropic-managed infrastructure. If your GitHub Enterprise Cloud organization restricts access by IP address, enable [IP allow list inheritance for installed GitHub Apps](https://docs.github.com/en/enterprise-cloud@latest/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-allowed-ip-addresses-for-your-organization#allowing-access-by-github-apps). The Claude GitHub App registers its IP ranges, so enabling this setting allows access without manual configuration. To [add the ranges to your allow list manually](https://docs.github.com/en/enterprise-cloud@latest/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-allowed-ip-addresses-for-your-organization#adding-an-allowed-ip-address) instead, or to configure other firewalls, see the [Anthropic API IP addresses](https://platform.claude.com/docs/en/api/ip-addresses).
 

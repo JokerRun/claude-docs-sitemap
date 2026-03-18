@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-03-12T04:16:29.501696Z
-sha256: c1a4ae679cba83ed7a425ea2166f536daaa64e088488484fe0b5fec4544231fa
+fetched_at: 2026-03-18T03:09:14.254898Z
+sha256: 569e14a034262a94cd5a85928270cb4b86741f406e5b5133c389cbe1658b8ced
 ---
 
 > ## Documentation Index
@@ -159,7 +159,7 @@ To customize models further, use one of these methods:
 ```bash  theme={null}
 # Using inference profile ID
 export ANTHROPIC_MODEL='global.anthropic.claude-sonnet-4-6'
-export ANTHROPIC_SMALL_FAST_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
+export ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
 
 # Using application inference profile ARN
 export ANTHROPIC_MODEL='arn:aws:bedrock:us-east-2:your-account-id:application-inference-profile/your-model-id'

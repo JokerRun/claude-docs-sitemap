@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-03-17T04:21:46.272545Z
-sha256: abef2d217e1f5ffd5514be6f85e58c993d7bd2a7f583716ac1e91bbecbfb5acf
+fetched_at: 2026-03-18T03:09:14.254898Z
+sha256: 8890e6fa66790098b5c78315f6b5cd66ccf6fb3ae99d68a72cdef75d307b6bd7
 ---
 
-# Claude Developer Platform
+# Claude Platform
 
-Updates to the Claude Developer Platform, including the Claude API, client SDKs, and the Claude Console.
+Updates to the Claude Platform, including the Claude API, client SDKs, and the Claude Console.
 
 ---
 

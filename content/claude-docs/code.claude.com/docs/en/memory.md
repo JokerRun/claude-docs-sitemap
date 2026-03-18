@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: 1498263fcc978c17628381746c7a51804e367d150dda6933159616276b24abb6
+fetched_at: 2026-03-18T03:09:14.254898Z
+sha256: 0dc69630422f0b3de0f420122b1d19e5aaa4b2394ec83abb3c394f6529dc2c3c
 ---
 
 > ## Documentation Index
@@ -65,6 +65,8 @@ A project CLAUDE.md can be stored in either `./CLAUDE.md` or `./.claude/CLAUDE.m
 
 <Tip>
   Run `/init` to generate a starting CLAUDE.md automatically. Claude analyzes your codebase and creates a file with build commands, test instructions, and project conventions it discovers. If a CLAUDE.md already exists, `/init` suggests improvements rather than overwriting it. Refine from there with instructions Claude wouldn't discover on its own.
+
+  Set `CLAUDE_CODE_NEW_INIT=true` to enable an interactive multi-phase flow. `/init` asks which artifacts to set up: CLAUDE.md files, skills, and hooks. It then explores your codebase with a subagent, fills in gaps via follow-up questions, and presents a reviewable proposal before writing any files.
 </Tip>
 
 ### Write effective instructions
@@ -234,6 +236,20 @@ Organizations can deploy a centrally managed CLAUDE.md that applies to all users
     Use MDM, Group Policy, Ansible, or similar tools to distribute the file across developer machines. See [managed settings](/en/permissions#managed-settings) for other organization-wide configuration options.
   </Step>
 </Steps>
+
+A managed CLAUDE.md and [managed settings](/en/settings#settings-files) serve different purposes. Use settings for technical enforcement and CLAUDE.md for behavioral guidance:
+
+| Concern                                        | Configure in                                              |
+| :--------------------------------------------- | :-------------------------------------------------------- |
+| Block specific tools, commands, or file paths  | Managed settings: `permissions.deny`                      |
+| Enforce sandbox isolation                      | Managed settings: `sandbox.enabled`                       |
+| Environment variables and API provider routing | Managed settings: `env`                                   |
+| Authentication method and organization lock    | Managed settings: `forceLoginMethod`, `forceLoginOrgUUID` |
+| Code style and quality guidelines              | Managed CLAUDE.md                                         |
+| Data handling and compliance reminders         | Managed CLAUDE.md                                         |
+| Behavioral instructions for Claude             | Managed CLAUDE.md                                         |
+
+Settings rules are enforced by the client regardless of what Claude decides to do. CLAUDE.md instructions shape Claude's behavior but are not a hard enforcement layer.
 
 #### Exclude specific CLAUDE.md files
 

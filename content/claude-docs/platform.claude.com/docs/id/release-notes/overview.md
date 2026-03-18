@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 2adf4b14b25703cec1ae4763c6cb139367294e6cc6aa2d2f09a198485fbee0de
+fetched_at: 2026-03-18T03:09:14.254898Z
+sha256: c0b3780cb173e777dfc0b09895aec07d238cbd63245ff7447fc2b23df622be54
 ---
 
-# Platform Pengembang Claude
+# Claude Platform
 
-Pembaruan ke Platform Pengembang Claude, termasuk Claude API, SDK klien, dan Konsol Claude.
+Pembaruan ke Claude Platform, termasuk Claude API, SDK klien, dan Konsol Claude.
 
 ---
 
