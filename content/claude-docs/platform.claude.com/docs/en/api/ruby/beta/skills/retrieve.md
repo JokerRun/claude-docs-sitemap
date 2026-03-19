@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/retrieve
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: fa4d5c5d85d02a382e787a2252f3dd5d7726ed74694d2d87104c8ddec4371373
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: c713ff1023451c71d8b36091be27b3fc38f432fb1835605c1888655542a90dc5
 ---
 
 ## Retrieve
@@ -21,7 +21,7 @@ Get Skill
 
   The format and length of IDs may change over time.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

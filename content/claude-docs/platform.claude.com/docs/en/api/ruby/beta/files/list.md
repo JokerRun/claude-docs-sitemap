@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/list
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 6ea5ad518e828a17a740c65dd91b727c3e2d345881cfc4af42c35efe3b868608
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: ce44fbc5c61ee2d1e16d8cb393dcc390270ca2320718582f6565264c2cada4ec
 ---
 
 ## List
@@ -29,7 +29,7 @@ List Files
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

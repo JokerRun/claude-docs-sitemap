@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/list
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: cd9802f531081f1feef3f1510751a3f96ca140aeb28724d5c1f1db35c9dcb60a
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 01d1859a34047813f51dc23fd1601b2750cb87f6c15c1856d7891802198a5464
 ---
 
 ## List
@@ -31,7 +31,7 @@ List Skill Versions
 
   Optionally set to the `next_page` token from the previous response.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

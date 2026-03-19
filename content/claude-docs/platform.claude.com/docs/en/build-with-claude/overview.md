@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: 600561b9450253cb59e66cec4ad6321ddb978a9b3f61f0a673d618e270e748ab
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: d40f27f18bc4be5f3966b6c6dfbaa75f147498fe042b44a7f64b60731c17b8bc
 ---
 
 # Features overview
@@ -24,6 +24,10 @@ If you're new, start with [model capabilities](#model-capabilities) and [tools](
 ## Model capabilities
 
 Ways to steer Claude and Claude's direct outputs, including response format, reasoning depth, and input modalities.
+
+<Tip>
+You can discover which capabilities a model supports programmatically. The [Models API](/docs/en/api/models/list) returns `max_input_tokens`, `max_tokens`, and a `capabilities` object for every available model.
+</Tip>
 
 | Feature | Description | Availability |
 |---------|-------------|--------------|

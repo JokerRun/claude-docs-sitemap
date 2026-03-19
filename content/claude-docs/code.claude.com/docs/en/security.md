@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 96bf28f93b0e657392461ed8fed90abe845c6621bed376656b4826a8bb9b5a59
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 9c7ab93714939ede65941e22d78be1b657295af0157099e95681b598d3ba7aca
 ---
 
 > ## Documentation Index
@@ -82,7 +82,7 @@ For full details, please review our [Commercial Terms of Service](https://www.an
 2. Avoid piping untrusted content directly to Claude
 3. Verify proposed changes to critical files
 4. Use virtual machines (VMs) to run scripts and make tool calls, especially when interacting with external web services
-5. Report suspicious behavior with `/bug`
+5. Report suspicious behavior with `/feedback`
 
 <Warning>
   While these protections significantly reduce risk, no system is completely

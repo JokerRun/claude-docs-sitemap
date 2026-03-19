@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 4ccd66470d82d8b888d4829325905e1c9bfe9b237cb88e676ab39c22a521b68d
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 53f517e4916e25d66e3791a778029c0ad3dcd6d337398732e06a893125c0474a
 ---
 
 # Messages
@@ -3130,6 +3130,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"enabled"`
 
+    - `display: Optional[Literal["summarized", "omitted"]]`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"`
+
+      - `"omitted"`
+
   - `class BetaThinkingConfigDisabled: …`
 
     - `type: Literal["disabled"]`
@@ -3141,6 +3149,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `type: Literal["adaptive"]`
 
       - `"adaptive"`
+
+    - `display: Optional[Literal["summarized", "omitted"]]`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"`
+
+      - `"omitted"`
 
 - `tool_choice: Optional[BetaToolChoiceParam]`
 
@@ -4423,6 +4439,87 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `strict: Optional[bool]`
 
       When true, guarantees schema validation on tool names and inputs
+
+  - `class BetaWebFetchTool20260309: …`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: Literal["web_fetch"]`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `"web_fetch"`
+
+    - `type: Literal["web_fetch_20260309"]`
+
+      - `"web_fetch_20260309"`
+
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
+
+      - `"direct"`
+
+      - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
+
+    - `allowed_domains: Optional[List[str]]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Optional[List[str]]`
+
+      List of domains to block fetching from
+
+    - `cache_control: Optional[BetaCacheControlEphemeral]`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: Literal["ephemeral"]`
+
+        - `"ephemeral"`
+
+      - `ttl: Optional[Literal["5m", "1h"]]`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `"5m"`
+
+        - `"1h"`
+
+    - `citations: Optional[BetaCitationsConfigParam]`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: Optional[bool]`
+
+    - `defer_loading: Optional[bool]`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Optional[int]`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Optional[int]`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: Optional[bool]`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: Optional[bool]`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
   - `class BetaToolSearchToolBm25_20251119: …`
 
@@ -8925,6 +9022,14 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"enabled"`
 
+    - `display: Optional[Literal["summarized", "omitted"]]`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"`
+
+      - `"omitted"`
+
   - `class BetaThinkingConfigDisabled: …`
 
     - `type: Literal["disabled"]`
@@ -8936,6 +9041,14 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `type: Literal["adaptive"]`
 
       - `"adaptive"`
+
+    - `display: Optional[Literal["summarized", "omitted"]]`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"`
+
+      - `"omitted"`
 
 - `tool_choice: Optional[BetaToolChoiceParam]`
 
@@ -10218,6 +10331,87 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `strict: Optional[bool]`
 
       When true, guarantees schema validation on tool names and inputs
+
+  - `class BetaWebFetchTool20260309: …`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: Literal["web_fetch"]`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `"web_fetch"`
+
+    - `type: Literal["web_fetch_20260309"]`
+
+      - `"web_fetch_20260309"`
+
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
+
+      - `"direct"`
+
+      - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
+
+    - `allowed_domains: Optional[List[str]]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Optional[List[str]]`
+
+      List of domains to block fetching from
+
+    - `cache_control: Optional[BetaCacheControlEphemeral]`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: Literal["ephemeral"]`
+
+        - `"ephemeral"`
+
+      - `ttl: Optional[Literal["5m", "1h"]]`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `"5m"`
+
+        - `"1h"`
+
+    - `citations: Optional[BetaCitationsConfigParam]`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: Optional[bool]`
+
+    - `defer_loading: Optional[bool]`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Optional[int]`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Optional[int]`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: Optional[bool]`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: Optional[bool]`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
   - `class BetaToolSearchToolBm25_20251119: …`
 
@@ -27330,6 +27524,14 @@ print(beta_message_tokens_count.context_management)
 
     - `"adaptive"`
 
+  - `display: Optional[Literal["summarized", "omitted"]]`
+
+    Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+    - `"summarized"`
+
+    - `"omitted"`
+
 ### Beta Thinking Config Disabled
 
 - `class BetaThinkingConfigDisabled: …`
@@ -27353,6 +27555,14 @@ print(beta_message_tokens_count.context_management)
   - `type: Literal["enabled"]`
 
     - `"enabled"`
+
+  - `display: Optional[Literal["summarized", "omitted"]]`
+
+    Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+    - `"summarized"`
+
+    - `"omitted"`
 
 ### Beta Thinking Config Param
 
@@ -27378,6 +27588,14 @@ print(beta_message_tokens_count.context_management)
 
       - `"enabled"`
 
+    - `display: Optional[Literal["summarized", "omitted"]]`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"`
+
+      - `"omitted"`
+
   - `class BetaThinkingConfigDisabled: …`
 
     - `type: Literal["disabled"]`
@@ -27389,6 +27607,14 @@ print(beta_message_tokens_count.context_management)
     - `type: Literal["adaptive"]`
 
       - `"adaptive"`
+
+    - `display: Optional[Literal["summarized", "omitted"]]`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"`
+
+      - `"omitted"`
 
 ### Beta Thinking Delta
 
@@ -30389,6 +30615,87 @@ print(beta_message_tokens_count.context_management)
 
       When true, guarantees schema validation on tool names and inputs
 
+  - `class BetaWebFetchTool20260309: …`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: Literal["web_fetch"]`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `"web_fetch"`
+
+    - `type: Literal["web_fetch_20260309"]`
+
+      - `"web_fetch_20260309"`
+
+    - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
+
+      - `"direct"`
+
+      - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
+
+    - `allowed_domains: Optional[List[str]]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Optional[List[str]]`
+
+      List of domains to block fetching from
+
+    - `cache_control: Optional[BetaCacheControlEphemeral]`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: Literal["ephemeral"]`
+
+        - `"ephemeral"`
+
+      - `ttl: Optional[Literal["5m", "1h"]]`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `"5m"`
+
+        - `"1h"`
+
+    - `citations: Optional[BetaCitationsConfigParam]`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: Optional[bool]`
+
+    - `defer_loading: Optional[bool]`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Optional[int]`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Optional[int]`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: Optional[bool]`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: Optional[bool]`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
   - `class BetaToolSearchToolBm25_20251119: …`
 
     - `name: Literal["tool_search_tool_bm25"]`
@@ -31376,6 +31683,89 @@ print(beta_message_tokens_count.context_management)
   - `strict: Optional[bool]`
 
     When true, guarantees schema validation on tool names and inputs
+
+### Beta Web Fetch Tool 20260309
+
+- `class BetaWebFetchTool20260309: …`
+
+  Web fetch tool with use_cache parameter for bypassing cached content.
+
+  - `name: Literal["web_fetch"]`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `"web_fetch"`
+
+  - `type: Literal["web_fetch_20260309"]`
+
+    - `"web_fetch_20260309"`
+
+  - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
+
+    - `"direct"`
+
+    - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
+
+  - `allowed_domains: Optional[List[str]]`
+
+    List of domains to allow fetching from
+
+  - `blocked_domains: Optional[List[str]]`
+
+    List of domains to block fetching from
+
+  - `cache_control: Optional[BetaCacheControlEphemeral]`
+
+    Create a cache control breakpoint at this content block.
+
+    - `type: Literal["ephemeral"]`
+
+      - `"ephemeral"`
+
+    - `ttl: Optional[Literal["5m", "1h"]]`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `"5m"`
+
+      - `"1h"`
+
+  - `citations: Optional[BetaCitationsConfigParam]`
+
+    Citations configuration for fetched documents. Citations are disabled by default.
+
+    - `enabled: Optional[bool]`
+
+  - `defer_loading: Optional[bool]`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `max_content_tokens: Optional[int]`
+
+    Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+  - `max_uses: Optional[int]`
+
+    Maximum number of times the tool can be used in the API request.
+
+  - `strict: Optional[bool]`
+
+    When true, guarantees schema validation on tool names and inputs
+
+  - `use_cache: Optional[bool]`
+
+    Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
 ### Beta Web Fetch Tool Result Block
 
@@ -35607,6 +35997,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"enabled"`
 
+        - `display: Optional[Literal["summarized", "omitted"]]`
+
+          Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+          - `"summarized"`
+
+          - `"omitted"`
+
       - `class BetaThinkingConfigDisabled: …`
 
         - `type: Literal["disabled"]`
@@ -35618,6 +36016,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `type: Literal["adaptive"]`
 
           - `"adaptive"`
+
+        - `display: Optional[Literal["summarized", "omitted"]]`
+
+          Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+          - `"summarized"`
+
+          - `"omitted"`
 
     - `tool_choice: Optional[BetaToolChoiceParam]`
 
@@ -36900,6 +37306,87 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `strict: Optional[bool]`
 
           When true, guarantees schema validation on tool names and inputs
+
+      - `class BetaWebFetchTool20260309: …`
+
+        Web fetch tool with use_cache parameter for bypassing cached content.
+
+        - `name: Literal["web_fetch"]`
+
+          Name of the tool.
+
+          This is how the tool will be called by the model and in `tool_use` blocks.
+
+          - `"web_fetch"`
+
+        - `type: Literal["web_fetch_20260309"]`
+
+          - `"web_fetch_20260309"`
+
+        - `allowed_callers: Optional[List[Literal["direct", "code_execution_20250825", "code_execution_20260120"]]]`
+
+          - `"direct"`
+
+          - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
+
+        - `allowed_domains: Optional[List[str]]`
+
+          List of domains to allow fetching from
+
+        - `blocked_domains: Optional[List[str]]`
+
+          List of domains to block fetching from
+
+        - `cache_control: Optional[BetaCacheControlEphemeral]`
+
+          Create a cache control breakpoint at this content block.
+
+          - `type: Literal["ephemeral"]`
+
+            - `"ephemeral"`
+
+          - `ttl: Optional[Literal["5m", "1h"]]`
+
+            The time-to-live for the cache control breakpoint.
+
+            This may be one the following values:
+
+            - `5m`: 5 minutes
+            - `1h`: 1 hour
+
+            Defaults to `5m`.
+
+            - `"5m"`
+
+            - `"1h"`
+
+        - `citations: Optional[BetaCitationsConfigParam]`
+
+          Citations configuration for fetched documents. Citations are disabled by default.
+
+          - `enabled: Optional[bool]`
+
+        - `defer_loading: Optional[bool]`
+
+          If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+        - `max_content_tokens: Optional[int]`
+
+          Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+        - `max_uses: Optional[int]`
+
+          Maximum number of times the tool can be used in the API request.
+
+        - `strict: Optional[bool]`
+
+          When true, guarantees schema validation on tool names and inputs
+
+        - `use_cache: Optional[bool]`
+
+          Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
       - `class BetaToolSearchToolBm25_20251119: …`
 

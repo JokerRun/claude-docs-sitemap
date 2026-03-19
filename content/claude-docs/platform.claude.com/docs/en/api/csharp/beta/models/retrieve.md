@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/models/retrieve
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 72e5762f9221f891e053fb2bb3efa0839d65e9e418ed277c27deac6ed1b195f7
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 6aaf5f07c68f3f7d3437f2197da10cc472d4f89700c233a3e085ba8b70553038
 ---
 
 ## Retrieve
@@ -75,6 +75,158 @@ The Models API response can be used to determine information about a specific mo
 
     Unique model identifier.
 
+  - `required BetaModelCapabilities? Capabilities`
+
+    Model capability information.
+
+    - `required BetaCapabilitySupport Batch`
+
+      Whether the model supports the Batch API.
+
+      - `required Boolean Supported`
+
+        Whether this capability is supported by the model.
+
+    - `required BetaCapabilitySupport Citations`
+
+      Whether the model supports citation generation.
+
+      - `required Boolean Supported`
+
+        Whether this capability is supported by the model.
+
+    - `required BetaCapabilitySupport CodeExecution`
+
+      Whether the model supports code execution tools.
+
+      - `required Boolean Supported`
+
+        Whether this capability is supported by the model.
+
+    - `required BetaContextManagementCapability ContextManagement`
+
+      Context management support and available strategies.
+
+      - `required BetaCapabilitySupport? ClearThinking20251015`
+
+        Indicates whether a capability is supported.
+
+        - `required Boolean Supported`
+
+          Whether this capability is supported by the model.
+
+      - `required BetaCapabilitySupport? ClearToolUses20250919`
+
+        Indicates whether a capability is supported.
+
+        - `required Boolean Supported`
+
+          Whether this capability is supported by the model.
+
+      - `required BetaCapabilitySupport? Compact20260112`
+
+        Indicates whether a capability is supported.
+
+        - `required Boolean Supported`
+
+          Whether this capability is supported by the model.
+
+      - `required Boolean Supported`
+
+        Whether this capability is supported by the model.
+
+    - `required BetaEffortCapability Effort`
+
+      Effort (reasoning_effort) support and available levels.
+
+      - `required BetaCapabilitySupport High`
+
+        Whether the model supports high effort level.
+
+        - `required Boolean Supported`
+
+          Whether this capability is supported by the model.
+
+      - `required BetaCapabilitySupport Low`
+
+        Whether the model supports low effort level.
+
+        - `required Boolean Supported`
+
+          Whether this capability is supported by the model.
+
+      - `required BetaCapabilitySupport Max`
+
+        Whether the model supports max effort level.
+
+        - `required Boolean Supported`
+
+          Whether this capability is supported by the model.
+
+      - `required BetaCapabilitySupport Medium`
+
+        Whether the model supports medium effort level.
+
+        - `required Boolean Supported`
+
+          Whether this capability is supported by the model.
+
+      - `required Boolean Supported`
+
+        Whether this capability is supported by the model.
+
+    - `required BetaCapabilitySupport ImageInput`
+
+      Whether the model accepts image content blocks.
+
+      - `required Boolean Supported`
+
+        Whether this capability is supported by the model.
+
+    - `required BetaCapabilitySupport PdfInput`
+
+      Whether the model accepts PDF content blocks.
+
+      - `required Boolean Supported`
+
+        Whether this capability is supported by the model.
+
+    - `required BetaCapabilitySupport StructuredOutputs`
+
+      Whether the model supports structured output / JSON mode / strict tool schemas.
+
+      - `required Boolean Supported`
+
+        Whether this capability is supported by the model.
+
+    - `required BetaThinkingCapability Thinking`
+
+      Thinking capability and supported type configurations.
+
+      - `required Boolean Supported`
+
+        Whether this capability is supported by the model.
+
+      - `required BetaThinkingTypes Types`
+
+        Supported thinking type configurations.
+
+        - `required BetaCapabilitySupport Adaptive`
+
+          Whether the model supports thinking with type 'adaptive' (auto).
+
+          - `required Boolean Supported`
+
+            Whether this capability is supported by the model.
+
+        - `required BetaCapabilitySupport Enabled`
+
+          Whether the model supports thinking with type 'enabled'.
+
+          - `required Boolean Supported`
+
+            Whether this capability is supported by the model.
+
   - `required DateTimeOffset CreatedAt`
 
     RFC 3339 datetime string representing the time at which the model was released. May be set to an epoch value if the release date is unknown.
@@ -82,6 +234,14 @@ The Models API response can be used to determine information about a specific mo
   - `required string DisplayName`
 
     A human-readable name for the model.
+
+  - `required Long? MaxInputTokens`
+
+    Maximum input context window size in tokens for this model.
+
+  - `required Long? MaxTokens`
+
+    Maximum value for the `max_tokens` parameter when using this model.
 
   - `JsonElement Type "model"constant`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 5397445f6a6f8f5c9d862e09e28e01eded36f9323b53f026cf23783554b5f455
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 6bbac70d17c13f5d5c40635b7766fdf10e19af06f357021957fbd4e888b6877e
 ---
 
 # Messages
@@ -2624,6 +2624,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:enabled`
 
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
+
   - `class ThinkingConfigDisabled`
 
     - `type: :disabled`
@@ -2635,6 +2643,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `type: :adaptive`
 
       - `:adaptive`
+
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
 
 - `tool_choice: ToolChoice`
 
@@ -3602,6 +3618,87 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `strict: bool`
 
       When true, guarantees schema validation on tool names and inputs
+
+  - `class WebFetchTool20260309`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: :web_fetch`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_fetch`
+
+    - `type: :web_fetch_20260309`
+
+      - `:web_fetch_20260309`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+    - `allowed_domains: Array[String]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Array[String]`
+
+      List of domains to block fetching from
+
+    - `cache_control: CacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: :ephemeral`
+
+        - `:ephemeral`
+
+      - `ttl: :"5m" | :"1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `:"5m"`
+
+        - `:"1h"`
+
+    - `citations: CitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: bool`
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Integer`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: bool`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
   - `class ToolSearchToolBm25_20251119`
 
@@ -7200,6 +7297,14 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:enabled`
 
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
+
   - `class ThinkingConfigDisabled`
 
     - `type: :disabled`
@@ -7211,6 +7316,14 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `type: :adaptive`
 
       - `:adaptive`
+
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
 
 - `tool_choice: ToolChoice`
 
@@ -8178,6 +8291,87 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `strict: bool`
 
       When true, guarantees schema validation on tool names and inputs
+
+  - `class WebFetchTool20260309`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: :web_fetch`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_fetch`
+
+    - `type: :web_fetch_20260309`
+
+      - `:web_fetch_20260309`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+    - `allowed_domains: Array[String]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Array[String]`
+
+      List of domains to block fetching from
+
+    - `cache_control: CacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: :ephemeral`
+
+        - `:ephemeral`
+
+      - `ttl: :"5m" | :"1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `:"5m"`
+
+        - `:"1h"`
+
+    - `citations: CitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: bool`
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Integer`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: bool`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
   - `class ToolSearchToolBm25_20251119`
 
@@ -14184,7 +14378,7 @@ puts(message_tokens_count)
 
 ### Message Count Tokens Tool
 
-- `MessageCountTokensTool = Tool | ToolBash20250124 | CodeExecutionTool20250522 | 12 more`
+- `MessageCountTokensTool = Tool | ToolBash20250124 | CodeExecutionTool20250522 | 13 more`
 
   Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
@@ -15032,6 +15226,87 @@ puts(message_tokens_count)
     - `strict: bool`
 
       When true, guarantees schema validation on tool names and inputs
+
+  - `class WebFetchTool20260309`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: :web_fetch`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_fetch`
+
+    - `type: :web_fetch_20260309`
+
+      - `:web_fetch_20260309`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+    - `allowed_domains: Array[String]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Array[String]`
+
+      List of domains to block fetching from
+
+    - `cache_control: CacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: :ephemeral`
+
+        - `:ephemeral`
+
+      - `ttl: :"5m" | :"1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `:"5m"`
+
+        - `:"1h"`
+
+    - `citations: CitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: bool`
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Integer`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: bool`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
   - `class ToolSearchToolBm25_20251119`
 
@@ -22420,6 +22695,14 @@ puts(message_tokens_count)
 
     - `:adaptive`
 
+  - `display_: :summarized | :omitted`
+
+    Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+    - `:summarized`
+
+    - `:omitted`
+
 ### Thinking Config Disabled
 
 - `class ThinkingConfigDisabled`
@@ -22443,6 +22726,14 @@ puts(message_tokens_count)
   - `type: :enabled`
 
     - `:enabled`
+
+  - `display_: :summarized | :omitted`
+
+    Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+    - `:summarized`
+
+    - `:omitted`
 
 ### Thinking Config Param
 
@@ -22468,6 +22759,14 @@ puts(message_tokens_count)
 
       - `:enabled`
 
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
+
   - `class ThinkingConfigDisabled`
 
     - `type: :disabled`
@@ -22479,6 +22778,14 @@ puts(message_tokens_count)
     - `type: :adaptive`
 
       - `:adaptive`
+
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
 
 ### Thinking Delta
 
@@ -23968,7 +24275,7 @@ puts(message_tokens_count)
 
 ### Tool Union
 
-- `ToolUnion = Tool | ToolBash20250124 | CodeExecutionTool20250522 | 12 more`
+- `ToolUnion = Tool | ToolBash20250124 | CodeExecutionTool20250522 | 13 more`
 
   Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
@@ -24817,6 +25124,87 @@ puts(message_tokens_count)
 
       When true, guarantees schema validation on tool names and inputs
 
+  - `class WebFetchTool20260309`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: :web_fetch`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_fetch`
+
+    - `type: :web_fetch_20260309`
+
+      - `:web_fetch_20260309`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+    - `allowed_domains: Array[String]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Array[String]`
+
+      List of domains to block fetching from
+
+    - `cache_control: CacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: :ephemeral`
+
+        - `:ephemeral`
+
+      - `ttl: :"5m" | :"1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `:"5m"`
+
+        - `:"1h"`
+
+    - `citations: CitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: bool`
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Integer`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: bool`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
   - `class ToolSearchToolBm25_20251119`
 
     - `name: :tool_search_tool_bm25`
@@ -25620,6 +26008,89 @@ puts(message_tokens_count)
   - `strict: bool`
 
     When true, guarantees schema validation on tool names and inputs
+
+### Web Fetch Tool 20260309
+
+- `class WebFetchTool20260309`
+
+  Web fetch tool with use_cache parameter for bypassing cached content.
+
+  - `name: :web_fetch`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `:web_fetch`
+
+  - `type: :web_fetch_20260309`
+
+    - `:web_fetch_20260309`
+
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+    - `:direct`
+
+    - `:code_execution_20250825`
+
+    - `:code_execution_20260120`
+
+  - `allowed_domains: Array[String]`
+
+    List of domains to allow fetching from
+
+  - `blocked_domains: Array[String]`
+
+    List of domains to block fetching from
+
+  - `cache_control: CacheControlEphemeral`
+
+    Create a cache control breakpoint at this content block.
+
+    - `type: :ephemeral`
+
+      - `:ephemeral`
+
+    - `ttl: :"5m" | :"1h"`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `:"5m"`
+
+      - `:"1h"`
+
+  - `citations: CitationsConfigParam`
+
+    Citations configuration for fetched documents. Citations are disabled by default.
+
+    - `enabled: bool`
+
+  - `defer_loading: bool`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `max_content_tokens: Integer`
+
+    Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+  - `max_uses: Integer`
+
+    Maximum number of times the tool can be used in the API request.
+
+  - `strict: bool`
+
+    When true, guarantees schema validation on tool names and inputs
+
+  - `use_cache: bool`
+
+    Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
 ### Web Fetch Tool Result Block
 
@@ -29331,6 +29802,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:enabled`
 
+        - `display_: :summarized | :omitted`
+
+          Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+          - `:summarized`
+
+          - `:omitted`
+
       - `class ThinkingConfigDisabled`
 
         - `type: :disabled`
@@ -29342,6 +29821,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `type: :adaptive`
 
           - `:adaptive`
+
+        - `display_: :summarized | :omitted`
+
+          Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+          - `:summarized`
+
+          - `:omitted`
 
     - `tool_choice: ToolChoice`
 
@@ -30309,6 +30796,87 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `strict: bool`
 
           When true, guarantees schema validation on tool names and inputs
+
+      - `class WebFetchTool20260309`
+
+        Web fetch tool with use_cache parameter for bypassing cached content.
+
+        - `name: :web_fetch`
+
+          Name of the tool.
+
+          This is how the tool will be called by the model and in `tool_use` blocks.
+
+          - `:web_fetch`
+
+        - `type: :web_fetch_20260309`
+
+          - `:web_fetch_20260309`
+
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+          - `:direct`
+
+          - `:code_execution_20250825`
+
+          - `:code_execution_20260120`
+
+        - `allowed_domains: Array[String]`
+
+          List of domains to allow fetching from
+
+        - `blocked_domains: Array[String]`
+
+          List of domains to block fetching from
+
+        - `cache_control: CacheControlEphemeral`
+
+          Create a cache control breakpoint at this content block.
+
+          - `type: :ephemeral`
+
+            - `:ephemeral`
+
+          - `ttl: :"5m" | :"1h"`
+
+            The time-to-live for the cache control breakpoint.
+
+            This may be one the following values:
+
+            - `5m`: 5 minutes
+            - `1h`: 1 hour
+
+            Defaults to `5m`.
+
+            - `:"5m"`
+
+            - `:"1h"`
+
+        - `citations: CitationsConfigParam`
+
+          Citations configuration for fetched documents. Citations are disabled by default.
+
+          - `enabled: bool`
+
+        - `defer_loading: bool`
+
+          If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+        - `max_content_tokens: Integer`
+
+          Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+        - `max_uses: Integer`
+
+          Maximum number of times the tool can be used in the API request.
+
+        - `strict: bool`
+
+          When true, guarantees schema validation on tool names and inputs
+
+        - `use_cache: bool`
+
+          Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
       - `class ToolSearchToolBm25_20251119`
 

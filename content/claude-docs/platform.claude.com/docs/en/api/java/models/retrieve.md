@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models/retrieve
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 160a15eb2d9b3b8d4b8279c39fef61885b8bdfe93c64e2c268326ca98a7d3cc4
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: dae6568f1fbc407d34dcc0005e48a45f260b9792333d09f0ea8a70549df135d7
 ---
 
 ## Retrieve
@@ -75,6 +75,158 @@ The Models API response can be used to determine information about a specific mo
 
     Unique model identifier.
 
+  - `Optional<ModelCapabilities> capabilities`
+
+    Model capability information.
+
+    - `CapabilitySupport batch`
+
+      Whether the model supports the Batch API.
+
+      - `boolean supported`
+
+        Whether this capability is supported by the model.
+
+    - `CapabilitySupport citations`
+
+      Whether the model supports citation generation.
+
+      - `boolean supported`
+
+        Whether this capability is supported by the model.
+
+    - `CapabilitySupport codeExecution`
+
+      Whether the model supports code execution tools.
+
+      - `boolean supported`
+
+        Whether this capability is supported by the model.
+
+    - `ContextManagementCapability contextManagement`
+
+      Context management support and available strategies.
+
+      - `Optional<CapabilitySupport> clearThinking20251015`
+
+        Indicates whether a capability is supported.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
+
+      - `Optional<CapabilitySupport> clearToolUses20250919`
+
+        Indicates whether a capability is supported.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
+
+      - `Optional<CapabilitySupport> compact20260112`
+
+        Indicates whether a capability is supported.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
+
+      - `boolean supported`
+
+        Whether this capability is supported by the model.
+
+    - `EffortCapability effort`
+
+      Effort (reasoning_effort) support and available levels.
+
+      - `CapabilitySupport high`
+
+        Whether the model supports high effort level.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
+
+      - `CapabilitySupport low`
+
+        Whether the model supports low effort level.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
+
+      - `CapabilitySupport max`
+
+        Whether the model supports max effort level.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
+
+      - `CapabilitySupport medium`
+
+        Whether the model supports medium effort level.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
+
+      - `boolean supported`
+
+        Whether this capability is supported by the model.
+
+    - `CapabilitySupport imageInput`
+
+      Whether the model accepts image content blocks.
+
+      - `boolean supported`
+
+        Whether this capability is supported by the model.
+
+    - `CapabilitySupport pdfInput`
+
+      Whether the model accepts PDF content blocks.
+
+      - `boolean supported`
+
+        Whether this capability is supported by the model.
+
+    - `CapabilitySupport structuredOutputs`
+
+      Whether the model supports structured output / JSON mode / strict tool schemas.
+
+      - `boolean supported`
+
+        Whether this capability is supported by the model.
+
+    - `ThinkingCapability thinking`
+
+      Thinking capability and supported type configurations.
+
+      - `boolean supported`
+
+        Whether this capability is supported by the model.
+
+      - `ThinkingTypes types`
+
+        Supported thinking type configurations.
+
+        - `CapabilitySupport adaptive`
+
+          Whether the model supports thinking with type 'adaptive' (auto).
+
+          - `boolean supported`
+
+            Whether this capability is supported by the model.
+
+        - `CapabilitySupport enabled`
+
+          Whether the model supports thinking with type 'enabled'.
+
+          - `boolean supported`
+
+            Whether this capability is supported by the model.
+
   - `LocalDateTime createdAt`
 
     RFC 3339 datetime string representing the time at which the model was released. May be set to an epoch value if the release date is unknown.
@@ -82,6 +234,14 @@ The Models API response can be used to determine information about a specific mo
   - `String displayName`
 
     A human-readable name for the model.
+
+  - `Optional<Long> maxInputTokens`
+
+    Maximum input context window size in tokens for this model.
+
+  - `Optional<Long> maxTokens`
+
+    Maximum value for the `max_tokens` parameter when using this model.
 
   - `JsonValue; type "model"constant`
 

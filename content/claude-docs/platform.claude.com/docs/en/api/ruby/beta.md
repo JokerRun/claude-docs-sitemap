@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 4bec5ce729a0b709e594a9ee796a1a4155216953416aca8748be7aff95c075a7
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: d8265e6c81344b800373f1804e01b361b395a468b3b33978bdc30c87f22aa7db
 ---
 
 # Beta
@@ -335,7 +335,7 @@ The Models API response can be used to determine which models are available for 
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -391,6 +391,158 @@ The Models API response can be used to determine which models are available for 
 
     Unique model identifier.
 
+  - `capabilities: BetaModelCapabilities`
+
+    Model capability information.
+
+    - `batch: BetaCapabilitySupport`
+
+      Whether the model supports the Batch API.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `citations: BetaCapabilitySupport`
+
+      Whether the model supports citation generation.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `code_execution: BetaCapabilitySupport`
+
+      Whether the model supports code execution tools.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `context_management: BetaContextManagementCapability`
+
+      Context management support and available strategies.
+
+      - `clear_thinking_20251015: BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `clear_tool_uses_20250919: BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `compact_20260112: BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `effort: BetaEffortCapability`
+
+      Effort (reasoning_effort) support and available levels.
+
+      - `high: BetaCapabilitySupport`
+
+        Whether the model supports high effort level.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `low: BetaCapabilitySupport`
+
+        Whether the model supports low effort level.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `max: BetaCapabilitySupport`
+
+        Whether the model supports max effort level.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `medium: BetaCapabilitySupport`
+
+        Whether the model supports medium effort level.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `image_input: BetaCapabilitySupport`
+
+      Whether the model accepts image content blocks.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `pdf_input: BetaCapabilitySupport`
+
+      Whether the model accepts PDF content blocks.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `structured_outputs: BetaCapabilitySupport`
+
+      Whether the model supports structured output / JSON mode / strict tool schemas.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `thinking: BetaThinkingCapability`
+
+      Thinking capability and supported type configurations.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+      - `types: BetaThinkingTypes`
+
+        Supported thinking type configurations.
+
+        - `adaptive: BetaCapabilitySupport`
+
+          Whether the model supports thinking with type 'adaptive' (auto).
+
+          - `supported: bool`
+
+            Whether this capability is supported by the model.
+
+        - `enabled: BetaCapabilitySupport`
+
+          Whether the model supports thinking with type 'enabled'.
+
+          - `supported: bool`
+
+            Whether this capability is supported by the model.
+
   - `created_at: Time`
 
     RFC 3339 datetime string representing the time at which the model was released. May be set to an epoch value if the release date is unknown.
@@ -398,6 +550,14 @@ The Models API response can be used to determine which models are available for 
   - `display_name: String`
 
     A human-readable name for the model.
+
+  - `max_input_tokens: Integer`
+
+    Maximum input context window size in tokens for this model.
+
+  - `max_tokens: Integer`
+
+    Maximum value for the `max_tokens` parameter when using this model.
 
   - `type: :model`
 
@@ -435,7 +595,7 @@ The Models API response can be used to determine information about a specific mo
 
   Model identifier or alias.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -491,6 +651,158 @@ The Models API response can be used to determine information about a specific mo
 
     Unique model identifier.
 
+  - `capabilities: BetaModelCapabilities`
+
+    Model capability information.
+
+    - `batch: BetaCapabilitySupport`
+
+      Whether the model supports the Batch API.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `citations: BetaCapabilitySupport`
+
+      Whether the model supports citation generation.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `code_execution: BetaCapabilitySupport`
+
+      Whether the model supports code execution tools.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `context_management: BetaContextManagementCapability`
+
+      Context management support and available strategies.
+
+      - `clear_thinking_20251015: BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `clear_tool_uses_20250919: BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `compact_20260112: BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `effort: BetaEffortCapability`
+
+      Effort (reasoning_effort) support and available levels.
+
+      - `high: BetaCapabilitySupport`
+
+        Whether the model supports high effort level.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `low: BetaCapabilitySupport`
+
+        Whether the model supports low effort level.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `max: BetaCapabilitySupport`
+
+        Whether the model supports max effort level.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `medium: BetaCapabilitySupport`
+
+        Whether the model supports medium effort level.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `image_input: BetaCapabilitySupport`
+
+      Whether the model accepts image content blocks.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `pdf_input: BetaCapabilitySupport`
+
+      Whether the model accepts PDF content blocks.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `structured_outputs: BetaCapabilitySupport`
+
+      Whether the model supports structured output / JSON mode / strict tool schemas.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `thinking: BetaThinkingCapability`
+
+      Thinking capability and supported type configurations.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+      - `types: BetaThinkingTypes`
+
+        Supported thinking type configurations.
+
+        - `adaptive: BetaCapabilitySupport`
+
+          Whether the model supports thinking with type 'adaptive' (auto).
+
+          - `supported: bool`
+
+            Whether this capability is supported by the model.
+
+        - `enabled: BetaCapabilitySupport`
+
+          Whether the model supports thinking with type 'enabled'.
+
+          - `supported: bool`
+
+            Whether this capability is supported by the model.
+
   - `created_at: Time`
 
     RFC 3339 datetime string representing the time at which the model was released. May be set to an epoch value if the release date is unknown.
@@ -498,6 +810,14 @@ The Models API response can be used to determine information about a specific mo
   - `display_name: String`
 
     A human-readable name for the model.
+
+  - `max_input_tokens: Integer`
+
+    Maximum input context window size in tokens for this model.
+
+  - `max_tokens: Integer`
+
+    Maximum value for the `max_tokens` parameter when using this model.
 
   - `type: :model`
 
@@ -521,6 +841,246 @@ puts(beta_model_info)
 
 ## Domain Types
 
+### Beta Capability Support
+
+- `class BetaCapabilitySupport`
+
+  Indicates whether a capability is supported.
+
+  - `supported: bool`
+
+    Whether this capability is supported by the model.
+
+### Beta Context Management Capability
+
+- `class BetaContextManagementCapability`
+
+  Context management capability details.
+
+  - `clear_thinking_20251015: BetaCapabilitySupport`
+
+    Indicates whether a capability is supported.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `clear_tool_uses_20250919: BetaCapabilitySupport`
+
+    Indicates whether a capability is supported.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `compact_20260112: BetaCapabilitySupport`
+
+    Indicates whether a capability is supported.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `supported: bool`
+
+    Whether this capability is supported by the model.
+
+### Beta Effort Capability
+
+- `class BetaEffortCapability`
+
+  Effort (reasoning_effort) capability details.
+
+  - `high: BetaCapabilitySupport`
+
+    Whether the model supports high effort level.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `low: BetaCapabilitySupport`
+
+    Whether the model supports low effort level.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `max: BetaCapabilitySupport`
+
+    Whether the model supports max effort level.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `medium: BetaCapabilitySupport`
+
+    Whether the model supports medium effort level.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `supported: bool`
+
+    Whether this capability is supported by the model.
+
+### Beta Model Capabilities
+
+- `class BetaModelCapabilities`
+
+  Model capability information.
+
+  - `batch: BetaCapabilitySupport`
+
+    Whether the model supports the Batch API.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `citations: BetaCapabilitySupport`
+
+    Whether the model supports citation generation.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `code_execution: BetaCapabilitySupport`
+
+    Whether the model supports code execution tools.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `context_management: BetaContextManagementCapability`
+
+    Context management support and available strategies.
+
+    - `clear_thinking_20251015: BetaCapabilitySupport`
+
+      Indicates whether a capability is supported.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `clear_tool_uses_20250919: BetaCapabilitySupport`
+
+      Indicates whether a capability is supported.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `compact_20260112: BetaCapabilitySupport`
+
+      Indicates whether a capability is supported.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `effort: BetaEffortCapability`
+
+    Effort (reasoning_effort) support and available levels.
+
+    - `high: BetaCapabilitySupport`
+
+      Whether the model supports high effort level.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `low: BetaCapabilitySupport`
+
+      Whether the model supports low effort level.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `max: BetaCapabilitySupport`
+
+      Whether the model supports max effort level.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `medium: BetaCapabilitySupport`
+
+      Whether the model supports medium effort level.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `image_input: BetaCapabilitySupport`
+
+    Whether the model accepts image content blocks.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `pdf_input: BetaCapabilitySupport`
+
+    Whether the model accepts PDF content blocks.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `structured_outputs: BetaCapabilitySupport`
+
+    Whether the model supports structured output / JSON mode / strict tool schemas.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `thinking: BetaThinkingCapability`
+
+    Thinking capability and supported type configurations.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+    - `types: BetaThinkingTypes`
+
+      Supported thinking type configurations.
+
+      - `adaptive: BetaCapabilitySupport`
+
+        Whether the model supports thinking with type 'adaptive' (auto).
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `enabled: BetaCapabilitySupport`
+
+        Whether the model supports thinking with type 'enabled'.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
 ### Beta Model Info
 
 - `class BetaModelInfo`
@@ -528,6 +1088,158 @@ puts(beta_model_info)
   - `id: String`
 
     Unique model identifier.
+
+  - `capabilities: BetaModelCapabilities`
+
+    Model capability information.
+
+    - `batch: BetaCapabilitySupport`
+
+      Whether the model supports the Batch API.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `citations: BetaCapabilitySupport`
+
+      Whether the model supports citation generation.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `code_execution: BetaCapabilitySupport`
+
+      Whether the model supports code execution tools.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `context_management: BetaContextManagementCapability`
+
+      Context management support and available strategies.
+
+      - `clear_thinking_20251015: BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `clear_tool_uses_20250919: BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `compact_20260112: BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `effort: BetaEffortCapability`
+
+      Effort (reasoning_effort) support and available levels.
+
+      - `high: BetaCapabilitySupport`
+
+        Whether the model supports high effort level.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `low: BetaCapabilitySupport`
+
+        Whether the model supports low effort level.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `max: BetaCapabilitySupport`
+
+        Whether the model supports max effort level.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `medium: BetaCapabilitySupport`
+
+        Whether the model supports medium effort level.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `image_input: BetaCapabilitySupport`
+
+      Whether the model accepts image content blocks.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `pdf_input: BetaCapabilitySupport`
+
+      Whether the model accepts PDF content blocks.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `structured_outputs: BetaCapabilitySupport`
+
+      Whether the model supports structured output / JSON mode / strict tool schemas.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `thinking: BetaThinkingCapability`
+
+      Thinking capability and supported type configurations.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+      - `types: BetaThinkingTypes`
+
+        Supported thinking type configurations.
+
+        - `adaptive: BetaCapabilitySupport`
+
+          Whether the model supports thinking with type 'adaptive' (auto).
+
+          - `supported: bool`
+
+            Whether this capability is supported by the model.
+
+        - `enabled: BetaCapabilitySupport`
+
+          Whether the model supports thinking with type 'enabled'.
+
+          - `supported: bool`
+
+            Whether this capability is supported by the model.
 
   - `created_at: Time`
 
@@ -537,6 +1249,14 @@ puts(beta_model_info)
 
     A human-readable name for the model.
 
+  - `max_input_tokens: Integer`
+
+    Maximum input context window size in tokens for this model.
+
+  - `max_tokens: Integer`
+
+    Maximum value for the `max_tokens` parameter when using this model.
+
   - `type: :model`
 
     Object type.
@@ -544,6 +1264,58 @@ puts(beta_model_info)
     For Models, this is always `"model"`.
 
     - `:model`
+
+### Beta Thinking Capability
+
+- `class BetaThinkingCapability`
+
+  Thinking capability details.
+
+  - `supported: bool`
+
+    Whether this capability is supported by the model.
+
+  - `types: BetaThinkingTypes`
+
+    Supported thinking type configurations.
+
+    - `adaptive: BetaCapabilitySupport`
+
+      Whether the model supports thinking with type 'adaptive' (auto).
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+    - `enabled: BetaCapabilitySupport`
+
+      Whether the model supports thinking with type 'enabled'.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
+
+### Beta Thinking Types
+
+- `class BetaThinkingTypes`
+
+  Supported thinking type configurations.
+
+  - `adaptive: BetaCapabilitySupport`
+
+    Whether the model supports thinking with type 'adaptive' (auto).
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
+  - `enabled: BetaCapabilitySupport`
+
+    Whether the model supports thinking with type 'enabled'.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
 
 # Messages
 
@@ -3652,6 +4424,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:enabled`
 
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
+
   - `class BetaThinkingConfigDisabled`
 
     - `type: :disabled`
@@ -3663,6 +4443,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `type: :adaptive`
 
       - `:adaptive`
+
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
 
 - `tool_choice: BetaToolChoice`
 
@@ -4946,6 +5734,87 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       When true, guarantees schema validation on tool names and inputs
 
+  - `class BetaWebFetchTool20260309`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: :web_fetch`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_fetch`
+
+    - `type: :web_fetch_20260309`
+
+      - `:web_fetch_20260309`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+    - `allowed_domains: Array[String]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Array[String]`
+
+      List of domains to block fetching from
+
+    - `cache_control: BetaCacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: :ephemeral`
+
+        - `:ephemeral`
+
+      - `ttl: :"5m" | :"1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `:"5m"`
+
+        - `:"1h"`
+
+    - `citations: BetaCitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: bool`
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Integer`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: bool`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
   - `class BetaToolSearchToolBm25_20251119`
 
     - `name: :tool_search_tool_bm25`
@@ -5126,7 +5995,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Recommended for advanced use cases only. You usually only need to use `temperature`.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -9411,6 +10280,14 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:enabled`
 
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
+
   - `class BetaThinkingConfigDisabled`
 
     - `type: :disabled`
@@ -9422,6 +10299,14 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `type: :adaptive`
 
       - `:adaptive`
+
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
 
 - `tool_choice: BetaToolChoice`
 
@@ -9481,7 +10366,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:none`
 
-- `tools: Array[BetaTool | BetaToolBash20241022 | BetaToolBash20250124 | 18 more]`
+- `tools: Array[BetaTool | BetaToolBash20241022 | BetaToolBash20250124 | 19 more]`
 
   Definitions of tools that the model may use.
 
@@ -10705,6 +11590,87 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       When true, guarantees schema validation on tool names and inputs
 
+  - `class BetaWebFetchTool20260309`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: :web_fetch`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_fetch`
+
+    - `type: :web_fetch_20260309`
+
+      - `:web_fetch_20260309`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+    - `allowed_domains: Array[String]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Array[String]`
+
+      List of domains to block fetching from
+
+    - `cache_control: BetaCacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: :ephemeral`
+
+        - `:ephemeral`
+
+      - `ttl: :"5m" | :"1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `:"5m"`
+
+        - `:"1h"`
+
+    - `citations: BetaCitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: bool`
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Integer`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: bool`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
   - `class BetaToolSearchToolBm25_20251119`
 
     - `name: :tool_search_tool_bm25`
@@ -10869,7 +11835,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `enabled: bool`
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -27764,6 +28730,14 @@ puts(beta_message_tokens_count)
 
     - `:adaptive`
 
+  - `display_: :summarized | :omitted`
+
+    Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+    - `:summarized`
+
+    - `:omitted`
+
 ### Beta Thinking Config Disabled
 
 - `class BetaThinkingConfigDisabled`
@@ -27787,6 +28761,14 @@ puts(beta_message_tokens_count)
   - `type: :enabled`
 
     - `:enabled`
+
+  - `display_: :summarized | :omitted`
+
+    Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+    - `:summarized`
+
+    - `:omitted`
 
 ### Beta Thinking Config Param
 
@@ -27812,6 +28794,14 @@ puts(beta_message_tokens_count)
 
       - `:enabled`
 
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
+
   - `class BetaThinkingConfigDisabled`
 
     - `type: :disabled`
@@ -27823,6 +28813,14 @@ puts(beta_message_tokens_count)
     - `type: :adaptive`
 
       - `:adaptive`
+
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
 
 ### Beta Thinking Delta
 
@@ -29659,7 +30657,7 @@ puts(beta_message_tokens_count)
 
 ### Beta Tool Union
 
-- `BetaToolUnion = BetaTool | BetaToolBash20241022 | BetaToolBash20250124 | 18 more`
+- `BetaToolUnion = BetaTool | BetaToolBash20241022 | BetaToolBash20250124 | 19 more`
 
   Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
@@ -30823,6 +31821,87 @@ puts(beta_message_tokens_count)
 
       When true, guarantees schema validation on tool names and inputs
 
+  - `class BetaWebFetchTool20260309`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: :web_fetch`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_fetch`
+
+    - `type: :web_fetch_20260309`
+
+      - `:web_fetch_20260309`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+    - `allowed_domains: Array[String]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Array[String]`
+
+      List of domains to block fetching from
+
+    - `cache_control: BetaCacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: :ephemeral`
+
+        - `:ephemeral`
+
+      - `ttl: :"5m" | :"1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `:"5m"`
+
+        - `:"1h"`
+
+    - `citations: BetaCitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: bool`
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Integer`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: bool`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
   - `class BetaToolSearchToolBm25_20251119`
 
     - `name: :tool_search_tool_bm25`
@@ -31810,6 +32889,89 @@ puts(beta_message_tokens_count)
   - `strict: bool`
 
     When true, guarantees schema validation on tool names and inputs
+
+### Beta Web Fetch Tool 20260309
+
+- `class BetaWebFetchTool20260309`
+
+  Web fetch tool with use_cache parameter for bypassing cached content.
+
+  - `name: :web_fetch`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `:web_fetch`
+
+  - `type: :web_fetch_20260309`
+
+    - `:web_fetch_20260309`
+
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+    - `:direct`
+
+    - `:code_execution_20250825`
+
+    - `:code_execution_20260120`
+
+  - `allowed_domains: Array[String]`
+
+    List of domains to allow fetching from
+
+  - `blocked_domains: Array[String]`
+
+    List of domains to block fetching from
+
+  - `cache_control: BetaCacheControlEphemeral`
+
+    Create a cache control breakpoint at this content block.
+
+    - `type: :ephemeral`
+
+      - `:ephemeral`
+
+    - `ttl: :"5m" | :"1h"`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `:"5m"`
+
+      - `:"1h"`
+
+  - `citations: BetaCitationsConfigParam`
+
+    Citations configuration for fetched documents. Citations are disabled by default.
+
+    - `enabled: bool`
+
+  - `defer_loading: bool`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `max_content_tokens: Integer`
+
+    Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+  - `max_uses: Integer`
+
+    Maximum number of times the tool can be used in the API request.
+
+  - `strict: bool`
+
+    When true, guarantees schema validation on tool names and inputs
+
+  - `use_cache: bool`
+
+    Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
 ### Beta Web Fetch Tool Result Block
 
@@ -36025,6 +37187,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:enabled`
 
+        - `display_: :summarized | :omitted`
+
+          Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+          - `:summarized`
+
+          - `:omitted`
+
       - `class BetaThinkingConfigDisabled`
 
         - `type: :disabled`
@@ -36036,6 +37206,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `type: :adaptive`
 
           - `:adaptive`
+
+        - `display_: :summarized | :omitted`
+
+          Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+          - `:summarized`
+
+          - `:omitted`
 
     - `tool_choice: BetaToolChoice`
 
@@ -37319,6 +38497,87 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           When true, guarantees schema validation on tool names and inputs
 
+      - `class BetaWebFetchTool20260309`
+
+        Web fetch tool with use_cache parameter for bypassing cached content.
+
+        - `name: :web_fetch`
+
+          Name of the tool.
+
+          This is how the tool will be called by the model and in `tool_use` blocks.
+
+          - `:web_fetch`
+
+        - `type: :web_fetch_20260309`
+
+          - `:web_fetch_20260309`
+
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+          - `:direct`
+
+          - `:code_execution_20250825`
+
+          - `:code_execution_20260120`
+
+        - `allowed_domains: Array[String]`
+
+          List of domains to allow fetching from
+
+        - `blocked_domains: Array[String]`
+
+          List of domains to block fetching from
+
+        - `cache_control: BetaCacheControlEphemeral`
+
+          Create a cache control breakpoint at this content block.
+
+          - `type: :ephemeral`
+
+            - `:ephemeral`
+
+          - `ttl: :"5m" | :"1h"`
+
+            The time-to-live for the cache control breakpoint.
+
+            This may be one the following values:
+
+            - `5m`: 5 minutes
+            - `1h`: 1 hour
+
+            Defaults to `5m`.
+
+            - `:"5m"`
+
+            - `:"1h"`
+
+        - `citations: BetaCitationsConfigParam`
+
+          Citations configuration for fetched documents. Citations are disabled by default.
+
+          - `enabled: bool`
+
+        - `defer_loading: bool`
+
+          If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+        - `max_content_tokens: Integer`
+
+          Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+        - `max_uses: Integer`
+
+          Maximum number of times the tool can be used in the API request.
+
+        - `strict: bool`
+
+          When true, guarantees schema validation on tool names and inputs
+
+        - `use_cache: bool`
+
+          Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
       - `class BetaToolSearchToolBm25_20251119`
 
         - `name: :tool_search_tool_bm25`
@@ -37499,7 +38758,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Recommended for advanced use cases only. You usually only need to use `temperature`.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -37672,7 +38931,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   ID of the Message Batch.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -37848,7 +39107,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -38016,7 +39275,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   ID of the Message Batch.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -38184,7 +39443,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   ID of the Message Batch.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -38278,7 +39537,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   ID of the Message Batch.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -43778,7 +45037,7 @@ Upload File
 
   The file to upload
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -43871,7 +45130,7 @@ require "anthropic"
 
 anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
-file_metadata = anthropic.beta.files.upload(file: Pathname(__FILE__))
+file_metadata = anthropic.beta.files.upload(file: StringIO.new("Example data"))
 
 puts(file_metadata)
 ```
@@ -43900,7 +45159,7 @@ List Files
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -44012,7 +45271,7 @@ Download File
 
   ID of the File.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -44090,7 +45349,7 @@ Get File Metadata
 
   ID of the File.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -44202,7 +45461,7 @@ Delete File
 
   ID of the File.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -44358,7 +45617,7 @@ Create Skill
 
   All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -44494,7 +45753,7 @@ List Skills
   * `"custom"`: only return user-created skills
   * `"anthropic"`: only return Anthropic-created skills
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -44615,7 +45874,7 @@ Get Skill
 
   The format and length of IDs may change over time.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -44736,7 +45995,7 @@ Delete Skill
 
   The format and length of IDs may change over time.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -44836,7 +46095,7 @@ Create Skill Version
 
   All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -44970,7 +46229,7 @@ List Skill Versions
 
   Optionally set to the `next_page` token from the previous response.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -45100,7 +46359,7 @@ Get Skill Version
 
   Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -45230,7 +46489,7 @@ Delete Skill Version
 
   Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

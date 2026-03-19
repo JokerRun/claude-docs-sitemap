@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: da0d36e4c129fae602f66d78b5a8d3c4ca44f16d10d7cdcce1ada501d52acacd
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 0eb58d88da679ee238e33d4b5f277fdb9cec97f4d3bc83d39077364f0e937cb4
 ---
 
 # Files
@@ -21,7 +21,7 @@ Upload File
 
   The file to upload
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -114,7 +114,7 @@ require "anthropic"
 
 anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
-file_metadata = anthropic.beta.files.upload(file: Pathname(__FILE__))
+file_metadata = anthropic.beta.files.upload(file: StringIO.new("Example data"))
 
 puts(file_metadata)
 ```
@@ -143,7 +143,7 @@ List Files
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -255,7 +255,7 @@ Download File
 
   ID of the File.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -333,7 +333,7 @@ Get File Metadata
 
   ID of the File.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -445,7 +445,7 @@ Delete File
 
   ID of the File.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

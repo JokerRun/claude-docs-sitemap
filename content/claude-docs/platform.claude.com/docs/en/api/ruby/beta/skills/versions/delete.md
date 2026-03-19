@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/delete
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 4564fc71b426999f8b8080eee94ba98ddcb2d728017f74366d4422fc49abb822
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: c2267756a90f7ea37b585c56f5d00e4e4ef59df1e81e2936590b06629de1ce41
 ---
 
 ## Delete
@@ -27,7 +27,7 @@ Delete Skill Version
 
   Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

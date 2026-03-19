@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 4a9f0f2d9ffbf0bbe99b0c864ef40df3b7362cf5283bfc17d33e7e691c566167
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 961b75b02e542ff72e03af2050d8673d1307a74765077c6d510c136d6ca48e0a
 ---
 
 # Messages
@@ -3112,6 +3112,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:enabled`
 
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
+
   - `class BetaThinkingConfigDisabled`
 
     - `type: :disabled`
@@ -3123,6 +3131,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `type: :adaptive`
 
       - `:adaptive`
+
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
 
 - `tool_choice: BetaToolChoice`
 
@@ -4406,6 +4422,87 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       When true, guarantees schema validation on tool names and inputs
 
+  - `class BetaWebFetchTool20260309`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: :web_fetch`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_fetch`
+
+    - `type: :web_fetch_20260309`
+
+      - `:web_fetch_20260309`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+    - `allowed_domains: Array[String]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Array[String]`
+
+      List of domains to block fetching from
+
+    - `cache_control: BetaCacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: :ephemeral`
+
+        - `:ephemeral`
+
+      - `ttl: :"5m" | :"1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `:"5m"`
+
+        - `:"1h"`
+
+    - `citations: BetaCitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: bool`
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Integer`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: bool`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
   - `class BetaToolSearchToolBm25_20251119`
 
     - `name: :tool_search_tool_bm25`
@@ -4586,7 +4683,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Recommended for advanced use cases only. You usually only need to use `temperature`.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -8871,6 +8968,14 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:enabled`
 
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
+
   - `class BetaThinkingConfigDisabled`
 
     - `type: :disabled`
@@ -8882,6 +8987,14 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `type: :adaptive`
 
       - `:adaptive`
+
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
 
 - `tool_choice: BetaToolChoice`
 
@@ -8941,7 +9054,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:none`
 
-- `tools: Array[BetaTool | BetaToolBash20241022 | BetaToolBash20250124 | 18 more]`
+- `tools: Array[BetaTool | BetaToolBash20241022 | BetaToolBash20250124 | 19 more]`
 
   Definitions of tools that the model may use.
 
@@ -10165,6 +10278,87 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       When true, guarantees schema validation on tool names and inputs
 
+  - `class BetaWebFetchTool20260309`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: :web_fetch`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_fetch`
+
+    - `type: :web_fetch_20260309`
+
+      - `:web_fetch_20260309`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+    - `allowed_domains: Array[String]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Array[String]`
+
+      List of domains to block fetching from
+
+    - `cache_control: BetaCacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: :ephemeral`
+
+        - `:ephemeral`
+
+      - `ttl: :"5m" | :"1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `:"5m"`
+
+        - `:"1h"`
+
+    - `citations: BetaCitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: bool`
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Integer`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: bool`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
   - `class BetaToolSearchToolBm25_20251119`
 
     - `name: :tool_search_tool_bm25`
@@ -10329,7 +10523,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `enabled: bool`
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -27224,6 +27418,14 @@ puts(beta_message_tokens_count)
 
     - `:adaptive`
 
+  - `display_: :summarized | :omitted`
+
+    Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+    - `:summarized`
+
+    - `:omitted`
+
 ### Beta Thinking Config Disabled
 
 - `class BetaThinkingConfigDisabled`
@@ -27247,6 +27449,14 @@ puts(beta_message_tokens_count)
   - `type: :enabled`
 
     - `:enabled`
+
+  - `display_: :summarized | :omitted`
+
+    Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+    - `:summarized`
+
+    - `:omitted`
 
 ### Beta Thinking Config Param
 
@@ -27272,6 +27482,14 @@ puts(beta_message_tokens_count)
 
       - `:enabled`
 
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
+
   - `class BetaThinkingConfigDisabled`
 
     - `type: :disabled`
@@ -27283,6 +27501,14 @@ puts(beta_message_tokens_count)
     - `type: :adaptive`
 
       - `:adaptive`
+
+    - `display_: :summarized | :omitted`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `:summarized`
+
+      - `:omitted`
 
 ### Beta Thinking Delta
 
@@ -29119,7 +29345,7 @@ puts(beta_message_tokens_count)
 
 ### Beta Tool Union
 
-- `BetaToolUnion = BetaTool | BetaToolBash20241022 | BetaToolBash20250124 | 18 more`
+- `BetaToolUnion = BetaTool | BetaToolBash20241022 | BetaToolBash20250124 | 19 more`
 
   Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
@@ -30283,6 +30509,87 @@ puts(beta_message_tokens_count)
 
       When true, guarantees schema validation on tool names and inputs
 
+  - `class BetaWebFetchTool20260309`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: :web_fetch`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_fetch`
+
+    - `type: :web_fetch_20260309`
+
+      - `:web_fetch_20260309`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+    - `allowed_domains: Array[String]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Array[String]`
+
+      List of domains to block fetching from
+
+    - `cache_control: BetaCacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: :ephemeral`
+
+        - `:ephemeral`
+
+      - `ttl: :"5m" | :"1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `:"5m"`
+
+        - `:"1h"`
+
+    - `citations: BetaCitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: bool`
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Integer`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: bool`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
   - `class BetaToolSearchToolBm25_20251119`
 
     - `name: :tool_search_tool_bm25`
@@ -31270,6 +31577,89 @@ puts(beta_message_tokens_count)
   - `strict: bool`
 
     When true, guarantees schema validation on tool names and inputs
+
+### Beta Web Fetch Tool 20260309
+
+- `class BetaWebFetchTool20260309`
+
+  Web fetch tool with use_cache parameter for bypassing cached content.
+
+  - `name: :web_fetch`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `:web_fetch`
+
+  - `type: :web_fetch_20260309`
+
+    - `:web_fetch_20260309`
+
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+    - `:direct`
+
+    - `:code_execution_20250825`
+
+    - `:code_execution_20260120`
+
+  - `allowed_domains: Array[String]`
+
+    List of domains to allow fetching from
+
+  - `blocked_domains: Array[String]`
+
+    List of domains to block fetching from
+
+  - `cache_control: BetaCacheControlEphemeral`
+
+    Create a cache control breakpoint at this content block.
+
+    - `type: :ephemeral`
+
+      - `:ephemeral`
+
+    - `ttl: :"5m" | :"1h"`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `:"5m"`
+
+      - `:"1h"`
+
+  - `citations: BetaCitationsConfigParam`
+
+    Citations configuration for fetched documents. Citations are disabled by default.
+
+    - `enabled: bool`
+
+  - `defer_loading: bool`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `max_content_tokens: Integer`
+
+    Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+  - `max_uses: Integer`
+
+    Maximum number of times the tool can be used in the API request.
+
+  - `strict: bool`
+
+    When true, guarantees schema validation on tool names and inputs
+
+  - `use_cache: bool`
+
+    Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
 ### Beta Web Fetch Tool Result Block
 
@@ -35485,6 +35875,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:enabled`
 
+        - `display_: :summarized | :omitted`
+
+          Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+          - `:summarized`
+
+          - `:omitted`
+
       - `class BetaThinkingConfigDisabled`
 
         - `type: :disabled`
@@ -35496,6 +35894,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `type: :adaptive`
 
           - `:adaptive`
+
+        - `display_: :summarized | :omitted`
+
+          Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+          - `:summarized`
+
+          - `:omitted`
 
     - `tool_choice: BetaToolChoice`
 
@@ -36779,6 +37185,87 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           When true, guarantees schema validation on tool names and inputs
 
+      - `class BetaWebFetchTool20260309`
+
+        Web fetch tool with use_cache parameter for bypassing cached content.
+
+        - `name: :web_fetch`
+
+          Name of the tool.
+
+          This is how the tool will be called by the model and in `tool_use` blocks.
+
+          - `:web_fetch`
+
+        - `type: :web_fetch_20260309`
+
+          - `:web_fetch_20260309`
+
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+
+          - `:direct`
+
+          - `:code_execution_20250825`
+
+          - `:code_execution_20260120`
+
+        - `allowed_domains: Array[String]`
+
+          List of domains to allow fetching from
+
+        - `blocked_domains: Array[String]`
+
+          List of domains to block fetching from
+
+        - `cache_control: BetaCacheControlEphemeral`
+
+          Create a cache control breakpoint at this content block.
+
+          - `type: :ephemeral`
+
+            - `:ephemeral`
+
+          - `ttl: :"5m" | :"1h"`
+
+            The time-to-live for the cache control breakpoint.
+
+            This may be one the following values:
+
+            - `5m`: 5 minutes
+            - `1h`: 1 hour
+
+            Defaults to `5m`.
+
+            - `:"5m"`
+
+            - `:"1h"`
+
+        - `citations: BetaCitationsConfigParam`
+
+          Citations configuration for fetched documents. Citations are disabled by default.
+
+          - `enabled: bool`
+
+        - `defer_loading: bool`
+
+          If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+        - `max_content_tokens: Integer`
+
+          Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+        - `max_uses: Integer`
+
+          Maximum number of times the tool can be used in the API request.
+
+        - `strict: bool`
+
+          When true, guarantees schema validation on tool names and inputs
+
+        - `use_cache: bool`
+
+          Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
       - `class BetaToolSearchToolBm25_20251119`
 
         - `name: :tool_search_tool_bm25`
@@ -36959,7 +37446,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Recommended for advanced use cases only. You usually only need to use `temperature`.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -37132,7 +37619,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   ID of the Message Batch.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -37308,7 +37795,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -37476,7 +37963,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   ID of the Message Batch.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -37644,7 +38131,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   ID of the Message Batch.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -37738,7 +38225,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   ID of the Message Batch.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

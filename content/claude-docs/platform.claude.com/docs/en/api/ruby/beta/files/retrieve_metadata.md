@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/retrieve_metadata
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 204134c4166277697d38ea399a7f4ebf60b89c98cb1de35da713a81887cdc963
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: e3a2683562cb923eeb23e095fc7a4165f2a634f8e6450937b63065fe735e2360
 ---
 
 ## Retrieve Metadata
@@ -19,7 +19,7 @@ Get File Metadata
 
   ID of the File.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

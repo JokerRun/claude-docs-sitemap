@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/list
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: a98d4c8d6f64fc71db79cdf43adcb3692a46d7f1f9404a7fb0e0e6aeea8211d1
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 84ad9a7591c47d7199fe9359e2797ad1f57996ab57e4c4e8ad4987de5ff974e3
 ---
 
 ## List
@@ -31,7 +31,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

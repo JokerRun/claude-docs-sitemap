@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/upload
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: f59bc38a1e91e140f47ebda591c151106a6061df1fbcbe65f3e404231116b702
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 9d59e4068fc4e7cdbd6406591c61b7073bc683efc9407ffec6b0f519402ccd3c
 ---
 
 ## Upload
@@ -104,7 +104,10 @@ Upload File
 ### Example
 
 ```csharp
-FileUploadParams parameters = new() { File = Encoding.UTF8.GetBytes("text") };
+FileUploadParams parameters = new()
+{
+    File = Encoding.UTF8.GetBytes("Example data")
+};
 
 var fileMetadata = await client.Beta.Files.Upload(parameters);
 

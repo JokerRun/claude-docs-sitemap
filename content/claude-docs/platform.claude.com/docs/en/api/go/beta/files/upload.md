@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/upload
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: d889b836c05a81f8601ccc4fcc54c0d8baf5381ded0ec4e89f47f60628441055
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 4f7828315169be62371563fb5cb41456e9d4b73b56c412aaa443610a48ec3727
 ---
 
 ## Upload
@@ -127,7 +127,7 @@ func main() {
     option.WithAPIKey("my-anthropic-api-key"),
   )
   fileMetadata, err := client.Beta.Files.Upload(context.TODO(), anthropic.BetaFileUploadParams{
-    File: io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+    File: io.Reader(bytes.NewBuffer([]byte("Example data"))),
   })
   if err != nil {
     panic(err.Error())

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-03-11T04:12:15.541644Z
-sha256: a31b94948a57a5b263391655dc5b0f505b88ae87cac473667e09f123a25583b5
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 4f90fec2309825ec585937a2f45fa5e99299a9e54c07170f5d688e5e2cee3565
 ---
 
 # Files API
@@ -1022,7 +1022,7 @@ You can only download files that were created by [skills](/docs/en/build-with-cl
 ### Storage limits
 
 - **Maximum file size:** 500 MB per file
-- **Total storage:** 100 GB per organization
+- **Total storage:** 500 GB per organization
 
 ### File lifecycle
 
@@ -1043,7 +1043,7 @@ Common errors when using the Files API include:
 - **Exceeds context window size (400):** The file is larger than the context window size (e.g. using a 500 MB plaintext file in a `/v1/messages` request)
 - **Invalid filename (400):** Filename doesn't meet the length requirements (1-255 characters) or contains forbidden characters (`<`, `>`, `:`, `"`, `|`, `?`, `*`, `\`, `/`, or unicode characters 0-31)
 - **File too large (413):** File exceeds the 500 MB limit
-- **Storage limit exceeded (403):** Your organization has reached the 100 GB storage limit
+- **Storage limit exceeded (403):** Your organization has reached the 500 GB storage limit
 
 ```json
 {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/delete
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 36dd73ac3d05d40d2e74f6686dba29f21b69d606a81b14f584088cd7f0ee525c
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 09f01cb43f6d6ac33de5a4697dd866da95d7dab4b9a41bf649b32a4c0510cd39
 ---
 
 ## Delete
@@ -21,7 +21,7 @@ Delete Skill
 
   The format and length of IDs may change over time.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

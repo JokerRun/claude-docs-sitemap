@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/delete
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: eeb7a956c6c890ddf7fe1e3f1513e9326d9434a2db0eae1f84d96c6b359ba691
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: cc6703f32129177395cd9381fda3727188ca9215e1e98dd340aa7950dfa2beef
 ---
 
 ## Delete
@@ -19,7 +19,7 @@ Delete File
 
   ID of the File.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

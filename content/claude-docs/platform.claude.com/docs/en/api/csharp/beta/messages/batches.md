@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: b936e0f1c3af013edab016b6173f3694260b491f82bdacd0251ece974152e2ee
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 13881fe3b1d382ce0e02b29a462b8926fa7c02861877284ea5ef0084ce21bd18
 ---
 
 # Batches
@@ -2728,6 +2728,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `JsonElement Type "enabled"constant`
 
+          - `Display? Display`
+
+            Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+            - `"summarized"Summarized`
+
+            - `"omitted"Omitted`
+
         - `class BetaThinkingConfigDisabled:`
 
           - `JsonElement Type "disabled"constant`
@@ -2735,6 +2743,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `class BetaThinkingConfigAdaptive:`
 
           - `JsonElement Type "adaptive"constant`
+
+          - `Display? Display`
+
+            Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+            - `"summarized"Summarized`
+
+            - `"omitted"Omitted`
 
       - `BetaToolChoice ToolChoice`
 
@@ -3900,6 +3916,81 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             When true, guarantees schema validation on tool names and inputs
 
+        - `class BetaWebFetchTool20260309:`
+
+          Web fetch tool with use_cache parameter for bypassing cached content.
+
+          - `JsonElement Name "web_fetch"constant`
+
+            Name of the tool.
+
+            This is how the tool will be called by the model and in `tool_use` blocks.
+
+          - `JsonElement Type "web_fetch_20260309"constant`
+
+          - `IReadOnlyList<AllowedCaller> AllowedCallers`
+
+            - `"direct"Direct`
+
+            - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
+
+          - `IReadOnlyList<string>? AllowedDomains`
+
+            List of domains to allow fetching from
+
+          - `IReadOnlyList<string>? BlockedDomains`
+
+            List of domains to block fetching from
+
+          - `BetaCacheControlEphemeral? CacheControl`
+
+            Create a cache control breakpoint at this content block.
+
+            - `JsonElement Type "ephemeral"constant`
+
+            - `Ttl Ttl`
+
+              The time-to-live for the cache control breakpoint.
+
+              This may be one the following values:
+
+              - `5m`: 5 minutes
+              - `1h`: 1 hour
+
+              Defaults to `5m`.
+
+              - `"5m"Ttl5m`
+
+              - `"1h"Ttl1h`
+
+          - `BetaCitationsConfigParam? Citations`
+
+            Citations configuration for fetched documents. Citations are disabled by default.
+
+            - `Boolean Enabled`
+
+          - `Boolean DeferLoading`
+
+            If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+          - `Long? MaxContentTokens`
+
+            Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+          - `Long? MaxUses`
+
+            Maximum number of times the tool can be used in the API request.
+
+          - `Boolean Strict`
+
+            When true, guarantees schema validation on tool names and inputs
+
+          - `Boolean UseCache`
+
+            Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
         - `class BetaToolSearchToolBm25_20251119:`
 
           - `JsonElement Name "tool_search_tool_bm25"constant`
@@ -4230,9 +4321,9 @@ BatchCreateParams parameters = new()
                     [
                         new()
                         {
-                            SkillID = "x",
+                            SkillID = "pdf",
                             Type = Type.Anthropic,
-                            Version = "x",
+                            Version = "latest",
                         },
                     ],
                 },
@@ -4322,7 +4413,10 @@ BatchCreateParams parameters = new()
                     ]
                 ),
                 Temperature = 1,
-                Thinking = new BetaThinkingConfigEnabled(1024),
+                Thinking = new BetaThinkingConfigAdaptive()
+                {
+                    Display = Display.Summarized
+                },
                 ToolChoice = new BetaToolChoiceAuto()
                 {
                     DisableParallelToolUse = true

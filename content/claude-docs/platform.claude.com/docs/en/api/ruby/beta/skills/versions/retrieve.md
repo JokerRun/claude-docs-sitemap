@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/retrieve
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 760f0a732f4b1cf7d874c4566a998c230edd2c57f551693ad97b3998096d7ee6
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: d753c85ca1fa87b919013b6034c0ef2d9a34f44601f894222b5ea8c43ef22ec2
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ Get Skill Version
 
   Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

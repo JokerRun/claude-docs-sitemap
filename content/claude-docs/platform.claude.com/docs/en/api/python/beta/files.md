@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: c2ad4b7c534e1c2f3331c701bb32da8096cdf14c1485fb5fb0663f6ccd78f387
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 22d70cc1403db65e8d88477c3eac64c5d599099730c466644cb1462b1178c59c
 ---
 
 # Files
@@ -117,7 +117,7 @@ client = Anthropic(
     api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
 )
 file_metadata = client.beta.files.upload(
-    file=b"raw file contents",
+    file=b"Example data",
 )
 print(file_metadata.id)
 ```

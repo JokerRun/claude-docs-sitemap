@@ -10,13 +10,13 @@
   lastmod: '2026-02-27T16:33:50.218Z'
 - source: code
   loc: https://code.claude.com/docs/en/authentication
-  lastmod: '2026-03-17T18:07:08.089Z'
+  lastmod: '2026-03-18T06:29:36.218Z'
 - source: code
   loc: https://code.claude.com/docs/en/best-practices
-  lastmod: '2026-03-14T02:24:52.501Z'
+  lastmod: '2026-03-18T10:26:07.228Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-03-18T01:02:12.162Z'
+  lastmod: '2026-03-18T22:53:30.676Z'
 - source: code
   loc: https://code.claude.com/docs/en/checkpointing
   lastmod: '2026-03-13T16:19:17.262Z'
@@ -28,10 +28,10 @@
   lastmod: '2026-03-06T22:57:49.791Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
-  lastmod: '2026-03-14T02:59:48.212Z'
+  lastmod: '2026-03-18T22:49:53.069Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review
-  lastmod: '2026-03-13T04:24:10.738Z'
+  lastmod: '2026-03-18T06:29:36.219Z'
 - source: code
   loc: https://code.claude.com/docs/en/commands
   lastmod: '2026-03-17T20:08:18.534Z'
@@ -43,10 +43,10 @@
   lastmod: '2026-03-17T18:07:08.094Z'
 - source: code
   loc: https://code.claude.com/docs/en/data-usage
-  lastmod: '2026-03-16T19:01:51.126Z'
+  lastmod: '2026-03-18T10:24:44.068Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
-  lastmod: '2026-03-13T16:19:17.285Z'
+  lastmod: '2026-03-18T10:26:07.231Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-quickstart
   lastmod: '2026-03-13T21:58:58.872Z'
@@ -58,7 +58,7 @@
   lastmod: '2026-03-16T19:01:51.129Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-03-17T18:07:08.093Z'
+  lastmod: '2026-03-18T22:49:53.077Z'
 - source: code
   loc: https://code.claude.com/docs/en/fast-mode
   lastmod: '2026-03-16T20:14:45.283Z'
@@ -79,10 +79,10 @@
   lastmod: '2026-03-17T18:07:08.090Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
-  lastmod: '2026-03-17T23:27:18.415Z'
+  lastmod: '2026-03-18T22:47:07.125Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks-guide
-  lastmod: '2026-03-17T18:07:08.095Z'
+  lastmod: '2026-03-18T22:47:07.075Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
   lastmod: '2026-03-13T16:19:18.218Z'
@@ -112,7 +112,7 @@
   lastmod: '2026-02-18T22:23:19.996Z'
 - source: code
   loc: https://code.claude.com/docs/en/model-config
-  lastmod: '2026-03-14T02:01:12.534Z'
+  lastmod: '2026-03-18T22:47:37.691Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
   lastmod: '2026-02-19T01:49:45.040Z'
@@ -124,40 +124,40 @@
   lastmod: '2026-03-11T21:06:58.747Z'
 - source: code
   loc: https://code.claude.com/docs/en/overview
-  lastmod: '2026-03-14T02:59:58.914Z'
+  lastmod: '2026-03-18T22:47:11.863Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
-  lastmod: '2026-03-17T23:25:31.549Z'
+  lastmod: '2026-03-18T10:26:07.222Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-marketplaces
-  lastmod: '2026-03-17T23:27:18.410Z'
+  lastmod: '2026-03-18T22:49:53.071Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins
   lastmod: '2026-03-16T19:01:51.130Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins-reference
-  lastmod: '2026-03-17T23:27:18.405Z'
+  lastmod: '2026-03-18T22:47:11.869Z'
 - source: code
   loc: https://code.claude.com/docs/en/quickstart
   lastmod: '2026-03-14T02:59:58.913Z'
 - source: code
   loc: https://code.claude.com/docs/en/remote-control
-  lastmod: '2026-03-17T18:07:12.053Z'
+  lastmod: '2026-03-18T17:46:50.085Z'
 - source: code
   loc: https://code.claude.com/docs/en/sandboxing
-  lastmod: '2026-03-17T18:07:12.062Z'
+  lastmod: '2026-03-18T22:47:48.525Z'
 - source: code
   loc: https://code.claude.com/docs/en/scheduled-tasks
   lastmod: '2026-03-13T16:19:19.174Z'
 - source: code
   loc: https://code.claude.com/docs/en/security
-  lastmod: '2026-02-24T18:45:42.075Z'
+  lastmod: '2026-03-18T10:24:44.072Z'
 - source: code
   loc: https://code.claude.com/docs/en/server-managed-settings
   lastmod: '2026-03-16T17:51:56.009Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-03-18T01:07:02.583Z'
+  lastmod: '2026-03-18T22:49:53.074Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-03-13T16:19:19.177Z'
@@ -172,10 +172,10 @@
   lastmod: '2026-03-16T17:10:05.067Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-03-18T01:07:02.585Z'
+  lastmod: '2026-03-18T22:59:54.216Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
-  lastmod: '2026-02-23T19:21:30.792Z'
+  lastmod: '2026-03-18T06:29:36.221Z'
 - source: code
   loc: https://code.claude.com/docs/en/third-party-integrations
   lastmod: '2026-03-13T21:58:58.875Z'
@@ -184,13 +184,13 @@
   lastmod: '2026-03-13T16:19:20.304Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshooting
-  lastmod: '2026-03-13T16:19:20.304Z'
+  lastmod: '2026-03-18T10:24:44.070Z'
 - source: code
   loc: https://code.claude.com/docs/en/voice-dictation
   lastmod: '2026-03-17T20:08:21.916Z'
 - source: code
   loc: https://code.claude.com/docs/en/vs-code
-  lastmod: '2026-03-13T16:19:20.300Z'
+  lastmod: '2026-03-18T22:49:53.068Z'
 - source: code
   loc: https://code.claude.com/docs/en/zero-data-retention
   lastmod: '2026-02-27T16:33:50.844Z'
@@ -1117,141 +1117,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/java/models/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/files
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/files/delete
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/files/download
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/files/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/files/retrieve_metadata
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/files/upload
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/messages
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/messages/batches
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/messages/batches/cancel
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/messages/batches/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/messages/batches/delete
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/messages/batches/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/messages/batches/results
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/messages/batches/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/messages/count_tokens
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/messages/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/models
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/models/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/models/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/skills
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/skills/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/skills/delete
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/skills/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/skills/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/skills/versions
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/skills/versions/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/skills/versions/delete
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/skills/versions/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/beta/skills/versions/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/completions
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/completions/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/messages
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/messages/batches
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/messages/batches/cancel
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/messages/batches/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/messages/batches/delete
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/messages/batches/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/messages/batches/results
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/messages/batches/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/messages/count_tokens
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/messages/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/models
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/models/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/kotlin/models/retrieve
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/messages

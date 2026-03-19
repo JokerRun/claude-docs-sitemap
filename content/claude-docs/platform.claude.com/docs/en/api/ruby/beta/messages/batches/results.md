@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/results
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: d8f1fb50b1e04bc89c7fecc5a292eef86f79624724c7a0e277f3af2371a50411
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 2ca0a5e66c8433509b58b69f3fa0bda1ea81d1fde980588447ebc7b4da8553ac
 ---
 
 ## Results
@@ -23,7 +23,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   ID of the Message Batch.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

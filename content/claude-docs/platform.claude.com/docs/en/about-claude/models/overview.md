@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/overview
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: deaceb02796ecf70bb656c2c14ad686da6f0b676fdbd6e17116afaf6f3bebccd
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: f9b36cb655f260dc3dd2567d98c9956ef1356c6ca88e4b1d6b4b75919aa23381
 ---
 
 # Models overview
@@ -45,6 +45,10 @@ _<sup>2 - **Reliable knowledge cutoff** indicates the date through which a model
 <Note>Models with the same snapshot date (e.g., 20240620) are identical across all platforms and do not change. The snapshot date in the model name ensures consistency and allows developers to rely on stable performance across different environments.</Note>
 
 <Note>Starting with **Claude Sonnet 4.5 and all subsequent models** (including Claude Sonnet 4.6), AWS Bedrock and Google Vertex AI offer two endpoint types: **global endpoints** (dynamic routing for maximum availability) and **regional endpoints** (guaranteed data routing through specific geographic regions). For more information, see the [third-party platform pricing section](/docs/en/about-claude/pricing#third-party-platform-pricing).</Note>
+
+<Tip>
+You can query model capabilities and token limits programmatically with the [Models API](/docs/en/api/models/list). The response includes `max_input_tokens`, `max_tokens`, and a `capabilities` object for every available model.
+</Tip>
 
 <section title="Legacy models">
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/upload
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 6a3313c4ba4b59f1b7d90b940e6bdcf8f6c536cfd4e48ca4cae470111e835772
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: ade468de7c3baa093898c70df517862ad2787d7f58119cecd917fb80956d89eb
 ---
 
 ## Upload
@@ -19,7 +19,7 @@ Upload File
 
   The file to upload
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -112,7 +112,7 @@ require "anthropic"
 
 anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
-file_metadata = anthropic.beta.files.upload(file: Pathname(__FILE__))
+file_metadata = anthropic.beta.files.upload(file: StringIO.new("Example data"))
 
 puts(file_metadata)
 ```

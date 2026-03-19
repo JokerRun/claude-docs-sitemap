@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 3eb0c73f3facd6c0c900a5413cc85c9fa728a4828907a61d5c5e26b9070929de
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 39b069d04dea78fa3b7c175a12f17d62e09a16af5ee437f29ba4fae02063a7c9
 ---
 
 # Messages
@@ -3001,6 +3001,81 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `Boolean Strict`
 
         When true, guarantees schema validation on tool names and inputs
+
+    - `class WebFetchTool20260309:`
+
+      Web fetch tool with use_cache parameter for bypassing cached content.
+
+      - `JsonElement Name "web_fetch"constant`
+
+        Name of the tool.
+
+        This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `JsonElement Type "web_fetch_20260309"constant`
+
+      - `IReadOnlyList<AllowedCaller> AllowedCallers`
+
+        - `"direct"Direct`
+
+        - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
+
+      - `IReadOnlyList<string>? AllowedDomains`
+
+        List of domains to allow fetching from
+
+      - `IReadOnlyList<string>? BlockedDomains`
+
+        List of domains to block fetching from
+
+      - `CacheControlEphemeral? CacheControl`
+
+        Create a cache control breakpoint at this content block.
+
+        - `JsonElement Type "ephemeral"constant`
+
+        - `Ttl Ttl`
+
+          The time-to-live for the cache control breakpoint.
+
+          This may be one the following values:
+
+          - `5m`: 5 minutes
+          - `1h`: 1 hour
+
+          Defaults to `5m`.
+
+          - `"5m"Ttl5m`
+
+          - `"1h"Ttl1h`
+
+      - `CitationsConfigParam? Citations`
+
+        Citations configuration for fetched documents. Citations are disabled by default.
+
+        - `Boolean Enabled`
+
+      - `Boolean DeferLoading`
+
+        If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+      - `Long? MaxContentTokens`
+
+        Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+      - `Long? MaxUses`
+
+        Maximum number of times the tool can be used in the API request.
+
+      - `Boolean Strict`
+
+        When true, guarantees schema validation on tool names and inputs
+
+      - `Boolean UseCache`
+
+        Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
     - `class ToolSearchToolBm25_20251119:`
 
@@ -6868,6 +6943,81 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `Boolean Strict`
 
         When true, guarantees schema validation on tool names and inputs
+
+    - `class WebFetchTool20260309:`
+
+      Web fetch tool with use_cache parameter for bypassing cached content.
+
+      - `JsonElement Name "web_fetch"constant`
+
+        Name of the tool.
+
+        This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `JsonElement Type "web_fetch_20260309"constant`
+
+      - `IReadOnlyList<AllowedCaller> AllowedCallers`
+
+        - `"direct"Direct`
+
+        - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
+
+      - `IReadOnlyList<string>? AllowedDomains`
+
+        List of domains to allow fetching from
+
+      - `IReadOnlyList<string>? BlockedDomains`
+
+        List of domains to block fetching from
+
+      - `CacheControlEphemeral? CacheControl`
+
+        Create a cache control breakpoint at this content block.
+
+        - `JsonElement Type "ephemeral"constant`
+
+        - `Ttl Ttl`
+
+          The time-to-live for the cache control breakpoint.
+
+          This may be one the following values:
+
+          - `5m`: 5 minutes
+          - `1h`: 1 hour
+
+          Defaults to `5m`.
+
+          - `"5m"Ttl5m`
+
+          - `"1h"Ttl1h`
+
+      - `CitationsConfigParam? Citations`
+
+        Citations configuration for fetched documents. Citations are disabled by default.
+
+        - `Boolean Enabled`
+
+      - `Boolean DeferLoading`
+
+        If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+      - `Long? MaxContentTokens`
+
+        Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+      - `Long? MaxUses`
+
+        Maximum number of times the tool can be used in the API request.
+
+      - `Boolean Strict`
+
+        When true, guarantees schema validation on tool names and inputs
+
+      - `Boolean UseCache`
+
+        Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
     - `class ToolSearchToolBm25_20251119:`
 
@@ -12831,6 +12981,81 @@ Console.WriteLine(messageTokensCount);
     - `Boolean Strict`
 
       When true, guarantees schema validation on tool names and inputs
+
+  - `class WebFetchTool20260309:`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `JsonElement Name "web_fetch"constant`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `JsonElement Type "web_fetch_20260309"constant`
+
+    - `IReadOnlyList<AllowedCaller> AllowedCallers`
+
+      - `"direct"Direct`
+
+      - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
+
+    - `IReadOnlyList<string>? AllowedDomains`
+
+      List of domains to allow fetching from
+
+    - `IReadOnlyList<string>? BlockedDomains`
+
+      List of domains to block fetching from
+
+    - `CacheControlEphemeral? CacheControl`
+
+      Create a cache control breakpoint at this content block.
+
+      - `JsonElement Type "ephemeral"constant`
+
+      - `Ttl Ttl`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `"5m"Ttl5m`
+
+        - `"1h"Ttl1h`
+
+    - `CitationsConfigParam? Citations`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `Boolean Enabled`
+
+    - `Boolean DeferLoading`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `Long? MaxContentTokens`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `Long? MaxUses`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `Boolean Strict`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `Boolean UseCache`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
   - `class ToolSearchToolBm25_20251119:`
 
@@ -19153,6 +19378,14 @@ Console.WriteLine(messageTokensCount);
 
   - `JsonElement Type "adaptive"constant`
 
+  - `Display? Display`
+
+    Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+    - `"summarized"Summarized`
+
+    - `"omitted"Omitted`
+
 ### Thinking Config Disabled
 
 - `class ThinkingConfigDisabled:`
@@ -19172,6 +19405,14 @@ Console.WriteLine(messageTokensCount);
     See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
 
   - `JsonElement Type "enabled"constant`
+
+  - `Display? Display`
+
+    Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+    - `"summarized"Summarized`
+
+    - `"omitted"Omitted`
 
 ### Thinking Config Param
 
@@ -19195,6 +19436,14 @@ Console.WriteLine(messageTokensCount);
 
     - `JsonElement Type "enabled"constant`
 
+    - `Display? Display`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"Summarized`
+
+      - `"omitted"Omitted`
+
   - `class ThinkingConfigDisabled:`
 
     - `JsonElement Type "disabled"constant`
@@ -19202,6 +19451,14 @@ Console.WriteLine(messageTokensCount);
   - `class ThinkingConfigAdaptive:`
 
     - `JsonElement Type "adaptive"constant`
+
+    - `Display? Display`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"Summarized`
+
+      - `"omitted"Omitted`
 
 ### Thinking Delta
 
@@ -21280,6 +21537,81 @@ Console.WriteLine(messageTokensCount);
 
       When true, guarantees schema validation on tool names and inputs
 
+  - `class WebFetchTool20260309:`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `JsonElement Name "web_fetch"constant`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `JsonElement Type "web_fetch_20260309"constant`
+
+    - `IReadOnlyList<AllowedCaller> AllowedCallers`
+
+      - `"direct"Direct`
+
+      - `"code_execution_20250825"CodeExecution20250825`
+
+      - `"code_execution_20260120"CodeExecution20260120`
+
+    - `IReadOnlyList<string>? AllowedDomains`
+
+      List of domains to allow fetching from
+
+    - `IReadOnlyList<string>? BlockedDomains`
+
+      List of domains to block fetching from
+
+    - `CacheControlEphemeral? CacheControl`
+
+      Create a cache control breakpoint at this content block.
+
+      - `JsonElement Type "ephemeral"constant`
+
+      - `Ttl Ttl`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `"5m"Ttl5m`
+
+        - `"1h"Ttl1h`
+
+    - `CitationsConfigParam? Citations`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `Boolean Enabled`
+
+    - `Boolean DeferLoading`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `Long? MaxContentTokens`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `Long? MaxUses`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `Boolean Strict`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `Boolean UseCache`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
   - `class ToolSearchToolBm25_20251119:`
 
     - `JsonElement Name "tool_search_tool_bm25"constant`
@@ -21987,6 +22319,83 @@ Console.WriteLine(messageTokensCount);
   - `Boolean Strict`
 
     When true, guarantees schema validation on tool names and inputs
+
+### Web Fetch Tool 20260309
+
+- `class WebFetchTool20260309:`
+
+  Web fetch tool with use_cache parameter for bypassing cached content.
+
+  - `JsonElement Name "web_fetch"constant`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+  - `JsonElement Type "web_fetch_20260309"constant`
+
+  - `IReadOnlyList<AllowedCaller> AllowedCallers`
+
+    - `"direct"Direct`
+
+    - `"code_execution_20250825"CodeExecution20250825`
+
+    - `"code_execution_20260120"CodeExecution20260120`
+
+  - `IReadOnlyList<string>? AllowedDomains`
+
+    List of domains to allow fetching from
+
+  - `IReadOnlyList<string>? BlockedDomains`
+
+    List of domains to block fetching from
+
+  - `CacheControlEphemeral? CacheControl`
+
+    Create a cache control breakpoint at this content block.
+
+    - `JsonElement Type "ephemeral"constant`
+
+    - `Ttl Ttl`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `"5m"Ttl5m`
+
+      - `"1h"Ttl1h`
+
+  - `CitationsConfigParam? Citations`
+
+    Citations configuration for fetched documents. Citations are disabled by default.
+
+    - `Boolean Enabled`
+
+  - `Boolean DeferLoading`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `Long? MaxContentTokens`
+
+    Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+  - `Long? MaxUses`
+
+    Maximum number of times the tool can be used in the API request.
+
+  - `Boolean Strict`
+
+    When true, guarantees schema validation on tool names and inputs
+
+  - `Boolean UseCache`
+
+    Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
 ### Web Fetch Tool Result Block
 
@@ -25230,6 +25639,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `JsonElement Type "enabled"constant`
 
+          - `Display? Display`
+
+            Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+            - `"summarized"Summarized`
+
+            - `"omitted"Omitted`
+
         - `class ThinkingConfigDisabled:`
 
           - `JsonElement Type "disabled"constant`
@@ -25237,6 +25654,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `class ThinkingConfigAdaptive:`
 
           - `JsonElement Type "adaptive"constant`
+
+          - `Display? Display`
+
+            Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+            - `"summarized"Summarized`
+
+            - `"omitted"Omitted`
 
       - `ToolChoice ToolChoice`
 
@@ -26117,6 +26542,81 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             When true, guarantees schema validation on tool names and inputs
 
+        - `class WebFetchTool20260309:`
+
+          Web fetch tool with use_cache parameter for bypassing cached content.
+
+          - `JsonElement Name "web_fetch"constant`
+
+            Name of the tool.
+
+            This is how the tool will be called by the model and in `tool_use` blocks.
+
+          - `JsonElement Type "web_fetch_20260309"constant`
+
+          - `IReadOnlyList<AllowedCaller> AllowedCallers`
+
+            - `"direct"Direct`
+
+            - `"code_execution_20250825"CodeExecution20250825`
+
+            - `"code_execution_20260120"CodeExecution20260120`
+
+          - `IReadOnlyList<string>? AllowedDomains`
+
+            List of domains to allow fetching from
+
+          - `IReadOnlyList<string>? BlockedDomains`
+
+            List of domains to block fetching from
+
+          - `CacheControlEphemeral? CacheControl`
+
+            Create a cache control breakpoint at this content block.
+
+            - `JsonElement Type "ephemeral"constant`
+
+            - `Ttl Ttl`
+
+              The time-to-live for the cache control breakpoint.
+
+              This may be one the following values:
+
+              - `5m`: 5 minutes
+              - `1h`: 1 hour
+
+              Defaults to `5m`.
+
+              - `"5m"Ttl5m`
+
+              - `"1h"Ttl1h`
+
+          - `CitationsConfigParam? Citations`
+
+            Citations configuration for fetched documents. Citations are disabled by default.
+
+            - `Boolean Enabled`
+
+          - `Boolean DeferLoading`
+
+            If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+          - `Long? MaxContentTokens`
+
+            Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+          - `Long? MaxUses`
+
+            Maximum number of times the tool can be used in the API request.
+
+          - `Boolean Strict`
+
+            When true, guarantees schema validation on tool names and inputs
+
+          - `Boolean UseCache`
+
+            Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
         - `class ToolSearchToolBm25_20251119:`
 
           - `JsonElement Name "tool_search_tool_bm25"constant`
@@ -26391,7 +26891,10 @@ BatchCreateParams parameters = new()
                     ]
                 ),
                 Temperature = 1,
-                Thinking = new ThinkingConfigEnabled(1024),
+                Thinking = new ThinkingConfigAdaptive()
+                {
+                    Display = Display.Summarized
+                },
                 ToolChoice = new ToolChoiceAuto()
                 {
                     DisableParallelToolUse = true

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: 922668b3ad17823b304a49c57f2c78b769fc1a9b445c82b7182470237b25fc63
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: c60fc2f24247876986e0f6fd6617b6fa900b7197d9550a147fa3aef3eefdf7f2
 ---
 
 > ## Documentation Index
@@ -647,6 +647,21 @@ If you see `API Error: 403 {"error":{"type":"forbidden","message":"Request not a
 * **Console users**: confirm your account has the "Claude Code" or "Developer" role assigned by your admin
 * **Behind a proxy**: corporate proxies can interfere with API requests. See [network configuration](/en/network-config) for proxy setup.
 
+### "This organization has been disabled" with an active subscription
+
+If you see `API Error: 400 ... "This organization has been disabled"` despite having an active Claude subscription, an `ANTHROPIC_API_KEY` environment variable is overriding your subscription. This commonly happens when an old API key from a previous employer or project is still set in your shell profile.
+
+When `ANTHROPIC_API_KEY` is present and you have approved it, Claude Code uses that key instead of your subscription's OAuth credentials. In non-interactive mode (`-p`), the key is always used when present. See [authentication precedence](/en/authentication#authentication-precedence) for the full resolution order.
+
+To use your subscription instead, unset the environment variable and remove it from your shell profile:
+
+```bash  theme={null}
+unset ANTHROPIC_API_KEY
+claude
+```
+
+Check `~/.zshrc`, `~/.bashrc`, or `~/.profile` for `export ANTHROPIC_API_KEY=...` lines and remove them to make the change permanent. Run `/status` inside Claude Code to confirm which authentication method is active.
+
 ### OAuth login fails in WSL2
 
 Browser-based login in WSL2 may fail if WSL can't open your Windows browser. Set the `BROWSER` environment variable:
@@ -885,7 +900,7 @@ To minimize formatting issues:
 
 If you're experiencing issues not covered here:
 
-1. Use the `/bug` command within Claude Code to report problems directly to Anthropic
+1. Use the `/feedback` command within Claude Code to report problems directly to Anthropic
 2. Check the [GitHub repository](https://github.com/anthropics/claude-code) for known issues
 3. Run `/doctor` to diagnose issues. It checks:
    * Installation type, version, and search functionality

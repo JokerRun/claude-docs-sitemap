@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 6954b4c8eec742b7e2dfbb2ad8c6384e1989abf017e4f50fa039ec23a5149425
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 8c6e9fcdeb087eb69e3dd759ba4ee2d1b5d547502b2d704f1a66ea86993fbaf3
 ---
 
 # Versions
@@ -29,7 +29,7 @@ Create Skill Version
 
   All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -163,7 +163,7 @@ List Skill Versions
 
   Optionally set to the `next_page` token from the previous response.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -293,7 +293,7 @@ Get Skill Version
 
   Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -423,7 +423,7 @@ Delete Skill Version
 
   Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

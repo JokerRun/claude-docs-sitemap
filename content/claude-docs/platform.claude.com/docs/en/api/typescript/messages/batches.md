@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 1d05059dcd675eb894e46d1258035e65daf2491c330ef5a15b24692447273a32
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 51a5b8663326c46edbf2448f1c5c309f758aaa9f2ab6ea8da9b79a0cda41e9f3
 ---
 
 # Batches
@@ -2638,6 +2638,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"enabled"`
 
+          - `display?: "summarized" | "omitted" | null`
+
+            Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+            - `"summarized"`
+
+            - `"omitted"`
+
         - `ThinkingConfigDisabled`
 
           - `type: "disabled"`
@@ -2649,6 +2657,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `type: "adaptive"`
 
             - `"adaptive"`
+
+          - `display?: "summarized" | "omitted" | null`
+
+            Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+            - `"summarized"`
+
+            - `"omitted"`
 
       - `tool_choice?: ToolChoice`
 
@@ -3616,6 +3632,87 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `strict?: boolean`
 
             When true, guarantees schema validation on tool names and inputs
+
+        - `WebFetchTool20260309`
+
+          Web fetch tool with use_cache parameter for bypassing cached content.
+
+          - `name: "web_fetch"`
+
+            Name of the tool.
+
+            This is how the tool will be called by the model and in `tool_use` blocks.
+
+            - `"web_fetch"`
+
+          - `type: "web_fetch_20260309"`
+
+            - `"web_fetch_20260309"`
+
+          - `allowed_callers?: Array<"direct" | "code_execution_20250825" | "code_execution_20260120">`
+
+            - `"direct"`
+
+            - `"code_execution_20250825"`
+
+            - `"code_execution_20260120"`
+
+          - `allowed_domains?: Array<string> | null`
+
+            List of domains to allow fetching from
+
+          - `blocked_domains?: Array<string> | null`
+
+            List of domains to block fetching from
+
+          - `cache_control?: CacheControlEphemeral | null`
+
+            Create a cache control breakpoint at this content block.
+
+            - `type: "ephemeral"`
+
+              - `"ephemeral"`
+
+            - `ttl?: "5m" | "1h"`
+
+              The time-to-live for the cache control breakpoint.
+
+              This may be one the following values:
+
+              - `5m`: 5 minutes
+              - `1h`: 1 hour
+
+              Defaults to `5m`.
+
+              - `"5m"`
+
+              - `"1h"`
+
+          - `citations?: CitationsConfigParam | null`
+
+            Citations configuration for fetched documents. Citations are disabled by default.
+
+            - `enabled?: boolean`
+
+          - `defer_loading?: boolean`
+
+            If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+          - `max_content_tokens?: number | null`
+
+            Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+          - `max_uses?: number | null`
+
+            Maximum number of times the tool can be used in the API request.
+
+          - `strict?: boolean`
+
+            When true, guarantees schema validation on tool names and inputs
+
+          - `use_cache?: boolean`
+
+            Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
         - `ToolSearchToolBm25_20251119`
 

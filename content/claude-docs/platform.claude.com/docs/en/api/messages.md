@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: bf2ce604ce6e68b5b514d1a73e9b10c66877468c978e47a58ede8b58a94b023f
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 0e993ad0894f7277fa438b5399af706222cc8a83b1b6b246041bf23bc531705a
 ---
 
 # Messages
@@ -2608,7 +2608,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
 
-  - `ThinkingConfigEnabled = object { budget_tokens, type }`
+  - `ThinkingConfigEnabled = object { budget_tokens, type, display }`
 
     - `budget_tokens: number`
 
@@ -2622,17 +2622,33 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"enabled"`
 
+    - `display: optional "summarized" or "omitted"`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"`
+
+      - `"omitted"`
+
   - `ThinkingConfigDisabled = object { type }`
 
     - `type: "disabled"`
 
       - `"disabled"`
 
-  - `ThinkingConfigAdaptive = object { type }`
+  - `ThinkingConfigAdaptive = object { type, display }`
 
     - `type: "adaptive"`
 
       - `"adaptive"`
+
+    - `display: optional "summarized" or "omitted"`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"`
+
+      - `"omitted"`
 
 - `tool_choice: optional ToolChoice`
 
@@ -3600,6 +3616,87 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+  - `WebFetchTool20260309 = object { name, type, allowed_callers, 9 more }`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: "web_fetch"`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `"web_fetch"`
+
+    - `type: "web_fetch_20260309"`
+
+      - `"web_fetch_20260309"`
+
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+
+      - `"direct"`
+
+      - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
+
+    - `allowed_domains: optional array of string`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: optional array of string`
+
+      List of domains to block fetching from
+
+    - `cache_control: optional CacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: "ephemeral"`
+
+        - `"ephemeral"`
+
+      - `ttl: optional "5m" or "1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `"5m"`
+
+        - `"1h"`
+
+    - `citations: optional CitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: optional boolean`
+
+    - `defer_loading: optional boolean`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: optional number`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: optional number`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: optional boolean`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: optional boolean`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
   - `ToolSearchToolBm25_20251119 = object { name, type, allowed_callers, 3 more }`
 
@@ -7186,7 +7283,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
 
-  - `ThinkingConfigEnabled = object { budget_tokens, type }`
+  - `ThinkingConfigEnabled = object { budget_tokens, type, display }`
 
     - `budget_tokens: number`
 
@@ -7200,17 +7297,33 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `"enabled"`
 
+    - `display: optional "summarized" or "omitted"`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"`
+
+      - `"omitted"`
+
   - `ThinkingConfigDisabled = object { type }`
 
     - `type: "disabled"`
 
       - `"disabled"`
 
-  - `ThinkingConfigAdaptive = object { type }`
+  - `ThinkingConfigAdaptive = object { type, display }`
 
     - `type: "adaptive"`
 
       - `"adaptive"`
+
+    - `display: optional "summarized" or "omitted"`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"`
+
+      - `"omitted"`
 
 - `tool_choice: optional ToolChoice`
 
@@ -8178,6 +8291,87 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+  - `WebFetchTool20260309 = object { name, type, allowed_callers, 9 more }`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: "web_fetch"`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `"web_fetch"`
+
+    - `type: "web_fetch_20260309"`
+
+      - `"web_fetch_20260309"`
+
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+
+      - `"direct"`
+
+      - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
+
+    - `allowed_domains: optional array of string`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: optional array of string`
+
+      List of domains to block fetching from
+
+    - `cache_control: optional CacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: "ephemeral"`
+
+        - `"ephemeral"`
+
+      - `ttl: optional "5m" or "1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `"5m"`
+
+        - `"1h"`
+
+    - `citations: optional CitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: optional boolean`
+
+    - `defer_loading: optional boolean`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: optional number`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: optional number`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: optional boolean`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: optional boolean`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
   - `ToolSearchToolBm25_20251119 = object { name, type, allowed_callers, 3 more }`
 
@@ -14190,7 +14384,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 ### Message Count Tokens Tool
 
-- `MessageCountTokensTool = Tool or ToolBash20250124 or CodeExecutionTool20250522 or 12 more`
+- `MessageCountTokensTool = Tool or ToolBash20250124 or CodeExecutionTool20250522 or 13 more`
 
   Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
@@ -15038,6 +15232,87 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+  - `WebFetchTool20260309 = object { name, type, allowed_callers, 9 more }`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: "web_fetch"`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `"web_fetch"`
+
+    - `type: "web_fetch_20260309"`
+
+      - `"web_fetch_20260309"`
+
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+
+      - `"direct"`
+
+      - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
+
+    - `allowed_domains: optional array of string`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: optional array of string`
+
+      List of domains to block fetching from
+
+    - `cache_control: optional CacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: "ephemeral"`
+
+        - `"ephemeral"`
+
+      - `ttl: optional "5m" or "1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `"5m"`
+
+        - `"1h"`
+
+    - `citations: optional CitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: optional boolean`
+
+    - `defer_loading: optional boolean`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: optional number`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: optional number`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: optional boolean`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: optional boolean`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
   - `ToolSearchToolBm25_20251119 = object { name, type, allowed_callers, 3 more }`
 
@@ -22420,11 +22695,19 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 ### Thinking Config Adaptive
 
-- `ThinkingConfigAdaptive = object { type }`
+- `ThinkingConfigAdaptive = object { type, display }`
 
   - `type: "adaptive"`
 
     - `"adaptive"`
+
+  - `display: optional "summarized" or "omitted"`
+
+    Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+    - `"summarized"`
+
+    - `"omitted"`
 
 ### Thinking Config Disabled
 
@@ -22436,7 +22719,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 ### Thinking Config Enabled
 
-- `ThinkingConfigEnabled = object { budget_tokens, type }`
+- `ThinkingConfigEnabled = object { budget_tokens, type, display }`
 
   - `budget_tokens: number`
 
@@ -22450,6 +22733,14 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"enabled"`
 
+  - `display: optional "summarized" or "omitted"`
+
+    Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+    - `"summarized"`
+
+    - `"omitted"`
+
 ### Thinking Config Param
 
 - `ThinkingConfigParam = ThinkingConfigEnabled or ThinkingConfigDisabled or ThinkingConfigAdaptive`
@@ -22460,7 +22751,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
 
-  - `ThinkingConfigEnabled = object { budget_tokens, type }`
+  - `ThinkingConfigEnabled = object { budget_tokens, type, display }`
 
     - `budget_tokens: number`
 
@@ -22474,17 +22765,33 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"enabled"`
 
+    - `display: optional "summarized" or "omitted"`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"`
+
+      - `"omitted"`
+
   - `ThinkingConfigDisabled = object { type }`
 
     - `type: "disabled"`
 
       - `"disabled"`
 
-  - `ThinkingConfigAdaptive = object { type }`
+  - `ThinkingConfigAdaptive = object { type, display }`
 
     - `type: "adaptive"`
 
       - `"adaptive"`
+
+    - `display: optional "summarized" or "omitted"`
+
+      Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+      - `"summarized"`
+
+      - `"omitted"`
 
 ### Thinking Delta
 
@@ -23974,7 +24281,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 ### Tool Union
 
-- `ToolUnion = Tool or ToolBash20250124 or CodeExecutionTool20250522 or 12 more`
+- `ToolUnion = Tool or ToolBash20250124 or CodeExecutionTool20250522 or 13 more`
 
   Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
@@ -24823,6 +25130,87 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       When true, guarantees schema validation on tool names and inputs
 
+  - `WebFetchTool20260309 = object { name, type, allowed_callers, 9 more }`
+
+    Web fetch tool with use_cache parameter for bypassing cached content.
+
+    - `name: "web_fetch"`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `"web_fetch"`
+
+    - `type: "web_fetch_20260309"`
+
+      - `"web_fetch_20260309"`
+
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+
+      - `"direct"`
+
+      - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
+
+    - `allowed_domains: optional array of string`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: optional array of string`
+
+      List of domains to block fetching from
+
+    - `cache_control: optional CacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: "ephemeral"`
+
+        - `"ephemeral"`
+
+      - `ttl: optional "5m" or "1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `"5m"`
+
+        - `"1h"`
+
+    - `citations: optional CitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+      - `enabled: optional boolean`
+
+    - `defer_loading: optional boolean`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: optional number`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: optional number`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `strict: optional boolean`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: optional boolean`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
   - `ToolSearchToolBm25_20251119 = object { name, type, allowed_callers, 3 more }`
 
     - `name: "tool_search_tool_bm25"`
@@ -25626,6 +26014,89 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
   - `strict: optional boolean`
 
     When true, guarantees schema validation on tool names and inputs
+
+### Web Fetch Tool 20260309
+
+- `WebFetchTool20260309 = object { name, type, allowed_callers, 9 more }`
+
+  Web fetch tool with use_cache parameter for bypassing cached content.
+
+  - `name: "web_fetch"`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `"web_fetch"`
+
+  - `type: "web_fetch_20260309"`
+
+    - `"web_fetch_20260309"`
+
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+
+    - `"direct"`
+
+    - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
+
+  - `allowed_domains: optional array of string`
+
+    List of domains to allow fetching from
+
+  - `blocked_domains: optional array of string`
+
+    List of domains to block fetching from
+
+  - `cache_control: optional CacheControlEphemeral`
+
+    Create a cache control breakpoint at this content block.
+
+    - `type: "ephemeral"`
+
+      - `"ephemeral"`
+
+    - `ttl: optional "5m" or "1h"`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `"5m"`
+
+      - `"1h"`
+
+  - `citations: optional CitationsConfigParam`
+
+    Citations configuration for fetched documents. Citations are disabled by default.
+
+    - `enabled: optional boolean`
+
+  - `defer_loading: optional boolean`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `max_content_tokens: optional number`
+
+    Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+  - `max_uses: optional number`
+
+    Maximum number of times the tool can be used in the API request.
+
+  - `strict: optional boolean`
+
+    When true, guarantees schema validation on tool names and inputs
+
+  - `use_cache: optional boolean`
+
+    Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
 ### Web Fetch Tool Result Block
 
@@ -29321,7 +29792,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
 
-      - `ThinkingConfigEnabled = object { budget_tokens, type }`
+      - `ThinkingConfigEnabled = object { budget_tokens, type, display }`
 
         - `budget_tokens: number`
 
@@ -29335,17 +29806,33 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"enabled"`
 
+        - `display: optional "summarized" or "omitted"`
+
+          Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+          - `"summarized"`
+
+          - `"omitted"`
+
       - `ThinkingConfigDisabled = object { type }`
 
         - `type: "disabled"`
 
           - `"disabled"`
 
-      - `ThinkingConfigAdaptive = object { type }`
+      - `ThinkingConfigAdaptive = object { type, display }`
 
         - `type: "adaptive"`
 
           - `"adaptive"`
+
+        - `display: optional "summarized" or "omitted"`
+
+          Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+          - `"summarized"`
+
+          - `"omitted"`
 
     - `tool_choice: optional ToolChoice`
 
@@ -30313,6 +30800,87 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `strict: optional boolean`
 
           When true, guarantees schema validation on tool names and inputs
+
+      - `WebFetchTool20260309 = object { name, type, allowed_callers, 9 more }`
+
+        Web fetch tool with use_cache parameter for bypassing cached content.
+
+        - `name: "web_fetch"`
+
+          Name of the tool.
+
+          This is how the tool will be called by the model and in `tool_use` blocks.
+
+          - `"web_fetch"`
+
+        - `type: "web_fetch_20260309"`
+
+          - `"web_fetch_20260309"`
+
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+
+          - `"direct"`
+
+          - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
+
+        - `allowed_domains: optional array of string`
+
+          List of domains to allow fetching from
+
+        - `blocked_domains: optional array of string`
+
+          List of domains to block fetching from
+
+        - `cache_control: optional CacheControlEphemeral`
+
+          Create a cache control breakpoint at this content block.
+
+          - `type: "ephemeral"`
+
+            - `"ephemeral"`
+
+          - `ttl: optional "5m" or "1h"`
+
+            The time-to-live for the cache control breakpoint.
+
+            This may be one the following values:
+
+            - `5m`: 5 minutes
+            - `1h`: 1 hour
+
+            Defaults to `5m`.
+
+            - `"5m"`
+
+            - `"1h"`
+
+        - `citations: optional CitationsConfigParam`
+
+          Citations configuration for fetched documents. Citations are disabled by default.
+
+          - `enabled: optional boolean`
+
+        - `defer_loading: optional boolean`
+
+          If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+        - `max_content_tokens: optional number`
+
+          Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+        - `max_uses: optional number`
+
+          Maximum number of times the tool can be used in the API request.
+
+        - `strict: optional boolean`
+
+          When true, guarantees schema validation on tool names and inputs
+
+        - `use_cache: optional boolean`
+
+          Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
       - `ToolSearchToolBm25_20251119 = object { name, type, allowed_callers, 3 more }`
 

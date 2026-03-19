@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/completions
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: f60f335ccaeac5d3ea4482ed670236b1c1b89f3b2f75cbb9421f3c94ac75b6f0
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 877ad34c8b9cfed46d181955fe9b47a745146570b6ff0339fe657529733bfdaf
 ---
 
 # Completions
@@ -169,7 +169,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   Recommended for advanced use cases only. You usually only need to use `temperature`.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

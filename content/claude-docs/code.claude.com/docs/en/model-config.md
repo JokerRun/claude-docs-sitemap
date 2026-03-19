@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: 5c461b296546b215b8ca06f1cf4de24d274f43b6ed9c19eed6368af4f578d2d8
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: b0d27bbf038f4440b28d50a70e8bd7f9f76a7a00bed67fa0c2149a7ab766013b
 ---
 
 > ## Documentation Index
@@ -189,6 +189,22 @@ You can see which model you're currently using in several ways:
 
 1. In [status line](/en/statusline) (if configured)
 2. In `/status`, which also displays your account information.
+
+## Add a custom model option
+
+Use `ANTHROPIC_CUSTOM_MODEL_OPTION` to add a single custom entry to the `/model` picker without replacing the built-in aliases. This is useful for LLM gateway deployments or testing model IDs that Claude Code does not list by default.
+
+This example sets all three variables to make a gateway-routed Opus deployment selectable:
+
+```bash  theme={null}
+export ANTHROPIC_CUSTOM_MODEL_OPTION="my-gateway/claude-opus-4-6"
+export ANTHROPIC_CUSTOM_MODEL_OPTION_NAME="Opus via Gateway"
+export ANTHROPIC_CUSTOM_MODEL_OPTION_DESCRIPTION="Custom deployment routed through the internal LLM gateway"
+```
+
+The custom entry appears at the bottom of the `/model` picker. `ANTHROPIC_CUSTOM_MODEL_OPTION_NAME` and `ANTHROPIC_CUSTOM_MODEL_OPTION_DESCRIPTION` are optional. If omitted, the model ID is used as the name and the description defaults to `Custom model (<model-id>)`.
+
+Claude Code skips validation for the model ID set in `ANTHROPIC_CUSTOM_MODEL_OPTION`, so you can use any string your API endpoint accepts.
 
 ## Environment variables
 

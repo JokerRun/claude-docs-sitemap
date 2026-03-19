@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/download
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 04128b471349e450261feab4c71874c6982931d4b5c6f56f797670415c9e2509
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 7b2f7a85975c49199bcc87773f3a67ee3dbe4d11ecbd30ad05941b82d835c964
 ---
 
 ## Download
@@ -19,7 +19,7 @@ Download File
 
   ID of the File.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

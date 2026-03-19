@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/cancel
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: a34ebdbf3f75ba112e4828eb1e8770d8040c27374d30103ba9f65e67e2ccacad
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 4f01bdba490e3356d81422581b0a913796221eda0161e85d2f97ba392cfd4ac5
 ---
 
 ## Cancel
@@ -23,7 +23,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   ID of the Message Batch.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

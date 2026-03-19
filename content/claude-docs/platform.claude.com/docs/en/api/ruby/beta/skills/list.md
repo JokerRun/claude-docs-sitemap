@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/list
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 89c7b2378f6d56a5862939eddb7dd616dbe06ea78d652fc206fdc998dbbdef70
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 8ed82ec7e7cf09da9ddb0bd19ea09f0da033d8760495e19b1c3e38e6a8cc50b2
 ---
 
 ## List
@@ -36,7 +36,7 @@ List Skills
   * `"custom"`: only return user-created skills
   * `"anthropic"`: only return Anthropic-created skills
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

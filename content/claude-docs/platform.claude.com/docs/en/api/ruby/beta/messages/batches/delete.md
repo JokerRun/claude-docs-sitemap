@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/delete
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 6666a098f9aee7679473f3373ab5cecc0f2fed23251e7c36e84f5300233b9496
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 2cb2052103eb42bf97ae4be36c199b69dd806011622f84ee61554cbded0b1bd4
 ---
 
 ## Delete
@@ -23,7 +23,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   ID of the Message Batch.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 

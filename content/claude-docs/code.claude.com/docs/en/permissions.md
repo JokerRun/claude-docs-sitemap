@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-03-18T03:09:14.254898Z
-sha256: ff47d327d1a10e11e87fbec8edbb1a7dbc449b7239255c20e4538ac9ebbf12f8
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: a3ef622c7e891c2a0639b1e4979432dee6f363700c8c855ef2f512432197c10a
 ---
 
 > ## Documentation Index
@@ -39,16 +39,16 @@ Rules are evaluated in order: **deny -> ask -> allow**. The first matching rule 
 
 Claude Code supports several permission modes that control how tools are approved. Set the `defaultMode` in your [settings files](/en/settings#settings-files):
 
-| Mode                | Description                                                                           |
-| :------------------ | :------------------------------------------------------------------------------------ |
-| `default`           | Standard behavior: prompts for permission on first use of each tool                   |
-| `acceptEdits`       | Automatically accepts file edit permissions for the session                           |
-| `plan`              | Plan Mode: Claude can analyze but not modify files or execute commands                |
-| `dontAsk`           | Auto-denies tools unless pre-approved via `/permissions` or `permissions.allow` rules |
-| `bypassPermissions` | Skips all permission prompts (requires safe environment, see warning below)           |
+| Mode                | Description                                                                             |
+| :------------------ | :-------------------------------------------------------------------------------------- |
+| `default`           | Standard behavior: prompts for permission on first use of each tool                     |
+| `acceptEdits`       | Automatically accepts file edit permissions for the session                             |
+| `plan`              | Plan Mode: Claude can analyze but not modify files or execute commands                  |
+| `dontAsk`           | Auto-denies tools unless pre-approved via `/permissions` or `permissions.allow` rules   |
+| `bypassPermissions` | Skips permission prompts except for writes to protected directories (see warning below) |
 
 <Warning>
-  `bypassPermissions` mode disables all permission checks. Only use this in isolated environments like containers or VMs where Claude Code cannot cause damage. Administrators can prevent this mode by setting `disableBypassPermissionsMode` to `"disable"` in [managed settings](#managed-settings).
+  `bypassPermissions` mode skips permission prompts. Writes to `.git`, `.claude`, `.vscode`, and `.idea` directories still prompt for confirmation to prevent accidental corruption of repository state and local configuration. Writes to `.claude/commands`, `.claude/agents`, and `.claude/skills` are exempt and do not prompt, because Claude routinely writes there when creating skills, subagents, and commands. Only use this mode in isolated environments like containers or VMs where Claude Code cannot cause damage. Administrators can prevent this mode by setting `disableBypassPermissionsMode` to `"disable"` in [managed settings](#managed-settings).
 </Warning>
 
 ## Permission rule syntax

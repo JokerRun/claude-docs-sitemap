@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/create
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: df44e8ab7a916af2eb914c0c55592f7170386a96e2880e7a4a35ea1277016b9c
+fetched_at: 2026-03-19T03:09:16.785463Z
+sha256: 397208af18053a14d9a1d3d23b5fb4b8c3ca11bba5a23edcd090530e2264a349
 ---
 
 ## Create
@@ -27,7 +27,7 @@ Create Skill
 
   All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
 
-- `anthropic_beta: Array[AnthropicBeta]`
+- `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
