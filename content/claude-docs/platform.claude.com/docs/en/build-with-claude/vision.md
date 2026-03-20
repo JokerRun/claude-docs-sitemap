@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-03-17T04:21:46.272545Z
-sha256: a1b4156269f5b1c4b1383f0d2816ad157de6498733ebc9b6134cc0cb6b715e0e
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: 51a206761a8afc4bf04b5fcbf69b837341c4f19bcb344c65e1891899b5e25c3e
 ---
 
 # Vision
@@ -822,7 +822,9 @@ For images you'll use repeatedly or when you want to avoid encoding overhead, us
 </Tip>
 
 <CodeGroup>
-```bash Shell
+```bash Shell hidelines={1..2}
+cd "$(mktemp -d)"
+curl -sSo image.jpg https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg
 # First, upload your image to the Files API
 curl -X POST https://api.anthropic.com/v1/files \
   -H "x-api-key: $ANTHROPIC_API_KEY" \

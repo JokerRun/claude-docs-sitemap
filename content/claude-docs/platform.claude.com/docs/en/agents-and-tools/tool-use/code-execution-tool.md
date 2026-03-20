@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 46a6d9155e6b96a3a5c8d623290e25d98f5ae9fc094703d48ff515a109c421b7
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: 6f08b0b727557b3fcc56ca477f787bacaa65a2988d3c7097da48713618df1080
 ---
 
 # Code execution tool
@@ -13,7 +13,7 @@ Claude can analyze data, create visualizations, perform complex calculations, ru
 
 **Code execution is free when used with web search or web fetch.** When `web_search_20260209` or `web_fetch_20260209` is included in your request, there are no additional charges for code execution tool calls beyond the standard input and output token costs. Standard code execution charges apply when these tools are not included.
 
-Code execution is a core primitive for building high-performance agents. It enables dynamic filtering in web search and web fetch tools, allowing Claude to process results before they reach the context window—improving accuracy while reducing token consumption.
+Code execution is a core primitive for building high-performance agents. It enables dynamic filtering in web search and web fetch tools, allowing Claude to process results before they reach the context window, improving accuracy while reducing token consumption.
 
 <Note>
 Reach out through the [feedback form](https://forms.gle/LTAU6Xn2puCJMi1n6) to share your feedback on this feature.
@@ -683,7 +683,9 @@ The Python environment can process various file types uploaded via the Files API
 3. **Include the code execution tool** in your API request
 
 <CodeGroup>
-```bash Shell
+```bash Shell hidelines={1..2}
+cd "$(mktemp -d)"
+printf 'name,value\nfoo,1\nbar,2\n' > data.csv
 # First, upload a file
 curl https://api.anthropic.com/v1/files \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
@@ -1411,7 +1413,9 @@ end
 A complex workflow using all capabilities:
 
 <CodeGroup>
-```bash Shell
+```bash Shell hidelines={1..2}
+cd "$(mktemp -d)"
+printf 'name,value\nfoo,1\nbar,2\n' > data.csv
 # First, upload a file
 curl https://api.anthropic.com/v1/files \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
@@ -1974,7 +1978,8 @@ This allows you to maintain created files between requests.
 ### Example
 
 <CodeGroup>
-```bash Shell
+```bash Shell hidelines={1}
+cd "$(mktemp -d)"
 # First request: Create a file with a random number
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-03-10T04:12:00.389607Z
-sha256: 84e45e21c90269cd98be29d95547a32eacb9b3ca72e432d2420d8feef31fc689
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: 9f39bb5973231d67eb3c3795e975c0fa7ed161631c5693171b946cdc9d630638
 ---
 
 # Beta headers
@@ -79,7 +79,7 @@ curl https://api.anthropic.com/v1/messages \
 
 <Warning>
 Beta features are experimental and may:
-- Have breaking changes without notice
+- Have breaking changes with notice
 - Be deprecated or removed
 - Have different rate limits or pricing
 - Not be available in all regions

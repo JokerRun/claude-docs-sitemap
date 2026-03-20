@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-03-17T04:21:46.272545Z
-sha256: 98e24b6b1ac516d463e63de9250e47e2b1cceda1737868d2d3642f5b9943ca6d
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: fd9190577eaed4d341547e80e93e0a9934a265328a413d0ad728cfc05273a6a5
 ---
 
 > ## Documentation Index
@@ -290,7 +290,7 @@ claude --plugin-dir ./my-plugin
 
 When a `--plugin-dir` plugin has the same name as an installed marketplace plugin, the local copy takes precedence for that session. This lets you test changes to a plugin you already have installed without uninstalling it first. Marketplace plugins force-enabled by managed settings are the only exception and cannot be overridden.
 
-As you make changes to your plugin, run `/reload-plugins` to pick up the updates without restarting. This reloads commands, skills, agents, hooks, plugin MCP servers, and plugin LSP servers. Test your plugin components:
+As you make changes to your plugin, run `/reload-plugins` to pick up the updates without restarting. This reloads plugins, skills, agents, hooks, plugin MCP servers, and plugin LSP servers. Test your plugin components:
 
 * Try your skills with `/plugin-name:skill-name`
 * Check that agents appear in `/agents`

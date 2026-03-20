@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: 672c3b3c3b7986724f626da460d4860286b9a103340c6433b36e3f3d79811f62
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: c47a3efb3e462443ae01e02bf35fa63c4d4a2d3bbcafe13433b1670aeec4579a
 ---
 
 # MCP connector
@@ -640,7 +640,7 @@ npm install @anthropic-ai/sdk @modelcontextprotocol/sdk
 
 Import the helpers from the beta namespace:
 
-```typescript
+```typescript nocheck
 import {
   mcpTools,
   mcpMessages,

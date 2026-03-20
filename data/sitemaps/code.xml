@@ -323,7 +323,17 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/changelog</loc>
-    <lastmod>2026-03-18T22:53:30.676Z</lastmod>
+    <lastmod>2026-03-19T22:40:11.709Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/en/channels</loc>
+    <lastmod>2026-03-20T00:01:01.466Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/en/channels-reference</loc>
+    <lastmod>2026-03-20T00:01:01.461Z</lastmod>
   </url>
 
   <url>
@@ -343,7 +353,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/cli-reference</loc>
-    <lastmod>2026-03-18T22:49:53.069Z</lastmod>
+    <lastmod>2026-03-19T22:22:02.518Z</lastmod>
   </url>
 
   <url>
@@ -388,12 +398,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/discover-plugins</loc>
-    <lastmod>2026-03-16T19:01:51.129Z</lastmod>
+    <lastmod>2026-03-20T00:59:11.096Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/en/env-vars</loc>
-    <lastmod>2026-03-18T22:49:53.077Z</lastmod>
+    <lastmod>2026-03-20T00:59:11.116Z</lastmod>
   </url>
 
   <url>
@@ -428,12 +438,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/hooks</loc>
-    <lastmod>2026-03-18T22:47:07.125Z</lastmod>
+    <lastmod>2026-03-20T00:59:11.110Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/en/hooks-guide</loc>
-    <lastmod>2026-03-18T22:47:07.075Z</lastmod>
+    <lastmod>2026-03-20T00:59:11.108Z</lastmod>
   </url>
 
   <url>
@@ -468,7 +478,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/mcp</loc>
-    <lastmod>2026-03-17T23:27:18.407Z</lastmod>
+    <lastmod>2026-03-19T22:22:02.520Z</lastmod>
   </url>
 
   <url>
@@ -483,7 +493,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/model-config</loc>
-    <lastmod>2026-03-18T22:47:37.691Z</lastmod>
+    <lastmod>2026-03-20T00:59:11.098Z</lastmod>
   </url>
 
   <url>
@@ -503,7 +513,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/overview</loc>
-    <lastmod>2026-03-18T22:47:11.863Z</lastmod>
+    <lastmod>2026-03-19T22:22:02.513Z</lastmod>
   </url>
 
   <url>
@@ -513,12 +523,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/plugin-marketplaces</loc>
-    <lastmod>2026-03-18T22:49:53.071Z</lastmod>
+    <lastmod>2026-03-20T00:59:11.097Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/en/plugins</loc>
-    <lastmod>2026-03-16T19:01:51.130Z</lastmod>
+    <lastmod>2026-03-20T00:59:11.105Z</lastmod>
   </url>
 
   <url>
@@ -533,7 +543,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/remote-control</loc>
-    <lastmod>2026-03-18T17:46:50.085Z</lastmod>
+    <lastmod>2026-03-20T00:01:01.464Z</lastmod>
   </url>
 
   <url>
@@ -543,7 +553,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/scheduled-tasks</loc>
-    <lastmod>2026-03-13T16:19:19.174Z</lastmod>
+    <lastmod>2026-03-19T22:22:02.514Z</lastmod>
   </url>
 
   <url>
@@ -558,7 +568,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/settings</loc>
-    <lastmod>2026-03-18T22:49:53.074Z</lastmod>
+    <lastmod>2026-03-20T00:59:11.111Z</lastmod>
   </url>
 
   <url>
@@ -578,12 +588,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/statusline</loc>
-    <lastmod>2026-03-16T17:10:05.067Z</lastmod>
+    <lastmod>2026-03-20T00:59:11.171Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/en/sub-agents</loc>
-    <lastmod>2026-03-18T22:59:54.216Z</lastmod>
+    <lastmod>2026-03-20T00:59:11.168Z</lastmod>
   </url>
 
   <url>
@@ -613,7 +623,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/vs-code</loc>
-    <lastmod>2026-03-18T22:49:53.068Z</lastmod>
+    <lastmod>2026-03-19T06:15:31.154Z</lastmod>
   </url>
 
   <url>

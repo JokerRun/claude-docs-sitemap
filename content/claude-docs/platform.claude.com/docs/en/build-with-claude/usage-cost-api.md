@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/usage-cost-api
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 536fd4031b2f46ba2173242e5e006cc820d3c2e9852336d179ac1365b8b5d2da
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: eb143a3d95490552ba968b0cacd7a603ba575873071139facb27a68c4a1e58f4
 ---
 
 # Usage and Cost API
@@ -169,7 +169,7 @@ bucket_width=1d" \
 Models released before February 2026 (prior to Claude Opus 4.6) don't support the `inference_geo` request parameter, so their usage reports return `"not_available"` for this dimension. You can use `not_available` as a filter value in `inference_geos[]` to target those models.
 </Note>
 
-#### Fast mode (research preview)
+#### Fast mode (beta: research preview)
 
 Track [fast mode](/docs/en/build-with-claude/fast-mode) usage by grouping and filtering with the `speed` dimension. This is useful for monitoring standard vs. fast mode usage.
 

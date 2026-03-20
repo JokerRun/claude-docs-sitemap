@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-03-17T04:21:46.272545Z
-sha256: 5bc2dfe0ed2a49ee8cd2c74cc36fe31313026c9023afe4574639cdccfd742194
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: a943a6ca877ad336e3bd80ccd0dcafec1ee8d1d546ff02bccee0fc3342514e8c
 ---
 
 > ## Documentation Index
@@ -309,7 +309,7 @@ When you install, enable, or disable plugins during a session, run `/reload-plug
 /reload-plugins
 ```
 
-Claude Code reloads all active plugins and shows counts for reloaded commands, skills, agents, hooks, plugin MCP servers, and plugin LSP servers.
+Claude Code reloads all active plugins and shows counts for plugins, skills, agents, hooks, plugin MCP servers, and plugin LSP servers.
 
 ## Manage marketplaces
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/glossary
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 037dd0422caf650ad78a5da637d66e7835f811c205e8697ee45cd9896f8f5b0a
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: 1405208f57672548ba8389fec2db9a8cd4ec5baa99ecb09a08956b7929a1c55b
 ---
 
 # Glossary
@@ -43,7 +43,7 @@ Model Context Protocol (MCP) is an open protocol that standardizes how applicati
 
 ## MCP connector
 
-The MCP connector is a feature that allows API users to connect to MCP servers directly from the Messages API without building an MCP client. This enables seamless integration with MCP-compatible tools and services through the Claude API. The MCP connector supports features like tool calling and is available in public beta. See our [MCP connector documentation](/docs/en/agents-and-tools/mcp-connector) to learn more.
+The MCP connector is a feature that allows API users to connect to MCP servers directly from the Messages API without building an MCP client. This enables seamless integration with MCP-compatible tools and services through the Claude API. The MCP connector supports features like tool calling and is available in beta. See the [MCP connector documentation](/docs/en/agents-and-tools/mcp-connector) to learn more.
 
 ## Pretraining
 

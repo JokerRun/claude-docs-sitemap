@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-03-17T04:21:46.272545Z
-sha256: 2441a06ec084764dbe88cff574872d500cf70dbad7b8908484b6d2561cd92716
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: 86ddff71f413152fe08db24c8c58899d857efec0dbdecf1d555d338589b9fc44
 ---
 
 > ## Documentation Index
@@ -910,6 +910,11 @@ Community projects like [ccstatusline](https://github.com/sirmalloc/ccstatusline
 * Complex escape sequences (ANSI colors, OSC 8 links) can occasionally cause garbled output if they overlap with other UI updates
 * If you see corrupted text, try simplifying your script to plain text output
 * Multi-line status lines with escape codes are more prone to rendering issues than single-line plain text
+
+**Workspace trust required**
+
+* The status line command only runs if you've accepted the workspace trust dialog for the current directory. Because `statusLine` executes a shell command, it requires the same trust acceptance as hooks and other shell-executing settings.
+* If trust isn't accepted, you'll see the notification `statusline skipped · restart to fix` instead of your status line output. Restart Claude Code and accept the trust prompt to enable it.
 
 **Script errors or hangs**
 

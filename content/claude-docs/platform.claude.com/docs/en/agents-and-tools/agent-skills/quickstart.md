@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 47ecf633a76850b8c3499b2b0c0292372a68382a392dcbb0dfd05d0bfa42885f
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: 7b4757d09aa03e9927a9c189f220fb82b57650def8c462d2804c7f92421596aa
 ---
 
 # Get started with Agent Skills in the API
@@ -246,7 +246,7 @@ if (fileId) {
 }
 ```
 
-```bash Shell
+```bash Shell nocheck
 # Extract file_id from response (using jq)
 FILE_ID=$(echo "$RESPONSE" | jq -r '.content[] | select(.type=="tool_use" and .name=="code_execution") | .content[] | select(.file_id) | .file_id')
 

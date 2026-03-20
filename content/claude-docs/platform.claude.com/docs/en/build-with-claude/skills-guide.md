@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: c5a78842440dd4f4a33ae883f21d831909f217558c795a9f65c3703ba53d667f
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: 8d25823432c1b57e2ef869e39332e42bd92bf0f0ecb9f44ba573d293a654672d
 ---
 
 # Using Agent Skills with the API
@@ -378,7 +378,8 @@ When Skills create documents (Excel, PowerPoint, PDF, Word), they return `file_i
 <Tabs>
 <Tab title="Shell">
 
-```bash Shell
+```bash Shell hidelines={1}
+cd "$(mktemp -d)"
 # Step 1: Use a Skill to create a file
 RESPONSE=$(curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -1556,7 +1557,8 @@ puts response2
 Skills may perform operations that require multiple turns. Handle `pause_turn` stop reasons:
 
 <CodeGroup>
-```bash Shell
+
+```bash Shell nocheck
 # Initial request
 RESPONSE=$(curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -2036,7 +2038,8 @@ The response may include a `pause_turn` stop reason, which indicates that the AP
 Combine multiple Skills in a single request to handle complex workflows:
 
 <CodeGroup>
-```bash Shell
+
+```bash Shell nocheck
 curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -2395,7 +2398,8 @@ puts message
 Upload your custom Skill to make it available in your workspace. You can upload using either a directory path or individual file objects.
 
 <CodeGroup>
-```bash Shell
+
+```bash Shell nocheck
 curl -X POST "https://api.anthropic.com/v1/skills" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -2895,7 +2899,8 @@ See the [List Skills API reference](/docs/en/api/skills/list-skills) for paginat
 Get details about a specific Skill:
 
 <CodeGroup>
-```bash Shell
+
+```bash Shell nocheck
 curl "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -3039,7 +3044,8 @@ puts "Created: #{skill.created_at}"
 To delete a Skill, you must first delete all its versions:
 
 <CodeGroup>
-```bash Shell
+
+```bash Shell nocheck
 # Delete all versions first, then delete the Skill
 curl -X DELETE "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -3287,7 +3293,8 @@ Skills support versioning to manage updates safely:
 - Create new versions when updating Skill files
 
 <CodeGroup>
-```bash Shell
+
+```bash Shell nocheck
 # Create a new version
 NEW_VERSION=$(curl -X POST "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv/versions" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -3843,7 +3850,8 @@ The progressive disclosure architecture ensures efficient context usage: Claude 
 Combine Excel and custom DCF analysis Skills:
 
 <CodeGroup>
-```bash Shell
+
+```bash Shell nocheck
 # Create custom DCF analysis Skill
 DCF_SKILL=$(curl -X POST "https://api.anthropic.com/v1/skills" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \

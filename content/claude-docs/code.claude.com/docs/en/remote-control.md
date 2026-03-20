@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/remote-control
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: d02ea9887ea73bdd912f03982ed66e89048cb4d587387fa1aa84e713a2f6e84e
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: dd3fedd9e34529b924bdb2b7ed778ee1685957e6607faadbea71d29808a0795b
 ---
 
 > ## Documentation Index
@@ -178,6 +178,7 @@ Common causes:
 ## Related resources
 
 * [Claude Code on the web](/en/claude-code-on-the-web): run sessions in Anthropic-managed cloud environments instead of on your machine
+* [Channels](/en/channels): forward Telegram or Discord into a session so Claude reacts to messages while you're away
 * [Authentication](/en/authentication): set up `/login` and manage credentials for claude.ai
 * [CLI reference](/en/cli-reference): full list of flags and commands including `claude remote-control`
 * [Security](/en/security): how Remote Control sessions fit into the Claude Code security model

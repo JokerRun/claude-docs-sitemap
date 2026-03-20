@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-6
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: 8a6ac255b9cbbf922811cffeff8fb35f6204b64980db1beca4bef850a0708228
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: b72b7676844dcdbd95630736ebe7c8a552aeae258e5b4e881acb9cbd8ee92b04
 ---
 
 # What's new in Claude 4.6
@@ -69,7 +69,7 @@ The following tools are now generally available:
 
 [Compaction](/docs/en/build-with-claude/compaction) provides automatic, server-side context summarization, enabling effectively infinite conversations. When context approaches the window limit, the API automatically summarizes earlier parts of the conversation.
 
-### Fast mode (research preview)
+### Fast mode (beta: research preview)
 
 [Fast mode](/docs/en/build-with-claude/fast-mode) (`speed: "fast"`) delivers significantly faster output token generation for Opus models. Fast mode is up to 2.5x as fast at premium pricing ($30/$150 per MTok). This is the same model running with faster inference (no change to intelligence or capabilities).
 

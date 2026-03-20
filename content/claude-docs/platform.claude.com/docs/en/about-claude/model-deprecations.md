@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/model-deprecations
-fetched_at: 2026-02-20T04:18:13.878022Z
-sha256: 0aa2f50adc0a4e913f8267c36db90e35ab9d8e83f2a3bbcb87199d7dfa930b53
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: cebc827b87f099d1c5f132fb76e95cc707451139199787123018263346d1c403
 ---
 
 # Model deprecations
@@ -18,7 +18,7 @@ This page lists all API deprecations, along with recommended replacements.
 Anthropic uses the following terms to describe the model lifecycle:
 - **Active**: The model is fully supported and recommended for use.
 - **Legacy**: The model will no longer receive updates and may be deprecated in the future.
-- **Deprecated**: The model is no longer available for new customers but continues to be available for existing users until retirement. Anthropic assigns a retirement date at this point.
+- **Deprecated**: The model is still functional but no longer recommended. Anthropic provides a recommended replacement and assigns a retirement date.
 - **Retired**: The model is no longer available for use. Requests to retired models will fail.
 
 <Warning>

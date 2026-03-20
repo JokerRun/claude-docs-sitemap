@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: b0d27bbf038f4440b28d50a70e8bd7f9f76a7a00bed67fa0c2149a7ab766013b
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: 07fbe4a5d636c8814b9cbf4b0bc16887395603ff6f9318d827d7136e87a05bf2
 ---
 
 > ## Documentation Index
@@ -147,8 +147,9 @@ Three levels persist across sessions: **low**, **medium**, and **high**. A fourt
 * **`--effort` flag**: pass `low`, `medium`, `high`, or `max` to set the level for a single session when launching Claude Code
 * **Environment variable**: set `CLAUDE_CODE_EFFORT_LEVEL` to `low`, `medium`, `high`, `max`, or `auto`
 * **Settings**: set `effortLevel` in your settings file to `"low"`, `"medium"`, or `"high"`
+* **Skill and subagent frontmatter**: set `effort` in a [skill](/en/skills#frontmatter-reference) or [subagent](/en/sub-agents#supported-frontmatter-fields) markdown file to override the effort level when that skill or subagent runs
 
-The environment variable takes precedence, then your configured level, then the model default.
+The environment variable takes precedence over all other methods, then your configured level, then the model default. Frontmatter effort applies when that skill or subagent is active, overriding the session level but not the environment variable.
 
 Effort is supported on Opus 4.6 and Sonnet 4.6. The effort slider appears in `/model` when a supported model is selected. The current effort level is also displayed next to the logo and spinner, for example "with low effort", so you can confirm which setting is active without opening `/model`.
 

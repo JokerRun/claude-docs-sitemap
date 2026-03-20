@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/ruby
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: 8225ac346a7d7c82375e90a13e696ee4a01cc53aea0c493e8cf05f09764f2994
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: 9ddaa7f6e84867e10c54355752b239e5a22d6c15ddc6a20843a4a6a3162a4b5f
 ---
 
 # Ruby SDK
@@ -22,7 +22,7 @@ For API feature documentation with code examples, see the [API reference](/docs/
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
 
 ```ruby
-gem "anthropic", "~> 1.19.0"
+gem "anthropic", "~> 1.25.0"
 ```
 
 ## Requirements

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/scheduled-tasks
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: f9b984aa4d5c27dbd2582fd109ef109a3713f903ec9ec0b71d44efd4a7763438
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: e526dfdd7b03826ad2a32cd3509b48878dc1e45020815db303315860631d336e
 ---
 
 > ## Documentation Index
@@ -17,7 +17,7 @@ sha256: f9b984aa4d5c27dbd2582fd109ef109a3713f903ec9ec0b71d44efd4a7763438
   Scheduled tasks require Claude Code v2.1.72 or later. Check your version with `claude --version`.
 </Note>
 
-Scheduled tasks let Claude re-run a prompt automatically on an interval. Use them to poll a deployment, babysit a PR, check back on a long-running build, or remind yourself to do something later in the session.
+Scheduled tasks let Claude re-run a prompt automatically on an interval. Use them to poll a deployment, babysit a PR, check back on a long-running build, or remind yourself to do something later in the session. To react to events as they happen instead of polling, see [Channels](/en/channels): your CI can push the failure into the session directly.
 
 Tasks are session-scoped: they live in the current Claude Code process and are gone when you exit. For durable scheduling that survives restarts and runs without an active terminal session, see [Desktop scheduled tasks](/en/desktop#schedule-recurring-tasks) or [GitHub Actions](/en/github-actions).
 

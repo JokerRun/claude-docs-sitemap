@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/client-sdks
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: fe8609ddb21e5dd7078c7989cb1e948e0193797fb9178c390ca9d69467ef1866
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: 4f975df874b9e48d43a7da2afe254ab415fc2a9856c887c5069558e0a9ea2683
 ---
 
 # Client SDKs
@@ -63,14 +63,14 @@ go get github.com/anthropics/anthropic-sdk-go
 <Tab title="Java">
 <CodeGroup>
 ```groovy Gradle
-implementation("com.anthropic:anthropic-java:2.15.0")
+implementation("com.anthropic:anthropic-java:2.18.0")
 ```
 
 ```xml Maven
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java</artifactId>
-    <version>2.15.0</version>
+    <version>2.18.0</version>
 </dependency>
 ```
 </CodeGroup>
@@ -313,7 +313,7 @@ See [Beta headers](/docs/en/api/beta-headers) for available beta features.
 | Python | 3.9+ |
 | TypeScript | 4.9+ (Node.js 20+) |
 | Java | 8+ |
-| Go | 1.22+ |
+| Go | 1.23+ |
 | Ruby | 3.2.0+ |
 | C# | .NET Standard 2.0 |
 | PHP | 8.1.0+ |

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: 93cf14efc9e92b2063f67a93f6300ffd1a83bb9243f8998527ac3a947e785216
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: 210e6343fc5c67b328da69449e69afd8f627f979aa80fac2ea8981b7d46219c6
 ---
 
-# Fast mode (research preview)
+# Fast mode (beta: research preview)
 
 Higher output speed for Claude Opus 4.6, delivering significantly faster token generation for latency-sensitive and agentic workflows.
 
@@ -14,7 +14,7 @@ Higher output speed for Claude Opus 4.6, delivering significantly faster token g
 Fast mode provides significantly faster output token generation for Claude Opus 4.6. By setting `speed: "fast"` in your API request, you get up to 2.5x higher output tokens per second from the same model at premium pricing.
 
 <Note>
-Fast mode is in research preview. [Join the waitlist](https://claude.com/fast-mode) to request access. Availability is limited while Anthropic gathers feedback.
+Fast mode is in beta (research preview). [Join the waitlist](https://claude.com/fast-mode) to request access. Availability is limited while Anthropic gathers feedback.
 </Note>
 
 <Note>

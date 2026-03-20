@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-03-17T04:21:46.272545Z
-sha256: 9f8518ec29a71e29f22c0572e90fd022c3a131518f5986489333c9bc6fdc1af7
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: 6304190afaf410f39ada62498645207e126abdf15c9c996901e16107e9d22758
 ---
 
 # Rate limits
@@ -268,7 +268,7 @@ If you're seeking higher limits for an Enterprise use case, contact sales throug
 
 ### Fast mode rate limits
 
-When using [fast mode](/docs/en/build-with-claude/fast-mode) (`speed: "fast"`) on Opus 4.6 (research preview), dedicated rate limits apply that are separate from standard Opus rate limits. When fast mode rate limits are exceeded, the API returns a `429` error with a `retry-after` header.
+When using [fast mode](/docs/en/build-with-claude/fast-mode) (beta: research preview) with `speed: "fast"` on Opus 4.6, dedicated rate limits apply that are separate from standard Opus rate limits. When fast mode rate limits are exceeded, the API returns a `429` error with a `retry-after` header.
 
 The response includes `anthropic-fast-*` headers that indicate your fast mode rate limit status. See the [fast mode documentation](/docs/en/build-with-claude/fast-mode#rate-limits) for details on these headers.
 

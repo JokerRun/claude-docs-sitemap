@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: ccbe17a3e623cdb35afb13f3ef01028a83e95beeb0a87f7a1f25c61813f506ac
+fetched_at: 2026-03-20T03:04:37.719703Z
+sha256: daa19686eb1690fc82967c1dd3aad4c497c71d3178ab580383ae1f71d5be4b49
 ---
 
 # Get started with Claude
@@ -238,7 +238,7 @@ main().catch(console.error);
 
         **Gradle:**
         ```groovy
-        implementation("com.anthropic:anthropic-java:2.15.0")
+        implementation("com.anthropic:anthropic-java:2.18.0")
         ```
 
         **Maven:**
@@ -246,7 +246,7 @@ main().catch(console.error);
         <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.15.0</version>
+          <version>2.18.0</version>
         </dependency>
         ```
       </Step>
