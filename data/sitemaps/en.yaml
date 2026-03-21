@@ -16,13 +16,13 @@
   lastmod: '2026-03-18T10:26:07.228Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-03-19T22:40:11.709Z'
+  lastmod: '2026-03-20T23:15:25.002Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
-  lastmod: '2026-03-20T00:01:01.466Z'
+  lastmod: '2026-03-20T22:05:18.431Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels-reference
-  lastmod: '2026-03-20T00:01:01.461Z'
+  lastmod: '2026-03-20T22:05:18.428Z'
 - source: code
   loc: https://code.claude.com/docs/en/checkpointing
   lastmod: '2026-03-13T16:19:17.262Z'
@@ -34,7 +34,7 @@
   lastmod: '2026-03-06T22:57:49.791Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
-  lastmod: '2026-03-19T22:22:02.518Z'
+  lastmod: '2026-03-20T15:49:07.134Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review
   lastmod: '2026-03-18T06:29:36.219Z'
@@ -52,7 +52,7 @@
   lastmod: '2026-03-18T10:24:44.068Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
-  lastmod: '2026-03-18T10:26:07.231Z'
+  lastmod: '2026-03-20T23:10:54.867Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-quickstart
   lastmod: '2026-03-13T21:58:58.872Z'
@@ -61,16 +61,16 @@
   lastmod: '2026-01-28T13:17:42.832Z'
 - source: code
   loc: https://code.claude.com/docs/en/discover-plugins
-  lastmod: '2026-03-20T00:59:11.096Z'
+  lastmod: '2026-03-20T20:54:26.130Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-03-20T00:59:11.116Z'
+  lastmod: '2026-03-20T22:00:54.058Z'
 - source: code
   loc: https://code.claude.com/docs/en/fast-mode
   lastmod: '2026-03-16T20:14:45.283Z'
 - source: code
   loc: https://code.claude.com/docs/en/features-overview
-  lastmod: '2026-03-12T19:27:59.929Z'
+  lastmod: '2026-03-20T14:48:39.746Z'
 - source: code
   loc: https://code.claude.com/docs/en/github-actions
   lastmod: '2026-03-09T19:00:05.852Z'
@@ -112,7 +112,7 @@
   lastmod: '2026-03-19T22:22:02.520Z'
 - source: code
   loc: https://code.claude.com/docs/en/memory
-  lastmod: '2026-03-17T23:25:31.551Z'
+  lastmod: '2026-03-20T14:48:39.754Z'
 - source: code
   loc: https://code.claude.com/docs/en/microsoft-foundry
   lastmod: '2026-02-18T22:23:19.996Z'
@@ -133,10 +133,10 @@
   lastmod: '2026-03-19T22:22:02.513Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
-  lastmod: '2026-03-18T10:26:07.222Z'
+  lastmod: '2026-03-20T20:54:26.125Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-marketplaces
-  lastmod: '2026-03-20T00:59:11.097Z'
+  lastmod: '2026-03-20T14:48:39.755Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins
   lastmod: '2026-03-20T00:59:11.105Z'
@@ -148,10 +148,10 @@
   lastmod: '2026-03-14T02:59:58.913Z'
 - source: code
   loc: https://code.claude.com/docs/en/remote-control
-  lastmod: '2026-03-20T00:01:01.464Z'
+  lastmod: '2026-03-20T23:10:54.865Z'
 - source: code
   loc: https://code.claude.com/docs/en/sandboxing
-  lastmod: '2026-03-18T22:47:48.525Z'
+  lastmod: '2026-03-20T20:33:23.270Z'
 - source: code
   loc: https://code.claude.com/docs/en/scheduled-tasks
   lastmod: '2026-03-19T22:22:02.514Z'
@@ -160,25 +160,25 @@
   lastmod: '2026-03-18T10:24:44.072Z'
 - source: code
   loc: https://code.claude.com/docs/en/server-managed-settings
-  lastmod: '2026-03-16T17:51:56.009Z'
+  lastmod: '2026-03-20T14:48:39.748Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-03-20T00:59:11.111Z'
+  lastmod: '2026-03-20T22:00:54.060Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-03-13T16:19:19.177Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
-  lastmod: '2026-03-13T16:19:19.178Z'
+  lastmod: '2026-03-20T20:41:49.708Z'
 - source: code
   loc: https://code.claude.com/docs/en/slack
   lastmod: '2026-02-14T01:42:38.610Z'
 - source: code
   loc: https://code.claude.com/docs/en/statusline
-  lastmod: '2026-03-20T00:59:11.171Z'
+  lastmod: '2026-03-20T15:49:07.136Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-03-20T00:59:11.168Z'
+  lastmod: '2026-03-20T14:48:39.751Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
   lastmod: '2026-03-18T06:29:36.221Z'

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: a943a6ca877ad336e3bd80ccd0dcafec1ee8d1d546ff02bccee0fc3342514e8c
+fetched_at: 2026-03-21T02:59:51.502232Z
+sha256: d56f9ae512f3292ff6b0dee97546c2f37275282eb6ad88ee63feb9b0d425c314
 ---
 
 > ## Documentation Index
@@ -35,12 +35,12 @@ Think of it like adding an app store: adding the store gives you access to brows
 
 ## Official Anthropic marketplace
 
-The official Anthropic marketplace (`claude-plugins-official`) is automatically available when you start Claude Code. Run `/plugin` and go to the **Discover** tab to browse what's available.
+The official Anthropic marketplace (`claude-plugins-official`) is automatically available when you start Claude Code. Run `/plugin` and go to the **Discover** tab to browse what's available, or view the catalog at [claude.com/plugins](https://claude.com/plugins).
 
-To install a plugin from the official marketplace:
+To install a plugin from the official marketplace, use `/plugin install <name>@claude-plugins-official`. For example, to install the GitHub integration:
 
 ```shell  theme={null}
-/plugin install plugin-name@claude-plugins-official
+/plugin install github@claude-plugins-official
 ```
 
 <Note>

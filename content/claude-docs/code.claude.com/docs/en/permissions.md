@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: a3ef622c7e891c2a0639b1e4979432dee6f363700c8c855ef2f512432197c10a
+fetched_at: 2026-03-21T02:59:51.502232Z
+sha256: ede47dabbb5e229023ae26565fcb5785df5d076c8a6d0d8006dbe634ed99262e
 ---
 
 > ## Documentation Index
@@ -248,7 +248,10 @@ Some settings are only effective in managed settings:
 | `sandbox.network.allowManagedDomainsOnly`      | When `true`, only `allowedDomains` and `WebFetch(domain:...)` allow rules from managed settings are respected. Non-allowed domains are blocked automatically without prompting the user. Denied domains still merge from all sources |
 | `sandbox.filesystem.allowManagedReadPathsOnly` | When `true`, only `allowRead` paths from managed settings are respected. `allowRead` entries from user, project, and local settings are ignored                                                                                      |
 | `strictKnownMarketplaces`                      | Controls which plugin marketplaces users can add. See [managed marketplace restrictions](/en/plugin-marketplaces#managed-marketplace-restrictions)                                                                                   |
-| `allow_remote_sessions`                        | When `true`, allows users to start [Remote Control](/en/remote-control) and [web sessions](/en/claude-code-on-the-web). Defaults to `true`. Set to `false` to prevent remote session access                                          |
+
+<Note>
+  Access to [Remote Control](/en/remote-control) and [web sessions](/en/claude-code-on-the-web) is not controlled by a managed settings key. On Team and Enterprise plans, an admin enables or disables these features in [Claude Code admin settings](https://claude.ai/admin-settings/claude-code).
+</Note>
 
 ## Settings precedence
 

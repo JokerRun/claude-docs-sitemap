@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-03-17T04:21:46.272545Z
-sha256: 5b9110c4e0673ec260e4354d8edb0e54850437c97e1d1579051d2d558f9707d7
+fetched_at: 2026-03-21T02:59:51.502232Z
+sha256: 4fbe28dc73f886b3983d368d33a4e21d0c4965a8806ef0d31145ee6ac7176172
 ---
 
 > ## Documentation Index
@@ -48,7 +48,7 @@ If your devices are enrolled in an MDM or endpoint management solution, endpoint
   </Step>
 
   <Step title="Define your settings">
-    Add your configuration as JSON. All [settings available in `settings.json`](/en/settings#available-settings) are supported, including [managed-only settings](/en/permissions#managed-only-settings) like `disableBypassPermissionsMode`.
+    Add your configuration as JSON. All [settings available in `settings.json`](/en/settings#available-settings) are supported, including [hooks](/en/hooks), [environment variables](/en/env-vars), and [managed-only settings](/en/permissions#managed-only-settings) like `disableBypassPermissionsMode`.
 
     This example enforces a permission deny list and prevents users from bypassing permissions:
 
@@ -65,6 +65,27 @@ If your devices are enrolled in an MDM or endpoint management solution, endpoint
       }
     }
     ```
+
+    Hooks use the same format as in `settings.json`.
+
+    This example runs an audit script after every file edit across the organization:
+
+    ```json  theme={null}
+    {
+      "hooks": {
+        "PostToolUse": [
+          {
+            "matcher": "Edit|Write",
+            "hooks": [
+              { "type": "command", "command": "/usr/local/bin/audit-edit.sh" }
+            ]
+          }
+        ]
+      }
+    }
+    ```
+
+    Because hooks execute shell commands, users see a [security approval dialog](#security-approval-dialogs) before they're applied.
   </Step>
 
   <Step title="Save and deploy">

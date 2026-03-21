@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: dbdd378ebb88a857c0f53cd35beaa0ad96d88cf85e25ba10d8ea3f5fc1d9a0ec
+fetched_at: 2026-03-21T02:59:51.502232Z
+sha256: 48ed00a91032e4e37e31be6d67be1967749d84d69a7714571693241f3089d7ea
 ---
 
 > ## Documentation Index
@@ -233,7 +233,6 @@ Once a plugin is cloned or copied into the local machine, it is copied into the 
 | `url`         | object                          | `url`, `ref?`, `sha?`              | Git URL source                                                                      |
 | `git-subdir`  | object                          | `url`, `path`, `ref?`, `sha?`      | Subdirectory within a git repo. Clones sparsely to minimize bandwidth for monorepos |
 | `npm`         | object                          | `package`, `version?`, `registry?` | Installed via `npm install`                                                         |
-| `pip`         | object                          | `package`, `version?`, `registry?` | Installed via pip                                                                   |
 
 <Note>
   **Marketplace sources vs plugin sources**: These are different concepts that control different things.

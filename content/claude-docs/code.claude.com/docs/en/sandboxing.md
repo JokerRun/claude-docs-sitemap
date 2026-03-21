@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 9459dff96ccb27a3fb0939dacb36ac6c7452eea574317548b40daa89a26fea4f
+fetched_at: 2026-03-21T02:59:51.502232Z
+sha256: 21779615a4ad6bbef9200580ea0fa2bcad087ceefe3fb07b40d5931f00756c3f
 ---
 
 > ## Documentation Index
@@ -153,7 +153,7 @@ The older `//path` prefix for absolute paths still works. If you previously used
 
 You can also deny write or read access using `sandbox.filesystem.denyWrite` and `sandbox.filesystem.denyRead`. These are merged with any paths from `Edit(...)` and `Read(...)` permission rules. To re-allow reading specific paths within a denied region, use `sandbox.filesystem.allowRead`, which takes precedence over `denyRead`. When `allowManagedReadPathsOnly` is enabled in managed settings, only managed `allowRead` entries are respected; user, project, and local `allowRead` entries are ignored.
 
-For example, to block reading from the entire home directory while still allowing reads from the current project:
+For example, to block reading from the entire home directory while still allowing reads from the current project, add this to your project's `.claude/settings.json`:
 
 ```json  theme={null}
 {
@@ -166,6 +166,8 @@ For example, to block reading from the entire home directory while still allowin
   }
 }
 ```
+
+The `.` in `allowRead` resolves to the project root because this configuration lives in project settings. If you placed the same configuration in `~/.claude/settings.json`, `.` would resolve to `~/.claude` instead, and project files would remain blocked by the `denyRead` rule.
 
 <Tip>
   Not all commands are compatible with sandboxing out of the box. Some notes that may help you make the most out of the sandbox:
