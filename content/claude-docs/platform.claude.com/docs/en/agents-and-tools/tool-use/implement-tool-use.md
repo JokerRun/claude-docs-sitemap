@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: cef9f6f26ce3aee4fa710dde4f1b2ad6bad85e8798053c6ffc32e490db0b2b26
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: 43c4a4680025264f18118358fd743dd51e77e84ba71d0fff1f89105a8c8f0ed1
 ---
 
 # How to implement tool use
@@ -291,7 +291,7 @@ class Program
 }
 ```
 
-```go Go hidelines={1..13,-5..-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -353,7 +353,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..13,-1}
+```java Java hidelines={1..13,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
@@ -1805,7 +1805,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..15,-1}
+```java Java nocheck hidelines={1..15,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
@@ -3273,7 +3273,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..13}
+```java Java nocheck hidelines={1..8,10..13}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;
@@ -3594,7 +3594,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..9,-1}
+```java Java hidelines={1..4,7..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;

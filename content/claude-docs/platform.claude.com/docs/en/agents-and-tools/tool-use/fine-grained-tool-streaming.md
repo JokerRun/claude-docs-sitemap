@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: c96f0246e496d5718668129ef66b19eaa53171cb28847e6d43aac823c95b7605
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: 99c4764a0d1f3b71b3bd40b49ee72696528f98c8550af690cbc16bbcfa52f2b6
 ---
 
 # Fine-grained tool streaming
@@ -61,7 +61,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
     }'
   ```
 
-  ```python Python
+  ```python Python hidelines={1..2}
   import anthropic
 
   client = anthropic.Anthropic()
@@ -104,7 +104,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
   print(final_message.usage)
   ```
 
-  ```typescript TypeScript hidelines={1..4}
+  ```typescript TypeScript hidelines={1..2}
   import Anthropic from "@anthropic-ai/sdk";
 
   const anthropic = new Anthropic();

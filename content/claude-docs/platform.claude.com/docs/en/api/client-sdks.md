@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/client-sdks
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: 4f975df874b9e48d43a7da2afe254ab415fc2a9856c887c5069558e0a9ea2683
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: 10cb253283f257ac0348c448aa4ba9ef4ebb291f6f3de9e451d46571f027f464
 ---
 
 # Client SDKs
@@ -103,7 +103,7 @@ message = client.messages.create(
 print(message.content)
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -131,7 +131,7 @@ var message = await client.Messages.Create(new MessageCreateParams
 Console.WriteLine(message.Content);
 ```
 
-```go Go hidelines={1..10,22}
+```go Go hidelines={1..2,10..11,-1}
 package main
 
 import (
@@ -159,7 +159,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..8,-1}
+```java Java hidelines={6..8,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.Message;

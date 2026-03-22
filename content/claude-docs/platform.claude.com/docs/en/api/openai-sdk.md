@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/openai-sdk
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 9f92c2de16a795a2deabc9c0186371687e1b90e982d8134319e6bfdca3f55a8f
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: d1763cb7d8e83847f9790352e65c133409d22ec420b58dbb92a8fd6516500e41
 ---
 
 # OpenAI SDK compatibility
@@ -105,7 +105,7 @@ You can enable [extended thinking](/docs/en/build-with-claude/extended-thinking)
 
 <CodeGroup>
     
-    ```python Python nocheck hidelines={1..8}
+    ```python Python nocheck hidelines={1..9}
     import os
 
     from openai import OpenAI

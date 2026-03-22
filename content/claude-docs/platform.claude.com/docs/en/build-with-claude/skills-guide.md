@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: 8d25823432c1b57e2ef869e39332e42bd92bf0f0ecb9f44ba573d293a654672d
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: c31b4b33015a86d176fb42d07177d983f8c0bff962be1f3a0c2f415a0a3e16ff
 ---
 
 # Using Agent Skills with the API
@@ -117,7 +117,7 @@ curl https://api.anthropic.com/v1/messages \
   }'
 ```
 
-```python Python nocheck
+```python Python nocheck hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -136,7 +136,7 @@ response = client.beta.messages.create(
 )
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -222,7 +222,7 @@ public class Program
 }
 ```
 
-```go Go hidelines={1..13,-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -268,7 +268,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..10,-1}
+```java Java hidelines={1..4,8..10,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -303,7 +303,7 @@ public class Main {
 }
 ```
 
-```php PHP
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -334,7 +334,7 @@ $message = $client->beta->messages->create(
 echo $message;
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -426,7 +426,7 @@ echo "Downloaded: $FILENAME"
 </Tab>
 <Tab title="Python">
 
-```python Python nocheck
+```python Python nocheck hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -479,7 +479,7 @@ for file_id in extract_file_ids(response):
 </Tab>
 <Tab title="TypeScript">
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -643,7 +643,7 @@ class Program
 </Tab>
 <Tab title="Go">
 
-```go Go hidelines={1..15,-1}
+```go Go hidelines={1..15,72..73}
 package main
 
 import (
@@ -736,7 +736,7 @@ func extractFileIDs(response *anthropic.BetaMessage) []string {
 </Tab>
 <Tab title="Java">
 
-```java Java nocheck hidelines={1..17,-1}
+```java Java nocheck hidelines={1..4,8,10..17,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -809,7 +809,7 @@ public class SkillsFileDownload {
 The PHP SDK doesn't include a file download method. Use `retrieveMetadata()` for file info, then download the file content via the REST API.
 </Note>
 
-```php PHP nocheck
+```php PHP nocheck hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -885,7 +885,7 @@ foreach (extractFileIds($response) as $fileId) {
 </Tab>
 <Tab title="Ruby">
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -967,7 +967,7 @@ curl -X DELETE "https://api.anthropic.com/v1/files/$FILE_ID" \
   -H "anthropic-beta: files-api-2025-04-14"
 ```
 
-```python Python nocheck
+```python Python nocheck hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -987,7 +987,7 @@ for file in files.data:
 client.beta.files.delete(file_id=file_id, betas=["files-api-2025-04-14"])
 ```
 
-```typescript TypeScript nocheck hidelines={1..3}
+```typescript TypeScript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -1043,7 +1043,7 @@ class Program
 }
 ```
 
-```go Go nocheck hidelines={1..12,-1}
+```go Go nocheck hidelines={1..11,-1}
 package main
 
 import (
@@ -1086,7 +1086,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..7,-1}
+```java Java nocheck hidelines={1..2,5..7,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.files.FileMetadata;
@@ -1113,7 +1113,7 @@ public class FileManagement {
 }
 ```
 
-```php PHP hidelines={1..5} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -1143,7 +1143,7 @@ $client->beta->files->delete(
 );
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1337,7 +1337,7 @@ public class Program
 }
 ```
 
-```go Go nocheck hidelines={1..13,-1}
+```go Go nocheck hidelines={1..11,-1}
 package main
 
 import (
@@ -1401,7 +1401,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..10,-1}
+```java Java hidelines={1..4,8..10,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -1457,7 +1457,7 @@ public class ContainerReuse {
 }
 ```
 
-```php PHP hidelines={1..6}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -1506,7 +1506,7 @@ $response2 = $client->beta->messages->create(
 echo $response2;
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1666,7 +1666,7 @@ for i in range(max_retries):
     )
 ```
 
-```typescript TypeScript nocheck hidelines={1..3}
+```typescript TypeScript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -1776,7 +1776,7 @@ for (int i = 0; i < maxRetries; i++)
 }
 ```
 
-```go Go nocheck hidelines={1..13,-1}
+```go Go nocheck hidelines={1..11,-1}
 package main
 
 import (
@@ -1847,7 +1847,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..14,-1}
+```java Java nocheck hidelines={1..5,9..10,12..14,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -1920,7 +1920,7 @@ public class Main {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -1976,7 +1976,7 @@ for ($i = 0; $i < $maxRetries; $i++) {
 }
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -2205,7 +2205,7 @@ public class Program
 }
 ```
 
-```go Go nocheck hidelines={1..13,-1}
+```go Go nocheck hidelines={1..11,-1}
 package main
 
 import (
@@ -2261,7 +2261,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..11,-1}
+```java Java nocheck hidelines={1..4,8..11,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -2309,7 +2309,7 @@ public class SkillsExample {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -2350,7 +2350,7 @@ $message = $client->beta->messages->create(
 echo $message;
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -2409,7 +2409,7 @@ curl -X POST "https://api.anthropic.com/v1/skills" \
   -F "files[]=@financial_skill/analyze.py;filename=financial_skill/analyze.py"
 ```
 
-```python Python nocheck
+```python Python nocheck hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -2589,7 +2589,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..10,-1}
+```java Java nocheck hidelines={1..2,5..10,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.skills.SkillCreateParams;
@@ -2627,7 +2627,7 @@ public class SkillCreate {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -2657,7 +2657,7 @@ echo "Created skill: {$skill->id}\n";
 echo "Latest version: {$skill->latestVersion}\n";
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -2776,7 +2776,7 @@ class Program
 }
 ```
 
-```go Go hidelines={1..13,-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -2816,7 +2816,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..8,-1}
+```java Java hidelines={1..2,6..8,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.skills.SkillListParams;
@@ -2849,7 +2849,7 @@ public class ListSkills {
 }
 ```
 
-```php PHP hidelines={1..6}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -2872,7 +2872,7 @@ $customSkills = $client->beta->skills->list(
 );
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -2982,7 +2982,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..7,-1}
+```java Java nocheck hidelines={1..2,5..7,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.skills.SkillRetrieveParams;
@@ -3006,7 +3006,7 @@ public class RetrieveSkill {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -3023,7 +3023,7 @@ echo "Latest version: " . $skill->latestVersion . "\n";
 echo "Created: " . $skill->createdAt . "\n";
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -3072,7 +3072,7 @@ client.beta.skills.delete(
 )
 ```
 
-```typescript TypeScript nocheck hidelines={1..4}
+```typescript TypeScript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -3180,7 +3180,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..9,-1}
+```java Java nocheck hidelines={1..2,7..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.skills.SkillDeleteParams;
@@ -3221,7 +3221,7 @@ public class DeleteSkill {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -3249,7 +3249,7 @@ $client->beta->skills->delete(
 );
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -3529,7 +3529,7 @@ class Program
 }
 ```
 
-```go Go nocheck hidelines={1..13,-1}
+```go Go nocheck hidelines={1..13,87..88}
 package main
 
 import (
@@ -3627,7 +3627,7 @@ func mustOpen(path string) *os.File {
 }
 ```
 
-```java Java nocheck hidelines={1..13,-1}
+```java Java nocheck hidelines={1..4,10..13,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -3695,7 +3695,7 @@ public class SkillVersioning {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -3744,7 +3744,7 @@ $latestResponse = $client->beta->messages->create(
 echo $latestResponse;
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -3961,7 +3961,7 @@ const response = await client.beta.messages.create({
 });
 ```
 
-```csharp C# nocheck hidelines={1..6,-1}
+```csharp C# nocheck hidelines={1..7}
 using System;
 using System.Threading.Tasks;
 using Anthropic;
@@ -4023,7 +4023,7 @@ var message = await client.Beta.Messages.Create(parameters);
 Console.WriteLine(message);
 ```
 
-```go Go nocheck hidelines={1..13,-1}
+```go Go nocheck hidelines={1..11,-1}
 package main
 
 import (
@@ -4078,7 +4078,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..11,-1}
+```java Java nocheck hidelines={1..4,8..11,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -4125,7 +4125,7 @@ public class CustomSkillExample {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -4156,7 +4156,7 @@ $message = $client->beta->messages->create(
 echo $message->content[0]->text;
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -4424,7 +4424,7 @@ public class Program
 }
 ```
 
-```go Go hidelines={1..13,-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -4509,7 +4509,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..11,-1}
+```java Java hidelines={1..4,8..11,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -4577,7 +4577,7 @@ public class SkillsCaching {
 }
 ```
 
-```php PHP hidelines={1..6}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -4632,7 +4632,7 @@ $response2 = $client->beta->messages->create(
 echo $response2;
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -4684,7 +4684,7 @@ Handle Skill-related errors gracefully:
 
 <CodeGroup>
 
-```python Python nocheck
+```python Python nocheck hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -4831,7 +4831,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..10,-1}
+```java Java nocheck hidelines={1..4,8..10,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -4874,7 +4874,7 @@ public class SkillErrorHandling {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -4912,7 +4912,7 @@ try {
 }
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/typescript
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: 84569923026d80ab37c59c6cdfb1abbd6e0550847b0f38a02c8d68690bdbd989
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: 17c4d30b92537ff281a95931402c2ca5d45c09f4812bddf9b922a8a2855738f1
 ---
 
 # TypeScript SDK
@@ -95,7 +95,7 @@ console.log(message.usage);
 
 The SDK provides support for streaming responses using Server Sent Events (SSE).
 
-```typescript hidelines={1..4}
+```typescript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -117,7 +117,7 @@ If you need to cancel a stream, you can `break` from the loop or call `stream.co
 
 This library provides several conveniences for streaming messages, for example:
 
-```typescript hidelines={1..4}
+```typescript hidelines={1..5,-3..-1}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -554,7 +554,7 @@ If you need to, you can override it by setting default headers on a per-request 
 
 Be aware that doing so may result in incorrect types and other unexpected or undefined behavior in the SDK.
 
-```typescript nocheck hidelines={1..4}
+```typescript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -579,7 +579,7 @@ This method returns as soon as the headers for a successful response are receive
 You can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.
 Unlike `.asResponse()` this method consumes the body, returning once it is parsed.
 
-```typescript hidelines={1..2}
+```typescript
 const client = new Anthropic();
 
 const response = await client.messages
@@ -617,7 +617,7 @@ The log level can be configured in two ways:
 1. Via the `ANTHROPIC_LOG` environment variable
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
-```typescript
+```typescript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -714,7 +714,7 @@ globalThis.fetch = fetch;
 
 Or pass it to the client:
 
-```typescript nocheck
+```typescript nocheck hidelines={1}
 import Anthropic from "@anthropic-ai/sdk";
 import fetch from "my-fetch";
 
@@ -790,7 +790,7 @@ You can access most beta API features through the beta property of the client. T
 
 For example, to use the [Files API](/docs/en/build-with-claude/files):
 
-```typescript nocheck hidelines={1..3}
+```typescript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();

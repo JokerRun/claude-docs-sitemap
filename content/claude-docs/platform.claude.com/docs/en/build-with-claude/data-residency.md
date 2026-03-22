@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/data-residency
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: f886ba9509226aa36fc44ee1ba40b7f1afbcce5c2caded78ae4f0eae267671ec
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: 0977b33a24b1eb3c645ef26215d5057aebcae8da3c0b1b14a6cbc5e8b8517076
 ---
 
 # Data residency
@@ -44,7 +44,7 @@ curl https://api.anthropic.com/v1/messages \
     }'
 ```
 
-```python Python
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -63,7 +63,7 @@ print(response.content[0].text)
 print(f"Inference geo: {response.usage.inference_geo}")
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();

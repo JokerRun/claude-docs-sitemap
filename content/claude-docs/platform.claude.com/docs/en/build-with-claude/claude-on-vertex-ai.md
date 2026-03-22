@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: 25e7ac368754838924cabaf7e69d1a66e24755ab8910c68c30874449067a4a9f
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: b66629971889f227e3aab53794e0f077236b91efb57796ce9e0558d0c4942d58
 ---
 
 # Claude on Vertex AI
@@ -63,7 +63,7 @@ implementation("com.anthropic:anthropic-java-vertex:2.18.0")
 </dependency>
 ```
 
-```java Java nocheck hidelines={1..9,-1}
+```java Java nocheck hidelines={7..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.vertex.backends.VertexBackend;
@@ -181,7 +181,7 @@ The following examples show how to generate text from Claude on Vertex AI:
   ```
 
   
-  ```typescript TypeScript nocheck hidelines={1..2}
+  ```typescript TypeScript nocheck
   import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
   const projectId = "MY_PROJECT_ID";
@@ -236,7 +236,7 @@ The following examples show how to generate text from Claude on Vertex AI:
   ```
 
   
-  ```go Go nocheck hidelines={1..11,-1}
+  ```go Go nocheck hidelines={1..2,10..11,-1}
   package main
 
   import (
@@ -268,7 +268,7 @@ The following examples show how to generate text from Claude on Vertex AI:
   ```
 
   
-  ```java Java nocheck hidelines={1..9,-1}
+  ```java Java nocheck hidelines={6..9,-2..}
   import com.anthropic.client.AnthropicClient;
   import com.anthropic.client.okhttp.AnthropicOkHttpClient;
   import com.anthropic.models.messages.Message;
@@ -422,7 +422,7 @@ message = client.messages.create(
 print(message)
 ```
 
-```typescript TypeScript nocheck hidelines={1..2}
+```typescript TypeScript nocheck
 import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 const projectId = "MY_PROJECT_ID";
@@ -469,7 +469,7 @@ var message = await client.Messages.Create(parameters);
 Console.WriteLine(message);
 ```
 
-```go Go nocheck hidelines={1..10,-1}
+```go Go nocheck hidelines={1..2,9..10,-1}
 package main
 
 import (
@@ -496,7 +496,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..5}
+```java Java nocheck
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;
@@ -584,7 +584,7 @@ message = client.messages.create(
 print(message)
 ```
 
-```typescript TypeScript nocheck hidelines={1..2}
+```typescript TypeScript nocheck
 import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 const projectId = "MY_PROJECT_ID";
@@ -631,7 +631,7 @@ var message = await client.Messages.Create(parameters);
 Console.WriteLine(message);
 ```
 
-```go Go nocheck hidelines={1..10,-1}
+```go Go nocheck hidelines={1..2,9..10,-1}
 package main
 
 import (
@@ -658,7 +658,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..5}
+```java Java nocheck
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;

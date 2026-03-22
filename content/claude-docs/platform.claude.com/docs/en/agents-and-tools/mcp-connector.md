@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: c47a3efb3e462443ae01e02bf35fa63c4d4a2d3bbcafe13433b1670aeec4579a
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: 4553b142138dfd4ab66b4cb6ffbcd904e2fa5e55cfa9661b81b4f329cf2932ff
 ---
 
 # MCP connector
@@ -76,7 +76,7 @@ curl https://api.anthropic.com/v1/messages \
   }'
 ```
 
-```python Python nocheck
+```python Python nocheck hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -98,7 +98,7 @@ response = client.beta.messages.create(
 )
 ```
 
-```typescript TypeScript nocheck hidelines={1..4}
+```typescript TypeScript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -173,7 +173,7 @@ class Program
 }
 ```
 
-```go Go nocheck hidelines={1..13,-5..-1}
+```go Go nocheck hidelines={1..11,-1}
 package main
 
 import (
@@ -216,7 +216,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..9,-1}
+```java Java nocheck hidelines={1..2,4,6..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.BetaMcpToolset;
@@ -249,7 +249,7 @@ public class Main {
 }
 ```
 
-```php PHP nocheck
+```php PHP nocheck hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -282,7 +282,7 @@ $message = $client->beta->messages->create(
 echo $message;
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new

@@ -19,7 +19,7 @@
   lastmod: '2026-03-20T23:15:25.002Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
-  lastmod: '2026-03-20T22:05:18.431Z'
+  lastmod: '2026-03-21T21:07:16.779Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels-reference
   lastmod: '2026-03-20T22:05:18.428Z'
@@ -64,7 +64,7 @@
   lastmod: '2026-03-20T20:54:26.130Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-03-20T22:00:54.058Z'
+  lastmod: '2026-03-21T21:08:03.878Z'
 - source: code
   loc: https://code.claude.com/docs/en/fast-mode
   lastmod: '2026-03-16T20:14:45.283Z'
@@ -73,7 +73,7 @@
   lastmod: '2026-03-20T14:48:39.746Z'
 - source: code
   loc: https://code.claude.com/docs/en/github-actions
-  lastmod: '2026-03-09T19:00:05.852Z'
+  lastmod: '2026-03-21T17:31:55.749Z'
 - source: code
   loc: https://code.claude.com/docs/en/gitlab-ci-cd
   lastmod: '2026-02-26T20:21:09.408Z'
@@ -121,7 +121,7 @@
   lastmod: '2026-03-20T00:59:11.098Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
-  lastmod: '2026-02-19T01:49:45.040Z'
+  lastmod: '2026-03-21T21:08:03.883Z'
 - source: code
   loc: https://code.claude.com/docs/en/network-config
   lastmod: '2026-03-17T20:27:48.659Z'
@@ -142,7 +142,7 @@
   lastmod: '2026-03-20T00:59:11.105Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins-reference
-  lastmod: '2026-03-18T22:47:11.869Z'
+  lastmod: '2026-03-21T21:08:03.882Z'
 - source: code
   loc: https://code.claude.com/docs/en/quickstart
   lastmod: '2026-03-14T02:59:58.913Z'
@@ -163,7 +163,7 @@
   lastmod: '2026-03-20T14:48:39.748Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-03-20T22:00:54.060Z'
+  lastmod: '2026-03-21T21:08:03.880Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-03-13T16:19:19.177Z'
@@ -181,7 +181,7 @@
   lastmod: '2026-03-20T14:48:39.751Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
-  lastmod: '2026-03-18T06:29:36.221Z'
+  lastmod: '2026-03-21T21:08:03.873Z'
 - source: code
   loc: https://code.claude.com/docs/en/third-party-integrations
   lastmod: '2026-03-13T21:58:58.875Z'

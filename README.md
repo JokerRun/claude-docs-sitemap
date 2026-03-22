@@ -29,7 +29,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/authentication | 2026-03-18 |  |
 | code | https://code.claude.com/docs/en/best-practices | 2026-03-18 |  |
 | code | https://code.claude.com/docs/en/changelog | 2026-03-20 |  |
-| code | https://code.claude.com/docs/en/channels | 2026-03-20 |  |
+| code | https://code.claude.com/docs/en/channels | 2026-03-21 |  |
 | code | https://code.claude.com/docs/en/channels-reference | 2026-03-20 |  |
 | code | https://code.claude.com/docs/en/checkpointing | 2026-03-13 |  |
 | code | https://code.claude.com/docs/en/chrome | 2026-02-14 |  |

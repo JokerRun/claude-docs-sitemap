@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 21a20b1b92a0fe4451c7f8f323f6cab3b38c505cd9470dbb30f7918491c6615d
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: d81cbaf363ca69a2763b17ae54a7f49c61e0347d40f24c2798c1211b5a8afc9d
 ---
 
 > ## Documentation Index
@@ -65,6 +65,14 @@ Kitty and Ghostty support desktop notifications without additional configuration
 
 If notifications aren't appearing, verify that your terminal app has notification permissions in your OS settings.
 
+When running Claude Code inside tmux, notifications and the [terminal progress bar](/en/settings#global-config-settings) only reach the outer terminal, such as iTerm2, Kitty, or Ghostty, if you enable passthrough in your tmux configuration:
+
+```
+set -g allow-passthrough on
+```
+
+Without this setting, tmux intercepts the escape sequences and they do not reach the terminal application.
+
 Other terminals, including the default macOS Terminal, do not support native notifications. Use [notification hooks](/en/hooks#notification) instead.
 
 #### Notification hooks
@@ -81,7 +89,7 @@ When working with extensive code or long instructions:
 
 ### Vim Mode
 
-Claude Code supports a subset of Vim keybindings that can be enabled with `/vim` or configured via `/config`.
+Claude Code supports a subset of Vim keybindings that can be enabled with `/vim` or configured via `/config`. To set the mode directly in your config file, set the [`editorMode`](/en/settings#global-config-settings) global config key to `"vim"` in `~/.claude.json`.
 
 The supported subset includes:
 

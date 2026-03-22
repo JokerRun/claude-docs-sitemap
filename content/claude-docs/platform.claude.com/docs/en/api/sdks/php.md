@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/php
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: a353f06f255a2975b765866d6027e68183a8241f7b403c8c126c73684d7d2011
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: d0496b4436ad3fd6619b40d89d196dce45fa829257e9bd00bc4658f6987cb4ec
 ---
 
 # PHP SDK
@@ -35,7 +35,7 @@ PHP 8.1.0 or higher.
 
 This library uses named parameters to specify optional arguments. Parameters with a default value must be set by name.
 
-```php
+```php hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -63,7 +63,7 @@ However, builders are also provided `(new Base64ImageSource)->withData("U3RhaW5s
 
 The SDK provides support for streaming responses using Server-Sent Events (SSE).
 
-```php
+```php hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -87,7 +87,7 @@ foreach ($stream as $message) {
 
 When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Anthropic\Core\Exceptions\APIException` is thrown:
 
-```php hidelines={2..3,8..9}
+```php hidelines={2..3,7..9}
 <?php
 use Anthropic\Client;
 
@@ -138,7 +138,7 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 
 You can use the `maxRetries` option to configure or disable this:
 
-```php
+```php hidelines={1..3,5}
 <?php
 
 use Anthropic\Client;
@@ -162,7 +162,7 @@ List methods in the Claude API are paginated.
 
 This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
 
-```php
+```php hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -195,7 +195,7 @@ You can send undocumented parameters to any endpoint, and read undocumented resp
 The `extra*` parameters of the same name override the documented parameters.
 </Note>
 
-```php hidelines={2..3,6..7}
+```php hidelines={2..3,5..7}
 <?php
 use Anthropic\Client;
 
@@ -223,7 +223,7 @@ If you want to explicitly send an extra param, you can do so with the `extraQuer
 
 To make requests to undocumented endpoints while retaining the benefit of auth, retries, and so on, you can make requests using `client->request`, like so:
 
-```php hidelines={2..4} nocheck
+```php hidelines={1..2} nocheck
 <?php
 use Anthropic\Client;
 $client = new Client();

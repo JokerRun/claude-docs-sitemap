@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-03-10T04:12:00.389607Z
-sha256: 62de9d72abe5681f20ffdc2495a69b053fe91b1919806c3aa17410afaa52584e
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: fde9ce1ce92685ff0e58df5443cc6b09cc80f0434ed5b154063f57793572f1c3
 ---
 
 # Context editing
@@ -185,7 +185,7 @@ var response = await client.Beta.Messages.Create(parameters);
 Console.WriteLine(response);
 ```
 
-```go Go hidelines={1..13,-5..-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -224,7 +224,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..13,-1}
+```java Java hidelines={1..4,9..12,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -256,7 +256,7 @@ public class WebSearchExample {
 }
 ```
 
-```php PHP
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -283,7 +283,7 @@ $response = $client->beta->messages->create(
 echo $response;
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -534,7 +534,7 @@ class Program
 }
 ```
 
-```go Go hidelines={1..13,-5..-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -589,7 +589,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..16,-1}
+```java Java nocheck hidelines={1..4,13..16,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -641,7 +641,7 @@ public class ContextManagementExample {
 }
 ```
 
-```php PHP hidelines={1..6}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -695,7 +695,7 @@ $message = $client->beta->messages->create(
 echo $message;
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -876,7 +876,7 @@ class Program
 }
 ```
 
-```go Go nocheck hidelines={1..13,-5..-1}
+```go Go nocheck hidelines={1..11,-1}
 package main
 
 import (
@@ -915,7 +915,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..13,-1}
+```java Java nocheck hidelines={1..4,10..13,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -953,7 +953,7 @@ public class Main {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -985,7 +985,7 @@ $message = $client->beta->messages->create(
 echo $message;
 ```
 
-```ruby Ruby hidelines={4}
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1178,7 +1178,7 @@ public class Program
 }
 ```
 
-```go Go nocheck hidelines={1..13,-5..-1}
+```go Go nocheck hidelines={1..11,-1}
 package main
 
 import (
@@ -1230,7 +1230,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..16,-1}
+```java Java nocheck hidelines={1..4,13..16,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -1279,7 +1279,7 @@ public class ContextManagementExample {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -1320,7 +1320,7 @@ $message = $client->beta->messages->create(
 echo $message;
 ```
 
-```ruby Ruby hidelines={4}
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1569,7 +1569,7 @@ Console.WriteLine($"After clearing: {response.InputTokens}");
 Console.WriteLine($"Savings: {(response.ContextManagement?.OriginalInputTokens ?? 0) - response.InputTokens} tokens");
 ```
 
-```go Go hidelines={1..11,-8..-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -1616,7 +1616,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..13,-1}
+```java Java hidelines={1..2,10..13,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.BetaMessageTokensCount;
@@ -1657,7 +1657,7 @@ public class TokenCountExample {
 }
 ```
 
-```php PHP hidelines={1..6}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -1692,7 +1692,7 @@ echo "After clearing: " . $response->inputTokens . "\n";
 echo "Savings: " . ($response->contextManagement->originalInputTokens - $response->inputTokens) . " tokens\n";
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1832,7 +1832,7 @@ class Program
 }
 ```
 
-```go Go nocheck hidelines={1..13,-5..-1}
+```go Go nocheck hidelines={1..11,-1}
 package main
 
 import (
@@ -1867,7 +1867,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..12,-1}
+```java Java nocheck hidelines={1..4,9..12,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -1898,7 +1898,7 @@ public class Main {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -1926,7 +1926,7 @@ $response = $client->beta->messages->create(
 echo $response;
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1982,7 +1982,7 @@ Add `compaction_control` to your `tool_runner` call:
 
 <CodeGroup>
 
-```python Python nocheck hidelines={1..4}
+```python Python nocheck hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -2006,7 +2006,7 @@ for message in runner:
 final = runner.until_done()
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -2076,7 +2076,7 @@ public class Program
 }
 ```
 
-```go Go nocheck hidelines={1..13,-6..-1}
+```go Go nocheck hidelines={1..11,-1}
 package main
 
 import (
@@ -2118,7 +2118,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..12,-1}
+```java Java nocheck hidelines={1..4,8,10..12,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -2155,7 +2155,7 @@ public class CompactionExample {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -2188,7 +2188,7 @@ $response = $client->beta->messages->create(
 echo "Tokens used: " . $response->usage->inputTokens . "\n";
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -2510,7 +2510,7 @@ class CompactionLogging
 }
 ```
 
-```go Go nocheck hidelines={1..13,-1}
+```go Go nocheck hidelines={1..13,19..20}
 package main
 
 import (
@@ -2565,7 +2565,7 @@ func chat(client anthropic.Client, messages *[]anthropic.BetaMessageParam, userM
 }
 ```
 
-```java Java nocheck hidelines={1..13,-1}
+```java Java nocheck hidelines={1..5,8..13,25..26,-1}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -2623,7 +2623,7 @@ public class CompactionLogging {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..5} nocheck
 <?php
 
 

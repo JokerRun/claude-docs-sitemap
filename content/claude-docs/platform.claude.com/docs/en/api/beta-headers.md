@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: 9f39bb5973231d67eb3c3795e975c0fa7ed161631c5693171b946cdc9d630638
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: acbea77d44d7ffdff6d46fd8292d8db11dfd8323ed3ae8c7843c66fcc6eb4977
 ---
 
 # Beta headers
@@ -34,7 +34,7 @@ When using the SDK, you can specify beta headers in the request options:
 
 <CodeGroup>
 
-```python Python
+```python Python hidelines={1..2}
 from anthropic import Anthropic
 
 client = Anthropic()
@@ -47,7 +47,7 @@ response = client.beta.messages.create(
 )
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();

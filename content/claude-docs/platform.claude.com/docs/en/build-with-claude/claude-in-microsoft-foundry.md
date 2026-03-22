@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: 9fcd5e6e5e2e018de35e99df33c9d6c68e2a793c4f1cf7fabf57131e5370c805
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: ac3627d650f90e5ffb06833ef57d3c849f021d1594902931fc0acc2b823b7f3f
 ---
 
 # Claude in Microsoft Foundry
@@ -224,7 +224,7 @@ Console.WriteLine(
 
 <Tab title="Java">
 
-```java Java nocheck hidelines={1..5}
+```java Java nocheck
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.foundry.backends.FoundryBackend;
@@ -400,7 +400,7 @@ Console.WriteLine(
 
 <Tab title="Java">
 
-```java Java nocheck hidelines={1..4,7..8}
+```java Java nocheck hidelines={1..2,4,8}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.foundry.backends.FoundryBackend;

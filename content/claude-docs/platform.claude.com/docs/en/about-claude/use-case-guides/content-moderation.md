@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 5d75fc8bc13ed4e2be104dc11dc3309a106a5303421cc8bbde0e10834cb16ebf
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: e79bc43acaa889c4955f0c913b3cf8bacb9e2d52d788a3ceedbe9e0aeb9d5691
 ---
 
 # Content moderation
@@ -120,7 +120,7 @@ When selecting a model, it’s important to consider the size of your data. If c
 
 In order to use Claude for content moderation, Claude must understand the moderation requirements of your application. Let’s start by writing a prompt that allows you to define your moderation needs:
 
-```python nocheck
+```python nocheck hidelines={1}
 import anthropic
 import json
 
@@ -197,7 +197,7 @@ Content moderation is a classification problem. Thus, you can use the same techn
 
 One additional consideration is that instead of treating content moderation as a binary classification problem, you may instead create multiple categories to represent various risk levels. Creating multiple risk levels allows you to adjust the aggressiveness of your moderation. For example, you might want to automatically block user queries that are deemed high risk, while users with many medium risk queries are flagged for human review.
 
-```python nocheck hidelines={1..6}
+```python nocheck hidelines={1}
 import anthropic
 import json
 
@@ -296,7 +296,7 @@ In complex scenarios, it may be helpful to consider additional strategies to imp
 
 In addition to listing the unsafe categories in the prompt, further improvements can be made by providing definitions and phrases related to each category.
 
-```python nocheck hidelines={1..6}
+```python nocheck hidelines={1}
 import anthropic
 import json
 
@@ -394,7 +394,7 @@ Notably, the definition for the `Specialized Advice` category now specifies the 
 
 To reduce costs in situations where real-time moderation isn't necessary, consider moderating messages in batches. Include multiple messages within the prompt's context, and ask Claude to assess which messages should be moderated.
 
-```python nocheck hidelines={1..6}
+```python nocheck hidelines={1}
 import anthropic
 import json
 

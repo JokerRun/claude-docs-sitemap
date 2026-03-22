@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: e54019feef6cde25292dfae51277ebe05218ab8d392dedd32d4522a97a217a34
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: 639cd3c2d4af5d93fc62eccef51332b8776e28c5af1361acc09650b0fdbe6778
 ---
 
 # Claude on Amazon Bedrock
@@ -68,7 +68,7 @@ implementation("com.anthropic:anthropic-java-bedrock:2.18.0")
 </dependency>
 ```
 
-```java Java nocheck hidelines={1..9,-1}
+```java Java nocheck hidelines={7..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.bedrock.backends.BedrockBackend;
@@ -244,7 +244,7 @@ The following examples show how to print a list of all the Claude models availab
   ```
 
   
-  ```java Java nocheck hidelines={1..8,-1}
+  ```java Java nocheck hidelines={6..8,-2..}
   import software.amazon.awssdk.regions.Region;
   import software.amazon.awssdk.services.bedrock.BedrockClient;
   import software.amazon.awssdk.services.bedrock.model.ListFoundationModelsRequest;
@@ -339,7 +339,7 @@ The following examples show how to generate text from Claude on Bedrock:
   ```
 
   
-  ```typescript TypeScript nocheck hidelines={1..21}
+  ```typescript TypeScript nocheck
   import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 
   const client = new AnthropicBedrock({
@@ -428,7 +428,7 @@ The following examples show how to generate text from Claude on Bedrock:
   ```
 
   
-  ```java Java nocheck hidelines={1..9,-1}
+  ```java Java nocheck hidelines={6..9,-2..}
   import com.anthropic.bedrock.backends.BedrockBackend;
   import com.anthropic.client.AnthropicClient;
   import com.anthropic.client.okhttp.AnthropicOkHttpClient;
@@ -590,7 +590,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..5}
+```java Java nocheck
 import com.anthropic.bedrock.backends.BedrockBackend;
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
@@ -702,7 +702,7 @@ message = client.messages.create(
 )
 ```
 
-```typescript TypeScript nocheck hidelines={1..6}
+```typescript TypeScript nocheck
 import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 
 const client = new AnthropicBedrock({
@@ -735,7 +735,7 @@ var response = await client.Messages.Create(new MessageCreateParams
 });
 ```
 
-```go Go hidelines={1..10,-1}
+```go Go hidelines={1..2,9..10,-1}
 package main
 
 import (
@@ -762,7 +762,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..5}
+```java Java nocheck
 import com.anthropic.bedrock.backends.BedrockBackend;
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
@@ -834,7 +834,7 @@ message = client.messages.create(
 )
 ```
 
-```typescript TypeScript nocheck hidelines={1..7}
+```typescript TypeScript nocheck
 import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 
 const client = new AnthropicBedrock({
@@ -866,7 +866,7 @@ var response = await client.Messages.Create(new MessageCreateParams
 });
 ```
 
-```go Go hidelines={1..10,-1}
+```go Go hidelines={1..2,9..10,-1}
 package main
 
 import (
@@ -894,7 +894,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..5}
+```java Java nocheck
 import com.anthropic.bedrock.backends.BedrockBackend;
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;

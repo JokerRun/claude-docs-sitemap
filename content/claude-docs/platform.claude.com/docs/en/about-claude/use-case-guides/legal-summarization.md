@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 1fe120a03ff0a7a698b56aac3e03122b395b627e6b69b6b97ad4e3248cc56839
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: 56eadda92a6ff3441bcda9cbec2710a1f8aabbf21aa7f3954503177f6b35da53
 ---
 
 # Legal summarization
@@ -159,7 +159,7 @@ Claude can adapt to various summarization styles. You can change the details of 
 
 Here’s an example of how to create a prompt that ensures the generated summaries follow a consistent structure when analyzing sublease agreements:
 
-```python nocheck hidelines={1..4,-1}
+```python nocheck hidelines={1..2}
 import anthropic
 
 # Initialize the Anthropic client
@@ -259,7 +259,7 @@ Legal summarization often involves handling long documents or many related docum
 
 Here's an example of how to perform meta-summarization:
 
-```python nocheck hidelines={1..4,-1}
+```python nocheck hidelines={1..2}
 import anthropic
 
 # Initialize the Anthropic client

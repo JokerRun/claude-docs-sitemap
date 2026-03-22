@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-03-10T04:12:00.389607Z
-sha256: 715e4400c384576ab1c340a7b11180bbcc15f06fc43a9d3f5701734faaa836dc
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: 2ea7cf2797f0e71ba68e89886d62a264fdaba551b4b5c336444c192eba2cef9d
 ---
 
 # Memory tool
@@ -152,7 +152,7 @@ curl https://api.anthropic.com/v1/messages \
     }'
 ```
 
-```python Python
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -257,7 +257,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..9,-1}
+```java Java hidelines={1..2,4..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MemoryTool20250818;
@@ -282,7 +282,7 @@ public class MemoryToolExample {
 }
 ```
 
-```php PHP
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -307,7 +307,7 @@ $message = $client->messages->create(
 );
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -732,7 +732,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..12,-1}
+```java Java nocheck hidelines={1..2,7..12,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.AnthropicBeta;
@@ -767,7 +767,7 @@ public class ContextManagementExample {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -803,7 +803,7 @@ $message = $client->beta->messages->create(
 );
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new

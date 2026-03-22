@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/migration-guide
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: eb5780cd8fcdc271332429ae12a1d27ce6e2683a4ed3bb56039b2c4a79ff6b36
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: a20ca7ed744659c947887b6b0d8d4f8d2764601c4db940aef1b838cd623d5ba7
 ---
 
 # Migration guide
@@ -57,7 +57,7 @@ These are not required but will improve your experience:
    )
    ```
 
-   ```typescript TypeScript hidelines={1..4}
+   ```typescript TypeScript hidelines={1..2}
    import Anthropic from "@anthropic-ai/sdk";
 
    const client = new Anthropic();
@@ -96,7 +96,7 @@ These are not required but will improve your experience:
    }
    ```
 
-   ```go Go hidelines={1..13,-1}
+   ```go Go hidelines={1..11,-1}
    package main
 
    import (
@@ -130,7 +130,7 @@ These are not required but will improve your experience:
    }
    ```
 
-   ```java Java hidelines={1..10,-1}
+   ```java Java hidelines={1..5,8..10,-2..}
    import com.anthropic.client.AnthropicClient;
    import com.anthropic.client.okhttp.AnthropicOkHttpClient;
    import com.anthropic.models.messages.MessageCreateParams;
@@ -159,7 +159,7 @@ These are not required but will improve your experience:
    }
    ```
 
-   ```php PHP
+   ```php PHP hidelines={1..4}
    <?php
 
    use Anthropic\Client;
@@ -175,7 +175,7 @@ These are not required but will improve your experience:
    );
    ```
 
-   ```ruby Ruby
+   ```ruby Ruby hidelines={1..2}
    require "anthropic"
 
    client = Anthropic::Client.new
@@ -489,7 +489,7 @@ class Program
 }
 ```
 
-```go Go hidelines={1..13,-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -520,7 +520,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..10,-1}
+```java Java hidelines={1..4,6..8,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;
@@ -548,7 +548,7 @@ public class Main {
 }
 ```
 
-```php PHP hidelines={1..6}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -564,7 +564,7 @@ $message = $client->messages->create(
 echo $message->content[0]->text;
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -672,7 +672,7 @@ class Program
 }
 ```
 
-```go Go hidelines={1..13,-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -705,7 +705,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..10,-1}
+```java Java hidelines={1..4,7..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -736,7 +736,7 @@ public class Main {
 }
 ```
 
-```php PHP hidelines={1..6}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -755,7 +755,7 @@ $message = $client->beta->messages->create(
 echo $message;
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -864,7 +864,7 @@ class Program
 }
 ```
 
-```go Go hidelines={1..13,-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -897,7 +897,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..10,-1}
+```java Java hidelines={1..4,7..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -928,7 +928,7 @@ public class Main {
 }
 ```
 
-```php PHP hidelines={1..6}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -947,7 +947,7 @@ $message = $client->beta->messages->create(
 echo $message;
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1053,7 +1053,7 @@ class Program
 }
 ```
 
-```go Go nocheck hidelines={1..13,-1}
+```go Go nocheck hidelines={1..11,-1}
 package main
 
 import (
@@ -1087,7 +1087,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..10,-1}
+```java Java nocheck hidelines={1..4,7..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;
@@ -1115,7 +1115,7 @@ public class Main {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -1133,7 +1133,7 @@ $message = $client->messages->create(
 echo $message->content[0]->text;
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new

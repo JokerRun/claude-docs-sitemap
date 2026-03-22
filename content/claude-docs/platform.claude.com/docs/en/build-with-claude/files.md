@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 4f90fec2309825ec585937a2f45fa5e99299a9e54c07170f5d688e5e2cee3565
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: b83e015c279bddb0a146b8c323386879eef558784278a7b72f0a72139d7344ba
 ---
 
 # Files API
@@ -114,7 +114,7 @@ FileMetadata file = client.beta().files().upload(
 System.out.println(file.id());
 ````
 
-```php PHP nocheck
+```php PHP nocheck hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -391,7 +391,7 @@ The Files API supports different file types that correspond to different content
 For file types that are not supported as `document` blocks (.csv, .txt, .md, .docx, .xlsx), convert the files to plain text, and include the content directly in your message:
 
 <CodeGroup>
-```bash Shell hidelines={3}
+```bash Shell hidelines={3..4}
 # Example: Reading a text file and sending it as plain text
 # Note: For files with special characters, consider base64 encoding
 TEXT_CONTENT="This is a sample document. It has multiple lines."
@@ -419,7 +419,7 @@ curl https://api.anthropic.com/v1/messages \
 EOF
 ```
 
-```python Python nocheck hidelines={2..4,-1}
+```python Python nocheck hidelines={2..5}
 import pandas as pd
 import anthropic
 
@@ -518,7 +518,7 @@ class Program
 }
 ```
 
-```go Go hidelines={12..15}
+```go Go hidelines={11..15}
 package main
 
 import (
@@ -560,7 +560,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..11,-1}
+```java Java nocheck hidelines={1..11,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;
@@ -591,7 +591,7 @@ public class FileUploadExample {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -620,7 +620,7 @@ $message = $client->messages->create(
 echo $message->content[0]->text;
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -697,14 +697,14 @@ curl https://api.anthropic.com/v1/files \
   -H "anthropic-beta: files-api-2025-04-14"
 ```
 
-```python Python hidelines={1..3}
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
 files = client.beta.files.list()
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -734,7 +734,7 @@ class Program
 }
 ```
 
-```go Go hidelines={1..13,-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -758,7 +758,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..6,-1}
+```java Java hidelines={1..2,4..6,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.files.FileListPage;
@@ -773,7 +773,7 @@ public class ListFiles {
 }
 ```
 
-```php PHP hidelines={1..6}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -786,7 +786,7 @@ $files = $client->beta->files->list(
 print_r($files);
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -988,7 +988,7 @@ try (HttpResponse response = client.beta().files().download(fileId)) {
 }
 ````
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;

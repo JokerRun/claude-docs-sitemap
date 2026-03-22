@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: 082e321f64519993b99f697b8b939f910c8bd4498c1347c1e38d55cc0ee26fde
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: c0733b61b8c769376b832b326461b8331d34765f0c3616f80396ec543e3d7814
 ---
 
 # Batch processing
@@ -136,7 +136,7 @@ curl https://api.anthropic.com/v1/messages/batches \
 }'
 ```
 
-```python Python
+```python Python hidelines={1}
 import anthropic
 from anthropic.types.message_create_params import MessageCreateParamsNonStreaming
 from anthropic.types.messages.batch_create_params import Request
@@ -177,7 +177,7 @@ message_batch = client.messages.batches.create(
 print(message_batch)
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -249,7 +249,7 @@ var batch = await client.Messages.Batches.Create(new BatchCreateParams
 Console.WriteLine(batch);
 ```
 
-```go Go hidelines={1..12,-1}
+```go Go hidelines={1..10,-1}
 package main
 
 import (
@@ -296,7 +296,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..8,-1}
+```java Java hidelines={1..3,5..8,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.Model;
@@ -341,7 +341,7 @@ public class BatchExample {
 }
 ```
 
-```php PHP
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -378,7 +378,7 @@ $batch = $client->messages->batches->create(
 print_r($batch);
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -452,7 +452,7 @@ The Message Batch's `processing_status` field indicates the stage of processing 
 To poll a Message Batch, you'll need its `id`, which is provided in the response when creating a batch or by listing batches. You can implement a polling loop that checks the batch status periodically until processing has ended:
 
 <CodeGroup>
-```bash Shell hidelines={2..15,23}
+```bash Shell hidelines={2..16,23}
 #!/bin/sh
 MESSAGE_BATCH_ID=$(curl -s https://api.anthropic.com/v1/messages/batches \
   --header "x-api-key: $ANTHROPIC_API_KEY" \
@@ -482,7 +482,7 @@ done
 echo "Batch $MESSAGE_BATCH_ID has finished processing"
 ```
 
-```python Python nocheck hidelines={1,3..5,-1}
+```python Python nocheck hidelines={1}
 import anthropic
 import time
 
@@ -501,7 +501,7 @@ while True:
 print(message_batch)
 ```
 
-```typescript TypeScript nocheck hidelines={1..4}
+```typescript TypeScript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -586,7 +586,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..6,-1}
+```java Java nocheck hidelines={1..2,4..6,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.batches.MessageBatch;
@@ -611,7 +611,7 @@ public class MessageBatchPolling {
 }
 ```
 
-```php PHP hidelines={1..5} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -634,7 +634,7 @@ while (true) {
 echo json_encode($messageBatch, JSON_PRETTY_PRINT);
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -694,7 +694,7 @@ while [ "$has_more" = true ]; do
 done
 ```
 
-```python Python hidelines={1..4}
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -704,7 +704,7 @@ for message_batch in client.messages.batches.list(limit=20):
     print(message_batch)
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -717,7 +717,7 @@ for await (const messageBatch of anthropic.messages.batches.list({
 }
 ```
 
-```csharp C# hidelines={1..10,-1}
+```csharp C# hidelines={1..11,-2..}
 using System;
 using System.Threading.Tasks;
 using Anthropic;
@@ -744,7 +744,7 @@ class Program
 }
 ```
 
-```go Go hidelines={1..13,-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -774,7 +774,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..7,-1}
+```java Java hidelines={1..2,4..7,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.batches.*;
@@ -796,7 +796,7 @@ public class BatchListExample {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -809,7 +809,7 @@ foreach ($client->messages->batches->list(limit: 20)->pagingEachItem() as $messa
 }
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -879,7 +879,7 @@ curl "https://api.anthropic.com/v1/messages/batches/msgbatch_01HkcTjaV5uDC8jWR4Z
 
 ```
 
-```python Python nocheck hidelines={1..4}
+```python Python nocheck hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -902,7 +902,7 @@ for result in client.messages.batches.results(
             print(f"Request expired {result.custom_id}")
 ```
 
-```typescript TypeScript nocheck hidelines={1..4}
+```typescript TypeScript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -969,7 +969,7 @@ public class Program
 }
 ```
 
-```go Go nocheck hidelines={1..13,-1}
+```go Go nocheck hidelines={1..11,-1}
 package main
 
 import (
@@ -1004,7 +1004,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..9,-1}
+```java Java nocheck hidelines={1..2,6..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.http.StreamResponse;
@@ -1049,7 +1049,7 @@ public class BatchResultsExample {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -1075,7 +1075,7 @@ foreach ($client->messages->batches->resultsStream(messageBatchID: 'msgbatch_01H
 }
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1139,7 +1139,7 @@ curl --request POST https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH
     --header "anthropic-version: 2023-06-01"
 ```
 
-```python Python nocheck hidelines={1..4,-1}
+```python Python nocheck hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -1152,7 +1152,7 @@ message_batch = client.messages.batches.cancel(
 print(message_batch)
 ```
 
-```typescript TypeScript nocheck
+```typescript TypeScript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -1179,7 +1179,7 @@ class Program
 }
 ```
 
-```go Go nocheck hidelines={1..13,-1}
+```go Go nocheck hidelines={1..12,-1}
 package main
 
 import (
@@ -1203,7 +1203,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..7,-1}
+```java Java nocheck hidelines={1..2,4..7,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.batches.*;
@@ -1222,7 +1222,7 @@ public class BatchCancelExample {
 }
 ```
 
-```php PHP hidelines={1..6} nocheck
+```php PHP hidelines={1..4} nocheck
 <?php
 
 use Anthropic\Client;
@@ -1235,7 +1235,7 @@ $messageBatch = $client->messages->batches->cancel(
 echo $messageBatch;
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1337,7 +1337,7 @@ curl https://api.anthropic.com/v1/messages/batches \
 }'
 ```
 
-```python Python hidelines={1,4..6}
+```python Python hidelines={1}
 import anthropic
 from anthropic.types.message_create_params import MessageCreateParamsNonStreaming
 from anthropic.types.messages.batch_create_params import Request
@@ -1398,7 +1398,7 @@ message_batch = client.messages.batches.create(
 )
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -1526,7 +1526,7 @@ public class Program
 }
 ```
 
-```go Go hidelines={1..12,-1}
+```go Go hidelines={1..10,-1}
 package main
 
 import (
@@ -1588,7 +1588,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..11,-1}
+```java Java hidelines={1..2,4..5,7..11,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.CacheControlEphemeral;
@@ -1660,7 +1660,7 @@ public class BatchExample {
 }
 ```
 
-```php PHP hidelines={1..6}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -1715,7 +1715,7 @@ $messageBatch = $client->messages->batches->create(
 );
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new

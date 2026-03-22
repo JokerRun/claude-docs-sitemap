@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: 80ac689628b081ae31ff3fc40a3cfc29dc0fd9346c2500f75778265eb960690e
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: 4b66f967094a1fa339b948ea28f58c06e38b84484af75d1e2e8b446e85833fe3
 ---
 
 # PDF support
@@ -122,7 +122,7 @@ The simplest approach is to reference a PDF directly from a URL:
         }]
     }'
     ```
-    ```python Python
+    ```python Python hidelines={1..2}
     import anthropic
 
     client = anthropic.Anthropic()
@@ -182,7 +182,7 @@ The simplest approach is to reference a PDF directly from a URL:
 
     main();
     ```
-    ```java Java hidelines={1..9,-1}
+    ```java Java hidelines={1..8,-2..}
     import com.anthropic.client.AnthropicClient;
     import com.anthropic.client.okhttp.AnthropicOkHttpClient;
     import com.anthropic.models.messages.*;
@@ -268,7 +268,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
       -H "anthropic-version: 2023-06-01" \
       -d @request.json
     ```
-    ```python Python
+    ```python Python hidelines={1}
     import anthropic
     import base64
     import httpx
@@ -306,7 +306,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
 
     print(message.content)
     ```
-    ```typescript TypeScript hidelines={1..2}
+    ```typescript TypeScript hidelines={1..3,-3..-1}
     import Anthropic from "@anthropic-ai/sdk";
 
     async function main() {
@@ -353,7 +353,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
     main();
     ```
 
-    ```java Java hidelines={1..21,-1}
+    ```java Java hidelines={1..2,4,6..22,-2..}
     import com.anthropic.client.AnthropicClient;
     import com.anthropic.client.okhttp.AnthropicOkHttpClient;
     import com.anthropic.models.messages.Base64PdfSource;
@@ -462,7 +462,7 @@ curl https://api.anthropic.com/v1/messages \
   }'
 ```
 
-```python Python nocheck hidelines={1..4,-1}
+```python Python nocheck hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -539,7 +539,7 @@ async function main() {
 main();
 ```
 
-```java Java nocheck hidelines={1..18,-1}
+```java Java nocheck hidelines={1..3,6,8,10..19,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.Model;
@@ -678,7 +678,7 @@ curl https://api.anthropic.com/v1/messages \
   -d @request.json
 ```
 
-```python Python nocheck hidelines={1..12}
+```python Python nocheck hidelines={1..5,7..13}
 import anthropic
 import base64
 from pypdf import PdfWriter
@@ -743,7 +743,7 @@ const response = await anthropic.messages.create({
 console.log(response);
 ```
 
-```java Java nocheck hidelines={1..19,-1}
+```java Java nocheck hidelines={1..2,5,7..20,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.Base64PdfSource;
@@ -871,7 +871,7 @@ curl https://api.anthropic.com/v1/messages/batches \
   -d @request.json
 ```
 
-```python Python nocheck hidelines={1..12}
+```python Python nocheck hidelines={1..5,7..13}
 import anthropic
 import base64
 from pypdf import PdfWriter
@@ -974,7 +974,7 @@ const response = await anthropic.messages.batches.create({
 console.log(response);
 ```
 
-```java Java nocheck hidelines={1..14,-1}
+```java Java nocheck hidelines={1..3,5..14,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.*;

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: fbb32985abf4d11b2f0416b052846b2ddfb587b8648486793800e7a9a8d63987
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: 3930aa029fd589374254c36201e9ef4f3d03527a51c252254eb71050cd0e6d22
 ---
 
 # Compaction
@@ -86,7 +86,7 @@ curl https://api.anthropic.com/v1/messages \
 }'
 ```
 
-```python Python
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -105,7 +105,7 @@ response = client.beta.messages.create(
 messages.append({"role": "assistant", "content": response.content})
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -179,7 +179,7 @@ class Program
     }
 }
 ```
-```go Go hidelines={1..13,-3..-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -219,7 +219,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..9,-1}
+```java Java hidelines={1..4,7..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -250,7 +250,7 @@ public class CompactionExample {
 }
 ```
 
-```php PHP
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -279,7 +279,7 @@ $messages[] = ['role' => 'assistant', 'content' => $response->content];
 echo $response->content[0]->text;
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -319,7 +319,7 @@ puts response
 Configure when compaction triggers using the `trigger` parameter:
 
 <CodeGroup>
-```python Python hidelines={1..4}
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -340,7 +340,7 @@ response = client.beta.messages.create(
 )
 ```
 
-```typescript TypeScript hidelines={1..3}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -365,7 +365,7 @@ const response = await client.beta.messages.create({
 } as unknown as Anthropic.Beta.Messages.MessageCreateParamsNonStreaming);
 ```
 
-```csharp C# hidelines={1..12,-2..-1}
+```csharp C# hidelines={1..13,-2..}
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -399,7 +399,7 @@ class Program
     }
 }
 ```
-```go Go hidelines={1..14,-5..-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -434,7 +434,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..11,-1}
+```java Java hidelines={1..4,8..10,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -467,7 +467,7 @@ public class CompactionExample {
 }
 ```
 
-```php PHP hidelines={1..5}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -496,7 +496,7 @@ $message = $client->beta->messages->create(
 echo $message;
 ```
 
-```ruby Ruby hidelines={4}
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -534,7 +534,7 @@ You have written a partial transcript for the initial task above. Please write a
 You can provide custom instructions via the `instructions` parameter to replace this prompt entirely. Custom instructions don't supplement the default; they completely replace it:
 
 <CodeGroup>
-```python Python hidelines={1..4}
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -555,7 +555,7 @@ response = client.beta.messages.create(
 )
 ```
 
-```typescript TypeScript nocheck hidelines={1..3}
+```typescript TypeScript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -615,7 +615,7 @@ class Program
     }
 }
 ```
-```go Go hidelines={1..13,-5..-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -653,7 +653,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..11,-1}
+```java Java hidelines={1..4,7..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -685,7 +685,7 @@ public class CompactionExample {
 }
 ```
 
-```php PHP hidelines={1..5}
+```php PHP hidelines={1..3}
 <?php
 use Anthropic\Client;
 
@@ -713,7 +713,7 @@ $response = $client->beta->messages->create(
 echo $response->content[0]->text;
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -749,7 +749,7 @@ Use `pause_after_compaction` to pause the API after generating the compaction su
 When enabled, the API returns a message with the `compaction` stop reason after generating the compaction block:
 
 <CodeGroup>
-```python Python hidelines={1..4}
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -779,7 +779,7 @@ if response.stop_reason == "compaction":
     )
 ```
 
-```typescript TypeScript hidelines={1..3}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -880,7 +880,7 @@ class Program
     }
 }
 ```
-```go Go hidelines={1..12,-3..-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -937,7 +937,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..12,-1}
+```java Java hidelines={1..4,8..10,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -988,7 +988,7 @@ public class CompactionPauseExample {
 }
 ```
 
-```php PHP hidelines={1..5}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -1033,7 +1033,7 @@ if ($response->stopReason === 'compaction') {
 echo $response;
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1076,7 +1076,7 @@ puts response
 
 When a model works on long tasks with many tool-use iterations, total token consumption can grow significantly. You can combine `pause_after_compaction` with a compaction counter to estimate cumulative usage and gracefully wrap up the task once a budget is reached:
 
-```python Python hidelines={1..4}
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -1141,7 +1141,7 @@ A long-running conversation may result in multiple compactions. The last compact
 You must pass the `compaction` block back to the API on subsequent requests to continue the conversation with the shortened prompt. The simplest approach is to append the entire response content to your messages:
 
 <CodeGroup>
-```python Python hidelines={1..4}
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -1168,7 +1168,7 @@ response = client.beta.messages.create(
 )
 ```
 
-```typescript TypeScript hidelines={1..3}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -1260,7 +1260,7 @@ class Program
     }
 }
 ```
-```go Go hidelines={1..13,-6..-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -1314,7 +1314,7 @@ func main() {
 }
 ```
 
-```java Java
+```java Java hidelines={1..4,7..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -1358,7 +1358,7 @@ public class CompactionExample {
 }
 ```
 
-```php PHP hidelines={1..6}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -1396,7 +1396,7 @@ $nextResponse = $client->beta->messages->create(
 echo $nextResponse->content[0]->text;
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1443,7 +1443,7 @@ When the API receives a `compaction` block, all content blocks before it are ign
 When streaming responses with compaction enabled, you'll receive a `content_block_start` event when compaction begins. The compaction block streams differently from text blocks. You'll receive a `content_block_start` event, followed by a single `content_block_delta` with the complete summary content (no intermediate streaming), and then a `content_block_stop` event.
 
 <CodeGroup>
-```python Python hidelines={1..4}
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -1474,7 +1474,7 @@ with client.beta.messages.stream(
     messages.append({"role": "assistant", "content": message.content})
 ```
 
-```typescript TypeScript nocheck hidelines={1..3}
+```typescript TypeScript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -1516,7 +1516,7 @@ messages.push({
 });
 ```
 
-```csharp C# hidelines={1..12,-2..-1}
+```csharp C# hidelines={1..13,-2..}
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -1570,7 +1570,7 @@ class Program
     }
 }
 ```
-```go Go hidelines={1..14,-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -1622,7 +1622,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..10,-1}
+```java Java hidelines={1..3,6..8,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -1668,7 +1668,7 @@ public class CompactionStreamingExample {
 }
 ```
 
-```php PHP hidelines={1..5}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -1705,7 +1705,7 @@ foreach ($stream as $event) {
 }
 ```
 
-```ruby Ruby hidelines={4}
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1771,7 +1771,7 @@ To maximize cache hit rates, add a `cache_control` breakpoint at the end of your
 - Only the compaction summary needs to be written as a new cache entry
 
 <CodeGroup>
-```python Python hidelines={1..4}
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -1794,7 +1794,7 @@ response = client.beta.messages.create(
 )
 ```
 
-```typescript TypeScript hidelines={1..3}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -1856,7 +1856,7 @@ class Program
     }
 }
 ```
-```go Go hidelines={1..13,-5..-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -1894,7 +1894,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..14,-1}
+```java Java hidelines={1..5,9..12,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -1931,7 +1931,7 @@ public class CompactionExample {
 }
 ```
 
-```php PHP hidelines={1..5}
+```php PHP hidelines={1..3}
 <?php
 use Anthropic\Client;
 
@@ -1961,7 +1961,7 @@ $response = $client->beta->messages->create(
 echo $response->content[0]->text;
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -2034,7 +2034,7 @@ When using server tools (like web search), the compaction trigger is checked at 
 The token counting endpoint (`/v1/messages/count_tokens`) applies existing `compaction` blocks in your prompt but does not trigger new compactions. Use it to check your effective token count after previous compactions:
 
 <CodeGroup>
-```python Python hidelines={1..4}
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -2050,7 +2050,7 @@ print(f"Current tokens: {count_response.input_tokens}")
 print(f"Original tokens: {count_response.context_management.original_input_tokens}")
 ```
 
-```typescript TypeScript hidelines={1..3}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -2071,7 +2071,7 @@ console.log(`Current tokens: ${countResponse.input_tokens}`);
 console.log(`Original tokens: ${countResponse.context_management!.original_input_tokens}`);
 ```
 
-```csharp C# hidelines={1..12,-2..-1}
+```csharp C# hidelines={1..13,-2..}
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -2102,7 +2102,7 @@ class Program
     }
 }
 ```
-```go Go hidelines={1..14,-7..-5,-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (
@@ -2136,7 +2136,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..11,-1}
+```java Java hidelines={1..2,7..9,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.BetaMessageTokensCount;
@@ -2164,7 +2164,7 @@ public class Main {
 }
 ```
 
-```php PHP hidelines={1..5}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -2187,7 +2187,7 @@ echo "Current tokens: " . $countResponse->inputTokens . "\n";
 echo "Original tokens: " . $countResponse->contextManagement->originalInputTokens . "\n";
 ```
 
-```ruby Ruby hidelines={4}
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -2212,7 +2212,7 @@ puts "Original tokens: #{count_response.context_management.original_input_tokens
 Here's a complete example of a long-running conversation with compaction:
 
 <CodeGroup>
-```python Python
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -2252,7 +2252,7 @@ print(chat("Now add rate limiting and error handling"))
 # ... continue as long as needed
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -2400,7 +2400,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..12,-1}
+```java Java hidelines={1..5,9..12,-1}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -2456,7 +2456,7 @@ public class CompactionExample {
 }
 ```
 
-```php PHP hidelines={1..4}
+```php PHP hidelines={1..3}
 <?php
 use Anthropic\Client;
 
@@ -2496,7 +2496,7 @@ echo chat($client, $messages, "Add support for JavaScript-rendered pages") . "\n
 echo chat($client, $messages, "Now add rate limiting and error handling") . "\n";
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -2534,7 +2534,7 @@ puts chat(client, messages, "Now add rate limiting and error handling")
 Here's an example that uses `pause_after_compaction` to preserve the prior exchange and the current user message (three messages total) verbatim instead of summarizing them:
 
 <CodeGroup>
-```python Python
+```python Python hidelines={1}
 import anthropic
 from typing import Any
 
@@ -2604,7 +2604,7 @@ print(chat("Now add rate limiting and error handling"))
 # ... continue as long as needed
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -2852,7 +2852,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..12,-1}
+```java Java hidelines={1..5,10..13,-1}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.messages.MessageCreateParams;
@@ -2941,7 +2941,7 @@ public class CompactionExample {
 }
 ```
 
-```php PHP hidelines={1..5}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -3008,7 +3008,7 @@ echo chat($client, $messages, "Add support for JavaScript-rendered pages") . "\n
 echo chat($client, $messages, "Now add rate limiting and error handling") . "\n";
 ```
 
-```ruby Ruby
+```ruby Ruby hidelines={1..2}
 require "anthropic"
 
 client = Anthropic::Client.new

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: 7b4757d09aa03e9927a9c189f220fb82b57650def8c462d2804c7f92421596aa
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: da27b0b27a12d5ce700e94f7801d65a2fa4c716b5ebd1f0652f59dc69b9e96cd
 ---
 
 # Get started with Agent Skills in the API
@@ -49,7 +49,7 @@ for skill in skills.data:
     print(f"{skill.id}: {skill.display_title}")
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -82,7 +82,7 @@ This API returns each Skill's metadata: its name and description. Claude loads t
 Now use the PowerPoint Skill to create a presentation about renewable energy. Specify Skills using the `container` parameter in the Messages API:
 
 <CodeGroup>
-```python Python hidelines={1..4,-1}
+```python Python
 import anthropic
 
 client = anthropic.Anthropic()
@@ -107,7 +107,7 @@ response = client.beta.messages.create(
 print(response.content)
 ```
 
-```typescript TypeScript hidelines={1..4}
+```typescript TypeScript
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();

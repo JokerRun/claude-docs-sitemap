@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-03-17T04:21:46.272545Z
-sha256: 1d22e17ec5aeffe25fb51104ee7c553aadf369d161e09f419783405b57395b14
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: 5f48d1e9682bf7f4312fa08a2ec2ca543fc3ba1b1cb0f38e0d186aede0c68759
 ---
 
 # Errors
@@ -68,7 +68,7 @@ Every API response includes a unique `request-id` header. This header contains a
 The official SDKs provide this value as a property on top-level response objects, containing the value of the `request-id` header:
 
 <CodeGroup>
-  ```python Python
+  ```python Python hidelines={1..2}
   import anthropic
 
   client = anthropic.Anthropic()
@@ -81,7 +81,7 @@ The official SDKs provide this value as a property on top-level response objects
   print(f"Request ID: {message._request_id}")
   ```
 
-  ```typescript TypeScript hidelines={1..4}
+  ```typescript TypeScript hidelines={1..2}
   import Anthropic from "@anthropic-ai/sdk";
 
   const client = new Anthropic();

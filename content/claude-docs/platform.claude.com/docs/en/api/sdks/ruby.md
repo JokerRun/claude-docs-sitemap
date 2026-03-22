@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/ruby
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: 9ddaa7f6e84867e10c54355752b239e5a22d6c15ddc6a20843a4a6a3162a4b5f
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: c1d55665a0df6cbffef8b11f6b55ccdbe721c32c464153dbae459c8db4e5a2cd
 ---
 
 # Ruby SDK
@@ -31,7 +31,7 @@ Ruby 3.2.0 or higher.
 
 ## Usage
 
-```ruby
+```ruby hidelines={1..2}
 require "anthropic"
 
 anthropic = Anthropic::Client.new(
@@ -51,7 +51,7 @@ puts(message.content)
 
 The SDK provides support for streaming responses using Server-Sent Events (SSE).
 
-```ruby hidelines={1..2}
+```ruby hidelines={1}
 require "anthropic"
 anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
@@ -69,7 +69,7 @@ end
 
 This library provides several conveniences for streaming messages, for example:
 
-```ruby hidelines={1..2}
+```ruby hidelines={1}
 require "anthropic"
 anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
@@ -89,7 +89,9 @@ Streaming with `anthropic.messages.stream(...)` exposes various helpers includin
 
 The SDK provides helper mechanisms to define structured data classes for tools and let Claude automatically execute them. For detailed documentation on tool use patterns including the tool runner, see [Implementing Tool Use](/docs/en/agents-and-tools/tool-use/implement-tool-use).
 
-```ruby
+```ruby hidelines={1}
+require "anthropic"
+anthropic = Anthropic::Client.new
 class CalculatorInput < Anthropic::BaseModel
   required :lhs, Float
   required :rhs, Float
@@ -105,7 +107,7 @@ class Calculator < Anthropic::BaseTool
 end
 
 # Automatically handles tool execution loop
-client.beta.messages.tool_runner(
+anthropic.beta.messages.tool_runner(
   model: "claude-opus-4-6",
   max_tokens: 1024,
   messages: [{role: "user", content: "What's 15 * 7?"}],
@@ -121,7 +123,7 @@ For complete structured outputs documentation including Ruby examples, see [Stru
 
 When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Anthropic::Errors::APIError` will be thrown:
 
-```ruby hidelines={1..2}
+```ruby hidelines={1}
 require "anthropic"
 anthropic = Anthropic::Client.new
 begin
@@ -209,7 +211,7 @@ List methods in the Claude API are paginated.
 
 This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
 
-```ruby hidelines={1..2}
+```ruby hidelines={1}
 require "anthropic"
 anthropic = Anthropic::Client.new
 page = anthropic.messages.batches.list(limit: 20)
@@ -227,7 +229,9 @@ end
 Alternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.
 
 ```ruby hidelines={1}
-page = client.messages.batches.list(limit: 20)
+require "anthropic"
+anthropic = Anthropic::Client.new
+page = anthropic.messages.batches.list(limit: 20)
 while page.next_page?
   page = page.next_page
   page.data&.each { |batch| puts(batch.id) }
@@ -238,7 +242,7 @@ end
 
 Request parameters that correspond to file uploads can be passed as raw contents, a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance, [`StringIO`](https://rubyapi.org/3.2/o/stringio), or more.
 
-```ruby hidelines={1..2} nocheck
+```ruby hidelines={1} nocheck
 require "anthropic"
 anthropic = Anthropic::Client.new
 require "pathname"
@@ -264,7 +268,7 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 
 You can provide typesafe request parameters like so:
 
-```ruby hidelines={1..2}
+```ruby hidelines={1}
 require "anthropic"
 anthropic = Anthropic::Client.new
 anthropic.messages.create(
@@ -276,7 +280,7 @@ anthropic.messages.create(
 
 Or, equivalently:
 
-```ruby hidelines={1..2}
+```ruby hidelines={1}
 require "anthropic"
 anthropic = Anthropic::Client.new
 # Hashes work, but are not typesafe:
@@ -355,7 +359,7 @@ You can send undocumented parameters to any endpoint, and read undocumented resp
 The `extra_` parameters of the same name override the documented parameters. For security reasons, ensure these methods are only used with trusted input data.
 </Warning>
 
-```ruby hidelines={1..3} nocheck
+```ruby hidelines={1} nocheck
 require "anthropic"
 anthropic = Anthropic::Client.new
 value = "example"
@@ -380,10 +384,10 @@ If you want to explicitly send an extra param, you can do so with the `extra_que
 
 ### Undocumented endpoints
 
-To make requests to undocumented endpoints while retaining the benefit of auth, retries, and so on, you can make requests using `client.request`, like so:
+To make requests to undocumented endpoints while retaining the benefit of auth, retries, and so on, you can make requests using `anthropic.request`, like so:
 
 ```ruby nocheck
-response = client.request(
+response = anthropic.request(
   method: :post,
   path: '/undocumented/endpoint',
   query: {"dog": "woof"},

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: cc24b201972cf0a4d14013d85264cd4ecba3f6bd8e787147e091c00dd4bc143e
+fetched_at: 2026-03-22T03:09:15.957793Z
+sha256: 0de2012f90c576847ece561a91a28169172d048c36b0ed91e646eb7f391366ae
 ---
 
 # Programmatic tool calling
@@ -212,7 +212,7 @@ class Program
 }
 ```
 
-```go Go hidelines={1..13,-5..-1}
+```go Go hidelines={1..13,-1}
 package main
 
 import (
@@ -257,7 +257,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..13,-1}
+```java Java hidelines={1..7,9..13,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
@@ -590,7 +590,7 @@ class Program
 }
 ```
 
-```go Go hidelines={1..13,-5..-1}
+```go Go hidelines={1..13,-1}
 package main
 
 import (
@@ -635,7 +635,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..14,-1}
+```java Java hidelines={1..8,10..14,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
@@ -977,7 +977,7 @@ class Program
 }
 ```
 
-```go Go nocheck hidelines={1..13,-5..-1}
+```go Go nocheck hidelines={1..13,-1}
 package main
 
 import (
@@ -1045,7 +1045,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..17,-1}
+```java Java nocheck hidelines={1..3,5..8,10..17,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
