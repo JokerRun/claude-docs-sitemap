@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: bbdb3c532af84f431b4d55ce500764b99a31090bab02243ea2ffe132a2cec1e6
+fetched_at: 2026-03-23T03:10:36.911648Z
+sha256: f15349d1f16dad0580df14e5efabbe5d1e22a120484a5f681261d9a2f63e9143
 ---
 
 > ## Documentation Index
@@ -681,7 +681,7 @@ claude mcp add --transport http \
 
 ### Use pre-configured OAuth credentials
 
-Some MCP servers don't support automatic OAuth setup. If you see an error like "Incompatible auth server: does not support dynamic client registration," the server requires pre-configured credentials. Register an OAuth app through the server's developer portal first, then provide the credentials when adding the server.
+Some MCP servers don't support automatic OAuth setup via Dynamic Client Registration. If you see an error like "Incompatible auth server: does not support dynamic client registration," the server requires pre-configured credentials. Claude Code also supports servers that use a Client ID Metadata Document (CIMD) instead of Dynamic Client Registration, and discovers these automatically. If automatic discovery fails, register an OAuth app through the server's developer portal first, then provide the credentials when adding the server.
 
 <Steps>
   <Step title="Register an OAuth app with the server">
