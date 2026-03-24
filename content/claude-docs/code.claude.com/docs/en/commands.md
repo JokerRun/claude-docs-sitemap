@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/commands
-fetched_at: 2026-03-18T03:09:14.254898Z
-sha256: ee98ecd30e6ec658dd2f5705625ddfabed1f5487dff532dfad26201c05dfaa9c
+fetched_at: 2026-03-24T03:06:06.053411Z
+sha256: cad31f72977983c4ddfb8eef9b75cc458bdc8efcfbb065d18d2e0b0a4fb4b62f
 ---
 
 > ## Documentation Index
@@ -71,6 +71,7 @@ In the table below, `<arg>` indicates a required argument and `[arg]` indicates 
 | `/review`                                | Deprecated. Install the [`code-review` plugin](https://github.com/anthropics/claude-code-marketplace/blob/main/code-review/README.md) instead: `claude plugin install code-review@claude-code-marketplace`                                                                                                                                              |
 | `/rewind`                                | Rewind the conversation and/or code to a previous point, or summarize from a selected message. See [checkpointing](/en/checkpointing). Alias: `/checkpoint`                                                                                                                                                                                             |
 | `/sandbox`                               | Toggle [sandbox mode](/en/sandboxing). Available on supported platforms only                                                                                                                                                                                                                                                                            |
+| `/schedule [description]`                | Create, update, list, or run [Cloud scheduled tasks](/en/web-scheduled-tasks). Claude walks you through the setup conversationally                                                                                                                                                                                                                      |
 | `/security-review`                       | Analyze pending changes on the current branch for security vulnerabilities. Reviews the git diff and identifies risks like injection, auth issues, and data exposure                                                                                                                                                                                    |
 | `/skills`                                | List available [skills](/en/skills)                                                                                                                                                                                                                                                                                                                     |
 | `/stats`                                 | Visualize daily usage, session history, streaks, and model preferences                                                                                                                                                                                                                                                                                  |

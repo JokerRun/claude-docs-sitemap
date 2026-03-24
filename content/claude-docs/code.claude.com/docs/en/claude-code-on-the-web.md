@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: 08f75b97436998208463683f91c30374ce3197f05e83a88c5c985edfd18d1521
+fetched_at: 2026-03-24T03:06:06.053411Z
+sha256: 1e21c1e67ef542e98828c725a464373bc07c127647dd2f04a4f3287be878d43b
 ---
 
 > ## Documentation Index
@@ -168,6 +168,10 @@ verification is not enabled by default.
 
 Enable repository access verification and/or withhold your name from your shared
 sessions by going to Settings > Claude Code > Sharing settings.
+
+## Schedule recurring tasks
+
+Run Claude on a recurring schedule to automate work like daily PR reviews, dependency audits, and CI failure analysis. See [Schedule tasks on the web](/en/web-scheduled-tasks) for the full guide.
 
 ## Managing sessions
 

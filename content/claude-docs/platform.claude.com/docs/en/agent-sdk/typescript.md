@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: ff33e85ab91f95874ea685bbdf52a96f9bbc565781a195365216000d9a0232f2
+fetched_at: 2026-03-24T03:06:06.053411Z
+sha256: 8e48a990a1d2730ab813851fd350abd4006fe78d1ba3573081e84a011e7f7a53
 ---
 
 # Agent SDK reference - TypeScript
@@ -72,7 +72,34 @@ function tool<Schema extends AnyZodRawShape>(
 | `description` | `string` | A description of what the tool does |
 | `inputSchema` | `Schema extends AnyZodRawShape` | Zod schema defining the tool's input parameters (supports both Zod 3 and Zod 4) |
 | `handler` | `(args, extra) => Promise<`[`CallToolResult`](#call-tool-result)`>` | Async function that executes the tool logic |
-| `extras` | `{ annotations?: ToolAnnotations }` | Optional extra configuration including MCP tool annotations (e.g., `readOnly`, `destructive`, `openWorld`) |
+| `extras` | `{ annotations?: `[`ToolAnnotations`](#tool-annotations)` }` | Optional MCP tool annotations providing behavioral hints to clients |
+
+#### `ToolAnnotations`
+
+Re-exported from `@modelcontextprotocol/sdk/types.js`. All fields are optional hints; clients should not rely on them for security decisions.
+
+| Field | Type | Default | Description |
+| :---- | :--- | :------ | :---------- |
+| `title` | `string` | `undefined` | Human-readable title for the tool |
+| `readOnlyHint` | `boolean` | `false` | If `true`, the tool does not modify its environment |
+| `destructiveHint` | `boolean` | `true` | If `true`, the tool may perform destructive updates (only meaningful when `readOnlyHint` is `false`) |
+| `idempotentHint` | `boolean` | `false` | If `true`, repeated calls with the same arguments have no additional effect (only meaningful when `readOnlyHint` is `false`) |
+| `openWorldHint` | `boolean` | `true` | If `true`, the tool interacts with external entities (for example, web search). If `false`, the tool's domain is closed (for example, a memory tool) |
+
+```typescript
+import { tool } from "@anthropic-ai/claude-agent-sdk";
+import { z } from "zod";
+
+const searchTool = tool(
+  "search",
+  "Search the web",
+  { query: z.string() },
+  async ({ query }) => {
+    return { content: [{ type: "text", text: `Results for: ${query}` }] };
+  },
+  { annotations: { readOnlyHint: true, openWorldHint: true } }
+);
+```
 
 ### `createSdkMcpServer()`
 
@@ -283,7 +310,7 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
 | `initializationResult()` | Returns the full initialization result including supported commands, models, account info, and output style configuration |
 | `supportedCommands()` | Returns available slash commands |
 | `supportedModels()` | Returns available models with display info |
-| `supportedAgents()` | Returns available subagents |
+| `supportedAgents()` | Returns available subagents as [`AgentInfo`](#agent-info)`[]` |
 | `mcpServerStatus()` | Returns status of connected MCP servers |
 | `accountInfo()` | Returns account information |
 | `reconnectMcpServer(serverName)` | Reconnect an MCP server by name |
@@ -305,6 +332,7 @@ type SDKControlInitializeResponse = {
   available_output_styles: string[];
   models: ModelInfo[];
   account: AccountInfo;
+  fast_mode_state?: "off" | "cooldown" | "on";
 };
 ```
 
@@ -626,6 +654,7 @@ type SDKMessage =
   | SDKPartialAssistantMessage
   | SDKCompactBoundaryMessage
   | SDKStatusMessage
+  | SDKLocalCommandOutputMessage
   | SDKHookStartedMessage
   | SDKHookProgressMessage
   | SDKHookResponseMessage
@@ -657,7 +686,7 @@ type SDKAssistantMessage = {
 
 The `message` field is a [`BetaMessage`](/docs/en/api/messages) from the Anthropic SDK. It includes fields like `id`, `content`, `model`, `stop_reason`, and `usage`.
 
-`SDKAssistantMessageError` is one of: `'authentication_failed'`, `'billing_error'`, `'rate_limit'`, `'invalid_request'`, `'server_error'`, or `'unknown'`.
+`SDKAssistantMessageError` is one of: `'authentication_failed'`, `'billing_error'`, `'rate_limit'`, `'invalid_request'`, `'server_error'`, `'max_output_tokens'`, or `'unknown'`.
 
 ### `SDKUserMessage`
 
@@ -2491,6 +2520,20 @@ type SDKRateLimitEvent = {
     resetsAt?: number;
     utilization?: number;
   };
+  uuid: UUID;
+  session_id: string;
+};
+```
+
+### `SDKLocalCommandOutputMessage`
+
+Output from a local slash command (for example, `/voice` or `/cost`). Displayed as assistant-style text in the transcript.
+
+```typescript
+type SDKLocalCommandOutputMessage = {
+  type: "system";
+  subtype: "local_command_output";
+  content: string;
   uuid: UUID;
   session_id: string;
 };

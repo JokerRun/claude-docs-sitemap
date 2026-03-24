@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/user-input
-fetched_at: 2026-03-11T04:12:15.541644Z
-sha256: 45ca422f0af0ca77cfc46fb0d816159ecd89e6a01a01dc951e61408a488425dd
+fetched_at: 2026-03-24T03:06:06.053411Z
+sha256: e6e173cbbad614a83010b94dd4bfdc103a8c32b1828331c2063cf4980e3557cf
 ---
 
 # Handle approvals and user input
@@ -34,7 +34,8 @@ options = ClaudeAgentOptions(can_use_tool=handle_tool_request)
 ```
 
 ```typescript TypeScript
-async function handleToolRequest(toolName, input) {
+async function handleToolRequest(toolName, input, options) {
+  // options includes { signal: AbortSignal, suggestions?: PermissionUpdate[] }
   // Prompt user and return allow or deny
 }
 
@@ -53,12 +54,13 @@ To automatically allow or deny tools without prompting users, use [hooks](/docs/
 
 ## Handle tool approval requests
 
-Once you've passed a `canUseTool` callback in your query options, it fires when Claude wants to use a tool that isn't auto-approved. Your callback receives two arguments:
+Once you've passed a `canUseTool` callback in your query options, it fires when Claude wants to use a tool that isn't auto-approved. Your callback receives three arguments:
 
 | Argument | Description |
 |----------|-------------|
 | `toolName` | The name of the tool Claude wants to use (e.g., `"Bash"`, `"Write"`, `"Edit"`) |
 | `input` | The parameters Claude is passing to the tool. Contents vary by tool. |
+| `options` (TS) / `context` (Python) | Additional context including optional `suggestions` (proposed `PermissionUpdate` entries to avoid re-prompting) and a cancellation signal. In TypeScript, `signal` is an `AbortSignal`; in Python, the signal field is reserved for future use. See [`ToolPermissionContext`](/docs/en/agent-sdk/python#tool-permission-context) for Python. |
 
 The `input` object contains tool-specific parameters. Common examples:
 
@@ -80,7 +82,7 @@ The following example asks Claude to create and delete a test file. When Claude 
 ```python Python
 import asyncio
 
-from claude_agent_sdk import ClaudeAgentOptions, query
+from claude_agent_sdk import ClaudeAgentOptions, ResultMessage, query
 from claude_agent_sdk.types import (
     HookMatcher,
     PermissionResultAllow,
@@ -136,7 +138,7 @@ async def main():
             hooks={"PreToolUse": [HookMatcher(matcher=None, hooks=[dummy_hook])]},
         ),
     ):
-        if hasattr(message, "result"):
+        if isinstance(message, ResultMessage) and message.subtype == "success":
             print(message.result)
 
 
@@ -634,7 +636,7 @@ This example handles those questions in a terminal application. Here's what happ
 ```python Python
 import asyncio
 
-from claude_agent_sdk import ClaudeAgentOptions, query
+from claude_agent_sdk import ClaudeAgentOptions, ResultMessage, query
 from claude_agent_sdk.types import HookMatcher, PermissionResultAllow
 
 
@@ -707,7 +709,7 @@ async def main():
             hooks={"PreToolUse": [HookMatcher(matcher=None, hooks=[dummy_hook])]},
         ),
     ):
-        if hasattr(message, "result"):
+        if isinstance(message, ResultMessage) and message.subtype == "success":
             print(message.result)
 
 

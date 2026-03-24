@@ -33,12 +33,12 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/channels-reference | 2026-03-22 |  |
 | code | https://code.claude.com/docs/en/checkpointing | 2026-03-13 |  |
 | code | https://code.claude.com/docs/en/chrome | 2026-02-14 |  |
-| code | https://code.claude.com/docs/en/claude-code-on-the-web | 2026-03-06 |  |
+| code | https://code.claude.com/docs/en/claude-code-on-the-web | 2026-03-23 |  |
 | code | https://code.claude.com/docs/en/cli-reference | 2026-03-22 |  |
 | code | https://code.claude.com/docs/en/code-review | 2026-03-18 |  |
-| code | https://code.claude.com/docs/en/commands | 2026-03-17 |  |
-| code | https://code.claude.com/docs/en/common-workflows | 2026-03-17 |  |
-| ... | _(~792 more rows)_ | | |
+| code | https://code.claude.com/docs/en/commands | 2026-03-23 |  |
+| code | https://code.claude.com/docs/en/common-workflows | 2026-03-23 |  |
+| ... | _(~795 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 
