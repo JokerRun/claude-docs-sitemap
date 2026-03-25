@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/remote-control
-fetched_at: 2026-03-24T03:06:06.053411Z
-sha256: 62078a31fea3bbbbd35e6104ca5f5ac057ecc84e02bf06ec462deef48c56da2d
+fetched_at: 2026-03-25T03:08:45.167858Z
+sha256: fe98843d4d5e78df77f85d111336e251fec184aac13ffe92a1f1936681c25fb0
 ---
 
 > ## Documentation Index
@@ -190,7 +190,7 @@ Claude Code offers several ways to work when you're not at your terminal. They d
 ## Related resources
 
 * [Claude Code on the web](/en/claude-code-on-the-web): run sessions in Anthropic-managed cloud environments instead of on your machine
-* [Channels](/en/channels): forward Telegram or Discord into a session so Claude reacts to messages while you're away
+* [Channels](/en/channels): forward Telegram, Discord, or iMessage into a session so Claude reacts to messages while you're away
 * [Dispatch](/en/desktop#sessions-from-dispatch): message a task from your phone and it can spawn a Desktop session to handle it
 * [Authentication](/en/authentication): set up `/login` and manage credentials for claude.ai
 * [CLI reference](/en/cli-reference): full list of flags and commands including `claude remote-control`

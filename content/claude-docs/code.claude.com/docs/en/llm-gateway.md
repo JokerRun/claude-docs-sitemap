@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway
-fetched_at: 2026-01-24T03:39:08.717713Z
-sha256: 6af9e76d8ee4e03f8a790cd918b34cbcd31cbac8c0863939ce6a022aab179953
+fetched_at: 2026-03-25T03:08:45.167858Z
+sha256: 48e4e1874fbf9b8e6739dac416ccd604eadda3025b6e7137f5609ada1689e47f
 ---
 
 > ## Documentation Index
@@ -54,9 +54,15 @@ If you have configured custom model names in your gateway, use the environment v
 
 ## LiteLLM configuration
 
-<Note>
+<Warning>
+  LiteLLM PyPI versions 1.82.7 and 1.82.8 were compromised with credential-stealing malware. Do not install these versions. If you have already installed them:
+
+  * Remove the package
+  * Rotate all credentials on affected systems
+  * Follow the remediation steps in [BerriAI/litellm#24518](https://github.com/BerriAI/litellm/issues/24518)
+
   LiteLLM is a third-party proxy service. Anthropic doesn't endorse, maintain, or audit LiteLLM's security or functionality. This guide is provided for informational purposes and may become outdated. Use at your own discretion.
-</Note>
+</Warning>
 
 ### Prerequisites
 

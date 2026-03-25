@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-03-24T03:06:06.053411Z
-sha256: 3464bb2b4d1aff01f1da5b5e8f68d06a7ba93d807c98f79a9bf2f1a030194ffb
+fetched_at: 2026-03-25T03:08:45.167858Z
+sha256: b364b0edefb2c89001d93130ebea1456c353fe66ca693743745532ea9f06ece0
 ---
 
 > ## Documentation Index
@@ -218,17 +218,17 @@ Each surface connects to the same underlying Claude Code engine, so your CLAUDE.
 
 Beyond the [Terminal](/en/quickstart), [VS Code](/en/vs-code), [JetBrains](/en/jetbrains), [Desktop](/en/desktop), and [Web](/en/claude-code-on-the-web) environments above, Claude Code integrates with CI/CD, chat, and browser workflows:
 
-| I want to...                                                          | Best option                                                                                                         |
-| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| Continue a local session from my phone or another device              | [Remote Control](/en/remote-control)                                                                                |
-| Push events from Telegram, Discord, or my own webhooks into a session | [Channels](/en/channels)                                                                                            |
-| Start a task locally, continue on mobile                              | [Web](/en/claude-code-on-the-web) or [Claude iOS app](https://apps.apple.com/app/claude-by-anthropic/id6473753684)  |
-| Run Claude on a recurring schedule                                    | [Cloud scheduled tasks](/en/web-scheduled-tasks) or [Desktop scheduled tasks](/en/desktop#schedule-recurring-tasks) |
-| Automate PR reviews and issue triage                                  | [GitHub Actions](/en/github-actions) or [GitLab CI/CD](/en/gitlab-ci-cd)                                            |
-| Get automatic code review on every PR                                 | [GitHub Code Review](/en/code-review)                                                                               |
-| Route bug reports from Slack to pull requests                         | [Slack](/en/slack)                                                                                                  |
-| Debug live web applications                                           | [Chrome](/en/chrome)                                                                                                |
-| Build custom agents for your own workflows                            | [Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview)                                                 |
+| I want to...                                                                    | Best option                                                                                                         |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Continue a local session from my phone or another device                        | [Remote Control](/en/remote-control)                                                                                |
+| Push events from Telegram, Discord, iMessage, or my own webhooks into a session | [Channels](/en/channels)                                                                                            |
+| Start a task locally, continue on mobile                                        | [Web](/en/claude-code-on-the-web) or [Claude iOS app](https://apps.apple.com/app/claude-by-anthropic/id6473753684)  |
+| Run Claude on a recurring schedule                                              | [Cloud scheduled tasks](/en/web-scheduled-tasks) or [Desktop scheduled tasks](/en/desktop#schedule-recurring-tasks) |
+| Automate PR reviews and issue triage                                            | [GitHub Actions](/en/github-actions) or [GitLab CI/CD](/en/gitlab-ci-cd)                                            |
+| Get automatic code review on every PR                                           | [GitHub Code Review](/en/code-review)                                                                               |
+| Route bug reports from Slack to pull requests                                   | [Slack](/en/slack)                                                                                                  |
+| Debug live web applications                                                     | [Chrome](/en/chrome)                                                                                                |
+| Build custom agents for your own workflows                                      | [Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview)                                                 |
 
 ## Next steps
 

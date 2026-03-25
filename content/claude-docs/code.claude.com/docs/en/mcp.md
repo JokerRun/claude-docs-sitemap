@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-03-23T03:10:36.911648Z
-sha256: f15349d1f16dad0580df14e5efabbe5d1e22a120484a5f681261d9a2f63e9143
+fetched_at: 2026-03-25T03:08:45.167858Z
+sha256: e8a134461a36deaa92bc67ec75b8b45b2ba3fe6635bf7a4f3f4aa68b8c759653
 ---
 
 > ## Documentation Index
@@ -381,11 +381,13 @@ In `.mcp.json` at plugin root:
 
 ```json  theme={null}
 {
-  "database-tools": {
-    "command": "${CLAUDE_PLUGIN_ROOT}/servers/db-server",
-    "args": ["--config", "${CLAUDE_PLUGIN_ROOT}/config.json"],
-    "env": {
-      "DB_URL": "${DB_URL}"
+  "mcpServers": {
+    "database-tools": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/servers/db-server",
+      "args": ["--config", "${CLAUDE_PLUGIN_ROOT}/config.json"],
+      "env": {
+        "DB_URL": "${DB_URL}"
+      }
     }
   }
 }
@@ -771,6 +773,48 @@ Set `authServerMetadataUrl` in the `oauth` object of your server's config in `.m
 ```
 
 The URL must use `https://`. This option requires Claude Code v2.1.64 or later.
+
+### Use dynamic headers for custom authentication
+
+If your MCP server uses an authentication scheme other than OAuth (such as Kerberos, short-lived tokens, or an internal SSO), use `headersHelper` to generate request headers at connection time. Claude Code runs the command and merges its output into the connection headers.
+
+```json  theme={null}
+{
+  "mcpServers": {
+    "internal-api": {
+      "type": "http",
+      "url": "https://mcp.internal.example.com",
+      "headersHelper": "/opt/bin/get-mcp-auth-headers.sh"
+    }
+  }
+}
+```
+
+The command can also be inline:
+
+```json  theme={null}
+{
+  "mcpServers": {
+    "internal-api": {
+      "type": "http",
+      "url": "https://mcp.internal.example.com",
+      "headersHelper": "echo '{\"Authorization\": \"Bearer '\"$(get-token)\"'\"}'"
+    }
+  }
+}
+```
+
+**Requirements:**
+
+* The command must write a JSON object of string key-value pairs to stdout
+* The command runs in a shell with a 10-second timeout
+* Dynamic headers override any static `headers` with the same name
+
+The helper runs fresh on each connection (at session start and on reconnect). There is no caching, so your script is responsible for any token reuse.
+
+<Note>
+  `headersHelper` executes arbitrary shell commands. When defined at project or local scope, it only runs after you accept the workspace trust dialog.
+</Note>
 
 ## Add MCP servers from JSON configuration
 

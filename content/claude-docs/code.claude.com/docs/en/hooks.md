@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: e4d4bcf6f995454c38a141fe0bfc0b7113996cd934a1eac9e54db5e78569b182
+fetched_at: 2026-03-25T03:08:45.167858Z
+sha256: f117e2b61dbbefcecbc7012e3421a0aa8859dc9073fceda7399e07371a1b3113
 ---
 
 > ## Documentation Index
@@ -454,13 +454,13 @@ Command hooks receive JSON data via stdin and communicate results through exit c
 
 Hook events receive these fields as JSON, in addition to event-specific fields documented in each [hook event](#hook-events) section. For command hooks, this JSON arrives via stdin. For HTTP hooks, it arrives as the POST request body.
 
-| Field             | Description                                                                                                                                                                                                                 |
-| :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `session_id`      | Current session identifier                                                                                                                                                                                                  |
-| `transcript_path` | Path to conversation JSON                                                                                                                                                                                                   |
-| `cwd`             | Current working directory when the hook is invoked                                                                                                                                                                          |
-| `permission_mode` | Current [permission mode](/en/permissions#permission-modes): `"default"`, `"plan"`, `"acceptEdits"`, `"dontAsk"`, or `"bypassPermissions"`. Not all events receive this field: see each event's JSON example below to check |
-| `hook_event_name` | Name of the event that fired                                                                                                                                                                                                |
+| Field             | Description                                                                                                                                                                                                                           |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `session_id`      | Current session identifier                                                                                                                                                                                                            |
+| `transcript_path` | Path to conversation JSON                                                                                                                                                                                                             |
+| `cwd`             | Current working directory when the hook is invoked                                                                                                                                                                                    |
+| `permission_mode` | Current [permission mode](/en/permissions#permission-modes): `"default"`, `"plan"`, `"acceptEdits"`, `"auto"`, `"dontAsk"`, or `"bypassPermissions"`. Not all events receive this field: see each event's JSON example below to check |
+| `hook_event_name` | Name of the event that fired                                                                                                                                                                                                          |
 
 When running with `--agent` or inside a subagent, two additional fields are included:
 
