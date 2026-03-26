@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-03-24T03:06:06.053411Z
-sha256: fcd727507020cb5089b9de53cdd8304e0c84222a39c3938cfdfe4a749a5072a4
+fetched_at: 2026-03-26T03:10:23.640271Z
+sha256: 4ad8de4e8531fdfd689d073d05e680a6018c579adf9577d26c20969a55de8d0f
 ---
 
 > ## Documentation Index
@@ -103,6 +103,8 @@ You can enable sandboxing by running the `/sandbox` command:
 ```
 
 This opens a menu where you can choose between sandbox modes. If required dependencies are missing (such as `bubblewrap` or `socat` on Linux), the menu displays installation instructions for your platform.
+
+By default, if the sandbox cannot start (missing dependencies, unsupported platform, or platform restrictions), Claude Code shows a warning and runs commands without sandboxing. To make this a hard failure instead, set [`sandbox.failIfUnavailable`](/en/settings#sandbox-settings) to `true`. This is intended for managed deployments that require sandboxing as a security gate.
 
 ### Sandbox modes
 
