@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-03-13T04:15:04.763927Z
-sha256: 8d317b877be97f45aaaf16aa40d1ec15df8d909f19396a8960f70d3592606910
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 5081351d48e73a333e5afc9000ef07baee304fa9dd898260c49dffab92301ccd
 ---
 
 > ## Documentation Index
@@ -193,9 +193,10 @@ This removes the shared team resources. When the lead runs cleanup, it checks fo
 
 ### Enforce quality gates with hooks
 
-Use [hooks](/en/hooks) to enforce rules when teammates finish work or tasks complete:
+Use [hooks](/en/hooks) to enforce rules when teammates finish work or tasks are created or completed:
 
 * [`TeammateIdle`](/en/hooks#teammateidle): runs when a teammate is about to go idle. Exit with code 2 to send feedback and keep the teammate working.
+* [`TaskCreated`](/en/hooks#taskcreated): runs when a task is being created. Exit with code 2 to prevent creation and send feedback.
 * [`TaskCompleted`](/en/hooks#taskcompleted): runs when a task is being marked complete. Exit with code 2 to prevent completion and send feedback.
 
 ## How agent teams work

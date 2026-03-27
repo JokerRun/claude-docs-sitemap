@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: 4237d1e740fd20899dbf355650c6338df741e2898fa4ab8b9cb1fc265ae15a41
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 15db153c38b9be407647b749c94a8e193eb95adf3de73e0f7610373503a7c53c
 ---
 
 # Fast mode (beta: research preview)
@@ -18,7 +18,7 @@ Fast mode is in beta (research preview). [Join the waitlist](https://claude.com/
 </Note>
 
 <Note>
-This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
 </Note>
 
 ## Supported models

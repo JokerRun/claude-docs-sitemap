@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: c0733b61b8c769376b832b326461b8331d34765f0c3616f80396ec543e3d7814
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: c1b8472b5c2e88f4dc47d6eb2ec0e9f60eeeb100f4ca35c8ed5727c3133f0301
 ---
 
 # Batch processing
@@ -19,7 +19,7 @@ Batch processing is a powerful approach for handling large volumes of requests e
 The Message Batches API is Anthropic's first implementation of this pattern.
 
 <Note>
-This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Data is retained according to the feature's standard retention policy.
+This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). Data is retained according to the feature's standard retention policy.
 </Note>
 
 ---
@@ -1801,6 +1801,12 @@ Note that the failure of one request in a batch does not affect the processing o
 - **Result availability**: Batch results are available for 29 days after the batch is created, allowing ample time for retrieval and processing.
 
 ---
+## Data retention
+
+Batch processing stores request and response data for up to 29 days after batch creation. You can delete a message batch at any time after processing using the `DELETE /v1/messages/batches/{batch_id}` endpoint. To delete an in-progress batch, cancel it first. Asynchronous processing requires server-side storage of both inputs and outputs until batch completion and result retrieval.
+
+For ZDR eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).
+
 ## FAQ
 
   <section title="How long does it take for a batch to process?">

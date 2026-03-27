@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/overview
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: b1bab9665244ce7f14a512656d08c146a9bd449a33d9a3799e08949202a8d17d
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 9addfc3cdf6f015c8af55a1e91629e92c084bfe1725fd9725e040099ae4eff17
 ---
 
 <h2}>
@@ -59,10 +59,6 @@ sha256: b1bab9665244ce7f14a512656d08c146a9bd449a33d9a3799e08949202a8d17d
 
     <Card title="Buku Resep" icon="fork-knife" href="https://platform.claude.com/cookbooks">
       Sampel kode dan implementasi yang dapat direplikasi.
-    </Card>
-
-    <Card title="Perpustakaan prompt" icon="book" href="/docs/id/resources/prompt-library/library">
-      Jelajahi prompt yang dioptimalkan untuk berbagai tugas bisnis dan pribadi.
     </Card>
 
     <Card title="Panduan kasus penggunaan" icon="compass" href="/docs/id/about-claude/use-case-guides/overview">

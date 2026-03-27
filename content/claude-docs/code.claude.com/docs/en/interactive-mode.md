@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-03-26T03:10:23.640271Z
-sha256: 0671ffd3cd65fc83d8832c7a5b96cb9334ebb24ac82ed44eda937b1b44867810
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: aefb91a5740c4f2dd94a9cfaa2e14ad1d14f60a6cc9fc197d88c2c96fd85c35e
 ---
 
 > ## Documentation Index
@@ -51,14 +51,14 @@ sha256: 0671ffd3cd65fc83d8832c7a5b96cb9334ebb24ac82ed44eda937b1b44867810
 
 ### Text editing
 
-| Shortcut                 | Description                  | Context                                                                                                       |
-| :----------------------- | :--------------------------- | :------------------------------------------------------------------------------------------------------------ |
-| `Ctrl+K`                 | Delete to end of line        | Stores deleted text for pasting                                                                               |
-| `Ctrl+U`                 | Delete entire line           | Stores deleted text for pasting                                                                               |
-| `Ctrl+Y`                 | Paste deleted text           | Paste text deleted with `Ctrl+K` or `Ctrl+U`                                                                  |
-| `Alt+Y` (after `Ctrl+Y`) | Cycle paste history          | After pasting, cycle through previously deleted text. Requires [Option as Meta](#keyboard-shortcuts) on macOS |
-| `Alt+B`                  | Move cursor back one word    | Word navigation. Requires [Option as Meta](#keyboard-shortcuts) on macOS                                      |
-| `Alt+F`                  | Move cursor forward one word | Word navigation. Requires [Option as Meta](#keyboard-shortcuts) on macOS                                      |
+| Shortcut                 | Description                      | Context                                                                                                       |
+| :----------------------- | :------------------------------- | :------------------------------------------------------------------------------------------------------------ |
+| `Ctrl+K`                 | Delete to end of line            | Stores deleted text for pasting                                                                               |
+| `Ctrl+U`                 | Delete from cursor to line start | Stores deleted text for pasting. Repeat to clear across lines in multiline input                              |
+| `Ctrl+Y`                 | Paste deleted text               | Paste text deleted with `Ctrl+K` or `Ctrl+U`                                                                  |
+| `Alt+Y` (after `Ctrl+Y`) | Cycle paste history              | After pasting, cycle through previously deleted text. Requires [Option as Meta](#keyboard-shortcuts) on macOS |
+| `Alt+B`                  | Move cursor back one word        | Word navigation. Requires [Option as Meta](#keyboard-shortcuts) on macOS                                      |
+| `Alt+F`                  | Move cursor forward one word     | Word navigation. Requires [Option as Meta](#keyboard-shortcuts) on macOS                                      |
 
 ### Theme and display
 

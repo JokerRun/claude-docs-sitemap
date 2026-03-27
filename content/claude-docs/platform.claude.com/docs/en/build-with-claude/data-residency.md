@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/data-residency
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: 0977b33a24b1eb3c645ef26215d5057aebcae8da3c0b1b14a6cbc5e8b8517076
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: b1278fdee89d33ce96f3304086c34ee421d00ec1e541b9da746a842ae3d9ce6e
 ---
 
 # Data residency
@@ -10,6 +10,10 @@ sha256: 0977b33a24b1eb3c645ef26215d5057aebcae8da3c0b1b14a6cbc5e8b8517076
 Manage where model inference runs and where data is stored with geographic controls.
 
 ---
+
+<Note>
+This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+</Note>
 
 Data residency controls let you manage where your data is processed and stored. Two independent settings govern this:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: 45dab68353d019072ff76e99f21d6cb11e464ed37b8130846a91890e2f78aa70
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 9d309b5aa7baa6dbb2de1bc8c6d38688a576ffa170939f248403995c410b04a2
 ---
 
 # Pricing
@@ -52,7 +52,7 @@ Starting with Claude Sonnet 4.5 and Haiku 4.5, AWS Bedrock and Google Vertex AI 
 - **Global endpoints**: Dynamic routing across regions for maximum availability
 - **Regional endpoints**: Data routing guaranteed within specific geographic regions
 
-Regional endpoints include a 10% premium over global endpoints. **The Claude API (1P) is global by default and unaffected by this change.** The Claude API is global-only (equivalent to the global endpoint offering and pricing from other providers).
+Regional endpoints include a 10% premium over global endpoints. The Claude API (1P) is global by default; for 1P data residency options and pricing, see [Data residency pricing](#data-residency-pricing) below.
 
 **Scope**: This pricing structure applies to Claude Sonnet 4.5, Haiku 4.5, and all future models. Earlier models (Claude Sonnet 4, Opus 4, and prior releases) retain their existing pricing.
 

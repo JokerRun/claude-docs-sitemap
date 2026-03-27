@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/commands
-fetched_at: 2026-03-26T03:10:23.640271Z
-sha256: ae42354890cd2dd35f4c72e89b514959ae2bc49961b4f0f91514eb23b80294d5
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 004b40aea37408f2d701e8d0087d2b6fc24a444dfc8853121389817ad1a49b53
 ---
 
 > ## Documentation Index
@@ -68,7 +68,7 @@ In the table below, `<arg>` indicates a required argument and `[arg]` indicates 
 | `/remote-env`                            | Configure the default remote environment for [web sessions started with `--remote`](/en/claude-code-on-the-web#environment-configuration)                                                                                                                                                                                                                      |
 | `/rename [name]`                         | Rename the current session and show the name on the prompt bar. Without a name, auto-generates one from conversation history                                                                                                                                                                                                                                   |
 | `/resume [session]`                      | Resume a conversation by ID or name, or open the session picker. Alias: `/continue`                                                                                                                                                                                                                                                                            |
-| `/review`                                | Deprecated. Install the [`code-review` plugin](https://github.com/anthropics/claude-code-marketplace/blob/main/code-review/README.md) instead: `claude plugin install code-review@claude-code-marketplace`                                                                                                                                                     |
+| `/review`                                | Deprecated. Install the [`code-review` plugin](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/code-review) instead: `claude plugin install code-review@claude-plugins-official`                                                                                                                                                       |
 | `/rewind`                                | Rewind the conversation and/or code to a previous point, or summarize from a selected message. See [checkpointing](/en/checkpointing). Alias: `/checkpoint`                                                                                                                                                                                                    |
 | `/sandbox`                               | Toggle [sandbox mode](/en/sandboxing). Available on supported platforms only                                                                                                                                                                                                                                                                                   |
 | `/schedule [description]`                | Create, update, list, or run [Cloud scheduled tasks](/en/web-scheduled-tasks). Claude walks you through the setup conversationally                                                                                                                                                                                                                             |

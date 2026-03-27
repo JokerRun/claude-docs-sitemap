@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-03-26T03:10:23.640271Z
-sha256: 54d8525b23e54f48b6e9eae8bec3a80d41f4bca27b665929beefc59541eb3ff2
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: f6bab34b393de81dba14ea5026ed89ce524984741bed4a401b48ced852079d78
 ---
 
 > ## Documentation Index
@@ -33,7 +33,7 @@ You can start sessions, pipe content, resume conversations, and manage updates w
 | `claude agents`                 | List all configured [subagents](/en/sub-agents), grouped by source                                                                                                                                                             | `claude agents`                                             |
 | `claude auto-mode defaults`     | Print the built-in [auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) classifier rules as JSON. Use `claude auto-mode config` to see your effective config with settings applied                               | `claude auto-mode defaults > rules.json`                    |
 | `claude mcp`                    | Configure Model Context Protocol (MCP) servers                                                                                                                                                                                 | See the [Claude Code MCP documentation](/en/mcp).           |
-| `claude plugin`                 | Manage Claude Code [plugins](/en/plugins). Alias: `claude plugins`. See [plugin reference](/en/plugins-reference#cli-commands-reference) for subcommands                                                                       | `claude plugin install code-review@claude-code-marketplace` |
+| `claude plugin`                 | Manage Claude Code [plugins](/en/plugins). Alias: `claude plugins`. See [plugin reference](/en/plugins-reference#cli-commands-reference) for subcommands                                                                       | `claude plugin install code-review@claude-plugins-official` |
 | `claude remote-control`         | Start a [Remote Control](/en/remote-control) server to control Claude Code from Claude.ai or the Claude app. Runs in server mode (no local interactive session). See [Server mode flags](/en/remote-control#server-mode)       | `claude remote-control --name "My Project"`                 |
 
 ## CLI flags

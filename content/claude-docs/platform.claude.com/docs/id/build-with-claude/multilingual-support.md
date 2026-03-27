@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: f21ccc154bd454e8c732c12dbc8fa15c61586dcd078e83a4a589e5550689c7da
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 2221cf570eae5a0aa9464dcbc4eea5ddf71dd0d2c74c1250f271e8e59504f51c
 ---
 
 # Dukungan multibahasa
@@ -65,11 +65,8 @@ Kami juga menyarankan mengikuti [panduan rekayasa prompt](/docs/id/build-with-cl
 - Kinerja bervariasi menurut bahasa, dengan kemampuan yang sangat kuat dalam bahasa yang banyak digunakan
 - Bahkan dalam bahasa dengan sumber daya digital yang lebih sedikit, Claude mempertahankan kemampuan yang bermakna
 
-<CardGroup cols={2}>
+<CardGroup cols={1}>
   <Card title="Panduan Rekayasa Prompt" icon="edit" href="/docs/id/build-with-claude/prompt-engineering/overview">
     Kuasai seni pembuatan prompt untuk mendapatkan hasil maksimal dari Claude.
-  </Card>
-  <Card title="Perpustakaan Prompt" icon="books" href="/docs/id/resources/prompt-library">
-    Temukan berbagai prompt yang telah dirancang sebelumnya untuk berbagai tugas dan industri. Sempurna untuk inspirasi atau awal cepat.
   </Card>
 </CardGroup>

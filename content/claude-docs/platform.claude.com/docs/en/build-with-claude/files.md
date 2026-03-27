@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: b83e015c279bddb0a146b8c323386879eef558784278a7b72f0a72139d7344ba
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: dd96f5b53d5bb408f8e8d456f8579b02b2fa3b1ab5fa3f4636e39c92f35514e0
 ---
 
 # Files API
@@ -16,7 +16,7 @@ The Files API is in beta. Reach out through the [feedback form](https://forms.gl
 </Note>
 
 <Note>
-This feature is in beta and is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Beta features are excluded from ZDR.
+This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). Data is retained according to the feature's standard retention policy.
 </Note>
 
 ## Supported models
@@ -1033,6 +1033,12 @@ You can only download files that were created by [skills](/docs/en/build-with-cl
 - Files that users delete will be deleted in accordance with Anthropic's [data retention policy](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data).
 
 ---
+
+## Data retention
+
+Files uploaded via the Files API are retained until explicitly deleted using the `DELETE /v1/files/{file_id}` endpoint. Files are stored for reuse across multiple API requests.
+
+For ZDR eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).
 
 ## Error handling
 

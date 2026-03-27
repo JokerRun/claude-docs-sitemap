@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: fd9190577eaed4d341547e80e93e0a9934a265328a413d0ad728cfc05273a6a5
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: af997a33286650b989d97a592ceaebe4c6e11e9fefad6137ce9c70da6fcc121f
 ---
 
 > ## Documentation Index
@@ -138,7 +138,7 @@ This quickstart walks you through creating a plugin with a custom skill. You'll 
     You'll see Claude respond with a greeting. Run `/help` to see your skill listed under the plugin namespace.
 
     <Note>
-      **Why namespacing?** Plugin skills are always namespaced (like `/greet:hello`) to prevent conflicts when multiple plugins have skills with the same name.
+      **Why namespacing?** Plugin skills are always namespaced (like `/my-first-plugin:hello`) to prevent conflicts when multiple plugins have skills with the same name.
 
       To change the namespace prefix, update the `name` field in `plugin.json`.
     </Note>

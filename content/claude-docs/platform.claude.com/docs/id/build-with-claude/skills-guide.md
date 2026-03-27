@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 9ed04e2772d14a5ebfcead1eccc6271d7af8425de0b4ea3bf54133febda591a7
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 6a992dd973c4a89b5bd47eca046deab76c55620fd182af696ef4337ca0a58dfa
 ---
 
 # Menggunakan Agent Skills dengan API
@@ -20,7 +20,7 @@ Untuk referensi API lengkap termasuk skema permintaan/respons dan semua paramete
 </Note>
 
 <Note>
-This feature is in beta and is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Beta features are excluded from ZDR.
+This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). Data is retained according to the feature's standard retention policy.
 </Note>
 
 ## Tautan Cepat

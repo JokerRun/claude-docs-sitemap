@@ -23,22 +23,22 @@ Automated daily English sitemap collection from Claude documentation sources.
 <!-- tsv_preview_start -->
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
-| code | https://code.claude.com/docs/en/agent-teams | 2026-03-12 |  |
+| code | https://code.claude.com/docs/en/agent-teams | 2026-03-26 |  |
 | code | https://code.claude.com/docs/en/amazon-bedrock | 2026-03-17 |  |
 | code | https://code.claude.com/docs/en/analytics | 2026-02-27 |  |
 | code | https://code.claude.com/docs/en/authentication | 2026-03-18 |  |
-| code | https://code.claude.com/docs/en/best-practices | 2026-03-24 |  |
-| code | https://code.claude.com/docs/en/changelog | 2026-03-26 |  |
+| code | https://code.claude.com/docs/en/best-practices | 2026-03-26 |  |
+| code | https://code.claude.com/docs/en/changelog | 2026-03-27 |  |
 | code | https://code.claude.com/docs/en/channels | 2026-03-25 |  |
 | code | https://code.claude.com/docs/en/channels-reference | 2026-03-25 |  |
 | code | https://code.claude.com/docs/en/checkpointing | 2026-03-13 |  |
 | code | https://code.claude.com/docs/en/chrome | 2026-02-14 |  |
-| code | https://code.claude.com/docs/en/claude-code-on-the-web | 2026-03-23 |  |
-| code | https://code.claude.com/docs/en/cli-reference | 2026-03-25 |  |
+| code | https://code.claude.com/docs/en/claude-code-on-the-web | 2026-03-26 |  |
+| code | https://code.claude.com/docs/en/claude-directory | 2026-03-27 |  |
+| code | https://code.claude.com/docs/en/cli-reference | 2026-03-26 |  |
 | code | https://code.claude.com/docs/en/code-review | 2026-03-18 |  |
-| code | https://code.claude.com/docs/en/commands | 2026-03-25 |  |
-| code | https://code.claude.com/docs/en/common-workflows | 2026-03-23 |  |
-| ... | _(~796 more rows)_ | | |
+| code | https://code.claude.com/docs/en/commands | 2026-03-26 |  |
+| ... | _(~811 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

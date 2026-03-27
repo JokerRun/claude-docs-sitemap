@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: 3930aa029fd589374254c36201e9ef4f3d03527a51c252254eb71050cd0e6d22
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 6be6f25e513dc31aecb1257c05aeb6bf58d5cd34ca3c05e0355ed42dec151166
 ---
 
 # Compaction
@@ -10,6 +10,10 @@ sha256: 3930aa029fd589374254c36201e9ef4f3d03527a51c252254eb71050cd0e6d22
 Server-side context compaction for managing long conversations that approach context window limits.
 
 ---
+
+<Note>
+This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+</Note>
 
 <Tip>
 Server-side compaction is the recommended strategy for managing context in long-running conversations and agentic workflows. It handles context management automatically with minimal integration work.
@@ -29,10 +33,6 @@ This is ideal for:
 
 <Note>
 Compaction is in beta. Include the [beta header](/docs/en/api/beta-headers) `compact-2026-01-12` in your API requests to use this feature.
-</Note>
-
-<Note>
-Compaction is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention) arrangements.
 </Note>
 
 ## Supported models

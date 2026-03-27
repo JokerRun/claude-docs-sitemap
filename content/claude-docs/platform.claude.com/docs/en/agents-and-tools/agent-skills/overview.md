@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
-fetched_at: 2026-02-13T04:23:55.295784Z
-sha256: df8878e4eed0b32ed9440a519ea97d310cb35ca05ad66639b0f9feaa69eade94
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: a1a6238d0381c6ea66cb0d2b902b22f4e0f454207739fe1e2d270720f7543580
 ---
 
 # Agent Skills
@@ -10,6 +10,10 @@ sha256: df8878e4eed0b32ed9440a519ea97d310cb35ca05ad66639b0f9feaa69eade94
 Agent Skills are modular capabilities that extend Claude's functionality. Each Skill packages instructions, metadata, and optional resources (scripts, templates) that Claude uses automatically when relevant.
 
 ---
+
+<Note>
+This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). Data is retained according to the feature's standard retention policy.
+</Note>
 
 ## Why use Skills
 
@@ -268,9 +272,21 @@ The following pre-built Agent Skills are available for immediate use:
 
 These Skills are available on the Claude API and claude.ai. See the [quickstart tutorial](/docs/en/agents-and-tools/agent-skills/quickstart) to start using them in the API.
 
+### Open-source Skills
+
+Anthropic also publishes open-source Skills in the [skills repository](https://github.com/anthropics/skills):
+
+- **[Claude API](/docs/en/agents-and-tools/agent-skills/claude-api-skill)**: Provides Claude with up-to-date API reference material, SDK documentation, and best practices for 8 programming languages. Bundled with Claude Code and also available for installation from the skills repository.
+
 ### Custom Skills examples
 
 For complete examples of custom Skills, see the [Skills cookbook](https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction).
+
+## Data retention
+
+Agent Skills is not covered by ZDR arrangements. Skill definitions and execution data are retained according to Anthropic's standard data retention policy.
+
+For ZDR eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).
 
 ## Limitations and constraints
 

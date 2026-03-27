@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: 84e1beeec96c8b4dea86d55cd7b9a169247c73ec59268ea97717167ab20d301e
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: f9a9f5839a09471c479579085303e8ef54d0f9b2f6508c8ce3d5366a1012b8a9
 ---
 
 # Search results
@@ -10,6 +10,10 @@ sha256: 84e1beeec96c8b4dea86d55cd7b9a169247c73ec59268ea97717167ab20d301e
 Enable natural citations for RAG applications by providing search results with source attribution
 
 ---
+
+<Note>
+This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+</Note>
 
 Search result content blocks enable natural citations with proper source attribution, bringing web search-quality citations to your custom applications. This feature is particularly powerful for RAG (Retrieval-Augmented Generation) applications where you need Claude to cite sources accurately.
 

@@ -1,36 +1,42 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: bf12800e72423a29e805c45d13dae53c74bceab27c81bcb573ac29b4827ae91b
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 754384e497edad8f1bfd68488754629b973ab09901ffd8789f10542d2fe0f6f0
 ---
 
 # Pemanggilan alat secara terprogram
 
-Memungkinkan Claude menulis kode yang memanggil alat Anda secara terprogram dalam kontainer eksekusi kode, mengurangi latensi dan konsumsi token.
+Pelajari cara Claude memanggil alat secara terprogram dalam container eksekusi kode untuk mengurangi latensi dan konsumsi token.
 
 ---
 
-Pemanggilan alat secara terprogram memungkinkan Claude menulis kode yang memanggil alat Anda secara terprogram dalam kontainer [eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool), daripada memerlukan putaran bolak-balik melalui model untuk setiap pemanggilan alat. Ini mengurangi latensi untuk alur kerja multi-alat dan mengurangi konsumsi token dengan memungkinkan Claude memfilter atau memproses data sebelum mencapai jendela konteks model.
+Pemanggilan alat secara terprogram memungkinkan Claude menulis kode yang memanggil alat Anda secara terprogram dalam container [eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool), daripada memerlukan bolak-balik melalui model untuk setiap pemanggilan alat. Ini mengurangi latensi untuk alur kerja multi-alat dan mengurangi konsumsi token dengan memungkinkan Claude memfilter atau memproses data sebelum mencapai jendela konteks model. Pada benchmark pencarian agentik seperti [BrowseComp](https://arxiv.org/abs/2504.12516) dan [DeepSearchQA](https://github.com/google-deepmind/deepsearchqa), yang menguji penelitian web multi-langkah dan pengambilan informasi yang kompleks, menambahkan pemanggilan alat secara terprogram di atas alat pencarian dasar adalah faktor kunci yang sepenuhnya membuka kinerja agen.
+
+Perbedaannya bertambah cepat dalam alur kerja nyata. Pertimbangkan pemeriksaan kepatuhan anggaran di 20 karyawan: pendekatan tradisional memerlukan 20 bolak-balik model terpisah, menarik ribuan item baris pengeluaran ke dalam konteks di sepanjang jalan. Dengan pemanggilan alat secara terprogram, satu skrip menjalankan semua 20 pencarian, memfilter hasilnya, dan hanya mengembalikan karyawan yang melebihi batas mereka, menyusutkan apa yang perlu dipertimbangkan Claude dari ratusan kilobyte menjadi beberapa baris.
+
+<Tip>
+Untuk melihat lebih dalam biaya inferensi dan konteks yang ditangani oleh pemanggilan alat secara terprogram, lihat [Advanced tool use](https://www.anthropic.com/engineering/advanced-tool-use).
+</Tip>
 
 <Note>
 Fitur ini memerlukan alat eksekusi kode untuk diaktifkan.
 </Note>
 
 <Note>
-This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Data is retained according to the feature's standard retention policy.
+This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). Data is retained according to the feature's standard retention policy.
 </Note>
 
 ## Kompatibilitas model
 
-Pemanggilan alat secara terprogram tersedia pada model berikut:
+Pemanggilan alat secara terprogram tersedia pada model-model berikut:
 
 | Model | Versi Alat |
 |-------|--------------|
-| Claude Opus 4.6 (`claude-opus-4-6`) | `code_execution_20250825` |
-| Claude Sonnet 4.6 (`claude-sonnet-4-6`) | `code_execution_20250825` |
-| Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`) | `code_execution_20250825` |
-| Claude Opus 4.5 (`claude-opus-4-5-20251101`) | `code_execution_20250825` |
+| Claude Opus 4.6 (`claude-opus-4-6`) | `code_execution_20260120` |
+| Claude Sonnet 4.6 (`claude-sonnet-4-6`) | `code_execution_20260120` |
+| Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`) | `code_execution_20260120` |
+| Claude Opus 4.5 (`claude-opus-4-5-20251101`) | `code_execution_20260120` |
 
 <Warning>
 Pemanggilan alat secara terprogram tersedia melalui Claude API dan Microsoft Foundry.
@@ -38,7 +44,7 @@ Pemanggilan alat secara terprogram tersedia melalui Claude API dan Microsoft Fou
 
 ## Mulai cepat
 
-Berikut adalah contoh sederhana di mana Claude secara terprogram menanyakan database beberapa kali dan mengagregasi hasil:
+Berikut adalah contoh sederhana di mana Claude secara terprogram mengkueri database beberapa kali dan mengagregasi hasilnya:
 
 <CodeGroup>
 ```bash Shell
@@ -57,7 +63,7 @@ curl https://api.anthropic.com/v1/messages \
         ],
         "tools": [
             {
-                "type": "code_execution_20250825",
+                "type": "code_execution_20260120",
                 "name": "code_execution"
             },
             {
@@ -73,7 +79,7 @@ curl https://api.anthropic.com/v1/messages \
                     },
                     "required": ["sql"]
                 },
-                "allowed_callers": ["code_execution_20250825"]
+                "allowed_callers": ["code_execution_20260120"]
             }
         ]
     }'
@@ -94,7 +100,7 @@ response = client.messages.create(
         }
     ],
     tools=[
-        {"type": "code_execution_20250825", "name": "code_execution"},
+        {"type": "code_execution_20260120", "name": "code_execution"},
         {
             "name": "query_database",
             "description": "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
@@ -105,7 +111,7 @@ response = client.messages.create(
                 },
                 "required": ["sql"],
             },
-            "allowed_callers": ["code_execution_20250825"],
+            "allowed_callers": ["code_execution_20260120"],
         },
     ],
 )
@@ -125,17 +131,19 @@ async function main() {
     messages: [
       {
         role: "user",
-        content: "Query sales data for the West, East, and Central regions, then tell me which region had the highest revenue"
+        content:
+          "Query sales data for the West, East, and Central regions, then tell me which region had the highest revenue"
       }
     ],
     tools: [
       {
-        type: "code_execution_20250825",
+        type: "code_execution_20260120",
         name: "code_execution"
       },
       {
         name: "query_database",
-        description: "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
+        description:
+          "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
         input_schema: {
           type: "object",
           properties: {
@@ -146,7 +154,7 @@ async function main() {
           },
           required: ["sql"]
         },
-        allowed_callers: ["code_execution_20250825"]
+        allowed_callers: ["code_execution_20260120"]
       }
     ]
   });
@@ -160,23 +168,23 @@ main().catch(console.error);
 
 ## Cara kerja pemanggilan alat secara terprogram
 
-Ketika Anda mengonfigurasi alat untuk dapat dipanggil dari eksekusi kode dan Claude memutuskan untuk menggunakan alat tersebut:
+Ketika Anda mengonfigurasi alat agar dapat dipanggil dari eksekusi kode dan Claude memutuskan untuk menggunakan alat tersebut:
 
 1. Claude menulis kode Python yang memanggil alat sebagai fungsi, yang berpotensi mencakup beberapa pemanggilan alat dan logika pra/pasca-pemrosesan
-2. Claude menjalankan kode ini dalam kontainer bersandbox melalui eksekusi kode
+2. Claude menjalankan kode ini dalam container yang disandbox melalui eksekusi kode
 3. Ketika fungsi alat dipanggil, eksekusi kode dijeda dan API mengembalikan blok `tool_use`
-4. Anda memberikan hasil alat, dan eksekusi kode berlanjut (hasil perantara tidak dimuat ke jendela konteks Claude)
-5. Setelah semua eksekusi kode selesai, Claude menerima output akhir dan melanjutkan pekerjaan pada tugas
+4. Anda memberikan hasil alat, dan eksekusi kode berlanjut (hasil antara tidak dimuat ke dalam jendela konteks Claude)
+5. Setelah semua eksekusi kode selesai, Claude menerima output akhir dan melanjutkan mengerjakan tugas
 
 Pendekatan ini sangat berguna untuk:
-- **Pemrosesan data besar**: Memfilter atau mengagregasi hasil alat sebelum mencapai konteks Claude
-- **Alur kerja multi-langkah**: Hemat token dan latensi dengan memanggil alat secara seri atau dalam loop tanpa sampling Claude di antara pemanggilan alat
-- **Logika bersyarat**: Buat keputusan berdasarkan hasil alat perantara
+- **Pemrosesan data besar**: Filter atau agregasi hasil alat sebelum mencapai konteks Claude
+- **Alur kerja multi-langkah**: Hemat token dan latensi dengan memanggil alat secara serial atau dalam loop tanpa mengambil sampel Claude di antara pemanggilan alat
+- **Logika kondisional**: Membuat keputusan berdasarkan hasil alat antara
 
 <Note>
-Alat kustom dikonversi ke fungsi Python asinkron untuk mendukung pemanggilan alat paralel. Ketika Claude menulis kode yang memanggil alat Anda, ia menggunakan `await` (misalnya, `result = await query_database("<sql>")`) dan secara otomatis menyertakan fungsi pembungkus asinkron yang sesuai.
+Alat kustom dikonversi menjadi fungsi Python async untuk mendukung pemanggilan alat paralel. Ketika Claude menulis kode yang memanggil alat Anda, ia menggunakan `await` (misalnya, `result = await query_database("<sql>")`) dan secara otomatis menyertakan fungsi pembungkus async yang sesuai.
 
-Pembungkus asinkron dihilangkan dari contoh kode dalam dokumentasi ini untuk kejelasan.
+Pembungkus async dihilangkan dari contoh kode dalam dokumentasi ini untuk kejelasan.
 </Note>
 
 ## Konsep inti
@@ -189,23 +197,25 @@ Bidang `allowed_callers` menentukan konteks mana yang dapat memanggil alat:
 {
   "name": "query_database",
   "description": "Execute a SQL query against the database",
-  "input_schema": {...},
-  "allowed_callers": ["code_execution_20250825"]
+  "input_schema": {
+    // ...
+  },
+  "allowed_callers": ["code_execution_20260120"]
 }
 ```
 
 **Nilai yang mungkin:**
 - `["direct"]` - Hanya Claude yang dapat memanggil alat ini secara langsung (default jika dihilangkan)
-- `["code_execution_20250825"]` - Hanya dapat dipanggil dari dalam eksekusi kode
-- `["direct", "code_execution_20250825"]` - Dapat dipanggil baik secara langsung maupun dari eksekusi kode
+- `["code_execution_20260120"]` - Hanya dapat dipanggil dari dalam eksekusi kode
+- `["direct", "code_execution_20260120"]` - Dapat dipanggil baik secara langsung maupun dari eksekusi kode
 
 <Tip>
-Kami merekomendasikan memilih `["direct"]` atau `["code_execution_20250825"]` untuk setiap alat daripada mengaktifkan keduanya, karena ini memberikan panduan yang lebih jelas kepada Claude tentang cara terbaik menggunakan alat.
+Pilih salah satu `["direct"]` atau `["code_execution_20260120"]` untuk setiap alat daripada mengaktifkan keduanya, karena ini memberikan panduan yang lebih jelas kepada Claude tentang cara terbaik menggunakan alat tersebut.
 </Tip>
 
 ### Bidang `caller` dalam respons
 
-Setiap blok penggunaan alat mencakup bidang `caller` yang menunjukkan cara dipanggilnya:
+Setiap blok penggunaan alat menyertakan bidang `caller` yang menunjukkan bagaimana alat dipanggil:
 
 **Pemanggilan langsung (penggunaan alat tradisional):**
 ```json
@@ -213,8 +223,8 @@ Setiap blok penggunaan alat mencakup bidang `caller` yang menunjukkan cara dipan
   "type": "tool_use",
   "id": "toolu_abc123",
   "name": "query_database",
-  "input": {"sql": "<sql>"},
-  "caller": {"type": "direct"}
+  "input": { "sql": "<sql>" },
+  "caller": { "type": "direct" }
 }
 ```
 
@@ -224,39 +234,39 @@ Setiap blok penggunaan alat mencakup bidang `caller` yang menunjukkan cara dipan
   "type": "tool_use",
   "id": "toolu_xyz789",
   "name": "query_database",
-  "input": {"sql": "<sql>"},
+  "input": { "sql": "<sql>" },
   "caller": {
-    "type": "code_execution_20250825",
+    "type": "code_execution_20260120",
     "tool_id": "srvtoolu_abc123"
   }
 }
 ```
 
-`tool_id` mereferensikan alat eksekusi kode yang membuat pemanggilan terprogram.
+`tool_id` mereferensikan alat eksekusi kode yang melakukan pemanggilan terprogram.
 
-### Siklus hidup kontainer
+### Siklus hidup container
 
-Pemanggilan alat secara terprogram menggunakan kontainer yang sama dengan eksekusi kode:
+Pemanggilan alat secara terprogram menggunakan container yang sama dengan eksekusi kode:
 
-- **Pembuatan kontainer**: Kontainer baru dibuat untuk setiap sesi kecuali Anda menggunakan kembali yang sudah ada
-- **Kedaluwarsa**: Kontainer kedaluwarsa setelah sekitar 4,5 menit tidak aktif (dapat berubah)
-- **ID kontainer**: Dikembalikan dalam respons melalui bidang `container`
-- **Penggunaan kembali**: Lewatkan ID kontainer untuk mempertahankan status di seluruh permintaan
+- **Pembuatan container**: Container baru dibuat untuk setiap sesi kecuali Anda menggunakan kembali yang sudah ada
+- **Kedaluwarsa**: Container kedaluwarsa setelah sekitar 4,5 menit tidak aktif (dapat berubah)
+- **ID container**: Dikembalikan dalam respons melalui bidang `container`
+- **Penggunaan ulang**: Berikan ID container untuk mempertahankan status di seluruh permintaan
 
 <Warning>
-Ketika alat dipanggil secara terprogram dan kontainer menunggu hasil alat Anda, Anda harus merespons sebelum kontainer kedaluwarsa. Pantau bidang `expires_at`. Jika kontainer kedaluwarsa, Claude dapat menganggap pemanggilan alat sebagai waktu habis dan mencoba lagi.
+Ketika alat dipanggil secara terprogram dan container menunggu hasil alat Anda, Anda harus merespons sebelum container kedaluwarsa. Pantau bidang `expires_at`. Jika container kedaluwarsa, Claude mungkin memperlakukan pemanggilan alat sebagai waktu habis dan mencoba lagi.
 </Warning>
 
-## Alur kerja contoh
+## Contoh alur kerja
 
-Berikut adalah cara alur pemanggilan alat secara terprogram yang lengkap bekerja:
+Berikut adalah cara kerja alur pemanggilan alat secara terprogram yang lengkap:
 
 ### Langkah 1: Permintaan awal
 
 Kirim permintaan dengan eksekusi kode dan alat yang memungkinkan pemanggilan terprogram. Untuk mengaktifkan pemanggilan terprogram, tambahkan bidang `allowed_callers` ke definisi alat Anda.
 
 <Note>
-Berikan deskripsi terperinci tentang format output alat Anda dalam deskripsi alat. Jika Anda menentukan bahwa alat mengembalikan JSON, Claude akan mencoba mendeserialisasi dan memproses hasilnya dalam kode. Semakin detail yang Anda berikan tentang skema output, semakin baik Claude dapat menangani respons secara terprogram.
+Berikan deskripsi terperinci tentang format output alat Anda dalam deskripsi alat. Jika Anda menentukan bahwa alat mengembalikan JSON, Claude akan mencoba melakukan deserialisasi dan memproses hasilnya dalam kode. Semakin banyak detail yang Anda berikan tentang skema output, semakin baik Claude dapat menangani respons secara terprogram.
 </Note>
 
 <CodeGroup>
@@ -271,12 +281,14 @@ response = client.messages.create(
         }
     ],
     tools=[
-        {"type": "code_execution_20250825", "name": "code_execution"},
+        {"type": "code_execution_20260120", "name": "code_execution"},
         {
             "name": "query_database",
             "description": "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
-            "input_schema": {...},
-            "allowed_callers": ["code_execution_20250825"],
+            "input_schema": {
+                # ...
+            },
+            "allowed_callers": ["code_execution_20260120"],
         },
     ],
 )
@@ -286,20 +298,26 @@ response = client.messages.create(
 const response = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 4096,
-  messages: [{
-    role: "user",
-    content: "Query customer purchase history from the last quarter and identify our top 5 customers by revenue"
-  }],
+  messages: [
+    {
+      role: "user",
+      content:
+        "Query customer purchase history from the last quarter and identify our top 5 customers by revenue"
+    }
+  ],
   tools: [
     {
-      type: "code_execution_20250825",
+      type: "code_execution_20260120",
       name: "code_execution"
     },
     {
       name: "query_database",
-      description: "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
-      input_schema: { /* ... */ },
-      allowed_callers: ["code_execution_20250825"]
+      description:
+        "Execute a SQL query against the sales database. Returns a list of rows as JSON objects.",
+      input_schema: {
+        // ...
+      },
+      allowed_callers: ["code_execution_20260120"]
     }
   ]
 });
@@ -330,9 +348,9 @@ Claude menulis kode yang memanggil alat Anda. API dijeda dan mengembalikan:
       "type": "tool_use",
       "id": "toolu_def456",
       "name": "query_database",
-      "input": {"sql": "<sql>"},
+      "input": { "sql": "<sql>" },
       "caller": {
-        "type": "code_execution_20250825",
+        "type": "code_execution_20260120",
         "tool_id": "srvtoolu_abc123"
       }
     }
@@ -347,14 +365,14 @@ Claude menulis kode yang memanggil alat Anda. API dijeda dan mengembalikan:
 
 ### Langkah 3: Berikan hasil alat
 
-Sertakan riwayat percakapan lengkap ditambah hasil alat Anda:
+Sertakan riwayat percakapan lengkap beserta hasil alat Anda:
 
 <CodeGroup>
 ```python Python
 response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=4096,
-    container="container_xyz789",  # Reuse the container
+    container="container_xyz789",  # Gunakan kembali container
     messages=[
         {
             "role": "user",
@@ -379,7 +397,7 @@ response = client.messages.create(
                     "name": "query_database",
                     "input": {"sql": "<sql>"},
                     "caller": {
-                        "type": "code_execution_20250825",
+                        "type": "code_execution_20260120",
                         "tool_id": "srvtoolu_abc123",
                     },
                 },
@@ -404,9 +422,13 @@ response = client.messages.create(
 const response = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 4096,
-  container: "container_xyz789", // Reuse the container
+  container: "container_xyz789", // Gunakan kembali container
   messages: [
-    { role: "user", content: "Query customer purchase history from the last quarter and identify our top 5 customers by revenue" },
+    {
+      role: "user",
+      content:
+        "Query customer purchase history from the last quarter and identify our top 5 customers by revenue"
+    },
     {
       role: "assistant",
       content: [
@@ -423,7 +445,7 @@ const response = await anthropic.messages.create({
           name: "query_database",
           input: { sql: "<sql>" },
           caller: {
-            type: "code_execution_20250825",
+            type: "code_execution_20260120",
             tool_id: "srvtoolu_abc123"
           }
         }
@@ -435,19 +457,22 @@ const response = await anthropic.messages.create({
         {
           type: "tool_result",
           tool_use_id: "toolu_def456",
-          content: "[{\"customer_id\": \"C1\", \"revenue\": 45000}, {\"customer_id\": \"C2\", \"revenue\": 38000}, ...]"
+          content:
+            '[{"customer_id": "C1", "revenue": 45000}, {"customer_id": "C2", "revenue": 38000}, ...]'
         }
       ]
     }
   ],
-  tools: [/* ... */]
+  tools: [
+    // ...
+  ]
 });
 ```
 </CodeGroup>
 
 ### Langkah 4: Pemanggilan alat berikutnya atau penyelesaian
 
-Eksekusi kode berlanjut dan memproses hasil. Jika pemanggilan alat tambahan diperlukan, ulangi Langkah 3 hingga semua pemanggilan alat terpenuhi.
+Eksekusi kode berlanjut dan memproses hasilnya. Jika pemanggilan alat tambahan diperlukan, ulangi Langkah 3 hingga semua pemanggilan alat terpenuhi.
 
 ### Langkah 5: Respons akhir
 
@@ -483,41 +508,41 @@ Setelah eksekusi kode selesai, Claude memberikan respons akhir:
 Claude dapat menulis kode yang memproses beberapa item secara efisien:
 
 ```python
-# async wrapper omitted for clarity
+# pembungkus async dihilangkan untuk kejelasan
 regions = ["West", "East", "Central", "North", "South"]
 results = {}
 for region in regions:
     data = await query_database(f"<sql for {region}>")
     results[region] = sum(row["revenue"] for row in data)
 
-# Process results programmatically
+# Proses hasil secara terprogram
 top_region = max(results.items(), key=lambda x: x[1])
 print(f"Top region: {top_region[0]} with ${top_region[1]:,} in revenue")
 ```
 
 Pola ini:
-- Mengurangi putaran model dari N (satu per wilayah) menjadi 1
-- Memproses set hasil besar secara terprogram sebelum kembali ke Claude
-- Menghemat token dengan hanya mengembalikan kesimpulan yang diagregasi daripada data mentah
+- Mengurangi bolak-balik model dari N (satu per wilayah) menjadi 1
+- Memproses kumpulan hasil besar secara terprogram sebelum kembali ke Claude
+- Menghemat token dengan hanya mengembalikan kesimpulan yang diagregasi alih-alih data mentah
 
 ### Penghentian awal
 
 Claude dapat berhenti memproses segera setelah kriteria keberhasilan terpenuhi:
 
 ```python
-# async wrapper omitted for clarity
+# pembungkus async dihilangkan untuk kejelasan
 endpoints = ["us-east", "eu-west", "apac"]
 for endpoint in endpoints:
     status = await check_health(endpoint)
     if status == "healthy":
         print(f"Found healthy endpoint: {endpoint}")
-        break  # Stop early, don't check remaining
+        break  # Berhenti lebih awal, jangan periksa yang tersisa
 ```
 
-### Pemilihan alat bersyarat
+### Pemilihan alat kondisional
 
 ```python
-# async wrapper omitted for clarity
+# pembungkus async dihilangkan untuk kejelasan
 file_info = await get_file_info(path)
 if file_info["size"] < 10000:
     content = await read_full_file(path)
@@ -529,11 +554,11 @@ print(content)
 ### Pemfilteran data
 
 ```python
-# async wrapper omitted for clarity
+# pembungkus async dihilangkan untuk kejelasan
 logs = await fetch_logs(server_id)
 errors = [log for log in logs if "ERROR" in log]
 print(f"Found {len(errors)} errors")
-for error in errors[-10:]:  # Only return last 10 errors
+for error in errors[-10:]:  # Hanya kembalikan 10 error terakhir
     print(error)
 ```
 
@@ -548,9 +573,9 @@ Ketika eksekusi kode memanggil alat:
   "type": "tool_use",
   "id": "toolu_abc123",
   "name": "query_database",
-  "input": {"sql": "<sql>"},
+  "input": { "sql": "<sql>" },
   "caller": {
-    "type": "code_execution_20250825",
+    "type": "code_execution_20260120",
     "tool_id": "srvtoolu_xyz789"
   }
 }
@@ -558,7 +583,7 @@ Ketika eksekusi kode memanggil alat:
 
 ### Penanganan hasil alat
 
-Hasil alat Anda dilewatkan kembali ke kode yang sedang berjalan:
+Hasil alat Anda diteruskan kembali ke kode yang berjalan:
 
 ```json
 {
@@ -591,17 +616,17 @@ Ketika semua pemanggilan alat terpenuhi dan kode selesai:
 }
 ```
 
-## Penanganan kesalahan
+## Penanganan error
 
-### Kesalahan umum
+### Error umum
 
-| Kesalahan | Deskripsi | Solusi |
+| Error | Deskripsi | Solusi |
 |-------|-------------|----------|
-| `invalid_tool_input` | Input alat tidak cocok dengan skema | Validasi input_schema alat Anda |
-| `tool_not_allowed` | Alat tidak memungkinkan jenis pemanggil yang diminta | Periksa `allowed_callers` mencakup konteks yang tepat |
+| `invalid_tool_input` | Input alat tidak sesuai dengan skema | Validasi input_schema alat Anda |
+| `tool_not_allowed` | Alat tidak mengizinkan jenis pemanggil yang diminta | Periksa `allowed_callers` menyertakan konteks yang tepat |
 | `missing_beta_header` | Header beta yang diperlukan tidak disediakan | Tambahkan header beta yang diperlukan ke permintaan Anda |
 
-### Kedaluwarsa kontainer selama pemanggilan alat
+### Kedaluwarsa container selama pemanggilan alat
 
 Jika alat Anda membutuhkan waktu terlalu lama untuk merespons, eksekusi kode akan menerima `TimeoutError`. Claude melihat ini di stderr dan biasanya akan mencoba lagi:
 
@@ -619,17 +644,17 @@ Jika alat Anda membutuhkan waktu terlalu lama untuk merespons, eksekusi kode aka
 }
 ```
 
-Untuk mencegah waktu habis:
+Untuk mencegah timeout:
 - Pantau bidang `expires_at` dalam respons
-- Implementasikan waktu habis untuk eksekusi alat Anda
+- Implementasikan timeout untuk eksekusi alat Anda
 - Pertimbangkan untuk memecah operasi panjang menjadi potongan yang lebih kecil
 
-### Kesalahan eksekusi alat
+### Error eksekusi alat
 
-Jika alat Anda mengembalikan kesalahan:
+Jika alat Anda mengembalikan error:
 
 ```python
-# Provide error information in the tool result
+# Berikan informasi error dalam hasil alat
 {
     "type": "tool_result",
     "tool_use_id": "toolu_abc123",
@@ -637,7 +662,7 @@ Jika alat Anda mengembalikan kesalahan:
 }
 ```
 
-Kode Claude akan menerima kesalahan ini dan dapat menanganinya dengan tepat.
+Kode Claude akan menerima error ini dan dapat menanganinya dengan tepat.
 
 ## Batasan dan keterbatasan
 
@@ -649,33 +674,43 @@ Kode Claude akan menerima kesalahan ini dan dapat menanganinya dengan tepat.
 
 ### Pembatasan alat
 
-Alat berikut saat ini tidak dapat dipanggil secara terprogram, tetapi dukungan dapat ditambahkan di rilis mendatang:
+Alat-alat berikut saat ini tidak dapat dipanggil secara terprogram, tetapi dukungan mungkin ditambahkan dalam rilis mendatang:
 
-- Pencarian web
-- Pengambilan web
 - Alat yang disediakan oleh [konektor MCP](/docs/id/agents-and-tools/mcp-connector)
 
-### Pembatasan pemformatan pesan
+### Pembatasan format pesan
 
-Saat merespons pemanggilan alat terprogram, ada persyaratan pemformatan yang ketat:
+Saat merespons pemanggilan alat terprogram, ada persyaratan format yang ketat:
 
 **Respons hanya hasil alat**: Jika ada pemanggilan alat terprogram yang tertunda menunggu hasil, pesan respons Anda harus berisi **hanya** blok `tool_result`. Anda tidak dapat menyertakan konten teks apa pun, bahkan setelah hasil alat.
 
+Tidak valid - Tidak dapat menyertakan teks saat merespons pemanggilan alat terprogram:
+
 ```json
-// ❌ TIDAK VALID - Tidak dapat menyertakan teks saat merespons pemanggilan alat terprogram
 {
   "role": "user",
   "content": [
-    {"type": "tool_result", "tool_use_id": "toolu_01", "content": "[{\"customer_id\": \"C1\", \"revenue\": 45000}]"},
-    {"type": "text", "text": "What should I do next?"}  // This will cause an error
+    {
+      "type": "tool_result",
+      "tool_use_id": "toolu_01",
+      "content": "[{\"customer_id\": \"C1\", \"revenue\": 45000}]"
+    },
+    { "type": "text", "text": "What should I do next?" }
   ]
 }
+```
 
-// ✅ VALID - Hanya hasil alat saat merespons pemanggilan alat terprogram
+Valid - Hanya hasil alat saat merespons pemanggilan alat terprogram:
+
+```json
 {
   "role": "user",
   "content": [
-    {"type": "tool_result", "tool_use_id": "toolu_01", "content": "[{\"customer_id\": \"C1\", \"revenue\": 45000}]"}
+    {
+      "type": "tool_result",
+      "tool_use_id": "toolu_01",
+      "content": "[{\"customer_id\": \"C1\", \"revenue\": 45000}]"
+    }
   ]
 }
 ```
@@ -684,28 +719,28 @@ Pembatasan ini hanya berlaku saat merespons pemanggilan alat terprogram (eksekus
 
 ### Batas laju
 
-Pemanggilan alat secara terprogram tunduk pada batas laju yang sama dengan pemanggilan alat biasa. Setiap pemanggilan alat dari eksekusi kode dihitung sebagai pemanggilan terpisah.
+Pemanggilan alat terprogram tunduk pada batas laju yang sama dengan pemanggilan alat biasa. Setiap pemanggilan alat dari eksekusi kode dihitung sebagai pemanggilan terpisah.
 
 ### Validasi hasil alat sebelum digunakan
 
 Saat mengimplementasikan alat kustom yang akan dipanggil secara terprogram:
 
-- **Hasil alat dikembalikan sebagai string**: Mereka dapat berisi konten apa pun, termasuk cuplikan kode atau perintah yang dapat dieksekusi yang dapat diproses oleh lingkungan eksekusi.
-- **Validasi hasil alat eksternal**: Jika alat Anda mengembalikan data dari sumber eksternal atau menerima input pengguna, waspadai risiko injeksi kode jika output akan diinterpretasi atau dieksekusi sebagai kode.
+- **Hasil alat dikembalikan sebagai string**: Dapat berisi konten apa pun, termasuk cuplikan kode atau perintah yang dapat dieksekusi yang mungkin diproses oleh lingkungan eksekusi.
+- **Validasi hasil alat eksternal**: Jika alat Anda mengembalikan data dari sumber eksternal atau menerima input pengguna, waspadai risiko injeksi kode jika output akan diinterpretasikan atau dieksekusi sebagai kode.
 
 ## Efisiensi token
 
 Pemanggilan alat secara terprogram dapat secara signifikan mengurangi konsumsi token:
 
-- **Hasil alat dari pemanggilan terprogram tidak ditambahkan ke konteks Claude** - hanya output kode akhir
-- **Pemrosesan perantara terjadi dalam kode** - pemfilteran, agregasi, dll. tidak menggunakan token model
-- **Beberapa pemanggilan alat dalam satu eksekusi kode** - mengurangi overhead dibandingkan dengan putaran model terpisah
+- **Hasil alat dari pemanggilan terprogram tidak ditambahkan ke konteks Claude** - hanya output kode akhir yang ditambahkan
+- **Pemrosesan antara terjadi dalam kode** - pemfilteran, agregasi, dll. tidak mengonsumsi token model
+- **Beberapa pemanggilan alat dalam satu eksekusi kode** - mengurangi overhead dibandingkan dengan giliran model terpisah
 
-Misalnya, memanggil 10 alat secara langsung menggunakan ~10x token dari memanggilan mereka secara terprogram dan mengembalikan ringkasan.
+Misalnya, memanggil 10 alat secara langsung menggunakan ~10x token dibandingkan memanggil secara terprogram dan mengembalikan ringkasan.
 
 ## Penggunaan dan harga
 
-Pemanggilan alat secara terprogram menggunakan harga yang sama dengan eksekusi kode. Lihat [harga eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool#usage-and-pricing) untuk detail.
+Pemanggilan alat secara terprogram menggunakan harga yang sama dengan eksekusi kode. Lihat [harga eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool#usage-and-pricing) untuk detailnya.
 
 <Note>
 Penghitungan token untuk pemanggilan alat terprogram: Hasil alat dari pemanggilan terprogram tidak dihitung terhadap penggunaan token input/output Anda. Hanya hasil eksekusi kode akhir dan respons Claude yang dihitung.
@@ -715,104 +750,110 @@ Penghitungan token untuk pemanggilan alat terprogram: Hasil alat dari pemanggila
 
 ### Desain alat
 
-- **Berikan deskripsi output terperinci**: Karena Claude mendeserialisasi hasil alat dalam kode, dokumentasikan format dengan jelas (struktur JSON, jenis bidang, dll.)
-- **Kembalikan data terstruktur**: Format JSON atau format yang mudah diuraikan lainnya paling baik untuk pemrosesan terprogram
+- **Berikan deskripsi output yang terperinci**: Karena Claude melakukan deserialisasi hasil alat dalam kode, dokumentasikan format dengan jelas (struktur JSON, jenis bidang, dll.)
+- **Kembalikan data terstruktur**: JSON atau format yang mudah diurai lainnya bekerja paling baik untuk pemrosesan terprogram
 - **Jaga respons tetap ringkas**: Kembalikan hanya data yang diperlukan untuk meminimalkan overhead pemrosesan
 
 ### Kapan menggunakan pemanggilan terprogram
 
 **Kasus penggunaan yang baik:**
-- Memproses dataset besar di mana Anda hanya memerlukan agregat atau ringkasan
+- Memproses kumpulan data besar di mana Anda hanya membutuhkan agregat atau ringkasan
 - Alur kerja multi-langkah dengan 3+ pemanggilan alat yang bergantung
 - Operasi yang memerlukan pemfilteran, pengurutan, atau transformasi hasil alat
-- Tugas di mana data perantara tidak boleh mempengaruhi penalaran Claude
-- Operasi paralel di banyak item (misalnya, memeriksa 50 titik akhir)
+- Tugas di mana data antara tidak boleh mempengaruhi penalaran Claude
+- Operasi paralel di banyak item (misalnya, memeriksa 50 endpoint)
 
 **Kasus penggunaan yang kurang ideal:**
 - Pemanggilan alat tunggal dengan respons sederhana
-- Alat yang memerlukan umpan balik pengguna segera
-- Operasi yang sangat cepat di mana overhead eksekusi kode akan mengungguli manfaatnya
+- Alat yang membutuhkan umpan balik pengguna segera
+- Operasi yang sangat cepat di mana overhead eksekusi kode akan melebihi manfaatnya
 
 ### Optimasi kinerja
 
-- **Gunakan kembali kontainer** saat membuat beberapa permintaan terkait untuk mempertahankan status
+- **Gunakan kembali container** saat membuat beberapa permintaan terkait untuk mempertahankan status
 - **Batch operasi serupa** dalam satu eksekusi kode jika memungkinkan
 
 ## Pemecahan masalah
 
 ### Masalah umum
 
-**Kesalahan "Tool not allowed"**
-- Verifikasi definisi alat Anda mencakup `"allowed_callers": ["code_execution_20250825"]`
+**Error "Tool not allowed"**
+- Verifikasi definisi alat Anda menyertakan `"allowed_callers": ["code_execution_20260120"]`
 
-**Kedaluwarsa kontainer**
-- Pastikan Anda merespons pemanggilan alat dalam masa hidup kontainer (~4,5 menit)
+**Kedaluwarsa container**
+- Pastikan Anda merespons pemanggilan alat dalam masa hidup container (~4,5 menit)
 - Pantau bidang `expires_at` dalam respons
 - Pertimbangkan untuk mengimplementasikan eksekusi alat yang lebih cepat
 
-**Hasil alat tidak diuraikan dengan benar**
-- Pastikan alat Anda mengembalikan data string yang dapat dideserialisasi Claude
+**Hasil alat tidak diurai dengan benar**
+- Pastikan alat Anda mengembalikan data string yang dapat dideserialisasi oleh Claude
 - Berikan dokumentasi format output yang jelas dalam deskripsi alat Anda
 
 ### Tips debugging
 
-1. **Catat semua pemanggilan alat dan hasil** untuk melacak alur
-2. **Periksa bidang `caller`** untuk mengkonfirmasi pemanggilan terprogram
-3. **Pantau ID kontainer** untuk memastikan penggunaan kembali yang tepat
+1. **Catat semua pemanggilan alat dan hasilnya** untuk melacak alur
+2. **Periksa bidang `caller`** untuk mengonfirmasi pemanggilan terprogram
+3. **Pantau ID container** untuk memastikan penggunaan ulang yang tepat
 4. **Uji alat secara independen** sebelum mengaktifkan pemanggilan terprogram
 
-## Mengapa pemanggilan alat secara terprogram berfungsi
+## Mengapa pemanggilan alat secara terprogram berhasil
 
-Pelatihan Claude mencakup paparan luas terhadap kode, menjadikannya efektif dalam penalaran melalui dan perantaian pemanggilan fungsi. Ketika alat disajikan sebagai fungsi yang dapat dipanggil dalam lingkungan eksekusi kode, Claude dapat memanfaatkan kekuatan ini untuk:
+Pelatihan Claude mencakup paparan ekstensif terhadap kode, membuatnya efektif dalam menalar dan merantai pemanggilan fungsi. Ketika alat disajikan sebagai fungsi yang dapat dipanggil dalam lingkungan eksekusi kode, Claude dapat memanfaatkan kekuatan ini untuk:
 
-- **Alasan secara alami tentang komposisi alat**: Operasi rantai dan tangani dependensi senatural menulis kode Python apa pun
-- **Memproses hasil besar secara efisien**: Saring hasil alat besar, ekstrak hanya data yang relevan, atau tulis hasil perantara ke file sebelum mengembalikan ringkasan ke jendela konteks
-- **Kurangi latensi secara signifikan**: Hilangkan overhead pengambilan sampel ulang Claude antara setiap pemanggilan alat dalam alur kerja multi-langkah
+- **Menalar secara alami tentang komposisi alat**: Merantai operasi dan menangani dependensi senatural menulis kode Python apa pun
+- **Memproses hasil besar secara efisien**: Memfilter output alat yang besar, mengekstrak hanya data yang relevan, atau menulis hasil antara ke file sebelum mengembalikan ringkasan ke jendela konteks
+- **Mengurangi latensi secara signifikan**: Menghilangkan overhead pengambilan sampel ulang Claude di antara setiap pemanggilan alat dalam alur kerja multi-langkah
 
-Pendekatan ini memungkinkan alur kerja yang tidak praktis dengan penggunaan alat tradisional—seperti memproses file lebih dari 1M token—dengan memungkinkan Claude bekerja dengan data secara terprogram daripada memuat semuanya ke dalam konteks percakapan.
+Pendekatan ini memungkinkan alur kerja yang tidak praktis dengan penggunaan alat tradisional (seperti memproses file lebih dari 1M token) dengan memungkinkan Claude bekerja dengan data secara terprogram daripada memuat semuanya ke dalam konteks percakapan.
 
 ## Implementasi alternatif
 
-Pemanggilan alat secara terprogram adalah pola yang dapat digeneralisasi yang dapat diimplementasikan di luar eksekusi kode terkelola Anthropic. Berikut adalah ikhtisar pendekatan:
+Pemanggilan alat secara terprogram adalah pola yang dapat digeneralisasi yang dapat diimplementasikan di luar eksekusi kode terkelola Anthropic. Berikut adalah ikhtisar pendekatan-pendekatannya:
 
 ### Eksekusi langsung sisi klien
 
-Berikan Claude dengan alat eksekusi kode dan jelaskan fungsi apa yang tersedia di lingkungan itu. Ketika Claude memanggil alat dengan kode, aplikasi Anda menjalankannya secara lokal di mana fungsi-fungsi itu didefinisikan.
+Berikan Claude alat eksekusi kode dan jelaskan fungsi apa yang tersedia di lingkungan tersebut. Ketika Claude memanggil alat dengan kode, aplikasi Anda mengeksekusinya secara lokal di mana fungsi-fungsi tersebut didefinisikan.
 
 **Keuntungan:**
-- Sederhana untuk diimplementasikan dengan minimal re-architecting
+- Mudah diimplementasikan dengan perubahan arsitektur minimal
 - Kontrol penuh atas lingkungan dan instruksi
 
 **Kerugian:**
 - Mengeksekusi kode yang tidak dipercaya di luar sandbox
 - Pemanggilan alat dapat menjadi vektor untuk injeksi kode
 
-**Gunakan saat:** Aplikasi Anda dapat dengan aman mengeksekusi kode arbitrer, Anda menginginkan solusi sederhana, dan penawaran terkelola Anthropic tidak sesuai dengan kebutuhan Anda.
+**Gunakan ketika:** Aplikasi Anda dapat mengeksekusi kode arbitrer dengan aman, Anda menginginkan solusi sederhana, dan penawaran terkelola Anthropic tidak sesuai dengan kebutuhan Anda.
 
-### Eksekusi bersandbox yang dikelola sendiri
+### Eksekusi tersandbox yang dikelola sendiri
 
-Pendekatan yang sama dari perspektif Claude, tetapi kode berjalan dalam kontainer bersandbox dengan pembatasan keamanan (misalnya, tidak ada egress jaringan). Jika alat Anda memerlukan sumber daya eksternal, Anda akan memerlukan protokol untuk mengeksekusi pemanggilan alat di luar sandbox.
+Pendekatan yang sama dari perspektif Claude, tetapi kode berjalan dalam container tersandbox dengan pembatasan keamanan (misalnya, tidak ada egress jaringan). Jika alat Anda memerlukan sumber daya eksternal, Anda memerlukan protokol untuk mengeksekusi pemanggilan alat di luar sandbox.
 
 **Keuntungan:**
 - Pemanggilan alat terprogram yang aman di infrastruktur Anda sendiri
 - Kontrol penuh atas lingkungan eksekusi
 
 **Kerugian:**
-- Kompleks untuk dibangun dan dipertahankan
+- Kompleks untuk dibangun dan dipelihara
 - Memerlukan pengelolaan infrastruktur dan komunikasi antar-proses
 
-**Gunakan saat:** Keamanan sangat penting dan solusi terkelola Anthropic tidak sesuai dengan persyaratan Anda.
+**Gunakan ketika:** Keamanan sangat penting dan solusi terkelola Anthropic tidak sesuai dengan persyaratan Anda.
 
 ### Eksekusi terkelola Anthropic
 
-Pemanggilan alat secara terprogram Anthropic adalah versi terkelola dari eksekusi bersandbox dengan lingkungan Python yang berpendapat dioptimalkan untuk Claude. Anthropic menangani manajemen kontainer, eksekusi kode, dan komunikasi pemanggilan alat yang aman.
+Pemanggilan alat terprogram Anthropic adalah versi terkelola dari eksekusi tersandbox dengan lingkungan Python yang memiliki pendapat yang disetel untuk Claude. Anthropic menangani manajemen container, eksekusi kode, dan komunikasi pemanggilan alat yang aman.
 
 **Keuntungan:**
-- Aman dan aman secara default
+- Aman dan terjamin secara default
 - Mudah diaktifkan dengan konfigurasi minimal
 - Lingkungan dan instruksi dioptimalkan untuk Claude
 
-Kami merekomendasikan menggunakan solusi terkelola Anthropic jika Anda menggunakan Claude API.
+Pertimbangkan untuk menggunakan solusi terkelola Anthropic jika Anda menggunakan Claude API.
+
+## Retensi data
+
+Pemanggilan alat secara terprogram dibangun di atas infrastruktur eksekusi kode dan menggunakan container sandbox yang sama. Data container, termasuk artefak dan output eksekusi, disimpan hingga 30 hari.
+
+Untuk kelayakan ZDR di semua fitur, lihat [API dan Retensi Data](/docs/id/build-with-claude/api-and-data-retention).
 
 ## Fitur terkait
 
@@ -820,10 +861,10 @@ Kami merekomendasikan menggunakan solusi terkelola Anthropic jika Anda menggunak
   <Card title="Alat Eksekusi Kode" icon="code" href="/docs/id/agents-and-tools/tool-use/code-execution-tool">
     Pelajari tentang kemampuan eksekusi kode yang mendasari yang mendukung pemanggilan alat secara terprogram.
   </Card>
-  <Card title="Gambaran Umum Penggunaan Alat" icon="wrench" href="/docs/id/agents-and-tools/tool-use/overview">
+  <Card title="Ikhtisar Penggunaan Alat" icon="wrench" href="/docs/id/agents-and-tools/tool-use/overview">
     Pahami dasar-dasar penggunaan alat dengan Claude.
   </Card>
-  <Card title="Implementasikan Penggunaan Alat" icon="hammer" href="/docs/id/agents-and-tools/tool-use/implement-tool-use">
+  <Card title="Implementasi Penggunaan Alat" icon="hammer" href="/docs/id/agents-and-tools/tool-use/implement-tool-use">
     Panduan langkah demi langkah untuk mengimplementasikan alat.
   </Card>
 </CardGroup>

@@ -1,13 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: 2890fb0fa4399acdc8d9898af3ce81d5c205b02aecbe065b0e71728a854fff0c
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: e6c0688f7c135b51c58774c986642a57da0affc54010b2862aee29836aeb6b15
 ---
 
 # Context windows
 
 ---
+
+<Note>
+This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+</Note>
 
 As conversations grow, you'll eventually approach context window limits. This guide explains how context windows work and introduces strategies for managing them effectively.
 

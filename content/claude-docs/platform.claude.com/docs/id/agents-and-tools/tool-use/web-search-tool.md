@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 3bfb3be32774b79870bc5acc6bed30869f0869c83066a809afee0bf72fbec2f1
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 47bf8a46d2558cfc02185f55b80ad286dfa7779681b47c0c8571da1a2629f1e2
 ---
 
 # Alat pencarian web
@@ -16,7 +16,7 @@ Alat pencarian web memberikan Claude akses langsung ke konten web real-time, mem
 Versi alat pencarian web terbaru (`web_search_20260209`) mendukung **penyaringan dinamis** dengan Claude Opus 4.6 dan Sonnet 4.6. Claude dapat menulis dan menjalankan kode untuk menyaring hasil pencarian sebelum mencapai jendela konteks, menyimpan hanya informasi yang relevan dan membuang sisanya. Ini menghasilkan respons yang lebih akurat sambil mengurangi konsumsi token. Versi alat sebelumnya (`web_search_20250305`) tetap tersedia tanpa penyaringan dinamis.
 
 <Note>
-This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
 </Note>
 
 ## Model yang didukung

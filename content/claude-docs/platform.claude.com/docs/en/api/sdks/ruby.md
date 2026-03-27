@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/ruby
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: c1d55665a0df6cbffef8b11f6b55ccdbe721c32c464153dbae459c8db4e5a2cd
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: f07fc188220e79a2639236ffa08afc322552a3fea695a2d067cb582049a8ff44
 ---
 
 # Ruby SDK
@@ -87,7 +87,7 @@ Streaming with `anthropic.messages.stream(...)` exposes various helpers includin
 
 ## Input schema and tool calling
 
-The SDK provides helper mechanisms to define structured data classes for tools and let Claude automatically execute them. For detailed documentation on tool use patterns including the tool runner, see [Implementing Tool Use](/docs/en/agents-and-tools/tool-use/implement-tool-use).
+The SDK provides helper mechanisms to define structured data classes for tools and let Claude automatically execute them. For detailed documentation on tool use patterns including the tool runner, see [Tool Runner (SDK)](/docs/en/agents-and-tools/tool-use/tool-runner).
 
 ```ruby hidelines={1}
 require "anthropic"

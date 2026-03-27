@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 6bdd3f25adb70b53838d814e009d4af9cafe11b23c7fb56d8f45df8cea2ccb29
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: d0cfbc09e1cfa9f3d3aef460bec1e777a3b25d5afb0b9329f650d11cfa271c58
 ---
 
 # Penghitungan token
@@ -17,7 +17,7 @@ Penghitungan token memungkinkan Anda menentukan jumlah token dalam pesan sebelum
 - Mengoptimalkan prompt agar memiliki panjang tertentu
 
 <Note>
-This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
 </Note>
 
 ---

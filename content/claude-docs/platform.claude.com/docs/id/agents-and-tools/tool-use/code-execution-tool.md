@@ -1,33 +1,31 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 57594408f5973244fa44b6ccf1bd7411d077100c07c915987ec0ca54214b8c84
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 15be11a87bca46de88af0121db303d27c6450b137c8cb6dc16ad2841fb1c65f9
 ---
 
 # Alat eksekusi kode
-
-Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah langsung dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file dalam lingkungan sandbox yang aman.
 
 ---
 
 Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah langsung dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file, termasuk menulis kode, dalam lingkungan sandbox yang aman.
 
-**Eksekusi kode gratis saat digunakan dengan pencarian web atau pengambilan web.** Ketika `web_search_20260209` atau `web_fetch_20260209` disertakan dalam permintaan Anda, tidak ada biaya tambahan untuk panggilan alat eksekusi kode di luar biaya token input dan output standar. Biaya eksekusi kode standar berlaku ketika alat-alat ini tidak disertakan.
+**Eksekusi kode gratis saat digunakan dengan web search atau web fetch.** Ketika `web_search_20260209` atau `web_fetch_20260209` disertakan dalam permintaan Anda, tidak ada biaya tambahan untuk panggilan alat eksekusi kode di luar biaya token input dan output standar. Biaya eksekusi kode standar berlaku ketika alat-alat ini tidak disertakan.
 
-Eksekusi kode adalah primitif inti untuk membangun agen berkinerja tinggi. Ini memungkinkan penyaringan dinamis dalam alat pencarian web dan pengambilan web, memungkinkan Claude memproses hasil sebelum mencapai jendela konteks—meningkatkan akurasi sambil mengurangi konsumsi token.
+Eksekusi kode adalah primitif inti untuk membangun agen berkinerja tinggi. Ini memungkinkan pemfilteran dinamis dalam alat web search dan web fetch, memungkinkan Claude memproses hasil sebelum mencapai jendela konteks—meningkatkan akurasi sekaligus mengurangi konsumsi token.
 
 <Note>
-Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/LTAU6Xn2puCJMi1n6) kami untuk berbagi umpan balik Anda tentang fitur ini.
+Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/LTAU6Xn2puCJMi1n6) untuk berbagi masukan Anda tentang fitur ini.
 </Note>
 
 <Note>
-This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Data is retained according to the feature's standard retention policy.
+This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). Data is retained according to the feature's standard retention policy.
 </Note>
 
 ## Kompatibilitas model
 
-Alat eksekusi kode tersedia di model berikut:
+Alat eksekusi kode tersedia pada model-model berikut:
 
 | Model | Versi Alat |
 |-------|--------------|
@@ -38,12 +36,12 @@ Alat eksekusi kode tersedia di model berikut:
 | Claude Opus 4.1 (`claude-opus-4-1-20250805`) | `code_execution_20250825` |
 | Claude Opus 4 (`claude-opus-4-20250514`) | `code_execution_20250825` |
 | Claude Sonnet 4 (`claude-sonnet-4-20250514`) | `code_execution_20250825` |
-| Claude Sonnet 3.7 (`claude-3-7-sonnet-20250219`) ([usang](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825` |
+| Claude Sonnet 3.7 (`claude-3-7-sonnet-20250219`) ([tidak didukung lagi](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825` |
 | Claude Haiku 4.5 (`claude-haiku-4-5-20251001`) | `code_execution_20250825` |
-| Claude Haiku 3.5 (`claude-3-5-haiku-latest`) ([usang](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825` |
+| Claude Haiku 3.5 (`claude-3-5-haiku-latest`) ([tidak didukung lagi](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825` |
 
 <Note>
-Versi saat ini `code_execution_20250825` mendukung perintah Bash dan operasi file. Versi lama `code_execution_20250522` (hanya Python) juga tersedia. Lihat [Tingkatkan ke versi alat terbaru](#upgrade-to-latest-tool-version) untuk detail migrasi.
+Versi saat ini `code_execution_20250825` mendukung perintah Bash dan operasi file. Versi lama `code_execution_20250522` (hanya Python) juga tersedia. Lihat [Upgrade ke versi alat terbaru](#upgrade-to-latest-tool-version) untuk detail migrasi.
 </Note>
 
 <Warning>
@@ -119,10 +117,12 @@ async function main() {
         content: "Calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
       }
     ],
-    tools: [{
-      type: "code_execution_20250825",
-      name: "code_execution"
-    }]
+    tools: [
+      {
+        type: "code_execution_20250825",
+        name: "code_execution"
+      }
+    ]
   });
 
   console.log(response);
@@ -137,16 +137,32 @@ main().catch(console.error);
 Ketika Anda menambahkan alat eksekusi kode ke permintaan API Anda:
 
 1. Claude mengevaluasi apakah eksekusi kode akan membantu menjawab pertanyaan Anda
-2. Alat secara otomatis memberikan Claude kemampuan berikut:
-   - **Perintah Bash**: Jalankan perintah shell untuk operasi sistem dan manajemen paket
-   - **Operasi file**: Buat, lihat, dan edit file secara langsung, termasuk menulis kode
-3. Claude dapat menggunakan kombinasi apa pun dari kemampuan ini dalam satu permintaan
+2. Alat ini secara otomatis memberikan kemampuan berikut kepada Claude:
+   - **Perintah Bash**: Menjalankan perintah shell untuk operasi sistem dan manajemen paket
+   - **Operasi file**: Membuat, melihat, dan mengedit file secara langsung, termasuk menulis kode
+3. Claude dapat menggunakan kombinasi kemampuan ini dalam satu permintaan
 4. Semua operasi berjalan dalam lingkungan sandbox yang aman
 5. Claude memberikan hasil dengan grafik, perhitungan, atau analisis yang dihasilkan
 
+## Menggunakan eksekusi kode dengan alat eksekusi lainnya
+
+Ketika Anda menyediakan eksekusi kode bersama alat yang disediakan klien yang juga menjalankan kode (seperti [alat bash](/docs/id/agents-and-tools/tool-use/bash-tool) atau REPL kustom), Claude beroperasi dalam lingkungan multi-komputer. Alat eksekusi kode berjalan di container sandbox Anthropic, sementara alat yang disediakan klien berjalan di lingkungan terpisah yang Anda kendalikan. Claude terkadang dapat membingungkan lingkungan-lingkungan ini, mencoba menggunakan alat yang salah atau mengasumsikan status dibagikan di antara keduanya.
+
+Untuk menghindari hal ini, tambahkan instruksi ke system prompt Anda yang mengklarifikasi perbedaannya:
+
+```text
+When multiple code execution environments are available, be aware that:
+- Variables, files, and state do NOT persist between different execution environments
+- Use the code_execution tool for general-purpose computation in Anthropic's sandboxed environment
+- Use client-provided execution tools (e.g., bash) when you need access to the user's local system, files, or data
+- If you need to pass results between environments, explicitly include outputs in subsequent tool calls rather than assuming shared state
+```
+
+Ini sangat penting saat menggabungkan eksekusi kode dengan [web search](/docs/id/agents-and-tools/tool-use/web-search-tool) atau [web fetch](/docs/id/agents-and-tools/tool-use/web-fetch-tool), yang mengaktifkan eksekusi kode secara otomatis. Jika aplikasi Anda sudah menyediakan alat shell sisi klien, eksekusi kode otomatis menciptakan lingkungan eksekusi kedua yang perlu dibedakan oleh Claude.
+
 ## Cara menggunakan alat
 
-### Jalankan perintah Bash
+### Menjalankan perintah Bash
 
 Minta Claude untuk memeriksa informasi sistem dan menginstal paket:
 
@@ -188,19 +204,23 @@ response = client.messages.create(
 const response = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 4096,
-  messages: [{
-    role: "user",
-    content: "Check the Python version and list installed packages"
-  }],
-  tools: [{
-    type: "code_execution_20250825",
-    name: "code_execution"
-  }]
+  messages: [
+    {
+      role: "user",
+      content: "Check the Python version and list installed packages"
+    }
+  ],
+  tools: [
+    {
+      type: "code_execution_20250825",
+      name: "code_execution"
+    }
+  ]
 });
 ```
 </CodeGroup>
 
-### Buat dan edit file secara langsung
+### Membuat dan mengedit file secara langsung
 
 Claude dapat membuat, melihat, dan mengedit file secara langsung di sandbox menggunakan kemampuan manipulasi file:
 
@@ -242,19 +262,24 @@ response = client.messages.create(
 const response = await anthropic.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 4096,
-  messages: [{
-    role: "user",
-    content: "Create a config.yaml file with database settings, then update the port from 5432 to 3306"
-  }],
-  tools: [{
-    type: "code_execution_20250825",
-    name: "code_execution"
-  }]
+  messages: [
+    {
+      role: "user",
+      content:
+        "Create a config.yaml file with database settings, then update the port from 5432 to 3306"
+    }
+  ],
+  tools: [
+    {
+      type: "code_execution_20250825",
+      name: "code_execution"
+    }
+  ]
 });
 ```
 </CodeGroup>
 
-### Unggah dan analisis file Anda sendiri
+### Mengunggah dan menganalisis file Anda sendiri
 
 Untuk menganalisis file data Anda sendiri (CSV, Excel, gambar, dll.), unggah melalui Files API dan referensikan dalam permintaan Anda:
 
@@ -271,7 +296,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 - Gambar (JPEG, PNG, GIF, WebP)
 - File teks (.txt, .md, .py, dll)
 
-#### Unggah dan analisis file
+#### Mengunggah dan menganalisis file
 
 1. **Unggah file Anda** menggunakan [Files API](/docs/id/build-with-claude/files)
 2. **Referensikan file** dalam pesan Anda menggunakan blok konten `container_upload`
@@ -354,17 +379,21 @@ async function main() {
     model: "claude-opus-4-6",
     betas: ["files-api-2025-04-14"],
     max_tokens: 4096,
-    messages: [{
-      role: "user",
-      content: [
-        { type: "text", text: "Analyze this CSV data" },
-        { type: "container_upload", file_id: fileObject.id }
-      ]
-    }],
-    tools: [{
-      type: "code_execution_20250825",
-      name: "code_execution"
-    }]
+    messages: [
+      {
+        role: "user",
+        content: [
+          { type: "text", text: "Analyze this CSV data" },
+          { type: "container_upload", file_id: fileObject.id }
+        ]
+      }
+    ],
+    tools: [
+      {
+        type: "code_execution_20250825",
+        name: "code_execution"
+      }
+    ]
   });
 
   console.log(response);
@@ -374,9 +403,9 @@ main().catch(console.error);
 ```
 </CodeGroup>
 
-#### Ambil file yang dihasilkan
+#### Mengambil file yang dihasilkan
 
-Ketika Claude membuat file selama eksekusi kode, Anda dapat mengambil file ini menggunakan Files API:
+Ketika Claude membuat file selama eksekusi kode, Anda dapat mengambil file-file ini menggunakan Files API:
 
 <CodeGroup>
 ```python Python
@@ -434,14 +463,18 @@ async function main() {
     model: "claude-opus-4-6",
     betas: ["files-api-2025-04-14"],
     max_tokens: 4096,
-    messages: [{
-      role: "user",
-      content: "Create a matplotlib visualization and save it as output.png"
-    }],
-    tools: [{
-      type: "code_execution_20250825",
-      name: "code_execution"
-    }]
+    messages: [
+      {
+        role: "user",
+        content: "Create a matplotlib visualization and save it as output.png"
+      }
+    ],
+    tools: [
+      {
+        type: "code_execution_20250825",
+        name: "code_execution"
+      }
+    ]
   });
 
   // Extract file IDs from the response
@@ -481,7 +514,7 @@ main().catch(console.error);
 ```
 </CodeGroup>
 
-### Gabungkan operasi
+### Menggabungkan operasi
 
 Alur kerja kompleks menggunakan semua kemampuan:
 
@@ -571,17 +604,24 @@ const response = await anthropic.beta.messages.create({
   model: "claude-opus-4-6",
   betas: ["files-api-2025-04-14"],
   max_tokens: 4096,
-  messages: [{
-    role: "user",
-    content: [
-      { type: "text", text: "Analyze this CSV data: create a summary report, save visualizations, and create a README with the findings" },
-      { type: "container_upload", file_id: fileObject.id }
-    ]
-  }],
-  tools: [{
-    type: "code_execution_20250825",
-    name: "code_execution"
-  }]
+  messages: [
+    {
+      role: "user",
+      content: [
+        {
+          type: "text",
+          text: "Analyze this CSV data: create a summary report, save visualizations, and create a README with the findings"
+        },
+        { type: "container_upload", file_id: fileObject.id }
+      ]
+    }
+  ],
+  tools: [
+    {
+      type: "code_execution_20250825",
+      name: "code_execution"
+    }
+  ]
 });
 
 // Claude might:
@@ -605,110 +645,118 @@ Alat eksekusi kode tidak memerlukan parameter tambahan:
 ```
 
 Ketika alat ini disediakan, Claude secara otomatis mendapatkan akses ke dua sub-alat:
-- `bash_code_execution`: Jalankan perintah shell
-- `text_editor_code_execution`: Lihat, buat, dan edit file, termasuk menulis kode
+- `bash_code_execution`: Menjalankan perintah shell
+- `text_editor_code_execution`: Melihat, membuat, dan mengedit file, termasuk menulis kode
 
 ## Format respons
 
-Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasi:
+Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasinya:
 
 ### Respons perintah Bash
 
-```json
-{
-  "type": "server_tool_use",
-  "id": "srvtoolu_01B3C4D5E6F7G8H9I0J1K2L3",
-  "name": "bash_code_execution",
-  "input": {
-    "command": "ls -la | head -5"
+```json hidelines={1,-1}
+[
+  {
+    "type": "server_tool_use",
+    "id": "srvtoolu_01B3C4D5E6F7G8H9I0J1K2L3",
+    "name": "bash_code_execution",
+    "input": {
+      "command": "ls -la | head -5"
+    }
+  },
+  {
+    "type": "bash_code_execution_tool_result",
+    "tool_use_id": "srvtoolu_01B3C4D5E6F7G8H9I0J1K2L3",
+    "content": {
+      "type": "bash_code_execution_result",
+      "stdout": "total 24\ndrwxr-xr-x 2 user user 4096 Jan 1 12:00 .\ndrwxr-xr-x 3 user user 4096 Jan 1 11:00 ..\n-rw-r--r-- 1 user user  220 Jan 1 12:00 data.csv\n-rw-r--r-- 1 user user  180 Jan 1 12:00 config.json",
+      "stderr": "",
+      "return_code": 0
+    }
   }
-},
-{
-  "type": "bash_code_execution_tool_result",
-  "tool_use_id": "srvtoolu_01B3C4D5E6F7G8H9I0J1K2L3",
-  "content": {
-    "type": "bash_code_execution_result",
-    "stdout": "total 24\ndrwxr-xr-x 2 user user 4096 Jan 1 12:00 .\ndrwxr-xr-x 3 user user 4096 Jan 1 11:00 ..\n-rw-r--r-- 1 user user  220 Jan 1 12:00 data.csv\n-rw-r--r-- 1 user user  180 Jan 1 12:00 config.json",
-    "stderr": "",
-    "return_code": 0
-  }
-}
+]
 ```
 
 ### Respons operasi file
 
-**Lihat file:**
-```json
-{
-  "type": "server_tool_use",
-  "id": "srvtoolu_01C4D5E6F7G8H9I0J1K2L3M4",
-  "name": "text_editor_code_execution",
-  "input": {
-    "command": "view",
-    "path": "config.json"
+**Melihat file:**
+```json hidelines={1,-1}
+[
+  {
+    "type": "server_tool_use",
+    "id": "srvtoolu_01C4D5E6F7G8H9I0J1K2L3M4",
+    "name": "text_editor_code_execution",
+    "input": {
+      "command": "view",
+      "path": "config.json"
+    }
+  },
+  {
+    "type": "text_editor_code_execution_tool_result",
+    "tool_use_id": "srvtoolu_01C4D5E6F7G8H9I0J1K2L3M4",
+    "content": {
+      "type": "text_editor_code_execution_result",
+      "file_type": "text",
+      "content": "{\n  \"setting\": \"value\",\n  \"debug\": true\n}",
+      "numLines": 4,
+      "startLine": 1,
+      "totalLines": 4
+    }
   }
-},
-{
-  "type": "text_editor_code_execution_tool_result",
-  "tool_use_id": "srvtoolu_01C4D5E6F7G8H9I0J1K2L3M4",
-  "content": {
-    "type": "text_editor_code_execution_result",
-    "file_type": "text",
-    "content": "{\n  \"setting\": \"value\",\n  \"debug\": true\n}",
-    "numLines": 4,
-    "startLine": 1,
-    "totalLines": 4
-  }
-}
+]
 ```
 
-**Buat file:**
-```json
-{
-  "type": "server_tool_use",
-  "id": "srvtoolu_01D5E6F7G8H9I0J1K2L3M4N5",
-  "name": "text_editor_code_execution",
-  "input": {
-    "command": "create",
-    "path": "new_file.txt",
-    "file_text": "Hello, World!"
+**Membuat file:**
+```json hidelines={1,-1}
+[
+  {
+    "type": "server_tool_use",
+    "id": "srvtoolu_01D5E6F7G8H9I0J1K2L3M4N5",
+    "name": "text_editor_code_execution",
+    "input": {
+      "command": "create",
+      "path": "new_file.txt",
+      "file_text": "Hello, World!"
+    }
+  },
+  {
+    "type": "text_editor_code_execution_tool_result",
+    "tool_use_id": "srvtoolu_01D5E6F7G8H9I0J1K2L3M4N5",
+    "content": {
+      "type": "text_editor_code_execution_result",
+      "is_file_update": false
+    }
   }
-},
-{
-  "type": "text_editor_code_execution_tool_result",
-  "tool_use_id": "srvtoolu_01D5E6F7G8H9I0J1K2L3M4N5",
-  "content": {
-    "type": "text_editor_code_execution_result",
-    "is_file_update": false
-  }
-}
+]
 ```
 
-**Edit file (str_replace):**
-```json
-{
-  "type": "server_tool_use",
-  "id": "srvtoolu_01E6F7G8H9I0J1K2L3M4N5O6",
-  "name": "text_editor_code_execution",
-  "input": {
-    "command": "str_replace",
-    "path": "config.json",
-    "old_str": "\"debug\": true",
-    "new_str": "\"debug\": false"
+**Mengedit file (str_replace):**
+```json hidelines={1,-1}
+[
+  {
+    "type": "server_tool_use",
+    "id": "srvtoolu_01E6F7G8H9I0J1K2L3M4N5O6",
+    "name": "text_editor_code_execution",
+    "input": {
+      "command": "str_replace",
+      "path": "config.json",
+      "old_str": "\"debug\": true",
+      "new_str": "\"debug\": false"
+    }
+  },
+  {
+    "type": "text_editor_code_execution_tool_result",
+    "tool_use_id": "srvtoolu_01E6F7G8H9I0J1K2L3M4N5O6",
+    "content": {
+      "type": "text_editor_code_execution_result",
+      "oldStart": 3,
+      "oldLines": 1,
+      "newStart": 3,
+      "newLines": 1,
+      "lines": ["-  \"debug\": true", "+  \"debug\": false"]
+    }
   }
-},
-{
-  "type": "text_editor_code_execution_tool_result",
-  "tool_use_id": "srvtoolu_01E6F7G8H9I0J1K2L3M4N5O6",
-  "content": {
-    "type": "text_editor_code_execution_result",
-    "oldStart": 3,
-    "oldLines": 1,
-    "newStart": 3,
-    "newLines": 1,
-    "lines": ["-  \"debug\": true", "+  \"debug\": false"]
-  }
-}
+]
 ```
 
 ### Hasil
@@ -716,16 +764,16 @@ Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasi:
 Semua hasil eksekusi mencakup:
 - `stdout`: Output dari eksekusi yang berhasil
 - `stderr`: Pesan kesalahan jika eksekusi gagal
-- `return_code`: 0 untuk sukses, non-nol untuk kegagalan
+- `return_code`: 0 untuk sukses, bukan nol untuk kegagalan
 
 Bidang tambahan untuk operasi file:
-- **Lihat**: `file_type`, `content`, `numLines`, `startLine`, `totalLines`
-- **Buat**: `is_file_update` (apakah file sudah ada)
+- **View**: `file_type`, `content`, `numLines`, `startLine`, `totalLines`
+- **Create**: `is_file_update` (apakah file sudah ada)
 - **Edit**: `oldStart`, `oldLines`, `newStart`, `newLines`, `lines` (format diff)
 
 ### Kesalahan
 
-Setiap jenis alat dapat mengembalikan kesalahan spesifik:
+Setiap jenis alat dapat mengembalikan kesalahan tertentu:
 
 **Kesalahan umum (semua alat):**
 ```json
@@ -739,55 +787,55 @@ Setiap jenis alat dapat mengembalikan kesalahan spesifik:
 }
 ```
 
-**Kode kesalahan menurut jenis alat:**
+**Kode kesalahan berdasarkan jenis alat:**
 
 | Alat | Kode Kesalahan | Deskripsi |
 |------|-----------|-------------|
 | Semua alat | `unavailable` | Alat sementara tidak tersedia |
-| Semua alat | `execution_time_exceeded` | Eksekusi melampaui batas waktu maksimal |
-| Semua alat | `container_expired` | Kontainer kedaluwarsa dan tidak lagi tersedia |
-| Semua alat | `invalid_tool_input` | Parameter tidak valid diberikan ke alat |
+| Semua alat | `execution_time_exceeded` | Eksekusi melebihi batas waktu maksimum |
+| Semua alat | `container_expired` | Container kedaluwarsa dan tidak lagi tersedia |
+| Semua alat | `invalid_tool_input` | Parameter tidak valid yang diberikan ke alat |
 | Semua alat | `too_many_requests` | Batas laju terlampaui untuk penggunaan alat |
 | text_editor | `file_not_found` | File tidak ada (untuk operasi view/edit) |
 | text_editor | `string_not_found` | `old_str` tidak ditemukan dalam file (untuk str_replace) |
 
-#### Alasan penghentian `pause_turn`
+#### Alasan berhenti `pause_turn`
 
-Respons mungkin menyertakan alasan penghentian `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya untuk membiarkan Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda ingin mengganggu percakapan.
+Respons mungkin menyertakan alasan berhenti `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya untuk membiarkan Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda ingin menginterupsi percakapan.
 
-## Kontainer
+## Container
 
-Alat eksekusi kode berjalan dalam lingkungan yang terkontaminasi dan aman yang dirancang khusus untuk eksekusi kode, dengan fokus yang lebih tinggi pada Python.
+Alat eksekusi kode berjalan dalam lingkungan yang aman dan terkontainerisasi yang dirancang khusus untuk eksekusi kode, dengan fokus lebih tinggi pada Python.
 
 ### Lingkungan runtime
 - **Versi Python**: 3.11.12
-- **Sistem operasi**: Kontainer berbasis Linux
+- **Sistem operasi**: Container berbasis Linux
 - **Arsitektur**: x86_64 (AMD64)
 
 ### Batas sumber daya
 - **Memori**: 5GiB RAM
-- **Ruang disk**: 5GiB penyimpanan ruang kerja
+- **Ruang disk**: 5GiB penyimpanan workspace
 - **CPU**: 1 CPU
 
 ### Jaringan dan keamanan
 - **Akses internet**: Sepenuhnya dinonaktifkan untuk keamanan
 - **Koneksi eksternal**: Tidak ada permintaan jaringan keluar yang diizinkan
-- **Isolasi sandbox**: Isolasi penuh dari sistem host dan kontainer lain
-- **Akses file**: Terbatas pada direktori ruang kerja saja
-- **Cakupan ruang kerja**: Seperti [Files](/docs/id/build-with-claude/files), kontainer dibatasi pada ruang kerja kunci API
-- **Kedaluwarsa**: Kontainer kedaluwarsa 30 hari setelah dibuat
+- **Isolasi sandbox**: Isolasi penuh dari sistem host dan container lainnya
+- **Akses file**: Terbatas hanya pada direktori workspace
+- **Cakupan workspace**: Seperti [Files](/docs/id/build-with-claude/files), container dicakupkan ke workspace kunci API
+- **Kedaluwarsa**: Container kedaluwarsa 30 hari setelah pembuatan
 
-### Perpustakaan yang sudah diinstal sebelumnya
-Lingkungan Python yang disandboxkan mencakup perpustakaan yang umum digunakan ini:
-- **Data Science**: pandas, numpy, scipy, scikit-learn, statsmodels
+### Pustaka yang sudah terinstal
+Lingkungan Python sandbox mencakup pustaka yang umum digunakan ini:
+- **Ilmu Data**: pandas, numpy, scipy, scikit-learn, statsmodels
 - **Visualisasi**: matplotlib, seaborn
 - **Pemrosesan File**: pyarrow, openpyxl, xlsxwriter, xlrd, pillow, python-pptx, python-docx, pypdf, pdfplumber, pypdfium2, pdf2image, pdfkit, tabula-py, reportlab[pycairo], Img2pdf
 - **Matematika & Komputasi**: sympy, mpmath
 - **Utilitas**: tqdm, python-dateutil, pytz, joblib, unzip, unrar, 7zip, bc, rg (ripgrep), fd, sqlite
 
-## Penggunaan kembali kontainer
+## Penggunaan ulang container
 
-Anda dapat menggunakan kembali kontainer yang ada di beberapa permintaan API dengan memberikan ID kontainer dari respons sebelumnya. Ini memungkinkan Anda mempertahankan file yang dibuat di antara permintaan.
+Anda dapat menggunakan kembali container yang ada di beberapa permintaan API dengan menyediakan ID container dari respons sebelumnya. Ini memungkinkan Anda mempertahankan file yang dibuat di antara permintaan.
 
 ### Contoh
 
@@ -840,14 +888,18 @@ async function main() {
   const response1 = await anthropic.messages.create({
     model: "claude-opus-4-6",
     max_tokens: 4096,
-    messages: [{
-      role: "user",
-      content: "Write a file with a random number and save it to '/tmp/number.txt'"
-    }],
-    tools: [{
-      type: "code_execution_20250825",
-      name: "code_execution"
-    }]
+    messages: [
+      {
+        role: "user",
+        content: "Write a file with a random number and save it to '/tmp/number.txt'"
+      }
+    ],
+    tools: [
+      {
+        type: "code_execution_20250825",
+        name: "code_execution"
+      }
+    ]
   });
 
   // Extract the container ID from the first response
@@ -858,14 +910,18 @@ async function main() {
     container: containerId, // Reuse the same container
     model: "claude-opus-4-6",
     max_tokens: 4096,
-    messages: [{
-      role: "user",
-      content: "Read the number from '/tmp/number.txt' and calculate its square"
-    }],
-    tools: [{
-      type: "code_execution_20250825",
-      name: "code_execution"
-    }]
+    messages: [
+      {
+        role: "user",
+        content: "Read the number from '/tmp/number.txt' and calculate its square"
+      }
+    ],
+    tools: [
+      {
+        type: "code_execution_20250825",
+        name: "code_execution"
+      }
+    ]
   });
 
   console.log(response2.content);
@@ -921,7 +977,7 @@ curl https://api.anthropic.com/v1/messages \
 
 Dengan streaming diaktifkan, Anda akan menerima peristiwa eksekusi kode saat terjadi:
 
-```json
+```sse
 event: content_block_start
 data: {"type": "content_block_start", "index": 1, "content_block": {"type": "server_tool_use", "id": "srvtoolu_xyz789", "name": "code_execution"}}
 
@@ -963,13 +1019,13 @@ Code execution usage is tracked in the response:
 }
 ```
 
-## Tingkatkan ke versi alat terbaru
+## Upgrade ke versi alat terbaru
 
-Dengan meningkatkan ke `code-execution-2025-08-25`, Anda mendapatkan akses ke manipulasi file dan kemampuan Bash, termasuk kode dalam berbagai bahasa. Tidak ada perbedaan harga.
+Dengan melakukan upgrade ke `code-execution-2025-08-25`, Anda mendapatkan akses ke manipulasi file dan kemampuan Bash, termasuk kode dalam berbagai bahasa. Tidak ada perbedaan harga.
 
-### Apa yang berubah
+### Yang berubah
 
-| Komponen | Lama | Saat Ini |
+| Komponen | Lama | Saat ini |
 |-----------|------------------|----------------------------|
 | Header beta | `code-execution-2025-05-22` | `code-execution-2025-08-25` |
 | Jenis alat | `code_execution_20250522` | `code_execution_20250825` |
@@ -979,11 +1035,11 @@ Dengan meningkatkan ke `code-execution-2025-08-25`, Anda mendapatkan akses ke ma
 ### Kompatibilitas ke belakang
 
 - Semua eksekusi kode Python yang ada terus bekerja persis seperti sebelumnya
-- Tidak ada perubahan yang diperlukan untuk alur kerja yang hanya Python
+- Tidak diperlukan perubahan pada alur kerja yang hanya menggunakan Python
 
-### Langkah peningkatan
+### Langkah upgrade
 
-Untuk meningkatkan, perbarui jenis alat dalam permintaan API Anda:
+Untuk melakukan upgrade, perbarui jenis alat dalam permintaan API Anda:
 
 ```diff
 - "type": "code_execution_20250522"
@@ -992,11 +1048,11 @@ Untuk meningkatkan, perbarui jenis alat dalam permintaan API Anda:
 
 **Tinjau penanganan respons** (jika mengurai respons secara terprogram):
 - Blok sebelumnya untuk respons eksekusi Python tidak akan lagi dikirim
-- Sebagai gantinya, jenis respons baru untuk operasi Bash dan file akan dikirim (lihat bagian Format Respons)
+- Sebagai gantinya, jenis respons baru untuk Bash dan operasi file akan dikirim (lihat bagian Format Respons)
 
 ## Pemanggilan alat terprogram
 
-Alat eksekusi kode mendukung [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), yang memungkinkan Claude menulis kode yang memanggil alat kustom Anda secara terprogram dalam kontainer eksekusi. Ini memungkinkan alur kerja multi-alat yang efisien, penyaringan data sebelum mencapai konteks Claude, dan logika bersyarat yang kompleks.
+Alat eksekusi kode mendukung [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), yang memungkinkan Claude menulis kode yang memanggil alat kustom Anda secara terprogram dalam container eksekusi. Ini memungkinkan alur kerja multi-alat yang efisien, pemfilteran data sebelum mencapai konteks Claude, dan logika kondisional yang kompleks.
 
 <CodeGroup>
 ```python Python
@@ -1024,8 +1080,14 @@ response = client.messages.create(
 
 Pelajari lebih lanjut dalam [dokumentasi pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling).
 
+## Retensi data
+
+Eksekusi kode berjalan di dalam container sandbox sisi server. Data container, termasuk artefak eksekusi, file yang diunggah, dan output, disimpan hingga 30 hari. Retensi ini berlaku untuk semua data yang diproses dalam lingkungan container.
+
+Untuk kelayakan ZDR di semua fitur, lihat [API dan Retensi Data](/docs/id/build-with-claude/api-and-data-retention).
+
 ## Menggunakan eksekusi kode dengan Agent Skills
 
-Alat eksekusi kode memungkinkan Claude menggunakan [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview). Skills adalah kemampuan modular yang terdiri dari instruksi, skrip, dan sumber daya yang memperluas fungsionalitas Claude.
+Alat eksekusi kode memungkinkan Claude untuk menggunakan [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview). Skills adalah kemampuan modular yang terdiri dari instruksi, skrip, dan sumber daya yang memperluas fungsionalitas Claude.
 
-Pelajari lebih lanjut dalam [dokumentasi Agent Skills](/docs/id/agents-and-tools/agent-skills/overview) dan [panduan API Agent Skills](/docs/id/build-with-claude/skills-guide).
+Pelajari lebih lanjut di [dokumentasi Agent Skills](/docs/id/agents-and-tools/agent-skills/overview) dan [panduan API Agent Skills](/docs/id/build-with-claude/skills-guide).

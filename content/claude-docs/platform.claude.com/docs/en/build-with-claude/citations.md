@@ -1,13 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: e11ba4328f571cb7f9236f86975827ae0427eaa354989e2747c7c0dd2915330d
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 6f2d7d294f11227f419e250912c750b83fd3ce62714b06883adc1bfb244d94ac
 ---
 
 # Citations
 
 ---
+
+<Note>
+This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+</Note>
 
 Claude is capable of providing detailed citations when answering questions about documents, helping you track and verify information sources in responses.
 

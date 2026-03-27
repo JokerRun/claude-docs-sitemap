@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: c31b4b33015a86d176fb42d07177d983f8c0bff962be1f3a0c2f415a0a3e16ff
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 169b2d0aa2e7e4a2f1e6cb24866e1deea4a46595f0c9332d0fd86aa28b582b10
 ---
 
 # Using Agent Skills with the API
@@ -20,7 +20,7 @@ For complete API reference including request/response schemas and all parameters
 </Note>
 
 <Note>
-This feature is in beta and is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Beta features are excluded from ZDR.
+This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). Data is retained according to the feature's standard retention policy.
 </Note>
 
 ## Quick Links
@@ -479,8 +479,9 @@ for file_id in extract_file_ids(response):
 </Tab>
 <Tab title="TypeScript">
 
-```typescript TypeScript hidelines={1..2}
+```typescript TypeScript hidelines={1..3}
 import Anthropic from "@anthropic-ai/sdk";
+import fs from "node:fs/promises";
 
 const client = new Anthropic();
 
@@ -520,7 +521,6 @@ function extractFileIds(response: any): string[] {
 }
 
 // Step 3: Download the file using Files API
-const fs = require("fs/promises");
 for (const fileId of extractFileIds(response)) {
   const fileMetadata = await client.beta.files.retrieveMetadata(fileId, {
     betas: ["files-api-2025-04-14"]
@@ -4945,6 +4945,12 @@ end
 </CodeGroup>
 
 ---
+
+## Data retention
+
+Agent Skills are not covered by ZDR arrangements. Skill definitions and execution data are retained according to Anthropic's standard data retention policy.
+
+For ZDR eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).
 
 ## Next Steps
 

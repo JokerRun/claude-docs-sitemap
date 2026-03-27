@@ -1,40 +1,40 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-03-06T04:11:40.036970Z
-sha256: 59f8268d6e9c302b6ecfa67d5d4630c2ef62c7bac7e6ba5ab38909353b00ebfe
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: 8c26e5cd086bc8a2666c7a20f45bd4df1fbfb246708815341922a617a8408c6c
 ---
 
 # Files API
 
-Unggah dan kelola file untuk digunakan dengan Claude API tanpa perlu mengunggah ulang konten dengan setiap permintaan.
+Unggah dan kelola file untuk digunakan dengan Claude API tanpa mengunggah ulang konten pada setiap permintaan.
 
 ---
 
-Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa perlu mengunggah ulang konten dengan setiap permintaan. Ini sangat berguna ketika menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk memberikan input (misalnya dataset dan dokumen) dan kemudian mengunduh output (misalnya bagan). Anda juga dapat menggunakan Files API untuk menghindari harus terus mengunggah ulang dokumen dan gambar yang sering digunakan di berbagai panggilan API. Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/files-create), selain panduan ini.
+Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa mengunggah ulang konten pada setiap permintaan. Ini sangat berguna saat menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya dataset dan dokumen) dan kemudian mengunduh output (misalnya grafik). Anda juga dapat menggunakan Files API untuk menghindari keharusan mengunggah ulang dokumen dan gambar yang sering digunakan secara terus-menerus di berbagai panggilan API. Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/files-create), selain panduan ini.
 
 <Note>
-Files API saat ini dalam beta. Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/tisHyierGwgN4DUE9) kami untuk berbagi pengalaman Anda dengan Files API.
+Files API saat ini dalam versi beta. Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/tisHyierGwgN4DUE9) untuk berbagi pengalaman Anda dengan Files API.
 </Note>
 
 <Note>
-This feature is in beta and is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention). Beta features are excluded from ZDR.
+This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). Data is retained according to the feature's standard retention policy.
 </Note>
 
 ## Model yang didukung
 
-Mereferensikan `file_id` dalam permintaan Messages didukung di semua model yang mendukung jenis file yang diberikan. Misalnya, [gambar](/docs/id/build-with-claude/vision) didukung di semua model Claude 3+, [PDF](/docs/id/build-with-claude/pdf-support) di semua model Claude 3.5+, dan [berbagai jenis file lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#supported-file-types) untuk alat eksekusi kode di Claude Haiku 4.5 plus semua model Claude 3.7+.
+Mereferensikan `file_id` dalam permintaan Messages didukung di semua model yang mendukung jenis file yang diberikan. Misalnya, [gambar](/docs/id/build-with-claude/vision) didukung di semua model Claude 3+, [PDF](/docs/id/build-with-claude/pdf-support) di semua model Claude 3.5+, dan [berbagai jenis file lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#supported-file-types) untuk alat eksekusi kode di Claude Haiku 4.5 ditambah semua model Claude 3.7+.
 
 Files API saat ini tidak didukung di Amazon Bedrock atau Google Vertex AI.
 
 ## Cara kerja Files API
 
-Files API menyediakan pendekatan buat-sekali-gunakan-berkali-kali yang sederhana untuk bekerja dengan file:
+Files API menyediakan pendekatan buat-sekali, gunakan-berkali-kali yang sederhana untuk bekerja dengan file:
 
-- **Unggah file** ke penyimpanan aman kami dan terima `file_id` unik
+- **Unggah file** ke penyimpanan aman kami dan terima `file_id` yang unik
 - **Unduh file** yang dibuat dari skill atau alat eksekusi kode
-- **Referensikan file** dalam permintaan [Messages](/docs/id/api/messages) menggunakan `file_id` daripada mengunggah ulang konten
-- **Kelola file Anda** dengan operasi daftar, ambil, dan hapus
+- **Referensikan file** dalam permintaan [Messages](/docs/id/api/messages) menggunakan `file_id` alih-alih mengunggah ulang konten
+- **Kelola file Anda** dengan operasi list, retrieve, dan delete
 
 ## Cara menggunakan Files API
 
@@ -44,7 +44,7 @@ Untuk menggunakan Files API, Anda perlu menyertakan header fitur beta: `anthropi
 
 ### Mengunggah file
 
-Unggah file untuk direferensikan dalam panggilan API mendatang:
+Unggah file untuk direferensikan dalam panggilan API di masa mendatang:
 
 <CodeGroup>
 ```bash Shell
@@ -70,11 +70,14 @@ import fs from "fs";
 
 const anthropic = new Anthropic();
 
-await anthropic.beta.files.upload({
-  file: await toFile(fs.createReadStream("/path/to/document.pdf"), undefined, { type: "application/pdf" })
-}, {
-  betas: ["files-api-2025-04-14"]
-});
+await anthropic.beta.files.upload(
+  {
+    file: await toFile(fs.createReadStream("/path/to/document.pdf"), undefined, {
+      type: "application/pdf"
+    })
+  },
+  { betas: ["files-api-2025-04-14"] }
+);
 ```
 
 ```java Java
@@ -160,7 +163,7 @@ echo $file->id;
 ```
 </CodeGroup>
 
-Respons dari mengunggah file akan mencakup:
+Respons dari pengunggahan file akan mencakup:
 
 ```json
 {
@@ -435,14 +438,14 @@ print_r($response);
 
 ### Jenis file dan blok konten
 
-Files API mendukung berbagai jenis file yang sesuai dengan jenis blok konten yang berbeda:
+Files API mendukung berbagai jenis file yang berkorespondensi dengan jenis blok konten yang berbeda:
 
 | Jenis File | Tipe MIME | Jenis Blok Konten | Kasus Penggunaan |
 | :--- | :--- | :--- | :--- |
 | PDF | `application/pdf` | `document` | Analisis teks, pemrosesan dokumen |
 | Teks biasa | `text/plain` | `document` | Analisis teks, pemrosesan |
 | Gambar | `image/jpeg`, `image/png`, `image/gif`, `image/webp` | `image` | Analisis gambar, tugas visual |
-| [Dataset, lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#supported-file-types) | Bervariasi | `container_upload` | Analisis data, buat visualisasi  |
+| [Dataset, lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#supported-file-types) | Bervariasi | `container_upload` | Analisis data, buat visualisasi |
 
 ### Bekerja dengan format file lainnya
 
@@ -450,7 +453,7 @@ Untuk jenis file yang tidak didukung sebagai blok `document` (.csv, .txt, .md, .
 
 <CodeGroup>
 ```bash Shell
-# Contoh: Membaca file teks dan mengirimnya sebagai teks biasa
+# Contoh: Membaca file teks dan mengirimkannya sebagai teks biasa
 # Catatan: Untuk file dengan karakter khusus, pertimbangkan pengkodean base64
 TEXT_CONTENT=$(cat document.txt | jq -Rs .)
 
@@ -542,7 +545,7 @@ analyzeDocument();
 </CodeGroup>
 
 <Note>
-Untuk file .docx yang berisi gambar, konversi terlebih dahulu ke format PDF, kemudian gunakan [dukungan PDF](/docs/id/build-with-claude/pdf-support) untuk memanfaatkan penguraian gambar bawaan. Ini memungkinkan penggunaan kutipan dari dokumen PDF.
+Untuk file .docx yang berisi gambar, konversi terlebih dahulu ke format PDF, lalu gunakan [dukungan PDF](/docs/id/build-with-claude/pdf-support) untuk memanfaatkan penguraian gambar bawaan. Ini memungkinkan penggunaan kutipan dari dokumen PDF.
 </Note>
 
 #### Blok dokumen
@@ -558,7 +561,7 @@ Untuk PDF dan file teks, gunakan blok konten `document`:
   },
   "title": "Document Title", // Opsional
   "context": "Context about the document", // Opsional
-  "citations": {"enabled": true} // Opsional, mengaktifkan kutipan
+  "citations": { "enabled": true } // Opsional, mengaktifkan kutipan
 }
 ```
 
@@ -580,7 +583,7 @@ Untuk gambar, gunakan blok konten `image`:
 
 #### Daftar file
 
-Ambil daftar file yang diunggah Anda:
+Ambil daftar file yang telah Anda unggah:
 
 <CodeGroup>
 ```bash Shell
@@ -630,16 +633,15 @@ file = client.beta.files.retrieve_metadata("file_011CNha8iCJcU1wXNR6q4V8w")
 import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
-const file = await anthropic.beta.files.retrieveMetadata(
-  "file_011CNha8iCJcU1wXNR6q4V8w",
-  { betas: ["files-api-2025-04-14"] }
-);
+const file = await anthropic.beta.files.retrieveMetadata("file_011CNha8iCJcU1wXNR6q4V8w", {
+  betas: ["files-api-2025-04-14"]
+});
 ```
 </CodeGroup>
 
 #### Hapus file
 
-Hapus file dari ruang kerja Anda:
+Hapus file dari workspace Anda:
 
 <CodeGroup>
 ```bash Shell
@@ -660,10 +662,9 @@ result = client.beta.files.delete("file_011CNha8iCJcU1wXNR6q4V8w")
 import { Anthropic } from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
-const result = await anthropic.beta.files.delete(
-  "file_011CNha8iCJcU1wXNR6q4V8w",
-  { betas: ["files-api-2025-04-14"] }
-);
+const result = await anthropic.beta.files.delete("file_011CNha8iCJcU1wXNR6q4V8w", {
+  betas: ["files-api-2025-04-14"]
+});
 ```
 </CodeGroup>
 
@@ -697,10 +698,9 @@ import fs from "fs/promises";
 
 const anthropic = new Anthropic();
 
-const fileContent = await anthropic.beta.files.download(
-  "file_011CNha8iCJcU1wXNR6q4V8w",
-  { betas: ["files-api-2025-04-14"] }
-);
+const fileContent = await anthropic.beta.files.download("file_011CNha8iCJcU1wXNR6q4V8w", {
+  betas: ["files-api-2025-04-14"]
+});
 
 // Simpan ke file
 await fs.writeFile("downloaded_file.txt", fileContent);
@@ -713,7 +713,7 @@ Anda hanya dapat mengunduh file yang dibuat oleh [skill](/docs/id/build-with-cla
 
 ---
 
-## Penyimpanan file dan batas
+## Penyimpanan dan batas file
 
 ### Batas penyimpanan
 
@@ -722,22 +722,28 @@ Anda hanya dapat mengunduh file yang dibuat oleh [skill](/docs/id/build-with-cla
 
 ### Siklus hidup file
 
-- File dibatasi pada ruang kerja kunci API. Kunci API lain dapat menggunakan file yang dibuat oleh kunci API lain apa pun yang terkait dengan ruang kerja yang sama
-- File bertahan sampai Anda menghapusnya
+- File dibatasi pada workspace dari API key. API key lain dapat menggunakan file yang dibuat oleh API key lain yang terkait dengan workspace yang sama
+- File tetap ada hingga Anda menghapusnya
 - File yang dihapus tidak dapat dipulihkan
-- File tidak dapat diakses melalui API segera setelah penghapusan, tetapi mungkin tetap ada dalam panggilan API `Messages` aktif dan penggunaan alat terkait
+- File tidak dapat diakses melalui API segera setelah penghapusan, tetapi mungkin tetap ada dalam panggilan API `Messages` yang aktif dan penggunaan alat terkait
 - File yang dihapus pengguna akan dihapus sesuai dengan [kebijakan retensi data](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) kami.
 
 ---
+
+## Retensi data
+
+File yang diunggah melalui Files API disimpan hingga dihapus secara eksplisit menggunakan endpoint `DELETE /v1/files/{file_id}`. File disimpan untuk digunakan kembali di berbagai permintaan API.
+
+Untuk kelayakan ZDR di semua fitur, lihat [API dan Retensi Data](/docs/id/build-with-claude/api-and-data-retention).
 
 ## Penanganan kesalahan
 
 Kesalahan umum saat menggunakan Files API meliputi:
 
-- **File tidak ditemukan (404):** `file_id` yang ditentukan tidak ada atau Anda tidak memiliki akses ke file tersebut
+- **File tidak ditemukan (404):** `file_id` yang ditentukan tidak ada atau Anda tidak memiliki akses ke sana
 - **Jenis file tidak valid (400):** Jenis file tidak cocok dengan jenis blok konten (misalnya, menggunakan file gambar dalam blok dokumen)
-- **Melebihi ukuran jendela konteks (400):** File lebih besar dari ukuran jendela konteks (misalnya menggunakan file plaintext 500 MB dalam permintaan `/v1/messages`)
-- **Nama file tidak valid (400):** Nama file tidak memenuhi persyaratan panjang (1-255 karakter) atau berisi karakter terlarang (`<`, `>`, `:`, `"`, `|`, `?`, `*`, `\`, `/`, atau karakter unicode 0-31)
+- **Melebihi ukuran jendela konteks (400):** File lebih besar dari ukuran jendela konteks (misalnya menggunakan file teks biasa 500 MB dalam permintaan `/v1/messages`)
+- **Nama file tidak valid (400):** Nama file tidak memenuhi persyaratan panjang (1-255 karakter) atau mengandung karakter yang dilarang (`<`, `>`, `:`, `"`, `|`, `?`, `*`, `\`, `/`, atau karakter unicode 0-31)
 - **File terlalu besar (413):** File melebihi batas 500 MB
 - **Batas penyimpanan terlampaui (403):** Organisasi Anda telah mencapai batas penyimpanan 100 GB
 
@@ -753,17 +759,17 @@ Kesalahan umum saat menggunakan Files API meliputi:
 
 ## Penggunaan dan penagihan
 
-Operasi File API **gratis**:
+Operasi File API adalah **gratis**:
 - Mengunggah file
 - Mengunduh file
 - Mendaftar file
 - Mendapatkan metadata file
 - Menghapus file
 
-Konten file yang digunakan dalam permintaan `Messages` ditagih sebagai token input. Anda hanya dapat mengunduh file yang dibuat oleh [skill](/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool).
+Konten file yang digunakan dalam permintaan `Messages` dihargai sebagai token input. Anda hanya dapat mengunduh file yang dibuat oleh [skill](/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool).
 
-### Batas laju
+### Batas kecepatan
 
 Selama periode beta:
-- Panggilan API terkait file dibatasi hingga sekitar 100 permintaan per menit
+- Panggilan API terkait file dibatasi sekitar 100 permintaan per menit
 - [Hubungi kami](mailto:sales@anthropic.com) jika Anda memerlukan batas yang lebih tinggi untuk kasus penggunaan Anda

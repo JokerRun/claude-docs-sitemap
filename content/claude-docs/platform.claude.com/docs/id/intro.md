@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: ba7aa1d81584fcd62feae5db7ba96562c85c171812f5b2171bfec9797d4f227f
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: a5c982dbb8444dfd4fecf81f87c79d8fce4d8846ffccd215d79cc235afb9f0f9
 ---
 
 # Pengenalan Claude
@@ -38,8 +38,8 @@ Jika Anda baru mengenal Claude, mulai di sini untuk mempelajari hal-hal penting 
   <Card title="Pelajari tentang Claude" icon="settings" href="/docs/id/about-claude/models/overview">
     Pelajari tentang keluarga model Claude.
   </Card>
-  <Card title="Perpustakaan Prompt" icon="books" href="/docs/id/resources/prompt-library/library">
-    Jelajahi contoh prompt untuk inspirasi.
+  <Card title="Prompt Engineering" icon="books" href="/docs/id/build-with-claude/prompt-engineering/overview">
+    Pelajari teknik dan praktik terbaik prompt engineering.
   </Card>
 </CardGroup>
 

@@ -1,11 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: 35498987ecc51f9a588e59dc68654cbcec7a4a530c0be887f5b1231035b9055c
+fetched_at: 2026-03-27T03:10:39.282195Z
+sha256: ba4339089b46f4baff57bb9780a3c8f2547fb0bf6fc6354f656e33e02918098a
 ---
 
 # Web fetch tool
+
+Fetch and read content from specific URLs to augment Claude's context with live web content.
 
 ---
 
@@ -17,25 +19,7 @@ The latest web fetch tool version (`web_fetch_20260209`) supports **dynamic filt
 Use the [feedback form](https://forms.gle/NhWcgmkcvPCMmPE86) to provide feedback on the quality of the model responses, the API itself, or the quality of the documentation.
 </Note>
 
-<Note>
-The basic web fetch tool (`web_fetch_20250910`) is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention).
-
-While our native web fetch tool is ZDR-eligible, website publishers may retain any parameters passed to the URL if Claude fetches content from their site.
-
-The `web_fetch_20260209` version with dynamic filtering is **not** ZDR-eligible by default because dynamic filtering relies on code execution internally.
-
-To use `web_fetch_20260209` with ZDR, disable dynamic filtering by setting `"allowed_callers": ["direct"]` on the tool:
-
-```json
-{
-  "type": "web_fetch_20260209",
-  "name": "web_fetch",
-  "allowed_callers": ["direct"]
-}
-```
-
-This restricts the tool to direct invocation only, bypassing the internal code execution step.
-</Note>
+For Zero Data Retention eligibility and the `allowed_callers` workaround, see [Server tools](/docs/en/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers).
 
 <Warning>
 Enabling the web fetch tool in environments where Claude processes untrusted input alongside sensitive data poses data exfiltration risks. Only use this tool in trusted environments or when handling non-sensitive data.
@@ -48,20 +32,7 @@ If data exfiltration is a concern, consider:
 - Using the `allowed_domains` parameter to restrict to known safe domains
 </Warning>
 
-## Supported models
-
-Web fetch is available on:
-
-- Claude Opus 4.6 (`claude-opus-4-6`)
-- Claude Opus 4.5 (`claude-opus-4-5-20251101`)
-- Claude Opus 4.1 (`claude-opus-4-1-20250805`)
-- Claude Opus 4 (`claude-opus-4-20250514`)
-- Claude Sonnet 4.6 (`claude-sonnet-4-6`)
-- Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
-- Claude Sonnet 4 (`claude-sonnet-4-20250514`)
-- Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-3-7-sonnet-20250219`)
-- Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
-- Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-3-5-haiku-latest`)
+For model support, see the [Tool reference](/docs/en/agents-and-tools/tool-use/tool-reference).
 
 ## How web fetch works
 
@@ -526,22 +497,7 @@ The `max_uses` parameter limits the number of web fetches performed. If Claude a
 
 #### Domain filtering
 
-When using domain filters:
-
-- Domains should not include the HTTP/HTTPS scheme (use `example.com` instead of `https://example.com`)
-- Subdomains are automatically included (`example.com` covers `docs.example.com`)
-- Subpaths are supported (`example.com/blog`)
-- You can use either `allowed_domains` or `blocked_domains`, but not both in the same request.
-
-<Warning>
-Be aware that Unicode characters in domain names can create security vulnerabilities through homograph attacks, where visually similar characters from different scripts can bypass domain filters. For example, `аmazon.com` (using Cyrillic 'а') may appear identical to `amazon.com` but represents a different domain.
-
-When configuring domain allow/block lists:
-- Use ASCII-only domain names when possible
-- Consider that URL parsers may handle Unicode normalization differently
-- Test your domain filters with potential homograph variations
-- Regularly audit your domain configurations for suspicious Unicode characters
-</Warning>
+For domain filtering with `allowed_domains` and `blocked_domains`, see [Server tools](/docs/en/agents-and-tools/tool-use/server-tools#domain-filtering).
 
 #### Content limits
 
@@ -742,55 +698,7 @@ In this workflow, Claude will:
 
 ## Prompt caching
 
-Web fetch works with [prompt caching](/docs/en/build-with-claude/prompt-caching). To enable prompt caching, add `cache_control` breakpoints in your request. Cached fetch results can be reused across conversation turns.
-
-```python hidelines={1..2}
-import anthropic
-
-client = anthropic.Anthropic()
-
-# First request with web fetch
-messages = [
-    {
-        "role": "user",
-        "content": "Analyze this research paper: https://arxiv.org/abs/2024.12345",
-    }
-]
-
-response1 = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    messages=messages,
-    tools=[{"type": "web_fetch_20250910", "name": "web_fetch"}],
-)
-
-# Add Claude's response to conversation
-messages.append({"role": "assistant", "content": response1.content})
-
-# Second request with cache breakpoint
-messages.append(
-    {
-        "role": "user",
-        "content": [
-            {
-                "type": "text",
-                "text": "What methodology does the paper use?",
-                "cache_control": {"type": "ephemeral"},
-            }
-        ],
-    }
-)
-
-response2 = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    messages=messages,
-    tools=[{"type": "web_fetch_20250910", "name": "web_fetch"}],
-)
-
-# The second response benefits from cached fetch results
-print(f"Cache read tokens: {response2.usage.cache_read_input_tokens or 0}")
-```
+For caching tool definitions across turns, see [Tool use with prompt caching](/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching).
 
 ## Streaming
 
@@ -849,3 +757,14 @@ Example token usage for typical content:
 - Average web page (10&nbsp;kB): ~2,500 tokens
 - Large documentation page (100&nbsp;kB): ~25,000 tokens
 - Research paper PDF (500&nbsp;kB): ~125,000 tokens
+
+## Next steps
+
+<CardGroup>
+  <Card href="/docs/en/agents-and-tools/tool-use/server-tools" title="Server tools">
+    Shared mechanics for Anthropic-executed tools.
+  </Card>
+  <Card href="/docs/en/agents-and-tools/tool-use/tool-reference" title="Tool reference">
+    Directory of all Anthropic-provided tools.
+  </Card>
+</CardGroup>
