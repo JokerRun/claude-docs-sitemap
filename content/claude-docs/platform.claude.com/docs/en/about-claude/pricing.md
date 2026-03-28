@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 9d309b5aa7baa6dbb2de1bc8c6d38688a576ffa170939f248403995c410b04a2
+fetched_at: 2026-03-28T04:23:53.783656Z
+sha256: 0e1c7837f633576d999e983fc1fab1ccc4a6f149c8002a0d31668d4b65978685
 ---
 
 # Pricing
@@ -49,12 +49,12 @@ Claude models are available on [AWS Bedrock](/docs/en/build-with-claude/claude-o
 **Regional endpoint pricing for Claude 4.5 models and beyond**
 
 Starting with Claude Sonnet 4.5 and Haiku 4.5, AWS Bedrock and Google Vertex AI offer two endpoint types:
-- **Global endpoints**: Dynamic routing across regions for maximum availability
-- **Regional endpoints**: Data routing guaranteed within specific geographic regions
+- **Global endpoints:** Dynamic routing across regions for maximum availability
+- **Regional endpoints:** Data routing guaranteed within specific geographic regions
 
 Regional endpoints include a 10% premium over global endpoints. The Claude API (1P) is global by default; for 1P data residency options and pricing, see [Data residency pricing](#data-residency-pricing) below.
 
-**Scope**: This pricing structure applies to Claude Sonnet 4.5, Haiku 4.5, and all future models. Earlier models (Claude Sonnet 4, Opus 4, and prior releases) retain their existing pricing.
+**Scope:** This pricing structure applies to Claude Sonnet 4.5, Haiku 4.5, and all future models. Earlier models (Claude Sonnet 4, Opus 4, and prior releases) retain their existing pricing.
 
 For implementation details and code examples:
 - [AWS Bedrock global vs regional endpoints](/docs/en/build-with-claude/claude-on-amazon-bedrock#global-vs-regional-endpoints)
@@ -366,10 +366,10 @@ For a comprehensive guide on agent pricing patterns, see the [agent use cases gu
 
 When building agents with Claude:
 
-1. **Use appropriate models**: Choose Haiku for simple tasks, Sonnet for complex reasoning
-2. **Implement prompt caching**: Reduce costs for repeated context
-3. **Batch operations**: Use the Batch API for non-time-sensitive tasks
-4. **Monitor usage patterns**: Track token consumption to identify optimization opportunities
+1. **Use appropriate models:** Choose Haiku for simple tasks, Sonnet for complex reasoning
+2. **Implement prompt caching:** Reduce costs for repeated context
+3. **Batch operations:** Use the Batch API for non-time-sensitive tasks
+4. **Monitor usage patterns:** Track token consumption to identify optimization opportunities
 
 <Tip>
   For high-volume agent applications, contact the [enterprise sales team](https://claude.com/contact-sales) for custom pricing arrangements.
@@ -381,11 +381,11 @@ When building agents with Claude:
 
 Rate limits vary by usage tier and affect how many requests you can make:
 
-- **Tier 1**: Entry-level usage with basic limits
-- **Tier 2**: Increased limits for growing applications
-- **Tier 3**: Higher limits for established applications
-- **Tier 4**: Maximum standard limits
-- **Enterprise**: Custom limits available
+- **Tier 1:** Entry-level usage with basic limits
+- **Tier 2:** Increased limits for growing applications
+- **Tier 3:** Higher limits for established applications
+- **Tier 4:** Maximum standard limits
+- **Enterprise:** Custom limits available
 
 For detailed rate limit information, see the [rate limits documentation](/docs/en/api/rate-limits).
 
@@ -412,8 +412,8 @@ Contact the sales team at [sales@anthropic.com](mailto:sales@anthropic.com) or t
 
 ## Billing and payment
 
-- Billing is calculated monthly based on actual usage
-- Payments are processed in USD
+- Billing is based on actual monthly usage
+- All payments are in USD
 - Credit card and invoicing options available
 - Usage tracking available in the [Claude Console](/)
 

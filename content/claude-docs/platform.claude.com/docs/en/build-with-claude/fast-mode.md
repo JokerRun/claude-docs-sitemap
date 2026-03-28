@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 15db153c38b9be407647b749c94a8e193eb95adf3de73e0f7610373503a7c53c
+fetched_at: 2026-03-28T04:23:53.783656Z
+sha256: df52ecbb0b0ffdcc743c33ebaf808f9d9f9ae4c6ad736a7c834781f68e4ea405
 ---
 
 # Fast mode (beta: research preview)
@@ -213,7 +213,7 @@ puts response.content[0].text
 
 ## Pricing
 
-Fast mode is priced at 6x standard Opus rates across the full context window. The following table shows pricing for Claude Opus 4.6 with fast mode:
+Fast mode is priced at 6x standard Opus rates across the full context window, including requests over 200k input tokens. The following table shows pricing for Claude Opus 4.6 with fast mode:
 
 | Input | Output |
 |:------|:-------|

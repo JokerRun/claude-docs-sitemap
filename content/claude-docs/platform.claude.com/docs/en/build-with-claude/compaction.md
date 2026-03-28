@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 6be6f25e513dc31aecb1257c05aeb6bf58d5cd34ca3c05e0355ed42dec151166
+fetched_at: 2026-03-28T04:23:53.783656Z
+sha256: 71cb71a9e6fd28d433d06ddd5b7256fe9ed3dd9e1a819fbbf8b482510617b187
 ---
 
 # Compaction
@@ -1997,8 +1997,8 @@ Compaction requires an additional sampling step, which contributes to rate limit
 ```json
 {
   "usage": {
-    "input_tokens": 45000,
-    "output_tokens": 1234,
+    "input_tokens": 23000,
+    "output_tokens": 1000,
     "iterations": [
       {
         "type": "compaction",
@@ -2015,7 +2015,7 @@ Compaction requires an additional sampling step, which contributes to rate limit
 }
 ```
 
-The `iterations` array shows usage for each sampling iteration. When compaction occurs, you'll see a `compaction` iteration followed by the main `message` iteration. The final iteration's token counts reflect the effective context size after compaction.
+The `iterations` array shows usage for each sampling iteration. When compaction occurs, you'll see a `compaction` iteration followed by the main `message` iteration. The top-level `input_tokens` and `output_tokens` match the `message` iteration exactly in this example because there is only one non-compaction iteration. The final iteration's token counts reflect the effective context size after compaction.
 
 <Note>
 The top-level `input_tokens` and `output_tokens` do not include compaction iteration usage. They reflect the sum of all non-compaction iterations. To calculate total tokens consumed and billed for a request, sum across all entries in the `usage.iterations` array.
@@ -3074,8 +3074,8 @@ puts chat(client, messages, "Now add rate limiting and error handling")
 ## Next steps
 
 <CardGroup>
-  <Card title="Compaction cookbook" icon="book" href="https://platform.claude.com/cookbook">
-    Explore practical examples and implementations in the cookbook.
+  <Card title="Session memory compaction cookbook" icon="book" href="https://platform.claude.com/cookbook/misc-session-memory-compaction">
+    Explore a practical implementation that manages long-running conversations with instant session memory compaction using background threading and prompt caching.
   </Card>
   <Card title="Context windows" icon="arrows-maximize" href="/docs/en/build-with-claude/context-windows">
     Learn about context window sizes and management strategies.

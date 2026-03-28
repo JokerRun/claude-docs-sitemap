@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-03-24T03:06:06.053411Z
-sha256: 8e48a990a1d2730ab813851fd350abd4006fe78d1ba3573081e84a011e7f7a53
+fetched_at: 2026-03-28T04:23:53.783656Z
+sha256: 1fd7b99494294e5ac0646e9845c1a0231ddcae0cfb129db64e1bb568dd0c099a
 ---
 
 # Agent SDK reference - TypeScript
@@ -144,11 +144,13 @@ function listSessions(options?: ListSessionsOptions): Promise<SDKSessionInfo[]>;
 | `sessionId` | `string` | Unique session identifier (UUID) |
 | `summary` | `string` | Display title: custom title, auto-generated summary, or first prompt |
 | `lastModified` | `number` | Last modified time in milliseconds since epoch |
-| `fileSize` | `number` | Session file size in bytes |
+| `fileSize` | `number \| undefined` | Session file size in bytes. Only populated for local JSONL storage |
 | `customTitle` | `string \| undefined` | User-set session title (via `/rename`) |
 | `firstPrompt` | `string \| undefined` | First meaningful user prompt in the session |
 | `gitBranch` | `string \| undefined` | Git branch at the end of the session |
 | `cwd` | `string \| undefined` | Working directory for the session |
+| `tag` | `string \| undefined` | User-set session tag (see [`tagSession()`](#tag-session)) |
+| `createdAt` | `number \| undefined` | Creation time in milliseconds since epoch, from the first entry's timestamp |
 
 #### Example
 
@@ -212,6 +214,66 @@ if (latest) {
   }
 }
 ```
+
+### `getSessionInfo()`
+
+Reads metadata for a single session by ID without scanning the full project directory.
+
+```typescript
+function getSessionInfo(
+  sessionId: string,
+  options?: GetSessionInfoOptions
+): Promise<SDKSessionInfo | undefined>;
+```
+
+#### Parameters
+
+| Parameter | Type | Default | Description |
+| :-------- | :--- | :------ | :---------- |
+| `sessionId` | `string` | required | UUID of the session to look up |
+| `options.dir` | `string` | `undefined` | Project directory path. When omitted, searches all project directories |
+
+Returns [`SDKSessionInfo`](#return-type-sdk-session-info), or `undefined` if the session is not found.
+
+### `renameSession()`
+
+Renames a session by appending a custom-title entry. Repeated calls are safe; the most recent title wins.
+
+```typescript
+function renameSession(
+  sessionId: string,
+  title: string,
+  options?: SessionMutationOptions
+): Promise<void>;
+```
+
+#### Parameters
+
+| Parameter | Type | Default | Description |
+| :-------- | :--- | :------ | :---------- |
+| `sessionId` | `string` | required | UUID of the session to rename |
+| `title` | `string` | required | New title. Must be non-empty after trimming whitespace |
+| `options.dir` | `string` | `undefined` | Project directory path. When omitted, searches all project directories |
+
+### `tagSession()`
+
+Tags a session. Pass `null` to clear the tag. Repeated calls are safe; the most recent tag wins.
+
+```typescript
+function tagSession(
+  sessionId: string,
+  tag: string | null,
+  options?: SessionMutationOptions
+): Promise<void>;
+```
+
+#### Parameters
+
+| Parameter | Type | Default | Description |
+| :-------- | :--- | :------ | :---------- |
+| `sessionId` | `string` | required | UUID of the session to tag |
+| `tag` | `string \| null` | required | Tag string, or `null` to clear |
+| `options.dir` | `string` | `undefined` | Project directory path. When omitted, searches all project directories |
 
 ## Types
 

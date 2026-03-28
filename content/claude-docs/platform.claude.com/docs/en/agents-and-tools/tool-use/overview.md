@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 5a06b43633272e591168299bc205ca11fcff724af4007070433643a65cf8006c
+fetched_at: 2026-03-28T04:23:53.783656Z
+sha256: 9cfae879402b619a5af59b98a76b6f47c8b3d797891c0c916a9d6fd5bc2390a0
 ---
 
 # Tool use with Claude
@@ -60,7 +60,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ## How tool use works
 
-Tools differ primarily by where the code executes. **Client tools** (including user-defined tools and Anthropic-schema tools like bash and text_editor) run in your application: Claude returns a `tool_use` block, your code executes the operation, and you send back a `tool_result`. **Server tools** (web_search, code_execution, web_fetch, tool_search) run on Anthropic's infrastructure: you see the results directly without handling execution.
+Tools differ primarily by where the code executes. **Client tools** (including user-defined tools and Anthropic-schema tools like bash and text_editor) run in your application: Claude responds with `stop_reason: "tool_use"` and one or more `tool_use` blocks, your code executes the operation, and you send back a `tool_result`. **Server tools** (web_search, code_execution, web_fetch, tool_search) run on Anthropic's infrastructure: you see the results directly without handling execution.
 
 For the full conceptual model including the agentic loop and when to choose each approach, see [How tool use works](/docs/en/agents-and-tools/tool-use/how-tool-use-works).
 

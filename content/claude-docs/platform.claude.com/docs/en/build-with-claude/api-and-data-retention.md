@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/api-and-data-retention
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: a7c4722160ec1488e2fb80e23b6f88ba51b70696e53582a41a56d0f177be441c
+fetched_at: 2026-03-28T04:23:53.783656Z
+sha256: ba128651a21b7016c711c44f7190cc1f10e8716118b1105ba28c7c15546b9186
 ---
 
 # API and data retention
@@ -17,7 +17,7 @@ Information about Anthropic's standard retention policies is set out in [Anthrop
 When users use API endpoints with zero data retention (ZDR), customer data submitted through those endpoints is not stored at rest after the API response is returned except where needed to comply with law or combat misuse. Subject to these exceptions, when using ZDR-enabled endpoints, customer data is processed in real time and promptly discarded, with no logging or non-ephemeral storage of prompts or outputs.
 </Note>
 
-## Our approach to data retention
+## Anthropic's approach to data retention
 
 Different APIs and features have different storage and retention needs. Where an API or feature doesn't require storage of customer prompts or responses, it may be eligible for ZDR. Where an API or feature necessarily requires storage of customer prompts or responses, Anthropic designs for the smallest possible retention footprint. For these features:
 
@@ -107,7 +107,7 @@ Check your contract terms or contact your Anthropic account representative to co
 
 <section title="Can I use ZDR-eligible (qualified) features under my ZDR arrangement?">
 
-Yes. These features retain a minimal, documented set of technical data, not your prompts or Claude's outputs. See [Our approach to data retention](#our-approach-to-data-retention) for the commitments that govern these features.
+Yes. These features retain a minimal, documented set of technical data, not your prompts or Claude's outputs. See [Anthropic's approach to data retention](#anthropics-approach-to-data-retention) for the commitments that govern these features.
 
 </section>
 

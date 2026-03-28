@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: f6bab34b393de81dba14ea5026ed89ce524984741bed4a401b48ced852079d78
+fetched_at: 2026-03-28T04:23:53.783656Z
+sha256: c4ea4d4b8afcf0d4eecc7ded0e50000eac3c14d4f5e9c9c91f39f8d380b21a4e
 ---
 
 > ## Documentation Index
@@ -98,6 +98,7 @@ Customize Claude Code's behavior with these command-line flags:
 | `--verbose`                               | Enable verbose logging, shows full turn-by-turn output                                                                                                                                                                                                                                               | `claude --verbose`                                                                                 |
 | `--version`, `-v`                         | Output the version number                                                                                                                                                                                                                                                                            | `claude -v`                                                                                        |
 | `--worktree`, `-w`                        | Start Claude in an isolated [git worktree](/en/common-workflows#run-parallel-claude-code-sessions-with-git-worktrees) at `<repo>/.claude/worktrees/<name>`. If no name is given, one is auto-generated                                                                                               | `claude -w feature-auth`                                                                           |
+| `--tmux`                                  | Create a tmux session for the worktree. Requires `--worktree`. Uses iTerm2 native panes when available; pass `--tmux=classic` for traditional tmux                                                                                                                                                   | `claude -w feature-auth --tmux`                                                                    |
 
 ### System prompt flags
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: aefb91a5740c4f2dd94a9cfaa2e14ad1d14f60a6cc9fc197d88c2c96fd85c35e
+fetched_at: 2026-03-28T04:23:53.783656Z
+sha256: 9574f9e83079754b47a7a4afb32ab90a476075d118c9972dc0e2622f2c62ec23
 ---
 
 > ## Documentation Index
@@ -65,10 +65,6 @@ sha256: aefb91a5740c4f2dd94a9cfaa2e14ad1d14f60a6cc9fc197d88c2c96fd85c35e
 | Shortcut | Description                                | Context                                                                                                      |
 | :------- | :----------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
 | `Ctrl+T` | Toggle syntax highlighting for code blocks | Only works inside the `/theme` picker menu. Controls whether code in Claude's responses uses syntax coloring |
-
-<Note>
-  Syntax highlighting is only available in the native build of Claude Code.
-</Note>
 
 ### Multiline input
 
