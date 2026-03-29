@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 55dcb4de208f78c206bfcf0db33ff09b8ebf836d7cd026eef1b7cfac53984a2d
+fetched_at: 2026-03-29T04:39:49.181591Z
+sha256: dede16a20ab2c735bb8df3f8b33c6031c2a5bb5aed1aa77d207903cdbba06663
 ---
 
 > ## Documentation Index
@@ -66,7 +66,7 @@ Each binding block specifies a **context** where the bindings apply:
 | `HistorySearch`   | History search mode (Ctrl+R)                     |
 | `Task`            | Background task is running                       |
 | `ThemePicker`     | Theme picker dialog                              |
-| `Attachments`     | Image/attachment bar navigation                  |
+| `Attachments`     | Image attachment navigation in select dialogs    |
 | `Footer`          | Footer indicator navigation (tasks, teams, diff) |
 | `MessageSelector` | Rewind and summarize dialog message selection    |
 | `DiffDialog`      | Diff viewer navigation                           |
@@ -216,7 +216,7 @@ Actions available in the `Attachments` context:
 | `attachments:next`     | Right             | Next attachment            |
 | `attachments:previous` | Left              | Previous attachment        |
 | `attachments:remove`   | Backspace, Delete | Remove selected attachment |
-| `attachments:exit`     | Down, Escape      | Exit attachment bar        |
+| `attachments:exit`     | Down, Escape      | Exit attachment navigation |
 
 ### Footer actions
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-03-28T04:23:53.783656Z
-sha256: 716f56dba0ccbc1034453a385d825a7878e39021960af9724ed5f53cc20d74cd
+fetched_at: 2026-03-29T04:39:49.181591Z
+sha256: 99a1bde74138f78c78d6e2a55d042b0aa6a3deb5539177f86e465c650120de85
 ---
 
 > ## Documentation Index
@@ -104,6 +104,16 @@ This hook uses the `Notification` event, which fires when Claude is waiting for 
       }
     }
     ```
+
+    <Accordion title="If no notification appears">
+      `osascript` routes notifications through the built-in Script Editor app. If Script Editor doesn't have notification permission, the command fails silently, and macOS won't prompt you to grant it. Run this in Terminal once to make Script Editor appear in your notification settings:
+
+      ```bash  theme={null}
+      osascript -e 'display notification "test"'
+      ```
+
+      Nothing will appear yet. Open **System Settings > Notifications**, find **Script Editor** in the list, and turn on **Allow Notifications**. Run the command again to confirm the test notification appears.
+    </Accordion>
   </Tab>
 
   <Tab title="Linux">

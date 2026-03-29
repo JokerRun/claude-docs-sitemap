@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway
-fetched_at: 2026-03-25T03:08:45.167858Z
-sha256: 48e4e1874fbf9b8e6739dac416ccd604eadda3025b6e7137f5609ada1689e47f
+fetched_at: 2026-03-29T04:39:49.181591Z
+sha256: 1584d489de308c24523faddf80aeac77c6f49d8bfbc8d9ae662ad8f3e9decd3b
 ---
 
 > ## Documentation Index
@@ -43,6 +43,14 @@ Failure to forward headers or preserve body fields may result in reduced functio
 <Note>
   Claude Code determines which features to enable based on the API format. When using the Anthropic Messages format with Bedrock or Vertex, you may need to set environment variable `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1`.
 </Note>
+
+**Request headers**
+
+Claude Code includes the following headers on every API request:
+
+| Header                     | Description                                                                                                                                                         |
+| :------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `X-Claude-Code-Session-Id` | A unique identifier for the current Claude Code session. Proxies can use this to aggregate all API requests from a single session without parsing the request body. |
 
 ## Configuration
 
