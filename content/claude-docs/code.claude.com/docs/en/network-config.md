@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-03-18T03:09:14.254898Z
-sha256: 6a11d33be6807885cd5cff82dc9bf3b26cccc2ecb2e08403848e06f9980b9442
+fetched_at: 2026-03-31T04:38:22.136736Z
+sha256: c8da332fd67f5fa2a231dc55da083818631197c6ac7c10785c6df39d4b48fe11
 ---
 
 > ## Documentation Index
@@ -99,6 +99,8 @@ The native installer and update checks also require the following URLs. If you i
 * `storage.googleapis.com`: legacy download bucket, deprecation in progress
 
 [Claude Code on the web](/en/claude-code-on-the-web) and [Code Review](/en/code-review) connect to your repositories from Anthropic-managed infrastructure. If your GitHub Enterprise Cloud organization restricts access by IP address, enable [IP allow list inheritance for installed GitHub Apps](https://docs.github.com/en/enterprise-cloud@latest/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-allowed-ip-addresses-for-your-organization#allowing-access-by-github-apps). The Claude GitHub App registers its IP ranges, so enabling this setting allows access without manual configuration. To [add the ranges to your allow list manually](https://docs.github.com/en/enterprise-cloud@latest/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-allowed-ip-addresses-for-your-organization#adding-an-allowed-ip-address) instead, or to configure other firewalls, see the [Anthropic API IP addresses](https://platform.claude.com/docs/en/api/ip-addresses).
+
+For self-hosted [GitHub Enterprise Server](/en/github-enterprise-server) instances behind a firewall, allowlist the same [Anthropic API IP addresses](https://platform.claude.com/docs/en/api/ip-addresses) so Anthropic infrastructure can reach your GHES host to clone repositories and post review comments.
 
 ## Additional resources
 

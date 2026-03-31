@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: d81cbaf363ca69a2763b17ae54a7f49c61e0347d40f24c2798c1211b5a8afc9d
+fetched_at: 2026-03-31T04:38:22.136736Z
+sha256: 5027c12cdab90b1b5c4893aba50754b11b727cbef1906c88ae3327a7d792c931
 ---
 
 > ## Documentation Index
@@ -78,6 +78,10 @@ Other terminals, including the default macOS Terminal, do not support native not
 #### Notification hooks
 
 To add custom behavior when notifications fire, such as playing a sound or sending a message, configure a [notification hook](/en/hooks#notification). Hooks run alongside terminal notifications, not as a replacement.
+
+### Reduce flicker and memory usage
+
+If you see flicker during long sessions, or your terminal scroll position jumps to the top while Claude is working, try [fullscreen rendering](/en/fullscreen). It uses an alternate rendering path that keeps memory flat and adds mouse support. Enable it with `CLAUDE_CODE_NO_FLICKER=1`.
 
 ### Handling large inputs
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-03-28T04:23:53.783656Z
-sha256: 085a5c53471a2f2d3835799b02b7b8bd9741f62117e9ba45bff70c5409618826
+fetched_at: 2026-03-31T04:38:22.136736Z
+sha256: c001cd5044bcd6d04371b43657d238dcd4511d1e07f57819a56e73052f74e9ca
 ---
 
 # Prompt caching
@@ -278,7 +278,7 @@ The table above reflects the following pricing multipliers for prompt caching:
 - 1-hour cache write tokens are 2 times the base input tokens price
 - Cache read tokens are 0.1 times the base input tokens price
 
-These multipliers stack with other pricing modifiers such as the Batch API discount, long context pricing, and data residency. See [pricing](/docs/en/about-claude/pricing) for full details.
+These multipliers stack with other pricing modifiers such as the Batch API discount and data residency. See [pricing](/docs/en/about-claude/pricing) for full details.
 </Note>
 
 ---

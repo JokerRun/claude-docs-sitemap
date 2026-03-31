@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-02-14T04:12:21.202627Z
-sha256: 0543d5579bd1239858008b454cc8a2463b05e280e245754521732247fad7b212
+fetched_at: 2026-03-31T04:38:22.136736Z
+sha256: c2111e4aa5b8553e9cf6703206721136a7b395bf99a9f853af77cf075e5e5287
 ---
 
 > ## Documentation Index
@@ -231,6 +231,7 @@ These are the most frequently encountered errors and how to resolve them:
 
 ## See also
 
+* [Computer use](/en/computer-use): control native macOS apps when a task can't be done in a browser
 * [Use Claude Code in VS Code](/en/vs-code#automate-browser-tasks-with-chrome): browser automation in the VS Code extension
 * [CLI reference](/en/cli-reference): command-line flags including `--chrome`
 * [Common workflows](/en/common-workflows): more ways to use Claude Code

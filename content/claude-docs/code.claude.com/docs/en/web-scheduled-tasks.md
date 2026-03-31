@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-scheduled-tasks
-fetched_at: 2026-03-24T03:06:06.053411Z
-sha256: 3e4ab105e0e87d06f3d17d19c6ef5c99bb909a98f75e9afc7714b9053cc09661
+fetched_at: 2026-03-31T04:38:22.136736Z
+sha256: 0b59f24a3ee40bc815c930bb368bba95dea60fbeef8fdb88ae62c364420c7335
 ---
 
 > ## Documentation Index
@@ -111,7 +111,7 @@ The schedule picker offers preset frequencies that handle time zone conversion f
 | Weekdays  | Same as Daily but skips Saturday and Sunday.                               |
 | Weekly    | Runs once per week on the day and time you specify.                        |
 
-For custom intervals like every 2 hours or first of each month, pick the closest preset and update the schedule from the CLI with `/schedule update` to set a specific schedule.
+For custom intervals like every 2 hours or first of each month, pick the closest preset and update the schedule from the CLI with `/schedule update` to set a specific cron expression. The minimum interval is 1 hour. Expressions that fire more frequently, such as `*/30 * * * *`, are rejected.
 
 ### Repositories and branch permissions
 

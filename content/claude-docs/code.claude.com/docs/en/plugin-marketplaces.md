@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-03-24T03:06:06.053411Z
-sha256: 6168e4f8ef56b93633b75c283eb3f9d481572d671110a6a99f6dff1e495f4361
+fetched_at: 2026-03-31T04:38:22.136736Z
+sha256: d535cdd7c1195878b5a858f30a94abdc9f6702342ae3b4869ebf8363b58b3037
 ---
 
 > ## Documentation Index
@@ -634,7 +634,7 @@ Allow specific marketplaces only:
 }
 ```
 
-Allow all marketplaces from an internal git server using regex pattern matching on the host:
+Allow all marketplaces from an internal git server using regex pattern matching on the host. This is the recommended approach for [GitHub Enterprise Server](/en/github-enterprise-server#plugin-marketplaces-on-ghes) or self-hosted GitLab instances:
 
 ```json  theme={null}
 {

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-03-28T04:23:53.783656Z
-sha256: 12c85a0cd342baca42ad88361f72a61f4a9fe1bcc5feef3bf1c0ffef33f752ac
+fetched_at: 2026-03-31T04:38:22.136736Z
+sha256: 5c8f0f4702b30e14e52a65d46ae97f4640dfd172bbcbdad7484e70ce4ce72294
 ---
 
 > ## Documentation Index
@@ -251,7 +251,7 @@ To copy gitignored files like `.env` into new worktrees, use a [`.worktreeinclud
 | `ask`                          | Array of permission rules to ask for confirmation upon tool use. See [Permission rule syntax](#permission-rule-syntax) below                                                                                                                     | `[ "Bash(git push *)" ]`                                               |
 | `deny`                         | Array of permission rules to deny tool use. Use this to exclude sensitive files from Claude Code access. See [Permission rule syntax](#permission-rule-syntax) and [Bash permission limitations](/en/permissions#tool-specific-permission-rules) | `[ "WebFetch", "Bash(curl *)", "Read(./.env)", "Read(./secrets/**)" ]` |
 | `additionalDirectories`        | Additional [working directories](/en/permissions#working-directories) that Claude has access to                                                                                                                                                  | `[ "../docs/" ]`                                                       |
-| `defaultMode`                  | Default [permission mode](/en/permission-modes) when opening Claude Code                                                                                                                                                                         | `"acceptEdits"`                                                        |
+| `defaultMode`                  | Default [permission mode](/en/permission-modes) when opening Claude Code. Valid values: `default`, `acceptEdits`, `plan`, `auto`, `dontAsk`, `bypassPermissions`. The `--permission-mode` CLI flag overrides this setting for a single session   | `"acceptEdits"`                                                        |
 | `disableBypassPermissionsMode` | Set to `"disable"` to prevent `bypassPermissions` mode from being activated. Disables the `--dangerously-skip-permissions` flag. Most useful in [managed settings](/en/permissions#managed-settings) where users cannot override it              | `"disable"`                                                            |
 
 ### Permission rule syntax

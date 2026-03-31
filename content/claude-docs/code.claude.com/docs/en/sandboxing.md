@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-03-26T03:10:23.640271Z
-sha256: 4ad8de4e8531fdfd689d073d05e680a6018c579adf9577d26c20969a55de8d0f
+fetched_at: 2026-03-31T04:38:22.136736Z
+sha256: 8eda00fb65451ffdab1d3e3c1a170633a7c2f5f8955a659aa147a55d3db78540
 ---
 
 > ## Documentation Index
@@ -321,7 +321,7 @@ For implementation details and source code, visit the [GitHub repository](https:
 The sandbox isolates Bash subprocesses. Other tools operate under different boundaries:
 
 * **Built-in file tools**: Read, Edit, and Write use the permission system directly rather than running through the sandbox. See [permissions](/en/permissions).
-* **Computer use on Desktop**: when Claude opens apps and controls your screen on macOS, it runs on your actual desktop rather than in an isolated environment. Per-app permission prompts gate each application. See [computer use](/en/desktop#let-claude-use-your-computer).
+* **Computer use**: when Claude opens apps and controls your screen on macOS, it runs on your actual desktop rather than in an isolated environment. Per-app permission prompts gate each application. See [computer use in the CLI](/en/computer-use) or [computer use in Desktop](/en/desktop#let-claude-use-your-computer).
 
 ## See also
 

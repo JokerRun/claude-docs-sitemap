@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-03-28T04:23:53.783656Z
-sha256: 1fd7b99494294e5ac0646e9845c1a0231ddcae0cfb129db64e1bb568dd0c099a
+fetched_at: 2026-03-31T04:38:22.136736Z
+sha256: 981eff3fa0e0549966c259b4154d436d1223de20800866bf039290c1b1c97463
 ---
 
 # Agent SDK reference - TypeScript
@@ -289,7 +289,7 @@ Configuration object for the `query()` function.
 | `agents` | `Record<string, [`AgentDefinition`](#agent-definition)>` | `undefined` | Programmatically define subagents |
 | `allowDangerouslySkipPermissions` | `boolean` | `false` | Enable bypassing permissions. Required when using `permissionMode: 'bypassPermissions'` |
 | `allowedTools` | `string[]` | `[]` | Tools to auto-approve without prompting. This does not restrict Claude to only these tools; unlisted tools fall through to `permissionMode` and `canUseTool`. Use `disallowedTools` to block tools. See [Permissions](/docs/en/agent-sdk/permissions#allow-and-deny-rules) |
-| `betas` | [`SdkBeta`](#sdk-beta)`[]` | `[]` | Enable beta features (e.g., `['context-1m-2025-08-07']`) |
+| `betas` | [`SdkBeta`](#sdk-beta)`[]` | `[]` | Enable beta features |
 | `canUseTool` | [`CanUseTool`](#can-use-tool) | `undefined` | Custom permission function for tool usage |
 | `continue` | `boolean` | `false` | Continue the most recent conversation |
 | `cwd` | `string` | `process.cwd()` | Current working directory |
@@ -2125,13 +2125,9 @@ Available beta features that can be enabled via the `betas` option. See [Beta he
 type SdkBeta = "context-1m-2025-08-07";
 ```
 
-| Value | Description | Compatible Models |
-|:------|:------------|:------------------|
-| `'context-1m-2025-08-07'` | Enables the 1 million token [context window](/docs/en/build-with-claude/context-windows). | Claude Sonnet 4.5, Claude Sonnet 4 |
-
-<Note>
-Claude Opus 4.6 and Sonnet 4.6 have a 1M token context window. Including `context-1m-2025-08-07` has no effect on those models.
-</Note>
+<Warning>
+The `context-1m-2025-08-07` beta is retired as of April 30, 2026. Requests using this value with Claude Sonnet 4.5 or Sonnet 4 will return a 400 error. To use a 1M-token context window, migrate to [Claude Sonnet 4.6 or Claude Opus 4.6](/docs/en/about-claude/models/overview), which include 1M context at standard pricing with no beta header required.
+</Warning>
 
 ### `SlashCommand`
 

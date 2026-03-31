@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-03-28T04:23:53.783656Z
-sha256: b26611da141588503937963b0ba1711162f96c9755802bf4d0870de8509ff508
+fetched_at: 2026-03-31T04:38:22.136736Z
+sha256: f186f267d864110f6e96618177393d4f9afe1f461bb774e5b4b30beba188ae36
 ---
 
 # Agent SDK reference - Python
@@ -1197,11 +1197,11 @@ Literal type for SDK beta features.
 SdkBeta = Literal["context-1m-2025-08-07"]
 ```
 
-Use with the `betas` field in `ClaudeAgentOptions` to enable beta features. Use `context-1m-2025-08-07` with Claude Sonnet 4.5 and Sonnet 4 to enable the 1M-token context window.
+Use with the `betas` field in `ClaudeAgentOptions` to enable beta features.
 
-<Note>
-Claude Opus 4.6 and Sonnet 4.6 have a 1M token context window. Including `context-1m-2025-08-07` has no effect on those models.
-</Note>
+<Warning>
+The `context-1m-2025-08-07` beta is retired as of April 30, 2026. Requests using this header with Claude Sonnet 4.5 or Sonnet 4 will return a 400 error. To use a 1M-token context window, migrate to [Claude Sonnet 4.6 or Claude Opus 4.6](/docs/en/about-claude/models/overview), which include 1M context at standard pricing with no beta header required.
+</Warning>
 
 ### `McpSdkServerConfig`
 
