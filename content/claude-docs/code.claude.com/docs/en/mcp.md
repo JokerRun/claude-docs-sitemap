@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-03-28T04:23:53.783656Z
-sha256: 84dca2724f9f3c375b6d6044d3718db906c030acee522931f4d3f383cd565534
+fetched_at: 2026-04-01T04:49:12.553036Z
+sha256: 5d1d1b84971cb27c365e3000190bfabcf50f61c4fda96bd8a53a848f56aee02f
 ---
 
 > ## Documentation Index
@@ -1111,12 +1111,12 @@ ENABLE_TOOL_SEARCH=false claude
 
 Or set the value in your [settings.json `env` field](/en/settings#available-settings).
 
-You can also disable the MCPSearch tool specifically using the `disallowedTools` setting:
+You can also disable the `ToolSearch` tool specifically:
 
 ```json  theme={null}
 {
   "permissions": {
-    "deny": ["MCPSearch"]
+    "deny": ["ToolSearch"]
   }
 }
 ```

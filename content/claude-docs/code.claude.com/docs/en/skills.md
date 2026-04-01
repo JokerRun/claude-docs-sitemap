@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-03-29T04:39:49.181591Z
-sha256: 7da53dc23bf9551d456239ee54e50ff3a550b14266f8660073061234bed9b7fc
+fetched_at: 2026-04-01T04:49:12.553036Z
+sha256: ead3fa435d9d731736c260d65fb12b952b706327ab06b11a314a2b57a1e4808e
 ---
 
 > ## Documentation Index
@@ -130,7 +130,9 @@ The `SKILL.md` contains the main instructions and is required. Other files are o
 
 #### Skills from additional directories
 
-Skills defined in `.claude/skills/` within directories added via `--add-dir` are loaded automatically and picked up by live change detection, so you can edit them during a session without restarting.
+The `--add-dir` flag [grants file access](/en/permissions#additional-directories-grant-file-access-not-configuration) rather than configuration discovery, but skills are an exception: `.claude/skills/` within an added directory is loaded automatically and picked up by live change detection, so you can edit those skills during a session without restarting.
+
+Other `.claude/` configuration such as subagents, commands, and output styles is not loaded from additional directories. See the [exceptions table](/en/permissions#additional-directories-grant-file-access-not-configuration) for the complete list of what is and isn't loaded, and the recommended ways to share configuration across projects.
 
 <Note>
   CLAUDE.md files from `--add-dir` directories are not loaded by default. To load them, set `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1`. See [Load from additional directories](/en/memory#load-from-additional-directories).

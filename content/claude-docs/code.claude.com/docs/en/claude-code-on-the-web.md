@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-03-31T04:38:22.136736Z
-sha256: 3443669aeaa86e447bfdeea4c00465cccb4e0dade2a8e6b37529facb26231bfb
+fetched_at: 2026-04-01T04:49:12.553036Z
+sha256: 4de5973faef28be90e8d9e6b5581ed7bcec27f8ee2ba16b772923bbeadcbbaec
 ---
 
 > ## Documentation Index
@@ -113,6 +113,10 @@ When auto-fix is active, Claude receives GitHub events for the PR including new 
 * **Duplicate or no-action events**: if an event is a duplicate or requires no change, Claude notes it in the session and moves on
 
 Claude may reply to review comment threads on GitHub as part of resolving them. These replies are posted using your GitHub account, so they appear under your username, but each reply is labeled as coming from Claude Code so reviewers know it was written by the agent and not by you directly.
+
+<Warning>
+  If your repository uses comment-triggered automation such as Atlantis, Terraform Cloud, or custom GitHub Actions that run on `issue_comment` events, be aware that Claude can reply on your behalf, which can trigger those workflows. Review your repository's automation before enabling auto-fix, and consider disabling auto-fix for repositories where a PR comment can deploy infrastructure or run privileged operations.
+</Warning>
 
 ## Moving tasks between web and terminal
 

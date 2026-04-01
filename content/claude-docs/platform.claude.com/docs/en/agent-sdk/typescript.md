@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-03-31T04:38:22.136736Z
-sha256: 981eff3fa0e0549966c259b4154d436d1223de20800866bf039290c1b1c97463
+fetched_at: 2026-04-01T04:49:12.553036Z
+sha256: 0bba33891bcc6fadd2dc1eb59282377641c343835a6fea53f7aa865f7b90d381
 ---
 
 # Agent SDK reference - TypeScript
@@ -2126,7 +2126,7 @@ type SdkBeta = "context-1m-2025-08-07";
 ```
 
 <Warning>
-The `context-1m-2025-08-07` beta is retired as of April 30, 2026. Requests using this value with Claude Sonnet 4.5 or Sonnet 4 will return a 400 error. To use a 1M-token context window, migrate to [Claude Sonnet 4.6 or Claude Opus 4.6](/docs/en/about-claude/models/overview), which include 1M context at standard pricing with no beta header required.
+The `context-1m-2025-08-07` beta is retired as of April 30, 2026. Passing this value with Claude Sonnet 4.5 or Sonnet 4 has no effect, and requests that exceed the standard 200k-token context window return an error. To use a 1M-token context window, migrate to [Claude Sonnet 4.6 or Claude Opus 4.6](/docs/en/about-claude/models/overview), which include 1M context at standard pricing with no beta header required.
 </Warning>
 
 ### `SlashCommand`

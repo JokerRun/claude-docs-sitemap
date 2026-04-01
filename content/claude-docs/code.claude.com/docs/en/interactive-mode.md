@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-03-28T04:23:53.783656Z
-sha256: 9574f9e83079754b47a7a4afb32ab90a476075d118c9972dc0e2622f2c62ec23
+fetched_at: 2026-04-01T04:49:12.553036Z
+sha256: b98090b9432b500367631d91daa0dbeabc8555e707305cd0779a010c159d023b
 ---
 
 > ## Documentation Index
@@ -265,7 +265,7 @@ When you first open a session, a grayed-out example command appears in the promp
 
 After Claude responds, suggestions continue to appear based on your conversation history, such as a follow-up step from a multi-part request or a natural continuation of your workflow.
 
-* Press **Tab** to accept the suggestion, or press **Enter** to accept and submit
+* Press **Tab** or **Right arrow** to accept the suggestion, or press **Enter** to accept and submit
 * Start typing to dismiss it
 
 The suggestion runs as a background request that reuses the parent conversation's prompt cache, so the additional cost is minimal. Claude Code skips suggestion generation when the cache is cold to avoid unnecessary cost.

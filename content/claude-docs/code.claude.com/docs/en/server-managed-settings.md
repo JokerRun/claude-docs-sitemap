@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-03-25T03:08:45.167858Z
-sha256: e0479d3da03c8085b9273a953e772325b3d1b5ba9420abd3302558a2598330ec
+fetched_at: 2026-04-01T04:49:12.553036Z
+sha256: f3344514587709ce2ee4c706af63afa7586ca3bd1a42659678e89e697a7995cb
 ---
 
 > ## Documentation Index
@@ -50,7 +50,7 @@ If your devices are enrolled in an MDM or endpoint management solution, endpoint
   <Step title="Define your settings">
     Add your configuration as JSON. All [settings available in `settings.json`](/en/settings#available-settings) are supported, including [hooks](/en/hooks), [environment variables](/en/env-vars), and [managed-only settings](/en/permissions#managed-only-settings) like `allowManagedPermissionRulesOnly`.
 
-    This example enforces a permission deny list and prevents users from bypassing permissions:
+    This example enforces a permission deny list, prevents users from bypassing permissions, and restricts permission rules to those defined in managed settings:
 
     ```json  theme={null}
     {
@@ -62,7 +62,8 @@ If your devices are enrolled in an MDM or endpoint management solution, endpoint
           "Read(./secrets/**)"
         ],
         "disableBypassPermissionsMode": "disable"
-      }
+      },
+      "allowManagedPermissionRulesOnly": true
     }
     ```
 
@@ -120,6 +121,10 @@ The following roles can manage server-managed settings:
 
 Restrict access to trusted personnel, as settings changes apply to all users in the organization.
 
+### Managed-only settings
+
+Most [settings keys](/en/settings#available-settings) work in any scope. A handful of keys are only read from managed settings and have no effect when placed in user or project settings files. See [managed-only settings](/en/permissions#managed-only-settings) for the full list. Any setting not on that list can still be placed in managed settings and takes the highest precedence.
+
 ### Current limitations
 
 Server-managed settings have the following limitations during the beta period:
@@ -131,7 +136,11 @@ Server-managed settings have the following limitations during the beta period:
 
 ### Settings precedence
 
-Server-managed settings and [endpoint-managed settings](/en/settings#settings-files) both occupy the highest tier in the Claude Code [settings hierarchy](/en/settings#settings-precedence). No other settings level can override them, including command line arguments. When both are present, server-managed settings take precedence and endpoint-managed settings are not used.
+Server-managed settings and [endpoint-managed settings](/en/settings#settings-files) both occupy the highest tier in the Claude Code [settings hierarchy](/en/settings#settings-precedence). No other settings level can override them, including command line arguments.
+
+Within the managed tier, the first source that delivers a non-empty configuration wins. Server-managed settings are checked first, then endpoint-managed settings. Sources do not merge: if server-managed settings deliver any keys at all, endpoint-managed settings are ignored entirely. If server-managed settings deliver nothing, endpoint-managed settings apply.
+
+If you clear your server-managed configuration in the admin console with the intent of falling back to an endpoint-managed plist or registry policy, be aware that [cached settings](#fetch-and-caching-behavior) persist on client machines until the next successful fetch. Run `/status` to see which managed source is active.
 
 ### Fetch and caching behavior
 

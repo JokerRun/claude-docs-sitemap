@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/features-overview
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 7c3512cda6cb039a3271fd0bfacb8bb1e368087547ca097ee6f7537767fe3164
+fetched_at: 2026-04-01T04:49:12.553036Z
+sha256: ab6fc570848441c5ce34566a3b9e3a4f467f3865a167523a7786ab1bd1b13f68
 ---
 
 > ## Documentation Index
@@ -205,7 +205,7 @@ Each feature loads at different points in your session. The tabs below explain w
 
     **Inheritance:** Claude reads CLAUDE.md files from your working directory up to the root, and discovers nested ones in subdirectories as it accesses those files. See [How CLAUDE.md files load](/en/memory#how-claude-md-files-load) for details.
 
-    <Tip>Keep CLAUDE.md under \~500 lines. Move reference material to skills, which load on-demand.</Tip>
+    <Tip>Keep CLAUDE.md under 200 lines. Move reference material to skills, which load on-demand.</Tip>
   </Tab>
 
   <Tab title="Skills">
