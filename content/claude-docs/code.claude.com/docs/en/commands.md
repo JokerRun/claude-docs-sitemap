@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/commands
-fetched_at: 2026-04-01T04:49:12.553036Z
-sha256: af8dff0614b379eb5face946b829338d6ad63d60346f6ae32da4db4e418afda9
+fetched_at: 2026-04-02T04:32:20.033306Z
+sha256: 0b53816451cc808cc3ed53c6d0e51f8bc7a9beb457456d6ecf1f430ad9321324
 ---
 
 > ## Documentation Index
@@ -57,7 +57,7 @@ In the table below, `<arg>` indicates a required argument and `[arg]` indicates 
 | `/mobile`                                | Show QR code to download the Claude mobile app. Aliases: `/ios`, `/android`                                                                                                                                                                                                                                                                                    |
 | `/model [model]`                         | Select or change the AI model. For models that support it, use left/right arrows to [adjust effort level](/en/model-config#adjust-effort-level). The change takes effect immediately without waiting for the current response to finish                                                                                                                        |
 | `/passes`                                | Share a free week of Claude Code with friends. Only visible if your account is eligible                                                                                                                                                                                                                                                                        |
-| `/permissions`                           | View or update [permissions](/en/permissions#manage-permissions). Alias: `/allowed-tools`                                                                                                                                                                                                                                                                      |
+| `/permissions`                           | Manage allow, ask, and deny rules for tool permissions. Opens an interactive dialog where you can view rules by scope, add or remove rules, manage working directories, and review [recent auto mode denials](/en/permissions#review-auto-mode-denials). Alias: `/allowed-tools`                                                                               |
 | `/plan [description]`                    | Enter plan mode directly from the prompt. Pass an optional description to enter plan mode and immediately start with that task, for example `/plan fix the auth bug`                                                                                                                                                                                           |
 | `/plugin`                                | Manage Claude Code [plugins](/en/plugins)                                                                                                                                                                                                                                                                                                                      |
 | `/pr-comments [PR]`                      | Fetch and display comments from a GitHub pull request. Automatically detects the PR for the current branch, or pass a PR URL or number. Requires the `gh` CLI                                                                                                                                                                                                  |

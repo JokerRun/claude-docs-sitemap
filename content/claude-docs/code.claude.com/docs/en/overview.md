@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-03-25T03:08:45.167858Z
-sha256: b364b0edefb2c89001d93130ebea1456c353fe66ca693743745532ea9f06ece0
+fetched_at: 2026-04-02T04:32:20.033306Z
+sha256: 15d2836390e684dc78f185ffe2476783b4d6bd9a4c7df9690ae09be4df7921fe
 ---
 
 > ## Documentation Index
@@ -44,6 +44,8 @@ Choose your environment to get started. Most surfaces require a [Claude subscrip
         ```batch  theme={null}
         curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
         ```
+
+        If you see `The token '&&' is not a valid statement separator`, you're in PowerShell, not CMD. Use the PowerShell command above instead. Your prompt shows `PS C:\` when you're in PowerShell.
 
         **Windows requires [Git for Windows](https://git-scm.com/downloads/win).** Install it first if you don't have it.
 

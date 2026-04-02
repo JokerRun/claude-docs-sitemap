@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 30ae23800afc813df607bc64b0a8813035bedc5aab3cce77b60bd33620250da4
+fetched_at: 2026-04-02T04:32:20.033306Z
+sha256: 5562fb8ea40a1dde2afcc748abee540ce27ffd1edbf00bac77069446737a50dd
 ---
 
 # Strict tool use
@@ -1091,3 +1091,11 @@ puts message
 </CodeGroup>
 
 </section>
+
+## Data retention
+
+Strict tool use compiles tool `input_schema` definitions into grammars using the same pipeline as [structured outputs](/docs/en/build-with-claude/structured-outputs). Tool schemas are temporarily cached for up to 24 hours since last use. Prompts and responses are not retained beyond the API response.
+
+Strict tool use is HIPAA eligible, but **PHI must not be included in tool schema definitions**. The API caches compiled schemas separately from message content, and these cached schemas do not receive the same PHI protections as prompts and responses. Do not include PHI in `input_schema` property names, `enum` values, `const` values, or `pattern` regular expressions. PHI should only appear in message content (prompts and responses), where it is protected under HIPAA safeguards.
+
+For ZDR and HIPAA eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).

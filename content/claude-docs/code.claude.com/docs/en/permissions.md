@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-04-01T04:49:12.553036Z
-sha256: 06dde6cfa2ca63002e72f52c16f4f4170a6abc2ad464f98c58da8740df7a3ea8
+fetched_at: 2026-04-02T04:32:20.033306Z
+sha256: d012993622e4df751806a53616bbbf27406a420d0d5eed917e66045c6002f11c
 ---
 
 > ## Documentation Index
@@ -279,6 +279,12 @@ The following settings are only read from managed settings. Placing them in user
 <Note>
   Access to [Remote Control](/en/remote-control) and [web sessions](/en/claude-code-on-the-web) is not controlled by a managed settings key. On Team and Enterprise plans, an admin enables or disables these features in [Claude Code admin settings](https://claude.ai/admin-settings/claude-code).
 </Note>
+
+## Review auto mode denials
+
+When [auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) denies a tool call, a notification appears and the denied action is recorded in `/permissions` under the Recently denied tab. Press `r` on a denied action to mark it for retry: when you exit the dialog, Claude Code sends a message telling the model it may retry that tool call and resumes the conversation.
+
+To react to denials programmatically, use the [`PermissionDenied` hook](/en/hooks#permissiondenied).
 
 ## Configure the auto mode classifier
 

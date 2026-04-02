@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 99b2c2f260fdb92e13e644d8fe98e8c4577310a59608a7b0adf7b165ccfd6bfe
+fetched_at: 2026-04-02T04:32:20.033306Z
+sha256: f559b045f800f2125bad38d1eb8ec39ea6c5c078b0ae6d609b272bd879f3e5cb
 ---
 
 > ## Documentation Index
@@ -121,6 +121,7 @@ Plugin hooks respond to the same lifecycle events as [user-defined hooks](/en/ho
 | `UserPromptSubmit`   | When you submit a prompt, before Claude processes it                                                                                                   |
 | `PreToolUse`         | Before a tool call executes. Can block it                                                                                                              |
 | `PermissionRequest`  | When a permission dialog appears                                                                                                                       |
+| `PermissionDenied`   | When a tool call is denied by the auto mode classifier. Return `{retry: true}` to tell the model it may retry the denied tool call                     |
 | `PostToolUse`        | After a tool call succeeds                                                                                                                             |
 | `PostToolUseFailure` | After a tool call fails                                                                                                                                |
 | `Notification`       | When Claude Code sends a notification                                                                                                                  |

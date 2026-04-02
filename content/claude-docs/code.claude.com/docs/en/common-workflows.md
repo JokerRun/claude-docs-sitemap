@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-03-28T04:23:53.783656Z
-sha256: aed7e055f3e502296e0aa7c9d7bc36cd147ff39f9c6eff530728f347932faceb
+fetched_at: 2026-04-02T04:32:20.033306Z
+sha256: 67b749a1a172c50b2350ef65c5343a8b981a415b5db52508697050fca093fb75
 ---
 
 > ## Documentation Index
@@ -548,7 +548,7 @@ Extended thinking controls how much internal reasoning Claude performs before re
 On Opus 4.6 and Sonnet 4.6, [adaptive reasoning](/en/model-config#adjust-effort-level) controls thinking depth, so `MAX_THINKING_TOKENS` only applies when set to `0` to disable thinking, or when `CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING=1` reverts these models to the fixed budget. See [environment variables](/en/env-vars).
 
 <Warning>
-  You're charged for all thinking tokens used, even though Claude 4 models show summarized thinking
+  You're charged for all thinking tokens used even when thinking summaries are redacted. In interactive mode, thinking appears as a collapsed stub by default. Set `showThinkingSummaries: true` in `settings.json` to show full summaries.
 </Warning>
 
 ***
@@ -886,7 +886,7 @@ cat build-error.txt | claude -p 'concisely explain the root cause of this build 
 
   * Use pipes to integrate Claude into existing shell scripts
   * Combine with other Unix tools for powerful workflows
-  * Consider using --output-format for structured output
+  * Consider using `--output-format` for structured output
 </Tip>
 
 ### Control output format

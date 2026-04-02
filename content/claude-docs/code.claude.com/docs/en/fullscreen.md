@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-03-31T04:38:22.136736Z
-sha256: 5d8264250d48491b8a805de6a7e23eec404e48de8026524a5d5d120a92a06175
+fetched_at: 2026-04-02T04:32:20.033306Z
+sha256: 6db451a7880c0e03a8aea1174e5f1089a59871aa521c0e5868d3eff9200a05d3
 ---
 
 > ## Documentation Index
@@ -81,6 +81,8 @@ On keyboards without dedicated `PgUp`, `PgDn`, `Home`, or `End` keys, like MacBo
 Scrolling up pauses auto-follow so new output does not pull you back to the bottom. Press `Ctrl+End` or scroll to the bottom to resume following.
 
 These actions are rebindable. See [Keybindings](/en/keybindings) to customize them. The action names are `scroll:pageUp`, `scroll:pageDown`, `scroll:top`, and `scroll:bottom`. Additional actions with no default binding include `scroll:lineUp`, `scroll:lineDown`, `scroll:halfPageUp`, `scroll:halfPageDown`, `scroll:fullPageUp`, and `scroll:fullPageDown`.
+
+Mouse wheel scrolling requires your terminal to forward mouse events to Claude Code. Most terminals do this whenever an application requests it. iTerm2 makes it a per-profile setting: if the wheel does nothing but `PgUp` and `PgDn` work, open Settings → Profiles → Terminal and turn on Enable mouse reporting. The same setting is also required for click-to-expand and text selection to work.
 
 ### Adjust wheel scroll speed
 

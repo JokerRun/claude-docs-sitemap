@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-03-31T04:38:22.136736Z
-sha256: 4978447d706319bac629c32b18d7f83a5d0c5f86b16a855a818f2df745d7fc90
+fetched_at: 2026-04-02T04:32:20.033306Z
+sha256: 00fed264035c5c26b2369d3ec3751bed2475fe7c8e7228d269245bbe83e0c949
 ---
 
 > ## Documentation Index
@@ -239,7 +239,7 @@ If auto mode blocks something routine for your team, like pushing to your own or
 
 The fallback design keeps false positives from derailing a session: a mistaken block costs Claude a retry, not your progress. If the classifier blocks an action 3 times in a row or 20 times total in one session, auto mode pauses and Claude Code resumes prompting for each action. These thresholds are not configurable.
 
-* **CLI**: you see a notification in the status area. Approving the prompted action resets the denial counters, so you can continue in auto mode
+* **CLI**: you see a notification in the status area, and the denied action appears in `/permissions` under the Recently denied tab. Approving the prompted action resets the denial counters, so you can continue in auto mode
 * **Non-interactive mode** with the `-p` flag: aborts the session, since there is no user to prompt
 
 Repeated blocks usually mean one of two things: the task genuinely requires actions the classifier is built to stop, or the classifier is missing context about your trusted infrastructure and treating safe actions as risky. If the blocks look like false positives, or if the classifier misses something it should have caught, use `/feedback` to report it. If blocks are happening because the classifier doesn't recognize your repos or services as trusted, have an administrator [configure trusted infrastructure](/en/permissions#configure-the-auto-mode-classifier) in managed settings.

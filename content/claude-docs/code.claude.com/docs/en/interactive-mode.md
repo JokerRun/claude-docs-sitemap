@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-04-01T04:49:12.553036Z
-sha256: b98090b9432b500367631d91daa0dbeabc8555e707305cd0779a010c159d023b
+fetched_at: 2026-04-02T04:32:20.033306Z
+sha256: 1da74e5439d4916fb92eb3ee9657d636a4d66cc202b907d0249445982946ecb8
 ---
 
 > ## Documentation Index
@@ -256,6 +256,7 @@ Bash mode:
 * Does not require Claude to interpret or approve the command
 * Supports history-based autocomplete: type a partial command and press **Tab** to complete from previous `!` commands in the current project
 * Exit with `Escape`, `Backspace`, or `Ctrl+U` on an empty prompt
+* Pasting text that starts with `!` into an empty prompt enters bash mode automatically, matching typed `!` behavior
 
 This is useful for quick shell operations while maintaining conversation context.
 
