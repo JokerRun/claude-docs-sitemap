@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-04-01T04:49:12.553036Z
-sha256: c73f13fe524d9c9185b230ab5fd0354344556d012ce7869a5ce0e55833e5e28e
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: c1d5c08cc4d5f01525b7a54917f26b40cb960bb3fdc68d8933d3a3569bcc0dee
 ---
 
 > ## Documentation Index
@@ -152,10 +152,10 @@ These variables use cross-region inference profile IDs (with the `us.` prefix). 
 
 Claude Code uses these default models when no pinning variables are set:
 
-| Model type       | Default value                                 |
-| :--------------- | :-------------------------------------------- |
-| Primary model    | `global.anthropic.claude-sonnet-4-6`          |
-| Small/fast model | `us.anthropic.claude-haiku-4-5-20251001-v1:0` |
+| Model type       | Default value                                  |
+| :--------------- | :--------------------------------------------- |
+| Primary model    | `us.anthropic.claude-sonnet-4-5-20250929-v1:0` |
+| Small/fast model | `us.anthropic.claude-haiku-4-5-20251001-v1:0`  |
 
 To customize models further, use one of these methods:
 
@@ -239,6 +239,12 @@ For details, see [Bedrock IAM documentation](https://docs.aws.amazon.com/bedrock
   Create a dedicated AWS account for Claude Code to simplify cost tracking and access control.
 </Note>
 
+## 1M token context window
+
+Claude Opus 4.6 and Sonnet 4.6 support the [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#1m-token-context-window) on Amazon Bedrock. Claude Code automatically enables the extended context window when you select a 1M model variant.
+
+To enable the 1M context window for your pinned model, append `[1m]` to the model ID. See [Pin models for third-party deployments](/en/model-config#pin-models-for-third-party-deployments) for details.
+
 ## AWS Guardrails
 
 [Amazon Bedrock Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) let you implement content filtering for Claude Code. Create a Guardrail in the [Amazon Bedrock console](https://console.aws.amazon.com/bedrock/), publish a version, then add the Guardrail headers to your [settings file](/en/settings). Enable Cross-Region inference on your Guardrail if you're using cross-region inference profiles.
@@ -280,4 +286,6 @@ Claude Code uses the Bedrock [Invoke API](https://docs.aws.amazon.com/bedrock/la
 * [Bedrock documentation](https://docs.aws.amazon.com/bedrock/)
 * [Bedrock pricing](https://aws.amazon.com/bedrock/pricing/)
 * [Bedrock inference profiles](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html)
-* [Claude Code on Amazon Bedrock: Quick Setup Guide](https://community.aws/content/2tXkZKrZzlrlu0KfH8gST5Dkppq/claude-code-on-amazon-bedrock-quick-setup-guide)- [Claude Code Monitoring Implementation (Bedrock)](https://github.com/aws-solutions-library-samples/guidance-for-claude-code-with-amazon-bedrock/blob/main/assets/docs/MONITORING.md)
+* [Bedrock token burndown and quotas](https://docs.aws.amazon.com/bedrock/latest/userguide/quotas-token-burndown.html)
+* [Claude Code on Amazon Bedrock: Quick Setup Guide](https://community.aws/content/2tXkZKrZzlrlu0KfH8gST5Dkppq/claude-code-on-amazon-bedrock-quick-setup-guide)
+* [Claude Code Monitoring Implementation (Bedrock)](https://github.com/aws-solutions-library-samples/guidance-for-claude-code-with-amazon-bedrock/blob/main/assets/docs/MONITORING.md)

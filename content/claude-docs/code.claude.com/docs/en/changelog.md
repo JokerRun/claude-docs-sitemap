@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-04-02T04:32:20.033306Z
-sha256: 9bd588b612251ed6a9a901c06941d8e5fa49bf55772a8c2f4776c534a931a468
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: 0e50873d3e4bc8a7afa020bca2b80590eac1c5616f7f551fbbf0c19013f85860
 ---
 
 > ## Documentation Index
@@ -16,6 +16,22 @@ sha256: 9bd588b612251ed6a9a901c06941d8e5fa49bf55772a8c2f4776c534a931a468
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.91" description="April 2, 2026">
+  * Added MCP tool result persistence override via `_meta["anthropic/maxResultSizeChars"]` annotation (up to 500K), allowing larger results like DB schemas to pass through without truncation
+  * Added `disableSkillShellExecution` setting to disable inline shell execution in skills, custom slash commands, and plugin commands
+  * Added support for multi-line prompts in `claude-cli://open?q=` deep links (encoded newlines `%0A` no longer rejected)
+  * Plugins can now ship executables under `bin/` and invoke them as bare commands from the Bash tool
+  * Fixed transcript chain breaks on `--resume` that could lose conversation history when async transcript writes fail silently
+  * Fixed `cmd+delete` not deleting to start of line on iTerm2, kitty, WezTerm, Ghostty, and Windows Terminal
+  * Fixed plan mode in remote sessions losing track of the plan file after a container restart, which caused permission prompts on plan edits and an empty plan-approval modal
+  * Fixed JSON schema validation for `permissions.defaultMode: "auto"` in settings.json
+  * Fixed Windows version cleanup not protecting the active version's rollback copy
+  * `/feedback` now explains why it's unavailable instead of disappearing from the slash menu
+  * Improved `/claude-api` skill guidance for agent design patterns including tool surface decisions, context management, and caching strategy
+  * Improved performance: faster `stripAnsi` on Bun by routing through `Bun.stripANSI`
+  * Edit tool now uses shorter `old_string` anchors, reducing output tokens
+</Update>
 
 <Update label="2.1.90" description="April 1, 2026">
   * Added `/powerup` — interactive lessons teaching Claude Code features with animated demos

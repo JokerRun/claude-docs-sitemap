@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-04-01T04:49:12.553036Z
-sha256: 4de5973faef28be90e8d9e6b5581ed7bcec27f8ee2ba16b772923bbeadcbbaec
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: 779f32d69d94bdf06b22db043bf2e836e92a5b99e708693b4723844346c279f3
 ---
 
 > ## Documentation Index
@@ -191,9 +191,9 @@ types below. After that, share the session link as-is. Recipients who open your
 shared session will see the latest state of the session upon load, but the
 recipient's page will not update in real time.
 
-#### Sharing from an Enterprise or Teams account
+#### Sharing from an Enterprise or Team account
 
-For Enterprise and Teams accounts, the two visibility options are **Private**
+For Enterprise and Team accounts, the two visibility options are **Private**
 and **Team**. Team visibility makes the session visible to other members of your
 Claude.ai organization. Repository access verification is enabled by default,
 based on the GitHub account connected to the recipient's account. Your account's
@@ -712,7 +712,7 @@ Claude Code on the web shares rate limits with all other Claude and Claude Code 
 ## Limitations
 
 * **Repository authentication**: You can only move sessions from web to local when you are authenticated to the same account
-* **Platform restrictions**: Claude Code on the web only works with code hosted in GitHub. Self-hosted [GitHub Enterprise Server](/en/github-enterprise-server) instances are supported for Teams and Enterprise plans. GitLab and other non-GitHub repositories cannot be used with cloud sessions
+* **Platform restrictions**: Claude Code on the web only works with code hosted in GitHub. Self-hosted [GitHub Enterprise Server](/en/github-enterprise-server) instances are supported for Team and Enterprise plans. GitLab and other non-GitHub repositories cannot be used with cloud sessions
 
 ## Best practices
 

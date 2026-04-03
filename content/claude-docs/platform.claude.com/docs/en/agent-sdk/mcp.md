@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-03-24T03:06:06.053411Z
-sha256: 5d14acb6084469798cd0fa2c56f495bf595eaae07afa82a51647601edce6d5a3
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: db0b8f60c77944c3dfa47edc12d3191d03ea442d6a0fabb490b7367c09ae3009
 ---
 
 # Connect to external tools with MCP
@@ -75,7 +75,7 @@ The agent connects to the documentation server, searches for information about h
 
 ## Add an MCP server
 
-You can configure MCP servers in code when calling `query()`, or in a `.mcp.json` file that the SDK loads automatically.
+You can configure MCP servers in code when calling `query()`, or in a `.mcp.json` file loaded via [`settingSources`](#from-a-config-file).
 
 ### In code
 
@@ -136,7 +136,7 @@ asyncio.run(main())
 
 ### From a config file
 
-Create a `.mcp.json` file at your project root. The SDK loads this automatically:
+Create a `.mcp.json` file at your project root. The SDK does not load filesystem settings by default, so set `settingSources: ["project"]` (Python: `setting_sources=["project"]`) in your options for the file to be picked up:
 
 ```json
 {

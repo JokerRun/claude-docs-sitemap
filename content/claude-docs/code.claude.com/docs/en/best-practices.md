@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 00d5d498a8c3a54f622516ea316732fc05c786434e19790fa84f6bb2c0ebe1b2
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: 2da75f909cb119a4b2aa4ccb2e6f88d787159ab63b033c232f0ab2755d762894
 ---
 
 > ## Documentation Index
@@ -203,6 +203,7 @@ You can place CLAUDE.md files in several locations:
 
 * **Home folder (`~/.claude/CLAUDE.md`)**: applies to all Claude sessions
 * **Project root (`./CLAUDE.md`)**: check into git to share with your team
+* **Project root (`./CLAUDE.local.md`)**: personal project-specific notes; add this file to your `.gitignore` so it isn't shared with your team
 * **Parent directories**: useful for monorepos where both `root/CLAUDE.md` and `root/foo/CLAUDE.md` are pulled in automatically
 * **Child directories**: Claude pulls in child CLAUDE.md files on demand when working with files in those directories
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 53197ee27f80e1220a9cf2b00b70237bb3b650bfd2b0ba38fc053e5fac17192e
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: 5606dd66e78709fae9d3ea4d07151c9827aff3b33cfedfb09eb8f0700f370099
 ---
 
 > ## Documentation Index
@@ -97,7 +97,7 @@ Claude Code runs in three environments, each with different tradeoffs for where 
 
 ### Interfaces
 
-You can access Claude Code through the terminal, the [desktop app](/en/desktop), [IDE extensions](/en/ide-integrations), [claude.ai/code](https://claude.ai/code), [Remote Control](/en/remote-control), [Slack](/en/slack), and [CI/CD pipelines](/en/github-actions). The interface determines how you see and interact with Claude, but the underlying agentic loop is identical. See [Use Claude Code everywhere](/en/overview#use-claude-code-everywhere) for the full list.
+You can access Claude Code through the terminal, the [desktop app](/en/desktop), [IDE extensions](/en/vs-code), [claude.ai/code](https://claude.ai/code), [Remote Control](/en/remote-control), [Slack](/en/slack), and [CI/CD pipelines](/en/github-actions). The interface determines how you see and interact with Claude, but the underlying agentic loop is identical. See [Use Claude Code everywhere](/en/overview#use-claude-code-everywhere) for the full list.
 
 ## Work with sessions
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-04-02T04:32:20.033306Z
-sha256: d012993622e4df751806a53616bbbf27406a420d0d5eed917e66045c6002f11c
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: cfc6279fa4fe75482be83ff26766a98eb9c468fb2bd17ea88c434820c98c8e4e
 ---
 
 > ## Documentation Index
@@ -42,17 +42,17 @@ Claude Code supports several permission modes that control how tools are approve
 | Mode                | Description                                                                                                                      |
 | :------------------ | :------------------------------------------------------------------------------------------------------------------------------- |
 | `default`           | Standard behavior: prompts for permission on first use of each tool                                                              |
-| `acceptEdits`       | Automatically accepts file edit permissions for the session                                                                      |
+| `acceptEdits`       | Automatically accepts file edit permissions for the session, except writes to protected directories                              |
 | `plan`              | Plan Mode: Claude can analyze but not modify files or execute commands                                                           |
 | `auto`              | Auto-approves tool calls with background safety checks that verify actions align with your request. Currently a research preview |
 | `dontAsk`           | Auto-denies tools unless pre-approved via `/permissions` or `permissions.allow` rules                                            |
 | `bypassPermissions` | Skips permission prompts except for writes to protected directories (see warning below)                                          |
 
 <Warning>
-  `bypassPermissions` mode skips permission prompts. Writes to `.git`, `.claude`, `.vscode`, and `.idea` directories still prompt for confirmation to prevent accidental corruption of repository state and local configuration. Writes to `.claude/commands`, `.claude/agents`, and `.claude/skills` are exempt and do not prompt, because Claude routinely writes there when creating skills, subagents, and commands. Only use this mode in isolated environments like containers or VMs where Claude Code cannot cause damage. Administrators can prevent this mode by setting `disableBypassPermissionsMode` to `"disable"` in [managed settings](#managed-settings).
+  `bypassPermissions` mode skips permission prompts. Writes to `.git`, `.claude`, `.vscode`, `.idea`, and `.husky` directories still prompt for confirmation to prevent accidental corruption of repository state, editor configuration, and git hooks. Writes to `.claude/commands`, `.claude/agents`, and `.claude/skills` are exempt and do not prompt, because Claude routinely writes there when creating skills, subagents, and commands. Only use this mode in isolated environments like containers or VMs where Claude Code cannot cause damage. Administrators can prevent this mode by setting `permissions.disableBypassPermissionsMode` to `"disable"` in [managed settings](#managed-settings).
 </Warning>
 
-To prevent `bypassPermissions` or `auto` mode from being used, set `permissions.disableBypassPermissionsMode` or `disableAutoMode` to `"disable"` in any [settings file](/en/settings#settings-files). These are most useful in [managed settings](#managed-settings) where they cannot be overridden.
+To prevent `bypassPermissions` or `auto` mode from being used, set `permissions.disableBypassPermissionsMode` or `permissions.disableAutoMode` to `"disable"` in any [settings file](/en/settings#settings-files). These are most useful in [managed settings](#managed-settings) where they cannot be overridden.
 
 ## Permission rule syntax
 
@@ -252,6 +252,8 @@ Use both for defense-in-depth:
 * Sandbox restrictions prevent Bash commands from reaching resources outside defined boundaries, even if a prompt injection bypasses Claude's decision-making
 * Filesystem restrictions in the sandbox use Read and Edit deny rules, not separate sandbox configuration
 * Network restrictions combine WebFetch permission rules with the sandbox's `allowedDomains` list
+
+When sandboxing is enabled with `autoAllowBashIfSandboxed: true`, which is the default, sandboxed Bash commands run without prompting even if your permissions include `ask: Bash(*)`. The sandbox boundary substitutes for the per-command prompt. See [sandbox modes](/en/sandboxing#sandbox-modes) to change this behavior.
 
 ## Managed settings
 

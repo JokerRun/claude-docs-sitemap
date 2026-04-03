@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-directory
-fetched_at: 2026-03-28T04:23:53.783656Z
-sha256: 7d39419e8254272edd2d869386e4c36e18428e1dae0c389da8a35dae8dafac81
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: 2785a9cb898aaad2389f3ed4b8e7ea9af3d826998a5923dfb0c1f60c3e5f6093
 ---
 
 > ## Documentation Index
@@ -272,7 +272,7 @@ Report findings with severity ratings and remediation steps.`
               color: '#D4A843',
               badge: 'committed',
               oneLiner: 'Supporting file bundled with the skill',
-              when: 'Claude reads it when SKILL.md mentions it',
+              when: 'Claude reads it on demand while running the skill',
               description: <>Skills can bundle any supporting files: reference docs, templates, scripts. The skill directory path is prepended to SKILL.md, so Claude can read bundled files by name. For scripts in bash injection commands, use the <C>{'${CLAUDE_SKILL_DIR}'}</C> placeholder.</>,
               example: `# Security Review Checklist
 

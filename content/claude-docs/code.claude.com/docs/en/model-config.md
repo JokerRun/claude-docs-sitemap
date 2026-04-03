@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-03-31T04:38:22.136736Z
-sha256: 53677ceff4cc7c921b4ab974a5c895213a22741fe162ed4282e62e82570dd318
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: bb25f4cfe12d51431d56b1faf106a4ea99139dccf00d49d60b9dc5c3cf70f67b
 ---
 
 > ## Documentation Index
@@ -31,7 +31,8 @@ remembering exact version numbers:
 
 | Model alias      | Behavior                                                                                                                                                             |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`default`**    | Recommended model setting, depending on your account type                                                                                                            |
+| **`default`**    | Special value that clears any model override and reverts to the recommended model for your account type. Not itself a model alias                                    |
+| **`best`**       | Uses the most capable available model, currently equivalent to `opus`                                                                                                |
 | **`sonnet`**     | Uses the latest Sonnet model (currently Sonnet 4.6) for daily coding tasks                                                                                           |
 | **`opus`**       | Uses the latest Opus model (currently Opus 4.6) for complex reasoning tasks                                                                                          |
 | **`haiku`**      | Uses the fast and efficient Haiku model for simple tasks                                                                                                             |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/slack
-fetched_at: 2026-02-14T04:12:21.202627Z
-sha256: 7c07c5a72038f324df926a970f09a9c2f529ac513b3deb2dba9e88c54a49b069
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: b8e7deeb3ff9dddd1793c607934b1dde9166919818ada305f97b70ae825e7a1e
 ---
 
 > ## Documentation Index
@@ -30,7 +30,7 @@ Before using Claude Code in Slack, ensure you have the following:
 
 | Requirement            | Details                                                                        |
 | :--------------------- | :----------------------------------------------------------------------------- |
-| Claude Plan            | Pro, Max, Teams, or Enterprise with Claude Code access (premium seats)         |
+| Claude Plan            | Pro, Max, Team, or Enterprise with Claude Code access (premium seats)          |
 | Claude Code on the web | Access to [Claude Code on the web](/en/claude-code-on-the-web) must be enabled |
 | GitHub Account         | Connected to Claude Code on the web with at least one repository authenticated |
 | Slack Authentication   | Your Slack account linked to your Claude account via the Claude app            |
@@ -165,7 +165,7 @@ This channel-based model allows teams to restrict Claude Code usage to specific 
 
 **On the web**: The complete Claude Code session with full conversation history, all code changes, file operations, and the ability to continue the session or create pull requests.
 
-For Enterprise and Teams accounts, sessions created from Claude in Slack are
+For Enterprise and Team accounts, sessions created from Claude in Slack are
 automatically visible to the organization. See [Claude Code on the Web sharing](/en/claude-code-on-the-web#sharing-sessions)
 for more details.
 

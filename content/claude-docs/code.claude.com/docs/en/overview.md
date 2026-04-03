@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-04-02T04:32:20.033306Z
-sha256: 15d2836390e684dc78f185ffe2476783b4d6bd9a4c7df9690ae09be4df7921fe
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: 8305b4b9788c61f0b47e843552223e2631f7c713278704e4c60e2a122d731983
 ---
 
 > ## Documentation Index
@@ -106,8 +106,8 @@ Choose your environment to get started. Most surfaces require a [Claude subscrip
     Download and install:
 
     * [macOS](https://claude.ai/api/desktop/darwin/universal/dmg/latest/redirect?utm_source=claude_code\&utm_medium=docs) (Intel and Apple Silicon)
-    * [Windows](https://claude.ai/api/desktop/win32/x64/exe/latest/redirect?utm_source=claude_code\&utm_medium=docs) (x64)
-    * [Windows ARM64](https://claude.ai/api/desktop/win32/arm64/exe/latest/redirect?utm_source=claude_code\&utm_medium=docs) (remote sessions only)
+    * [Windows](https://claude.ai/api/desktop/win32/x64/setup/latest/redirect?utm_source=claude_code\&utm_medium=docs) (x64)
+    * [Windows ARM64](https://claude.ai/api/desktop/win32/arm64/setup/latest/redirect?utm_source=claude_code\&utm_medium=docs) (remote sessions only)
 
     After installing, launch Claude, sign in, and click the **Code** tab to start coding. A [paid subscription](https://claude.com/pricing?utm_source=claude_code\&utm_medium=docs\&utm_content=overview_desktop_pricing) is required.
 
@@ -208,7 +208,7 @@ Here are some of the ways you can use Claude Code:
 
     * Step away from your desk and keep working from your phone or any browser with [Remote Control](/en/remote-control)
     * Message [Dispatch](/en/desktop#sessions-from-dispatch) a task from your phone and open the Desktop session it creates
-    * Kick off a long-running task on the [web](/en/claude-code-on-the-web) or [iOS app](https://apps.apple.com/app/claude-by-anthropic/id6473753684), then pull it into your terminal with `/teleport`
+    * Kick off a long-running task on the [web](/en/claude-code-on-the-web) or [iOS app](https://apps.apple.com/app/claude-by-anthropic/id6473753684), then pull it into your terminal with `claude --teleport`
     * Hand off a terminal session to the [Desktop app](/en/desktop) with `/desktop` for visual diff review
     * Route tasks from team chat: mention `@Claude` in [Slack](/en/slack) with a bug report and get a pull request back
   </Accordion>

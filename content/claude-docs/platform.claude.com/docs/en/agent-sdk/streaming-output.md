@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/streaming-output
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 26ff7769a888bec8d19806a3a371b1273780d2b4a64b1839e85c581f244059e6
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: 6d4e5bbd00786b37f5d5dd6c00204107b158b7e74c1d52fb0c82285c77e2b923
 ---
 
 # Stream responses in real-time
@@ -140,7 +140,7 @@ AssistantMessage - complete message with all content
 ResultMessage - final result
 ```
 
-Without partial messages enabled (`include_partial_messages` in Python, `includePartialMessages` in TypeScript), you receive all message types except `StreamEvent`. Common types include `SystemMessage` (session initialization), `AssistantMessage` (complete responses), `ResultMessage` (final result), and `CompactBoundaryMessage` (indicates when conversation history was compacted).
+Without partial messages enabled (`include_partial_messages` in Python, `includePartialMessages` in TypeScript), you receive all message types except `StreamEvent`. Common types include `SystemMessage` (session initialization), `AssistantMessage` (complete responses), `ResultMessage` (final result), and a compact boundary message indicating when conversation history was compacted (`SDKCompactBoundaryMessage` in TypeScript; `SystemMessage` with subtype `"compact_boundary"` in Python).
 
 ## Stream text responses
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-04-01T04:49:12.553036Z
-sha256: ead3fa435d9d731736c260d65fb12b952b706327ab06b11a314a2b57a1e4808e
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: e8ac43c89b84dfadc483fe51bb8c72c831b6f647ebd47c0de1fa520fa43bee82
 ---
 
 > ## Documentation Index
@@ -187,7 +187,7 @@ Beyond the markdown content, you can configure skill behavior using YAML frontma
 name: my-skill
 description: What this skill does
 disable-model-invocation: true
-allowed-tools: Read, Grep
+allowed-tools: Read Grep
 ---
 
 Your skill instructions here...
@@ -202,7 +202,7 @@ All fields are optional. Only `description` is recommended so Claude knows when 
 | `argument-hint`            | No          | Hint shown during autocomplete to indicate expected arguments. Example: `[issue-number]` or `[filename] [format]`.                                                                                                                                                                        |
 | `disable-model-invocation` | No          | Set to `true` to prevent Claude from automatically loading this skill. Use for workflows you want to trigger manually with `/name`. Default: `false`.                                                                                                                                     |
 | `user-invocable`           | No          | Set to `false` to hide from the `/` menu. Use for background knowledge users shouldn't invoke directly. Default: `true`.                                                                                                                                                                  |
-| `allowed-tools`            | No          | Tools Claude can use without asking permission when this skill is active.                                                                                                                                                                                                                 |
+| `allowed-tools`            | No          | Tools Claude can use without asking permission when this skill is active. Accepts a space-separated string or a YAML list.                                                                                                                                                                |
 | `model`                    | No          | Model to use when this skill is active.                                                                                                                                                                                                                                                   |
 | `effort`                   | No          | [Effort level](/en/model-config#adjust-effort-level) when this skill is active. Overrides the session effort level. Default: inherits from session. Options: `low`, `medium`, `high`, `max` (Opus 4.6 only).                                                                              |
 | `context`                  | No          | Set to `fork` to run in a forked subagent context.                                                                                                                                                                                                                                        |
@@ -305,7 +305,7 @@ Use the `allowed-tools` field to limit which tools Claude can use when a skill i
 ---
 name: safe-reader
 description: Read files without making changes
-allowed-tools: Read, Grep, Glob
+allowed-tools: Read Grep Glob
 ---
 ```
 

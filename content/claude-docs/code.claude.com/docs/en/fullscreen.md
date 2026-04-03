@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-04-02T04:32:20.033306Z
-sha256: 6db451a7880c0e03a8aea1174e5f1089a59871aa521c0e5868d3eff9200a05d3
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: 9b6a58286e00d4afd953dcd4d937f593071ea5b68f7a2b4e54d043561a1df22e
 ---
 
 > ## Documentation Index
@@ -14,7 +14,7 @@ sha256: 6db451a7880c0e03a8aea1174e5f1089a59871aa521c0e5868d3eff9200a05d3
 > Enable a smoother, flicker-free rendering mode with mouse support and stable memory usage in long conversations.
 
 <Note>
-  Fullscreen rendering is an opt-in [research preview](#research-preview) and requires Claude Code v2.1.88 or later. Enable it with `CLAUDE_CODE_NO_FLICKER=1`. Behavior may change based on feedback.
+  Fullscreen rendering is an opt-in [research preview](#research-preview) and requires Claude Code v2.1.89 or later. Enable it with `CLAUDE_CODE_NO_FLICKER=1`. Behavior may change based on feedback.
 </Note>
 
 Fullscreen rendering is an alternative rendering path for the Claude Code CLI that eliminates flicker, keeps memory usage flat in long conversations, and adds mouse support. It draws the interface on the terminal's alternate screen buffer, like `vim` or `htop`, and only renders messages that are currently visible. This reduces the amount of data sent to your terminal on each update.
@@ -76,11 +76,9 @@ Fullscreen rendering handles scrolling inside the app. Use these shortcuts to na
 | `Ctrl+End`      | Jump to the latest message and re-enable auto-follow |
 | Mouse wheel     | Scroll a few lines at a time                         |
 
-On keyboards without dedicated `PgUp`, `PgDn`, `Home`, or `End` keys, like MacBook keyboards, hold `Fn` with the arrow keys: `Fn+↑` sends `PgUp`, `Fn+↓` sends `PgDn`, `Fn+←` sends `Home`, and `Fn+→` sends `End`. That makes `Ctrl+Fn+→` the jump-to-bottom shortcut. If that feels awkward, scroll to the bottom with the mouse wheel to resume following, or rebind `scroll:bottom` to something reachable.
+On keyboards without dedicated `PgUp`, `PgDn`, `Home`, or `End` keys, like MacBook keyboards, hold `Fn` with the arrow keys: `Fn+↑` sends `PgUp`, `Fn+↓` sends `PgDn`, `Fn+←` sends `Home`, and `Fn+→` sends `End`. That makes `Ctrl+Fn+→` the jump-to-bottom shortcut. If that feels awkward, scroll to the bottom with the mouse wheel to resume following.
 
 Scrolling up pauses auto-follow so new output does not pull you back to the bottom. Press `Ctrl+End` or scroll to the bottom to resume following.
-
-These actions are rebindable. See [Keybindings](/en/keybindings) to customize them. The action names are `scroll:pageUp`, `scroll:pageDown`, `scroll:top`, and `scroll:bottom`. Additional actions with no default binding include `scroll:lineUp`, `scroll:lineDown`, `scroll:halfPageUp`, `scroll:halfPageDown`, `scroll:fullPageUp`, and `scroll:fullPageDown`.
 
 Mouse wheel scrolling requires your terminal to forward mouse events to Claude Code. Most terminals do this whenever an application requests it. iTerm2 makes it a per-profile setting: if the wheel does nothing but `PgUp` and `PgDn` work, open Settings → Profiles → Terminal and turn on Enable mouse reporting. The same setting is also required for click-to-expand and text selection to work.
 

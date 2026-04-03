@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/structured-outputs
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: af88fa6334b5f74300599ae3c5b3838f7d216ad5a3350ceae2113b35b4e5c95c
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: b9da19e74fe263e29989107968609ad796ca8e8f16057a6e7f8c5f868b9f4464
 ---
 
 # Get structured output from agents
@@ -90,7 +90,7 @@ for await (const message of query({
   }
 })) {
   // The result message contains structured_output with validated data
-  if (message.type === "result" && message.structured_output) {
+  if (message.type === "result" && message.subtype === "success" && message.structured_output) {
     console.log(message.structured_output);
     // { company_name: "Anthropic", founded_year: 2021, headquarters: "San Francisco, CA" }
   }
@@ -173,7 +173,7 @@ for await (const message of query({
     }
   }
 })) {
-  if (message.type === "result" && message.structured_output) {
+  if (message.type === "result" && message.subtype === "success" && message.structured_output) {
     // Validate and get fully typed result
     const parsed = FeaturePlan.safeParse(message.structured_output);
     if (parsed.success) {
@@ -292,8 +292,8 @@ for await (const message of query({
     }
   }
 })) {
-  if (message.type === "result" && message.structured_output) {
-    const data = message.structured_output;
+  if (message.type === "result" && message.subtype === "success" && message.structured_output) {
+    const data = message.structured_output as { total_count: number; todos: Array<{ file: string; line: number; text: string; author?: string; date?: string }> };
     console.log(`Found ${data.total_count} TODOs`);
     data.todos.forEach((todo) => {
       console.log(`${todo.file}:${todo.line} - ${todo.text}`);

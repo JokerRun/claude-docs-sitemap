@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-04-02T04:32:20.033306Z
-sha256: 67b749a1a172c50b2350ef65c5343a8b981a415b5db52508697050fca093fb75
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: a10cfdca889795c293bfb706afa9ae22d7f7b014a0281c9343c6822df0d3422b
 ---
 
 > ## Documentation Index
@@ -563,7 +563,7 @@ When starting Claude Code, you can resume a previous session:
 
 From inside an active session, use `/resume` to switch to a different conversation.
 
-Sessions are stored per project directory. The `/resume` picker shows sessions from the same git repository, including worktrees.
+Sessions are stored per project directory. The `/resume` picker shows interactive sessions from the same git repository, including worktrees. Sessions created by `claude -p` or SDK invocations do not appear in the picker, but you can still resume one by passing its session ID directly to `claude --resume <session-id>`.
 
 ### Name your sessions
 
@@ -697,6 +697,8 @@ When you exit a worktree session, Claude handles cleanup based on whether you ma
 
 * **No changes**: the worktree and its branch are removed automatically
 * **Changes or commits exist**: Claude prompts you to keep or remove the worktree. Keeping preserves the directory and branch so you can return later. Removing deletes the worktree directory and its branch, discarding all uncommitted changes and commits
+
+Subagent worktrees orphaned by a crash or an interrupted parallel run are removed automatically at startup once they are older than your [`cleanupPeriodDays`](/en/settings#available-settings) setting, provided they have no modifications to tracked files and no unpushed commits. Untracked files (new files never staged with `git add`) are not checked and do not prevent removal. Worktrees you create with `--worktree` are never removed by this sweep.
 
 To clean up worktrees outside of a Claude session, use [manual worktree management](#manage-worktrees-manually).
 
@@ -979,7 +981,7 @@ what are the limitations of Claude Code?
 ```
 
 <Note>
-  Claude provides documentation-based answers to these questions. For executable examples and hands-on demonstrations, refer to the specific workflow sections above.
+  Claude provides documentation-based answers to these questions. For hands-on demonstrations, run `/powerup` for interactive lessons with animated demos, or refer to the specific workflow sections above.
 </Note>
 
 <Tip>

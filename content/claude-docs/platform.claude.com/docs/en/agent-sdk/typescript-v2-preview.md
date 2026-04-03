@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/typescript-v2-preview
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: 875911f085008b15fe27f82d8bdbca2789700de92ed211d7748911c6290cd62a
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: 05c4aa2de2bbdc721dfe8121a25c30136121a219897ed8a10ac4ca40c7612d38
 ---
 
 # TypeScript SDK V2 interface (preview)
@@ -58,7 +58,7 @@ const q = query({
 });
 
 for await (const msg of q) {
-  if (msg.type === "result") {
+  if (msg.type === "result" && msg.subtype === "success") {
     console.log(msg.result);
   }
 }

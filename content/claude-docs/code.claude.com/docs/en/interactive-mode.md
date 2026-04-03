@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-04-02T04:32:20.033306Z
-sha256: 1da74e5439d4916fb92eb3ee9657d636a4d66cc202b907d0249445982946ecb8
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: 8bb8c4a8f0b710ea4ea05c6610b8fc08a96c4e09506f012381bc946beb0235e0
 ---
 
 > ## Documentation Index
@@ -18,11 +18,11 @@ sha256: 1da74e5439d4916fb92eb3ee9657d636a4d66cc202b907d0249445982946ecb8
 <Note>
   Keyboard shortcuts may vary by platform and terminal. Press `?` to see available shortcuts for your environment.
 
-  **macOS users**: Option/Alt key shortcuts (`Alt+B`, `Alt+F`, `Alt+Y`, `Alt+M`, `Alt+P`) require configuring Option as Meta in your terminal:
+  **macOS users**: Option/Alt key shortcuts (`Alt+B`, `Alt+F`, `Alt+Y`, `Alt+M`, `Alt+P`, `Alt+T`) require configuring Option as Meta in your terminal:
 
   * **iTerm2**: settings → Profiles → Keys → set Left/Right Option key to "Esc+"
   * **Terminal.app**: settings → Profiles → Keyboard → check "Use Option as Meta Key"
-  * **VS Code**: settings → Profiles → Keys → set Left/Right Option key to "Esc+"
+  * **VS Code**: set `"terminal.integrated.macOptionIsMeta": true` in VS Code settings
 
   See [Terminal configuration](/en/terminal-config) for details.
 </Note>
@@ -35,7 +35,7 @@ sha256: 1da74e5439d4916fb92eb3ee9657d636a4d66cc202b907d0249445982946ecb8
 | `Ctrl+X Ctrl+K`                                   | Kill all background agents. Press twice within 3 seconds to confirm | Background agent control                                                                                                                                             |
 | `Ctrl+D`                                          | Exit Claude Code session                                            | EOF signal                                                                                                                                                           |
 | `Ctrl+G` or `Ctrl+X Ctrl+E`                       | Open in default text editor                                         | Edit your prompt or custom response in your default text editor. `Ctrl+X Ctrl+E` is the readline-native binding                                                      |
-| `Ctrl+L`                                          | Clear terminal screen                                               | Keeps conversation history                                                                                                                                           |
+| `Ctrl+L`                                          | Redraw the screen                                                   | Repaints the current UI without clearing conversation history                                                                                                        |
 | `Ctrl+O`                                          | Toggle verbose output                                               | Shows detailed tool usage and execution. Also expands MCP read and search calls, which collapse to a single line like "Queried slack" by default                     |
 | `Ctrl+R`                                          | Reverse search command history                                      | Search through previous commands interactively                                                                                                                       |
 | `Ctrl+V` or `Cmd+V` (iTerm2) or `Alt+V` (Windows) | Paste image from clipboard                                          | Inserts an `[Image #N]` chip at the cursor so you can reference it positionally in your prompt                                                                       |
@@ -46,7 +46,7 @@ sha256: 1da74e5439d4916fb92eb3ee9657d636a4d66cc202b907d0249445982946ecb8
 | `Esc` + `Esc`                                     | Rewind or summarize                                                 | Restore code and/or conversation to a previous point, or summarize from a selected message                                                                           |
 | `Shift+Tab` or `Alt+M` (some configurations)      | Cycle permission modes                                              | Cycle through `default`, `acceptEdits`, `plan`, and any modes you have enabled, such as `auto` or `bypassPermissions`. See [permission modes](/en/permission-modes). |
 | `Option+P` (macOS) or `Alt+P` (Windows/Linux)     | Switch model                                                        | Switch models without clearing your prompt                                                                                                                           |
-| `Option+T` (macOS) or `Alt+T` (Windows/Linux)     | Toggle extended thinking                                            | Enable or disable extended thinking mode. Run `/terminal-setup` first to enable this shortcut                                                                        |
+| `Option+T` (macOS) or `Alt+T` (Windows/Linux)     | Toggle extended thinking                                            | Enable or disable extended thinking mode. On macOS, configure your terminal to send Option as Meta for this shortcut to work                                         |
 | `Option+O` (macOS) or `Alt+O` (Windows/Linux)     | Toggle fast mode                                                    | Enable or disable [fast mode](/en/fast-mode)                                                                                                                         |
 
 ### Text editing
@@ -92,10 +92,10 @@ sha256: 1da74e5439d4916fb92eb3ee9657d636a4d66cc202b907d0249445982946ecb8
 
 When the transcript viewer is open (toggled with `Ctrl+O`), these shortcuts are available. `Ctrl+E` can be rebound via [`transcript:toggleShowAll`](/en/keybindings).
 
-| Shortcut             | Description                                                                                                             |
-| :------------------- | :---------------------------------------------------------------------------------------------------------------------- |
-| `Ctrl+E`             | Toggle show all content                                                                                                 |
-| `q`, `Ctrl+C`, `Esc` | Exit transcript view. `Ctrl+C` and `Esc` can be rebound via [`transcript:exit`](/en/keybindings); `q` is not rebindable |
+| Shortcut             | Description                                                                             |
+| :------------------- | :-------------------------------------------------------------------------------------- |
+| `Ctrl+E`             | Toggle show all content                                                                 |
+| `q`, `Ctrl+C`, `Esc` | Exit transcript view. All three can be rebound via [`transcript:exit`](/en/keybindings) |
 
 ### Voice input
 

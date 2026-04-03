@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/secure-deployment
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 4d0bdb2e1ae70c5dd515aa523b1d6d8ef3d807bdeef0eab1bc2283e90f07351c
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: 5a41396db7c36373e93d2f0645427c39babb1e22ecc2e6e72d51c0daab34523f
 ---
 
 # Securely deploying AI agents
@@ -21,7 +21,7 @@ Not every deployment needs maximum security. A developer running Claude Code on 
 
 ## Threat model
 
-Agents can take unintended actions due to prompt injection (instructions embedded in content they process) or model error. Claude models are designed to resist this, and as analyzed in the [model card](https://assets.anthropic.com/m/64823ba7485345a7/Claude-Opus-4-5-System-Card.pdf), Claude Opus 4.6 is the most robust frontier model available.
+Agents can take unintended actions due to prompt injection (instructions embedded in content they process) or model error. Claude models are designed to resist this, and as analyzed in the [model card](https://www.anthropic.com/claude-opus-4-6-system-card), Claude Opus 4.6 is the most robust frontier model available.
 
 Defense in depth is still good practice though. For example, if an agent processes a malicious file that instructs it to send customer data to an external server, network controls can block that request entirely.
 

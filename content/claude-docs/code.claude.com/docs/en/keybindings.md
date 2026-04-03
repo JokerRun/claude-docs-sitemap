@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-03-29T04:39:49.181591Z
-sha256: dede16a20ab2c735bb8df3f8b33c6031c2a5bb5aed1aa77d207903cdbba06663
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: e5f63fe785dd9c20c1e71ae7efb4df1d08b80dcefe5e66e9194180df11a4e039
 ---
 
 > ## Documentation Index
@@ -58,7 +58,7 @@ Each binding block specifies a **context** where the bindings apply:
 | `Global`          | Applies everywhere in the app                    |
 | `Chat`            | Main chat input area                             |
 | `Autocomplete`    | Autocomplete menu is open                        |
-| `Settings`        | Settings menu (escape-only dismiss)              |
+| `Settings`        | Settings menu                                    |
 | `Confirmation`    | Permission and confirmation dialogs              |
 | `Tabs`            | Tab navigation components                        |
 | `Help`            | Help menu is visible                             |
@@ -86,6 +86,7 @@ Actions available in the `Global` context:
 | :--------------------- | :------ | :-------------------------- |
 | `app:interrupt`        | Ctrl+C  | Cancel current operation    |
 | `app:exit`             | Ctrl+D  | Exit Claude Code            |
+| `app:redraw`           | Ctrl+L  | Redraw the screen           |
 | `app:toggleTodos`      | Ctrl+T  | Toggle task list visibility |
 | `app:toggleTranscript` | Ctrl+O  | Toggle verbose transcript   |
 
@@ -113,7 +114,7 @@ Actions available in the `Chat` context:
 | `chat:thinkingToggle` | Cmd+T / Meta+T            | Toggle extended thinking            |
 | `chat:submit`         | Enter                     | Submit message                      |
 | `chat:newline`        | (unbound)                 | Insert a newline without submitting |
-| `chat:undo`           | Ctrl+\_                   | Undo last action                    |
+| `chat:undo`           | Ctrl+\_, Ctrl+Shift+-     | Undo last action                    |
 | `chat:externalEditor` | Ctrl+G, Ctrl+X Ctrl+E     | Open in external editor             |
 | `chat:stash`          | Ctrl+S                    | Stash current prompt                |
 | `chat:imagePaste`     | Ctrl+V (Alt+V on Windows) | Paste image                         |
@@ -143,6 +144,7 @@ Actions available in the `Confirmation` context:
 | `confirm:next`              | Down      | Next option                   |
 | `confirm:nextField`         | Tab       | Next field                    |
 | `confirm:previousField`     | (unbound) | Previous field                |
+| `confirm:toggle`            | Space     | Toggle selection              |
 | `confirm:cycleMode`         | Shift+Tab | Cycle permission modes        |
 | `confirm:toggleExplanation` | Ctrl+E    | Toggle permission explanation |
 
@@ -158,10 +160,10 @@ Actions available in the `Confirmation` context for permission dialogs:
 
 Actions available in the `Transcript` context:
 
-| Action                     | Default        | Description             |
-| :------------------------- | :------------- | :---------------------- |
-| `transcript:toggleShowAll` | Ctrl+E         | Toggle show all content |
-| `transcript:exit`          | Ctrl+C, Escape | Exit transcript view    |
+| Action                     | Default           | Description             |
+| :------------------------- | :---------------- | :---------------------- |
+| `transcript:toggleShowAll` | Ctrl+E            | Toggle show all content |
+| `transcript:exit`          | q, Ctrl+C, Escape | Exit transcript view    |
 
 ### History search actions
 
@@ -290,10 +292,11 @@ Actions available in the `Plugin` context:
 
 Actions available in the `Settings` context:
 
-| Action            | Default | Description                         |
-| :---------------- | :------ | :---------------------------------- |
-| `settings:search` | /       | Enter search mode                   |
-| `settings:retry`  | R       | Retry loading usage data (on error) |
+| Action            | Default | Description                                                                 |
+| :---------------- | :------ | :-------------------------------------------------------------------------- |
+| `settings:search` | /       | Enter search mode                                                           |
+| `settings:retry`  | R       | Retry loading usage data (on error)                                         |
+| `settings:close`  | Enter   | Save changes and close the config panel. Escape discards changes and closes |
 
 ### Voice actions
 

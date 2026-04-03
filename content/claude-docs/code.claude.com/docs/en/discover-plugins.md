@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-04-01T04:49:12.553036Z
-sha256: c148d15161636985e1df3543f795b05064ee7ac4906efb953f0cb7a4b7f23c10
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: 0b73223fc049e2fab1056a128a9355de464a4c37741a7cd9035ccca2b1228a44
 ---
 
 > ## Documentation Index
@@ -405,7 +405,7 @@ Plugins and marketplaces are highly trusted components that can execute arbitrar
 
 If you see "unknown command" or the `/plugin` command doesn't appear:
 
-1. **Check your version**: Run `claude --version`. Plugins require version 1.0.33 or later.
+1. **Check your version**: Run `claude --version` to see what's installed.
 2. **Update Claude Code**:
    * **Homebrew**: `brew upgrade claude-code`
    * **npm**: `npm update -g @anthropic-ai/claude-code`

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: 3f13d910dc7f9b3a666b3f1f49f826f602549f3b6874a600e3810f4099c16b14
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: f63c3c13f3939d391e934caf08467e1dde8f4b14ffc69bcc8459f645c9892699
 ---
 
 > ## Documentation Index
@@ -596,11 +596,11 @@ Before setting up Claude Code GitHub Actions with cloud providers, you need:
                   github_token: ${{ steps.app-token.outputs.token }}
                   trigger_phrase: "@claude"
                   use_vertex: "true"
-                  claude_args: '--model claude-sonnet-4@20250514 --max-turns 10'
+                  claude_args: '--model claude-sonnet-4-5@20250929 --max-turns 10'
                 env:
                   ANTHROPIC_VERTEX_PROJECT_ID: ${{ steps.auth.outputs.project_id }}
                   CLOUD_ML_REGION: us-east5
-                  VERTEX_REGION_CLAUDE_3_7_SONNET: us-east5
+                  VERTEX_REGION_CLAUDE_4_5_SONNET: us-east5
         ```
 
         <Tip>

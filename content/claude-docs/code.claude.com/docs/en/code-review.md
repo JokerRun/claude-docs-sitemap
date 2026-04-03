@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-03-31T04:38:22.136736Z
-sha256: db54f5d757021e25e8836b381d6cdb823f7076027a2aa304d95a6a2bdb635928
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: f824fdd65066ad237747b14581af5efbe2866aaea94f976a2a6bca3f270c4efd
 ---
 
 > ## Documentation Index
@@ -14,7 +14,7 @@ sha256: db54f5d757021e25e8836b381d6cdb823f7076027a2aa304d95a6a2bdb635928
 > Set up automated PR reviews that catch logic errors, security vulnerabilities, and regressions using multi-agent analysis of your full codebase
 
 <Note>
-  Code Review is in research preview, available for [Teams and Enterprise](https://claude.ai/admin-settings/claude-code) subscriptions. It is not available for organizations with [Zero Data Retention](/en/zero-data-retention) enabled.
+  Code Review is in research preview, available for [Team and Enterprise](https://claude.ai/admin-settings/claude-code) subscriptions. It is not available for organizations with [Zero Data Retention](/en/zero-data-retention) enabled.
 </Note>
 
 Code Review analyzes your GitHub pull requests and posts findings as inline comments on the lines of code where it found issues. A fleet of specialized agents examine the code changes in the context of your full codebase, looking for logic errors, security vulnerabilities, broken edge cases, and subtle regressions.

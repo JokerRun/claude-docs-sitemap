@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/overview
-fetched_at: 2026-03-28T04:23:53.783656Z
-sha256: 90a8f5fa3e2145073ebddd7f5d3e05a0060aebbefccdc41e5009d43f9fa2b29c
+fetched_at: 2026-04-03T03:10:14.718804Z
+sha256: a669e5898baf51eef7c02874a71c7c4cccd38deb1770706b6eeec64332d658cb
 ---
 
 # Agent SDK overview
@@ -404,7 +404,7 @@ Everything that makes Claude Code powerful is available in the SDK:
     <CodeGroup>
     ```python Python
     import asyncio
-    from claude_agent_sdk import query, ClaudeAgentOptions
+    from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage, ResultMessage
 
 
     async def main():
@@ -415,15 +415,15 @@ Everything that makes Claude Code powerful is available in the SDK:
             prompt="Read the authentication module",
             options=ClaudeAgentOptions(allowed_tools=["Read", "Glob"]),
         ):
-            if hasattr(message, "subtype") and message.subtype == "init":
-                session_id = message.session_id
+            if isinstance(message, SystemMessage) and message.subtype == "init":
+                session_id = message.data["session_id"]
 
         # Resume with full context from the first query
         async for message in query(
             prompt="Now find all places that call it",  # "it" = auth module
             options=ClaudeAgentOptions(resume=session_id),
         ):
-            if hasattr(message, "result"):
+            if isinstance(message, ResultMessage):
                 print(message.result)
 
 
