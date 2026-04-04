@@ -1,10 +1,10 @@
 ---
 - source: code
   loc: https://code.claude.com/docs/en/agent-teams
-  lastmod: '2026-03-31T05:46:47.617Z'
+  lastmod: '2026-04-03T23:27:35.690Z'
 - source: code
   loc: https://code.claude.com/docs/en/amazon-bedrock
-  lastmod: '2026-04-03T02:17:17.354Z'
+  lastmod: '2026-04-03T17:31:12.600Z'
 - source: code
   loc: https://code.claude.com/docs/en/analytics
   lastmod: '2026-04-02T15:23:24.396Z'
@@ -16,7 +16,7 @@
   lastmod: '2026-04-03T02:12:42.175Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-04-03T01:14:06.559Z'
+  lastmod: '2026-04-04T02:13:53.671Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-03-25T19:03:14.403Z'
@@ -31,7 +31,7 @@
   lastmod: '2026-04-02T15:23:24.392Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-code-on-the-web
-  lastmod: '2026-04-02T15:23:24.401Z'
+  lastmod: '2026-04-03T18:19:54.405Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-directory
   lastmod: '2026-04-02T16:59:01.877Z'
@@ -43,10 +43,10 @@
   lastmod: '2026-04-02T15:23:24.391Z'
 - source: code
   loc: https://code.claude.com/docs/en/commands
-  lastmod: '2026-04-02T17:01:20.302Z'
+  lastmod: '2026-04-03T18:19:54.399Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
-  lastmod: '2026-04-02T18:45:34.299Z'
+  lastmod: '2026-04-03T18:57:45.002Z'
 - source: code
   loc: https://code.claude.com/docs/en/computer-use
   lastmod: '2026-04-03T01:01:58.647Z'
@@ -61,10 +61,13 @@
   lastmod: '2026-03-28T14:58:30.870Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
-  lastmod: '2026-04-03T02:12:42.178Z'
+  lastmod: '2026-04-03T18:57:45.047Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-quickstart
-  lastmod: '2026-04-02T15:23:24.403Z'
+  lastmod: '2026-04-03T18:57:45.041Z'
+- source: code
+  loc: https://code.claude.com/docs/en/desktop-scheduled-tasks
+  lastmod: '2026-04-03T18:57:45.039Z'
 - source: code
   loc: https://code.claude.com/docs/en/devcontainer
   lastmod: '2026-03-30T16:57:08.720Z'
@@ -73,7 +76,7 @@
   lastmod: '2026-04-02T06:10:37.457Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-04-02T17:01:20.320Z'
+  lastmod: '2026-04-04T02:43:26.373Z'
 - source: code
   loc: https://code.claude.com/docs/en/fast-mode
   lastmod: '2026-04-02T15:23:24.399Z'
@@ -97,7 +100,7 @@
   lastmod: '2026-04-02T07:07:54.095Z'
 - source: code
   loc: https://code.claude.com/docs/en/headless
-  lastmod: '2026-03-22T15:45:15.092Z'
+  lastmod: '2026-04-03T19:20:32.876Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
   lastmod: '2026-04-01T19:32:08.736Z'
@@ -118,7 +121,7 @@
   lastmod: '2026-04-02T15:24:16.635Z'
 - source: code
   loc: https://code.claude.com/docs/en/legal-and-compliance
-  lastmod: '2026-03-13T21:58:58.871Z'
+  lastmod: '2026-04-03T22:33:36.142Z'
 - source: code
   loc: https://code.claude.com/docs/en/llm-gateway
   lastmod: '2026-03-28T16:55:05.133Z'
@@ -145,16 +148,16 @@
   lastmod: '2026-04-02T02:07:13.656Z'
 - source: code
   loc: https://code.claude.com/docs/en/overview
-  lastmod: '2026-04-02T16:59:02.021Z'
+  lastmod: '2026-04-03T18:57:45.141Z'
 - source: code
   loc: https://code.claude.com/docs/en/permission-modes
-  lastmod: '2026-04-02T17:01:20.310Z'
+  lastmod: '2026-04-03T19:20:32.881Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
   lastmod: '2026-04-03T02:17:17.359Z'
 - source: code
   loc: https://code.claude.com/docs/en/platforms
-  lastmod: '2026-04-03T01:01:58.649Z'
+  lastmod: '2026-04-03T18:57:45.143Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-marketplaces
   lastmod: '2026-04-02T23:48:56.099Z'
@@ -169,13 +172,13 @@
   lastmod: '2026-04-02T16:59:02.023Z'
 - source: code
   loc: https://code.claude.com/docs/en/remote-control
-  lastmod: '2026-03-26T14:33:22.534Z'
+  lastmod: '2026-04-03T18:57:45.178Z'
 - source: code
   loc: https://code.claude.com/docs/en/sandboxing
   lastmod: '2026-04-03T02:17:17.357Z'
 - source: code
   loc: https://code.claude.com/docs/en/scheduled-tasks
-  lastmod: '2026-04-02T06:10:37.683Z'
+  lastmod: '2026-04-03T18:57:45.179Z'
 - source: code
   loc: https://code.claude.com/docs/en/security
   lastmod: '2026-03-18T10:24:44.072Z'
@@ -199,7 +202,7 @@
   lastmod: '2026-04-02T15:24:16.633Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-04-02T17:01:20.365Z'
+  lastmod: '2026-04-03T23:27:35.696Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
   lastmod: '2026-03-31T20:29:06.946Z'
@@ -213,14 +216,17 @@
   loc: https://code.claude.com/docs/en/troubleshooting
   lastmod: '2026-04-02T15:23:28.503Z'
 - source: code
+  loc: https://code.claude.com/docs/en/ultraplan
+  lastmod: '2026-04-03T19:00:37.621Z'
+- source: code
   loc: https://code.claude.com/docs/en/voice-dictation
   lastmod: '2026-03-30T17:04:51.873Z'
 - source: code
   loc: https://code.claude.com/docs/en/vs-code
-  lastmod: '2026-03-30T18:55:25.532Z'
+  lastmod: '2026-04-03T19:20:32.881Z'
 - source: code
   loc: https://code.claude.com/docs/en/web-scheduled-tasks
-  lastmod: '2026-03-30T19:34:04.456Z'
+  lastmod: '2026-04-03T18:57:47.197Z'
 - source: code
   loc: https://code.claude.com/docs/en/zero-data-retention
   lastmod: '2026-02-27T16:33:50.844Z'

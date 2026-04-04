@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-04-01T04:49:12.553036Z
-sha256: 6c4856414ed2e7faec95913c0bbe7f55bbcf7824a573ad3b20f74c02a4868ab9
+fetched_at: 2026-04-04T03:07:06.698608Z
+sha256: 9ef43cda3dcb9a401405422fb736e7974c1782bf1dd3db10e66df33456667fee
 ---
 
 > ## Documentation Index
@@ -242,13 +242,19 @@ There is no project-level equivalent of the team config. A file like `.claude/te
 
 ### Use subagent definitions for teammates
 
-When spawning a teammate, you can reference a [subagent](/en/sub-agents) type from any [subagent scope](/en/sub-agents#choose-the-subagent-scope): project, user, plugin, or CLI-defined. The teammate inherits that subagent's system prompt, tools, and model. This lets you define a role once, such as a security-reviewer or test-runner, and reuse it both as a delegated subagent and as an agent team teammate.
+When spawning a teammate, you can reference a [subagent](/en/sub-agents) type from any [subagent scope](/en/sub-agents#choose-the-subagent-scope): project, user, plugin, or CLI-defined. This lets you define a role once, such as a security-reviewer or test-runner, and reuse it both as a delegated subagent and as an agent team teammate.
 
 To use a subagent definition, mention it by name when asking Claude to spawn the teammate:
 
 ```text  theme={null}
 Spawn a teammate using the security-reviewer agent type to audit the auth module.
 ```
+
+The teammate honors that definition's `tools` allowlist and `model`, and the definition's body is appended to the teammate's system prompt as additional instructions rather than replacing it. Team coordination tools such as `SendMessage` and the task management tools are always available to a teammate even when `tools` restricts other tools.
+
+<Note>
+  The `skills` and `mcpServers` frontmatter fields in a subagent definition are not applied when that definition runs as a teammate. Teammates load skills and MCP servers from your project and user settings, the same as a regular session.
+</Note>
 
 ### Permissions
 
@@ -268,6 +274,8 @@ Each teammate has its own context window. When spawned, a teammate loads the sam
 
 * **message**: send a message to one specific teammate
 * **broadcast**: send to all teammates simultaneously. Use sparingly, as costs scale with team size.
+
+The lead assigns every teammate a name when it spawns them, and any teammate can message any other by that name. To get predictable names you can reference in later prompts, tell the lead what to call each teammate in your spawn instruction.
 
 ### Token usage
 

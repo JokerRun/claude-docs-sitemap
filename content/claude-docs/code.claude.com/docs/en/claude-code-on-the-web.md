@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-04-03T03:10:14.718804Z
-sha256: 779f32d69d94bdf06b22db043bf2e836e92a5b99e708693b4723844346c279f3
+fetched_at: 2026-04-04T03:07:06.698608Z
+sha256: 3431d5e9ac6579b710b9b3ad84db9c00e6f3c581484bc5ffb8cd9306e07de335
 ---
 
 > ## Documentation Index
@@ -151,6 +151,8 @@ claude --remote "Execute the migration plan in docs/migration-plan.md"
 ```
 
 This pattern gives you control over the strategy while letting Claude execute autonomously in the cloud.
+
+**Plan in the cloud with ultraplan**: To draft and review the plan itself in a web session, use [ultraplan](/en/ultraplan). Claude generates the plan on Claude Code on the web while you keep working, then you comment on sections in your browser and choose to execute remotely or send the plan back to your terminal.
 
 **Run tasks in parallel**: Each `--remote` command creates its own web session that runs independently. You can kick off multiple tasks and they'll all run simultaneously in separate sessions:
 

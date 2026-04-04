@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 6a992dd973c4a89b5bd47eca046deab76c55620fd182af696ef4337ca0a58dfa
+fetched_at: 2026-04-04T03:07:06.698608Z
+sha256: a5fb6b54aaed548b1f67ddc27e070fc9a7db02528350e0120a867cbc67086f4c
 ---
 
 # Menggunakan Agent Skills dengan API
@@ -838,7 +838,7 @@ curl -X POST "https://api.anthropic.com/v1/skills" \
 **Persyaratan:**
 - Harus menyertakan file SKILL.md di tingkat atas
 - Semua file harus menentukan direktori root umum dalam jalur mereka
-- Ukuran unggahan total harus di bawah 8MB
+- Ukuran unggahan total harus di bawah 30MB
 - Persyaratan frontmatter YAML:
   - `name`: Maksimal 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan ("anthropic", "claude")
   - `description`: Maksimal 1024 karakter, tidak kosong, tanpa tag XML
@@ -1320,7 +1320,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ### Request Limits
 - **Maximum Skills per request**: 8
-- **Maximum Skill upload size**: 8MB (semua file digabungkan)
+- **Maximum Skill upload size**: 30MB (semua file digabungkan)
 - **YAML frontmatter requirements**:
   - `name`: Maksimal 64 karakter, huruf kecil/angka/tanda hubung saja, tanpa tag XML, tanpa kata-kata yang dicadangkan
   - `description`: Maksimal 1024 karakter, tidak kosong, tanpa tag XML

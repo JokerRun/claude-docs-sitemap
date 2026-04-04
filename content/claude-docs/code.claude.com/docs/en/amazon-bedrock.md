@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-04-03T03:10:14.718804Z
-sha256: c1d5c08cc4d5f01525b7a54917f26b40cb960bb3fdc68d8933d3a3569bcc0dee
+fetched_at: 2026-04-04T03:07:06.698608Z
+sha256: 7ad0a58fb6b9c5f60bbe75b2a10c6b8af5b0229bd4c09c74bba26d2d27232031
 ---
 
 > ## Documentation Index
@@ -30,12 +30,14 @@ Before configuring Claude Code with Bedrock, ensure you have:
 
 ### 1. Submit use case details
 
-First-time users of Anthropic models are required to submit use case details before invoking a model. This is done once per account.
+First-time users of Anthropic models are required to submit use case details before invoking a model. This is done once per AWS account.
 
-1. Ensure you have the right IAM permissions (see more on that below)
+1. Ensure you have the right IAM permissions described below
 2. Navigate to the [Amazon Bedrock console](https://console.aws.amazon.com/bedrock/)
-3. Select **Chat/Text playground**
-4. Choose any Anthropic model and you will be prompted to fill out the use case form
+3. Select an Anthropic model from the **Model catalog**
+4. Complete the use case form. Access is granted immediately after submission.
+
+If you use AWS Organizations, you can submit the form once from the management account using the [`PutUseCaseForModelAccess` API](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_PutUseCaseForModelAccess.html). This call requires the `bedrock:PutUseCaseForModelAccess` IAM permission. Approval extends to child accounts automatically.
 
 ### 2. Configure AWS credentials
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/commands
-fetched_at: 2026-04-03T03:10:14.718804Z
-sha256: 30183c5f49eeedd94ceb2c48ea3200474b5af3c1e4daa248439f02c645a55825
+fetched_at: 2026-04-04T03:07:06.698608Z
+sha256: 96ed2393a3f28643b0869f47f4445f6913ec058885ccfdcc674b111952f64fcd
 ---
 
 > ## Documentation Index
@@ -82,6 +82,7 @@ In the table below, `<arg>` indicates a required argument and `[arg]` indicates 
 | `/tasks`                                 | List and manage background tasks. Also available as `/bashes`                                                                                                                                                                                                                                                                                                  |
 | `/terminal-setup`                        | Configure terminal keybindings for Shift+Enter and other shortcuts. Only visible in terminals that need it, like VS Code, Alacritty, or Warp                                                                                                                                                                                                                   |
 | `/theme`                                 | Change the color theme. Includes light and dark variants, colorblind-accessible (daltonized) themes, and ANSI themes that use your terminal's color palette                                                                                                                                                                                                    |
+| `/ultraplan <prompt>`                    | Draft a plan in an [ultraplan](/en/ultraplan) session, review it in your browser, then execute remotely or send it back to your terminal                                                                                                                                                                                                                       |
 | `/upgrade`                               | Open the upgrade page to switch to a higher plan tier                                                                                                                                                                                                                                                                                                          |
 | `/usage`                                 | Show plan usage limits and rate limit status                                                                                                                                                                                                                                                                                                                   |
 | `/vim`                                   | Toggle between Vim and Normal editing modes                                                                                                                                                                                                                                                                                                                    |

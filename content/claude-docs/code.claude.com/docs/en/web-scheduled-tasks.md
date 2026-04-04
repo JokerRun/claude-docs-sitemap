@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-scheduled-tasks
-fetched_at: 2026-03-31T04:38:22.136736Z
-sha256: 0b59f24a3ee40bc815c930bb368bba95dea60fbeef8fdb88ae62c364420c7335
+fetched_at: 2026-04-04T03:07:06.698608Z
+sha256: a215d5ded10b20b8ae6b91e00d5352f0ed292bda04422cd31d3af86ac9198a04
 ---
 
 > ## Documentation Index
@@ -28,17 +28,17 @@ Scheduled tasks are available to all Claude Code on the web users, including Pro
 
 Claude Code offers three ways to schedule recurring work:
 
-|                            | [Cloud](/en/web-scheduled-tasks) | [Desktop](/en/desktop#schedule-recurring-tasks) | [`/loop`](/en/scheduled-tasks) |
-| :------------------------- | :------------------------------- | :---------------------------------------------- | :----------------------------- |
-| Runs on                    | Anthropic cloud                  | Your machine                                    | Your machine                   |
-| Requires machine on        | No                               | Yes                                             | Yes                            |
-| Requires open session      | No                               | No                                              | Yes                            |
-| Persistent across restarts | Yes                              | Yes                                             | No (session-scoped)            |
-| Access to local files      | No (fresh clone)                 | Yes                                             | Yes                            |
-| MCP servers                | Connectors configured per task   | [Config files](/en/mcp) and connectors          | Inherits from session          |
-| Permission prompts         | No (runs autonomously)           | Configurable per task                           | Inherits from session          |
-| Customizable schedule      | Via `/schedule` in the CLI       | Yes                                             | Yes                            |
-| Minimum interval           | 1 hour                           | 1 minute                                        | 1 minute                       |
+|                            | [Cloud](/en/web-scheduled-tasks) | [Desktop](/en/desktop-scheduled-tasks) | [`/loop`](/en/scheduled-tasks) |
+| :------------------------- | :------------------------------- | :------------------------------------- | :----------------------------- |
+| Runs on                    | Anthropic cloud                  | Your machine                           | Your machine                   |
+| Requires machine on        | No                               | Yes                                    | Yes                            |
+| Requires open session      | No                               | No                                     | Yes                            |
+| Persistent across restarts | Yes                              | Yes                                    | No (session-scoped)            |
+| Access to local files      | No (fresh clone)                 | Yes                                    | Yes                            |
+| MCP servers                | Connectors configured per task   | [Config files](/en/mcp) and connectors | Inherits from session          |
+| Permission prompts         | No (runs autonomously)           | Configurable per task                  | Inherits from session          |
+| Customizable schedule      | Via `/schedule` in the CLI       | Yes                                    | Yes                            |
+| Minimum interval           | 1 hour                           | 1 minute                               | 1 minute                       |
 
 <Tip>
   Use **cloud tasks** for work that should run reliably without your machine. Use **Desktop tasks** when you need access to local files and tools. Use **`/loop`** for quick polling during a session.
@@ -49,7 +49,7 @@ Claude Code offers three ways to schedule recurring work:
 You can create a scheduled task from three places:
 
 * **Web**: visit [claude.ai/code/scheduled](https://claude.ai/code/scheduled) and click **New scheduled task**
-* **Desktop app**: open the **Schedule** page, click **New task**, and choose **New remote task**. See [Desktop scheduled tasks](/en/desktop#schedule-recurring-tasks) for details.
+* **Desktop app**: open the **Schedule** page, click **New task**, and choose **New remote task**. See [Desktop scheduled tasks](/en/desktop-scheduled-tasks) for details.
 * **CLI**: run `/schedule` in any session. Claude walks you through the setup conversationally. You can also pass a description directly, like `/schedule daily PR review at 9am`.
 
 The web and Desktop entry points open a form. The CLI collects the same information through a guided conversation.
@@ -154,7 +154,7 @@ You can also manage tasks from the CLI with `/schedule`. Run `/schedule list` to
 
 ## Related resources
 
-* [Desktop scheduled tasks](/en/desktop#schedule-recurring-tasks): schedule tasks that run on your machine with access to local files. The Desktop app's **Schedule** page shows both local and remote tasks in the same grid.
+* [Desktop scheduled tasks](/en/desktop-scheduled-tasks): schedule tasks that run on your machine with access to local files. The Desktop app's **Schedule** page shows both local and remote tasks in the same grid.
 * [`/loop` and CLI scheduled tasks](/en/scheduled-tasks): lightweight scheduling within a CLI session
 * [Cloud environment](/en/claude-code-on-the-web#cloud-environment): configure the runtime environment for cloud tasks
 * [MCP connectors](/en/mcp): connect external services like Slack, Linear, and Google Drive

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 169b2d0aa2e7e4a2f1e6cb24866e1deea4a46595f0c9332d0fd86aa28b582b10
+fetched_at: 2026-04-04T03:07:06.698608Z
+sha256: 4b465dc6cbe05bc7a5401a035fb0d26183fcbc9653a0db12bb96b19ccb69f729
 ---
 
 # Using Agent Skills with the API
@@ -2689,7 +2689,7 @@ puts "Latest version: #{skill.latest_version}"
 **Requirements:**
 - Must include a SKILL.md file at the top level
 - All files must specify a common root directory in their paths
-- Total upload size must be under 8&nbsp;MB
+- Total upload size must be under 30&nbsp;MB
 - YAML frontmatter requirements:
   - `name`: Maximum 64 characters, lowercase letters/numbers/hyphens only, no XML tags, no reserved words ("anthropic", "claude")
   - `description`: Maximum 1024 characters, non-empty, no XML tags
@@ -4195,7 +4195,7 @@ response = client.beta.messages.create(
 
 ### Request Limits
 - **Maximum Skills per request:** 8
-- **Maximum Skill upload size:** 8&nbsp;MB (all files combined)
+- **Maximum Skill upload size:** 30&nbsp;MB (all files combined)
 - **YAML frontmatter requirements:**
   - `name`: Maximum 64 characters, lowercase letters/numbers/hyphens only, no XML tags, no reserved words
   - `description`: Maximum 1024 characters, non-empty, no XML tags
