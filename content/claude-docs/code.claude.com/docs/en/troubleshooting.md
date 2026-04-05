@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-04-03T03:10:14.718804Z
-sha256: 788289eca67b3eca5834946283af31d6905b9520c29024ea95891646545afa96
+fetched_at: 2026-04-05T03:11:11.045618Z
+sha256: 083d42b5f693a0ea5db315464e1066a743a4bd5b998b1313d8a0e47e919b3ad8
 ---
 
 > ## Documentation Index
@@ -599,6 +599,8 @@ export PATH="$HOME/.nvm/versions/node/$(node -v)/bin:$PATH"
 </Tabs>
 
 WSL1 does not support sandboxing. If you see "Sandboxing requires WSL2", you need to upgrade to WSL2 or run Claude Code without sandboxing.
+
+Sandboxed commands cannot launch Windows binaries such as `cmd.exe`, `powershell.exe`, or executables under `/mnt/c/`. WSL hands these off to the Windows host over a Unix socket, which the sandbox blocks. If a command needs to invoke a Windows binary, add it to [`excludedCommands`](/en/settings#sandbox-settings) so it runs outside the sandbox.
 
 ### Permission errors during installation
 

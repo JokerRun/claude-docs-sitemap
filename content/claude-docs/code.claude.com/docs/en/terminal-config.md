@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-04-01T04:49:12.553036Z
-sha256: 8d1177885a38175113040a7d94501aba6adc0066acc283d1534bdbaa36e736d7
+fetched_at: 2026-04-05T03:11:11.045618Z
+sha256: f9335455866639ae5358915298f7200199a2a787278941821701418dfb99a187
 ---
 
 > ## Documentation Index
@@ -94,7 +94,7 @@ When working with extensive code or long instructions:
 
 ### Vim Mode
 
-Claude Code supports a subset of Vim keybindings that can be enabled with `/vim` or configured via `/config`. To set the mode directly in your config file, set the [`editorMode`](/en/settings#global-config-settings) global config key to `"vim"` in `~/.claude.json`.
+Claude Code supports a subset of Vim keybindings that can be enabled via `/config` → Editor mode. To set the mode directly in your config file, set the [`editorMode`](/en/settings#global-config-settings) global config key to `"vim"` in `~/.claude.json`.
 
 The supported subset includes:
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-04-04T03:07:06.698608Z
-sha256: 7ad0a58fb6b9c5f60bbe75b2a10c6b8af5b0229bd4c09c74bba26d2d27232031
+fetched_at: 2026-04-05T03:11:11.045618Z
+sha256: a8a18c76e787924ceac4b47622734026230f0cff255d808c4412a1faf75c54f0
 ---
 
 > ## Documentation Index
@@ -25,6 +25,17 @@ Before configuring Claude Code with Bedrock, ensure you have:
 <Note>
   If you are deploying Claude Code to multiple users, [pin your model versions](#4-pin-model-versions) to prevent breakage when Anthropic releases new models.
 </Note>
+
+## Set up with the interactive wizard
+
+The login screen includes an interactive Bedrock setup wizard for first-time configuration. Select **3rd-party platform** at the `claude` login prompt, then choose **Amazon Bedrock** to launch it. The wizard guides you through each step and writes the resulting configuration to your settings:
+
+* AWS authentication
+* Region selection
+* Credential verification
+* Model pinning
+
+Once Bedrock is active, use `/setup-bedrock` to return to the wizard and update your credentials, region, or model pins.
 
 ## Setup
 

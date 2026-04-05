@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-04-03T03:10:14.718804Z
-sha256: 8bb8c4a8f0b710ea4ea05c6610b8fc08a96c4e09506f012381bc946beb0235e0
+fetched_at: 2026-04-05T03:11:11.045618Z
+sha256: 34c35f5a18a5605513bae4715047055d63bbad76c7cc26fcff9ddc819c942114
 ---
 
 > ## Documentation Index
@@ -111,7 +111,7 @@ See the [commands reference](/en/commands) for the full list of built-in command
 
 ## Vim editor mode
 
-Enable vim-style editing with `/vim` command or configure permanently via `/config`.
+Enable vim-style editing via `/config` → Editor mode.
 
 ### Mode switching
 

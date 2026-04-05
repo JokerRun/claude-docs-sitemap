@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/data-usage
-fetched_at: 2026-03-29T04:39:49.181591Z
-sha256: ea7c79758a09cf6825a502dac477f12a91901a22c614c260ecfc498cc66f7930
+fetched_at: 2026-04-05T03:11:11.045618Z
+sha256: f4dd0559138e65b8f5c8662e5b240b263824da22d3c8f60eba25398bf6b06be9
 ---
 
 > ## Documentation Index
@@ -102,4 +102,4 @@ By default, error reporting, telemetry, and bug reporting are disabled when usin
 | **Claude API (`/feedback` reports)** | Default on.<br />`DISABLE_FEEDBACK_COMMAND=1` to disable.            | Default off.<br />`CLAUDE_CODE_USE_VERTEX` must be 1.                | Default off.<br />`CLAUDE_CODE_USE_BEDROCK` must be 1.               | Default off.<br />`CLAUDE_CODE_USE_FOUNDRY` must be 1.               |
 | **Session quality surveys**          | Default on.<br />`CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY=1` to disable. | Default on.<br />`CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY=1` to disable. | Default on.<br />`CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY=1` to disable. | Default on.<br />`CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY=1` to disable. |
 
-All environment variables can be checked into `settings.json` ([read more](/en/settings)).
+All environment variables can be checked into `settings.json` (see [settings reference](/en/settings)).
