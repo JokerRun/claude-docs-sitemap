@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/overview
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 280026320e987d90bf5e4f2fbceb49e77f3fed6581d06afc38d1645bc25d2d8d
+fetched_at: 2026-04-07T03:10:26.992298Z
+sha256: 68da2bcc5c51e039029dd8625879914a2671e5693762a7dcccc9a6ac76c3d5aa
 ---
 
 <h2}>
@@ -89,8 +89,4 @@ sha256: 280026320e987d90bf5e4f2fbceb49e77f3fed6581d06afc38d1645bc25d2d8d
 
     <Card title="llms.txt" icon="file" href="/llms.txt">
       LLM-optimized documentation index.
-    </Card>
-
-    <Card title="llms-full.txt" icon="file" href="/llms-full.txt">
-      Complete LLM-optimized documentation.
     </Card>

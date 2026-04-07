@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: c9a9490dfbdfc72c7ec03400971890a70f9be469920fba8433d516101a3b43bd
+fetched_at: 2026-04-07T03:10:26.992298Z
+sha256: 3c7652292608f6acbe31600027a77e4e3705c09e85745f2ebe0f698911c6a7f1
 ---
 
 # Using the Messages API
@@ -398,7 +398,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
        --header "content-type: application/json" \
        --data \
   '{
-      "model": "claude-opus-4-6",
+      "model": "claude-sonnet-4-5",
       "max_tokens": 1,
       "messages": [
           {"role": "user", "content": "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"},
@@ -411,7 +411,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
   import anthropic
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-opus-4-6",
+      model="claude-sonnet-4-5",
       max_tokens=1,
       messages=[
           {
@@ -430,7 +430,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-sonnet-4-5",
     max_tokens: 1,
     messages: [
       {
@@ -457,7 +457,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
 
           var parameters = new MessageCreateParams
           {
-              Model = Model.ClaudeOpus4_6,
+              Model = Model.ClaudeSonnet4_5,
               MaxTokens = 1,
               Messages = [
                   new() { Role = Role.User, Content = "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae" },
@@ -486,7 +486,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
   	client := anthropic.NewClient()
 
   	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_6,
+  		Model:     anthropic.ModelClaudeSonnet4_5,
   		MaxTokens: 1,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae")),
@@ -512,7 +512,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_6)
+              .model(Model.CLAUDE_SONNET_4_5)
               .maxTokens(1L)
               .addUserMessage("What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae")
               .addAssistantMessage("The answer is (")
@@ -537,7 +537,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
           ['role' => 'user', 'content' => 'What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae'],
           ['role' => 'assistant', 'content' => 'The answer is ('],
       ],
-      model: 'claude-opus-4-6',
+      model: 'claude-sonnet-4-5',
   );
   echo $message->content[0]->text;
   ```
@@ -548,7 +548,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-6",
+    model: "claude-sonnet-4-5",
     max_tokens: 1,
     messages: [
       {
@@ -573,7 +573,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
       "text": "C"
     }
   ],
-  "model": "claude-opus-4-6",
+  "model": "claude-sonnet-4-5",
   "stop_reason": "max_tokens",
   "stop_sequence": null,
   "usage": {
@@ -584,7 +584,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
 ```
 
 <Warning>
-Prefilling is deprecated and not supported on Claude Opus 4.6, Claude Sonnet 4.6, and Claude Sonnet 4.5. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) or system prompt instructions instead.
+Prefilling is not supported on Claude Opus 4.6 and Claude Sonnet 4.6. Requests using prefill with these models return a 400 error. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) or system prompt instructions instead. See the [migration guide](/docs/en/about-claude/models/migration-guide) for migration patterns.
 </Warning>
 
 ## Vision
