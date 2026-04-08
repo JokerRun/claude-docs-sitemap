@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: d195645a62035c755da984f5dd81b661567e1af98eb8c84baaaa600b38b21547
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: ab2aa648632ebcb7024104766475165a2dc329d332876f73c0dbf9500f17419b
 ---
 
 # Messages
@@ -4338,6 +4338,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Recommended for advanced use cases only. You usually only need to use `temperature`.
 
+  - `UserProfileID param.Field[string]`
+
+    Body param: The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
   - `Betas param.Field[[]AnthropicBeta]`
 
     Header param: Optional header to specify the beta version(s) you want to use.
@@ -4385,6 +4389,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -5384,6 +5392,30 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     This will always be `"assistant"`.
 
     - `const AssistantAssistant Assistant = "assistant"`
+
+  - `StopDetails BetaRefusalStopDetails`
+
+    Structured information about a refusal.
+
+    - `Category BetaRefusalStopDetailsCategory`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `const BetaRefusalStopDetailsCategoryCyber BetaRefusalStopDetailsCategory = "cyber"`
+
+      - `const BetaRefusalStopDetailsCategoryBio BetaRefusalStopDetailsCategory = "bio"`
+
+    - `Explanation string`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `Type Refusal`
+
+      - `const RefusalRefusal Refusal = "refusal"`
 
   - `StopReason BetaStopReason`
 
@@ -9912,6 +9944,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -17223,6 +17259,30 @@ func main() {
 
     - `const AssistantAssistant Assistant = "assistant"`
 
+  - `StopDetails BetaRefusalStopDetails`
+
+    Structured information about a refusal.
+
+    - `Category BetaRefusalStopDetailsCategory`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `const BetaRefusalStopDetailsCategoryCyber BetaRefusalStopDetailsCategory = "cyber"`
+
+      - `const BetaRefusalStopDetailsCategoryBio BetaRefusalStopDetailsCategory = "bio"`
+
+    - `Explanation string`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `Type Refusal`
+
+      - `const RefusalRefusal Refusal = "refusal"`
+
   - `StopReason BetaStopReason`
 
     The reason that we stopped.
@@ -21364,6 +21424,30 @@ func main() {
 
           Skill version or 'latest' for most recent version
 
+    - `StopDetails BetaRefusalStopDetails`
+
+      Structured information about a refusal.
+
+      - `Category BetaRefusalStopDetailsCategory`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `const BetaRefusalStopDetailsCategoryCyber BetaRefusalStopDetailsCategory = "cyber"`
+
+        - `const BetaRefusalStopDetailsCategoryBio BetaRefusalStopDetailsCategory = "bio"`
+
+      - `Explanation string`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `Type Refusal`
+
+        - `const RefusalRefusal Refusal = "refusal"`
+
     - `StopReason BetaStopReason`
 
       - `const BetaStopReasonEndTurn BetaStopReason = "end_turn"`
@@ -22514,6 +22598,30 @@ func main() {
       This will always be `"assistant"`.
 
       - `const AssistantAssistant Assistant = "assistant"`
+
+    - `StopDetails BetaRefusalStopDetails`
+
+      Structured information about a refusal.
+
+      - `Category BetaRefusalStopDetailsCategory`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `const BetaRefusalStopDetailsCategoryCyber BetaRefusalStopDetailsCategory = "cyber"`
+
+        - `const BetaRefusalStopDetailsCategoryBio BetaRefusalStopDetailsCategory = "bio"`
+
+      - `Explanation string`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `Type Refusal`
+
+        - `const RefusalRefusal Refusal = "refusal"`
 
     - `StopReason BetaStopReason`
 
@@ -23735,6 +23843,30 @@ func main() {
 
         - `const AssistantAssistant Assistant = "assistant"`
 
+      - `StopDetails BetaRefusalStopDetails`
+
+        Structured information about a refusal.
+
+        - `Category BetaRefusalStopDetailsCategory`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `const BetaRefusalStopDetailsCategoryCyber BetaRefusalStopDetailsCategory = "cyber"`
+
+          - `const BetaRefusalStopDetailsCategoryBio BetaRefusalStopDetailsCategory = "bio"`
+
+        - `Explanation string`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `Type Refusal`
+
+          - `const RefusalRefusal Refusal = "refusal"`
+
       - `StopReason BetaStopReason`
 
         The reason that we stopped.
@@ -24019,6 +24151,30 @@ func main() {
           - `Version string`
 
             Skill version or 'latest' for most recent version
+
+      - `StopDetails BetaRefusalStopDetails`
+
+        Structured information about a refusal.
+
+        - `Category BetaRefusalStopDetailsCategory`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `const BetaRefusalStopDetailsCategoryCyber BetaRefusalStopDetailsCategory = "cyber"`
+
+          - `const BetaRefusalStopDetailsCategoryBio BetaRefusalStopDetailsCategory = "bio"`
+
+        - `Explanation string`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `Type Refusal`
+
+          - `const RefusalRefusal Refusal = "refusal"`
 
       - `StopReason BetaStopReason`
 
@@ -25163,6 +25319,32 @@ func main() {
   - `Type RedactedThinking`
 
     - `const RedactedThinkingRedactedThinking RedactedThinking = "redacted_thinking"`
+
+### Beta Refusal Stop Details
+
+- `type BetaRefusalStopDetails struct{…}`
+
+  Structured information about a refusal.
+
+  - `Category BetaRefusalStopDetailsCategory`
+
+    The policy category that triggered the refusal.
+
+    `null` when the refusal doesn't map to a named category.
+
+    - `const BetaRefusalStopDetailsCategoryCyber BetaRefusalStopDetailsCategory = "cyber"`
+
+    - `const BetaRefusalStopDetailsCategoryBio BetaRefusalStopDetailsCategory = "bio"`
+
+  - `Explanation string`
+
+    Human-readable explanation of the refusal.
+
+    This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+  - `Type Refusal`
+
+    - `const RefusalRefusal Refusal = "refusal"`
 
 ### Beta Request Document Block
 
@@ -36796,6 +36978,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Recommended for advanced use cases only. You usually only need to use `temperature`.
 
+      - `UserProfileID string`
+
+        The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
   - `Betas param.Field[[]AnthropicBeta]`
 
     Header param: Optional header to specify the beta version(s) you want to use.
@@ -36843,6 +37029,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -37041,6 +37231,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
 ### Returns
 
 - `type BetaMessageBatch struct{…}`
@@ -37238,6 +37432,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
 ### Returns
 
 - `type BetaMessageBatch struct{…}`
@@ -37422,6 +37620,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -37612,6 +37814,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
 ### Returns
 
 - `type BetaDeletedMessageBatch struct{…}`
@@ -37726,6 +37932,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -38743,6 +38953,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           This will always be `"assistant"`.
 
           - `const AssistantAssistant Assistant = "assistant"`
+
+        - `StopDetails BetaRefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `Category BetaRefusalStopDetailsCategory`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `const BetaRefusalStopDetailsCategoryCyber BetaRefusalStopDetailsCategory = "cyber"`
+
+            - `const BetaRefusalStopDetailsCategoryBio BetaRefusalStopDetailsCategory = "bio"`
+
+          - `Explanation string`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `Type Refusal`
+
+            - `const RefusalRefusal Refusal = "refusal"`
 
         - `StopReason BetaStopReason`
 
@@ -40318,6 +40552,30 @@ func main() {
 
           - `const AssistantAssistant Assistant = "assistant"`
 
+        - `StopDetails BetaRefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `Category BetaRefusalStopDetailsCategory`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `const BetaRefusalStopDetailsCategoryCyber BetaRefusalStopDetailsCategory = "cyber"`
+
+            - `const BetaRefusalStopDetailsCategoryBio BetaRefusalStopDetailsCategory = "bio"`
+
+          - `Explanation string`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `Type Refusal`
+
+            - `const RefusalRefusal Refusal = "refusal"`
+
         - `StopReason BetaStopReason`
 
           The reason that we stopped.
@@ -41666,6 +41924,30 @@ func main() {
 
         - `const AssistantAssistant Assistant = "assistant"`
 
+      - `StopDetails BetaRefusalStopDetails`
+
+        Structured information about a refusal.
+
+        - `Category BetaRefusalStopDetailsCategory`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `const BetaRefusalStopDetailsCategoryCyber BetaRefusalStopDetailsCategory = "cyber"`
+
+          - `const BetaRefusalStopDetailsCategoryBio BetaRefusalStopDetailsCategory = "bio"`
+
+        - `Explanation string`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `Type Refusal`
+
+          - `const RefusalRefusal Refusal = "refusal"`
+
       - `StopReason BetaStopReason`
 
         The reason that we stopped.
@@ -42975,6 +43257,30 @@ func main() {
       This will always be `"assistant"`.
 
       - `const AssistantAssistant Assistant = "assistant"`
+
+    - `StopDetails BetaRefusalStopDetails`
+
+      Structured information about a refusal.
+
+      - `Category BetaRefusalStopDetailsCategory`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `const BetaRefusalStopDetailsCategoryCyber BetaRefusalStopDetailsCategory = "cyber"`
+
+        - `const BetaRefusalStopDetailsCategoryBio BetaRefusalStopDetailsCategory = "bio"`
+
+      - `Explanation string`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `Type Refusal`
+
+        - `const RefusalRefusal Refusal = "refusal"`
 
     - `StopReason BetaStopReason`
 

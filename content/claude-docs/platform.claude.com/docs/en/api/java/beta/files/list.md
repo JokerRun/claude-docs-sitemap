@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/list
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 9a473bdf199a34f81e1f7829045a390c2936ec15a15ea2af5d27d631686532ee
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 1db339de8db95d6b5517f69ffc0d84deca7afe78e93c3c52ba67db7308081dd0
 ---
 
 ## List
@@ -74,6 +74,10 @@ List Files
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

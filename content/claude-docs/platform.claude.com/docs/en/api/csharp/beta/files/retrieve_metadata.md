@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/retrieve_metadata
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 02ade2e4c4f3138b62fb65b9c1f53918fcb940bda29571f05814f75f4fe4f69c
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 20ba7ae753a68d3e63a9491326894293a88093d21534fa5b6e0b006c7aa52640
 ---
 
 ## Retrieve Metadata
@@ -64,6 +64,10 @@ Get File Metadata
     - `"skills-2025-10-02"Skills2025_10_02`
 
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

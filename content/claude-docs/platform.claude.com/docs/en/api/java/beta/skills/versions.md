@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 928697c1de24023c880720413d5ff8f861c0a66d7a5c4441fe2da542d1cec9c5
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 0bbe5cd2714ca58cd003416ba35f1986ad56671c35a055a38ce02fd2dd5e02d3
 ---
 
 # Versions
@@ -68,6 +68,10 @@ Create Skill Version
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `Optional<List<String>> files`
 
@@ -216,6 +220,10 @@ List Skill Versions
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
 ### Returns
 
 - `class VersionListResponse:`
@@ -352,6 +360,10 @@ Get Skill Version
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 
@@ -493,6 +505,10 @@ Delete Skill Version
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

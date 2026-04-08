@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/create
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: ecb72ab8e4feee0f7c981a3f1c91267b2a37c6d59f81f7eb9d5232db11c09189
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 53326ceebeaba8a3c6f09dad26acd3ea2666788e14ce2122d57bbe68f1e618da
 ---
 
 ## Create
@@ -60,6 +60,10 @@ Create Skill
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `Optional<String> displayTitle`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/upload
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: af127d32eb04a46b6b6cd37649d0acb4df4c01636f1538a8b374f949374212a7
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 60d0f8ff35b8541035fe43f300fab84e3e6b5653858113023136e828e7d6b197
 ---
 
 ## Upload
@@ -60,6 +60,10 @@ Upload File
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `String file`
 
@@ -121,7 +125,7 @@ public final class Main {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         FileUploadParams params = FileUploadParams.builder()
-            .file(ByteArrayInputStream("Example data".getBytes()))
+            .file(new ByteArrayInputStream("Example data".getBytes()))
             .build();
         FileMetadata fileMetadata = client.beta().files().upload(params);
     }

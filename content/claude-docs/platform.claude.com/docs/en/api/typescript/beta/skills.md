@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 694095920dfa828be48ee85f5d39132e79ed9786df9ce43c3f5b487a65a50223
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 4e8f14b094682f9b5ed8b058bc784aaeb4bf577dd60611c2ccd95df846d9cee7
 ---
 
 # Skills
@@ -37,7 +37,7 @@ Create Skill
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,10 @@ Create Skill
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -177,7 +181,7 @@ List Skills
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -218,6 +222,10 @@ List Skills
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -303,7 +311,7 @@ Get Skill
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -344,6 +352,10 @@ Get Skill
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -428,7 +440,7 @@ Delete Skill
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -470,6 +482,10 @@ Delete Skill
 
       - `"fast-mode-2026-02-01"`
 
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
+
 ### Returns
 
 - `SkillDeleteResponse`
@@ -499,6 +515,159 @@ const skill = await client.beta.skills.delete('skill_id');
 
 console.log(skill.id);
 ```
+
+## Domain Types
+
+### Skill Create Response
+
+- `SkillCreateResponse`
+
+  - `id: string`
+
+    Unique identifier for the skill.
+
+    The format and length of IDs may change over time.
+
+  - `created_at: string`
+
+    ISO 8601 timestamp of when the skill was created.
+
+  - `display_title: string | null`
+
+    Display title for the skill.
+
+    This is a human-readable label that is not included in the prompt sent to the model.
+
+  - `latest_version: string | null`
+
+    The latest version identifier for the skill.
+
+    This represents the most recent version of the skill that has been created.
+
+  - `source: string`
+
+    Source of the skill.
+
+    This may be one of the following values:
+
+    * `"custom"`: the skill was created by a user
+    * `"anthropic"`: the skill was created by Anthropic
+
+  - `type: string`
+
+    Object type.
+
+    For Skills, this is always `"skill"`.
+
+  - `updated_at: string`
+
+    ISO 8601 timestamp of when the skill was last updated.
+
+### Skill List Response
+
+- `SkillListResponse`
+
+  - `id: string`
+
+    Unique identifier for the skill.
+
+    The format and length of IDs may change over time.
+
+  - `created_at: string`
+
+    ISO 8601 timestamp of when the skill was created.
+
+  - `display_title: string | null`
+
+    Display title for the skill.
+
+    This is a human-readable label that is not included in the prompt sent to the model.
+
+  - `latest_version: string | null`
+
+    The latest version identifier for the skill.
+
+    This represents the most recent version of the skill that has been created.
+
+  - `source: string`
+
+    Source of the skill.
+
+    This may be one of the following values:
+
+    * `"custom"`: the skill was created by a user
+    * `"anthropic"`: the skill was created by Anthropic
+
+  - `type: string`
+
+    Object type.
+
+    For Skills, this is always `"skill"`.
+
+  - `updated_at: string`
+
+    ISO 8601 timestamp of when the skill was last updated.
+
+### Skill Retrieve Response
+
+- `SkillRetrieveResponse`
+
+  - `id: string`
+
+    Unique identifier for the skill.
+
+    The format and length of IDs may change over time.
+
+  - `created_at: string`
+
+    ISO 8601 timestamp of when the skill was created.
+
+  - `display_title: string | null`
+
+    Display title for the skill.
+
+    This is a human-readable label that is not included in the prompt sent to the model.
+
+  - `latest_version: string | null`
+
+    The latest version identifier for the skill.
+
+    This represents the most recent version of the skill that has been created.
+
+  - `source: string`
+
+    Source of the skill.
+
+    This may be one of the following values:
+
+    * `"custom"`: the skill was created by a user
+    * `"anthropic"`: the skill was created by Anthropic
+
+  - `type: string`
+
+    Object type.
+
+    For Skills, this is always `"skill"`.
+
+  - `updated_at: string`
+
+    ISO 8601 timestamp of when the skill was last updated.
+
+### Skill Delete Response
+
+- `SkillDeleteResponse`
+
+  - `id: string`
+
+    Unique identifier for the skill.
+
+    The format and length of IDs may change over time.
+
+  - `type: string`
+
+    Deleted object type.
+
+    For Skills, this is always `"skill_deleted"`.
 
 # Versions
 
@@ -532,7 +701,7 @@ Create Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -573,6 +742,10 @@ Create Skill Version
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -670,7 +843,7 @@ List Skill Versions
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -711,6 +884,10 @@ List Skill Versions
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -805,7 +982,7 @@ Get Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -846,6 +1023,10 @@ Get Skill Version
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -939,7 +1120,7 @@ Delete Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -981,6 +1162,10 @@ Delete Skill Version
 
       - `"fast-mode-2026-02-01"`
 
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
+
 ### Returns
 
 - `VersionDeleteResponse`
@@ -1010,3 +1195,165 @@ const version = await client.beta.skills.versions.delete('version', { skill_id: 
 
 console.log(version.id);
 ```
+
+## Domain Types
+
+### Version Create Response
+
+- `VersionCreateResponse`
+
+  - `id: string`
+
+    Unique identifier for the skill version.
+
+    The format and length of IDs may change over time.
+
+  - `created_at: string`
+
+    ISO 8601 timestamp of when the skill version was created.
+
+  - `description: string`
+
+    Description of the skill version.
+
+    This is extracted from the SKILL.md file in the skill upload.
+
+  - `directory: string`
+
+    Directory name of the skill version.
+
+    This is the top-level directory name that was extracted from the uploaded files.
+
+  - `name: string`
+
+    Human-readable name of the skill version.
+
+    This is extracted from the SKILL.md file in the skill upload.
+
+  - `skill_id: string`
+
+    Identifier for the skill that this version belongs to.
+
+  - `type: string`
+
+    Object type.
+
+    For Skill Versions, this is always `"skill_version"`.
+
+  - `version: string`
+
+    Version identifier for the skill.
+
+    Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Version List Response
+
+- `VersionListResponse`
+
+  - `id: string`
+
+    Unique identifier for the skill version.
+
+    The format and length of IDs may change over time.
+
+  - `created_at: string`
+
+    ISO 8601 timestamp of when the skill version was created.
+
+  - `description: string`
+
+    Description of the skill version.
+
+    This is extracted from the SKILL.md file in the skill upload.
+
+  - `directory: string`
+
+    Directory name of the skill version.
+
+    This is the top-level directory name that was extracted from the uploaded files.
+
+  - `name: string`
+
+    Human-readable name of the skill version.
+
+    This is extracted from the SKILL.md file in the skill upload.
+
+  - `skill_id: string`
+
+    Identifier for the skill that this version belongs to.
+
+  - `type: string`
+
+    Object type.
+
+    For Skill Versions, this is always `"skill_version"`.
+
+  - `version: string`
+
+    Version identifier for the skill.
+
+    Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Version Retrieve Response
+
+- `VersionRetrieveResponse`
+
+  - `id: string`
+
+    Unique identifier for the skill version.
+
+    The format and length of IDs may change over time.
+
+  - `created_at: string`
+
+    ISO 8601 timestamp of when the skill version was created.
+
+  - `description: string`
+
+    Description of the skill version.
+
+    This is extracted from the SKILL.md file in the skill upload.
+
+  - `directory: string`
+
+    Directory name of the skill version.
+
+    This is the top-level directory name that was extracted from the uploaded files.
+
+  - `name: string`
+
+    Human-readable name of the skill version.
+
+    This is extracted from the SKILL.md file in the skill upload.
+
+  - `skill_id: string`
+
+    Identifier for the skill that this version belongs to.
+
+  - `type: string`
+
+    Object type.
+
+    For Skill Versions, this is always `"skill_version"`.
+
+  - `version: string`
+
+    Version identifier for the skill.
+
+    Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+### Version Delete Response
+
+- `VersionDeleteResponse`
+
+  - `id: string`
+
+    Version identifier for the skill.
+
+    Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+
+  - `type: string`
+
+    Deleted object type.
+
+    For Skill Versions, this is always `"skill_version_deleted"`.

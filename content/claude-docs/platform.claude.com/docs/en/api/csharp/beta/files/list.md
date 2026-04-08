@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/list
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 8a25bfcae0462fe33aa272ea932d9a7289dd043a4b30ddc90ee4e7f151574187
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 689751458ecc43515da14f80a29ebaeb4755bf54b7e02e6c1f91975a850adef0
 ---
 
 ## List
@@ -74,6 +74,10 @@ List Files
     - `"skills-2025-10-02"Skills2025_10_02`
 
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

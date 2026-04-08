@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 4154d5b992e6cffa4bc5e2cc1564e159b7f5c50b9cc0d45adc678b074f893726
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 533046bb19826e4cd7b0083c4624aeb056a5c4ceadd231ee677292c070613250
 ---
 
 ## Create
@@ -3824,7 +3824,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
 ### Returns
 
-- `Message = object { id, container, content, 6 more }`
+- `Message = object { id, container, content, 7 more }`
 
   - `id: string`
 
@@ -4610,6 +4610,30 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     This will always be `"assistant"`.
 
     - `"assistant"`
+
+  - `stop_details: RefusalStopDetails`
+
+    Structured information about a refusal.
+
+    - `category: "cyber" or "bio"`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `"cyber"`
+
+      - `"bio"`
+
+    - `explanation: string`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `type: "refusal"`
+
+      - `"refusal"`
 
   - `stop_reason: StopReason`
 

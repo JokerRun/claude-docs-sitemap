@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-04-05T03:11:11.045618Z
-sha256: 754e1e75d0816e9af130d5c5ecfc1403087228aa4cc291f038e69fa3b25fb1f7
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: a4b738530691abccde830fe05cbd7e7c44cabe9b335b33b36a4441088ce4067a
 ---
 
 > ## Documentation Index
@@ -82,13 +82,13 @@ Actions follow a `namespace:action` format, such as `chat:submit` to send a mess
 
 Actions available in the `Global` context:
 
-| Action                 | Default | Description                 |
-| :--------------------- | :------ | :-------------------------- |
-| `app:interrupt`        | Ctrl+C  | Cancel current operation    |
-| `app:exit`             | Ctrl+D  | Exit Claude Code            |
-| `app:redraw`           | Ctrl+L  | Redraw the screen           |
-| `app:toggleTodos`      | Ctrl+T  | Toggle task list visibility |
-| `app:toggleTranscript` | Ctrl+O  | Toggle verbose transcript   |
+| Action                 | Default   | Description                 |
+| :--------------------- | :-------- | :-------------------------- |
+| `app:interrupt`        | Ctrl+C    | Cancel current operation    |
+| `app:exit`             | Ctrl+D    | Exit Claude Code            |
+| `app:redraw`           | (unbound) | Force terminal redraw       |
+| `app:toggleTodos`      | Ctrl+T    | Toggle task list visibility |
+| `app:toggleTranscript` | Ctrl+O    | Toggle verbose transcript   |
 
 ### History actions
 
@@ -107,6 +107,7 @@ Actions available in the `Chat` context:
 | Action                | Default                   | Description                         |
 | :-------------------- | :------------------------ | :---------------------------------- |
 | `chat:cancel`         | Escape                    | Cancel current input                |
+| `chat:clearInput`     | Ctrl+L                    | Clear prompt input                  |
 | `chat:killAgents`     | Ctrl+X Ctrl+K             | Kill all background agents          |
 | `chat:cycleMode`      | Shift+Tab\*               | Cycle permission modes              |
 | `chat:modelPicker`    | Cmd+P / Meta+P            | Open model picker                   |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/results
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 8f791f32f30210d8376084213d5bbe0bc1fcdbad336040175eaa843fc121841f
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 7b46f643f5c2a52fb7d51181cae3fcebb175e4de235a3d2cc2069bcb477f6b5c
 ---
 
 ## Results
@@ -825,6 +825,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           This will always be `"assistant"`.
 
           - `"assistant"`
+
+        - `stop_details: RefusalStopDetails | null`
+
+          Structured information about a refusal.
+
+          - `category: "cyber" | "bio" | null`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `"cyber"`
+
+            - `"bio"`
+
+          - `explanation: string | null`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: "refusal"`
+
+            - `"refusal"`
 
         - `stop_reason: StopReason | null`
 

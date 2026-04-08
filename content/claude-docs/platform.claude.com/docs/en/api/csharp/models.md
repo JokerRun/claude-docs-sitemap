@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/models
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 2859101400765aed986949b91e024ce5006dca413ab92071dfcc9d47f550b254
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 8aa979c54b70f3f42d9e28d7cd952c22ea5930f6e0265672a59365cca8abd3a3
 ---
 
 # Models
@@ -78,6 +78,10 @@ The Models API response can be used to determine which models are available for 
     - `"skills-2025-10-02"Skills2025_10_02`
 
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -348,6 +352,10 @@ The Models API response can be used to determine information about a specific mo
     - `"skills-2025-10-02"Skills2025_10_02`
 
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

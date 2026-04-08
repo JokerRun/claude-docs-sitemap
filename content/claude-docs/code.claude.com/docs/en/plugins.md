@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-04-03T03:10:14.718804Z
-sha256: 1f7ab125ec2fa96e97fe96e24b56b3305ef6b703b91c5347b9180e25569693d3
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 5efa5fb47f1e4d1a204ef8676b5d5c9def5798889c297ed23f6c13a5131aa23b
 ---
 
 > ## Documentation Index
@@ -81,12 +81,12 @@ This quickstart walks you through creating a plugin with a custom skill. You'll 
 
     ```json my-first-plugin/.claude-plugin/plugin.json theme={null}
     {
-    "name": "my-first-plugin",
-    "description": "A greeting plugin to learn the basics",
-    "version": "1.0.0",
-    "author": {
-    "name": "Your Name"
-    }
+      "name": "my-first-plugin",
+      "description": "A greeting plugin to learn the basics",
+      "version": "1.0.0",
+      "author": {
+        "name": "Your Name"
+      }
     }
     ```
 

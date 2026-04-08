@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/models/list
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: ddeab3a0eb1655cde175dc2261b25e2b3751a0b8a087baa9a9685307b47fee98
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: a9dac0f74d273aec3a9a8bbb901c523ac07469377056fbab4c6bedc61af7ab7a
 ---
 
 ## List
@@ -37,7 +37,7 @@ The Models API response can be used to determine which models are available for 
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,10 @@ The Models API response can be used to determine which models are available for 
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

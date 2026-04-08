@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/ultraplan
-fetched_at: 2026-04-04T03:07:06.698608Z
-sha256: 4d7bc882881c214a8219b1550b4d3d2bfcf664641fe8c6d814453da89e5f0b2d
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 5c8508b004e8e8b0b734a4f8fb4e6eb946926c6f313dfec6cd9d26d60387c5ba
 ---
 
 > ## Documentation Index
@@ -14,7 +14,7 @@ sha256: 4d7bc882881c214a8219b1550b4d3d2bfcf664641fe8c6d814453da89e5f0b2d
 > Start a plan from your CLI, draft it on Claude Code on the web, then execute it remotely or back in your terminal
 
 <Note>
-  Ultraplan is in research preview. Behavior and capabilities may change based on feedback.
+  Ultraplan is in research preview and requires Claude Code v2.1.91 or later. Behavior and capabilities may change based on feedback.
 </Note>
 
 Ultraplan hands a planning task from your local CLI to a [Claude Code on the web](/en/claude-code-on-the-web) session running in [plan mode](/en/permission-modes#analyze-before-you-edit-with-plan-mode). Claude drafts the plan in the cloud while you keep working in your terminal. When the plan is ready, you open it in your browser to comment on specific sections, ask for revisions, and choose where to execute it.
@@ -25,7 +25,7 @@ This is useful when you want a richer review surface than the terminal offers:
 * **Hands-off drafting**: the plan is generated remotely, so your terminal stays free for other work
 * **Flexible execution**: approve the plan to run on the web and open a pull request, or send it back to your terminal
 
-Ultraplan requires a [Claude Code on the web](/en/claude-code-on-the-web#who-can-use-claude-code-on-the-web) account and a GitHub repository. The cloud session runs in your account's default [cloud environment](/en/claude-code-on-the-web#cloud-environment).
+Ultraplan requires a [Claude Code on the web](/en/claude-code-on-the-web#who-can-use-claude-code-on-the-web) account and a GitHub repository. Because it runs on Anthropic's cloud infrastructure, it is not available when using Amazon Bedrock, Google Cloud Vertex AI, or Microsoft Foundry. The cloud session runs in your account's default [cloud environment](/en/claude-code-on-the-web#cloud-environment).
 
 ## Launch ultraplan from the CLI
 

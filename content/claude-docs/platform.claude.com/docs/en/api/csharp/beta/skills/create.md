@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/create
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 4a666c02626b531e94f1c578e06ba99c915dd8e5c0ce34504c32e80d05173b8b
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 8572536b9983748d12dd0102f7964e6001f7b2815b6066b90a443f72dc292b00
 ---
 
 ## Create
@@ -72,6 +72,10 @@ Create Skill
     - `"skills-2025-10-02"Skills2025_10_02`
 
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

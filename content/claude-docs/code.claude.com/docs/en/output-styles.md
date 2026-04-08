@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/output-styles
-fetched_at: 2026-04-02T04:32:20.033306Z
-sha256: 1d16f362e7097a01fb09d3f9b0aa828faebbf58393cbbfa4b09663b911afe606
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: c9caf108261168717520e21b7e937402c713181d977db8873ef3a03ebe21eecd
 ---
 
 > ## Documentation Index
@@ -95,7 +95,8 @@ tasks. [Your custom instructions here...]
 ```
 
 You can save these files at the user level (`~/.claude/output-styles`) or
-project level (`.claude/output-styles`).
+project level (`.claude/output-styles`). [Plugins](/en/plugins-reference) can
+also ship output styles in an `output-styles/` directory.
 
 ### Frontmatter
 

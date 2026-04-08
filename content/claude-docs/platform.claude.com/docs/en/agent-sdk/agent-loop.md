@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/agent-loop
-fetched_at: 2026-04-03T03:10:14.718804Z
-sha256: 77a76c3cc79cc0ddc32c27958d82ff131fb89901ce1234cff9f77c29b12ed7c4
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 5ff1a7faa5019f1e1577673bf7c9f68d10dcd0880498831b9abf0db3bcccdb30
 ---
 
 # How the agent loop works
@@ -176,7 +176,7 @@ The `effort` option controls how much reasoning Claude applies. Lower effort lev
 | `"high"` | Thorough analysis | Refactors, debugging |
 | `"max"` | Maximum reasoning depth | Multi-step problems requiring deep analysis |
 
-If you don't set `effort`, the Python SDK leaves the parameter unset and defers to the model's default behavior. The TypeScript SDK defaults to `"high"`.
+If you don't set `effort`, both SDKs leave the parameter unset and the underlying engine resolves a model-dependent default.
 
 <Note>
 `effort` trades latency and token cost for reasoning depth within each response. [Extended thinking](/docs/en/build-with-claude/extended-thinking) is a separate feature that produces visible chain-of-thought blocks in the output. They are independent: you can set `effort: "low"` with extended thinking enabled, or `effort: "max"` without it.
@@ -192,7 +192,7 @@ The permission mode option (`permission_mode` in Python, `permissionMode` in Typ
 |:-----|:---------|
 | `"default"` | Tools not covered by allow rules trigger your approval callback; no callback means deny |
 | `"acceptEdits"` | Auto-approves file edits, other tools follow default rules |
-| `"plan"` | No tool execution; Claude produces a plan for review |
+| `"plan"` | Read-only tools run; tools that make changes are blocked while Claude produces a plan for review |
 | `"dontAsk"` | Never prompts. Tools pre-approved by [permission rules](https://code.claude.com/docs/en/settings#permission-settings) run, everything else is denied |
 | `"auto"` (TypeScript only) | Uses a model classifier to approve or deny each tool call. See [Auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode) for availability and behavior |
 | `"bypassPermissions"` | Runs all allowed tools without asking. Cannot be used when running as root on Unix. Use only in isolated environments where the agent's actions cannot affect systems you care about |

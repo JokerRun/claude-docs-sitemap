@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/create
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 46c6d5b36bd7fb7ed92599fa60d1633bd6a47e7e5b4bf571ab6c47372978f3ea
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: d2efeafa149a06a154bc6e254872339dd99f898917f4b7ac1c2fae7f6105ddad
 ---
 
 ## Create
@@ -21,7 +21,7 @@ Create Skill
 
   This is a human-readable label that is not included in the prompt sent to the model.
 
-- `files: Optional[SequenceNotStr[FileTypes]]`
+- `files: Optional[Sequence[FileTypes]]`
 
   Files to upload for the skill.
 
@@ -33,7 +33,7 @@ Create Skill
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Create Skill
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

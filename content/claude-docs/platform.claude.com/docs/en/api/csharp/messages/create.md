@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 011520ae3c70c440cd8707944bd180a335070f23780c03a64838af6c3c7f709e
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 7cd054dc7608f748a94aa1079cc3d712f2d4ebfb5833ee361ed29aed7a554ec8
 ---
 
 ## Create
@@ -3865,6 +3865,28 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     Conversational role of the generated message.
 
     This will always be `"assistant"`.
+
+  - `required RefusalStopDetails? StopDetails`
+
+    Structured information about a refusal.
+
+    - `required Category? Category`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `"cyber"Cyber`
+
+      - `"bio"Bio`
+
+    - `required string? Explanation`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `JsonElement Type "refusal"constant`
 
   - `required StopReason? StopReason`
 

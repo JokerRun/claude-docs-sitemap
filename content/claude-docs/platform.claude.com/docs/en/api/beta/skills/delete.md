@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/delete
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: eda675c3e73f4a3b5d5e7b168cc9ca3fa383609674c1c18badbdbeb8b2709386
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 0e20fc3ff1501f59ce5ec7874379871ffab4c49388fc23b20981c355fe1ac8ed
 ---
 
 ## Delete
@@ -27,7 +27,7 @@ Delete Skill
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -69,6 +69,10 @@ Delete Skill
 
     - `"fast-mode-2026-02-01"`
 
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
+
 ### Returns
 
 - `id: string`
@@ -86,7 +90,7 @@ Delete Skill
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/skills/$SKILL_ID?beta=true \
+curl https://api.anthropic.com/v1/skills/$SKILL_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: skills-2025-10-02' \

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/download
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: fd9010af885df69f11e89f695c9d4ee4393c508df6d8eb5c941a03ff04e83f77
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 942f577b25dcd6e886f309be7bd577b2724e170c3cbdae600314179f869f5e90
 ---
 
 ## Download
@@ -25,7 +25,7 @@ Download File
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -67,10 +67,14 @@ Download File
 
     - `"fast-mode-2026-02-01"`
 
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
+
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/files/$FILE_ID/content?beta=true \
+curl https://api.anthropic.com/v1/files/$FILE_ID/content \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: files-api-2025-04-14' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"

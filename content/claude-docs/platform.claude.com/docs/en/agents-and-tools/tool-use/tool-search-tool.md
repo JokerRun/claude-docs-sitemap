@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: de9941100ffacefe8d374f77efa9d65f263bca1142fcd5720529e26ac5072879
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 5a0377fe589a543ba20760a4f0703a310b0c5a5373a957a8e03d89be93af3240
 ---
 
 # Tool search tool
@@ -826,7 +826,7 @@ For ZDR eligibility across all features, see [API and data retention](/docs/en/b
 - **Maximum tools:** 10,000 tools in your catalog
 - **Search results:** Returns 3-5 most relevant tools per search
 - **Pattern length:** Maximum 200 characters for regex patterns
-- **Model support:** Sonnet 4.0+, Opus 4.0+ only (no Haiku)
+- **Model support:** [Claude Mythos Preview](https://anthropic.com/glasswing), Sonnet 4.0+, Opus 4.0+ only (no Haiku)
 
 ### When to use tool search
 

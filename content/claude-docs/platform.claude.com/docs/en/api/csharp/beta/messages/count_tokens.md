@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/count_tokens
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: ab97907270984127aa41cca662860a7864787baf26bfe25aee5cf9504f88255c
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 17873469efc1b5e51993d47aafe07b4167b809701f6f1d23b7f64bd99b6aef4e
 ---
 
 ## Count Tokens
@@ -3799,6 +3799,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"skills-2025-10-02"Skills2025_10_02`
 
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

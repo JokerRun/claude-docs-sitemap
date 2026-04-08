@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/upload
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: b38be0600b4cbf5c34131f76bdb689b821abe67c9fcef59ce0bbe7e5ba63cdb2
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: d60fac3d5af65aa69c42c50fcbc1007052db0c0ce1dc9b2e77260fe784512420
 ---
 
 ## Upload
@@ -19,7 +19,7 @@ Upload File
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -60,6 +60,10 @@ Upload File
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -102,7 +106,7 @@ Upload File
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/files?beta=true \
+curl https://api.anthropic.com/v1/files \
     -H 'Content-Type: multipart/form-data' \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: files-api-2025-04-14' \

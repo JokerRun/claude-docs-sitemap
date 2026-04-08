@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/download
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 93c6972387481aaf3817a2bb12f53665dfe6eecb05dc561efd1b8e7f26a7f076
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: bfbe6336a3835b971dc0d91fa3bcf65eca9c46df9e4a586847f6c5ccdfa8e6af
 ---
 
 ## Download
@@ -64,6 +64,10 @@ Download File
     - `"skills-2025-10-02"Skills2025_10_02`
 
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Example
 

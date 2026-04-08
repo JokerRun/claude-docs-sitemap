@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak
-fetched_at: 2026-04-07T03:10:26.992298Z
-sha256: 5c47eaaeea354aa7d36abd4b7e36dd6afc2ca7f3b44b97e44a099ba1bc571dc5
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 8c621321a8b5942ce0ce990687a5973919c04482a300a7852f5dcaafcc74d41e
 ---
 
 # Reduce prompt leak
@@ -23,7 +23,7 @@ If you decide to implement leak-resistant techniques, be sure to test your promp
 ## Strategies to reduce prompt leak
 
 - **Separate context from queries:**
-You can try using system prompts to isolate key information and context from user queries. You can emphasize key instructions in the `User` turn, then reemphasize those instructions by prefilling the `Assistant` turn. (Note: prefilling is not supported on Claude Opus 4.6 and Sonnet 4.6.)
+You can try using system prompts to isolate key information and context from user queries. You can emphasize key instructions in the `User` turn, then reemphasize those instructions by prefilling the `Assistant` turn. (Note: prefilling is not supported on [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.6, and Sonnet 4.6.)
 
 <section title="Example: Safeguarding proprietary analytics">
 

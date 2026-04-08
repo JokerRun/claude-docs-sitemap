@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: ba4339089b46f4baff57bb9780a3c8f2547fb0bf6fc6354f656e33e02918098a
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: f0622b4302ab52259d49ef938932038c7d84671b070a3a3d1c1976971a85e799
 ---
 
 # Web fetch tool
@@ -13,7 +13,11 @@ Fetch and read content from specific URLs to augment Claude's context with live 
 
 The web fetch tool allows Claude to retrieve full content from specified web pages and PDF documents.
 
-The latest web fetch tool version (`web_fetch_20260209`) supports **dynamic filtering** with Claude Opus 4.6 and Sonnet 4.6. Claude can write and execute code to filter fetched content before it reaches the context window, keeping only relevant information and discarding the rest. This reduces token consumption while maintaining response quality. The previous tool version (`web_fetch_20250910`) remains available without dynamic filtering.
+The latest web fetch tool version (`web_fetch_20260209`) supports **dynamic filtering** with [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.6, and Claude Sonnet 4.6. Claude can write and execute code to filter fetched content before it reaches the context window, keeping only relevant information and discarding the rest. This reduces token consumption while maintaining response quality. The previous tool version (`web_fetch_20250910`) remains available without dynamic filtering.
+
+<Note>
+For [Claude Mythos Preview](https://anthropic.com/glasswing), web fetch is supported on the Claude API and Microsoft Foundry only. It is not available for Mythos Preview on Amazon Bedrock or Google Vertex AI.
+</Note>
 
 <Note>
 Use the [feedback form](https://forms.gle/NhWcgmkcvPCMmPE86) to provide feedback on the quality of the model responses, the API itself, or the quality of the documentation.
@@ -47,7 +51,7 @@ When you add the web fetch tool to your API request:
 The web fetch tool currently does not support websites dynamically rendered via JavaScript.
 </Note>
 
-### Dynamic filtering with Opus 4.6 and Sonnet 4.6
+### Dynamic filtering
 
 Fetching full web pages and PDFs can quickly consume tokens, especially when only specific information is needed from large documents. With the `web_fetch_20260209` tool version, Claude can write and execute code to filter the fetched content before loading it into context.
 

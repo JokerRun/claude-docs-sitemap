@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/retrieve_metadata
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: f2156364b20ace90abc587cb36ebc79be14d4c5285026e724ebe1a92ae8cee41
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 2dee0f5a621a6cf0381ff736e080afdbe8774ff575d42fe99a8ee675fae007dc
 ---
 
 ## Retrieve Metadata
@@ -25,7 +25,7 @@ Get File Metadata
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,6 +66,10 @@ Get File Metadata
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

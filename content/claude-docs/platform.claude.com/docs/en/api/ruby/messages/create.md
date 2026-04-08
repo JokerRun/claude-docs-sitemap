@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: edac4b3d7eca5496d38f319461e100ce2c6340c29dfaaf80df01b2c8fb53db80
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 50353a7a6f3a7ae5fc2e428ca476de9471b761d31ba0e4dc377fe49f32ca0353
 ---
 
 ## Create
@@ -4612,6 +4612,30 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     This will always be `"assistant"`.
 
     - `:assistant`
+
+  - `stop_details: RefusalStopDetails`
+
+    Structured information about a refusal.
+
+    - `category: :cyber | :bio`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `:cyber`
+
+      - `:bio`
+
+    - `explanation: String`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `type: :refusal`
+
+      - `:refusal`
 
   - `stop_reason: StopReason`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/delete
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 4aff8b3867f991d4ccc6d8d3996b28ece228dee1a7a12d995e4fd65cac1ac132
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: cb85cf7451f1b21b7dfaa6ec661a733118a033de2e38c014e6aead45ec7fec55
 ---
 
 ## Delete
@@ -64,6 +64,10 @@ Delete File
     - `"skills-2025-10-02"Skills2025_10_02`
 
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

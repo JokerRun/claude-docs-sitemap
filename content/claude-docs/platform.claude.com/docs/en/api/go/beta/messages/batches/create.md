@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 3becffce9acf2010b7b1840dc76a27a6b74a2536a7b38bfdaffba3180637c3b5
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: b76ff8f6927fb70fd0404eb026f52075ca5c3861b7700ca4fd7bd54a274e1b17
 ---
 
 ## Create
@@ -4693,6 +4693,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Recommended for advanced use cases only. You usually only need to use `temperature`.
 
+      - `UserProfileID string`
+
+        The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
   - `Betas param.Field[[]AnthropicBeta]`
 
     Header param: Optional header to specify the beta version(s) you want to use.
@@ -4740,6 +4744,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/retrieve
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 59042d81e7f41db0e11a8e823b40631784627a5cad9e8cce3e0d8064a675fcaf
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: ec4b4c463cb4568760f56b3080adfd2bbd5b1bf1dbeb534e520be2f40e4076d2
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -68,6 +68,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -162,7 +166,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID?beta=true \
+curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: message-batches-2024-09-24' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"

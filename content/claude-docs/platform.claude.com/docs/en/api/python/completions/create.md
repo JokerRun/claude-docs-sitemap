@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/completions/create
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 1b3162653890d5dd905db2d08fad013a4f1f0c522dbb7a3c07db6dbeaa0f633e
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: a6d5ed3b0d58b1a6a104c9dd331a774433d8d1fdd4e5c29043d83553d4863992
 ---
 
 ## Create
@@ -145,7 +145,7 @@ Future models and features will not be compatible with Text Completions. See our
 
     This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
 
-- `stop_sequences: Optional[SequenceNotStr[str]]`
+- `stop_sequences: Optional[Sequence[str]]`
 
   Sequences that will cause the model to stop generating.
 
@@ -191,7 +191,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -232,6 +232,10 @@ Future models and features will not be compatible with Text Completions. See our
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

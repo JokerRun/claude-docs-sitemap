@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/cancel
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: e9e6cdc79acb653bd0d6401e5729dc592638365ee12d44659990ffb3cf9c561a
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: de25b9555672c29c6e1d883d7f6a819344da0e48db5b3a52fd05ab31869b2f8c
 ---
 
 ## Cancel
@@ -68,6 +68,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 18ab273bcec95a0cb9302198b4b5291e03cc8f57bc9f73595a718585d6255529
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 601377e6e3ae4a4bffb6a68d0bd3f5a5c5948d7953b8fe5596c46a77ee3f37e4
 ---
 
 # Batches
@@ -5181,6 +5181,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"assistant"`
 
+        - `stop_details: RefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `category: "cyber" or "bio"`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `"cyber"`
+
+            - `"bio"`
+
+          - `explanation: string`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: "refusal"`
+
+            - `"refusal"`
+
         - `stop_reason: StopReason`
 
           The reason that we stopped.
@@ -6421,6 +6445,30 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `"assistant"`
 
+        - `stop_details: RefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `category: "cyber" or "bio"`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `"cyber"`
+
+            - `"bio"`
+
+          - `explanation: string`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: "refusal"`
+
+            - `"refusal"`
+
         - `stop_reason: StopReason`
 
           The reason that we stopped.
@@ -7461,6 +7509,30 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         - `"assistant"`
 
+      - `stop_details: RefusalStopDetails`
+
+        Structured information about a refusal.
+
+        - `category: "cyber" or "bio"`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `"cyber"`
+
+          - `"bio"`
+
+        - `explanation: string`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `type: "refusal"`
+
+          - `"refusal"`
+
       - `stop_reason: StopReason`
 
         The reason that we stopped.
@@ -8462,6 +8534,30 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
       This will always be `"assistant"`.
 
       - `"assistant"`
+
+    - `stop_details: RefusalStopDetails`
+
+      Structured information about a refusal.
+
+      - `category: "cyber" or "bio"`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `"cyber"`
+
+        - `"bio"`
+
+      - `explanation: string`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `type: "refusal"`
+
+        - `"refusal"`
 
     - `stop_reason: StopReason`
 

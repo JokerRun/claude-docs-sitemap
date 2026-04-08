@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/models
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: a50d5023070b835e8df218f44b40a5f9b688c0304c9620ce11e2ac88e44fdc81
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: a31b5605ca82acc356637db766f8e57504f780ceb94317b6bb2d701234067429
 ---
 
 # Models
@@ -82,6 +82,10 @@ The Models API response can be used to determine which models are available for 
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -359,6 +363,10 @@ The Models API response can be used to determine information about a specific mo
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/cancel
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: c542c2fcb3de87bb579afe478c38a09e8f9f70071ec2e5279b39f3f2c70c2954
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: c06f7f3a8b2467c5d0304322c4b0449a3af95886c68688a91fb56b085fe8d06c
 ---
 
 ## Cancel
@@ -72,6 +72,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

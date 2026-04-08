@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 52992f9a450e6d8424c1fd9b326d77bb7b699a689f8ffed0941718456b3ceb94
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 820f03bfb2c8cf0f7413c1350918a5fc031826a61616d2ad7c48939304f4149f
 ---
 
 ## Create
@@ -4157,6 +4157,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Recommended for advanced use cases only. You usually only need to use `temperature`.
 
+      - `string? UserProfileID`
+
+        The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
   - `IReadOnlyList<AnthropicBeta> betas`
 
     Header param: Optional header to specify the beta version(s) you want to use.
@@ -4200,6 +4204,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"skills-2025-10-02"Skills2025_10_02`
 
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -4457,6 +4465,7 @@ BatchCreateParams parameters = new()
                 ],
                 TopK = 5,
                 TopP = 0.7,
+                UserProfileID = "user_profile_id",
             },
         },
     ],

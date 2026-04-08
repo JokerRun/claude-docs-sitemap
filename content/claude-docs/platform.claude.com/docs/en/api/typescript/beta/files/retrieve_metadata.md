@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/retrieve_metadata
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: d34b61c5b1b8e7a7f83de93a3019cb0b03cc1eb2e48b971f14938d3c34e0806d
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: e582dbb4eab92d5457f947360014927a60fe5a50609f0d4fd91caceb6fce3b11
 ---
 
 ## Retrieve Metadata
@@ -27,7 +27,7 @@ Get File Metadata
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -68,6 +68,10 @@ Get File Metadata
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

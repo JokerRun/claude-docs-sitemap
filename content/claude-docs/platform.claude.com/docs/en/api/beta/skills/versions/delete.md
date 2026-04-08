@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/delete
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 69731e2f0f254334f5a58a4f300885cd62314c3d6f2bfa312fc524dbd477e3d7
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 4183c41d34f3d122dba12c0b63c7fcab407bb944ab66b72b24a8ed98a5d2bba4
 ---
 
 ## Delete
@@ -33,7 +33,7 @@ Delete Skill Version
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -75,6 +75,10 @@ Delete Skill Version
 
     - `"fast-mode-2026-02-01"`
 
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
+
 ### Returns
 
 - `id: string`
@@ -92,7 +96,7 @@ Delete Skill Version
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION?beta=true \
+curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: skills-2025-10-02' \

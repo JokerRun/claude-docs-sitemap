@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/count_tokens
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 9b72fc492e1bd39ea9b7672d5abfb1fdd1549cdded204d2f17f958d7d7ca8db2
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: ce94bbc4f02380f7272ba21a278bcfb2ba911d4788e2f561974c2bb72263e3f2
 ---
 
 ## Count Tokens
@@ -4291,6 +4291,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

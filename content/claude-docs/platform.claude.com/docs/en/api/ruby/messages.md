@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 6bbac70d17c13f5d5c40635b7766fdf10e19af06f357021957fbd4e888b6877e
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 37e938263d1434bc91a13b99a593bc0119faa8c613dd40063183b5b3b49a97b7
 ---
 
 # Messages
@@ -4614,6 +4614,30 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     This will always be `"assistant"`.
 
     - `:assistant`
+
+  - `stop_details: RefusalStopDetails`
+
+    Structured information about a refusal.
+
+    - `category: :cyber | :bio`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `:cyber`
+
+      - `:bio`
+
+    - `explanation: String`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `type: :refusal`
+
+      - `:refusal`
 
   - `stop_reason: StopReason`
 
@@ -14269,6 +14293,30 @@ puts(message_tokens_count)
 
     - `:assistant`
 
+  - `stop_details: RefusalStopDetails`
+
+    Structured information about a refusal.
+
+    - `category: :cyber | :bio`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `:cyber`
+
+      - `:bio`
+
+    - `explanation: String`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `type: :refusal`
+
+      - `:refusal`
+
   - `stop_reason: StopReason`
 
     The reason that we stopped.
@@ -18768,7 +18816,7 @@ puts(message_tokens_count)
 
 - `class RawMessageDeltaEvent`
 
-  - `delta: { container, stop_reason, stop_sequence}`
+  - `delta: { container, stop_details, stop_reason, stop_sequence}`
 
     - `container: Container`
 
@@ -18781,6 +18829,30 @@ puts(message_tokens_count)
       - `expires_at: Time`
 
         The time at which the container will expire.
+
+    - `stop_details: RefusalStopDetails`
+
+      Structured information about a refusal.
+
+      - `category: :cyber | :bio`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `:cyber`
+
+        - `:bio`
+
+      - `explanation: String`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `type: :refusal`
+
+        - `:refusal`
 
     - `stop_reason: StopReason`
 
@@ -19632,6 +19704,30 @@ puts(message_tokens_count)
       This will always be `"assistant"`.
 
       - `:assistant`
+
+    - `stop_details: RefusalStopDetails`
+
+      Structured information about a refusal.
+
+      - `category: :cyber | :bio`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `:cyber`
+
+        - `:bio`
+
+      - `explanation: String`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `type: :refusal`
+
+        - `:refusal`
 
     - `stop_reason: StopReason`
 
@@ -20545,6 +20641,30 @@ puts(message_tokens_count)
 
         - `:assistant`
 
+      - `stop_details: RefusalStopDetails`
+
+        Structured information about a refusal.
+
+        - `category: :cyber | :bio`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `:cyber`
+
+          - `:bio`
+
+        - `explanation: String`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `type: :refusal`
+
+          - `:refusal`
+
       - `stop_reason: StopReason`
 
         The reason that we stopped.
@@ -20658,7 +20778,7 @@ puts(message_tokens_count)
 
   - `class RawMessageDeltaEvent`
 
-    - `delta: { container, stop_reason, stop_sequence}`
+    - `delta: { container, stop_details, stop_reason, stop_sequence}`
 
       - `container: Container`
 
@@ -20671,6 +20791,30 @@ puts(message_tokens_count)
         - `expires_at: Time`
 
           The time at which the container will expire.
+
+      - `stop_details: RefusalStopDetails`
+
+        Structured information about a refusal.
+
+        - `category: :cyber | :bio`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `:cyber`
+
+          - `:bio`
+
+        - `explanation: String`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `type: :refusal`
+
+          - `:refusal`
 
       - `stop_reason: StopReason`
 
@@ -21569,6 +21713,32 @@ puts(message_tokens_count)
   - `type: :redacted_thinking`
 
     - `:redacted_thinking`
+
+### Refusal Stop Details
+
+- `class RefusalStopDetails`
+
+  Structured information about a refusal.
+
+  - `category: :cyber | :bio`
+
+    The policy category that triggered the refusal.
+
+    `null` when the refusal doesn't map to a named category.
+
+    - `:cyber`
+
+    - `:bio`
+
+  - `explanation: String`
+
+    Human-readable explanation of the refusal.
+
+    This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+  - `type: :refusal`
+
+    - `:refusal`
 
 ### Search Result Block Param
 
@@ -32350,6 +32520,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:assistant`
 
+        - `stop_details: RefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `category: :cyber | :bio`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `:cyber`
+
+            - `:bio`
+
+          - `explanation: String`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: :refusal`
+
+            - `:refusal`
+
         - `stop_reason: StopReason`
 
           The reason that we stopped.
@@ -33594,6 +33788,30 @@ puts(message_batch_individual_response)
 
           - `:assistant`
 
+        - `stop_details: RefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `category: :cyber | :bio`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `:cyber`
+
+            - `:bio`
+
+          - `explanation: String`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: :refusal`
+
+            - `:refusal`
+
         - `stop_reason: StopReason`
 
           The reason that we stopped.
@@ -34634,6 +34852,30 @@ puts(message_batch_individual_response)
 
         - `:assistant`
 
+      - `stop_details: RefusalStopDetails`
+
+        Structured information about a refusal.
+
+        - `category: :cyber | :bio`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `:cyber`
+
+          - `:bio`
+
+        - `explanation: String`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `type: :refusal`
+
+          - `:refusal`
+
       - `stop_reason: StopReason`
 
         The reason that we stopped.
@@ -35635,6 +35877,30 @@ puts(message_batch_individual_response)
       This will always be `"assistant"`.
 
       - `:assistant`
+
+    - `stop_details: RefusalStopDetails`
+
+      Structured information about a refusal.
+
+      - `category: :cyber | :bio`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `:cyber`
+
+        - `:bio`
+
+      - `explanation: String`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `type: :refusal`
+
+        - `:refusal`
 
     - `stop_reason: StopReason`
 

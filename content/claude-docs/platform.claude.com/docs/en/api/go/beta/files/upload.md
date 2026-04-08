@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/upload
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 4f7828315169be62371563fb5cb41456e9d4b73b56c412aaa443610a48ec3727
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 85b1f5eff0d948b4af355c743d779862c129095bf31b72dddb104dfa383ba92f
 ---
 
 ## Upload
@@ -68,6 +68,10 @@ Upload File
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

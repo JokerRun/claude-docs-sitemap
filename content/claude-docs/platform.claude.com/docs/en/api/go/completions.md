@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 739d469da5805170bfe873c8b3525471a08e47630b60571fd924fd0955424a83
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 59503fde3d089d8c31a585ec37e7d9a968bb086b8c5d79bf1b6167bfbae2e2e6
 ---
 
 # Completions
@@ -140,6 +140,10 @@ Future models and features will not be compatible with Text Completions. See our
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

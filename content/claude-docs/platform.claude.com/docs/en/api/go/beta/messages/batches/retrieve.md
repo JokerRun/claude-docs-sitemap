@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/retrieve
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 12c715fbd1e55f9d7c201487c56ad7ab4f537f964d3d3025a88d39a63a5e8f3e
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 70a3f4f19f8373adbc15ff880511cf4f655ea7854f3b5b04b220f46685e7d790
 ---
 
 ## Retrieve
@@ -70,6 +70,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

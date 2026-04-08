@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/retrieve_metadata
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: b04c2f9fa687e364629d2ac30543bfea4d605383ad62913538fb2b65b8995f49
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: bea2c6095eb02dcb0f66c176e6a2b18249f06e2030d65251360c8130176a35a0
 ---
 
 ## Retrieve Metadata
@@ -64,6 +64,10 @@ Get File Metadata
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

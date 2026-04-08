@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency
-fetched_at: 2026-04-07T03:10:26.992298Z
-sha256: d47b5652ef2c3e362d5735abdbb3a6882e0b2aa598d4415bc47429e6f7364888
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: d52112e5bf7003f6f14a81bfcc6cd1ba4a012f3b4c394b3caf101bc25a1fcc43
 ---
 
 # Increase output consistency
@@ -33,7 +33,7 @@ Precisely define your desired output format using JSON, XML, or custom templates
 
 ## Prefill Claude's response
 
-<Note>Prefilling is not supported on Claude Opus 4.6 and Claude Sonnet 4.6. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) or system prompt instructions instead.</Note>
+<Note>Prefilling is not supported on [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.6, and Claude Sonnet 4.6. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) or system prompt instructions instead.</Note>
 
 Prefill the `Assistant` turn with your desired format. This trick bypasses Claude's friendly preamble and enforces your structure.
 

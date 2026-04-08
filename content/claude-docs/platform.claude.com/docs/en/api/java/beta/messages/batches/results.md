@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/results
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 69a1c373e806d31d7684171288ac7c2639b75bbee94cacfab876f48537cec5f1
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 9222cd0fb25a91bdad32c60be3eef5dc93920b4112bf8d4c832c935108e79619
 ---
 
 ## Results
@@ -68,6 +68,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 
@@ -1077,6 +1081,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           This will always be `"assistant"`.
 
           - `ASSISTANT("assistant")`
+
+        - `Optional<BetaRefusalStopDetails> stopDetails`
+
+          Structured information about a refusal.
+
+          - `Optional<Category> category`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `CYBER("cyber")`
+
+            - `BIO("bio")`
+
+          - `Optional<String> explanation`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `JsonValue; type "refusal"constant`
+
+            - `REFUSAL("refusal")`
 
         - `Optional<BetaStopReason> stopReason`
 

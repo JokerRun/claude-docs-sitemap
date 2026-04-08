@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/create
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: ccdf0f1e81c9705884bc06c8e3af5072f96a7492b0c51dc035e02d764269c72a
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 2add11e637f68875c3e055878fdba0e5a7218eb4142b3e89c54f2ffb70a47c6f
 ---
 
 ## Create
@@ -21,7 +21,7 @@ Create Skill Version
 
   The format and length of IDs may change over time.
 
-- `files: Optional[SequenceNotStr[FileTypes]]`
+- `files: Optional[Sequence[FileTypes]]`
 
   Files to upload for the skill.
 
@@ -33,7 +33,7 @@ Create Skill Version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Create Skill Version
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

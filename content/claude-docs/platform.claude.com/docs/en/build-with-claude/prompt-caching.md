@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-03-31T04:38:22.136736Z
-sha256: c001cd5044bcd6d04371b43657d238dcd4511d1e07f57819a56e73052f74e9ca
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 88a84f107e1234efe53b61c0966e39c8900f0616474a4748a8f585bb8d13f8e6
 ---
 
 # Prompt caching
@@ -285,18 +285,7 @@ These multipliers stack with other pricing modifiers such as the Batch API disco
 
 ## Supported models
 
-Prompt caching (both automatic and explicit) is currently supported on:
-- Claude Opus 4.6
-- Claude Opus 4.5
-- Claude Opus 4.1
-- Claude Opus 4
-- Claude Sonnet 4.6
-- Claude Sonnet 4.5
-- Claude Sonnet 4
-- Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
-- Claude Haiku 4.5
-- Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations))
-- Claude Haiku 3
+Prompt caching (both automatic and explicit) is supported on all [active Claude models](/docs/en/about-claude/models/overview).
 
 ---
 
@@ -643,7 +632,7 @@ Adding more `cache_control` breakpoints doesn't increase your costs - you still 
 
 ### Cache limitations
 The minimum cacheable prompt length is:
-- 4096 tokens for Claude Opus 4.6, Claude Opus 4.5
+- 4096 tokens for [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.6, and Claude Opus 4.5
 - 2048 tokens for Claude Sonnet 4.6
 - 1024 tokens for Claude Sonnet 4.5, Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4, and Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
 - 4096 tokens for Claude Haiku 4.5
@@ -2590,7 +2579,7 @@ For ZDR eligibility across all features, see [API and data retention](/docs/en/b
 
   <section title="Is prompt caching available for all models?">
 
-    No, prompt caching is currently only available for Claude Opus 4.6, Claude Opus 4.5, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4, Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)), Claude Haiku 4.5, Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations)), and Claude Haiku 3.
+    Prompt caching is supported on all [active Claude models](/docs/en/about-claude/models/overview).
   
 </section>
 

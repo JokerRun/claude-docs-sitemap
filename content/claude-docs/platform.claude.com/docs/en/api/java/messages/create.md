@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 41d3ba35256fac19913068a360e89749b72154dc287dff0e547be2d7161535f5
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 31053f1e246ece648883755c5d493da0adb22357523109f957b49e6cdda8b698
 ---
 
 ## Create
@@ -4387,6 +4387,30 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     This will always be `"assistant"`.
 
     - `ASSISTANT("assistant")`
+
+  - `Optional<RefusalStopDetails> stopDetails`
+
+    Structured information about a refusal.
+
+    - `Optional<Category> category`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `CYBER("cyber")`
+
+      - `BIO("bio")`
+
+    - `Optional<String> explanation`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `JsonValue; type "refusal"constant`
+
+      - `REFUSAL("refusal")`
 
   - `Optional<StopReason> stopReason`
 

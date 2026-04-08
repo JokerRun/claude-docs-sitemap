@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-03-28T04:23:53.783656Z
-sha256: 71cb71a9e6fd28d433d06ddd5b7256fe9ed3dd9e1a819fbbf8b482510617b187
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 5e63ea97fcbae8dcc4714e1e2c2d1e1f777a57cd074bf686ab20b12fce064368
 ---
 
 # Compaction
@@ -39,6 +39,7 @@ Compaction is in beta. Include the [beta header](/docs/en/api/beta-headers) `com
 
 Compaction is supported on the following models:
 
+- [Claude Mythos Preview](https://anthropic.com/glasswing) (`claude-mythos-preview`)
 - Claude Opus 4.6 (`claude-opus-4-6`)
 - Claude Sonnet 4.6 (`claude-sonnet-4-6`)
 

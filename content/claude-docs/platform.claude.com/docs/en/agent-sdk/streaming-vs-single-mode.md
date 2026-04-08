@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/streaming-vs-single-mode
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: ce705f6e00c63bd212144315bc693281cac878363c0a43fd11601c1f282a4c67
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: a3944aabf53a03f1f7506bf63c35533bc0f5c8ff166c45bde3f8a7c9e315543c
 ---
 
 # Streaming Input
@@ -221,7 +221,7 @@ Single message input is simpler but more limited.
 Use single message input when:
 
 - You need a one-shot response
-- You do not need image attachments, hooks, etc.
+- You do not need image attachments
 - You need to operate in a stateless environment, such as a lambda function
 
 ### Limitations
@@ -231,7 +231,6 @@ Single message input mode does **not** support:
 - Direct image attachments in messages
 - Dynamic message queueing
 - Real-time interruption
-- Hook integration
 - Natural multi-turn conversations
 </Warning>
 

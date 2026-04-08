@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/client-sdks
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: 10cb253283f257ac0348c448aa4ba9ef4ebb291f6f3de9e451d46571f027f464
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: ccf1f17a782d130f28057df9eb9e7d7b9a08009dfde933b4ffe5e76e8eb51a65
 ---
 
 # Client SDKs
@@ -219,7 +219,7 @@ All SDKs support multiple deployment options:
 | Platform | Description |
 |----------|-------------|
 | Claude API | Connect directly to Claude API endpoints |
-| [Amazon Bedrock](/docs/en/build-with-claude/claude-on-amazon-bedrock) | Use Claude through AWS |
+| [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock) | Use Claude through AWS |
 | [Google Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai) | Use Claude through Google Cloud |
 | [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry) | Use Claude through Microsoft Azure |
 

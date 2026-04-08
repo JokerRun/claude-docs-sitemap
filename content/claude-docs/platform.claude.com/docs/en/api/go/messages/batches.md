@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 2084f5e59363711e94b8d606fbc8e69745f7fa0dd95fbd29348c3f6f46803d80
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 5c8b47fd2e2822f217b6354f095171a6f8282579241227758b94c081df16b976
 ---
 
 # Batches
@@ -5262,6 +5262,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `const AssistantAssistant Assistant = "assistant"`
 
+        - `StopDetails RefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `Category RefusalStopDetailsCategory`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `const RefusalStopDetailsCategoryCyber RefusalStopDetailsCategory = "cyber"`
+
+            - `const RefusalStopDetailsCategoryBio RefusalStopDetailsCategory = "bio"`
+
+          - `Explanation string`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `Type Refusal`
+
+            - `const RefusalRefusal Refusal = "refusal"`
+
         - `StopReason StopReason`
 
           The reason that we stopped.
@@ -6522,6 +6546,30 @@ func main() {
 
           - `const AssistantAssistant Assistant = "assistant"`
 
+        - `StopDetails RefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `Category RefusalStopDetailsCategory`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `const RefusalStopDetailsCategoryCyber RefusalStopDetailsCategory = "cyber"`
+
+            - `const RefusalStopDetailsCategoryBio RefusalStopDetailsCategory = "bio"`
+
+          - `Explanation string`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `Type Refusal`
+
+            - `const RefusalRefusal Refusal = "refusal"`
+
         - `StopReason StopReason`
 
           The reason that we stopped.
@@ -7562,6 +7610,30 @@ func main() {
 
         - `const AssistantAssistant Assistant = "assistant"`
 
+      - `StopDetails RefusalStopDetails`
+
+        Structured information about a refusal.
+
+        - `Category RefusalStopDetailsCategory`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `const RefusalStopDetailsCategoryCyber RefusalStopDetailsCategory = "cyber"`
+
+          - `const RefusalStopDetailsCategoryBio RefusalStopDetailsCategory = "bio"`
+
+        - `Explanation string`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `Type Refusal`
+
+          - `const RefusalRefusal Refusal = "refusal"`
+
       - `StopReason StopReason`
 
         The reason that we stopped.
@@ -8563,6 +8635,30 @@ func main() {
       This will always be `"assistant"`.
 
       - `const AssistantAssistant Assistant = "assistant"`
+
+    - `StopDetails RefusalStopDetails`
+
+      Structured information about a refusal.
+
+      - `Category RefusalStopDetailsCategory`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `const RefusalStopDetailsCategoryCyber RefusalStopDetailsCategory = "cyber"`
+
+        - `const RefusalStopDetailsCategoryBio RefusalStopDetailsCategory = "bio"`
+
+      - `Explanation string`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `Type Refusal`
+
+        - `const RefusalRefusal Refusal = "refusal"`
 
     - `StopReason StopReason`
 

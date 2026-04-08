@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: a0571b595c14ccc350bf8143fbf3ee10e44608a5703ed73345153ea9f5fb8b4b
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 5fb6c4c9c3fc29ab14ff97f9283eca5d305c8dc2a8758913d92f2a1fa8851853
 ---
 
 ## Create
@@ -4391,6 +4391,30 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     This will always be `"assistant"`.
 
     - `const AssistantAssistant Assistant = "assistant"`
+
+  - `StopDetails RefusalStopDetails`
+
+    Structured information about a refusal.
+
+    - `Category RefusalStopDetailsCategory`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `const RefusalStopDetailsCategoryCyber RefusalStopDetailsCategory = "cyber"`
+
+      - `const RefusalStopDetailsCategoryBio RefusalStopDetailsCategory = "bio"`
+
+    - `Explanation string`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `Type Refusal`
+
+      - `const RefusalRefusal Refusal = "refusal"`
 
   - `StopReason StopReason`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/create
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 91fa60c558ccc7bd4eff46a7416e2049b0e6c4bf001ba965d5fdcc1ad9452e8c
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: e5be729d0312312dcd3f67ee10545e1f78a08fcbde857780038ed589bb593431
 ---
 
 ## Create
@@ -19,7 +19,7 @@ Create Skill
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -60,6 +60,10 @@ Create Skill
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -107,7 +111,7 @@ Create Skill
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/skills?beta=true \
+curl https://api.anthropic.com/v1/skills \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: skills-2025-10-02' \

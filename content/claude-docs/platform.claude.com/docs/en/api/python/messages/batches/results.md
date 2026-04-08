@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/batches/results
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 937aa4cce57fc08bddac93bc3b244bbe57fa3989fa9786dd0e8d14e1fcf52af3
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 58be8ffb4c6a2bc1d15287f5211d2eef049daa068139eb19f9a17bda135c3020
 ---
 
 ## Results
@@ -845,6 +845,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           This will always be `"assistant"`.
 
           - `"assistant"`
+
+        - `stop_details: Optional[RefusalStopDetails]`
+
+          Structured information about a refusal.
+
+          - `category: Optional[Literal["cyber", "bio"]]`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `"cyber"`
+
+            - `"bio"`
+
+          - `explanation: Optional[str]`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: Literal["refusal"]`
+
+            - `"refusal"`
 
         - `stop_reason: Optional[StopReason]`
 

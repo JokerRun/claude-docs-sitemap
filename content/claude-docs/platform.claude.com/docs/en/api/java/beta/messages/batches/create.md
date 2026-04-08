@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: fd23f0e51caca30f5053ab1ab5b27becfbff6050def9560d5c5717df6cd9e63d
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: cf7e1791a139105925b08b16044b4c89644d08fcb3677d13f655bff01a11141f
 ---
 
 ## Create
@@ -64,6 +64,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `List<Request> requests`
 
@@ -4734,6 +4738,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
 
         Recommended for advanced use cases only. You usually only need to use `temperature`.
+
+      - `Optional<String> userProfileId`
+
+        The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
 
 ### Returns
 

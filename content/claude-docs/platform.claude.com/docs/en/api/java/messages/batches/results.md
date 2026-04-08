@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/results
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: ff9212eb1afddd2de299b3b0c4f53239f60f3afda9a216938539ad4ee04767c3
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 2b7d45a99474a2e7ec57ab7ab3bb27e58575a0017b53834353b71d4fa3274030
 ---
 
 ## Results
@@ -823,6 +823,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           This will always be `"assistant"`.
 
           - `ASSISTANT("assistant")`
+
+        - `Optional<RefusalStopDetails> stopDetails`
+
+          Structured information about a refusal.
+
+          - `Optional<Category> category`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `CYBER("cyber")`
+
+            - `BIO("bio")`
+
+          - `Optional<String> explanation`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `JsonValue; type "refusal"constant`
+
+            - `REFUSAL("refusal")`
 
         - `Optional<StopReason> stopReason`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/list
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 2720dcb61dbef23706e7d108ce2a3f00fdd21a0c75a94e27fcc0de47fd1b6a2a
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 4faa5b49a9cd85d2dcb3ad97b83ed4b94e535f142903dd856ede1e419509f60f
 ---
 
 ## List
@@ -37,7 +37,7 @@ The Models API response can be used to determine which models are available for 
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,10 @@ The Models API response can be used to determine which models are available for 
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -278,7 +282,7 @@ The Models API response can be used to determine which models are available for 
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/models?beta=true \
+curl https://api.anthropic.com/v1/models \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```

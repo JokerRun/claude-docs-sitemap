@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 7922e00b2b3c85ba225ac526ffa449e7170e5764d37a35147e9014290e61e5a4
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: b57cdb575db97c6742afb9a13abf83ad4bac7c0b8520a24fdb04fd4d584207af
 ---
 
 # Messages
@@ -4685,13 +4685,17 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Recommended for advanced use cases only. You usually only need to use `temperature`.
 
+    - `user_profile_id?: string | null`
+
+      Body param: The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
     - `betas?: Array<AnthropicBeta>`
 
       Header param: Optional header to specify the beta version(s) you want to use.
 
       - `(string & {})`
 
-      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
         - `"message-batches-2024-09-24"`
 
@@ -4732,6 +4736,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"skills-2025-10-02"`
 
         - `"fast-mode-2026-02-01"`
+
+        - `"output-300k-2026-03-24"`
+
+        - `"user-profiles-2026-03-24"`
 
   - `MessageCreateParamsNonStreaming extends MessageCreateParamsBase`
 
@@ -5747,6 +5755,30 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     This will always be `"assistant"`.
 
     - `"assistant"`
+
+  - `stop_details: BetaRefusalStopDetails | null`
+
+    Structured information about a refusal.
+
+    - `category: "cyber" | "bio" | null`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `"cyber"`
+
+      - `"bio"`
+
+    - `explanation: string | null`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `type: "refusal"`
+
+      - `"refusal"`
 
   - `stop_reason: BetaStopReason | null`
 
@@ -10547,7 +10579,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -10588,6 +10620,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -17879,6 +17915,30 @@ console.log(betaMessageTokensCount.context_management);
 
     - `"assistant"`
 
+  - `stop_details: BetaRefusalStopDetails | null`
+
+    Structured information about a refusal.
+
+    - `category: "cyber" | "bio" | null`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `"cyber"`
+
+      - `"bio"`
+
+    - `explanation: string | null`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `type: "refusal"`
+
+      - `"refusal"`
+
   - `stop_reason: BetaStopReason | null`
 
     The reason that we stopped.
@@ -22024,6 +22084,30 @@ console.log(betaMessageTokensCount.context_management);
 
           Skill version or 'latest' for most recent version
 
+    - `stop_details: BetaRefusalStopDetails | null`
+
+      Structured information about a refusal.
+
+      - `category: "cyber" | "bio" | null`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `"cyber"`
+
+        - `"bio"`
+
+      - `explanation: string | null`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `type: "refusal"`
+
+        - `"refusal"`
+
     - `stop_reason: BetaStopReason | null`
 
       - `"end_turn"`
@@ -23170,6 +23254,30 @@ console.log(betaMessageTokensCount.context_management);
       This will always be `"assistant"`.
 
       - `"assistant"`
+
+    - `stop_details: BetaRefusalStopDetails | null`
+
+      Structured information about a refusal.
+
+      - `category: "cyber" | "bio" | null`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `"cyber"`
+
+        - `"bio"`
+
+      - `explanation: string | null`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `type: "refusal"`
+
+        - `"refusal"`
 
     - `stop_reason: BetaStopReason | null`
 
@@ -24387,6 +24495,30 @@ console.log(betaMessageTokensCount.context_management);
 
         - `"assistant"`
 
+      - `stop_details: BetaRefusalStopDetails | null`
+
+        Structured information about a refusal.
+
+        - `category: "cyber" | "bio" | null`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `"cyber"`
+
+          - `"bio"`
+
+        - `explanation: string | null`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `type: "refusal"`
+
+          - `"refusal"`
+
       - `stop_reason: BetaStopReason | null`
 
         The reason that we stopped.
@@ -24671,6 +24803,30 @@ console.log(betaMessageTokensCount.context_management);
           - `version: string`
 
             Skill version or 'latest' for most recent version
+
+      - `stop_details: BetaRefusalStopDetails | null`
+
+        Structured information about a refusal.
+
+        - `category: "cyber" | "bio" | null`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `"cyber"`
+
+          - `"bio"`
+
+        - `explanation: string | null`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `type: "refusal"`
+
+          - `"refusal"`
 
       - `stop_reason: BetaStopReason | null`
 
@@ -25815,6 +25971,32 @@ console.log(betaMessageTokensCount.context_management);
   - `type: "redacted_thinking"`
 
     - `"redacted_thinking"`
+
+### Beta Refusal Stop Details
+
+- `BetaRefusalStopDetails`
+
+  Structured information about a refusal.
+
+  - `category: "cyber" | "bio" | null`
+
+    The policy category that triggered the refusal.
+
+    `null` when the refusal doesn't map to a named category.
+
+    - `"cyber"`
+
+    - `"bio"`
+
+  - `explanation: string | null`
+
+    Human-readable explanation of the refusal.
+
+    This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+  - `type: "refusal"`
+
+    - `"refusal"`
 
 ### Beta Request Document Block
 
@@ -37452,13 +37634,17 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Recommended for advanced use cases only. You usually only need to use `temperature`.
 
+      - `user_profile_id?: string | null`
+
+        The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
   - `betas?: Array<AnthropicBeta>`
 
     Header param: Optional header to specify the beta version(s) you want to use.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -37499,6 +37685,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -37639,7 +37829,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -37680,6 +37870,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -37819,7 +38013,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -37860,6 +38054,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -37992,7 +38190,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -38033,6 +38231,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -38164,7 +38366,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -38205,6 +38407,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -38262,7 +38468,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -38303,6 +38509,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -39316,6 +39526,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           This will always be `"assistant"`.
 
           - `"assistant"`
+
+        - `stop_details: BetaRefusalStopDetails | null`
+
+          Structured information about a refusal.
+
+          - `category: "cyber" | "bio" | null`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `"cyber"`
+
+            - `"bio"`
+
+          - `explanation: string | null`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: "refusal"`
+
+            - `"refusal"`
 
         - `stop_reason: BetaStopReason | null`
 
@@ -40869,6 +41103,30 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
           - `"assistant"`
 
+        - `stop_details: BetaRefusalStopDetails | null`
+
+          Structured information about a refusal.
+
+          - `category: "cyber" | "bio" | null`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `"cyber"`
+
+            - `"bio"`
+
+          - `explanation: string | null`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: "refusal"`
+
+            - `"refusal"`
+
         - `stop_reason: BetaStopReason | null`
 
           The reason that we stopped.
@@ -42213,6 +42471,30 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
         - `"assistant"`
 
+      - `stop_details: BetaRefusalStopDetails | null`
+
+        Structured information about a refusal.
+
+        - `category: "cyber" | "bio" | null`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `"cyber"`
+
+          - `"bio"`
+
+        - `explanation: string | null`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `type: "refusal"`
+
+          - `"refusal"`
+
       - `stop_reason: BetaStopReason | null`
 
         The reason that we stopped.
@@ -43518,6 +43800,30 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
       This will always be `"assistant"`.
 
       - `"assistant"`
+
+    - `stop_details: BetaRefusalStopDetails | null`
+
+      Structured information about a refusal.
+
+      - `category: "cyber" | "bio" | null`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `"cyber"`
+
+        - `"bio"`
+
+      - `explanation: string | null`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `type: "refusal"`
+
+        - `"refusal"`
 
     - `stop_reason: BetaStopReason | null`
 

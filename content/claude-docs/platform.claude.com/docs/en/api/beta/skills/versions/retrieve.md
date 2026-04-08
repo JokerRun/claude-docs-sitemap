@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 4de16b22ea7dd18f58f3e179cf1bcfca539a084a60f5ac21fa3e9178b1699efd
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 3fb8ecdf51ebed03fa634c51a9b638f855ec707382e0a007e64520543a557c2a
 ---
 
 ## Retrieve
@@ -33,7 +33,7 @@ Get Skill Version
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Get Skill Version
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -124,7 +128,7 @@ Get Skill Version
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION?beta=true \
+curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: skills-2025-10-02' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"

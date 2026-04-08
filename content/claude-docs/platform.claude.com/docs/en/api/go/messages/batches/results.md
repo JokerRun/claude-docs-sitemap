@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/results
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 308abd687b70832d50a85d1bef35d71e13a19b6046fe9560fb036a715016f7f2
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: b5bac6e09cb6a028f9b7589d991bfee2b8c1f1e305c06f0972d05797bfd1f4fb
 ---
 
 ## Results
@@ -829,6 +829,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           This will always be `"assistant"`.
 
           - `const AssistantAssistant Assistant = "assistant"`
+
+        - `StopDetails RefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `Category RefusalStopDetailsCategory`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `const RefusalStopDetailsCategoryCyber RefusalStopDetailsCategory = "cyber"`
+
+            - `const RefusalStopDetailsCategoryBio RefusalStopDetailsCategory = "bio"`
+
+          - `Explanation string`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `Type Refusal`
+
+            - `const RefusalRefusal Refusal = "refusal"`
 
         - `StopReason StopReason`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-04-02T04:32:20.033306Z
-sha256: cd40a1ca5381b4ac6bf45be6837b53bfd6081478824cec5415632079f22111fe
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: ffad06f6f34609f0a5ffb62275bef9ac356241763ad27407faec669d65b0d529
 ---
 
 # Features overview
@@ -109,4 +109,4 @@ Manage files and assets for use with Claude.
 |---------|-----------|----|--------------|
 | [Files API](/docs/en/build-with-claude/files) | Upload and manage files to use with Claude without re-uploading content with each request. Supports PDFs, images, and text files. | Not ZDR eligible | <PlatformAvailability claudeApiBeta azureAiBeta /> |
 
-\* **Structured outputs:** Your prompts and Claude's outputs are not stored. Only JSON schemas are cached, for up to 24 hours since last use. **Tool search:** Only tool catalog data (names, descriptions, argument metadata) is stored server-side; custom client-side implementations are fully ZDR-eligible. **Web search and web fetch:** ZDR-eligible except when [dynamic filtering](/docs/en/agents-and-tools/tool-use/web-search-tool#dynamic-filtering-with-opus-4-6-and-sonnet-4-6) is enabled. See [ZDR details](/docs/en/build-with-claude/api-and-data-retention#feature-eligibility).
+\* **Structured outputs:** Your prompts and Claude's outputs are not stored. Only JSON schemas are cached, for up to 24 hours since last use. **Tool search:** Only tool catalog data (names, descriptions, argument metadata) is stored server-side; custom client-side implementations are fully ZDR-eligible. **Web search and web fetch:** ZDR-eligible except when [dynamic filtering](/docs/en/agents-and-tools/tool-use/web-search-tool#dynamic-filtering) is enabled. See [ZDR details](/docs/en/build-with-claude/api-and-data-retention#feature-eligibility).

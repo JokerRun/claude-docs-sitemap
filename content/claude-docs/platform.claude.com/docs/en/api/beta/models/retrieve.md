@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/retrieve
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: e7364e098fdd2c9d1a17f1b7c9bfdaa6c20a6d5f5579544dbb6b9c5e6438a9c6
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: d88760c7cbdb29b351c6677ad94d18c63f22db1352e80e2410a9af8d63d7a2c1
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -68,6 +68,10 @@ The Models API response can be used to determine information about a specific mo
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -256,7 +260,7 @@ The Models API response can be used to determine information about a specific mo
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/models/$MODEL_ID?beta=true \
+curl https://api.anthropic.com/v1/models/$MODEL_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```

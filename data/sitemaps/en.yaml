@@ -4,7 +4,7 @@
   lastmod: '2026-04-03T23:27:35.690Z'
 - source: code
   loc: https://code.claude.com/docs/en/amazon-bedrock
-  lastmod: '2026-04-04T16:53:45.525Z'
+  lastmod: '2026-04-07T22:19:44.241Z'
 - source: code
   loc: https://code.claude.com/docs/en/analytics
   lastmod: '2026-04-02T15:23:24.396Z'
@@ -16,7 +16,7 @@
   lastmod: '2026-04-03T02:12:42.175Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-04-04T02:13:53.671Z'
+  lastmod: '2026-04-07T21:31:11.121Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-03-25T19:03:14.403Z'
@@ -34,31 +34,31 @@
   lastmod: '2026-04-03T18:19:54.405Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-directory
-  lastmod: '2026-04-02T16:59:01.877Z'
+  lastmod: '2026-04-07T23:21:52.468Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
   lastmod: '2026-04-04T16:53:45.531Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review
-  lastmod: '2026-04-02T15:23:24.391Z'
+  lastmod: '2026-04-08T02:25:51.840Z'
 - source: code
   loc: https://code.claude.com/docs/en/commands
-  lastmod: '2026-04-04T16:53:45.531Z'
+  lastmod: '2026-04-08T02:25:51.842Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
-  lastmod: '2026-04-03T18:57:45.002Z'
+  lastmod: '2026-04-07T23:34:04.678Z'
 - source: code
   loc: https://code.claude.com/docs/en/computer-use
   lastmod: '2026-04-03T01:01:58.647Z'
 - source: code
   loc: https://code.claude.com/docs/en/context-window
-  lastmod: '2026-03-26T21:59:08.557Z'
+  lastmod: '2026-04-07T23:33:10.499Z'
 - source: code
   loc: https://code.claude.com/docs/en/costs
   lastmod: '2026-03-31T20:29:46.576Z'
 - source: code
   loc: https://code.claude.com/docs/en/data-usage
-  lastmod: '2026-04-04T16:53:45.524Z'
+  lastmod: '2026-04-07T23:21:52.514Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
   lastmod: '2026-04-03T18:57:45.047Z'
@@ -76,10 +76,10 @@
   lastmod: '2026-04-02T06:10:37.457Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-04-04T16:53:45.544Z'
+  lastmod: '2026-04-07T22:19:44.252Z'
 - source: code
   loc: https://code.claude.com/docs/en/fast-mode
-  lastmod: '2026-04-02T15:23:24.399Z'
+  lastmod: '2026-04-08T02:25:51.845Z'
 - source: code
   loc: https://code.claude.com/docs/en/features-overview
   lastmod: '2026-03-31T20:29:46.579Z'
@@ -103,22 +103,22 @@
   lastmod: '2026-04-03T19:20:32.876Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
-  lastmod: '2026-04-01T19:32:08.736Z'
+  lastmod: '2026-04-07T23:34:04.705Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks-guide
-  lastmod: '2026-04-01T19:32:08.737Z'
+  lastmod: '2026-04-07T23:33:10.523Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
-  lastmod: '2026-04-02T06:10:37.413Z'
+  lastmod: '2026-04-07T23:21:52.520Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
-  lastmod: '2026-04-04T16:53:45.526Z'
+  lastmod: '2026-04-07T23:10:33.674Z'
 - source: code
   loc: https://code.claude.com/docs/en/jetbrains
   lastmod: '2026-03-05T22:29:08.218Z'
 - source: code
   loc: https://code.claude.com/docs/en/keybindings
-  lastmod: '2026-04-04T16:53:45.532Z'
+  lastmod: '2026-04-07T23:10:33.682Z'
 - source: code
   loc: https://code.claude.com/docs/en/legal-and-compliance
   lastmod: '2026-04-03T22:33:36.142Z'
@@ -136,7 +136,7 @@
   lastmod: '2026-02-18T22:23:19.996Z'
 - source: code
   loc: https://code.claude.com/docs/en/model-config
-  lastmod: '2026-04-02T07:07:54.100Z'
+  lastmod: '2026-04-08T02:25:51.844Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
   lastmod: '2026-04-02T17:00:07.490Z'
@@ -145,7 +145,7 @@
   lastmod: '2026-04-02T06:10:37.493Z'
 - source: code
   loc: https://code.claude.com/docs/en/output-styles
-  lastmod: '2026-04-02T02:07:13.656Z'
+  lastmod: '2026-04-07T23:34:04.681Z'
 - source: code
   loc: https://code.claude.com/docs/en/overview
   lastmod: '2026-04-03T18:57:45.141Z'
@@ -163,10 +163,10 @@
   lastmod: '2026-04-02T23:48:56.099Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins
-  lastmod: '2026-04-03T00:47:24.865Z'
+  lastmod: '2026-04-07T23:21:07.389Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins-reference
-  lastmod: '2026-04-03T00:47:24.871Z'
+  lastmod: '2026-04-07T23:34:04.687Z'
 - source: code
   loc: https://code.claude.com/docs/en/quickstart
   lastmod: '2026-04-02T16:59:02.023Z'
@@ -214,16 +214,16 @@
   lastmod: '2026-04-02T06:11:19.891Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshooting
-  lastmod: '2026-04-04T16:53:49.821Z'
+  lastmod: '2026-04-07T23:34:04.686Z'
 - source: code
   loc: https://code.claude.com/docs/en/ultraplan
-  lastmod: '2026-04-03T19:00:37.621Z'
+  lastmod: '2026-04-07T23:22:36.916Z'
 - source: code
   loc: https://code.claude.com/docs/en/voice-dictation
   lastmod: '2026-03-30T17:04:51.873Z'
 - source: code
   loc: https://code.claude.com/docs/en/vs-code
-  lastmod: '2026-04-03T19:20:32.881Z'
+  lastmod: '2026-04-07T19:05:25.766Z'
 - source: code
   loc: https://code.claude.com/docs/en/web-scheduled-tasks
   lastmod: '2026-04-03T18:57:47.197Z'
@@ -651,6 +651,24 @@
   loc: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/user_profiles
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/cli/beta
   priority: '0.9'
 - source: platform
@@ -739,6 +757,24 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/cli/beta/skills/versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/create_enrollment_url
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/cli/completions
@@ -885,6 +921,24 @@
   loc: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create_enrollment_url
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/csharp/completions
   priority: '0.9'
 - source: platform
@@ -1023,6 +1077,24 @@
   loc: https://platform.claude.com/docs/en/api/go/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/create_enrollment_url
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/go/completions
   priority: '0.9'
 - source: platform
@@ -1159,6 +1231,24 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/java/beta/skills/versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/create_enrollment_url
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/java/completions
@@ -1341,6 +1431,24 @@
   loc: https://platform.claude.com/docs/en/api/php/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/create_enrollment_url
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/php/completions
   priority: '0.9'
 - source: platform
@@ -1474,6 +1582,24 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/python/beta/skills/versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/create_enrollment_url
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/python/completions
@@ -1612,6 +1738,24 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/create_enrollment_url
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/ruby/completions
@@ -1776,6 +1920,24 @@
   loc: https://platform.claude.com/docs/en/api/terraform/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/create_enrollment_url
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/terraform/completions
   priority: '0.9'
 - source: platform
@@ -1911,6 +2073,24 @@
   loc: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/create_enrollment_url
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/typescript/completions
   priority: '0.9'
 - source: platform
@@ -1975,6 +2155,9 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/claude-code-analytics-api
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry

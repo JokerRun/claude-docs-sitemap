@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 39b069d04dea78fa3b7c175a12f17d62e09a16af5ee437f29ba4fae02063a7c9
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 474cb961c0b20f9623842001640399f7d4449e0cde1a72e8becaa1e38c9ddbd9
 ---
 
 # Messages
@@ -3867,6 +3867,28 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     Conversational role of the generated message.
 
     This will always be `"assistant"`.
+
+  - `required RefusalStopDetails? StopDetails`
+
+    Structured information about a refusal.
+
+    - `required Category? Category`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `"cyber"Cyber`
+
+      - `"bio"Bio`
+
+    - `required string? Explanation`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `JsonElement Type "refusal"constant`
 
   - `required StopReason? StopReason`
 
@@ -12106,6 +12128,28 @@ Console.WriteLine(messageTokensCount);
 
     This will always be `"assistant"`.
 
+  - `required RefusalStopDetails? StopDetails`
+
+    Structured information about a refusal.
+
+    - `required Category? Category`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `"cyber"Cyber`
+
+      - `"bio"Bio`
+
+    - `required string? Explanation`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `JsonElement Type "refusal"constant`
+
   - `required StopReason? StopReason`
 
     The reason that we stopped.
@@ -15983,6 +16027,28 @@ Console.WriteLine(messageTokensCount);
 
         The time at which the container will expire.
 
+    - `required RefusalStopDetails? StopDetails`
+
+      Structured information about a refusal.
+
+      - `required Category? Category`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `"cyber"Cyber`
+
+        - `"bio"Bio`
+
+      - `required string? Explanation`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `JsonElement Type "refusal"constant`
+
     - `required StopReason? StopReason`
 
       - `"end_turn"EndTurn`
@@ -16715,6 +16781,28 @@ Console.WriteLine(messageTokensCount);
       Conversational role of the generated message.
 
       This will always be `"assistant"`.
+
+    - `required RefusalStopDetails? StopDetails`
+
+      Structured information about a refusal.
+
+      - `required Category? Category`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `"cyber"Cyber`
+
+        - `"bio"Bio`
+
+      - `required string? Explanation`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `JsonElement Type "refusal"constant`
 
     - `required StopReason? StopReason`
 
@@ -17506,6 +17594,28 @@ Console.WriteLine(messageTokensCount);
 
         This will always be `"assistant"`.
 
+      - `required RefusalStopDetails? StopDetails`
+
+        Structured information about a refusal.
+
+        - `required Category? Category`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `"cyber"Cyber`
+
+          - `"bio"Bio`
+
+        - `required string? Explanation`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `JsonElement Type "refusal"constant`
+
       - `required StopReason? StopReason`
 
         The reason that we stopped.
@@ -17628,6 +17738,28 @@ Console.WriteLine(messageTokensCount);
         - `required DateTimeOffset ExpiresAt`
 
           The time at which the container will expire.
+
+      - `required RefusalStopDetails? StopDetails`
+
+        Structured information about a refusal.
+
+        - `required Category? Category`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `"cyber"Cyber`
+
+          - `"bio"Bio`
+
+        - `required string? Explanation`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `JsonElement Type "refusal"constant`
 
       - `required StopReason? StopReason`
 
@@ -18386,6 +18518,30 @@ Console.WriteLine(messageTokensCount);
   - `required string Data`
 
   - `JsonElement Type "redacted_thinking"constant`
+
+### Refusal Stop Details
+
+- `class RefusalStopDetails:`
+
+  Structured information about a refusal.
+
+  - `required Category? Category`
+
+    The policy category that triggered the refusal.
+
+    `null` when the refusal doesn't map to a named category.
+
+    - `"cyber"Cyber`
+
+    - `"bio"Bio`
+
+  - `required string? Explanation`
+
+    Human-readable explanation of the refusal.
+
+    This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+  - `JsonElement Type "refusal"constant`
 
 ### Search Result Block Param
 
@@ -28078,6 +28234,28 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           This will always be `"assistant"`.
 
+        - `required RefusalStopDetails? StopDetails`
+
+          Structured information about a refusal.
+
+          - `required Category? Category`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `"cyber"Cyber`
+
+            - `"bio"Bio`
+
+          - `required string? Explanation`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `JsonElement Type "refusal"constant`
+
         - `required StopReason? StopReason`
 
           The reason that we stopped.
@@ -29145,6 +29323,28 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
           This will always be `"assistant"`.
 
+        - `required RefusalStopDetails? StopDetails`
+
+          Structured information about a refusal.
+
+          - `required Category? Category`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `"cyber"Cyber`
+
+            - `"bio"Bio`
+
+          - `required string? Explanation`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `JsonElement Type "refusal"constant`
+
         - `required StopReason? StopReason`
 
           The reason that we stopped.
@@ -30039,6 +30239,28 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
         This will always be `"assistant"`.
 
+      - `required RefusalStopDetails? StopDetails`
+
+        Structured information about a refusal.
+
+        - `required Category? Category`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `"cyber"Cyber`
+
+          - `"bio"Bio`
+
+        - `required string? Explanation`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `JsonElement Type "refusal"constant`
+
       - `required StopReason? StopReason`
 
         The reason that we stopped.
@@ -30894,6 +31116,28 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
       Conversational role of the generated message.
 
       This will always be `"assistant"`.
+
+    - `required RefusalStopDetails? StopDetails`
+
+      Structured information about a refusal.
+
+      - `required Category? Category`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `"cyber"Cyber`
+
+        - `"bio"Bio`
+
+      - `required string? Explanation`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `JsonElement Type "refusal"constant`
 
     - `required StopReason? StopReason`
 

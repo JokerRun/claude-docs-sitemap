@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 7c3fd51b6588afde4e6711a09c647bd1ea75135237f4a8117a35bf1da0cd8b7d
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 266093eb24bb0e8d71e70c6e7ee526be82026e5664c6ba9de0265bc5d3128b10
 ---
 
 ## Retrieve Metadata
@@ -25,7 +25,7 @@ Get File Metadata
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,6 +66,10 @@ Get File Metadata
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -108,7 +112,7 @@ Get File Metadata
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/files/$FILE_ID?beta=true \
+curl https://api.anthropic.com/v1/files/$FILE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: files-api-2025-04-14' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"

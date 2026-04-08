@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-04-03T03:10:14.718804Z
-sha256: 5606dd66e78709fae9d3ea4d07151c9827aff3b33cfedfb09eb8f0700f370099
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 2014a550fffb07f12680e50d0201c05a3fb8f469638f0a1dc572a627cbdfdc62
 ---
 
 > ## Documentation Index
@@ -101,7 +101,7 @@ You can access Claude Code through the terminal, the [desktop app](/en/desktop),
 
 ## Work with sessions
 
-Claude Code saves your conversation locally as you work. Each message, tool use, and result is stored, which enables [rewinding](#undo-changes-with-checkpoints), [resuming, and forking](#resume-or-fork-sessions) sessions. Before Claude makes code changes, it also snapshots the affected files so you can revert if needed.
+Claude Code saves your conversation locally as you work. Each message, tool use, and result is written to a plaintext JSONL file under `~/.claude/projects/`, which enables [rewinding](#undo-changes-with-checkpoints), [resuming, and forking](#resume-or-fork-sessions) sessions. Before Claude makes code changes, it also snapshots the affected files so you can revert if needed. For paths, retention, and how to clear this data, see [application data in `~/.claude`](/en/claude-directory#application-data).
 
 **Sessions are independent.** Each new session starts with a fresh context window, without the conversation history from previous sessions. Claude can persist learnings across sessions using [auto memory](/en/memory#auto-memory), and you can add your own persistent instructions in [CLAUDE.md](/en/memory).
 

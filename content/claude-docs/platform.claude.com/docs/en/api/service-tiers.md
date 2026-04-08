@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/service-tiers
-fetched_at: 2026-03-31T04:38:22.136736Z
-sha256: 13aa6e267a2e9ed5b050167c82757ff8dd767764a0687a0c4df08fdae61829cd
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 6f081b4bb132610e8cd9dbecbea8dc4c6f1a6b23131384125c8c6f84fd281fe4
 ---
 
 # Service tiers
@@ -119,18 +119,7 @@ The ratio of input to output tokens you purchase matters. Sizing your Priority T
 
 ### Supported models
 
-Priority Tier is supported by:
-
-- Claude Opus 4.6
-- Claude Opus 4.5
-- Claude Opus 4.1
-- Claude Opus 4
-- Claude Sonnet 4.6
-- Claude Sonnet 4.5
-- Claude Sonnet 4
-- Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
-- Claude Haiku 4.5
-- Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations))
+Priority Tier is supported on all available Claude models except [Claude Mythos Preview](https://anthropic.com/glasswing).
 
 Check the [model overview page](/docs/en/about-claude/models/overview) for more details on available models.
 

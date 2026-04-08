@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/count_tokens
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 128a3f5b2dd8692f1e6799bb7fca95b0377606eb40651fa47ef816ca1614e8f7
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 2ada295308b73bc56ca9c5d29dfdbe667296923adb76612e8084d31c7b4150af
 ---
 
 ## Count Tokens
@@ -4599,7 +4599,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 17 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -4640,6 +4640,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

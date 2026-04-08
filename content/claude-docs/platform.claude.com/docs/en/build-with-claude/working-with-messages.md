@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-04-07T03:10:26.992298Z
-sha256: 3c7652292608f6acbe31600027a77e4e3705c09e85745f2ebe0f698911c6a7f1
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 1b0735cd3122c463926fc8898f9c3836a1d5459a7de79c9d0f603c1886286ca4
 ---
 
 # Using the Messages API
@@ -584,7 +584,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
 ```
 
 <Warning>
-Prefilling is not supported on Claude Opus 4.6 and Claude Sonnet 4.6. Requests using prefill with these models return a 400 error. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) or system prompt instructions instead. See the [migration guide](/docs/en/about-claude/models/migration-guide) for migration patterns.
+Prefilling is not supported on [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.6, and Claude Sonnet 4.6. Requests using prefill with these models return a 400 error. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) or system prompt instructions instead. See the [migration guide](/docs/en/about-claude/models/migration-guide) for migration patterns.
 </Warning>
 
 ## Vision

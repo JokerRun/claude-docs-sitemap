@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-03-31T04:38:22.136736Z
-sha256: b111dcdf12bcbb8ebe246c58024ada843fb3b673917d65d8b59470cd8c6f3865
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 031d5f283e82e224f885c676db91d52071c200ae6c4102639374117327577a24
 ---
 
 # Claude in Microsoft Foundry
@@ -478,7 +478,7 @@ Claude on Foundry supports most of Claude's powerful features. You can find all 
 
 ### Context window
 
-Claude Opus 4.6 and Sonnet 4.6 have a [1M-token context window](/docs/en/build-with-claude/context-windows) on Microsoft Foundry. Other Claude models, including Sonnet 4.5, have a 200k-token context window.
+Claude Opus 4.6 and Claude Sonnet 4.6 have a [1M-token context window](/docs/en/build-with-claude/context-windows) on Microsoft Foundry. Other Claude models, including Sonnet 4.5, have a 200k-token context window.
 
 ### Features not supported
 
@@ -555,6 +555,10 @@ Foundry does not include Anthropic's standard rate limit headers (`anthropic-rat
 **Error:** `Invalid model parameter`
 
 - **Solution:** The model parameter should contain your deployment name, which can be customized in the Foundry portal. Verify the deployment exists and is properly configured.
+
+<Info>
+[Claude Mythos Preview](https://anthropic.com/glasswing) is a research preview available to invited customers on Microsoft Foundry. For more information, see [Project Glasswing](https://anthropic.com/glasswing).
+</Info>
 
 ## Additional resources
 

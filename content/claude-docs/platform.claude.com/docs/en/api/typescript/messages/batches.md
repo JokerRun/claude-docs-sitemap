@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 51a5b8663326c46edbf2448f1c5c309f758aaa9f2ab6ea8da9b79a0cda41e9f3
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 299d6fcb97a4ea0a7d2db0fc95cee91692b3805c9b8c69e05cfc252b7b2fbd69
 ---
 
 # Batches
@@ -5199,6 +5199,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"assistant"`
 
+        - `stop_details: RefusalStopDetails | null`
+
+          Structured information about a refusal.
+
+          - `category: "cyber" | "bio" | null`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `"cyber"`
+
+            - `"bio"`
+
+          - `explanation: string | null`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: "refusal"`
+
+            - `"refusal"`
+
         - `stop_reason: StopReason | null`
 
           The reason that we stopped.
@@ -6441,6 +6465,30 @@ console.log(messageBatchIndividualResponse.custom_id);
 
           - `"assistant"`
 
+        - `stop_details: RefusalStopDetails | null`
+
+          Structured information about a refusal.
+
+          - `category: "cyber" | "bio" | null`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `"cyber"`
+
+            - `"bio"`
+
+          - `explanation: string | null`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: "refusal"`
+
+            - `"refusal"`
+
         - `stop_reason: StopReason | null`
 
           The reason that we stopped.
@@ -7477,6 +7525,30 @@ console.log(messageBatchIndividualResponse.custom_id);
 
         - `"assistant"`
 
+      - `stop_details: RefusalStopDetails | null`
+
+        Structured information about a refusal.
+
+        - `category: "cyber" | "bio" | null`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `"cyber"`
+
+          - `"bio"`
+
+        - `explanation: string | null`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `type: "refusal"`
+
+          - `"refusal"`
+
       - `stop_reason: StopReason | null`
 
         The reason that we stopped.
@@ -8474,6 +8546,30 @@ console.log(messageBatchIndividualResponse.custom_id);
       This will always be `"assistant"`.
 
       - `"assistant"`
+
+    - `stop_details: RefusalStopDetails | null`
+
+      Structured information about a refusal.
+
+      - `category: "cyber" | "bio" | null`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `"cyber"`
+
+        - `"bio"`
+
+      - `explanation: string | null`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `type: "refusal"`
+
+        - `"refusal"`
 
     - `stop_reason: StopReason | null`
 

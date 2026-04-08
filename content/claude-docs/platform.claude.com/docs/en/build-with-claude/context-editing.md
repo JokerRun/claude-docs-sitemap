@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: fe35af2ad0fa425648c16dcb36c6dd4839d69d7d8aea3efb6a77676bb5e29ad5
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: ee16690987f0c061ce5f5aa69de8cb943a9073999f7aff3f739dcfcc1542202d
 ---
 
 # Context editing
@@ -72,16 +72,7 @@ Context editing's interaction with [prompt caching](/docs/en/build-with-claude/p
 
 ## Supported models
 
-Context editing is available on:
-
-- Claude Opus 4.6 (`claude-opus-4-6`)
-- Claude Opus 4.5 (`claude-opus-4-5-20251101`)
-- Claude Opus 4.1 (`claude-opus-4-1-20250805`)
-- Claude Opus 4 (`claude-opus-4-20250514`)
-- Claude Sonnet 4.6 (`claude-sonnet-4-6`)
-- Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
-- Claude Sonnet 4 (`claude-sonnet-4-20250514`)
-- Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
+Context editing is available on all supported Claude models.
 
 ## Tool result clearing usage
 

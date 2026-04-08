@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions/create
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: a87dff03eccb16cdfe5155ad2be0ddff0237cd2441977daab491000a192ab3f5
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 99013949cc614f798dd56d6436d3e8733b662d1cdce2ec5de2edb30b6bc806b1
 ---
 
 ## Create
@@ -76,6 +76,10 @@ Create Skill Version
       - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

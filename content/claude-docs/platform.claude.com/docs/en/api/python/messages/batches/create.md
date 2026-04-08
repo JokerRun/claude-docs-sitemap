@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/batches/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 53b1beda789827ab4de40acd75dd63cacfbf5f1d18649ad422500580e2c6ec98
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 62852e117b399d73da052d7f0f610f5924dac0462ba3e28c333df2795998239f
 ---
 
 ## Create
@@ -2489,7 +2489,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `"standard_only"`
 
-    - `stop_sequences: Optional[SequenceNotStr[str]]`
+    - `stop_sequences: Optional[Sequence[str]]`
 
       Custom text sequences that will cause the model to stop generating.
 

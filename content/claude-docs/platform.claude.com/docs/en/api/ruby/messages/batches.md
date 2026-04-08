@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: e156df051da8f0133158e0e943a1dc62aa781b8ebed0f4e22926bb10c1faf477
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 2b77b0d9d97712781028e775a70da1ab3ec44a2c395f956fabedce250f454036
 ---
 
 # Batches
@@ -5188,6 +5188,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:assistant`
 
+        - `stop_details: RefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `category: :cyber | :bio`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `:cyber`
+
+            - `:bio`
+
+          - `explanation: String`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: :refusal`
+
+            - `:refusal`
+
         - `stop_reason: StopReason`
 
           The reason that we stopped.
@@ -6432,6 +6456,30 @@ puts(message_batch_individual_response)
 
           - `:assistant`
 
+        - `stop_details: RefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `category: :cyber | :bio`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `:cyber`
+
+            - `:bio`
+
+          - `explanation: String`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: :refusal`
+
+            - `:refusal`
+
         - `stop_reason: StopReason`
 
           The reason that we stopped.
@@ -7472,6 +7520,30 @@ puts(message_batch_individual_response)
 
         - `:assistant`
 
+      - `stop_details: RefusalStopDetails`
+
+        Structured information about a refusal.
+
+        - `category: :cyber | :bio`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `:cyber`
+
+          - `:bio`
+
+        - `explanation: String`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `type: :refusal`
+
+          - `:refusal`
+
       - `stop_reason: StopReason`
 
         The reason that we stopped.
@@ -8473,6 +8545,30 @@ puts(message_batch_individual_response)
       This will always be `"assistant"`.
 
       - `:assistant`
+
+    - `stop_details: RefusalStopDetails`
+
+      Structured information about a refusal.
+
+      - `category: :cyber | :bio`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `:cyber`
+
+        - `:bio`
+
+      - `explanation: String`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `type: :refusal`
+
+        - `:refusal`
 
     - `stop_reason: StopReason`
 

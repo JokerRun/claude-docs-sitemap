@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/delete
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 1930a26dbcea224bd034af3c5dd25f9ae578a5a9da4c816c5dc7bc47996ffc55
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 83c59b4a72977c24892cc7f1f608b30138365ed059e7b516335a4c6360c879f4
 ---
 
 ## Delete
@@ -25,7 +25,7 @@ Delete File
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -67,6 +67,10 @@ Delete File
 
     - `"fast-mode-2026-02-01"`
 
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
+
 ### Returns
 
 - `DeletedFile = object { id, type }`
@@ -86,7 +90,7 @@ Delete File
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/files/$FILE_ID?beta=true \
+curl https://api.anthropic.com/v1/files/$FILE_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: files-api-2025-04-14' \

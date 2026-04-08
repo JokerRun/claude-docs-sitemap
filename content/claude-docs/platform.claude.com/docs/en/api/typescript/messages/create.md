@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 593517c5da01204bddaeee878300e056ba90f6d349a84170e6bcfb0430e8f13d
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 4388da4bf4b129d7bf53309c1f1a48ebdf4db779a8ee0dd8f7782ccfef14fac9
 ---
 
 ## Create
@@ -4630,6 +4630,30 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     This will always be `"assistant"`.
 
     - `"assistant"`
+
+  - `stop_details: RefusalStopDetails | null`
+
+    Structured information about a refusal.
+
+    - `category: "cyber" | "bio" | null`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `"cyber"`
+
+      - `"bio"`
+
+    - `explanation: string | null`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `type: "refusal"`
+
+      - `"refusal"`
 
   - `stop_reason: StopReason | null`
 

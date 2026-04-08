@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-04-02T04:32:20.033306Z
-sha256: ef315a75468fc21a58815d0ce8368b775c4f953d4f0d9de622f12a2d9c08c990
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: c41d099e71a06cd378c225d088f9c275fceec3a8535e32bd45e48662a9b9fc5e
 ---
 
 # Structured outputs
@@ -19,7 +19,7 @@ Structured outputs constrain Claude's responses to follow a specific schema, ens
 These features can be used independently or together in the same request.
 
 <Note>
-Structured outputs are generally available on the Claude API and Amazon Bedrock for Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, and Claude Haiku 4.5. Structured outputs are in beta on Microsoft Foundry.
+Structured outputs are generally available on the Claude API and Amazon Bedrock for [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, and Claude Haiku 4.5. Structured outputs are in beta on Microsoft Foundry. Structured outputs are not supported on Google Cloud's Vertex AI for Claude Mythos Preview.
 </Note>
 
 <Note>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: eb328bac9a9f7d8596cfa1f5618ea61cb864898698e84ca92d3c55668ac80381
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: a0869ab7b1cd6dc36eada50fb1b50afd8e7199d3c02c67e2af3eb55922c0b977
 ---
 
 ## Create
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     Must be unique for each request within the Message Batch.
 
-  - `params: { max_tokens, messages, model, 19 more}`
+  - `params: { max_tokens, messages, model, 20 more}`
 
     Messages API creation parameters for the individual request.
 
@@ -4697,13 +4697,17 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Recommended for advanced use cases only. You usually only need to use `temperature`.
 
+    - `user_profile_id: String`
+
+      The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
 - `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 17 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -4744,6 +4748,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"skills-2025-10-02"`
 
     - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

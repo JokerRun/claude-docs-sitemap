@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 12dbdb67bce570aed2c1692c090f8bd110462e2ce6417def77030215e5b9c245
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 6a5c85e1e8035892ef7961539f97d493e91f4e9050bd1ad59dd2ea651e3c3178
 ---
 
 ## Create
@@ -4695,13 +4695,17 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Recommended for advanced use cases only. You usually only need to use `temperature`.
 
+      - `user_profile_id?: string | null`
+
+        The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
   - `betas?: Array<AnthropicBeta>`
 
     Header param: Optional header to specify the beta version(s) you want to use.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -4742,6 +4746,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"skills-2025-10-02"`
 
       - `"fast-mode-2026-02-01"`
+
+      - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 62fd353e68a500463525072b9b293a9e43620fdeb0e8fe0ab93d5ff58046ed4f
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 6d036ecd707125b395f6689b883842e19bfab103b17b979ec9f3d701e1898a0c
 ---
 
 ## Create
@@ -4683,13 +4683,17 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Recommended for advanced use cases only. You usually only need to use `temperature`.
 
+    - `user_profile_id?: string | null`
+
+      Body param: The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
     - `betas?: Array<AnthropicBeta>`
 
       Header param: Optional header to specify the beta version(s) you want to use.
 
       - `(string & {})`
 
-      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 17 more`
+      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
         - `"message-batches-2024-09-24"`
 
@@ -4730,6 +4734,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"skills-2025-10-02"`
 
         - `"fast-mode-2026-02-01"`
+
+        - `"output-300k-2026-03-24"`
+
+        - `"user-profiles-2026-03-24"`
 
   - `MessageCreateParamsNonStreaming extends MessageCreateParamsBase`
 
@@ -5745,6 +5753,30 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     This will always be `"assistant"`.
 
     - `"assistant"`
+
+  - `stop_details: BetaRefusalStopDetails | null`
+
+    Structured information about a refusal.
+
+    - `category: "cyber" | "bio" | null`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `"cyber"`
+
+      - `"bio"`
+
+    - `explanation: string | null`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `type: "refusal"`
+
+      - `"refusal"`
 
   - `stop_reason: BetaStopReason | null`
 

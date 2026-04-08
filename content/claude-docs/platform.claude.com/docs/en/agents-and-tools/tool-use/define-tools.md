@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 1dba539faefaa44f99a5d3ddfb8a34ed705a2cd5f808cc7c57c607c4e0d847b2
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: a4455dfae407bb148caaf5290f21a916be77185e1b654c94b0042e95633822c2
 ---
 
 # Define tools
@@ -551,6 +551,10 @@ Note that when you have `tool_choice` as `any` or `tool`, the API prefills the a
 
 <Note>
 When using [extended thinking](/docs/en/build-with-claude/extended-thinking) with tool use, `tool_choice: {"type": "any"}` and `tool_choice: {"type": "tool", "name": "..."}` are not supported and will result in an error. Only `tool_choice: {"type": "auto"}` (the default) and `tool_choice: {"type": "none"}` are compatible with extended thinking.
+</Note>
+
+<Note>
+[Claude Mythos Preview](https://anthropic.com/glasswing) does not support forced tool use. Requests with `tool_choice: {"type": "any"}` or `tool_choice: {"type": "tool", "name": "..."}` return a 400 error on this model. Use `tool_choice: {"type": "auto"}` (the default) or `tool_choice: {"type": "none"}` and rely on prompting to influence tool selection.
 </Note>
 
 Testing has shown that this should not reduce performance. If you would like the model to provide natural language context or explanations while still requesting that the model use a specific tool, you can use `{"type": "auto"}` for `tool_choice` (the default) and add explicit instructions in a `user` message. For example: `What's the weather like in London? Use the get_weather tool in your response.`

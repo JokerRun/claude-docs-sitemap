@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 0e993ad0894f7277fa438b5399af706222cc8a83b1b6b246041bf23bc531705a
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: bb0ff317904c110a9abe768ed5385e1ade18167ed10002a9c62879657a260bf3
 ---
 
 # Messages
@@ -3826,7 +3826,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
 ### Returns
 
-- `Message = object { id, container, content, 6 more }`
+- `Message = object { id, container, content, 7 more }`
 
   - `id: string`
 
@@ -4612,6 +4612,30 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     This will always be `"assistant"`.
 
     - `"assistant"`
+
+  - `stop_details: RefusalStopDetails`
+
+    Structured information about a refusal.
+
+    - `category: "cyber" or "bio"`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `"cyber"`
+
+      - `"bio"`
+
+    - `explanation: string`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `type: "refusal"`
+
+      - `"refusal"`
 
   - `stop_reason: StopReason`
 
@@ -13488,7 +13512,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 ### Message
 
-- `Message = object { id, container, content, 6 more }`
+- `Message = object { id, container, content, 7 more }`
 
   - `id: string`
 
@@ -14274,6 +14298,30 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     This will always be `"assistant"`.
 
     - `"assistant"`
+
+  - `stop_details: RefusalStopDetails`
+
+    Structured information about a refusal.
+
+    - `category: "cyber" or "bio"`
+
+      The policy category that triggered the refusal.
+
+      `null` when the refusal doesn't map to a named category.
+
+      - `"cyber"`
+
+      - `"bio"`
+
+    - `explanation: string`
+
+      Human-readable explanation of the refusal.
+
+      This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `type: "refusal"`
+
+      - `"refusal"`
 
   - `stop_reason: StopReason`
 
@@ -18774,7 +18822,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 - `RawMessageDeltaEvent = object { delta, type, usage }`
 
-  - `delta: object { container, stop_reason, stop_sequence }`
+  - `delta: object { container, stop_details, stop_reason, stop_sequence }`
 
     - `container: Container`
 
@@ -18787,6 +18835,30 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
       - `expires_at: string`
 
         The time at which the container will expire.
+
+    - `stop_details: RefusalStopDetails`
+
+      Structured information about a refusal.
+
+      - `category: "cyber" or "bio"`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `"cyber"`
+
+        - `"bio"`
+
+      - `explanation: string`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `type: "refusal"`
+
+        - `"refusal"`
 
     - `stop_reason: StopReason`
 
@@ -19638,6 +19710,30 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
       This will always be `"assistant"`.
 
       - `"assistant"`
+
+    - `stop_details: RefusalStopDetails`
+
+      Structured information about a refusal.
+
+      - `category: "cyber" or "bio"`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `"cyber"`
+
+        - `"bio"`
+
+      - `explanation: string`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `type: "refusal"`
+
+        - `"refusal"`
 
     - `stop_reason: StopReason`
 
@@ -20551,6 +20647,30 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"assistant"`
 
+      - `stop_details: RefusalStopDetails`
+
+        Structured information about a refusal.
+
+        - `category: "cyber" or "bio"`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `"cyber"`
+
+          - `"bio"`
+
+        - `explanation: string`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `type: "refusal"`
+
+          - `"refusal"`
+
       - `stop_reason: StopReason`
 
         The reason that we stopped.
@@ -20664,7 +20784,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `RawMessageDeltaEvent = object { delta, type, usage }`
 
-    - `delta: object { container, stop_reason, stop_sequence }`
+    - `delta: object { container, stop_details, stop_reason, stop_sequence }`
 
       - `container: Container`
 
@@ -20677,6 +20797,30 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
         - `expires_at: string`
 
           The time at which the container will expire.
+
+      - `stop_details: RefusalStopDetails`
+
+        Structured information about a refusal.
+
+        - `category: "cyber" or "bio"`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `"cyber"`
+
+          - `"bio"`
+
+        - `explanation: string`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `type: "refusal"`
+
+          - `"refusal"`
 
       - `stop_reason: StopReason`
 
@@ -21575,6 +21719,32 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
   - `type: "redacted_thinking"`
 
     - `"redacted_thinking"`
+
+### Refusal Stop Details
+
+- `RefusalStopDetails = object { category, explanation, type }`
+
+  Structured information about a refusal.
+
+  - `category: "cyber" or "bio"`
+
+    The policy category that triggered the refusal.
+
+    `null` when the refusal doesn't map to a named category.
+
+    - `"cyber"`
+
+    - `"bio"`
+
+  - `explanation: string`
+
+    Human-readable explanation of the refusal.
+
+    This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+  - `type: "refusal"`
+
+    - `"refusal"`
 
 ### Search Result Block Param
 
@@ -32349,6 +32519,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"assistant"`
 
+        - `stop_details: RefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `category: "cyber" or "bio"`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `"cyber"`
+
+            - `"bio"`
+
+          - `explanation: string`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: "refusal"`
+
+            - `"refusal"`
+
         - `stop_reason: StopReason`
 
           The reason that we stopped.
@@ -33589,6 +33783,30 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `"assistant"`
 
+        - `stop_details: RefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `category: "cyber" or "bio"`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `"cyber"`
+
+            - `"bio"`
+
+          - `explanation: string`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: "refusal"`
+
+            - `"refusal"`
+
         - `stop_reason: StopReason`
 
           The reason that we stopped.
@@ -34629,6 +34847,30 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         - `"assistant"`
 
+      - `stop_details: RefusalStopDetails`
+
+        Structured information about a refusal.
+
+        - `category: "cyber" or "bio"`
+
+          The policy category that triggered the refusal.
+
+          `null` when the refusal doesn't map to a named category.
+
+          - `"cyber"`
+
+          - `"bio"`
+
+        - `explanation: string`
+
+          Human-readable explanation of the refusal.
+
+          This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `type: "refusal"`
+
+          - `"refusal"`
+
       - `stop_reason: StopReason`
 
         The reason that we stopped.
@@ -35630,6 +35872,30 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
       This will always be `"assistant"`.
 
       - `"assistant"`
+
+    - `stop_details: RefusalStopDetails`
+
+      Structured information about a refusal.
+
+      - `category: "cyber" or "bio"`
+
+        The policy category that triggered the refusal.
+
+        `null` when the refusal doesn't map to a named category.
+
+        - `"cyber"`
+
+        - `"bio"`
+
+      - `explanation: string`
+
+        Human-readable explanation of the refusal.
+
+        This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `type: "refusal"`
+
+        - `"refusal"`
 
     - `stop_reason: StopReason`
 

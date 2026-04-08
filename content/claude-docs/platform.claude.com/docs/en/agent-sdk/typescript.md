@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-04-03T03:10:14.718804Z
-sha256: f34262c518725daf967d7af659405f42d6d04754b5c4fbbc04baabd7d3ef7501
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: e1d2216372120977e551bedf1aaef7438c617ec2c7c23660a18d3582e800abfa
 ---
 
 # Agent SDK reference - TypeScript
@@ -296,7 +296,7 @@ Configuration object for the `query()` function.
 | `debug` | `boolean` | `false` | Enable debug mode for the Claude Code process |
 | `debugFile` | `string` | `undefined` | Write debug logs to a specific file path. Implicitly enables debug mode |
 | `disallowedTools` | `string[]` | `[]` | Tools to always deny. Deny rules are checked first and override `allowedTools` and `permissionMode` (including `bypassPermissions`) |
-| `effort` | `'low' \| 'medium' \| 'high' \| 'max'` | `'high'` | Controls how much effort Claude puts into its response. Works with adaptive thinking to guide thinking depth |
+| `effort` | `'low' \| 'medium' \| 'high' \| 'max'` | `undefined` | Controls how much effort Claude puts into its response. When unset, the engine resolves a model-dependent default. Works with adaptive thinking to guide thinking depth |
 | `enableFileCheckpointing` | `boolean` | `false` | Enable file change tracking for rewinding. See [File checkpointing](/docs/en/agent-sdk/file-checkpointing) |
 | `env` | `Record<string, string \| undefined>` | `process.env` | Environment variables. Set `CLAUDE_AGENT_SDK_CLIENT_APP` to identify your app in the User-Agent header |
 | `executable` | `'bun' \| 'deno' \| 'node'` | Auto-detected | JavaScript runtime to use |
@@ -543,7 +543,7 @@ type PermissionMode =
   | "default" // Standard permission behavior
   | "acceptEdits" // Auto-accept file edits
   | "bypassPermissions" // Bypass all permission checks
-  | "plan" // Planning mode - no execution
+  | "plan" // Planning mode - read-only tools only
   | "dontAsk" // Don't prompt for permissions, deny if not pre-approved
   | "auto"; // Use a model classifier to approve or deny each tool call
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/results
-fetched_at: 2026-03-05T04:15:05.873964Z
-sha256: 9b4067798051736d7b90fab767f7b2e20e6a07e066fd8b82fef5346a4c54db80
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 4a9e660e591ce459cf1e867a094de078ceb981dbeb3ee1e99de1e5bfd398a631
 ---
 
 ## Results
@@ -829,6 +829,30 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           This will always be `"assistant"`.
 
           - `:assistant`
+
+        - `stop_details: RefusalStopDetails`
+
+          Structured information about a refusal.
+
+          - `category: :cyber | :bio`
+
+            The policy category that triggered the refusal.
+
+            `null` when the refusal doesn't map to a named category.
+
+            - `:cyber`
+
+            - `:bio`
+
+          - `explanation: String`
+
+            Human-readable explanation of the refusal.
+
+            This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `type: :refusal`
+
+            - `:refusal`
 
         - `stop_reason: StopReason`
 

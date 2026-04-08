@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 8045bdd2f8c9d1673bb3fc5501cdd58adbe9ed1f2dc27262d3ca30471d0d3cef
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 5387b42af4e10ee84c29d988fad36e4d8623f5c40eec34a682b8758c1f7daf90
 ---
 
 # Prompting best practices
@@ -252,7 +252,7 @@ Create a professional presentation on [topic]. Include thoughtful design element
 
 ### Migrating away from prefilled responses
 
-Starting with Claude 4.6 models, prefilled responses on the last assistant turn are no longer supported. Model intelligence and instruction following has advanced such that most use cases of prefill no longer require it. Existing models will continue to support prefills, and adding assistant messages elsewhere in the conversation is not affected.
+Starting with Claude 4.6 models and [Claude Mythos Preview](https://anthropic.com/glasswing), prefilled responses on the last assistant turn are no longer supported. On Mythos Preview, requests with prefilled assistant messages return a 400 error. Model intelligence and instruction following has advanced such that most use cases of prefill no longer require it. Existing models will continue to support prefills, and adding assistant messages elsewhere in the conversation is not affected.
 
 Here are common prefill scenarios and how to migrate away from them:
 

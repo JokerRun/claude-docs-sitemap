@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models/retrieve
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: dae6568f1fbc407d34dcc0005e48a45f260b9792333d09f0ea8a70549df135d7
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: e783d88a291934cd7c2421abf17b0adb8b0a3fd41d0acff11aef4564e1f24826
 ---
 
 ## Retrieve
@@ -66,6 +66,10 @@ The Models API response can be used to determine information about a specific mo
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

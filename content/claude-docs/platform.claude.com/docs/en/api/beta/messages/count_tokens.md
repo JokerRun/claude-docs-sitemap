@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 84cf2c95101921cbd3c54f16de3ae5aa7de76587bc2723c2b23acf636bd63f77
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 9eab57d92b24cbe7f027da5acb6c9f737a0c56bf74465b63ea93d754fdeba416
 ---
 
 ## Count Tokens
@@ -23,7 +23,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 17 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -64,6 +64,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"skills-2025-10-02"`
 
     - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Body Parameters
 
@@ -4644,7 +4648,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/messages/count_tokens?beta=true \
+curl https://api.anthropic.com/v1/messages/count_tokens \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \

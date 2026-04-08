@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/delete
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 2bb49e0849e801a666adbf7f67c41174bfbec5fb0030342d283430454df3cfc5
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 71c52bbc8a11e7577cec64d95823a4a7052038662e541aaad8da038ed59a73fd
 ---
 
 ## Delete
@@ -72,6 +72,10 @@ Delete Skill Version
     - `"skills-2025-10-02"Skills2025_10_02`
 
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

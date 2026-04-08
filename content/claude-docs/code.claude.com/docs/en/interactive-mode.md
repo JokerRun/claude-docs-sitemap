@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-04-05T03:11:11.045618Z
-sha256: 34c35f5a18a5605513bae4715047055d63bbad76c7cc26fcff9ddc819c942114
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: 0b2292d10c66406fa841f82bf4ce7a12a1bef596eb6f401e28c2fd1426b9c37c
 ---
 
 > ## Documentation Index
@@ -35,7 +35,7 @@ sha256: 34c35f5a18a5605513bae4715047055d63bbad76c7cc26fcff9ddc819c942114
 | `Ctrl+X Ctrl+K`                                   | Kill all background agents. Press twice within 3 seconds to confirm | Background agent control                                                                                                                                             |
 | `Ctrl+D`                                          | Exit Claude Code session                                            | EOF signal                                                                                                                                                           |
 | `Ctrl+G` or `Ctrl+X Ctrl+E`                       | Open in default text editor                                         | Edit your prompt or custom response in your default text editor. `Ctrl+X Ctrl+E` is the readline-native binding                                                      |
-| `Ctrl+L`                                          | Redraw the screen                                                   | Repaints the current UI without clearing conversation history                                                                                                        |
+| `Ctrl+L`                                          | Clear prompt input                                                  | Clears typed text, keeps conversation history                                                                                                                        |
 | `Ctrl+O`                                          | Toggle verbose output                                               | Shows detailed tool usage and execution. Also expands MCP read and search calls, which collapse to a single line like "Queried slack" by default                     |
 | `Ctrl+R`                                          | Reverse search command history                                      | Search through previous commands interactively                                                                                                                       |
 | `Ctrl+V` or `Cmd+V` (iTerm2) or `Alt+V` (Windows) | Paste image from clipboard                                          | Inserts an `[Image #N]` chip at the cursor so you can reference it positionally in your prompt                                                                       |

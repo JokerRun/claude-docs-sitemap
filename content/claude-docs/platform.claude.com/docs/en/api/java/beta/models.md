@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/models
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 15ff4e736e6f066c8108f4e1a0f2efccdff6c9f6a6b5c7d67e75f7460116eb9d
+fetched_at: 2026-04-08T03:10:42.134564Z
+sha256: e6795265860633374e0516d76819656472ae5f1adbbb9f578d04ab386ba23775
 ---
 
 # Models
@@ -78,6 +78,10 @@ The Models API response can be used to determine which models are available for 
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 
@@ -345,6 +349,10 @@ The Models API response can be used to determine information about a specific mo
     - `SKILLS_2025_10_02("skills-2025-10-02")`
 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
+
+    - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 
