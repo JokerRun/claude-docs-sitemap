@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: f0622b4302ab52259d49ef938932038c7d84671b070a3a3d1c1976971a85e799
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 4fb89733a07e946d8a2b39e3806cd30b524bb26878281c7c53fb24cbec6bbe7a
 ---
 
 # Web fetch tool
@@ -87,6 +87,21 @@ curl https://api.anthropic.com/v1/messages \
             "name": "web_fetch"
         }]
     }'
+```
+
+```bash CLI
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 4096
+messages:
+  - role: user
+    content: >-
+      Fetch the content at https://example.com/research-paper
+      and extract the key findings.
+tools:
+  - type: web_fetch_20260209
+    name: web_fetch
+YAML
 ```
 
 ```python Python hidelines={1..2}
@@ -284,6 +299,14 @@ curl https://api.anthropic.com/v1/messages \
             "max_uses": 5
         }]
     }'
+```
+
+```bash CLI
+ant messages create \
+  --model claude-opus-4-6 \
+  --max-tokens 1024 \
+  --message '{role: user, content: "Please analyze the content at https://example.com/article"}' \
+  --tool '{type: web_fetch_20250910, name: web_fetch, max_uses: 5}'
 ```
 
 ```python Python hidelines={1..2}
@@ -523,7 +546,7 @@ When displaying API outputs directly to end users, citations must be included to
 
 Here's an example response structure:
 
-```json
+```json Output
 {
   "role": "assistant",
   "content": [
@@ -607,7 +630,7 @@ The web fetch tool caches results to improve performance and reduce redundant re
 
 For PDF documents, content is returned as base64-encoded data:
 
-```json
+```json Output
 {
   "type": "web_fetch_tool_result",
   "tool_use_id": "srvtoolu_02",
@@ -632,7 +655,7 @@ For PDF documents, content is returned as base64-encoded data:
 
 When the web fetch tool encounters an error, the Claude API returns a 200 (success) response with the error represented in the response body:
 
-```json
+```json Output
 {
   "type": "web_fetch_tool_result",
   "tool_use_id": "srvtoolu_a93jad",
@@ -668,7 +691,7 @@ The tool cannot fetch arbitrary URLs that Claude generates or URLs from containe
 
 Web fetch works seamlessly with web search for comprehensive information gathering:
 
-```python hidelines={1..2}
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -708,7 +731,7 @@ For caching tool definitions across turns, see [Tool use with prompt caching](/d
 
 With streaming enabled, fetch events are part of the stream with a pause during content retrieval:
 
-```sse
+```sse Output
 event: message_start
 data: {"type": "message_start", "message": {"id": "msg_abc123", "type": "message"}}
 

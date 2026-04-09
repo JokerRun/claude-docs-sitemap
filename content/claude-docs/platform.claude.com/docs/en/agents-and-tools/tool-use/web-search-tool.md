@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 05074f62a90c5d568241b3435feb5bb9f6ba5d7cfdda1b85aa31acee05e2c8e6
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: f844f0fb43d570987b715115e6c8b472f67128174844fd7b9a610ce0ed70da73
 ---
 
 # Web search tool
@@ -67,6 +67,21 @@ curl https://api.anthropic.com/v1/messages \
             "name": "web_search"
         }]
     }'
+```
+
+```bash CLI
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 4096
+messages:
+  - role: user
+    content: >-
+      Search for the current prices of AAPL and GOOGL, then calculate
+      which has a better P/E ratio.
+tools:
+  - type: web_search_20260209
+    name: web_search
+YAML
 ```
 
 ```python Python hidelines={1..2}
@@ -268,6 +283,14 @@ curl https://api.anthropic.com/v1/messages \
             "max_uses": 5
         }]
     }'
+```
+
+```bash CLI
+ant messages create \
+  --model claude-opus-4-6 \
+  --max-tokens 1024 \
+  --message '{role: user, content: What is the weather in NYC?}' \
+  --tool '{type: web_search_20250305, name: web_search, max_uses: 5}'
 ```
 
 ```python Python hidelines={1..2}
@@ -497,7 +520,7 @@ The `user_location` parameter allows you to localize search results based on a u
 
 Here's an example response structure:
 
-```json
+```json Output
 {
   "role": "assistant",
   "content": [
@@ -588,7 +611,7 @@ The web search citation fields `cited_text`, `title`, and `url` do not count tow
 
 When the web search tool encounters an error (such as hitting rate limits), the Claude API still returns a 200 (success) response. The error is represented within the response body using the following structure:
 
-```json
+```json Output
 {
   "type": "web_search_tool_result",
   "tool_use_id": "servertoolu_a93jad",
@@ -619,7 +642,7 @@ For caching tool definitions across turns, see [Tool use with prompt caching](/d
 
 With streaming enabled, you'll receive search events as part of the stream. There will be a pause while the search executes:
 
-```sse
+```sse Output
 event: message_start
 data: {"type": "message_start", "message": {"id": "msg_abc123", "type": "message"}}
 

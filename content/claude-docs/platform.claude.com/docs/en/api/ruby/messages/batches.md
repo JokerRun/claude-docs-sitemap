@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 2b77b0d9d97712781028e775a70da1ab3ec44a2c395f956fabedce250f454036
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 4644de0fabb88393a14ecdf5bc9801c3803cbec988889beab6683b7f0b01253f
 ---
 
 # Batches
@@ -2328,15 +2328,19 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `:"claude-opus-4-6" | :"claude-sonnet-4-6" | :"claude-haiku-4-5" | 12 more`
+      - `:"claude-mythos-preview" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 13 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `:"claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `:"claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `:"claude-sonnet-4-6"`
 
@@ -5112,15 +5116,19 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `:"claude-opus-4-6" | :"claude-sonnet-4-6" | :"claude-haiku-4-5" | 12 more`
+          - `:"claude-mythos-preview" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 13 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `:"claude-mythos-preview"`
+
+              New class of intelligence, strongest in coding and cybersecurity
+
             - `:"claude-opus-4-6"`
 
-              Most intelligent model for building agents and coding
+              Frontier intelligence for long-running agents and coding
 
             - `:"claude-sonnet-4-6"`
 
@@ -6380,15 +6388,19 @@ puts(message_batch_individual_response)
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `:"claude-opus-4-6" | :"claude-sonnet-4-6" | :"claude-haiku-4-5" | 12 more`
+          - `:"claude-mythos-preview" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 13 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `:"claude-mythos-preview"`
+
+              New class of intelligence, strongest in coding and cybersecurity
+
             - `:"claude-opus-4-6"`
 
-              Most intelligent model for building agents and coding
+              Frontier intelligence for long-running agents and coding
 
             - `:"claude-sonnet-4-6"`
 
@@ -7444,15 +7456,19 @@ puts(message_batch_individual_response)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `:"claude-opus-4-6" | :"claude-sonnet-4-6" | :"claude-haiku-4-5" | 12 more`
+        - `:"claude-mythos-preview" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 13 more`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `:"claude-mythos-preview"`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
           - `:"claude-opus-4-6"`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `:"claude-sonnet-4-6"`
 
@@ -8470,15 +8486,19 @@ puts(message_batch_individual_response)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `:"claude-opus-4-6" | :"claude-sonnet-4-6" | :"claude-haiku-4-5" | 12 more`
+      - `:"claude-mythos-preview" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 13 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `:"claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `:"claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `:"claude-sonnet-4-6"`
 

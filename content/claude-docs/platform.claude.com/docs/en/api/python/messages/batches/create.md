@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/batches/create
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 62852e117b399d73da052d7f0f610f5924dac0462ba3e28c333df2795998239f
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 29116c88d473863e8631e0aca01c427caae94034f392a874adb90007bd13481a
 ---
 
 ## Create
@@ -2326,13 +2326,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Literal["claude-opus-4-6", "claude-sonnet-4-6", "claude-haiku-4-5", 12 more]`
+      - `Literal["claude-mythos-preview", "claude-opus-4-6", "claude-sonnet-4-6", 13 more]`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `claude-opus-4-6` - Most intelligent model for building agents and coding
+        - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
+        - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
         - `claude-sonnet-4-6` - Best combination of speed and intelligence
         - `claude-haiku-4-5` - Fastest model with near-frontier intelligence
         - `claude-haiku-4-5-20251001` - Fastest model with near-frontier intelligence
@@ -2348,9 +2349,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `claude-sonnet-4-20250514` - High-performance model with extended thinking
         - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
+        - `"claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `"claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-sonnet-4-6"`
 

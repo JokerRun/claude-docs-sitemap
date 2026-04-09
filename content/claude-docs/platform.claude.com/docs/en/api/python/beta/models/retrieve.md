@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/models/retrieve
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: fb5634f9e0bdb64b252e172bc5e5793576b167800eb6156bfc9025791e0224dc
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 00c56eb0381fd7aabea748a91062064e2eead43fb4dee2ef6d90d27b9a7cdb51
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,8 +70,6 @@ The Models API response can be used to determine information about a specific mo
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

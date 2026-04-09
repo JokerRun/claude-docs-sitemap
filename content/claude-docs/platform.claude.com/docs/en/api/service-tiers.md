@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/service-tiers
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 6f081b4bb132610e8cd9dbecbea8dc4c6f1a6b23131384125c8c6f84fd281fe4
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 2e86065494139b593e4798f4b67e327653843379fec766c7767737e490477444
 ---
 
 # Service tiers
@@ -60,7 +60,7 @@ If servicing the request would exceed the rate limits, the request is declined.
 
 You can control which service tiers can be used for a request by setting the `service_tier` parameter:
 
-```python
+```python Python
 message = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=1024,

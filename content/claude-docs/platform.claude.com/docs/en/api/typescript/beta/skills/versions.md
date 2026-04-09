@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 22f8450eb84a5d0421309929a23dc677ac45d5dfd6256c50b122f00d39923839
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: dc1c389b70537a6173cf7be4b0af3d30d024fcbaf071857871b536282d8fc3c2
 ---
 
 # Versions
@@ -37,7 +37,7 @@ Create Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -80,8 +80,6 @@ Create Skill Version
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -179,7 +177,7 @@ List Skill Versions
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -222,8 +220,6 @@ List Skill Versions
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -318,7 +314,7 @@ Get Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -361,8 +357,6 @@ Get Skill Version
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -456,7 +450,7 @@ Delete Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -499,8 +493,6 @@ Delete Skill Version
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

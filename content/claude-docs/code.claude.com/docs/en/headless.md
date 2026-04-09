@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-04-04T03:07:06.698608Z
-sha256: 2960850eed7fc9a4a5b4aa3c3a4cf9024b56517d49f7148d17d5ac5d8e963a0c
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 6d508abfd775c9a201b551ea1d776df3438472b549b8e8a088f315f0ccc65875
 ---
 
 > ## Documentation Index
@@ -13,7 +13,7 @@ sha256: 2960850eed7fc9a4a5b4aa3c3a4cf9024b56517d49f7148d17d5ac5d8e963a0c
 
 > Use the Agent SDK to run Claude Code programmatically from the CLI, Python, or TypeScript.
 
-The [Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview) gives you the same tools, agent loop, and context management that power Claude Code. It's available as a CLI for scripts and CI/CD, or as [Python](https://platform.claude.com/docs/en/agent-sdk/python) and [TypeScript](https://platform.claude.com/docs/en/agent-sdk/typescript) packages for full programmatic control.
+The [Agent SDK](/en/agent-sdk/overview) gives you the same tools, agent loop, and context management that power Claude Code. It's available as a CLI for scripts and CI/CD, or as [Python](/en/agent-sdk/python) and [TypeScript](/en/agent-sdk/typescript) packages for full programmatic control.
 
 <Note>
   The CLI was previously called "headless mode." The `-p` flag and all CLI options work the same way.
@@ -25,7 +25,7 @@ To run Claude Code programmatically from the CLI, pass `-p` with your prompt and
 claude -p "Find and fix the bug in auth.py" --allowedTools "Read,Edit,Bash"
 ```
 
-This page covers using the Agent SDK via the CLI (`claude -p`). For the Python and TypeScript SDK packages with structured outputs, tool approval callbacks, and native message objects, see the [full Agent SDK documentation](https://platform.claude.com/docs/en/agent-sdk/overview).
+This page covers using the Agent SDK via the CLI (`claude -p`). For the Python and TypeScript SDK packages with structured outputs, tool approval callbacks, and native message objects, see the [full Agent SDK documentation](/en/agent-sdk/overview).
 
 ## Basic usage
 
@@ -141,7 +141,7 @@ When an API request fails with a retryable error, Claude Code emits a `system/ap
 | `uuid`           | string          | unique event identifier                                                                                                                      |
 | `session_id`     | string          | session the event belongs to                                                                                                                 |
 
-For programmatic streaming with callbacks and message objects, see [Stream responses in real-time](https://platform.claude.com/docs/en/agent-sdk/streaming-output) in the Agent SDK documentation.
+For programmatic streaming with callbacks and message objects, see [Stream responses in real-time](/en/agent-sdk/streaming-output) in the Agent SDK documentation.
 
 ### Auto-approve tools
 
@@ -152,7 +152,7 @@ claude -p "Run the test suite and fix any failures" \
   --allowedTools "Bash,Read,Edit"
 ```
 
-To set a baseline for the whole session instead of listing individual tools, pass a [permission mode](/en/permission-modes). `dontAsk` denies anything not in your `permissions.allow` rules, which is useful for locked-down CI runs. `acceptEdits` lets Claude write files without prompting, but shell commands and network requests still need an `--allowedTools` entry or a `permissions.allow` rule, otherwise the run aborts when one is attempted:
+To set a baseline for the whole session instead of listing individual tools, pass a [permission mode](/en/permission-modes). `dontAsk` denies anything not in your `permissions.allow` rules, which is useful for locked-down CI runs. `acceptEdits` lets Claude write files without prompting and also auto-approves common filesystem commands such as `mkdir`, `touch`, `mv`, and `cp`. Other shell commands and network requests still need an `--allowedTools` entry or a `permissions.allow` rule, otherwise the run aborts when one is attempted:
 
 ```bash  theme={null}
 claude -p "Apply the lint fixes" --permission-mode acceptEdits
@@ -207,7 +207,7 @@ claude -p "Continue that review" --resume "$session_id"
 
 ## Next steps
 
-* [Agent SDK quickstart](https://platform.claude.com/docs/en/agent-sdk/quickstart): build your first agent with Python or TypeScript
+* [Agent SDK quickstart](/en/agent-sdk/quickstart): build your first agent with Python or TypeScript
 * [CLI reference](/en/cli-reference): all CLI flags and options
 * [GitHub Actions](/en/github-actions): use the Agent SDK in GitHub workflows
 * [GitLab CI/CD](/en/gitlab-ci-cd): use the Agent SDK in GitLab pipelines

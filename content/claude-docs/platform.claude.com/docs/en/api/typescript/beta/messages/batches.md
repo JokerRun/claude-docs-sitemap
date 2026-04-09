@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: cc041e336ae57820894a42eb6c73f7234f4523b65346aa09c942e5f274512c7f
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: d779914278ff70be419b77d1ba01233fa3a9ce9014bbf7134bda8bcd4daf5c0e
 ---
 
 # Batches
@@ -2624,11 +2624,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 12 more`
+        - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+
+          - `"claude-mythos-preview"`
+
+            New class of intelligence, strongest in coding and cybersecurity
 
           - `"claude-opus-4-6"`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-sonnet-4-6"`
 
@@ -4697,17 +4701,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Recommended for advanced use cases only. You usually only need to use `temperature`.
 
-      - `user_profile_id?: string | null`
-
-        The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
-
   - `betas?: Array<AnthropicBeta>`
 
     Header param: Optional header to specify the beta version(s) you want to use.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -4750,8 +4750,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -4892,7 +4890,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -4935,8 +4933,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -5076,7 +5072,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -5119,8 +5115,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -5253,7 +5247,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -5296,8 +5290,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -5429,7 +5421,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -5472,8 +5464,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -5531,7 +5521,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -5574,8 +5564,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -6518,11 +6506,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 12 more`
+          - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+
+            - `"claude-mythos-preview"`
+
+              New class of intelligence, strongest in coding and cybersecurity
 
             - `"claude-opus-4-6"`
 
-              Most intelligent model for building agents and coding
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-sonnet-4-6"`
 
@@ -8094,11 +8086,15 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 12 more`
+          - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+
+            - `"claude-mythos-preview"`
+
+              New class of intelligence, strongest in coding and cybersecurity
 
             - `"claude-opus-4-6"`
 
-              Most intelligent model for building agents and coding
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-sonnet-4-6"`
 
@@ -9462,11 +9458,15 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 12 more`
+        - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+
+          - `"claude-mythos-preview"`
+
+            New class of intelligence, strongest in coding and cybersecurity
 
           - `"claude-opus-4-6"`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-sonnet-4-6"`
 
@@ -10792,11 +10792,15 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 12 more`
+      - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+
+        - `"claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
 
         - `"claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-sonnet-4-6"`
 

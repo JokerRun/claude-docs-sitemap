@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/retrieve_metadata
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 20ba7ae753a68d3e63a9491326894293a88093d21534fa5b6e0b006c7aa52640
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 90965758841e69edf5d383fc37dc51db35d3203039e17674ca9cda4a7bef0a95
 ---
 
 ## Retrieve Metadata
@@ -67,8 +67,6 @@ Get File Metadata
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
-
 ### Returns
 
 - `class FileMetadata:`
@@ -104,6 +102,18 @@ Get File Metadata
   - `Boolean Downloadable`
 
     Whether the file can be downloaded.
+
+  - `BetaFileScope? Scope`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `required string ID`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `JsonElement Type "session"constant`
+
+      The type of scope (e.g., `"session"`).
 
 ### Example
 

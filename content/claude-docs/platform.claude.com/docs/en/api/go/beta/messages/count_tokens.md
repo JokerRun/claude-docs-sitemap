@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/count_tokens
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: ce94bbc4f02380f7272ba21a278bcfb2ba911d4788e2f561974c2bb72263e3f2
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 748c7d0e31e86febf5d708f4fddddf317c1e0b5aa0d8068d799731dd0033f9a1
 ---
 
 ## Count Tokens
@@ -4294,8 +4294,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
-
 ### Returns
 
 - `type BetaMessageTokensCount struct{…}`
@@ -4338,7 +4336,7 @@ func main() {
       }},
       Role: anthropic.BetaMessageParamRoleUser,
     }},
-    Model: anthropic.ModelClaudeOpus4_6,
+    Model: anthropic.ModelClaudeMythosPreview,
   })
   if err != nil {
     panic(err.Error())

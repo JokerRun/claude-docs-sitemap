@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 2fbd7970a9b6097dfea30f617333e9e2fe1750f2ce71ec0e0ffbbe35db5644d1
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 3e2f7aa9524eebfb99133ff19548e1abd9b7ca568e6db726a4cd6aa38d134b26
 ---
 
 # MCP connector
@@ -74,6 +74,24 @@ curl https://api.anthropic.com/v1/messages \
       }
     ]
   }'
+```
+
+```bash CLI nocheck
+ant beta:messages create --beta mcp-client-2025-11-20 <<'YAML'
+model: claude-opus-4-6
+max_tokens: 1000
+messages:
+  - role: user
+    content: What tools do you have available?
+mcp_servers:
+  - type: url
+    url: https://example-server.modelcontextprotocol.io/sse
+    name: example-mcp
+    authorization_token: YOUR_TOKEN
+tools:
+  - type: mcp_toolset
+    mcp_server_name: example-mcp
+YAML
 ```
 
 ```python Python nocheck hidelines={1..2}
@@ -625,7 +643,7 @@ If you manage your own MCP client connection (for example, with local stdio serv
   These helpers are currently available in the TypeScript SDK only.
 </Note>
 <Note>
-  Use the [`mcp_servers` API parameter](#using-the-mcp-connector-in-the-messages-api) when you have remote servers accessible via URL and only need tool support. If you're using the [Agent SDK](/docs/en/agent-sdk/mcp), MCP connections are managed automatically. Use the client-side helpers when you need local servers, prompts, resources, or more control over the connection with the base SDK.
+  Use the [`mcp_servers` API parameter](#using-the-mcp-connector-in-the-messages-api) when you have remote servers accessible via URL and only need tool support. Use the client-side helpers when you need local servers, prompts, resources, or more control over the connection with the base SDK.
 </Note>
 
 ### Installation

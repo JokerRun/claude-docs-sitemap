@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: bb0ff317904c110a9abe768ed5385e1ade18167ed10002a9c62879657a260bf3
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 444d6858f3d62fa6e4058f3eff76fff40ccb0c222e70b8fb37dde95517cc2051
 ---
 
 # Messages
@@ -2310,15 +2310,19 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+  - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `"claude-mythos-preview"`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
     - `"claude-opus-4-6"`
 
-      Most intelligent model for building agents and coding
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-sonnet-4-6"`
 
@@ -4537,15 +4541,19 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+    - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `"claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `"claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-sonnet-4-6"`
 
@@ -7059,15 +7067,19 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+  - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `"claude-mythos-preview"`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
     - `"claude-opus-4-6"`
 
-      Most intelligent model for building agents and coding
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-sonnet-4-6"`
 
@@ -8529,7 +8541,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
               "role": "user"
             }
           ],
-          "model": "claude-opus-4-6"
+          "model": "claude-mythos-preview"
         }'
 ```
 
@@ -14223,15 +14235,19 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+    - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `"claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `"claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-sonnet-4-6"`
 
@@ -17754,21 +17770,25 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 ### Model
 
-- `Model = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more or string`
+- `Model = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
 
   The model that will complete your prompt.
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+  - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `"claude-mythos-preview"`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
     - `"claude-opus-4-6"`
 
-      Most intelligent model for building agents and coding
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-sonnet-4-6"`
 
@@ -19635,15 +19655,19 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+      - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `"claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-sonnet-4-6"`
 
@@ -20571,15 +20595,19 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+        - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-mythos-preview"`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
           - `"claude-opus-4-6"`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-sonnet-4-6"`
 
@@ -29664,15 +29692,19 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+      - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `"claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-sonnet-4-6"`
 
@@ -32443,15 +32475,19 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+          - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `"claude-mythos-preview"`
+
+              New class of intelligence, strongest in coding and cybersecurity
+
             - `"claude-opus-4-6"`
 
-              Most intelligent model for building agents and coding
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-sonnet-4-6"`
 
@@ -33707,15 +33743,19 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+          - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `"claude-mythos-preview"`
+
+              New class of intelligence, strongest in coding and cybersecurity
+
             - `"claude-opus-4-6"`
 
-              Most intelligent model for building agents and coding
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-sonnet-4-6"`
 
@@ -34771,15 +34811,19 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+        - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-mythos-preview"`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
           - `"claude-opus-4-6"`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-sonnet-4-6"`
 
@@ -35797,15 +35841,19 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+      - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `"claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-sonnet-4-6"`
 

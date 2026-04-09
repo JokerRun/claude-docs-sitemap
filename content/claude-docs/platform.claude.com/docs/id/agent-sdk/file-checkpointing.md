@@ -1,825 +1,590 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/file-checkpointing
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 2a5c843f11d9a6cc106b0692d2e381a9e23d0ff0dafc93f9b7fc16d482ab59f3
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 520c00e11831725b36058a11dbe2c349837a5bb2165fc397e7c2cfbaf8037d43
 ---
 
-# Kembalikan perubahan file dengan checkpointing
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
-Lacak perubahan file selama sesi agen dan kembalikan file ke status sebelumnya
+# Agent SDK overview
 
----
-
-File checkpointing melacak modifikasi file yang dilakukan melalui alat Write, Edit, dan NotebookEdit selama sesi agen, memungkinkan Anda untuk mengembalikan file ke status sebelumnya. Ingin mencobanya? Lompat ke [contoh interaktif](#try-it-out).
-
-Dengan checkpointing, Anda dapat:
-
-- **Batalkan perubahan yang tidak diinginkan** dengan mengembalikan file ke status yang diketahui baik
-- **Jelajahi alternatif** dengan mengembalikan ke checkpoint dan mencoba pendekatan berbeda
-- **Pulihkan dari kesalahan** ketika agen membuat modifikasi yang salah
-
-<Warning>
-Hanya perubahan yang dilakukan melalui alat Write, Edit, dan NotebookEdit yang dilacak. Perubahan yang dilakukan melalui perintah Bash (seperti `echo > file.txt` atau `sed -i`) tidak ditangkap oleh sistem checkpoint.
-</Warning>
-
-## Cara kerja checkpointing
-
-Ketika Anda mengaktifkan file checkpointing, SDK membuat cadangan file sebelum memodifikasinya melalui alat Write, Edit, atau NotebookEdit. Pesan pengguna dalam aliran respons mencakup UUID checkpoint yang dapat Anda gunakan sebagai titik pemulihan.
-
-Checkpoint bekerja dengan alat bawaan ini yang digunakan agen untuk memodifikasi file:
-
-| Alat | Deskripsi |
-|------|-------------|
-| Write | Membuat file baru atau menimpa file yang ada dengan konten baru |
-| Edit | Membuat pengeditan bertarget ke bagian tertentu dari file yang ada |
-| NotebookEdit | Memodifikasi sel dalam notebook Jupyter (file `.ipynb`) |
+> Build production AI agents with Claude Code as a library
 
 <Note>
-Pengembalian file mengembalikan file di disk ke status sebelumnya. Ini tidak mengembalikan percakapan itu sendiri. Riwayat percakapan dan konteks tetap utuh setelah memanggil `rewindFiles()` (TypeScript) atau `rewind_files()` (Python).
+  The Claude Code SDK has been renamed to the Claude Agent SDK. If you're migrating from the old SDK, see the [Migration Guide](/en/agent-sdk/migration-guide).
 </Note>
 
-Sistem checkpoint melacak:
-
-- File yang dibuat selama sesi
-- File yang dimodifikasi selama sesi
-- Konten asli file yang dimodifikasi
-
-Ketika Anda mengembalikan ke checkpoint, file yang dibuat dihapus dan file yang dimodifikasi dipulihkan ke konten mereka pada titik itu.
-
-## Implementasikan checkpointing
-
-Untuk menggunakan file checkpointing, aktifkan dalam opsi Anda, tangkap UUID checkpoint dari aliran respons, kemudian panggil `rewindFiles()` (TypeScript) atau `rewind_files()` (Python) ketika Anda perlu memulihkan.
-
-Contoh berikut menunjukkan alur lengkap: aktifkan checkpointing, tangkap UUID checkpoint dan ID sesi dari aliran respons, kemudian lanjutkan sesi nanti untuk mengembalikan file. Setiap langkah dijelaskan secara detail di bawah.
+Build AI agents that autonomously read files, run commands, search the web, edit code, and more. The Agent SDK gives you the same tools, agent loop, and context management that power Claude Code, programmable in Python and TypeScript.
 
 <CodeGroup>
+  ```python Python theme={null}
+  import asyncio
+  from claude_agent_sdk import query, ClaudeAgentOptions
 
-```python Python
-import asyncio
-import os
-from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions, UserMessage, ResultMessage
 
-async def main():
-    # Step 1: Enable checkpointing
-    options = ClaudeAgentOptions(
-        enable_file_checkpointing=True,
-        permission_mode="acceptEdits",  # Auto-accept file edits without prompting
-        extra_args={"replay-user-messages": None},  # Required to receive checkpoint UUIDs in the response stream
-        env={**os.environ, "CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING": "1"}
-    )
+  async def main():
+      async for message in query(
+          prompt="Find and fix the bug in auth.py",
+          options=ClaudeAgentOptions(allowed_tools=["Read", "Edit", "Bash"]),
+      ):
+          print(message)  # Claude reads the file, finds the bug, edits it
 
-    checkpoint_id = None
-    session_id = None
 
-    # Run the query and capture checkpoint UUID and session ID
-    async with ClaudeSDKClient(options) as client:
-        await client.query("Refactor the authentication module")
+  asyncio.run(main())
+  ```
 
-        # Step 2: Capture checkpoint UUID from the first user message
-        async for message in client.receive_response():
-            if isinstance(message, UserMessage) and message.uuid and not checkpoint_id:
-                checkpoint_id = message.uuid
-            if isinstance(message, ResultMessage) and not session_id:
-                session_id = message.session_id
+  ```typescript TypeScript theme={null}
+  import { query } from "@anthropic-ai/claude-agent-sdk";
 
-    # Step 3: Later, rewind by resuming the session with an empty prompt
-    if checkpoint_id and session_id:
-        async with ClaudeSDKClient(ClaudeAgentOptions(
-            enable_file_checkpointing=True,
-            resume=session_id
-        )) as client:
-            await client.query("")  # Empty prompt to open the connection
-            async for message in client.receive_response():
-                await client.rewind_files(checkpoint_id)
-                break
-        print(f"Rewound to checkpoint: {checkpoint_id}")
-
-asyncio.run(main())
-```
-
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-async function main() {
-  // Step 1: Enable checkpointing
-  const opts = {
-    enableFileCheckpointing: true,
-    permissionMode: "acceptEdits" as const,  // Auto-accept file edits without prompting
-    extraArgs: { 'replay-user-messages': null },  // Required to receive checkpoint UUIDs in the response stream
-    env: { ...process.env, CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING: '1' }
-  };
-
-  const response = query({
-    prompt: "Refactor the authentication module",
-    options: opts
-  });
-
-  let checkpointId: string | undefined;
-  let sessionId: string | undefined;
-
-  // Step 2: Capture checkpoint UUID from the first user message
-  for await (const message of response) {
-    if (message.type === 'user' && message.uuid && !checkpointId) {
-      checkpointId = message.uuid;
-    }
-    if ('session_id' in message && !sessionId) {
-      sessionId = message.session_id;
-    }
+  for await (const message of query({
+    prompt: "Find and fix the bug in auth.py",
+    options: { allowedTools: ["Read", "Edit", "Bash"] }
+  })) {
+    console.log(message); // Claude reads the file, finds the bug, edits it
   }
-
-  // Step 3: Later, rewind by resuming the session with an empty prompt
-  if (checkpointId && sessionId) {
-    const rewindQuery = query({
-      prompt: "",  // Empty prompt to open the connection
-      options: { ...opts, resume: sessionId }
-    });
-
-    for await (const msg of rewindQuery) {
-      await rewindQuery.rewindFiles(checkpointId);
-      break;
-    }
-    console.log(`Rewound to checkpoint: ${checkpointId}`);
-  }
-}
-
-main();
-```
-
+  ```
 </CodeGroup>
+
+The Agent SDK includes built-in tools for reading files, running commands, and editing code, so your agent can start working immediately without you implementing tool execution. Dive into the quickstart or explore real agents built with the SDK:
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build a bug-fixing agent in minutes
+  </Card>
+
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+</CardGroup>
+
+## Get started
 
 <Steps>
+  <Step title="Install the SDK">
+    <Tabs>
+      <Tab title="TypeScript">
+        ```bash  theme={null}
+        npm install @anthropic-ai/claude-agent-sdk
+        ```
+      </Tab>
 
-<Step title="Atur variabel lingkungan">
+      <Tab title="Python">
+        ```bash  theme={null}
+        pip install claude-agent-sdk
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
 
-File checkpointing memerlukan variabel lingkungan `CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING`. Anda dapat mengaturnya melalui baris perintah sebelum menjalankan skrip Anda, atau langsung dalam opsi SDK.
+  <Step title="Set your API key">
+    Get an API key from the [Console](https://platform.claude.com/), then set it as an environment variable:
 
-**Opsi 1: Atur melalui baris perintah**
+    ```bash  theme={null}
+    export ANTHROPIC_API_KEY=your-api-key
+    ```
 
-```bash Python
-export CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING=1
-```
+    The SDK also supports authentication via third-party API providers:
 
-**Opsi 2: Atur dalam opsi SDK**
+    * **Amazon Bedrock**: set `CLAUDE_CODE_USE_BEDROCK=1` environment variable and configure AWS credentials
+    * **Google Vertex AI**: set `CLAUDE_CODE_USE_VERTEX=1` environment variable and configure Google Cloud credentials
+    * **Microsoft Azure**: set `CLAUDE_CODE_USE_FOUNDRY=1` environment variable and configure Azure credentials
 
-Lewatkan variabel lingkungan melalui opsi `env` saat mengonfigurasi SDK:
+    See the setup guides for [Bedrock](/en/amazon-bedrock), [Vertex AI](/en/google-vertex-ai), or [Azure AI Foundry](/en/microsoft-foundry) for details.
 
-<CodeGroup>
+    <Note>
+      Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Please use the API key authentication methods described in this document instead.
+    </Note>
+  </Step>
 
-```python Python
-import os
+  <Step title="Run your first agent">
+    This example creates an agent that lists files in your current directory using built-in tools.
 
-options = ClaudeAgentOptions(
-    enable_file_checkpointing=True,
-    env={**os.environ, "CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING": "1"}
-)
-```
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
 
-```typescript TypeScript
-const opts = {
-  enableFileCheckpointing: true,
-  env: { ...process.env, CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING: '1' }
-};
-```
 
-</CodeGroup>
+      async def main():
+          async for message in query(
+              prompt="What files are in this directory?",
+              options=ClaudeAgentOptions(allowed_tools=["Bash", "Glob"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
 
-</Step>
 
-<Step title="Aktifkan checkpointing">
+      asyncio.run(main())
+      ```
 
-Konfigurasikan opsi SDK Anda untuk mengaktifkan checkpointing dan menerima UUID checkpoint:
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
 
-| Opsi | Python | TypeScript | Deskripsi |
-|--------|--------|------------|-------------|
-| Aktifkan checkpointing | `enable_file_checkpointing=True` | `enableFileCheckpointing: true` | Melacak perubahan file untuk pengembalian |
-| Terima UUID checkpoint | `extra_args={"replay-user-messages": None}` | `extraArgs: { 'replay-user-messages': null }` | Diperlukan untuk mendapatkan UUID pesan pengguna dalam aliran |
-
-<CodeGroup>
-
-```python Python
-options = ClaudeAgentOptions(
-    enable_file_checkpointing=True,
-    permission_mode="acceptEdits",
-    extra_args={"replay-user-messages": None}
-)
-
-async with ClaudeSDKClient(options) as client:
-    await client.query("Refactor the authentication module")
-```
-
-```typescript TypeScript
-const response = query({
-  prompt: "Refactor the authentication module",
-  options: {
-    enableFileCheckpointing: true,
-    permissionMode: "acceptEdits" as const,
-    extraArgs: { 'replay-user-messages': null }
-  }
-});
-```
-
-</CodeGroup>
-
-</Step>
-
-<Step title="Tangkap UUID checkpoint dan ID sesi">
-
-Dengan opsi `replay-user-messages` yang diatur (ditunjukkan di atas), setiap pesan pengguna dalam aliran respons memiliki UUID yang berfungsi sebagai checkpoint.
-
-Untuk sebagian besar kasus penggunaan, tangkap UUID pesan pengguna pertama (`message.uuid`); mengembalikan ke sana mengembalikan semua file ke status asli mereka. Untuk menyimpan beberapa checkpoint dan mengembalikan ke status perantara, lihat [Beberapa titik pemulihan](#multiple-restore-points).
-
-Menangkap ID sesi (`message.session_id`) bersifat opsional; Anda hanya membutuhkannya jika Anda ingin mengembalikan nanti, setelah aliran selesai. Jika Anda memanggil `rewindFiles()` segera saat masih memproses pesan (seperti yang dilakukan contoh dalam [Checkpoint sebelum operasi berisiko](#checkpoint-before-risky-operations)), Anda dapat melewatkan penangkapan ID sesi.
-
-<CodeGroup>
-
-```python Python
-checkpoint_id = None
-session_id = None
-
-async for message in client.receive_response():
-    # Update checkpoint on each user message (keeps the latest)
-    if isinstance(message, UserMessage) and message.uuid:
-        checkpoint_id = message.uuid
-    # Capture session ID from the result message
-    if isinstance(message, ResultMessage):
-        session_id = message.session_id
-```
-
-```typescript TypeScript
-let checkpointId: string | undefined;
-let sessionId: string | undefined;
-
-for await (const message of response) {
-  // Update checkpoint on each user message (keeps the latest)
-  if (message.type === 'user' && message.uuid) {
-    checkpointId = message.uuid;
-  }
-  // Capture session ID from any message that has it
-  if ('session_id' in message) {
-    sessionId = message.session_id;
-  }
-}
-```
-
-</CodeGroup>
-
-</Step>
-
-<Step title="Kembalikan file">
-
-Untuk mengembalikan setelah aliran selesai, lanjutkan sesi dengan prompt kosong dan panggil `rewind_files()` (Python) atau `rewindFiles()` (TypeScript) dengan UUID checkpoint Anda. Anda juga dapat mengembalikan selama aliran; lihat [Checkpoint sebelum operasi berisiko](#checkpoint-before-risky-operations) untuk pola itu.
-
-<CodeGroup>
-
-```python Python
-async with ClaudeSDKClient(ClaudeAgentOptions(
-    enable_file_checkpointing=True,
-    resume=session_id
-)) as client:
-    await client.query("")  # Empty prompt to open the connection
-    async for message in client.receive_response():
-        await client.rewind_files(checkpoint_id)
-        break
-```
-
-```typescript TypeScript
-const rewindQuery = query({
-  prompt: "",  // Empty prompt to open the connection
-  options: { ...opts, resume: sessionId }
-});
-
-for await (const msg of rewindQuery) {
-  await rewindQuery.rewindFiles(checkpointId);
-  break;
-}
-```
-
-</CodeGroup>
-
-Jika Anda menangkap ID sesi dan ID checkpoint, Anda juga dapat mengembalikan dari CLI:
-
-```bash
-claude --resume <session-id> --rewind-files <checkpoint-uuid>
-```
-
-</Step>
-
+      for await (const message of query({
+        prompt: "What files are in this directory?",
+        options: { allowedTools: ["Bash", "Glob"] }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+  </Step>
 </Steps>
 
-## Pola umum
+**Ready to build?** Follow the [Quickstart](/en/agent-sdk/quickstart) to create an agent that finds and fixes bugs in minutes.
 
-Pola ini menunjukkan cara berbeda untuk menangkap dan menggunakan UUID checkpoint tergantung pada kasus penggunaan Anda.
+## Capabilities
 
-### Checkpoint sebelum operasi berisiko
-
-Pola ini menyimpan hanya UUID checkpoint paling baru, memperbaruinya sebelum setiap putaran agen. Jika ada yang salah selama pemrosesan, Anda dapat segera mengembalikan ke status terakhir yang aman dan keluar dari loop.
-
-<CodeGroup>
-
-```python Python
-import asyncio
-import os
-from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions, UserMessage
-
-async def main():
-    options = ClaudeAgentOptions(
-        enable_file_checkpointing=True,
-        permission_mode="acceptEdits",
-        extra_args={"replay-user-messages": None},
-        env={**os.environ, "CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING": "1"}
-    )
-
-    safe_checkpoint = None
-
-    async with ClaudeSDKClient(options) as client:
-        await client.query("Refactor the authentication module")
-
-        async for message in client.receive_response():
-            # Update checkpoint before each agent turn starts
-            # This overwrites the previous checkpoint. Only keep the latest
-            if isinstance(message, UserMessage) and message.uuid:
-                safe_checkpoint = message.uuid
-
-            # Decide when to revert based on your own logic
-            # For example: error detection, validation failure, or user input
-            if your_revert_condition and safe_checkpoint:
-                await client.rewind_files(safe_checkpoint)
-                # Exit the loop after rewinding, files are restored
-                break
-
-asyncio.run(main())
-```
-
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-async function main() {
-  const response = query({
-    prompt: "Refactor the authentication module",
-    options: {
-      enableFileCheckpointing: true,
-      permissionMode: "acceptEdits" as const,
-      extraArgs: { 'replay-user-messages': null },
-      env: { ...process.env, CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING: '1' }
-    }
-  });
-
-  let safeCheckpoint: string | undefined;
-
-  for await (const message of response) {
-    // Update checkpoint before each agent turn starts
-    // This overwrites the previous checkpoint. Only keep the latest
-    if (message.type === 'user' && message.uuid) {
-      safeCheckpoint = message.uuid;
-    }
-
-    // Decide when to revert based on your own logic
-    // For example: error detection, validation failure, or user input
-    if (yourRevertCondition && safeCheckpoint) {
-      await response.rewindFiles(safeCheckpoint);
-      // Exit the loop after rewinding, files are restored
-      break;
-    }
-  }
-}
-
-main();
-```
-
-</CodeGroup>
-
-### Beberapa titik pemulihan
-
-Jika Claude membuat perubahan di beberapa putaran, Anda mungkin ingin mengembalikan ke titik tertentu daripada semuanya. Misalnya, jika Claude merefaktor file di putaran satu dan menambahkan tes di putaran dua, Anda mungkin ingin menyimpan refaktor tetapi membatalkan tes.
-
-Pola ini menyimpan semua UUID checkpoint dalam array dengan metadata. Setelah sesi selesai, Anda dapat mengembalikan ke checkpoint sebelumnya mana pun:
-
-<CodeGroup>
-
-```python Python
-import asyncio
-import os
-from dataclasses import dataclass
-from datetime import datetime
-from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions, UserMessage, ResultMessage
-
-# Store checkpoint metadata for better tracking
-@dataclass
-class Checkpoint:
-    id: str
-    description: str
-    timestamp: datetime
-
-async def main():
-    options = ClaudeAgentOptions(
-        enable_file_checkpointing=True,
-        permission_mode="acceptEdits",
-        extra_args={"replay-user-messages": None},
-        env={**os.environ, "CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING": "1"}
-    )
-
-    checkpoints = []
-    session_id = None
-
-    async with ClaudeSDKClient(options) as client:
-        await client.query("Refactor the authentication module")
-
-        async for message in client.receive_response():
-            if isinstance(message, UserMessage) and message.uuid:
-                checkpoints.append(Checkpoint(
-                    id=message.uuid,
-                    description=f"After turn {len(checkpoints) + 1}",
-                    timestamp=datetime.now()
-                ))
-            if isinstance(message, ResultMessage) and not session_id:
-                session_id = message.session_id
-
-    # Later: rewind to any checkpoint by resuming the session
-    if checkpoints and session_id:
-        target = checkpoints[0]  # Pick any checkpoint
-        async with ClaudeSDKClient(ClaudeAgentOptions(
-            enable_file_checkpointing=True,
-            resume=session_id
-        )) as client:
-            await client.query("")  # Empty prompt to open the connection
-            async for message in client.receive_response():
-                await client.rewind_files(target.id)
-                break
-        print(f"Rewound to: {target.description}")
-
-asyncio.run(main())
-```
-
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-// Store checkpoint metadata for better tracking
-interface Checkpoint {
-  id: string;
-  description: string;
-  timestamp: Date;
-}
-
-async function main() {
-  const opts = {
-    enableFileCheckpointing: true,
-    permissionMode: "acceptEdits" as const,
-    extraArgs: { 'replay-user-messages': null },
-    env: { ...process.env, CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING: '1' }
-  };
-
-  const response = query({
-    prompt: "Refactor the authentication module",
-    options: opts
-  });
-
-  const checkpoints: Checkpoint[] = [];
-  let sessionId: string | undefined;
-
-  for await (const message of response) {
-    if (message.type === 'user' && message.uuid) {
-      checkpoints.push({
-        id: message.uuid,
-        description: `After turn ${checkpoints.length + 1}`,
-        timestamp: new Date()
-      });
-    }
-    if ('session_id' in message && !sessionId) {
-      sessionId = message.session_id;
-    }
-  }
-
-  // Later: rewind to any checkpoint by resuming the session
-  if (checkpoints.length > 0 && sessionId) {
-    const target = checkpoints[0];  // Pick any checkpoint
-    const rewindQuery = query({
-      prompt: "",  // Empty prompt to open the connection
-      options: { ...opts, resume: sessionId }
-    });
-
-    for await (const msg of rewindQuery) {
-      await rewindQuery.rewindFiles(target.id);
-      break;
-    }
-    console.log(`Rewound to: ${target.description}`);
-  }
-}
-
-main();
-```
-
-</CodeGroup>
-
-## Coba sekarang
-
-Contoh lengkap ini membuat file utilitas kecil, meminta agen menambahkan komentar dokumentasi, menunjukkan perubahan kepada Anda, kemudian menanyakan apakah Anda ingin mengembalikan.
-
-Sebelum Anda mulai, pastikan Anda telah [menginstal Claude Agent SDK](/docs/id/agent-sdk/quickstart).
-
-<Steps>
-
-<Step title="Buat file pengujian">
-
-Buat file baru bernama `utils.py` (Python) atau `utils.ts` (TypeScript) dan tempel kode berikut:
-
-<CodeGroup>
-
-```python utils.py
-def add(a, b):
-    return a + b
-
-def subtract(a, b):
-    return a - b
-
-def multiply(a, b):
-    return a * b
-
-def divide(a, b):
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
-
-```typescript utils.ts
-export function add(a: number, b: number): number {
-  return a + b;
-}
-
-export function subtract(a: number, b: number): number {
-  return a - b;
-}
-
-export function multiply(a: number, b: number): number {
-  return a * b;
-}
-
-export function divide(a: number, b: number): number {
-  if (b === 0) {
-    throw new Error("Cannot divide by zero");
-  }
-  return a / b;
-}
-```
-
-</CodeGroup>
-
-</Step>
-
-<Step title="Jalankan contoh interaktif">
-
-Buat file baru bernama `try_checkpointing.py` (Python) atau `try_checkpointing.ts` (TypeScript) di direktori yang sama dengan file utilitas Anda, dan tempel kode berikut.
-
-Skrip ini meminta Claude untuk menambahkan komentar doc ke file utilitas Anda, kemudian memberi Anda opsi untuk mengembalikan dan mengembalikan aslinya.
-
-<CodeGroup>
-
-```python try_checkpointing.py
-import asyncio
-from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions, UserMessage, ResultMessage
-
-async def main():
-    # Configure the SDK with checkpointing enabled
-    # - enable_file_checkpointing: Track file changes for rewinding
-    # - permission_mode: Auto-accept file edits without prompting
-    # - extra_args: Required to receive user message UUIDs in the stream
-    options = ClaudeAgentOptions(
-        enable_file_checkpointing=True,
-        permission_mode="acceptEdits",
-        extra_args={"replay-user-messages": None}
-    )
-
-    checkpoint_id = None  # Store the user message UUID for rewinding
-    session_id = None     # Store the session ID for resuming
-
-    print("Running agent to add doc comments to utils.py...\n")
-
-    # Run the agent and capture checkpoint data from the response stream
-    async with ClaudeSDKClient(options) as client:
-        await client.query("Add doc comments to utils.py")
-
-        async for message in client.receive_response():
-            # Capture the first user message UUID - this is our restore point
-            if isinstance(message, UserMessage) and message.uuid and not checkpoint_id:
-                checkpoint_id = message.uuid
-            # Capture the session ID so we can resume later
-            if isinstance(message, ResultMessage):
-                session_id = message.session_id
-
-    print("Done! Open utils.py to see the added doc comments.\n")
-
-    # Ask the user if they want to rewind the changes
-    if checkpoint_id and session_id:
-        response = input("Rewind to remove the doc comments? (y/n): ")
-
-        if response.lower() == "y":
-            # Resume the session with an empty prompt, then rewind
-            async with ClaudeSDKClient(ClaudeAgentOptions(
-                enable_file_checkpointing=True,
-                resume=session_id
-            )) as client:
-                await client.query("")  # Empty prompt opens the connection
-                async for message in client.receive_response():
-                    await client.rewind_files(checkpoint_id)  # Restore files
-                    break
-
-            print("\n✓ File restored! Open utils.py to verify the doc comments are gone.")
-        else:
-            print("\nKept the modified file.")
-
-asyncio.run(main())
-```
-
-```typescript try_checkpointing.ts
-import { query } from "@anthropic-ai/claude-agent-sdk";
-import * as readline from "readline";
-
-async function main() {
-  // Configure the SDK with checkpointing enabled
-  // - enableFileCheckpointing: Track file changes for rewinding
-  // - permissionMode: Auto-accept file edits without prompting
-  // - extraArgs: Required to receive user message UUIDs in the stream
-  const opts = {
-    enableFileCheckpointing: true,
-    permissionMode: "acceptEdits" as const,
-    extraArgs: { 'replay-user-messages': null }
-  };
-
-  let sessionId: string | undefined;    // Store the session ID for resuming
-  let checkpointId: string | undefined; // Store the user message UUID for rewinding
-
-  console.log("Running agent to add doc comments to utils.ts...\n");
-
-  // Run the agent and capture checkpoint data from the response stream
-  const response = query({
-    prompt: "Add doc comments to utils.ts",
-    options: opts
-  });
-
-  for await (const message of response) {
-    // Capture the first user message UUID - this is our restore point
-    if (message.type === "user" && message.uuid && !checkpointId) {
-      checkpointId = message.uuid;
-    }
-    // Capture the session ID so we can resume later
-    if ("session_id" in message) {
-      sessionId = message.session_id;
-    }
-  }
-
-  console.log("Done! Open utils.ts to see the added doc comments.\n");
-
-  // Ask the user if they want to rewind the changes
-  if (checkpointId && sessionId) {
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout
-    });
-
-    const answer = await new Promise<string>((resolve) => {
-      rl.question("Rewind to remove the doc comments? (y/n): ", resolve);
-    });
-    rl.close();
-
-    if (answer.toLowerCase() === "y") {
-      // Resume the session with an empty prompt, then rewind
-      const rewindQuery = query({
-        prompt: "",  // Empty prompt opens the connection
-        options: { ...opts, resume: sessionId }
-      });
-
-      for await (const msg of rewindQuery) {
-        await rewindQuery.rewindFiles(checkpointId);  // Restore files
-        break;
-      }
-
-      console.log("\n✓ File restored! Open utils.ts to verify the doc comments are gone.");
-    } else {
-      console.log("\nKept the modified file.");
-    }
-  }
-}
-
-main();
-```
-
-</CodeGroup>
-
-Contoh ini mendemonstrasikan alur kerja checkpointing lengkap:
-
-1. **Aktifkan checkpointing**: konfigurasikan SDK dengan `enable_file_checkpointing=True` dan `permission_mode="acceptEdits"` untuk menyetujui pengeditan file secara otomatis
-2. **Tangkap data checkpoint**: saat agen berjalan, simpan UUID pesan pengguna pertama (titik pemulihan Anda) dan ID sesi
-3. **Minta pengembalian**: setelah agen selesai, periksa file utilitas Anda untuk melihat komentar doc, kemudian putuskan apakah Anda ingin membatalkan perubahan
-4. **Lanjutkan dan kembalikan**: jika ya, lanjutkan sesi dengan prompt kosong dan panggil `rewind_files()` untuk mengembalikan file asli
-
-</Step>
-
-<Step title="Jalankan contoh">
-
-Atur variabel lingkungan dan jalankan skrip dari direktori yang sama dengan file utilitas Anda.
-
-<Tip>
-Buka file utilitas Anda (`utils.py` atau `utils.ts`) di IDE atau editor Anda sebelum menjalankan skrip. Anda akan melihat file diperbarui secara real-time saat agen menambahkan komentar doc, kemudian kembali ke aslinya ketika Anda memilih untuk mengembalikan.
-</Tip>
+Everything that makes Claude Code powerful is available in the SDK:
 
 <Tabs>
-  <Tab title="Python">
-    ```bash
-    export CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING=1
-    python try_checkpointing.py
-    ```
+  <Tab title="Built-in tools">
+    Your agent can read files, run commands, and search codebases out of the box. Key tools include:
+
+    | Tool                                                                        | What it does                                                   |
+    | --------------------------------------------------------------------------- | -------------------------------------------------------------- |
+    | **Read**                                                                    | Read any file in the working directory                         |
+    | **Write**                                                                   | Create new files                                               |
+    | **Edit**                                                                    | Make precise edits to existing files                           |
+    | **Bash**                                                                    | Run terminal commands, scripts, git operations                 |
+    | **Glob**                                                                    | Find files by pattern (`**/*.ts`, `src/**/*.py`)               |
+    | **Grep**                                                                    | Search file contents with regex                                |
+    | **WebSearch**                                                               | Search the web for current information                         |
+    | **WebFetch**                                                                | Fetch and parse web page content                               |
+    | **[AskUserQuestion](/en/agent-sdk/user-input#handle-clarifying-questions)** | Ask the user clarifying questions with multiple choice options |
+
+    This example creates an agent that searches your codebase for TODO comments:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Find all TODO comments and create a summary",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob", "Grep"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Find all TODO comments and create a summary",
+        options: { allowedTools: ["Read", "Glob", "Grep"] }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
   </Tab>
-  <Tab title="TypeScript">
-    ```bash
-    export CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING=1
-    npx tsx try_checkpointing.ts
-    ```
+
+  <Tab title="Hooks">
+    Run custom code at key points in the agent lifecycle. SDK hooks use callback functions to validate, log, block, or transform agent behavior.
+
+    **Available hooks:** `PreToolUse`, `PostToolUse`, `Stop`, `SessionStart`, `SessionEnd`, `UserPromptSubmit`, and more.
+
+    This example logs all file changes to an audit file:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from datetime import datetime
+      from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher
+
+
+      async def log_file_change(input_data, tool_use_id, context):
+          file_path = input_data.get("tool_input", {}).get("file_path", "unknown")
+          with open("./audit.log", "a") as f:
+              f.write(f"{datetime.now()}: modified {file_path}\n")
+          return {}
+
+
+      async def main():
+          async for message in query(
+              prompt="Refactor utils.py to improve readability",
+              options=ClaudeAgentOptions(
+                  permission_mode="acceptEdits",
+                  hooks={
+                      "PostToolUse": [
+                          HookMatcher(matcher="Edit|Write", hooks=[log_file_change])
+                      ]
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query, HookCallback } from "@anthropic-ai/claude-agent-sdk";
+      import { appendFile } from "fs/promises";
+
+      const logFileChange: HookCallback = async (input) => {
+        const filePath = (input as any).tool_input?.file_path ?? "unknown";
+        await appendFile("./audit.log", `${new Date().toISOString()}: modified ${filePath}\n`);
+        return {};
+      };
+
+      for await (const message of query({
+        prompt: "Refactor utils.py to improve readability",
+        options: {
+          permissionMode: "acceptEdits",
+          hooks: {
+            PostToolUse: [{ matcher: "Edit|Write", hooks: [logFileChange] }]
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about hooks →](/en/agent-sdk/hooks)
+  </Tab>
+
+  <Tab title="Subagents">
+    Spawn specialized agents to handle focused subtasks. Your main agent delegates work, and subagents report back with results.
+
+    Define custom agents with specialized instructions. Include `Agent` in `allowedTools` since subagents are invoked via the Agent tool:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
+
+
+      async def main():
+          async for message in query(
+              prompt="Use the code-reviewer agent to review this codebase",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep", "Agent"],
+                  agents={
+                      "code-reviewer": AgentDefinition(
+                          description="Expert code reviewer for quality and security reviews.",
+                          prompt="Analyze code quality and suggest improvements.",
+                          tools=["Read", "Glob", "Grep"],
+                      )
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Use the code-reviewer agent to review this codebase",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep", "Agent"],
+          agents: {
+            "code-reviewer": {
+              description: "Expert code reviewer for quality and security reviews.",
+              prompt: "Analyze code quality and suggest improvements.",
+              tools: ["Read", "Glob", "Grep"]
+            }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    Messages from within a subagent's context include a `parent_tool_use_id` field, letting you track which messages belong to which subagent execution.
+
+    [Learn more about subagents →](/en/agent-sdk/subagents)
+  </Tab>
+
+  <Tab title="MCP">
+    Connect to external systems via the Model Context Protocol: databases, browsers, APIs, and [hundreds more](https://github.com/modelcontextprotocol/servers).
+
+    This example connects the [Playwright MCP server](https://github.com/microsoft/playwright-mcp) to give your agent browser automation capabilities:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Open example.com and describe what you see",
+              options=ClaudeAgentOptions(
+                  mcp_servers={
+                      "playwright": {"command": "npx", "args": ["@playwright/mcp@latest"]}
+                  }
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Open example.com and describe what you see",
+        options: {
+          mcpServers: {
+            playwright: { command: "npx", args: ["@playwright/mcp@latest"] }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about MCP →](/en/agent-sdk/mcp)
+  </Tab>
+
+  <Tab title="Permissions">
+    Control exactly which tools your agent can use. Allow safe operations, block dangerous ones, or require approval for sensitive actions.
+
+    <Note>
+      For interactive approval prompts and the `AskUserQuestion` tool, see [Handle approvals and user input](/en/agent-sdk/user-input).
+    </Note>
+
+    This example creates a read-only agent that can analyze but not modify code. `allowed_tools` pre-approves `Read`, `Glob`, and `Grep`.
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Review this code for best practices",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep"],
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Review this code for best practices",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep"]
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about permissions →](/en/agent-sdk/permissions)
+  </Tab>
+
+  <Tab title="Sessions">
+    Maintain context across multiple exchanges. Claude remembers files read, analysis done, and conversation history. Resume sessions later, or fork them to explore different approaches.
+
+    This example captures the session ID from the first query, then resumes to continue with full context:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage, ResultMessage
+
+
+      async def main():
+          session_id = None
+
+          # First query: capture the session ID
+          async for message in query(
+              prompt="Read the authentication module",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob"]),
+          ):
+              if isinstance(message, SystemMessage) and message.subtype == "init":
+                  session_id = message.data["session_id"]
+
+          # Resume with full context from the first query
+          async for message in query(
+              prompt="Now find all places that call it",  # "it" = auth module
+              options=ClaudeAgentOptions(resume=session_id),
+          ):
+              if isinstance(message, ResultMessage):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      let sessionId: string | undefined;
+
+      // First query: capture the session ID
+      for await (const message of query({
+        prompt: "Read the authentication module",
+        options: { allowedTools: ["Read", "Glob"] }
+      })) {
+        if (message.type === "system" && message.subtype === "init") {
+          sessionId = message.session_id;
+        }
+      }
+
+      // Resume with full context from the first query
+      for await (const message of query({
+        prompt: "Now find all places that call it", // "it" = auth module
+        options: { resume: sessionId }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about sessions →](/en/agent-sdk/sessions)
   </Tab>
 </Tabs>
 
-Anda akan melihat agen menambahkan komentar doc, kemudian prompt menanyakan apakah Anda ingin mengembalikan. Jika Anda memilih ya, file dipulihkan ke status aslinya.
+### Claude Code features
 
-</Step>
+The SDK also supports Claude Code's filesystem-based configuration. To use these features, set `setting_sources=["project"]` (Python) or `settingSources: ['project']` (TypeScript)  in your options.
 
-</Steps>
+| Feature                                          | Description                                          | Location                           |
+| ------------------------------------------------ | ---------------------------------------------------- | ---------------------------------- |
+| [Skills](/en/agent-sdk/skills)                   | Specialized capabilities defined in Markdown         | `.claude/skills/*/SKILL.md`        |
+| [Slash commands](/en/agent-sdk/slash-commands)   | Custom commands for common tasks                     | `.claude/commands/*.md`            |
+| [Memory](/en/agent-sdk/modifying-system-prompts) | Project context and instructions                     | `CLAUDE.md` or `.claude/CLAUDE.md` |
+| [Plugins](/en/agent-sdk/plugins)                 | Extend with custom commands, agents, and MCP servers | Programmatic via `plugins` option  |
 
-## Keterbatasan
+## Compare the Agent SDK to other Claude tools
 
-File checkpointing memiliki keterbatasan berikut:
+The Claude Platform offers multiple ways to build with Claude. Here's how the Agent SDK fits in:
 
-| Keterbatasan | Deskripsi |
-|------------|-------------|
-| Alat Write/Edit/NotebookEdit saja | Perubahan yang dilakukan melalui perintah Bash tidak dilacak |
-| Sesi yang sama | Checkpoint terikat pada sesi yang membuatnya |
-| Konten file saja | Membuat, memindahkan, atau menghapus direktori tidak dibatalkan oleh pengembalian |
-| File lokal | File jarak jauh atau jaringan tidak dilacak |
+<Tabs>
+  <Tab title="Agent SDK vs Client SDK">
+    The [Anthropic Client SDK](https://platform.claude.com/docs/en/api/client-sdks) gives you direct API access: you send prompts and implement tool execution yourself. The **Agent SDK** gives you Claude with built-in tool execution.
 
-## Pemecahan masalah
+    With the Client SDK, you implement a tool loop. With the Agent SDK, Claude handles it:
 
-### Opsi checkpointing tidak dikenali
+    <CodeGroup>
+      ```python Python theme={null}
+      # Client SDK: You implement the tool loop
+      response = client.messages.create(...)
+      while response.stop_reason == "tool_use":
+          result = your_tool_executor(response.tool_use)
+          response = client.messages.create(tool_result=result, **params)
 
-Jika `enableFileCheckpointing` atau `rewindFiles()` tidak tersedia, Anda mungkin menggunakan versi SDK yang lebih lama.
+      # Agent SDK: Claude handles tools autonomously
+      async for message in query(prompt="Fix the bug in auth.py"):
+          print(message)
+      ```
 
-**Solusi**: Perbarui ke versi SDK terbaru:
-- **Python**: `pip install --upgrade claude-agent-sdk`
-- **TypeScript**: `npm install @anthropic-ai/claude-agent-sdk@latest`
+      ```typescript TypeScript theme={null}
+      // Client SDK: You implement the tool loop
+      let response = await client.messages.create({ ...params });
+      while (response.stop_reason === "tool_use") {
+        const result = yourToolExecutor(response.tool_use);
+        response = await client.messages.create({ tool_result: result, ...params });
+      }
 
-### Pesan pengguna tidak memiliki UUID
+      // Agent SDK: Claude handles tools autonomously
+      for await (const message of query({ prompt: "Fix the bug in auth.py" })) {
+        console.log(message);
+      }
+      ```
+    </CodeGroup>
+  </Tab>
 
-Jika `message.uuid` adalah `undefined` atau hilang, Anda tidak menerima UUID checkpoint.
+  <Tab title="Agent SDK vs Claude Code CLI">
+    Same capabilities, different interface:
 
-**Penyebab**: Opsi `replay-user-messages` tidak diatur.
+    | Use case                | Best choice |
+    | ----------------------- | ----------- |
+    | Interactive development | CLI         |
+    | CI/CD pipelines         | SDK         |
+    | Custom applications     | SDK         |
+    | One-off tasks           | CLI         |
+    | Production automation   | SDK         |
 
-**Solusi**: Tambahkan `extra_args={"replay-user-messages": None}` (Python) atau `extraArgs: { 'replay-user-messages': null }` (TypeScript) ke opsi Anda.
+    Many teams use both: CLI for daily development, SDK for production. Workflows translate directly between them.
+  </Tab>
+</Tabs>
 
-### Kesalahan "No file checkpoint found for message"
+## Changelog
 
-Kesalahan ini terjadi ketika data checkpoint tidak ada untuk UUID pesan pengguna yang ditentukan.
+View the full changelog for SDK updates, bug fixes, and new features:
 
-**Penyebab umum**:
-- Variabel lingkungan `CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING` tidak diatur
-- Sesi tidak diselesaikan dengan benar sebelum mencoba melanjutkan dan mengembalikan
+* **TypeScript SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-typescript/blob/main/CHANGELOG.md)
+* **Python SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-python/blob/main/CHANGELOG.md)
 
-**Solusi**: Pastikan Anda telah mengatur variabel lingkungan (lihat [Atur variabel lingkungan](#set-the-environment-variable)), kemudian gunakan pola yang ditunjukkan dalam contoh: tangkap UUID pesan pengguna pertama, selesaikan sesi sepenuhnya, kemudian lanjutkan dengan prompt kosong dan panggil `rewindFiles()` sekali.
+## Reporting bugs
 
-### Kesalahan "ProcessTransport is not ready for writing"
+If you encounter bugs or issues with the Agent SDK:
 
-Kesalahan ini terjadi ketika Anda memanggil `rewindFiles()` atau `rewind_files()` setelah Anda selesai mengulangi respons. Koneksi ke proses CLI ditutup ketika loop selesai.
+* **TypeScript SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-typescript/issues)
+* **Python SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-python/issues)
 
-**Solusi**: Lanjutkan sesi dengan prompt kosong, kemudian panggil rewind pada kueri baru:
+## Branding guidelines
 
-<CodeGroup>
+For partners integrating the Claude Agent SDK, use of Claude branding is optional. When referencing Claude in your product:
 
-```python Python
-# Resume session with empty prompt, then rewind
-async with ClaudeSDKClient(ClaudeAgentOptions(
-    enable_file_checkpointing=True,
-    resume=session_id
-)) as client:
-    await client.query("")
-    async for message in client.receive_response():
-        await client.rewind_files(checkpoint_id)
-        break
-```
+**Allowed:**
 
-```typescript TypeScript
-// Resume session with empty prompt, then rewind
-const rewindQuery = query({
-  prompt: "",
-  options: { ...opts, resume: sessionId }
-});
+* "Claude Agent" (preferred for dropdown menus)
+* "Claude" (when within a menu already labeled "Agents")
+* "{YourAgentName} Powered by Claude" (if you have an existing agent name)
 
-for await (const msg of rewindQuery) {
-  await rewindQuery.rewindFiles(checkpointId);
-  break;
-}
-```
+**Not permitted:**
 
-</CodeGroup>
+* "Claude Code" or "Claude Code Agent"
+* Claude Code-branded ASCII art or visual elements that mimic Claude Code
 
-## Langkah berikutnya
+Your product should maintain its own branding and not appear to be Claude Code or any Anthropic product. For questions about branding compliance, contact the Anthropic [sales team](https://www.anthropic.com/contact-sales).
 
-- **[Sesi](/docs/id/agent-sdk/sessions)**: pelajari cara melanjutkan sesi, yang diperlukan untuk pengembalian setelah aliran selesai. Mencakup ID sesi, melanjutkan percakapan, dan forking sesi.
-- **[Izin](/docs/id/agent-sdk/permissions)**: konfigurasikan alat mana yang dapat digunakan Claude dan bagaimana modifikasi file disetujui. Berguna jika Anda menginginkan kontrol lebih besar atas kapan pengeditan terjadi.
-- **[Referensi SDK TypeScript](/docs/id/agent-sdk/typescript)**: referensi API lengkap termasuk semua opsi untuk `query()` dan metode `rewindFiles()`.
-- **[Referensi SDK Python](/docs/id/agent-sdk/python)**: referensi API lengkap termasuk semua opsi untuk `ClaudeAgentOptions` dan metode `rewind_files()`.
+## License and terms
+
+Use of the Claude Agent SDK is governed by [Anthropic's Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms), including when you use it to power products and services that you make available to your own customers and end users, except to the extent a specific component or dependency is covered by a different license as indicated in that component's LICENSE file.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build an agent that finds and fixes bugs in minutes
+  </Card>
+
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+
+  <Card title="TypeScript SDK" icon="code" href="/en/agent-sdk/typescript">
+    Full TypeScript API reference and examples
+  </Card>
+
+  <Card title="Python SDK" icon="code" href="/en/agent-sdk/python">
+    Full Python API reference and examples
+  </Card>
+</CardGroup>

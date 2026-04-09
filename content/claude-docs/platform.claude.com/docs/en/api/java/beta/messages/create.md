@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/create
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 9f6c66f81e399757404ddfd6a055992ffbe5a1caa741fadc01d67c1aa7ee4a43
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 1d8fbe5dcf07b45c9be5c71cfe5a2e144532cb290b05b391fc3ec6f1c8fd45e8
 ---
 
 ## Create
@@ -66,8 +66,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `long maxTokens`
 
@@ -4388,10 +4386,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Recommended for advanced use cases only. You usually only need to use `temperature`.
 
-  - `Optional<String> userProfileId`
-
-    The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
-
 ### Returns
 
 - `class BetaMessage:`
@@ -5315,9 +5309,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
     - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
-      Most intelligent model for building agents and coding
+      Frontier intelligence for long-running agents and coding
 
     - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
 

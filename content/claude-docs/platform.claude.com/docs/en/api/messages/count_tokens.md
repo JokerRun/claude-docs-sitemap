@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/count_tokens
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 323cd2875b9ad11da145457900d2cf7fc0ebc16e16b3de535fe2f7adfc762ea4
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 10be790030adbfb0c622fc846f8469431644392d82d8bac6d17fc3fa23b1b550
 ---
 
 ## Count Tokens
@@ -2300,15 +2300,19 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+  - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `"claude-mythos-preview"`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
     - `"claude-opus-4-6"`
 
-      Most intelligent model for building agents and coding
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-sonnet-4-6"`
 
@@ -3770,6 +3774,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
               "role": "user"
             }
           ],
-          "model": "claude-opus-4-6"
+          "model": "claude-mythos-preview"
         }'
 ```

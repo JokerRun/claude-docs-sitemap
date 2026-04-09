@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: f2c77cd02fceec0065b341846e2620ec610a56c4054abe61b142feed2d3def48
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: d7dae04be912753534fbc17ae675927ef565c63920b12ee08b2d8029014cc3ea
 ---
 
 # Messages
@@ -4322,9 +4322,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
     - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
-      Most intelligent model for building agents and coding
+      Frontier intelligence for long-running agents and coding
 
     - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
 
@@ -13812,9 +13816,13 @@ public final class Main {
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
     - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
-      Most intelligent model for building agents and coding
+      Frontier intelligence for long-running agents and coding
 
     - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
 
@@ -19140,9 +19148,13 @@ public final class Main {
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
 
@@ -20068,9 +20080,13 @@ public final class Main {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
 
@@ -29157,9 +29173,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
 
@@ -31992,9 +32012,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
           - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
 
@@ -33262,9 +33286,13 @@ public final class Main {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
           - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
 
@@ -34318,9 +34346,13 @@ public final class Main {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
 
@@ -35336,9 +35368,13 @@ public final class Main {
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
 

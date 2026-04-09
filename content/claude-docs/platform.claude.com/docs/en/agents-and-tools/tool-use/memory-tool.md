@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: fa6652d55aca22cce187720e41493a194806eaf69f9566bbf64c848190c9229d
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 358d94ffad5fcc97f65c3ec71706892a7a84f25870d3ce0c60845bb31d87fcb6
 ---
 
 # Memory tool
@@ -140,6 +140,35 @@ curl https://api.anthropic.com/v1/messages \
         }]
     }'
 ```
+
+````bash CLI
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 2048
+tools:
+  - type: memory_20250818
+    name: memory
+messages:
+  - role: user
+    content: |
+      I'm working on a Python web scraper that keeps crashing with a
+      timeout error. Here's the problematic function:
+
+      ```python
+      def fetch_page(url, retries=3):
+          for i in range(retries):
+              try:
+                  response = requests.get(url, timeout=5)
+                  return response.text
+              except requests.exceptions.Timeout:
+                  if i == retries - 1:
+                      raise
+                  time.sleep(1)
+      ```
+
+      Please help me debug this.
+YAML
+````
 
 ```python Python hidelines={1..2}
 import anthropic

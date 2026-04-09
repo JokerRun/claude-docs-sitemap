@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/retrieve
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 484f3e112c5b0e7d27328dc8b5f1178bd352cc10163606fc5f19c31b55234d46
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 80bf2ed26b08ea407f228269217989007e78927cf33d45527905d32c83e7e3bd
 ---
 
 ## Retrieve
@@ -68,8 +68,6 @@ Get Skill
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

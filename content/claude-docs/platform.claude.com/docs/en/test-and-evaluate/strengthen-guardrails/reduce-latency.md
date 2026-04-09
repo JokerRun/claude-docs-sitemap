@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-02-27T04:15:49.278525Z
-sha256: b86133508a37ca5c48ef2762d671329b17c0a23c910fa6231793de80ac2c53bc
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 322e8242bcffa4ca042bd15971e9d8b1b24b67ba86c98c1ad173d98f06b3872e
 ---
 
 # Reducing latency
@@ -36,7 +36,7 @@ One of the most straightforward ways to reduce latency is to select the appropri
 
 For speed-critical applications, **Claude Haiku 4.5** offers the fastest response times while maintaining high intelligence:
 
-```python
+```python Python
 import anthropic
 
 client = anthropic.Anthropic()
@@ -67,7 +67,7 @@ Here are some tips to help you optimize your prompts and outputs:
   <Tip> Due to how LLMs count [tokens](/docs/en/about-claude/glossary#tokens) instead of words, asking for an exact word count or a word count limit is not as effective a strategy as asking for paragraph or sentence count limits.</Tip>
 - **Set appropriate output limits**: Use the `max_tokens` parameter to set a hard limit on the maximum length of the generated response. This prevents Claude from generating overly long outputs.
   > **Note**: When the response reaches `max_tokens` tokens, the response will be cut off, perhaps midsentence or mid-word, so this is a blunt technique that may require post-processing and is usually most appropriate for multiple choice or short answer responses where the answer comes right at the beginning.
-- **Experiment with temperature**: The `temperature` [parameter](/docs/en/api/messages) controls the randomness of the output. Lower values (e.g., 0.2) can sometimes lead to more focused and shorter responses, while higher values (e.g., 0.8) may result in more diverse but potentially longer outputs.
+- **Experiment with temperature**: The `temperature` [parameter](/docs/en/api/messages/create) controls the randomness of the output. Lower values (e.g., 0.2) can sometimes lead to more focused and shorter responses, while higher values (e.g., 0.8) may result in more diverse but potentially longer outputs.
 
 Finding the right balance between prompt clarity, output quality, and token count may require some experimentation.
 

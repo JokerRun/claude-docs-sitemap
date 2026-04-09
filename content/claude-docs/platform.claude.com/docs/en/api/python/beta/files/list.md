@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 5cf946fa05f1e7c5b8009eba25016bd47fe58e619f85965d4fe09e9e490454b6
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 015dffcad9b518709f34b568b3c4e19bc24b388f82792c11fbd8d02f29110cee
 ---
 
 ## List
@@ -29,13 +29,17 @@ List Files
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
+- `scope_id: Optional[str]`
+
+  Filter by scope ID. Only returns files associated with the specified scope (e.g., a session ID).
+
 - `betas: Optional[List[AnthropicBetaParam]]`
 
   Optional header to specify the beta version(s) you want to use.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -79,8 +83,6 @@ List Files
 
     - `"output-300k-2026-03-24"`
 
-    - `"user-profiles-2026-03-24"`
-
 ### Returns
 
 - `class FileMetadata: …`
@@ -118,6 +120,20 @@ List Files
   - `downloadable: Optional[bool]`
 
     Whether the file can be downloaded.
+
+  - `scope: Optional[BetaFileScope]`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `id: str`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `type: Literal["session"]`
+
+      The type of scope (e.g., `"session"`).
+
+      - `"session"`
 
 ### Example
 

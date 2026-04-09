@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 3eec9a604ceb11bf980c2d48afd035963734b1a2933a8ffac7790926698901e8
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 48f0fb6cc3854aba715c1a083b1c9cbe37a011e6700a823edecdeee243193b28
 ---
 
 # Claude on Vertex AI
@@ -11,7 +11,7 @@ Anthropic's Claude models are now generally available through [Vertex AI](https:
 
 ---
 
-The Vertex API for accessing Claude is nearly-identical to the [Messages API](/docs/en/api/messages) and supports all of the same options, with two key differences:
+The Vertex API for accessing Claude is nearly-identical to the [Messages API](/docs/en/api/messages/create) and supports all of the same options, with two key differences:
 
 * In Vertex, `model` is not passed in the request body. Instead, it is specified in the Google Cloud endpoint URL.
 * In Vertex, `anthropic_version` is passed in the request body (rather than as a header), and must be set to the value `vertex-2023-10-16`.
@@ -52,14 +52,14 @@ go get github.com/anthropics/anthropic-sdk-go
 <Tab title="Java">
 <CodeGroup>
 ```groovy Gradle
-implementation("com.anthropic:anthropic-java-vertex:2.18.0")
+implementation("com.anthropic:anthropic-java-vertex:2.20.0")
 ```
 
 ```xml Maven
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java-vertex</artifactId>
-    <version>2.18.0</version>
+    <version>2.20.0</version>
 </dependency>
 ```
 
@@ -156,6 +156,10 @@ The following examples show how to generate text from Claude on Vertex AI:
     }],
     "max_tokens": 100,
   }'
+  ```
+
+  ```bash CLI
+  # The ant CLI does not yet support Vertex AI.
   ```
 
   
@@ -403,6 +407,10 @@ This applies to Claude Sonnet 4.5 and future models only. Older models (Claude S
 Set the `region` parameter to `"global"` when initializing the client:
 
 <CodeGroup>
+
+```bash CLI
+# The ant CLI does not yet support Vertex AI.
+```
 
 ```python Python nocheck
 from anthropic import AnthropicVertex
@@ -731,6 +739,10 @@ puts message.content.first.text
 Specify a specific region like `"us-east1"` or `"europe-west1"`:
 
 <CodeGroup>
+
+```bash CLI
+# The ant CLI does not yet support Vertex AI.
+```
 
 ```python Python nocheck
 from anthropic import AnthropicVertex

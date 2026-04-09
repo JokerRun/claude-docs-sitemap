@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 7bdca38f109e5f5dfe67565b45cdea5347699282b3f0eadca6dab99dd5f08f75
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: a227e06b8d9f0cd7b028df9e4d7b173425c56df14ac1602f09478244a5fe5e1e
 ---
 
 ## List
@@ -30,6 +30,10 @@ List Files
     Query param: Number of items to return per page.
 
     Defaults to `20`. Ranges from `1` to `1000`.
+
+  - `ScopeID param.Field[string]`
+
+    Query param: Filter by scope ID. Only returns files associated with the specified scope (e.g., a session ID).
 
   - `Betas param.Field[[]AnthropicBeta]`
 
@@ -81,8 +85,6 @@ List Files
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
-
 ### Returns
 
 - `type FileMetadata struct{…}`
@@ -120,6 +122,20 @@ List Files
   - `Downloadable bool`
 
     Whether the file can be downloaded.
+
+  - `Scope BetaFileScope`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `ID string`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `Type Session`
+
+      The type of scope (e.g., `"session"`).
+
+      - `const SessionSession Session = "session"`
 
 ### Example
 

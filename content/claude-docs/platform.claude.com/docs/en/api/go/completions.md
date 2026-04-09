@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 59503fde3d089d8c31a585ec37e7d9a968bb086b8c5d79bf1b6167bfbae2e2e6
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 258eb4473ea8934052c5c5f8f2fbc843dcfa7f87c4bb2a490d25ff774d528d6b
 ---
 
 # Completions
@@ -143,8 +143,6 @@ Future models and features will not be compatible with Text Completions. See our
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
-
 ### Returns
 
 - `type Completion struct{…}`
@@ -171,9 +169,13 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 
@@ -269,7 +271,7 @@ func main() {
   )
   completion, err := client.Completions.New(context.TODO(), anthropic.CompletionNewParams{
     MaxTokensToSample: 256,
-    Model: anthropic.ModelClaudeOpus4_6,
+    Model: anthropic.ModelClaudeMythosPreview,
     Prompt: "\n\nHuman: Hello, world!\n\nAssistant:",
   })
   if err != nil {
@@ -307,9 +309,13 @@ func main() {
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 

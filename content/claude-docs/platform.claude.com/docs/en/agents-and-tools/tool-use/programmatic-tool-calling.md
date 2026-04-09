@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 16ac417efda0dba9b15528a5e86524504d01ec5ad9cb56196e5ecce2e175d931
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: bb3dd7c985f8c8e33ebc93e3c4b947a19cceb2821532811692657e1bd76cfa2e
 ---
 
 # Programmatic tool calling
@@ -70,6 +70,35 @@ curl https://api.anthropic.com/v1/messages \
             }
         ]
     }'
+```
+
+```bash CLI
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 4096
+messages:
+  - role: user
+    content: >-
+      Query sales data for the West, East, and Central regions, then
+      tell me which region had the highest revenue
+tools:
+  - type: code_execution_20260120
+    name: code_execution
+  - name: query_database
+    description: >-
+      Execute a SQL query against the sales database. Returns a list
+      of rows as JSON objects.
+    input_schema:
+      type: object
+      properties:
+        sql:
+          type: string
+          description: SQL query to execute
+      required:
+        - sql
+    allowed_callers:
+      - code_execution_20260120
+YAML
 ```
 
 ```python Python
@@ -478,7 +507,7 @@ The request shape is identical to the [Quick start](#quick-start) example: inclu
 
 Claude writes code that calls your tool. The API pauses and returns:
 
-```json
+```json Output
 {
   "role": "assistant",
   "content": [
@@ -518,6 +547,44 @@ Claude writes code that calls your tool. The API pauses and returns:
 Include the full conversation history plus your tool result:
 
 <CodeGroup>
+
+```bash CLI nocheck
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 4096
+container: container_xyz789
+messages:
+  - role: user
+    content: >-
+      Query customer purchase history from the last quarter and identify our
+      top 5 customers by revenue
+  - role: assistant
+    content:
+      - type: text
+        text: I'll query the purchase history and analyze the results.
+      - type: server_tool_use
+        id: srvtoolu_abc123
+        name: code_execution
+        input:
+          code: "..."
+      - type: tool_use
+        id: toolu_def456
+        name: query_database
+        input:
+          sql: "<sql>"
+        caller:
+          type: code_execution_20260120
+          tool_id: srvtoolu_abc123
+  - role: user
+    content:
+      - type: tool_result
+        tool_use_id: toolu_def456
+        content: >-
+          [{"customer_id": "C1", "revenue": 45000}, {"customer_id": "C2",
+          "revenue": 38000}, ...]
+tools: [...]
+YAML
+```
 
 ```python Python nocheck
 response = client.messages.create(
@@ -947,7 +1014,7 @@ The code execution continues and processes the results. If additional tool calls
 
 Once the code execution completes, Claude provides the final response:
 
-```json
+```json Output
 {
   "content": [
     {

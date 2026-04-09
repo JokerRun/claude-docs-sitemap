@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 8f3864a0d343bb18bd3c3fc64500b30319cdff06dab1c77eb599010e89af8fee
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 61df7a0460e73190971df373091ade8b37d670b30fedea75f333937247cfa355
 ---
 
 ## List
@@ -31,13 +31,17 @@ List Files
 
     Defaults to `20`. Ranges from `1` to `1000`.
 
+  - `scope_id?: string`
+
+    Query param: Filter by scope ID. Only returns files associated with the specified scope (e.g., a session ID).
+
   - `betas?: Array<AnthropicBeta>`
 
     Header param: Optional header to specify the beta version(s) you want to use.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -81,8 +85,6 @@ List Files
 
       - `"output-300k-2026-03-24"`
 
-      - `"user-profiles-2026-03-24"`
-
 ### Returns
 
 - `FileMetadata`
@@ -120,6 +122,20 @@ List Files
   - `downloadable?: boolean`
 
     Whether the file can be downloaded.
+
+  - `scope?: BetaFileScope | null`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `id: string`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `type: "session"`
+
+      The type of scope (e.g., `"session"`).
+
+      - `"session"`
 
 ### Example
 

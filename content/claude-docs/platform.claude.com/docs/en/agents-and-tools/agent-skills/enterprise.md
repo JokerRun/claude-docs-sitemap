@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-01-28T03:47:52.195281Z
-sha256: 99ba22e3083e4431ab1bc5c29197cb67cd89687d8e9f6045361a66a1a2034db6
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 6168dda2cca527a98efb5609477325d9cd4b4f5f2e297eb9aad5e563d3f5d9b8
 ---
 
 # Skills for enterprise
@@ -194,12 +194,5 @@ Maintain Skill source files in Git as the single source of truth. If your organi
     href="/docs/en/build-with-claude/skills-guide"
   >
     Upload and manage Skills programmatically
-  </Card>
-  <Card
-    title="Securely deploying AI agents"
-    icon="shield"
-    href="/docs/en/agent-sdk/secure-deployment"
-  >
-    Security patterns for agent deployment
   </Card>
 </CardGroup>

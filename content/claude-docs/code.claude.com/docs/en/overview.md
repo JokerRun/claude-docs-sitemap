@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-04-04T03:07:06.698608Z
-sha256: 60033e68fcf1665774fd7be5e8d68aaeccbbc8f11f14c16591638e8f10650629
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: c7d5624685c66b649e15c188857a334ac61738dd227da7147e723054177d797f
 ---
 
 > ## Documentation Index
@@ -29,19 +29,19 @@ Choose your environment to get started. Most surfaces require a [Claude subscrip
       <Tab title="Native Install (Recommended)">
         **macOS, Linux, WSL:**
 
-        ```bash  theme={null}
+        ```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
         curl -fsSL https://claude.ai/install.sh | bash
         ```
 
         **Windows PowerShell:**
 
-        ```powershell  theme={null}
+        ```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
         irm https://claude.ai/install.ps1 | iex
         ```
 
         **Windows CMD:**
 
-        ```batch  theme={null}
+        ```batch theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
         curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
         ```
 
@@ -55,7 +55,7 @@ Choose your environment to get started. Most surfaces require a [Claude subscrip
       </Tab>
 
       <Tab title="Homebrew">
-        ```bash  theme={null}
+        ```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
         brew install --cask claude-code
         ```
 
@@ -65,7 +65,7 @@ Choose your environment to get started. Most surfaces require a [Claude subscrip
       </Tab>
 
       <Tab title="WinGet">
-        ```powershell  theme={null}
+        ```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
         winget install Anthropic.ClaudeCode
         ```
 
@@ -119,7 +119,7 @@ Choose your environment to get started. Most surfaces require a [Claude subscrip
 
     Start coding at [claude.ai/code](https://claude.ai/code).
 
-    [Get started on the web →](/en/claude-code-on-the-web#getting-started)
+    [Get started on the web →](/en/web-quickstart)
   </Tab>
 
   <Tab title="JetBrains">
@@ -175,7 +175,7 @@ Here are some of the ways you can use Claude Code:
   <Accordion title="Run agent teams and build custom agents" icon="users">
     Spawn [multiple Claude Code agents](/en/sub-agents) that work on different parts of a task simultaneously. A lead agent coordinates the work, assigns subtasks, and merges results.
 
-    For fully custom workflows, the [Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview) lets you build your own agents powered by Claude Code's tools and capabilities, with full control over orchestration, tool access, and permissions.
+    For fully custom workflows, the [Agent SDK](/en/agent-sdk/overview) lets you build your own agents powered by Claude Code's tools and capabilities, with full control over orchestration, tool access, and permissions.
   </Accordion>
 
   <Accordion title="Pipe, script, and automate with the CLI" icon="terminal">
@@ -230,7 +230,7 @@ Beyond the [Terminal](/en/quickstart), [VS Code](/en/vs-code), [JetBrains](/en/j
 | Get automatic code review on every PR                                           | [GitHub Code Review](/en/code-review)                                                                              |
 | Route bug reports from Slack to pull requests                                   | [Slack](/en/slack)                                                                                                 |
 | Debug live web applications                                                     | [Chrome](/en/chrome)                                                                                               |
-| Build custom agents for your own workflows                                      | [Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview)                                                |
+| Build custom agents for your own workflows                                      | [Agent SDK](/en/agent-sdk/overview)                                                                                |
 
 ## Next steps
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 266093eb24bb0e8d71e70c6e7ee526be82026e5664c6ba9de0265bc5d3128b10
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 067cd0c02456befb6641ad787d6a2b217961604753b5fd31fd6d41e3b0084138
 ---
 
 ## Retrieve Metadata
@@ -25,7 +25,7 @@ Get File Metadata
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -69,11 +69,9 @@ Get File Metadata
 
     - `"output-300k-2026-03-24"`
 
-    - `"user-profiles-2026-03-24"`
-
 ### Returns
 
-- `FileMetadata = object { id, created_at, filename, 4 more }`
+- `FileMetadata = object { id, created_at, filename, 5 more }`
 
   - `id: string`
 
@@ -108,6 +106,20 @@ Get File Metadata
   - `downloadable: optional boolean`
 
     Whether the file can be downloaded.
+
+  - `scope: optional BetaFileScope`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `id: string`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `type: "session"`
+
+      The type of scope (e.g., `"session"`).
+
+      - `"session"`
 
 ### Example
 

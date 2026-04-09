@@ -1,391 +1,590 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/cost-tracking
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: b2501b8913ceacf6a0a47713baad34afe83804ba71402236c62adc73e4032c8e
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 520c00e11831725b36058a11dbe2c349837a5bb2165fc397e7c2cfbaf8037d43
 ---
 
-# Melacak Biaya dan Penggunaan
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
-Pahami dan lacak penggunaan token untuk penagihan di Claude Agent SDK
+# Agent SDK overview
 
----
+> Build production AI agents with Claude Code as a library
 
-# Pelacakan Biaya SDK
+<Note>
+  The Claude Code SDK has been renamed to the Claude Agent SDK. If you're migrating from the old SDK, see the [Migration Guide](/en/agent-sdk/migration-guide).
+</Note>
 
-Claude Agent SDK menyediakan informasi penggunaan token yang terperinci untuk setiap interaksi dengan Claude. Panduan ini menjelaskan cara melacak biaya dengan benar dan memahami pelaporan penggunaan, terutama ketika menangani penggunaan alat paralel dan percakapan multi-langkah.
-
-Untuk dokumentasi API lengkap, lihat [referensi SDK TypeScript](/docs/id/agent-sdk/typescript).
-
-## Memahami Penggunaan Token
-
-Ketika Claude memproses permintaan, ia melaporkan penggunaan token pada tingkat pesan. Data penggunaan ini sangat penting untuk melacak biaya dan menagih pengguna dengan tepat.
-
-### Konsep Utama
-
-1. **Langkah**: Langkah adalah pasangan permintaan/respons tunggal antara aplikasi Anda dan Claude
-2. **Pesan**: Pesan individual dalam langkah (teks, penggunaan alat, hasil alat)
-3. **Penggunaan**: Data konsumsi token yang terlampir pada pesan asisten
-
-## Struktur Pelaporan Penggunaan
-
-### Penggunaan Alat Tunggal vs Paralel
-
-Ketika Claude menjalankan alat, pelaporan penggunaan berbeda berdasarkan apakah alat dijalankan secara berurutan atau paralel:
+Build AI agents that autonomously read files, run commands, search the web, edit code, and more. The Agent SDK gives you the same tools, agent loop, and context management that power Claude Code, programmable in Python and TypeScript.
 
 <CodeGroup>
+  ```python Python theme={null}
+  import asyncio
+  from claude_agent_sdk import query, ClaudeAgentOptions
 
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
 
-// Contoh: Melacak penggunaan dalam percakapan
-const result = await query({
-  prompt: "Analisis basis kode ini dan jalankan tes",
-  options: {
-    onMessage: (message) => {
-      if (message.type === 'assistant' && message.usage) {
-        console.log(`Message ID: ${message.id}`);
-        console.log(`Penggunaan:`, message.usage);
-      }
-    }
+  async def main():
+      async for message in query(
+          prompt="Find and fix the bug in auth.py",
+          options=ClaudeAgentOptions(allowed_tools=["Read", "Edit", "Bash"]),
+      ):
+          print(message)  # Claude reads the file, finds the bug, edits it
+
+
+  asyncio.run(main())
+  ```
+
+  ```typescript TypeScript theme={null}
+  import { query } from "@anthropic-ai/claude-agent-sdk";
+
+  for await (const message of query({
+    prompt: "Find and fix the bug in auth.py",
+    options: { allowedTools: ["Read", "Edit", "Bash"] }
+  })) {
+    console.log(message); // Claude reads the file, finds the bug, edits it
   }
-});
-```
-
-```python Python
-from claude_agent_sdk import query, ClaudeAgentOptions, AssistantMessage
-import asyncio
-
-# Contoh: Melacak penggunaan dalam percakapan
-async def track_usage():
-    # Proses pesan saat tiba
-    async for message in query(
-        prompt="Analisis basis kode ini dan jalankan tes"
-    ):
-        if isinstance(message, AssistantMessage) and hasattr(message, 'usage'):
-            print(f"Message ID: {message.id}")
-            print(f"Penggunaan: {message.usage}")
-
-asyncio.run(track_usage())
-```
-
+  ```
 </CodeGroup>
 
-### Contoh Alur Pesan
+The Agent SDK includes built-in tools for reading files, running commands, and editing code, so your agent can start working immediately without you implementing tool execution. Dive into the quickstart or explore real agents built with the SDK:
 
-Berikut adalah cara pesan dan penggunaan dilaporkan dalam percakapan multi-langkah yang khas:
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build a bug-fixing agent in minutes
+  </Card>
 
-```
-<!-- Langkah 1: Permintaan awal dengan penggunaan alat paralel -->
-assistant (text)      { id: "msg_1", usage: { output_tokens: 100, ... } }
-assistant (tool_use)  { id: "msg_1", usage: { output_tokens: 100, ... } }
-assistant (tool_use)  { id: "msg_1", usage: { output_tokens: 100, ... } }
-assistant (tool_use)  { id: "msg_1", usage: { output_tokens: 100, ... } }
-user (tool_result)
-user (tool_result)
-user (tool_result)
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+</CardGroup>
 
-<!-- Langkah 2: Respons tindak lanjut -->
-assistant (text)      { id: "msg_2", usage: { output_tokens: 98, ... } }
-```
+## Get started
 
-## Aturan Penggunaan Penting
+<Steps>
+  <Step title="Install the SDK">
+    <Tabs>
+      <Tab title="TypeScript">
+        ```bash  theme={null}
+        npm install @anthropic-ai/claude-agent-sdk
+        ```
+      </Tab>
 
-### 1. ID Sama = Penggunaan Sama
+      <Tab title="Python">
+        ```bash  theme={null}
+        pip install claude-agent-sdk
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
 
-**Semua pesan dengan bidang `id` yang sama melaporkan penggunaan yang identik**. Ketika Claude mengirim beberapa pesan dalam giliran yang sama (misalnya teks + penggunaan alat), mereka berbagi ID pesan dan data penggunaan yang sama.
+  <Step title="Set your API key">
+    Get an API key from the [Console](https://platform.claude.com/), then set it as an environment variable:
 
-```typescript
-// Semua pesan ini memiliki ID dan penggunaan yang sama
-const messages = [
-  { type: 'assistant', id: 'msg_123', usage: { output_tokens: 100 } },
-  { type: 'assistant', id: 'msg_123', usage: { output_tokens: 100 } },
-  { type: 'assistant', id: 'msg_123', usage: { output_tokens: 100 } }
-];
+    ```bash  theme={null}
+    export ANTHROPIC_API_KEY=your-api-key
+    ```
 
-// Tagih hanya sekali per ID pesan unik
-const uniqueUsage = messages[0].usage; // Sama untuk semua pesan dengan ID ini
-```
+    The SDK also supports authentication via third-party API providers:
 
-### 2. Tagih Sekali Per Langkah
+    * **Amazon Bedrock**: set `CLAUDE_CODE_USE_BEDROCK=1` environment variable and configure AWS credentials
+    * **Google Vertex AI**: set `CLAUDE_CODE_USE_VERTEX=1` environment variable and configure Google Cloud credentials
+    * **Microsoft Azure**: set `CLAUDE_CODE_USE_FOUNDRY=1` environment variable and configure Azure credentials
 
-**Anda hanya harus menagih pengguna sekali per langkah**, bukan untuk setiap pesan individual. Ketika Anda melihat beberapa pesan asisten dengan ID yang sama, gunakan penggunaan dari salah satunya.
+    See the setup guides for [Bedrock](/en/amazon-bedrock), [Vertex AI](/en/google-vertex-ai), or [Azure AI Foundry](/en/microsoft-foundry) for details.
 
-### 3. Pesan Hasil Berisi Penggunaan Kumulatif
+    <Note>
+      Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Please use the API key authentication methods described in this document instead.
+    </Note>
+  </Step>
 
-Pesan `result` terakhir berisi total penggunaan kumulatif dari semua langkah dalam percakapan:
+  <Step title="Run your first agent">
+    This example creates an agent that lists files in your current directory using built-in tools.
 
-```typescript
-// Hasil akhir mencakup penggunaan total
-const result = await query({
-  prompt: "Tugas multi-langkah",
-  options: { /* ... */ }
-});
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
 
-console.log("Penggunaan total:", result.usage);
-console.log("Biaya total:", result.usage.total_cost_usd);
-```
 
-### 4. Rincian Penggunaan Per-Model
+      async def main():
+          async for message in query(
+              prompt="What files are in this directory?",
+              options=ClaudeAgentOptions(allowed_tools=["Bash", "Glob"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
 
-Pesan hasil juga mencakup `modelUsage`, yang menyediakan data penggunaan per-model yang berwenang. Seperti `total_cost_usd`, bidang ini akurat dan cocok untuk tujuan penagihan. Ini sangat berguna ketika menggunakan beberapa model (misalnya Haiku untuk subagen, Opus untuk agen utama).
 
-```typescript
-// modelUsage menyediakan rincian per-model
-type ModelUsage = {
-  inputTokens: number
-  outputTokens: number
-  cacheReadInputTokens: number
-  cacheCreationInputTokens: number
-  webSearchRequests: number
-  costUSD: number
-  contextWindow: number
-}
+      asyncio.run(main())
+      ```
 
-// Akses dari pesan hasil
-const result = await query({ prompt: "..." });
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
 
-// result.modelUsage adalah peta nama model ke ModelUsage
-for (const [modelName, usage] of Object.entries(result.modelUsage)) {
-  console.log(`${modelName}: $${usage.costUSD.toFixed(4)}`);
-  console.log(`  Token input: ${usage.inputTokens}`);
-  console.log(`  Token output: ${usage.outputTokens}`);
-}
-```
+      for await (const message of query({
+        prompt: "What files are in this directory?",
+        options: { allowedTools: ["Bash", "Glob"] }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+  </Step>
+</Steps>
 
-Untuk definisi tipe lengkap, lihat [referensi SDK TypeScript](/docs/id/agent-sdk/typescript).
+**Ready to build?** Follow the [Quickstart](/en/agent-sdk/quickstart) to create an agent that finds and fixes bugs in minutes.
 
-## Implementasi: Sistem Pelacakan Biaya
+## Capabilities
 
-Berikut adalah contoh lengkap implementasi sistem pelacakan biaya:
+Everything that makes Claude Code powerful is available in the SDK:
 
-<CodeGroup>
+<Tabs>
+  <Tab title="Built-in tools">
+    Your agent can read files, run commands, and search codebases out of the box. Key tools include:
 
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
+    | Tool                                                                        | What it does                                                   |
+    | --------------------------------------------------------------------------- | -------------------------------------------------------------- |
+    | **Read**                                                                    | Read any file in the working directory                         |
+    | **Write**                                                                   | Create new files                                               |
+    | **Edit**                                                                    | Make precise edits to existing files                           |
+    | **Bash**                                                                    | Run terminal commands, scripts, git operations                 |
+    | **Glob**                                                                    | Find files by pattern (`**/*.ts`, `src/**/*.py`)               |
+    | **Grep**                                                                    | Search file contents with regex                                |
+    | **WebSearch**                                                               | Search the web for current information                         |
+    | **WebFetch**                                                                | Fetch and parse web page content                               |
+    | **[AskUserQuestion](/en/agent-sdk/user-input#handle-clarifying-questions)** | Ask the user clarifying questions with multiple choice options |
 
-class CostTracker {
-  private processedMessageIds = new Set<string>();
-  private stepUsages: Array<any> = [];
-  
-  async trackConversation(prompt: string) {
-    const result = await query({
-      prompt,
-      options: {
-        onMessage: (message) => {
-          this.processMessage(message);
+    This example creates an agent that searches your codebase for TODO comments:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Find all TODO comments and create a summary",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob", "Grep"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Find all TODO comments and create a summary",
+        options: { allowedTools: ["Read", "Glob", "Grep"] }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+  </Tab>
+
+  <Tab title="Hooks">
+    Run custom code at key points in the agent lifecycle. SDK hooks use callback functions to validate, log, block, or transform agent behavior.
+
+    **Available hooks:** `PreToolUse`, `PostToolUse`, `Stop`, `SessionStart`, `SessionEnd`, `UserPromptSubmit`, and more.
+
+    This example logs all file changes to an audit file:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from datetime import datetime
+      from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher
+
+
+      async def log_file_change(input_data, tool_use_id, context):
+          file_path = input_data.get("tool_input", {}).get("file_path", "unknown")
+          with open("./audit.log", "a") as f:
+              f.write(f"{datetime.now()}: modified {file_path}\n")
+          return {}
+
+
+      async def main():
+          async for message in query(
+              prompt="Refactor utils.py to improve readability",
+              options=ClaudeAgentOptions(
+                  permission_mode="acceptEdits",
+                  hooks={
+                      "PostToolUse": [
+                          HookMatcher(matcher="Edit|Write", hooks=[log_file_change])
+                      ]
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query, HookCallback } from "@anthropic-ai/claude-agent-sdk";
+      import { appendFile } from "fs/promises";
+
+      const logFileChange: HookCallback = async (input) => {
+        const filePath = (input as any).tool_input?.file_path ?? "unknown";
+        await appendFile("./audit.log", `${new Date().toISOString()}: modified ${filePath}\n`);
+        return {};
+      };
+
+      for await (const message of query({
+        prompt: "Refactor utils.py to improve readability",
+        options: {
+          permissionMode: "acceptEdits",
+          hooks: {
+            PostToolUse: [{ matcher: "Edit|Write", hooks: [logFileChange] }]
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about hooks →](/en/agent-sdk/hooks)
+  </Tab>
+
+  <Tab title="Subagents">
+    Spawn specialized agents to handle focused subtasks. Your main agent delegates work, and subagents report back with results.
+
+    Define custom agents with specialized instructions. Include `Agent` in `allowedTools` since subagents are invoked via the Agent tool:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
+
+
+      async def main():
+          async for message in query(
+              prompt="Use the code-reviewer agent to review this codebase",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep", "Agent"],
+                  agents={
+                      "code-reviewer": AgentDefinition(
+                          description="Expert code reviewer for quality and security reviews.",
+                          prompt="Analyze code quality and suggest improvements.",
+                          tools=["Read", "Glob", "Grep"],
+                      )
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Use the code-reviewer agent to review this codebase",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep", "Agent"],
+          agents: {
+            "code-reviewer": {
+              description: "Expert code reviewer for quality and security reviews.",
+              prompt: "Analyze code quality and suggest improvements.",
+              tools: ["Read", "Glob", "Grep"]
+            }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    Messages from within a subagent's context include a `parent_tool_use_id` field, letting you track which messages belong to which subagent execution.
+
+    [Learn more about subagents →](/en/agent-sdk/subagents)
+  </Tab>
+
+  <Tab title="MCP">
+    Connect to external systems via the Model Context Protocol: databases, browsers, APIs, and [hundreds more](https://github.com/modelcontextprotocol/servers).
+
+    This example connects the [Playwright MCP server](https://github.com/microsoft/playwright-mcp) to give your agent browser automation capabilities:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Open example.com and describe what you see",
+              options=ClaudeAgentOptions(
+                  mcp_servers={
+                      "playwright": {"command": "npx", "args": ["@playwright/mcp@latest"]}
+                  }
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Open example.com and describe what you see",
+        options: {
+          mcpServers: {
+            playwright: { command: "npx", args: ["@playwright/mcp@latest"] }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about MCP →](/en/agent-sdk/mcp)
+  </Tab>
+
+  <Tab title="Permissions">
+    Control exactly which tools your agent can use. Allow safe operations, block dangerous ones, or require approval for sensitive actions.
+
+    <Note>
+      For interactive approval prompts and the `AskUserQuestion` tool, see [Handle approvals and user input](/en/agent-sdk/user-input).
+    </Note>
+
+    This example creates a read-only agent that can analyze but not modify code. `allowed_tools` pre-approves `Read`, `Glob`, and `Grep`.
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Review this code for best practices",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep"],
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Review this code for best practices",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep"]
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about permissions →](/en/agent-sdk/permissions)
+  </Tab>
+
+  <Tab title="Sessions">
+    Maintain context across multiple exchanges. Claude remembers files read, analysis done, and conversation history. Resume sessions later, or fork them to explore different approaches.
+
+    This example captures the session ID from the first query, then resumes to continue with full context:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage, ResultMessage
+
+
+      async def main():
+          session_id = None
+
+          # First query: capture the session ID
+          async for message in query(
+              prompt="Read the authentication module",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob"]),
+          ):
+              if isinstance(message, SystemMessage) and message.subtype == "init":
+                  session_id = message.data["session_id"]
+
+          # Resume with full context from the first query
+          async for message in query(
+              prompt="Now find all places that call it",  # "it" = auth module
+              options=ClaudeAgentOptions(resume=session_id),
+          ):
+              if isinstance(message, ResultMessage):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      let sessionId: string | undefined;
+
+      // First query: capture the session ID
+      for await (const message of query({
+        prompt: "Read the authentication module",
+        options: { allowedTools: ["Read", "Glob"] }
+      })) {
+        if (message.type === "system" && message.subtype === "init") {
+          sessionId = message.session_id;
         }
       }
-    });
-    
-    return {
-      result,
-      stepUsages: this.stepUsages,
-      totalCost: result.usage?.total_cost_usd || 0
-    };
-  }
-  
-  private processMessage(message: any) {
-    // Hanya proses pesan asisten dengan penggunaan
-    if (message.type !== 'assistant' || !message.usage) {
-      return;
-    }
-    
-    // Lewati jika kami sudah memproses ID pesan ini
-    if (this.processedMessageIds.has(message.id)) {
-      return;
-    }
-    
-    // Tandai sebagai diproses dan catat penggunaan
-    this.processedMessageIds.add(message.id);
-    this.stepUsages.push({
-      messageId: message.id,
-      timestamp: new Date().toISOString(),
-      usage: message.usage,
-      costUSD: this.calculateCost(message.usage)
-    });
-  }
-  
-  private calculateCost(usage: any): number {
-    // Implementasikan perhitungan harga Anda di sini
-    // Ini adalah contoh yang disederhanakan
-    const inputCost = usage.input_tokens * 0.00003;
-    const outputCost = usage.output_tokens * 0.00015;
-    const cacheReadCost = (usage.cache_read_input_tokens || 0) * 0.0000075;
-    
-    return inputCost + outputCost + cacheReadCost;
-  }
-}
 
-// Penggunaan
-const tracker = new CostTracker();
-const { result, stepUsages, totalCost } = await tracker.trackConversation(
-  "Analisis dan refaktor kode ini"
-);
+      // Resume with full context from the first query
+      for await (const message of query({
+        prompt: "Now find all places that call it", // "it" = auth module
+        options: { resume: sessionId }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
 
-console.log(`Langkah diproses: ${stepUsages.length}`);
-console.log(`Biaya total: $${totalCost.toFixed(4)}`);
-```
+    [Learn more about sessions →](/en/agent-sdk/sessions)
+  </Tab>
+</Tabs>
 
-```python Python
-from claude_agent_sdk import query, AssistantMessage, ResultMessage
-from datetime import datetime
-import asyncio
+### Claude Code features
 
-class CostTracker:
-    def __init__(self):
-        self.processed_message_ids = set()
-        self.step_usages = []
+The SDK also supports Claude Code's filesystem-based configuration. To use these features, set `setting_sources=["project"]` (Python) or `settingSources: ['project']` (TypeScript)  in your options.
 
-    async def track_conversation(self, prompt):
-        result = None
+| Feature                                          | Description                                          | Location                           |
+| ------------------------------------------------ | ---------------------------------------------------- | ---------------------------------- |
+| [Skills](/en/agent-sdk/skills)                   | Specialized capabilities defined in Markdown         | `.claude/skills/*/SKILL.md`        |
+| [Slash commands](/en/agent-sdk/slash-commands)   | Custom commands for common tasks                     | `.claude/commands/*.md`            |
+| [Memory](/en/agent-sdk/modifying-system-prompts) | Project context and instructions                     | `CLAUDE.md` or `.claude/CLAUDE.md` |
+| [Plugins](/en/agent-sdk/plugins)                 | Extend with custom commands, agents, and MCP servers | Programmatic via `plugins` option  |
 
-        # Proses pesan saat tiba
-        async for message in query(prompt=prompt):
-            self.process_message(message)
+## Compare the Agent SDK to other Claude tools
 
-            # Tangkap pesan hasil akhir
-            if isinstance(message, ResultMessage):
-                result = message
+The Claude Platform offers multiple ways to build with Claude. Here's how the Agent SDK fits in:
 
-        return {
-            "result": result,
-            "step_usages": self.step_usages,
-            "total_cost": result.total_cost_usd if result else 0
-        }
+<Tabs>
+  <Tab title="Agent SDK vs Client SDK">
+    The [Anthropic Client SDK](https://platform.claude.com/docs/en/api/client-sdks) gives you direct API access: you send prompts and implement tool execution yourself. The **Agent SDK** gives you Claude with built-in tool execution.
 
-    def process_message(self, message):
-        # Hanya proses pesan asisten dengan penggunaan
-        if not isinstance(message, AssistantMessage) or not hasattr(message, 'usage'):
-            return
+    With the Client SDK, you implement a tool loop. With the Agent SDK, Claude handles it:
 
-        # Lewati jika sudah memproses ID pesan ini
-        message_id = getattr(message, 'id', None)
-        if not message_id or message_id in self.processed_message_ids:
-            return
+    <CodeGroup>
+      ```python Python theme={null}
+      # Client SDK: You implement the tool loop
+      response = client.messages.create(...)
+      while response.stop_reason == "tool_use":
+          result = your_tool_executor(response.tool_use)
+          response = client.messages.create(tool_result=result, **params)
 
-        # Tandai sebagai diproses dan catat penggunaan
-        self.processed_message_ids.add(message_id)
-        self.step_usages.append({
-            "message_id": message_id,
-            "timestamp": datetime.now().isoformat(),
-            "usage": message.usage,
-            "cost_usd": self.calculate_cost(message.usage)
-        })
+      # Agent SDK: Claude handles tools autonomously
+      async for message in query(prompt="Fix the bug in auth.py"):
+          print(message)
+      ```
 
-    def calculate_cost(self, usage):
-        # Implementasikan perhitungan harga Anda
-        input_cost = usage.get("input_tokens", 0) * 0.00003
-        output_cost = usage.get("output_tokens", 0) * 0.00015
-        cache_read_cost = usage.get("cache_read_input_tokens", 0) * 0.0000075
+      ```typescript TypeScript theme={null}
+      // Client SDK: You implement the tool loop
+      let response = await client.messages.create({ ...params });
+      while (response.stop_reason === "tool_use") {
+        const result = yourToolExecutor(response.tool_use);
+        response = await client.messages.create({ tool_result: result, ...params });
+      }
 
-        return input_cost + output_cost + cache_read_cost
+      // Agent SDK: Claude handles tools autonomously
+      for await (const message of query({ prompt: "Fix the bug in auth.py" })) {
+        console.log(message);
+      }
+      ```
+    </CodeGroup>
+  </Tab>
 
-# Penggunaan
-async def main():
-    tracker = CostTracker()
-    result = await tracker.track_conversation("Analisis dan refaktor kode ini")
+  <Tab title="Agent SDK vs Claude Code CLI">
+    Same capabilities, different interface:
 
-    print(f"Langkah diproses: {len(result['step_usages'])}")
-    print(f"Biaya total: ${result['total_cost']:.4f}")
+    | Use case                | Best choice |
+    | ----------------------- | ----------- |
+    | Interactive development | CLI         |
+    | CI/CD pipelines         | SDK         |
+    | Custom applications     | SDK         |
+    | One-off tasks           | CLI         |
+    | Production automation   | SDK         |
 
-asyncio.run(main())
-```
+    Many teams use both: CLI for daily development, SDK for production. Workflows translate directly between them.
+  </Tab>
+</Tabs>
 
-</CodeGroup>
+## Changelog
 
-## Menangani Kasus Tepi
+View the full changelog for SDK updates, bug fixes, and new features:
 
-### Perbedaan Token Output
+* **TypeScript SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-typescript/blob/main/CHANGELOG.md)
+* **Python SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-python/blob/main/CHANGELOG.md)
 
-Dalam kasus yang jarang terjadi, Anda mungkin mengamati nilai `output_tokens` yang berbeda untuk pesan dengan ID yang sama. Ketika ini terjadi:
+## Reporting bugs
 
-1. **Gunakan nilai tertinggi** - Pesan terakhir dalam grup biasanya berisi total yang akurat
-2. **Verifikasi terhadap biaya total** - `total_cost_usd` dalam pesan hasil bersifat otoritatif
-3. **Laporkan ketidakkonsistenan** - Ajukan masalah di [repositori GitHub Claude Code](https://github.com/anthropics/claude-code/issues)
+If you encounter bugs or issues with the Agent SDK:
 
-### Pelacakan Token Cache
+* **TypeScript SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-typescript/issues)
+* **Python SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-python/issues)
 
-Ketika menggunakan prompt caching, lacak jenis token ini secara terpisah:
+## Branding guidelines
 
-```typescript
-interface CacheUsage {
-  cache_creation_input_tokens: number;
-  cache_read_input_tokens: number;
-  cache_creation: {
-    ephemeral_5m_input_tokens: number;
-    ephemeral_1h_input_tokens: number;
-  };
-}
-```
+For partners integrating the Claude Agent SDK, use of Claude branding is optional. When referencing Claude in your product:
 
-## Praktik Terbaik
+**Allowed:**
 
-1. **Gunakan ID Pesan untuk Deduplikasi**: Selalu lacak ID pesan yang diproses untuk menghindari penagihan ganda
-2. **Pantau Pesan Hasil**: Hasil akhir berisi penggunaan kumulatif yang otoritatif
-3. **Implementasikan Logging**: Catat semua data penggunaan untuk audit dan debugging
-4. **Tangani Kegagalan dengan Baik**: Lacak penggunaan parsial bahkan jika percakapan gagal
-5. **Pertimbangkan Streaming**: Untuk respons streaming, akumulasikan penggunaan saat pesan tiba
+* "Claude Agent" (preferred for dropdown menus)
+* "Claude" (when within a menu already labeled "Agents")
+* "{YourAgentName} Powered by Claude" (if you have an existing agent name)
 
-## Referensi Bidang Penggunaan
+**Not permitted:**
 
-Setiap objek penggunaan berisi:
+* "Claude Code" or "Claude Code Agent"
+* Claude Code-branded ASCII art or visual elements that mimic Claude Code
 
-- `input_tokens`: Token input dasar yang diproses
-- `output_tokens`: Token yang dihasilkan dalam respons
-- `cache_creation_input_tokens`: Token yang digunakan untuk membuat entri cache
-- `cache_read_input_tokens`: Token yang dibaca dari cache
-- `service_tier`: Tingkat layanan yang digunakan (misalnya "standard")
-- `total_cost_usd`: Biaya total dalam USD (hanya dalam pesan hasil)
+Your product should maintain its own branding and not appear to be Claude Code or any Anthropic product. For questions about branding compliance, contact the Anthropic [sales team](https://www.anthropic.com/contact-sales).
 
-## Contoh: Membangun Dashboard Penagihan
+## License and terms
 
-Berikut adalah cara mengagregasi data penggunaan untuk dashboard penagihan:
+Use of the Claude Agent SDK is governed by [Anthropic's Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms), including when you use it to power products and services that you make available to your own customers and end users, except to the extent a specific component or dependency is covered by a different license as indicated in that component's LICENSE file.
 
-```typescript
-class BillingAggregator {
-  private userUsage = new Map<string, {
-    totalTokens: number;
-    totalCost: number;
-    conversations: number;
-  }>();
-  
-  async processUserRequest(userId: string, prompt: string) {
-    const tracker = new CostTracker();
-    const { result, stepUsages, totalCost } = await tracker.trackConversation(prompt);
-    
-    // Perbarui total pengguna
-    const current = this.userUsage.get(userId) || {
-      totalTokens: 0,
-      totalCost: 0,
-      conversations: 0
-    };
-    
-    const totalTokens = stepUsages.reduce((sum, step) => 
-      sum + step.usage.input_tokens + step.usage.output_tokens, 0
-    );
-    
-    this.userUsage.set(userId, {
-      totalTokens: current.totalTokens + totalTokens,
-      totalCost: current.totalCost + totalCost,
-      conversations: current.conversations + 1
-    });
-    
-    return result;
-  }
-  
-  getUserBilling(userId: string) {
-    return this.userUsage.get(userId) || {
-      totalTokens: 0,
-      totalCost: 0,
-      conversations: 0
-    };
-  }
-}
-```
+## Next steps
 
-## Dokumentasi Terkait
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build an agent that finds and fixes bugs in minutes
+  </Card>
 
-- [Referensi SDK TypeScript](/docs/id/agent-sdk/typescript) - Dokumentasi API lengkap
-- [Ringkasan SDK](/docs/id/agent-sdk/overview) - Memulai dengan SDK
-- [Izin SDK](/docs/id/agent-sdk/permissions) - Mengelola izin alat
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+
+  <Card title="TypeScript SDK" icon="code" href="/en/agent-sdk/typescript">
+    Full TypeScript API reference and examples
+  </Card>
+
+  <Card title="Python SDK" icon="code" href="/en/agent-sdk/python">
+    Full Python API reference and examples
+  </Card>
+</CardGroup>

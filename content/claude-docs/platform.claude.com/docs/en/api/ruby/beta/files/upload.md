@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/upload
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: c1f3e45e1485d2f976089416d85e3ae17273651bd1d0abeca6385f3ebcb368b4
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 8aaa9b2c3dd49231899a1364367246f1242c1af82550da9c9ec4e8c763428125
 ---
 
 ## Upload
@@ -25,7 +25,7 @@ Upload File
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 18 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -69,8 +69,6 @@ Upload File
 
     - `:"output-300k-2026-03-24"`
 
-    - `:"user-profiles-2026-03-24"`
-
 ### Returns
 
 - `class FileMetadata`
@@ -108,6 +106,20 @@ Upload File
   - `downloadable: bool`
 
     Whether the file can be downloaded.
+
+  - `scope: BetaFileScope`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `id: String`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `type: :session`
+
+      The type of scope (e.g., `"session"`).
+
+      - `:session`
 
 ### Example
 

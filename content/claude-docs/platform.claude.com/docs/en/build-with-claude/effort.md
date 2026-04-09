@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/effort
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 277a214b03c522810c58850a16f1c706941b58c012bb368bd3e0544beb2ad6f1
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 2257478112eac890dacc5b48de8491cbcf2e7a7a8dad1ab3748c39d2bfc6346b
 ---
 
 # Effort
@@ -85,6 +85,18 @@ curl https://api.anthropic.com/v1/messages \
             "effort": "medium"
         }
     }'
+```
+
+```bash CLI
+ant messages create --transform 'content.0.text' --format yaml <<'YAML'
+model: claude-opus-4-6
+max_tokens: 4096
+messages:
+  - role: user
+    content: Analyze the trade-offs between microservices and monolithic architectures
+output_config:
+  effort: medium
+YAML
 ```
 
 ```python Python hidelines={1..2}

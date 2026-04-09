@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 31c6f205d0a6e7302c692668d9276d40583eacbd5b73d1bb430fd9d7b8268e4c
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: ab35b44f5e6a0b984cf17d6bf1aefd805149c9586576559e93c61b3085a5177c
 ---
 
 ## List
@@ -29,13 +29,17 @@ List Files
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
+- `scope_id: String`
+
+  Filter by scope ID. Only returns files associated with the specified scope (e.g., a session ID).
+
 - `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 18 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -79,8 +83,6 @@ List Files
 
     - `:"output-300k-2026-03-24"`
 
-    - `:"user-profiles-2026-03-24"`
-
 ### Returns
 
 - `class FileMetadata`
@@ -118,6 +120,20 @@ List Files
   - `downloadable: bool`
 
     Whether the file can be downloaded.
+
+  - `scope: BetaFileScope`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `id: String`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `type: :session`
+
+      The type of scope (e.g., `"session"`).
+
+      - `:session`
 
 ### Example
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/ultraplan
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 5c8508b004e8e8b0b734a4f8fb4e6eb946926c6f313dfec6cd9d26d60387c5ba
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: a910bac0b3b0d00a3f93af19eab13d2f9f41991cb19c1797a1913b32cca55ee6
 ---
 
 > ## Documentation Index
@@ -25,7 +25,7 @@ This is useful when you want a richer review surface than the terminal offers:
 * **Hands-off drafting**: the plan is generated remotely, so your terminal stays free for other work
 * **Flexible execution**: approve the plan to run on the web and open a pull request, or send it back to your terminal
 
-Ultraplan requires a [Claude Code on the web](/en/claude-code-on-the-web#who-can-use-claude-code-on-the-web) account and a GitHub repository. Because it runs on Anthropic's cloud infrastructure, it is not available when using Amazon Bedrock, Google Cloud Vertex AI, or Microsoft Foundry. The cloud session runs in your account's default [cloud environment](/en/claude-code-on-the-web#cloud-environment).
+Ultraplan requires a [Claude Code on the web](/en/claude-code-on-the-web) account and a GitHub repository. Because it runs on Anthropic's cloud infrastructure, it is not available when using Amazon Bedrock, Google Cloud Vertex AI, or Microsoft Foundry. The cloud session runs in your account's default [cloud environment](/en/claude-code-on-the-web#the-cloud-environment).
 
 ## Launch ultraplan from the CLI
 
@@ -69,7 +69,7 @@ When the plan looks right, you choose from the browser whether Claude implements
 
 ### Execute on the web
 
-Select **Approve Claude's plan and start coding** in your browser to have Claude implement it in the same Claude Code on the web session. Your terminal shows a confirmation, the status indicator clears, and the work continues in the cloud. When the implementation finishes, [review the diff](/en/claude-code-on-the-web#review-changes-with-diff-view) and create a pull request from the web interface.
+Select **Approve Claude's plan and start coding** in your browser to have Claude implement it in the same Claude Code on the web session. Your terminal shows a confirmation, the status indicator clears, and the work continues in the cloud. When the implementation finishes, [review the diff](/en/claude-code-on-the-web#review-changes) and create a pull request from the web interface.
 
 ### Send the plan back to your terminal
 

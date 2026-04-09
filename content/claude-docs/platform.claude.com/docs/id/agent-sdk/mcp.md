@@ -1,810 +1,590 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/mcp
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 77b50bc356b5ab88e01aff573aa7367974d48d2213529a5ccf1a404a4eeb3574
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 520c00e11831725b36058a11dbe2c349837a5bb2165fc397e7c2cfbaf8037d43
 ---
 
-# Terhubung ke alat eksternal dengan MCP
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
-Konfigurasi server MCP untuk memperluas agen Anda dengan alat eksternal. Mencakup jenis transport, pencarian alat untuk set alat besar, autentikasi, dan penanganan kesalahan.
+# Agent SDK overview
 
----
+> Build production AI agents with Claude Code as a library
 
-[Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/getting-started/intro) adalah standar terbuka untuk menghubungkan agen AI ke alat dan sumber data eksternal. Dengan MCP, agen Anda dapat menanyakan database, mengintegrasikan dengan API seperti Slack dan GitHub, dan terhubung ke layanan lain tanpa menulis implementasi alat khusus.
+<Note>
+  The Claude Code SDK has been renamed to the Claude Agent SDK. If you're migrating from the old SDK, see the [Migration Guide](/en/agent-sdk/migration-guide).
+</Note>
 
-Server MCP dapat berjalan sebagai proses lokal, terhubung melalui HTTP, atau dieksekusi langsung dalam aplikasi SDK Anda.
-
-## Quickstart
-
-Contoh ini terhubung ke server MCP [dokumentasi Claude Code](https://code.claude.com/docs) menggunakan [transport HTTP](#httpsse-servers) dan menggunakan [`allowedTools`](#allow-mcp-tools) dengan wildcard untuk mengizinkan semua alat dari server.
-
-<CodeGroup>
-
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-for await (const message of query({
-  prompt: "Use the docs MCP server to explain what hooks are in Claude Code",
-  options: {
-    mcpServers: {
-      "claude-code-docs": {
-        type: "http",
-        url: "https://code.claude.com/docs/mcp"
-      }
-    },
-    allowedTools: ["mcp__claude-code-docs__*"]
-  }
-})) {
-  if (message.type === "result" && message.subtype === "success") {
-    console.log(message.result);
-  }
-}
-```
-
-```python Python
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
-
-async def main():
-    options = ClaudeAgentOptions(
-        mcp_servers={
-            "claude-code-docs": {
-                "type": "http",
-                "url": "https://code.claude.com/docs/mcp"
-            }
-        },
-        allowed_tools=["mcp__claude-code-docs__*"]
-    )
-
-    async for message in query(prompt="Use the docs MCP server to explain what hooks are in Claude Code", options=options):
-        if isinstance(message, ResultMessage) and message.subtype == "success":
-            print(message.result)
-
-asyncio.run(main())
-```
-
-</CodeGroup>
-
-Agen terhubung ke server dokumentasi, mencari informasi tentang hooks, dan mengembalikan hasilnya.
-
-## Tambahkan server MCP
-
-Anda dapat mengonfigurasi server MCP dalam kode saat memanggil `query()`, atau dalam file `.mcp.json` yang dimuat SDK secara otomatis.
-
-### Dalam kode
-
-Teruskan server MCP langsung dalam opsi `mcpServers`:
+Build AI agents that autonomously read files, run commands, search the web, edit code, and more. The Agent SDK gives you the same tools, agent loop, and context management that power Claude Code, programmable in Python and TypeScript.
 
 <CodeGroup>
+  ```python Python theme={null}
+  import asyncio
+  from claude_agent_sdk import query, ClaudeAgentOptions
 
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
 
-for await (const message of query({
-  prompt: "List files in my project",
-  options: {
-    mcpServers: {
-      "filesystem": {
-        command: "npx",
-        args: ["-y", "@modelcontextprotocol/server-filesystem", "/Users/me/projects"]
-      }
-    },
-    allowedTools: ["mcp__filesystem__*"]
+  async def main():
+      async for message in query(
+          prompt="Find and fix the bug in auth.py",
+          options=ClaudeAgentOptions(allowed_tools=["Read", "Edit", "Bash"]),
+      ):
+          print(message)  # Claude reads the file, finds the bug, edits it
+
+
+  asyncio.run(main())
+  ```
+
+  ```typescript TypeScript theme={null}
+  import { query } from "@anthropic-ai/claude-agent-sdk";
+
+  for await (const message of query({
+    prompt: "Find and fix the bug in auth.py",
+    options: { allowedTools: ["Read", "Edit", "Bash"] }
+  })) {
+    console.log(message); // Claude reads the file, finds the bug, edits it
   }
-})) {
-  if (message.type === "result" && message.subtype === "success") {
-    console.log(message.result);
-  }
-}
-```
-
-```python Python
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
-
-async def main():
-    options = ClaudeAgentOptions(
-        mcp_servers={
-            "filesystem": {
-                "command": "npx",
-                "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/me/projects"]
-            }
-        },
-        allowed_tools=["mcp__filesystem__*"]
-    )
-
-    async for message in query(prompt="List files in my project", options=options):
-        if isinstance(message, ResultMessage) and message.subtype == "success":
-            print(message.result)
-
-asyncio.run(main())
-```
-
+  ```
 </CodeGroup>
 
-### Dari file konfigurasi
+The Agent SDK includes built-in tools for reading files, running commands, and editing code, so your agent can start working immediately without you implementing tool execution. Dive into the quickstart or explore real agents built with the SDK:
 
-Buat file `.mcp.json` di root proyek Anda. SDK memuat ini secara otomatis:
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build a bug-fixing agent in minutes
+  </Card>
 
-```json
-{
-  "mcpServers": {
-    "filesystem": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/me/projects"]
-    }
-  }
-}
-```
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+</CardGroup>
 
-## Izinkan alat MCP
+## Get started
 
-Alat MCP memerlukan izin eksplisit sebelum Claude dapat menggunakannya. Tanpa izin, Claude akan melihat bahwa alat tersedia tetapi tidak akan dapat memanggilnya.
+<Steps>
+  <Step title="Install the SDK">
+    <Tabs>
+      <Tab title="TypeScript">
+        ```bash  theme={null}
+        npm install @anthropic-ai/claude-agent-sdk
+        ```
+      </Tab>
 
-### Konvensi penamaan alat
+      <Tab title="Python">
+        ```bash  theme={null}
+        pip install claude-agent-sdk
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
 
-Alat MCP mengikuti pola penamaan `mcp__<server-name>__<tool-name>`. Misalnya, server GitHub bernama `"github"` dengan alat `list_issues` menjadi `mcp__github__list_issues`.
+  <Step title="Set your API key">
+    Get an API key from the [Console](https://platform.claude.com/), then set it as an environment variable:
 
-### Berikan akses dengan allowedTools
+    ```bash  theme={null}
+    export ANTHROPIC_API_KEY=your-api-key
+    ```
 
-Gunakan `allowedTools` untuk menentukan alat MCP mana yang dapat digunakan Claude:
+    The SDK also supports authentication via third-party API providers:
 
-```typescript
-options: {
-  mcpServers: { /* your servers */ },
-  allowedTools: [
-    "mcp__github__*",              // All tools from the github server
-    "mcp__db__query",              // Only the query tool from db server
-    "mcp__slack__send_message"     // Only send_message from slack server
-  ]
-}
-```
+    * **Amazon Bedrock**: set `CLAUDE_CODE_USE_BEDROCK=1` environment variable and configure AWS credentials
+    * **Google Vertex AI**: set `CLAUDE_CODE_USE_VERTEX=1` environment variable and configure Google Cloud credentials
+    * **Microsoft Azure**: set `CLAUDE_CODE_USE_FOUNDRY=1` environment variable and configure Azure credentials
 
-Wildcard (`*`) memungkinkan Anda mengizinkan semua alat dari server tanpa mencantumkan masing-masing secara individual.
+    See the setup guides for [Bedrock](/en/amazon-bedrock), [Vertex AI](/en/google-vertex-ai), or [Azure AI Foundry](/en/microsoft-foundry) for details.
 
-### Alternatif: Ubah mode izin
+    <Note>
+      Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Please use the API key authentication methods described in this document instead.
+    </Note>
+  </Step>
 
-Alih-alih mencantumkan alat yang diizinkan, Anda dapat mengubah mode izin untuk memberikan akses yang lebih luas:
+  <Step title="Run your first agent">
+    This example creates an agent that lists files in your current directory using built-in tools.
 
-- `permissionMode: "acceptEdits"`: Secara otomatis menyetujui penggunaan alat (masih meminta operasi destruktif)
-- `permissionMode: "bypassPermissions"`: Melewati semua prompt keamanan, termasuk operasi destruktif seperti penghapusan file atau menjalankan perintah shell. Gunakan dengan hati-hati, terutama dalam produksi. Mode ini menyebar ke subagen yang dihasilkan oleh alat Task.
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
 
-```typescript
-options: {
-  mcpServers: { /* your servers */ },
-  permissionMode: "acceptEdits"  // No need for allowedTools
-}
-```
 
-Lihat [Permissions](/docs/id/agent-sdk/permissions) untuk detail lebih lanjut tentang mode izin.
+      async def main():
+          async for message in query(
+              prompt="What files are in this directory?",
+              options=ClaudeAgentOptions(allowed_tools=["Bash", "Glob"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
 
-### Temukan alat yang tersedia
 
-Untuk melihat alat apa yang disediakan server MCP, periksa dokumentasi server atau terhubung ke server dan periksa pesan init `system`:
+      asyncio.run(main())
+      ```
 
-```typescript
-for await (const message of query({ prompt: "...", options })) {
-  if (message.type === "system" && message.subtype === "init") {
-    console.log("Available MCP tools:", message.mcp_servers);
-  }
-}
-```
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
 
-## Jenis transport
+      for await (const message of query({
+        prompt: "What files are in this directory?",
+        options: { allowedTools: ["Bash", "Glob"] }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+  </Step>
+</Steps>
 
-Server MCP berkomunikasi dengan agen Anda menggunakan protokol transport yang berbeda. Periksa dokumentasi server untuk melihat transport mana yang didukungnya:
+**Ready to build?** Follow the [Quickstart](/en/agent-sdk/quickstart) to create an agent that finds and fixes bugs in minutes.
 
-- Jika dokumen memberi Anda **perintah untuk dijalankan** (seperti `npx @modelcontextprotocol/server-github`), gunakan stdio
-- Jika dokumen memberi Anda **URL**, gunakan HTTP atau SSE
-- Jika Anda membangun alat Anda sendiri dalam kode, gunakan server MCP SDK
+## Capabilities
 
-### Server stdio
-
-Proses lokal yang berkomunikasi melalui stdin/stdout. Gunakan ini untuk server MCP yang Anda jalankan di mesin yang sama:
+Everything that makes Claude Code powerful is available in the SDK:
 
 <Tabs>
-  <Tab title="Dalam kode">
+  <Tab title="Built-in tools">
+    Your agent can read files, run commands, and search codebases out of the box. Key tools include:
+
+    | Tool                                                                        | What it does                                                   |
+    | --------------------------------------------------------------------------- | -------------------------------------------------------------- |
+    | **Read**                                                                    | Read any file in the working directory                         |
+    | **Write**                                                                   | Create new files                                               |
+    | **Edit**                                                                    | Make precise edits to existing files                           |
+    | **Bash**                                                                    | Run terminal commands, scripts, git operations                 |
+    | **Glob**                                                                    | Find files by pattern (`**/*.ts`, `src/**/*.py`)               |
+    | **Grep**                                                                    | Search file contents with regex                                |
+    | **WebSearch**                                                               | Search the web for current information                         |
+    | **WebFetch**                                                                | Fetch and parse web page content                               |
+    | **[AskUserQuestion](/en/agent-sdk/user-input#handle-clarifying-questions)** | Ask the user clarifying questions with multiple choice options |
+
+    This example creates an agent that searches your codebase for TODO comments:
+
     <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
 
-    ```typescript TypeScript
-    options: {
-      mcpServers: {
-        "github": {
-          command: "npx",
-          args: ["-y", "@modelcontextprotocol/server-github"],
-          env: {
-            GITHUB_TOKEN: process.env.GITHUB_TOKEN
-          }
-        }
-      },
-      allowedTools: ["mcp__github__list_issues", "mcp__github__search_issues"]
-    }
-    ```
 
-    ```python Python
-    options = ClaudeAgentOptions(
-        mcp_servers={
-            "github": {
-                "command": "npx",
-                "args": ["-y", "@modelcontextprotocol/server-github"],
-                "env": {
-                    "GITHUB_TOKEN": os.environ["GITHUB_TOKEN"]
-                }
-            }
-        },
-        allowed_tools=["mcp__github__list_issues", "mcp__github__search_issues"]
-    )
-    ```
+      async def main():
+          async for message in query(
+              prompt="Find all TODO comments and create a summary",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob", "Grep"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
 
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Find all TODO comments and create a summary",
+        options: { allowedTools: ["Read", "Glob", "Grep"] }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
     </CodeGroup>
   </Tab>
-  <Tab title=".mcp.json">
-    ```json
-    {
-      "mcpServers": {
-        "github": {
-          "command": "npx",
-          "args": ["-y", "@modelcontextprotocol/server-github"],
-          "env": {
-            "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+
+  <Tab title="Hooks">
+    Run custom code at key points in the agent lifecycle. SDK hooks use callback functions to validate, log, block, or transform agent behavior.
+
+    **Available hooks:** `PreToolUse`, `PostToolUse`, `Stop`, `SessionStart`, `SessionEnd`, `UserPromptSubmit`, and more.
+
+    This example logs all file changes to an audit file:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from datetime import datetime
+      from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher
+
+
+      async def log_file_change(input_data, tool_use_id, context):
+          file_path = input_data.get("tool_input", {}).get("file_path", "unknown")
+          with open("./audit.log", "a") as f:
+              f.write(f"{datetime.now()}: modified {file_path}\n")
+          return {}
+
+
+      async def main():
+          async for message in query(
+              prompt="Refactor utils.py to improve readability",
+              options=ClaudeAgentOptions(
+                  permission_mode="acceptEdits",
+                  hooks={
+                      "PostToolUse": [
+                          HookMatcher(matcher="Edit|Write", hooks=[log_file_change])
+                      ]
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query, HookCallback } from "@anthropic-ai/claude-agent-sdk";
+      import { appendFile } from "fs/promises";
+
+      const logFileChange: HookCallback = async (input) => {
+        const filePath = (input as any).tool_input?.file_path ?? "unknown";
+        await appendFile("./audit.log", `${new Date().toISOString()}: modified ${filePath}\n`);
+        return {};
+      };
+
+      for await (const message of query({
+        prompt: "Refactor utils.py to improve readability",
+        options: {
+          permissionMode: "acceptEdits",
+          hooks: {
+            PostToolUse: [{ matcher: "Edit|Write", hooks: [logFileChange] }]
           }
         }
+      })) {
+        if ("result" in message) console.log(message.result);
       }
-    }
-    ```
+      ```
+    </CodeGroup>
+
+    [Learn more about hooks →](/en/agent-sdk/hooks)
+  </Tab>
+
+  <Tab title="Subagents">
+    Spawn specialized agents to handle focused subtasks. Your main agent delegates work, and subagents report back with results.
+
+    Define custom agents with specialized instructions. Include `Agent` in `allowedTools` since subagents are invoked via the Agent tool:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
+
+
+      async def main():
+          async for message in query(
+              prompt="Use the code-reviewer agent to review this codebase",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep", "Agent"],
+                  agents={
+                      "code-reviewer": AgentDefinition(
+                          description="Expert code reviewer for quality and security reviews.",
+                          prompt="Analyze code quality and suggest improvements.",
+                          tools=["Read", "Glob", "Grep"],
+                      )
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Use the code-reviewer agent to review this codebase",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep", "Agent"],
+          agents: {
+            "code-reviewer": {
+              description: "Expert code reviewer for quality and security reviews.",
+              prompt: "Analyze code quality and suggest improvements.",
+              tools: ["Read", "Glob", "Grep"]
+            }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    Messages from within a subagent's context include a `parent_tool_use_id` field, letting you track which messages belong to which subagent execution.
+
+    [Learn more about subagents →](/en/agent-sdk/subagents)
+  </Tab>
+
+  <Tab title="MCP">
+    Connect to external systems via the Model Context Protocol: databases, browsers, APIs, and [hundreds more](https://github.com/modelcontextprotocol/servers).
+
+    This example connects the [Playwright MCP server](https://github.com/microsoft/playwright-mcp) to give your agent browser automation capabilities:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Open example.com and describe what you see",
+              options=ClaudeAgentOptions(
+                  mcp_servers={
+                      "playwright": {"command": "npx", "args": ["@playwright/mcp@latest"]}
+                  }
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Open example.com and describe what you see",
+        options: {
+          mcpServers: {
+            playwright: { command: "npx", args: ["@playwright/mcp@latest"] }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about MCP →](/en/agent-sdk/mcp)
+  </Tab>
+
+  <Tab title="Permissions">
+    Control exactly which tools your agent can use. Allow safe operations, block dangerous ones, or require approval for sensitive actions.
+
+    <Note>
+      For interactive approval prompts and the `AskUserQuestion` tool, see [Handle approvals and user input](/en/agent-sdk/user-input).
+    </Note>
+
+    This example creates a read-only agent that can analyze but not modify code. `allowed_tools` pre-approves `Read`, `Glob`, and `Grep`.
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Review this code for best practices",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep"],
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Review this code for best practices",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep"]
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about permissions →](/en/agent-sdk/permissions)
+  </Tab>
+
+  <Tab title="Sessions">
+    Maintain context across multiple exchanges. Claude remembers files read, analysis done, and conversation history. Resume sessions later, or fork them to explore different approaches.
+
+    This example captures the session ID from the first query, then resumes to continue with full context:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage, ResultMessage
+
+
+      async def main():
+          session_id = None
+
+          # First query: capture the session ID
+          async for message in query(
+              prompt="Read the authentication module",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob"]),
+          ):
+              if isinstance(message, SystemMessage) and message.subtype == "init":
+                  session_id = message.data["session_id"]
+
+          # Resume with full context from the first query
+          async for message in query(
+              prompt="Now find all places that call it",  # "it" = auth module
+              options=ClaudeAgentOptions(resume=session_id),
+          ):
+              if isinstance(message, ResultMessage):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      let sessionId: string | undefined;
+
+      // First query: capture the session ID
+      for await (const message of query({
+        prompt: "Read the authentication module",
+        options: { allowedTools: ["Read", "Glob"] }
+      })) {
+        if (message.type === "system" && message.subtype === "init") {
+          sessionId = message.session_id;
+        }
+      }
+
+      // Resume with full context from the first query
+      for await (const message of query({
+        prompt: "Now find all places that call it", // "it" = auth module
+        options: { resume: sessionId }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about sessions →](/en/agent-sdk/sessions)
   </Tab>
 </Tabs>
 
-### Server HTTP/SSE
+### Claude Code features
 
-Gunakan HTTP atau SSE untuk server MCP yang dihosting cloud dan API jarak jauh:
+The SDK also supports Claude Code's filesystem-based configuration. To use these features, set `setting_sources=["project"]` (Python) or `settingSources: ['project']` (TypeScript)  in your options.
+
+| Feature                                          | Description                                          | Location                           |
+| ------------------------------------------------ | ---------------------------------------------------- | ---------------------------------- |
+| [Skills](/en/agent-sdk/skills)                   | Specialized capabilities defined in Markdown         | `.claude/skills/*/SKILL.md`        |
+| [Slash commands](/en/agent-sdk/slash-commands)   | Custom commands for common tasks                     | `.claude/commands/*.md`            |
+| [Memory](/en/agent-sdk/modifying-system-prompts) | Project context and instructions                     | `CLAUDE.md` or `.claude/CLAUDE.md` |
+| [Plugins](/en/agent-sdk/plugins)                 | Extend with custom commands, agents, and MCP servers | Programmatic via `plugins` option  |
+
+## Compare the Agent SDK to other Claude tools
+
+The Claude Platform offers multiple ways to build with Claude. Here's how the Agent SDK fits in:
 
 <Tabs>
-  <Tab title="Dalam kode">
+  <Tab title="Agent SDK vs Client SDK">
+    The [Anthropic Client SDK](https://platform.claude.com/docs/en/api/client-sdks) gives you direct API access: you send prompts and implement tool execution yourself. The **Agent SDK** gives you Claude with built-in tool execution.
+
+    With the Client SDK, you implement a tool loop. With the Agent SDK, Claude handles it:
+
     <CodeGroup>
+      ```python Python theme={null}
+      # Client SDK: You implement the tool loop
+      response = client.messages.create(...)
+      while response.stop_reason == "tool_use":
+          result = your_tool_executor(response.tool_use)
+          response = client.messages.create(tool_result=result, **params)
 
-    ```typescript TypeScript
-    options: {
-      mcpServers: {
-        "remote-api": {
-          type: "sse",
-          url: "https://api.example.com/mcp/sse",
-          headers: {
-            Authorization: `Bearer ${process.env.API_TOKEN}`
-          }
-        }
-      },
-      allowedTools: ["mcp__remote-api__*"]
-    }
-    ```
+      # Agent SDK: Claude handles tools autonomously
+      async for message in query(prompt="Fix the bug in auth.py"):
+          print(message)
+      ```
 
-    ```python Python
-    options = ClaudeAgentOptions(
-        mcp_servers={
-            "remote-api": {
-                "type": "sse",
-                "url": "https://api.example.com/mcp/sse",
-                "headers": {
-                    "Authorization": f"Bearer {os.environ['API_TOKEN']}"
-                }
-            }
-        },
-        allowed_tools=["mcp__remote-api__*"]
-    )
-    ```
+      ```typescript TypeScript theme={null}
+      // Client SDK: You implement the tool loop
+      let response = await client.messages.create({ ...params });
+      while (response.stop_reason === "tool_use") {
+        const result = yourToolExecutor(response.tool_use);
+        response = await client.messages.create({ tool_result: result, ...params });
+      }
 
+      // Agent SDK: Claude handles tools autonomously
+      for await (const message of query({ prompt: "Fix the bug in auth.py" })) {
+        console.log(message);
+      }
+      ```
     </CodeGroup>
   </Tab>
-  <Tab title=".mcp.json">
-    ```json
-    {
-      "mcpServers": {
-        "remote-api": {
-          "type": "sse",
-          "url": "https://api.example.com/mcp/sse",
-          "headers": {
-            "Authorization": "Bearer ${API_TOKEN}"
-          }
-        }
-      }
-    }
-    ```
+
+  <Tab title="Agent SDK vs Claude Code CLI">
+    Same capabilities, different interface:
+
+    | Use case                | Best choice |
+    | ----------------------- | ----------- |
+    | Interactive development | CLI         |
+    | CI/CD pipelines         | SDK         |
+    | Custom applications     | SDK         |
+    | One-off tasks           | CLI         |
+    | Production automation   | SDK         |
+
+    Many teams use both: CLI for daily development, SDK for production. Workflows translate directly between them.
   </Tab>
 </Tabs>
 
-Untuk HTTP (non-streaming), gunakan `"type": "http"` sebagai gantinya.
-
-### Server MCP SDK
-
-Tentukan alat khusus langsung dalam kode aplikasi Anda alih-alih menjalankan proses server terpisah. Lihat [panduan alat khusus](/docs/id/agent-sdk/custom-tools) untuk detail implementasi.
-
-## Pencarian alat MCP
-
-Ketika Anda memiliki banyak alat MCP yang dikonfigurasi, definisi alat dapat mengonsumsi bagian signifikan dari jendela konteks Anda. Pencarian alat MCP menyelesaikan ini dengan memuat alat secara dinamis sesuai permintaan alih-alih memuat semuanya sebelumnya.
-
-### Cara kerjanya
-
-Pencarian alat berjalan dalam mode otomatis secara default. Ini diaktifkan ketika deskripsi alat MCP Anda akan mengonsumsi lebih dari 10% dari jendela konteks. Ketika dipicu:
-
-1. Alat MCP ditandai dengan `defer_loading: true` daripada dimuat ke konteks sebelumnya
-2. Claude menggunakan alat pencarian untuk menemukan alat MCP yang relevan saat diperlukan
-3. Hanya alat yang benar-benar dibutuhkan Claude yang dimuat ke dalam konteks
-
-Pencarian alat memerlukan model yang mendukung blok `tool_reference`: Sonnet 4 dan yang lebih baru, atau Opus 4 dan yang lebih baru. Model Haiku tidak mendukung pencarian alat.
-
-### Konfigurasi pencarian alat
-
-Kontrol perilaku pencarian alat dengan variabel lingkungan `ENABLE_TOOL_SEARCH`:
-
-| Nilai | Perilaku |
-|:------|:---------|
-| `auto` | Diaktifkan ketika alat MCP melebihi 10% konteks (default) |
-| `auto:5` | Diaktifkan pada ambang 5% (sesuaikan persentasenya) |
-| `true` | Selalu diaktifkan |
-| `false` | Dinonaktifkan, semua alat MCP dimuat sebelumnya |
-
-Atur nilai dalam opsi `env`:
-
-<CodeGroup>
-
-```typescript TypeScript
-const options = {
-  mcpServers: { /* your MCP servers */ },
-  env: {
-    ENABLE_TOOL_SEARCH: "auto:5"  // Enable at 5% threshold
-  }
-};
-```
-
-```python Python
-options = ClaudeAgentOptions(
-    mcp_servers={ ... },  # your MCP servers
-    env={
-        "ENABLE_TOOL_SEARCH": "auto:5"  # Enable at 5% threshold
-    }
-)
-```
-
-</CodeGroup>
-
-## Autentikasi
-
-Sebagian besar server MCP memerlukan autentikasi untuk mengakses layanan eksternal. Teruskan kredensial melalui variabel lingkungan dalam konfigurasi server.
-
-### Teruskan kredensial melalui variabel lingkungan
-
-Gunakan bidang `env` untuk meneruskan kunci API, token, dan kredensial lainnya ke server MCP:
-
-<Tabs>
-  <Tab title="Dalam kode">
-    <CodeGroup>
-
-    ```typescript TypeScript
-    options: {
-      mcpServers: {
-        "github": {
-          command: "npx",
-          args: ["-y", "@modelcontextprotocol/server-github"],
-          env: {
-            GITHUB_TOKEN: process.env.GITHUB_TOKEN
-          }
-        }
-      },
-      allowedTools: ["mcp__github__list_issues"]
-    }
-    ```
-
-    ```python Python
-    options = ClaudeAgentOptions(
-        mcp_servers={
-            "github": {
-                "command": "npx",
-                "args": ["-y", "@modelcontextprotocol/server-github"],
-                "env": {
-                    "GITHUB_TOKEN": os.environ["GITHUB_TOKEN"]
-                }
-            }
-        },
-        allowed_tools=["mcp__github__list_issues"]
-    )
-    ```
-
-    </CodeGroup>
-  </Tab>
-  <Tab title=".mcp.json">
-    ```json
-    {
-      "mcpServers": {
-        "github": {
-          "command": "npx",
-          "args": ["-y", "@modelcontextprotocol/server-github"],
-          "env": {
-            "GITHUB_TOKEN": "${GITHUB_TOKEN}"
-          }
-        }
-      }
-    }
-    ```
-
-    Sintaks `${GITHUB_TOKEN}` memperluas variabel lingkungan saat runtime.
-  </Tab>
-</Tabs>
-
-Lihat [Daftar masalah dari repositori](#list-issues-from-a-repository) untuk contoh kerja lengkap dengan logging debug.
-
-### Header HTTP untuk server jarak jauh
-
-Untuk server HTTP dan SSE, teruskan header autentikasi langsung dalam konfigurasi server:
-
-<Tabs>
-  <Tab title="Dalam kode">
-    <CodeGroup>
-
-    ```typescript TypeScript
-    options: {
-      mcpServers: {
-        "secure-api": {
-          type: "http",
-          url: "https://api.example.com/mcp",
-          headers: {
-            Authorization: `Bearer ${process.env.API_TOKEN}`
-          }
-        }
-      },
-      allowedTools: ["mcp__secure-api__*"]
-    }
-    ```
-
-    ```python Python
-    options = ClaudeAgentOptions(
-        mcp_servers={
-            "secure-api": {
-                "type": "http",
-                "url": "https://api.example.com/mcp",
-                "headers": {
-                    "Authorization": f"Bearer {os.environ['API_TOKEN']}"
-                }
-            }
-        },
-        allowed_tools=["mcp__secure-api__*"]
-    )
-    ```
-
-    </CodeGroup>
-  </Tab>
-  <Tab title=".mcp.json">
-    ```json
-    {
-      "mcpServers": {
-        "secure-api": {
-          "type": "http",
-          "url": "https://api.example.com/mcp",
-          "headers": {
-            "Authorization": "Bearer ${API_TOKEN}"
-          }
-        }
-      }
-    }
-    ```
-
-    Sintaks `${API_TOKEN}` memperluas variabel lingkungan saat runtime.
-  </Tab>
-</Tabs>
-
-### Autentikasi OAuth2
-
-[Spesifikasi MCP mendukung OAuth 2.1](https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization) untuk otorisasi. SDK tidak menangani alur OAuth secara otomatis, tetapi Anda dapat meneruskan token akses melalui header setelah menyelesaikan alur OAuth dalam aplikasi Anda:
-
-<CodeGroup>
-
-```typescript TypeScript
-// After completing OAuth flow in your app
-const accessToken = await getAccessTokenFromOAuthFlow();
-
-const options = {
-  mcpServers: {
-    "oauth-api": {
-      type: "http",
-      url: "https://api.example.com/mcp",
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    }
-  },
-  allowedTools: ["mcp__oauth-api__*"]
-};
-```
-
-```python Python
-# After completing OAuth flow in your app
-access_token = await get_access_token_from_oauth_flow()
-
-options = ClaudeAgentOptions(
-    mcp_servers={
-        "oauth-api": {
-            "type": "http",
-            "url": "https://api.example.com/mcp",
-            "headers": {
-                "Authorization": f"Bearer {access_token}"
-            }
-        }
-    },
-    allowed_tools=["mcp__oauth-api__*"]
-)
-```
-
-</CodeGroup>
-
-## Contoh
-
-### Daftar masalah dari repositori
-
-Contoh ini terhubung ke [server MCP GitHub](https://github.com/modelcontextprotocol/servers/tree/main/src/github) untuk mencantumkan masalah terbaru. Contoh ini mencakup logging debug untuk memverifikasi koneksi MCP dan panggilan alat.
-
-Sebelum menjalankan, buat [token akses pribadi GitHub](https://github.com/settings/tokens) dengan cakupan `repo` dan atur sebagai variabel lingkungan:
-
-```bash
-export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
-```
-
-<CodeGroup>
-
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-for await (const message of query({
-  prompt: "List the 3 most recent issues in anthropics/claude-code",
-  options: {
-    mcpServers: {
-      "github": {
-        command: "npx",
-        args: ["-y", "@modelcontextprotocol/server-github"],
-        env: {
-          GITHUB_TOKEN: process.env.GITHUB_TOKEN
-        }
-      }
-    },
-    allowedTools: ["mcp__github__list_issues"]
-  }
-})) {
-  // Verify MCP server connected successfully
-  if (message.type === "system" && message.subtype === "init") {
-    console.log("MCP servers:", message.mcp_servers);
-  }
-
-  // Log when Claude calls an MCP tool
-  if (message.type === "assistant") {
-    for (const block of message.content) {
-      if (block.type === "tool_use" && block.name.startsWith("mcp__")) {
-        console.log("MCP tool called:", block.name);
-      }
-    }
-  }
-
-  // Print the final result
-  if (message.type === "result" && message.subtype === "success") {
-    console.log(message.result);
-  }
-}
-```
-
-```python Python
-import asyncio
-import os
-from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage, SystemMessage, AssistantMessage
-
-async def main():
-    options = ClaudeAgentOptions(
-        mcp_servers={
-            "github": {
-                "command": "npx",
-                "args": ["-y", "@modelcontextprotocol/server-github"],
-                "env": {
-                    "GITHUB_TOKEN": os.environ["GITHUB_TOKEN"]
-                }
-            }
-        },
-        allowed_tools=["mcp__github__list_issues"]
-    )
-
-    async for message in query(prompt="List the 3 most recent issues in anthropics/claude-code", options=options):
-        # Verify MCP server connected successfully
-        if isinstance(message, SystemMessage) and message.subtype == "init":
-            print("MCP servers:", message.data.get("mcp_servers"))
-
-        # Log when Claude calls an MCP tool
-        if isinstance(message, AssistantMessage):
-            for block in message.content:
-                if hasattr(block, "name") and block.name.startswith("mcp__"):
-                    print("MCP tool called:", block.name)
-
-        # Print the final result
-        if isinstance(message, ResultMessage) and message.subtype == "success":
-            print(message.result)
-
-asyncio.run(main())
-```
-
-</CodeGroup>
-
-### Tanyakan database
-
-Contoh ini menggunakan [server MCP Postgres](https://github.com/modelcontextprotocol/servers/tree/main/src/postgres) untuk menanyakan database. String koneksi diteruskan sebagai argumen ke server. Agen secara otomatis menemukan skema database, menulis kueri SQL, dan mengembalikan hasilnya:
-
-<CodeGroup>
-
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-// Connection string from environment variable
-const connectionString = process.env.DATABASE_URL;
-
-for await (const message of query({
-  // Natural language query - Claude writes the SQL
-  prompt: "How many users signed up last week? Break it down by day.",
-  options: {
-    mcpServers: {
-      "postgres": {
-        command: "npx",
-        // Pass connection string as argument to the server
-        args: ["-y", "@modelcontextprotocol/server-postgres", connectionString]
-      }
-    },
-    // Allow only read queries, not writes
-    allowedTools: ["mcp__postgres__query"]
-  }
-})) {
-  if (message.type === "result" && message.subtype === "success") {
-    console.log(message.result);
-  }
-}
-```
-
-```python Python
-import asyncio
-import os
-from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
-
-async def main():
-    # Connection string from environment variable
-    connection_string = os.environ["DATABASE_URL"]
-
-    options = ClaudeAgentOptions(
-        mcp_servers={
-            "postgres": {
-                "command": "npx",
-                # Pass connection string as argument to the server
-                "args": ["-y", "@modelcontextprotocol/server-postgres", connection_string]
-            }
-        },
-        # Allow only read queries, not writes
-        allowed_tools=["mcp__postgres__query"]
-    )
-
-    # Natural language query - Claude writes the SQL
-    async for message in query(
-        prompt="How many users signed up last week? Break it down by day.",
-        options=options
-    ):
-        if isinstance(message, ResultMessage) and message.subtype == "success":
-            print(message.result)
-
-asyncio.run(main())
-```
-
-</CodeGroup>
-
-## Penanganan kesalahan
-
-Server MCP dapat gagal terhubung karena berbagai alasan: proses server mungkin tidak terinstal, kredensial mungkin tidak valid, atau server jarak jauh mungkin tidak dapat dijangkau.
-
-SDK mengirimkan pesan `system` dengan subtype `init` di awal setiap kueri. Pesan ini mencakup status koneksi untuk setiap server MCP. Periksa bidang `status` untuk mendeteksi kegagalan koneksi sebelum agen mulai bekerja:
-
-<CodeGroup>
-
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-for await (const message of query({
-  prompt: "Process data",
-  options: {
-    mcpServers: {
-      "data-processor": dataServer
-    }
-  }
-})) {
-  if (message.type === "system" && message.subtype === "init") {
-    const failedServers = message.mcp_servers.filter(
-      s => s.status !== "connected"
-    );
-
-    if (failedServers.length > 0) {
-      console.warn("Failed to connect:", failedServers);
-    }
-  }
-
-  if (message.type === "result" && message.subtype === "error_during_execution") {
-    console.error("Execution failed");
-  }
-}
-```
-
-```python Python
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage, ResultMessage
-
-async def main():
-    options = ClaudeAgentOptions(
-        mcp_servers={
-            "data-processor": data_server
-        }
-    )
-
-    async for message in query(prompt="Process data", options=options):
-        if isinstance(message, SystemMessage) and message.subtype == "init":
-            failed_servers = [
-                s for s in message.data.get("mcp_servers", [])
-                if s.get("status") != "connected"
-            ]
-
-            if failed_servers:
-                print(f"Failed to connect: {failed_servers}")
-
-        if isinstance(message, ResultMessage) and message.subtype == "error_during_execution":
-            print("Execution failed")
-
-asyncio.run(main())
-```
-
-</CodeGroup>
-
-## Pemecahan masalah
-
-### Server menunjukkan status "failed"
-
-Periksa pesan `init` untuk melihat server mana yang gagal terhubung:
-
-```typescript
-if (message.type === "system" && message.subtype === "init") {
-  for (const server of message.mcp_servers) {
-    if (server.status === "failed") {
-      console.error(`Server ${server.name} failed to connect`);
-    }
-  }
-}
-```
-
-Penyebab umum:
-
-- **Variabel lingkungan yang hilang**: Pastikan token dan kredensial yang diperlukan diatur. Untuk server stdio, periksa bidang `env` cocok dengan apa yang diharapkan server.
-- **Server tidak terinstal**: Untuk perintah `npx`, verifikasi paket ada dan Node.js ada di PATH Anda.
-- **String koneksi tidak valid**: Untuk server database, verifikasi format string koneksi dan bahwa database dapat diakses.
-- **Masalah jaringan**: Untuk server HTTP/SSE jarak jauh, periksa URL dapat dijangkau dan firewall apa pun memungkinkan koneksi.
-
-### Alat tidak dipanggil
-
-Jika Claude melihat alat tetapi tidak menggunakannya, periksa bahwa Anda telah memberikan izin dengan `allowedTools` atau dengan [mengubah mode izin](#alternative-change-the-permission-mode):
-
-```typescript
-options: {
-  mcpServers: { /* your servers */ },
-  allowedTools: ["mcp__servername__*"]  // Required for Claude to use the tools
-}
-```
-
-### Batas waktu koneksi
-
-SDK MCP memiliki batas waktu default 60 detik untuk koneksi server. Jika server Anda membutuhkan waktu lebih lama untuk memulai, koneksi akan gagal. Untuk server yang memerlukan waktu startup lebih lama, pertimbangkan:
-
-- Menggunakan server yang lebih ringan jika tersedia
-- Pra-pemanasan server sebelum memulai agen Anda
-- Memeriksa log server untuk penyebab inisialisasi lambat
-
-## Sumber daya terkait
-
-- **[Panduan alat khusus](/docs/id/agent-sdk/custom-tools)**: Bangun server MCP Anda sendiri yang berjalan dalam proses dengan aplikasi SDK Anda
-- **[Permissions](/docs/id/agent-sdk/permissions)**: Kontrol alat MCP mana yang dapat digunakan agen Anda dengan `allowedTools` dan `disallowedTools`
-- **[Referensi SDK TypeScript](/docs/id/agent-sdk/typescript)**: Referensi API lengkap termasuk opsi konfigurasi MCP
-- **[Referensi SDK Python](/docs/id/agent-sdk/python)**: Referensi API lengkap termasuk opsi konfigurasi MCP
-- **[Direktori server MCP](https://github.com/modelcontextprotocol/servers)**: Jelajahi server MCP yang tersedia untuk database, API, dan lainnya
+## Changelog
+
+View the full changelog for SDK updates, bug fixes, and new features:
+
+* **TypeScript SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-typescript/blob/main/CHANGELOG.md)
+* **Python SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-python/blob/main/CHANGELOG.md)
+
+## Reporting bugs
+
+If you encounter bugs or issues with the Agent SDK:
+
+* **TypeScript SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-typescript/issues)
+* **Python SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-python/issues)
+
+## Branding guidelines
+
+For partners integrating the Claude Agent SDK, use of Claude branding is optional. When referencing Claude in your product:
+
+**Allowed:**
+
+* "Claude Agent" (preferred for dropdown menus)
+* "Claude" (when within a menu already labeled "Agents")
+* "{YourAgentName} Powered by Claude" (if you have an existing agent name)
+
+**Not permitted:**
+
+* "Claude Code" or "Claude Code Agent"
+* Claude Code-branded ASCII art or visual elements that mimic Claude Code
+
+Your product should maintain its own branding and not appear to be Claude Code or any Anthropic product. For questions about branding compliance, contact the Anthropic [sales team](https://www.anthropic.com/contact-sales).
+
+## License and terms
+
+Use of the Claude Agent SDK is governed by [Anthropic's Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms), including when you use it to power products and services that you make available to your own customers and end users, except to the extent a specific component or dependency is covered by a different license as indicated in that component's LICENSE file.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build an agent that finds and fixes bugs in minutes
+  </Card>
+
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+
+  <Card title="TypeScript SDK" icon="code" href="/en/agent-sdk/typescript">
+    Full TypeScript API reference and examples
+  </Card>
+
+  <Card title="Python SDK" icon="code" href="/en/agent-sdk/python">
+    Full Python API reference and examples
+  </Card>
+</CardGroup>

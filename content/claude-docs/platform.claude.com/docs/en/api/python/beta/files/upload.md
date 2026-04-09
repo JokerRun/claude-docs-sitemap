@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/upload
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: a825a89332f9da3970b5dceae3a3838d914f18b25f4e3fc81ac1a3ff65e5d4bc
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 0a7dcc432eaccdc52e211870e47660902d250b2e5f62251ddc4d9f3357ee9798
 ---
 
 ## Upload
@@ -25,7 +25,7 @@ Upload File
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -69,8 +69,6 @@ Upload File
 
     - `"output-300k-2026-03-24"`
 
-    - `"user-profiles-2026-03-24"`
-
 ### Returns
 
 - `class FileMetadata: …`
@@ -108,6 +106,20 @@ Upload File
   - `downloadable: Optional[bool]`
 
     Whether the file can be downloaded.
+
+  - `scope: Optional[BetaFileScope]`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `id: str`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `type: Literal["session"]`
+
+      The type of scope (e.g., `"session"`).
+
+      - `"session"`
 
 ### Example
 

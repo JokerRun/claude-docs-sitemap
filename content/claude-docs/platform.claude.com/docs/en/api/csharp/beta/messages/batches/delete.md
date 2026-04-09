@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/delete
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: c0dc7724f62d1845aa08660dca15383bcbc0cfbdcf730c0dafd70fa57d81dfa9
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 44490ac987b539a779d35f4b438b4bc0425daab6d2e6be1ccdfd2f26236c30da
 ---
 
 ## Delete
@@ -70,8 +70,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

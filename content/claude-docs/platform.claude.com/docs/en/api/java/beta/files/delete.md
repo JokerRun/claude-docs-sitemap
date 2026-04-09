@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/delete
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 92dfca5a9c737757ab31de30f94f3275afc36655b9d91601d65be47a5fdcc063
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 62814002bd38bb7e1303b97aaa8df0b350676fc7f514d768bc9265b84501e3c6
 ---
 
 ## Delete
@@ -66,8 +66,6 @@ Delete File
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

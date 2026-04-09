@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/count_tokens
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 17873469efc1b5e51993d47aafe07b4167b809701f6f1d23b7f64bd99b6aef4e
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 9f37f843cbcacd38ea6c3c5f4f71116abce0feef34f0317120b2b28b051aef35
 ---
 
 ## Count Tokens
@@ -3802,8 +3802,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
-
 ### Returns
 
 - `class BetaMessageTokensCount:`
@@ -3833,7 +3831,7 @@ MessageCountTokensParams parameters = new()
             Role = Role.User,
         },
     ],
-    Model = Model.ClaudeOpus4_6,
+    Model = Model.ClaudeMythosPreview,
 };
 
 var betaMessageTokensCount = await client.Beta.Messages.CountTokens(parameters);

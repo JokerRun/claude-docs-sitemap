@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/workspaces
-fetched_at: 2026-01-23T03:45:17.894555Z
-sha256: 7196ce596dea74eac1c5f58c9f9a14ef6184c777b4ea97657c131dda34e9f15a
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 713ddcfccb42812a5501d80f2b0defa6df26f742ca022265a8a521b2730846c4
 ---
 
 # Workspaces
@@ -30,6 +30,7 @@ Members can have different roles in each workspace, allowing fine-grained access
 | Role | Permissions |
 |------|-------------|
 | Workspace User | Use the Workbench only |
+| Workspace Limited Developer | Create and manage API keys, use the API. Cannot access session tracing views or download files. |
 | Workspace Developer | Create and manage API keys, use the API |
 | Workspace Admin | Full control over workspace settings and members |
 | Workspace Billing | View workspace billing information (inherited from organization billing role) |
@@ -294,7 +295,7 @@ Organization admins automatically get the Workspace Admin role in all workspaces
 
 <section title="Which roles can be assigned in workspaces?">
 
-Organization users and developers can be assigned Workspace Admin, Workspace Developer, or Workspace User roles. The Workspace Billing role cannot be manually assigned; it's inherited from having the organization `billing` role.
+Organization users and developers can be assigned Workspace Admin, Workspace Developer, Workspace Limited Developer, or Workspace User roles. The Workspace Billing role cannot be manually assigned; it's inherited from having the organization `billing` role.
 
 </section>
 

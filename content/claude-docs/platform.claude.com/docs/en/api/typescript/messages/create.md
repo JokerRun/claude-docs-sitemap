@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/create
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 4388da4bf4b129d7bf53309c1f1a48ebdf4db779a8ee0dd8f7782ccfef14fac9
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 66250dc8e54c47a7438ffa5f0e448e073a5a66e258c963dea6c88179de73b538
 ---
 
 ## Create
@@ -2314,11 +2314,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 12 more`
+      - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+
+        - `"claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
 
         - `"claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-sonnet-4-6"`
 
@@ -4559,11 +4563,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 12 more`
+    - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+
+      - `"claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
 
       - `"claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-sonnet-4-6"`
 

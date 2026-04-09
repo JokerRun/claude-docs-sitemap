@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 8d85c813bf43cd1d8bcb17a3eb02457f324e38be9ab815e9cb195874eb5361e5
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: cb320e68dbdb0a4076456c8e070a0c67a78d443141effab78b79132d9fa7eb87
 ---
 
 # Computer use tool
@@ -107,6 +107,26 @@ curl https://api.anthropic.com/v1/messages \
       }
     ]
   }'
+```
+
+```bash CLI
+ant beta:messages create --beta computer-use-2025-11-24 <<'YAML'
+model: claude-opus-4-6
+max_tokens: 1024
+tools:
+  - type: computer_20251124
+    name: computer
+    display_width_px: 1024
+    display_height_px: 768
+    display_number: 1
+  - type: text_editor_20250728
+    name: str_replace_based_edit_tool
+  - type: bash_20250124
+    name: bash
+messages:
+  - role: user
+    content: Save a picture of a cat to my desktop.
+YAML
 ```
 
 ```python Python hidelines={1..2}

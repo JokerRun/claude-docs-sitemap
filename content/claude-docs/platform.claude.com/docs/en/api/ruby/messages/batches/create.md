@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/create
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 52a683406a3a58d90729c58129188755f6d73e85af6ad9af7188229826135f94
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 9fe7e3f190d2341b28e3796ced6135abf21b9d1e6696ec7c587d4f3f36e145b8
 ---
 
 ## Create
@@ -2326,15 +2326,19 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `:"claude-opus-4-6" | :"claude-sonnet-4-6" | :"claude-haiku-4-5" | 12 more`
+      - `:"claude-mythos-preview" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 13 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `:"claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `:"claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `:"claude-sonnet-4-6"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/create
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 5fb6c4c9c3fc29ab14ff97f9283eca5d305c8dc2a8758913d92f2a1fa8851853
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 432bdd02e18bbfdde2140fa3c7b5bbe7ab468186dd47d0572050677578e80edd
 ---
 
 ## Create
@@ -4322,9 +4322,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 

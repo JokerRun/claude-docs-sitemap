@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/create
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: b76ff8f6927fb70fd0404eb026f52075ca5c3861b7700ca4fd7bd54a274e1b17
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 511fc56a29944a59af71aea8dd4ae838f1c573107dfdca09e1a7af23c2984b30
 ---
 
 ## Create
@@ -2624,9 +2624,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
           - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 
@@ -4693,10 +4697,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Recommended for advanced use cases only. You usually only need to use `temperature`.
 
-      - `UserProfileID string`
-
-        The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
-
   - `Betas param.Field[[]AnthropicBeta]`
 
     Header param: Optional header to specify the beta version(s) you want to use.
@@ -4746,8 +4746,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

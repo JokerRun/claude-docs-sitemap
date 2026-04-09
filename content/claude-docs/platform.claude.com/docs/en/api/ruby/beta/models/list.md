@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/models/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 5dfe1f301ab8a05cc0e732961788e5738e8273775aa59f1e9c52a14c9fc9553f
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 6650a1dd1bfcdb8e80832e9c5a3b4c287772fc464e607d7ebdcabe1e02dd5e9a
 ---
 
 ## List
@@ -37,7 +37,7 @@ The Models API response can be used to determine which models are available for 
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 18 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -80,8 +80,6 @@ The Models API response can be used to determine which models are available for 
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

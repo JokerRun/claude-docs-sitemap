@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/models
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 60fc859dace3b5661822dcee745c7c2c2a82225250e397f3e6fb93c0f889a5da
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 34a791f60893cf93855d6fbeda27da226a91ba6968bbd24710d4fa72abcd5fa3
 ---
 
 # Models
@@ -39,7 +39,7 @@ The Models API response can be used to determine which models are available for 
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 18 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,8 +82,6 @@ The Models API response can be used to determine which models are available for 
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -303,7 +301,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 18 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -346,8 +344,6 @@ The Models API response can be used to determine information about a specific mo
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: f044d2ecd009cc1a996bc1bf60a77e3bee52254aaac7e021ee8bd6dcf36a986d
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 18ab59769c3aa065f8fba7d5563e3f1a47a40fc5e16f4b26661f84287cbfd70d
 ---
 
 ## Count Tokens
@@ -66,8 +66,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `List<BetaMessageParam> messages`
 

@@ -1,5 +1,92 @@
 ---
 - source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/agent-loop
+  lastmod: '2026-04-09T03:02:55.109Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/claude-code-features
+  lastmod: '2026-04-08T17:53:06.438Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/cost-tracking
+  lastmod: '2026-04-08T17:53:06.436Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/custom-tools
+  lastmod: '2026-04-08T17:53:06.432Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/file-checkpointing
+  lastmod: '2026-04-08T17:53:06.435Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/hooks
+  lastmod: '2026-04-08T17:53:06.437Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/hosting
+  lastmod: '2026-04-08T17:53:06.431Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/mcp
+  lastmod: '2026-04-08T17:53:06.433Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/migration-guide
+  lastmod: '2026-04-08T17:53:06.429Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts
+  lastmod: '2026-04-08T17:53:06.489Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/observability
+  lastmod: '2026-04-08T20:01:41.207Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/overview
+  lastmod: '2026-04-08T17:53:09.100Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/permissions
+  lastmod: '2026-04-09T03:02:55.304Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/plugins
+  lastmod: '2026-04-08T17:53:09.103Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/python
+  lastmod: '2026-04-08T17:53:09.107Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/quickstart
+  lastmod: '2026-04-09T03:02:55.209Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/secure-deployment
+  lastmod: '2026-04-08T17:53:09.099Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/sessions
+  lastmod: '2026-04-08T17:53:09.096Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/skills
+  lastmod: '2026-04-08T17:53:09.101Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/slash-commands
+  lastmod: '2026-04-08T17:53:09.097Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/streaming-output
+  lastmod: '2026-04-08T17:53:09.102Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode
+  lastmod: '2026-04-08T17:53:11.119Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/structured-outputs
+  lastmod: '2026-04-08T17:53:11.127Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/subagents
+  lastmod: '2026-04-08T17:53:11.126Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/todo-tracking
+  lastmod: '2026-04-08T17:53:11.123Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/tool-search
+  lastmod: '2026-04-08T17:53:11.120Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/typescript
+  lastmod: '2026-04-08T17:53:11.128Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview
+  lastmod: '2026-04-08T17:53:11.119Z'
+- source: code
+  loc: https://code.claude.com/docs/en/agent-sdk/user-input
+  lastmod: '2026-04-08T17:53:11.121Z'
+- source: code
   loc: https://code.claude.com/docs/en/agent-teams
   lastmod: '2026-04-03T23:27:35.690Z'
 - source: code
@@ -10,13 +97,13 @@
   lastmod: '2026-04-02T15:23:24.396Z'
 - source: code
   loc: https://code.claude.com/docs/en/authentication
-  lastmod: '2026-03-18T06:29:36.218Z'
+  lastmod: '2026-04-08T14:07:18.538Z'
 - source: code
   loc: https://code.claude.com/docs/en/best-practices
   lastmod: '2026-04-03T02:12:42.175Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-04-07T21:31:11.121Z'
+  lastmod: '2026-04-08T22:27:10.200Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-03-25T19:03:14.403Z'
@@ -31,19 +118,19 @@
   lastmod: '2026-04-02T15:23:24.392Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-code-on-the-web
-  lastmod: '2026-04-03T18:19:54.405Z'
+  lastmod: '2026-04-08T22:46:52.703Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-directory
-  lastmod: '2026-04-07T23:21:52.468Z'
+  lastmod: '2026-04-08T17:22:06.158Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
-  lastmod: '2026-04-04T16:53:45.531Z'
+  lastmod: '2026-04-08T17:53:11.122Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review
   lastmod: '2026-04-08T02:25:51.840Z'
 - source: code
   loc: https://code.claude.com/docs/en/commands
-  lastmod: '2026-04-08T02:25:51.842Z'
+  lastmod: '2026-04-08T22:46:52.706Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
   lastmod: '2026-04-07T23:34:04.678Z'
@@ -58,10 +145,10 @@
   lastmod: '2026-03-31T20:29:46.576Z'
 - source: code
   loc: https://code.claude.com/docs/en/data-usage
-  lastmod: '2026-04-07T23:21:52.514Z'
+  lastmod: '2026-04-08T18:15:55.053Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
-  lastmod: '2026-04-03T18:57:45.047Z'
+  lastmod: '2026-04-09T03:02:55.205Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-quickstart
   lastmod: '2026-04-03T18:57:45.041Z'
@@ -70,37 +157,37 @@
   lastmod: '2026-04-03T18:57:45.039Z'
 - source: code
   loc: https://code.claude.com/docs/en/devcontainer
-  lastmod: '2026-03-30T16:57:08.720Z'
+  lastmod: '2026-04-08T18:23:32.834Z'
 - source: code
   loc: https://code.claude.com/docs/en/discover-plugins
   lastmod: '2026-04-02T06:10:37.457Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-04-07T22:19:44.252Z'
+  lastmod: '2026-04-09T03:02:55.194Z'
 - source: code
   loc: https://code.claude.com/docs/en/fast-mode
-  lastmod: '2026-04-08T02:25:51.845Z'
+  lastmod: '2026-04-08T12:57:32.279Z'
 - source: code
   loc: https://code.claude.com/docs/en/features-overview
   lastmod: '2026-03-31T20:29:46.579Z'
 - source: code
   loc: https://code.claude.com/docs/en/fullscreen
-  lastmod: '2026-04-02T15:24:16.627Z'
+  lastmod: '2026-04-09T03:02:55.220Z'
 - source: code
   loc: https://code.claude.com/docs/en/github-actions
-  lastmod: '2026-04-02T07:07:54.102Z'
+  lastmod: '2026-04-08T17:53:11.118Z'
 - source: code
   loc: https://code.claude.com/docs/en/github-enterprise-server
-  lastmod: '2026-04-02T15:23:24.389Z'
+  lastmod: '2026-04-08T18:15:55.059Z'
 - source: code
   loc: https://code.claude.com/docs/en/gitlab-ci-cd
-  lastmod: '2026-02-26T20:21:09.408Z'
+  lastmod: '2026-04-08T17:53:11.145Z'
 - source: code
   loc: https://code.claude.com/docs/en/google-vertex-ai
   lastmod: '2026-04-02T07:07:54.095Z'
 - source: code
   loc: https://code.claude.com/docs/en/headless
-  lastmod: '2026-04-03T19:20:32.876Z'
+  lastmod: '2026-04-09T03:02:55.219Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
   lastmod: '2026-04-07T23:34:04.705Z'
@@ -109,10 +196,10 @@
   lastmod: '2026-04-07T23:33:10.523Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
-  lastmod: '2026-04-07T23:21:52.520Z'
+  lastmod: '2026-04-09T03:02:55.187Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
-  lastmod: '2026-04-07T23:10:33.674Z'
+  lastmod: '2026-04-09T03:02:55.116Z'
 - source: code
   loc: https://code.claude.com/docs/en/jetbrains
   lastmod: '2026-03-05T22:29:08.218Z'
@@ -121,13 +208,13 @@
   lastmod: '2026-04-07T23:10:33.682Z'
 - source: code
   loc: https://code.claude.com/docs/en/legal-and-compliance
-  lastmod: '2026-04-03T22:33:36.142Z'
+  lastmod: '2026-04-08T17:53:11.144Z'
 - source: code
   loc: https://code.claude.com/docs/en/llm-gateway
   lastmod: '2026-03-28T16:55:05.133Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp
-  lastmod: '2026-04-04T16:51:31.801Z'
+  lastmod: '2026-04-09T03:02:55.733Z'
 - source: code
   loc: https://code.claude.com/docs/en/memory
   lastmod: '2026-04-03T02:12:42.176Z'
@@ -139,7 +226,7 @@
   lastmod: '2026-04-08T02:25:51.844Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
-  lastmod: '2026-04-02T17:00:07.490Z'
+  lastmod: '2026-04-09T03:02:59.274Z'
 - source: code
   loc: https://code.claude.com/docs/en/network-config
   lastmod: '2026-04-02T06:10:37.493Z'
@@ -148,16 +235,16 @@
   lastmod: '2026-04-07T23:34:04.681Z'
 - source: code
   loc: https://code.claude.com/docs/en/overview
-  lastmod: '2026-04-03T18:57:45.141Z'
+  lastmod: '2026-04-08T18:15:55.058Z'
 - source: code
   loc: https://code.claude.com/docs/en/permission-modes
-  lastmod: '2026-04-03T19:20:32.881Z'
+  lastmod: '2026-04-09T03:02:59.277Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
-  lastmod: '2026-04-04T16:53:45.538Z'
+  lastmod: '2026-04-09T03:02:59.279Z'
 - source: code
   loc: https://code.claude.com/docs/en/platforms
-  lastmod: '2026-04-03T18:57:45.143Z'
+  lastmod: '2026-04-08T18:52:01.813Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-marketplaces
   lastmod: '2026-04-02T23:48:56.099Z'
@@ -187,22 +274,22 @@
   lastmod: '2026-04-04T16:53:45.527Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-04-04T16:53:49.827Z'
+  lastmod: '2026-04-09T03:08:05.860Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
-  lastmod: '2026-04-02T18:23:54.800Z'
+  lastmod: '2026-04-08T14:06:19.281Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
-  lastmod: '2026-04-04T16:51:31.794Z'
+  lastmod: '2026-04-08T22:47:55.291Z'
 - source: code
   loc: https://code.claude.com/docs/en/slack
-  lastmod: '2026-04-02T15:23:28.501Z'
+  lastmod: '2026-04-08T18:15:55.057Z'
 - source: code
   loc: https://code.claude.com/docs/en/statusline
-  lastmod: '2026-04-02T15:24:16.633Z'
+  lastmod: '2026-04-09T03:07:18.076Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-04-03T23:27:35.696Z'
+  lastmod: '2026-04-09T03:02:59.275Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
   lastmod: '2026-04-04T16:53:49.817Z'
@@ -214,10 +301,10 @@
   lastmod: '2026-04-02T06:11:19.891Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshooting
-  lastmod: '2026-04-07T23:34:04.686Z'
+  lastmod: '2026-04-08T22:52:21.349Z'
 - source: code
   loc: https://code.claude.com/docs/en/ultraplan
-  lastmod: '2026-04-07T23:22:36.916Z'
+  lastmod: '2026-04-08T18:15:55.059Z'
 - source: code
   loc: https://code.claude.com/docs/en/voice-dictation
   lastmod: '2026-03-30T17:04:51.873Z'
@@ -225,8 +312,11 @@
   loc: https://code.claude.com/docs/en/vs-code
   lastmod: '2026-04-07T19:05:25.766Z'
 - source: code
+  loc: https://code.claude.com/docs/en/web-quickstart
+  lastmod: '2026-04-08T18:15:55.060Z'
+- source: code
   loc: https://code.claude.com/docs/en/web-scheduled-tasks
-  lastmod: '2026-04-03T18:57:47.197Z'
+  lastmod: '2026-04-08T18:15:58.294Z'
 - source: code
   loc: https://code.claude.com/docs/en/whats-new
   lastmod: '2026-04-04T03:22:56.257Z'
@@ -235,7 +325,7 @@
   lastmod: '2026-04-04T03:22:56.267Z'
 - source: code
   loc: https://code.claude.com/docs/en/whats-new/2026-w14
-  lastmod: '2026-04-04T03:22:56.266Z'
+  lastmod: '2026-04-09T03:02:59.271Z'
 - source: code
   loc: https://code.claude.com/docs/en/zero-data-retention
   lastmod: '2026-02-27T16:33:50.844Z'
@@ -279,94 +369,7 @@
   loc: https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing
   priority: '0.8'
 - source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/agent-loop
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/claude-code-features
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/cost-tracking
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/custom-tools
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/file-checkpointing
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/hooks
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/hosting
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/mcp
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/migration-guide
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/modifying-system-prompts
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/overview
-  priority: '1'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/permissions
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/plugins
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/python
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/quickstart
-  priority: '1'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/secure-deployment
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/sessions
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/skills
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/slash-commands
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/streaming-output
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/streaming-vs-single-mode
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/structured-outputs
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/subagents
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/todo-tracking
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/tool-search
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/typescript
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/typescript-v2-preview
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agent-sdk/user-input
-  priority: '0.8'
-- source: platform
   loc: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise
@@ -387,28 +390,16 @@
   loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
   priority: '0.8'
 - source: platform
-  loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent
-  priority: '0.8'
-- source: platform
   loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
   priority: '0.8'
 - source: platform
-  loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-  priority: '0.8'
-- source: platform
   loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
   priority: '0.8'
 - source: platform
-  loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
-  priority: '0.8'
-- source: platform
   loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
@@ -417,37 +408,13 @@
   loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
   priority: '1'
 - source: platform
-  loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-  priority: '0.8'
-- source: platform
   loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool
   priority: '0.8'
 - source: platform
-  loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-combinations
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner
-  priority: '0.8'
-- source: platform
   loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/troubleshooting-tool-use
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
@@ -564,6 +531,51 @@
   loc: https://platform.claude.com/docs/en/api/beta-headers
   priority: '0.8'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/agents
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/agents/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/agents/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/agents/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/agents/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/agents/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/agents/versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/agents/versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/environments
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/environments/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/environments/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/environments/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/environments/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/environments/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/environments/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/beta/files
   priority: '0.9'
 - source: platform
@@ -621,6 +633,57 @@
   loc: https://platform.claude.com/docs/en/api/beta/models/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/events
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/events/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/events/send
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/events/stream
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/resources
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/resources/add
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/resources/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/resources/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/resources/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/sessions/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/beta/skills
   priority: '0.9'
 - source: platform
@@ -651,25 +714,94 @@
   loc: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/user_profiles
+  loc: https://platform.claude.com/docs/en/api/beta/vaults
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/create
+  loc: https://platform.claude.com/docs/en/api/beta/vaults/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
+  loc: https://platform.claude.com/docs/en/api/beta/vaults/create
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/list
+  loc: https://platform.claude.com/docs/en/api/beta/vaults/credentials
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
+  loc: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/update
+  loc: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/vaults/credentials/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/vaults/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/vaults/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/vaults/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/vaults/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/cli/beta
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/agents
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/agents/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/agents/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/agents/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/agents/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/agents/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/agents/versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/agents/versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/environments
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/environments/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/environments/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/environments/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/environments/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/environments/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/environments/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/cli/beta/files
@@ -729,6 +861,57 @@
   loc: https://platform.claude.com/docs/en/api/cli/beta/models/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/events
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/events/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/events/send
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/events/stream
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/resources
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/resources/add
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/resources/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/resources/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/resources/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/resources/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/sessions/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/cli/beta/skills
   priority: '0.9'
 - source: platform
@@ -759,22 +942,46 @@
   loc: https://platform.claude.com/docs/en/api/cli/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/create
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/create_enrollment_url
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/create
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/list
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/retrieve
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/update
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/cli/completions
@@ -834,6 +1041,51 @@
   loc: https://platform.claude.com/docs/en/api/csharp/beta
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/agents
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/agents/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/agents/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/agents/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/agents/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/agents/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/agents/versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/agents/versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/environments
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/environments/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/environments/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/environments/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/environments/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/environments/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/environments/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/csharp/beta/files
   priority: '0.9'
 - source: platform
@@ -891,6 +1143,57 @@
   loc: https://platform.claude.com/docs/en/api/csharp/beta/models/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/events
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/events/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/events/send
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/events/stream
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/add
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/sessions/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/csharp/beta/skills
   priority: '0.9'
 - source: platform
@@ -921,22 +1224,46 @@
   loc: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create_enrollment_url
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/create
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/list
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/retrieve
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/update
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/csharp/completions
@@ -988,6 +1315,51 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/go/beta
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/agents
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/agents/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/agents/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/agents/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/agents/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/agents/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/agents/versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/agents/versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/environments
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/environments/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/environments/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/environments/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/environments/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/environments/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/environments/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/go/beta/files
@@ -1047,6 +1419,57 @@
   loc: https://platform.claude.com/docs/en/api/go/beta/models/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/events
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/events/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/events/send
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/events/stream
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/resources
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/add
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/sessions/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/go/beta/skills
   priority: '0.9'
 - source: platform
@@ -1077,22 +1500,46 @@
   loc: https://platform.claude.com/docs/en/api/go/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/create
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/create_enrollment_url
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults/create
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/list
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/retrieve
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/update
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/vaults/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/go/completions
@@ -1144,6 +1591,51 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/java/beta
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/agents
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/agents/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/agents/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/agents/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/agents/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/agents/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/agents/versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/agents/versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/environments
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/environments/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/environments/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/environments/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/environments/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/environments/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/environments/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/java/beta/files
@@ -1203,6 +1695,57 @@
   loc: https://platform.claude.com/docs/en/api/java/beta/models/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/events
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/events/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/events/send
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/events/stream
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/resources
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/add
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/sessions/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/java/beta/skills
   priority: '0.9'
 - source: platform
@@ -1233,22 +1776,46 @@
   loc: https://platform.claude.com/docs/en/api/java/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/create
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/create_enrollment_url
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults/create
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/list
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/retrieve
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/update
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/vaults/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/java/completions
@@ -1344,6 +1911,51 @@
   loc: https://platform.claude.com/docs/en/api/php/beta
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/agents
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/agents/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/agents/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/agents/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/agents/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/agents/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/agents/versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/agents/versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/environments
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/environments/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/environments/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/environments/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/environments/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/environments/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/environments/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/php/beta/files
   priority: '0.9'
 - source: platform
@@ -1401,6 +2013,57 @@
   loc: https://platform.claude.com/docs/en/api/php/beta/models/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/events
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/events/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/events/send
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/events/stream
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/resources
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/resources/add
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/resources/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/resources/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/resources/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/resources/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/sessions/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/php/beta/skills
   priority: '0.9'
 - source: platform
@@ -1431,22 +2094,46 @@
   loc: https://platform.claude.com/docs/en/api/php/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/create
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/create_enrollment_url
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults/create
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/list
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults/credentials
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/retrieve
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults/credentials/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/update
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults/credentials/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults/credentials/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults/credentials/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults/credentials/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults/credentials/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/vaults/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/php/completions
@@ -1495,6 +2182,51 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/python/beta
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/agents
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/agents/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/agents/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/agents/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/agents/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/agents/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/agents/versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/agents/versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/environments
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/environments/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/environments/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/environments/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/environments/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/environments/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/environments/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/python/beta/files
@@ -1554,6 +2286,57 @@
   loc: https://platform.claude.com/docs/en/api/python/beta/models/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/events
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/events/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/events/send
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/events/stream
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/resources
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/add
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/sessions/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/python/beta/skills
   priority: '0.9'
 - source: platform
@@ -1584,22 +2367,46 @@
   loc: https://platform.claude.com/docs/en/api/python/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/create
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/create_enrollment_url
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults/create
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/list
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/retrieve
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/update
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/vaults/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/python/completions
@@ -1651,6 +2458,51 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/ruby/beta
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/agents
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/agents/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/agents/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/agents/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/agents/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/agents/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/agents/versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/agents/versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/environments
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/environments/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/environments/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/environments/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/environments/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/environments/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/environments/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/ruby/beta/files
@@ -1710,6 +2562,57 @@
   loc: https://platform.claude.com/docs/en/api/ruby/beta/models/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/events
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/events/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/events/send
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/events/stream
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/resources
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/resources/add
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/resources/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/resources/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/resources/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/resources/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/sessions/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/ruby/beta/skills
   priority: '0.9'
 - source: platform
@@ -1740,22 +2643,46 @@
   loc: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/create
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/create_enrollment_url
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/create
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/list
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/retrieve
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/update
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/ruby/completions
@@ -1803,6 +2730,9 @@
   loc: https://platform.claude.com/docs/en/api/ruby/models/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/sdks/cli
+  priority: '0.8'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/sdks/csharp
   priority: '0.8'
 - source: platform
@@ -1831,6 +2761,51 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/terraform/beta
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/agents
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/agents/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/agents/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/agents/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/agents/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/agents/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/agents/versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/agents/versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/environments
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/environments/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/environments/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/environments/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/environments/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/environments/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/environments/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/terraform/beta/files
@@ -1890,6 +2865,57 @@
   loc: https://platform.claude.com/docs/en/api/terraform/beta/models/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/events
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/events/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/events/send
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/events/stream
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/resources
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/resources/add
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/resources/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/resources/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/resources/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/resources/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/sessions/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/terraform/beta/skills
   priority: '0.9'
 - source: platform
@@ -1920,22 +2946,46 @@
   loc: https://platform.claude.com/docs/en/api/terraform/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/create
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/create_enrollment_url
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/create
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/list
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/retrieve
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/update
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/terraform/completions
@@ -1984,6 +3034,51 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/typescript/beta
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/agents
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/agents/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/agents/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/agents/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/agents/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/agents/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/agents/versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/agents/versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/environments
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/environments/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/environments/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/environments/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/environments/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/environments/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/environments/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/typescript/beta/files
@@ -2043,6 +3138,57 @@
   loc: https://platform.claude.com/docs/en/api/typescript/beta/models/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/events
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/events/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/events/send
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/events/stream
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/add
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/sessions/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/typescript/beta/skills
   priority: '0.9'
 - source: platform
@@ -2073,22 +3219,46 @@
   loc: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/create
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/create_enrollment_url
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/create
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/list
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/retrieve
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/archive
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/update
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/typescript/completions
@@ -2155,9 +3325,6 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/claude-code-analytics-api
-  priority: '0.8'
-- source: platform
-  loc: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
@@ -2252,6 +3419,66 @@
 - source: platform
   loc: https://platform.claude.com/docs/en/intro
   priority: '1'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/agent-setup
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/cloud-containers
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/define-outcomes
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/environments
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/files
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/github
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/mcp-connector
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/memory
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/migration
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/multi-agent
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/observability
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/onboarding
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/overview
+  priority: '1'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/permission-policies
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/quickstart
+  priority: '1'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/sessions
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/skills
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/tools
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/vaults
+  priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/release-notes/overview
   priority: '1'

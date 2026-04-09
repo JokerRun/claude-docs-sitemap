@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions/retrieve
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 6ccb63e1f62709d752e930e6cb8630a09631abd6830d27020469945adc8efde8
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 0e07e198f9f55fb1472d6e16a90a142e056012b99cbd605ab60e3b2f45405c16
 ---
 
 ## Retrieve
@@ -78,8 +78,6 @@ Get Skill Version
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/retrieve_metadata
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: e582dbb4eab92d5457f947360014927a60fe5a50609f0d4fd91caceb6fce3b11
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 2574ed26ec0997f79b4ad058317071eec3a735c02e5f4c057b662ab8ed113e1b
 ---
 
 ## Retrieve Metadata
@@ -27,7 +27,7 @@ Get File Metadata
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -71,8 +71,6 @@ Get File Metadata
 
       - `"output-300k-2026-03-24"`
 
-      - `"user-profiles-2026-03-24"`
-
 ### Returns
 
 - `FileMetadata`
@@ -110,6 +108,20 @@ Get File Metadata
   - `downloadable?: boolean`
 
     Whether the file can be downloaded.
+
+  - `scope?: BetaFileScope | null`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `id: string`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `type: "session"`
+
+      The type of scope (e.g., `"session"`).
+
+      - `"session"`
 
 ### Example
 

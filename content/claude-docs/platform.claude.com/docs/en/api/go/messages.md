@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 6d1291b8603e7b94434e0e780d5713b94dd2aecf1adaeaba04526127bb0ad064
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 9ba4681b22eae2cd038bce4d2088b0ba7b70cc5e8896846f3a191c6885246651
 ---
 
 # Messages
@@ -4324,9 +4324,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 
@@ -8131,7 +8135,7 @@ func main() {
       }},
       Role: anthropic.MessageParamRoleUser,
     }},
-    Model: anthropic.ModelClaudeOpus4_6,
+    Model: anthropic.ModelClaudeMythosPreview,
   })
   if err != nil {
     panic(err.Error())
@@ -13834,9 +13838,13 @@ func main() {
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 
@@ -17367,9 +17375,13 @@ func main() {
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
     - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-      Most intelligent model for building agents and coding
+      Frontier intelligence for long-running agents and coding
 
     - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 
@@ -19242,9 +19254,13 @@ func main() {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 
@@ -20178,9 +20194,13 @@ func main() {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
           - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 
@@ -29269,9 +29289,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
           - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 
@@ -32129,9 +32153,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+              New class of intelligence, strongest in coding and cybersecurity
+
             - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-              Most intelligent model for building agents and coding
+              Frontier intelligence for long-running agents and coding
 
             - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 
@@ -33413,9 +33441,13 @@ func main() {
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+              New class of intelligence, strongest in coding and cybersecurity
+
             - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-              Most intelligent model for building agents and coding
+              Frontier intelligence for long-running agents and coding
 
             - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 
@@ -34477,9 +34509,13 @@ func main() {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
           - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 
@@ -35503,9 +35539,13 @@ func main() {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 

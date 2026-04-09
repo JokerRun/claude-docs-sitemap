@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-enterprise-server
-fetched_at: 2026-04-03T03:10:14.718804Z
-sha256: cdaa5bd08c4dfa457790cc916a2ec20026d3f0387935ebf3031cafbdde0f05fe
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 8a43439aca273e772d554ea379105a84db09cd73b0d9eb661df2b96088799d6e
 ---
 
 > ## Documentation Index
@@ -29,7 +29,7 @@ The table below shows which Claude Code features support GHES and any difference
 | :--------------------- | :-------------- | :--------------------------------------------------------------------------------------------------------------------------- |
 | Claude Code on the web | ✅ Supported     | Admin connects the GHES instance once; developers use `claude --remote` or [claude.ai/code](https://claude.ai/code) as usual |
 | Code Review            | ✅ Supported     | Same automated PR reviews as github.com                                                                                      |
-| Teleport sessions      | ✅ Supported     | Move sessions between web and terminal with `/teleport`                                                                      |
+| Teleport sessions      | ✅ Supported     | Move sessions between web and terminal with `--teleport`                                                                     |
 | Plugin marketplaces    | ✅ Supported     | Use full git URLs instead of `owner/repo` shorthand                                                                          |
 | Contribution metrics   | ✅ Supported     | Delivered via webhooks to the [analytics dashboard](/en/analytics)                                                           |
 | GitHub Actions         | ✅ Supported     | Requires manual workflow setup; `/install-github-app` is github.com only                                                     |
@@ -108,7 +108,7 @@ The session runs on Anthropic infrastructure, clones your repository from GHES, 
 
 ### Teleport sessions to your terminal
 
-Pull a web session into your local terminal with `/teleport` or `claude --teleport`. Teleport verifies you're in a checkout of the same GHES repository before fetching the branch and loading the session history. See [teleport requirements](/en/claude-code-on-the-web#requirements-for-teleporting) for details.
+Pull a web session into your local terminal with `claude --teleport`. Teleport verifies you're in a checkout of the same GHES repository before fetching the branch and loading the session history. See [teleport requirements](/en/claude-code-on-the-web#teleport-requirements) for details.
 
 ## Plugin marketplaces on GHES
 

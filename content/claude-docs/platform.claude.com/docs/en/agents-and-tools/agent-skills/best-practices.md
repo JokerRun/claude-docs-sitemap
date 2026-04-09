@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: a18fc6d0b3d803da50de339176bfc6a147f3bec350292bbd7f821899af5a18f3
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: d1da876439d60b3c813f6fac53745a0b518a7cc4af7973e6e9318dda64bee23a
 ---
 
 # Skill authoring best practices
@@ -1133,13 +1133,6 @@ Before sharing a Skill, verify:
     href="https://code.claude.com/docs/en/skills"
   >
     Create and manage Skills in Claude Code
-  </Card>
-  <Card
-    title="Use Skills in the Agent SDK"
-    icon="cube"
-    href="/docs/en/agent-sdk/skills"
-  >
-    Use Skills programmatically in TypeScript and Python
   </Card>
   <Card
     title="Use Skills with the API"

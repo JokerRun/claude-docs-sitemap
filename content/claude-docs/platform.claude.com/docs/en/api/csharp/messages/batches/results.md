@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches/results
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 8bea0c495de570d8ea7c84881c5b73192958c471d96c7c28becf4429140c39e6
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: b8d775128011b91c6588c8e4d7cc0f8a8ccd3e567d37696b7c5f5287c4da6466
 ---
 
 ## Results
@@ -650,9 +650,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-mythos-preview"ClaudeMythosPreview`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
           - `"claude-opus-4-6"ClaudeOpus4_6`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-sonnet-4-6"ClaudeSonnet4_6`
 

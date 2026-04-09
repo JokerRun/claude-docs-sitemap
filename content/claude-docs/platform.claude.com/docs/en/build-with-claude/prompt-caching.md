@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 88a84f107e1234efe53b61c0966e39c8900f0616474a4748a8f585bb8d13f8e6
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 6701067cdaa580f900fdfa40763bbc7e30084ea38de52a4f2b80ef428e18301a
 ---
 
 # Prompt caching
@@ -41,6 +41,21 @@ curl https://api.anthropic.com/v1/messages \
       }
     ]
   }'
+```
+
+```bash CLI
+ant messages create --transform usage <<'YAML'
+model: claude-opus-4-6
+max_tokens: 1024
+cache_control:
+  type: ephemeral
+system: >-
+  You are an AI assistant tasked with analyzing literary works. Your goal is
+  to provide insightful commentary on themes, characters, and writing style.
+messages:
+  - role: user
+    content: Analyze the major themes in Pride and Prejudice.
+YAML
 ```
 
 ```python Python hidelines={1..2}
@@ -311,6 +326,23 @@ curl https://api.anthropic.com/v1/messages \
       {"role": "user", "content": "What did I say I work on?"}
     ]
   }'
+```
+
+```bash CLI
+ant messages create --transform usage <<'YAML'
+model: claude-opus-4-6
+max_tokens: 1024
+cache_control:
+  type: ephemeral
+system: You are a helpful assistant that remembers our conversation.
+messages:
+  - role: user
+    content: My name is Alex. I work on machine learning.
+  - role: assistant
+    content: Nice to meet you, Alex! How can I help with your ML work today?
+  - role: user
+    content: What did I say I work on?
+YAML
 ```
 
 ```python Python hidelines={1..2}
@@ -825,7 +857,7 @@ To use the extended cache, include `ttl` in the `cache_control` definition like 
 ```
 
 The response will include detailed cache information like the following:
-```json
+```json Output
 {
   "usage": {
     "input_tokens": 2048,
@@ -914,6 +946,25 @@ curl https://api.anthropic.com/v1/messages \
         }
     ]
 }'
+```
+
+```bash CLI
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 1024
+system:
+  - type: text
+    text: You are an AI assistant tasked with analyzing legal documents.
+  - type: text
+    text: >-
+      Here is the full text of a complex legal agreement:
+      [Insert full text of a 50-page legal agreement here]
+    cache_control:
+      type: ephemeral
+messages:
+  - role: user
+    content: What are the key terms and conditions in this agreement?
+YAML
 ```
 
 ```python Python hidelines={1..2}
@@ -1263,6 +1314,40 @@ curl https://api.anthropic.com/v1/messages \
         }
     ]
 }'
+```
+
+```bash CLI
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 1024
+system:
+  - type: text
+    text: "...long system prompt"
+    cache_control:
+      type: ephemeral
+messages:
+  - role: user
+    content:
+      - type: text
+        text: Hello, can you tell me more about the solar system?
+  - role: assistant
+    content: >-
+      Certainly! The solar system is the collection of celestial bodies that
+      orbit our Sun. It consists of eight planets, numerous moons, asteroids,
+      comets, and other objects. The planets, in order from closest to farthest
+      from the Sun, are: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus,
+      and Neptune. Each planet has its own unique characteristics and features.
+      Is there a specific aspect of the solar system you would like to know
+      more about?
+  - role: user
+    content:
+      - type: text
+        text: Good to know.
+      - type: text
+        text: Tell me more about Mars.
+        cache_control:
+          type: ephemeral
+YAML
 ```
 
 ```python Python hidelines={1..2}
@@ -1725,6 +1810,94 @@ curl https://api.anthropic.com/v1/messages \
         }
     ]
 }'
+```
+
+```bash CLI
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 1024
+tools:
+  - name: search_documents
+    description: Search through the knowledge base
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query
+      required: [query]
+  - name: get_document
+    description: Retrieve a specific document by ID
+    input_schema:
+      type: object
+      properties:
+        doc_id:
+          type: string
+          description: Document ID
+      required: [doc_id]
+    cache_control:
+      type: ephemeral
+system:
+  - type: text
+    text: |-
+      You are a helpful research assistant with access to a document knowledge base.
+
+      # Instructions
+      - Always search for relevant documents before answering
+      - Provide citations for your sources
+      - Be objective and accurate in your responses
+      - If multiple documents contain relevant information, synthesize them
+      - Acknowledge when information is not available in the knowledge base
+    cache_control:
+      type: ephemeral
+  - type: text
+    text: |-
+      # Knowledge Base Context
+
+      Here are the relevant documents for this conversation:
+
+      ## Document 1: Solar System Overview
+      The solar system consists of the Sun and all objects that orbit it...
+
+      ## Document 2: Planetary Characteristics
+      Each planet has unique features. Mercury is the smallest planet...
+
+      ## Document 3: Mars Exploration
+      Mars has been a target of exploration for decades...
+
+      [Additional documents...]
+    cache_control:
+      type: ephemeral
+messages:
+  - role: user
+    content: Can you search for information about Mars rovers?
+  - role: assistant
+    content:
+      - type: tool_use
+        id: tool_1
+        name: search_documents
+        input:
+          query: Mars rovers
+  - role: user
+    content:
+      - type: tool_result
+        tool_use_id: tool_1
+        content: >-
+          Found 3 relevant documents: Document 3 (Mars Exploration),
+          Document 7 (Rover Technology), Document 9 (Mission History)
+  - role: assistant
+    content:
+      - type: text
+        text: >-
+          I found 3 relevant documents about Mars rovers. Let me get more
+          details from the Mars Exploration document.
+  - role: user
+    content:
+      - type: text
+        text: Yes, please tell me about the Perseverance rover specifically.
+        cache_control:
+          type: ephemeral
+YAML
 ```
 
 ```python Python hidelines={1..2}

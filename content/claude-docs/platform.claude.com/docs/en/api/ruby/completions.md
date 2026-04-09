@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/completions
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 55ab13d9e199c646e1ad2eb5f862ac9405e8c6b99e2cba79bd53dacc0375d189
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: e3c172a6ec3cee6de705912dd7cb25a68c760dad918542fcca45224e2c59aa56
 ---
 
 # Completions
@@ -33,15 +33,19 @@ Future models and features will not be compatible with Text Completions. See our
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `:"claude-opus-4-6" | :"claude-sonnet-4-6" | :"claude-haiku-4-5" | 12 more`
+  - `:"claude-mythos-preview" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 13 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `:"claude-mythos-preview"`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
     - `:"claude-opus-4-6"`
 
-      Most intelligent model for building agents and coding
+      Frontier intelligence for long-running agents and coding
 
     - `:"claude-sonnet-4-6"`
 
@@ -175,7 +179,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 18 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -219,8 +223,6 @@ Future models and features will not be compatible with Text Completions. See our
 
     - `:"output-300k-2026-03-24"`
 
-    - `:"user-profiles-2026-03-24"`
-
 ### Returns
 
 - `class Completion`
@@ -241,15 +243,19 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `:"claude-opus-4-6" | :"claude-sonnet-4-6" | :"claude-haiku-4-5" | 12 more`
+    - `:"claude-mythos-preview" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 13 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `:"claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `:"claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `:"claude-sonnet-4-6"`
 
@@ -335,7 +341,7 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
 completion = anthropic.completions.create(
   max_tokens_to_sample: 256,
-  model: :"claude-opus-4-6",
+  model: :"claude-mythos-preview",
   prompt: "\n\nHuman: Hello, world!\n\nAssistant:"
 )
 
@@ -364,15 +370,19 @@ puts(completion)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `:"claude-opus-4-6" | :"claude-sonnet-4-6" | :"claude-haiku-4-5" | 12 more`
+    - `:"claude-mythos-preview" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 13 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `:"claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `:"claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `:"claude-sonnet-4-6"`
 

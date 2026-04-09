@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 22626cc502ad898e57ff340d4604baa72ee4ea404ffa7ee56df4c309e5fd80e0
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 6863500288e9acb50132d7e9ed6d61cf4e4ba8ad3c817b299d13abd33693a123
 ---
 
 ## List
@@ -87,8 +87,6 @@ List Skills
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

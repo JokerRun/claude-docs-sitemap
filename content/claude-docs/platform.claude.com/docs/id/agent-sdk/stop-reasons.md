@@ -1,8 +1,590 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/stop-reasons
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: c8ec620e5857d7b59fa63c40d106388b62bac5966bc3dc8f4f7c06784054b5cc
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 520c00e11831725b36058a11dbe2c349837a5bb2165fc397e7c2cfbaf8037d43
 ---
 
-<!DOCTYPE html><html class="h-screen antialiased bg-bg-100 __variable_8d1da5 __variable_2d8cf6 __variable_5581e8" lang="en-US" data-theme="claude" data-mode="auto"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"/><link rel="stylesheet" href="/_next/static/css/8cff95e0acb92448.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/05674d3eb9977543.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/28ca58211539440e.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/c5a98f0d4154763c.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/4c1c1b178f5f2484.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/7330c74f27c4968a.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/bf71b0902a17bea2.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/25cd6819050d6822.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/e3aaf70fa4198b12.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/8359068e4bd1e0f6.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/77755cd2a6b2a03a.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/b9147ca7e14b6b03.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/webpack-17925192745b8f9a.js"/><script src="/_next/static/chunks/87c73c54-876ea14b3e196b63.js" async=""></script><script src="/_next/static/chunks/35246-462833ace7a32200.js" async=""></script><script src="/_next/static/chunks/main-app-ee6162d24ad6d574.js" async=""></script><script src="/_next/static/chunks/59666-e95cf9bb04efecef.js" async=""></script><script src="/_next/static/chunks/app/docs/%5Blocale%5D/%5B...segments%5D/loading-578c3a88d8627a58.js" async=""></script><script src="/_next/static/chunks/app/loading-bfb5ce191a4d1a27.js" async=""></script><script src="/_next/static/chunks/app/global-error-05bf6fee5d87cc09.js" async=""></script><script src="/_next/static/chunks/620c25d9-c1d45e805d8f4df5.js" async=""></script><script src="/_next/static/chunks/1f006d11-3f2dca16ee6552c8.js" async=""></script><script src="/_next/static/chunks/69497-123a48076aa08a6d.js" async=""></script><script src="/_next/static/chunks/66043-a991488719b2bf7e.js" async=""></script><script src="/_next/static/chunks/77298-03cd7a3cd8e47556.js" async=""></script><script src="/_next/static/chunks/12549-36dcec12df896831.js" async=""></script><script src="/_next/static/chunks/60996-2d986868c22e0fb4.js" async=""></script><script src="/_next/static/chunks/87462-aca7efc1f439b97c.js" async=""></script><script src="/_next/static/chunks/71751-bbd9346a45de20ed.js" async=""></script><script src="/_next/static/chunks/app/docs/layout-5751acce86aca7a8.js" async=""></script><script src="/_next/static/chunks/c7dfc041-a9ea445d92867d87.js" async=""></script><script src="/_next/static/chunks/7bf36345-2f25e76a6f2adf3b.js" async=""></script><script src="/_next/static/chunks/27217-b7c11a9939375429.js" async=""></script><script src="/_next/static/chunks/2574-ecefe9007cc4c300.js" async=""></script><script src="/_next/static/chunks/19664-fc61d788dcfca1ac.js" async=""></script><script src="/_next/static/chunks/73698-b1fc787d9a027ceb.js" async=""></script><script src="/_next/static/chunks/94101-06f19e567d4a3f2f.js" async=""></script><script src="/_next/static/chunks/81256-7e7091d9f543d13a.js" async=""></script><script src="/_next/static/chunks/69912-08c0cc74d2ac9175.js" async=""></script><script src="/_next/static/chunks/16439-7c50d8e24ff6c957.js" async=""></script><script src="/_next/static/chunks/94882-a284580c48a7681c.js" async=""></script><script src="/_next/static/chunks/10371-7aa2ec347b81a1e2.js" async=""></script><script src="/_next/static/chunks/32536-8a53bb1bde50ed89.js" async=""></script><script src="/_next/static/chunks/13714-b7f28ddc893e08c6.js" async=""></script><script src="/_next/static/chunks/20679-90952be7a5eaf4e0.js" async=""></script><script src="/_next/static/chunks/13429-5a6b55a257b039d9.js" async=""></script><script src="/_next/static/chunks/19326-c8b5f6f40624f6e0.js" async=""></script><script src="/_next/static/chunks/54133-96b38123ce17058b.js" async=""></script><script src="/_next/static/chunks/30570-b82b80182b7d6c3b.js" async=""></script><script src="/_next/static/chunks/91606-ea7e4d5b9abe7d2e.js" async=""></script><script src="/_next/static/chunks/74813-bed8ed4ab88399b7.js" async=""></script><script src="/_next/static/chunks/77707-ff5a70a0f00f08df.js" async=""></script><script src="/_next/static/chunks/1914-7e03a201f37fd4fd.js" async=""></script><script src="/_next/static/chunks/63156-3c0b9fc4fb751c04.js" async=""></script><script src="/_next/static/chunks/52624-2d98c12864a3bbfb.js" async=""></script><script src="/_next/static/chunks/5602-3b3b526184e16061.js" async=""></script><script src="/_next/static/chunks/67747-bf98fd84024e3a60.js" async=""></script><script src="/_next/static/chunks/app/layout-ea930d9ca922ce41.js" async=""></script><script src="/_next/static/chunks/app/not-found-e33f12e02eff7d21.js" async=""></script><meta name="next-size-adjust" content=""/><title>Not Found - Claude API Docs</title><meta name="description" content="Page not found"/><link rel="canonical" href="https://platform.claude.com"/><meta name="mobile-web-app-capable" content="yes"/><link href="/apple-touch-icon.png" rel="apple-touch-startup-image"/><meta name="apple-mobile-web-app-status-bar-style" content="default"/><meta property="og:title" content="Not Found - Claude API Docs"/><meta property="og:description" content="Page not found"/><meta property="og:image" content="https://platform.claude.com/docs/images/og-claude-docs.png"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Not Found - Claude API Docs"/><meta name="twitter:description" content="Page not found"/><meta name="twitter:image" content="https://platform.claude.com/docs/images/og-claude-docs.png"/><link rel="icon" href="/favicon.ico"/><link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png"/><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"/><link rel="apple-touch-icon" href="/apple-touch-icon.png"/><meta name="robots" content="noindex"/><script src="/_next/static/chunks/polyfills-42372ed130431b0a.js" noModule=""></script></head><body class="bg-bg-100 text-text-100 min-h-screen font-ui"><div hidden=""><!--$--><!--/$--></div><div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events:none"><ol tabindex="-1" class="fixed top-0 z-toast flex flex-col gap-3 p-4 draggable-none" style="right:var(--launch-drawer-width, 0px)"></ol></div><!--$--><!--/$--><!--$!--><template data-dgst="NEXT_HTTP_ERROR_FALLBACK;404"></template><div class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><div class="h-20 w-20 border-8 border-border-200 text-secondary inline-block animate-spin rounded-full border-solid border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] hidden" role="status"><span class="sr-only">Loading...</span></div></div><!--/$--><script src="/_next/static/chunks/webpack-17925192745b8f9a.js" id="_R_" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n5:I[8729711517,[],\"\"]\n6:I[562558057,[],\"\"]\n8:I[2182971648,[],\"OutletBoundary\"]\na:I[4010545913,[],\"AsyncMetadataOutlet\"]\nc:I[849453776,[\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"33285\",\"static/chunks/app/docs/%5Blocale%5D/%5B...segments%5D/loading-578c3a88d8627a58.js\"],\"DocsLoadingSkeleton\"]\nd:I[9342733290,[\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"94209\",\"static/chunks/app/loading-bfb5ce191a4d1a27.js\"],\"LoadingConsole\"]\ne:I[2182971648,[],\"ViewportBoundary\"]\n10:I[2182971648,[],\"MetadataBoundary\"]\n11:\"$Sreact.suspense\"\n13:I[2890606670,[\"34219\",\"static/chunks/app/global-error-05bf6fee5d87cc09.js\"],\"default\"]\n14:I[5839556239,[\"59166\",\"static/chunks/620c25d9-c1d45e805d8f4df5.js\",\"75246\",\"static/chunks/1f006d11-3f2dca16ee6552c8.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"60996\",\"static/chunks/60996-2d986868c22e0fb4.js\",\"87462\",\"static/chunks/87462-aca7efc1f439b97c.js\",\"71751\",\"static/chunks/71751-bbd9346a45de20ed.js\",\"4499\",\"static/chunks/app/docs/layout-5751acce86aca7a8.js\"],\"InkeepProvider\"]\n15:I[4639844287,[\"59166\",\"static/chunks/620c25d9-c1d45e805d8f4df5.js\",\"75246\",\"static/chunks/1f006d11-3f2dca16ee6552c8.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"60996\",\"static/chunks/60996-2d986868c22e0fb4.js\",\"87462\",\"static/chunks/87462-aca7efc1f439b97c.js\",\"71751\",\"static/chunks/71751-bbd9346a45de20ed.js\",\"4499\",\"static/chunks/app/docs/layout-5751acce86aca7a8.js\"],\"DevHotReload\"]\n16:I[3544244632,[\"59166\",\"static/chunks/620c25d9-c1d45e805d8f4df5.js\",\"75246\",\"static/chunks/1f006d11-3f2dca16ee6552c8.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"12549\",\"static/chunks/"])</script><script>self.__next_f.push([1,"12549-36dcec12df896831.js\",\"60996\",\"static/chunks/60996-2d986868c22e0fb4.js\",\"87462\",\"static/chunks/87462-aca7efc1f439b97c.js\",\"71751\",\"static/chunks/71751-bbd9346a45de20ed.js\",\"4499\",\"static/chunks/app/docs/layout-5751acce86aca7a8.js\"],\"HashScroller\"]\n17:I[3611703225,[],\"IconMark\"]\n:HL[\"/_next/static/media/01d1396bd69a228a-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/media/56139cc7a3934d47-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/media/5ab84f5ed5bd55bd-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/media/8d6f5db32d507c08-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/media/c25fe61b276783b5-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/media/fe66948be403232d-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/css/8cff95e0acb92448.css\",\"style\"]\n:HL[\"/_next/static/css/05674d3eb9977543.css\",\"style\"]\n:HL[\"/_next/static/css/28ca58211539440e.css\",\"style\"]\n:HL[\"/_next/static/css/c5a98f0d4154763c.css\",\"style\"]\n:HL[\"/_next/static/css/4c1c1b178f5f2484.css\",\"style\"]\n:HL[\"/_next/static/css/7330c74f27c4968a.css\",\"style\"]\n:HL[\"/_next/static/css/bf71b0902a17bea2.css\",\"style\"]\n:HL[\"/_next/static/css/25cd6819050d6822.css\",\"style\"]\n:HL[\"/_next/static/css/e3aaf70fa4198b12.css\",\"style\"]\n:HL[\"/_next/static/css/8359068e4bd1e0f6.css\",\"style\"]\n:HL[\"/_next/static/css/77755cd2a6b2a03a.css\",\"style\"]\n:HL[\"/_next/static/css/b9147ca7e14b6b03.css\",\"style\"]\n"])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"b\":\"9I2s6dkoXz0gLZ9rl8gjQ\",\"p\":\"\",\"c\":[\"\",\"docs\",\"id\",\"agent-sdk\",\"agent-loop\"],\"i\":false,\"f\":[[[\"\",{\"children\":[\"docs\",{\"children\":[[\"locale\",\".generated-markdown\",\"d\"],{\"children\":[[\"segments\",\"id/agent-sdk/agent-loop.md\",\"c\"],{\"children\":[\"__PAGE__\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],[\"\",[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/8cff95e0acb92448.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/05674d3eb9977543.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"2\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/28ca58211539440e.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"3\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/c5a98f0d4154763c.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"4\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/4c1c1b178f5f2484.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"5\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/7330c74f27c4968a.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"6\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/bf71b0902a17bea2.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"7\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/25cd6819050d6822.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"8\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/e3aaf70fa4198b12.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],\"$L2\"]}],{\"children\":[\"docs\",[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/8359068e4bd1e0f6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],\"$L3\"]}],{\"children\":[[\"locale\",\".generated-markdown\",\"d\"],[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/77755cd2a6b2a03a.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/b9147ca7e14b6b03.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],\"$L4\"]}],{\"children\":[[\"segments\",\"id/agent-sdk/agent-loop.md\",\"c\"],[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[\"__PAGE__\",[\"$\",\"$1\",\"c\",{\"children\":[\"$L7\",null,[\"$\",\"$L8\",null,{\"children\":[\"$L9\",[\"$\",\"$La\",null,{\"promise\":\"$@b\"}]]}]]}],{},null,false]},[[\"$\",\"$Lc\",\"l\",{}],[],[]],false]},null,false]},null,false]},[[\"$\",\"$Ld\",\"l\",{}],[],[]],false],[\"$\",\"$1\",\"h\",{\"children\":[null,[[\"$\",\"$Le\",null,{\"children\":\"$Lf\"}],[\"$\",\"meta\",null,{\"name\":\"next-size-adjust\",\"content\":\"\"}]],[\"$\",\"$L10\",null,{\"children\":[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$11\",null,{\"fallback\":null,\"children\":\"$L12\"}]}]}]]}],false]],\"m\":\"$undefined\",\"G\":[\"$13\",[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/28ca58211539440e.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]]],\"s\":false,\"S\":false}\n"])</script><script>self.__next_f.push([1,"3:[\"$\",\"$L14\",null,{\"children\":[[\"$\",\"$L15\",null,{}],[\"$\",\"$L16\",null,{}],[\"$\",\"div\",null,{\"className\":\"__variable_8d1da5 __variable_2d8cf6 __variable_5581e8\",\"children\":[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]]}]\nf:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover\"}]]\n9:null\n"])</script><script>self.__next_f.push([1,"b:{\"metadata\":[[\"$\",\"title\",\"0\",{\"children\":\"Not Found - Claude API Docs\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Page not found\"}],[\"$\",\"link\",\"2\",{\"rel\":\"canonical\",\"href\":\"https://platform.claude.com\"}],[\"$\",\"meta\",\"3\",{\"name\":\"mobile-web-app-capable\",\"content\":\"yes\"}],[\"$\",\"link\",\"4\",{\"href\":\"/apple-touch-icon.png\",\"media\":\"$undefined\",\"rel\":\"apple-touch-startup-image\"}],[\"$\",\"meta\",\"5\",{\"name\":\"apple-mobile-web-app-status-bar-style\",\"content\":\"default\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:title\",\"content\":\"Not Found - Claude API Docs\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:description\",\"content\":\"Page not found\"}],[\"$\",\"meta\",\"8\",{\"property\":\"og:image\",\"content\":\"https://platform.claude.com/docs/images/og-claude-docs.png\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"10\",{\"name\":\"twitter:title\",\"content\":\"Not Found - Claude API Docs\"}],[\"$\",\"meta\",\"11\",{\"name\":\"twitter:description\",\"content\":\"Page not found\"}],[\"$\",\"meta\",\"12\",{\"name\":\"twitter:image\",\"content\":\"https://platform.claude.com/docs/images/og-claude-docs.png\"}],[\"$\",\"link\",\"13\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\"}],[\"$\",\"link\",\"14\",{\"rel\":\"icon\",\"href\":\"/favicon-16x16.png\",\"sizes\":\"16x16\",\"type\":\"image/png\"}],[\"$\",\"link\",\"15\",{\"rel\":\"icon\",\"href\":\"/favicon-32x32.png\",\"sizes\":\"32x32\",\"type\":\"image/png\"}],[\"$\",\"link\",\"16\",{\"rel\":\"apple-touch-icon\",\"href\":\"/apple-touch-icon.png\"}],[\"$\",\"$L17\",\"17\",{}]],\"error\":null,\"digest\":\"$undefined\"}\n"])</script><script>self.__next_f.push([1,"12:\"$b:metadata\"\n4:E{\"digest\":\"NEXT_HTTP_ERROR_FALLBACK;404\"}\n7:E{\"digest\":\"NEXT_HTTP_ERROR_FALLBACK;404\"}\n"])</script><script>self.__next_f.push([1,"2:[\"$\",\"html\",null,{\"className\":\"h-screen antialiased bg-bg-100 __variable_8d1da5 __variable_2d8cf6 __variable_5581e8\",\"lang\":\"en-US\",\"data-theme\":\"claude\",\"data-mode\":\"auto\",\"data-color-version\":\"$undefined\",\"suppressHydrationWarning\":true,\"children\":[\"$\",\"body\",null,{\"className\":\"bg-bg-100 text-text-100 min-h-screen font-ui\",\"children\":[\"$L18\",\"$L19\"]}]}]\n"])</script><script>self.__next_f.push([1,"1a:I[9753059326,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"SSRCookiesProvider\"]\n"])</script><script>self.__next_f.push([1,"1c:I[8923578861,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"\"]\n"])</script><script>self.__next_f.push([1,"1d:I[6164258084,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"SiftEvents\"]\n"])</script><script>self.__next_f.push([1,"18:[\"$\",\"$L1a\",null,{\"value\":[],\"children\":\"$L1b\"}]\n19:[[\"$\",\"$L1c\",null,{\"id\":\"sift-snippet\",\"children\":\"\\n          var _sift = (window._sift = window._sift || []);\\n          _sift.push([\\\"_setAccount\\\", \\\"99dfa2e716\\\"]);\\n          _sift.push([\\\"_setTrackerUrl\\\", \\\"s-cdn.anthropic.com\\\"]);\\n          _sift.push([\\\"_setUserId\\\", \\\"\\\"]);\\n          _sift.push([\\\"_setSessionId\\\", \\\"null\\\"]);\\n          _sift.push([\\\"_trackPageview\\\"]);\\n      \"}],[\"$\",\"$L1c\",null,{\"src\":\"https://s-cdn.anthropic.com/s.js\",\"strategy\":\"lazyOnload\"}],[\"$\",\"$L1d\",null,{}]]\n"])</script><script>self.__next_f.push([1,"1e:I[917624305,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"ServerUserAgentProvider\"]\n"])</script><script>self.__next_f.push([1,"1f:I[1797748516,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"ServerDesktopTopBarProvider\"]\n"])</script><script>self.__next_f.push([1,"20:I[8915630566,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"LegalDocsProvider\"]\n"])</script><script>self.__next_f.push([1,"21:I[2779575683,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"ConfigurationProvider\"]\n"])</script><script>self.__next_f.push([1,"22:I[1273321861,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"ErrorsProvider\"]\n"])</script><script>self.__next_f.push([1,"23:I[7419379843,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"ClientBootstrapProvider\"]\n"])</script><script>self.__next_f.push([1,"24:I[3284653999,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"QueryClientProvider\"]\n"])</script><script>self.__next_f.push([1,"1b:[\"$\",\"$L1e\",null,{\"userAgent\":\"$undefined\",\"children\":[\"$\",\"$L1f\",null,{\"wantsDesktopTopBar\":false,\"children\":[\"$\",\"$L20\",null,{\"value\":{\"commercial-terms\":\"af81645b-040b-485c-a4a0-3205ccfb3792\",\"service-specific-terms\":\"a914c3ed-01b5-4fd3-b943-e13cb408c3b2\",\"independent-contractor-agreement\":\"b79d13ce-acc1-4714-93fc-6bd037e65406\",\"data-processing-addendum\":\"0e12c29d-6cbb-4bbe-a71d-52c38a2f9102\",\"inbound-services-agreement\":\"78cbea28-4333-4042-a6ce-ea391e890a8a\",\"non-user-privacy-policy\":\"a2eb2e3e-fd03-4dbf-8db5-2cc0e9fb31f9\",\"consumer-health-data-privacy-policy\":\"a8060e10-8dcd-45ba-9ace-d6a42e8529a0\",\"acst-disclosure\":null,\"cookies\":\"5c7ecf37-e2e1-4788-b718-a0d914fead48\",\"aup\":\"22742366-2ef0-4c7a-a833-6523f10d3944\",\"consumer-terms\":\"79dbc8c6-7f64-43d6-8101-207cede59a4d\",\"referral-partner-program-terms\":\"b81d2822-0089-4e37-9c91-15eb23ccb612\",\"credit-terms\":\"8a492ef8-a09b-4de4-b364-2e155b674b27\",\"privacy\":\"d254257b-3920-4d8c-842d-b193c7372ba9\",\"trademark-guidelines\":\"9c115f22-c012-4a0d-b88c-7452edd6a15d\"},\"children\":[\"$\",\"$L21\",null,{\"config\":{\"backendPrivateApiUrl\":\"https://api.anthropic.com\",\"anthropicApiUrl\":\"https://api.anthropic.com\",\"consoleAbsoluteUrl\":\"https://platform.claude.com\",\"claudeAiAbsoluteUrl\":\"https://claude.ai\",\"customAgentsAbsoluteUrl\":\"\",\"websiteBaseUrl\":\"https://www.anthropic.com\",\"userContentRendererUrl\":\"https://www.claudeusercontent.com\",\"conwayShellOrigin\":\"https://conway.claudeusercontent.com\",\"mcpLocalConnectorUrl\":\"https://www.claudemcpclient.com\",\"mcpAppsSandboxProxyUrl\":\"https://sandbox.claudemcpcontent.com/mcp_apps\",\"imagineMcpUrl\":\"https://sandbox.claudemcpcontent.com/imagine_mcp\",\"googleOauthClientId\":\"1062961139910-l2m55cb9h51u5cuc9c56eb3fevouidh9.apps.googleusercontent.com\",\"stripePublishableKey\":\"pk_live_51MExQ9BjIQrRQnuxA9s9ahUkfIUHPoc3NFNidarWIUhEpwuc1bdjSJU9medEpVjoP4kTUrV2G8QWdxi9GjRJMUri005KO5xdyD\",\"stripePublishableKeyIreland\":\"pk_live_51REyrSBNUnCSzfs9yUvED4MEXaLQQ6pVzoRIf2DGv2SxJnmquGmGmPZaVRnvgZRX8h9gw9Mm1fq2LlRjlCTAV6hZ00cWXQZQEW\",\"stripePublishableKeySandbox\":\"\",\"segmentKey\":\"LKJN8LsLERHEOXkw487o7qCTFOrGPimI\",\"segmentCdnHost\":\"a-cdn.anthropic.com\",\"segmentApiHost\":\"a-api.anthropic.com\",\"siftBeaconKey\":\"99dfa2e716\",\"siftCdnHost\":\"s-cdn.anthropic.com\",\"arkoseKey\":\"EEA5F558-D6AC-4C03-B678-AABF639EE69A\",\"arkoseCdnHost\":\"a-cdn.claude.ai\",\"publishedArtifactsBaseUrl\":\"https://claude.ai\",\"publishedArtifactsEmbedBaseUrl\":\"https://claude.site\",\"defaultSecureCookies\":true,\"claudeBrowserExtensionClientId\":\"dae2cad8-15c5-43d2-9046-fcaecc135fa4\",\"claudeBrowserExtensionId\":\"fcoeoabgfenejglbffodgkkbkcdhcgfn\",\"antOnlyClaudeBrowserExtensionId\":\"dngcpimnedloihjnnfngkgjoidhnaolf\",\"excelAddInClientId\":\"966eba67-8b8c-4eae-bbb3-08361d1b9292\",\"iframeAllowedOrigins\":[],\"applicationType\":\"console\",\"ipCountry\":\"US\",\"serverGateNames\":\"$undefined\"},\"children\":[\"$\",\"$L22\",null,{\"children\":[\"$\",\"$L23\",null,{\"isClientBootstrap\":false,\"children\":[\"$\",\"$L24\",null,{\"state\":{\"mutations\":[],\"queries\":[{\"state\":{\"data\":{\"account\":null,\"statsig\":{\"user\":{},\"values\":{},\"values_hash\":\"\"},\"growthbook\":{\"features\":{\"129880755\":{\"defaultValue\":true,\"rules\":[{\"id\":\"2YMKAbqK8Jaztq4rf3jYRk:100.00:5\",\"force\":true}]},\"132848567\":{\"defaultValue\":false},\"133979383\":{\"defaultValue\":false},\"140394361\":{\"defaultValue\":true,\"rules\":[{\"id\":\"7E1dkaV2MG8cqAREOmH3j9\",\"force\":true}]},\"167784518\":{\"defaultValue\":false},\"301540610\":{\"defaultValue\":{\"variant\":\"\"}},\"529560408\":{\"defaultValue\":false},\"546414678\":{\"defaultValue\":false},\"594005441\":{\"defaultValue\":{\"provider\":\"growthbook\"}},\"671313594\":{\"defaultValue\":false},\"690832210\":{\"defaultValue\":true,\"rules\":[{\"id\":\"2xKM5nSqcxThzVt4SUAI1S\",\"force\":true}]},\"768809736\":{\"defaultValue\":false},\"831859732\":{\"defaultValue\":false},\"863794506\":{\"defaultValue\":true,\"rules\":[{\"id\":\"6OCo11e6q2gGg9R8kZQNcI:100.00:2\",\"force\":true}]},\"900536136\":{\"defaultValue\":true,\"rules\":[{\"id\":\"5eLgRy5elYnuQj16EmIQN3\",\"force\":true}]},\"978885332\":{\"defaultValue\":true,\"rules\":[{\"id\":\"4XKZplMyMWVdDzispWUUde\",\"force\":true}]},\"1042586083\":{\"defaultValue\":{\"value\":\"download_below\"},\"rules\":[{\"id\":\"fr_12izd9mmlvfo1k5\",\"force\":{\"value\":\"download_below\"}}]},\"1214734888\":{\"defaultValue\":false,\"rules\":[{\"id\":\"UzH7kUL0um9GD9KrjZ0dL:0.00:1\",\"force\":false}]},\"1220868466\":{\"defaultValue\":true,\"rules\":[{\"id\":\"fr_1ybzq98mmltrzoi3\",\"force\":true}]},\"1240012697\":{\"defaultValue\":false},\"1262012846\":{\"defaultValue\":null},\"1302994296\":{\"defaultValue\":false},\"1319782748\":{\"defaultValue\":false},\"1365593385\":{\"defaultValue\":true,\"rules\":[{\"id\":\"744CYdngRhD4uTf9K3ICPB\",\"force\":true}]},\"1374241653\":{\"defaultValue\":true,\"rules\":[{\"id\":\"17N2iphBsCwlz8k11Qf8F3:100.00:1\",\"force\":true}]},\"1644553577\":{\"defaultValue\":{\"variant\":\"control\"},\"rules\":[{\"force\":{\"variant\":\"control\"},\"tracks\":[{\"experiment\":{\"key\":\"claude_ai_login_plan_intent_card\",\"variations\":[{\"variant\":\"control\"},{\"variant\":\"card_only\"},{\"variant\":\"redirect_only\"}],\"hashAttribute\":\"anonymousId\"},\"result\":{\"value\":{\"variant\":\"control\"},\"variationId\":0,\"inExperiment\":true,\"hashUsed\":true,\"hashAttribute\":\"anonymousId\",\"hashValue\":\"None\",\"featureId\":\"claude_ai_login_plan_intent_card\",\"key\":\"0\"}}]}]},\"1851432169\":{\"defaultValue\":false,\"rules\":[{\"id\":\"6nxeGk0341Ttn25QjQaP35\",\"force\":false}]},\"1943498851\":{\"defaultValue\":false},\"1985092665\":{\"defaultValue\":true,\"rules\":[{\"id\":\"3WrF6dDIwF2IQKS6VkqdSH:100.00:3\",\"force\":true}]},\"2053917121\":{\"defaultValue\":true,\"rules\":[{\"id\":\"14PVnyeKKtAyZXIkgELY0N:0.00:3\",\"force\":true}]},\"2076442332\":{\"defaultValue\":false},\"2119474141\":{\"defaultValue\":true,\"rules\":[{\"id\":\"4VyB4KbnP54mTKitetfx55\",\"force\":true}]},\"2190197109\":{\"defaultValue\":true,\"rules\":[{\"id\":\"24Ey6W4aDw9stK8WNPIjIj:100.00:1\",\"force\":true}]},\"2228941477\":{\"defaultValue\":false},\"2288098333\":{\"defaultValue\":true,\"rules\":[{\"id\":\"SImu46mbhmXNK0ySjI4My\",\"force\":true}]},\"2354948608\":{\"defaultValue\":false},\"2506980460\":{\"defaultValue\":\"control\"},\"2619993844\":{\"defaultValue\":false},\"2705189879\":{\"defaultValue\":true,\"rules\":[{\"id\":\"3SgUvhqO1Ijy2ER8r0ki4c\",\"force\":true}]},\"2717756418\":{\"defaultValue\":true,\"rules\":[{\"id\":\"1TpryBy4gTU5SGzW4wimUV:100.00:1\",\"force\":true}]},\"2765419013\":{\"defaultValue\":true,\"rules\":[{\"id\":\"4NCQurEPB2jxQsORuR4zm\",\"force\":true}]},\"2804326784\":{\"defaultValue\":false},\"2838472889\":{\"defaultValue\":false},\"2913013195\":{\"defaultValue\":{\"value\":\"control\"},\"rules\":[{\"id\":\"fr_2j07qnmn7j3in2\",\"force\":{\"value\":\"control\"}}]},\"3004162293\":{\"defaultValue\":true,\"rules\":[{\"id\":\"1Ieg6E18XMhpepkKxbrL0D\",\"force\":true}]},\"3007887412\":{\"defaultValue\":true,\"rules\":[{\"id\":\"fr_3a9urnmm1d3i61\",\"force\":true}]},\"3037557804\":{\"defaultValue\":true,\"rules\":[{\"id\":\"3XsnmyQ2Bo64fjHOC7X3at:100.00:6\",\"force\":true}]},\"3065341443\":{\"defaultValue\":false},\"3070110303\":{\"defaultValue\":true,\"rules\":[{\"id\":\"5g2213XtgA3r8zBcNcr2UM:100.00:1\",\"force\":true}]},\"3201545015\":{\"defaultValue\":true,\"rules\":[{\"id\":\"4vQmxuM6p9mTp7CL0xVCxs:100.00:2\",\"force\":true}]},\"3211559848\":{\"defaultValue\":{\"value\":\"control\"}},\"3275294576\":{\"defaultValue\":true,\"rules\":[{\"id\":\"7v09ASaVYp9m1XXGWC13Qk\",\"force\":true}]},\"3361264557\":{\"defaultValue\":false},\"3494475348\":{\"defaultValue\":true,\"rules\":[{\"id\":\"fr_1ffwdxnmmp59el1\",\"force\":true}]},\"3572434512\":{\"defaultValue\":\"control\"},\"3638884360\":{\"defaultValue\":true,\"rules\":[{\"id\":\"42oCXYaVEvOMnTFt33edFO\",\"force\":true}]},\"3642280994\":{\"defaultValue\":false},\"3906670371\":{\"defaultValue\":true,\"rules\":[{\"id\":\"7dfWzSSGDvPuGntlZFEvG1\",\"force\":true}]},\"3934738808\":{\"defaultValue\":{\"integrity\":\"sha384-MzVjkiZKo6CP3gyxJFL6Dbt3CTXiajnfBeXmDPw/YbMkyWlQZw4TxdWq8sRpw0F9 sha384-FZBjxyOWFh1MMClo4PF/i5OdIU3CKTUU4+mfjoDJY1dOr/udvY+VSrcqTqcUKkML sha384-2jVX9R2BGBnzR0earYFDe+dz+oVqJg8sKl7+UaHG2Usm6X/0wEl6sIXHsL0WlgoU sha384-qIbffQdAF8gmeyE2OkjkaUMIwG946jBjULVv/tZBeZ2pgkEsIpqQ/YZn3kvn8n0V\"}},\"3941846376\":{\"defaultValue\":true,\"rules\":[{\"id\":\"5E2GkmVPrglm6esCG12KV9\",\"force\":true}]},\"3982885328\":{\"defaultValue\":{\"features\":[],\"keep_reading_from_statsig\":[\"___these_configs_are_bens__\",\"claude_code_sonnet_1m_access_not_as_default\",\"claude_code_sonnet_1m_access\"]}}},\"hashing_algorithm\":\"djb2\",\"user\":{\"country\":\"US\",\"activitySessionId\":\"\",\"stableId\":\"None\",\"anonymousId\":\"None\",\"randomValue\":\"0.2024\",\"serviceName\":\"private-api\",\"servicePlatform\":\"ant\",\"environment_tier\":\"production\",\"serviceRegion\":\"us-east5\",\"serviceCloud\":\"gcp\",\"browser_name\":\"claude-docs-sitemap-bot\",\"os_name\":\"Other\"}},\"intercom_account_hash\":null,\"locale\":null,\"system_prompts\":null},\"dataUpdateCount\":1,\"dataUpdatedAt\":1775618000206,\"error\":null,\"errorUpdateCount\":0,\"errorUpdatedAt\":0,\"fetchFailureCount\":0,\"fetchFailureReason\":null,\"fetchMeta\":null,\"isInvalidated\":false,\"status\":\"success\",\"fetchStatus\":\"idle\"},\"queryKey\":[\"current_account\",null],\"queryHash\":\"[\\\"current_account\\\",null]\"}]},\"persistCacheInBrowser\":false,\"children\":\"$L25\"}]}]}]}]}]}]}]\n"])</script><script>self.__next_f.push([1,"26:I[6101594294,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"CurrentAccountProvider\"]\n"])</script><script>self.__next_f.push([1,"27:I[847588957,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"ConsentProvider\"]\n"])</script><script>self.__next_f.push([1,"28:I[2260942454,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"IntercomProvider\"]\n"])</script><script>self.__next_f.push([1,"29:I[4563114725,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"BootstrapedGrowthbookProvider\"]\n"])</script><script>self.__next_f.push([1,"2a:I[7351666183,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"ClientIntlProvider\"]\n"])</script><script>self.__next_f.push([1,"2b:I[2483715418,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"IsolatedMarketingPixelSegmentProvider\"]\n"])</script><script>self.__next_f.push([1,"2c:I[1404814639,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"TierSelectorProvider\"]\n"])</script><script>self.__next_f.push([1,"2d:I[6367756395,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"MotionConfig\"]\n"])</script><script>self.__next_f.push([1,"2e:I[6440430679,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"ThemeProvider\"]\n"])</script><script>self.__next_f.push([1,"2f:I[8010822187,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"NuqsAdapter\"]\n"])</script><script>self.__next_f.push([1,"30:I[9785883180,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"DevBar\"]\n"])</script><script>self.__next_f.push([1,"31:I[7798899487,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"Toasts\"]\n"])</script><script>self.__next_f.push([1,"32:I[1822554901,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"ConsentBanner\"]\n"])</script><script>self.__next_f.push([1,"33:I[7358482728,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"AnalyticsIdentifier\"]\n"])</script><script>self.__next_f.push([1,"34:I[230711816,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"IntercomTracker\"]\n"])</script><script>self.__next_f.push([1,"35:I[4604961997,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"CountryOverrideHandler\"]\n"])</script><script>self.__next_f.push([1,"36:I[2459454744,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"FeedbackContextProvider\"]\n"])</script><script>self.__next_f.push([1,"37:I[612580163,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"FirstCreditPurchaseModalProvider\"]\n"])</script><script>self.__next_f.push([1,"38:I[163808808,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"WorkspaceProvider\"]\n"])</script><script>self.__next_f.push([1,"39:I[7852543175,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"24345\",\"static/chunks/app/not-found-e33f12e02eff7d21.js\"],\"default\"]\n"])</script><script>self.__next_f.push([1,"3a:I[3863335323,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"LogHiring\"]\n"])</script><script>self.__next_f.push([1,"3b:I[9161483349,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"WorkerUpdater\"]\n"])</script><script>self.__next_f.push([1,"3c:I[1273321861,[\"13263\",\"static/chunks/c7dfc041-a9ea445d92867d87.js\",\"54129\",\"static/chunks/7bf36345-2f25e76a6f2adf3b.js\",\"59666\",\"static/chunks/59666-e95cf9bb04efecef.js\",\"69497\",\"static/chunks/69497-123a48076aa08a6d.js\",\"27217\",\"static/chunks/27217-b7c11a9939375429.js\",\"2574\",\"static/chunks/2574-ecefe9007cc4c300.js\",\"19664\",\"static/chunks/19664-fc61d788dcfca1ac.js\",\"66043\",\"static/chunks/66043-a991488719b2bf7e.js\",\"73698\",\"static/chunks/73698-b1fc787d9a027ceb.js\",\"94101\",\"static/chunks/94101-06f19e567d4a3f2f.js\",\"81256\",\"static/chunks/81256-7e7091d9f543d13a.js\",\"69912\",\"static/chunks/69912-08c0cc74d2ac9175.js\",\"77298\",\"static/chunks/77298-03cd7a3cd8e47556.js\",\"16439\",\"static/chunks/16439-7c50d8e24ff6c957.js\",\"12549\",\"static/chunks/12549-36dcec12df896831.js\",\"94882\",\"static/chunks/94882-a284580c48a7681c.js\",\"10371\",\"static/chunks/10371-7aa2ec347b81a1e2.js\",\"32536\",\"static/chunks/32536-8a53bb1bde50ed89.js\",\"13714\",\"static/chunks/13714-b7f28ddc893e08c6.js\",\"20679\",\"static/chunks/20679-90952be7a5eaf4e0.js\",\"13429\",\"static/chunks/13429-5a6b55a257b039d9.js\",\"19326\",\"static/chunks/19326-c8b5f6f40624f6e0.js\",\"54133\",\"static/chunks/54133-96b38123ce17058b.js\",\"30570\",\"static/chunks/30570-b82b80182b7d6c3b.js\",\"91606\",\"static/chunks/91606-ea7e4d5b9abe7d2e.js\",\"74813\",\"static/chunks/74813-bed8ed4ab88399b7.js\",\"77707\",\"static/chunks/77707-ff5a70a0f00f08df.js\",\"1914\",\"static/chunks/1914-7e03a201f37fd4fd.js\",\"63156\",\"static/chunks/63156-3c0b9fc4fb751c04.js\",\"52624\",\"static/chunks/52624-2d98c12864a3bbfb.js\",\"5602\",\"static/chunks/5602-3b3b526184e16061.js\",\"67747\",\"static/chunks/67747-bf98fd84024e3a60.js\",\"7177\",\"static/chunks/app/layout-ea930d9ca922ce41.js\"],\"ErrorSegmentConnector\"]\n"])</script><script>self.__next_f.push([1,"25:[\"$\",\"$L26\",null,{\"children\":[\"$\",\"$L27\",null,{\"requiresExplicitConsent\":false,\"gpcDetected\":false,\"children\":[\"$\",\"$L28\",null,{\"appId\":\"lupk8zyo\",\"initializeDelay\":1000,\"children\":[\"$\",\"$L29\",null,{\"children\":[\"$\",\"$L2a\",null,{\"locale\":\"en-US\",\"messages\":{},\"hideErrors\":true,\"children\":[\"$\",\"$L2b\",null,{\"enabled\":false,\"children\":[[\"$\",\"$L2c\",null,{\"children\":[[\"$\",\"$L2d\",null,{\"children\":[\"$\",\"$L2e\",null,{\"initialTheme\":\"claude\",\"children\":[\"$\",\"$L2f\",null,{\"children\":[[\"$\",\"$L30\",null,{}],[\"$\",\"$L31\",null,{}],[\"$\",\"$L32\",null,{}],[\"$\",\"$L33\",null,{}],[\"$\",\"$L34\",null,{}],[\"$\",\"$L35\",null,{}],[\"$\",\"$L36\",null,{\"children\":[\"$\",\"$L37\",null,{\"children\":[\"$\",\"$L38\",null,{\"children\":[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"$L39\",null,{}],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]}]}]]}]}]}],[\"$\",\"$L3a\",null,{}],[\"$\",\"$L3b\",null,{\"updateType\":null}]]}],[\"$\",\"$L3c\",null,{}]]}]}]}]}]}]}]\n"])</script></body></html>
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Agent SDK overview
+
+> Build production AI agents with Claude Code as a library
+
+<Note>
+  The Claude Code SDK has been renamed to the Claude Agent SDK. If you're migrating from the old SDK, see the [Migration Guide](/en/agent-sdk/migration-guide).
+</Note>
+
+Build AI agents that autonomously read files, run commands, search the web, edit code, and more. The Agent SDK gives you the same tools, agent loop, and context management that power Claude Code, programmable in Python and TypeScript.
+
+<CodeGroup>
+  ```python Python theme={null}
+  import asyncio
+  from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+  async def main():
+      async for message in query(
+          prompt="Find and fix the bug in auth.py",
+          options=ClaudeAgentOptions(allowed_tools=["Read", "Edit", "Bash"]),
+      ):
+          print(message)  # Claude reads the file, finds the bug, edits it
+
+
+  asyncio.run(main())
+  ```
+
+  ```typescript TypeScript theme={null}
+  import { query } from "@anthropic-ai/claude-agent-sdk";
+
+  for await (const message of query({
+    prompt: "Find and fix the bug in auth.py",
+    options: { allowedTools: ["Read", "Edit", "Bash"] }
+  })) {
+    console.log(message); // Claude reads the file, finds the bug, edits it
+  }
+  ```
+</CodeGroup>
+
+The Agent SDK includes built-in tools for reading files, running commands, and editing code, so your agent can start working immediately without you implementing tool execution. Dive into the quickstart or explore real agents built with the SDK:
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build a bug-fixing agent in minutes
+  </Card>
+
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+</CardGroup>
+
+## Get started
+
+<Steps>
+  <Step title="Install the SDK">
+    <Tabs>
+      <Tab title="TypeScript">
+        ```bash  theme={null}
+        npm install @anthropic-ai/claude-agent-sdk
+        ```
+      </Tab>
+
+      <Tab title="Python">
+        ```bash  theme={null}
+        pip install claude-agent-sdk
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+
+  <Step title="Set your API key">
+    Get an API key from the [Console](https://platform.claude.com/), then set it as an environment variable:
+
+    ```bash  theme={null}
+    export ANTHROPIC_API_KEY=your-api-key
+    ```
+
+    The SDK also supports authentication via third-party API providers:
+
+    * **Amazon Bedrock**: set `CLAUDE_CODE_USE_BEDROCK=1` environment variable and configure AWS credentials
+    * **Google Vertex AI**: set `CLAUDE_CODE_USE_VERTEX=1` environment variable and configure Google Cloud credentials
+    * **Microsoft Azure**: set `CLAUDE_CODE_USE_FOUNDRY=1` environment variable and configure Azure credentials
+
+    See the setup guides for [Bedrock](/en/amazon-bedrock), [Vertex AI](/en/google-vertex-ai), or [Azure AI Foundry](/en/microsoft-foundry) for details.
+
+    <Note>
+      Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Please use the API key authentication methods described in this document instead.
+    </Note>
+  </Step>
+
+  <Step title="Run your first agent">
+    This example creates an agent that lists files in your current directory using built-in tools.
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="What files are in this directory?",
+              options=ClaudeAgentOptions(allowed_tools=["Bash", "Glob"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "What files are in this directory?",
+        options: { allowedTools: ["Bash", "Glob"] }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+  </Step>
+</Steps>
+
+**Ready to build?** Follow the [Quickstart](/en/agent-sdk/quickstart) to create an agent that finds and fixes bugs in minutes.
+
+## Capabilities
+
+Everything that makes Claude Code powerful is available in the SDK:
+
+<Tabs>
+  <Tab title="Built-in tools">
+    Your agent can read files, run commands, and search codebases out of the box. Key tools include:
+
+    | Tool                                                                        | What it does                                                   |
+    | --------------------------------------------------------------------------- | -------------------------------------------------------------- |
+    | **Read**                                                                    | Read any file in the working directory                         |
+    | **Write**                                                                   | Create new files                                               |
+    | **Edit**                                                                    | Make precise edits to existing files                           |
+    | **Bash**                                                                    | Run terminal commands, scripts, git operations                 |
+    | **Glob**                                                                    | Find files by pattern (`**/*.ts`, `src/**/*.py`)               |
+    | **Grep**                                                                    | Search file contents with regex                                |
+    | **WebSearch**                                                               | Search the web for current information                         |
+    | **WebFetch**                                                                | Fetch and parse web page content                               |
+    | **[AskUserQuestion](/en/agent-sdk/user-input#handle-clarifying-questions)** | Ask the user clarifying questions with multiple choice options |
+
+    This example creates an agent that searches your codebase for TODO comments:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Find all TODO comments and create a summary",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob", "Grep"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Find all TODO comments and create a summary",
+        options: { allowedTools: ["Read", "Glob", "Grep"] }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+  </Tab>
+
+  <Tab title="Hooks">
+    Run custom code at key points in the agent lifecycle. SDK hooks use callback functions to validate, log, block, or transform agent behavior.
+
+    **Available hooks:** `PreToolUse`, `PostToolUse`, `Stop`, `SessionStart`, `SessionEnd`, `UserPromptSubmit`, and more.
+
+    This example logs all file changes to an audit file:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from datetime import datetime
+      from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher
+
+
+      async def log_file_change(input_data, tool_use_id, context):
+          file_path = input_data.get("tool_input", {}).get("file_path", "unknown")
+          with open("./audit.log", "a") as f:
+              f.write(f"{datetime.now()}: modified {file_path}\n")
+          return {}
+
+
+      async def main():
+          async for message in query(
+              prompt="Refactor utils.py to improve readability",
+              options=ClaudeAgentOptions(
+                  permission_mode="acceptEdits",
+                  hooks={
+                      "PostToolUse": [
+                          HookMatcher(matcher="Edit|Write", hooks=[log_file_change])
+                      ]
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query, HookCallback } from "@anthropic-ai/claude-agent-sdk";
+      import { appendFile } from "fs/promises";
+
+      const logFileChange: HookCallback = async (input) => {
+        const filePath = (input as any).tool_input?.file_path ?? "unknown";
+        await appendFile("./audit.log", `${new Date().toISOString()}: modified ${filePath}\n`);
+        return {};
+      };
+
+      for await (const message of query({
+        prompt: "Refactor utils.py to improve readability",
+        options: {
+          permissionMode: "acceptEdits",
+          hooks: {
+            PostToolUse: [{ matcher: "Edit|Write", hooks: [logFileChange] }]
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about hooks →](/en/agent-sdk/hooks)
+  </Tab>
+
+  <Tab title="Subagents">
+    Spawn specialized agents to handle focused subtasks. Your main agent delegates work, and subagents report back with results.
+
+    Define custom agents with specialized instructions. Include `Agent` in `allowedTools` since subagents are invoked via the Agent tool:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
+
+
+      async def main():
+          async for message in query(
+              prompt="Use the code-reviewer agent to review this codebase",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep", "Agent"],
+                  agents={
+                      "code-reviewer": AgentDefinition(
+                          description="Expert code reviewer for quality and security reviews.",
+                          prompt="Analyze code quality and suggest improvements.",
+                          tools=["Read", "Glob", "Grep"],
+                      )
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Use the code-reviewer agent to review this codebase",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep", "Agent"],
+          agents: {
+            "code-reviewer": {
+              description: "Expert code reviewer for quality and security reviews.",
+              prompt: "Analyze code quality and suggest improvements.",
+              tools: ["Read", "Glob", "Grep"]
+            }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    Messages from within a subagent's context include a `parent_tool_use_id` field, letting you track which messages belong to which subagent execution.
+
+    [Learn more about subagents →](/en/agent-sdk/subagents)
+  </Tab>
+
+  <Tab title="MCP">
+    Connect to external systems via the Model Context Protocol: databases, browsers, APIs, and [hundreds more](https://github.com/modelcontextprotocol/servers).
+
+    This example connects the [Playwright MCP server](https://github.com/microsoft/playwright-mcp) to give your agent browser automation capabilities:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Open example.com and describe what you see",
+              options=ClaudeAgentOptions(
+                  mcp_servers={
+                      "playwright": {"command": "npx", "args": ["@playwright/mcp@latest"]}
+                  }
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Open example.com and describe what you see",
+        options: {
+          mcpServers: {
+            playwright: { command: "npx", args: ["@playwright/mcp@latest"] }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about MCP →](/en/agent-sdk/mcp)
+  </Tab>
+
+  <Tab title="Permissions">
+    Control exactly which tools your agent can use. Allow safe operations, block dangerous ones, or require approval for sensitive actions.
+
+    <Note>
+      For interactive approval prompts and the `AskUserQuestion` tool, see [Handle approvals and user input](/en/agent-sdk/user-input).
+    </Note>
+
+    This example creates a read-only agent that can analyze but not modify code. `allowed_tools` pre-approves `Read`, `Glob`, and `Grep`.
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Review this code for best practices",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep"],
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Review this code for best practices",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep"]
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about permissions →](/en/agent-sdk/permissions)
+  </Tab>
+
+  <Tab title="Sessions">
+    Maintain context across multiple exchanges. Claude remembers files read, analysis done, and conversation history. Resume sessions later, or fork them to explore different approaches.
+
+    This example captures the session ID from the first query, then resumes to continue with full context:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage, ResultMessage
+
+
+      async def main():
+          session_id = None
+
+          # First query: capture the session ID
+          async for message in query(
+              prompt="Read the authentication module",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob"]),
+          ):
+              if isinstance(message, SystemMessage) and message.subtype == "init":
+                  session_id = message.data["session_id"]
+
+          # Resume with full context from the first query
+          async for message in query(
+              prompt="Now find all places that call it",  # "it" = auth module
+              options=ClaudeAgentOptions(resume=session_id),
+          ):
+              if isinstance(message, ResultMessage):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      let sessionId: string | undefined;
+
+      // First query: capture the session ID
+      for await (const message of query({
+        prompt: "Read the authentication module",
+        options: { allowedTools: ["Read", "Glob"] }
+      })) {
+        if (message.type === "system" && message.subtype === "init") {
+          sessionId = message.session_id;
+        }
+      }
+
+      // Resume with full context from the first query
+      for await (const message of query({
+        prompt: "Now find all places that call it", // "it" = auth module
+        options: { resume: sessionId }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about sessions →](/en/agent-sdk/sessions)
+  </Tab>
+</Tabs>
+
+### Claude Code features
+
+The SDK also supports Claude Code's filesystem-based configuration. To use these features, set `setting_sources=["project"]` (Python) or `settingSources: ['project']` (TypeScript)  in your options.
+
+| Feature                                          | Description                                          | Location                           |
+| ------------------------------------------------ | ---------------------------------------------------- | ---------------------------------- |
+| [Skills](/en/agent-sdk/skills)                   | Specialized capabilities defined in Markdown         | `.claude/skills/*/SKILL.md`        |
+| [Slash commands](/en/agent-sdk/slash-commands)   | Custom commands for common tasks                     | `.claude/commands/*.md`            |
+| [Memory](/en/agent-sdk/modifying-system-prompts) | Project context and instructions                     | `CLAUDE.md` or `.claude/CLAUDE.md` |
+| [Plugins](/en/agent-sdk/plugins)                 | Extend with custom commands, agents, and MCP servers | Programmatic via `plugins` option  |
+
+## Compare the Agent SDK to other Claude tools
+
+The Claude Platform offers multiple ways to build with Claude. Here's how the Agent SDK fits in:
+
+<Tabs>
+  <Tab title="Agent SDK vs Client SDK">
+    The [Anthropic Client SDK](https://platform.claude.com/docs/en/api/client-sdks) gives you direct API access: you send prompts and implement tool execution yourself. The **Agent SDK** gives you Claude with built-in tool execution.
+
+    With the Client SDK, you implement a tool loop. With the Agent SDK, Claude handles it:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      # Client SDK: You implement the tool loop
+      response = client.messages.create(...)
+      while response.stop_reason == "tool_use":
+          result = your_tool_executor(response.tool_use)
+          response = client.messages.create(tool_result=result, **params)
+
+      # Agent SDK: Claude handles tools autonomously
+      async for message in query(prompt="Fix the bug in auth.py"):
+          print(message)
+      ```
+
+      ```typescript TypeScript theme={null}
+      // Client SDK: You implement the tool loop
+      let response = await client.messages.create({ ...params });
+      while (response.stop_reason === "tool_use") {
+        const result = yourToolExecutor(response.tool_use);
+        response = await client.messages.create({ tool_result: result, ...params });
+      }
+
+      // Agent SDK: Claude handles tools autonomously
+      for await (const message of query({ prompt: "Fix the bug in auth.py" })) {
+        console.log(message);
+      }
+      ```
+    </CodeGroup>
+  </Tab>
+
+  <Tab title="Agent SDK vs Claude Code CLI">
+    Same capabilities, different interface:
+
+    | Use case                | Best choice |
+    | ----------------------- | ----------- |
+    | Interactive development | CLI         |
+    | CI/CD pipelines         | SDK         |
+    | Custom applications     | SDK         |
+    | One-off tasks           | CLI         |
+    | Production automation   | SDK         |
+
+    Many teams use both: CLI for daily development, SDK for production. Workflows translate directly between them.
+  </Tab>
+</Tabs>
+
+## Changelog
+
+View the full changelog for SDK updates, bug fixes, and new features:
+
+* **TypeScript SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-typescript/blob/main/CHANGELOG.md)
+* **Python SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-python/blob/main/CHANGELOG.md)
+
+## Reporting bugs
+
+If you encounter bugs or issues with the Agent SDK:
+
+* **TypeScript SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-typescript/issues)
+* **Python SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-python/issues)
+
+## Branding guidelines
+
+For partners integrating the Claude Agent SDK, use of Claude branding is optional. When referencing Claude in your product:
+
+**Allowed:**
+
+* "Claude Agent" (preferred for dropdown menus)
+* "Claude" (when within a menu already labeled "Agents")
+* "{YourAgentName} Powered by Claude" (if you have an existing agent name)
+
+**Not permitted:**
+
+* "Claude Code" or "Claude Code Agent"
+* Claude Code-branded ASCII art or visual elements that mimic Claude Code
+
+Your product should maintain its own branding and not appear to be Claude Code or any Anthropic product. For questions about branding compliance, contact the Anthropic [sales team](https://www.anthropic.com/contact-sales).
+
+## License and terms
+
+Use of the Claude Agent SDK is governed by [Anthropic's Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms), including when you use it to power products and services that you make available to your own customers and end users, except to the extent a specific component or dependency is covered by a different license as indicated in that component's LICENSE file.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build an agent that finds and fixes bugs in minutes
+  </Card>
+
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+
+  <Card title="TypeScript SDK" icon="code" href="/en/agent-sdk/typescript">
+    Full TypeScript API reference and examples
+  </Card>
+
+  <Card title="Python SDK" icon="code" href="/en/agent-sdk/python">
+    Full Python API reference and examples
+  </Card>
+</CardGroup>

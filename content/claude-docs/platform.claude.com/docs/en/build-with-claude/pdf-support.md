@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 0321058144ebb3999b13ddb92e504ff2831d9e03533388af2487355d28a7ee8d
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: ae0cf46a3bf8e1df0442f2a3dad9ab235aa76c91f9d75a19aa1aafcd4fc39de4
 ---
 
 # PDF support
@@ -125,6 +125,21 @@ The simplest approach is to reference a PDF directly from a URL:
             }]
         }]
     }'
+    ```
+    ```bash CLI
+    ant messages create --transform content --format yaml <<'YAML'
+    model: claude-opus-4-6
+    max_tokens: 1024
+    messages:
+      - role: user
+        content:
+          - type: document
+            source:
+              type: url
+              url: https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf
+          - type: text
+            text: What are the key findings in this document?
+    YAML
     ```
     ```python Python hidelines={1..2}
     import anthropic
@@ -271,6 +286,25 @@ If you need to send PDFs from your local system or when a URL isn't available:
       -H "x-api-key: $ANTHROPIC_API_KEY" \
       -H "anthropic-version: 2023-06-01" \
       -d @request.json
+    ```
+    ```bash CLI hidelines={1..2}
+    cd "$(mktemp -d)"
+    curl -sSo document.pdf https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf
+    ant messages create \
+      --model claude-opus-4-6 \
+      --max-tokens 1024 \
+      --transform content --format yaml <<'YAML'
+    messages:
+      - role: user
+        content:
+          - type: document
+            source:
+              type: base64
+              media_type: application/pdf
+              data: "@./document.pdf"
+          - type: text
+            text: What are the key findings in this document?
+    YAML
     ```
     ```python Python hidelines={1}
     import anthropic
@@ -464,6 +498,32 @@ curl https://api.anthropic.com/v1/messages \
       }]
     }]
   }'
+```
+
+```bash CLI hidelines={1..2}
+cd "$(mktemp -d)"
+curl -sSo document.pdf https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf
+# First, upload your PDF to the Files API
+FILE_ID=$(ant beta:files upload \
+  --file ./document.pdf \
+  --transform id --format yaml)
+
+# Then use the returned file_id in your message
+ant beta:messages create \
+  --beta files-api-2025-04-14 \
+  --transform content --format yaml <<YAML
+model: claude-opus-4-6
+max_tokens: 1024
+messages:
+  - role: user
+    content:
+      - type: document
+        source:
+          type: file
+          file_id: $FILE_ID
+      - type: text
+        text: What are the key findings in this document?
+YAML
 ```
 
 ```python Python nocheck hidelines={1..2}
@@ -681,6 +741,26 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -d @request.json
 ```
+```bash CLI hidelines={1..2}
+cd "$(mktemp -d)"
+curl -sSo document.pdf https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 1024
+messages:
+  - role: user
+    content:
+      - type: document
+        source:
+          type: base64
+          media_type: application/pdf
+          data: "@./document.pdf"
+        cache_control:
+          type: ephemeral
+      - type: text
+        text: Which model has the highest human preference win rates across each use-case?
+YAML
+```
 
 ```python Python nocheck hidelines={1..5,7..13}
 import anthropic
@@ -873,6 +953,43 @@ curl https://api.anthropic.com/v1/messages/batches \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d @request.json
+```
+```bash CLI hidelines={1..2}
+cd "$(mktemp -d)"
+curl -sSo document.pdf https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf
+ant messages:batches create <<'YAML'
+requests:
+  - custom_id: my-first-request
+    params:
+      model: claude-opus-4-6
+      max_tokens: 1024
+      messages:
+        - role: user
+          content:
+            - type: document
+              source:
+                type: base64
+                media_type: application/pdf
+                data: "@./document.pdf"
+            - type: text
+              text: >-
+                Which model has the highest human preference win rates
+                across each use-case?
+  - custom_id: my-second-request
+    params:
+      model: claude-opus-4-6
+      max_tokens: 1024
+      messages:
+        - role: user
+          content:
+            - type: document
+              source:
+                type: base64
+                media_type: application/pdf
+                data: "@./document.pdf"
+            - type: text
+              text: Extract 5 key insights from this document.
+YAML
 ```
 
 ```python Python nocheck hidelines={1..5,7..13}
@@ -1073,7 +1190,7 @@ public class MessagesBatchDocumentExample {
   <Card
     title="View API reference"
     icon="code"
-    href="/docs/en/api/messages"
+    href="/docs/en/api/messages/create"
   >
     See complete API documentation for PDF support.
   </Card>

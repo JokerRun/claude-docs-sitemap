@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/devcontainer
-fetched_at: 2026-03-31T04:38:22.136736Z
-sha256: 586b43a1b3677c6e63d8fc2f9b11cc6e866562359d57ffbd14b3ac9bab4c34c2
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 38ed6ca20d09624a01215d5fd31a6a13ffe8e2850ddff266459da09d9b31e990
 ---
 
 > ## Documentation Index
@@ -39,6 +39,8 @@ The container's enhanced security measures (isolation and firewall rules) allow 
 2. Clone the [Claude Code reference implementation](https://github.com/anthropics/claude-code/tree/main/.devcontainer) repository
 3. Open the repository in VS Code
 4. When prompted, click "Reopen in Container" (or use Command Palette: Cmd+Shift+P → "Dev Containers: Reopen in Container")
+
+Once the container finishes building, open a terminal in VS Code with `` Ctrl+` `` and run `claude` to authenticate and start your first session. The container has Claude Code preinstalled, so you can begin working immediately. Your project files are mounted into the container, and any code Claude writes appears in your local repository.
 
 ## Configuration breakdown
 

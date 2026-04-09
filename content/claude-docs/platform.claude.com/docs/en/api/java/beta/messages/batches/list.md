@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 6c70571ebb5051939a1301640bf63f352337165c7b8b0e7677922cd59b854602
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 6ae8f6a6c0454b151b030ec6eb2338c77e31df767029394c05f853b62b493fde
 ---
 
 ## List
@@ -78,8 +78,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

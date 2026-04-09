@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 689751458ecc43515da14f80a29ebaeb4755bf54b7e02e6c1f91975a850adef0
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: fa8b3cff6a0d35b630a4b550a6bd16ff1b3f64adc0bc1052e65d1bf1d20c7d39
 ---
 
 ## List
@@ -30,6 +30,10 @@ List Files
     Query param: Number of items to return per page.
 
     Defaults to `20`. Ranges from `1` to `1000`.
+
+  - `string scopeID`
+
+    Query param: Filter by scope ID. Only returns files associated with the specified scope (e.g., a session ID).
 
   - `IReadOnlyList<AnthropicBeta> betas`
 
@@ -77,8 +81,6 @@ List Files
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
-
 ### Returns
 
 - `class FileListPageResponse:`
@@ -118,6 +120,18 @@ List Files
     - `Boolean Downloadable`
 
       Whether the file can be downloaded.
+
+    - `BetaFileScope? Scope`
+
+      The scope of this file, indicating the context in which it was created (e.g., a session).
+
+      - `required string ID`
+
+        The ID of the scoping resource (e.g., the session ID).
+
+      - `JsonElement Type "session"constant`
+
+        The type of scope (e.g., `"session"`).
 
   - `string? FirstID`
 

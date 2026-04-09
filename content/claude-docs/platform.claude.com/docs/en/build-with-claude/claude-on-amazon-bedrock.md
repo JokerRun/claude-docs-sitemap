@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 01ccd6388151bb8189a8c3514108af7f6091eb8386cad1cdceede1b8c57c9975
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 40d062923e5804bd5dd1a8c88fb72241f110f675ad311f7df0408e7c5a1e43e6
 ---
 
 # Claude on Amazon Bedrock
@@ -61,14 +61,14 @@ go get github.com/anthropics/anthropic-sdk-go/bedrock
 <Tab title="Java">
 <CodeGroup>
 ```groovy Gradle
-implementation("com.anthropic:anthropic-java-bedrock:2.18.0")
+implementation("com.anthropic:anthropic-java-bedrock:2.20.0")
 ```
 
 ```xml Maven
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java-bedrock</artifactId>
-    <version>2.18.0</version>
+    <version>2.20.0</version>
 </dependency>
 ```
 
@@ -317,6 +317,10 @@ The following examples show how to print a list of all the Claude models availab
 The following examples show how to generate text from Claude on Bedrock:
 
 <CodeGroup>
+  ```bash CLI
+  # The ant CLI does not yet support Amazon Bedrock.
+  ```
+
   
   ```python Python nocheck
   from anthropic import AnthropicBedrock
@@ -689,6 +693,9 @@ This applies to Claude Sonnet 4.5 and future models only. Older models (Claude S
 The model IDs for Claude Sonnet 4.5 and 4 already include the `global.` prefix:
 
 <CodeGroup>
+```bash CLI
+# The ant CLI does not yet support Amazon Bedrock.
+```
 
 ```python Python nocheck
 from anthropic import AnthropicBedrock
@@ -820,6 +827,9 @@ message = client.messages.create(
 To use regional endpoints, remove the `global.` prefix from the model ID:
 
 <CodeGroup>
+```bash CLI
+# The ant CLI does not yet support Amazon Bedrock.
+```
 
 ```python Python nocheck
 from anthropic import AnthropicBedrock

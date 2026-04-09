@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/download
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 74472ae26d5130936ef6c73cb9445ed611059a6ac1d06b780ba3bd4e9a4de7d7
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 873efda662622539f6628aabdc997213d05ca3e2c9a18f7c62282b7a9c989038
 ---
 
 ## Download
@@ -66,8 +66,6 @@ Download File
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Example
 

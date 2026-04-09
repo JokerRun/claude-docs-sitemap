@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/upload
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: d4e4090121a934a5104667093bdb7fca8cfb9ee2c25166cea5949ed773edd857
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: fd79f23e26b25b651531bd24a46140f9ebb585c98994fe6b175d98fbbf829f82
 ---
 
 ## Upload
@@ -27,7 +27,7 @@ Upload File
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -71,8 +71,6 @@ Upload File
 
       - `"output-300k-2026-03-24"`
 
-      - `"user-profiles-2026-03-24"`
-
 ### Returns
 
 - `FileMetadata`
@@ -110,6 +108,20 @@ Upload File
   - `downloadable?: boolean`
 
     Whether the file can be downloaded.
+
+  - `scope?: BetaFileScope | null`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `id: string`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `type: "session"`
+
+      The type of scope (e.g., `"session"`).
+
+      - `"session"`
 
 ### Example
 

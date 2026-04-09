@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-6
-fetched_at: 2026-03-31T04:38:22.136736Z
-sha256: 7a98cfa1cc0875b8983e8811a50d94d61beee0a22ff217d9b70bbca5b8d8b555
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: da607a8b04577fae1d51236c8e917de343a6783b4858d95bc4473c88cb33b7af
 ---
 
 # What's new in Claude 4.6
@@ -32,7 +32,7 @@ For complete pricing and specs, see the [models overview](/docs/en/about-claude/
 
 `thinking: {type: "enabled"}` and `budget_tokens` are **deprecated** on Opus 4.6 and Sonnet 4.6. They remain functional but will be removed in a future model release. Use adaptive thinking and the [effort parameter](/docs/en/build-with-claude/effort) to control thinking depth instead. Adaptive thinking also automatically enables interleaved thinking.
 
-```python
+```python Python
 response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=16000,
@@ -73,7 +73,7 @@ The following tools are now generally available:
 
 [Fast mode](/docs/en/build-with-claude/fast-mode) (`speed: "fast"`) delivers significantly faster output token generation for Opus models. Fast mode is up to 2.5x as fast at premium pricing ($30/$150 per MTok). This is the same model running with faster inference (no change to intelligence or capabilities).
 
-```python
+```python Python
 response = client.beta.messages.create(
     model="claude-opus-4-6",
     max_tokens=4096,
@@ -113,7 +113,7 @@ On **Sonnet 4.6**, the `interleaved-thinking-2025-05-14` beta header is still fu
 
 The `output_format` parameter for [structured outputs](/docs/en/build-with-claude/structured-outputs) has been moved to `output_config.format`. The old parameter remains functional but is deprecated and will be removed in a future model release.
 
-```python nocheck
+```python Python nocheck
 # Before
 response = client.messages.create(
     output_format={"type": "json_schema", "schema": {...}},

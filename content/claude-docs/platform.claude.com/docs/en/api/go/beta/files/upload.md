@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/upload
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 85b1f5eff0d948b4af355c743d779862c129095bf31b72dddb104dfa383ba92f
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: b5094d86aed2c8bc0e52f2355f7106268c362f0b600e99923a6fb16bc6e6c5c1
 ---
 
 ## Upload
@@ -71,8 +71,6 @@ Upload File
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
-
 ### Returns
 
 - `type FileMetadata struct{…}`
@@ -110,6 +108,20 @@ Upload File
   - `Downloadable bool`
 
     Whether the file can be downloaded.
+
+  - `Scope BetaFileScope`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `ID string`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `Type Session`
+
+      The type of scope (e.g., `"session"`).
+
+      - `const SessionSession Session = "session"`
 
 ### Example
 

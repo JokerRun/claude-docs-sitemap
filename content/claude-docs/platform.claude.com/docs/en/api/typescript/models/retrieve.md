@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/models/retrieve
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 4f3cc381ef7ccc98386b65238c2845d2c6eba7b5b73c65de58193982b9d4d18a
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: bcaa5e76f21bd7618e0c2f75afe7655421a743f860164bede2fe104e789c3bfa
 ---
 
 ## Retrieve
@@ -29,7 +29,7 @@ The Models API response can be used to determine information about a specific mo
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -72,8 +72,6 @@ The Models API response can be used to determine information about a specific mo
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/create
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: bc59c6ab0a4ebee2410b843a491910862b57518bfa02076d38b33ab7f7998519
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: fcce9f941cddc35c9303bb8ec124442fbcabd9c8b99c01299912267b451b621e
 ---
 
 ## Create
@@ -35,7 +35,7 @@ Create Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -78,8 +78,6 @@ Create Skill Version
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

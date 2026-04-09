@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 675f93e33dfaf7523de39df3f84b94894418dc37881335e9d834ea3cabdb3b92
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: b75580d6218a6afa608d25ae431cf7e26dbf1dedca39c5555cc08a88aadcd06c
 ---
 
 # Building with extended thinking
@@ -57,7 +57,7 @@ Here's an example of the default response format:
 }
 ```
 
-For more information about the response format of extended thinking, see the [Messages API Reference](/docs/en/api/messages).
+For more information about the response format of extended thinking, see the [Messages API Reference](/docs/en/api/messages/create).
 
 ## How to use extended thinking
 
@@ -84,6 +84,15 @@ curl https://api.anthropic.com/v1/messages \
         }
     ]
 }'
+```
+
+```bash CLI
+ant messages create \
+  --transform content --format yaml \
+    --model claude-sonnet-4-6 \
+    --max-tokens 16000 \
+    --thinking '{type: enabled, budget_tokens: 10000}' \
+    --message '{role: user, content: Are there an infinite number of prime numbers such that n mod 4 == 3?}'
 ```
 
 ```python Python hidelines={1..2}
@@ -398,6 +407,17 @@ curl https://api.anthropic.com/v1/messages \
         }
     ]
 }'
+```
+</Tab>
+
+<Tab title="CLI">
+```bash CLI
+ant messages create \
+  --model claude-sonnet-4-6 \
+  --max-tokens 16000 \
+  --transform content --format yaml \
+    --thinking '{type: enabled, budget_tokens: 10000, display: omitted}' \
+    --message '{role: user, content: "What is 27 * 453?"}'
 ```
 </Tab>
 
@@ -736,7 +756,7 @@ end
 
 When `display: "omitted"` is set, the response contains `thinking` blocks with an empty `thinking` field:
 
-```json
+```json Output
 {
   "content": [
     {
@@ -788,6 +808,14 @@ curl https://api.anthropic.com/v1/messages \
         }
     ]
 }'
+```
+
+```bash CLI
+ant messages create --stream --format jsonl \
+  --model claude-sonnet-4-6 \
+  --max-tokens 16000 \
+  --thinking '{type: enabled, budget_tokens: 10000}' \
+  --message '{role: user, content: What is the greatest common divisor of 1071 and 462?}'
 ```
 
 ```python Python hidelines={1..2}
@@ -1135,7 +1163,7 @@ end
 </TryInConsoleButton>
 
 Example streaming output:
-```sse
+```sse Output
 event: message_start
 data: {"type": "message_start", "message": {"id": "msg_01...", "type": "message", "role": "assistant", "content": [], "model": "claude-sonnet-4-6", "stop_reason": null, "stop_sequence": null}}
 
@@ -1176,7 +1204,7 @@ data: {"type": "message_stop"}
 
 When `display: "omitted"` is set, the thinking block opens, a single `signature_delta` arrives, and the block closes without any `thinking_delta` events. Text streaming begins immediately after:
 
-```sse
+```sse Output
 event: content_block_start
 data: {"type":"content_block_start","index":0,"content_block":{"type":"thinking","thinking":"","signature":""}}
 
@@ -1259,6 +1287,29 @@ Toggling thinking modes also invalidates prompt caching for message history. For
 Here's a practical example showing how to preserve thinking blocks when providing tool results:
 
 <CodeGroup>
+```bash CLI
+ant messages create --transform content <<'YAML'
+model: claude-sonnet-4-6
+max_tokens: 16000
+thinking:
+  type: enabled
+  budget_tokens: 10000
+tools:
+  - name: get_weather
+    description: Get current weather for a location
+    input_schema:
+      type: object
+      properties:
+        location:
+          type: string
+      required:
+        - location
+messages:
+  - role: user
+    content: "What's the weather in Paris?"
+YAML
+```
+
 ```python Python
 weather_tool = {
     "name": "get_weather",
@@ -1498,7 +1549,7 @@ puts message
 
 The API response includes thinking, text, and tool_use blocks:
 
-```json
+```json Output
 {
   "content": [
     {
@@ -1525,6 +1576,66 @@ The API response includes thinking, text, and tool_use blocks:
 Now let's continue the conversation and use the tool
 
 <CodeGroup>
+```bash CLI
+# First turn: capture the assistant content array (thinking + tool_use,
+# with signatures intact) as compact JSON.
+ASSISTANT_CONTENT=$(ant messages create \
+  --transform content <<'YAML'
+model: claude-sonnet-4-6
+max_tokens: 16000
+thinking:
+  type: enabled
+  budget_tokens: 10000
+tools:
+  - name: get_weather
+    description: Get the current weather in a given location
+    input_schema:
+      type: object
+      properties:
+        location:
+          type: string
+          description: The city and state
+      required: [location]
+messages:
+  - role: user
+    content: What's the weather in Paris?
+YAML
+)
+
+TOOL_USE_ID=$(printf '%s' "$ASSISTANT_CONTENT" \
+  | grep -o 'toolu_[A-Za-z0-9]*')
+
+# Second turn: pass the captured blocks back as the assistant message.
+# The thinking block MUST accompany the tool_use block.
+ant messages create <<YAML
+model: claude-sonnet-4-6
+max_tokens: 16000
+thinking:
+  type: enabled
+  budget_tokens: 10000
+tools:
+  - name: get_weather
+    description: Get the current weather in a given location
+    input_schema:
+      type: object
+      properties:
+        location:
+          type: string
+          description: The city and state
+      required: [location]
+messages:
+  - role: user
+    content: What's the weather in Paris?
+  - role: assistant
+    content: $ASSISTANT_CONTENT
+  - role: user
+    content:
+      - type: tool_result
+        tool_use_id: $TOOL_USE_ID
+        content: "Current temperature: 88°F"
+YAML
+```
+
 ```python Python hidelines={1}
 import anthropic
 from typing import Any
@@ -1998,7 +2109,7 @@ puts continuation
 
 The API response now includes **only** text
 
-```json
+```json Output
 {
   "content": [
     {
@@ -2184,6 +2295,65 @@ User: [Text response, cache=True]
 <section title="System prompt caching (preserved when thinking changes)">
 
 <CodeGroup>
+```bash CLI
+# Fetch ~10 kB of Pride and Prejudice for the cached system block
+curl -s https://www.gutenberg.org/cache/epub/1342/pg1342.txt \
+  | head -c 10000 > pride.txt
+
+# Emit a request body for the given thinking budget. Once CONTENT1
+# is populated (after the first turn), the assistant reply and a
+# follow-up user message are appended so the conversation grows.
+build_body() {
+  cat <<YAML
+model: claude-sonnet-4-6
+max_tokens: 20000
+thinking:
+  type: enabled
+  budget_tokens: $1
+system:
+  - type: text
+    text: >-
+      You are an AI assistant that is tasked with literary analysis.
+      Analyze the following text carefully.
+  - type: text
+    text: "@./pride.txt"
+    cache_control:
+      type: ephemeral
+messages:
+  - role: user
+    content: Analyze the tone of this passage.
+YAML
+  if [[ -n "${CONTENT1:-}" ]]; then
+    printf '  - role: assistant\n    content: %s\n' "$CONTENT1"
+    printf '  - role: user\n'
+    printf '    content: Analyze the characters in this passage.\n'
+  fi
+}
+
+# First request (budget 4000): establishes the cache. Capture usage
+# and content as two jsonl lines so the reply can be fed forward.
+printf 'First request - establishing cache\n'
+{
+  read -r USAGE1
+  read -r CONTENT1
+} < <(build_body 4000 \
+  | ant messages create --transform '[usage,content]' --format jsonl)
+printf 'First response usage: %s\n' "$USAGE1"
+
+# Second request: same budget, system-prompt cache hit expected.
+printf '\nSecond request - same thinking parameters (cache hit expected)\n'
+USAGE2=$(build_body 4000 \
+  | ant messages create --transform usage --format jsonl)
+printf 'Second response usage: %s\n' "$USAGE2"
+
+# Third request: budget changed to 8000. The cached system prompt
+# still hits; only message-block caching is invalidated.
+printf '\nThird request - different thinking parameters (cache miss for messages)\n'
+USAGE3=$(build_body 8000 \
+  | ant messages create --transform usage --format jsonl)
+printf 'Third response usage: %s\n' "$USAGE3"
+```
+
 ```python Python hidelines={1}
 from anthropic import Anthropic
 import requests
@@ -2777,6 +2947,84 @@ puts "Third response usage: #{response3.usage}"
 <section title="Messages caching (invalidated when thinking changes)">
 
 <CodeGroup>
+```bash CLI
+# Fetch the first ~10 kB of Pride and Prejudice for the cached prefix
+curl -sL 'https://www.gutenberg.org/cache/epub/1342/pg1342.txt' \
+  | head -c 10000 > book.txt
+
+# Call 1: thinking budget 4000, writes the cache
+USAGE=$(ant messages create \
+  --model claude-sonnet-4-6 --max-tokens 20000 \
+  --transform usage <<'YAML'
+thinking:
+  type: enabled
+  budget_tokens: 4000
+messages:
+  - role: user
+    content:
+      - type: text
+        text: "@./book.txt"
+        cache_control:
+          type: ephemeral
+      - type: text
+        text: "Give a one-sentence summary of this passage."
+YAML
+)
+printf 'Call 1 (budget 4000):\n%s\n\n' "$USAGE"
+
+# Call 2: same budget, conversation extended; expect cache HIT
+USAGE=$(ant messages create \
+  --model claude-sonnet-4-6 --max-tokens 20000 \
+  --transform usage <<'YAML'
+thinking:
+  type: enabled
+  budget_tokens: 4000
+messages:
+  - role: user
+    content:
+      - type: text
+        text: "@./book.txt"
+        cache_control:
+          type: ephemeral
+      - type: text
+        text: "Give a one-sentence summary of this passage."
+  - role: assistant
+    content: "It opens Pride and Prejudice with the Bennet family."
+  - role: user
+    content: "Who is the protagonist?"
+YAML
+)
+printf 'Call 2 (budget 4000):\n%s\n\n' "$USAGE"
+
+# Call 3: budget changed to 8000; cache MISS even though prefix is identical
+USAGE=$(ant messages create \
+  --model claude-sonnet-4-6 --max-tokens 20000 \
+  --transform usage <<'YAML'
+thinking:
+  type: enabled
+  budget_tokens: 8000
+messages:
+  - role: user
+    content:
+      - type: text
+        text: "@./book.txt"
+        cache_control:
+          type: ephemeral
+      - type: text
+        text: "Give a one-sentence summary of this passage."
+  - role: assistant
+    content: "It opens Pride and Prejudice with the Bennet family."
+  - role: user
+    content: "Who is the protagonist?"
+  - role: assistant
+    content: "Elizabeth Bennet is the protagonist."
+  - role: user
+    content: "What era is the story set in?"
+YAML
+)
+printf 'Call 3 (budget 8000):\n%s\n' "$USAGE"
+```
+
 ```python Python hidelines={1}
 from anthropic import Anthropic
 import requests
@@ -3582,7 +3830,7 @@ puts "Third response usage: #{response3.usage}"
 
 Here is the output of the script (you may see slightly different numbers)
 
-```text
+```text Output
 First request - establishing cache
 First response usage: { cache_creation_input_tokens: 1370, cache_read_input_tokens: 0, input_tokens: 17, output_tokens: 700 }
 

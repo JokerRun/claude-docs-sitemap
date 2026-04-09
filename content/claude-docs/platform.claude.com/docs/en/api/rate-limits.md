@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: 6304190afaf410f39ada62498645207e126abdf15c9c996901e16107e9d22758
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: f55461470e4f0952eda3c20b533c6506e56abf29f72d8bc8034c6a05cb6e2b73
 ---
 
 # Rate limits
@@ -265,6 +265,15 @@ The Message Batches API has its own set of rate limits which are shared across a
 If you're seeking higher limits for an Enterprise use case, contact sales through the [Claude Console](/settings/limits).
 </Tab>
 </Tabs>
+
+### Managed Agents
+
+[Claude Managed Agents](/docs/en/managed-agents/overview) endpoints are rate-limited per organization. These limits are separate from the Messages API rate limits above.
+
+| Operation | Limit |
+| --- | --- |
+| Create endpoints (agents, sessions, environments, etc.) | 60 requests per minute |
+| Read endpoints (retrieve, list, stream, etc.) | 600 requests per minute |
 
 ### Fast mode rate limits
 

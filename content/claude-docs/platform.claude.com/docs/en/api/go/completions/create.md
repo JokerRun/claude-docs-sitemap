@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions/create
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 98366cf044bf37a7106a634d608eea40268e6a76690db9a167bb9ea8dca4c744
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 4872a24cd14cc5a670b11b8b5f412a34bf0676fa75e57145f327321ac9221ac5
 ---
 
 ## Create
@@ -141,8 +141,6 @@ Future models and features will not be compatible with Text Completions. See our
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
-
 ### Returns
 
 - `type Completion struct{…}`
@@ -169,9 +167,13 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `const ModelClaudeOpus4_6 Model = "claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `const ModelClaudeSonnet4_6 Model = "claude-sonnet-4-6"`
 
@@ -267,7 +269,7 @@ func main() {
   )
   completion, err := client.Completions.New(context.TODO(), anthropic.CompletionNewParams{
     MaxTokensToSample: 256,
-    Model: anthropic.ModelClaudeOpus4_6,
+    Model: anthropic.ModelClaudeMythosPreview,
     Prompt: "\n\nHuman: Hello, world!\n\nAssistant:",
   })
   if err != nil {

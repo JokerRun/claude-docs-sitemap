@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: f9a9f5839a09471c479579085303e8ef54d0f9b2f6508c8ce3d5366a1012b8a9
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 78a8c66b72b812cc86ae40bfed952d16e5e488596e56349b68bdc153f213d9aa
 ---
 
 # Search results
@@ -844,6 +844,42 @@ curl https://api.anthropic.com/v1/messages \
         }
     ]
 }'
+```
+
+```bash CLI
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 1024
+messages:
+  - role: user
+    content:
+      - type: search_result
+        source: https://docs.company.com/api-reference
+        title: API Reference - Authentication
+        content:
+          - type: text
+            text: >-
+              All API requests must include an API key in the Authorization
+              header. Keys can be generated from the dashboard. Rate limits:
+              1000 requests per hour for standard tier, 10000 for premium.
+        citations:
+          enabled: true
+      - type: search_result
+        source: https://docs.company.com/quickstart
+        title: Getting Started Guide
+        content:
+          - type: text
+            text: >-
+              To get started: 1) Sign up for an account, 2) Generate an API
+              key from the dashboard, 3) Install our SDK using pip install
+              company-sdk, 4) Initialize the client with your API key.
+        citations:
+          enabled: true
+      - type: text
+        text: >-
+          Based on these search results, how do I authenticate API requests
+          and what are the rate limits?
+YAML
 ```
 
 ```python Python hidelines={1}

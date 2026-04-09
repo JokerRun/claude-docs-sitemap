@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: d858129969cf0e93c6b4274fa652005b2351872b7e0441eb0ace1586ae1c9f2f
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: a64debd7a740c1d1069ac6067e9f9a47bccd201259fccb7b715b6033fa114776
 ---
 
 # Batches
@@ -2024,9 +2024,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-mythos-preview"ClaudeMythosPreview`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `"claude-opus-4-6"ClaudeOpus4_6`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-sonnet-4-6"ClaudeSonnet4_6`
 
@@ -4681,9 +4685,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-mythos-preview"ClaudeMythosPreview`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
           - `"claude-opus-4-6"ClaudeOpus4_6`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-sonnet-4-6"ClaudeSonnet4_6`
 
@@ -5770,9 +5778,13 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-mythos-preview"ClaudeMythosPreview`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
           - `"claude-opus-4-6"ClaudeOpus4_6`
 
-            Most intelligent model for building agents and coding
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-sonnet-4-6"ClaudeSonnet4_6`
 
@@ -6686,9 +6698,13 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-mythos-preview"ClaudeMythosPreview`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `"claude-opus-4-6"ClaudeOpus4_6`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-sonnet-4-6"ClaudeSonnet4_6`
 
@@ -7564,9 +7580,13 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `"claude-mythos-preview"ClaudeMythosPreview`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `"claude-opus-4-6"ClaudeOpus4_6`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-sonnet-4-6"ClaudeSonnet4_6`
 

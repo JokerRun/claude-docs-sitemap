@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: c6c28eb2b4f1c494b504d349164a062a425fe187555b74e6d63f93939dca7d56
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: c163b24480a6cad553a51a4bf6ac2f07d433c0d4012724a74992da170fc8e88c
 ---
 
 # Bash tool
@@ -35,23 +35,6 @@ For model support, see the [Tool reference](/docs/en/agents-and-tools/tool-use/t
 ## Quick start
 
 <CodeGroup>
-```python Python
-import anthropic
-
-client = anthropic.Anthropic()
-
-response = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    tools=[{"type": "bash_20250124", "name": "bash"}],
-    messages=[
-        {"role": "user", "content": "List all Python files in the current directory."}
-    ],
-)
-
-print(response)
-```
-
 ```bash Shell
 curl https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \
@@ -73,6 +56,31 @@ curl https://api.anthropic.com/v1/messages \
       }
     ]
   }'
+```
+
+```bash CLI
+ant messages create \
+  --model claude-opus-4-6 \
+  --max-tokens 1024 \
+  --tool '{type: bash_20250124, name: bash}' \
+  --message '{role: user, content: List all Python files in the current directory.}'
+```
+
+```python Python
+import anthropic
+
+client = anthropic.Anthropic()
+
+response = client.messages.create(
+    model="claude-opus-4-6",
+    max_tokens=1024,
+    tools=[{"type": "bash_20250124", "name": "bash"}],
+    messages=[
+        {"role": "user", "content": "List all Python files in the current directory."}
+    ],
+)
+
+print(response)
 ```
 </CodeGroup>
 

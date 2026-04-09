@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/delete
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 7cac6a05c2eac6a556945b2c207c41f48761a8a5b4b32ad4992e5b19b1e2715d
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 26fb66e08105df117d9e7900209d3aa5e2c4490c9241f3671702d143e94e1b07
 ---
 
 ## Delete
@@ -27,7 +27,7 @@ Delete File
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -70,8 +70,6 @@ Delete File
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

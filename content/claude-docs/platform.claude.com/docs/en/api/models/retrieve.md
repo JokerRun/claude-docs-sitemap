@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/retrieve
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 6a65e3554cabab2a1af71311d206de9d23dc17e6eb904b83774d76d3789b3756
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 0f19a75c33720e90d80d4f35b92e3736bf10d7cae3adae9c9532a6c50d392a2f
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,8 +70,6 @@ The Models API response can be used to determine information about a specific mo
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

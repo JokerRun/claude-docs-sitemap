@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/upload
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 60d0f8ff35b8541035fe43f300fab84e3e6b5653858113023136e828e7d6b197
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 61a590511c16064f5d60957a0eb13874efffb0b2e27cb7117687e2dc1d588bb9
 ---
 
 ## Upload
@@ -63,8 +63,6 @@ Upload File
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
-
   - `String file`
 
     The file to upload
@@ -106,6 +104,20 @@ Upload File
   - `Optional<Boolean> downloadable`
 
     Whether the file can be downloaded.
+
+  - `Optional<BetaFileScope> scope`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `String id`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `JsonValue; type "session"constant`
+
+      The type of scope (e.g., `"session"`).
+
+      - `SESSION("session")`
 
 ### Example
 

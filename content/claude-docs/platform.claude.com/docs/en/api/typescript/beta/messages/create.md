@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/create
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 6d036ecd707125b395f6689b883842e19bfab103b17b979ec9f3d701e1898a0c
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: e89e85896e598ee8c1a00a6fce7dfc9c39cbfe52ad2be86fe170ddb9ee316800
 ---
 
 ## Create
@@ -2608,11 +2608,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 12 more`
+      - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+
+        - `"claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
 
         - `"claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-sonnet-4-6"`
 
@@ -4683,17 +4687,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Recommended for advanced use cases only. You usually only need to use `temperature`.
 
-    - `user_profile_id?: string | null`
-
-      Body param: The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
-
     - `betas?: Array<AnthropicBeta>`
 
       Header param: Optional header to specify the beta version(s) you want to use.
 
       - `(string & {})`
 
-      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
         - `"message-batches-2024-09-24"`
 
@@ -4736,8 +4736,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"fast-mode-2026-02-01"`
 
         - `"output-300k-2026-03-24"`
-
-        - `"user-profiles-2026-03-24"`
 
   - `MessageCreateParamsNonStreaming extends MessageCreateParamsBase`
 
@@ -5682,11 +5680,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 12 more`
+    - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+
+      - `"claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
 
       - `"claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-sonnet-4-6"`
 

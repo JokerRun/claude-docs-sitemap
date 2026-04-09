@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: 56311f9bb3cd1f84a2bc088b626740ffe4a858065285a73d93212872993c1265
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 95526bdf0d535c79aaec136ed81f0ee05620a37d4c1c0cb168b1f39cc68935fa
 ---
 
 # Ticket routing
@@ -351,7 +351,7 @@ It’s hard to know how well your prompt works without deploying it in a test pr
 
 Let’s build the deployment structure. Start by defining the method signature for wrapping our call to Claude. We'll take the method we’ve already begun to write, which has `ticket_contents` as input, and now return a tuple of `reasoning` and `intent` as output. If you have an existing automation using traditional ML, you'll want to follow that method signature instead.
 
-```python nocheck hidelines={1}
+```python Python nocheck hidelines={1}
 import anthropic
 import re
 
@@ -417,7 +417,7 @@ You may need to assess Claude on other axes depending on what factors that are i
 
 To assess this, we first have to modify the script we wrote and add a function to compare the predicted intent with the actual intent and calculate the percentage of correct predictions. We also have to add in cost calculation and time measurement functionality.
 
-```python nocheck hidelines={1}
+```python Python nocheck hidelines={1}
 import anthropic
 import re
 

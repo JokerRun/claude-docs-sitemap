@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/count_tokens
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 7c22c072f5fa2012f395d85599dab3ffd4945004de93941244ce3300d7b73189
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 57c715746b7bbef937a9b02d6329aa65e5012c29990a3ca358cab60166f7d5dc
 ---
 
 ## Count Tokens
@@ -2304,11 +2304,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 12 more`
+    - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+
+      - `"claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
 
       - `"claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-sonnet-4-6"`
 
@@ -3767,7 +3771,7 @@ const client = new Anthropic({
 
 const messageTokensCount = await client.messages.countTokens({
   messages: [{ content: 'string', role: 'user' }],
-  model: 'claude-opus-4-6',
+  model: 'claude-mythos-preview',
 });
 
 console.log(messageTokensCount.input_tokens);

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions/create
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: fd3bff7322dc0f78c98c160e80ffdc895a1cce5722362fd02760ffa83128e855
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 5260e7c8d5115c3c29d4a16d49723079a7a72e37d27b260803466b6aa38028e5
 ---
 
 ## Create
@@ -66,8 +66,6 @@ Future models and features will not be compatible with Text Completions. See our
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `long maxTokensToSample`
 
@@ -157,9 +155,13 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
     - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
-      Most intelligent model for building agents and coding
+      Frontier intelligence for long-running agents and coding
 
     - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
 
@@ -253,7 +255,7 @@ public final class Main {
 
         CompletionCreateParams params = CompletionCreateParams.builder()
             .maxTokensToSample(256L)
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_MYTHOS_PREVIEW)
             .prompt("\n\nHuman: Hello, world!\n\nAssistant:")
             .build();
         Completion completion = client.completions().create(params);

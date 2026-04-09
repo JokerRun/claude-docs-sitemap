@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/models/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: cab2d4602dcab3b625f8bb55220d6bb66e46fa41643a834d06d644782d8697e8
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: f8008adf0b6556ad1ecb6a01a04cceadc272d4a8d91b9543782440a569cd2e85
 ---
 
 ## List
@@ -78,8 +78,6 @@ The Models API response can be used to determine which models are available for 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

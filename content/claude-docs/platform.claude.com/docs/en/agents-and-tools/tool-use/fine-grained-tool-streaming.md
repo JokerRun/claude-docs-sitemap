@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: fa8d20977ad9cd392f3a7e62ec969a42129bbadacec340110e7c0c56b1e99a13
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 7655d35e839ae089521f5b8f641c30eb263f147e02c4b59e59037b900ebc0f75
 ---
 
 # Fine-grained tool streaming
@@ -65,6 +65,33 @@ Here's an example of how to use fine-grained tool streaming with the API:
       ],
       "stream": true
     }'
+  ```
+
+  ```bash CLI
+  ant messages create --stream \
+    --transform usage <<'YAML'
+  model: claude-opus-4-6
+  max_tokens: 65536
+  tools:
+    - name: make_file
+      description: Write text to a file
+      eager_input_streaming: true
+      input_schema:
+        type: object
+        properties:
+          filename:
+            type: string
+            description: The filename to write text to
+          lines_of_text:
+            type: array
+            description: An array of lines of text to write to the file
+        required:
+          - filename
+          - lines_of_text
+  messages:
+    - role: user
+      content: Can you write a long poem and make a file called poem.txt?
+  YAML
   ```
 
   ```python Python hidelines={1..2}

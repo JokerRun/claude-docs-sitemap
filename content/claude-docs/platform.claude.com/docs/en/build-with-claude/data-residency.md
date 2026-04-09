@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/data-residency
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: b1278fdee89d33ce96f3304086c34ee421d00ec1e541b9da746a842ae3d9ce6e
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: d515a5238cb4e7c5676c5de9b86bff73c733899bc3c24ae8d7a877e51d4339ed
 ---
 
 # Data residency
@@ -46,6 +46,15 @@ curl https://api.anthropic.com/v1/messages \
             "content": "Summarize the key points of this document."
         }]
     }'
+```
+
+```bash CLI
+ant messages create \
+  --model claude-opus-4-6 \
+  --max-tokens 1024 \
+  --inference-geo us \
+  --message '{role: user, content: "Summarize the key points of this document."}' \
+  --transform '{content.0.text,usage.inference_geo}' --format yaml
 ```
 
 ```python Python hidelines={1..2}
@@ -97,7 +106,7 @@ console.log(`Inference geo: ${response.usage.inference_geo}`);
 
 The response `usage` object includes an `inference_geo` field indicating where inference ran:
 
-```json
+```json Output
 {
   "usage": {
     "input_tokens": 25,

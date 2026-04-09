@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 8fd406de7d4840e001381d3819e60c1a25361b1615d3438650865bc2456c9269
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 5ac9caa7357edffd63684b2eea7685483da5f0df9c4704f4b27ec6409ebc36a6
 ---
 
 ## List
@@ -27,6 +27,10 @@ List Files
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
+- `scope_id: optional string`
+
+  Filter by scope ID. Only returns files associated with the specified scope (e.g., a session ID).
+
 ### Header Parameters
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -35,7 +39,7 @@ List Files
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -79,8 +83,6 @@ List Files
 
     - `"output-300k-2026-03-24"`
 
-    - `"user-profiles-2026-03-24"`
-
 ### Returns
 
 - `data: array of FileMetadata`
@@ -120,6 +122,20 @@ List Files
   - `downloadable: optional boolean`
 
     Whether the file can be downloaded.
+
+  - `scope: optional BetaFileScope`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `id: string`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `type: "session"`
+
+      The type of scope (e.g., `"session"`).
+
+      - `"session"`
 
 - `first_id: optional string`
 

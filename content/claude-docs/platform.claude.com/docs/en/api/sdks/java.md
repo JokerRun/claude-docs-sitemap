@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/java
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: 4519bcce13f61361efe7fe8270557e45f43323a89c976ee16125c5009b3be728
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: bcb3ce24ec026d3332b106154f744fb98c8ecc72b6a3fd36af3d57fd6cfae2c2
 ---
 
 # Java SDK
@@ -22,7 +22,7 @@ For API feature documentation with code examples, see the [API reference](/docs/
 <Tabs>
 <Tab title="Gradle">
 ```kotlin
-implementation("com.anthropic:anthropic-java:2.18.0")
+implementation("com.anthropic:anthropic-java:2.20.0")
 ```
 </Tab>
 <Tab title="Maven">
@@ -30,7 +30,7 @@ implementation("com.anthropic:anthropic-java:2.18.0")
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java</artifactId>
-    <version>2.18.0</version>
+    <version>2.20.0</version>
 </dependency>
 ```
 </Tab>

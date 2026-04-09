@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: ec2bdfd204bc452f97839fde634e4edf14373b95a05d11a448aeca83fe6ef609
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 663e1ead08480e0a38a8e7dc85e80e49bab7c5fb6eff5c5d4b6f536ff0c23684
 ---
 
 # Errors
@@ -69,6 +69,14 @@ Every API response includes a unique `request-id` header. This header contains a
 The official SDKs provide this value as a property on top-level response objects, containing the value of the `request-id` header:
 
 <CodeGroup>
+  ```bash CLI
+  # The request-id header is printed to stderr with --debug:
+  ant --debug messages create \
+    --model claude-opus-4-6 \
+    --max-tokens 1024 \
+    --message '{role: user, content: "Hello, Claude"}'
+  ```
+
   ```python Python hidelines={1..2}
   import anthropic
 

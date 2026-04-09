@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: c3a4e6f18f8d30379663bfa910a4b4dea6638ddf3678ce62d7303b157c6ffcd6
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: f403009e1087c651b4f9405f5eb6b4c50f6d8d8b1df9e3ed6decc692d8a35d3e
 ---
 
 # Completions
@@ -37,11 +37,15 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 12 more`
+      - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+
+        - `"claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
 
         - `"claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-sonnet-4-6"`
 
@@ -177,7 +181,7 @@ Future models and features will not be compatible with Text Completions. See our
 
       - `(string & {})`
 
-      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
         - `"message-batches-2024-09-24"`
 
@@ -221,8 +225,6 @@ Future models and features will not be compatible with Text Completions. See our
 
         - `"output-300k-2026-03-24"`
 
-        - `"user-profiles-2026-03-24"`
-
   - `CompletionCreateParamsNonStreaming extends CompletionCreateParamsBase`
 
     - `stream?: false`
@@ -263,11 +265,15 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 12 more`
+    - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+
+      - `"claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
 
       - `"claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-sonnet-4-6"`
 
@@ -355,7 +361,7 @@ const client = new Anthropic({
 
 const completion = await client.completions.create({
   max_tokens_to_sample: 256,
-  model: 'claude-opus-4-6',
+  model: 'claude-mythos-preview',
   prompt: '\n\nHuman: Hello, world!\n\nAssistant:',
 });
 
@@ -384,11 +390,15 @@ console.log(completion.id);
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 12 more`
+    - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+
+      - `"claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
 
       - `"claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-sonnet-4-6"`
 

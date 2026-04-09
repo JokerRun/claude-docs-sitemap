@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/retrieve_metadata
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: bea2c6095eb02dcb0f66c176e6a2b18249f06e2030d65251360c8130176a35a0
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 22f07e237067f5d2a8aa9c5dac2bd81d57c1fdb35c55e15bb53c933809df38a2
 ---
 
 ## Retrieve Metadata
@@ -67,8 +67,6 @@ Get File Metadata
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
-
 ### Returns
 
 - `class FileMetadata:`
@@ -106,6 +104,20 @@ Get File Metadata
   - `Optional<Boolean> downloadable`
 
     Whether the file can be downloaded.
+
+  - `Optional<BetaFileScope> scope`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `String id`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `JsonValue; type "session"constant`
+
+      The type of scope (e.g., `"session"`).
+
+      - `SESSION("session")`
 
 ### Example
 

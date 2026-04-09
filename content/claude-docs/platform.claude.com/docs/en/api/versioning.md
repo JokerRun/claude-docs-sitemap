@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/versioning
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 426fd21267dbafb4f231f71fbb28ba3edc2d265fddab6b0ae7ee1c8538ecf2b6
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: f7848bbf23822ff845b28fbe28f5c2ad26627d93f8fde03b7d48b6c7e254acac
 ---
 
 # Versions
@@ -11,7 +11,7 @@ When making API requests, you must send an `anthropic-version` request header. F
 
 ---
 
-For any given API version, we will preserve:
+For any given version with the Messages API, we will preserve:
 
 * Existing input parameters
 * Existing output parameters

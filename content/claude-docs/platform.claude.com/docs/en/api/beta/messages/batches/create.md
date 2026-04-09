@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: a4124411cfb44775d218a5e5b46d67552bfcbf972f283b1ac8b56a0491581e4c
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: d5ee19d4610f51ccea5a32394f47d2a06bd8ce72c68a73dcae4db9c75ff5c1d9
 ---
 
 ## Create
@@ -23,7 +23,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -67,8 +67,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"output-300k-2026-03-24"`
 
-    - `"user-profiles-2026-03-24"`
-
 ### Body Parameters
 
 - `requests: array of object { custom_id, params }`
@@ -81,7 +79,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     Must be unique for each request within the Message Batch.
 
-  - `params: object { max_tokens, messages, model, 20 more }`
+  - `params: object { max_tokens, messages, model, 19 more }`
 
     Messages API creation parameters for the individual request.
 
@@ -2672,15 +2670,19 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 12 more`
+      - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-mythos-preview"`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
         - `"claude-opus-4-6"`
 
-          Most intelligent model for building agents and coding
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-sonnet-4-6"`
 
@@ -4748,10 +4750,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
 
       Recommended for advanced use cases only. You usually only need to use `temperature`.
-
-    - `user_profile_id: optional string`
-
-      The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
 
 ### Returns
 

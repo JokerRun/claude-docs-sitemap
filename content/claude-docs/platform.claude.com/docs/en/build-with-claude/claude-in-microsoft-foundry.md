@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 031d5f283e82e224f885c676db91d52071c200ae6c4102639374117327577a24
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 2a7584e48b73fd7e2f96d7c044ae185dea1309a188d8e1df432cb1f44c8316d0
 ---
 
 # Claude in Microsoft Foundry
@@ -58,7 +58,7 @@ dotnet add package Anthropic.Foundry
 <Tabs>
 <Tab title="Gradle">
 ```kotlin
-implementation("com.anthropic:anthropic-java-foundry:2.18.0")
+implementation("com.anthropic:anthropic-java-foundry:2.20.0")
 ```
 </Tab>
 <Tab title="Maven">
@@ -66,7 +66,7 @@ implementation("com.anthropic:anthropic-java-foundry:2.18.0")
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java-foundry</artifactId>
-    <version>2.18.0</version>
+    <version>2.20.0</version>
 </dependency>
 ```
 </Tab>
@@ -153,6 +153,21 @@ curl https://{resource}.services.ai.azure.com/anthropic/v1/messages \
       {"role": "user", "content": "Hello!"}
     ]
   }'
+```
+</Tab>
+
+<Tab title="CLI">
+
+```bash CLI nocheck
+# ant reads ANTHROPIC_API_KEY and sends it as x-api-key, which Foundry accepts
+export ANTHROPIC_API_KEY="YOUR_AZURE_API_KEY"
+
+ant messages create \
+  --base-url https://example-resource.services.ai.azure.com/anthropic \
+  --model claude-opus-4-6 \
+  --max-tokens 1024 \
+  --message '{role: user, content: "Hello!"}' \
+  --transform content
 ```
 </Tab>
 
@@ -488,7 +503,7 @@ Claude Opus 4.6 and Claude Sonnet 4.6 have a [1M-token context window](/docs/en/
 
 ## API responses
 
-API responses from Claude on Foundry follow the standard [Claude API response format](/docs/en/api/messages). This includes the `usage` object in response bodies, which provides detailed token consumption information for your requests. The `usage` object is consistent across all platforms (first-party API, Foundry, Amazon Bedrock, and Google Vertex AI).
+API responses from Claude on Foundry follow the standard [Claude API response format](/docs/en/api/messages/create). This includes the `usage` object in response bodies, which provides detailed token consumption information for your requests. The `usage` object is consistent across all platforms (first-party API, Foundry, Amazon Bedrock, and Google Vertex AI).
 
 For details on response headers specific to Foundry, see the [correlation request IDs section](#correlation-request-ids).
 

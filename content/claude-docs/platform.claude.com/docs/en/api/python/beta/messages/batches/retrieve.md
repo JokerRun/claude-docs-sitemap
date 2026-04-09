@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/retrieve
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: e64fee6dfb88bb40186c4964dcd87b194ae481a7a501294c9aae1236f80e2236
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 8a7b091ee014b8ae25f42817ba0e7aab03d06cda2d6a55c0430e79aa8476733f
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,8 +70,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

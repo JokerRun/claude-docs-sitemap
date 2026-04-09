@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 5a0377fe589a543ba20760a4f0703a310b0c5a5373a957a8e03d89be93af3240
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 4f5c5b8446026ebd4aa6870a9cbcb3e2d815369b81685b932053f8b7bee0f4a2
 ---
 
 # Tool search tool
@@ -115,6 +115,44 @@ curl https://api.anthropic.com/v1/messages \
             }
         ]
     }'
+```
+
+```bash CLI
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 2048
+messages:
+  - role: user
+    content: What is the weather in San Francisco?
+tools:
+  - type: tool_search_tool_regex_20251119
+    name: tool_search_tool_regex
+  - name: get_weather
+    description: Get the weather at a specific location
+    input_schema:
+      type: object
+      properties:
+        location:
+          type: string
+        unit:
+          type: string
+          enum: [celsius, fahrenheit]
+      required: [location]
+    defer_loading: true
+  - name: search_files
+    description: Search through files in the workspace
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+        file_types:
+          type: array
+          items:
+            type: string
+      required: [query]
+    defer_loading: true
+YAML
 ```
 
 ```python Python hidelines={1..2}

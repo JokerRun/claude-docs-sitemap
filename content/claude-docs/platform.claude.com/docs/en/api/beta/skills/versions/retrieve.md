@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 3fb8ecdf51ebed03fa634c51a9b638f855ec707382e0a007e64520543a557c2a
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 6b6566b9505fe9b04dee1b4179d3b2464bbda2c69b8bc76ee56c1fac9e604a15
 ---
 
 ## Retrieve
@@ -33,7 +33,7 @@ Get Skill Version
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,8 +76,6 @@ Get Skill Version
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

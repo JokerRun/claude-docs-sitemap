@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/create
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: a24c4e1befe9e9da1a7574ef52ad9720bccb1a7ed2e84c493529993b637f59c6
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: fb1fd1ea8125113c43295ddf205227f978b22903dd076764d4c82b485e07d5da
 ---
 
 ## Create
@@ -2604,13 +2604,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Literal["claude-opus-4-6", "claude-sonnet-4-6", "claude-haiku-4-5", 12 more]`
+  - `Literal["claude-mythos-preview", "claude-opus-4-6", "claude-sonnet-4-6", 13 more]`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `claude-opus-4-6` - Most intelligent model for building agents and coding
+    - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
+    - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
     - `claude-sonnet-4-6` - Best combination of speed and intelligence
     - `claude-haiku-4-5` - Fastest model with near-frontier intelligence
     - `claude-haiku-4-5-20251001` - Fastest model with near-frontier intelligence
@@ -2626,9 +2627,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `claude-sonnet-4-20250514` - High-performance model with extended thinking
     - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
+    - `"claude-mythos-preview"`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
     - `"claude-opus-4-6"`
 
-      Most intelligent model for building agents and coding
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-sonnet-4-6"`
 
@@ -4699,17 +4704,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Recommended for advanced use cases only. You usually only need to use `temperature`.
 
-- `user_profile_id: Optional[str]`
-
-  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
-
 - `betas: Optional[List[AnthropicBetaParam]]`
 
   Optional header to specify the beta version(s) you want to use.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -4752,8 +4753,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -5678,13 +5677,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-opus-4-6", "claude-sonnet-4-6", "claude-haiku-4-5", 12 more]`
+    - `Literal["claude-mythos-preview", "claude-opus-4-6", "claude-sonnet-4-6", 13 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `claude-opus-4-6` - Most intelligent model for building agents and coding
+      - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
+      - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
       - `claude-sonnet-4-6` - Best combination of speed and intelligence
       - `claude-haiku-4-5` - Fastest model with near-frontier intelligence
       - `claude-haiku-4-5-20251001` - Fastest model with near-frontier intelligence
@@ -5700,9 +5700,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `claude-sonnet-4-20250514` - High-performance model with extended thinking
       - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
+      - `"claude-mythos-preview"`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
       - `"claude-opus-4-6"`
 
-        Most intelligent model for building agents and coding
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-sonnet-4-6"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/retrieve
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 69074a74be215b9ea4939f2db29d9317f09a0fa662a939f7b8ca7ed538bf051f
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: d2374bc003c6e7d359511df96cffb867217d77c515bb9f396b3573bcdd20e089
 ---
 
 ## Retrieve
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -72,8 +72,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

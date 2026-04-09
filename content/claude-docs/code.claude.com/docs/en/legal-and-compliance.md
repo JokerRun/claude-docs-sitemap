@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/legal-and-compliance
-fetched_at: 2026-04-04T03:07:06.698608Z
-sha256: a2a0ff9d93f11130f49db108b11d3f5230ab72d75d47bf68500fbef297cbe33c
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: c04a21cf44168e80e8cd48a4e48a3c5ffdc7a5df86459ebb8f9911cd4f8c398b
 ---
 
 > ## Documentation Index
@@ -43,7 +43,7 @@ Claude Code usage is subject to the [Anthropic Usage Policy](https://www.anthrop
 Claude Code authenticates with Anthropic's servers using OAuth tokens or API keys. These authentication methods serve different purposes:
 
 * **OAuth authentication** is intended exclusively for purchasers of Claude Free, Pro, Max, Team, and Enterprise subscription plans and is designed to support ordinary use of Claude Code and other native Anthropic applications. More information about how users can authenticate with OAuth tokens can be found in [Logging in to your Claude account](https://support.claude.com/en/articles/13189465-logging-in-to-your-claude-account).
-* **Developers** building products or services that interact with Claude's capabilities, including those using the [Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview), should use API key authentication through [Claude Console](https://platform.claude.com/) or a supported cloud provider. Anthropic does not permit third-party developers to offer Claude.ai login or to route requests through Free, Pro, or Max plan credentials on behalf of their users.
+* **Developers** building products or services that interact with Claude's capabilities, including those using the [Agent SDK](/en/agent-sdk/overview), should use API key authentication through [Claude Console](https://platform.claude.com/) or a supported cloud provider. Anthropic does not permit third-party developers to offer Claude.ai login or to route requests through Free, Pro, or Max plan credentials on behalf of their users.
 
 Anthropic reserves the right to take measures to enforce these restrictions and may do so without prior notice.
 

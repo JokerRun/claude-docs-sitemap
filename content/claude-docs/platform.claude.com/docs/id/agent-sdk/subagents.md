@@ -1,556 +1,590 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/subagents
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 00d5d6d394d839088d995a17abc3f9953840e22ec8c657d74c9ea254af56cb09
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 520c00e11831725b36058a11dbe2c349837a5bb2165fc397e7c2cfbaf8037d43
 ---
 
-# Subagents dalam SDK
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
-Tentukan dan panggil subagents untuk mengisolasi konteks, menjalankan tugas secara paralel, dan menerapkan instruksi khusus dalam aplikasi Claude Agent SDK Anda.
+# Agent SDK overview
 
----
-
-Subagents adalah instans agen terpisah yang dapat dihasilkan oleh agen utama Anda untuk menangani subtask yang terfokus.
-Gunakan subagents untuk mengisolasi konteks bagi subtask yang terfokus, menjalankan beberapa analisis secara paralel, dan menerapkan instruksi khusus tanpa membuat prompt agen utama menjadi terlalu besar.
-
-Panduan ini menjelaskan cara mendefinisikan dan menggunakan subagents dalam SDK menggunakan parameter `agents`.
-
-## Ikhtisar
-
-Anda dapat membuat subagents dengan tiga cara:
-
-- **Secara programatis**: gunakan parameter `agents` dalam opsi `query()` Anda ([TypeScript](/docs/id/agent-sdk/typescript#agentdefinition), [Python](/docs/id/agent-sdk/python#agentdefinition))
-- **Berbasis sistem file**: tentukan agen sebagai file markdown dalam direktori `.claude/agents/` (lihat [mendefinisikan subagents sebagai file](https://code.claude.com/docs/en/sub-agents))
-- **Tujuan umum bawaan**: Claude dapat memanggil subagent `general-purpose` bawaan kapan saja melalui alat Task tanpa Anda mendefinisikan apa pun
-
-Panduan ini berfokus pada pendekatan programatis, yang direkomendasikan untuk aplikasi SDK.
-
-Ketika Anda mendefinisikan subagents, Claude memutuskan apakah akan memanggilnya berdasarkan bidang `description` setiap subagent. Tulis deskripsi yang jelas yang menjelaskan kapan subagent harus digunakan, dan Claude akan secara otomatis mendelegasikan tugas yang sesuai. Anda juga dapat secara eksplisit meminta subagent berdasarkan nama dalam prompt Anda (misalnya, "Gunakan agen code-reviewer untuk...").
-
-## Manfaat menggunakan subagents
-
-### Manajemen konteks
-Subagents mempertahankan konteks terpisah dari agen utama, mencegah kelebihan informasi dan menjaga interaksi tetap terfokus. Isolasi ini memastikan bahwa tugas khusus tidak mencemari konteks percakapan utama dengan detail yang tidak relevan.
-
-**Contoh**: subagent `research-assistant` dapat menjelajahi puluhan file dan halaman dokumentasi tanpa mengacaukan percakapan utama dengan semua hasil pencarian perantara, hanya mengembalikan temuan yang relevan.
-
-### Paralelisasi
-Beberapa subagents dapat berjalan secara bersamaan, secara dramatis mempercepat alur kerja yang kompleks.
-
-**Contoh**: selama tinjauan kode, Anda dapat menjalankan subagents `style-checker`, `security-scanner`, dan `test-coverage` secara bersamaan, mengurangi waktu tinjauan dari menit menjadi detik.
-
-### Instruksi dan pengetahuan khusus
-Setiap subagent dapat memiliki prompt sistem yang disesuaikan dengan keahlian, praktik terbaik, dan batasan tertentu.
-
-**Contoh**: subagent `database-migration` dapat memiliki pengetahuan terperinci tentang praktik terbaik SQL, strategi rollback, dan pemeriksaan integritas data yang akan menjadi kebisingan yang tidak perlu dalam instruksi agen utama.
-
-### Pembatasan alat
-Subagents dapat dibatasi pada alat tertentu, mengurangi risiko tindakan yang tidak diinginkan.
-
-**Contoh**: subagent `doc-reviewer` mungkin hanya memiliki akses ke alat Read dan Grep, memastikan dapat menganalisis tetapi tidak pernah secara tidak sengaja memodifikasi file dokumentasi Anda.
-
-## Membuat subagents
-
-### Definisi programatis (direkomendasikan)
-
-Tentukan subagents langsung dalam kode Anda menggunakan parameter `agents`. Contoh ini membuat dua subagents: peninjau kode dengan akses baca saja dan pelari tes yang dapat menjalankan perintah. Alat `Task` harus disertakan dalam `allowedTools` karena Claude memanggil subagents melalui alat Task.
-
-<CodeGroup>
-```python Python
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
-
-async def main():
-    async for message in query(
-        prompt="Review the authentication module for security issues",
-        options=ClaudeAgentOptions(
-            # Task tool is required for subagent invocation
-            allowed_tools=["Read", "Grep", "Glob", "Task"],
-            agents={
-                "code-reviewer": AgentDefinition(
-                    # description tells Claude when to use this subagent
-                    description="Expert code review specialist. Use for quality, security, and maintainability reviews.",
-                    # prompt defines the subagent's behavior and expertise
-                    prompt="""You are a code review specialist with expertise in security, performance, and best practices.
-
-When reviewing code:
-- Identify security vulnerabilities
-- Check for performance issues
-- Verify adherence to coding standards
-- Suggest specific improvements
-
-Be thorough but concise in your feedback.""",
-                    # tools restricts what the subagent can do (read-only here)
-                    tools=["Read", "Grep", "Glob"],
-                    # model overrides the default model for this subagent
-                    model="sonnet"
-                ),
-                "test-runner": AgentDefinition(
-                    description="Runs and analyzes test suites. Use for test execution and coverage analysis.",
-                    prompt="""You are a test execution specialist. Run tests and provide clear analysis of results.
-
-Focus on:
-- Running test commands
-- Analyzing test output
-- Identifying failing tests
-- Suggesting fixes for failures""",
-                    # Bash access lets this subagent run test commands
-                    tools=["Bash", "Read", "Grep"]
-                )
-            }
-        )
-    ):
-        if hasattr(message, "result"):
-            print(message.result)
-
-asyncio.run(main())
-```
-
-```typescript TypeScript
-import { query } from '@anthropic-ai/claude-agent-sdk';
-
-for await (const message of query({
-  prompt: "Review the authentication module for security issues",
-  options: {
-    // Task tool is required for subagent invocation
-    allowedTools: ['Read', 'Grep', 'Glob', 'Task'],
-    agents: {
-      'code-reviewer': {
-        // description tells Claude when to use this subagent
-        description: 'Expert code review specialist. Use for quality, security, and maintainability reviews.',
-        // prompt defines the subagent's behavior and expertise
-        prompt: `You are a code review specialist with expertise in security, performance, and best practices.
-
-When reviewing code:
-- Identify security vulnerabilities
-- Check for performance issues
-- Verify adherence to coding standards
-- Suggest specific improvements
-
-Be thorough but concise in your feedback.`,
-        // tools restricts what the subagent can do (read-only here)
-        tools: ['Read', 'Grep', 'Glob'],
-        // model overrides the default model for this subagent
-        model: 'sonnet'
-      },
-      'test-runner': {
-        description: 'Runs and analyzes test suites. Use for test execution and coverage analysis.',
-        prompt: `You are a test execution specialist. Run tests and provide clear analysis of results.
-
-Focus on:
-- Running test commands
-- Analyzing test output
-- Identifying failing tests
-- Suggesting fixes for failures`,
-        // Bash access lets this subagent run test commands
-        tools: ['Bash', 'Read', 'Grep'],
-      }
-    }
-  }
-})) {
-  if ('result' in message) console.log(message.result);
-}
-```
-</CodeGroup>
-
-### Konfigurasi AgentDefinition
-
-| Field | Type | Required | Description |
-|:------|:-----|:---------|:------------|
-| `description` | `string` | Yes | Deskripsi bahasa alami tentang kapan menggunakan agen ini |
-| `prompt` | `string` | Yes | Prompt sistem agen yang mendefinisikan peran dan perilakunya |
-| `tools` | `string[]` | No | Array nama alat yang diizinkan. Jika dihilangkan, mewarisi semua alat |
-| `model` | `'sonnet' \| 'opus' \| 'haiku' \| 'inherit'` | No | Penggantian model untuk agen ini. Default ke model utama jika dihilangkan |
+> Build production AI agents with Claude Code as a library
 
 <Note>
-Subagents tidak dapat menjalankan subagents mereka sendiri. Jangan sertakan `Task` dalam array `tools` subagent.
+  The Claude Code SDK has been renamed to the Claude Agent SDK. If you're migrating from the old SDK, see the [Migration Guide](/en/agent-sdk/migration-guide).
 </Note>
 
-### Definisi berbasis sistem file (alternatif)
-
-Anda juga dapat mendefinisikan subagents sebagai file markdown dalam direktori `.claude/agents/`. Lihat [dokumentasi subagents Claude Code](https://code.claude.com/docs/en/sub-agents) untuk detail tentang pendekatan ini. Agen yang didefinisikan secara programatis memiliki prioritas lebih tinggi daripada agen berbasis sistem file dengan nama yang sama.
-
-<Note>
-Bahkan tanpa mendefinisikan subagents khusus, Claude dapat menjalankan subagent `general-purpose` bawaan ketika `Task` ada dalam `allowedTools` Anda. Ini berguna untuk mendelegasikan tugas penelitian atau eksplorasi tanpa membuat agen khusus.
-</Note>
-
-## Memanggil subagents
-
-### Pemanggilan otomatis
-
-Claude secara otomatis memutuskan kapan akan memanggil subagents berdasarkan tugas dan bidang `description` setiap subagent. Misalnya, jika Anda mendefinisikan subagent `performance-optimizer` dengan deskripsi "Performance optimization specialist for query tuning", Claude akan memanggilnya ketika prompt Anda menyebutkan optimasi kueri.
-
-Tulis deskripsi yang jelas dan spesifik sehingga Claude dapat mencocokkan tugas dengan subagent yang tepat.
-
-### Pemanggilan eksplisit
-
-Untuk menjamin Claude menggunakan subagent tertentu, sebutkan berdasarkan nama dalam prompt Anda:
-
-```
-"Use the code-reviewer agent to check the authentication module"
-```
-
-Ini melewati pencocokan otomatis dan secara langsung memanggil subagent bernama.
-
-### Konfigurasi agen dinamis
-
-Anda dapat membuat definisi agen secara dinamis berdasarkan kondisi runtime. Contoh ini membuat peninjau keamanan dengan tingkat ketat yang berbeda, menggunakan model yang lebih kuat untuk tinjauan ketat.
+Build AI agents that autonomously read files, run commands, search the web, edit code, and more. The Agent SDK gives you the same tools, agent loop, and context management that power Claude Code, programmable in Python and TypeScript.
 
 <CodeGroup>
-```python Python
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
+  ```python Python theme={null}
+  import asyncio
+  from claude_agent_sdk import query, ClaudeAgentOptions
 
-# Factory function that returns an AgentDefinition
-# This pattern lets you customize agents based on runtime conditions
-def create_security_agent(security_level: str) -> AgentDefinition:
-    is_strict = security_level == "strict"
-    return AgentDefinition(
-        description="Security code reviewer",
-        # Customize the prompt based on strictness level
-        prompt=f"You are a {'strict' if is_strict else 'balanced'} security reviewer...",
-        tools=["Read", "Grep", "Glob"],
-        # Key insight: use a more capable model for high-stakes reviews
-        model="opus" if is_strict else "sonnet"
-    )
 
-async def main():
-    # The agent is created at query time, so each request can use different settings
-    async for message in query(
-        prompt="Review this PR for security issues",
-        options=ClaudeAgentOptions(
-            allowed_tools=["Read", "Grep", "Glob", "Task"],
-            agents={
-                # Call the factory with your desired configuration
-                "security-reviewer": create_security_agent("strict")
-            }
-        )
-    ):
-        if hasattr(message, "result"):
-            print(message.result)
+  async def main():
+      async for message in query(
+          prompt="Find and fix the bug in auth.py",
+          options=ClaudeAgentOptions(allowed_tools=["Read", "Edit", "Bash"]),
+      ):
+          print(message)  # Claude reads the file, finds the bug, edits it
 
-asyncio.run(main())
-```
 
-```typescript TypeScript
-import { query, type AgentDefinition } from '@anthropic-ai/claude-agent-sdk';
+  asyncio.run(main())
+  ```
 
-// Factory function that returns an AgentDefinition
-// This pattern lets you customize agents based on runtime conditions
-function createSecurityAgent(securityLevel: 'basic' | 'strict'): AgentDefinition {
-  const isStrict = securityLevel === 'strict';
-  return {
-    description: 'Security code reviewer',
-    // Customize the prompt based on strictness level
-    prompt: `You are a ${isStrict ? 'strict' : 'balanced'} security reviewer...`,
-    tools: ['Read', 'Grep', 'Glob'],
-    // Key insight: use a more capable model for high-stakes reviews
-    model: isStrict ? 'opus' : 'sonnet'
-  };
-}
+  ```typescript TypeScript theme={null}
+  import { query } from "@anthropic-ai/claude-agent-sdk";
 
-// The agent is created at query time, so each request can use different settings
-for await (const message of query({
-  prompt: "Review this PR for security issues",
-  options: {
-    allowedTools: ['Read', 'Grep', 'Glob', 'Task'],
-    agents: {
-      // Call the factory with your desired configuration
-      'security-reviewer': createSecurityAgent('strict')
-    }
-  }
-})) {
-  if ('result' in message) console.log(message.result);
-}
-```
-</CodeGroup>
-
-## Mendeteksi pemanggilan subagent
-
-Subagents dipanggil melalui alat Task. Untuk mendeteksi kapan subagent dipanggil, periksa blok `tool_use` dengan `name: "Task"`. Pesan dari dalam konteks subagent menyertakan bidang `parent_tool_use_id`.
-
-Contoh ini mengulangi pesan yang dialirkan, mencatat ketika subagent dipanggil dan ketika pesan berikutnya berasal dari dalam konteks eksekusi subagent tersebut.
-
-<Note>
-Struktur pesan berbeda antara SDK. Di Python, blok konten diakses langsung melalui `message.content`. Di TypeScript, `SDKAssistantMessage` membungkus pesan Claude API, jadi konten diakses melalui `message.message.content`.
-</Note>
-
-<CodeGroup>
-```python Python
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
-
-async def main():
-    async for message in query(
-        prompt="Use the code-reviewer agent to review this codebase",
-        options=ClaudeAgentOptions(
-            allowed_tools=["Read", "Glob", "Grep", "Task"],
-            agents={
-                "code-reviewer": AgentDefinition(
-                    description="Expert code reviewer.",
-                    prompt="Analyze code quality and suggest improvements.",
-                    tools=["Read", "Glob", "Grep"]
-                )
-            }
-        )
-    ):
-        # Check for subagent invocation in message content
-        if hasattr(message, 'content') and message.content:
-            for block in message.content:
-                if getattr(block, 'type', None) == 'tool_use' and block.name == 'Task':
-                    print(f"Subagent invoked: {block.input.get('subagent_type')}")
-
-        # Check if this message is from within a subagent's context
-        if hasattr(message, 'parent_tool_use_id') and message.parent_tool_use_id:
-            print("  (running inside subagent)")
-
-        if hasattr(message, "result"):
-            print(message.result)
-
-asyncio.run(main())
-```
-
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-for await (const message of query({
-  prompt: "Use the code-reviewer agent to review this codebase",
-  options: {
-    allowedTools: ["Read", "Glob", "Grep", "Task"],
-    agents: {
-      "code-reviewer": {
-        description: "Expert code reviewer.",
-        prompt: "Analyze code quality and suggest improvements.",
-        tools: ["Read", "Glob", "Grep"]
-      }
-    }
-  }
-})) {
-  const msg = message as any;
-
-  // Check for subagent invocation in message content
-  for (const block of msg.message?.content ?? []) {
-    if (block.type === "tool_use" && block.name === "Task") {
-      console.log(`Subagent invoked: ${block.input.subagent_type}`);
-    }
-  }
-
-  // Check if this message is from within a subagent's context
-  if (msg.parent_tool_use_id) {
-    console.log("  (running inside subagent)");
-  }
-
-  if ("result" in message) {
-    console.log(message.result);
-  }
-}
-```
-</CodeGroup>
-
-## Melanjutkan subagents
-
-Subagents dapat dilanjutkan untuk melanjutkan dari tempat mereka berhenti. Subagents yang dilanjutkan mempertahankan riwayat percakapan lengkap mereka, termasuk semua panggilan alat sebelumnya, hasil, dan penalaran. Subagent melanjutkan tepat dari tempat berhenti daripada memulai dari awal.
-
-Ketika subagent selesai, Claude menerima ID agennya dalam hasil alat Task. Untuk melanjutkan subagent secara programatis:
-
-1. **Tangkap ID sesi**: Ekstrak `session_id` dari pesan selama kueri pertama
-2. **Ekstrak ID agen**: Analisis `agentId` dari konten pesan
-3. **Lanjutkan sesi**: Lewatkan `resume: sessionId` dalam opsi kueri kedua, dan sertakan ID agen dalam prompt Anda
-
-<Note>
-Anda harus melanjutkan sesi yang sama untuk mengakses transkrip subagent. Setiap panggilan `query()` memulai sesi baru secara default, jadi lewatkan `resume: sessionId` untuk melanjutkan dalam sesi yang sama.
-
-Jika Anda menggunakan agen khusus (bukan agen bawaan), Anda juga perlu meneruskan definisi agen yang sama dalam parameter `agents` untuk kedua kueri.
-</Note>
-
-Contoh di bawah menunjukkan alur ini: kueri pertama menjalankan subagent dan menangkap ID sesi dan ID agen, kemudian kueri kedua melanjutkan sesi untuk mengajukan pertanyaan lanjutan yang memerlukan konteks dari analisis pertama.
-
-<CodeGroup>
-```typescript TypeScript
-import { query, type SDKMessage } from '@anthropic-ai/claude-agent-sdk';
-
-// Helper to extract agentId from message content
-// Stringify to avoid traversing different block types (TextBlock, ToolResultBlock, etc.)
-function extractAgentId(message: SDKMessage): string | undefined {
-  if (!('message' in message)) return undefined;
-  // Stringify the content so we can search it without traversing nested blocks
-  const content = JSON.stringify(message.message.content);
-  const match = content.match(/agentId:\s*([a-f0-9-]+)/);
-  return match?.[1];
-}
-
-let agentId: string | undefined;
-let sessionId: string | undefined;
-
-// First invocation - use the Explore agent to find API endpoints
-for await (const message of query({
-  prompt: "Use the Explore agent to find all API endpoints in this codebase",
-  options: { allowedTools: ['Read', 'Grep', 'Glob', 'Task'] }
-})) {
-  // Capture session_id from ResultMessage (needed to resume this session)
-  if ('session_id' in message) sessionId = message.session_id;
-  // Search message content for the agentId (appears in Task tool results)
-  const extractedId = extractAgentId(message);
-  if (extractedId) agentId = extractedId;
-  // Print the final result
-  if ('result' in message) console.log(message.result);
-}
-
-// Second invocation - resume and ask follow-up
-if (agentId && sessionId) {
   for await (const message of query({
-    prompt: `Resume agent ${agentId} and list the top 3 most complex endpoints`,
-    options: { allowedTools: ['Read', 'Grep', 'Glob', 'Task'], resume: sessionId }
+    prompt: "Find and fix the bug in auth.py",
+    options: { allowedTools: ["Read", "Edit", "Bash"] }
   })) {
-    if ('result' in message) console.log(message.result);
+    console.log(message); // Claude reads the file, finds the bug, edits it
   }
-}
-```
-
-```python Python
-import asyncio
-import json
-import re
-from claude_agent_sdk import query, ClaudeAgentOptions
-
-def extract_agent_id(text: str) -> str | None:
-    """Extract agentId from Task tool result text."""
-    match = re.search(r"agentId:\s*([a-f0-9-]+)", text)
-    return match.group(1) if match else None
-
-async def main():
-    agent_id = None
-    session_id = None
-
-    # First invocation - use the Explore agent to find API endpoints
-    async for message in query(
-        prompt="Use the Explore agent to find all API endpoints in this codebase",
-        options=ClaudeAgentOptions(allowed_tools=["Read", "Grep", "Glob", "Task"])
-    ):
-        # Capture session_id from ResultMessage (needed to resume this session)
-        if hasattr(message, "session_id"):
-            session_id = message.session_id
-        # Search message content for the agentId (appears in Task tool results)
-        if hasattr(message, "content"):
-            # Stringify the content so we can search it without traversing nested blocks
-            content_str = json.dumps(message.content, default=str)
-            extracted = extract_agent_id(content_str)
-            if extracted:
-                agent_id = extracted
-        # Print the final result
-        if hasattr(message, "result"):
-            print(message.result)
-
-    # Second invocation - resume and ask follow-up
-    if agent_id and session_id:
-        async for message in query(
-            prompt=f"Resume agent {agent_id} and list the top 3 most complex endpoints",
-            options=ClaudeAgentOptions(
-                allowed_tools=["Read", "Grep", "Glob", "Task"],
-                resume=session_id
-            )
-        ):
-            if hasattr(message, "result"):
-                print(message.result)
-
-asyncio.run(main())
-```
+  ```
 </CodeGroup>
 
-Transkrip subagent bertahan secara independen dari percakapan utama:
+The Agent SDK includes built-in tools for reading files, running commands, and editing code, so your agent can start working immediately without you implementing tool execution. Dive into the quickstart or explore real agents built with the SDK:
 
-- **Pemadatan percakapan utama**: Ketika percakapan utama dipadatkan, transkrip subagent tidak terpengaruh. Mereka disimpan dalam file terpisah.
-- **Persistensi sesi**: Transkrip subagent bertahan dalam sesi mereka. Anda dapat melanjutkan subagent setelah memulai ulang Claude Code dengan melanjutkan sesi yang sama.
-- **Pembersihan otomatis**: Transkrip dibersihkan berdasarkan pengaturan `cleanupPeriodDays` (default: 30 hari).
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build a bug-fixing agent in minutes
+  </Card>
 
-## Pembatasan alat
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+</CardGroup>
 
-Subagents dapat memiliki akses alat terbatas melalui bidang `tools`:
+## Get started
 
-- **Hilangkan bidang**: agen mewarisi semua alat yang tersedia (default)
-- **Tentukan alat**: agen hanya dapat menggunakan alat yang terdaftar
+<Steps>
+  <Step title="Install the SDK">
+    <Tabs>
+      <Tab title="TypeScript">
+        ```bash  theme={null}
+        npm install @anthropic-ai/claude-agent-sdk
+        ```
+      </Tab>
 
-Contoh ini membuat agen analisis baca saja yang dapat memeriksa kode tetapi tidak dapat memodifikasi file atau menjalankan perintah.
+      <Tab title="Python">
+        ```bash  theme={null}
+        pip install claude-agent-sdk
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
 
-<CodeGroup>
-```python Python
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
+  <Step title="Set your API key">
+    Get an API key from the [Console](https://platform.claude.com/), then set it as an environment variable:
 
-async def main():
-    async for message in query(
-        prompt="Analyze the architecture of this codebase",
-        options=ClaudeAgentOptions(
-            allowed_tools=["Read", "Grep", "Glob", "Task"],
-            agents={
-                "code-analyzer": AgentDefinition(
-                    description="Static code analysis and architecture review",
-                    prompt="""You are a code architecture analyst. Analyze code structure,
-identify patterns, and suggest improvements without making changes.""",
-                    # Read-only tools: no Edit, Write, or Bash access
-                    tools=["Read", "Grep", "Glob"]
-                )
-            }
-        )
-    ):
-        if hasattr(message, "result"):
-            print(message.result)
+    ```bash  theme={null}
+    export ANTHROPIC_API_KEY=your-api-key
+    ```
 
-asyncio.run(main())
-```
+    The SDK also supports authentication via third-party API providers:
 
-```typescript TypeScript
-import { query } from '@anthropic-ai/claude-agent-sdk';
+    * **Amazon Bedrock**: set `CLAUDE_CODE_USE_BEDROCK=1` environment variable and configure AWS credentials
+    * **Google Vertex AI**: set `CLAUDE_CODE_USE_VERTEX=1` environment variable and configure Google Cloud credentials
+    * **Microsoft Azure**: set `CLAUDE_CODE_USE_FOUNDRY=1` environment variable and configure Azure credentials
 
-for await (const message of query({
-  prompt: "Analyze the architecture of this codebase",
-  options: {
-    allowedTools: ['Read', 'Grep', 'Glob', 'Task'],
-    agents: {
-      'code-analyzer': {
-        description: 'Static code analysis and architecture review',
-        prompt: `You are a code architecture analyst. Analyze code structure,
-identify patterns, and suggest improvements without making changes.`,
-        // Read-only tools: no Edit, Write, or Bash access
-        tools: ['Read', 'Grep', 'Glob']
+    See the setup guides for [Bedrock](/en/amazon-bedrock), [Vertex AI](/en/google-vertex-ai), or [Azure AI Foundry](/en/microsoft-foundry) for details.
+
+    <Note>
+      Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Please use the API key authentication methods described in this document instead.
+    </Note>
+  </Step>
+
+  <Step title="Run your first agent">
+    This example creates an agent that lists files in your current directory using built-in tools.
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="What files are in this directory?",
+              options=ClaudeAgentOptions(allowed_tools=["Bash", "Glob"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "What files are in this directory?",
+        options: { allowedTools: ["Bash", "Glob"] }
+      })) {
+        if ("result" in message) console.log(message.result);
       }
-    }
-  }
-})) {
-  if ('result' in message) console.log(message.result);
-}
-```
-</CodeGroup>
+      ```
+    </CodeGroup>
+  </Step>
+</Steps>
 
-### Kombinasi alat umum
+**Ready to build?** Follow the [Quickstart](/en/agent-sdk/quickstart) to create an agent that finds and fixes bugs in minutes.
 
-| Use case | Tools | Description |
-|:---------|:------|:------------|
-| Analisis baca saja | `Read`, `Grep`, `Glob` | Dapat memeriksa kode tetapi tidak memodifikasi atau menjalankan |
-| Eksekusi tes | `Bash`, `Read`, `Grep` | Dapat menjalankan perintah dan menganalisis output |
-| Modifikasi kode | `Read`, `Edit`, `Write`, `Grep`, `Glob` | Akses baca/tulis penuh tanpa eksekusi perintah |
-| Akses penuh | Semua alat | Mewarisi semua alat dari induk (hilangkan bidang `tools`) |
+## Capabilities
 
-## Pemecahan masalah
+Everything that makes Claude Code powerful is available in the SDK:
 
-### Claude tidak mendelegasikan ke subagents
+<Tabs>
+  <Tab title="Built-in tools">
+    Your agent can read files, run commands, and search codebases out of the box. Key tools include:
 
-Jika Claude menyelesaikan tugas secara langsung daripada mendelegasikan ke subagent Anda:
+    | Tool                                                                        | What it does                                                   |
+    | --------------------------------------------------------------------------- | -------------------------------------------------------------- |
+    | **Read**                                                                    | Read any file in the working directory                         |
+    | **Write**                                                                   | Create new files                                               |
+    | **Edit**                                                                    | Make precise edits to existing files                           |
+    | **Bash**                                                                    | Run terminal commands, scripts, git operations                 |
+    | **Glob**                                                                    | Find files by pattern (`**/*.ts`, `src/**/*.py`)               |
+    | **Grep**                                                                    | Search file contents with regex                                |
+    | **WebSearch**                                                               | Search the web for current information                         |
+    | **WebFetch**                                                                | Fetch and parse web page content                               |
+    | **[AskUserQuestion](/en/agent-sdk/user-input#handle-clarifying-questions)** | Ask the user clarifying questions with multiple choice options |
 
-1. **Sertakan alat Task**: subagents dipanggil melalui alat Task, jadi harus ada dalam `allowedTools`
-2. **Gunakan prompt eksplisit**: sebutkan subagent berdasarkan nama dalam prompt Anda (misalnya, "Gunakan agen code-reviewer untuk...")
-3. **Tulis deskripsi yang jelas**: jelaskan dengan tepat kapan subagent harus digunakan sehingga Claude dapat mencocokkan tugas dengan tepat
+    This example creates an agent that searches your codebase for TODO comments:
 
-### Agen berbasis sistem file tidak dimuat
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
 
-Agen yang didefinisikan dalam `.claude/agents/` dimuat saat startup saja. Jika Anda membuat file agen baru saat Claude Code sedang berjalan, mulai ulang sesi untuk memuatnya.
 
-### Windows: kegagalan prompt panjang
+      async def main():
+          async for message in query(
+              prompt="Find all TODO comments and create a summary",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob", "Grep"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
 
-Di Windows, subagents dengan prompt yang sangat panjang mungkin gagal karena batasan panjang baris perintah (8191 karakter). Jaga prompt tetap ringkas atau gunakan agen berbasis sistem file untuk instruksi kompleks.
 
-## Dokumentasi terkait
+      asyncio.run(main())
+      ```
 
-- [Subagents Claude Code](https://code.claude.com/docs/en/sub-agents): dokumentasi subagent komprehensif termasuk definisi berbasis sistem file
-- [Ikhtisar SDK](/docs/id/agent-sdk/overview): memulai dengan Claude Agent SDK
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Find all TODO comments and create a summary",
+        options: { allowedTools: ["Read", "Glob", "Grep"] }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+  </Tab>
+
+  <Tab title="Hooks">
+    Run custom code at key points in the agent lifecycle. SDK hooks use callback functions to validate, log, block, or transform agent behavior.
+
+    **Available hooks:** `PreToolUse`, `PostToolUse`, `Stop`, `SessionStart`, `SessionEnd`, `UserPromptSubmit`, and more.
+
+    This example logs all file changes to an audit file:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from datetime import datetime
+      from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher
+
+
+      async def log_file_change(input_data, tool_use_id, context):
+          file_path = input_data.get("tool_input", {}).get("file_path", "unknown")
+          with open("./audit.log", "a") as f:
+              f.write(f"{datetime.now()}: modified {file_path}\n")
+          return {}
+
+
+      async def main():
+          async for message in query(
+              prompt="Refactor utils.py to improve readability",
+              options=ClaudeAgentOptions(
+                  permission_mode="acceptEdits",
+                  hooks={
+                      "PostToolUse": [
+                          HookMatcher(matcher="Edit|Write", hooks=[log_file_change])
+                      ]
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query, HookCallback } from "@anthropic-ai/claude-agent-sdk";
+      import { appendFile } from "fs/promises";
+
+      const logFileChange: HookCallback = async (input) => {
+        const filePath = (input as any).tool_input?.file_path ?? "unknown";
+        await appendFile("./audit.log", `${new Date().toISOString()}: modified ${filePath}\n`);
+        return {};
+      };
+
+      for await (const message of query({
+        prompt: "Refactor utils.py to improve readability",
+        options: {
+          permissionMode: "acceptEdits",
+          hooks: {
+            PostToolUse: [{ matcher: "Edit|Write", hooks: [logFileChange] }]
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about hooks →](/en/agent-sdk/hooks)
+  </Tab>
+
+  <Tab title="Subagents">
+    Spawn specialized agents to handle focused subtasks. Your main agent delegates work, and subagents report back with results.
+
+    Define custom agents with specialized instructions. Include `Agent` in `allowedTools` since subagents are invoked via the Agent tool:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
+
+
+      async def main():
+          async for message in query(
+              prompt="Use the code-reviewer agent to review this codebase",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep", "Agent"],
+                  agents={
+                      "code-reviewer": AgentDefinition(
+                          description="Expert code reviewer for quality and security reviews.",
+                          prompt="Analyze code quality and suggest improvements.",
+                          tools=["Read", "Glob", "Grep"],
+                      )
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Use the code-reviewer agent to review this codebase",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep", "Agent"],
+          agents: {
+            "code-reviewer": {
+              description: "Expert code reviewer for quality and security reviews.",
+              prompt: "Analyze code quality and suggest improvements.",
+              tools: ["Read", "Glob", "Grep"]
+            }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    Messages from within a subagent's context include a `parent_tool_use_id` field, letting you track which messages belong to which subagent execution.
+
+    [Learn more about subagents →](/en/agent-sdk/subagents)
+  </Tab>
+
+  <Tab title="MCP">
+    Connect to external systems via the Model Context Protocol: databases, browsers, APIs, and [hundreds more](https://github.com/modelcontextprotocol/servers).
+
+    This example connects the [Playwright MCP server](https://github.com/microsoft/playwright-mcp) to give your agent browser automation capabilities:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Open example.com and describe what you see",
+              options=ClaudeAgentOptions(
+                  mcp_servers={
+                      "playwright": {"command": "npx", "args": ["@playwright/mcp@latest"]}
+                  }
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Open example.com and describe what you see",
+        options: {
+          mcpServers: {
+            playwright: { command: "npx", args: ["@playwright/mcp@latest"] }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about MCP →](/en/agent-sdk/mcp)
+  </Tab>
+
+  <Tab title="Permissions">
+    Control exactly which tools your agent can use. Allow safe operations, block dangerous ones, or require approval for sensitive actions.
+
+    <Note>
+      For interactive approval prompts and the `AskUserQuestion` tool, see [Handle approvals and user input](/en/agent-sdk/user-input).
+    </Note>
+
+    This example creates a read-only agent that can analyze but not modify code. `allowed_tools` pre-approves `Read`, `Glob`, and `Grep`.
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Review this code for best practices",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep"],
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Review this code for best practices",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep"]
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about permissions →](/en/agent-sdk/permissions)
+  </Tab>
+
+  <Tab title="Sessions">
+    Maintain context across multiple exchanges. Claude remembers files read, analysis done, and conversation history. Resume sessions later, or fork them to explore different approaches.
+
+    This example captures the session ID from the first query, then resumes to continue with full context:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage, ResultMessage
+
+
+      async def main():
+          session_id = None
+
+          # First query: capture the session ID
+          async for message in query(
+              prompt="Read the authentication module",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob"]),
+          ):
+              if isinstance(message, SystemMessage) and message.subtype == "init":
+                  session_id = message.data["session_id"]
+
+          # Resume with full context from the first query
+          async for message in query(
+              prompt="Now find all places that call it",  # "it" = auth module
+              options=ClaudeAgentOptions(resume=session_id),
+          ):
+              if isinstance(message, ResultMessage):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      let sessionId: string | undefined;
+
+      // First query: capture the session ID
+      for await (const message of query({
+        prompt: "Read the authentication module",
+        options: { allowedTools: ["Read", "Glob"] }
+      })) {
+        if (message.type === "system" && message.subtype === "init") {
+          sessionId = message.session_id;
+        }
+      }
+
+      // Resume with full context from the first query
+      for await (const message of query({
+        prompt: "Now find all places that call it", // "it" = auth module
+        options: { resume: sessionId }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about sessions →](/en/agent-sdk/sessions)
+  </Tab>
+</Tabs>
+
+### Claude Code features
+
+The SDK also supports Claude Code's filesystem-based configuration. To use these features, set `setting_sources=["project"]` (Python) or `settingSources: ['project']` (TypeScript)  in your options.
+
+| Feature                                          | Description                                          | Location                           |
+| ------------------------------------------------ | ---------------------------------------------------- | ---------------------------------- |
+| [Skills](/en/agent-sdk/skills)                   | Specialized capabilities defined in Markdown         | `.claude/skills/*/SKILL.md`        |
+| [Slash commands](/en/agent-sdk/slash-commands)   | Custom commands for common tasks                     | `.claude/commands/*.md`            |
+| [Memory](/en/agent-sdk/modifying-system-prompts) | Project context and instructions                     | `CLAUDE.md` or `.claude/CLAUDE.md` |
+| [Plugins](/en/agent-sdk/plugins)                 | Extend with custom commands, agents, and MCP servers | Programmatic via `plugins` option  |
+
+## Compare the Agent SDK to other Claude tools
+
+The Claude Platform offers multiple ways to build with Claude. Here's how the Agent SDK fits in:
+
+<Tabs>
+  <Tab title="Agent SDK vs Client SDK">
+    The [Anthropic Client SDK](https://platform.claude.com/docs/en/api/client-sdks) gives you direct API access: you send prompts and implement tool execution yourself. The **Agent SDK** gives you Claude with built-in tool execution.
+
+    With the Client SDK, you implement a tool loop. With the Agent SDK, Claude handles it:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      # Client SDK: You implement the tool loop
+      response = client.messages.create(...)
+      while response.stop_reason == "tool_use":
+          result = your_tool_executor(response.tool_use)
+          response = client.messages.create(tool_result=result, **params)
+
+      # Agent SDK: Claude handles tools autonomously
+      async for message in query(prompt="Fix the bug in auth.py"):
+          print(message)
+      ```
+
+      ```typescript TypeScript theme={null}
+      // Client SDK: You implement the tool loop
+      let response = await client.messages.create({ ...params });
+      while (response.stop_reason === "tool_use") {
+        const result = yourToolExecutor(response.tool_use);
+        response = await client.messages.create({ tool_result: result, ...params });
+      }
+
+      // Agent SDK: Claude handles tools autonomously
+      for await (const message of query({ prompt: "Fix the bug in auth.py" })) {
+        console.log(message);
+      }
+      ```
+    </CodeGroup>
+  </Tab>
+
+  <Tab title="Agent SDK vs Claude Code CLI">
+    Same capabilities, different interface:
+
+    | Use case                | Best choice |
+    | ----------------------- | ----------- |
+    | Interactive development | CLI         |
+    | CI/CD pipelines         | SDK         |
+    | Custom applications     | SDK         |
+    | One-off tasks           | CLI         |
+    | Production automation   | SDK         |
+
+    Many teams use both: CLI for daily development, SDK for production. Workflows translate directly between them.
+  </Tab>
+</Tabs>
+
+## Changelog
+
+View the full changelog for SDK updates, bug fixes, and new features:
+
+* **TypeScript SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-typescript/blob/main/CHANGELOG.md)
+* **Python SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-python/blob/main/CHANGELOG.md)
+
+## Reporting bugs
+
+If you encounter bugs or issues with the Agent SDK:
+
+* **TypeScript SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-typescript/issues)
+* **Python SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-python/issues)
+
+## Branding guidelines
+
+For partners integrating the Claude Agent SDK, use of Claude branding is optional. When referencing Claude in your product:
+
+**Allowed:**
+
+* "Claude Agent" (preferred for dropdown menus)
+* "Claude" (when within a menu already labeled "Agents")
+* "{YourAgentName} Powered by Claude" (if you have an existing agent name)
+
+**Not permitted:**
+
+* "Claude Code" or "Claude Code Agent"
+* Claude Code-branded ASCII art or visual elements that mimic Claude Code
+
+Your product should maintain its own branding and not appear to be Claude Code or any Anthropic product. For questions about branding compliance, contact the Anthropic [sales team](https://www.anthropic.com/contact-sales).
+
+## License and terms
+
+Use of the Claude Agent SDK is governed by [Anthropic's Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms), including when you use it to power products and services that you make available to your own customers and end users, except to the extent a specific component or dependency is covered by a different license as indicated in that component's LICENSE file.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build an agent that finds and fixes bugs in minutes
+  </Card>
+
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+
+  <Card title="TypeScript SDK" icon="code" href="/en/agent-sdk/typescript">
+    Full TypeScript API reference and examples
+  </Card>
+
+  <Card title="Python SDK" icon="code" href="/en/agent-sdk/python">
+    Full Python API reference and examples
+  </Card>
+</CardGroup>

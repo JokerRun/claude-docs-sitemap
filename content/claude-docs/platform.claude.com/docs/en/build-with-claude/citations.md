@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 6f2d7d294f11227f419e250912c750b83fd3ce62714b06883adc1bfb244d94ac
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 6a34f028adf565d5ef7e48a26da5a1d317f1db2dd20b46dfd8b9d5805c56709b
 ---
 
 # Citations
@@ -56,6 +56,27 @@ curl https://api.anthropic.com/v1/messages \
       }
     ]
   }'
+```
+
+```bash CLI
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 1024
+messages:
+  - role: user
+    content:
+      - type: document
+        source:
+          type: text
+          media_type: text/plain
+          data: The grass is green. The sky is blue.
+        title: My Document
+        context: This is a trustworthy document.
+        citations:
+          enabled: true
+      - type: text
+        text: What color is the grass and sky?
+YAML
 ```
 
 ```python Python hidelines={1..2}
@@ -244,6 +265,27 @@ curl https://api.anthropic.com/v1/messages \
         }
     ]
 }'
+```
+
+```bash CLI
+ant messages create \
+  --model claude-opus-4-6 \
+  --max-tokens 1024 <<'YAML'
+messages:
+  - role: user
+    content:
+      - type: document
+        source:
+          type: text
+          media_type: text/plain
+          data: This is a very long document with thousands of words...
+        citations:
+          enabled: true
+        cache_control:
+          type: ephemeral
+      - type: text
+        text: What does this document say about API features?
+YAML
 ```
 
 ```python Python hidelines={1..2}

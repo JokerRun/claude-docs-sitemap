@@ -23,22 +23,22 @@ Automated daily English sitemap collection from Claude documentation sources.
 <!-- tsv_preview_start -->
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
-| code | https://code.claude.com/docs/en/agent-teams | 2026-04-03 |  |
-| code | https://code.claude.com/docs/en/amazon-bedrock | 2026-04-07 |  |
-| code | https://code.claude.com/docs/en/analytics | 2026-04-02 |  |
-| code | https://code.claude.com/docs/en/authentication | 2026-03-18 |  |
-| code | https://code.claude.com/docs/en/best-practices | 2026-04-03 |  |
-| code | https://code.claude.com/docs/en/changelog | 2026-04-07 |  |
-| code | https://code.claude.com/docs/en/channels | 2026-03-25 |  |
-| code | https://code.claude.com/docs/en/channels-reference | 2026-03-25 |  |
-| code | https://code.claude.com/docs/en/checkpointing | 2026-03-13 |  |
-| code | https://code.claude.com/docs/en/chrome | 2026-04-02 |  |
-| code | https://code.claude.com/docs/en/claude-code-on-the-web | 2026-04-03 |  |
-| code | https://code.claude.com/docs/en/claude-directory | 2026-04-07 |  |
-| code | https://code.claude.com/docs/en/cli-reference | 2026-04-04 |  |
-| code | https://code.claude.com/docs/en/code-review | 2026-04-08 |  |
-| code | https://code.claude.com/docs/en/commands | 2026-04-08 |  |
-| ... | _(~880 more rows)_ | | |
+| code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-04-09 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-04-08 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-04-08 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/custom-tools | 2026-04-08 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/file-check... | 2026-04-08 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-04-08 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/hosting | 2026-04-08 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-04-08 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-04-08 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/modifying-... | 2026-04-08 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/observability | 2026-04-08 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/overview | 2026-04-08 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/permissions | 2026-04-09 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/plugins | 2026-04-08 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/python | 2026-04-08 |  |
+| ... | _(~1289 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

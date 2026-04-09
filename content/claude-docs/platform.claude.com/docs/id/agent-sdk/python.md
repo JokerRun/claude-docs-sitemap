@@ -1,2398 +1,590 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/python
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 82fbe2118b819b899695b74a286bacc07b8899bcaea572a573eb05354c0744b1
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 520c00e11831725b36058a11dbe2c349837a5bb2165fc397e7c2cfbaf8037d43
 ---
 
-# Referensi Agent SDK - Python
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
-Referensi API lengkap untuk Python Agent SDK, termasuk semua fungsi, tipe, dan kelas.
+# Agent SDK overview
 
----
-
-## Instalasi
-
-```bash
-pip install claude-agent-sdk
-```
-
-## Memilih Antara `query()` dan `ClaudeSDKClient`
-
-Python SDK menyediakan dua cara untuk berinteraksi dengan Claude Code:
-
-### Perbandingan Cepat
-
-| Fitur               | `query()`                     | `ClaudeSDKClient`                  |
-| :------------------ | :---------------------------- | :--------------------------------- |
-| **Sesi**            | Membuat sesi baru setiap kali | Menggunakan kembali sesi yang sama |
-| **Percakapan**      | Pertukaran tunggal             | Pertukaran ganda dalam konteks yang sama |
-| **Koneksi**         | Dikelola secara otomatis       | Kontrol manual                     |
-| **Input Streaming** | ✅ Didukung                   | ✅ Didukung                       |
-| **Interupsi**       | ❌ Tidak didukung              | ✅ Didukung                       |
-| **Hooks**           | ❌ Tidak didukung              | ✅ Didukung                       |
-| **Alat Kustom**     | ❌ Tidak didukung              | ✅ Didukung                       |
-| **Lanjutkan Chat**  | ❌ Sesi baru setiap kali      | ✅ Mempertahankan percakapan       |
-| **Kasus Penggunaan**| Tugas sekali jalan             | Percakapan berkelanjutan           |
-
-### Kapan Menggunakan `query()` (Sesi Baru Setiap Kali)
-
-**Terbaik untuk:**
-
-- Pertanyaan sekali jalan di mana Anda tidak memerlukan riwayat percakapan
-- Tugas independen yang tidak memerlukan konteks dari pertukaran sebelumnya
-- Skrip otomasi sederhana
-- Ketika Anda menginginkan awal yang segar setiap kali
-
-### Kapan Menggunakan `ClaudeSDKClient` (Percakapan Berkelanjutan)
-
-**Terbaik untuk:**
-
-- **Melanjutkan percakapan** - Ketika Anda memerlukan Claude untuk mengingat konteks
-- **Pertanyaan lanjutan** - Membangun di atas respons sebelumnya
-- **Aplikasi interaktif** - Antarmuka obrolan, REPL
-- **Logika berbasis respons** - Ketika tindakan berikutnya bergantung pada respons Claude
-- **Kontrol sesi** - Mengelola siklus hidup percakapan secara eksplisit
-
-## Fungsi
-
-### `query()`
-
-Membuat sesi baru untuk setiap interaksi dengan Claude Code. Mengembalikan iterator async yang menghasilkan pesan saat tiba. Setiap panggilan ke `query()` dimulai segar tanpa memori interaksi sebelumnya.
-
-```python
-async def query(
-    *,
-    prompt: str | AsyncIterable[dict[str, Any]],
-    options: ClaudeAgentOptions | None = None
-) -> AsyncIterator[Message]
-```
-
-#### Parameter
-
-| Parameter | Tipe                         | Deskripsi                                                                |
-| :-------- | :--------------------------- | :------------------------------------------------------------------------- |
-| `prompt`  | `str \| AsyncIterable[dict]` | Prompt input sebagai string atau async iterable untuk mode streaming          |
-| `options` | `ClaudeAgentOptions \| None` | Objek konfigurasi opsional (default ke `ClaudeAgentOptions()` jika None) |
-
-#### Pengembalian
-
-Mengembalikan `AsyncIterator[Message]` yang menghasilkan pesan dari percakapan.
-
-#### Contoh - Dengan opsi
-
-```python
-
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions
-
-async def main():
-    options = ClaudeAgentOptions(
-        system_prompt="You are an expert Python developer",
-        permission_mode='acceptEdits',
-        cwd="/home/user/project"
-    )
-
-    async for message in query(
-        prompt="Create a Python web server",
-        options=options
-    ):
-        print(message)
-
-
-asyncio.run(main())
-```
-
-### `tool()`
-
-Dekorator untuk mendefinisikan alat MCP dengan keamanan tipe.
-
-```python
-def tool(
-    name: str,
-    description: str,
-    input_schema: type | dict[str, Any]
-) -> Callable[[Callable[[Any], Awaitable[dict[str, Any]]]], SdkMcpTool[Any]]
-```
-
-#### Parameter
-
-| Parameter      | Tipe                     | Deskripsi                                             |
-| :------------- | :----------------------- | :------------------------------------------------------ |
-| `name`         | `str`                    | Pengenal unik untuk alat                          |
-| `description`  | `str`                    | Deskripsi yang dapat dibaca manusia tentang apa yang dilakukan alat        |
-| `input_schema` | `type \| dict[str, Any]` | Skema yang mendefinisikan parameter input alat (lihat di bawah) |
-
-#### Opsi Input Schema
-
-1. **Pemetaan tipe sederhana** (direkomendasikan):
-
-   ```python
-   {"text": str, "count": int, "enabled": bool}
-   ```
-
-2. **Format JSON Schema** (untuk validasi kompleks):
-   ```python
-   {
-       "type": "object",
-       "properties": {
-           "text": {"type": "string"},
-           "count": {"type": "integer", "minimum": 0}
-       },
-       "required": ["text"]
-   }
-   ```
-
-#### Pengembalian
-
-Fungsi dekorator yang membungkus implementasi alat dan mengembalikan instance `SdkMcpTool`.
-
-#### Contoh
-
-```python
-from claude_agent_sdk import tool
-from typing import Any
-
-@tool("greet", "Greet a user", {"name": str})
-async def greet(args: dict[str, Any]) -> dict[str, Any]:
-    return {
-        "content": [{
-            "type": "text",
-            "text": f"Hello, {args['name']}!"
-        }]
-    }
-```
-
-### `create_sdk_mcp_server()`
-
-Buat server MCP dalam proses yang berjalan dalam aplikasi Python Anda.
-
-```python
-def create_sdk_mcp_server(
-    name: str,
-    version: str = "1.0.0",
-    tools: list[SdkMcpTool[Any]] | None = None
-) -> McpSdkServerConfig
-```
-
-#### Parameter
-
-| Parameter | Tipe                            | Default   | Deskripsi                                           |
-| :-------- | :------------------------------ | :-------- | :---------------------------------------------------- |
-| `name`    | `str`                           | -         | Pengenal unik untuk server                      |
-| `version` | `str`                           | `"1.0.0"` | String versi server                                 |
-| `tools`   | `list[SdkMcpTool[Any]] \| None` | `None`    | Daftar fungsi alat yang dibuat dengan dekorator `@tool` |
-
-#### Pengembalian
-
-Mengembalikan objek `McpSdkServerConfig` yang dapat diteruskan ke `ClaudeAgentOptions.mcp_servers`.
-
-#### Contoh
-
-```python
-from claude_agent_sdk import tool, create_sdk_mcp_server
-
-@tool("add", "Add two numbers", {"a": float, "b": float})
-async def add(args):
-    return {
-        "content": [{
-            "type": "text",
-            "text": f"Sum: {args['a'] + args['b']}"
-        }]
-    }
-
-@tool("multiply", "Multiply two numbers", {"a": float, "b": float})
-async def multiply(args):
-    return {
-        "content": [{
-            "type": "text",
-            "text": f"Product: {args['a'] * args['b']}"
-        }]
-    }
-
-calculator = create_sdk_mcp_server(
-    name="calculator",
-    version="2.0.0",
-    tools=[add, multiply]  # Pass decorated functions
-)
-
-# Use with Claude
-options = ClaudeAgentOptions(
-    mcp_servers={"calc": calculator},
-    allowed_tools=["mcp__calc__add", "mcp__calc__multiply"]
-)
-```
-
-## Kelas
-
-### `ClaudeSDKClient`
-
-**Mempertahankan sesi percakapan di seluruh pertukaran ganda.** Ini adalah setara Python dari cara fungsi `query()` SDK TypeScript bekerja secara internal - ia membuat objek klien yang dapat melanjutkan percakapan.
-
-#### Fitur Utama
-
-- **Kontinuitas Sesi**: Mempertahankan konteks percakapan di seluruh panggilan `query()` ganda
-- **Percakapan yang Sama**: Claude mengingat pesan sebelumnya dalam sesi
-- **Dukungan Interupsi**: Dapat menghentikan Claude di tengah eksekusi
-- **Siklus Hidup Eksplisit**: Anda mengontrol kapan sesi dimulai dan berakhir
-- **Alur Berbasis Respons**: Dapat bereaksi terhadap respons dan mengirim tindak lanjut
-- **Alat Kustom & Hooks**: Mendukung alat kustom (dibuat dengan dekorator `@tool`) dan hooks
-
-```python
-class ClaudeSDKClient:
-    def __init__(self, options: ClaudeAgentOptions | None = None)
-    async def connect(self, prompt: str | AsyncIterable[dict] | None = None) -> None
-    async def query(self, prompt: str | AsyncIterable[dict], session_id: str = "default") -> None
-    async def receive_messages(self) -> AsyncIterator[Message]
-    async def receive_response(self) -> AsyncIterator[Message]
-    async def interrupt(self) -> None
-    async def rewind_files(self, user_message_uuid: str) -> None
-    async def disconnect(self) -> None
-```
-
-#### Metode
-
-| Metode                      | Deskripsi                                                         |
-| :-------------------------- | :------------------------------------------------------------------ |
-| `__init__(options)`         | Inisialisasi klien dengan konfigurasi opsional                   |
-| `connect(prompt)`           | Terhubung ke Claude dengan prompt awal opsional atau aliran pesan |
-| `query(prompt, session_id)` | Kirim permintaan baru dalam mode streaming                                |
-| `receive_messages()`        | Terima semua pesan dari Claude sebagai iterator async               |
-| `receive_response()`        | Terima pesan hingga dan termasuk ResultMessage                |
-| `interrupt()`               | Kirim sinyal interupsi (hanya bekerja dalam mode streaming)                |
-| `rewind_files(user_message_uuid)` | Pulihkan file ke keadaan mereka pada pesan pengguna yang ditentukan. Memerlukan `enable_file_checkpointing=True`. Lihat [File checkpointing](/docs/id/agent-sdk/file-checkpointing) |
-| `disconnect()`              | Putuskan sambungan dari Claude                                              |
-
-#### Dukungan Context Manager
-
-Klien dapat digunakan sebagai async context manager untuk manajemen koneksi otomatis:
-
-```python
-async with ClaudeSDKClient() as client:
-    await client.query("Hello Claude")
-    async for message in client.receive_response():
-        print(message)
-```
-
-> **Penting:** Saat mengulangi pesan, hindari menggunakan `break` untuk keluar lebih awal karena ini dapat menyebabkan masalah pembersihan asyncio. Sebaliknya, biarkan iterasi selesai secara alami atau gunakan flag untuk melacak kapan Anda telah menemukan apa yang Anda butuhkan.
-
-#### Contoh - Melanjutkan percakapan
-
-```python
-import asyncio
-from claude_agent_sdk import ClaudeSDKClient, AssistantMessage, TextBlock, ResultMessage
-
-async def main():
-    async with ClaudeSDKClient() as client:
-        # First question
-        await client.query("What's the capital of France?")
-
-        # Process response
-        async for message in client.receive_response():
-            if isinstance(message, AssistantMessage):
-                for block in message.content:
-                    if isinstance(block, TextBlock):
-                        print(f"Claude: {block.text}")
-
-        # Follow-up question - Claude remembers the previous context
-        await client.query("What's the population of that city?")
-
-        async for message in client.receive_response():
-            if isinstance(message, AssistantMessage):
-                for block in message.content:
-                    if isinstance(block, TextBlock):
-                        print(f"Claude: {block.text}")
-
-        # Another follow-up - still in the same conversation
-        await client.query("What are some famous landmarks there?")
-
-        async for message in client.receive_response():
-            if isinstance(message, AssistantMessage):
-                for block in message.content:
-                    if isinstance(block, TextBlock):
-                        print(f"Claude: {block.text}")
-
-asyncio.run(main())
-```
-
-#### Contoh - Input streaming dengan ClaudeSDKClient
-
-```python
-import asyncio
-from claude_agent_sdk import ClaudeSDKClient
-
-async def message_stream():
-    """Generate messages dynamically."""
-    yield {"type": "text", "text": "Analyze the following data:"}
-    await asyncio.sleep(0.5)
-    yield {"type": "text", "text": "Temperature: 25°C"}
-    await asyncio.sleep(0.5)
-    yield {"type": "text", "text": "Humidity: 60%"}
-    await asyncio.sleep(0.5)
-    yield {"type": "text", "text": "What patterns do you see?"}
-
-async def main():
-    async with ClaudeSDKClient() as client:
-        # Stream input to Claude
-        await client.query(message_stream())
-
-        # Process response
-        async for message in client.receive_response():
-            print(message)
-
-        # Follow-up in same session
-        await client.query("Should we be concerned about these readings?")
-
-        async for message in client.receive_response():
-            print(message)
-
-asyncio.run(main())
-```
-
-#### Contoh - Menggunakan interupsi
-
-```python
-import asyncio
-from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions
-
-async def interruptible_task():
-    options = ClaudeAgentOptions(
-        allowed_tools=["Bash"],
-        permission_mode="acceptEdits"
-    )
-
-    async with ClaudeSDKClient(options=options) as client:
-        # Start a long-running task
-        await client.query("Count from 1 to 100 slowly")
-
-        # Let it run for a bit
-        await asyncio.sleep(2)
-
-        # Interrupt the task
-        await client.interrupt()
-        print("Task interrupted!")
-
-        # Send a new command
-        await client.query("Just say hello instead")
-
-        async for message in client.receive_response():
-            # Process the new response
-            pass
-
-asyncio.run(interruptible_task())
-```
-
-#### Contoh - Kontrol izin lanjutan
-
-```python
-from claude_agent_sdk import (
-    ClaudeSDKClient,
-    ClaudeAgentOptions
-)
-from claude_agent_sdk.types import PermissionResultAllow, PermissionResultDeny
-
-async def custom_permission_handler(
-    tool_name: str,
-    input_data: dict,
-    context: dict
-) -> PermissionResultAllow | PermissionResultDeny:
-    """Custom logic for tool permissions."""
-
-    # Block writes to system directories
-    if tool_name == "Write" and input_data.get("file_path", "").startswith("/system/"):
-        return PermissionResultDeny(
-            message="System directory write not allowed",
-            interrupt=True
-        )
-
-    # Redirect sensitive file operations
-    if tool_name in ["Write", "Edit"] and "config" in input_data.get("file_path", ""):
-        safe_path = f"./sandbox/{input_data['file_path']}"
-        return PermissionResultAllow(
-            updated_input={**input_data, "file_path": safe_path}
-        )
-
-    # Allow everything else
-    return PermissionResultAllow(updated_input=input_data)
-
-async def main():
-    options = ClaudeAgentOptions(
-        can_use_tool=custom_permission_handler,
-        allowed_tools=["Read", "Write", "Edit"]
-    )
-
-    async with ClaudeSDKClient(options=options) as client:
-        await client.query("Update the system config file")
-
-        async for message in client.receive_response():
-            # Will use sandbox path instead
-            print(message)
-
-asyncio.run(main())
-```
-
-## Tipe
-
-### `SdkMcpTool`
-
-Definisi untuk alat MCP SDK yang dibuat dengan dekorator `@tool`.
-
-```python
-@dataclass
-class SdkMcpTool(Generic[T]):
-    name: str
-    description: str
-    input_schema: type[T] | dict[str, Any]
-    handler: Callable[[T], Awaitable[dict[str, Any]]]
-```
-
-| Properti       | Tipe                                       | Deskripsi                                |
-| :------------- | :----------------------------------------- | :----------------------------------------- |
-| `name`         | `str`                                      | Pengenal unik untuk alat             |
-| `description`  | `str`                                      | Deskripsi yang dapat dibaca manusia                 |
-| `input_schema` | `type[T] \| dict[str, Any]`                | Skema untuk validasi input                |
-| `handler`      | `Callable[[T], Awaitable[dict[str, Any]]]` | Fungsi async yang menangani eksekusi alat |
-
-### `ClaudeAgentOptions`
-
-Dataclass konfigurasi untuk kueri Claude Code.
-
-```python
-@dataclass
-class ClaudeAgentOptions:
-    tools: list[str] | ToolsPreset | None = None
-    allowed_tools: list[str] = field(default_factory=list)
-    system_prompt: str | SystemPromptPreset | None = None
-    mcp_servers: dict[str, McpServerConfig] | str | Path = field(default_factory=dict)
-    permission_mode: PermissionMode | None = None
-    continue_conversation: bool = False
-    resume: str | None = None
-    max_turns: int | None = None
-    max_budget_usd: float | None = None
-    disallowed_tools: list[str] = field(default_factory=list)
-    model: str | None = None
-    fallback_model: str | None = None
-    betas: list[SdkBeta] = field(default_factory=list)
-    output_format: OutputFormat | None = None
-    permission_prompt_tool_name: str | None = None
-    cwd: str | Path | None = None
-    cli_path: str | Path | None = None
-    settings: str | None = None
-    add_dirs: list[str | Path] = field(default_factory=list)
-    env: dict[str, str] = field(default_factory=dict)
-    extra_args: dict[str, str | None] = field(default_factory=dict)
-    max_buffer_size: int | None = None
-    debug_stderr: Any = sys.stderr  # Deprecated
-    stderr: Callable[[str], None] | None = None
-    can_use_tool: CanUseTool | None = None
-    hooks: dict[HookEvent, list[HookMatcher]] | None = None
-    user: str | None = None
-    include_partial_messages: bool = False
-    fork_session: bool = False
-    agents: dict[str, AgentDefinition] | None = None
-    setting_sources: list[SettingSource] | None = None
-    max_thinking_tokens: int | None = None
-```
-
-| Properti                      | Tipe                                         | Default              | Deskripsi                                                                                                                                                                             |
-| :---------------------------- | :------------------------------------------- | :------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `tools`                       | `list[str] \| ToolsPreset \| None`           | `None`               | Konfigurasi alat. Gunakan `{"type": "preset", "preset": "claude_code"}` untuk alat default Claude Code                                                                                  |
-| `allowed_tools`               | `list[str]`                                  | `[]`                 | Daftar nama alat yang diizinkan                                                                                                                                                              |
-| `system_prompt`               | `str \| SystemPromptPreset \| None`          | `None`               | Konfigurasi prompt sistem. Lewatkan string untuk prompt kustom, atau gunakan `{"type": "preset", "preset": "claude_code"}` untuk prompt sistem Claude Code. Tambahkan `"append"` untuk memperluas preset |
-| `mcp_servers`                 | `dict[str, McpServerConfig] \| str \| Path`  | `{}`                 | Konfigurasi server MCP atau jalur ke file konfigurasi                                                                                                                                        |
-| `permission_mode`             | `PermissionMode \| None`                     | `None`               | Mode izin untuk penggunaan alat                                                                                                                                                          |
-| `continue_conversation`       | `bool`                                       | `False`              | Lanjutkan percakapan terbaru                                                                                                                                                                   |
-| `resume`                      | `str \| None`                                | `None`               | ID sesi untuk dilanjutkan                                                                                                                                                                    |
-| `max_turns`                   | `int \| None`                                | `None`               | Jumlah maksimal putaran percakapan                                                                                                                                                              |
-| `max_budget_usd`              | `float \| None`                              | `None`               | Anggaran maksimal dalam USD untuk sesi                                                                                                                                                   |
-| `disallowed_tools`            | `list[str]`                                  | `[]`                 | Daftar nama alat yang tidak diizinkan                                                                                                                                                           |
-| `enable_file_checkpointing`   | `bool`                                       | `False`              | Aktifkan pelacakan perubahan file untuk rewinding. Lihat [File checkpointing](/docs/id/agent-sdk/file-checkpointing)                                                                              |
-| `model`                       | `str \| None`                                | `None`               | Model Claude yang akan digunakan                                                                                                                                                                                     |
-| `fallback_model`              | `str \| None`                                | `None`               | Model fallback yang digunakan jika model utama gagal                                                                                                                                        |
-| `betas`                       | `list[SdkBeta]`                              | `[]`                 | Fitur beta yang akan diaktifkan. Lihat [`SdkBeta`](#sdkbeta) untuk opsi yang tersedia                                                                                                                |
-| `output_format`               | [`OutputFormat`](#outputformat) ` \| None`   | `None`               | Tentukan format output untuk hasil agen. Lihat [Structured outputs](/docs/id/agent-sdk/structured-outputs) untuk detail                                                                    |
-| `permission_prompt_tool_name` | `str \| None`                                | `None`               | Nama alat MCP untuk prompt izin                                                                                                                                                    |
-| `cwd`                         | `str \| Path \| None`                        | `None`               | Direktori kerja saat ini                                                                                                                                                               |
-| `cli_path`                    | `str \| Path \| None`                        | `None`               | Jalur kustom ke executable CLI Claude Code                                                                                                                                           |
-| `settings`                    | `str \| None`                                | `None`               | Jalur ke file pengaturan                                                                                                                                                                   |
-| `add_dirs`                    | `list[str \| Path]`                          | `[]`                 | Direktori tambahan yang dapat diakses Claude                                                                                                                                                |
-| `env`                         | `dict[str, str]`                             | `{}`                 | Variabel lingkungan                                                                                                                                                                   |
-| `extra_args`                  | `dict[str, str \| None]`                     | `{}`                 | Argumen CLI tambahan untuk diteruskan langsung ke CLI                                                                                                                                    |
-| `max_buffer_size`             | `int \| None`                                | `None`               | Byte maksimal saat membuffer stdout CLI                                                                                                                                                 |
-| `debug_stderr`                | `Any`                                        | `sys.stderr`         | _Deprecated_ - Objek seperti file untuk output debug. Gunakan callback `stderr` sebagai gantinya                                                                                                         |
-| `stderr`                      | `Callable[[str], None] \| None`              | `None`               | Fungsi callback untuk output stderr dari CLI                                                                                                                                            |
-| `can_use_tool`                | [`CanUseTool`](#canusertool) ` \| None`      | `None`               | Fungsi callback izin alat. Lihat [Permission types](#canusertool) untuk detail                                                                                                     |
-| `hooks`                       | `dict[HookEvent, list[HookMatcher]] \| None` | `None`               | Konfigurasi hook untuk mengintersepsi acara                                                                                                                                             |
-| `user`                        | `str \| None`                                | `None`               | Pengenal pengguna                                                                                                                                                                         |
-| `include_partial_messages`    | `bool`                                       | `False`              | Sertakan acara streaming pesan parsial. Ketika diaktifkan, pesan [`StreamEvent`](#streamevent) dihasilkan                                                                              |
-| `fork_session`                | `bool`                                       | `False`              | Saat melanjutkan dengan `resume`, fork ke ID sesi baru alih-alih melanjutkan sesi asli                                                                                        |
-| `agents`                      | `dict[str, AgentDefinition] \| None`         | `None`               | Subagen yang didefinisikan secara terprogram                                                                                                                                      |
-| `plugins`                     | `list[SdkPluginConfig]`                      | `[]`                 | Muat plugin kustom dari jalur lokal. Lihat [Plugins](/docs/id/agent-sdk/plugins) untuk detail                                                                                             |
-| `sandbox`                     | [`SandboxSettings`](#sandboxsettings) ` \| None` | `None`              | Konfigurasi perilaku sandbox secara terprogram. Lihat [Sandbox settings](#sandboxsettings) untuk detail                                                        |
-| `setting_sources`             | `list[SettingSource] \| None`                | `None` (no settings) | Kontrol pengaturan filesystem mana yang akan dimuat. Ketika dihilangkan, tidak ada pengaturan yang dimuat. **Catatan:** Harus menyertakan `"project"` untuk memuat file CLAUDE.md                                             |
-| `max_thinking_tokens`         | `int \| None`                                | `None`               | Token maksimal untuk blok pemikiran                                                                                                                                                      |
-
-### `OutputFormat`
-
-Konfigurasi untuk validasi output terstruktur.
-
-```python
-class OutputFormat(TypedDict):
-    type: Literal["json_schema"]
-    schema: dict[str, Any]
-```
-
-| Field    | Required | Deskripsi                                    |
-| :------- | :------- | :--------------------------------------------- |
-| `type`   | Yes      | Harus `"json_schema"` untuk validasi JSON Schema |
-| `schema` | Yes      | Definisi JSON Schema untuk validasi output   |
-
-### `SystemPromptPreset`
-
-Konfigurasi untuk menggunakan preset prompt sistem Claude Code dengan penambahan opsional.
-
-```python
-class SystemPromptPreset(TypedDict):
-    type: Literal["preset"]
-    preset: Literal["claude_code"]
-    append: NotRequired[str]
-```
-
-| Field    | Required | Deskripsi                                                   |
-| :------- | :------- | :------------------------------------------------------------ |
-| `type`   | Yes      | Harus `"preset"` untuk menggunakan preset prompt sistem              |
-| `preset` | Yes      | Harus `"claude_code"` untuk menggunakan prompt sistem Claude Code    |
-| `append` | No       | Instruksi tambahan untuk ditambahkan ke preset prompt sistem |
-
-### `SettingSource`
-
-Mengontrol sumber konfigurasi berbasis filesystem mana yang dimuat pengaturan SDK.
-
-```python
-SettingSource = Literal["user", "project", "local"]
-```
-
-| Value       | Deskripsi                                  | Lokasi                      |
-| :---------- | :------------------------------------------- | :---------------------------- |
-| `"user"`    | Pengaturan pengguna global                         | `~/.claude/settings.json`     |
-| `"project"` | Pengaturan proyek bersama (version controlled) | `.claude/settings.json`       |
-| `"local"`   | Pengaturan proyek lokal (gitignored)          | `.claude/settings.local.json` |
-
-#### Perilaku default
-
-Ketika `setting_sources` **dihilangkan** atau **`None`**, SDK **tidak** memuat pengaturan filesystem apa pun. Ini memberikan isolasi untuk aplikasi SDK.
-
-#### Mengapa menggunakan setting_sources?
-
-**Muat semua pengaturan filesystem (perilaku legacy):**
-
-```python
-# Load all settings like SDK v0.0.x did
-from claude_agent_sdk import query, ClaudeAgentOptions
-
-async for message in query(
-    prompt="Analyze this code",
-    options=ClaudeAgentOptions(
-        setting_sources=["user", "project", "local"]  # Load all settings
-    )
-):
-    print(message)
-```
-
-**Muat hanya sumber pengaturan tertentu:**
-
-```python
-# Load only project settings, ignore user and local
-async for message in query(
-    prompt="Run CI checks",
-    options=ClaudeAgentOptions(
-        setting_sources=["project"]  # Only .claude/settings.json
-    )
-):
-    print(message)
-```
-
-**Lingkungan pengujian dan CI:**
-
-```python
-# Ensure consistent behavior in CI by excluding local settings
-async for message in query(
-    prompt="Run tests",
-    options=ClaudeAgentOptions(
-        setting_sources=["project"],  # Only team-shared settings
-        permission_mode="bypassPermissions"
-    )
-):
-    print(message)
-```
-
-**Aplikasi SDK saja:**
-
-```python
-# Define everything programmatically (default behavior)
-# No filesystem dependencies - setting_sources defaults to None
-async for message in query(
-    prompt="Review this PR",
-    options=ClaudeAgentOptions(
-        # setting_sources=None is the default, no need to specify
-        agents={ /* ... */ },
-        mcp_servers={ /* ... */ },
-        allowed_tools=["Read", "Grep", "Glob"]
-    )
-):
-    print(message)
-```
-
-**Memuat instruksi proyek CLAUDE.md:**
-
-```python
-# Load project settings to include CLAUDE.md files
-async for message in query(
-    prompt="Add a new feature following project conventions",
-    options=ClaudeAgentOptions(
-        system_prompt={
-            "type": "preset",
-            "preset": "claude_code"  # Use Claude Code's system prompt
-        },
-        setting_sources=["project"],  # Required to load CLAUDE.md from project
-        allowed_tools=["Read", "Write", "Edit"]
-    )
-):
-    print(message)
-```
-
-#### Preseden pengaturan
-
-Ketika beberapa sumber dimuat, pengaturan digabungkan dengan preseden ini (tertinggi ke terendah):
-
-1. Pengaturan lokal (`.claude/settings.local.json`)
-2. Pengaturan proyek (`.claude/settings.json`)
-3. Pengaturan pengguna (`~/.claude/settings.json`)
-
-Opsi terprogram (seperti `agents`, `allowed_tools`) selalu menimpa pengaturan filesystem.
-
-### `AgentDefinition`
-
-Konfigurasi untuk subagen yang didefinisikan secara terprogram.
-
-```python
-@dataclass
-class AgentDefinition:
-    description: str
-    prompt: str
-    tools: list[str] | None = None
-    model: Literal["sonnet", "opus", "haiku", "inherit"] | None = None
-```
-
-| Field         | Required | Deskripsi                                                    |
-| :------------ | :------- | :------------------------------------------------------------- |
-| `description` | Yes      | Deskripsi bahasa alami tentang kapan menggunakan agen ini         |
-| `tools`       | No       | Array nama alat yang diizinkan. Jika dihilangkan, mewarisi semua alat    |
-| `prompt`      | Yes      | Prompt sistem agen                                      |
-| `model`       | No       | Penggantian model untuk agen ini. Jika dihilangkan, menggunakan model utama |
-
-### `PermissionMode`
-
-Mode izin untuk mengontrol eksekusi alat.
-
-```python
-PermissionMode = Literal[
-    "default",           # Standard permission behavior
-    "acceptEdits",       # Auto-accept file edits
-    "plan",              # Planning mode - no execution
-    "bypassPermissions"  # Bypass all permission checks (use with caution)
-]
-```
-
-### `CanUseTool`
-
-Alias tipe untuk fungsi callback izin alat.
-
-```python
-CanUseTool = Callable[
-    [str, dict[str, Any], ToolPermissionContext],
-    Awaitable[PermissionResult]
-]
-```
-
-Callback menerima:
-- `tool_name`: Nama alat yang sedang dipanggil
-- `input_data`: Parameter input alat
-- `context`: `ToolPermissionContext` dengan informasi tambahan
-
-Mengembalikan `PermissionResult` (baik `PermissionResultAllow` atau `PermissionResultDeny`).
-
-### `ToolPermissionContext`
-
-Informasi konteks yang diteruskan ke callback izin alat.
-
-```python
-@dataclass
-class ToolPermissionContext:
-    signal: Any | None = None  # Future: abort signal support
-    suggestions: list[PermissionUpdate] = field(default_factory=list)
-```
-
-| Field | Type | Description |
-|:------|:-----|:------------|
-| `signal` | `Any \| None` | Dicadangkan untuk dukungan sinyal pembatalan di masa depan |
-| `suggestions` | `list[PermissionUpdate]` | Saran pembaruan izin dari CLI |
-
-### `PermissionResult`
-
-Tipe union untuk hasil callback izin.
-
-```python
-PermissionResult = PermissionResultAllow | PermissionResultDeny
-```
-
-### `PermissionResultAllow`
-
-Hasil yang menunjukkan panggilan alat harus diizinkan.
-
-```python
-@dataclass
-class PermissionResultAllow:
-    behavior: Literal["allow"] = "allow"
-    updated_input: dict[str, Any] | None = None
-    updated_permissions: list[PermissionUpdate] | None = None
-```
-
-| Field | Type | Default | Description |
-|:------|:-----|:--------|:------------|
-| `behavior` | `Literal["allow"]` | `"allow"` | Harus "allow" |
-| `updated_input` | `dict[str, Any] \| None` | `None` | Input yang dimodifikasi untuk digunakan sebagai pengganti asli |
-| `updated_permissions` | `list[PermissionUpdate] \| None` | `None` | Pembaruan izin untuk diterapkan |
-
-### `PermissionResultDeny`
-
-Hasil yang menunjukkan panggilan alat harus ditolak.
-
-```python
-@dataclass
-class PermissionResultDeny:
-    behavior: Literal["deny"] = "deny"
-    message: str = ""
-    interrupt: bool = False
-```
-
-| Field | Type | Default | Description |
-|:------|:-----|:--------|:------------|
-| `behavior` | `Literal["deny"]` | `"deny"` | Harus "deny" |
-| `message` | `str` | `""` | Pesan yang menjelaskan mengapa alat ditolak |
-| `interrupt` | `bool` | `False` | Apakah akan menghentikan eksekusi saat ini |
-
-### `PermissionUpdate`
-
-Konfigurasi untuk memperbarui izin secara terprogram.
-
-```python
-@dataclass
-class PermissionUpdate:
-    type: Literal[
-        "addRules",
-        "replaceRules",
-        "removeRules",
-        "setMode",
-        "addDirectories",
-        "removeDirectories",
-    ]
-    rules: list[PermissionRuleValue] | None = None
-    behavior: Literal["allow", "deny", "ask"] | None = None
-    mode: PermissionMode | None = None
-    directories: list[str] | None = None
-    destination: Literal["userSettings", "projectSettings", "localSettings", "session"] | None = None
-```
-
-| Field | Type | Description |
-|:------|:-----|:------------|
-| `type` | `Literal[...]` | Jenis operasi pembaruan izin |
-| `rules` | `list[PermissionRuleValue] \| None` | Aturan untuk operasi tambah/ganti/hapus |
-| `behavior` | `Literal["allow", "deny", "ask"] \| None` | Perilaku untuk operasi berbasis aturan |
-| `mode` | `PermissionMode \| None` | Mode untuk operasi setMode |
-| `directories` | `list[str] \| None` | Direktori untuk operasi tambah/hapus direktori |
-| `destination` | `Literal[...] \| None` | Tempat menerapkan pembaruan izin |
-
-### `SdkBeta`
-
-Tipe literal untuk fitur beta SDK.
-
-```python
-SdkBeta = Literal["context-1m-2025-08-07"]
-```
-
-Gunakan dengan field `betas` di `ClaudeAgentOptions` untuk mengaktifkan fitur beta.
-
-### `McpSdkServerConfig`
-
-Konfigurasi untuk server MCP SDK yang dibuat dengan `create_sdk_mcp_server()`.
-
-```python
-class McpSdkServerConfig(TypedDict):
-    type: Literal["sdk"]
-    name: str
-    instance: Any  # MCP Server instance
-```
-
-### `McpServerConfig`
-
-Tipe union untuk konfigurasi server MCP.
-
-```python
-McpServerConfig = McpStdioServerConfig | McpSSEServerConfig | McpHttpServerConfig | McpSdkServerConfig
-```
-
-#### `McpStdioServerConfig`
-
-```python
-class McpStdioServerConfig(TypedDict):
-    type: NotRequired[Literal["stdio"]]  # Optional for backwards compatibility
-    command: str
-    args: NotRequired[list[str]]
-    env: NotRequired[dict[str, str]]
-```
-
-#### `McpSSEServerConfig`
-
-```python
-class McpSSEServerConfig(TypedDict):
-    type: Literal["sse"]
-    url: str
-    headers: NotRequired[dict[str, str]]
-```
-
-#### `McpHttpServerConfig`
-
-```python
-class McpHttpServerConfig(TypedDict):
-    type: Literal["http"]
-    url: str
-    headers: NotRequired[dict[str, str]]
-```
-
-### `SdkPluginConfig`
-
-Konfigurasi untuk memuat plugin di SDK.
-
-```python
-class SdkPluginConfig(TypedDict):
-    type: Literal["local"]
-    path: str
-```
-
-| Field | Type | Description |
-|:------|:-----|:------------|
-| `type` | `Literal["local"]` | Harus `"local"` (hanya plugin lokal yang didukung saat ini) |
-| `path` | `str` | Jalur absolut atau relatif ke direktori plugin |
-
-**Contoh:**
-```python
-plugins=[
-    {"type": "local", "path": "./my-plugin"},
-    {"type": "local", "path": "/absolute/path/to/plugin"}
-]
-```
-
-Untuk informasi lengkap tentang membuat dan menggunakan plugin, lihat [Plugins](/docs/id/agent-sdk/plugins).
-
-## Tipe Pesan
-
-### `Message`
-
-Tipe union dari semua pesan yang mungkin.
-
-```python
-Message = UserMessage | AssistantMessage | SystemMessage | ResultMessage | StreamEvent
-```
-
-### `UserMessage`
-
-Pesan input pengguna.
-
-```python
-@dataclass
-class UserMessage:
-    content: str | list[ContentBlock]
-```
-
-### `AssistantMessage`
-
-Pesan respons asisten dengan blok konten.
-
-```python
-@dataclass
-class AssistantMessage:
-    content: list[ContentBlock]
-    model: str
-```
-
-### `SystemMessage`
-
-Pesan sistem dengan metadata.
-
-```python
-@dataclass
-class SystemMessage:
-    subtype: str
-    data: dict[str, Any]
-```
-
-### `ResultMessage`
-
-Pesan hasil akhir dengan informasi biaya dan penggunaan.
-
-```python
-@dataclass
-class ResultMessage:
-    subtype: str
-    duration_ms: int
-    duration_api_ms: int
-    is_error: bool
-    num_turns: int
-    session_id: str
-    total_cost_usd: float | None = None
-    usage: dict[str, Any] | None = None
-    result: str | None = None
-    structured_output: Any = None
-```
-
-### `StreamEvent`
-
-Acara aliran untuk pembaruan pesan parsial selama streaming. Hanya diterima ketika `include_partial_messages=True` di `ClaudeAgentOptions`.
-
-```python
-@dataclass
-class StreamEvent:
-    uuid: str
-    session_id: str
-    event: dict[str, Any]  # The raw Anthropic API stream event
-    parent_tool_use_id: str | None = None
-```
-
-| Field | Type | Description |
-|:------|:-----|:------------|
-| `uuid` | `str` | Pengenal unik untuk acara ini |
-| `session_id` | `str` | Pengenal sesi |
-| `event` | `dict[str, Any]` | Data acara aliran API Anthropic mentah |
-| `parent_tool_use_id` | `str \| None` | ID penggunaan alat induk jika acara ini dari subagen |
-
-## Tipe Blok Konten
-
-### `ContentBlock`
-
-Tipe union dari semua blok konten.
-
-```python
-ContentBlock = TextBlock | ThinkingBlock | ToolUseBlock | ToolResultBlock
-```
-
-### `TextBlock`
-
-Blok konten teks.
-
-```python
-@dataclass
-class TextBlock:
-    text: str
-```
-
-### `ThinkingBlock`
-
-Blok konten pemikiran (untuk model dengan kemampuan pemikiran).
-
-```python
-@dataclass
-class ThinkingBlock:
-    thinking: str
-    signature: str
-```
-
-### `ToolUseBlock`
-
-Blok permintaan penggunaan alat.
-
-```python
-@dataclass
-class ToolUseBlock:
-    id: str
-    name: str
-    input: dict[str, Any]
-```
-
-### `ToolResultBlock`
-
-Blok hasil eksekusi alat.
-
-```python
-@dataclass
-class ToolResultBlock:
-    tool_use_id: str
-    content: str | list[dict[str, Any]] | None = None
-    is_error: bool | None = None
-```
-
-## Tipe Kesalahan
-
-### `ClaudeSDKError`
-
-Kelas pengecualian dasar untuk semua kesalahan SDK.
-
-```python
-class ClaudeSDKError(Exception):
-    """Base error for Claude SDK."""
-```
-
-### `CLINotFoundError`
-
-Dimunculkan ketika Claude Code CLI tidak diinstal atau tidak ditemukan.
-
-```python
-class CLINotFoundError(CLIConnectionError):
-    def __init__(self, message: str = "Claude Code not found", cli_path: str | None = None):
-        """
-        Args:
-            message: Error message (default: "Claude Code not found")
-            cli_path: Optional path to the CLI that was not found
-        """
-```
-
-### `CLIConnectionError`
-
-Dimunculkan ketika koneksi ke Claude Code gagal.
-
-```python
-class CLIConnectionError(ClaudeSDKError):
-    """Failed to connect to Claude Code."""
-```
-
-### `ProcessError`
-
-Dimunculkan ketika proses Claude Code gagal.
-
-```python
-class ProcessError(ClaudeSDKError):
-    def __init__(self, message: str, exit_code: int | None = None, stderr: str | None = None):
-        self.exit_code = exit_code
-        self.stderr = stderr
-```
-
-### `CLIJSONDecodeError`
-
-Dimunculkan ketika penguraian JSON gagal.
-
-```python
-class CLIJSONDecodeError(ClaudeSDKError):
-    def __init__(self, line: str, original_error: Exception):
-        """
-        Args:
-            line: The line that failed to parse
-            original_error: The original JSON decode exception
-        """
-        self.line = line
-        self.original_error = original_error
-```
-
-## Tipe Hook
-
-Untuk panduan komprehensif tentang menggunakan hook dengan contoh dan pola umum, lihat [panduan Hooks](/docs/id/agent-sdk/hooks).
-
-### `HookEvent`
-
-Tipe acara hook yang didukung. Perhatikan bahwa karena keterbatasan pengaturan, Python SDK tidak mendukung hook SessionStart, SessionEnd, dan Notification.
-
-```python
-HookEvent = Literal[
-    "PreToolUse",      # Called before tool execution
-    "PostToolUse",     # Called after tool execution
-    "UserPromptSubmit", # Called when user submits a prompt
-    "Stop",            # Called when stopping execution
-    "SubagentStop",    # Called when a subagent stops
-    "PreCompact"       # Called before message compaction
-]
-```
-
-### `HookCallback`
-
-Definisi tipe untuk fungsi callback hook.
-
-```python
-HookCallback = Callable[
-    [dict[str, Any], str | None, HookContext],
-    Awaitable[dict[str, Any]]
-]
-```
-
-Parameter:
-
-- `input_data`: Data input spesifik hook (lihat [panduan Hooks](/docs/id/agent-sdk/hooks#input-data))
-- `tool_use_id`: Pengenal penggunaan alat opsional (untuk hook terkait alat)
-- `context`: Konteks hook dengan informasi tambahan
-
-Mengembalikan kamus yang mungkin berisi:
-
-- `decision`: `"block"` untuk memblokir tindakan
-- `systemMessage`: Pesan sistem untuk ditambahkan ke transkrip
-- `hookSpecificOutput`: Data output spesifik hook
-
-### `HookContext`
-
-Informasi konteks yang diteruskan ke callback hook.
-
-```python
-@dataclass
-class HookContext:
-    signal: Any | None = None  # Future: abort signal support
-```
-
-### `HookMatcher`
-
-Konfigurasi untuk mencocokkan hook ke acara atau alat tertentu.
-
-```python
-@dataclass
-class HookMatcher:
-    matcher: str | None = None        # Tool name or pattern to match (e.g., "Bash", "Write|Edit")
-    hooks: list[HookCallback] = field(default_factory=list)  # List of callbacks to execute
-    timeout: float | None = None        # Timeout in seconds for all hooks in this matcher (default: 60)
-```
-
-### `HookInput`
-
-Tipe union dari semua tipe input hook. Tipe aktual tergantung pada field `hook_event_name`.
-
-```python
-HookInput = (
-    PreToolUseHookInput
-    | PostToolUseHookInput
-    | UserPromptSubmitHookInput
-    | StopHookInput
-    | SubagentStopHookInput
-    | PreCompactHookInput
-)
-```
-
-### `BaseHookInput`
-
-Field dasar yang ada di semua tipe input hook.
-
-```python
-class BaseHookInput(TypedDict):
-    session_id: str
-    transcript_path: str
-    cwd: str
-    permission_mode: NotRequired[str]
-```
-
-| Field | Type | Description |
-|:------|:-----|:------------|
-| `session_id` | `str` | Pengenal sesi saat ini |
-| `transcript_path` | `str` | Jalur ke file transkrip sesi |
-| `cwd` | `str` | Direktori kerja saat ini |
-| `permission_mode` | `str` (opsional) | Mode izin saat ini |
-
-### `PreToolUseHookInput`
-
-Data input untuk acara hook `PreToolUse`.
-
-```python
-class PreToolUseHookInput(BaseHookInput):
-    hook_event_name: Literal["PreToolUse"]
-    tool_name: str
-    tool_input: dict[str, Any]
-```
-
-| Field | Type | Description |
-|:------|:-----|:------------|
-| `hook_event_name` | `Literal["PreToolUse"]` | Selalu "PreToolUse" |
-| `tool_name` | `str` | Nama alat yang akan dieksekusi |
-| `tool_input` | `dict[str, Any]` | Parameter input untuk alat |
-
-### `PostToolUseHookInput`
-
-Data input untuk acara hook `PostToolUse`.
-
-```python
-class PostToolUseHookInput(BaseHookInput):
-    hook_event_name: Literal["PostToolUse"]
-    tool_name: str
-    tool_input: dict[str, Any]
-    tool_response: Any
-```
-
-| Field | Type | Description |
-|:------|:-----|:------------|
-| `hook_event_name` | `Literal["PostToolUse"]` | Selalu "PostToolUse" |
-| `tool_name` | `str` | Nama alat yang dieksekusi |
-| `tool_input` | `dict[str, Any]` | Parameter input yang digunakan |
-| `tool_response` | `Any` | Respons dari eksekusi alat |
-
-### `UserPromptSubmitHookInput`
-
-Data input untuk acara hook `UserPromptSubmit`.
-
-```python
-class UserPromptSubmitHookInput(BaseHookInput):
-    hook_event_name: Literal["UserPromptSubmit"]
-    prompt: str
-```
-
-| Field | Type | Description |
-|:------|:-----|:------------|
-| `hook_event_name` | `Literal["UserPromptSubmit"]` | Selalu "UserPromptSubmit" |
-| `prompt` | `str` | Prompt yang dikirimkan pengguna |
-
-### `StopHookInput`
-
-Data input untuk acara hook `Stop`.
-
-```python
-class StopHookInput(BaseHookInput):
-    hook_event_name: Literal["Stop"]
-    stop_hook_active: bool
-```
-
-| Field | Type | Description |
-|:------|:-----|:------------|
-| `hook_event_name` | `Literal["Stop"]` | Selalu "Stop" |
-| `stop_hook_active` | `bool` | Apakah hook stop aktif |
-
-### `SubagentStopHookInput`
-
-Data input untuk acara hook `SubagentStop`.
-
-```python
-class SubagentStopHookInput(BaseHookInput):
-    hook_event_name: Literal["SubagentStop"]
-    stop_hook_active: bool
-```
-
-| Field | Type | Description |
-|:------|:-----|:------------|
-| `hook_event_name` | `Literal["SubagentStop"]` | Selalu "SubagentStop" |
-| `stop_hook_active` | `bool` | Apakah hook stop aktif |
-
-### `PreCompactHookInput`
-
-Data input untuk acara hook `PreCompact`.
-
-```python
-class PreCompactHookInput(BaseHookInput):
-    hook_event_name: Literal["PreCompact"]
-    trigger: Literal["manual", "auto"]
-    custom_instructions: str | None
-```
-
-| Field | Type | Description |
-|:------|:-----|:------------|
-| `hook_event_name` | `Literal["PreCompact"]` | Selalu "PreCompact" |
-| `trigger` | `Literal["manual", "auto"]` | Apa yang memicu pemadatan |
-| `custom_instructions` | `str \| None` | Instruksi khusus untuk pemadatan |
-
-### `HookJSONOutput`
-
-Tipe union untuk nilai pengembalian callback hook.
-
-```python
-HookJSONOutput = AsyncHookJSONOutput | SyncHookJSONOutput
-```
-
-#### `SyncHookJSONOutput`
-
-Output hook sinkron dengan field kontrol dan keputusan.
-
-```python
-class SyncHookJSONOutput(TypedDict):
-    # Control fields
-    continue_: NotRequired[bool]      # Whether to proceed (default: True)
-    suppressOutput: NotRequired[bool] # Hide stdout from transcript
-    stopReason: NotRequired[str]      # Message when continue is False
-
-    # Decision fields
-    decision: NotRequired[Literal["block"]]
-    systemMessage: NotRequired[str]   # Warning message for user
-    reason: NotRequired[str]          # Feedback for Claude
-
-    # Hook-specific output
-    hookSpecificOutput: NotRequired[dict[str, Any]]
-```
+> Build production AI agents with Claude Code as a library
 
 <Note>
-Gunakan `continue_` (dengan garis bawah) dalam kode Python. Ini secara otomatis dikonversi ke `continue` ketika dikirim ke CLI.
+  The Claude Code SDK has been renamed to the Claude Agent SDK. If you're migrating from the old SDK, see the [Migration Guide](/en/agent-sdk/migration-guide).
 </Note>
 
-#### `AsyncHookJSONOutput`
+Build AI agents that autonomously read files, run commands, search the web, edit code, and more. The Agent SDK gives you the same tools, agent loop, and context management that power Claude Code, programmable in Python and TypeScript.
 
-Output hook async yang menunda eksekusi hook.
+<CodeGroup>
+  ```python Python theme={null}
+  import asyncio
+  from claude_agent_sdk import query, ClaudeAgentOptions
 
-```python
-class AsyncHookJSONOutput(TypedDict):
-    async_: Literal[True]             # Set to True to defer execution
-    asyncTimeout: NotRequired[int]    # Timeout in milliseconds
-```
 
-<Note>
-Gunakan `async_` (dengan garis bawah) dalam kode Python. Ini secara otomatis dikonversi ke `async` ketika dikirim ke CLI.
-</Note>
+  async def main():
+      async for message in query(
+          prompt="Find and fix the bug in auth.py",
+          options=ClaudeAgentOptions(allowed_tools=["Read", "Edit", "Bash"]),
+      ):
+          print(message)  # Claude reads the file, finds the bug, edits it
 
-### Contoh Penggunaan Hook
 
-Contoh ini mendaftarkan dua hook: satu yang memblokir perintah bash berbahaya seperti `rm -rf /`, dan satu lagi yang mencatat semua penggunaan alat untuk audit. Hook keamanan hanya berjalan pada perintah Bash (melalui `matcher`), sementara hook logging berjalan pada semua alat.
+  asyncio.run(main())
+  ```
 
-```python
-from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher, HookContext
-from typing import Any
+  ```typescript TypeScript theme={null}
+  import { query } from "@anthropic-ai/claude-agent-sdk";
 
-async def validate_bash_command(
-    input_data: dict[str, Any],
-    tool_use_id: str | None,
-    context: HookContext
-) -> dict[str, Any]:
-    """Validate and potentially block dangerous bash commands."""
-    if input_data['tool_name'] == 'Bash':
-        command = input_data['tool_input'].get('command', '')
-        if 'rm -rf /' in command:
-            return {
-                'hookSpecificOutput': {
-                    'hookEventName': 'PreToolUse',
-                    'permissionDecision': 'deny',
-                    'permissionDecisionReason': 'Dangerous command blocked'
-                }
+  for await (const message of query({
+    prompt: "Find and fix the bug in auth.py",
+    options: { allowedTools: ["Read", "Edit", "Bash"] }
+  })) {
+    console.log(message); // Claude reads the file, finds the bug, edits it
+  }
+  ```
+</CodeGroup>
+
+The Agent SDK includes built-in tools for reading files, running commands, and editing code, so your agent can start working immediately without you implementing tool execution. Dive into the quickstart or explore real agents built with the SDK:
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build a bug-fixing agent in minutes
+  </Card>
+
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+</CardGroup>
+
+## Get started
+
+<Steps>
+  <Step title="Install the SDK">
+    <Tabs>
+      <Tab title="TypeScript">
+        ```bash  theme={null}
+        npm install @anthropic-ai/claude-agent-sdk
+        ```
+      </Tab>
+
+      <Tab title="Python">
+        ```bash  theme={null}
+        pip install claude-agent-sdk
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+
+  <Step title="Set your API key">
+    Get an API key from the [Console](https://platform.claude.com/), then set it as an environment variable:
+
+    ```bash  theme={null}
+    export ANTHROPIC_API_KEY=your-api-key
+    ```
+
+    The SDK also supports authentication via third-party API providers:
+
+    * **Amazon Bedrock**: set `CLAUDE_CODE_USE_BEDROCK=1` environment variable and configure AWS credentials
+    * **Google Vertex AI**: set `CLAUDE_CODE_USE_VERTEX=1` environment variable and configure Google Cloud credentials
+    * **Microsoft Azure**: set `CLAUDE_CODE_USE_FOUNDRY=1` environment variable and configure Azure credentials
+
+    See the setup guides for [Bedrock](/en/amazon-bedrock), [Vertex AI](/en/google-vertex-ai), or [Azure AI Foundry](/en/microsoft-foundry) for details.
+
+    <Note>
+      Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Please use the API key authentication methods described in this document instead.
+    </Note>
+  </Step>
+
+  <Step title="Run your first agent">
+    This example creates an agent that lists files in your current directory using built-in tools.
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="What files are in this directory?",
+              options=ClaudeAgentOptions(allowed_tools=["Bash", "Glob"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "What files are in this directory?",
+        options: { allowedTools: ["Bash", "Glob"] }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+  </Step>
+</Steps>
+
+**Ready to build?** Follow the [Quickstart](/en/agent-sdk/quickstart) to create an agent that finds and fixes bugs in minutes.
+
+## Capabilities
+
+Everything that makes Claude Code powerful is available in the SDK:
+
+<Tabs>
+  <Tab title="Built-in tools">
+    Your agent can read files, run commands, and search codebases out of the box. Key tools include:
+
+    | Tool                                                                        | What it does                                                   |
+    | --------------------------------------------------------------------------- | -------------------------------------------------------------- |
+    | **Read**                                                                    | Read any file in the working directory                         |
+    | **Write**                                                                   | Create new files                                               |
+    | **Edit**                                                                    | Make precise edits to existing files                           |
+    | **Bash**                                                                    | Run terminal commands, scripts, git operations                 |
+    | **Glob**                                                                    | Find files by pattern (`**/*.ts`, `src/**/*.py`)               |
+    | **Grep**                                                                    | Search file contents with regex                                |
+    | **WebSearch**                                                               | Search the web for current information                         |
+    | **WebFetch**                                                                | Fetch and parse web page content                               |
+    | **[AskUserQuestion](/en/agent-sdk/user-input#handle-clarifying-questions)** | Ask the user clarifying questions with multiple choice options |
+
+    This example creates an agent that searches your codebase for TODO comments:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Find all TODO comments and create a summary",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob", "Grep"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Find all TODO comments and create a summary",
+        options: { allowedTools: ["Read", "Glob", "Grep"] }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+  </Tab>
+
+  <Tab title="Hooks">
+    Run custom code at key points in the agent lifecycle. SDK hooks use callback functions to validate, log, block, or transform agent behavior.
+
+    **Available hooks:** `PreToolUse`, `PostToolUse`, `Stop`, `SessionStart`, `SessionEnd`, `UserPromptSubmit`, and more.
+
+    This example logs all file changes to an audit file:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from datetime import datetime
+      from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher
+
+
+      async def log_file_change(input_data, tool_use_id, context):
+          file_path = input_data.get("tool_input", {}).get("file_path", "unknown")
+          with open("./audit.log", "a") as f:
+              f.write(f"{datetime.now()}: modified {file_path}\n")
+          return {}
+
+
+      async def main():
+          async for message in query(
+              prompt="Refactor utils.py to improve readability",
+              options=ClaudeAgentOptions(
+                  permission_mode="acceptEdits",
+                  hooks={
+                      "PostToolUse": [
+                          HookMatcher(matcher="Edit|Write", hooks=[log_file_change])
+                      ]
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query, HookCallback } from "@anthropic-ai/claude-agent-sdk";
+      import { appendFile } from "fs/promises";
+
+      const logFileChange: HookCallback = async (input) => {
+        const filePath = (input as any).tool_input?.file_path ?? "unknown";
+        await appendFile("./audit.log", `${new Date().toISOString()}: modified ${filePath}\n`);
+        return {};
+      };
+
+      for await (const message of query({
+        prompt: "Refactor utils.py to improve readability",
+        options: {
+          permissionMode: "acceptEdits",
+          hooks: {
+            PostToolUse: [{ matcher: "Edit|Write", hooks: [logFileChange] }]
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about hooks →](/en/agent-sdk/hooks)
+  </Tab>
+
+  <Tab title="Subagents">
+    Spawn specialized agents to handle focused subtasks. Your main agent delegates work, and subagents report back with results.
+
+    Define custom agents with specialized instructions. Include `Agent` in `allowedTools` since subagents are invoked via the Agent tool:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
+
+
+      async def main():
+          async for message in query(
+              prompt="Use the code-reviewer agent to review this codebase",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep", "Agent"],
+                  agents={
+                      "code-reviewer": AgentDefinition(
+                          description="Expert code reviewer for quality and security reviews.",
+                          prompt="Analyze code quality and suggest improvements.",
+                          tools=["Read", "Glob", "Grep"],
+                      )
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Use the code-reviewer agent to review this codebase",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep", "Agent"],
+          agents: {
+            "code-reviewer": {
+              description: "Expert code reviewer for quality and security reviews.",
+              prompt: "Analyze code quality and suggest improvements.",
+              tools: ["Read", "Glob", "Grep"]
             }
-    return {}
-
-async def log_tool_use(
-    input_data: dict[str, Any],
-    tool_use_id: str | None,
-    context: HookContext
-) -> dict[str, Any]:
-    """Log all tool usage for auditing."""
-    print(f"Tool used: {input_data.get('tool_name')}")
-    return {}
-
-options = ClaudeAgentOptions(
-    hooks={
-        'PreToolUse': [
-            HookMatcher(matcher='Bash', hooks=[validate_bash_command], timeout=120),  # 2 min for validation
-            HookMatcher(hooks=[log_tool_use])  # Applies to all tools (default 60s timeout)
-        ],
-        'PostToolUse': [
-            HookMatcher(hooks=[log_tool_use])
-        ]
-    }
-)
-
-async for message in query(
-    prompt="Analyze this codebase",
-    options=options
-):
-    print(message)
-```
-
-## Tipe Input/Output Alat
-
-Dokumentasi skema input/output untuk semua alat Claude Code bawaan. Meskipun Python SDK tidak mengekspor ini sebagai tipe, mereka mewakili struktur input dan output alat dalam pesan.
-
-### Task
-
-**Nama alat:** `Task`
-
-**Input:**
-
-```python
-{
-    "description": str,      # A short (3-5 word) description of the task
-    "prompt": str,           # The task for the agent to perform
-    "subagent_type": str     # The type of specialized agent to use
-}
-```
-
-**Output:**
-
-```python
-{
-    "result": str,                    # Final result from the subagent
-    "usage": dict | None,             # Token usage statistics
-    "total_cost_usd": float | None,  # Total cost in USD
-    "duration_ms": int | None         # Execution duration in milliseconds
-}
-```
-
-### AskUserQuestion
-
-**Nama alat:** `AskUserQuestion`
-
-Mengajukan pertanyaan klarifikasi kepada pengguna selama eksekusi. Lihat [Handle approvals and user input](/docs/id/agent-sdk/user-input#handle-clarifying-questions) untuk detail penggunaan.
-
-**Input:**
-
-```python
-{
-    "questions": [                    # Questions to ask the user (1-4 questions)
-        {
-            "question": str,          # The complete question to ask the user
-            "header": str,            # Very short label displayed as a chip/tag (max 12 chars)
-            "options": [              # The available choices (2-4 options)
-                {
-                    "label": str,         # Display text for this option (1-5 words)
-                    "description": str    # Explanation of what this option means
-                }
-            ],
-            "multiSelect": bool       # Set to true to allow multiple selections
+          }
         }
-    ],
-    "answers": dict | None            # User answers populated by the permission system
-}
-```
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
 
-**Output:**
+    Messages from within a subagent's context include a `parent_tool_use_id` field, letting you track which messages belong to which subagent execution.
 
-```python
-{
-    "questions": [                    # The questions that were asked
-        {
-            "question": str,
-            "header": str,
-            "options": [{"label": str, "description": str}],
-            "multiSelect": bool
+    [Learn more about subagents →](/en/agent-sdk/subagents)
+  </Tab>
+
+  <Tab title="MCP">
+    Connect to external systems via the Model Context Protocol: databases, browsers, APIs, and [hundreds more](https://github.com/modelcontextprotocol/servers).
+
+    This example connects the [Playwright MCP server](https://github.com/microsoft/playwright-mcp) to give your agent browser automation capabilities:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Open example.com and describe what you see",
+              options=ClaudeAgentOptions(
+                  mcp_servers={
+                      "playwright": {"command": "npx", "args": ["@playwright/mcp@latest"]}
+                  }
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Open example.com and describe what you see",
+        options: {
+          mcpServers: {
+            playwright: { command: "npx", args: ["@playwright/mcp@latest"] }
+          }
         }
-    ],
-    "answers": dict[str, str]         # Maps question text to answer string
-                                      # Multi-select answers are comma-separated
-}
-```
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
 
-### Bash
+    [Learn more about MCP →](/en/agent-sdk/mcp)
+  </Tab>
 
-**Nama alat:** `Bash`
+  <Tab title="Permissions">
+    Control exactly which tools your agent can use. Allow safe operations, block dangerous ones, or require approval for sensitive actions.
 
-**Input:**
+    <Note>
+      For interactive approval prompts and the `AskUserQuestion` tool, see [Handle approvals and user input](/en/agent-sdk/user-input).
+    </Note>
 
-```python
-{
-    "command": str,                  # The command to execute
-    "timeout": int | None,           # Optional timeout in milliseconds (max 600000)
-    "description": str | None,       # Clear, concise description (5-10 words)
-    "run_in_background": bool | None # Set to true to run in background
-}
-```
+    This example creates a read-only agent that can analyze but not modify code. `allowed_tools` pre-approves `Read`, `Glob`, and `Grep`.
 
-**Output:**
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
 
-```python
-{
-    "output": str,              # Combined stdout and stderr output
-    "exitCode": int,            # Exit code of the command
-    "killed": bool | None,      # Whether command was killed due to timeout
-    "shellId": str | None       # Shell ID for background processes
-}
-```
 
-### Edit
+      async def main():
+          async for message in query(
+              prompt="Review this code for best practices",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep"],
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
 
-**Nama alat:** `Edit`
 
-**Input:**
+      asyncio.run(main())
+      ```
 
-```python
-{
-    "file_path": str,           # The absolute path to the file to modify
-    "old_string": str,          # The text to replace
-    "new_string": str,          # The text to replace it with
-    "replace_all": bool | None  # Replace all occurrences (default False)
-}
-```
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
 
-**Output:**
-
-```python
-{
-    "message": str,      # Confirmation message
-    "replacements": int, # Number of replacements made
-    "file_path": str     # File path that was edited
-}
-```
-
-### Read
-
-**Nama alat:** `Read`
-
-**Input:**
-
-```python
-{
-    "file_path": str,       # The absolute path to the file to read
-    "offset": int | None,   # The line number to start reading from
-    "limit": int | None     # The number of lines to read
-}
-```
-
-**Output (Text files):**
-
-```python
-{
-    "content": str,         # File contents with line numbers
-    "total_lines": int,     # Total number of lines in file
-    "lines_returned": int   # Lines actually returned
-}
-```
-
-**Output (Images):**
-
-```python
-{
-    "image": str,       # Base64 encoded image data
-    "mime_type": str,   # Image MIME type
-    "file_size": int    # File size in bytes
-}
-```
-
-### Write
-
-**Nama alat:** `Write`
-
-**Input:**
-
-```python
-{
-    "file_path": str,  # The absolute path to the file to write
-    "content": str     # The content to write to the file
-}
-```
-
-**Output:**
-
-```python
-{
-    "message": str,        # Success message
-    "bytes_written": int,  # Number of bytes written
-    "file_path": str       # File path that was written
-}
-```
-
-### Glob
-
-**Nama alat:** `Glob`
-
-**Input:**
-
-```python
-{
-    "pattern": str,       # The glob pattern to match files against
-    "path": str | None    # The directory to search in (defaults to cwd)
-}
-```
-
-**Output:**
-
-```python
-{
-    "matches": list[str],  # Array of matching file paths
-    "count": int,          # Number of matches found
-    "search_path": str     # Search directory used
-}
-```
-
-### Grep
-
-**Nama alat:** `Grep`
-
-**Input:**
-
-```python
-{
-    "pattern": str,                    # The regular expression pattern
-    "path": str | None,                # File or directory to search in
-    "glob": str | None,                # Glob pattern to filter files
-    "type": str | None,                # File type to search
-    "output_mode": str | None,         # "content", "files_with_matches", or "count"
-    "-i": bool | None,                 # Case insensitive search
-    "-n": bool | None,                 # Show line numbers
-    "-B": int | None,                  # Lines to show before each match
-    "-A": int | None,                  # Lines to show after each match
-    "-C": int | None,                  # Lines to show before and after
-    "head_limit": int | None,          # Limit output to first N lines/entries
-    "multiline": bool | None           # Enable multiline mode
-}
-```
-
-**Output (content mode):**
-
-```python
-{
-    "matches": [
-        {
-            "file": str,
-            "line_number": int | None,
-            "line": str,
-            "before_context": list[str] | None,
-            "after_context": list[str] | None
+      for await (const message of query({
+        prompt: "Review this code for best practices",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep"]
         }
-    ],
-    "total_matches": int
-}
-```
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
 
-**Output (files_with_matches mode):**
+    [Learn more about permissions →](/en/agent-sdk/permissions)
+  </Tab>
 
-```python
-{
-    "files": list[str],  # Files containing matches
-    "count": int         # Number of files with matches
-}
-```
+  <Tab title="Sessions">
+    Maintain context across multiple exchanges. Claude remembers files read, analysis done, and conversation history. Resume sessions later, or fork them to explore different approaches.
 
-### NotebookEdit
+    This example captures the session ID from the first query, then resumes to continue with full context:
 
-**Nama alat:** `NotebookEdit`
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage, ResultMessage
 
-**Input:**
 
-```python
-{
-    "notebook_path": str,                     # Absolute path to the Jupyter notebook
-    "cell_id": str | None,                    # The ID of the cell to edit
-    "new_source": str,                        # The new source for the cell
-    "cell_type": "code" | "markdown" | None,  # The type of the cell
-    "edit_mode": "replace" | "insert" | "delete" | None  # Edit operation type
-}
-```
+      async def main():
+          session_id = None
 
-**Output:**
+          # First query: capture the session ID
+          async for message in query(
+              prompt="Read the authentication module",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob"]),
+          ):
+              if isinstance(message, SystemMessage) and message.subtype == "init":
+                  session_id = message.data["session_id"]
 
-```python
-{
-    "message": str,                              # Success message
-    "edit_type": "replaced" | "inserted" | "deleted",  # Type of edit performed
-    "cell_id": str | None,                       # Cell ID that was affected
-    "total_cells": int                           # Total cells in notebook after edit
-}
-```
+          # Resume with full context from the first query
+          async for message in query(
+              prompt="Now find all places that call it",  # "it" = auth module
+              options=ClaudeAgentOptions(resume=session_id),
+          ):
+              if isinstance(message, ResultMessage):
+                  print(message.result)
 
-### WebFetch
 
-**Nama alat:** `WebFetch`
+      asyncio.run(main())
+      ```
 
-**Input:**
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
 
-```python
-{
-    "url": str,     # The URL to fetch content from
-    "prompt": str   # The prompt to run on the fetched content
-}
-```
+      let sessionId: string | undefined;
 
-**Output:**
-
-```python
-{
-    "response": str,           # AI model's response to the prompt
-    "url": str,                # URL that was fetched
-    "final_url": str | None,   # Final URL after redirects
-    "status_code": int | None  # HTTP status code
-}
-```
-
-### WebSearch
-
-**Nama alat:** `WebSearch`
-
-**Input:**
-
-```python
-{
-    "query": str,                        # The search query to use
-    "allowed_domains": list[str] | None, # Only include results from these domains
-    "blocked_domains": list[str] | None  # Never include results from these domains
-}
-```
-
-**Output:**
-
-```python
-{
-    "results": [
-        {
-            "title": str,
-            "url": str,
-            "snippet": str,
-            "metadata": dict | None
+      // First query: capture the session ID
+      for await (const message of query({
+        prompt: "Read the authentication module",
+        options: { allowedTools: ["Read", "Glob"] }
+      })) {
+        if (message.type === "system" && message.subtype === "init") {
+          sessionId = message.session_id;
         }
-    ],
-    "total_results": int,
-    "query": str
-}
-```
-
-### TodoWrite
+      }
 
-**Nama alat:** `TodoWrite`
+      // Resume with full context from the first query
+      for await (const message of query({
+        prompt: "Now find all places that call it", // "it" = auth module
+        options: { resume: sessionId }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
 
-**Input:**
+    [Learn more about sessions →](/en/agent-sdk/sessions)
+  </Tab>
+</Tabs>
 
-```python
-{
-    "todos": [
-        {
-            "content": str,                              # The task description
-            "status": "pending" | "in_progress" | "completed",  # Task status
-            "activeForm": str                            # Active form of the description
-        }
-    ]
-}
-```
-
-**Output:**
-
-```python
-{
-    "message": str,  # Success message
-    "stats": {
-        "total": int,
-        "pending": int,
-        "in_progress": int,
-        "completed": int
-    }
-}
-```
-
-### BashOutput
-
-**Nama alat:** `BashOutput`
-
-**Input:**
-
-```python
-{
-    "bash_id": str,       # The ID of the background shell
-    "filter": str | None  # Optional regex to filter output lines
-}
-```
-
-**Output:**
-
-```python
-{
-    "output": str,                                      # New output since last check
-    "status": "running" | "completed" | "failed",       # Current shell status
-    "exitCode": int | None                              # Exit code when completed
-}
-```
-
-### KillBash
-
-**Nama alat:** `KillBash`
-
-**Input:**
-
-```python
-{
-    "shell_id": str  # The ID of the background shell to kill
-}
-```
-
-**Output:**
-
-```python
-{
-    "message": str,  # Success message
-    "shell_id": str  # ID of the killed shell
-}
-```
-
-### ExitPlanMode
-
-**Nama alat:** `ExitPlanMode`
-
-**Input:**
-
-```python
-{
-    "plan": str  # The plan to run by the user for approval
-}
-```
-
-**Output:**
-
-```python
-{
-    "message": str,          # Confirmation message
-    "approved": bool | None  # Whether user approved the plan
-}
-```
-
-### ListMcpResources
-
-**Nama alat:** `ListMcpResources`
-
-**Input:**
-
-```python
-{
-    "server": str | None  # Optional server name to filter resources by
-}
-```
-
-**Output:**
-
-```python
-{
-    "resources": [
-        {
-            "uri": str,
-            "name": str,
-            "description": str | None,
-            "mimeType": str | None,
-            "server": str
-        }
-    ],
-    "total": int
-}
-```
-
-### ReadMcpResource
-
-**Nama alat:** `ReadMcpResource`
-
-**Input:**
-
-```python
-{
-    "server": str,  # The MCP server name
-    "uri": str      # The resource URI to read
-}
-```
-
-**Output:**
-
-```python
-{
-    "contents": [
-        {
-            "uri": str,
-            "mimeType": str | None,
-            "text": str | None,
-            "blob": str | None
-        }
-    ],
-    "server": str
-}
-```
-
-## Fitur Lanjutan dengan ClaudeSDKClient
-
-### Membangun Antarmuka Percakapan Berkelanjutan
-
-```python
-from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions, AssistantMessage, TextBlock
-import asyncio
-
-class ConversationSession:
-    """Maintains a single conversation session with Claude."""
-
-    def __init__(self, options: ClaudeAgentOptions = None):
-        self.client = ClaudeSDKClient(options)
-        self.turn_count = 0
-
-    async def start(self):
-        await self.client.connect()
-        print("Starting conversation session. Claude will remember context.")
-        print("Commands: 'exit' to quit, 'interrupt' to stop current task, 'new' for new session")
-
-        while True:
-            user_input = input(f"\n[Turn {self.turn_count + 1}] You: ")
-
-            if user_input.lower() == 'exit':
-                break
-            elif user_input.lower() == 'interrupt':
-                await self.client.interrupt()
-                print("Task interrupted!")
-                continue
-            elif user_input.lower() == 'new':
-                # Disconnect and reconnect for a fresh session
-                await self.client.disconnect()
-                await self.client.connect()
-                self.turn_count = 0
-                print("Started new conversation session (previous context cleared)")
-                continue
-
-            # Send message - Claude remembers all previous messages in this session
-            await self.client.query(user_input)
-            self.turn_count += 1
-
-            # Process response
-            print(f"[Turn {self.turn_count}] Claude: ", end="")
-            async for message in self.client.receive_response():
-                if isinstance(message, AssistantMessage):
-                    for block in message.content:
-                        if isinstance(block, TextBlock):
-                            print(block.text, end="")
-            print()  # New line after response
-
-        await self.client.disconnect()
-        print(f"Conversation ended after {self.turn_count} turns.")
-
-async def main():
-    options = ClaudeAgentOptions(
-        allowed_tools=["Read", "Write", "Bash"],
-        permission_mode="acceptEdits"
-    )
-    session = ConversationSession(options)
-    await session.start()
-
-# Example conversation:
-# Turn 1 - You: "Create a file called hello.py"
-# Turn 1 - Claude: "I'll create a hello.py file for you..."
-# Turn 2 - You: "What's in that file?"
-# Turn 2 - Claude: "The hello.py file I just created contains..." (remembers!)
-# Turn 3 - You: "Add a main function to it"
-# Turn 3 - Claude: "I'll add a main function to hello.py..." (knows which file!)
-
-asyncio.run(main())
-```
-
-### Menggunakan Hook untuk Modifikasi Perilaku
-
-```python
-from claude_agent_sdk import (
-    ClaudeSDKClient,
-    ClaudeAgentOptions,
-    HookMatcher,
-    HookContext
-)
-import asyncio
-from typing import Any
-
-async def pre_tool_logger(
-    input_data: dict[str, Any],
-    tool_use_id: str | None,
-    context: HookContext
-) -> dict[str, Any]:
-    """Log all tool usage before execution."""
-    tool_name = input_data.get('tool_name', 'unknown')
-    print(f"[PRE-TOOL] About to use: {tool_name}")
-
-    # You can modify or block the tool execution here
-    if tool_name == "Bash" and "rm -rf" in str(input_data.get('tool_input', {})):
-        return {
-            'hookSpecificOutput': {
-                'hookEventName': 'PreToolUse',
-                'permissionDecision': 'deny',
-                'permissionDecisionReason': 'Dangerous command blocked'
-            }
-        }
-    return {}
-
-async def post_tool_logger(
-    input_data: dict[str, Any],
-    tool_use_id: str | None,
-    context: HookContext
-) -> dict[str, Any]:
-    """Log results after tool execution."""
-    tool_name = input_data.get('tool_name', 'unknown')
-    print(f"[POST-TOOL] Completed: {tool_name}")
-    return {}
-
-async def user_prompt_modifier(
-    input_data: dict[str, Any],
-    tool_use_id: str | None,
-    context: HookContext
-) -> dict[str, Any]:
-    """Add context to user prompts."""
-    original_prompt = input_data.get('prompt', '')
-
-    # Add timestamp to all prompts
-    from datetime import datetime
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    return {
-        'hookSpecificOutput': {
-            'hookEventName': 'UserPromptSubmit',
-            'updatedPrompt': f"[{timestamp}] {original_prompt}"
-        }
-    }
-
-async def main():
-    options = ClaudeAgentOptions(
-        hooks={
-            'PreToolUse': [
-                HookMatcher(hooks=[pre_tool_logger]),
-                HookMatcher(matcher='Bash', hooks=[pre_tool_logger])
-            ],
-            'PostToolUse': [
-                HookMatcher(hooks=[post_tool_logger])
-            ],
-            'UserPromptSubmit': [
-                HookMatcher(hooks=[user_prompt_modifier])
-            ]
-        },
-        allowed_tools=["Read", "Write", "Bash"]
-    )
-
-    async with ClaudeSDKClient(options=options) as client:
-        await client.query("List files in current directory")
-
-        async for message in client.receive_response():
-            # Hooks will automatically log tool usage
-            pass
-
-asyncio.run(main())
-```
-
-### Pemantauan Kemajuan Real-time
-
-```python
-from claude_agent_sdk import (
-    ClaudeSDKClient,
-    ClaudeAgentOptions,
-    AssistantMessage,
-    ToolUseBlock,
-    ToolResultBlock,
-    TextBlock
-)
-import asyncio
-
-async def monitor_progress():
-    options = ClaudeAgentOptions(
-        allowed_tools=["Write", "Bash"],
-        permission_mode="acceptEdits"
-    )
-
-    async with ClaudeSDKClient(options=options) as client:
-        await client.query(
-            "Create 5 Python files with different sorting algorithms"
-        )
-
-        # Monitor progress in real-time
-        files_created = []
-        async for message in client.receive_messages():
-            if isinstance(message, AssistantMessage):
-                for block in message.content:
-                    if isinstance(block, ToolUseBlock):
-                        if block.name == "Write":
-                            file_path = block.input.get("file_path", "")
-                            print(f"🔨 Creating: {file_path}")
-                    elif isinstance(block, ToolResultBlock):
-                        print(f"✅ Completed tool execution")
-                    elif isinstance(block, TextBlock):
-                        print(f"💭 Claude says: {block.text[:100]}...")
-
-            # Check if we've received the final result
-            if hasattr(message, 'subtype') and message.subtype in ['success', 'error']:
-                print(f"\n🎯 Task completed!")
-                break
-
-asyncio.run(monitor_progress())
-```
-
-## Contoh Penggunaan
-
-### Operasi file dasar (menggunakan query)
-
-```python
-from claude_agent_sdk import query, ClaudeAgentOptions, AssistantMessage, ToolUseBlock
-import asyncio
-
-async def create_project():
-    options = ClaudeAgentOptions(
-        allowed_tools=["Read", "Write", "Bash"],
-        permission_mode='acceptEdits',
-        cwd="/home/user/project"
-    )
-
-    async for message in query(
-        prompt="Create a Python project structure with setup.py",
-        options=options
-    ):
-        if isinstance(message, AssistantMessage):
-            for block in message.content:
-                if isinstance(block, ToolUseBlock):
-                    print(f"Using tool: {block.name}")
-
-asyncio.run(create_project())
-```
-
-### Penanganan kesalahan
-
-```python
-from claude_agent_sdk import (
-    query,
-    CLINotFoundError,
-    ProcessError,
-    CLIJSONDecodeError
-)
-
-try:
-    async for message in query(prompt="Hello"):
-        print(message)
-except CLINotFoundError:
-    print("Please install Claude Code: npm install -g @anthropic-ai/claude-code")
-except ProcessError as e:
-    print(f"Process failed with exit code: {e.exit_code}")
-except CLIJSONDecodeError as e:
-    print(f"Failed to parse response: {e}")
-```
-
-### Mode streaming dengan klien
-
-```python
-from claude_agent_sdk import ClaudeSDKClient
-import asyncio
-
-async def interactive_session():
-    async with ClaudeSDKClient() as client:
-        # Send initial message
-        await client.query("What's the weather like?")
-
-        # Process responses
-        async for msg in client.receive_response():
-            print(msg)
-
-        # Send follow-up
-        await client.query("Tell me more about that")
-
-        # Process follow-up response
-        async for msg in client.receive_response():
-            print(msg)
-
-asyncio.run(interactive_session())
-```
-
-### Menggunakan alat kustom dengan ClaudeSDKClient
-
-```python
-from claude_agent_sdk import (
-    ClaudeSDKClient,
-    ClaudeAgentOptions,
-    tool,
-    create_sdk_mcp_server,
-    AssistantMessage,
-    TextBlock
-)
-import asyncio
-from typing import Any
-
-# Define custom tools with @tool decorator
-@tool("calculate", "Perform mathematical calculations", {"expression": str})
-async def calculate(args: dict[str, Any]) -> dict[str, Any]:
-    try:
-        result = eval(args["expression"], {"__builtins__": {}})
-        return {
-            "content": [{
-                "type": "text",
-                "text": f"Result: {result}"
-            }]
-        }
-    except Exception as e:
-        return {
-            "content": [{
-                "type": "text",
-                "text": f"Error: {str(e)}"
-            }],
-            "is_error": True
-        }
-
-@tool("get_time", "Get current time", {})
-async def get_time(args: dict[str, Any]) -> dict[str, Any]:
-    from datetime import datetime
-    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    return {
-        "content": [{
-            "type": "text",
-            "text": f"Current time: {current_time}"
-        }]
-    }
-
-async def main():
-    # Create SDK MCP server with custom tools
-    my_server = create_sdk_mcp_server(
-        name="utilities",
-        version="1.0.0",
-        tools=[calculate, get_time]
-    )
-
-    # Configure options with the server
-    options = ClaudeAgentOptions(
-        mcp_servers={"utils": my_server},
-        allowed_tools=[
-            "mcp__utils__calculate",
-            "mcp__utils__get_time"
-        ]
-    )
-
-    # Use ClaudeSDKClient for interactive tool usage
-    async with ClaudeSDKClient(options=options) as client:
-        await client.query("What's 123 * 456?")
-
-        # Process calculation response
-        async for message in client.receive_response():
-            if isinstance(message, AssistantMessage):
-                for block in message.content:
-                    if isinstance(block, TextBlock):
-                        print(f"Calculation: {block.text}")
-
-        # Follow up with time query
-        await client.query("What time is it now?")
-
-        async for message in client.receive_response():
-            if isinstance(message, AssistantMessage):
-                for block in message.content:
-                    if isinstance(block, TextBlock):
-                        print(f"Time: {block.text}")
-
-asyncio.run(main())
-```
-
-## Konfigurasi Sandbox
-
-### `SandboxSettings`
-
-Konfigurasi untuk perilaku sandbox. Gunakan ini untuk mengaktifkan sandboxing perintah dan mengonfigurasi pembatasan jaringan secara terprogram.
-
-```python
-class SandboxSettings(TypedDict, total=False):
-    enabled: bool
-    autoAllowBashIfSandboxed: bool
-    excludedCommands: list[str]
-    allowUnsandboxedCommands: bool
-    network: SandboxNetworkConfig
-    ignoreViolations: SandboxIgnoreViolations
-    enableWeakerNestedSandbox: bool
-```
-
-| Property | Type | Default | Description |
-| :------- | :--- | :------ | :---------- |
-| `enabled` | `bool` | `False` | Aktifkan mode sandbox untuk eksekusi perintah |
-| `autoAllowBashIfSandboxed` | `bool` | `False` | Persetujuan otomatis perintah bash saat sandbox diaktifkan |
-| `excludedCommands` | `list[str]` | `[]` | Perintah yang selalu melewati pembatasan sandbox (misalnya, `["docker"]`). Ini berjalan tanpa sandbox secara otomatis tanpa keterlibatan model |
-| `allowUnsandboxedCommands` | `bool` | `False` | Izinkan model untuk meminta menjalankan perintah di luar sandbox. Ketika `True`, model dapat mengatur `dangerouslyDisableSandbox` dalam input alat, yang kembali ke [sistem izin](#permissions-fallback-for-unsandboxed-commands) |
-| `network` | [`SandboxNetworkConfig`](#sandboxnetworkconfig) | `None` | Konfigurasi sandbox khusus jaringan |
-| `ignoreViolations` | [`SandboxIgnoreViolations`](#sandboxignoreviolations) | `None` | Konfigurasi pelanggaran sandbox mana yang akan diabaikan |
-| `enableWeakerNestedSandbox` | `bool` | `False` | Aktifkan sandbox bersarang yang lebih lemah untuk kompatibilitas |
-
-<Note>
-**Pembatasan akses sistem file dan jaringan** TIDAK dikonfigurasi melalui pengaturan sandbox. Sebaliknya, mereka berasal dari [aturan izin](https://code.claude.com/docs/id/settings#permission-settings):
-
-- **Pembatasan baca sistem file**: Aturan penolakan baca
-- **Pembatasan tulis sistem file**: Aturan izin/penolakan edit
-- **Pembatasan jaringan**: Aturan izin/penolakan WebFetch
-
-Gunakan pengaturan sandbox untuk sandboxing eksekusi perintah, dan aturan izin untuk kontrol akses sistem file dan jaringan.
-</Note>
-
-#### Contoh penggunaan
-
-```python
-from claude_agent_sdk import query, ClaudeAgentOptions, SandboxSettings
-
-sandbox_settings: SandboxSettings = {
-    "enabled": True,
-    "autoAllowBashIfSandboxed": True,
-    "network": {
-        "allowLocalBinding": True
-    }
-}
-
-async for message in query(
-    prompt="Build and test my project",
-    options=ClaudeAgentOptions(sandbox=sandbox_settings)
-):
-    print(message)
-```
-
-<Warning>
-**Keamanan Unix socket**: Opsi `allowUnixSockets` dapat memberikan akses ke layanan sistem yang kuat. Misalnya, mengizinkan `/var/run/docker.sock` secara efektif memberikan akses sistem host penuh melalui API Docker, melewati isolasi sandbox. Hanya izinkan Unix socket yang benar-benar diperlukan dan pahami implikasi keamanan dari masing-masing.
-</Warning>
-
-### `SandboxNetworkConfig`
-
-Konfigurasi khusus jaringan untuk mode sandbox.
-
-```python
-class SandboxNetworkConfig(TypedDict, total=False):
-    allowLocalBinding: bool
-    allowUnixSockets: list[str]
-    allowAllUnixSockets: bool
-    httpProxyPort: int
-    socksProxyPort: int
-```
-
-| Property | Type | Default | Description |
-| :------- | :--- | :------ | :---------- |
-| `allowLocalBinding` | `bool` | `False` | Izinkan proses untuk mengikat ke port lokal (misalnya, untuk server dev) |
-| `allowUnixSockets` | `list[str]` | `[]` | Jalur Unix socket yang dapat diakses proses (misalnya, Docker socket) |
-| `allowAllUnixSockets` | `bool` | `False` | Izinkan akses ke semua Unix socket |
-| `httpProxyPort` | `int` | `None` | Port proxy HTTP untuk permintaan jaringan |
-| `socksProxyPort` | `int` | `None` | Port proxy SOCKS untuk permintaan jaringan |
-
-### `SandboxIgnoreViolations`
-
-Konfigurasi untuk mengabaikan pelanggaran sandbox tertentu.
-
-```python
-class SandboxIgnoreViolations(TypedDict, total=False):
-    file: list[str]
-    network: list[str]
-```
-
-| Property | Type | Default | Description |
-| :------- | :--- | :------ | :---------- |
-| `file` | `list[str]` | `[]` | Pola jalur file untuk mengabaikan pelanggaran |
-| `network` | `list[str]` | `[]` | Pola jaringan untuk mengabaikan pelanggaran |
-
-### Fallback Izin untuk Perintah Tanpa Sandbox
-
-Ketika `allowUnsandboxedCommands` diaktifkan, model dapat meminta untuk menjalankan perintah di luar sandbox dengan mengatur `dangerouslyDisableSandbox: True` dalam input alat. Permintaan ini kembali ke sistem izin yang ada, berarti handler `can_use_tool` Anda akan dipanggil, memungkinkan Anda menerapkan logika otorisasi kustom.
-
-<Note>
-**`excludedCommands` vs `allowUnsandboxedCommands`:**
-- `excludedCommands`: Daftar statis perintah yang selalu melewati sandbox secara otomatis (misalnya, `["docker"]`). Model tidak memiliki kontrol atas ini.
-- `allowUnsandboxedCommands`: Memungkinkan model memutuskan saat runtime apakah akan meminta eksekusi tanpa sandbox dengan mengatur `dangerouslyDisableSandbox: True` dalam input alat.
-</Note>
-
-```python
-from claude_agent_sdk import query, ClaudeAgentOptions
-
-async def can_use_tool(tool: str, input: dict) -> bool:
-    # Check if the model is requesting to bypass the sandbox
-    if tool == "Bash" and input.get("dangerouslyDisableSandbox"):
-        # The model wants to run this command outside the sandbox
-        print(f"Unsandboxed command requested: {input.get('command')}")
-
-        # Return True to allow, False to deny
-        return is_command_authorized(input.get("command"))
-    return True
-
-async def main():
-    async for message in query(
-        prompt="Deploy my application",
-        options=ClaudeAgentOptions(
-            sandbox={
-                "enabled": True,
-                "allowUnsandboxedCommands": True  # Model can request unsandboxed execution
-            },
-            permission_mode="default",
-            can_use_tool=can_use_tool
-        )
-    ):
-        print(message)
-```
-
-Pola ini memungkinkan Anda untuk:
-
-- **Audit permintaan model**: Catat ketika model meminta eksekusi tanpa sandbox
-- **Implementasikan daftar izin**: Hanya izinkan perintah tertentu untuk berjalan tanpa sandbox
-- **Tambahkan alur persetujuan**: Memerlukan otorisasi eksplisit untuk operasi istimewa
-
-<Warning>
-Perintah yang berjalan dengan `dangerouslyDisableSandbox: True` memiliki akses sistem penuh. Pastikan handler `can_use_tool` Anda memvalidasi permintaan ini dengan hati-hati.
-
-Jika `permission_mode` diatur ke `bypassPermissions` dan `allow_unsandboxed_commands` diaktifkan, model dapat secara otonom menjalankan perintah di luar sandbox tanpa prompt persetujuan apa pun. Kombinasi ini secara efektif memungkinkan model untuk melarikan diri dari isolasi sandbox secara diam-diam.
-</Warning>
-
-## Lihat juga
-
-- [Panduan Python SDK](/docs/id/agent-sdk/python) - Tutorial dan contoh
-- [Ringkasan SDK](/docs/id/agent-sdk/overview) - Konsep SDK umum
-- [Referensi TypeScript SDK](/docs/id/agent-sdk/typescript) - Dokumentasi SDK TypeScript
-- [Referensi CLI](https://code.claude.com/docs/id/cli-reference) - Antarmuka baris perintah
-- [Alur kerja umum](https://code.claude.com/docs/id/common-workflows) - Panduan langkah demi langkah
+### Claude Code features
+
+The SDK also supports Claude Code's filesystem-based configuration. To use these features, set `setting_sources=["project"]` (Python) or `settingSources: ['project']` (TypeScript)  in your options.
+
+| Feature                                          | Description                                          | Location                           |
+| ------------------------------------------------ | ---------------------------------------------------- | ---------------------------------- |
+| [Skills](/en/agent-sdk/skills)                   | Specialized capabilities defined in Markdown         | `.claude/skills/*/SKILL.md`        |
+| [Slash commands](/en/agent-sdk/slash-commands)   | Custom commands for common tasks                     | `.claude/commands/*.md`            |
+| [Memory](/en/agent-sdk/modifying-system-prompts) | Project context and instructions                     | `CLAUDE.md` or `.claude/CLAUDE.md` |
+| [Plugins](/en/agent-sdk/plugins)                 | Extend with custom commands, agents, and MCP servers | Programmatic via `plugins` option  |
+
+## Compare the Agent SDK to other Claude tools
+
+The Claude Platform offers multiple ways to build with Claude. Here's how the Agent SDK fits in:
+
+<Tabs>
+  <Tab title="Agent SDK vs Client SDK">
+    The [Anthropic Client SDK](https://platform.claude.com/docs/en/api/client-sdks) gives you direct API access: you send prompts and implement tool execution yourself. The **Agent SDK** gives you Claude with built-in tool execution.
+
+    With the Client SDK, you implement a tool loop. With the Agent SDK, Claude handles it:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      # Client SDK: You implement the tool loop
+      response = client.messages.create(...)
+      while response.stop_reason == "tool_use":
+          result = your_tool_executor(response.tool_use)
+          response = client.messages.create(tool_result=result, **params)
+
+      # Agent SDK: Claude handles tools autonomously
+      async for message in query(prompt="Fix the bug in auth.py"):
+          print(message)
+      ```
+
+      ```typescript TypeScript theme={null}
+      // Client SDK: You implement the tool loop
+      let response = await client.messages.create({ ...params });
+      while (response.stop_reason === "tool_use") {
+        const result = yourToolExecutor(response.tool_use);
+        response = await client.messages.create({ tool_result: result, ...params });
+      }
+
+      // Agent SDK: Claude handles tools autonomously
+      for await (const message of query({ prompt: "Fix the bug in auth.py" })) {
+        console.log(message);
+      }
+      ```
+    </CodeGroup>
+  </Tab>
+
+  <Tab title="Agent SDK vs Claude Code CLI">
+    Same capabilities, different interface:
+
+    | Use case                | Best choice |
+    | ----------------------- | ----------- |
+    | Interactive development | CLI         |
+    | CI/CD pipelines         | SDK         |
+    | Custom applications     | SDK         |
+    | One-off tasks           | CLI         |
+    | Production automation   | SDK         |
+
+    Many teams use both: CLI for daily development, SDK for production. Workflows translate directly between them.
+  </Tab>
+</Tabs>
+
+## Changelog
+
+View the full changelog for SDK updates, bug fixes, and new features:
+
+* **TypeScript SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-typescript/blob/main/CHANGELOG.md)
+* **Python SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-python/blob/main/CHANGELOG.md)
+
+## Reporting bugs
+
+If you encounter bugs or issues with the Agent SDK:
+
+* **TypeScript SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-typescript/issues)
+* **Python SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-python/issues)
+
+## Branding guidelines
+
+For partners integrating the Claude Agent SDK, use of Claude branding is optional. When referencing Claude in your product:
+
+**Allowed:**
+
+* "Claude Agent" (preferred for dropdown menus)
+* "Claude" (when within a menu already labeled "Agents")
+* "{YourAgentName} Powered by Claude" (if you have an existing agent name)
+
+**Not permitted:**
+
+* "Claude Code" or "Claude Code Agent"
+* Claude Code-branded ASCII art or visual elements that mimic Claude Code
+
+Your product should maintain its own branding and not appear to be Claude Code or any Anthropic product. For questions about branding compliance, contact the Anthropic [sales team](https://www.anthropic.com/contact-sales).
+
+## License and terms
+
+Use of the Claude Agent SDK is governed by [Anthropic's Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms), including when you use it to power products and services that you make available to your own customers and end users, except to the extent a specific component or dependency is covered by a different license as indicated in that component's LICENSE file.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build an agent that finds and fixes bugs in minutes
+  </Card>
+
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+
+  <Card title="TypeScript SDK" icon="code" href="/en/agent-sdk/typescript">
+    Full TypeScript API reference and examples
+  </Card>
+
+  <Card title="Python SDK" icon="code" href="/en/agent-sdk/python">
+    Full Python API reference and examples
+  </Card>
+</CardGroup>

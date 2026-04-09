@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-03-28T04:23:53.783656Z
-sha256: df52ecbb0b0ffdcc743c33ebaf808f9d9f9ae4c6ad736a7c834781f68e4ea405
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: cc2363876a07e1776314435e8db4d9b1cb3fbe6648f3172f665a1d4c1be9c74e
 ---
 
 # Fast mode (beta: research preview)
@@ -53,6 +53,19 @@ curl https://api.anthropic.com/v1/messages \
             "content": "Refactor this module to use dependency injection"
         }]
     }'
+```
+
+```bash CLI
+ant beta:messages create \
+  --beta fast-mode-2026-02-01 \
+  --transform 'content.0.text' --format yaml <<'YAML'
+model: claude-opus-4-6
+max_tokens: 4096
+speed: fast
+messages:
+  - role: user
+    content: Refactor this module to use dependency injection
+YAML
 ```
 
 ```python Python nocheck hidelines={1..2}
@@ -262,6 +275,18 @@ curl https://api.anthropic.com/v1/messages \
     }'
 ```
 
+```bash CLI
+ant beta:messages create --beta fast-mode-2026-02-01 \
+  --transform usage.speed --format yaml <<'YAML'
+model: claude-opus-4-6
+max_tokens: 1024
+speed: fast
+messages:
+  - role: user
+    content: Hello
+YAML
+```
+
 ```python Python nocheck
 response = client.beta.messages.create(
     model="claude-opus-4-6",
@@ -391,7 +416,7 @@ puts(response.usage.speed)  # "fast" or "standard"
 ```
 </CodeGroup>
 
-```json JSON hidelines={5..8}
+```json Output hidelines={5..8}
 {
   "id": "msg_01XFDUDYJgAACzvnptvVoYEL",
   "type": "message",
@@ -427,6 +452,44 @@ Falling back from fast to standard speed will result in a [prompt cache](/docs/e
 Since setting `max_retries` to `0` also disables retries for other transient errors (overloaded, internal server errors), the examples below re-issue the original request with default retries for those cases.
 
 <CodeGroup>
+```bash CLI
+# `ant` retries 429/5xx automatically and has no per-request max_retries
+# override, so on a fast-mode 429 the fallback runs after the built-in
+# retries exhaust. --transform-error surfaces error.type for branching.
+create_message_with_fast_fallback() {
+  local speed="$1" max_attempts="${2:-3}" body out
+  body=${3:-$(cat)}
+  out=$(
+    ant beta:messages create --beta fast-mode-2026-02-01 \
+      ${speed:+--speed "$speed"} \
+      --transform-error error.type --format-error yaml <<<"$body" 2>/dev/null
+  ) && { printf '%s\n' "$out"; return; }
+  case "$out" in
+    rate_limit_error)
+      if [[ -n "$speed" ]]; then
+        create_message_with_fast_fallback "" "$max_attempts" "$body"
+        return
+      fi ;;
+    overloaded_error | api_error | "")
+      if (( max_attempts > 1 )); then
+        create_message_with_fast_fallback "$speed" $((max_attempts - 1)) "$body"
+        return
+      fi ;;
+  esac
+  printf '%s\n' "${out:-connection_error}" >&2
+  return 1
+}
+
+MESSAGE=$(
+  create_message_with_fast_fallback fast <<'YAML'
+model: claude-opus-4-6
+max_tokens: 1024
+messages:
+  - role: user
+    content: Hello
+YAML
+)
+```
 
 ```python Python nocheck hidelines={1..2}
 import anthropic

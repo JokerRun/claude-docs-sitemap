@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/api-and-data-retention
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: b40a6c17fb3bff3cbf719b0120b2421517f84967a5e82060a10490788dbd6b51
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: f95c8db4938a1dd99c7b6f0ae4b52e001d805cb30549a816b8b8c33a2fc3ca37
 ---
 
 # API and data retention
@@ -281,5 +281,4 @@ To request a ZDR arrangement, contact the [Anthropic sales team](https://claude.
 - [Prompt caching](/docs/en/build-with-claude/prompt-caching)
 - [Batch processing](/docs/en/build-with-claude/batch-processing)
 - [Files API](/docs/en/api/files-create)
-- [Agent SDK Sessions](/docs/en/agent-sdk/sessions)
 - [Trust Center](https://trust.anthropic.com/resources)

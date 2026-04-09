@@ -1,760 +1,590 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/custom-tools
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: dd283aaf41897660644cdec10ee48dc61c29a7b5ce9268bf1f6578f2c9961484
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 520c00e11831725b36058a11dbe2c349837a5bb2165fc397e7c2cfbaf8037d43
 ---
 
-# Alat Kustom
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
-Bangun dan integrasikan alat kustom untuk memperluas fungsionalitas Claude Agent SDK
+# Agent SDK overview
 
----
-
-Alat kustom memungkinkan Anda memperluas kemampuan Claude Code dengan fungsionalitas Anda sendiri melalui server MCP dalam proses, memungkinkan Claude berinteraksi dengan layanan eksternal, API, atau melakukan operasi khusus.
-
-## Membuat Alat Kustom
-
-Gunakan fungsi helper `createSdkMcpServer` dan `tool` untuk mendefinisikan alat kustom yang type-safe:
-
-<CodeGroup>
-
-```typescript TypeScript
-import { query, tool, createSdkMcpServer } from "@anthropic-ai/claude-agent-sdk";
-import { z } from "zod";
-
-// Buat server SDK MCP dengan alat kustom
-const customServer = createSdkMcpServer({
-  name: "my-custom-tools",
-  version: "1.0.0",
-  tools: [
-    tool(
-      "get_weather",
-      "Dapatkan suhu saat ini untuk suatu lokasi menggunakan koordinat",
-      {
-        latitude: z.number().describe("Koordinat lintang"),
-        longitude: z.number().describe("Koordinat bujur")
-      },
-      async (args) => {
-        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${args.latitude}&longitude=${args.longitude}&current=temperature_2m&temperature_unit=fahrenheit`);
-        const data = await response.json();
-
-        return {
-          content: [{
-            type: "text",
-            text: `Suhu: ${data.current.temperature_2m}°F`
-          }]
-        };
-      }
-    )
-  ]
-});
-```
-
-```python Python
-from claude_agent_sdk import tool, create_sdk_mcp_server, ClaudeSDKClient, ClaudeAgentOptions
-from typing import Any
-import aiohttp
-
-# Definisikan alat kustom menggunakan decorator @tool
-@tool("get_weather", "Dapatkan suhu saat ini untuk suatu lokasi menggunakan koordinat", {"latitude": float, "longitude": float})
-async def get_weather(args: dict[str, Any]) -> dict[str, Any]:
-    # Panggil API cuaca
-    async with aiohttp.ClientSession() as session:
-        async with session.get(
-            f"https://api.open-meteo.com/v1/forecast?latitude={args['latitude']}&longitude={args['longitude']}&current=temperature_2m&temperature_unit=fahrenheit"
-        ) as response:
-            data = await response.json()
-
-    return {
-        "content": [{
-            "type": "text",
-            "text": f"Suhu: {data['current']['temperature_2m']}°F"
-        }]
-    }
-
-# Buat server SDK MCP dengan alat kustom
-custom_server = create_sdk_mcp_server(
-    name="my-custom-tools",
-    version="1.0.0",
-    tools=[get_weather]  # Berikan fungsi yang telah didekorasi
-)
-```
-
-</CodeGroup>
-
-## Menggunakan Alat Kustom
-
-Berikan server kustom ke fungsi `query` melalui opsi `mcpServers` sebagai dictionary/object.
+> Build production AI agents with Claude Code as a library
 
 <Note>
-**Penting:** Alat MCP kustom memerlukan mode input streaming. Anda harus menggunakan async generator/iterable untuk parameter `prompt` - string sederhana tidak akan bekerja dengan server MCP.
+  The Claude Code SDK has been renamed to the Claude Agent SDK. If you're migrating from the old SDK, see the [Migration Guide](/en/agent-sdk/migration-guide).
 </Note>
 
-### Format Nama Alat
-
-Ketika alat MCP diekspos ke Claude, nama mereka mengikuti format tertentu:
-- Pola: `mcp__{server_name}__{tool_name}`
-- Contoh: Alat bernama `get_weather` di server `my-custom-tools` menjadi `mcp__my-custom-tools__get_weather`
-
-### Mengkonfigurasi Alat yang Diizinkan
-
-Anda dapat mengontrol alat mana yang dapat digunakan Claude melalui opsi `allowedTools`:
+Build AI agents that autonomously read files, run commands, search the web, edit code, and more. The Agent SDK gives you the same tools, agent loop, and context management that power Claude Code, programmable in Python and TypeScript.
 
 <CodeGroup>
+  ```python Python theme={null}
+  import asyncio
+  from claude_agent_sdk import query, ClaudeAgentOptions
 
-```typescript TypeScript
-import { query } from "@anthropic-ai/claude-agent-sdk";
 
-// Gunakan alat kustom dalam query Anda dengan input streaming
-async function* generateMessages() {
-  yield {
-    type: "user" as const,
-    message: {
-      role: "user" as const,
-      content: "Bagaimana cuaca di San Francisco?"
-    }
-  };
-}
+  async def main():
+      async for message in query(
+          prompt="Find and fix the bug in auth.py",
+          options=ClaudeAgentOptions(allowed_tools=["Read", "Edit", "Bash"]),
+      ):
+          print(message)  # Claude reads the file, finds the bug, edits it
 
-for await (const message of query({
-  prompt: generateMessages(),  // Gunakan async generator untuk input streaming
-  options: {
-    mcpServers: {
-      "my-custom-tools": customServer  // Berikan sebagai object/dictionary, bukan array
-    },
-    // Secara opsional tentukan alat mana yang dapat digunakan Claude
-    allowedTools: [
-      "mcp__my-custom-tools__get_weather",  // Izinkan alat cuaca
-      // Tambahkan alat lain sesuai kebutuhan
-    ],
-    maxTurns: 3
+
+  asyncio.run(main())
+  ```
+
+  ```typescript TypeScript theme={null}
+  import { query } from "@anthropic-ai/claude-agent-sdk";
+
+  for await (const message of query({
+    prompt: "Find and fix the bug in auth.py",
+    options: { allowedTools: ["Read", "Edit", "Bash"] }
+  })) {
+    console.log(message); // Claude reads the file, finds the bug, edits it
   }
-})) {
-  if (message.type === "result" && message.subtype === "success") {
-    console.log(message.result);
-  }
-}
-```
-
-```python Python
-from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions
-import asyncio
-
-# Gunakan alat kustom dengan Claude
-options = ClaudeAgentOptions(
-    mcp_servers={"my-custom-tools": custom_server},
-    allowed_tools=[
-        "mcp__my-custom-tools__get_weather",  # Izinkan alat cuaca
-        # Tambahkan alat lain sesuai kebutuhan
-    ]
-)
-
-async def main():
-    async with ClaudeSDKClient(options=options) as client:
-        await client.query("Bagaimana cuaca di San Francisco?")
-
-        # Ekstrak dan cetak respons
-        async for msg in client.receive_response():
-            print(msg)
-
-asyncio.run(main())
-```
-
+  ```
 </CodeGroup>
 
-### Contoh Beberapa Alat
+The Agent SDK includes built-in tools for reading files, running commands, and editing code, so your agent can start working immediately without you implementing tool execution. Dive into the quickstart or explore real agents built with the SDK:
 
-Ketika server MCP Anda memiliki beberapa alat, Anda dapat secara selektif mengizinkannya:
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build a bug-fixing agent in minutes
+  </Card>
 
-<CodeGroup>
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+</CardGroup>
 
-```typescript TypeScript
-const multiToolServer = createSdkMcpServer({
-  name: "utilities",
-  version: "1.0.0",
-  tools: [
-    tool("calculate", "Lakukan perhitungan", { /* ... */ }, async (args) => { /* ... */ }),
-    tool("translate", "Terjemahkan teks", { /* ... */ }, async (args) => { /* ... */ }),
-    tool("search_web", "Cari di web", { /* ... */ }, async (args) => { /* ... */ })
-  ]
-});
+## Get started
 
-// Izinkan hanya alat tertentu dengan input streaming
-async function* generateMessages() {
-  yield {
-    type: "user" as const,
-    message: {
-      role: "user" as const,
-      content: "Hitung 5 + 3 dan terjemahkan 'hello' ke bahasa Spanyol"
-    }
-  };
-}
+<Steps>
+  <Step title="Install the SDK">
+    <Tabs>
+      <Tab title="TypeScript">
+        ```bash  theme={null}
+        npm install @anthropic-ai/claude-agent-sdk
+        ```
+      </Tab>
 
-for await (const message of query({
-  prompt: generateMessages(),  // Gunakan async generator untuk input streaming
-  options: {
-    mcpServers: {
-      utilities: multiToolServer
-    },
-    allowedTools: [
-      "mcp__utilities__calculate",   // Izinkan kalkulator
-      "mcp__utilities__translate",   // Izinkan penerjemah
-      // "mcp__utilities__search_web" TIDAK diizinkan
-    ]
-  }
-})) {
-  // Proses pesan
-}
-```
+      <Tab title="Python">
+        ```bash  theme={null}
+        pip install claude-agent-sdk
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
 
-```python Python
-from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions, tool, create_sdk_mcp_server
-from typing import Any
-import asyncio
+  <Step title="Set your API key">
+    Get an API key from the [Console](https://platform.claude.com/), then set it as an environment variable:
 
-# Definisikan beberapa alat menggunakan decorator @tool
-@tool("calculate", "Lakukan perhitungan", {"expression": str})
-async def calculate(args: dict[str, Any]) -> dict[str, Any]:
-    result = eval(args["expression"])  # Gunakan eval yang aman di produksi
-    return {"content": [{"type": "text", "text": f"Hasil: {result}"}]}
+    ```bash  theme={null}
+    export ANTHROPIC_API_KEY=your-api-key
+    ```
 
-@tool("translate", "Terjemahkan teks", {"text": str, "target_lang": str})
-async def translate(args: dict[str, Any]) -> dict[str, Any]:
-    # Logika terjemahan di sini
-    return {"content": [{"type": "text", "text": f"Diterjemahkan: {args['text']}"}]}
+    The SDK also supports authentication via third-party API providers:
 
-@tool("search_web", "Cari di web", {"query": str})
-async def search_web(args: dict[str, Any]) -> dict[str, Any]:
-    # Logika pencarian di sini
-    return {"content": [{"type": "text", "text": f"Hasil pencarian untuk: {args['query']}"}]}
+    * **Amazon Bedrock**: set `CLAUDE_CODE_USE_BEDROCK=1` environment variable and configure AWS credentials
+    * **Google Vertex AI**: set `CLAUDE_CODE_USE_VERTEX=1` environment variable and configure Google Cloud credentials
+    * **Microsoft Azure**: set `CLAUDE_CODE_USE_FOUNDRY=1` environment variable and configure Azure credentials
 
-multi_tool_server = create_sdk_mcp_server(
-    name="utilities",
-    version="1.0.0",
-    tools=[calculate, translate, search_web]  # Berikan fungsi yang telah didekorasi
-)
+    See the setup guides for [Bedrock](/en/amazon-bedrock), [Vertex AI](/en/google-vertex-ai), or [Azure AI Foundry](/en/microsoft-foundry) for details.
 
-# Izinkan hanya alat tertentu dengan input streaming
-async def message_generator():
-    yield {
-        "type": "user",
-        "message": {
-            "role": "user",
-            "content": "Hitung 5 + 3 dan terjemahkan 'hello' ke bahasa Spanyol"
-        }
-    }
+    <Note>
+      Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Please use the API key authentication methods described in this document instead.
+    </Note>
+  </Step>
 
-async for message in query(
-    prompt=message_generator(),  # Gunakan async generator untuk input streaming
-    options=ClaudeAgentOptions(
-        mcp_servers={"utilities": multi_tool_server},
-        allowed_tools=[
-            "mcp__utilities__calculate",   # Izinkan kalkulator
-            "mcp__utilities__translate",   # Izinkan penerjemah
-            # "mcp__utilities__search_web" TIDAK diizinkan
-        ]
-    )
-):
-    if hasattr(message, 'result'):
-        print(message.result)
-```
+  <Step title="Run your first agent">
+    This example creates an agent that lists files in your current directory using built-in tools.
 
-</CodeGroup>
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
 
-## Keamanan Tipe dengan Python
 
-Decorator `@tool` mendukung berbagai pendekatan definisi skema untuk keamanan tipe:
+      async def main():
+          async for message in query(
+              prompt="What files are in this directory?",
+              options=ClaudeAgentOptions(allowed_tools=["Bash", "Glob"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
 
-<CodeGroup>
 
-```typescript TypeScript
-import { z } from "zod";
+      asyncio.run(main())
+      ```
 
-tool(
-  "process_data",
-  "Proses data terstruktur dengan keamanan tipe",
-  {
-    // Skema Zod mendefinisikan validasi runtime dan tipe TypeScript
-    data: z.object({
-      name: z.string(),
-      age: z.number().min(0).max(150),
-      email: z.string().email(),
-      preferences: z.array(z.string()).optional()
-    }),
-    format: z.enum(["json", "csv", "xml"]).default("json")
-  },
-  async (args) => {
-    // args sepenuhnya diketik berdasarkan skema
-    // TypeScript tahu: args.data.name adalah string, args.data.age adalah number, dll.
-    console.log(`Memproses data ${args.data.name} sebagai ${args.format}`);
-    
-    // Logika pemrosesan Anda di sini
-    return {
-      content: [{
-        type: "text",
-        text: `Data diproses untuk ${args.data.name}`
-      }]
-    };
-  }
-)
-```
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
 
-```python Python
-from typing import Any
-
-# Pemetaan tipe sederhana - direkomendasikan untuk sebagian besar kasus
-@tool(
-    "process_data",
-    "Proses data terstruktur dengan keamanan tipe",
-    {
-        "name": str,
-        "age": int,
-        "email": str,
-        "preferences": list  # Parameter opsional dapat ditangani dalam fungsi
-    }
-)
-async def process_data(args: dict[str, Any]) -> dict[str, Any]:
-    # Akses argumen dengan petunjuk tipe untuk dukungan IDE
-    name = args["name"]
-    age = args["age"]
-    email = args["email"]
-    preferences = args.get("preferences", [])
-    
-    print(f"Memproses data {name} (umur: {age})")
-    
-    return {
-        "content": [{
-            "type": "text",
-            "text": f"Data diproses untuk {name}"
-        }]
-    }
-
-# Untuk skema yang lebih kompleks, Anda dapat menggunakan format JSON Schema
-@tool(
-    "advanced_process",
-    "Proses data dengan validasi lanjutan",
-    {
-        "type": "object",
-        "properties": {
-            "name": {"type": "string"},
-            "age": {"type": "integer", "minimum": 0, "maximum": 150},
-            "email": {"type": "string", "format": "email"},
-            "format": {"type": "string", "enum": ["json", "csv", "xml"], "default": "json"}
-        },
-        "required": ["name", "age", "email"]
-    }
-)
-async def advanced_process(args: dict[str, Any]) -> dict[str, Any]:
-    # Proses dengan validasi skema lanjutan
-    return {
-        "content": [{
-            "type": "text",
-            "text": f"Pemrosesan lanjutan untuk {args['name']}"
-        }]
-    }
-```
-
-</CodeGroup>
-
-## Penanganan Error
-
-Tangani error dengan baik untuk memberikan umpan balik yang bermakna:
-
-<CodeGroup>
-
-```typescript TypeScript
-tool(
-  "fetch_data",
-  "Ambil data dari API",
-  {
-    endpoint: z.string().url().describe("URL endpoint API")
-  },
-  async (args) => {
-    try {
-      const response = await fetch(args.endpoint);
-      
-      if (!response.ok) {
-        return {
-          content: [{
-            type: "text",
-            text: `Error API: ${response.status} ${response.statusText}`
-          }]
-        };
+      for await (const message of query({
+        prompt: "What files are in this directory?",
+        options: { allowedTools: ["Bash", "Glob"] }
+      })) {
+        if ("result" in message) console.log(message.result);
       }
-      
-      const data = await response.json();
-      return {
-        content: [{
-          type: "text",
-          text: JSON.stringify(data, null, 2)
-        }]
+      ```
+    </CodeGroup>
+  </Step>
+</Steps>
+
+**Ready to build?** Follow the [Quickstart](/en/agent-sdk/quickstart) to create an agent that finds and fixes bugs in minutes.
+
+## Capabilities
+
+Everything that makes Claude Code powerful is available in the SDK:
+
+<Tabs>
+  <Tab title="Built-in tools">
+    Your agent can read files, run commands, and search codebases out of the box. Key tools include:
+
+    | Tool                                                                        | What it does                                                   |
+    | --------------------------------------------------------------------------- | -------------------------------------------------------------- |
+    | **Read**                                                                    | Read any file in the working directory                         |
+    | **Write**                                                                   | Create new files                                               |
+    | **Edit**                                                                    | Make precise edits to existing files                           |
+    | **Bash**                                                                    | Run terminal commands, scripts, git operations                 |
+    | **Glob**                                                                    | Find files by pattern (`**/*.ts`, `src/**/*.py`)               |
+    | **Grep**                                                                    | Search file contents with regex                                |
+    | **WebSearch**                                                               | Search the web for current information                         |
+    | **WebFetch**                                                                | Fetch and parse web page content                               |
+    | **[AskUserQuestion](/en/agent-sdk/user-input#handle-clarifying-questions)** | Ask the user clarifying questions with multiple choice options |
+
+    This example creates an agent that searches your codebase for TODO comments:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Find all TODO comments and create a summary",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob", "Grep"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Find all TODO comments and create a summary",
+        options: { allowedTools: ["Read", "Glob", "Grep"] }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+  </Tab>
+
+  <Tab title="Hooks">
+    Run custom code at key points in the agent lifecycle. SDK hooks use callback functions to validate, log, block, or transform agent behavior.
+
+    **Available hooks:** `PreToolUse`, `PostToolUse`, `Stop`, `SessionStart`, `SessionEnd`, `UserPromptSubmit`, and more.
+
+    This example logs all file changes to an audit file:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from datetime import datetime
+      from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher
+
+
+      async def log_file_change(input_data, tool_use_id, context):
+          file_path = input_data.get("tool_input", {}).get("file_path", "unknown")
+          with open("./audit.log", "a") as f:
+              f.write(f"{datetime.now()}: modified {file_path}\n")
+          return {}
+
+
+      async def main():
+          async for message in query(
+              prompt="Refactor utils.py to improve readability",
+              options=ClaudeAgentOptions(
+                  permission_mode="acceptEdits",
+                  hooks={
+                      "PostToolUse": [
+                          HookMatcher(matcher="Edit|Write", hooks=[log_file_change])
+                      ]
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query, HookCallback } from "@anthropic-ai/claude-agent-sdk";
+      import { appendFile } from "fs/promises";
+
+      const logFileChange: HookCallback = async (input) => {
+        const filePath = (input as any).tool_input?.file_path ?? "unknown";
+        await appendFile("./audit.log", `${new Date().toISOString()}: modified ${filePath}\n`);
+        return {};
       };
-    } catch (error) {
-      return {
-        content: [{
-          type: "text",
-          text: `Gagal mengambil data: ${error.message}`
-        }]
-      };
-    }
-  }
-)
-```
 
-```python Python
-import json
-import aiohttp
-from typing import Any
-
-@tool(
-    "fetch_data",
-    "Ambil data dari API",
-    {"endpoint": str}  # Skema sederhana
-)
-async def fetch_data(args: dict[str, Any]) -> dict[str, Any]:
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(args["endpoint"]) as response:
-                if response.status != 200:
-                    return {
-                        "content": [{
-                            "type": "text",
-                            "text": f"Error API: {response.status} {response.reason}"
-                        }]
-                    }
-                
-                data = await response.json()
-                return {
-                    "content": [{
-                        "type": "text",
-                        "text": json.dumps(data, indent=2)
-                    }]
-                }
-    except Exception as e:
-        return {
-            "content": [{
-                "type": "text",
-                "text": f"Gagal mengambil data: {str(e)}"
-            }]
+      for await (const message of query({
+        prompt: "Refactor utils.py to improve readability",
+        options: {
+          permissionMode: "acceptEdits",
+          hooks: {
+            PostToolUse: [{ matcher: "Edit|Write", hooks: [logFileChange] }]
+          }
         }
-```
-
-</CodeGroup>
-
-## Contoh Alat
-
-### Alat Query Database
-
-<CodeGroup>
-
-```typescript TypeScript
-const databaseServer = createSdkMcpServer({
-  name: "database-tools",
-  version: "1.0.0",
-  tools: [
-    tool(
-      "query_database",
-      "Jalankan query database",
-      {
-        query: z.string().describe("Query SQL untuk dijalankan"),
-        params: z.array(z.any()).optional().describe("Parameter query")
-      },
-      async (args) => {
-        const results = await db.query(args.query, args.params || []);
-        return {
-          content: [{
-            type: "text",
-            text: `Ditemukan ${results.length} baris:\n${JSON.stringify(results, null, 2)}`
-          }]
-        };
+      })) {
+        if ("result" in message) console.log(message.result);
       }
-    )
-  ]
-});
-```
+      ```
+    </CodeGroup>
 
-```python Python
-from typing import Any
-import json
+    [Learn more about hooks →](/en/agent-sdk/hooks)
+  </Tab>
 
-@tool(
-    "query_database",
-    "Jalankan query database",
-    {"query": str, "params": list}  # Skema sederhana dengan tipe list
-)
-async def query_database(args: dict[str, Any]) -> dict[str, Any]:
-    results = await db.query(args["query"], args.get("params", []))
-    return {
-        "content": [{
-            "type": "text",
-            "text": f"Ditemukan {len(results)} baris:\n{json.dumps(results, indent=2)}"
-        }]
-    }
+  <Tab title="Subagents">
+    Spawn specialized agents to handle focused subtasks. Your main agent delegates work, and subagents report back with results.
 
-database_server = create_sdk_mcp_server(
-    name="database-tools",
-    version="1.0.0",
-    tools=[query_database]  # Berikan fungsi yang telah didekorasi
-)
-```
+    Define custom agents with specialized instructions. Include `Agent` in `allowedTools` since subagents are invoked via the Agent tool:
 
-</CodeGroup>
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
 
-### Alat API Gateway
 
-<CodeGroup>
+      async def main():
+          async for message in query(
+              prompt="Use the code-reviewer agent to review this codebase",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep", "Agent"],
+                  agents={
+                      "code-reviewer": AgentDefinition(
+                          description="Expert code reviewer for quality and security reviews.",
+                          prompt="Analyze code quality and suggest improvements.",
+                          tools=["Read", "Glob", "Grep"],
+                      )
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
 
-```typescript TypeScript
-const apiGatewayServer = createSdkMcpServer({
-  name: "api-gateway",
-  version: "1.0.0",
-  tools: [
-    tool(
-      "api_request",
-      "Buat permintaan API yang diautentikasi ke layanan eksternal",
-      {
-        service: z.enum(["stripe", "github", "openai", "slack"]).describe("Layanan yang akan dipanggil"),
-        endpoint: z.string().describe("Path endpoint API"),
-        method: z.enum(["GET", "POST", "PUT", "DELETE"]).describe("Metode HTTP"),
-        body: z.record(z.any()).optional().describe("Body permintaan"),
-        query: z.record(z.string()).optional().describe("Parameter query")
-      },
-      async (args) => {
-        const config = {
-          stripe: { baseUrl: "https://api.stripe.com/v1", key: process.env.STRIPE_KEY },
-          github: { baseUrl: "https://api.github.com", key: process.env.GITHUB_TOKEN },
-          openai: { baseUrl: "https://api.openai.com/v1", key: process.env.OPENAI_KEY },
-          slack: { baseUrl: "https://slack.com/api", key: process.env.SLACK_TOKEN }
-        };
-        
-        const { baseUrl, key } = config[args.service];
-        const url = new URL(`${baseUrl}${args.endpoint}`);
-        
-        if (args.query) {
-          Object.entries(args.query).forEach(([k, v]) => url.searchParams.set(k, v));
-        }
-        
-        const response = await fetch(url, {
-          method: args.method,
-          headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-          body: args.body ? JSON.stringify(args.body) : undefined
-        });
-        
-        const data = await response.json();
-        return {
-          content: [{
-            type: "text",
-            text: JSON.stringify(data, null, 2)
-          }]
-        };
-      }
-    )
-  ]
-});
-```
 
-```python Python
-import os
-import json
-import aiohttp
-from typing import Any
+      asyncio.run(main())
+      ```
 
-# Untuk skema kompleks dengan enum, gunakan format JSON Schema
-@tool(
-    "api_request",
-    "Buat permintaan API yang diautentikasi ke layanan eksternal",
-    {
-        "type": "object",
-        "properties": {
-            "service": {"type": "string", "enum": ["stripe", "github", "openai", "slack"]},
-            "endpoint": {"type": "string"},
-            "method": {"type": "string", "enum": ["GET", "POST", "PUT", "DELETE"]},
-            "body": {"type": "object"},
-            "query": {"type": "object"}
-        },
-        "required": ["service", "endpoint", "method"]
-    }
-)
-async def api_request(args: dict[str, Any]) -> dict[str, Any]:
-    config = {
-        "stripe": {"base_url": "https://api.stripe.com/v1", "key": os.environ["STRIPE_KEY"]},
-        "github": {"base_url": "https://api.github.com", "key": os.environ["GITHUB_TOKEN"]},
-        "openai": {"base_url": "https://api.openai.com/v1", "key": os.environ["OPENAI_KEY"]},
-        "slack": {"base_url": "https://slack.com/api", "key": os.environ["SLACK_TOKEN"]}
-    }
-    
-    service_config = config[args["service"]]
-    url = f"{service_config['base_url']}{args['endpoint']}"
-    
-    if args.get("query"):
-        params = "&".join([f"{k}={v}" for k, v in args["query"].items()])
-        url += f"?{params}"
-    
-    headers = {"Authorization": f"Bearer {service_config['key']}", "Content-Type": "application/json"}
-    
-    async with aiohttp.ClientSession() as session:
-        async with session.request(
-            args["method"], url, headers=headers, json=args.get("body")
-        ) as response:
-            data = await response.json()
-            return {
-                "content": [{
-                    "type": "text",
-                    "text": json.dumps(data, indent=2)
-                }]
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Use the code-reviewer agent to review this codebase",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep", "Agent"],
+          agents: {
+            "code-reviewer": {
+              description: "Expert code reviewer for quality and security reviews.",
+              prompt: "Analyze code quality and suggest improvements.",
+              tools: ["Read", "Glob", "Grep"]
             }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
 
-api_gateway_server = create_sdk_mcp_server(
-    name="api-gateway",
-    version="1.0.0",
-    tools=[api_request]  # Berikan fungsi yang telah didekorasi
-)
-```
+    Messages from within a subagent's context include a `parent_tool_use_id` field, letting you track which messages belong to which subagent execution.
 
-</CodeGroup>
+    [Learn more about subagents →](/en/agent-sdk/subagents)
+  </Tab>
 
-### Alat Kalkulator
+  <Tab title="MCP">
+    Connect to external systems via the Model Context Protocol: databases, browsers, APIs, and [hundreds more](https://github.com/modelcontextprotocol/servers).
 
-<CodeGroup>
+    This example connects the [Playwright MCP server](https://github.com/microsoft/playwright-mcp) to give your agent browser automation capabilities:
 
-```typescript TypeScript
-const calculatorServer = createSdkMcpServer({
-  name: "calculator",
-  version: "1.0.0",
-  tools: [
-    tool(
-      "calculate",
-      "Lakukan perhitungan matematika",
-      {
-        expression: z.string().describe("Ekspresi matematika untuk dievaluasi"),
-        precision: z.number().optional().default(2).describe("Presisi desimal")
-      },
-      async (args) => {
-        try {
-          // Gunakan library evaluasi matematika yang aman di produksi
-          const result = eval(args.expression); // Hanya contoh!
-          const formatted = Number(result).toFixed(args.precision);
-          
-          return {
-            content: [{
-              type: "text",
-              text: `${args.expression} = ${formatted}`
-            }]
-          };
-        } catch (error) {
-          return {
-            content: [{
-              type: "text",
-              text: `Error: Ekspresi tidak valid - ${error.message}`
-            }]
-          };
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Open example.com and describe what you see",
+              options=ClaudeAgentOptions(
+                  mcp_servers={
+                      "playwright": {"command": "npx", "args": ["@playwright/mcp@latest"]}
+                  }
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Open example.com and describe what you see",
+        options: {
+          mcpServers: {
+            playwright: { command: "npx", args: ["@playwright/mcp@latest"] }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about MCP →](/en/agent-sdk/mcp)
+  </Tab>
+
+  <Tab title="Permissions">
+    Control exactly which tools your agent can use. Allow safe operations, block dangerous ones, or require approval for sensitive actions.
+
+    <Note>
+      For interactive approval prompts and the `AskUserQuestion` tool, see [Handle approvals and user input](/en/agent-sdk/user-input).
+    </Note>
+
+    This example creates a read-only agent that can analyze but not modify code. `allowed_tools` pre-approves `Read`, `Glob`, and `Grep`.
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Review this code for best practices",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep"],
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Review this code for best practices",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep"]
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about permissions →](/en/agent-sdk/permissions)
+  </Tab>
+
+  <Tab title="Sessions">
+    Maintain context across multiple exchanges. Claude remembers files read, analysis done, and conversation history. Resume sessions later, or fork them to explore different approaches.
+
+    This example captures the session ID from the first query, then resumes to continue with full context:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage, ResultMessage
+
+
+      async def main():
+          session_id = None
+
+          # First query: capture the session ID
+          async for message in query(
+              prompt="Read the authentication module",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob"]),
+          ):
+              if isinstance(message, SystemMessage) and message.subtype == "init":
+                  session_id = message.data["session_id"]
+
+          # Resume with full context from the first query
+          async for message in query(
+              prompt="Now find all places that call it",  # "it" = auth module
+              options=ClaudeAgentOptions(resume=session_id),
+          ):
+              if isinstance(message, ResultMessage):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      let sessionId: string | undefined;
+
+      // First query: capture the session ID
+      for await (const message of query({
+        prompt: "Read the authentication module",
+        options: { allowedTools: ["Read", "Glob"] }
+      })) {
+        if (message.type === "system" && message.subtype === "init") {
+          sessionId = message.session_id;
         }
       }
-    ),
-    tool(
-      "compound_interest",
-      "Hitung bunga majemuk untuk investasi",
-      {
-        principal: z.number().positive().describe("Jumlah investasi awal"),
-        rate: z.number().describe("Tingkat bunga tahunan (sebagai desimal, mis. 0.05 untuk 5%)"),
-        time: z.number().positive().describe("Periode investasi dalam tahun"),
-        n: z.number().positive().default(12).describe("Frekuensi penggabungan per tahun")
-      },
-      async (args) => {
-        const amount = args.principal * Math.pow(1 + args.rate / args.n, args.n * args.time);
-        const interest = amount - args.principal;
-        
-        return {
-          content: [{
-            type: "text",
-            text: `Analisis Investasi:\n` +
-                  `Pokok: $${args.principal.toFixed(2)}\n` +
-                  `Tingkat: ${(args.rate * 100).toFixed(2)}%\n` +
-                  `Waktu: ${args.time} tahun\n` +
-                  `Penggabungan: ${args.n} kali per tahun\n\n` +
-                  `Jumlah Akhir: $${amount.toFixed(2)}\n` +
-                  `Bunga yang Diperoleh: $${interest.toFixed(2)}\n` +
-                  `Pengembalian: ${((interest / args.principal) * 100).toFixed(2)}%`
-          }]
-        };
+
+      // Resume with full context from the first query
+      for await (const message of query({
+        prompt: "Now find all places that call it", // "it" = auth module
+        options: { resume: sessionId }
+      })) {
+        if ("result" in message) console.log(message.result);
       }
-    )
-  ]
-});
-```
+      ```
+    </CodeGroup>
 
-```python Python
-import math
-from typing import Any
+    [Learn more about sessions →](/en/agent-sdk/sessions)
+  </Tab>
+</Tabs>
 
-@tool(
-    "calculate",
-    "Lakukan perhitungan matematika",
-    {"expression": str, "precision": int}  # Skema sederhana
-)
-async def calculate(args: dict[str, Any]) -> dict[str, Any]:
-    try:
-        # Gunakan library evaluasi matematika yang aman di produksi
-        result = eval(args["expression"], {"__builtins__": {}})
-        precision = args.get("precision", 2)
-        formatted = round(result, precision)
-        
-        return {
-            "content": [{
-                "type": "text",
-                "text": f"{args['expression']} = {formatted}"
-            }]
-        }
-    except Exception as e:
-        return {
-            "content": [{
-                "type": "text",
-                "text": f"Error: Ekspresi tidak valid - {str(e)}"
-            }]
-        }
+### Claude Code features
 
-@tool(
-    "compound_interest",
-    "Hitung bunga majemuk untuk investasi",
-    {"principal": float, "rate": float, "time": float, "n": int}
-)
-async def compound_interest(args: dict[str, Any]) -> dict[str, Any]:
-    principal = args["principal"]
-    rate = args["rate"]
-    time = args["time"]
-    n = args.get("n", 12)
-    
-    amount = principal * (1 + rate / n) ** (n * time)
-    interest = amount - principal
-    
-    return {
-        "content": [{
-            "type": "text",
-            "text": f"""Analisis Investasi:
-Pokok: ${principal:.2f}
-Tingkat: {rate * 100:.2f}%
-Waktu: {time} tahun
-Penggabungan: {n} kali per tahun
+The SDK also supports Claude Code's filesystem-based configuration. To use these features, set `setting_sources=["project"]` (Python) or `settingSources: ['project']` (TypeScript)  in your options.
 
-Jumlah Akhir: ${amount:.2f}
-Bunga yang Diperoleh: ${interest:.2f}
-Pengembalian: {(interest / principal) * 100:.2f}%"""
-        }]
-    }
+| Feature                                          | Description                                          | Location                           |
+| ------------------------------------------------ | ---------------------------------------------------- | ---------------------------------- |
+| [Skills](/en/agent-sdk/skills)                   | Specialized capabilities defined in Markdown         | `.claude/skills/*/SKILL.md`        |
+| [Slash commands](/en/agent-sdk/slash-commands)   | Custom commands for common tasks                     | `.claude/commands/*.md`            |
+| [Memory](/en/agent-sdk/modifying-system-prompts) | Project context and instructions                     | `CLAUDE.md` or `.claude/CLAUDE.md` |
+| [Plugins](/en/agent-sdk/plugins)                 | Extend with custom commands, agents, and MCP servers | Programmatic via `plugins` option  |
 
-calculator_server = create_sdk_mcp_server(
-    name="calculator",
-    version="1.0.0",
-    tools=[calculate, compound_interest]  # Berikan fungsi yang telah didekorasi
-)
-```
+## Compare the Agent SDK to other Claude tools
 
-</CodeGroup>
+The Claude Platform offers multiple ways to build with Claude. Here's how the Agent SDK fits in:
 
-## Dokumentasi Terkait
+<Tabs>
+  <Tab title="Agent SDK vs Client SDK">
+    The [Anthropic Client SDK](https://platform.claude.com/docs/en/api/client-sdks) gives you direct API access: you send prompts and implement tool execution yourself. The **Agent SDK** gives you Claude with built-in tool execution.
 
-- [Referensi TypeScript SDK](/docs/id/agent-sdk/typescript)
-- [Referensi Python SDK](/docs/id/agent-sdk/python)
-- [Dokumentasi MCP](https://modelcontextprotocol.io)
-- [Ikhtisar SDK](/docs/id/agent-sdk/overview)
+    With the Client SDK, you implement a tool loop. With the Agent SDK, Claude handles it:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      # Client SDK: You implement the tool loop
+      response = client.messages.create(...)
+      while response.stop_reason == "tool_use":
+          result = your_tool_executor(response.tool_use)
+          response = client.messages.create(tool_result=result, **params)
+
+      # Agent SDK: Claude handles tools autonomously
+      async for message in query(prompt="Fix the bug in auth.py"):
+          print(message)
+      ```
+
+      ```typescript TypeScript theme={null}
+      // Client SDK: You implement the tool loop
+      let response = await client.messages.create({ ...params });
+      while (response.stop_reason === "tool_use") {
+        const result = yourToolExecutor(response.tool_use);
+        response = await client.messages.create({ tool_result: result, ...params });
+      }
+
+      // Agent SDK: Claude handles tools autonomously
+      for await (const message of query({ prompt: "Fix the bug in auth.py" })) {
+        console.log(message);
+      }
+      ```
+    </CodeGroup>
+  </Tab>
+
+  <Tab title="Agent SDK vs Claude Code CLI">
+    Same capabilities, different interface:
+
+    | Use case                | Best choice |
+    | ----------------------- | ----------- |
+    | Interactive development | CLI         |
+    | CI/CD pipelines         | SDK         |
+    | Custom applications     | SDK         |
+    | One-off tasks           | CLI         |
+    | Production automation   | SDK         |
+
+    Many teams use both: CLI for daily development, SDK for production. Workflows translate directly between them.
+  </Tab>
+</Tabs>
+
+## Changelog
+
+View the full changelog for SDK updates, bug fixes, and new features:
+
+* **TypeScript SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-typescript/blob/main/CHANGELOG.md)
+* **Python SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-python/blob/main/CHANGELOG.md)
+
+## Reporting bugs
+
+If you encounter bugs or issues with the Agent SDK:
+
+* **TypeScript SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-typescript/issues)
+* **Python SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-python/issues)
+
+## Branding guidelines
+
+For partners integrating the Claude Agent SDK, use of Claude branding is optional. When referencing Claude in your product:
+
+**Allowed:**
+
+* "Claude Agent" (preferred for dropdown menus)
+* "Claude" (when within a menu already labeled "Agents")
+* "{YourAgentName} Powered by Claude" (if you have an existing agent name)
+
+**Not permitted:**
+
+* "Claude Code" or "Claude Code Agent"
+* Claude Code-branded ASCII art or visual elements that mimic Claude Code
+
+Your product should maintain its own branding and not appear to be Claude Code or any Anthropic product. For questions about branding compliance, contact the Anthropic [sales team](https://www.anthropic.com/contact-sales).
+
+## License and terms
+
+Use of the Claude Agent SDK is governed by [Anthropic's Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms), including when you use it to power products and services that you make available to your own customers and end users, except to the extent a specific component or dependency is covered by a different license as indicated in that component's LICENSE file.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build an agent that finds and fixes bugs in minutes
+  </Card>
+
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+
+  <Card title="TypeScript SDK" icon="code" href="/en/agent-sdk/typescript">
+    Full TypeScript API reference and examples
+  </Card>
+
+  <Card title="Python SDK" icon="code" href="/en/agent-sdk/python">
+    Full Python API reference and examples
+  </Card>
+</CardGroup>

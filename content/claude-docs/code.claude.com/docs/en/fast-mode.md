@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-04-03T03:10:14.718804Z
-sha256: f1d458ae23db0f577a786718cc387190f4efbc020d4d7a6818b23b8064c94810
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 6741462f186f5a68e9a9700f6dfe2b0d6aac30e7cb8c916881c78ab9f28d1bb3
 ---
 
 > ## Documentation Index
@@ -131,7 +131,7 @@ This is useful for controlling costs in organizations where users run multiple c
 
 ## Handle rate limits
 
-Fast mode has separate rate limits from standard Opus 4.6. When you hit the fast mode rate limit or run out of extra usage credits:
+Fast mode has separate rate limits from standard Opus 4.6. When you hit the fast mode rate limit or run out of extra usage:
 
 1. Fast mode automatically falls back to standard Opus 4.6
 2. The `↯` icon turns gray to indicate cooldown

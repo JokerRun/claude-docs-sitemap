@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: c4ebd42c04f780a128205df33e29e95c658a11ea08ca2bde53f3b3656b0ff9b1
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 0c5aeaa79178cd8f7b034af13f2345638133e0ad75155aa1deee6cb97bd31662
 ---
 
 ## List
@@ -42,7 +42,7 @@ List Skills
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -85,8 +85,6 @@ List Skills
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

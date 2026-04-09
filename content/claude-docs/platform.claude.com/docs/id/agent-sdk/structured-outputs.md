@@ -1,419 +1,590 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/structured-outputs
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: eb2dfc546b58544cab178ae4df3bae37c93c31ebb57a94aebb142ecd36616d11
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 520c00e11831725b36058a11dbe2c349837a5bb2165fc397e7c2cfbaf8037d43
 ---
 
-# Dapatkan output terstruktur dari agen
+> ## Documentation Index
+> Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
 
-Kembalikan JSON yang divalidasi dari alur kerja agen menggunakan JSON Schema, Zod, atau Pydantic. Dapatkan data terstruktur yang aman tipe setelah penggunaan alat multi-putaran.
+# Agent SDK overview
 
----
+> Build production AI agents with Claude Code as a library
 
-Output terstruktur memungkinkan Anda menentukan bentuk data yang tepat yang ingin Anda dapatkan kembali dari agen. Agen dapat menggunakan alat apa pun yang diperlukan untuk menyelesaikan tugas, dan Anda tetap mendapatkan JSON yang divalidasi sesuai dengan skema Anda di akhir. Tentukan [JSON Schema](https://json-schema.org/understanding-json-schema/about) untuk struktur yang Anda butuhkan, dan SDK menjamin output cocok dengannya.
+<Note>
+  The Claude Code SDK has been renamed to the Claude Agent SDK. If you're migrating from the old SDK, see the [Migration Guide](/en/agent-sdk/migration-guide).
+</Note>
 
-Untuk keamanan tipe penuh, gunakan [Zod](#type-safe-schemas-with-zod-and-pydantic) (TypeScript) atau [Pydantic](#type-safe-schemas-with-zod-and-pydantic) (Python) untuk menentukan skema Anda dan dapatkan objek yang sangat diketik kembali.
-
-## Mengapa output terstruktur?
-
-Agen mengembalikan teks bentuk bebas secara default, yang berfungsi untuk obrolan tetapi tidak ketika Anda perlu menggunakan output secara terprogram. Output terstruktur memberi Anda data yang diketik yang dapat Anda teruskan langsung ke logika aplikasi, database, atau komponen UI Anda.
-
-Pertimbangkan aplikasi resep di mana agen mencari web dan membawa kembali resep. Tanpa output terstruktur, Anda mendapatkan teks bentuk bebas yang perlu Anda parsing sendiri. Dengan output terstruktur, Anda menentukan bentuk yang Anda inginkan dan mendapatkan data yang diketik yang dapat Anda gunakan langsung di aplikasi Anda.
-
-<section title="Tanpa output terstruktur">
-
-```text
-Berikut adalah resep kue cokelat chip klasik!
-
-**Kue Cokelat Chip**
-Waktu persiapan: 15 menit | Waktu memasak: 10 menit
-
-Bahan-bahan:
-- 2 1/4 cangkir tepung serbaguna
-- 1 cangkir mentega, dilunakkan
-...
-```
-
-Untuk menggunakan ini di aplikasi Anda, Anda perlu mengurai judul, mengonversi "15 menit" menjadi angka, memisahkan bahan dari instruksi, dan menangani pemformatan yang tidak konsisten di seluruh respons.
-
-</section>
-<section title="Dengan output terstruktur">
-
-```json
-{
-  "name": "Chocolate Chip Cookies",
-  "prep_time_minutes": 15,
-  "cook_time_minutes": 10,
-  "ingredients": [
-    {"item": "all-purpose flour", "amount": 2.25, "unit": "cups"},
-    {"item": "butter, softened", "amount": 1, "unit": "cup"},
-    ...
-  ],
-  "steps": ["Preheat oven to 375°F", "Cream butter and sugar", ...]
-}
-```
-
-Data yang diketik yang dapat Anda gunakan langsung di UI Anda.
-
-</section>
-
-## Mulai cepat
-
-Untuk menggunakan output terstruktur, tentukan [JSON Schema](https://json-schema.org/understanding-json-schema/about) yang menggambarkan bentuk data yang Anda inginkan, kemudian teruskan ke `query()` melalui opsi `outputFormat` (TypeScript) atau opsi `output_format` (Python). Ketika agen selesai, pesan hasil mencakup bidang `structured_output` dengan data yang divalidasi sesuai dengan skema Anda.
-
-Contoh di bawah ini meminta agen untuk meneliti Anthropic dan mengembalikan nama perusahaan, tahun didirikan, dan kantor pusat sebagai output terstruktur.
+Build AI agents that autonomously read files, run commands, search the web, edit code, and more. The Agent SDK gives you the same tools, agent loop, and context management that power Claude Code, programmable in Python and TypeScript.
 
 <CodeGroup>
+  ```python Python theme={null}
+  import asyncio
+  from claude_agent_sdk import query, ClaudeAgentOptions
 
-```typescript TypeScript
-import { query } from '@anthropic-ai/claude-agent-sdk'
 
-// Tentukan bentuk data yang ingin Anda dapatkan kembali
-const schema = {
-  type: 'object',
-  properties: {
-    company_name: { type: 'string' },
-    founded_year: { type: 'number' },
-    headquarters: { type: 'string' }
-  },
-  required: ['company_name']
-}
+  async def main():
+      async for message in query(
+          prompt="Find and fix the bug in auth.py",
+          options=ClaudeAgentOptions(allowed_tools=["Read", "Edit", "Bash"]),
+      ):
+          print(message)  # Claude reads the file, finds the bug, edits it
 
-for await (const message of query({
-  prompt: 'Research Anthropic and provide key company information',
-  options: {
-    outputFormat: {
-      type: 'json_schema',
-      schema: schema
-    }
+
+  asyncio.run(main())
+  ```
+
+  ```typescript TypeScript theme={null}
+  import { query } from "@anthropic-ai/claude-agent-sdk";
+
+  for await (const message of query({
+    prompt: "Find and fix the bug in auth.py",
+    options: { allowedTools: ["Read", "Edit", "Bash"] }
+  })) {
+    console.log(message); // Claude reads the file, finds the bug, edits it
   }
-})) {
-  // Pesan hasil berisi structured_output dengan data yang divalidasi
-  if (message.type === 'result' && message.structured_output) {
-    console.log(message.structured_output)
-    // { company_name: "Anthropic", founded_year: 2021, headquarters: "San Francisco, CA" }
-  }
-}
-```
-
-```python Python
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
-
-# Tentukan bentuk data yang ingin Anda dapatkan kembali
-schema = {
-    "type": "object",
-    "properties": {
-        "company_name": {"type": "string"},
-        "founded_year": {"type": "number"},
-        "headquarters": {"type": "string"}
-    },
-    "required": ["company_name"]
-}
-
-async def main():
-    async for message in query(
-        prompt="Research Anthropic and provide key company information",
-        options=ClaudeAgentOptions(
-            output_format={
-                "type": "json_schema",
-                "schema": schema
-            }
-        )
-    ):
-        # Pesan hasil berisi structured_output dengan data yang divalidasi
-        if isinstance(message, ResultMessage) and message.structured_output:
-            print(message.structured_output)
-            # {'company_name': 'Anthropic', 'founded_year': 2021, 'headquarters': 'San Francisco, CA'}
-
-asyncio.run(main())
-```
-
+  ```
 </CodeGroup>
 
-## Skema yang aman tipe dengan Zod dan Pydantic
+The Agent SDK includes built-in tools for reading files, running commands, and editing code, so your agent can start working immediately without you implementing tool execution. Dive into the quickstart or explore real agents built with the SDK:
 
-Alih-alih menulis JSON Schema dengan tangan, Anda dapat menggunakan [Zod](https://zod.dev/) (TypeScript) atau [Pydantic](https://docs.pydantic.dev/latest/) (Python) untuk menentukan skema Anda. Perpustakaan ini menghasilkan JSON Schema untuk Anda dan memungkinkan Anda mengurai respons menjadi objek yang sepenuhnya diketik yang dapat Anda gunakan di seluruh basis kode Anda dengan pelengkapan otomatis dan pemeriksaan tipe.
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build a bug-fixing agent in minutes
+  </Card>
 
-Contoh di bawah ini menentukan skema untuk rencana implementasi fitur dengan ringkasan, daftar langkah (masing-masing dengan tingkat kompleksitas), dan risiko potensial. Agen merencanakan fitur dan mengembalikan objek `FeaturePlan` yang diketik. Anda kemudian dapat mengakses properti seperti `plan.summary` dan mengulangi `plan.steps` dengan keamanan tipe penuh.
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+</CardGroup>
 
-<CodeGroup>
+## Get started
 
-```typescript TypeScript
-import { z } from 'zod'
-import { query } from '@anthropic-ai/claude-agent-sdk'
+<Steps>
+  <Step title="Install the SDK">
+    <Tabs>
+      <Tab title="TypeScript">
+        ```bash  theme={null}
+        npm install @anthropic-ai/claude-agent-sdk
+        ```
+      </Tab>
 
-// Tentukan skema dengan Zod
-const FeaturePlan = z.object({
-  feature_name: z.string(),
-  summary: z.string(),
-  steps: z.array(z.object({
-    step_number: z.number(),
-    description: z.string(),
-    estimated_complexity: z.enum(['low', 'medium', 'high'])
-  })),
-  risks: z.array(z.string())
-})
+      <Tab title="Python">
+        ```bash  theme={null}
+        pip install claude-agent-sdk
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
 
-type FeaturePlan = z.infer<typeof FeaturePlan>
+  <Step title="Set your API key">
+    Get an API key from the [Console](https://platform.claude.com/), then set it as an environment variable:
 
-// Konversi ke JSON Schema
-const schema = z.toJSONSchema(FeaturePlan)
+    ```bash  theme={null}
+    export ANTHROPIC_API_KEY=your-api-key
+    ```
 
-// Gunakan dalam query
-for await (const message of query({
-  prompt: 'Plan how to add dark mode support to a React app. Break it into implementation steps.',
-  options: {
-    outputFormat: {
-      type: 'json_schema',
-      schema: schema
-    }
-  }
-})) {
-  if (message.type === 'result' && message.structured_output) {
-    // Validasi dan dapatkan hasil yang sepenuhnya diketik
-    const parsed = FeaturePlan.safeParse(message.structured_output)
-    if (parsed.success) {
-      const plan: FeaturePlan = parsed.data
-      console.log(`Feature: ${plan.feature_name}`)
-      console.log(`Summary: ${plan.summary}`)
-      plan.steps.forEach(step => {
-        console.log(`${step.step_number}. [${step.estimated_complexity}] ${step.description}`)
-      })
-    }
-  }
-}
-```
+    The SDK also supports authentication via third-party API providers:
 
-```python Python
-import asyncio
-from pydantic import BaseModel
-from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
+    * **Amazon Bedrock**: set `CLAUDE_CODE_USE_BEDROCK=1` environment variable and configure AWS credentials
+    * **Google Vertex AI**: set `CLAUDE_CODE_USE_VERTEX=1` environment variable and configure Google Cloud credentials
+    * **Microsoft Azure**: set `CLAUDE_CODE_USE_FOUNDRY=1` environment variable and configure Azure credentials
 
-class Step(BaseModel):
-    step_number: int
-    description: str
-    estimated_complexity: str  # 'low', 'medium', 'high'
+    See the setup guides for [Bedrock](/en/amazon-bedrock), [Vertex AI](/en/google-vertex-ai), or [Azure AI Foundry](/en/microsoft-foundry) for details.
 
-class FeaturePlan(BaseModel):
-    feature_name: str
-    summary: str
-    steps: list[Step]
-    risks: list[str]
+    <Note>
+      Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Please use the API key authentication methods described in this document instead.
+    </Note>
+  </Step>
 
-async def main():
-    async for message in query(
-        prompt="Plan how to add dark mode support to a React app. Break it into implementation steps.",
-        options=ClaudeAgentOptions(
-            output_format={
-                "type": "json_schema",
-                "schema": FeaturePlan.model_json_schema()
-            }
-        )
-    ):
-        if isinstance(message, ResultMessage) and message.structured_output:
-            # Validasi dan dapatkan hasil yang sepenuhnya diketik
-            plan = FeaturePlan.model_validate(message.structured_output)
-            print(f"Feature: {plan.feature_name}")
-            print(f"Summary: {plan.summary}")
-            for step in plan.steps:
-                print(f"{step.step_number}. [{step.estimated_complexity}] {step.description}")
+  <Step title="Run your first agent">
+    This example creates an agent that lists files in your current directory using built-in tools.
 
-asyncio.run(main())
-```
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
 
-</CodeGroup>
 
-**Manfaat:**
-- Inferensi tipe penuh (TypeScript) dan petunjuk tipe (Python)
-- Validasi runtime dengan `safeParse()` atau `model_validate()`
-- Pesan kesalahan yang lebih baik
-- Skema yang dapat dikomposisi dan dapat digunakan kembali
+      async def main():
+          async for message in query(
+              prompt="What files are in this directory?",
+              options=ClaudeAgentOptions(allowed_tools=["Bash", "Glob"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
 
-## Konfigurasi format output
 
-Opsi `outputFormat` (TypeScript) atau `output_format` (Python) menerima objek dengan:
+      asyncio.run(main())
+      ```
 
-- `type`: Atur ke `"json_schema"` untuk output terstruktur
-- `schema`: Objek [JSON Schema](https://json-schema.org/understanding-json-schema/about) yang menentukan struktur output Anda. Anda dapat menghasilkan ini dari skema Zod dengan `z.toJSONSchema()` atau model Pydantic dengan `.model_json_schema()`
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
 
-SDK mendukung fitur JSON Schema standar termasuk semua tipe dasar (object, array, string, number, boolean, null), `enum`, `const`, `required`, objek bersarang, dan definisi `$ref`. Untuk daftar lengkap fitur yang didukung dan batasan, lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations).
-
-## Contoh: agen pelacakan TODO
-
-Contoh ini menunjukkan bagaimana output terstruktur bekerja dengan penggunaan alat multi-langkah. Agen perlu menemukan komentar TODO dalam basis kode, kemudian mencari informasi git blame untuk masing-masing. Agen secara otonom memutuskan alat mana yang akan digunakan (Grep untuk mencari, Bash untuk menjalankan perintah git) dan menggabungkan hasil menjadi respons terstruktur tunggal.
-
-Skema mencakup bidang opsional (`author` dan `date`) karena informasi git blame mungkin tidak tersedia untuk semua file. Agen mengisi apa yang dapat ditemukannya dan menghilangkan sisanya.
-
-<CodeGroup>
-
-```typescript TypeScript
-import { query } from '@anthropic-ai/claude-agent-sdk'
-
-// Tentukan struktur untuk ekstraksi TODO
-const todoSchema = {
-  type: 'object',
-  properties: {
-    todos: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          text: { type: 'string' },
-          file: { type: 'string' },
-          line: { type: 'number' },
-          author: { type: 'string' },
-          date: { type: 'string' }
-        },
-        required: ['text', 'file', 'line']
+      for await (const message of query({
+        prompt: "What files are in this directory?",
+        options: { allowedTools: ["Bash", "Glob"] }
+      })) {
+        if ("result" in message) console.log(message.result);
       }
-    },
-    total_count: { type: 'number' }
-  },
-  required: ['todos', 'total_count']
-}
+      ```
+    </CodeGroup>
+  </Step>
+</Steps>
 
-// Agen menggunakan Grep untuk menemukan TODO, Bash untuk mendapatkan informasi git blame
-for await (const message of query({
-  prompt: 'Find all TODO comments in this codebase and identify who added them',
-  options: {
-    outputFormat: {
-      type: 'json_schema',
-      schema: todoSchema
-    }
-  }
-})) {
-  if (message.type === 'result' && message.structured_output) {
-    const data = message.structured_output
-    console.log(`Found ${data.total_count} TODOs`)
-    data.todos.forEach(todo => {
-      console.log(`${todo.file}:${todo.line} - ${todo.text}`)
-      if (todo.author) {
-        console.log(`  Added by ${todo.author} on ${todo.date}`)
+**Ready to build?** Follow the [Quickstart](/en/agent-sdk/quickstart) to create an agent that finds and fixes bugs in minutes.
+
+## Capabilities
+
+Everything that makes Claude Code powerful is available in the SDK:
+
+<Tabs>
+  <Tab title="Built-in tools">
+    Your agent can read files, run commands, and search codebases out of the box. Key tools include:
+
+    | Tool                                                                        | What it does                                                   |
+    | --------------------------------------------------------------------------- | -------------------------------------------------------------- |
+    | **Read**                                                                    | Read any file in the working directory                         |
+    | **Write**                                                                   | Create new files                                               |
+    | **Edit**                                                                    | Make precise edits to existing files                           |
+    | **Bash**                                                                    | Run terminal commands, scripts, git operations                 |
+    | **Glob**                                                                    | Find files by pattern (`**/*.ts`, `src/**/*.py`)               |
+    | **Grep**                                                                    | Search file contents with regex                                |
+    | **WebSearch**                                                               | Search the web for current information                         |
+    | **WebFetch**                                                                | Fetch and parse web page content                               |
+    | **[AskUserQuestion](/en/agent-sdk/user-input#handle-clarifying-questions)** | Ask the user clarifying questions with multiple choice options |
+
+    This example creates an agent that searches your codebase for TODO comments:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Find all TODO comments and create a summary",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob", "Grep"]),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Find all TODO comments and create a summary",
+        options: { allowedTools: ["Read", "Glob", "Grep"] }
+      })) {
+        if ("result" in message) console.log(message.result);
       }
-    })
-  }
-}
-```
+      ```
+    </CodeGroup>
+  </Tab>
 
-```python Python
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
+  <Tab title="Hooks">
+    Run custom code at key points in the agent lifecycle. SDK hooks use callback functions to validate, log, block, or transform agent behavior.
 
-# Tentukan struktur untuk ekstraksi TODO
-todo_schema = {
-    "type": "object",
-    "properties": {
-        "todos": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "text": {"type": "string"},
-                    "file": {"type": "string"},
-                    "line": {"type": "number"},
-                    "author": {"type": "string"},
-                    "date": {"type": "string"}
-                },
-                "required": ["text", "file", "line"]
-            }
-        },
-        "total_count": {"type": "number"}
-    },
-    "required": ["todos", "total_count"]
-}
+    **Available hooks:** `PreToolUse`, `PostToolUse`, `Stop`, `SessionStart`, `SessionEnd`, `UserPromptSubmit`, and more.
 
-async def main():
-    # Agen menggunakan Grep untuk menemukan TODO, Bash untuk mendapatkan informasi git blame
-    async for message in query(
-        prompt="Find all TODO comments in this codebase and identify who added them",
-        options=ClaudeAgentOptions(
-            output_format={
-                "type": "json_schema",
-                "schema": todo_schema
-            }
-        )
-    ):
-        if isinstance(message, ResultMessage) and message.structured_output:
-            data = message.structured_output
-            print(f"Found {data['total_count']} TODOs")
-            for todo in data['todos']:
-                print(f"{todo['file']}:{todo['line']} - {todo['text']}")
-                if 'author' in todo:
-                    print(f"  Added by {todo['author']} on {todo['date']}")
+    This example logs all file changes to an audit file:
 
-asyncio.run(main())
-```
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from datetime import datetime
+      from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher
 
-</CodeGroup>
 
-## Penanganan kesalahan
+      async def log_file_change(input_data, tool_use_id, context):
+          file_path = input_data.get("tool_input", {}).get("file_path", "unknown")
+          with open("./audit.log", "a") as f:
+              f.write(f"{datetime.now()}: modified {file_path}\n")
+          return {}
 
-Pembuatan output terstruktur dapat gagal ketika agen tidak dapat menghasilkan JSON yang valid sesuai dengan skema Anda. Ini biasanya terjadi ketika skema terlalu kompleks untuk tugas, tugas itu sendiri ambigu, atau agen mencapai batas percobaan ulangnya mencoba memperbaiki kesalahan validasi.
 
-Ketika kesalahan terjadi, pesan hasil memiliki `subtype` yang menunjukkan apa yang salah:
+      async def main():
+          async for message in query(
+              prompt="Refactor utils.py to improve readability",
+              options=ClaudeAgentOptions(
+                  permission_mode="acceptEdits",
+                  hooks={
+                      "PostToolUse": [
+                          HookMatcher(matcher="Edit|Write", hooks=[log_file_change])
+                      ]
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
 
-| Subtype | Arti |
-|---------|---------|
-| `success` | Output dihasilkan dan divalidasi dengan berhasil |
-| `error_max_structured_output_retries` | Agen tidak dapat menghasilkan output yang valid setelah beberapa upaya |
 
-Contoh di bawah ini memeriksa bidang `subtype` untuk menentukan apakah output dihasilkan dengan berhasil atau jika Anda perlu menangani kegagalan:
+      asyncio.run(main())
+      ```
 
-<CodeGroup>
+      ```typescript TypeScript theme={null}
+      import { query, HookCallback } from "@anthropic-ai/claude-agent-sdk";
+      import { appendFile } from "fs/promises";
 
-```typescript TypeScript
-for await (const msg of query({
-  prompt: 'Extract contact info from the document',
-  options: {
-    outputFormat: {
-      type: 'json_schema',
-      schema: contactSchema
-    }
-  }
-})) {
-  if (msg.type === 'result') {
-    if (msg.subtype === 'success' && msg.structured_output) {
-      // Gunakan output yang divalidasi
-      console.log(msg.structured_output)
-    } else if (msg.subtype === 'error_max_structured_output_retries') {
-      // Tangani kegagalan - coba lagi dengan prompt yang lebih sederhana, kembali ke yang tidak terstruktur, dll.
-      console.error('Could not produce valid output')
-    }
-  }
-}
-```
+      const logFileChange: HookCallback = async (input) => {
+        const filePath = (input as any).tool_input?.file_path ?? "unknown";
+        await appendFile("./audit.log", `${new Date().toISOString()}: modified ${filePath}\n`);
+        return {};
+      };
 
-```python Python
-async for message in query(
-    prompt="Extract contact info from the document",
-    options=ClaudeAgentOptions(
-        output_format={
-            "type": "json_schema",
-            "schema": contact_schema
+      for await (const message of query({
+        prompt: "Refactor utils.py to improve readability",
+        options: {
+          permissionMode: "acceptEdits",
+          hooks: {
+            PostToolUse: [{ matcher: "Edit|Write", hooks: [logFileChange] }]
+          }
         }
-    )
-):
-    if isinstance(message, ResultMessage):
-        if message.subtype == "success" and message.structured_output:
-            # Gunakan output yang divalidasi
-            print(message.structured_output)
-        elif message.subtype == "error_max_structured_output_retries":
-            # Tangani kegagalan
-            print("Could not produce valid output")
-```
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
 
-</CodeGroup>
+    [Learn more about hooks →](/en/agent-sdk/hooks)
+  </Tab>
 
-**Tips untuk menghindari kesalahan:**
+  <Tab title="Subagents">
+    Spawn specialized agents to handle focused subtasks. Your main agent delegates work, and subagents report back with results.
 
-- **Jaga skema tetap fokus.** Skema yang bersarang dalam dengan banyak bidang yang diperlukan lebih sulit untuk dipenuhi. Mulai sederhana dan tambahkan kompleksitas sesuai kebutuhan.
-- **Cocokkan skema dengan tugas.** Jika tugas mungkin tidak memiliki semua informasi yang diperlukan skema Anda, buat bidang tersebut opsional.
-- **Gunakan prompt yang jelas.** Prompt yang ambigu membuat lebih sulit bagi agen untuk mengetahui output apa yang harus diproduksi.
+    Define custom agents with specialized instructions. Include `Agent` in `allowedTools` since subagents are invoked via the Agent tool:
 
-## Sumber daya terkait
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
 
-- [Dokumentasi JSON Schema](https://json-schema.org/): pelajari sintaks JSON Schema untuk menentukan skema kompleks dengan objek bersarang, array, enum, dan batasan validasi
-- [API Structured Outputs](/docs/id/build-with-claude/structured-outputs): gunakan output terstruktur dengan Claude API secara langsung untuk permintaan satu putaran tanpa penggunaan alat
-- [Alat kustom](/docs/id/agent-sdk/custom-tools): berikan agen Anda alat kustom untuk dipanggil selama eksekusi sebelum mengembalikan output terstruktur
+
+      async def main():
+          async for message in query(
+              prompt="Use the code-reviewer agent to review this codebase",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep", "Agent"],
+                  agents={
+                      "code-reviewer": AgentDefinition(
+                          description="Expert code reviewer for quality and security reviews.",
+                          prompt="Analyze code quality and suggest improvements.",
+                          tools=["Read", "Glob", "Grep"],
+                      )
+                  },
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Use the code-reviewer agent to review this codebase",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep", "Agent"],
+          agents: {
+            "code-reviewer": {
+              description: "Expert code reviewer for quality and security reviews.",
+              prompt: "Analyze code quality and suggest improvements.",
+              tools: ["Read", "Glob", "Grep"]
+            }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    Messages from within a subagent's context include a `parent_tool_use_id` field, letting you track which messages belong to which subagent execution.
+
+    [Learn more about subagents →](/en/agent-sdk/subagents)
+  </Tab>
+
+  <Tab title="MCP">
+    Connect to external systems via the Model Context Protocol: databases, browsers, APIs, and [hundreds more](https://github.com/modelcontextprotocol/servers).
+
+    This example connects the [Playwright MCP server](https://github.com/microsoft/playwright-mcp) to give your agent browser automation capabilities:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Open example.com and describe what you see",
+              options=ClaudeAgentOptions(
+                  mcp_servers={
+                      "playwright": {"command": "npx", "args": ["@playwright/mcp@latest"]}
+                  }
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Open example.com and describe what you see",
+        options: {
+          mcpServers: {
+            playwright: { command: "npx", args: ["@playwright/mcp@latest"] }
+          }
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about MCP →](/en/agent-sdk/mcp)
+  </Tab>
+
+  <Tab title="Permissions">
+    Control exactly which tools your agent can use. Allow safe operations, block dangerous ones, or require approval for sensitive actions.
+
+    <Note>
+      For interactive approval prompts and the `AskUserQuestion` tool, see [Handle approvals and user input](/en/agent-sdk/user-input).
+    </Note>
+
+    This example creates a read-only agent that can analyze but not modify code. `allowed_tools` pre-approves `Read`, `Glob`, and `Grep`.
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions
+
+
+      async def main():
+          async for message in query(
+              prompt="Review this code for best practices",
+              options=ClaudeAgentOptions(
+                  allowed_tools=["Read", "Glob", "Grep"],
+              ),
+          ):
+              if hasattr(message, "result"):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      for await (const message of query({
+        prompt: "Review this code for best practices",
+        options: {
+          allowedTools: ["Read", "Glob", "Grep"]
+        }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about permissions →](/en/agent-sdk/permissions)
+  </Tab>
+
+  <Tab title="Sessions">
+    Maintain context across multiple exchanges. Claude remembers files read, analysis done, and conversation history. Resume sessions later, or fork them to explore different approaches.
+
+    This example captures the session ID from the first query, then resumes to continue with full context:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      import asyncio
+      from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage, ResultMessage
+
+
+      async def main():
+          session_id = None
+
+          # First query: capture the session ID
+          async for message in query(
+              prompt="Read the authentication module",
+              options=ClaudeAgentOptions(allowed_tools=["Read", "Glob"]),
+          ):
+              if isinstance(message, SystemMessage) and message.subtype == "init":
+                  session_id = message.data["session_id"]
+
+          # Resume with full context from the first query
+          async for message in query(
+              prompt="Now find all places that call it",  # "it" = auth module
+              options=ClaudeAgentOptions(resume=session_id),
+          ):
+              if isinstance(message, ResultMessage):
+                  print(message.result)
+
+
+      asyncio.run(main())
+      ```
+
+      ```typescript TypeScript theme={null}
+      import { query } from "@anthropic-ai/claude-agent-sdk";
+
+      let sessionId: string | undefined;
+
+      // First query: capture the session ID
+      for await (const message of query({
+        prompt: "Read the authentication module",
+        options: { allowedTools: ["Read", "Glob"] }
+      })) {
+        if (message.type === "system" && message.subtype === "init") {
+          sessionId = message.session_id;
+        }
+      }
+
+      // Resume with full context from the first query
+      for await (const message of query({
+        prompt: "Now find all places that call it", // "it" = auth module
+        options: { resume: sessionId }
+      })) {
+        if ("result" in message) console.log(message.result);
+      }
+      ```
+    </CodeGroup>
+
+    [Learn more about sessions →](/en/agent-sdk/sessions)
+  </Tab>
+</Tabs>
+
+### Claude Code features
+
+The SDK also supports Claude Code's filesystem-based configuration. To use these features, set `setting_sources=["project"]` (Python) or `settingSources: ['project']` (TypeScript)  in your options.
+
+| Feature                                          | Description                                          | Location                           |
+| ------------------------------------------------ | ---------------------------------------------------- | ---------------------------------- |
+| [Skills](/en/agent-sdk/skills)                   | Specialized capabilities defined in Markdown         | `.claude/skills/*/SKILL.md`        |
+| [Slash commands](/en/agent-sdk/slash-commands)   | Custom commands for common tasks                     | `.claude/commands/*.md`            |
+| [Memory](/en/agent-sdk/modifying-system-prompts) | Project context and instructions                     | `CLAUDE.md` or `.claude/CLAUDE.md` |
+| [Plugins](/en/agent-sdk/plugins)                 | Extend with custom commands, agents, and MCP servers | Programmatic via `plugins` option  |
+
+## Compare the Agent SDK to other Claude tools
+
+The Claude Platform offers multiple ways to build with Claude. Here's how the Agent SDK fits in:
+
+<Tabs>
+  <Tab title="Agent SDK vs Client SDK">
+    The [Anthropic Client SDK](https://platform.claude.com/docs/en/api/client-sdks) gives you direct API access: you send prompts and implement tool execution yourself. The **Agent SDK** gives you Claude with built-in tool execution.
+
+    With the Client SDK, you implement a tool loop. With the Agent SDK, Claude handles it:
+
+    <CodeGroup>
+      ```python Python theme={null}
+      # Client SDK: You implement the tool loop
+      response = client.messages.create(...)
+      while response.stop_reason == "tool_use":
+          result = your_tool_executor(response.tool_use)
+          response = client.messages.create(tool_result=result, **params)
+
+      # Agent SDK: Claude handles tools autonomously
+      async for message in query(prompt="Fix the bug in auth.py"):
+          print(message)
+      ```
+
+      ```typescript TypeScript theme={null}
+      // Client SDK: You implement the tool loop
+      let response = await client.messages.create({ ...params });
+      while (response.stop_reason === "tool_use") {
+        const result = yourToolExecutor(response.tool_use);
+        response = await client.messages.create({ tool_result: result, ...params });
+      }
+
+      // Agent SDK: Claude handles tools autonomously
+      for await (const message of query({ prompt: "Fix the bug in auth.py" })) {
+        console.log(message);
+      }
+      ```
+    </CodeGroup>
+  </Tab>
+
+  <Tab title="Agent SDK vs Claude Code CLI">
+    Same capabilities, different interface:
+
+    | Use case                | Best choice |
+    | ----------------------- | ----------- |
+    | Interactive development | CLI         |
+    | CI/CD pipelines         | SDK         |
+    | Custom applications     | SDK         |
+    | One-off tasks           | CLI         |
+    | Production automation   | SDK         |
+
+    Many teams use both: CLI for daily development, SDK for production. Workflows translate directly between them.
+  </Tab>
+</Tabs>
+
+## Changelog
+
+View the full changelog for SDK updates, bug fixes, and new features:
+
+* **TypeScript SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-typescript/blob/main/CHANGELOG.md)
+* **Python SDK**: [view CHANGELOG.md](https://github.com/anthropics/claude-agent-sdk-python/blob/main/CHANGELOG.md)
+
+## Reporting bugs
+
+If you encounter bugs or issues with the Agent SDK:
+
+* **TypeScript SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-typescript/issues)
+* **Python SDK**: [report issues on GitHub](https://github.com/anthropics/claude-agent-sdk-python/issues)
+
+## Branding guidelines
+
+For partners integrating the Claude Agent SDK, use of Claude branding is optional. When referencing Claude in your product:
+
+**Allowed:**
+
+* "Claude Agent" (preferred for dropdown menus)
+* "Claude" (when within a menu already labeled "Agents")
+* "{YourAgentName} Powered by Claude" (if you have an existing agent name)
+
+**Not permitted:**
+
+* "Claude Code" or "Claude Code Agent"
+* Claude Code-branded ASCII art or visual elements that mimic Claude Code
+
+Your product should maintain its own branding and not appear to be Claude Code or any Anthropic product. For questions about branding compliance, contact the Anthropic [sales team](https://www.anthropic.com/contact-sales).
+
+## License and terms
+
+Use of the Claude Agent SDK is governed by [Anthropic's Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms), including when you use it to power products and services that you make available to your own customers and end users, except to the extent a specific component or dependency is covered by a different license as indicated in that component's LICENSE file.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="play" href="/en/agent-sdk/quickstart">
+    Build an agent that finds and fixes bugs in minutes
+  </Card>
+
+  <Card title="Example agents" icon="star" href="https://github.com/anthropics/claude-agent-sdk-demos">
+    Email assistant, research agent, and more
+  </Card>
+
+  <Card title="TypeScript SDK" icon="code" href="/en/agent-sdk/typescript">
+    Full TypeScript API reference and examples
+  </Card>
+
+  <Card title="Python SDK" icon="code" href="/en/agent-sdk/python">
+    Full Python API reference and examples
+  </Card>
+</CardGroup>

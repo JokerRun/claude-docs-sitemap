@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/models/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 09adf26a995207dd6899bf6f15e5b8f2817277a8351bb0f7fec436daf222ee70
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 94abf704b8d0e06410611ba860ccea23dedcc8e203b6b6fc93762bfbe3983e83
 ---
 
 ## List
@@ -78,8 +78,6 @@ The Models API response can be used to determine which models are available for 
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

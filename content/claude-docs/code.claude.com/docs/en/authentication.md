@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-03-19T03:09:16.785463Z
-sha256: 0ba8fe2b803c153a0b50f4ea2d77a57347072b4197bfd40b37486c6a4ef89de3
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 7ae4c818ae2ea6a2c84c7be4bb92b2e96de31fe780ba6ccd19187dcf06f5c12f
 ---
 
 > ## Documentation Index
@@ -20,6 +20,8 @@ Claude Code supports multiple authentication methods depending on your setup. In
 After [installing Claude Code](/en/setup#install-claude-code), run `claude` in your terminal. On first launch, Claude Code opens a browser window for you to log in.
 
 If the browser doesn't open automatically, press `c` to copy the login URL to your clipboard, then paste it into your browser.
+
+If your browser shows a login code instead of redirecting back after you sign in, paste it into the terminal at the `Paste code here if prompted` prompt.
 
 You can authenticate with any of these account types:
 

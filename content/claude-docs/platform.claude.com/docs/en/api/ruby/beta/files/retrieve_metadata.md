@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/retrieve_metadata
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: bff45ef370f258a7bf1e0adea836d7e9f345cce68c74603f7c99ca6203af3bea
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 3b94dd6f947947acdd59b66536f363f15af354c8b61be6d50be0b9d40ed6129b
 ---
 
 ## Retrieve Metadata
@@ -25,7 +25,7 @@ Get File Metadata
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 18 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -69,8 +69,6 @@ Get File Metadata
 
     - `:"output-300k-2026-03-24"`
 
-    - `:"user-profiles-2026-03-24"`
-
 ### Returns
 
 - `class FileMetadata`
@@ -108,6 +106,20 @@ Get File Metadata
   - `downloadable: bool`
 
     Whether the file can be downloaded.
+
+  - `scope: BetaFileScope`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `id: String`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `type: :session`
+
+      The type of scope (e.g., `"session"`).
+
+      - `:session`
 
 ### Example
 

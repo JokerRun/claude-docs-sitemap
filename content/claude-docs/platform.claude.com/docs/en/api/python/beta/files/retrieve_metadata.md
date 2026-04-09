@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/retrieve_metadata
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 2dee0f5a621a6cf0381ff736e080afdbe8774ff575d42fe99a8ee675fae007dc
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 74473c8f6b7c653d06e780afbae803b900b0ffa2e40a02f689d09b271e9e023b
 ---
 
 ## Retrieve Metadata
@@ -25,7 +25,7 @@ Get File Metadata
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -69,8 +69,6 @@ Get File Metadata
 
     - `"output-300k-2026-03-24"`
 
-    - `"user-profiles-2026-03-24"`
-
 ### Returns
 
 - `class FileMetadata: …`
@@ -108,6 +106,20 @@ Get File Metadata
   - `downloadable: Optional[bool]`
 
     Whether the file can be downloaded.
+
+  - `scope: Optional[BetaFileScope]`
+
+    The scope of this file, indicating the context in which it was created (e.g., a session).
+
+    - `id: str`
+
+      The ID of the scoping resource (e.g., the session ID).
+
+    - `type: Literal["session"]`
+
+      The type of scope (e.g., `"session"`).
+
+      - `"session"`
 
 ### Example
 

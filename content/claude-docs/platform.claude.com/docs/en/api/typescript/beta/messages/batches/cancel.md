@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/cancel
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 7bab1ae3086de09d28c49c87ef3f7becf28d19d3fbdd4b74686598ec9bfe70bf
+fetched_at: 2026-04-09T03:10:22.306859Z
+sha256: 3b31ca85276d51bc66ac0f18b81b60b8e56208890b581df06160cc4d13dcf8a3
 ---
 
 ## Cancel
@@ -31,7 +31,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -74,8 +74,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
