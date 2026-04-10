@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: fff2d904bee918fc84baf11021558817b94eff7b0929fa95becc4235624ccef7
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 8bd21f8a0b538392d4119bfcb3d89dc13a13eabc7f81ba2b65211ce74560570d
 ---
 
 # Define your agent
@@ -60,7 +60,7 @@ AGENT_VERSION=$(jq -r '.version' <<< "$agent")
 ````bash
 ant beta:agents create \
   --name "Coding Assistant" \
-  --model claude-sonnet-4-6 \
+  --model '{id: claude-sonnet-4-6}' \
   --system "You are a helpful coding agent." \
   --tool '{type: agent_toolset_20260401}'
 ````

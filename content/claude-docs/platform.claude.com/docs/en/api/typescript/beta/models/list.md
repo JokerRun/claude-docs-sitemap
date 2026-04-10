@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/models/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 5041520be905414b72ac4c2e757fee104718cf24843ac2d8a4283bfb603e843c
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: ea157f6718a5436dc63fd6aec45a59f2aa3a196f4977c16a3d2a029b8b3a580b
 ---
 
 ## List
@@ -39,7 +39,7 @@ The Models API response can be used to determine which models are available for 
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ The Models API response can be used to determine which models are available for 
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

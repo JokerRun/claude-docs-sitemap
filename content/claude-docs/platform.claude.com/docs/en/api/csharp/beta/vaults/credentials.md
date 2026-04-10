@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: eba994b0ec5166901ff85e4031a0ab9220c19459a0c8c94af9ff7e7ba250ff30
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 207278a17aa081d8f24fa340fe5776cd14018a5c2e2a8eb7faef040a871da6e4
 ---
 
 # Credentials
@@ -129,7 +129,7 @@ Create Credential
 
   - `IReadOnlyDictionary<string, string> metadata`
 
-    Body param: Arbitrary key-value metadata to attach to the credential.
+    Body param: Arbitrary key-value metadata to attach to the credential. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
   - `IReadOnlyList<AnthropicBeta> betas`
 
@@ -176,6 +176,8 @@ Create Credential
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
@@ -388,6 +390,8 @@ List Credentials
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
 ### Returns
 
 - `class CredentialListPageResponse:`
@@ -594,6 +598,8 @@ Get Credential
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
@@ -873,6 +879,8 @@ Update Credential
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
 ### Returns
 
 - `class BetaManagedAgentsCredential:`
@@ -1071,6 +1079,8 @@ Delete Credential
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedCredential:`
@@ -1164,6 +1174,8 @@ Archive Credential
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

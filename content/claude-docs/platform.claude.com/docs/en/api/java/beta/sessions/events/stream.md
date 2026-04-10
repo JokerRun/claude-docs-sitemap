@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/events/stream
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 1fdab2a465d0af37363bdee8593790d406b4742a00b63787ad59165bd9097a8b
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: ce7f09f97cd3caf6ae60f45b7bb3730b8eda32b03d66301cff6f7702190cc9fd
 ---
 
 ## Stream
@@ -64,6 +64,8 @@ Stream Events
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

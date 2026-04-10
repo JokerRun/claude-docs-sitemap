@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/events/send
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 907cd8e51ca9a90e4939fb6ea09ed3b98f93a96e097c98dbd1995f7c9669d89c
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: c804493fce63bc80187336b278d553495da4c16716e141ef82bba021efaee84f
 ---
 
 ## Send
@@ -418,6 +418,8 @@ Send Events
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

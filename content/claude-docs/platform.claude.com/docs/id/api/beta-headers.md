@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: a69f43de73fbddf0aa56a62d4fad8126d15033a605cd479f539930893843617f
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 9c45f471a9b7150c72f454dee43573404a8f3f0619342344d2aced7367ff821a
 ---
 
 # Header beta
@@ -34,41 +34,11 @@ Saat menggunakan SDK, Anda dapat menentukan header beta dalam opsi permintaan:
 
 <CodeGroup>
 
-```python Python
-from anthropic import Anthropic
-
-client = Anthropic()
-
-response = client.beta.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    messages=[
-        {"role": "user", "content": "Hello, Claude"}
-    ],
-    betas=["code-execution-2025-08-25"]
-)
-```
-
-```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
-
-const anthropic = new Anthropic();
-
-const msg = await anthropic.beta.messages.create({
-  model: 'claude-opus-4-6',
-  max_tokens: 1024,
-  messages: [
-    { role: 'user', content: 'Hello, Claude' }
-  ],
-  betas: ['code-execution-2025-08-25']
-});
-```
-
-```bash cURL
+```bash Shell
 curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: code-execution-2025-08-25" \
+  -H "anthropic-beta: files-api-2025-04-14" \
   -H "content-type: application/json" \
   -d '{
     "model": "claude-opus-4-6",
@@ -79,23 +49,67 @@ curl https://api.anthropic.com/v1/messages \
   }'
 ```
 
+```bash CLI
+ant beta:messages create \
+  --beta files-api-2025-04-14 \
+  --model claude-opus-4-6 \
+  --max-tokens 1024 \
+  --message '{role: user, content: "Hello, Claude"}'
+```
+
+```python Python hidelines={1..2}
+from anthropic import Anthropic
+
+client = Anthropic()
+
+response = client.beta.messages.create(
+    model="claude-opus-4-6",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Hello, Claude"}],
+    betas=["files-api-2025-04-14"],
+)
+```
+
+```typescript TypeScript hidelines={1..2}
+import Anthropic from "@anthropic-ai/sdk";
+
+const anthropic = new Anthropic();
+
+const msg = await anthropic.beta.messages.create({
+  model: "claude-opus-4-6",
+  max_tokens: 1024,
+  messages: [{ role: "user", content: "Hello, Claude" }],
+  betas: ["files-api-2025-04-14"]
+});
+```
+
 </CodeGroup>
 
 <Warning>
 Fitur beta bersifat eksperimental dan mungkin:
-- Memiliki perubahan yang merusak tanpa pemberitahuan
+- Memiliki perubahan yang merusak dengan pemberitahuan
 - Dihentikan atau dihapus
 - Memiliki batas laju atau harga yang berbeda
 - Tidak tersedia di semua wilayah
 </Warning>
 
-### Fitur beta berganda
+### Fitur beta ganda
 
 Untuk menggunakan beberapa fitur beta dalam satu permintaan, sertakan semua nama fitur dalam header yang dipisahkan dengan koma:
 
 ```http
 anthropic-beta: feature1,feature2,feature3
 ```
+
+### Header khusus endpoint
+
+Beberapa fitur beta dibatasi pada endpoint tertentu daripada parameter permintaan individual. [Claude Managed Agents](/docs/id/managed-agents/overview) menggunakan satu header beta untuk semua endpoint:
+
+| Endpoint | Header beta |
+| --- | --- |
+| `/v1/agents`, `/v1/sessions`, `/v1/environments` | `managed-agents-2026-04-01` |
+
+Lihat [ringkasan Managed Agents](/docs/id/managed-agents/overview) untuk detail.
 
 ### Konvensi penamaan versi
 
@@ -105,7 +119,7 @@ Nama fitur beta biasanya mengikuti pola: `feature-name-YYYY-MM-DD`, di mana tang
 
 Jika Anda menggunakan header beta yang tidak valid atau tidak tersedia, Anda akan menerima respons kesalahan:
 
-```json
+```json Output
 {
   "type": "error",
   "error": {
@@ -119,7 +133,7 @@ Jika Anda menggunakan header beta yang tidak valid atau tidak tersedia, Anda aka
 
 Untuk pertanyaan tentang fitur beta:
 
-1. Periksa dokumentasi untuk fitur spesifik
+1. Periksa dokumentasi untuk fitur tertentu
 2. Tinjau [changelog API](/docs/id/api/versioning) untuk pembaruan
 3. Hubungi dukungan untuk bantuan dengan penggunaan produksi
 

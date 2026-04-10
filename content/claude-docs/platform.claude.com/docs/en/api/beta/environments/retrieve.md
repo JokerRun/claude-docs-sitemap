@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: e992866883fa7d921c85760b0423f5624437cc38b07ca1a1f58015d5b83de0b1
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 7c7f000ede9cb3955b68386ebde76ae7e219906bd7a119df5b16f8e0aa34c057
 ---
 
 ## Retrieve
@@ -23,7 +23,7 @@ Retrieve a specific environment by ID.
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -67,9 +67,7 @@ Retrieve a specific environment by ID.
 
     - `"output-300k-2026-03-24"`
 
-### Cookie Parameters
-
-- `sessionKey: optional string`
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

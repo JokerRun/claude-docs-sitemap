@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/versions/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: c04809a74281bda047aa5b7bc9fdcb1fb80791034deb6cc8436543704152a2da
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: af80aa7a10bb71bac3ac83605e938c39cec40121e7c745039b4a4c36a603aa88
 ---
 
 ## List
@@ -76,6 +76,8 @@ List Agent Versions
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8526c8c88c5c309250b152a70963c1c0d03e68522354a19b2867266ab94f5d97
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 0586d6ea1e61743babea7e920a62b86a397f8cf1a3bfc4af61e434cc5d8ee1a1
 ---
 
 ## Create
@@ -123,7 +123,7 @@ Create Credential
 
 - `metadata: Hash[Symbol, String]`
 
-  Arbitrary key-value metadata to attach to the credential.
+  Arbitrary key-value metadata to attach to the credential. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
 - `betas: Array[AnthropicBeta]`
 
@@ -131,7 +131,7 @@ Create Credential
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 18 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -174,6 +174,8 @@ Create Credential
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 

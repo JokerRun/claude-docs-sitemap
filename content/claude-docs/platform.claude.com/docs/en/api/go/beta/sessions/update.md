@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f2b1996c1a7df943d5c0ffe2b8db30e3917c83325691d08fe0d3a19d76bf0af3
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: dbcefadd4a55ee5e96a574deb8ef2aa905b6575f59e369d50602cb97d8a56c22
 ---
 
 ## Update
@@ -80,6 +80,8 @@ Update Session
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

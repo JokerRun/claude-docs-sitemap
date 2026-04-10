@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/models/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: d66b6e9eb6fa3c7f35eef431ff3a7c567b0c72639470c6a1a5d8aee117b81917
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 18bdbda1bffbb70d04aa174ae6dd325e480450eed9d9770369aa5b077b64f4c8
 ---
 
 ## Retrieve
@@ -68,6 +68,8 @@ The Models API response can be used to determine information about a specific mo
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

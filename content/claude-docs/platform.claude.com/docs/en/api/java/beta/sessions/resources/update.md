@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: ebd533b3ce265dc8bf791921ba0674eb19061f21bf1a569520b988a26fe20ac2
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 80ed61db02ff196b8474421398d415e8c286e55aed199340bd605f658faf257a
 ---
 
 ## Update
@@ -66,6 +66,8 @@ Update Session Resource
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `String authorizationToken`
 

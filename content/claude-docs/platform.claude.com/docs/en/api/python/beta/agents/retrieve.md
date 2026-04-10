@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/agents/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: bc0f8d5001f9a00b6b876c894e355e75b2cf1c2c3a7fe955a22c4f381f4b3a64
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 55082a28107b51cd1ad6b39138e65d458667308d9883692a9c06b5053a934882
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ Get Agent
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,6 +70,8 @@ Get Agent
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

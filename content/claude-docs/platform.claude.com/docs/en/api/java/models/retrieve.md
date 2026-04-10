@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 7637a1ef9032e6eec20597c33c38f3c737ab8c121e42f03862b82a51e162b038
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 57894cb23e4e567838ee5523f959f4b4a2eb7929c8a59dbf2474b9482a9e114d
 ---
 
 ## Retrieve
@@ -68,6 +68,8 @@ The Models API response can be used to determine information about a specific mo
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

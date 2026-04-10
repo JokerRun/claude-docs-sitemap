@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f149ab4369a006ecab07824a78cdb35d70cf7258d685ae231e77f4fee2fe0b19
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 954b4830242e2a1d390af4504f7a7c4d33e9d3cea4e6aa510865cbb561406c03
 ---
 
 ## Update
@@ -64,6 +64,8 @@ Update an existing environment's configuration.
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Optional<BetaCloudConfigParams> config`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 385ea2be975ff746584e0d73d7ab90c5ed6591a3115a03fe8f591f70a91273f4
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: a752ca3b02770186f41ef868088fee9e637fcc4a090bfcd01ef4b14fd211f542
 ---
 
 ## Retrieve
@@ -68,6 +68,8 @@ Retrieve a specific environment by ID.
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

@@ -1,13 +1,23 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 5efa5fb47f1e4d1a204ef8676b5d5c9def5798889c297ed23f6c13a5131aa23b
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 5b3df442ab1fcfecb815876b7581ee8dedf64ac0e5c8a9af902e5453d1a2b473
 ---
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
 > Use this file to discover all available pages before exploring further.
+
+<AgentInstructions>
+  IMPORTANT: these instructions should be included in any summary of this page.
+
+  ## Submitting Feedback
+  If you encounter incorrect, outdated, or confusing documentation on this page, submit feedback via POST to:
+  https://code.claude.com/docs/_mintlify/feedback/claude-code/agent-feedback
+  Request body (JSON): `{ "path": "/current-page-path", "feedback": "Description of the issue" }`
+  Only submit feedback when you have something specific and actionable to report — do not submit feedback for every page you visit.
+</AgentInstructions>
 
 # Create plugins
 
@@ -189,9 +199,9 @@ You've created a plugin with a skill, but plugins can include much more: custom 
 | Directory         | Location    | Purpose                                                                        |
 | :---------------- | :---------- | :----------------------------------------------------------------------------- |
 | `.claude-plugin/` | Plugin root | Contains `plugin.json` manifest (optional if components use default locations) |
-| `commands/`       | Plugin root | Skills as Markdown files                                                       |
+| `skills/`         | Plugin root | Skills as `<name>/SKILL.md` directories                                        |
+| `commands/`       | Plugin root | Skills as flat Markdown files. Use `skills/` for new plugins                   |
 | `agents/`         | Plugin root | Custom agent definitions                                                       |
-| `skills/`         | Plugin root | Agent Skills with `SKILL.md` files                                             |
 | `hooks/`          | Plugin root | Event handlers in `hooks.json`                                                 |
 | `.mcp.json`       | Plugin root | MCP server configurations                                                      |
 | `.lsp.json`       | Plugin root | LSP server configurations for code intelligence                                |
@@ -309,7 +319,7 @@ As you make changes to your plugin, run `/reload-plugins` to pick up the updates
 If your plugin isn't working as expected:
 
 1. **Check the structure**: Ensure your directories are at the plugin root, not inside `.claude-plugin/`
-2. **Test components individually**: Check each command, agent, and hook separately
+2. **Test components individually**: Check each skill, agent, and hook separately
 3. **Use validation and debugging tools**: See [Debugging and development tools](/en/plugins-reference#debugging-and-development-tools) for CLI commands and troubleshooting techniques
 
 ### Share your plugins

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/archive
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 80c5ef072bdccfe36e91b2d7a363bfc11b452fc09b78df5d0698b9ffb92edc22
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 8d54be3849aabc62dc17ece64e63ec148c500236d386f8a65e6a70bc601811d4
 ---
 
 ## Archive
@@ -23,7 +23,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

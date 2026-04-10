@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 21430b2118ca3651ea249205a6af4030d37ed23f6543f117ad54248f24805514
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: afce14644fcb21b285d6a4adf305ccc32bc31b0466b513acc04d1a8e166cfd96
 ---
 
 ## Delete
@@ -66,6 +66,8 @@ Delete File
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

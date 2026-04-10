@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 5a384619fbe07edc9dd7c034ab2d1040d43151a6008409cd384e216f2e14e8a9
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 88714be2d36264710c1c2e10b7e1d050d0daa85f0cc1ae8e886ee2afc8f8298c
 ---
 
 # Resources
@@ -82,6 +82,8 @@ Add Session Resource
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
@@ -189,6 +191,8 @@ List Session Resources
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
@@ -347,6 +351,8 @@ Get Session Resource
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
 ### Returns
 
 - `class ResourceRetrieveResponse: A class that can be one of several variants.union`
@@ -499,6 +505,8 @@ Update Session Resource
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
 ### Returns
 
 - `class ResourceUpdateResponse: A class that can be one of several variants.union`
@@ -647,6 +655,8 @@ Delete Session Resource
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

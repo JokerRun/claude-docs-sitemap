@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f47d594f386cd674bffd97eef2d9e826f3f288d58602c77fecc3d01042e6fba8
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 0a05f15a23f2c6f910ad65ae2ec53a411bb8500c265d0aa9017081328636fde2
 ---
 
 # Credentials
@@ -66,6 +66,8 @@ Create Credential
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Auth auth`
 
@@ -173,7 +175,7 @@ Create Credential
 
   - `Optional<Metadata> metadata`
 
-    Arbitrary key-value metadata to attach to the credential.
+    Arbitrary key-value metadata to attach to the credential. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
 ### Returns
 
@@ -395,6 +397,8 @@ List Credentials
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
 ### Returns
 
 - `class BetaManagedAgentsCredential:`
@@ -595,6 +599,8 @@ Get Credential
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 
@@ -800,6 +806,8 @@ Update Credential
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Optional<Auth> auth`
 
@@ -1086,6 +1094,8 @@ Delete Credential
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedCredential:`
@@ -1186,6 +1196,8 @@ Archive Credential
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

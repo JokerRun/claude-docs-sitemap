@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 9840e14195ca4679045ce2683ca54e8d35e4f752a80065704e86e97ba5bf199d
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 216ef9172677c0c2dc7d0c829db93b38f0ab0080978b3519e79ade8c98c18a49
 ---
 
 ## Create
@@ -85,6 +85,8 @@ Create a new environment with the specified configuration.
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

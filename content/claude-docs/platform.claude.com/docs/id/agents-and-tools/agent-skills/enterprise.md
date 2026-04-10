@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 76f762ebb2923c27df99866fc419cda16ae7999934d3c3ed3d8d193229f33cdb
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 754037ac405aff254d6c4e9fb2916408d37c38229d00a3fc78f8265b557beaf7
 ---
 
 # Keterampilan untuk perusahaan
@@ -11,14 +11,14 @@ Tata kelola, tinjauan keamanan, evaluasi, dan panduan organisasi untuk menerapka
 
 ---
 
-Panduan ini ditujukan untuk admin perusahaan dan arsitek yang perlu mengatur Agent Skills di seluruh organisasi. Panduan ini mencakup cara memverifikasi, mengevaluasi, menerapkan, dan mengelola Skills dalam skala besar. Untuk panduan penulisan, lihat [praktik terbaik](/docs/id/agents-and-tools/agent-skills/best-practices). Untuk detail arsitektur, lihat [ringkasan Skills](/docs/id/agents-and-tools/agent-skills/overview).
+Panduan ini ditujukan untuk admin perusahaan dan arsitek yang perlu mengatur Agent Skills di seluruh organisasi. Panduan ini mencakup cara memeriksa, mengevaluasi, menerapkan, dan mengelola Skills dalam skala besar. Untuk panduan penulisan, lihat [praktik terbaik](/docs/id/agents-and-tools/agent-skills/best-practices). Untuk detail arsitektur, lihat [ringkasan Skills](/docs/id/agents-and-tools/agent-skills/overview).
 
-## Tinjauan keamanan dan verifikasi
+## Tinjauan keamanan dan penyaringan
 
 Menerapkan Skills di perusahaan memerlukan menjawab dua pertanyaan yang berbeda:
 
 1. **Apakah Skills aman secara umum?** Lihat bagian [pertimbangan keamanan](/docs/id/agents-and-tools/agent-skills/overview#security-considerations) dalam ringkasan untuk detail keamanan tingkat platform.
-2. **Bagaimana cara saya memverifikasi Skill tertentu?** Gunakan penilaian risiko dan daftar periksa tinjauan di bawah ini.
+2. **Bagaimana cara saya memeriksa Skill tertentu?** Gunakan penilaian risiko dan daftar periksa tinjauan di bawah ini.
 
 ### Penilaian tingkat risiko
 
@@ -26,7 +26,7 @@ Evaluasi setiap Skill terhadap indikator risiko ini sebelum menyetujui penerapan
 
 | Indikator risiko | Apa yang harus dicari | Tingkat kekhawatiran |
 |---|---|---|
-| Eksekusi kode | Skrip di direktori Skill (`*.py`, `*.sh`, `*.js`) | Tinggi: skrip berjalan dengan akses lingkungan penuh |
+| Eksekusi kode | Skrip dalam direktori Skill (`*.py`, `*.sh`, `*.js`) | Tinggi: skrip berjalan dengan akses lingkungan penuh |
 | Manipulasi instruksi | Arahan untuk mengabaikan aturan keamanan, menyembunyikan tindakan dari pengguna, atau mengubah perilaku Claude secara kondisional | Tinggi: dapat melewati kontrol keamanan |
 | Referensi server MCP | Instruksi yang mereferensikan alat MCP (`ServerName:tool_name`) | Tinggi: memperluas akses di luar Skill itu sendiri |
 | Pola akses jaringan | URL, titik akhir API, panggilan `fetch`, `curl`, atau `requests` | Tinggi: vektor potensi eksfiltrasi data |
@@ -39,11 +39,11 @@ Evaluasi setiap Skill terhadap indikator risiko ini sebelum menyetujui penerapan
 Sebelum menerapkan Skill apa pun dari pihak ketiga atau kontributor internal, selesaikan langkah-langkah berikut:
 
 1. **Baca semua konten direktori Skill.** Tinjau SKILL.md, semua file markdown yang direferensikan, dan skrip atau sumber daya bundel apa pun.
-2. **Verifikasi perilaku skrip sesuai dengan tujuan yang dinyatakan.** Jalankan skrip di lingkungan terisolasi dan konfirmasi output selaras dengan deskripsi Skill.
-3. **Periksa instruksi yang bersifat adversarial.** Cari arahan yang menyuruh Claude mengabaikan aturan keamanan, menyembunyikan tindakan dari pengguna, mengeksfiltrasi data melalui respons, atau mengubah perilaku berdasarkan input tertentu.
+2. **Verifikasi perilaku skrip sesuai dengan tujuan yang dinyatakan.** Jalankan skrip di lingkungan sandbox dan konfirmasi output selaras dengan deskripsi Skill.
+3. **Periksa instruksi yang bersifat adversarial.** Cari arahan yang memberi tahu Claude untuk mengabaikan aturan keamanan, menyembunyikan tindakan dari pengguna, mengeksfiltrasi data melalui respons, atau mengubah perilaku berdasarkan input tertentu.
 4. **Periksa pengambilan URL eksternal atau panggilan jaringan.** Cari skrip dan instruksi untuk pola akses jaringan (`http`, `requests.get`, `urllib`, `curl`, `fetch`).
 5. **Verifikasi tidak ada kredensial hardcoded.** Periksa kunci API, token, atau kata sandi dalam file Skill. Kredensial harus menggunakan variabel lingkungan atau penyimpanan kredensial aman, tidak pernah muncul dalam konten Skill.
-6. **Identifikasi alat dan perintah yang diperintahkan Skill kepada Claude untuk dijalankan.** Buat daftar semua perintah bash, operasi file, dan referensi alat. Pertimbangkan risiko gabungan ketika Skill menggunakan alat pembacaan file dan jaringan bersama-sama.
+6. **Identifikasi alat dan perintah yang diinstruksikan Skill kepada Claude untuk dipanggil.** Buat daftar semua perintah bash, operasi file, dan referensi alat. Pertimbangkan risiko gabungan ketika Skill menggunakan alat pembacaan file dan jaringan bersama-sama.
 7. **Konfirmasi tujuan pengalihan.** Jika Skill mereferensikan URL eksternal, verifikasi bahwa mereka menunjuk ke domain yang diharapkan.
 8. **Verifikasi tidak ada pola eksfiltrasi data.** Cari instruksi yang membaca data sensitif dan kemudian menulis, mengirim, atau mengkodekannya untuk transmisi eksternal, termasuk melalui respons percakapan Claude.
 
@@ -53,7 +53,7 @@ Jangan pernah menerapkan Skills dari sumber yang tidak terpercaya tanpa audit le
 
 ## Mengevaluasi Skills sebelum penerapan
 
-Skills dapat menurunkan kinerja agen jika mereka dipicu secara tidak benar, bertentangan dengan Skills lain, atau memberikan instruksi yang buruk. Perlukan evaluasi sebelum penerapan produksi apa pun.
+Skills dapat menurunkan kinerja agen jika mereka dipicu secara tidak benar, bertentangan dengan Skills lain, atau memberikan instruksi yang buruk. Memerlukan evaluasi sebelum penerapan produksi apa pun.
 
 ### Apa yang harus dievaluasi
 
@@ -62,14 +62,14 @@ Tetapkan gerbang persetujuan untuk dimensi ini sebelum menerapkan Skill apa pun:
 | Dimensi | Apa yang diukur | Contoh kegagalan |
 |---|---|---|
 | Akurasi pemicu | Apakah Skill diaktifkan untuk kueri yang tepat dan tetap tidak aktif untuk kueri yang tidak terkait? | Skill dipicu pada setiap penyebutan spreadsheet, bahkan ketika pengguna hanya ingin membahas data |
-| Perilaku isolasi | Apakah Skill berfungsi dengan benar sendiri? | Skill mereferensikan file yang tidak ada di direktorinya |
+| Perilaku isolasi | Apakah Skill bekerja dengan benar sendiri? | Skill mereferensikan file yang tidak ada di direktorinya |
 | Koeksistensi | Apakah menambahkan Skill ini menurunkan Skills lain? | Deskripsi Skill baru terlalu luas, mencuri pemicu dari Skills yang ada |
-| Mengikuti instruksi | Apakah Claude mengikuti instruksi Skill dengan akurat? | Claude melewati langkah validasi atau menggunakan perpustakaan yang salah |
+| Mengikuti instruksi | Apakah Claude mengikuti instruksi Skill dengan akurat? | Claude melewatkan langkah validasi atau menggunakan perpustakaan yang salah |
 | Kualitas output | Apakah Skill menghasilkan hasil yang benar dan berguna? | Laporan yang dihasilkan memiliki kesalahan pemformatan atau data yang hilang |
 
 ### Persyaratan evaluasi
 
-Perlukan penulis Skill untuk mengirimkan suite evaluasi dengan 3-5 kueri perwakilan per Skill, mencakup kasus di mana Skill harus dipicu, tidak boleh dipicu, dan kasus tepi yang ambigu. Perlukan pengujian di seluruh model yang digunakan organisasi Anda (Haiku, Sonnet, Opus), karena efektivitas Skill bervariasi menurut model.
+Memerlukan penulis Skill untuk mengirimkan suite evaluasi dengan 3-5 kueri perwakilan per Skill, mencakup kasus di mana Skill harus dipicu, tidak boleh dipicu, dan kasus tepi yang ambigu. Memerlukan pengujian di seluruh model yang digunakan organisasi Anda (Haiku, Sonnet, Opus), karena efektivitas Skill bervariasi menurut model.
 
 Untuk panduan terperinci tentang membangun evaluasi, lihat [evaluasi dan iterasi](/docs/id/agents-and-tools/agent-skills/best-practices#evaluation-and-iteration) dalam praktik terbaik. Untuk metodologi evaluasi umum, lihat [mengembangkan kasus uji](/docs/id/test-and-evaluate/develop-tests).
 
@@ -86,13 +86,13 @@ Hasil evaluasi menandakan kapan harus bertindak:
 
 <Steps>
   <Step title="Rencanakan">
-    Identifikasi alur kerja yang berulang, rawan kesalahan, atau memerlukan pengetahuan khusus. Petakan ini ke peran organisasi dan tentukan mana yang merupakan kandidat untuk Skills.
+    Identifikasi alur kerja yang berulang, rentan kesalahan, atau memerlukan pengetahuan khusus. Petakan ini ke peran organisasi dan tentukan mana yang merupakan kandidat untuk Skills.
   </Step>
   <Step title="Buat dan tinjau">
-    Pastikan penulis Skill mengikuti [praktik terbaik](/docs/id/agents-and-tools/agent-skills/best-practices). Perlukan tinjauan keamanan menggunakan [daftar periksa tinjauan](#review-checklist) di atas. Perlukan suite evaluasi sebelum persetujuan. Tetapkan pemisahan tugas: penulis Skill tidak boleh menjadi peninjau mereka sendiri.
+    Pastikan penulis Skill mengikuti [praktik terbaik](/docs/id/agents-and-tools/agent-skills/best-practices). Memerlukan tinjauan keamanan menggunakan [daftar periksa tinjauan](#review-checklist) di atas. Memerlukan suite evaluasi sebelum persetujuan. Tetapkan pemisahan tugas: penulis Skill tidak boleh menjadi peninjau mereka sendiri.
   </Step>
   <Step title="Uji">
-    Perlukan evaluasi secara terisolasi (Skill sendiri) dan bersama Skills yang ada (pengujian koeksistensi). Verifikasi akurasi pemicu, kualitas output, dan tidak adanya regresi di seluruh set Skill aktif Anda sebelum menyetujui untuk produksi.
+    Memerlukan evaluasi secara terisolasi (Skill sendiri) dan bersama Skills yang ada (pengujian koeksistensi). Verifikasi akurasi pemicu, kualitas output, dan tidak adanya regresi di seluruh set Skill aktif Anda sebelum menyetujui untuk produksi.
   </Step>
   <Step title="Terapkan">
     Unggah melalui Skills API untuk akses di seluruh ruang kerja. Lihat [Menggunakan Skills dengan API](/docs/id/build-with-claude/skills-guide) untuk manajemen unggahan dan versi. Dokumentasikan Skill dalam registri internal Anda dengan tujuan, pemilik, dan versi.
@@ -101,7 +101,7 @@ Hasil evaluasi menandakan kapan harus bertindak:
     Lacak pola penggunaan dan kumpulkan umpan balik dari pengguna. Jalankan kembali evaluasi secara berkala untuk mendeteksi pergeseran atau regresi saat alur kerja dan model berkembang. Analitik penggunaan saat ini tidak tersedia melalui Skills API. Implementasikan pencatatan tingkat aplikasi untuk melacak Skills mana yang disertakan dalam permintaan.
   </Step>
   <Step title="Iterasi atau hentikan">
-    Perlukan suite evaluasi lengkap untuk lulus sebelum mempromosikan versi baru. Perbarui Skills ketika alur kerja berubah atau skor evaluasi menurun. Hentikan Skills ketika evaluasi secara konsisten gagal atau alur kerja dihentikan.
+    Memerlukan suite evaluasi lengkap untuk lulus sebelum mempromosikan versi baru. Perbarui Skills ketika alur kerja berubah atau skor evaluasi menurun. Hentikan Skills ketika evaluasi secara konsisten gagal atau alur kerja dihentikan.
   </Step>
 </Steps>
 
@@ -109,9 +109,9 @@ Hasil evaluasi menandakan kapan harus bertindak:
 
 ### Batas penarikan kembali
 
-Sebagai pedoman umum, batasi jumlah Skills yang dimuat secara bersamaan untuk mempertahankan akurasi penarikan kembali yang andal. Metadata setiap Skill (nama dan deskripsi) bersaing untuk perhatian dalam prompt sistem. Dengan terlalu banyak Skills aktif, Claude mungkin gagal memilih Skill yang tepat atau melewatkan yang relevan sepenuhnya. Gunakan suite evaluasi Anda untuk mengukur akurasi penarikan kembali saat Anda menambahkan Skills, dan berhenti menambahkan ketika kinerja menurun.
+Sebagai panduan umum, batasi jumlah Skills yang dimuat secara bersamaan untuk mempertahankan akurasi penarikan kembali yang andal. Metadata setiap Skill (nama dan deskripsi) bersaing untuk perhatian dalam prompt sistem. Dengan terlalu banyak Skills aktif, Claude mungkin gagal memilih Skill yang tepat atau melewatkan yang relevan sepenuhnya. Gunakan suite evaluasi Anda untuk mengukur akurasi penarikan kembali saat Anda menambahkan Skills, dan berhenti menambahkan ketika kinerja menurun.
 
-Perhatikan bahwa permintaan API mendukung maksimal 8 Skills per permintaan (lihat [Menggunakan Skills dengan API](/docs/id/build-with-claude/skills-guide)). Jika peran memerlukan lebih banyak Skills daripada yang didukung permintaan tunggal, pertimbangkan untuk menggabungkan Skills sempit menjadi yang lebih luas atau merutekan permintaan ke set Skill yang berbeda berdasarkan jenis tugas.
+Perhatikan bahwa permintaan API mendukung maksimum 8 Skills per permintaan (lihat [Menggunakan Skills dengan API](/docs/id/build-with-claude/skills-guide)). Jika peran memerlukan lebih banyak Skills daripada yang didukung permintaan tunggal, pertimbangkan untuk menggabungkan Skills sempit menjadi yang lebih luas atau merutekan permintaan ke set Skills yang berbeda berdasarkan jenis tugas.
 
 ### Mulai spesifik, konsolidasikan nanti
 
@@ -127,11 +127,11 @@ Gunakan evaluasi untuk memutuskan kapan harus menggabungkan. Gabungkan Skills se
 
 ### Penamaan dan katalogisasi
 
-Gunakan konvensi penamaan yang konsisten di seluruh organisasi Anda. Bagian [konvensi penamaan](/docs/id/agents-and-tools/agent-skills/best-practices#naming-conventions) dalam praktik terbaik memberikan panduan pemformatan.
+Gunakan konvensi penamaan yang konsisten di seluruh organisasi Anda. Bagian [konvensi penamaan](/docs/id/agents-and-tools/agent-skills/best-practices#naming-conventions) dalam praktik terbaik menyediakan panduan pemformatan.
 
 Pertahankan registri internal untuk setiap Skill dengan:
 - **Tujuan**: Alur kerja apa yang didukung Skill
-- **Pemilik**: Tim atau individu yang bertanggung jawab atas pemeliharaan
+- **Pemilik**: Tim atau individu yang bertanggung jawab untuk pemeliharaan
 - **Versi**: Versi yang saat ini diterapkan
 - **Dependensi**: Server MCP, paket, atau layanan eksternal yang diperlukan
 - **Status evaluasi**: Tanggal evaluasi terakhir dan hasil
@@ -154,14 +154,14 @@ Simpan direktori Skill di Git untuk pelacakan riwayat, tinjauan kode melalui per
 
 ### Distribusi berbasis API
 
-Skills API menyediakan distribusi dengan cakupan ruang kerja. Skills yang diunggah melalui API tersedia untuk semua anggota ruang kerja. Lihat [Menggunakan Skills dengan API](/docs/id/build-with-claude/skills-guide) untuk unggahan, versioning, dan titik akhir manajemen.
+Skills API menyediakan distribusi berskop ruang kerja. Skills yang diunggah melalui API tersedia untuk semua anggota ruang kerja. Lihat [Menggunakan Skills dengan API](/docs/id/build-with-claude/skills-guide) untuk unggahan, versioning, dan titik akhir manajemen.
 
 ### Strategi versioning
 
 - **Produksi**: Sematkan Skills ke versi tertentu. Jalankan suite evaluasi lengkap sebelum mempromosikan versi baru. Perlakukan setiap pembaruan sebagai penerapan baru yang memerlukan tinjauan keamanan lengkap.
 - **Pengembangan dan pengujian**: Gunakan versi terbaru untuk memvalidasi perubahan sebelum promosi produksi.
-- **Rencana rollback**: Pertahankan versi sebelumnya sebagai fallback. Jika versi baru gagal evaluasi dalam produksi, kembalikan ke versi terakhir yang dikenal baik segera.
-- **Verifikasi integritas**: Hitung checksum Skills yang ditinjau dan verifikasi saat waktu penerapan. Gunakan commit yang ditandatangani dalam repositori Skill Anda untuk memastikan provenance.
+- **Rencana rollback**: Pertahankan versi sebelumnya sebagai fallback. Jika versi baru gagal evaluasi dalam produksi, kembalikan ke versi terakhir yang diketahui baik segera.
+- **Verifikasi integritas**: Hitung checksum Skills yang ditinjau dan verifikasi saat waktu penerapan. Gunakan komit yang ditandatangani dalam repositori Skill Anda untuk memastikan provenance.
 
 ### Pertimbangan lintas permukaan
 
@@ -194,12 +194,5 @@ Pertahankan file sumber Skill di Git sebagai sumber kebenaran tunggal. Jika orga
     href="/docs/id/build-with-claude/skills-guide"
   >
     Unggah dan kelola Skills secara terprogram
-  </Card>
-  <Card
-    title="Menerapkan agen AI dengan aman"
-    icon="shield"
-    href="/docs/id/agent-sdk/secure-deployment"
-  >
-    Pola keamanan untuk penerapan agen
   </Card>
 </CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 6ec3a69b8e4cd1eba6a86e33e133a273532e383f2ead716c3c0e8a0a0fae9c48
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 47241d8199d753613c265485b5979dee5c12a0dfabe1b0bbe8c73a0916b8b2df
 ---
 
 # Get started with Claude Managed Agents
@@ -171,7 +171,7 @@ echo "Agent ID: $AGENT_ID, version: $AGENT_VERSION"
 ````bash
 ant beta:agents create \
   --name "Coding Assistant" \
-  --model claude-sonnet-4-6 \
+  --model '{id: claude-sonnet-4-6}' \
   --system "You are a helpful coding assistant. Write clean, well-documented code." \
   --tool '{type: agent_toolset_20260401}'
 ````

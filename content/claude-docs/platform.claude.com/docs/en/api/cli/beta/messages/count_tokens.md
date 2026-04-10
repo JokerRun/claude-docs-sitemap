@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/count_tokens
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: bd26ee4ac028c5af1c382a377269ff111c9c8e6437352f45371b4d673bebb12f
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 6f51b5f88f6b1e83357533072198b3f496a2112797744c30bb7e52c0779897c3
 ---
 
 ## Count Tokens
@@ -122,7 +122,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   Body param: How the model should use the provided tools. The model can use a specific tool, any available tool, decide by itself, or not use tools at all.
 
-- `--tool: optional array of BetaTool or BetaToolBash20241022 or BetaToolBash20250124 or 19 more`
+- `--tool: optional array of BetaTool or BetaToolBash20241022 or BetaToolBash20250124 or 20 more`
 
   Body param: Definitions of tools that the model may use.
 

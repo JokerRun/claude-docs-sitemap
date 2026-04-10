@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: d1b95b4ec1dc8d5750654f883a31425d9aee87d8b70287966a587637333efbd9
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: cf458d3127cf28d94d1e8de1e50dfa6007266afc3402b153e333d7a4fdf31f84
 ---
 
 ## Create
@@ -21,7 +21,7 @@ Create Vault
 
 - `metadata: Optional[Dict[str, str]]`
 
-  Arbitrary key-value metadata to attach to the vault.
+  Arbitrary key-value metadata to attach to the vault. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
 - `betas: Optional[List[AnthropicBetaParam]]`
 
@@ -29,7 +29,7 @@ Create Vault
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Create Vault
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

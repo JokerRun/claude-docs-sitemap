@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 84abd8d8aa413087b35c7ac3a152b0b86a1555c4688223c6f95a614c80b40ece
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: b1996e99fed4834745965981c604b258583ea3b7c42c4a03b38bc1db8a223317
 ---
 
 ## Retrieve
@@ -70,6 +70,8 @@ Get Agent
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

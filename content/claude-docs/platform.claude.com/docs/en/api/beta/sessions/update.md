@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 6f9ed61040d6b40d5844a6298c30bbd4a2bc66a6af5157bc285e69d5b055bb11
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 461ab088081ad3794b8f2e16d960c548ebb28bb1043506c1e8a228e2d6cf8195
 ---
 
 ## Update
@@ -23,7 +23,7 @@ Update Session
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Update Session
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Body Parameters
 

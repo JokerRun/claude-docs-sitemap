@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 96b9b0afcaef832763545914318b40081895e190ecb29cf568ef64d027ad9ba2
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 1911971d3e708fbfa23c9b3a78ecb3d6d3539ff9c9bc118bb68ffd0f8429769e
 ---
 
 ## Delete
@@ -66,6 +66,8 @@ Delete Credential
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 4dc409ece243e46706d06b6cb167735c6ef3236490300a6041b3497c4a3665ba
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: a3b6c274838ae2a883883f794c6d07e00a5c29128839ca368863b5b31b5551db
 ---
 
 # Batch processing
@@ -97,7 +97,7 @@ The Batches API offers significant cost savings. All usage is charged at 50% of 
 ### Prepare and create your batch
 
 A Message Batch is composed of a list of requests to create a Message. The shape of an individual request is comprised of:
-- A unique `custom_id` for identifying the Messages request
+- A unique `custom_id` for identifying the Messages request. Must be 1 to 64 characters and contain only alphanumeric characters, hyphens, and underscores (matching `^[a-zA-Z0-9_-]{1,64}$`).
 - A `params` object with the standard [Messages API](/docs/en/api/messages/create) parameters
 
 You can [create a batch](/docs/en/api/creating-message-batches) by passing this list into the `requests` parameter:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: e6cf08f44d77687d7991fd1a727beb7a95cde9d2426513c4fb6bb688ae47b11e
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 11cceeb48728fb6469db39e5fdadc43c171ea75c524db19d3e7e272563a3e971
 ---
 
 ## Create
@@ -390,6 +390,8 @@ Create Agent
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

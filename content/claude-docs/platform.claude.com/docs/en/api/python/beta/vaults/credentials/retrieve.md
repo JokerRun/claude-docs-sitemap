@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: cf76c0a46d6b34c3011d0ec92dd50dc041de3eaddac0a9628942221dae34e2c7
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 5348da7d4b2052564767dc72f7f4f4390a52d51ad33be56a1757d7e9b0b73b15
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Get Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Get Credential
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

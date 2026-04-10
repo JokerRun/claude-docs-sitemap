@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 9ddad81fa89f7b9811ab13a5e3a1fd2136baf166ddec274b772ad28372c866cc
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 71a51785a2f191a655d15d6965c8a245181531bbbb3ae0a85f69d7b661a57c57
 ---
 
 ## List
@@ -80,6 +80,8 @@ List Credentials
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

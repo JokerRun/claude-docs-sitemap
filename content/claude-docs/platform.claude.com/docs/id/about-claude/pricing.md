@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-03-14T04:13:07.773495Z
-sha256: 354a128e243190a06cfe17f44ef813d63a045b7f10935ade07340311ff1ce8bf
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 4dfcc579ddffc94790d73403508361f1ef214d770f6972a4cce2ef1e7e105e67
 ---
 
 # Harga
 
-Pelajari struktur harga Anthropic untuk model dan fitur
+Pelajari tentang struktur harga Anthropic untuk model dan fitur
 
 ---
 
@@ -35,50 +35,84 @@ Tabel berikut menunjukkan harga untuk semua model Claude di berbagai tingkat pen
 | Claude Haiku 3    | $0.25 / MTok      | $0.30 / MTok    | $0.50 / MTok    | $0.03 / MTok | $1.25 / MTok  |
 
 <Note>
-MTok = Juta token. Kolom "Base Input Tokens" menunjukkan harga input standar, "Cache Writes" dan "Cache Hits" khusus untuk [prompt caching](/docs/id/build-with-claude/prompt-caching), dan "Output Tokens" menunjukkan harga output. Prompt caching menawarkan durasi cache 5 menit (default) dan 1 jam untuk mengoptimalkan biaya untuk berbagai kasus penggunaan.
-
-Tabel di atas mencerminkan pengganda harga berikut untuk prompt caching:
-- Token cache write 5 menit adalah 1,25 kali harga token input dasar
-- Token cache write 1 jam adalah 2 kali harga token input dasar
-- Token cache read adalah 0,1 kali harga token input dasar
+MTok = Juta token. Kolom "Base Input Tokens" menunjukkan harga input standar, "Cache Writes" dan "Cache Hits" khusus untuk [prompt caching](#prompt-caching), dan "Output Tokens" menunjukkan harga output. Lihat [harga prompt caching](#prompt-caching) di bawah untuk penjelasan kolom cache dan pengali harga.
 </Note>
 
 ## Harga platform pihak ketiga
 
-Model Claude tersedia di [AWS Bedrock](/docs/id/build-with-claude/claude-on-amazon-bedrock), [Google Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk harga resmi, kunjungi:
+Model Claude tersedia di [AWS Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), [Google Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk harga resmi, kunjungi:
 - [Harga AWS Bedrock](https://aws.amazon.com/bedrock/pricing/)
 - [Harga Google Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/pricing)
 - [Harga Microsoft Foundry](https://azure.microsoft.com/en-us/pricing/details/ai-foundry/#pricing)
 
 <Note>
-**Harga endpoint regional untuk model Claude 4.5 dan seterusnya**
+**Harga endpoint regional dan multi-region untuk model Claude 4.5 dan seterusnya**
 
-Mulai dari Claude Sonnet 4.5 dan Haiku 4.5, AWS Bedrock dan Google Vertex AI menawarkan dua jenis endpoint:
-- **Endpoint global**: Perutean dinamis di seluruh region untuk ketersediaan maksimal
-- **Endpoint regional**: Perutean data dijamin dalam region geografis tertentu
+Mulai dengan Claude Sonnet 4.5 dan Haiku 4.5:
+- **AWS Bedrock** menawarkan dua jenis endpoint: endpoint global (perutean dinamis untuk ketersediaan maksimum) dan endpoint regional (perutean data yang dijamin melalui wilayah geografis tertentu).
+- **Google Vertex AI** menawarkan tiga jenis endpoint: endpoint global, endpoint multi-region (perutean dinamis dalam area geografis), dan endpoint regional.
 
-Endpoint regional mencakup premium 10% dibandingkan endpoint global. **Claude API (1P) bersifat global secara default dan tidak terpengaruh oleh perubahan ini.** Claude API bersifat global-only (setara dengan penawaran endpoint global dan harga dari penyedia lain).
+Endpoint regional dan multi-region mencakup premi 10% di atas endpoint global. Claude API (1P) bersifat global secara default; untuk opsi residensi data 1P dan harga, lihat [Harga residensi data](#data-residency-pricing) di bawah.
 
-**Cakupan**: Struktur harga ini berlaku untuk Claude Sonnet 4.5, Haiku 4.5, dan semua model di masa depan. Model sebelumnya (Claude Sonnet 4, Opus 4, dan rilis sebelumnya) mempertahankan harga yang ada.
+**Cakupan:** Struktur harga ini berlaku untuk Claude Sonnet 4.5, Haiku 4.5, dan semua model di masa mendatang. Model sebelumnya (Claude Sonnet 4, Opus 4, dan rilis sebelumnya) mempertahankan harga yang ada.
 
 Untuk detail implementasi dan contoh kode:
-- [AWS Bedrock endpoint global vs regional](/docs/id/build-with-claude/claude-on-amazon-bedrock#global-vs-regional-endpoints)
-- [Google Vertex AI endpoint global vs regional](/docs/id/build-with-claude/claude-on-vertex-ai#global-vs-regional-endpoints)
+- [Endpoint global vs regional AWS Bedrock](/docs/id/build-with-claude/claude-on-amazon-bedrock#global-vs-regional-endpoints)
+- [Endpoint global, multi-region, dan regional Google Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai#global-multi-region-and-regional-endpoints)
 </Note>
 
 ## Harga khusus fitur
 
+### Prompt caching
+
+Prompt caching mengurangi biaya dan latensi dengan menggunakan kembali bagian prompt yang telah diproses sebelumnya di seluruh panggilan API. Alih-alih memproses ulang system prompt besar, dokumen, atau riwayat percakapan yang sama pada setiap permintaan, API membaca dari cache dengan sebagian kecil dari harga input standar.
+
+Ada dua cara untuk mengaktifkan prompt caching:
+
+- **Caching otomatis:** Tambahkan satu field `cache_control` di tingkat atas permintaan Anda. Sistem secara otomatis mengelola breakpoint cache seiring percakapan berkembang. Ini adalah titik awal yang direkomendasikan untuk sebagian besar kasus penggunaan.
+- **Breakpoint cache eksplisit:** Tempatkan `cache_control` langsung pada blok konten individual untuk kontrol terperinci atas apa yang di-cache.
+
+Prompt caching menggunakan pengali harga berikut relatif terhadap tarif token input dasar:
+
+| Operasi cache | Pengali | Durasi |
+|:----------------|:-----------|:---------|
+| Penulisan cache 5 menit | 1,25x harga input dasar | Cache berlaku selama 5 menit |
+| Penulisan cache 1 jam | 2x harga input dasar | Cache berlaku selama 1 jam |
+| Pembacaan cache (hit) | 0,1x harga input dasar | Durasi sama dengan penulisan sebelumnya |
+
+Token penulisan cache dikenakan biaya saat konten pertama kali disimpan. Token pembacaan cache dikenakan biaya saat permintaan berikutnya mengambil konten yang di-cache. Cache hit dikenakan biaya 10% dari harga input standar, yang berarti caching terbayar setelah hanya satu pembacaan cache untuk durasi 5 menit (penulisan 1,25x), atau setelah dua pembacaan cache untuk durasi 1 jam (penulisan 2x).
+
+Pengali ini bertumpuk dengan pengubah harga lainnya, termasuk diskon Batch API dan residensi data.
+
+Untuk detail implementasi, model yang didukung, dan contoh kode, lihat [dokumentasi prompt caching](/docs/id/build-with-claude/prompt-caching).
+
 ### Harga residensi data
 
-Untuk Claude Opus 4.6 dan model yang lebih baru, menentukan inferensi hanya-AS melalui parameter `inference_geo` menimbulkan pengganda 1,1x pada semua kategori harga token, termasuk token input, token output, cache write, dan cache read. Perutean global (default) menggunakan harga standar.
+Untuk Claude Opus 4.6 dan model yang lebih baru, menentukan inferensi khusus AS melalui parameter `inference_geo` dikenakan pengali 1,1x pada semua kategori harga token, termasuk token input, token output, penulisan cache, dan pembacaan cache. Perutean global (default) menggunakan harga standar.
 
-Ini berlaku hanya untuk Claude API (1P). Platform pihak ketiga memiliki harga regional mereka sendiri — lihat [AWS Bedrock](https://aws.amazon.com/bedrock/pricing/) dan [Google Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/pricing) untuk detail. Model sebelumnya mempertahankan harga yang ada terlepas dari pengaturan `inference_geo`.
+Ini hanya berlaku untuk Claude API (1P). Platform pihak ketiga memiliki harga regional mereka sendiri. Lihat [AWS Bedrock](https://aws.amazon.com/bedrock/pricing/) dan [Google Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/pricing) untuk detailnya. Model sebelumnya mempertahankan harga yang ada terlepas dari pengaturan `inference_geo`.
 
-Untuk informasi lebih lanjut, lihat [dokumentasi residensi data](/docs/id/build-with-claude/data-residency) kami.
+Untuk informasi lebih lanjut, lihat [dokumentasi residensi data](/docs/id/build-with-claude/data-residency).
+
+### Harga fast mode
+
+[Fast mode](/docs/id/build-with-claude/fast-mode) (beta: pratinjau penelitian) untuk Claude Opus 4.6 memberikan output yang jauh lebih cepat dengan harga premium (6x tarif standar). Harga fast mode berlaku di seluruh jendela konteks penuh, termasuk permintaan di atas 200k token input. Saat ini didukung pada Opus 4.6:
+
+| Input | Output |
+|:------|:-------|
+| $30 / MTok | $150 / MTok |
+
+Harga fast mode bertumpuk dengan pengubah harga lainnya:
+- [Pengali prompt caching](#model-pricing) berlaku di atas harga fast mode
+- Pengali [residensi data](/docs/id/build-with-claude/data-residency) berlaku di atas harga fast mode
+
+Fast mode tidak tersedia dengan [Batch API](#batch-processing).
+
+Untuk informasi lebih lanjut, lihat [dokumentasi fast mode](/docs/id/build-with-claude/fast-mode).
 
 ### Pemrosesan batch
 
-Batch API memungkinkan pemrosesan asinkron volume besar permintaan dengan diskon 50% pada token input dan output.
+Batch API memungkinkan pemrosesan asinkron dari volume permintaan yang besar dengan diskon 50% pada token input dan output.
 
 | Model             | Batch input      | Batch output    |
 |-------------------|------------------|-----------------|
@@ -95,55 +129,11 @@ Batch API memungkinkan pemrosesan asinkron volume besar permintaan dengan diskon
 | Claude Opus 3 ([deprecated](/docs/en/about-claude/model-deprecations))  | $7.50 / MTok     | $37.50 / MTok   |
 | Claude Haiku 3    | $0.125 / MTok    | $0.625 / MTok   |
 
-Untuk informasi lebih lanjut tentang pemrosesan batch, lihat [dokumentasi pemrosesan batch](/docs/id/build-with-claude/batch-processing) kami.
+Untuk informasi lebih lanjut tentang pemrosesan batch, lihat [dokumentasi pemrosesan batch](/docs/id/build-with-claude/batch-processing).
 
 ### Harga konteks panjang
 
-Saat menggunakan Claude Opus 4.6, Sonnet 4.5, atau Sonnet 4 dengan [jendela konteks token 1M diaktifkan](/docs/id/build-with-claude/context-windows#1m-token-context-window), permintaan yang melebihi 200K token input secara otomatis dikenakan biaya pada tarif konteks panjang premium:
-
-<Note>
-Jendela konteks token 1M saat ini dalam beta untuk organisasi di [tingkat penggunaan](/docs/id/api/rate-limits) 4 dan organisasi dengan batas laju kustom. Jendela konteks token 1M hanya tersedia untuk Claude Opus 4.6, Sonnet 4.5, dan Sonnet 4.
-</Note>
-
-| Model | ≤ 200K token input | > 200K token input |
-|-------|-----------------------------------|-------------------------------------|
-| Claude Opus 4.6 | Input: $5 / MTok | Input: $10 / MTok |
-|  | Output: $25 / MTok | Output: $37.50 / MTok |
-| Claude Sonnet 4.5 / 4 | Input: $3 / MTok | Input: $6 / MTok |
-|  | Output: $15 / MTok | Output: $22.50 / MTok |
-
-Harga konteks panjang ditumpuk dengan pengubah harga lainnya:
-- [Diskon Batch API 50%](#batch-processing) berlaku untuk harga konteks panjang
-- [Pengganda prompt caching](#model-pricing) berlaku di atas harga konteks panjang
-- [Pengganda residensi data 1,1x](#data-residency-pricing) berlaku di atas harga konteks panjang
-
-<Note>
-Bahkan dengan flag beta diaktifkan, permintaan dengan token input kurang dari 200K dikenakan biaya pada tarif standar. Jika permintaan Anda melebihi 200K token input, semua token dikenakan harga premium.
-
-Ambang batas 200K didasarkan semata-mata pada token input (termasuk cache read/write). Jumlah token output tidak mempengaruhi pemilihan tingkat harga, meskipun token output dikenakan biaya pada tarif yang lebih tinggi ketika ambang batas input terlampaui.
-</Note>
-
-Untuk memeriksa apakah permintaan API Anda dikenakan biaya pada tarif jendela konteks 1M, periksa objek `usage` dalam respons API:
-
-```json
-{
-  "usage": {
-    "input_tokens": 250000,
-    "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 0,
-    "output_tokens": 500
-  }
-}
-```
-
-Hitung total token input dengan menjumlahkan:
-- `input_tokens`
-- `cache_creation_input_tokens` (jika menggunakan prompt caching)
-- `cache_read_input_tokens` (jika menggunakan prompt caching)
-
-Jika totalnya melebihi 200.000 token, seluruh permintaan ditagih pada tarif konteks 1M.
-
-Untuk informasi lebih lanjut tentang objek `usage`, lihat [dokumentasi respons API](/docs/id/api/messages#response-usage).
+[Claude Mythos Preview](https://anthropic.com/glasswing), Opus 4.6 dan Sonnet 4.6 mencakup [jendela konteks 1M token](/docs/id/build-with-claude/context-windows) penuh dengan harga standar. (Permintaan 900k token ditagih dengan tarif per token yang sama seperti permintaan 9k token.) Diskon prompt caching dan pemrosesan batch berlaku dengan tarif standar di seluruh jendela konteks penuh.
 
 ### Harga penggunaan alat
 
@@ -180,11 +170,11 @@ When you use `tools`, we also automatically include a special system prompt for 
 
 These token counts are added to your normal input and output tokens to calculate the total cost of a request.
 
-Untuk harga per-model saat ini, lihat bagian [harga model](#model-pricing) kami di atas.
+Untuk harga per model saat ini, lihat bagian [harga model](#model-pricing).
 
-Untuk informasi lebih lanjut tentang implementasi penggunaan alat dan praktik terbaik, lihat [dokumentasi penggunaan alat](/docs/id/agents-and-tools/tool-use/overview) kami.
+Untuk informasi lebih lanjut tentang implementasi penggunaan alat dan praktik terbaik, lihat [dokumentasi penggunaan alat](/docs/id/agents-and-tools/tool-use/overview).
 
-### Harga alat spesifik
+### Harga alat tertentu
 
 #### Alat Bash
 
@@ -298,113 +288,137 @@ Computer use follows the standard [tool use pricing](/docs/en/agents-and-tools/t
 If you're also using bash or text editor tools alongside computer use, those tools have their own token costs as documented in their respective pages.
 </Note>
 
-## Contoh harga kasus penggunaan agen
+## Harga Claude Managed Agents
 
-Memahami harga untuk aplikasi agen sangat penting saat membangun dengan Claude. Contoh dunia nyata ini dapat membantu Anda memperkirakan biaya untuk pola agen yang berbeda.
+[Claude Managed Agents](/docs/id/managed-agents/overview) ditagih berdasarkan dua dimensi: token dan durasi sesi.
 
-### Contoh agen dukungan pelanggan
+### Token
 
-Saat membangun agen dukungan pelanggan, berikut adalah cara biaya mungkin terbagi:
+Semua token yang dikonsumsi oleh sesi Claude Managed Agents ditagih dengan tarif yang ditunjukkan dalam [Harga model](#model-pricing) di atas. Pengali [Prompt caching](#prompt-caching) berlaku secara identik. Pencarian web yang dipicu di dalam sesi dikenakan biaya standar $10 per 1.000 pencarian.
+
+Pengubah Messages API berikut **tidak** berlaku untuk sesi Claude Managed Agents:
+
+| Pengubah | Mengapa tidak berlaku |
+| --- | --- |
+| [Diskon Batch API](#batch-processing) | Sesi bersifat stateful dan interaktif. Tidak ada mode batch. |
+| [Premi fast mode](#fast-mode-pricing) | Kecepatan inferensi dikelola oleh runtime. |
+| [Pengali residensi data](#data-residency-pricing) | `inference_geo` adalah field permintaan Messages API. |
+| [Premi konteks panjang](#long-context-pricing) | Jendela konteks dikelola oleh runtime. |
+| [Harga platform pihak ketiga](#third-party-platform-pricing) | Claude Managed Agents hanya tersedia melalui Claude API secara langsung. |
+
+### Durasi sesi
+
+| SKU | Tarif | Pengukuran |
+| --- | --- | --- |
+| Durasi sesi | $0,08 per jam sesi | Durasi status `running` |
+
+Durasi diukur hingga milidetik dan hanya terakumulasi saat status sesi adalah `running`. Waktu yang dihabiskan dalam status `idle` (menunggu pesan berikutnya atau konfirmasi alat), `rescheduling`, atau `terminated` tidak dihitung sebagai durasi.
+
+<Note>
+Durasi sesi menggantikan model penagihan jam kontainer [Code Execution](#code-execution-tool) saat menggunakan Claude Managed Agents. Anda tidak ditagih secara terpisah untuk jam kontainer di atas durasi sesi.
+</Note>
+
+### Contoh perhitungan
+
+Sesi coding satu jam menggunakan Claude Opus 4.6 yang mengonsumsi 50.000 token input dan 15.000 token output:
+
+| Item | Perhitungan | Biaya |
+| --- | --- | --- |
+| Token input | 50.000 × $5 / 1.000.000 | $0,25 |
+| Token output | 15.000 × $25 / 1.000.000 | $0,375 |
+| Durasi sesi | 1,0 jam × $0,08 | $0,08 |
+| **Total** | | **$0,705** |
+
+Jika prompt caching aktif dan 40.000 dari token input adalah cache read:
+
+| Item | Perhitungan | Biaya |
+| --- | --- | --- |
+| Token input tidak di-cache | 10.000 × $5 / 1.000.000 | $0,05 |
+| Token cache read | 40.000 × $5 × 0,1 / 1.000.000 | $0,02 |
+| Token output | 15.000 × $25 / 1.000.000 | $0,375 |
+| Durasi sesi | 1,0 jam × $0,08 | $0,08 |
+| **Total** | | **$0,525** |
 
 <Note>
   Contoh perhitungan untuk memproses 10.000 tiket dukungan:
   - Rata-rata ~3.700 token per percakapan
-  - Menggunakan Claude Opus 4.6 pada $5/MTok input, $25/MTok output
+  - Menggunakan Claude Opus 4.6 dengan input $5/MTok, output $25/MTok
   - Total biaya: ~$37,00 per 10.000 tiket
 </Note>
 
-Untuk panduan terperinci tentang perhitungan ini, lihat [panduan agen dukungan pelanggan](/docs/id/about-claude/use-case-guides/customer-support-chat) kami.
+Untuk panduan terperinci tentang perhitungan ini, lihat [panduan agen dukungan pelanggan](/docs/id/about-claude/use-case-guides/customer-support-chat).
 
-### Harga alur kerja agen umum
-
-Untuk arsitektur agen yang lebih kompleks dengan beberapa langkah:
-
-1. **Pemrosesan permintaan awal**
-   - Input tipikal: 500-1.000 token
-   - Biaya pemrosesan: ~$0,003 per permintaan
-
-2. **Pengambilan memori dan konteks**
-   - Konteks yang diambil: 2.000-5.000 token
-   - Biaya per pengambilan: ~$0,015 per operasi
-
-3. **Perencanaan dan eksekusi tindakan**
-   - Token perencanaan: 1.000-2.000
-   - Umpan balik eksekusi: 500-1.000
-   - Biaya gabungan: ~$0,045 per tindakan
-
-Untuk panduan komprehensif tentang pola harga agen, lihat [panduan kasus penggunaan agen](/docs/id/about-claude/use-case-guides) kami.
+## Pertimbangan harga tambahan
 
 ### Strategi optimasi biaya
 
 Saat membangun agen dengan Claude:
 
-1. **Gunakan model yang sesuai**: Pilih Haiku untuk tugas sederhana, Sonnet untuk penalaran kompleks
-2. **Implementasikan prompt caching**: Kurangi biaya untuk konteks berulang
-3. **Operasi batch**: Gunakan Batch API untuk tugas yang tidak sensitif waktu
-4. **Pantau pola penggunaan**: Lacak konsumsi token untuk mengidentifikasi peluang optimasi
+1. **Gunakan model yang sesuai:** Pilih Haiku untuk tugas sederhana, Sonnet untuk penalaran kompleks
+2. **Terapkan prompt caching:** Kurangi biaya untuk konteks yang berulang
+3. **Operasi batch:** Gunakan Batch API untuk tugas yang tidak sensitif terhadap waktu
+4. **Pantau pola penggunaan:** Lacak konsumsi token untuk mengidentifikasi peluang optimasi
 
 <Tip>
-  Untuk aplikasi agen volume tinggi, pertimbangkan menghubungi [tim penjualan enterprise](/docs/id/contact-sales) kami untuk pengaturan harga kustom.
+  Untuk aplikasi agen bervolume tinggi, hubungi [tim penjualan enterprise](https://claude.com/contact-sales) untuk pengaturan harga khusus.
 </Tip>
-
-## Pertimbangan harga tambahan
 
 ### Batas laju
 
-Batas laju bervariasi menurut tingkat penggunaan dan mempengaruhi berapa banyak permintaan yang dapat Anda buat:
+Batas laju bervariasi berdasarkan tingkat penggunaan dan memengaruhi berapa banyak permintaan yang dapat Anda buat:
 
-- **Tier 1**: Penggunaan tingkat pemula dengan batas dasar
-- **Tier 2**: Batas yang ditingkatkan untuk aplikasi yang berkembang
-- **Tier 3**: Batas yang lebih tinggi untuk aplikasi yang sudah mapan
-- **Tier 4**: Batas standar maksimal
-- **Enterprise**: Batas kustom tersedia
+- **Tier 1:** Penggunaan tingkat awal dengan batas dasar
+- **Tier 2:** Batas yang ditingkatkan untuk aplikasi yang berkembang
+- **Tier 3:** Batas lebih tinggi untuk aplikasi yang sudah mapan
+- **Tier 4:** Batas standar maksimum
+- **Enterprise:** Batas khusus tersedia
 
-Untuk informasi batas laju terperinci, lihat [dokumentasi batas laju](/docs/id/api/rate-limits) kami.
+Untuk informasi batas laju terperinci, lihat [dokumentasi batas laju](/docs/id/api/rate-limits).
 
-Untuk batas laju yang lebih tinggi atau pengaturan harga kustom, [hubungi tim penjualan kami](https://claude.com/contact-sales).
+Untuk batas laju yang lebih tinggi atau pengaturan harga khusus, [hubungi tim penjualan](https://claude.com/contact-sales).
 
 ### Diskon volume
 
-Diskon volume mungkin tersedia untuk pengguna volume tinggi. Ini dinegosiasikan berdasarkan kasus per kasus.
+Diskon volume mungkin tersedia untuk pengguna bervolume tinggi. Ini dinegosiasikan berdasarkan kasus per kasus.
 
-- Tier standar menggunakan harga yang ditunjukkan di atas
-- Pelanggan Enterprise dapat [menghubungi penjualan](mailto:sales@anthropic.com) untuk harga kustom
+- Tingkat standar menggunakan harga yang ditunjukkan di atas
+- Pelanggan enterprise dapat [menghubungi penjualan](mailto:sales@anthropic.com) untuk harga khusus
 - Diskon akademik dan penelitian mungkin tersedia
 
 ### Harga enterprise
 
-Untuk pelanggan enterprise dengan kebutuhan spesifik:
+Untuk pelanggan enterprise dengan kebutuhan khusus:
 
-- Batas laju kustom
+- Batas laju khusus
 - Diskon volume
 - Dukungan khusus
-- Syarat kustom
+- Ketentuan khusus
 
-Hubungi tim penjualan kami di [sales@anthropic.com](mailto:sales@anthropic.com) atau melalui [Claude Console](/settings/limits) untuk membahas opsi harga enterprise.
+Hubungi tim penjualan di [sales@anthropic.com](mailto:sales@anthropic.com) atau melalui [Claude Console](/settings/limits) untuk mendiskusikan opsi harga enterprise.
 
 ## Penagihan dan pembayaran
 
-- Penagihan dihitung bulanan berdasarkan penggunaan aktual
-- Pembayaran diproses dalam USD
-- Opsi kartu kredit dan invoicing tersedia
+- Penagihan berdasarkan penggunaan bulanan aktual
+- Semua pembayaran dalam USD
+- Opsi kartu kredit dan faktur tersedia
 - Pelacakan penggunaan tersedia di [Claude Console](/)
 
 ## Pertanyaan yang sering diajukan
 
 **Bagaimana penggunaan token dihitung?**
 
-Token adalah potongan teks yang diproses model. Sebagai perkiraan kasar, 1 token kira-kira 4 karakter atau 0,75 kata dalam bahasa Inggris. Jumlah pastinya bervariasi menurut bahasa dan jenis konten.
+Token adalah potongan teks yang diproses oleh model. Sebagai perkiraan kasar, 1 token kira-kira 4 karakter atau 0,75 kata dalam bahasa Inggris. Jumlah pasti bervariasi berdasarkan bahasa dan jenis konten.
 
-**Apakah ada tier gratis atau uji coba?**
+**Apakah ada tingkat gratis atau uji coba?**
 
 Pengguna baru menerima sejumlah kecil kredit gratis untuk menguji API. [Hubungi penjualan](mailto:sales@anthropic.com) untuk informasi tentang uji coba yang diperpanjang untuk evaluasi enterprise.
 
-**Bagaimana diskon ditumpuk?**
+**Bagaimana diskon bertumpuk?**
 
-Diskon Batch API dan prompt caching dapat digabungkan. Misalnya, menggunakan kedua fitur bersama-sama memberikan penghematan biaya yang signifikan dibandingkan dengan panggilan API standar.
+Diskon Batch API dan prompt caching dapat digabungkan. Misalnya, menggunakan kedua fitur bersama-sama memberikan penghematan biaya yang signifikan dibandingkan panggilan API standar. Lihat [harga prompt caching](#prompt-caching) untuk cara pengali berinteraksi.
 
 **Metode pembayaran apa yang diterima?**
 
-Kami menerima kartu kredit utama untuk akun standar. Pelanggan Enterprise dapat mengatur invoicing dan metode pembayaran lainnya.
+Kartu kredit utama diterima untuk akun standar. Pelanggan enterprise dapat mengatur faktur dan metode pembayaran lainnya.
 
 Untuk pertanyaan tambahan tentang harga, hubungi [support@anthropic.com](mailto:support@anthropic.com).

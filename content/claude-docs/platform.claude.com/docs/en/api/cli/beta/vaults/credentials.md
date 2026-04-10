@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 5a36da6e49d0bcbca2623342c60b8549461db31f83a9fcb24a25fb0133965614
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: f49e2b3e4e56c5d2af667b9003b74b3205dcf4fb843db5b5277b5256d15289ea
 ---
 
 # Credentials
@@ -31,7 +31,7 @@ Create Credential
 
 - `--metadata: optional map[string]`
 
-  Body param: Arbitrary key-value metadata to attach to the credential.
+  Body param: Arbitrary key-value metadata to attach to the credential. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
 - `--beta: optional array of AnthropicBeta`
 

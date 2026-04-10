@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/sdks/ruby
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 804b90a8467f9be55df1dd1fe607cbd68741fae64314421911c948541d8ebbda
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 0d2f91573d9bbe5f902c5caf6acd95767192f43ddb456e2e846b454af629ee92
 ---
 
 # Ruby SDK
@@ -14,15 +14,15 @@ Instal dan konfigurasi Anthropic Ruby SDK dengan tipe Sorbet, pembantu streaming
 Perpustakaan Ruby Anthropic menyediakan akses yang mudah ke Anthropic REST API dari aplikasi Ruby 3.2.0+ apa pun. Dilengkapi dengan tipe komprehensif dan docstring di Yard, RBS, dan RBI. Perpustakaan standar `net/http` digunakan sebagai transport HTTP, dengan connection pooling melalui gem `connection_pool`.
 
 <Info>
-Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini mencakup fitur SDK khusus Ruby dan konfigurasi.
+Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini mencakup fitur dan konfigurasi SDK khusus Ruby.
 </Info>
 
 ## Instalasi
 
-Untuk menggunakan gem ini, instal melalui Bundler dengan menambahkan berikut ke `Gemfile` aplikasi Anda:
+Tambahkan gem ke `Gemfile` aplikasi Anda dengan Bundler:
 
-```ruby
-gem "anthropic", "~> 1.16.3"
+```bash
+bundle add anthropic
 ```
 
 ## Persyaratan
@@ -31,7 +31,7 @@ Ruby 3.2.0 atau lebih tinggi.
 
 ## Penggunaan
 
-```ruby
+```ruby hidelines={1..2}
 require "anthropic"
 
 anthropic = Anthropic::Client.new(
@@ -49,9 +49,11 @@ puts(message.content)
 
 ## Streaming
 
-Kami menyediakan dukungan untuk respons streaming menggunakan Server-Sent Events (SSE).
+SDK menyediakan dukungan untuk respons streaming menggunakan Server-Sent Events (SSE).
 
-```ruby
+```ruby hidelines={1}
+require "anthropic"
+anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
@@ -67,7 +69,9 @@ end
 
 Perpustakaan ini menyediakan beberapa kemudahan untuk pesan streaming, misalnya:
 
-```ruby
+```ruby hidelines={1}
+require "anthropic"
+anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
   max_tokens: 1024,
   messages: [{role: :user, content: "Say hello there!"}],
@@ -81,11 +85,13 @@ end
 
 Streaming dengan `anthropic.messages.stream(...)` mengekspos berbagai pembantu termasuk akumulasi dan peristiwa khusus SDK.
 
-## Skema Input dan Pemanggilan Alat
+## Skema input dan pemanggilan alat
 
-SDK menyediakan mekanisme pembantu untuk menentukan kelas data terstruktur untuk alat dan membiarkan Claude secara otomatis menjalankannya. Untuk dokumentasi terperinci tentang pola penggunaan alat termasuk tool runner, lihat [Mengimplementasikan Penggunaan Alat](/docs/id/agents-and-tools/tool-use/implement-tool-use).
+SDK menyediakan mekanisme pembantu untuk menentukan kelas data terstruktur untuk alat dan membiarkan Claude secara otomatis menjalankannya. Untuk dokumentasi terperinci tentang pola penggunaan alat termasuk tool runner, lihat [Tool Runner (SDK)](/docs/id/agents-and-tools/tool-use/tool-runner).
 
-```ruby
+```ruby hidelines={1}
+require "anthropic"
+anthropic = Anthropic::Client.new
 class CalculatorInput < Anthropic::BaseModel
   required :lhs, Float
   required :rhs, Float
@@ -101,7 +107,7 @@ class Calculator < Anthropic::BaseTool
 end
 
 # Secara otomatis menangani loop eksekusi alat
-client.beta.messages.tool_runner(
+anthropic.beta.messages.tool_runner(
   model: "claude-opus-4-6",
   max_tokens: 1024,
   messages: [{role: "user", content: "What's 15 * 7?"}],
@@ -109,11 +115,17 @@ client.beta.messages.tool_runner(
 ).each_message { puts _1.content }
 ```
 
+## Output terstruktur
+
+Untuk dokumentasi output terstruktur lengkap termasuk contoh Ruby, lihat [Structured Outputs](/docs/id/build-with-claude/structured-outputs).
+
 ## Menangani kesalahan
 
 Ketika perpustakaan tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subkelas `Anthropic::Errors::APIError` akan dilempar:
 
-```ruby
+```ruby hidelines={1}
+require "anthropic"
+anthropic = Anthropic::Client.new
 begin
   message = anthropic.messages.create(
     max_tokens: 1024,
@@ -147,11 +159,11 @@ Kode kesalahan adalah sebagai berikut:
 | Timeout           | `APITimeoutError`          |
 | Kesalahan jaringan | `APIConnectionError`       |
 
-## Percobaan Ulang
+## Percobaan ulang
 
-Kesalahan tertentu akan secara otomatis dicoba ulang 2 kali secara default, dengan backoff eksponensial singkat.
+Kesalahan tertentu akan secara otomatis dicoba ulang 2 kali secara default, dengan backoff eksponensial pendek.
 
-Kesalahan koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 kesalahan Internal, dan timeout semuanya akan dicoba ulang secara default.
+Kesalahan koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, dan timeout semuanya akan dicoba ulang secara default.
 
 Anda dapat menggunakan opsi `max_retries` untuk mengonfigurasi atau menonaktifkan ini:
 
@@ -197,9 +209,11 @@ Perhatikan bahwa permintaan yang timeout dicoba ulang secara default.
 
 Metode daftar dalam Claude API dipaginasi.
 
-Perpustakaan ini menyediakan iterator auto-paging dengan setiap respons daftar, sehingga Anda tidak perlu meminta halaman berturut-turut secara manual:
+Perpustakaan ini menyediakan iterator auto-paging dengan setiap respons daftar, sehingga Anda tidak harus meminta halaman berturut-turut secara manual:
 
-```ruby
+```ruby hidelines={1}
+require "anthropic"
+anthropic = Anthropic::Client.new
 page = anthropic.messages.batches.list(limit: 20)
 
 # Ambil item tunggal dari halaman.
@@ -212,23 +226,28 @@ page.auto_paging_each do |batch|
 end
 ```
 
-Alternatifnya, Anda dapat menggunakan metode `#next_page?` dan `#next_page` untuk kontrol yang lebih terperinci saat bekerja dengan halaman.
+Alternatifnya, Anda dapat menggunakan metode `#next_page?` dan `#next_page` untuk kontrol yang lebih granular saat bekerja dengan halaman.
 
-```ruby
-if page.next_page?
-  new_page = page.next_page
-  puts(new_page.data[0].id)
+```ruby hidelines={1}
+require "anthropic"
+anthropic = Anthropic::Client.new
+page = anthropic.messages.batches.list(limit: 20)
+while page.next_page?
+  page = page.next_page
+  page.data&.each { |batch| puts(batch.id) }
 end
 ```
 
 ## Unggahan file
 
-Parameter permintaan yang sesuai dengan unggahan file dapat diteruskan sebagai konten mentah, instance [`Pathname`](https://rubyapi.org/3.2/o/pathname), [`StringIO`](https://rubyapi.org/3.2/o/stringio), atau lainnya.
+Parameter permintaan yang sesuai dengan unggahan file dapat diteruskan sebagai konten mentah, instance [`Pathname`](https://rubyapi.org/3.2/o/pathname), [`StringIO`](https://rubyapi.org/3.2/o/stringio), atau lebih.
 
-```ruby
+```ruby hidelines={1} nocheck
+require "anthropic"
+anthropic = Anthropic::Client.new
 require "pathname"
 
-# Gunakan `Pathname` untuk mengirim nama file dan/atau menghindari paging file besar ke memori:
+# Gunakan `Pathname` untuk mengirim nama file dan/atau menghindari paging file besar ke dalam memori:
 file_metadata = anthropic.beta.files.upload(file: Pathname("/path/to/file"))
 
 # Alternatifnya, teruskan konten file atau `StringIO` secara langsung:
@@ -241,7 +260,7 @@ file_metadata = anthropic.beta.files.upload(file: file)
 puts(file_metadata.id)
 ```
 
-Perhatikan bahwa Anda juga dapat melewatkan deskriptor `IO` mentah, tetapi ini menonaktifkan percobaan ulang, karena perpustakaan tidak dapat memastikan apakah deskriptor adalah file atau pipa (yang tidak dapat diputar ulang).
+Perhatikan bahwa Anda juga dapat meneruskan deskriptor `IO` mentah, tetapi ini menonaktifkan percobaan ulang, karena perpustakaan tidak dapat memastikan apakah deskriptor adalah file atau pipa (yang tidak dapat digulung kembali).
 
 ## Sorbet
 
@@ -249,7 +268,9 @@ Perpustakaan ini menyediakan definisi [RBI](https://sorbet.org/docs/rbi) kompreh
 
 Anda dapat menyediakan parameter permintaan yang aman tipe seperti ini:
 
-```ruby
+```ruby hidelines={1}
+require "anthropic"
+anthropic = Anthropic::Client.new
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [Anthropic::MessageParam.new(role: "user", content: "Hello, Claude")],
@@ -259,7 +280,9 @@ anthropic.messages.create(
 
 Atau, secara setara:
 
-```ruby
+```ruby hidelines={1}
+require "anthropic"
+anthropic = Anthropic::Client.new
 # Hash berfungsi, tetapi tidak aman tipe:
 anthropic.messages.create(
   max_tokens: 1024,
@@ -278,17 +301,17 @@ anthropic.messages.create(**params)
 
 ### Enum
 
-Karena perpustakaan ini tidak bergantung pada `sorbet-runtime`, ia tidak dapat menyediakan instance [`T::Enum`](https://sorbet.org/docs/tenum). Sebagai gantinya, kami menyediakan "simbol yang ditandai" sebagai gantinya, yang selalu primitif pada waktu runtime:
+Karena perpustakaan ini tidak bergantung pada `sorbet-runtime`, ia tidak dapat menyediakan instance [`T::Enum`](https://sorbet.org/docs/tenum). Sebagai gantinya, SDK menyediakan "tagged symbols", yang selalu primitif pada runtime:
 
-```ruby
+```ruby nocheck
 # :auto
 puts(Anthropic::MessageCreateParams::ServiceTier::AUTO)
 
-# Tipe yang diungkapkan: `T.all(Anthropic::MessageCreateParams::ServiceTier, Symbol)`
+# Revealed type: `T.all(Anthropic::MessageCreateParams::ServiceTier, Symbol)`
 T.reveal_type(Anthropic::MessageCreateParams::ServiceTier::AUTO)
 ```
 
-Parameter enum memiliki tipe "santai", sehingga Anda dapat melewatkan konstanta enum atau nilai literalnya:
+Parameter enum memiliki tipe "relaxed", sehingga Anda dapat meneruskan konstanta enum atau nilai literalnya:
 
 ```ruby
 # Menggunakan konstanta enum mempertahankan informasi tipe yang ditandai:
@@ -308,7 +331,7 @@ anthropic.messages.create(
 
 Semua parameter dan objek respons mewarisi dari `Anthropic::Internal::Type::BaseModel`, yang menyediakan beberapa kemudahan, termasuk:
 
-1. Semua bidang, termasuk yang tidak diketahui, dapat diakses dengan sintaks `obj[:prop]`, dan dapat didestruktur dengan `obj => {prop: prop}` atau sintaks pattern-matching.
+1. Semua bidang, termasuk yang tidak dikenal, dapat diakses dengan sintaks `obj[:prop]`, dan dapat didestruktur dengan `obj => {prop: prop}` atau sintaks pattern-matching.
 
 2. Kesetaraan struktural untuk kesetaraan; jika dua panggilan API mengembalikan nilai yang sama, membandingkan respons dengan == akan mengembalikan true.
 
@@ -320,23 +343,26 @@ Semua parameter dan objek respons mewarisi dari `Anthropic::Internal::Type::Base
 
 Instance `Anthropic::Client` adalah threadsafe, tetapi hanya fork-safe ketika tidak ada permintaan HTTP yang sedang berlangsung.
 
-Setiap instance `Anthropic::Client` memiliki pool koneksi HTTP sendiri dengan ukuran default 99. Oleh karena itu, kami merekomendasikan untuk membuat instance klien sekali per aplikasi dalam sebagian besar pengaturan.
+Setiap instance `Anthropic::Client` memiliki pool koneksi HTTP sendiri dengan ukuran default 99. Dengan demikian, rekomendasi adalah untuk membuat instance klien sekali per aplikasi dalam sebagian besar pengaturan.
 
 Ketika semua koneksi yang tersedia dari pool diperiksa, permintaan menunggu koneksi baru menjadi tersedia, dengan waktu antrian dihitung menuju timeout permintaan.
 
-Kecuali ditentukan lain, kelas lain dalam SDK tidak memiliki kunci yang melindungi struktur data dasarnya.
+Kecuali ditentukan lain, kelas lain dalam SDK tidak memiliki kunci yang melindungi struktur data yang mendasarinya.
 
-## Membuat permintaan khusus atau tidak terdokumentasi
+## Membuat permintaan kustom atau tidak terdokumentasi
 
 ### Properti tidak terdokumentasi
 
-Anda dapat mengirim parameter tidak terdokumentasi ke titik akhir apa pun, dan membaca properti respons tidak terdokumentasi, seperti ini:
+Anda dapat mengirim parameter tidak terdokumentasi ke titik akhir mana pun, dan membaca properti respons tidak terdokumentasi, seperti ini:
 
 <Warning>
-Parameter `extra_` dengan nama yang sama mengganti parameter yang terdokumentasi. Untuk alasan keamanan, pastikan metode ini hanya digunakan dengan data input yang terpercaya.
+Parameter `extra_` dengan nama yang sama menggantikan parameter yang terdokumentasi. Untuk alasan keamanan, pastikan metode ini hanya digunakan dengan data input yang terpercaya.
 </Warning>
 
-```ruby
+```ruby hidelines={1} nocheck
+require "anthropic"
+anthropic = Anthropic::Client.new
+value = "example"
 message =
   anthropic.messages.create(
     max_tokens: 1024,
@@ -354,14 +380,14 @@ puts(message[:my_undocumented_property])
 
 ### Parameter permintaan tidak terdokumentasi
 
-Jika Anda ingin secara eksplisit mengirim param tambahan, Anda dapat melakukannya dengan `extra_query`, `extra_body`, dan `extra_headers` di bawah parameter `request_options:` saat membuat permintaan, seperti yang terlihat dalam contoh di atas.
+Jika Anda ingin secara eksplisit mengirim parameter tambahan, Anda dapat melakukannya dengan `extra_query`, `extra_body`, dan `extra_headers` di bawah parameter `request_options:` saat membuat permintaan, seperti yang terlihat dalam contoh di atas.
 
 ### Titik akhir tidak terdokumentasi
 
-Untuk membuat permintaan ke titik akhir tidak terdokumentasi sambil mempertahankan manfaat auth, percobaan ulang, dan sebagainya, Anda dapat membuat permintaan menggunakan `client.request`, seperti ini:
+Untuk membuat permintaan ke titik akhir tidak terdokumentasi sambil mempertahankan manfaat auth, percobaan ulang, dan sebagainya, Anda dapat membuat permintaan menggunakan `anthropic.request`, seperti ini:
 
-```ruby
-response = client.request(
+```ruby nocheck
+response = anthropic.request(
   method: :post,
   path: '/undocumented/endpoint',
   query: {"dog": "woof"},
@@ -373,62 +399,21 @@ response = client.request(
 ## Integrasi platform
 
 <Note>
-Untuk panduan setup platform terperinci, lihat:
+Untuk panduan setup platform terperinci dengan contoh kode, lihat:
 - [Amazon Bedrock](/docs/id/build-with-claude/claude-on-amazon-bedrock)
 - [Google Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai)
 </Note>
 
-### Amazon Bedrock
+Ruby SDK mendukung Bedrock dan Vertex AI melalui kelas klien khusus:
 
-Perpustakaan ini juga menyediakan dukungan untuk [Anthropic Bedrock API](https://aws.amazon.com/bedrock/claude/) jika Anda menginstal perpustakaan ini dengan gem `aws-sdk-bedrockruntime`.
+- **Bedrock:** `Anthropic::BedrockClient`. Memerlukan gem `aws-sdk-bedrockruntime`.
+- **Vertex AI:** `Anthropic::VertexClient`. Memerlukan gem `googleauth`.
 
-Anda kemudian dapat membuat instance kelas `Anthropic::BedrockClient` terpisah, dan menggunakan panduan standar AWS untuk mengonfigurasi kredensial. Ini memiliki API yang sama dengan kelas `Anthropic::Client` dasar.
+## Semantic versioning
 
-Perhatikan bahwa ID model yang diperlukan berbeda untuk model Bedrock, dan, tergantung pada model yang ingin Anda gunakan, Anda perlu menggunakan ID model AWS untuk model Anthropic -- yang dapat ditemukan di [katalog model Bedrock AWS](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html) -- atau ID profil inferensi (misalnya `us.anthropic.claude-3-5-haiku-20241022-v1:0` untuk Claude 3.5 Haiku).
+Paket ini mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html). Karena perpustakaan dalam pengembangan awal dan memiliki versi utama `0`, API dapat berubah kapan saja.
 
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::BedrockClient.new
-
-message = anthropic.messages.create(
-  max_tokens: 1024,
-  messages: [
-    {
-      role: "user",
-      content: "Hello, Claude"
-    }
-  ],
-  model: "anthropic.claude-opus-4-6-v1"
-)
-
-puts(message)
-```
-
-### Google Vertex AI
-
-Perpustakaan ini juga menyediakan dukungan untuk [Anthropic Vertex API](https://cloud.google.com/vertex-ai?hl=en) jika Anda menginstal perpustakaan ini dengan gem `googleauth`.
-
-Anda kemudian dapat mengimpor dan membuat instance kelas `Anthropic::VertexClient` terpisah, dan menggunakan panduan Google untuk mengonfigurasi [Application Default Credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc). Ini memiliki API yang sama dengan kelas `Anthropic::Client` dasar.
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::VertexClient.new(region: "us-east5", project_id: "my-project-id")
-
-message = anthropic.messages.create(
-  max_tokens: 1024,
-  messages: [
-    {
-      role: "user",
-      content: "Hello, Claude"
-    }
-  ],
-  model: "claude-opus-4-6"
-)
-
-puts(message)
-```
+Paket ini menganggap peningkatan pada definisi tipe `*.rbi` dan `*.rbs` (non-runtime) sebagai perubahan non-breaking.
 
 ## Sumber daya tambahan
 

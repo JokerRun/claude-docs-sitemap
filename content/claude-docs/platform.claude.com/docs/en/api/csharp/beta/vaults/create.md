@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8674c65ea504ab2bae94375b27b5ac263dba6ac9f90ca33f5b3a1b4379ae8bcc
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 808baa726887c2569145529bf7f52f4efd50ccac5734667be920f01c28cc5b7b
 ---
 
 ## Create
@@ -23,7 +23,7 @@ Create Vault
 
   - `IReadOnlyDictionary<string, string> metadata`
 
-    Body param: Arbitrary key-value metadata to attach to the vault.
+    Body param: Arbitrary key-value metadata to attach to the vault. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
   - `IReadOnlyList<AnthropicBeta> betas`
 
@@ -70,6 +70,8 @@ Create Vault
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

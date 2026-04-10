@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: a70cb62e9949e7ec41a0c84d3a61074bf29a856c5a349e947dcaa4d01a4c4787
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 79dd8ce929f2ff87e5b9ee24840ed93630b31ad6a1f60bbf9466fb912d263dcc
 ---
 
 # Agents
@@ -419,6 +419,8 @@ Create Agent
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -801,6 +803,8 @@ List Agents
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
 ### Returns
 
 - `class AgentListPageResponse:`
@@ -1176,6 +1180,8 @@ Get Agent
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
@@ -1900,6 +1906,8 @@ Update Agent
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -2265,6 +2273,8 @@ Archive Agent
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
@@ -3856,6 +3866,8 @@ List Agent Versions
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

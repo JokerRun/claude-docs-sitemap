@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/cli
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 10652b99706389d43cddae143b205ecd99e1efea62cbc3642ed595fc5d77d2dc
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: c0ef693ee27cf5b886346948a787b9ee08339c163942f72ca02e3091dd18cf09
 ---
 
 # CLI
@@ -215,7 +215,7 @@ To capture a single field as an unquoted string — for example, the ID of a new
 ```bash
 AGENT_ID=$(ant beta:agents create \
   --name "My Agent" \
-  --model claude-sonnet-4-6 \
+  --model '{id: claude-sonnet-4-6}' \
   --transform id --format yaml)
 
 printf '%s\n' "$AGENT_ID"
@@ -249,7 +249,7 @@ Repeatable flags build arrays. Each `--tool` or `--event` appends one element:
 ```bash
 ant beta:agents create \
   --name "Research Agent" \
-  --model claude-opus-4-6 \
+  --model '{id: claude-opus-4-6}' \
   --tool '{type: agent_toolset_20260401}' \
   --tool '{type: custom, name: search_docs, input_schema: {type: object, properties: {query: {type: string}}}}'
 ```
@@ -288,7 +288,7 @@ To inline a file's contents into a string-valued field, prefix the path with `@`
 
 ```bash
 ant beta:agents create \
-  --name "Researcher" --model claude-sonnet-4-6 \
+  --name "Researcher" --model '{id: claude-sonnet-4-6}' \
   --system @./prompts/researcher.txt
 ```
 

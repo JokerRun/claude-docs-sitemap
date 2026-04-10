@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/models/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 41c9f34d88f32d266b10fe3a3a33be9bf0bfea5b2c91efeb3c0fe227f2ccca43
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 2c08672762590c07354955be2a5a571cd33f08ebcce2ac97cf8b06f7a0e03aa7
 ---
 
 ## Retrieve
@@ -72,6 +72,8 @@ The Models API response can be used to determine information about a specific mo
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/versions/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: b916e48a62841a1173bb6c3627c5673f96ca7dfe2bebefab139231f88974d1cf
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: f42c56b186aaf148de01db28b3c522356c3d415d991cdfb2f72e63bc845c2ed6
 ---
 
 ## List
@@ -31,7 +31,7 @@ List Agent Versions
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 18 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ List Agent Versions
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 

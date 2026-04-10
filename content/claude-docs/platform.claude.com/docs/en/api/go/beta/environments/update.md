@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 7393f252a26facd7e7ecc2e68fd2440984d63b23df884fff4980fd7b11afa912
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 74aa27ef261ec35aabc45d82ed9e539fb57fd575c42ef5b663ce887144ab31a7
 ---
 
 ## Update
@@ -87,6 +87,8 @@ Update an existing environment's configuration.
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

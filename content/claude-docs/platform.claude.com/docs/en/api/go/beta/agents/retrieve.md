@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: a315cd868f72c5685bb3337069bf99c962b320c66a1311d9203bf841a14e2ce8
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 52fcd7a08796b661fbe3b6bc4052224c658616bf5edee1364dd7ebb05cf34861
 ---
 
 ## Retrieve
@@ -72,6 +72,8 @@ Get Agent
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

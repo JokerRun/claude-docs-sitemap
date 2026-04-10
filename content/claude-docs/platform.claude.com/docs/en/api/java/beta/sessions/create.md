@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 9036cba14a601f426dc9998bba72269f75c936d588755787f44969946dc1beca
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 6ec611f2d0a5a94a7f2a3d67aa51b7e42bbd71a51f04522fe01315f04d7ba0e6
 ---
 
 ## Create
@@ -63,6 +63,8 @@ Create Session
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
   - `Agent agent`
 
     Agent identifier. Accepts the `agent` ID string, which pins the latest version for the session, or an `agent` object with both id and version specified.
@@ -91,7 +93,7 @@ Create Session
 
   - `Optional<Metadata> metadata`
 
-    Arbitrary key-value metadata attached to the session.
+    Arbitrary key-value metadata attached to the session. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
   - `Optional<List<Resource>> resources`
 

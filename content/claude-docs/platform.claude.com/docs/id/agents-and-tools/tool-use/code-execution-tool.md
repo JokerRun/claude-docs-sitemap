@@ -1,22 +1,24 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 15be11a87bca46de88af0121db303d27c6450b137c8cb6dc16ad2841fb1c65f9
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 5076d68956198a115080dc65e713f95b2d1e9eeb9614869192fdf38cd4949a07
 ---
 
 # Alat eksekusi kode
 
+Jalankan kode Python dan bash dalam kontainer bersandbox untuk menganalisis data, menghasilkan file, dan mengulangi solusi.
+
 ---
 
-Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah langsung dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file, termasuk menulis kode, dalam lingkungan sandbox yang aman.
+Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah langsung dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file, termasuk menulis kode, dalam lingkungan bersandbox yang aman.
 
-**Eksekusi kode gratis saat digunakan dengan web search atau web fetch.** Ketika `web_search_20260209` atau `web_fetch_20260209` disertakan dalam permintaan Anda, tidak ada biaya tambahan untuk panggilan alat eksekusi kode di luar biaya token input dan output standar. Biaya eksekusi kode standar berlaku ketika alat-alat ini tidak disertakan.
+**Eksekusi kode gratis saat digunakan dengan pencarian web atau pengambilan web.** Ketika `web_search_20260209` atau `web_fetch_20260209` disertakan dalam permintaan Anda, tidak ada biaya tambahan untuk panggilan alat eksekusi kode di luar biaya token input dan output standar. Biaya eksekusi kode standar berlaku ketika alat-alat ini tidak disertakan.
 
-Eksekusi kode adalah primitif inti untuk membangun agen berkinerja tinggi. Ini memungkinkan pemfilteran dinamis dalam alat web search dan web fetch, memungkinkan Claude memproses hasil sebelum mencapai jendela konteks—meningkatkan akurasi sekaligus mengurangi konsumsi token.
+Eksekusi kode adalah primitif inti untuk membangun agen berkinerja tinggi. Ini memungkinkan penyaringan dinamis dalam alat pencarian web dan pengambilan web, memungkinkan Claude memproses hasil sebelum mencapai jendela konteks, meningkatkan akurasi sambil mengurangi konsumsi token.
 
 <Note>
-Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/LTAU6Xn2puCJMi1n6) untuk berbagi masukan Anda tentang fitur ini.
+Hubungi kami melalui [formulir umpan balik](https://forms.gle/LTAU6Xn2puCJMi1n6) untuk berbagi umpan balik Anda tentang fitur ini.
 </Note>
 
 <Note>
@@ -25,23 +27,10 @@ This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-
 
 ## Kompatibilitas model
 
-Alat eksekusi kode tersedia pada model-model berikut:
-
-| Model | Versi Alat |
-|-------|--------------|
-| Claude Opus 4.6 (`claude-opus-4-6`) | `code_execution_20250825` |
-| Claude Sonnet 4.6 (`claude-sonnet-4-6`) | `code_execution_20250825` |
-| Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`) | `code_execution_20250825` |
-| Claude Opus 4.5 (`claude-opus-4-5-20251101`) | `code_execution_20250825` |
-| Claude Opus 4.1 (`claude-opus-4-1-20250805`) | `code_execution_20250825` |
-| Claude Opus 4 (`claude-opus-4-20250514`) | `code_execution_20250825` |
-| Claude Sonnet 4 (`claude-sonnet-4-20250514`) | `code_execution_20250825` |
-| Claude Sonnet 3.7 (`claude-3-7-sonnet-20250219`) ([tidak didukung lagi](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825` |
-| Claude Haiku 4.5 (`claude-haiku-4-5-20251001`) | `code_execution_20250825` |
-| Claude Haiku 3.5 (`claude-3-5-haiku-latest`) ([tidak didukung lagi](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825` |
+Alat eksekusi kode tersedia di semua model Claude yang didukung menggunakan versi alat `code_execution_20250825`.
 
 <Note>
-Versi saat ini `code_execution_20250825` mendukung perintah Bash dan operasi file. Versi lama `code_execution_20250522` (hanya Python) juga tersedia. Lihat [Upgrade ke versi alat terbaru](#upgrade-to-latest-tool-version) untuk detail migrasi.
+Versi `code_execution_20250825` mendukung perintah Bash dan operasi file. Untuk model yang mendukung [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), `code_execution_20260120` menambahkan persistensi status REPL dan kemampuan untuk memanggil alat dari dalam sandbox. Versi lama `code_execution_20250522` (hanya Python) juga tersedia; lihat [Tingkatkan ke versi alat terbaru](#upgrade-to-latest-tool-version) untuk bermigrasi darinya.
 </Note>
 
 <Warning>
@@ -55,6 +44,10 @@ Eksekusi kode tersedia di:
 - **Microsoft Azure AI Foundry**
 
 Eksekusi kode saat ini tidak tersedia di Amazon Bedrock atau Google Vertex AI.
+
+<Note>
+Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), eksekusi kode didukung di Claude API dan Microsoft Foundry saja. Tidak tersedia untuk Mythos Preview di Amazon Bedrock atau Google Vertex AI.
+</Note>
 
 ## Mulai cepat
 
@@ -82,7 +75,15 @@ curl https://api.anthropic.com/v1/messages \
     }'
 ```
 
-```python Python
+```bash CLI
+ant messages create \
+  --model claude-opus-4-6 \
+  --max-tokens 4096 \
+  --message '{role: user, content: "Calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"}' \
+  --tool '{type: code_execution_20250825, name: code_execution}'
+```
+
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -102,13 +103,13 @@ response = client.messages.create(
 print(response)
 ```
 
-```typescript TypeScript
-import { Anthropic } from "@anthropic-ai/sdk";
+```typescript TypeScript hidelines={1..5,-3..-1}
+import Anthropic from "@anthropic-ai/sdk";
 
-const anthropic = new Anthropic();
+const client = new Anthropic();
 
 async function main() {
-  const response = await anthropic.messages.create({
+  const response = await client.messages.create({
     model: "claude-opus-4-6",
     max_tokens: 4096,
     messages: [
@@ -130,6 +131,146 @@ async function main() {
 
 main().catch(console.error);
 ```
+
+```csharp C# hidelines={1..11,-2..}
+using System;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        AnthropicClient client = new();
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 4096,
+            Messages = [
+                new() {
+                    Role = Role.User,
+                    Content = "Calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+                }
+            ],
+            Tools = [new ToolUnion(new CodeExecutionTool20250825())]
+        };
+
+        var message = await client.Messages.Create(parameters);
+        Console.WriteLine(message);
+    }
+}
+```
+
+```go Go hidelines={1..11,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_6,
+		MaxTokens: 4096,
+		Messages: []anthropic.BetaMessageParam{
+			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]")),
+		},
+		Tools: []anthropic.BetaToolUnionParam{
+			{OfCodeExecutionTool20250825: &anthropic.BetaCodeExecutionTool20250825Param{}},
+		},
+		Betas: []anthropic.AnthropicBeta{"code-execution-2025-08-25"},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java Java hidelines={1..5,7..9,-2..}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.Model;
+import com.anthropic.models.messages.CodeExecutionTool20250825;
+
+public class CodeExecution {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageCreateParams params = MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_4_6)
+            .maxTokens(4096L)
+            .addUserMessage("Calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]")
+            .addTool(CodeExecutionTool20250825.builder().build())
+            .build();
+
+        Message response = client.messages().create(params);
+        System.out.println(response);
+    }
+}
+```
+
+```php PHP hidelines={1..4}
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+$message = $client->messages->create(
+    maxTokens: 4096,
+    messages: [
+        [
+            'role' => 'user',
+            'content' => 'Calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]'
+        ]
+    ],
+    model: 'claude-opus-4-6',
+    tools: [
+        [
+            'type' => 'code_execution_20250825',
+            'name' => 'code_execution'
+        ]
+    ],
+);
+
+echo $message;
+```
+
+```ruby Ruby hidelines={1..2}
+require "anthropic"
+
+client = Anthropic::Client.new
+
+message = client.messages.create(
+  model: "claude-opus-4-6",
+  max_tokens: 4096,
+  messages: [
+    {
+      role: "user",
+      content: "Calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+    }
+  ],
+  tools: [
+    {
+      type: "code_execution_20250825",
+      name: "code_execution"
+    }
+  ]
+)
+
+puts message
+```
 </CodeGroup>
 
 ## Cara kerja eksekusi kode
@@ -137,18 +278,18 @@ main().catch(console.error);
 Ketika Anda menambahkan alat eksekusi kode ke permintaan API Anda:
 
 1. Claude mengevaluasi apakah eksekusi kode akan membantu menjawab pertanyaan Anda
-2. Alat ini secara otomatis memberikan kemampuan berikut kepada Claude:
-   - **Perintah Bash**: Menjalankan perintah shell untuk operasi sistem dan manajemen paket
-   - **Operasi file**: Membuat, melihat, dan mengedit file secara langsung, termasuk menulis kode
-3. Claude dapat menggunakan kombinasi kemampuan ini dalam satu permintaan
+2. Alat secara otomatis memberikan Claude dengan kemampuan berikut:
+   - **Perintah Bash**: Jalankan perintah shell untuk operasi sistem dan manajemen paket
+   - **Operasi file**: Buat, lihat, dan edit file secara langsung, termasuk menulis kode
+3. Claude dapat menggunakan kombinasi apa pun dari kemampuan ini dalam satu permintaan
 4. Semua operasi berjalan dalam lingkungan sandbox yang aman
 5. Claude memberikan hasil dengan grafik, perhitungan, atau analisis yang dihasilkan
 
 ## Menggunakan eksekusi kode dengan alat eksekusi lainnya
 
-Ketika Anda menyediakan eksekusi kode bersama alat yang disediakan klien yang juga menjalankan kode (seperti [alat bash](/docs/id/agents-and-tools/tool-use/bash-tool) atau REPL kustom), Claude beroperasi dalam lingkungan multi-komputer. Alat eksekusi kode berjalan di container sandbox Anthropic, sementara alat yang disediakan klien berjalan di lingkungan terpisah yang Anda kendalikan. Claude terkadang dapat membingungkan lingkungan-lingkungan ini, mencoba menggunakan alat yang salah atau mengasumsikan status dibagikan di antara keduanya.
+Ketika Anda menyediakan eksekusi kode bersama dengan alat yang disediakan klien yang juga menjalankan kode (seperti [alat bash](/docs/id/agents-and-tools/tool-use/bash-tool) atau REPL khusus), Claude beroperasi dalam lingkungan multi-komputer. Alat eksekusi kode berjalan dalam kontainer bersandbox Anthropic, sementara alat yang disediakan klien Anda berjalan di lingkungan terpisah yang Anda kontrol. Claude kadang-kadang dapat membingungkan lingkungan ini, mencoba menggunakan alat yang salah atau mengasumsikan status dibagikan di antara mereka.
 
-Untuk menghindari hal ini, tambahkan instruksi ke system prompt Anda yang mengklarifikasi perbedaannya:
+Untuk menghindari ini, tambahkan instruksi ke prompt sistem Anda yang memperjelas perbedaannya:
 
 ```text
 When multiple code execution environments are available, be aware that:
@@ -158,128 +299,11 @@ When multiple code execution environments are available, be aware that:
 - If you need to pass results between environments, explicitly include outputs in subsequent tool calls rather than assuming shared state
 ```
 
-Ini sangat penting saat menggabungkan eksekusi kode dengan [web search](/docs/id/agents-and-tools/tool-use/web-search-tool) atau [web fetch](/docs/id/agents-and-tools/tool-use/web-fetch-tool), yang mengaktifkan eksekusi kode secara otomatis. Jika aplikasi Anda sudah menyediakan alat shell sisi klien, eksekusi kode otomatis menciptakan lingkungan eksekusi kedua yang perlu dibedakan oleh Claude.
+Ini sangat penting ketika menggabungkan eksekusi kode dengan [pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) atau [pengambilan web](/docs/id/agents-and-tools/tool-use/web-fetch-tool), yang mengaktifkan eksekusi kode secara otomatis. Jika aplikasi Anda sudah menyediakan alat shell sisi klien, eksekusi kode otomatis menciptakan lingkungan eksekusi kedua yang perlu Claude bedakan.
 
 ## Cara menggunakan alat
 
-### Menjalankan perintah Bash
-
-Minta Claude untuk memeriksa informasi sistem dan menginstal paket:
-
-<CodeGroup>
-```bash Shell
-curl https://api.anthropic.com/v1/messages \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    --header "anthropic-version: 2023-06-01" \
-    --header "content-type: application/json" \
-    --data '{
-        "model": "claude-opus-4-6",
-        "max_tokens": 4096,
-        "messages": [{
-            "role": "user",
-            "content": "Check the Python version and list installed packages"
-        }],
-        "tools": [{
-            "type": "code_execution_20250825",
-            "name": "code_execution"
-        }]
-    }'
-```
-
-```python Python
-response = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=4096,
-    messages=[
-        {
-            "role": "user",
-            "content": "Check the Python version and list installed packages",
-        }
-    ],
-    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
-)
-```
-
-```typescript TypeScript
-const response = await anthropic.messages.create({
-  model: "claude-opus-4-6",
-  max_tokens: 4096,
-  messages: [
-    {
-      role: "user",
-      content: "Check the Python version and list installed packages"
-    }
-  ],
-  tools: [
-    {
-      type: "code_execution_20250825",
-      name: "code_execution"
-    }
-  ]
-});
-```
-</CodeGroup>
-
-### Membuat dan mengedit file secara langsung
-
-Claude dapat membuat, melihat, dan mengedit file secara langsung di sandbox menggunakan kemampuan manipulasi file:
-
-<CodeGroup>
-```bash Shell
-curl https://api.anthropic.com/v1/messages \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    --header "anthropic-version: 2023-06-01" \
-    --header "content-type: application/json" \
-    --data '{
-        "model": "claude-opus-4-6",
-        "max_tokens": 4096,
-        "messages": [{
-            "role": "user",
-            "content": "Create a config.yaml file with database settings, then update the port from 5432 to 3306"
-        }],
-        "tools": [{
-            "type": "code_execution_20250825",
-            "name": "code_execution"
-        }]
-    }'
-```
-
-```python Python
-response = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=4096,
-    messages=[
-        {
-            "role": "user",
-            "content": "Create a config.yaml file with database settings, then update the port from 5432 to 3306",
-        }
-    ],
-    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
-)
-```
-
-```typescript TypeScript
-const response = await anthropic.messages.create({
-  model: "claude-opus-4-6",
-  max_tokens: 4096,
-  messages: [
-    {
-      role: "user",
-      content:
-        "Create a config.yaml file with database settings, then update the port from 5432 to 3306"
-    }
-  ],
-  tools: [
-    {
-      type: "code_execution_20250825",
-      name: "code_execution"
-    }
-  ]
-});
-```
-</CodeGroup>
-
-### Mengunggah dan menganalisis file Anda sendiri
+### Unggah dan analisis file Anda sendiri
 
 Untuk menganalisis file data Anda sendiri (CSV, Excel, gambar, dll.), unggah melalui Files API dan referensikan dalam permintaan Anda:
 
@@ -296,22 +320,24 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 - Gambar (JPEG, PNG, GIF, WebP)
 - File teks (.txt, .md, .py, dll)
 
-#### Mengunggah dan menganalisis file
+#### Unggah dan analisis file
 
 1. **Unggah file Anda** menggunakan [Files API](/docs/id/build-with-claude/files)
 2. **Referensikan file** dalam pesan Anda menggunakan blok konten `container_upload`
-3. **Sertakan alat eksekusi kode** dalam permintaan API Anda
+3. **Sertakan alat code execution** dalam permintaan API Anda
 
 <CodeGroup>
-```bash Shell
-# First, upload a file
+```bash Shell hidelines={1..2}
+cd "$(mktemp -d)"
+printf 'name,value\nfoo,1\nbar,2\n' > data.csv
+# Pertama, unggah file
 curl https://api.anthropic.com/v1/files \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
     --header "anthropic-beta: files-api-2025-04-14" \
     --form 'file=@"data.csv"' \
 
-# Then use the file_id with code execution
+# Kemudian gunakan file_id dengan code execution
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
@@ -334,17 +360,42 @@ curl https://api.anthropic.com/v1/messages \
     }'
 ```
 
-```python Python
+```bash CLI hidelines={1}
+printf 'name,value\nfoo,1\nbar,2\n' > data.csv
+# Unggah file
+FILE_ID=$(ant beta:files upload \
+  --file ./data.csv \
+  --transform id --format yaml)
+
+# Gunakan file_id dengan code execution
+ant beta:messages create \
+  --beta files-api-2025-04-14 <<YAML
+model: claude-opus-4-6
+max_tokens: 4096
+messages:
+  - role: user
+    content:
+      - type: text
+        text: Analyze this CSV data
+      - type: container_upload
+        file_id: $FILE_ID
+tools:
+  - type: code_execution_20250825
+    name: code_execution
+YAML
+```
+
+```python Python nocheck hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
 
-# Upload a file
+# Unggah file
 file_object = client.beta.files.upload(
     file=open("data.csv", "rb"),
 )
 
-# Use the file_id with code execution
+# Gunakan file_id dengan code execution
 response = client.beta.messages.create(
     model="claude-opus-4-6",
     betas=["files-api-2025-04-14"],
@@ -360,22 +411,25 @@ response = client.beta.messages.create(
     ],
     tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
 )
+
+print(response)
 ```
 
-```typescript TypeScript
-import { Anthropic } from "@anthropic-ai/sdk";
+```typescript TypeScript nocheck hidelines={5..6,-3..-1}
+import Anthropic, { toFile } from "@anthropic-ai/sdk";
 import { createReadStream } from "fs";
 
-const anthropic = new Anthropic();
+const client = new Anthropic();
 
 async function main() {
-  // Upload a file
-  const fileObject = await anthropic.beta.files.create({
-    file: createReadStream("data.csv")
+  // Unggah file
+  const fileObject = await client.beta.files.upload({
+    file: await toFile(createReadStream("data.csv"), undefined, { type: "text/csv" }),
+    betas: ["files-api-2025-04-14"]
   });
 
-  // Use the file_id with code execution
-  const response = await anthropic.beta.messages.create({
+  // Gunakan file_id dengan code execution
+  const response = await client.beta.messages.create({
     model: "claude-opus-4-6",
     betas: ["files-api-2025-04-14"],
     max_tokens: 4096,
@@ -401,20 +455,264 @@ async function main() {
 
 main().catch(console.error);
 ```
+
+```csharp C# nocheck hidelines={1..10,-2..}
+using Anthropic;
+using Anthropic.Models.Beta.Files;
+using Anthropic.Models.Beta.Messages;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        AnthropicClient client = new();
+
+        // Unggah file
+        var fileObject = await client.Beta.Files.Upload(new FileUploadParams
+        {
+            File = File.OpenRead("data.csv")
+        });
+
+        // Gunakan file_id dengan code execution
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            Betas = ["files-api-2025-04-14"],
+            MaxTokens = 4096,
+            Messages = [
+                new()
+                {
+                    Role = Role.User,
+                    Content = [
+                        new() { Type = "text", Text = "Analyze this CSV data" },
+                        new() { Type = "container_upload", FileId = fileObject.Id }
+                    ]
+                }
+            ],
+            Tools = [new ToolUnion(new CodeExecutionTool20250825())]
+        };
+
+        var response = await client.Beta.Messages.Create(parameters);
+        Console.WriteLine(response);
+    }
+}
+```
+
+```go Go hidelines={11..15}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func init() {
+	os.WriteFile("data.csv", []byte("name,value\nalpha,1\nbeta,2\ngamma,3\n"), 0644)
+}
+
+func main() {
+	client := anthropic.NewClient()
+
+	// Unggah file
+	file, err := os.Open("data.csv")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	fileObject, err := client.Beta.Files.Upload(context.TODO(), anthropic.BetaFileUploadParams{
+		File:  file,
+		Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Gunakan file_id dengan code execution
+	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_6,
+		MaxTokens: 4096,
+		Messages: []anthropic.BetaMessageParam{
+			anthropic.NewBetaUserMessage(
+				anthropic.NewBetaTextBlock("Analyze this CSV data"),
+				anthropic.NewBetaContainerUploadBlock(fileObject.ID),
+			),
+		},
+		Tools: []anthropic.BetaToolUnionParam{
+			{OfCodeExecutionTool20250825: &anthropic.BetaCodeExecutionTool20250825Param{}},
+		},
+		Betas: []anthropic.AnthropicBeta{
+			"code-execution-2025-08-25",
+			anthropic.AnthropicBetaFilesAPI2025_04_14,
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(response)
+}
+```
+
+```java Java nocheck hidelines={1..2,5..6,8..9,11..15,-2..}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.files.FileMetadata;
+import com.anthropic.models.beta.files.FileUploadParams;
+import com.anthropic.models.beta.messages.BetaMessage;
+import com.anthropic.models.beta.messages.MessageCreateParams;
+import com.anthropic.models.beta.messages.BetaCodeExecutionTool20250825;
+import com.anthropic.models.beta.messages.BetaContentBlockParam;
+import com.anthropic.models.beta.messages.BetaTextBlockParam;
+import com.anthropic.models.beta.messages.BetaContainerUploadBlockParam;
+import java.nio.file.Paths;
+import java.util.List;
+
+public class CodeExecutionWithFiles {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        // Unggah file
+        FileMetadata fileMetadata = client.beta().files().upload(
+            FileUploadParams.builder()
+                .file(Paths.get("data.csv"))
+                .build()
+        );
+
+        // Gunakan file_id dengan code execution
+        BetaMessage response = client.beta().messages().create(
+            MessageCreateParams.builder()
+                .model("claude-opus-4-6")
+                .addBeta("files-api-2025-04-14")
+                .maxTokens(4096L)
+                .addUserMessageOfBetaContentBlockParams(List.of(
+                    BetaContentBlockParam.ofText(BetaTextBlockParam.builder()
+                        .text("Analyze this CSV data")
+                        .build()),
+                    BetaContentBlockParam.ofContainerUpload(BetaContainerUploadBlockParam.builder()
+                        .fileId(fileMetadata.id())
+                        .build())
+                ))
+                .addTool(BetaCodeExecutionTool20250825.builder().build())
+                .build()
+        );
+
+        System.out.println(response);
+    }
+}
+```
+
+```php PHP hidelines={1..4} nocheck
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+// Unggah file
+$fileObject = $client->beta->files->upload(
+    file: fopen('data.csv', 'r'),
+);
+
+// Gunakan file_id dengan code execution
+$response = $client->beta->messages->create(
+    maxTokens: 4096,
+    messages: [
+        [
+            'role' => 'user',
+            'content' => [
+                ['type' => 'text', 'text' => 'Analyze this CSV data'],
+                ['type' => 'container_upload', 'file_id' => $fileObject->id]
+            ]
+        ]
+    ],
+    model: 'claude-opus-4-6',
+    betas: ['files-api-2025-04-14'],
+    tools: [
+        ['type' => 'code_execution_20250825', 'name' => 'code_execution']
+    ],
+);
+
+echo $response;
+```
+
+```ruby Ruby nocheck hidelines={1..2}
+require "anthropic"
+
+client = Anthropic::Client.new
+
+# Unggah file
+file_object = client.beta.files.upload(
+  file: File.open("data.csv", "rb")
+)
+
+# Gunakan file_id dengan code execution
+response = client.beta.messages.create(
+  model: "claude-opus-4-6",
+  betas: ["files-api-2025-04-14"],
+  max_tokens: 4096,
+  messages: [
+    {
+      role: "user",
+      content: [
+        { type: "text", text: "Analyze this CSV data" },
+        { type: "container_upload", file_id: file_object.id }
+      ]
+    }
+  ],
+  tools: [
+    { type: "code_execution_20250825", name: "code_execution" }
+  ]
+)
+
+puts response
+```
 </CodeGroup>
 
-#### Mengambil file yang dihasilkan
+#### Ambil file yang dihasilkan
 
-Ketika Claude membuat file selama eksekusi kode, Anda dapat mengambil file-file ini menggunakan Files API:
+Ketika Claude membuat file selama code execution, Anda dapat mengambil file ini menggunakan Files API:
 
 <CodeGroup>
-```python Python
+
+```bash CLI nocheck
+# Minta code execution yang membuat file; ekstrak file_ids dari hasil tool
+TOOL_RESULT='content.#(type=="bash_code_execution_tool_result")#'
+FILE_IDS=$(ant beta:messages create \
+  --beta files-api-2025-04-14 \
+  --transform "${TOOL_RESULT}.content.content|@flatten|#.file_id" \
+  --format yaml \
+    --model claude-opus-4-6 \
+    --max-tokens 4096 \
+    --message '{role: user, content: Create a matplotlib visualization and save it as output.png}' \
+    --tool '{type: code_execution_20250825, name: code_execution}'
+)
+
+# Unduh setiap file yang dibuat
+while IFS= read -r LINE; do
+  [[ "$LINE" != "- "* ]] && continue
+  FILE_ID="${LINE#- }"
+  FILENAME=$(ant beta:files retrieve-metadata \
+    --file-id "$FILE_ID" \
+    --transform filename --format yaml)
+  ant beta:files download \
+    --file-id "$FILE_ID" \
+    --output "$FILENAME" > /dev/null
+  printf 'Downloaded: %s\n' "$FILENAME"
+done <<< "$FILE_IDS"
+```
+
+```python Python nocheck hidelines={1..2}
 from anthropic import Anthropic
 
-# Initialize the client
+# Inisialisasi klien
 client = Anthropic()
 
-# Request code execution that creates files
+# Minta code execution yang membuat file
 response = client.beta.messages.create(
     model="claude-opus-4-6",
     betas=["files-api-2025-04-14"],
@@ -429,20 +727,20 @@ response = client.beta.messages.create(
 )
 
 
-# Extract file IDs from the response
+# Ekstrak file IDs dari respons
 def extract_file_ids(response):
     file_ids = []
     for item in response.content:
         if item.type == "bash_code_execution_tool_result":
             content_item = item.content
             if content_item.type == "bash_code_execution_result":
+                # concrete-typed list: List[BashCodeExecutionOutputBlock]
                 for file in content_item.content:
-                    if hasattr(file, "file_id"):
-                        file_ids.append(file.file_id)
+                    file_ids.append(file.file_id)
     return file_ids
 
 
-# Download the created files
+# Unduh file yang dibuat
 for file_id in extract_file_ids(response):
     file_metadata = client.beta.files.retrieve_metadata(file_id)
     file_content = client.beta.files.download(file_id)
@@ -450,18 +748,17 @@ for file_id in extract_file_ids(response):
     print(f"Downloaded: {file_metadata.filename}")
 ```
 
-```typescript TypeScript
-import { Anthropic } from "@anthropic-ai/sdk";
+```typescript TypeScript nocheck hidelines={5..6,-3..-1}
+import Anthropic from "@anthropic-ai/sdk";
 import { writeFile } from "fs/promises";
 
-// Initialize the client
-const anthropic = new Anthropic();
+const client = new Anthropic();
 
 async function main() {
-  // Request code execution that creates files
-  const response = await anthropic.beta.messages.create({
+  // Minta code execution yang membuat file
+  const response = await client.beta.messages.create({
     model: "claude-opus-4-6",
-    betas: ["files-api-2025-04-14"],
+    betas: ["code-execution-2025-08-25", "files-api-2025-04-14"],
     max_tokens: 4096,
     messages: [
       {
@@ -477,143 +774,302 @@ async function main() {
     ]
   });
 
-  // Extract file IDs from the response
-  function extractFileIds(response: any): string[] {
-    const fileIds: string[] = [];
-    for (const item of response.content) {
-      if (item.type === "bash_code_execution_tool_result") {
-        const contentItem = item.content;
-        if (contentItem.type === "bash_code_execution_result" && contentItem.content) {
-          for (const file of contentItem.content) {
-            fileIds.push(file.file_id);
-          }
+  // Ekstrak file IDs dari respons
+  for (const item of response.content) {
+    if (item.type === "bash_code_execution_tool_result") {
+      const contentItem = item.content;
+      if (contentItem.type === "bash_code_execution_result" && contentItem.content) {
+        // concrete-typed list: BashCodeExecutionOutputBlock
+        for (const file of contentItem.content) {
+          const fileMetadata = await client.beta.files.retrieveMetadata(file.file_id);
+          const fileResponse = await client.beta.files.download(file.file_id);
+          const fileBytes = Buffer.from(await fileResponse.arrayBuffer());
+          await writeFile(fileMetadata.filename, fileBytes);
+          console.log(`Downloaded: ${fileMetadata.filename}`);
         }
       }
     }
-    return fileIds;
-  }
-
-  // Download the created files
-  const fileIds = extractFileIds(response);
-  for (const fileId of fileIds) {
-    const fileMetadata = await anthropic.beta.files.retrieveMetadata(fileId);
-    const fileContent = await anthropic.beta.files.download(fileId);
-
-    // Convert ReadableStream to Buffer and save
-    const chunks: Uint8Array[] = [];
-    for await (const chunk of fileContent) {
-      chunks.push(chunk);
-    }
-    const buffer = Buffer.concat(chunks);
-    await writeFile(fileMetadata.filename, buffer);
-    console.log(`Downloaded: ${fileMetadata.filename}`);
   }
 }
 
 main().catch(console.error);
 ```
-</CodeGroup>
 
-### Menggabungkan operasi
+```csharp C# nocheck hidelines={1..14,-2..}
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Anthropic;
+using Anthropic.Models.Messages;
 
-Alur kerja kompleks menggunakan semua kemampuan:
+public class Program
+{
+    static async Task Main(string[] args)
+    {
+        var client = new AnthropicClient();
 
-<CodeGroup>
-```bash Shell
-# First, upload a file
-curl https://api.anthropic.com/v1/files \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: files-api-2025-04-14" \
-    --form 'file=@"data.csv"' \
-    > file_response.json
-
-# Extract file_id (using jq)
-FILE_ID=$(jq -r '.id' file_response.json)
-
-# Then use it with code execution
-curl https://api.anthropic.com/v1/messages \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: files-api-2025-04-14" \
-    --header "content-type: application/json" \
-    --data '{
-        "model": "claude-opus-4-6",
-        "max_tokens": 4096,
-        "messages": [{
-            "role": "user",
-            "content": [
-                {
-                    "type": "text",
-                    "text": "Analyze this CSV data: create a summary report, save visualizations, and create a README with the findings"
-                },
-                {
-                    "type": "container_upload",
-                    "file_id": "'$FILE_ID'"
-                }
-            ]
-        }],
-        "tools": [{
-            "type": "code_execution_20250825",
-            "name": "code_execution"
-        }]
-    }'
-```
-
-```python Python
-# Upload a file
-file_object = client.beta.files.upload(
-    file=open("data.csv", "rb"),
-)
-
-# Use it with code execution
-response = client.beta.messages.create(
-    model="claude-opus-4-6",
-    betas=["files-api-2025-04-14"],
-    max_tokens=4096,
-    messages=[
+        var parameters = new MessageCreateParams
         {
-            "role": "user",
-            "content": [
-                {
-                    "type": "text",
-                    "text": "Analyze this CSV data: create a summary report, save visualizations, and create a README with the findings",
-                },
-                {"type": "container_upload", "file_id": file_object.id},
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 4096,
+            Messages = [
+                new() {
+                    Role = Role.User,
+                    Content = "Create a matplotlib visualization and save it as output.png"
+                }
             ],
-        }
-    ],
-    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
-)
+            Tools = [new ToolUnion(new CodeExecutionTool20250825())]
+        };
 
-# Claude might:
-# 1. Use bash to check file size and preview data
-# 2. Use text_editor to write Python code to analyze the CSV and create visualizations
-# 3. Use bash to run the Python code
-# 4. Use text_editor to create a README.md with findings
-# 5. Use bash to organize files into a report directory
+        var response = await client.Beta.Messages.Create(parameters, ["files-api-2025-04-14"]);
+
+        var fileIds = ExtractFileIds(response);
+
+        foreach (var fileId in fileIds)
+        {
+            var fileMetadata = await client.Beta.Files.RetrieveMetadata(fileId);
+            var fileContent = await client.Beta.Files.Download(fileId);
+
+            await File.WriteAllBytesAsync(fileMetadata.Filename, fileContent);
+            Console.WriteLine($"Downloaded: {fileMetadata.Filename}");
+        }
+    }
+
+    static List<string> ExtractFileIds(dynamic response)
+    {
+        var fileIds = new List<string>();
+        foreach (var item in response.Content)
+        {
+            if (item.Type == "bash_code_execution_tool_result")
+            {
+                var contentItem = item.Content;
+                if (contentItem.Type == "bash_code_execution_result")
+                {
+                    // concrete-typed list: BetaBashCodeExecutionOutputBlock
+                    foreach (var file in contentItem.Content)
+                    {
+                        if (file.FileId != null)
+                        {
+                            fileIds.Add(file.FileId);
+                        }
+                    }
+                }
+            }
+        }
+        return fileIds;
+    }
+}
 ```
 
-```typescript TypeScript
-// Upload a file
-const fileObject = await anthropic.beta.files.create({
-  file: createReadStream("data.csv")
-});
+```go Go nocheck hidelines={1..13,65..66}
+package main
 
-const response = await anthropic.beta.messages.create({
+import (
+	"context"
+	"fmt"
+	"io"
+	"log"
+	"os"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_6,
+		MaxTokens: 4096,
+		Messages: []anthropic.BetaMessageParam{
+			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Create a matplotlib visualization and save it as output.png")),
+		},
+		Tools: []anthropic.BetaToolUnionParam{
+			{OfCodeExecutionTool20250825: &anthropic.BetaCodeExecutionTool20250825Param{}},
+		},
+		Betas: []anthropic.AnthropicBeta{
+			"code-execution-2025-08-25",
+			anthropic.AnthropicBetaFilesAPI2025_04_14,
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fileIDs := extractFileIDs(response)
+
+	for _, fileID := range fileIDs {
+		fileMetadata, err := client.Beta.Files.GetMetadata(context.TODO(), fileID, anthropic.BetaFileGetMetadataParams{
+			Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
+		})
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		fileContent, err := client.Beta.Files.Download(context.TODO(), fileID, anthropic.BetaFileDownloadParams{
+			Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
+		})
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		outFile, err := os.Create(fileMetadata.Filename)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		_, err = io.Copy(outFile, fileContent.Body)
+		if err != nil {
+			log.Fatal(err)
+		}
+		outFile.Close()
+		fileContent.Body.Close()
+
+		fmt.Printf("Downloaded: %s\n", fileMetadata.Filename)
+	}
+}
+
+func extractFileIDs(response *anthropic.BetaMessage) []string {
+	var fileIDs []string
+	for _, item := range response.Content {
+		switch variant := item.AsAny().(type) {
+		case anthropic.BetaBashCodeExecutionToolResultBlock:
+			// concrete-typed list: BashCodeExecutionOutputBlock
+			for _, file := range variant.Content.Content {
+				if file.FileID != "" {
+					fileIDs = append(fileIDs, file.FileID)
+				}
+			}
+		}
+	}
+	return fileIDs
+}
+```
+
+```java Java nocheck hidelines={1..6,11..15,39..40}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.core.http.HttpResponse;
+import com.anthropic.models.beta.messages.MessageCreateParams;
+import com.anthropic.models.beta.messages.BetaMessage;
+import com.anthropic.models.beta.messages.BetaContentBlock;
+import com.anthropic.models.beta.messages.BetaCodeExecutionTool20250825;
+import com.anthropic.models.beta.messages.BetaBashCodeExecutionResultBlock;
+import com.anthropic.models.beta.messages.BetaBashCodeExecutionOutputBlock;
+import com.anthropic.models.beta.files.FileMetadata;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+void main() throws Exception {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+    MessageCreateParams params = MessageCreateParams.builder()
+        .model("claude-opus-4-6")
+        .addBeta("files-api-2025-04-14")
+        .maxTokens(4096L)
+        .addUserMessage("Create a matplotlib visualization and save it as output.png")
+        .addTool(BetaCodeExecutionTool20250825.builder().build())
+        .build();
+
+    BetaMessage response = client.beta().messages().create(params);
+
+    List<String> fileIds = extractFileIds(response);
+
+    for (String fileId : fileIds) {
+        FileMetadata fileMetadata = client.beta().files().retrieveMetadata(fileId);
+        try (HttpResponse fileContent = client.beta().files().download(fileId)) {
+            try (FileOutputStream fos = new FileOutputStream(fileMetadata.filename())) {
+                fileContent.body().transferTo(fos);
+            }
+        }
+        IO.println("Downloaded: " + fileMetadata.filename());
+    }
+}
+
+List<String> extractFileIds(BetaMessage response) {
+    List<String> fileIds = new ArrayList<>();
+    // .ifPresent() is the discriminator guard (not concrete-typed; scanner can't see lambda guards)
+    for (BetaContentBlock item : response.content()) {
+        item.bashCodeExecutionToolResult().ifPresent(toolResult -> {
+            if (toolResult.content().isBetaBashCodeExecutionResultBlock()) {
+                BetaBashCodeExecutionResultBlock result =
+                    toolResult.content().asBetaBashCodeExecutionResultBlock();
+                // concrete-typed list: BetaBashCodeExecutionOutputBlock
+                for (BetaBashCodeExecutionOutputBlock output : result.content()) {
+                    fileIds.add(output.fileId());
+                }
+            }
+        });
+    }
+    return fileIds;
+}
+```
+
+```php PHP hidelines={1..4} nocheck
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+$response = $client->beta->messages->create(
+    maxTokens: 4096,
+    messages: [
+        [
+            'role' => 'user',
+            'content' => 'Create a matplotlib visualization and save it as output.png'
+        ]
+    ],
+    model: 'claude-opus-4-6',
+    betas: ['files-api-2025-04-14'],
+    tools: [
+        [
+            'type' => 'code_execution_20250825',
+            'name' => 'code_execution'
+        ]
+    ],
+);
+
+function extractFileIds($response) {
+    $fileIds = [];
+    foreach ($response->content as $item) {
+        if ($item->type === 'bash_code_execution_tool_result') {
+            $contentItem = $item->content;
+            if ($contentItem->type === 'bash_code_execution_result') {
+                // concrete-typed list: BashCodeExecutionOutputBlock
+                foreach ($contentItem->content as $file) {
+                    $fileIds[] = $file->fileID;
+                }
+            }
+        }
+    }
+    return $fileIds;
+}
+
+foreach (extractFileIds($response) as $fileId) {
+    $fileMetadata = $client->beta->files->retrieveMetadata(fileID: $fileId, betas: ['files-api-2025-04-14']);
+    $fileContent = $client->beta->files->download(fileID: $fileId, betas: ['files-api-2025-04-14']);
+
+    file_put_contents($fileMetadata->filename, $fileContent);
+    echo "Downloaded: {$fileMetadata->filename}\n";
+}
+```
+
+```ruby Ruby nocheck hidelines={1..2}
+require "anthropic"
+
+client = Anthropic::Client.new
+
+response = client.beta.messages.create(
   model: "claude-opus-4-6",
   betas: ["files-api-2025-04-14"],
   max_tokens: 4096,
   messages: [
     {
       role: "user",
-      content: [
-        {
-          type: "text",
-          text: "Analyze this CSV data: create a summary report, save visualizations, and create a README with the findings"
-        },
-        { type: "container_upload", file_id: fileObject.id }
-      ]
+      content: "Create a matplotlib visualization and save it as output.png"
     }
   ],
   tools: [
@@ -622,20 +1078,40 @@ const response = await anthropic.beta.messages.create({
       name: "code_execution"
     }
   ]
-});
+)
 
-// Claude might:
-// 1. Use bash to check file size and preview data
-// 2. Use text_editor to write Python code to analyze the CSV and create visualizations
-// 3. Use bash to run the Python code
-// 4. Use text_editor to create a README.md with findings
-// 5. Use bash to organize files into a report directory
+def extract_file_ids(response)
+  file_ids = []
+  response.content.each do |item|
+    if item.type == :bash_code_execution_tool_result
+      content_item = item.content
+      if content_item.type == :bash_code_execution_result
+        # concrete-typed list: BashCodeExecutionOutputBlock
+        content_item.content.each do |file|
+          file_ids << file.file_id
+        end
+      end
+    end
+  end
+  file_ids
+end
+
+extract_file_ids(response).each do |file_id|
+  file_metadata = client.beta.files.retrieve_metadata(file_id)
+  file_content = client.beta.files.download(file_id)
+
+  File.open(file_metadata.filename, "wb") do |f|
+    f.write(file_content.read)
+  end
+
+  puts "Downloaded: #{file_metadata.filename}"
+end
 ```
 </CodeGroup>
 
-## Definisi alat
+## Definisi tool
 
-Alat eksekusi kode tidak memerlukan parameter tambahan:
+Tool code execution tidak memerlukan parameter tambahan:
 
 ```json JSON
 {
@@ -644,17 +1120,17 @@ Alat eksekusi kode tidak memerlukan parameter tambahan:
 }
 ```
 
-Ketika alat ini disediakan, Claude secara otomatis mendapatkan akses ke dua sub-alat:
-- `bash_code_execution`: Menjalankan perintah shell
-- `text_editor_code_execution`: Melihat, membuat, dan mengedit file, termasuk menulis kode
+Ketika tool ini disediakan, Claude secara otomatis mendapatkan akses ke dua sub-tool:
+- `bash_code_execution`: Jalankan perintah shell
+- `text_editor_code_execution`: Lihat, buat, dan edit file, termasuk menulis kode
 
 ## Format respons
 
-Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasinya:
+Tool code execution dapat mengembalikan dua jenis hasil tergantung pada operasi:
 
 ### Respons perintah Bash
 
-```json hidelines={1,-1}
+```json Output hidelines={1,-1}
 [
   {
     "type": "server_tool_use",
@@ -679,8 +1155,8 @@ Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasiny
 
 ### Respons operasi file
 
-**Melihat file:**
-```json hidelines={1,-1}
+**Lihat file:**
+```json Output hidelines={1,-1}
 [
   {
     "type": "server_tool_use",
@@ -706,8 +1182,8 @@ Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasiny
 ]
 ```
 
-**Membuat file:**
-```json hidelines={1,-1}
+**Buat file:**
+```json Output hidelines={1,-1}
 [
   {
     "type": "server_tool_use",
@@ -730,8 +1206,8 @@ Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasiny
 ]
 ```
 
-**Mengedit file (str_replace):**
-```json hidelines={1,-1}
+**Edit file (str_replace):**
+```json Output hidelines={1,-1}
 [
   {
     "type": "server_tool_use",
@@ -764,19 +1240,19 @@ Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasiny
 Semua hasil eksekusi mencakup:
 - `stdout`: Output dari eksekusi yang berhasil
 - `stderr`: Pesan kesalahan jika eksekusi gagal
-- `return_code`: 0 untuk sukses, bukan nol untuk kegagalan
+- `return_code`: 0 untuk sukses, non-nol untuk kegagalan
 
 Bidang tambahan untuk operasi file:
-- **View**: `file_type`, `content`, `numLines`, `startLine`, `totalLines`
-- **Create**: `is_file_update` (apakah file sudah ada)
+- **Lihat**: `file_type`, `content`, `numLines`, `startLine`, `totalLines`
+- **Buat**: `is_file_update` (apakah file sudah ada)
 - **Edit**: `oldStart`, `oldLines`, `newStart`, `newLines`, `lines` (format diff)
 
 ### Kesalahan
 
-Setiap jenis alat dapat mengembalikan kesalahan tertentu:
+Setiap jenis tool dapat mengembalikan kesalahan spesifik:
 
-**Kesalahan umum (semua alat):**
-```json
+**Kesalahan umum (semua tool):**
+```json Output
 {
   "type": "bash_code_execution_tool_result",
   "tool_use_id": "srvtoolu_01VfmxgZ46TiHbmXgy928hQR",
@@ -787,25 +1263,26 @@ Setiap jenis alat dapat mengembalikan kesalahan tertentu:
 }
 ```
 
-**Kode kesalahan berdasarkan jenis alat:**
+**Kode kesalahan berdasarkan jenis tool:**
 
-| Alat | Kode Kesalahan | Deskripsi |
+| Tool | Kode Kesalahan | Deskripsi |
 |------|-----------|-------------|
-| Semua alat | `unavailable` | Alat sementara tidak tersedia |
-| Semua alat | `execution_time_exceeded` | Eksekusi melebihi batas waktu maksimum |
-| Semua alat | `container_expired` | Container kedaluwarsa dan tidak lagi tersedia |
-| Semua alat | `invalid_tool_input` | Parameter tidak valid yang diberikan ke alat |
-| Semua alat | `too_many_requests` | Batas laju terlampaui untuk penggunaan alat |
+| Semua tool | `unavailable` | Tool sementara tidak tersedia |
+| Semua tool | `execution_time_exceeded` | Eksekusi melampaui batas waktu maksimum |
+| Semua tool | `container_expired` | Container kedaluwarsa dan tidak lagi tersedia |
+| Semua tool | `invalid_tool_input` | Parameter tidak valid diberikan ke tool |
+| Semua tool | `too_many_requests` | Batas laju terlampaui untuk penggunaan tool |
+| bash | `output_file_too_large` | Output perintah melampaui ukuran maksimum |
 | text_editor | `file_not_found` | File tidak ada (untuk operasi view/edit) |
 | text_editor | `string_not_found` | `old_str` tidak ditemukan dalam file (untuk str_replace) |
 
-#### Alasan berhenti `pause_turn`
+#### Alasan penghentian `pause_turn`
 
-Respons mungkin menyertakan alasan berhenti `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya untuk membiarkan Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda ingin menginterupsi percakapan.
+Respons mungkin mencakup alasan penghentian `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya untuk membiarkan Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda ingin mengganggu percakapan.
 
 ## Container
 
-Alat eksekusi kode berjalan dalam lingkungan yang aman dan terkontainerisasi yang dirancang khusus untuk eksekusi kode, dengan fokus lebih tinggi pada Python.
+Tool code execution berjalan di lingkungan yang aman dan terkontainer yang dirancang khusus untuk code execution, dengan fokus yang lebih tinggi pada Python.
 
 ### Lingkungan runtime
 - **Versi Python**: 3.11.12
@@ -821,13 +1298,13 @@ Alat eksekusi kode berjalan dalam lingkungan yang aman dan terkontainerisasi yan
 - **Akses internet**: Sepenuhnya dinonaktifkan untuk keamanan
 - **Koneksi eksternal**: Tidak ada permintaan jaringan keluar yang diizinkan
 - **Isolasi sandbox**: Isolasi penuh dari sistem host dan container lainnya
-- **Akses file**: Terbatas hanya pada direktori workspace
-- **Cakupan workspace**: Seperti [Files](/docs/id/build-with-claude/files), container dicakupkan ke workspace kunci API
-- **Kedaluwarsa**: Container kedaluwarsa 30 hari setelah pembuatan
+- **Akses file**: Terbatas pada direktori workspace saja
+- **Scoping workspace**: Seperti [Files](/docs/id/build-with-claude/files), container dibatasi ke workspace dari kunci API
+- **Kedaluwarsa**: Container kedaluwarsa 30 hari setelah dibuat
 
-### Pustaka yang sudah terinstal
-Lingkungan Python sandbox mencakup pustaka yang umum digunakan ini:
-- **Ilmu Data**: pandas, numpy, scipy, scikit-learn, statsmodels
+### Perpustakaan yang sudah diinstal sebelumnya
+Lingkungan Python yang disandbox mencakup perpustakaan yang umum digunakan ini:
+- **Data Science**: pandas, numpy, scipy, scikit-learn, statsmodels
 - **Visualisasi**: matplotlib, seaborn
 - **Pemrosesan File**: pyarrow, openpyxl, xlsxwriter, xlrd, pillow, python-pptx, python-docx, pypdf, pdfplumber, pypdfium2, pdf2image, pdfkit, tabula-py, reportlab[pycairo], Img2pdf
 - **Matematika & Komputasi**: sympy, mpmath
@@ -835,19 +1312,81 @@ Lingkungan Python sandbox mencakup pustaka yang umum digunakan ini:
 
 ## Penggunaan ulang container
 
-Anda dapat menggunakan kembali container yang ada di beberapa permintaan API dengan menyediakan ID container dari respons sebelumnya. Ini memungkinkan Anda mempertahankan file yang dibuat di antara permintaan.
+Anda dapat menggunakan kembali container yang ada di beberapa permintaan API dengan menyediakan ID container dari respons sebelumnya.
+Ini memungkinkan Anda untuk mempertahankan file yang dibuat di antara permintaan.
 
 ### Contoh
 
 <CodeGroup>
-```python Python
+```bash Shell hidelines={1}
+cd "$(mktemp -d)"
+# Permintaan pertama: Buat file dengan angka acak
+curl https://api.anthropic.com/v1/messages \
+    --header "x-api-key: $ANTHROPIC_API_KEY" \
+    --header "anthropic-version: 2023-06-01" \
+    --header "content-type: application/json" \
+    --data '{
+        "model": "claude-opus-4-6",
+        "max_tokens": 4096,
+        "messages": [{
+            "role": "user",
+            "content": "Write a file with a random number and save it to \"/tmp/number.txt\""
+        }],
+        "tools": [{
+            "type": "code_execution_20250825",
+            "name": "code_execution"
+        }]
+    }' > response1.json
+
+# Ekstrak ID kontainer dari respons (menggunakan jq)
+CONTAINER_ID=$(jq -r '.container.id' response1.json)
+
+# Permintaan kedua: Gunakan kembali kontainer untuk membaca file
+curl https://api.anthropic.com/v1/messages \
+    --header "x-api-key: $ANTHROPIC_API_KEY" \
+    --header "anthropic-version: 2023-06-01" \
+    --header "content-type: application/json" \
+    --data '{
+        "container": "'$CONTAINER_ID'",
+        "model": "claude-opus-4-6",
+        "max_tokens": 4096,
+        "messages": [{
+            "role": "user",
+            "content": "Read the number from \"/tmp/number.txt\" and calculate its square"
+        }],
+        "tools": [{
+            "type": "code_execution_20250825",
+            "name": "code_execution"
+        }]
+    }'
+```
+
+```bash CLI
+# Permintaan pertama: Buat file dengan angka acak
+CONTAINER_ID=$(ant messages create \
+  --transform container.id --format yaml \
+    --model claude-opus-4-6 \
+    --max-tokens 4096 \
+    --message '{role: user, content: Write a file with a random number and save it to "/tmp/number.txt"}' \
+    --tool '{type: code_execution_20250825, name: code_execution}'
+)
+
+# Permintaan kedua: Gunakan kembali kontainer untuk membaca file
+ant messages create --container "$CONTAINER_ID" \
+  --model claude-opus-4-6 \
+  --max-tokens 4096 \
+  --message '{role: user, content: Read the number from "/tmp/number.txt" and calculate its square}' \
+  --tool '{type: code_execution_20250825, name: code_execution}'
+```
+
+```python Python hidelines={1..6}
 import os
 from anthropic import Anthropic
 
-# Initialize the client
+# Inisialisasi klien
 client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-# First request: Create a file with a random number
+# Permintaan pertama: Buat file dengan angka acak
 response1 = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=4096,
@@ -860,12 +1399,12 @@ response1 = client.messages.create(
     tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
 )
 
-# Extract the container ID from the first response
+# Ekstrak ID kontainer dari respons pertama
 container_id = response1.container.id
 
-# Second request: Reuse the container to read the file
+# Permintaan kedua: Gunakan kembali kontainer untuk membaca file
 response2 = client.messages.create(
-    container=container_id,  # Reuse the same container
+    container=container_id,  # Gunakan kembali kontainer yang sama
     model="claude-opus-4-6",
     max_tokens=4096,
     messages=[
@@ -876,17 +1415,20 @@ response2 = client.messages.create(
     ],
     tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
 )
+
+print(response2)
 ```
 
-```typescript TypeScript
-import { Anthropic } from "@anthropic-ai/sdk";
+```typescript TypeScript hidelines={1..5,-3..-1}
+import Anthropic from "@anthropic-ai/sdk";
 
-const anthropic = new Anthropic();
+const client = new Anthropic();
 
 async function main() {
-  // First request: Create a file with a random number
-  const response1 = await anthropic.messages.create({
+  // Permintaan pertama: Buat file dengan angka acak
+  const response1 = await client.beta.messages.create({
     model: "claude-opus-4-6",
+    betas: ["code-execution-2025-08-25"],
     max_tokens: 4096,
     messages: [
       {
@@ -902,13 +1444,14 @@ async function main() {
     ]
   });
 
-  // Extract the container ID from the first response
-  const containerId = response1.container.id;
+  // Ekstrak ID kontainer dari respons pertama
+  const containerId = response1.container!.id;
 
-  // Second request: Reuse the container to read the file
-  const response2 = await anthropic.messages.create({
-    container: containerId, // Reuse the same container
+  // Permintaan kedua: Gunakan kembali kontainer untuk membaca file
+  const response2 = await client.beta.messages.create({
+    container: containerId,
     model: "claude-opus-4-6",
+    betas: ["code-execution-2025-08-25"],
     max_tokens: 4096,
     messages: [
       {
@@ -930,46 +1473,201 @@ async function main() {
 main().catch(console.error);
 ```
 
-```bash Shell
-# First request: Create a file with a random number
-curl https://api.anthropic.com/v1/messages \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    --header "anthropic-version: 2023-06-01" \
-    --header "content-type: application/json" \
-    --data '{
-        "model": "claude-opus-4-6",
-        "max_tokens": 4096,
-        "messages": [{
-            "role": "user",
-            "content": "Write a file with a random number and save it to \"/tmp/number.txt\""
-        }],
-        "tools": [{
-            "type": "code_execution_20250825",
-            "name": "code_execution"
-        }]
-    }' > response1.json
+```csharp C# hidelines={1..11,-2..}
+using Anthropic;
+using Anthropic.Models.Messages;
+using System;
+using System.Threading.Tasks;
 
-# Extract container ID from the response (using jq)
-CONTAINER_ID=$(jq -r '.container.id' response1.json)
+class Program
+{
+    static async Task Main()
+    {
+        AnthropicClient client = new();
 
-# Second request: Reuse the container to read the file
-curl https://api.anthropic.com/v1/messages \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    --header "anthropic-version: 2023-06-01" \
-    --header "content-type: application/json" \
-    --data '{
-        "container": "'$CONTAINER_ID'",
-        "model": "claude-opus-4-6",
-        "max_tokens": 4096,
-        "messages": [{
-            "role": "user",
-            "content": "Read the number from \"/tmp/number.txt\" and calculate its square"
-        }],
-        "tools": [{
-            "type": "code_execution_20250825",
-            "name": "code_execution"
-        }]
-    }'
+        var parameters1 = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 4096,
+            Messages = [new() { Role = Role.User, Content = "Write a file with a random number and save it to '/tmp/number.txt'" }],
+            Tools = [new ToolUnion(new CodeExecutionTool20250825())]
+        };
+
+        var response1 = await client.Messages.Create(parameters1);
+        var containerId = response1.Container!.ID;
+
+        var parameters2 = new MessageCreateParams
+        {
+            Container = containerId,
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 4096,
+            Messages = [new() { Role = Role.User, Content = "Read the number from '/tmp/number.txt' and calculate its square" }],
+            Tools = [new ToolUnion(new CodeExecutionTool20250825())]
+        };
+
+        var response2 = await client.Messages.Create(parameters2);
+        Console.WriteLine(response2);
+    }
+}
+```
+
+```go Go hidelines={1..11,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response1, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_6,
+		MaxTokens: 4096,
+		Messages: []anthropic.BetaMessageParam{
+			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Write a file with a random number and save it to '/tmp/number.txt'")),
+		},
+		Tools: []anthropic.BetaToolUnionParam{
+			{OfCodeExecutionTool20250825: &anthropic.BetaCodeExecutionTool20250825Param{}},
+		},
+		Betas: []anthropic.AnthropicBeta{"code-execution-2025-08-25"},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	containerID := response1.Container.ID
+
+	response2, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+		Container: anthropic.BetaMessageNewParamsContainerUnion{
+			OfString: anthropic.String(containerID),
+		},
+		Model:     anthropic.ModelClaudeOpus4_6,
+		MaxTokens: 4096,
+		Messages: []anthropic.BetaMessageParam{
+			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Read the number from '/tmp/number.txt' and calculate its square")),
+		},
+		Tools: []anthropic.BetaToolUnionParam{
+			{OfCodeExecutionTool20250825: &anthropic.BetaCodeExecutionTool20250825Param{}},
+		},
+		Betas: []anthropic.AnthropicBeta{"code-execution-2025-08-25"},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, block := range response2.Content {
+		if block.Type == "text" {
+			fmt.Println(block.Text)
+		}
+	}
+}
+```
+
+```java Java hidelines={1..5,7..9,-2..}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.Model;
+import com.anthropic.models.messages.CodeExecutionTool20250825;
+
+public class ContainerReuse {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageCreateParams params1 = MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_4_6)
+            .maxTokens(4096L)
+            .addUserMessage("Write a file with a random number and save it to '/tmp/number.txt'")
+            .addTool(CodeExecutionTool20250825.builder().build())
+            .build();
+
+        Message response1 = client.messages().create(params1);
+        String containerId = response1.container().get().id();
+
+        MessageCreateParams params2 = MessageCreateParams.builder()
+            .container(containerId)
+            .model(Model.CLAUDE_OPUS_4_6)
+            .maxTokens(4096L)
+            .addUserMessage("Read the number from '/tmp/number.txt' and calculate its square")
+            .addTool(CodeExecutionTool20250825.builder().build())
+            .build();
+
+        Message response2 = client.messages().create(params2);
+        System.out.println(response2);
+    }
+}
+```
+
+```php PHP hidelines={1..4}
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+$response1 = $client->messages->create(
+    maxTokens: 4096,
+    messages: [
+        ['role' => 'user', 'content' => "Write a file with a random number and save it to '/tmp/number.txt'"]
+    ],
+    model: 'claude-opus-4-6',
+    tools: [
+        ['type' => 'code_execution_20250825', 'name' => 'code_execution']
+    ],
+);
+
+$containerId = $response1->container->id;
+
+$response2 = $client->messages->create(
+    container: $containerId,
+    maxTokens: 4096,
+    messages: [
+        ['role' => 'user', 'content' => "Read the number from '/tmp/number.txt' and calculate its square"]
+    ],
+    model: 'claude-opus-4-6',
+    tools: [
+        ['type' => 'code_execution_20250825', 'name' => 'code_execution']
+    ],
+);
+```
+
+```ruby Ruby hidelines={1..2}
+require "anthropic"
+
+client = Anthropic::Client.new
+
+response1 = client.messages.create(
+  model: "claude-opus-4-6",
+  max_tokens: 4096,
+  messages: [
+    { role: "user", content: "Write a file with a random number and save it to '/tmp/number.txt'" }
+  ],
+  tools: [
+    { type: "code_execution_20250825", name: "code_execution" }
+  ]
+)
+
+container_id = response1.container.id
+
+response2 = client.messages.create(
+  container: container_id,
+  model: "claude-opus-4-6",
+  max_tokens: 4096,
+  messages: [
+    { role: "user", content: "Read the number from '/tmp/number.txt' and calculate its square" }
+  ],
+  tools: [
+    { type: "code_execution_20250825", name: "code_execution" }
+  ]
+)
+
+puts response2.content
 ```
 </CodeGroup>
 
@@ -981,20 +1679,20 @@ Dengan streaming diaktifkan, Anda akan menerima peristiwa eksekusi kode saat ter
 event: content_block_start
 data: {"type": "content_block_start", "index": 1, "content_block": {"type": "server_tool_use", "id": "srvtoolu_xyz789", "name": "code_execution"}}
 
-// Code execution streamed
+// Kode eksekusi di-streaming
 event: content_block_delta
 data: {"type": "content_block_delta", "index": 1, "delta": {"type": "input_json_delta", "partial_json": "{\"code\":\"import pandas as pd\\ndf = pd.read_csv('data.csv')\\nprint(df.head())\"}"}}
 
-// Pause while code executes
+// Jeda saat kode dieksekusi
 
-// Execution results streamed
+// Hasil eksekusi di-streaming
 event: content_block_start
 data: {"type": "content_block_start", "index": 2, "content_block": {"type": "code_execution_tool_result", "tool_use_id": "srvtoolu_xyz789", "content": {"stdout": "   A  B  C\n0  1  2  3\n1  4  5  6", "stderr": ""}}}
 ```
 
 ## Permintaan batch
 
-Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat eksekusi kode melalui Messages Batches API dihargai sama dengan yang ada dalam permintaan Messages API biasa.
+Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat eksekusi kode melalui Messages Batches API memiliki harga yang sama dengan permintaan Messages API biasa.
 
 ## Penggunaan dan harga
 
@@ -1019,27 +1717,27 @@ Code execution usage is tracked in the response:
 }
 ```
 
-## Upgrade ke versi alat terbaru
+## Tingkatkan ke versi alat terbaru
 
-Dengan melakukan upgrade ke `code-execution-2025-08-25`, Anda mendapatkan akses ke manipulasi file dan kemampuan Bash, termasuk kode dalam berbagai bahasa. Tidak ada perbedaan harga.
+Dengan meningkatkan ke `code-execution-2025-08-25`, Anda mendapatkan akses ke kemampuan manipulasi file dan Bash, termasuk kode dalam berbagai bahasa. Tidak ada perbedaan harga.
 
-### Yang berubah
+### Apa yang berubah
 
-| Komponen | Lama | Saat ini |
+| Komponen | Warisan | Saat Ini |
 |-----------|------------------|----------------------------|
 | Header beta | `code-execution-2025-05-22` | `code-execution-2025-08-25` |
 | Jenis alat | `code_execution_20250522` | `code_execution_20250825` |
-| Kemampuan | Hanya Python | Perintah Bash, operasi file |
+| Kemampuan | Python saja | Perintah Bash, operasi file |
 | Jenis respons | `code_execution_result` | `bash_code_execution_result`, `text_editor_code_execution_result` |
 
-### Kompatibilitas ke belakang
+### Kompatibilitas mundur
 
-- Semua eksekusi kode Python yang ada terus bekerja persis seperti sebelumnya
-- Tidak diperlukan perubahan pada alur kerja yang hanya menggunakan Python
+- Semua eksekusi kode Python yang ada terus berfungsi persis seperti sebelumnya
+- Tidak ada perubahan yang diperlukan untuk alur kerja Python-only yang ada
 
-### Langkah upgrade
+### Langkah-langkah peningkatan
 
-Untuk melakukan upgrade, perbarui jenis alat dalam permintaan API Anda:
+Untuk meningkatkan, perbarui jenis alat dalam permintaan API Anda:
 
 ```diff
 - "type": "code_execution_20250522"
@@ -1048,46 +1746,20 @@ Untuk melakukan upgrade, perbarui jenis alat dalam permintaan API Anda:
 
 **Tinjau penanganan respons** (jika mengurai respons secara terprogram):
 - Blok sebelumnya untuk respons eksekusi Python tidak akan lagi dikirim
-- Sebagai gantinya, jenis respons baru untuk Bash dan operasi file akan dikirim (lihat bagian Format Respons)
+- Sebagai gantinya, jenis respons baru untuk operasi Bash dan file akan dikirim (lihat bagian Format Respons)
 
 ## Pemanggilan alat terprogram
 
-Alat eksekusi kode mendukung [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), yang memungkinkan Claude menulis kode yang memanggil alat kustom Anda secara terprogram dalam container eksekusi. Ini memungkinkan alur kerja multi-alat yang efisien, pemfilteran data sebelum mencapai konteks Claude, dan logika kondisional yang kompleks.
-
-<CodeGroup>
-```python Python
-# Enable programmatic calling for your tools
-response = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=4096,
-    messages=[
-        {"role": "user", "content": "Get weather for 5 cities and find the warmest"}
-    ],
-    tools=[
-        {"type": "code_execution_20250825", "name": "code_execution"},
-        {
-            "name": "get_weather",
-            "description": "Get weather for a city",
-            "input_schema": {...},
-            "allowed_callers": [
-                "code_execution_20250825"
-            ],  # Enable programmatic calling
-        },
-    ],
-)
-```
-</CodeGroup>
-
-Pelajari lebih lanjut dalam [dokumentasi pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling).
+Untuk menjalankan alat di dalam kontainer eksekusi kode, lihat [Pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling).
 
 ## Retensi data
 
-Eksekusi kode berjalan di dalam container sandbox sisi server. Data container, termasuk artefak eksekusi, file yang diunggah, dan output, disimpan hingga 30 hari. Retensi ini berlaku untuk semua data yang diproses dalam lingkungan container.
+Eksekusi kode berjalan dalam kontainer sandbox di sisi server. Data kontainer, termasuk artefak eksekusi, file yang diunggah, dan output, disimpan hingga 30 hari. Retensi ini berlaku untuk semua data yang diproses dalam lingkungan kontainer. File yang dibuat eksekusi kode dalam [Files API](/docs/id/build-with-claude/files) (dapat diambil melalui `client.beta.files.download()`) bertahan sampai dihapus secara eksplisit.
 
-Untuk kelayakan ZDR di semua fitur, lihat [API dan Retensi Data](/docs/id/build-with-claude/api-and-data-retention).
+Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/build-with-claude/api-and-data-retention).
 
 ## Menggunakan eksekusi kode dengan Agent Skills
 
-Alat eksekusi kode memungkinkan Claude untuk menggunakan [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview). Skills adalah kemampuan modular yang terdiri dari instruksi, skrip, dan sumber daya yang memperluas fungsionalitas Claude.
+Alat eksekusi kode memungkinkan Claude menggunakan [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview). Skills adalah kemampuan modular yang terdiri dari instruksi, skrip, dan sumber daya yang memperluas fungsionalitas Claude.
 
-Pelajari lebih lanjut di [dokumentasi Agent Skills](/docs/id/agents-and-tools/agent-skills/overview) dan [panduan API Agent Skills](/docs/id/build-with-claude/skills-guide).
+Pelajari lebih lanjut dalam [dokumentasi Agent Skills](/docs/id/agents-and-tools/agent-skills/overview) dan [panduan API Agent Skills](/docs/id/build-with-claude/skills-guide).

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: d7dae04be912753534fbc17ae675927ef565c63920b12ee08b2d8029014cc3ea
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: e9f287ed70810bb4ed7015a5ff02c29c8a618b59fb8638e949745b55f02d78aa
 ---
 
 # Messages
@@ -17340,6 +17340,78 @@ public final class Main {
     An external identifier for the user who is associated with the request.
 
     This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
+
+### Model
+
+- `enum Model:`
+
+  The model that will complete your prompt.
+
+  See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+  - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
+
+    New class of intelligence, strongest in coding and cybersecurity
+
+  - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
+
+    Frontier intelligence for long-running agents and coding
+
+  - `CLAUDE_SONNET_4_6("claude-sonnet-4-6")`
+
+    Best combination of speed and intelligence
+
+  - `CLAUDE_HAIKU_4_5("claude-haiku-4-5")`
+
+    Fastest model with near-frontier intelligence
+
+  - `CLAUDE_HAIKU_4_5_20251001("claude-haiku-4-5-20251001")`
+
+    Fastest model with near-frontier intelligence
+
+  - `CLAUDE_OPUS_4_5("claude-opus-4-5")`
+
+    Premium model combining maximum intelligence with practical performance
+
+  - `CLAUDE_OPUS_4_5_20251101("claude-opus-4-5-20251101")`
+
+    Premium model combining maximum intelligence with practical performance
+
+  - `CLAUDE_SONNET_4_5("claude-sonnet-4-5")`
+
+    High-performance model for agents and coding
+
+  - `CLAUDE_SONNET_4_5_20250929("claude-sonnet-4-5-20250929")`
+
+    High-performance model for agents and coding
+
+  - `CLAUDE_OPUS_4_1("claude-opus-4-1")`
+
+    Exceptional model for specialized complex tasks
+
+  - `CLAUDE_OPUS_4_1_20250805("claude-opus-4-1-20250805")`
+
+    Exceptional model for specialized complex tasks
+
+  - `CLAUDE_OPUS_4_0("claude-opus-4-0")`
+
+    Powerful model for complex tasks
+
+  - `CLAUDE_OPUS_4_20250514("claude-opus-4-20250514")`
+
+    Powerful model for complex tasks
+
+  - `CLAUDE_SONNET_4_0("claude-sonnet-4-0")`
+
+    High-performance model with extended thinking
+
+  - `CLAUDE_SONNET_4_20250514("claude-sonnet-4-20250514")`
+
+    High-performance model with extended thinking
+
+  - `CLAUDE_3_HAIKU_20240307("claude-3-haiku-20240307")`
+
+    Fast and cost-effective model
 
 ### Output Config
 

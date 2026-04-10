@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 7a75f68769dccf2c39fe323384b5520a4cc50faa0ca90cf2395b716f270f0bac
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: c91f73407343e46004daa43c87b65880b3bd3d90e4b5a1ebc72dd1f0050fe27e
 ---
 
 ## Update
@@ -66,6 +66,8 @@ Update Credential
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Optional<Auth> auth`
 

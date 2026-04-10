@@ -1,71 +1,59 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 47bf8a46d2558cfc02185f55b80ad286dfa7779681b47c0c8571da1a2629f1e2
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 9865a8528127d730619b3bb46140de1f0abebac02bed9bfb230892e8ca3599ac
 ---
 
 # Alat pencarian web
 
-Alat pencarian web memberikan Claude akses langsung ke konten web real-time, memungkinkannya menjawab pertanyaan dengan informasi terkini di luar cutoff pengetahuannya.
+Berikan Claude akses ke konten web real-time untuk menjawab pertanyaan dengan informasi terkini.
 
 ---
 
-Alat pencarian web memberikan Claude akses langsung ke konten web real-time, memungkinkannya menjawab pertanyaan dengan informasi terkini di luar cutoff pengetahuannya. Claude secara otomatis mengutip sumber dari hasil pencarian sebagai bagian dari jawabannya.
+Alat pencarian web memberikan Claude akses langsung ke konten web secara real-time, memungkinkannya menjawab pertanyaan dengan informasi terkini di luar batas pengetahuannya. Respons mencakup kutipan untuk sumber yang diambil dari hasil pencarian.
 
-Versi alat pencarian web terbaru (`web_search_20260209`) mendukung **penyaringan dinamis** dengan Claude Opus 4.6 dan Sonnet 4.6. Claude dapat menulis dan menjalankan kode untuk menyaring hasil pencarian sebelum mencapai jendela konteks, menyimpan hanya informasi yang relevan dan membuang sisanya. Ini menghasilkan respons yang lebih akurat sambil mengurangi konsumsi token. Versi alat sebelumnya (`web_search_20250305`) tetap tersedia tanpa penyaringan dinamis.
+Versi alat pencarian web terbaru (`web_search_20260209`) mendukung **pemfilteran dinamis** dengan [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.6, dan Claude Sonnet 4.6. Claude dapat menulis dan mengeksekusi kode untuk memfilter hasil pencarian sebelum mencapai jendela konteks, hanya menyimpan informasi yang relevan dan membuang sisanya. Hal ini menghasilkan respons yang lebih akurat sekaligus mengurangi konsumsi token. Versi alat sebelumnya (`web_search_20250305`) tetap tersedia tanpa pemfilteran dinamis.
 
 <Note>
-This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), pencarian web didukung di Claude API, Microsoft Foundry, dan Google Vertex AI. Pencarian web tidak tersedia untuk Mythos Preview di Amazon Bedrock.
 </Note>
 
-## Model yang didukung
+Untuk kelayakan Zero Data Retention dan solusi `allowed_callers`, lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers).
 
-Pencarian web tersedia di:
-
-- Claude Opus 4.6 (`claude-opus-4-6`)
-- Claude Opus 4.5 (`claude-opus-4-5-20251101`)
-- Claude Opus 4.1 (`claude-opus-4-1-20250805`)
-- Claude Opus 4 (`claude-opus-4-20250514`)
-- Claude Sonnet 4.6 (`claude-sonnet-4-6`)
-- Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
-- Claude Sonnet 4 (`claude-sonnet-4-20250514`)
-- Claude Sonnet 3.7 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-3-7-sonnet-20250219`)
-- Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
-- Claude Haiku 3.5 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-3-5-haiku-latest`)
+Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
 
 ## Cara kerja pencarian web
 
 Ketika Anda menambahkan alat pencarian web ke permintaan API Anda:
 
 1. Claude memutuskan kapan harus mencari berdasarkan prompt.
-2. API menjalankan pencarian dan memberikan Claude dengan hasilnya. Proses ini dapat berulang beberapa kali selama satu permintaan.
+2. API mengeksekusi pencarian dan memberikan hasilnya kepada Claude. Proses ini dapat berulang beberapa kali dalam satu permintaan.
 3. Di akhir gilirannya, Claude memberikan respons akhir dengan sumber yang dikutip.
 
-### Penyaringan dinamis dengan Opus 4.6 dan Sonnet 4.6
+### Pemfilteran dinamis
 
-Pencarian web adalah tugas yang intensif token. Dengan pencarian web dasar, Claude perlu menarik hasil pencarian ke dalam konteks, mengambil HTML lengkap dari beberapa situs web, dan bernalar atas semuanya sebelum sampai pada jawaban. Sering kali, banyak konten ini tidak relevan, yang dapat menurunkan kualitas respons.
+Pencarian web adalah tugas yang intensif token. Dengan pencarian web dasar, Claude perlu menarik hasil pencarian ke dalam konteks, mengambil HTML lengkap dari beberapa situs web, dan mempertimbangkan semuanya sebelum sampai pada jawaban. Seringkali, sebagian besar konten ini tidak relevan, yang dapat menurunkan kualitas respons.
 
-Dengan versi alat `web_search_20260209`, Claude dapat menulis dan menjalankan kode untuk memproses ulang hasil kueri. Alih-alih bernalar atas file HTML lengkap, Claude secara dinamis menyaring hasil pencarian sebelum memuatnya ke dalam konteks, menyimpan hanya apa yang relevan dan membuang sisanya.
+Dengan versi alat `web_search_20260209`, Claude dapat menulis dan mengeksekusi kode untuk memproses hasil kueri setelah pencarian. Alih-alih mempertimbangkan file HTML lengkap, Claude secara dinamis memfilter hasil pencarian sebelum memuatnya ke dalam konteks, hanya menyimpan yang relevan dan membuang sisanya.
 
-Penyaringan dinamis sangat efektif untuk:
-- Pencarian melalui dokumentasi teknis
+Pemfilteran dinamis sangat efektif untuk:
+- Mencari melalui dokumentasi teknis
 - Tinjauan literatur dan verifikasi kutipan
 - Penelitian teknis
-- Penjangkaran dan verifikasi respons
+- Pendasaran dan verifikasi respons
 
 <Note>
-Penyaringan dinamis memerlukan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk diaktifkan. Alat pencarian web yang ditingkatkan tersedia di Claude API dan Microsoft Azure. Di Google Vertex AI, alat pencarian web dasar (tanpa penyaringan dinamis) tersedia.
+Pemfilteran dinamis memerlukan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk diaktifkan. Alat pencarian web yang ditingkatkan tersedia di Claude API dan Microsoft Azure. Di Google Vertex AI, alat pencarian web dasar (tanpa pemfilteran dinamis) tersedia.
 </Note>
 
-Untuk mengaktifkan penyaringan dinamis, gunakan versi alat `web_search_20260209` dengan header beta `code-execution-web-tools-2026-02-09`:
+Untuk mengaktifkan pemfilteran dinamis, gunakan versi alat `web_search_20260209`:
 
 <CodeGroup>
 ```bash Shell
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
-    --header "anthropic-beta: code-execution-web-tools-2026-02-09" \
     --header "content-type: application/json" \
     --data '{
         "model": "claude-opus-4-6",
@@ -83,15 +71,29 @@ curl https://api.anthropic.com/v1/messages \
     }'
 ```
 
-```python Python
+```bash CLI
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 4096
+messages:
+  - role: user
+    content: >-
+      Search for the current prices of AAPL and GOOGL, then calculate
+      which has a better P/E ratio.
+tools:
+  - type: web_search_20260209
+    name: web_search
+YAML
+```
+
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
 
-response = client.beta.messages.create(
+response = client.messages.create(
     model="claude-opus-4-6",
     max_tokens=4096,
-    betas=["code-execution-web-tools-2026-02-09"],
     messages=[
         {
             "role": "user",
@@ -103,16 +105,15 @@ response = client.beta.messages.create(
 print(response)
 ```
 
-```typescript TypeScript
-import { Anthropic } from "@anthropic-ai/sdk";
+```typescript TypeScript nocheck hidelines={1..5,-3..-1}
+import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
 async function main() {
-  const response = await anthropic.beta.messages.create({
+  const response = await anthropic.messages.create({
     model: "claude-opus-4-6",
     max_tokens: 4096,
-    betas: ["code-execution-web-tools-2026-02-09"],
     messages: [
       {
         role: "user",
@@ -128,12 +129,137 @@ async function main() {
 
 main().catch(console.error);
 ```
+
+```csharp C#
+using System;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        AnthropicClient client = new();
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 4096,
+            Messages = [new() { Role = Role.User, Content = "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }],
+            Tools = [new ToolUnion(new WebSearchTool20260209())]
+        };
+
+        var message = await client.Messages.Create(parameters);
+        Console.WriteLine(message);
+    }
+}
+```
+
+```go Go hidelines={1..11,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_6,
+		MaxTokens: 4096,
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.")),
+		},
+		Tools: []anthropic.ToolUnionParam{
+			{OfWebSearchTool20260209: &anthropic.WebSearchTool20260209Param{}},
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java Java hidelines={1..5,7..9,-2..}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.anthropic.models.messages.WebSearchTool20260209;
+
+public class WebSearchExample {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageCreateParams params = MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_4_6)
+            .maxTokens(4096L)
+            .addUserMessage("Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.")
+            .addTool(WebSearchTool20260209.builder().build())
+            .build();
+
+        Message response = client.messages().create(params);
+        System.out.println(response);
+    }
+}
+```
+
+```php PHP hidelines={1..4}
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+$message = $client->messages->create(
+    maxTokens: 4096,
+    messages: [
+        ['role' => 'user', 'content' => 'Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.'],
+    ],
+    model: 'claude-opus-4-6',
+    tools: [
+        [
+            'type' => 'web_search_20260209',
+            'name' => 'web_search',
+        ],
+    ],
+);
+
+echo $message;
+```
+
+```ruby Ruby hidelines={1..2}
+require "anthropic"
+
+client = Anthropic::Client.new
+
+message = client.messages.create(
+  model: "claude-opus-4-6",
+  max_tokens: 4096,
+  messages: [
+    { role: "user", content: "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }
+  ],
+  tools: [{
+    type: "web_search_20260209",
+    name: "web_search"
+  }]
+)
+puts message
+```
 </CodeGroup>
 
 ## Cara menggunakan pencarian web
 
 <Note>
-Administrator organisasi Anda harus mengaktifkan pencarian web di [Console](/settings/privacy).
+Administrator organisasi Anda harus mengaktifkan pencarian web di [Claude Console](/settings/privacy).
 </Note>
 
 Sediakan alat pencarian web dalam permintaan API Anda:
@@ -161,7 +287,15 @@ curl https://api.anthropic.com/v1/messages \
     }'
 ```
 
-```python Python
+```bash CLI
+ant messages create \
+  --model claude-opus-4-6 \
+  --max-tokens 1024 \
+  --message '{role: user, content: What is the weather in NYC?}' \
+  --tool '{type: web_search_20250305, name: web_search, max_uses: 5}'
+```
+
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -175,13 +309,13 @@ response = client.messages.create(
 print(response)
 ```
 
-```typescript TypeScript
-import { Anthropic } from "@anthropic-ai/sdk";
+```typescript TypeScript hidelines={1..5,-3..-1}
+import Anthropic from "@anthropic-ai/sdk";
 
-const anthropic = new Anthropic();
+const client = new Anthropic();
 
 async function main() {
-  const response = await anthropic.messages.create({
+  const response = await client.messages.create({
     model: "claude-opus-4-6",
     max_tokens: 1024,
     messages: [
@@ -190,17 +324,150 @@ async function main() {
         content: "What's the weather in NYC?"
       }
     ],
-    tools: [{
-      type: "web_search_20250305",
-      name: "web_search",
-      max_uses: 5
-    }]
+    tools: [
+      {
+        type: "web_search_20250305",
+        name: "web_search",
+        max_uses: 5
+      }
+    ]
   });
 
   console.log(response);
 }
 
 main().catch(console.error);
+```
+
+```csharp C#
+using System;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        AnthropicClient client = new();
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 1024,
+            Messages = [new() { Role = Role.User, Content = "What's the weather in NYC?" }],
+            Tools = [new ToolUnion(new WebSearchTool20250305() { MaxUses = 5 })]
+        };
+
+        var message = await client.Messages.Create(parameters);
+        Console.WriteLine(message);
+    }
+}
+```
+
+```go Go hidelines={1..11,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_6,
+		MaxTokens: 1024,
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in NYC?")),
+		},
+		Tools: []anthropic.ToolUnionParam{
+			{OfWebSearchTool20250305: &anthropic.WebSearchTool20250305Param{
+				MaxUses: anthropic.Int(5),
+			}},
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java Java hidelines={1..5,7..9,-2..}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.anthropic.models.messages.WebSearchTool20250305;
+
+public class WebSearchExample {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageCreateParams params = MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_4_6)
+            .maxTokens(1024L)
+            .addUserMessage("What's the weather in NYC?")
+            .addTool(WebSearchTool20250305.builder()
+                .maxUses(5L)
+                .build())
+            .build();
+
+        Message response = client.messages().create(params);
+        System.out.println(response);
+    }
+}
+```
+
+```php PHP hidelines={1..4}
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+$message = $client->messages->create(
+    maxTokens: 1024,
+    messages: [
+        ['role' => 'user', 'content' => "What's the weather in NYC?"],
+    ],
+    model: 'claude-opus-4-6',
+    tools: [
+        [
+            'type' => 'web_search_20250305',
+            'name' => 'web_search',
+            'max_uses' => 5,
+        ],
+    ],
+);
+
+echo $message;
+```
+
+```ruby Ruby hidelines={1..2}
+require "anthropic"
+
+client = Anthropic::Client.new
+
+message = client.messages.create(
+  model: "claude-opus-4-6",
+  max_tokens: 1024,
+  messages: [
+    { role: "user", content: "What's the weather in NYC?" }
+  ],
+  tools: [{
+    type: "web_search_20250305",
+    name: "web_search",
+    max_uses: 5
+  }]
+)
+puts message
 ```
 </CodeGroup>
 
@@ -213,16 +480,16 @@ Alat pencarian web mendukung parameter berikut:
   "type": "web_search_20250305",
   "name": "web_search",
 
-  // Optional: Limit the number of searches per request
+  // Opsional: Batasi jumlah pencarian per permintaan
   "max_uses": 5,
 
-  // Optional: Only include results from these domains
+  // Opsional: Hanya sertakan hasil dari domain ini
   "allowed_domains": ["example.com", "trusteddomain.org"],
 
-  // Optional: Never include results from these domains
+  // Opsional: Jangan pernah sertakan hasil dari domain ini
   "blocked_domains": ["untrustedsource.com"],
 
-  // Optional: Localize search results
+  // Opsional: Lokalisasi hasil pencarian
   "user_location": {
     "type": "approximate",
     "city": "San Francisco",
@@ -233,31 +500,13 @@ Alat pencarian web mendukung parameter berikut:
 }
 ```
 
-#### Max uses
+#### Maksimum penggunaan
 
-Parameter `max_uses` membatasi jumlah pencarian yang dilakukan. Jika Claude mencoba lebih banyak pencarian daripada yang diizinkan, `web_search_tool_result` akan menjadi kesalahan dengan kode kesalahan `max_uses_exceeded`.
+Parameter `max_uses` membatasi jumlah pencarian yang dilakukan. Jika Claude mencoba lebih banyak pencarian dari yang diizinkan, `web_search_tool_result` adalah kesalahan dengan kode kesalahan `max_uses_exceeded`.
 
-#### Penyaringan domain
+#### Pemfilteran domain
 
-Saat menggunakan filter domain:
-
-- Domain tidak boleh menyertakan skema HTTP/HTTPS (gunakan `example.com` bukan `https://example.com`)
-- Subdomain secara otomatis disertakan (`example.com` mencakup `docs.example.com`)
-- Subdomain spesifik membatasi hasil hanya ke subdomain itu (`docs.example.com` mengembalikan hasil hanya dari subdomain itu, bukan dari `example.com` atau `api.example.com`)
-- Subpath didukung dan cocok dengan apa pun setelah path (`example.com/blog` cocok dengan `example.com/blog/post-1`)
-- Anda dapat menggunakan `allowed_domains` atau `blocked_domains`, tetapi tidak keduanya dalam permintaan yang sama.
-
-**Dukungan wildcard:**
-
-- Hanya satu wildcard (`*`) yang diizinkan per entri domain, dan harus muncul setelah bagian domain (di path)
-- Valid: `example.com/*`, `example.com/*/articles`
-- Tidak valid: `*.example.com`, `ex*.com`, `example.com/*/news/*`
-
-Format domain yang tidak valid akan mengembalikan kesalahan alat `invalid_tool_input`.
-
-<Note>
-Pembatasan domain tingkat permintaan harus kompatibel dengan pembatasan domain tingkat organisasi yang dikonfigurasi di Console. Domain tingkat permintaan hanya dapat lebih membatasi domain, bukan mengganti atau memperluas di luar daftar tingkat organisasi. Jika permintaan Anda menyertakan domain yang bertentangan dengan pengaturan organisasi, API akan mengembalikan kesalahan validasi.
-</Note>
+Untuk pemfilteran domain dengan `allowed_domains` dan `blocked_domains`, lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering).
 
 #### Lokalisasi
 
@@ -273,16 +522,16 @@ Parameter `user_location` memungkinkan Anda melokalisasi hasil pencarian berdasa
 
 Berikut adalah contoh struktur respons:
 
-```json
+```json Output
 {
   "role": "assistant",
   "content": [
-    // 1. Claude's decision to search
+    // 1. Keputusan Claude untuk mencari
     {
       "type": "text",
       "text": "I'll search for when Claude Shannon was born."
     },
-    // 2. The search query used
+    // 2. Kueri pencarian yang digunakan
     {
       "type": "server_tool_use",
       "id": "srvtoolu_01WYG3ziw53XMcoyKL4XcZmE",
@@ -291,7 +540,7 @@ Berikut adalah contoh struktur respons:
         "query": "claude shannon birth date"
       }
     },
-    // 3. Search results
+    // 3. Hasil pencarian
     {
       "type": "web_search_tool_result",
       "tool_use_id": "srvtoolu_01WYG3ziw53XMcoyKL4XcZmE",
@@ -309,7 +558,7 @@ Berikut adalah contoh struktur respons:
       "text": "Based on the search results, ",
       "type": "text"
     },
-    // 4. Claude's response with citations
+    // 4. Respons Claude dengan kutipan
     {
       "text": "Claude Shannon was born on April 30, 1916, in Petoskey, Michigan",
       "type": "text",
@@ -343,7 +592,7 @@ Hasil pencarian mencakup:
 - `url`: URL halaman sumber
 - `title`: Judul halaman sumber
 - `page_age`: Kapan situs terakhir diperbarui
-- `encrypted_content`: Konten terenkripsi yang harus diteruskan kembali dalam percakapan multi-turn untuk kutipan
+- `encrypted_content`: Konten terenkripsi yang harus diteruskan kembali dalam percakapan multi-giliran untuk kutipan
 
 #### Kutipan
 
@@ -351,20 +600,20 @@ Kutipan selalu diaktifkan untuk pencarian web, dan setiap `web_search_result_loc
 
 - `url`: URL sumber yang dikutip
 - `title`: Judul sumber yang dikutip
-- `encrypted_index`: Referensi yang harus diteruskan kembali untuk percakapan multi-turn.
-- `cited_text`: Hingga 150 karakter konten yang dikutip
+- `encrypted_index`: Referensi yang harus diteruskan kembali untuk percakapan multi-giliran.
+- `cited_text`: Hingga 150 karakter dari konten yang dikutip
 
 Bidang kutipan pencarian web `cited_text`, `title`, dan `url` tidak dihitung terhadap penggunaan token input atau output.
 
 <Note>
-  Saat menampilkan output API secara langsung kepada pengguna akhir, kutipan harus disertakan ke sumber asli. Jika Anda melakukan modifikasi pada output API, termasuk dengan memproses ulang dan/atau menggabungkannya dengan materi Anda sendiri sebelum menampilkannya kepada pengguna akhir, tampilkan kutipan sesuai kebutuhan berdasarkan konsultasi dengan tim hukum Anda.
+  Saat menampilkan output API langsung kepada pengguna akhir, kutipan harus disertakan ke sumber asli. Jika Anda melakukan modifikasi pada output API, termasuk dengan memproses ulang dan/atau menggabungkannya dengan materi Anda sendiri sebelum menampilkannya kepada pengguna akhir, tampilkan kutipan sebagaimana mestinya berdasarkan konsultasi dengan tim hukum Anda.
 </Note>
 
 #### Kesalahan
 
-Ketika alat pencarian web mengalami kesalahan (seperti mencapai batas laju), Claude API masih mengembalikan respons 200 (sukses). Kesalahan direpresentasikan dalam badan respons menggunakan struktur berikut:
+Ketika alat pencarian web mengalami kesalahan (seperti mencapai batas kecepatan), Claude API tetap mengembalikan respons 200 (berhasil). Kesalahan direpresentasikan dalam badan respons menggunakan struktur berikut:
 
-```json
+```json Output
 {
   "type": "web_search_tool_result",
   "tool_use_id": "servertoolu_a93jad",
@@ -375,125 +624,54 @@ Ketika alat pencarian web mengalami kesalahan (seperti mencapai batas laju), Cla
 }
 ```
 
-Ini adalah kode kesalahan yang mungkin:
+Berikut adalah kode kesalahan yang mungkin terjadi:
 
-- `too_many_requests`: Batas laju terlampaui
+- `too_many_requests`: Batas kecepatan terlampaui
 - `invalid_input`: Parameter kueri pencarian tidak valid
-- `max_uses_exceeded`: Penggunaan alat pencarian web maksimal terlampaui
-- `query_too_long`: Kueri melebihi panjang maksimal
-- `unavailable`: Kesalahan internal terjadi
+- `max_uses_exceeded`: Penggunaan alat pencarian web maksimum terlampaui
+- `query_too_long`: Kueri melebihi panjang maksimum
+- `unavailable`: Terjadi kesalahan internal
 
-#### Alasan penghentian `pause_turn`
+#### Alasan berhenti `pause_turn`
 
-Respons dapat menyertakan alasan penghentian `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya untuk membiarkan Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda ingin mengganggu percakapan.
+Untuk melanjutkan setelah alasan berhenti `pause_turn`, lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn).
 
-## Caching prompt
+## Penyimpanan cache prompt
 
-Pencarian web bekerja dengan [caching prompt](/docs/id/build-with-claude/prompt-caching). Untuk mengaktifkan caching prompt, tambahkan setidaknya satu titik henti `cache_control` dalam permintaan Anda. Sistem akan secara otomatis cache hingga blok `web_search_tool_result` terakhir saat menjalankan alat.
-
-Untuk percakapan multi-turn, atur titik henti `cache_control` pada atau setelah blok `web_search_tool_result` terakhir untuk menggunakan kembali konten yang di-cache.
-
-Misalnya, untuk menggunakan caching prompt dengan pencarian web untuk percakapan multi-turn:
-
-<CodeGroup>
-```python
-import anthropic
-
-client = anthropic.Anthropic()
-
-# First request with web search and cache breakpoint
-messages = [
-    {"role": "user", "content": "What's the current weather in San Francisco today?"}
-]
-
-response1 = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    messages=messages,
-    tools=[
-        {
-            "type": "web_search_20250305",
-            "name": "web_search",
-            "user_location": {
-                "type": "approximate",
-                "city": "San Francisco",
-                "region": "California",
-                "country": "US",
-                "timezone": "America/Los_Angeles",
-            },
-        }
-    ],
-)
-
-# Add Claude's response to the conversation
-messages.append({"role": "assistant", "content": response1.content})
-
-# Second request with cache breakpoint after the search results
-messages.append(
-    {
-        "role": "user",
-        "content": "Should I expect rain later this week?",
-        "cache_control": {"type": "ephemeral"},  # Cache up to this point
-    }
-)
-
-response2 = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    messages=messages,
-    tools=[
-        {
-            "type": "web_search_20250305",
-            "name": "web_search",
-            "user_location": {
-                "type": "approximate",
-                "city": "San Francisco",
-                "region": "California",
-                "country": "US",
-                "timezone": "America/Los_Angeles",
-            },
-        }
-    ],
-)
-# The second response will benefit from cached search results
-# while still being able to perform new searches if needed
-print(f"Cache read tokens: {response2.usage.get('cache_read_input_tokens', 0)}")
-```
-
-</CodeGroup>
+Untuk menyimpan cache definisi alat di seluruh giliran, lihat [Penggunaan alat dengan penyimpanan cache prompt](/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
 
 ## Streaming
 
-Dengan streaming diaktifkan, Anda akan menerima acara pencarian sebagai bagian dari aliran. Akan ada jeda saat pencarian dijalankan:
+Dengan streaming diaktifkan, Anda akan menerima peristiwa pencarian sebagai bagian dari stream. Akan ada jeda saat pencarian dieksekusi:
 
-```json
+```sse Output
 event: message_start
 data: {"type": "message_start", "message": {"id": "msg_abc123", "type": "message"}}
 
 event: content_block_start
 data: {"type": "content_block_start", "index": 0, "content_block": {"type": "text", "text": ""}}
 
-// Claude's decision to search
+// Keputusan Claude untuk mencari
 
 event: content_block_start
 data: {"type": "content_block_start", "index": 1, "content_block": {"type": "server_tool_use", "id": "srvtoolu_xyz789", "name": "web_search"}}
 
-// Search query streamed
+// Kueri pencarian di-stream
 event: content_block_delta
 data: {"type": "content_block_delta", "index": 1, "delta": {"type": "input_json_delta", "partial_json": "{\"query\":\"latest quantum computing breakthroughs 2025\"}"}}
 
-// Pause while search executes
+// Jeda saat pencarian dieksekusi
 
-// Search results streamed
+// Hasil pencarian di-stream
 event: content_block_start
 data: {"type": "content_block_start", "index": 2, "content_block": {"type": "web_search_tool_result", "tool_use_id": "srvtoolu_xyz789", "content": [{"type": "web_search_result", "title": "Quantum Computing Breakthroughs in 2025", "url": "https://example.com"}]}}
 
-// Claude's response with citations (omitted in this example)
+// Respons Claude dengan kutipan (dihilangkan dalam contoh ini)
 ```
 
 ## Permintaan batch
 
-Anda dapat menyertakan alat pencarian web dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat pencarian web melalui Messages Batches API dihargai sama dengan yang ada di permintaan Messages API biasa.
+Anda dapat menyertakan alat pencarian web dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat pencarian web melalui Messages Batches API dihargai sama dengan yang ada dalam permintaan Messages API biasa.
 
 ## Penggunaan dan harga
 
@@ -514,3 +692,14 @@ Web search usage is charged in addition to token usage:
 Web search is available on the Claude API for **$10 per 1,000 searches**, plus standard token costs for search-generated content. Web search results retrieved throughout a conversation are counted as input tokens, in search iterations executed during a single turn and in subsequent conversation turns.
 
 Each web search counts as one use, regardless of the number of results returned. If an error occurs during web search, the web search will not be billed.
+
+## Langkah selanjutnya
+
+<CardGroup>
+  <Card href="/docs/id/agents-and-tools/tool-use/server-tools" title="Alat server">
+    Mekanisme bersama untuk alat yang dieksekusi oleh Anthropic.
+  </Card>
+  <Card href="/docs/id/agents-and-tools/tool-use/tool-reference" title="Referensi alat">
+    Direktori semua alat yang disediakan oleh Anthropic.
+  </Card>
+</CardGroup>

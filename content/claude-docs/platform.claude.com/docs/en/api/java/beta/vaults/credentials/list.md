@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8198addc59b505c40c9ae1c0a6496bd7a6fe7f2dfcde761c6bc890fd23232b17
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 628b82a75f9e96b764f3aee55d3b1134509d5cbbfed9a1daeb37ae806eca72c9
 ---
 
 ## List
@@ -76,6 +76,8 @@ List Credentials
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

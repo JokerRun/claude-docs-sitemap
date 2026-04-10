@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: c6026d8ce2beacc7c282025cd9471fb57e2c514513a0cb9954fe778f366f5829
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: a8b8300e85a331e0cf8b98c1226cb3e212533695e228798bb579fe4ecfdcb780
 ---
 
 # Accessing GitHub
@@ -59,7 +59,7 @@ JSON
 ````bash
 AGENT_ID=$(ant beta:agents create \
   --name "Code Reviewer" \
-  --model claude-sonnet-4-6 \
+  --model '{id: claude-sonnet-4-6}' \
   --system "You are a code review assistant with access to GitHub." \
   --mcp-server '{type: url, name: github, url: https://api.githubcopilot.com/mcp/}' \
   --tool '{type: agent_toolset_20260401}' \

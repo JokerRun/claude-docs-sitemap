@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 25b11b7c49f9204da4b3131961353ae6b18a745fb2c4568c4cc4cbd5f03a7253
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: efbc5f8f23c5ac68d725c47e0cb55dd31f29b63e8c34abf1f1b37ef1c0515178
 ---
 
 ## Create
@@ -45,7 +45,7 @@ Create Session
 
   - `Metadata param.Field[map[string, string]]`
 
-    Body param: Arbitrary key-value metadata attached to the session.
+    Body param: Arbitrary key-value metadata attached to the session. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
   - `Resources param.Field[[]BetaSessionNewParamsResourceUnion]`
 
@@ -168,6 +168,8 @@ Create Session
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

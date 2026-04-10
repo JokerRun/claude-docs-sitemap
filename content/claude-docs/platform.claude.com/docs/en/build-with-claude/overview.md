@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: ffad06f6f34609f0a5ffb62275bef9ac356241763ad27407faec669d65b0d529
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 15636e39318b479a65fbf1cc6af04d334fdb57b9ab204c649352c4b1cd51baeb
 ---
 
 # Features overview
@@ -63,6 +63,7 @@ Built-in tools that Claude invokes via `tool_use`. Server-side tools are run by 
 
 | Feature | Description | ZDR | Availability |
 |---------|-----------|----|--------------|
+| [Advisor tool](/docs/en/agents-and-tools/tool-use/advisor-tool) | Pair a faster executor model with a higher-intelligence advisor model that provides strategic guidance mid-generation for long-horizon agentic workloads. | ZDR eligible | <PlatformAvailability claudeApiBeta /> |
 | [Code execution](/docs/en/agents-and-tools/tool-use/code-execution-tool) | Run code in a sandboxed environment for advanced data analysis, calculations, and file processing. Free when used with web search or web fetch. | Not ZDR eligible | <PlatformAvailability claudeApi azureAiBeta /> |
 | [Web fetch](/docs/en/agents-and-tools/tool-use/web-fetch-tool) | Retrieve full content from specified web pages and PDF documents for in-depth analysis. | ZDR eligible* | <PlatformAvailability claudeApi azureAiBeta /> |
 | [Web search](/docs/en/agents-and-tools/tool-use/web-search-tool) | Augment Claude's comprehensive knowledge with current, real-world data from across the web. | ZDR eligible* | <PlatformAvailability claudeApi vertexAi azureAiBeta /> |

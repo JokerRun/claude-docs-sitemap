@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/workspaces
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 850c4d16dcdb4e44195c2fa9b2ae7d0323344c849b9256e4e087d3f7382ad79a
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: f15894474c3a7cc0b768af7effdc1f9f5e43c1796dd0df85135bc829b8c59095
 ---
 
 # Ruang Kerja
@@ -11,7 +11,7 @@ Atur kunci API, kelola akses tim, dan kontrol biaya dengan ruang kerja.
 
 ---
 
-Ruang kerja menyediakan cara untuk mengatur penggunaan API Anda dalam organisasi. Gunakan ruang kerja untuk memisahkan proyek, lingkungan, atau tim yang berbeda sambil mempertahankan penagihan dan administrasi terpusat.
+Ruang kerja menyediakan cara untuk mengorganisir penggunaan API Anda dalam organisasi. Gunakan ruang kerja untuk memisahkan proyek, lingkungan, atau tim yang berbeda sambil mempertahankan penagihan dan administrasi terpusat.
 
 ## Cara kerja ruang kerja
 
@@ -29,10 +29,11 @@ Anggota dapat memiliki peran berbeda di setiap ruang kerja, memungkinkan kontrol
 
 | Peran | Izin |
 |------|-------------|
-| Pengguna Ruang Kerja | Gunakan Workbench saja |
+| Pengguna Ruang Kerja | Gunakan Anthropic Workbench saja |
+| Pengembang Terbatas Ruang Kerja | Buat dan kelola kunci API, gunakan API. Tidak dapat mengakses tampilan pelacakan sesi atau mengunduh file. |
 | Pengembang Ruang Kerja | Buat dan kelola kunci API, gunakan API |
 | Admin Ruang Kerja | Kontrol penuh atas pengaturan dan anggota ruang kerja |
-| Penagihan Ruang Kerja | Lihat informasi penagihan ruang kerja (diwarisi dari peran penagihan organisasi) |
+| Penagihan Ruang Kerja | Lihat informasi penagihan ruang kerja (diwariskan dari peran penagihan organisasi) |
 
 ### Pewarisan peran
 
@@ -41,7 +42,7 @@ Anggota dapat memiliki peran berbeda di setiap ruang kerja, memungkinkan kontrol
 - **Pengguna dan pengembang organisasi** harus ditambahkan secara eksplisit ke setiap ruang kerja
 
 <Note>
-Peran Penagihan Ruang Kerja tidak dapat ditetapkan secara manual. Peran ini diwarisi dari memiliki peran penagihan organisasi.
+Peran Penagihan Ruang Kerja tidak dapat ditetapkan secara manual. Peran ini diwariskan dari memiliki peran penagihan organisasi.
 </Note>
 
 ## Mengelola ruang kerja
@@ -50,29 +51,29 @@ Peran Penagihan Ruang Kerja tidak dapat ditetapkan secara manual. Peran ini diwa
 Hanya admin organisasi yang dapat membuat ruang kerja. Pengguna dan pengembang organisasi harus ditambahkan ke ruang kerja oleh admin.
 </Note>
 
-### Melalui Konsol
+### Melalui Claude Console
 
-Buat dan kelola ruang kerja di [Konsol Claude](/settings/workspaces).
+Buat dan kelola ruang kerja di [Claude Console](/settings/workspaces).
 
 #### Buat ruang kerja
 
 <Steps>
   <Step title="Buka pengaturan ruang kerja">
-    Di Konsol Claude, buka **Pengaturan > Ruang Kerja**.
+    Di Claude Console, buka **Settings > Workspaces**.
   </Step>
   <Step title="Tambahkan ruang kerja baru">
-    Klik **Tambah Ruang Kerja**.
+    Klik **Add Workspace**.
   </Step>
   <Step title="Konfigurasi ruang kerja">
     Masukkan nama ruang kerja dan pilih warna untuk identifikasi visual.
   </Step>
   <Step title="Buat ruang kerja">
-    Klik **Buat** untuk menyelesaikan.
+    Klik **Create** untuk menyelesaikan.
   </Step>
 </Steps>
 
 <Tip>
-Untuk beralih antar ruang kerja di Konsol, gunakan pemilih **Ruang Kerja** di sudut kiri atas.
+Untuk beralih antar ruang kerja di Console, gunakan pemilih **Workspaces** di sudut kiri atas.
 </Tip>
 
 #### Edit detail ruang kerja
@@ -80,7 +81,7 @@ Untuk beralih antar ruang kerja di Konsol, gunakan pemilih **Ruang Kerja** di su
 Untuk mengubah nama atau warna ruang kerja:
 
 1. Pilih ruang kerja dari daftar
-2. Klik menu elipsis (**...**) dan pilih **Edit detail**
+2. Klik menu elipsis (**...**) dan pilih **Edit details**
 3. Perbarui nama atau warna dan simpan perubahan Anda
 
 <Note>
@@ -89,27 +90,27 @@ Ruang Kerja Default tidak dapat diubah nama atau dihapus.
 
 #### Tambahkan anggota ke ruang kerja
 
-1. Navigasi ke tab **Anggota** ruang kerja
-2. Klik **Tambah ke Ruang Kerja**
+1. Navigasi ke tab **Members** ruang kerja
+2. Klik **Add to Workspace**
 3. Pilih anggota organisasi dan tetapkan mereka [peran ruang kerja](#workspace-roles-and-permissions)
 4. Konfirmasi penambahan
 
 Untuk menghapus anggota, klik ikon tempat sampah di sebelah nama mereka.
 
 <Note>
-Admin organisasi dan anggota penagihan tidak dapat dihapus dari ruang kerja saat mereka memiliki peran organisasi tersebut.
+Admin organisasi dan anggota penagihan tidak dapat dihapus dari ruang kerja selama mereka mempertahankan peran organisasi tersebut.
 </Note>
 
-#### Atur batas ruang kerja
+#### Tetapkan batas ruang kerja
 
-Di tab **Batas**, Anda dapat mengonfigurasi:
+Di tab **Limits**, Anda dapat mengonfigurasi:
 
-- **Batas laju**: Atur batas per tingkat model untuk permintaan per menit, token input, atau token output
-- **Notifikasi pengeluaran**: Konfigurasikan peringatan ketika pengeluaran mencapai ambang batas tertentu
+- **Batas laju**: Tetapkan batas per tingkat model untuk permintaan per menit, token input, atau token output
+- **Pemberitahuan pengeluaran**: Konfigurasikan peringatan ketika pengeluaran mencapai ambang batas tertentu
 
 #### Arsipkan ruang kerja
 
-Untuk mengarsipkan ruang kerja, klik menu elipsis (**...**) dan pilih **Arsipkan**. Pengarsipan:
+Untuk mengarsipkan ruang kerja, klik menu elipsis (**...**) dan pilih **Archive**. Pengarsipan:
 
 - Menyimpan data historis untuk pelaporan
 - Menonaktifkan ruang kerja dan semua kunci API terkait
@@ -124,7 +125,7 @@ Mengarsipkan ruang kerja segera mencabut semua kunci API di ruang kerja tersebut
 Kelola ruang kerja secara terprogram menggunakan [Admin API](/docs/id/build-with-claude/administration-api).
 
 <Note>
-Endpoint Admin API memerlukan kunci Admin API (dimulai dengan `sk-ant-admin...`) yang berbeda dari kunci API standar. Hanya anggota organisasi dengan peran admin yang dapat menyediakan kunci Admin API melalui [Konsol Claude](/settings/admin-keys).
+Endpoint Admin API memerlukan kunci Admin API (dimulai dengan `sk-ant-admin...`) yang berbeda dari kunci API standar. Hanya anggota organisasi dengan peran admin yang dapat menyediakan kunci Admin API melalui [Claude Console](/settings/admin-keys).
 </Note>
 
 ```bash
@@ -181,15 +182,15 @@ Kunci API dibatasi pada ruang kerja tertentu. Ketika Anda membuat kunci API di r
 
 Sumber daya yang dibatasi pada ruang kerja meliputi:
 - **File** yang dibuat melalui [Files API](/docs/id/build-with-claude/files)
-- **Batch Pesan** yang dibuat melalui [Batch API](/docs/id/build-with-claude/batch-processing)
-- **Keterampilan** yang dibuat melalui [Skills API](/docs/id/build-with-claude/skills-guide)
+- **Message Batches** yang dibuat melalui [Batch API](/docs/id/build-with-claude/batch-processing)
+- **Skills** yang dibuat melalui [Skills API](/docs/id/build-with-claude/skills-guide)
 
 <Note>
-Mulai 5 Februari 2026, [cache prompt](/docs/id/build-with-claude/prompt-caching) juga akan diisolasi per ruang kerja (berlaku untuk Claude API dan Azure saja).
+Mulai 5 Februari 2026, [prompt caches](/docs/id/build-with-claude/prompt-caching) juga akan diisolasi per ruang kerja (berlaku untuk Claude API dan Azure saja).
 </Note>
 
 <Tip>
-Untuk mengambil ID ruang kerja organisasi Anda, gunakan endpoint [Daftar Ruang Kerja](/docs/id/api/admin-api/workspaces/list-workspaces), atau temukan di [Konsol Claude](/settings/workspaces).
+Untuk mengambil ID ruang kerja organisasi Anda, gunakan endpoint [List Workspaces](/docs/id/api/admin-api/workspaces/list-workspaces), atau temukan di [Claude Console](/settings/workspaces).
 </Tip>
 
 ## Batas ruang kerja
@@ -206,7 +207,7 @@ Batas ruang kerja dapat ditetapkan lebih rendah dari (tetapi tidak lebih tinggi 
 <Note>
 - Anda tidak dapat menetapkan batas pada Ruang Kerja Default
 - Jika tidak ditetapkan, batas ruang kerja cocok dengan batas organisasi
-- Batas di seluruh organisasi selalu berlaku, bahkan jika batas ruang kerja ditambahkan melebihi
+- Batas di seluruh organisasi selalu berlaku, bahkan jika batas ruang kerja ditambahkan melebihi batas tersebut
 </Note>
 
 Untuk informasi terperinci tentang batas laju dan cara kerjanya, lihat [Batas laju](/docs/id/api/rate-limits).
@@ -236,7 +237,7 @@ Buat ruang kerja terpisah untuk pengembangan, staging, dan produksi:
 
 | Ruang Kerja | Tujuan |
 |-----------|---------|
-| Pengembangan | Pengujian dan eksperimen dengan batas laju yang lebih rendah |
+| Pengembangan | Pengujian dan eksperimen dengan batas laju lebih rendah |
 | Staging | Pengujian pra-produksi dengan batas seperti produksi |
 | Produksi | Lalu lintas langsung dengan batas laju penuh dan pemantauan |
 
@@ -245,7 +246,7 @@ Buat ruang kerja terpisah untuk pengembangan, staging, dan produksi:
 Tetapkan ruang kerja ke tim berbeda untuk alokasi biaya dan kontrol akses:
 
 - **Tim teknik** dengan akses pengembang
-- **Tim ilmu data** dengan kunci API mereka sendiri
+- **Tim sains data** dengan kunci API mereka sendiri
 - **Tim dukungan** dengan akses terbatas untuk alat pelanggan
 
 ### Organisasi berbasis proyek
@@ -256,12 +257,12 @@ Buat ruang kerja untuk proyek atau produk tertentu untuk melacak penggunaan dan 
 
 <Steps>
   <Step title="Rencanakan struktur ruang kerja Anda">
-    Pertimbangkan bagaimana Anda akan mengatur ruang kerja sebelum membuatnya. Pikirkan tentang penagihan, kontrol akses, dan kebutuhan pelacakan penggunaan.
+    Pertimbangkan bagaimana Anda akan mengorganisir ruang kerja sebelum membuatnya. Pikirkan tentang kebutuhan penagihan, kontrol akses, dan pelacakan penggunaan.
   </Step>
   <Step title="Gunakan nama yang bermakna">
-    Beri nama ruang kerja dengan jelas untuk menunjukkan tujuannya (misalnya, "Produksi - Chatbot Pelanggan", "Dev - Alat Internal").
+    Beri nama ruang kerja dengan jelas untuk menunjukkan tujuan mereka (misalnya, "Production - Customer Chatbot", "Dev - Internal Tools").
   </Step>
-  <Step title="Atur batas yang sesuai">
+  <Step title="Tetapkan batas yang sesuai">
     Konfigurasikan batas pengeluaran dan laju untuk mencegah biaya yang tidak terduga dan memastikan distribusi sumber daya yang adil.
   </Step>
   <Step title="Audit akses secara teratur">
@@ -294,19 +295,19 @@ Admin organisasi secara otomatis mendapatkan peran Admin Ruang Kerja di semua ru
 
 <section title="Peran mana yang dapat ditetapkan di ruang kerja?">
 
-Pengguna dan pengembang organisasi dapat ditetapkan peran Admin Ruang Kerja, Pengembang Ruang Kerja, atau Pengguna Ruang Kerja. Peran Penagihan Ruang Kerja tidak dapat ditetapkan secara manual; peran ini diwarisi dari memiliki peran `billing` organisasi.
+Pengguna dan pengembang organisasi dapat ditetapkan peran Admin Ruang Kerja, Pengembang Ruang Kerja, Pengembang Terbatas Ruang Kerja, atau Pengguna Ruang Kerja. Peran Penagihan Ruang Kerja tidak dapat ditetapkan secara manual; peran ini diwariskan dari memiliki peran `billing` organisasi.
 
 </section>
 
 <section title="Dapatkah peran ruang kerja admin atau anggota penagihan organisasi diubah?">
 
-Hanya anggota penagihan organisasi yang dapat memiliki peran ruang kerja mereka ditingkatkan ke peran admin. Jika tidak, admin organisasi dan anggota penagihan tidak dapat memiliki peran ruang kerja mereka diubah atau dihapus dari ruang kerja saat mereka memiliki peran organisasi tersebut. Akses ruang kerja mereka harus dimodifikasi dengan mengubah peran organisasi mereka terlebih dahulu.
+Hanya anggota penagihan organisasi yang dapat memiliki peran ruang kerja mereka ditingkatkan ke peran admin. Jika tidak, admin organisasi dan anggota penagihan tidak dapat memiliki peran ruang kerja mereka diubah atau dihapus dari ruang kerja selama mereka mempertahankan peran organisasi tersebut. Akses ruang kerja mereka harus dimodifikasi dengan mengubah peran organisasi mereka terlebih dahulu.
 
 </section>
 
 <section title="Apa yang terjadi pada akses ruang kerja ketika peran organisasi berubah?">
 
-Jika admin organisasi atau anggota penagihan diturunkan menjadi pengguna atau pengembang, mereka kehilangan akses ke semua ruang kerja kecuali yang mereka tetapkan peran secara manual. Ketika pengguna dipromosikan ke peran admin atau penagihan, mereka mendapatkan akses otomatis ke semua ruang kerja.
+Jika admin organisasi atau anggota penagihan diturunkan ke pengguna atau pengembang, mereka kehilangan akses ke semua ruang kerja kecuali yang mereka tetapkan secara manual. Ketika pengguna dipromosikan ke peran admin atau penagihan, mereka mendapatkan akses otomatis ke semua ruang kerja.
 
 </section>
 

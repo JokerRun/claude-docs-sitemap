@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/models/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: ac5061f3e287a0027c7aa1000f0d91d62cd03d60c500424b8cd1d9f9adbd590f
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 8508160c0cd75683b8b513cc74915bcc5d22214a555aeb315ffbf7880c571f6f
 ---
 
 ## List
@@ -82,6 +82,8 @@ The Models API response can be used to determine which models are available for 
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

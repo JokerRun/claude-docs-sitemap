@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/events/stream
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 59770b32002a12a99879e0fb98a928489161f539694b82db0dddca44f6cdd458
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: a1b898e28975745ee5ea9ec56598a3416e2adce1796f0910c3362e414f13dc8a
 ---
 
 ## Stream
@@ -23,7 +23,7 @@ Stream Events
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 18 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Stream Events
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 

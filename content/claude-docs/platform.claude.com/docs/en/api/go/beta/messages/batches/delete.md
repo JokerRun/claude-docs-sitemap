@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: a4f6b39690fe48603a984ec9ced9e3b32d0fa780c81c676e8592e197788f7518
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: c522d247402eabb0c84fef67802ee20e05f260cde9037906a394c67704da4111
 ---
 
 ## Delete
@@ -74,6 +74,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 4167f29645351507a6b864179c96a214c69fdb7174b933ebb7a25c150f63521f
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: a095bc2addf3e7929af0c0d0fe36d4588cabbe2e4824443fd9deaa005be22358
 ---
 
 ## List
@@ -44,7 +44,7 @@ List Skills
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -87,6 +87,8 @@ List Skills
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

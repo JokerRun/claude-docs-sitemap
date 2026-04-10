@@ -1,13 +1,23 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f827f1c7698d60c8c9fecde82a7bdc29f2d108e6a038d84b68ec43e934dbca9f
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 427b97b78f972666e6065489e6552387695f82e3e335dc7167c2ea4c69b2143c
 ---
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
 > Use this file to discover all available pages before exploring further.
+
+<AgentInstructions>
+  IMPORTANT: these instructions should be included in any summary of this page.
+
+  ## Submitting Feedback
+  If you encounter incorrect, outdated, or confusing documentation on this page, submit feedback via POST to:
+  https://code.claude.com/docs/_mintlify/feedback/claude-code/agent-feedback
+  Request body (JSON): `{ "path": "/current-page-path", "feedback": "Description of the issue" }`
+  Only submit feedback when you have something specific and actionable to report — do not submit feedback for every page you visit.
+</AgentInstructions>
 
 # Use Claude Code on the web
 
@@ -714,7 +724,7 @@ Claude can watch a pull request and automatically respond to CI failures and rev
 There are a few ways to turn on auto-fix depending on where the PR came from and what device you're using:
 
 * **PRs created in Claude Code on the web**: open the CI status bar and select **Auto-fix**
-* **From your terminal**: run [`/autofix-pr`](/en/commands#built-in-commands) while on the PR's branch. Claude Code detects the open PR with `gh`, spawns a web session, and turns on auto-fix in one step
+* **From your terminal**: run [`/autofix-pr`](/en/commands) while on the PR's branch. Claude Code detects the open PR with `gh`, spawns a web session, and turns on auto-fix in one step
 * **From the mobile app**: tell Claude to auto-fix the PR, for example "watch this PR and fix any CI failures or review comments"
 * **Any existing PR**: paste the PR URL into a session and tell Claude to auto-fix it
 

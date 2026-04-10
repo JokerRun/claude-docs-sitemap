@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: de6239277ae3fa842269db2ba315f491ed8decb0992d858a13ab48f5f8d2351e
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: b42e01d8eb338e57cfbcab8675e2a0ec231b85e5aca630afb322b1d9d40add7c
 ---
 
 ## Create
@@ -23,7 +23,7 @@ Create Vault
 
   - `metadata?: Record<string, string>`
 
-    Body param: Arbitrary key-value metadata to attach to the vault.
+    Body param: Arbitrary key-value metadata to attach to the vault. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
   - `betas?: Array<AnthropicBeta>`
 
@@ -31,7 +31,7 @@ Create Vault
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Create Vault
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

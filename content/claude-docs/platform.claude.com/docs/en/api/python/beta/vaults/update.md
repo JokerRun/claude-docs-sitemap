@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: ba256e75bac2ae4a2c4339be8238ddccf414b58ae9f715a5183e7a940f7f5812
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 1f59818cf442cb96a0cc1acc00e978537c86e3e03775d1237e73ac74ac939f2a
 ---
 
 ## Update
@@ -31,7 +31,7 @@ Update Vault
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Update Vault
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

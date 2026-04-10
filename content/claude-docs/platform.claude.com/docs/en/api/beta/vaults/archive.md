@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f316d1ee0a97b54ac5e268838ef7d9ea8299bc80007c30e6add02da5ed3c7e39
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 7bdb8253ddf1bc5d01b61e4cae1ae1857cbae7f81c91e4f70d62e5845b93ef72
 ---
 
 ## Archive
@@ -23,7 +23,7 @@ Archive Vault
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Archive Vault
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 31776d7c27665655abec6f5fc69c5b6a6bd4ad43dfdc97fc950751fa11bd2ec3
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 4affe14c5fd56b9f55e4629f71070cabf384ce9fc630a0ddccf21e9680baceb7
 ---
 
 # Environments
@@ -64,6 +64,8 @@ Create a new environment with the specified configuration.
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `String name`
 
@@ -298,6 +300,8 @@ List environments with pagination support.
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
 ### Returns
 
 - `class BetaEnvironment:`
@@ -499,6 +503,8 @@ Retrieve a specific environment by ID.
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
 ### Returns
 
 - `class BetaEnvironment:`
@@ -699,6 +705,8 @@ Update an existing environment's configuration.
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Optional<BetaCloudConfigParams> config`
 
@@ -920,6 +928,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
 ### Returns
 
 - `class BetaEnvironmentDeleteResponse:`
@@ -1016,6 +1026,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

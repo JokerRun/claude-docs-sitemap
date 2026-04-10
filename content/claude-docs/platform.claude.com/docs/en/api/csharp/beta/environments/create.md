@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 093c99b9a7bc97ac38a7992d39c065a7d30e1857fc86f6d482e3a8eb53c7cbba
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 002c4450d0e783498a14c5dbb1d8a87e1d1758424e1ec6779658169430daae58
 ---
 
 ## Create
@@ -81,6 +81,8 @@ Create a new environment with the specified configuration.
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

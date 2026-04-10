@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 6ee8f4412190c6b8761eb69419c7465d920ba5da0513f2582394f160e14c59ad
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 0e6e86552914a82c3e96e41c6882cc0d9e734148201f0b20201e3a0bdca3e94f
 ---
 
 ## Retrieve
@@ -66,6 +66,8 @@ Get Credential
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

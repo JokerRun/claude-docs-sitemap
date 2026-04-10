@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 7b6588026a34f98b4114656d5aca6399969f9e8f8a5ee1a0bc1e1e1c1e639220
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 0ba20d679345901d5bda6fce29f10d16f28bd886414230d3587a0799384e10b0
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Get Credential
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 18 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Get Credential
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 

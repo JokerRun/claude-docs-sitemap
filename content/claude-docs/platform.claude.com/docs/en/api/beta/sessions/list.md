@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 287940708226c77e02bb8214c8f9182f7cc7e042e21ec887933f6b4e360e37cf
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: ec37272c88025f7920b369fafacb70b3ad45c8688fbb88f917cb0e96a9fd6fd1
 ---
 
 ## List
@@ -65,7 +65,7 @@ List Sessions
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -108,6 +108,8 @@ List Sessions
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

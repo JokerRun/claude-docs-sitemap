@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 92e30f6916093135a8f158c20831e34234138567ffa3a59b649dcffe134ec8d9
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: e2059cced9b293922eeca06569ab9c06d5b404178f01c5a5ece479e240a11a00
 ---
 
 ## Delete
@@ -23,7 +23,7 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -67,9 +67,7 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
     - `"output-300k-2026-03-24"`
 
-### Cookie Parameters
-
-- `sessionKey: optional string`
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

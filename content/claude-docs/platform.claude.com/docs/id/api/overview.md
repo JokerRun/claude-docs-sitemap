@@ -1,48 +1,47 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/overview
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 077efa382b6fea86d0e292ccac6a168bb0598e4d0246e2d8807d2aa1f85d8c01
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 0f67cd75bb914319b78d489acb2e4635934017b38a571fd7be73c2ecc9a63aa6
 ---
 
 # Ikhtisar API
 
-Panduan lengkap untuk Claude API, termasuk autentikasi, SDK klien, dan contoh dasar untuk memulai integrasi.
-
 ---
 
-Claude API adalah API RESTful di `https://api.anthropic.com` yang menyediakan akses terprogram ke model Claude. API utama adalah Messages API (`POST /v1/messages`) untuk interaksi percakapan.
+Claude API adalah RESTful API di `https://api.anthropic.com` yang menyediakan akses terprogram ke model Claude dan Claude Managed Agents.
 
 <Note>
-**Baru mengenal Claude?** Mulai dengan [Memulai](/docs/id/get-started) untuk prasyarat dan panggilan API pertama Anda, atau lihat [Bekerja dengan Messages](/docs/id/build-with-claude/working-with-messages) untuk pola permintaan/respons dan contoh.
+**Baru mengenal Claude?** Untuk akses model langsung, mulailah dengan [Memulai](/docs/id/get-started) dan [Bekerja dengan Messages](/docs/id/build-with-claude/working-with-messages). Untuk infrastruktur agen terkelola, lihat [panduan memulai Claude Managed Agents](/docs/id/managed-agents/quickstart).
 </Note>
 
 ## Prasyarat
 
 Untuk menggunakan Claude API, Anda memerlukan:
 
-- Akun [Anthropic Console](https://platform.claude.com)
+- Akun [Claude Console](https://platform.claude.com)
 - [Kunci API](/settings/keys)
 
-Untuk instruksi pengaturan langkah demi langkah, lihat [Memulai](/docs/id/get-started).
+Untuk petunjuk pengaturan langkah demi langkah, lihat [Memulai](/docs/id/get-started).
 
 ## API yang Tersedia
 
-Claude API mencakup API berikut:
+Claude API mencakup API-API berikut:
 
 **Ketersediaan Umum:**
-- **[Messages API](/docs/id/api/messages)**: Kirim pesan ke Claude untuk interaksi percakapan (`POST /v1/messages`)
+- **[Messages API](/docs/id/api/messages/create)**: Kirim pesan ke Claude untuk interaksi percakapan (`POST /v1/messages`)
 - **[Message Batches API](/docs/id/api/creating-message-batches)**: Proses volume besar permintaan Messages secara asinkron dengan pengurangan biaya 50% (`POST /v1/messages/batches`)
-- **[Token Counting API](/docs/id/api/messages-count-tokens)**: Hitung token dalam pesan sebelum mengirim untuk mengelola biaya dan batas laju (`POST /v1/messages/count_tokens`)
-- **[Models API](/docs/id/api/models-list)**: Daftar model Claude yang tersedia dan detailnya (`GET /v1/models`)
+- **[Token Counting API](/docs/id/api/messages-count-tokens)**: Hitung token dalam pesan sebelum dikirim untuk mengelola biaya dan batas laju (`POST /v1/messages/count_tokens`)
+- **[Models API](/docs/id/api/models-list)**: Daftar model Claude yang tersedia beserta detailnya (`GET /v1/models`)
 
 **Beta:**
 - **[Files API](/docs/id/api/files-create)**: Unggah dan kelola file untuk digunakan di berbagai panggilan API (`POST /v1/files`, `GET /v1/files`)
-- **[Skills API](/docs/id/api/skills/create-skill)**: Buat dan kelola keterampilan agen khusus (`POST /v1/skills`, `GET /v1/skills`)
+- **[Skills API](/docs/id/api/skills/create-skill)**: Buat dan kelola keterampilan agen kustom (`POST /v1/skills`, `GET /v1/skills`)
+- **[Agents API](/docs/id/api/beta/agents/create)**: Tentukan konfigurasi agen yang dapat digunakan kembali dan berversi untuk Claude Managed Agents (`POST /v1/agents`, `GET /v1/agents`)
+- **[Sessions API](/docs/id/api/beta/sessions/create)**: Jalankan sesi agen stateful dalam kontainer cloud terkelola (`POST /v1/sessions`, `GET /v1/sessions/{id}/stream`)
+- **[Environments API](/docs/id/api/beta/environments/create)**: Konfigurasikan templat kontainer untuk sesi agen (`POST /v1/environments`, `GET /v1/environments`)
 
-Untuk referensi API lengkap dengan semua endpoint, parameter, dan skema respons, jelajahi halaman referensi API yang tercantum dalam navigasi. Untuk mengakses fitur beta, lihat [Header beta](/docs/id/api/beta-headers).
-
-Messages API mendukung parameter `inference_geo` opsional untuk [kontrol residensi data](/docs/id/build-with-claude/data-residency), memungkinkan Anda menentukan di mana inferensi model berjalan.
+Untuk referensi API lengkap dengan semua endpoint, parameter, dan skema respons, jelajahi halaman referensi API yang tercantum dalam navigasi. Untuk mengakses fitur beta, lihat [Header Beta](/docs/id/api/beta-headers).
 
 ## Autentikasi
 
@@ -51,165 +50,109 @@ Semua permintaan ke Claude API harus menyertakan header berikut:
 | Header | Nilai | Diperlukan |
 |--------|-------|----------|
 | `x-api-key` | Kunci API Anda dari Console | Ya |
-| `anthropic-version` | Versi API (misalnya, `2023-06-01`) | Ya |
+| `anthropic-version` | Versi API (mis., `2023-06-01`) | Ya |
 | `content-type` | `application/json` | Ya |
 
-Jika Anda menggunakan [SDK Klien](#client-sdks), SDK akan mengirim header ini secara otomatis. Untuk detail versioning API, lihat [Versi API](/docs/id/api/versioning).
+Jika Anda menggunakan [Client SDK](#client-sdks), SDK akan mengirimkan header ini secara otomatis. Untuk detail pembuatan versi API, lihat [Versi API](/docs/id/api/versioning).
 
 ### Mendapatkan Kunci API
 
-API tersedia melalui [Console](https://platform.claude.com/) web. Anda dapat menggunakan [Workbench](https://platform.claude.com/workbench) untuk mencoba API di browser dan kemudian menghasilkan kunci API di [Pengaturan Akun](https://platform.claude.com/settings/keys). Gunakan [workspace](https://platform.claude.com/settings/workspaces) untuk membagi kunci API Anda dan [mengontrol pengeluaran](/docs/id/api/rate-limits) berdasarkan kasus penggunaan.
+API tersedia melalui [Console](https://platform.claude.com/) web. Anda dapat menggunakan [Workbench](https://platform.claude.com/workbench) untuk mencoba API di browser dan kemudian membuat kunci API di [Pengaturan Akun](https://platform.claude.com/settings/keys). Gunakan [ruang kerja](https://platform.claude.com/settings/workspaces) untuk memisahkan kunci API Anda dan [mengontrol pengeluaran](/docs/id/api/rate-limits) berdasarkan kasus penggunaan.
 
-## SDK Klien
+## Client SDK
 
-Anthropic menyediakan SDK resmi yang menyederhanakan integrasi API dengan menangani autentikasi, pemformatan permintaan, penanganan kesalahan, dan banyak lagi.
+Anthropic menyediakan SDK resmi yang menyederhanakan integrasi API dengan menangani autentikasi, pemformatan permintaan, penanganan kesalahan, dan lainnya.
 
 **Manfaat**:
 - Manajemen header otomatis (x-api-key, anthropic-version, content-type)
-- Penanganan permintaan dan respons yang aman tipe
-- Logika retry bawaan dan penanganan kesalahan
+- Penanganan permintaan dan respons yang aman secara tipe
+- Logika percobaan ulang dan penanganan kesalahan bawaan
 - Dukungan streaming
-- Timeout permintaan dan manajemen koneksi
+- Batas waktu permintaan dan manajemen koneksi
 
-**Contoh** (Python):
-```python
-from anthropic import Anthropic
+Untuk daftar Client SDK dan petunjuk instalasi masing-masing, lihat [Client SDK](/docs/id/api/client-sdks).
 
-client = Anthropic()  # Membaca ANTHROPIC_API_KEY dari lingkungan
-message = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    messages=[{"role": "user", "content": "Hello, Claude"}]
-)
-```
+## Ketersediaan di Platform Mitra
 
-Untuk daftar SDK klien dan instruksi instalasi masing-masing, lihat [SDK Klien](/docs/id/api/client-sdks).
-
-## Claude API vs Platform Pihak Ketiga
-
-Claude tersedia melalui API langsung Anthropic dan melalui platform mitra. Pilih berdasarkan infrastruktur, persyaratan kepatuhan, dan preferensi harga Anda.
+Claude tersedia melalui Claude API langsung dan melalui platform mitra. Pilih berdasarkan infrastruktur, persyaratan kepatuhan, dan preferensi harga Anda.
 
 ### Claude API
 
 - **Akses langsung** ke model dan fitur terbaru terlebih dahulu
 - **Penagihan dan dukungan Anthropic**
-- **Terbaik untuk**: Integrasi baru, akses fitur lengkap, hubungan langsung dengan Anthropic
+- **Terbaik untuk**: Integrasi baru, akses fitur penuh, hubungan langsung dengan Anthropic
 
 ### API Platform Pihak Ketiga
 
 Akses Claude melalui AWS, Google Cloud, atau Microsoft Azure:
 - **Terintegrasi** dengan penagihan dan IAM penyedia cloud
 - **Mungkin memiliki penundaan fitur** atau perbedaan dari API langsung
-- **Terbaik untuk**: Komitmen cloud yang ada, persyaratan kepatuhan khusus, penagihan cloud terpadu
+- **Terbaik untuk**: Komitmen cloud yang sudah ada, persyaratan kepatuhan tertentu, penagihan cloud terpadu
 
 | Platform | Penyedia | Dokumentasi |
 |----------|----------|---------------|
-| Amazon Bedrock | AWS | [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-on-amazon-bedrock) |
+| Amazon Bedrock | AWS | [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) |
 | Vertex AI | Google Cloud | [Claude di Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai) |
 | Azure AI | Microsoft Azure | [Claude di Azure AI](/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 <Note>
-Untuk ketersediaan fitur di berbagai platform, lihat [Ikhtisar fitur](/docs/id/build-with-claude/overview).
+Claude Managed Agents hanya tersedia melalui Claude API langsung. Untuk ketersediaan fitur di berbagai platform, lihat [Ikhtisar fitur](/docs/id/build-with-claude/overview).
 </Note>
 
 ## Format Permintaan dan Respons
 
-### Batas Ukuran Permintaan
+### Batas ukuran permintaan
 
-API memiliki ukuran permintaan maksimum yang berbeda tergantung pada endpoint:
-
-| Endpoint | Ukuran Maksimum |
-|----------|--------------|
-| Endpoint standar (Messages, Token Counting) | 32 MB |
+| Endpoint | Ukuran permintaan maksimum |
+| --- | --- |
+| Messages, Token Counting | 32 MB |
 | [Batch API](/docs/id/build-with-claude/batch-processing) | 256 MB |
 | [Files API](/docs/id/build-with-claude/files) | 500 MB |
+| Sessions, Agents, Environments | 32 MB |
 
-Jika Anda melampaui batas ini, Anda akan menerima kesalahan 413 `request_too_large`.
+Jika Anda melebihi batas ini, Anda akan menerima kesalahan 413 `request_too_large`.
+
+<Note>
+Platform pihak ketiga memiliki batas ukuran permintaan mereka sendiri: Vertex AI membatasi permintaan hingga 30 MB, dan Amazon Bedrock membatasi permintaan hingga 20 MB. Konsultasikan dokumentasi platform Anda untuk nilai terkini.
+</Note>
 
 ### Header Respons
 
 Claude API menyertakan header berikut dalam setiap respons:
 
-- `request-id`: Pengidentifikasi unik global untuk permintaan
+- `request-id`: Pengenal unik secara global untuk permintaan
 - `anthropic-organization-id`: ID organisasi yang terkait dengan kunci API yang digunakan dalam permintaan
 
 ## Batas Laju dan Ketersediaan
 
 ### Batas Laju
 
-API memberlakukan batas laju dan batas pengeluaran untuk mencegah penyalahgunaan dan mengelola kapasitas. Batas diatur ke dalam tingkat penggunaan yang meningkat secara otomatis saat Anda menggunakan API. Setiap tingkat memiliki:
+API memberlakukan batas laju dan batas pengeluaran untuk mencegah penyalahgunaan dan mengelola kapasitas. Batas diatur ke dalam tingkatan penggunaan yang meningkat secara otomatis seiring penggunaan API Anda. Setiap tingkatan memiliki:
 
 - **Batas pengeluaran**: Biaya bulanan maksimum untuk penggunaan API
 - **Batas laju**: Jumlah maksimum permintaan per menit (RPM) dan token per menit (TPM)
 
-Anda dapat melihat batas organisasi Anda saat ini di [Console](/settings/limits). Untuk batas yang lebih tinggi atau Priority Tier (tingkat layanan yang ditingkatkan dengan pengeluaran berkomitmen), hubungi penjualan melalui Console.
+Anda dapat melihat batas organisasi Anda saat ini di [Console](/settings/limits). Untuk batas yang lebih tinggi atau Priority Tier (tingkat layanan yang ditingkatkan dengan pengeluaran yang ditetapkan), hubungi penjualan melalui Console.
 
-Untuk informasi terperinci tentang batas, tingkat, dan algoritma token bucket yang digunakan untuk pembatasan laju, lihat [Batas laju](/docs/id/api/rate-limits).
+Untuk informasi terperinci tentang batas, tingkatan, dan algoritma token bucket yang digunakan untuk pembatasan laju, lihat [Batas laju](/docs/id/api/rate-limits).
 
 ### Ketersediaan
 
 Claude API tersedia di [banyak negara dan wilayah](/docs/id/api/supported-regions) di seluruh dunia. Periksa halaman wilayah yang didukung untuk mengonfirmasi ketersediaan di lokasi Anda.
 
-## Contoh Dasar
+## Langkah Selanjutnya
 
-Berikut adalah permintaan minimal menggunakan Messages API:
-
-```bash
-curl https://api.anthropic.com/v1/messages \
-  --header "x-api-key: $ANTHROPIC_API_KEY" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "content-type: application/json" \
-  --data '{
-    "model": "claude-opus-4-6",
-    "max_tokens": 1024,
-    "messages": [
-      {"role": "user", "content": "Hello, Claude"}
-    ]
-  }'
-```
-
-**Respons:**
-```json
-{
-  "id": "msg_01XFDUDYJgAACzvnptvVoYEL",
-  "type": "message",
-  "role": "assistant",
-  "content": [
-    {
-      "type": "text",
-      "text": "Hello! How can I assist you today?"
-    }
-  ],
-  "model": "claude-opus-4-6",
-  "stop_reason": "end_turn",
-  "usage": {
-    "input_tokens": 12,
-    "output_tokens": 8
-  }
-}
-```
-
-Untuk contoh lengkap dan tutorial, lihat [Memulai](/docs/id/get-started) dan [Bekerja dengan Messages](/docs/id/build-with-claude/working-with-messages).
-
-## Langkah Berikutnya
-
-<CardGroup cols={3}>
-  <Card title="Memulai" icon="rocket" href="/docs/id/get-started">
-    Prasyarat, tutorial langkah demi langkah, dan contoh dalam berbagai bahasa
+<CardGroup cols={2}>
+  <Card title="Referensi Messages API" icon="book" href="/docs/id/api/messages/create">
+    Spesifikasi API lengkap untuk interaksi model langsung
   </Card>
-  <Card title="Bekerja dengan Messages" icon="message" href="/docs/id/build-with-claude/working-with-messages">
-    Pola permintaan/respons, percakapan multi-putaran, dan praktik terbaik
+  <Card title="Referensi Claude Managed Agents" icon="brain" href="/docs/id/api/beta/sessions">
+    Endpoint Agents, Sessions, dan Environments
   </Card>
-  <Card title="Referensi Messages API" icon="book" href="/docs/id/api/messages">
-    Spesifikasi API lengkap: parameter, respons, dan kode kesalahan
-  </Card>
-  <Card title="SDK Klien" icon="code" href="/docs/id/api/client-sdks">
-    Panduan instalasi untuk Python, TypeScript, Java, Go, C#, Ruby, dan PHP
-  </Card>
-  <Card title="Ikhtisar fitur" icon="grid" href="/docs/id/build-with-claude/overview">
-    Jelajahi kemampuan: caching, visi, penggunaan alat, streaming, dan banyak lagi
+  <Card title="Client SDK" icon="code" href="/docs/id/api/client-sdks">
+    Python, TypeScript, Java, Go, C#, Ruby, dan PHP
   </Card>
   <Card title="Batas laju" icon="gauge" href="/docs/id/api/rate-limits">
-    Tingkat penggunaan, batas pengeluaran, dan pembatasan laju dengan algoritma token bucket
+    Tingkatan penggunaan, batas pengeluaran, dan algoritma token bucket
   </Card>
 </CardGroup>

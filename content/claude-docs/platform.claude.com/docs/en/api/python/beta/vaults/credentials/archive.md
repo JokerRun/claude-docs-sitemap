@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/archive
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: a450afb4df0ac62bd348b27903247ad551c8575e59bd8930a2505801c962df3a
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: ac5b3882c3afc8d81d3306962852251f2dfeb0e41dcf0dc317b1650397106df6
 ---
 
 ## Archive
@@ -25,7 +25,7 @@ Archive Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Archive Credential
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

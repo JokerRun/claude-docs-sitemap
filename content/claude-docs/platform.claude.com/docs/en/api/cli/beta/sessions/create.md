@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: e2bbff0c12865725d823bc672611c5eebb2798246e59b9e77c868e995fbfd87d
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 6ccdaa4201a55de4334bc95fd66b19031aa8143d7a150afbcf6a0af189effbaa
 ---
 
 ## Create
@@ -25,7 +25,7 @@ Create Session
 
 - `--metadata: optional map[string]`
 
-  Body param: Arbitrary key-value metadata attached to the session.
+  Body param: Arbitrary key-value metadata attached to the session. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
 - `--resource: optional array of BetaManagedAgentsGitHubRepositoryResourceParams or BetaManagedAgentsFileResourceParams`
 

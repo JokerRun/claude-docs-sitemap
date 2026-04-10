@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: c2f7112269f70d4319c5c61b0190f8bea0761890cc717f3e4ef5b357b7d8e811
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: eb97316249d88df79ddc2aba014195b54cfe53b8d1fac44efe681d3ca8b2df21
 ---
 
 ## Retrieve
@@ -72,6 +72,8 @@ Get Session Resource
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

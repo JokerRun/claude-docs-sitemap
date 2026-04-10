@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 22c4fc28d1fcb48efc67bacf8a836a54b52326ac46be65fc30a31291267e1b7e
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 521f24dc36e7a7c26edefd1a25892cabdd38de89121b3c91cfd0b6729a560d0f
 ---
 
 ## Archive
@@ -23,7 +23,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -67,9 +67,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
     - `"output-300k-2026-03-24"`
 
-### Cookie Parameters
-
-- `sessionKey: optional string`
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

@@ -1,154 +1,91 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 645b7d972912fec87adfca6cea71c04a60ce513ed5c26ed2e2e4fb0b3d775d17
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 7e8ebd722594c0c5f6c0d6ce24f9ff02c70ddc423f08fd44d103134b261020ae
 ---
 
-# Mulai dengan Agent Skills di API
+# Mulai menggunakan Agent Skills di API
 
 Pelajari cara menggunakan Agent Skills untuk membuat dokumen dengan Claude API dalam waktu kurang dari 10 menit.
 
 ---
 
-Tutorial ini menunjukkan kepada Anda cara menggunakan Agent Skills untuk membuat presentasi PowerPoint. Anda akan belajar cara mengaktifkan Skills, membuat permintaan sederhana, dan mengakses file yang dihasilkan.
+Tutorial ini menunjukkan cara menggunakan Agent Skills untuk membuat presentasi PowerPoint. Anda akan mempelajari cara mengaktifkan Skills, membuat permintaan sederhana, dan mengakses file yang dihasilkan.
 
 ## Prasyarat
 
-- [Kunci API Anthropic](/settings/keys)
-- Python 3.7+ atau curl terinstal
-- Keakraban dasar dengan membuat permintaan API
+- [Kunci API Claude](/settings/keys)
+- Python 3.7+ atau curl yang terinstal
+- Pemahaman dasar tentang cara membuat permintaan API
 
-## Apa itu Agent Skills?
+## Ikhtisar Agent Skills
 
-Agent Skills yang telah dibangun sebelumnya memperluas kemampuan Claude dengan keahlian khusus untuk tugas-tugas seperti membuat dokumen, menganalisis data, dan memproses file. Anthropic menyediakan Agent Skills yang telah dibangun sebelumnya berikut ini di API:
+Agent Skills bawaan memperluas kemampuan Claude dengan keahlian khusus untuk tugas-tugas seperti membuat dokumen, menganalisis data, dan memproses file. Anthropic menyediakan Agent Skills bawaan berikut di API:
 
-- **PowerPoint (pptx)**: Buat dan edit presentasi
-- **Excel (xlsx)**: Buat dan analisis spreadsheet
-- **Word (docx)**: Buat dan edit dokumen
-- **PDF (pdf)**: Hasilkan dokumen PDF
+- **PowerPoint (pptx):** Membuat dan mengedit presentasi
+- **Excel (xlsx):** Membuat dan menganalisis spreadsheet
+- **Word (docx):** Membuat dan mengedit dokumen
+- **PDF (pdf):** Menghasilkan dokumen PDF
 
 <Note>
-**Ingin membuat Skills khusus?** Lihat [Agent Skills Cookbook](https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction) untuk contoh membangun Skills Anda sendiri dengan keahlian khusus domain.
+**Ingin membuat Skills kustom?** Lihat [Agent Skills Cookbook](https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction) untuk contoh membangun Skills Anda sendiri dengan keahlian domain-spesifik.
 </Note>
 
 ## Langkah 1: Daftar Skills yang tersedia
 
-Pertama, mari kita lihat Skills apa yang tersedia. Kami akan menggunakan Skills API untuk mendaftar semua Skills yang dikelola Anthropic:
+Pertama, periksa Skills apa yang tersedia. Gunakan Skills API untuk mendaftar semua Skills yang dikelola Anthropic:
 
-<CodeGroup>
-```python Python
-import anthropic
-
-client = anthropic.Anthropic()
-
-# List Anthropic-managed Skills
-skills = client.beta.skills.list(
-    source="anthropic",
-    betas=["skills-2025-10-02"]
-)
-
-for skill in skills.data:
-    print(f"{skill.id}: {skill.display_title}")
-```
-
-```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic();
-
-// List Anthropic-managed Skills
-const skills = await client.beta.skills.list({
-  source: 'anthropic',
-  betas: ['skills-2025-10-02']
-});
-
-for (const skill of skills.data) {
-  console.log(`${skill.id}: ${skill.display_title}`);
-}
-```
-
+<CodeGroup defaultLanguage="CLI">
 ```bash Shell
 curl "https://api.anthropic.com/v1/skills?source=anthropic" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: skills-2025-10-02"
 ```
-</CodeGroup>
 
-Anda melihat Skills berikut: `pptx`, `xlsx`, `docx`, dan `pdf`.
+```bash CLI
+ant beta:skills list --source anthropic
+```
 
-API ini mengembalikan metadata setiap Skill: nama dan deskripsinya. Claude memuat metadata ini saat startup untuk mengetahui Skills apa yang tersedia. Ini adalah tingkat pertama **progressive disclosure**, di mana Claude menemukan Skills tanpa memuat instruksi lengkap mereka terlebih dahulu.
-
-## Langkah 2: Buat presentasi
-
-Sekarang kami akan menggunakan PowerPoint Skill untuk membuat presentasi tentang energi terbarukan. Kami menentukan Skills menggunakan parameter `container` di Messages API:
-
-<CodeGroup>
 ```python Python
 import anthropic
 
 client = anthropic.Anthropic()
 
-# Create a message with the PowerPoint Skill
-response = client.beta.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=4096,
-    betas=["code-execution-2025-08-25", "skills-2025-10-02"],
-    container={
-        "skills": [
-            {
-                "type": "anthropic",
-                "skill_id": "pptx",
-                "version": "latest"
-            }
-        ]
-    },
-    messages=[{
-        "role": "user",
-        "content": "Create a presentation about renewable energy with 5 slides"
-    }],
-    tools=[{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-    }]
-)
+# Daftar Skills yang dikelola Anthropic
+skills = client.beta.skills.list(source="anthropic", betas=["skills-2025-10-02"])
 
-print(response.content)
+for skill in skills.data:
+    print(f"{skill.id}: {skill.display_title}")
 ```
 
 ```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
-// Create a message with the PowerPoint Skill
-const response = await client.beta.messages.create({
-  model: 'claude-opus-4-6',
-  max_tokens: 4096,
-  betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
-  container: {
-    skills: [
-      {
-        type: 'anthropic',
-        skill_id: 'pptx',
-        version: 'latest'
-      }
-    ]
-  },
-  messages: [{
-    role: 'user',
-    content: 'Create a presentation about renewable energy with 5 slides'
-  }],
-  tools: [{
-    type: 'code_execution_20250825',
-    name: 'code_execution'
-  }]
+// Daftar Skills yang dikelola Anthropic
+const skills = await client.beta.skills.list({
+  source: "anthropic",
+  betas: ["skills-2025-10-02"]
 });
 
-console.log(response.content);
+for (const skill of skills.data) {
+  console.log(`${skill.id}: ${skill.display_title}`);
+}
 ```
+</CodeGroup>
 
+Anda akan melihat Skills berikut: `pptx`, `xlsx`, `docx`, dan `pdf`.
+
+API ini mengembalikan metadata setiap Skill: nama dan deskripsinya. Claude memuat metadata ini saat startup untuk mengetahui Skills apa yang tersedia. Ini adalah tingkat pertama dari **progressive disclosure**, di mana Claude menemukan Skills tanpa memuat instruksi lengkapnya terlebih dahulu.
+
+## Langkah 2: Buat presentasi
+
+Sekarang gunakan PowerPoint Skill untuk membuat presentasi tentang energi terbarukan. Tentukan Skills menggunakan parameter `container` di Messages API:
+
+<CodeGroup>
 ```bash Shell
 curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -177,57 +114,186 @@ curl https://api.anthropic.com/v1/messages \
     }]
   }'
 ```
+
+```bash CLI
+ant beta:messages create \
+  --beta code-execution-2025-08-25 \
+  --beta skills-2025-10-02 \
+  --transform content <<'YAML'
+model: claude-opus-4-6
+max_tokens: 4096
+container:
+  skills:
+    - type: anthropic
+      skill_id: pptx
+      version: latest
+messages:
+  - role: user
+    content: Create a presentation about renewable energy with 5 slides
+tools:
+  - type: code_execution_20250825
+    name: code_execution
+YAML
+```
+
+```python Python
+import anthropic
+
+client = anthropic.Anthropic()
+
+# Buat pesan dengan PowerPoint Skill
+response = client.beta.messages.create(
+    model="claude-opus-4-6",
+    max_tokens=4096,
+    betas=["code-execution-2025-08-25", "skills-2025-10-02"],
+    container={
+        "skills": [{"type": "anthropic", "skill_id": "pptx", "version": "latest"}]
+    },
+    messages=[
+        {
+            "role": "user",
+            "content": "Create a presentation about renewable energy with 5 slides",
+        }
+    ],
+    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
+)
+
+print(response.content)
+```
+
+```typescript TypeScript
+import Anthropic from "@anthropic-ai/sdk";
+
+const client = new Anthropic();
+
+// Buat pesan dengan PowerPoint Skill
+const response = await client.beta.messages.create({
+  model: "claude-opus-4-6",
+  max_tokens: 4096,
+  betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
+  container: {
+    skills: [
+      {
+        type: "anthropic",
+        skill_id: "pptx",
+        version: "latest"
+      }
+    ]
+  },
+  messages: [
+    {
+      role: "user",
+      content: "Create a presentation about renewable energy with 5 slides"
+    }
+  ],
+  tools: [
+    {
+      type: "code_execution_20250825",
+      name: "code_execution"
+    }
+  ]
+});
+
+console.log(response.content);
+```
 </CodeGroup>
 
 Mari kita uraikan apa yang dilakukan setiap bagian:
 
-- **`container.skills`**: Menentukan Skills mana yang dapat digunakan Claude
-- **`type: "anthropic"`**: Menunjukkan bahwa ini adalah Skill yang dikelola Anthropic
-- **`skill_id: "pptx"`**: Pengenal PowerPoint Skill
-- **`version: "latest"`**: Versi Skill diatur ke yang paling baru dipublikasikan
-- **`tools`**: Mengaktifkan eksekusi kode (diperlukan untuk Skills)
-- **Beta headers**: `code-execution-2025-08-25` dan `skills-2025-10-02`
+- **`container.skills`:** Menentukan Skills mana yang dapat digunakan Claude
+- **`type: "anthropic"`:** Menunjukkan bahwa ini adalah Skill yang dikelola Anthropic
+- **`skill_id: "pptx"`:** Pengenal PowerPoint Skill
+- **`version: "latest"`:** Versi Skill yang diatur ke yang paling baru diterbitkan
+- **`tools`:** Mengaktifkan eksekusi kode (diperlukan untuk Skills)
+- **Header Beta:** `code-execution-2025-08-25` dan `skills-2025-10-02`
 
-Ketika Anda membuat permintaan ini, Claude secara otomatis mencocokkan tugas Anda dengan Skill yang relevan. Karena Anda meminta presentasi, Claude menentukan bahwa PowerPoint Skill relevan dan memuat instruksi lengkapnya: tingkat kedua progressive disclosure. Kemudian Claude menjalankan kode Skill untuk membuat presentasi Anda.
+Saat Anda membuat permintaan ini, Claude secara otomatis mencocokkan tugas Anda dengan Skill yang relevan. Karena Anda meminta presentasi, Claude menentukan bahwa PowerPoint Skill relevan dan memuat instruksi lengkapnya: tingkat kedua dari progressive disclosure. Kemudian Claude mengeksekusi kode Skill untuk membuat presentasi Anda.
 
 ## Langkah 3: Unduh file yang dibuat
 
-Presentasi dibuat di kontainer eksekusi kode dan disimpan sebagai file. Respons mencakup referensi file dengan ID file. Ekstrak ID file dan unduh menggunakan Files API:
+Presentasi dibuat di container eksekusi kode dan disimpan sebagai file. Respons menyertakan referensi file dengan ID file. Ekstrak ID file dan unduh menggunakan Files API:
 
 <CodeGroup>
-```python Python
-# Extract file ID from response
+
+```bash Shell nocheck
+# Ekstrak file_id dari respons (menggunakan jq)
+FILE_ID=$(echo "$RESPONSE" | jq -r '.content[] | select(.type=="tool_use" and .name=="code_execution") | .content[] | select(.file_id) | .file_id')
+
+# Unduh file
+curl "https://api.anthropic.com/v1/files/$FILE_ID/content" \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: files-api-2025-04-14" \
+  --output renewable_energy.pptx
+
+echo "Presentasi disimpan ke renewable_energy.pptx"
+```
+
+```bash CLI
+# Ekstrak file_id dengan --transform pada panggilan messages create
+FILE_ID=$(ant beta:messages create \
+  --beta code-execution-2025-08-25 --beta skills-2025-10-02 \
+  --transform 'content.#.content.content.#.file_id|@flatten|0' \
+  --format yaml <<'YAML'
+model: claude-opus-4-6
+max_tokens: 4096
+container:
+  skills:
+    - type: anthropic
+      skill_id: pptx
+      version: latest
+messages:
+  - role: user
+    content: Create a presentation about renewable energy with 5 slides
+tools:
+  - type: code_execution_20250825
+    name: code_execution
+YAML
+)
+
+# Unduh file
+ant beta:files download \
+  --file-id "$FILE_ID" \
+  --output renewable_energy.pptx
+
+printf 'Presentasi disimpan ke renewable_energy.pptx\n'
+```
+
+```python Python nocheck
+from typing import Any
+
+response: Any = None
+# Ekstrak ID file dari respons
 file_id = None
 for block in response.content:
-    if block.type == 'tool_use' and block.name == 'code_execution':
-        # File ID is in the tool result
+    if block.type == "tool_use" and block.name == "code_execution":
+        # ID file ada di hasil tool
         for result_block in block.content:
-            if hasattr(result_block, 'file_id'):
+            if hasattr(result_block, "file_id"):
                 file_id = result_block.file_id
                 break
 
 if file_id:
-    # Download the file
+    # Unduh file
     file_content = client.beta.files.download(
-        file_id=file_id,
-        betas=["files-api-2025-04-14"]
+        file_id=file_id, betas=["files-api-2025-04-14"]
     )
 
-    # Save to disk
+    # Simpan ke disk
     with open("renewable_energy.pptx", "wb") as f:
         file_content.write_to_file(f.name)
 
-    print(f"Presentation saved to renewable_energy.pptx")
+    print(f"Presentasi disimpan ke renewable_energy.pptx")
 ```
 
-```typescript TypeScript
-// Extract file ID from response
+```typescript TypeScript nocheck
+// Ekstrak ID file dari respons
 let fileId: string | null = null;
 for (const block of response.content) {
-  if (block.type === 'tool_use' && block.name === 'code_execution') {
-    // File ID is in the tool result
+  if (block.type === "tool_use" && block.name === "code_execution") {
+    // ID file ada di hasil tool
     for (const resultBlock of block.content) {
-      if ('file_id' in resultBlock) {
+      if ("file_id" in resultBlock) {
         fileId = resultBlock.file_id;
         break;
       }
@@ -236,95 +302,31 @@ for (const block of response.content) {
 }
 
 if (fileId) {
-  // Download the file
+  // Unduh file
   const fileContent = await client.beta.files.download(fileId, {
-    betas: ['files-api-2025-04-14']
+    betas: ["files-api-2025-04-14"]
   });
 
-  // Save to disk
-  const fs = require('fs');
-  fs.writeFileSync('renewable_energy.pptx', Buffer.from(await fileContent.arrayBuffer()));
+  // Simpan ke disk
+  const fs = require("fs/promises");
+  await fs.writeFile("renewable_energy.pptx", Buffer.from(await fileContent.arrayBuffer()));
 
-  console.log('Presentation saved to renewable_energy.pptx');
+  console.log("Presentasi disimpan ke renewable_energy.pptx");
 }
-```
-
-```bash Shell
-# Extract file_id from response (using jq)
-FILE_ID=$(echo "$RESPONSE" | jq -r '.content[] | select(.type=="tool_use" and .name=="code_execution") | .content[] | select(.file_id) | .file_id')
-
-# Download the file
-curl "https://api.anthropic.com/v1/files/$FILE_ID/content" \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: files-api-2025-04-14" \
-  --output renewable_energy.pptx
-
-echo "Presentation saved to renewable_energy.pptx"
 ```
 </CodeGroup>
 
 <Note>
-Untuk detail lengkap tentang bekerja dengan file yang dihasilkan, lihat [dokumentasi alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files).
+Untuk detail lengkap tentang bekerja dengan file yang dihasilkan, lihat [dokumentasi code execution tool](/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files).
 </Note>
 
 ## Coba lebih banyak contoh
 
-Sekarang yang Anda telah membuat dokumen pertama Anda dengan Skills, coba variasi ini:
+Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi berikut:
 
 ### Buat spreadsheet
 
 <CodeGroup>
-```python Python
-response = client.beta.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=4096,
-    betas=["code-execution-2025-08-25", "skills-2025-10-02"],
-    container={
-        "skills": [
-            {
-                "type": "anthropic",
-                "skill_id": "xlsx",
-                "version": "latest"
-            }
-        ]
-    },
-    messages=[{
-        "role": "user",
-        "content": "Create a quarterly sales tracking spreadsheet with sample data"
-    }],
-    tools=[{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-    }]
-)
-```
-
-```typescript TypeScript
-const response = await client.beta.messages.create({
-  model: 'claude-opus-4-6',
-  max_tokens: 4096,
-  betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
-  container: {
-    skills: [
-      {
-        type: 'anthropic',
-        skill_id: 'xlsx',
-        version: 'latest'
-      }
-    ]
-  },
-  messages: [{
-    role: 'user',
-    content: 'Create a quarterly sales tracking spreadsheet with sample data'
-  }],
-  tools: [{
-    type: 'code_execution_20250825',
-    name: 'code_execution'
-  }]
-});
-```
-
 ```bash Shell
 curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -353,61 +355,78 @@ curl https://api.anthropic.com/v1/messages \
     }]
   }'
 ```
-</CodeGroup>
 
-### Buat dokumen Word
+```bash CLI
+ant beta:messages create \
+  --beta code-execution-2025-08-25 \
+  --beta skills-2025-10-02 <<'YAML'
+model: claude-opus-4-6
+max_tokens: 4096
+container:
+  skills:
+    - type: anthropic
+      skill_id: xlsx
+      version: latest
+messages:
+  - role: user
+    content: Create a quarterly sales tracking spreadsheet with sample data
+tools:
+  - type: code_execution_20250825
+    name: code_execution
+YAML
+```
 
-<CodeGroup>
 ```python Python
 response = client.beta.messages.create(
     model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
-        "skills": [
-            {
-                "type": "anthropic",
-                "skill_id": "docx",
-                "version": "latest"
-            }
-        ]
+        "skills": [{"type": "anthropic", "skill_id": "xlsx", "version": "latest"}]
     },
-    messages=[{
-        "role": "user",
-        "content": "Write a 2-page report on the benefits of renewable energy"
-    }],
-    tools=[{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-    }]
+    messages=[
+        {
+            "role": "user",
+            "content": "Create a quarterly sales tracking spreadsheet with sample data",
+        }
+    ],
+    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
 )
 ```
 
 ```typescript TypeScript
 const response = await client.beta.messages.create({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 4096,
-  betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
+  betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
   container: {
     skills: [
       {
-        type: 'anthropic',
-        skill_id: 'docx',
-        version: 'latest'
+        type: "anthropic",
+        skill_id: "xlsx",
+        version: "latest"
       }
     ]
   },
-  messages: [{
-    role: 'user',
-    content: 'Write a 2-page report on the benefits of renewable energy'
-  }],
-  tools: [{
-    type: 'code_execution_20250825',
-    name: 'code_execution'
-  }]
+  messages: [
+    {
+      role: "user",
+      content: "Create a quarterly sales tracking spreadsheet with sample data"
+    }
+  ],
+  tools: [
+    {
+      type: "code_execution_20250825",
+      name: "code_execution"
+    }
+  ]
 });
 ```
+</CodeGroup>
 
+### Buat dokumen Word
+
+<CodeGroup>
 ```bash Shell
 curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -436,61 +455,78 @@ curl https://api.anthropic.com/v1/messages \
     }]
   }'
 ```
-</CodeGroup>
 
-### Hasilkan PDF
+```bash CLI
+ant beta:messages create \
+  --beta code-execution-2025-08-25 \
+  --beta skills-2025-10-02 <<'YAML'
+model: claude-opus-4-6
+max_tokens: 4096
+container:
+  skills:
+    - type: anthropic
+      skill_id: docx
+      version: latest
+messages:
+  - role: user
+    content: Write a 2-page report on the benefits of renewable energy
+tools:
+  - type: code_execution_20250825
+    name: code_execution
+YAML
+```
 
-<CodeGroup>
 ```python Python
 response = client.beta.messages.create(
     model="claude-opus-4-6",
     max_tokens=4096,
     betas=["code-execution-2025-08-25", "skills-2025-10-02"],
     container={
-        "skills": [
-            {
-                "type": "anthropic",
-                "skill_id": "pdf",
-                "version": "latest"
-            }
-        ]
+        "skills": [{"type": "anthropic", "skill_id": "docx", "version": "latest"}]
     },
-    messages=[{
-        "role": "user",
-        "content": "Generate a PDF invoice template"
-    }],
-    tools=[{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-    }]
+    messages=[
+        {
+            "role": "user",
+            "content": "Write a 2-page report on the benefits of renewable energy",
+        }
+    ],
+    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
 )
 ```
 
 ```typescript TypeScript
 const response = await client.beta.messages.create({
-  model: 'claude-opus-4-6',
+  model: "claude-opus-4-6",
   max_tokens: 4096,
-  betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
+  betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
   container: {
     skills: [
       {
-        type: 'anthropic',
-        skill_id: 'pdf',
-        version: 'latest'
+        type: "anthropic",
+        skill_id: "docx",
+        version: "latest"
       }
     ]
   },
-  messages: [{
-    role: 'user',
-    content: 'Generate a PDF invoice template'
-  }],
-  tools: [{
-    type: 'code_execution_20250825',
-    name: 'code_execution'
-  }]
+  messages: [
+    {
+      role: "user",
+      content: "Write a 2-page report on the benefits of renewable energy"
+    }
+  ],
+  tools: [
+    {
+      type: "code_execution_20250825",
+      name: "code_execution"
+    }
+  ]
 });
 ```
+</CodeGroup>
 
+### Hasilkan PDF
+
+<CodeGroup>
 ```bash Shell
 curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -519,11 +555,73 @@ curl https://api.anthropic.com/v1/messages \
     }]
   }'
 ```
+
+```bash CLI
+ant beta:messages create \
+  --beta code-execution-2025-08-25 \
+  --beta skills-2025-10-02 <<'YAML'
+model: claude-opus-4-6
+max_tokens: 4096
+container:
+  skills:
+    - type: anthropic
+      skill_id: pdf
+      version: latest
+messages:
+  - role: user
+    content: Generate a PDF invoice template
+tools:
+  - type: code_execution_20250825
+    name: code_execution
+YAML
+```
+
+```python Python
+response = client.beta.messages.create(
+    model="claude-opus-4-6",
+    max_tokens=4096,
+    betas=["code-execution-2025-08-25", "skills-2025-10-02"],
+    container={
+        "skills": [{"type": "anthropic", "skill_id": "pdf", "version": "latest"}]
+    },
+    messages=[{"role": "user", "content": "Generate a PDF invoice template"}],
+    tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
+)
+```
+
+```typescript TypeScript
+const response = await client.beta.messages.create({
+  model: "claude-opus-4-6",
+  max_tokens: 4096,
+  betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
+  container: {
+    skills: [
+      {
+        type: "anthropic",
+        skill_id: "pdf",
+        version: "latest"
+      }
+    ]
+  },
+  messages: [
+    {
+      role: "user",
+      content: "Generate a PDF invoice template"
+    }
+  ],
+  tools: [
+    {
+      type: "code_execution_20250825",
+      name: "code_execution"
+    }
+  ]
+});
+```
 </CodeGroup>
 
-## Langkah berikutnya
+## Langkah selanjutnya
 
-Sekarang yang Anda telah menggunakan Agent Skills yang telah dibangun sebelumnya, Anda dapat:
+Sekarang setelah Anda menggunakan Agent Skills bawaan, Anda dapat:
 
 <CardGroup cols={2}>
   <Card
@@ -534,7 +632,7 @@ Sekarang yang Anda telah menggunakan Agent Skills yang telah dibangun sebelumnya
     Gunakan Skills dengan Claude API
   </Card>
   <Card
-    title="Buat Skills Khusus"
+    title="Buat Skills Kustom"
     icon="code"
     href="/docs/id/api/skills/create-skill"
   >
@@ -553,13 +651,6 @@ Sekarang yang Anda telah menggunakan Agent Skills yang telah dibangun sebelumnya
     href="https://code.claude.com/docs/en/skills"
   >
     Pelajari tentang Skills di Claude Code
-  </Card>
-  <Card
-    title="Gunakan Skills di Agent SDK"
-    icon="cube"
-    href="/docs/id/agent-sdk/skills"
-  >
-    Gunakan Skills secara terprogram di TypeScript dan Python
   </Card>
   <Card
     title="Agent Skills Cookbook"

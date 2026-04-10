@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: a45225a0f9f67e66068f9fd36eeb4ef918ee8df9ef3e54cc3b8634b33a840ae7
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 73d1f807e5d87459ab3c064ec816847f17a934ebfc0c72b35938acf38b3043b6
 ---
 
 ## Create
@@ -127,7 +127,7 @@ Create Credential
 
   - `IReadOnlyDictionary<string, string> metadata`
 
-    Body param: Arbitrary key-value metadata to attach to the credential.
+    Body param: Arbitrary key-value metadata to attach to the credential. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
   - `IReadOnlyList<AnthropicBeta> betas`
 
@@ -174,6 +174,8 @@ Create Credential
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

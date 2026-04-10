@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: b843bcc309ca5517df1d4cf93f49b0e333f3bf5dd2abd35f826fcd3e04039618
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 5977fa1690493963f5259983cc2ebf85046e30dd2aa1f88022783dec0af0014b
 ---
 
 ## Create
@@ -19,7 +19,7 @@ Create Session
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -63,6 +63,8 @@ Create Session
 
     - `"output-300k-2026-03-24"`
 
+    - `"advisor-tool-2026-03-01"`
+
 ### Body Parameters
 
 - `agent: string or BetaManagedAgentsAgentParams`
@@ -93,7 +95,7 @@ Create Session
 
 - `metadata: optional map[string]`
 
-  Arbitrary key-value metadata attached to the session.
+  Arbitrary key-value metadata attached to the session. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
 - `resources: optional array of BetaManagedAgentsGitHubRepositoryResourceParams or BetaManagedAgentsFileResourceParams`
 

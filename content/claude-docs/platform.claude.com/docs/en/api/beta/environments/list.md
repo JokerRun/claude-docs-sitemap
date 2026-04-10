@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: a384cb85a99cacd8701dd7028c5895f6918619628b17f8e1e18a6f5520b5c6e3
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 488b2aed5daf8139d1647ee3b4d3d6c05434261ee0391dff51d915513814b820
 ---
 
 ## List
@@ -33,7 +33,7 @@ List environments with pagination support.
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,9 +77,7 @@ List environments with pagination support.
 
     - `"output-300k-2026-03-24"`
 
-### Cookie Parameters
-
-- `sessionKey: optional string`
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

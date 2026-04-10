@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 158f700151c4c48f9ed936923292da30dd0949e7dbea9010dfb92c8dce024380
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: ba909a0a5ba25798872c44683513960b17e64c2abd5c2d78e16aae1ed9a27381
 ---
 
 ## Create
@@ -63,13 +63,15 @@ Create Vault
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
   - `String displayName`
 
     Human-readable name for the vault. 1-255 characters.
 
   - `Optional<Metadata> metadata`
 
-    Arbitrary key-value metadata to attach to the vault.
+    Arbitrary key-value metadata to attach to the vault. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
 ### Returns
 

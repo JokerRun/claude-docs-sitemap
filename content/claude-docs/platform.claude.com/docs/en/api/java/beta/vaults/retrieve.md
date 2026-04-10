@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: ef3a328027691caca00c93f2edfba9d67ef1e818073d79ba81dba8db8ed9b1f8
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 870ec1f4626fb557bbb9648217270bd7c4cd442e8631856359cf653922b0c05a
 ---
 
 ## Retrieve
@@ -64,6 +64,8 @@ Get Vault
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

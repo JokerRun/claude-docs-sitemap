@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/download
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: bd6bc796c7656bb0c3cafc00c9cb615469043c9bc8c501c13d7c00fc0da20a7e
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 29cf3e5cbb419f5c51616d341b4301604394403c264b3a2b9898bb5435af75a4
 ---
 
 ## Download
@@ -66,6 +66,8 @@ Download File
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Example
 

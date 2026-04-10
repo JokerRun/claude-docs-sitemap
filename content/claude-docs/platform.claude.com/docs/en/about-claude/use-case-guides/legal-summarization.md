@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 17cbb01d881b2990978dcfd55a5eb87183d36867a0243fb9c531fbd1d5a90b83
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 73f370cb258f687e0caa0c263bb940b5db95bb935652dfbc4f465ab8731d15ba
 ---
 
 # Legal summarization
@@ -335,7 +335,7 @@ Note that the `summarize_long_document` function isn't strictly necessary for th
 
 ### Use summary indexed documents to explore a large collection of documents
 
-Searching a collection of documents with an LLM usually involves retrieval-augmented generation (RAG). However, in scenarios involving large documents or when precise information retrieval is crucial, a basic RAG approach may be insufficient. Summary indexed documents is an advanced RAG approach that provides a more efficient way of ranking documents for retrieval, using less context than traditional RAG methods. In this approach, you first use Claude to generate a concise summary for each document in your corpus, and then use Clade to rank the relevance of each summary to the query being asked. For further details on this approach, including a code-based example, check out the summary indexed documents section in the [summarization cookbook](https://platform.claude.com/cookbook/capabilities-summarization-guide).
+Searching a collection of documents with an LLM usually involves retrieval-augmented generation (RAG). However, in scenarios involving large documents or when precise information retrieval is crucial, a basic RAG approach may be insufficient. Summary indexed documents is an advanced RAG approach that provides a more efficient way of ranking documents for retrieval, using less context than traditional RAG methods. In this approach, you first use Claude to generate a concise summary for each document in your corpus, and then use Claude to rank the relevance of each summary to the query being asked. For further details on this approach, including a code-based example, check out the summary indexed documents section in the [summarization cookbook](https://platform.claude.com/cookbook/capabilities-summarization-guide).
 
 ### Fine-tune Claude to learn from your dataset
 

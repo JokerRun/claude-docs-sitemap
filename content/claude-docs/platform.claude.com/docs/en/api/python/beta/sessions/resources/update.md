@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 4704da90d8402ccd2a25939d719c05c94ce63f391ec0eae31138c5736d7925d9
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 7157f08607339609abbe54d3fafe9b9bcb9c013cddd63cbc06ba6e18fe1fd3da
 ---
 
 ## Update
@@ -29,7 +29,7 @@ Update Session Resource
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Update Session Resource
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

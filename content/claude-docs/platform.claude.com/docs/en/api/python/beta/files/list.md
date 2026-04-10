@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 015dffcad9b518709f34b568b3c4e19bc24b388f82792c11fbd8d02f29110cee
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 3fc3c031127c2244d1712d95970bf7e1a72bd6ed5b9f859a65862de9bcf0cdd6
 ---
 
 ## List
@@ -39,7 +39,7 @@ List Files
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ List Files
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

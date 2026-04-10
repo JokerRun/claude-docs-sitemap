@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/archive
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 2009dc8cdf7fc455af0af1aab47b6046e4493fcde132e4572a0dcf4cf976fec0
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: a5dd2ca3335294c069a6469e274b2f40c1c77e26baab1ca363cbd30d0d9c2be0
 ---
 
 ## Archive
@@ -66,6 +66,8 @@ Archive Agent
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

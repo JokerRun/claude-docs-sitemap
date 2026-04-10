@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/api-and-data-retention
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f95c8db4938a1dd99c7b6f0ae4b52e001d805cb30549a816b8b8c33a2fc3ca37
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: ec540a13b7cdcbd985832a22fc2a8fd74468bc4db90d500a035fef4d3dcc1305
 ---
 
 # API and data retention
@@ -141,6 +141,7 @@ The following table lists which Claude API features are eligible for ZDR and HIP
 | [Token counting](/docs/en/build-with-claude/token-counting) | `/v1/messages/count_tokens` | <Eligible>Yes</Eligible> | <Eligible>Yes</Eligible> | Count tokens before sending requests. |
 | [Web search](/docs/en/agents-and-tools/tool-use/web-search-tool) | `/v1/messages` (with `web_search` tool) | <Eligible>Yes</Eligible><sup>1</sup> | <Eligible>Yes</Eligible><sup>1</sup> | Real-time web search results returned in the API response. |
 | [Web fetch](/docs/en/agents-and-tools/tool-use/web-fetch-tool) | `/v1/messages` (with `web_fetch` tool) | <Eligible>Yes</Eligible><sup>1</sup> <sup>2</sup> | <Eligible status="no">No</Eligible> | Fetched web content returned in the API response. |
+| [Advisor tool](/docs/en/agents-and-tools/tool-use/advisor-tool) | `/v1/messages` (with `advisor` tool) | <Eligible>Yes</Eligible> | <Eligible status="no">No</Eligible> | Advisor model output is returned in the API response; nothing is stored server-side after the response. |
 | [Memory tool](/docs/en/agents-and-tools/tool-use/memory-tool) | `/v1/messages` (with `memory` tool) | <Eligible>Yes</Eligible> | <Eligible>Yes</Eligible> | Client-side memory storage where you control data retention. |
 | [Context management (compaction)](/docs/en/build-with-claude/compaction) | `/v1/messages` (with `context_management`) | <Eligible>Yes</Eligible> | <Eligible status="no">No</Eligible> | Server-side compaction results are returned/round-tripped statelessly through the API response. |
 | [Context editing](/docs/en/build-with-claude/context-editing) | `/v1/messages` (with `context_management`) | <Eligible>Yes</Eligible> | <Eligible status="no">No</Eligible> | Context edits (tool use clearing + thinking clearing) are applied in real time. |

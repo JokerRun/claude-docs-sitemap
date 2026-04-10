@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: edc9f9a28b9c76d00e2314e2fba21ccc8ba546b5b164be1963dc840cadff04dc
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 6b82b232512df16e9c3510d171ed8f49b697bfe5ce62346d3457f8b916d86767
 ---
 
 ## Delete
@@ -68,6 +68,8 @@ Delete Vault
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

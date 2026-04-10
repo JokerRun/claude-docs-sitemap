@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: ecd67ec472621fe2d366a1d54dc74af6219c090a4a0dfc6595e5f769ff9e2942
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 3e652b29715568aefdf989532a5c69b0032729f8f9a4a77642c39a823ded3d83
 ---
 
 ## Delete
@@ -78,6 +78,8 @@ Delete Skill Version
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

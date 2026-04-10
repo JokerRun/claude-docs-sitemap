@@ -1,150 +1,353 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/client-sdks
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 543177019c6bc082c3b0751aeeedab3896528ad634d97d1d5c34ff2e73db9ae0
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: d1479a303b05385bd537f1a75fab685e2c0013ae6abe9f0635e9d156eaff73bf
 ---
 
-# Client SDKs
+# SDK Klien
 
-Kami menyediakan perpustakaan klien dalam sejumlah bahasa populer yang memudahkan untuk bekerja dengan Claude API.
+SDK resmi untuk membangun dengan Claude API dalam Python, TypeScript, Java, Go, Ruby, C#, PHP, dan baris perintah.
 
 ---
 
-Halaman ini mencakup instruksi instalasi singkat dan tautan ke repositori GitHub sumber terbuka untuk Client SDKs Anthropic. Untuk instruksi penggunaan dasar, lihat [referensi API](/docs/id/api/overview). Untuk instruksi penggunaan terperinci, lihat repositori GitHub setiap SDK.
+Anthropic menyediakan SDK klien resmi dalam berbagai bahasa pemrograman untuk memudahkan pekerjaan dengan Claude API. Setiap SDK menyediakan antarmuka idiomatis, keamanan tipe, dan dukungan bawaan untuk fitur-fitur seperti streaming, percobaan ulang, dan penanganan kesalahan.
 
-<Note>
-Konfigurasi tambahan diperlukan untuk menggunakan Client SDKs Anthropic melalui platform mitra. Jika Anda menggunakan Amazon Bedrock, lihat [panduan ini](/docs/id/build-with-claude/claude-on-amazon-bedrock); jika Anda menggunakan Google Cloud Vertex AI, lihat [panduan ini](/docs/id/build-with-claude/claude-on-vertex-ai); jika Anda menggunakan Microsoft Foundry, lihat [panduan ini](/docs/id/build-with-claude/claude-in-microsoft-foundry).
-</Note>
+<CardGroup cols={3}>
+  <Card title="CLI" href="/docs/id/api/sdks/cli">
+    Shell scripting, typed flags, response transforms
+  </Card>
+  <Card title="Python" href="/docs/id/api/sdks/python">
+    Klien sinkron dan asinkron, model Pydantic
+  </Card>
+  <Card title="TypeScript" href="/docs/id/api/sdks/typescript">
+    Dukungan Node.js, Deno, Bun, dan browser
+  </Card>
+  <Card title="Java" href="/docs/id/api/sdks/java">
+    Pola builder, CompletableFuture asinkron
+  </Card>
+  <Card title="Go" href="/docs/id/api/sdks/go">
+    Pembatalan berbasis konteks, opsi fungsional
+  </Card>
+  <Card title="Ruby" href="/docs/id/api/sdks/ruby">
+    Tipe Sorbet, pembantu streaming
+  </Card>
+  <Card title="C#" href="/docs/id/api/sdks/csharp">
+    .NET Standard 2.0+, integrasi IChatClient
+  </Card>
+  <Card title="PHP" href="/docs/id/api/sdks/php">
+    Objek nilai, pola builder
+  </Card>
+</CardGroup>
 
-## Python
+## Instalasi cepat
 
-[Repositori GitHub perpustakaan Python](https://github.com/anthropics/anthropic-sdk-python)
-
-**Persyaratan:** Python 3.8+
-
-**Versi SDK minimum:** 0.22.0
-
-**Instalasi:**
-
+<Tabs>
+<Tab title="CLI">
+```bash
+brew install anthropics/tap/ant
+```
+</Tab>
+<Tab title="Python">
 ```bash
 pip install anthropic
 ```
-
----
-
-## TypeScript
-
-[Repositori GitHub perpustakaan TypeScript](https://github.com/anthropics/anthropic-sdk-typescript)
-
-<Info>
-Meskipun perpustakaan ini dalam TypeScript, perpustakaan ini juga dapat digunakan dalam perpustakaan JavaScript.
-</Info>
-
-**Versi SDK minimum:** 0.37.0
-
-**Instalasi:**
-
+</Tab>
+<Tab title="TypeScript">
 ```bash
 npm install @anthropic-ai/sdk
 ```
-
----
-
-## Java
-
-[Repositori GitHub perpustakaan Java](https://github.com/anthropics/anthropic-sdk-java)
-
-**Persyaratan:** Java 8 atau lebih baru
-
-**Instalasi:**
-
-Gradle:
-```groovy
-implementation("com.anthropic:anthropic-java:2.10.0")
-```
-
-Maven:
-```xml
-<dependency>
-    <groupId>com.anthropic</groupId>
-    <artifactId>anthropic-java</artifactId>
-    <version>2.10.0</version>
-</dependency>
-```
-
----
-
-## Go
-
-[Repositori GitHub perpustakaan Go](https://github.com/anthropics/anthropic-sdk-go)
-
-**Persyaratan:** Go 1.22+
-
-**Instalasi:**
-
-```bash
-go get -u 'github.com/anthropics/anthropic-sdk-go@v1.17.0'
-```
-
----
-
-## C#
-
-[Repositori GitHub perpustakaan C#](https://github.com/anthropics/anthropic-sdk-csharp)
-
-<Info>
-SDK C# saat ini dalam beta.
-</Info>
-
-**Persyaratan:** .NET 8 atau lebih baru
-
-**Instalasi:**
-
+</Tab>
+<Tab title="C#">
 ```bash
 dotnet add package Anthropic
 ```
-
----
-
-## Ruby
-
-[Repositori GitHub perpustakaan Ruby](https://github.com/anthropics/anthropic-sdk-ruby)
-
-**Persyaratan:** Ruby 3.2.0 atau lebih baru
-
-**Instalasi:**
-
-Tambahkan ke Gemfile Anda:
-```ruby
-gem "anthropic", "~> 1.13.0"
-```
-
-Kemudian jalankan:
+</Tab>
+<Tab title="Go">
 ```bash
-bundle install
+go get github.com/anthropics/anthropic-sdk-go
+```
+</Tab>
+<Tab title="Java">
+<CodeGroup>
+```groovy Gradle
+implementation("com.anthropic:anthropic-java:2.20.0")
 ```
 
----
-
-## PHP
-
-[Repositori GitHub perpustakaan PHP](https://github.com/anthropics/anthropic-sdk-php)
-
-<Info>
-SDK PHP saat ini dalam beta.
-</Info>
-
-**Persyaratan:** PHP 8.1.0 atau lebih tinggi
-
-**Instalasi:**
-
+```xml Maven
+<dependency>
+    <groupId>com.anthropic</groupId>
+    <artifactId>anthropic-java</artifactId>
+    <version>2.20.0</version>
+</dependency>
+```
+</CodeGroup>
+</Tab>
+<Tab title="PHP">
 ```bash
-composer require "anthropic-ai/sdk 0.3.0"
+composer require anthropic-ai/sdk
+```
+</Tab>
+<Tab title="Ruby">
+```bash
+bundler add anthropic
+```
+</Tab>
+</Tabs>
+
+## Mulai cepat
+
+<CodeGroup>
+```bash CLI
+ant messages create \
+  --model claude-opus-4-6 \
+  --max-tokens 1024 \
+  --message '{role: user, content: "Hello, Claude"}' \
+  --transform content
 ```
 
----
+```python Python
+import anthropic
 
-## Beta namespace dalam client SDKs
+client = anthropic.Anthropic()
 
-Setiap SDK memiliki namespace `beta` yang tersedia untuk mengakses fitur baru yang dirilis Anthropic dalam versi beta. Gunakan ini bersama dengan [beta headers](/docs/id/api/beta-headers) untuk mengakses fitur-fitur ini. Lihat repositori GitHub setiap SDK untuk contoh penggunaan spesifik.
+message = client.messages.create(
+    model="claude-opus-4-6",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Hello, Claude"}],
+)
+print(message.content)
+```
+
+```typescript TypeScript
+import Anthropic from "@anthropic-ai/sdk";
+
+const client = new Anthropic();
+
+const message = await client.messages.create({
+  model: "claude-opus-4-6",
+  max_tokens: 1024,
+  messages: [{ role: "user", content: "Hello, Claude" }]
+});
+console.log(message.content);
+```
+
+```csharp C# hidelines={2}
+using Anthropic;
+using Anthropic.Models.Messages;
+
+var client = new AnthropicClient();
+
+var message = await client.Messages.Create(new MessageCreateParams
+{
+    Model = "claude-opus-4-6",
+    MaxTokens = 1024,
+    Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
+});
+Console.WriteLine(message.Content);
+```
+
+```go Go hidelines={1..2,10..11,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_6,
+		MaxTokens: 1024,
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(message.Content)
+}
+```
+
+```java Java hidelines={6..8,-2..}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+
+public class Main {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageCreateParams params = MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_4_6)
+            .maxTokens(1024L)
+            .addUserMessage("Hello, Claude")
+            .build();
+
+        Message message = client.messages().create(params);
+        System.out.println(message.content());
+    }
+}
+```
+
+```php PHP hidelines={1}
+<?php
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv('ANTHROPIC_API_KEY'));
+
+$message = $client->messages->create(
+    model: 'claude-opus-4-6',
+    maxTokens: 1024,
+    messages: [
+        ['role' => 'user', 'content' => 'Hello, Claude']
+    ],
+);
+echo $message->content[0]->text;
+```
+
+```ruby Ruby
+client = Anthropic::Client.new
+
+message = client.messages.create(
+  model: "claude-opus-4-6",
+  max_tokens: 1024,
+  messages: [
+    { role: "user", content: "Hello, Claude" }
+  ]
+)
+puts message.content
+```
+</CodeGroup>
+
+## Dukungan platform
+
+Semua SDK mendukung berbagai opsi penerapan:
+
+| Platform | Deskripsi |
+|----------|-------------|
+| Claude API | Terhubung langsung ke titik akhir Claude API |
+| [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) | Gunakan Claude melalui AWS |
+| [Google Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai) | Gunakan Claude melalui Google Cloud |
+| [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry) | Gunakan Claude melalui Microsoft Azure |
+
+Lihat halaman SDK individual untuk instruksi pengaturan khusus platform.
+
+## Fitur beta
+
+Akses fitur beta menggunakan namespace `beta` di SDK apa pun:
+
+<CodeGroup>
+
+```bash CLI nocheck
+ant beta:messages create \
+  --model claude-opus-4-6 \
+  --max-tokens 1024 \
+  --message '{role: user, content: "Hello"}' \
+  --beta feature-name
+```
+
+```python Python nocheck
+message = client.beta.messages.create(
+    model="claude-opus-4-6",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Hello"}],
+    betas=["feature-name"],
+)
+```
+
+```typescript TypeScript nocheck
+const message = await client.beta.messages.create({
+  model: "claude-opus-4-6",
+  max_tokens: 1024,
+  messages: [{ role: "user", content: "Hello" }],
+  betas: ["feature-name"]
+});
+```
+
+```csharp C# nocheck
+var message = await client.Beta.Messages.Create(new MessageCreateParams
+{
+    Model = "claude-opus-4-6",
+    MaxTokens = 1024,
+    Messages = [new() { Role = Role.User, Content = "Hello" }],
+    Betas = ["feature-name"],
+});
+```
+
+```go Go nocheck hidelines={9}
+message, _ := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
+	Model:     anthropic.ModelClaudeOpus4_6,
+	MaxTokens: 1024,
+	Messages: []anthropic.BetaMessageParam{
+		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello")),
+	},
+	Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBeta("feature-name")},
+})
+fmt.Println(message)
+```
+
+```java Java nocheck
+import com.anthropic.models.beta.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+
+MessageCreateParams params = MessageCreateParams.builder()
+    .model(Model.CLAUDE_OPUS_4_6)
+    .maxTokens(1024L)
+    .addUserMessage("Hello")
+    .addBeta("feature-name")
+    .build();
+
+client.beta().messages().create(params);
+```
+
+```php PHP nocheck
+$message = $client->beta->messages->create(
+    model: 'claude-opus-4-6',
+    maxTokens: 1024,
+    messages: [['role' => 'user', 'content' => 'Hello']],
+    betas: ['feature-name'],
+);
+```
+
+```ruby Ruby nocheck
+message = client.beta.messages.create(
+  model: "claude-opus-4-6",
+  max_tokens: 1024,
+  messages: [{ role: "user", content: "Hello" }],
+  betas: ["feature-name"]
+)
+```
+</CodeGroup>
+
+Lihat [Header beta](/docs/id/api/beta-headers) untuk fitur beta yang tersedia.
+
+## Persyaratan
+
+| SDK | Versi Minimum |
+|-----|-----------------|
+| Python | 3.9+ |
+| TypeScript | 4.9+ (Node.js 20+) |
+| Java | 8+ |
+| Go | 1.23+ |
+| Ruby | 3.2.0+ |
+| C# | .NET Standard 2.0 |
+| PHP | 8.1.0+ |
+
+## Repositori GitHub
+
+- [anthropic-sdk-python](https://github.com/anthropics/anthropic-sdk-python)
+- [anthropic-sdk-typescript](https://github.com/anthropics/anthropic-sdk-typescript)
+- [anthropic-sdk-java](https://github.com/anthropics/anthropic-sdk-java)
+- [anthropic-sdk-go](https://github.com/anthropics/anthropic-sdk-go)
+- [anthropic-sdk-ruby](https://github.com/anthropics/anthropic-sdk-ruby)
+- [anthropic-sdk-csharp](https://github.com/anthropics/anthropic-sdk-csharp)
+- [anthropic-sdk-php](https://github.com/anthropics/anthropic-sdk-php)

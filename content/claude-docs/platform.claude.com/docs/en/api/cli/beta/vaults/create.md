@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8af0a88a59a12f966f21d54139fb4d99e3e859f08386884c2aa0fdd0e1e0d8d7
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 1e8d3ee392e8f695e5e92b748076ce9cbb90c090f3f83bbf85c1363fb2b42bcd
 ---
 
 ## Create
@@ -21,7 +21,7 @@ Create Vault
 
 - `--metadata: optional map[string]`
 
-  Body param: Arbitrary key-value metadata to attach to the vault.
+  Body param: Arbitrary key-value metadata to attach to the vault. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
 - `--beta: optional array of AnthropicBeta`
 

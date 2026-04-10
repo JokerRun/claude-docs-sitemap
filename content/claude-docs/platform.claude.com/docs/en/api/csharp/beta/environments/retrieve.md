@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 11d39bb148ae1f4f50791fd689d9905bf2816c343622b111f5348b6c0712a30c
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 233ce78e16a3fa526b63e1a42c8db7d395466da9d96331a89a5dd429a2c9916c
 ---
 
 ## Retrieve
@@ -64,6 +64,8 @@ Retrieve a specific environment by ID.
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

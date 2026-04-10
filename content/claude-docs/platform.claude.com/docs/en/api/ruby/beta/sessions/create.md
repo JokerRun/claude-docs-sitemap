@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: c1cbba609a241300bf822b73d8423ebae0ce819ec4d6926f09ae9b02106a4f5c
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 76187487e33658b84f8dc251d2f7773947abeca9e047b762dd93441574e1593e
 ---
 
 ## Create
@@ -43,7 +43,7 @@ Create Session
 
 - `metadata: Hash[Symbol, String]`
 
-  Arbitrary key-value metadata attached to the session.
+  Arbitrary key-value metadata attached to the session. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
 - `resources: Array[BetaManagedAgentsGitHubRepositoryResourceParams | BetaManagedAgentsFileResourceParams]`
 
@@ -123,7 +123,7 @@ Create Session
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 18 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -166,6 +166,8 @@ Create Session
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 

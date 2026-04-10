@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f4b4b907aa8d3700cb5020d128c8ea1f86f9ceec02777591cc67ac29ba8a99a3
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 97df387ec6e72b84aea8b36c6d6d6c23122c9046c979c79985b47bbea2085fb2
 ---
 
 ## List
@@ -110,6 +110,8 @@ List Sessions
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

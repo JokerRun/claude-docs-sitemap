@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/events
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: bf3c1e17695f46819ce16a253b7097d28a7c8af6f7ed016318344e8d4278b165
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: dce4347bbdc7fd2d2b8cab125e5bcb78ea46fef66a6995226ef445bcc96f2a4b
 ---
 
 # Events
@@ -84,6 +84,8 @@ List Events
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
@@ -1892,6 +1894,8 @@ Send Events
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
 ### Returns
 
 - `class BetaManagedAgentsSendSessionEvents:`
@@ -2371,6 +2375,8 @@ Stream Events
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

@@ -1,22 +1,24 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 6bb3838c0bd4e7f84ee13da332b2cb1e4ea60b0da804e0a32eb682766a3c7990
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 1ef25049e40c9b3bac0f780b24c5dde144dd4755780554691115c415c3848819
 ---
 
 # Alat memori
 
-Alat memori memungkinkan Claude untuk menyimpan dan mengambil informasi di seluruh percakapan melalui direktori file memori.
+Alat memori memungkinkan Claude menyimpan dan mengambil informasi di seluruh percakapan melalui direktori file memori.
 
 ---
 
-Alat memori memungkinkan Claude untuk menyimpan dan mengambil informasi di seluruh percakapan melalui direktori file memori. Claude dapat membuat, membaca, memperbarui, dan menghapus file yang bertahan di antara sesi, memungkinkannya untuk membangun pengetahuan seiring waktu tanpa menyimpan semuanya di jendela konteks.
+Alat memori memungkinkan Claude menyimpan dan mengambil informasi di seluruh percakapan melalui direktori file memori. Claude dapat membuat, membaca, memperbarui, dan menghapus file yang bertahan di antara sesi, memungkinkannya membangun pengetahuan seiring waktu tanpa menyimpan semuanya di jendela konteks.
 
-Alat memori beroperasi di sisi klien—Anda mengontrol di mana dan bagaimana data disimpan melalui infrastruktur Anda sendiri.
+Ini adalah primitif kunci untuk pengambilan konteks just-in-time: daripada memuat semua informasi yang relevan di awal, agen menyimpan apa yang mereka pelajari dalam memori dan menariknya kembali sesuai permintaan. Ini membuat konteks aktif tetap fokus pada apa yang saat ini relevan, sangat penting untuk alur kerja yang berjalan lama di mana memuat semuanya sekaligus akan membanjiri jendela konteks. Lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) untuk pola yang lebih luas.
+
+Alat memori beroperasi di sisi klien: Anda mengontrol di mana dan bagaimana data disimpan melalui infrastruktur Anda sendiri.
 
 <Note>
-Silakan hubungi kami melalui [formulir umpan balik](https://forms.gle/YXC2EKGMhjN1c4L88) kami untuk berbagi umpan balik Anda tentang fitur ini.
+Hubungi kami melalui [formulir umpan balik](https://forms.gle/YXC2EKGMhjN1c4L88) untuk berbagi umpan balik Anda tentang fitur ini.
 </Note>
 
 <Note>
@@ -28,17 +30,17 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
 - Pertahankan konteks proyek di seluruh eksekusi agen yang berbeda
 - Pelajari dari interaksi, keputusan, dan umpan balik masa lalu
 - Bangun basis pengetahuan seiring waktu
-- Aktifkan pembelajaran lintas percakapan di mana Claude meningkat dalam alur kerja yang berulang
+- Aktifkan pembelajaran lintas percakapan di mana Claude meningkat dalam alur kerja berulang
 
 ## Cara kerjanya
 
-Ketika diaktifkan, Claude secara otomatis memeriksa direktori memorinya sebelum memulai tugas. Claude dapat membuat, membaca, memperbarui, dan menghapus file di direktori `/memories` untuk menyimpan apa yang dipelajarinya saat bekerja, kemudian mereferensikan memori tersebut dalam percakapan masa depan untuk menangani tugas serupa dengan lebih efektif atau melanjutkan dari mana ia berhenti.
+Ketika diaktifkan, Claude secara otomatis memeriksa direktori memorinya sebelum memulai tugas. Claude dapat membuat, membaca, memperbarui, dan menghapus file di direktori `/memories` untuk menyimpan apa yang dipelajarinya saat bekerja, kemudian mereferensikan memori tersebut dalam percakapan mendatang untuk menangani tugas serupa dengan lebih efektif atau melanjutkan dari mana ia berhenti.
 
 Karena ini adalah alat sisi klien, Claude membuat panggilan alat untuk melakukan operasi memori, dan aplikasi Anda menjalankan operasi tersebut secara lokal. Ini memberi Anda kontrol penuh atas di mana dan bagaimana memori disimpan. Untuk keamanan, Anda harus membatasi semua operasi memori ke direktori `/memories`.
 
 ### Contoh: Cara kerja panggilan alat memori
 
-Ketika Anda meminta Claude untuk membantu dengan tugas, Claude secara otomatis memeriksa direktori memorinya terlebih dahulu. Berikut adalah apa yang terlihat seperti interaksi khas:
+Ketika Anda meminta Claude membantu dengan tugas, Claude secara otomatis memeriksa direktori memorinya terlebih dahulu. Berikut adalah apa yang terlihat seperti interaksi khas:
 
 **1. Permintaan pengguna:**
 ```text
@@ -47,7 +49,7 @@ Ketika Anda meminta Claude untuk membantu dengan tugas, Claude secara otomatis m
 
 **2. Claude memeriksa direktori memori:**
 ```text
-"Saya akan membantu Anda merespons tiket layanan pelanggan. Biarkan saya memeriksa memori saya untuk konteks sebelumnya apa pun."
+"Saya akan membantu Anda merespons tiket layanan pelanggan. Biarkan saya memeriksa memori saya untuk konteks sebelumnya."
 ```
 
 Claude memanggil alat memori:
@@ -96,21 +98,10 @@ Claude memanggil alat memori:
 
 **6. Claude menggunakan memori untuk membantu:**
 ```text
-"Berdasarkan pedoman layanan pelanggan Anda, saya dapat membantu Anda menyusun respons. Silakan bagikan detail tiketnya..."
+"Berdasarkan panduan layanan pelanggan Anda, saya dapat membantu Anda menyusun respons. Silakan bagikan detail tiketnya..."
 ```
 
-## Model yang didukung
-
-Alat memori tersedia di:
-
-- Claude Opus 4.6 (`claude-opus-4-6`)
-- Claude Opus 4.5 (`claude-opus-4-5-20251101`)
-- Claude Opus 4.1 (`claude-opus-4-1-20250805`)
-- Claude Opus 4 (`claude-opus-4-20250514`)
-- Claude Sonnet 4.6 (`claude-sonnet-4-6`)
-- Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
-- Claude Sonnet 4 (`claude-sonnet-4-20250514`)
-- Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
+Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
 
 ## Memulai
 
@@ -120,7 +111,7 @@ Untuk menggunakan alat memori:
 2. Implementasikan penanganan sisi klien untuk operasi memori
 
 <Note>
-Untuk menangani operasi alat memori di aplikasi Anda, Anda perlu mengimplementasikan penanganan untuk setiap perintah memori. SDK kami menyediakan pembantu alat memori yang menangani antarmuka alat—Anda dapat membuat subkelas `BetaAbstractMemoryTool` (Python) atau menggunakan `betaMemoryTool` (TypeScript) untuk mengimplementasikan backend memori Anda sendiri (berbasis file, database, penyimpanan cloud, file terenkripsi, dll.).
+Untuk menangani operasi alat memori di aplikasi Anda, Anda perlu mengimplementasikan penanganan untuk setiap perintah memori. SDK menyediakan pembantu alat memori yang menangani antarmuka alat. Anda dapat membuat subkelas `BetaAbstractMemoryTool` (Python) atau menggunakan `betaMemoryTool` (TypeScript) untuk mengimplementasikan backend memori Anda sendiri (berbasis file, database, penyimpanan cloud, file terenkripsi, dll.).
 
 Untuk contoh yang berfungsi, lihat:
 - Python: [examples/memory/basic.py](https://github.com/anthropics/anthropic-sdk-python/blob/main/examples/memory/basic.py)
@@ -131,7 +122,7 @@ Untuk contoh yang berfungsi, lihat:
 
 <CodeGroup>
 
-```bash cURL
+```bash Shell
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
@@ -152,7 +143,36 @@ curl https://api.anthropic.com/v1/messages \
     }'
 ```
 
-```python Python
+````bash CLI
+ant messages create <<'YAML'
+model: claude-opus-4-6
+max_tokens: 2048
+tools:
+  - type: memory_20250818
+    name: memory
+messages:
+  - role: user
+    content: |
+      I'm working on a Python web scraper that keeps crashing with a
+      timeout error. Here's the problematic function:
+
+      ```python
+      def fetch_page(url, retries=3):
+          for i in range(retries):
+              try:
+                  response = requests.get(url, timeout=5)
+                  return response.text
+              except requests.exceptions.Timeout:
+                  if i == retries - 1:
+                      raise
+                  time.sleep(1)
+      ```
+
+      Please help me debug this.
+YAML
+````
+
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -168,9 +188,11 @@ message = client.messages.create(
     ],
     tools=[{"type": "memory_20250818", "name": "memory"}],
 )
+
+print(message)
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
@@ -183,14 +205,154 @@ const message = await anthropic.messages.create({
   messages: [
     {
       role: "user",
+      content:
+        "I'm working on a Python web scraper that keeps crashing with a timeout error. Here's the problematic function:\n\n```python\ndef fetch_page(url, retries=3):\n    for i in range(retries):\n        try:\n            response = requests.get(url, timeout=5)\n            return response.text\n        except requests.exceptions.Timeout:\n            if i == retries - 1:\n                raise\n            time.sleep(1)\n```\n\nPlease help me debug this."
+    }
+  ],
+  tools: [{ type: "memory_20250818", name: "memory" }]
+});
+
+console.log(message);
+```
+
+```csharp C#
+using System;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        AnthropicClient client = new()
+        {
+            ApiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")
+        };
+
+        var parameters = new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_6,
+            MaxTokens = 2048,
+            Messages = [
+                new()
+                {
+                    Role = Role.User,
+                    Content = "I'm working on a Python web scraper that keeps crashing with a timeout error. Here's the problematic function:\n\n```python\ndef fetch_page(url, retries=3):\n    for i in range(retries):\n        try:\n            response = requests.get(url, timeout=5)\n            return response.text\n        except requests.exceptions.Timeout:\n            if i == retries - 1:\n                raise\n            time.sleep(1)\n```\n\nPlease help me debug this."
+                }
+            ],
+            Tools = [new ToolUnion(new MemoryTool20250818())]
+        };
+
+        var message = await client.Messages.Create(parameters);
+        Console.WriteLine(message);
+    }
+}
+```
+
+```go Go hidelines={1..11,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_6,
+		MaxTokens: 2048,
+		Messages: []anthropic.BetaMessageParam{
+			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("I'm working on a Python web scraper that keeps crashing with a timeout error. Here's the problematic function:\n\n```python\ndef fetch_page(url, retries=3):\n    for i in range(retries):\n        try:\n            response = requests.get(url, timeout=5)\n            return response.text\n        except requests.exceptions.Timeout:\n            if i == retries - 1:\n                raise\n            time.sleep(1)\n```\n\nPlease help me debug this.")),
+		},
+		Tools: []anthropic.BetaToolUnionParam{
+			{OfMemoryTool20250818: &anthropic.BetaMemoryTool20250818Param{}},
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java Java hidelines={1..2,4..9,-2..}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.MemoryTool20250818;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+
+public class MemoryToolExample {
+    public static void main(String[] args) {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        MessageCreateParams params = MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_4_6)
+            .maxTokens(2048L)
+            .addUserMessage("I'm working on a Python web scraper that keeps crashing with a timeout error. Here's the problematic function:\n\n```python\ndef fetch_page(url, retries=3):\n    for i in range(retries):\n        try:\n            response = requests.get(url, timeout=5)\n            return response.text\n        except requests.exceptions.Timeout:\n            if i == retries - 1:\n                raise\n            time.sleep(1)\n```\n\nPlease help me debug this.")
+            .addTool(MemoryTool20250818.builder().build())
+            .build();
+
+        Message response = client.messages().create(params);
+        System.out.println(response);
+    }
+}
+```
+
+```php PHP hidelines={1..4}
+<?php
+
+use Anthropic\Client;
+
+$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+
+$message = $client->messages->create(
+    maxTokens: 2048,
+    messages: [
+        [
+            'role' => 'user',
+            'content' => "I'm working on a Python web scraper that keeps crashing with a timeout error. Here's the problematic function:\n\n```python\ndef fetch_page(url, retries=3):\n    for i in range(retries):\n        try:\n            response = requests.get(url, timeout=5)\n            return response.text\n        except requests.exceptions.Timeout:\n            if i == retries - 1:\n                raise\n            time.sleep(1)\n```\n\nPlease help me debug this.",
+        ],
+    ],
+    model: 'claude-opus-4-6',
+    tools: [
+        [
+            'type' => 'memory_20250818',
+            'name' => 'memory',
+        ],
+    ],
+);
+```
+
+```ruby Ruby hidelines={1..2}
+require "anthropic"
+
+client = Anthropic::Client.new
+
+message = client.messages.create(
+  model: "claude-opus-4-6",
+  max_tokens: 2048,
+  messages: [
+    {
+      role: "user",
       content: "I'm working on a Python web scraper that keeps crashing with a timeout error. Here's the problematic function:\n\n```python\ndef fetch_page(url, retries=3):\n    for i in range(retries):\n        try:\n            response = requests.get(url, timeout=5)\n            return response.text\n        except requests.exceptions.Timeout:\n            if i == retries - 1:\n                raise\n            time.sleep(1)\n```\n\nPlease help me debug this."
     }
   ],
-  tools: [{
-    type: "memory_20250818",
-    name: "memory"
-  }]
-});
+  tools: [
+    {
+      type: "memory_20250818",
+      name: "memory"
+    }
+  ]
+)
+puts message
 ```
 
 </CodeGroup>
@@ -206,7 +368,7 @@ Menampilkan isi direktori atau isi file dengan rentang baris opsional:
 {
   "command": "view",
   "path": "/memories",
-  "view_range": [1, 10]  // Opsional: lihat baris tertentu
+  "view_range": [1, 10] // Opsional: lihat baris tertentu
 }
 ```
 
@@ -237,7 +399,7 @@ Pemformatan nomor baris:
 - **Pengindeksan**: Diindeks 1 (baris pertama adalah baris 1)
 - **Batas baris**: File dengan lebih dari 999.999 baris harus mengembalikan kesalahan: `"File {path} exceeds maximum line limit of 999,999 lines."`
 
-**Contoh keluaran:**
+**Contoh output:**
 ```text
 Berikut adalah isi /memories/notes.txt dengan nomor baris:
      1	Hello World
@@ -368,7 +530,7 @@ Mengubah nama direktori.
 
 ## Panduan prompting
 
-Kami secara otomatis menyertakan instruksi ini ke prompt sistem ketika alat memori disertakan:
+Instruksi ini secara otomatis disertakan dalam prompt sistem ketika alat memori diaktifkan:
 
 ```text
 IMPORTANT: ALWAYS VIEW YOUR MEMORY DIRECTORY BEFORE DOING ANYTHING ELSE.
@@ -381,7 +543,7 @@ ASSUME INTERRUPTION: Your context window might be reset at any moment, so you ri
 
 Jika Anda mengamati Claude membuat file memori yang berantakan, Anda dapat menyertakan instruksi ini:
 
-> Catatan: saat mengedit folder memori Anda, selalu coba simpan kontennya tetap terbaru, koheren, dan terorganisir. Anda dapat mengubah nama atau menghapus file yang tidak lagi relevan. Jangan buat file baru kecuali diperlukan.
+> Catatan: saat mengedit folder memori Anda, selalu coba pertahankan kontennya tetap terkini, koheren, dan terorganisir. Anda dapat mengubah nama atau menghapus file yang tidak lagi relevan. Jangan buat file baru kecuali diperlukan.
 
 Anda juga dapat memandu apa yang Claude tulis ke memori. Misalnya: "Hanya tulis informasi yang relevan dengan \<topic\> dalam sistem memori Anda."
 
@@ -390,9 +552,9 @@ Anda juga dapat memandu apa yang Claude tulis ke memori. Misalnya: "Hanya tulis 
 Berikut adalah masalah keamanan penting saat mengimplementasikan penyimpanan memori Anda:
 
 ### Informasi sensitif
-Claude biasanya akan menolak untuk menuliskan informasi sensitif dalam file memori. Namun, Anda mungkin ingin mengimplementasikan validasi yang lebih ketat yang menghilangkan informasi yang berpotensi sensitif.
+Claude biasanya akan menolak untuk menulis informasi sensitif dalam file memori. Namun, Anda mungkin ingin mengimplementasikan validasi yang lebih ketat yang menghilangkan informasi yang berpotensi sensitif.
 
-### Ukuran penyimpanan file memori
+### Ukuran penyimpanan file
 Pertimbangkan pelacakan ukuran file memori dan mencegah file tumbuh terlalu besar. Pertimbangkan menambahkan jumlah karakter maksimum yang dapat dikembalikan perintah baca memori, dan biarkan Claude membuat halaman melalui konten.
 
 ### Kedaluwarsa memori
@@ -416,122 +578,43 @@ Pertimbangkan perlindungan ini:
 
 Alat memori menggunakan pola penanganan kesalahan yang serupa dengan [alat editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool#handle-errors). Lihat bagian perintah alat individual di atas untuk pesan kesalahan terperinci dan perilaku. Kesalahan umum termasuk file tidak ditemukan, kesalahan izin, jalur tidak valid, dan kecocokan teks duplikat.
 
-## Menggunakan dengan Context Editing
+## Integrasi pengeditan konteks
 
-Alat memori dapat digabungkan dengan [context editing](/docs/id/build-with-claude/context-editing), yang secara otomatis menghapus hasil alat lama ketika konteks percakapan tumbuh melampaui ambang batas yang dikonfigurasi. Kombinasi ini memungkinkan alur kerja agentic jangka panjang yang sebaliknya akan melampaui batas konteks.
-
-### Cara mereka bekerja bersama
-
-Ketika context editing diaktifkan dan percakapan Anda mendekati ambang batas pembersihan, Claude secara otomatis menerima notifikasi peringatan. Ini mendorong Claude untuk menyimpan informasi penting dari hasil alat ke file memori sebelum hasil tersebut dihapus dari jendela konteks.
-
-Setelah hasil alat dihapus, Claude dapat mengambil informasi yang disimpan dari file memori kapan pun diperlukan, secara efektif memperlakukan memori sebagai perpanjangan dari konteks kerjanya. Ini memungkinkan Claude untuk:
-
-- Melanjutkan alur kerja kompleks multi-langkah tanpa kehilangan informasi kritis
-- Mereferensikan pekerjaan dan keputusan masa lalu bahkan setelah hasil alat dihapus
-- Mempertahankan konteks yang koheren di seluruh percakapan yang akan melampaui batas konteks khas
-- Membangun basis pengetahuan seiring waktu sambil menjaga jendela konteks aktif tetap dapat dikelola
-
-### Contoh alur kerja
-
-Pertimbangkan proyek refactoring kode dengan banyak operasi file:
-
-1. Claude membuat banyak pengeditan ke file, menghasilkan banyak hasil alat
-2. Saat konteks tumbuh dan mendekati ambang batas Anda, Claude menerima peringatan
-3. Claude merangkum perubahan yang dibuat sejauh ini ke file memori (misalnya, `/memories/refactoring_progress.xml`)
-4. Context editing secara otomatis menghapus hasil alat yang lebih lama
-5. Claude terus bekerja, mereferensikan file memori ketika perlu mengingat perubahan apa yang sudah selesai
-6. Alur kerja dapat berlanjut tanpa batas, dengan Claude mengelola konteks aktif dan memori persisten
-
-### Konfigurasi
-
-Untuk menggunakan kedua fitur bersama-sama:
-
-<CodeGroup>
-
-```python Python
-response = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=4096,
-    messages=[...],
-    tools=[
-        {"type": "memory_20250818", "name": "memory"},
-        # Your other tools
-    ],
-    context_management={
-        "edits": [
-            {
-                "type": "clear_tool_uses_20250919",
-                "trigger": {"type": "input_tokens", "value": 100000},
-                "keep": {"type": "tool_uses", "value": 3},
-            }
-        ]
-    },
-)
-```
-
-```typescript TypeScript
-import Anthropic from "@anthropic-ai/sdk";
-
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
-});
-
-const response = await anthropic.messages.create({
-  model: "claude-opus-4-6",
-  max_tokens: 4096,
-  messages: [/* ... */],
-  tools: [
-    {
-      type: "memory_20250818",
-      name: "memory"
-    }
-    // Your other tools
-  ],
-  context_management: {
-    edits: [
-      {
-        type: "clear_tool_uses_20250919",
-        trigger: {
-          type: "input_tokens",
-          value: 100000
-        },
-        keep: {
-          type: "tool_uses",
-          value: 3
-        }
-      }
-    ]
-  }
-});
-```
-
-</CodeGroup>
-
-Anda juga dapat mengecualikan panggilan alat memori dari pembersihan untuk memastikan Claude selalu memiliki akses ke operasi memori terbaru:
-
-<CodeGroup>
-
-```python Python
-context_management = {
-    "edits": [{"type": "clear_tool_uses_20250919", "exclude_tools": ["memory"]}]
-}
-```
-
-```typescript TypeScript
-context_management: {
-  edits: [
-    {
-      type: "clear_tool_uses_20250919",
-      exclude_tools: ["memory"]
-    }
-  ];
-}
-```
-
-</CodeGroup>
+Alat memori berpasangan dengan pengeditan konteks untuk mengelola percakapan yang berjalan lama. Untuk detail, lihat [Pengeditan konteks](/docs/id/build-with-claude/context-editing).
 
 ## Menggunakan dengan Compaction
 
-Alat memori juga dapat dipasangkan dengan [compaction](/docs/id/build-with-claude/compaction), yang menyediakan ringkasan konteks percakapan sisi server. Sementara context editing menghapus hasil alat tertentu di sisi klien, compaction secara otomatis merangkum seluruh percakapan di sisi server ketika mendekati batas jendela konteks.
+Alat memori juga dapat dipasangkan dengan [compaction](/docs/id/build-with-claude/compaction), yang menyediakan ringkasan konteks percakapan sisi server. Sementara pengeditan konteks menghapus hasil alat tertentu di sisi klien, compaction secara otomatis merangkum seluruh percakapan di sisi server ketika mendekati batas jendela konteks.
 
-Untuk alur kerja agentic jangka panjang, pertimbangkan menggunakan keduanya: compaction menjaga konteks aktif tetap dapat dikelola tanpa pembukuan sisi klien, dan memori mempertahankan informasi penting di seluruh batas compaction sehingga tidak ada yang kritis hilang dalam ringkasan.
+Untuk alur kerja agentic yang berjalan lama, pertimbangkan menggunakan keduanya: compaction membuat konteks aktif dapat dikelola tanpa pembukuan sisi klien, dan memori bertahan informasi penting di seluruh batas compaction sehingga tidak ada yang kritis hilang dalam ringkasan.
+
+## Pola pengembangan perangkat lunak multi-sesi
+
+Untuk proyek perangkat lunak yang berjalan lama yang mencakup beberapa sesi agen, file memori perlu di-bootstrap dengan sengaja, bukan hanya ditulis secara ad hoc saat pekerjaan berlangsung. Pola di bawah ini mengubah memori menjadi mekanisme pemulihan terstruktur, sehingga setiap sesi baru dapat melanjutkan tepat di mana sesi terakhir berhenti.
+
+### Cara kerjanya
+
+1. **Sesi inisialisasi:** Sesi pertama menyiapkan artefak memori sebelum pekerjaan substantif dimulai. Ini termasuk log kemajuan (melacak apa yang telah dilakukan dan apa yang akan datang selanjutnya), daftar periksa fitur (mendefinisikan ruang lingkup pekerjaan), dan referensi ke skrip startup atau inisialisasi apa pun yang dibutuhkan proyek.
+
+2. **Sesi berikutnya:** Setiap sesi baru dibuka dengan membaca artefak memori tersebut. Ini memulihkan keadaan penuh proyek dalam hitungan detik, tanpa perlu menjelajahi kode dasar atau melacak kembali keputusan sebelumnya.
+
+3. **Pembaruan akhir sesi:** Sebelum sesi berakhir, sesi memperbarui log kemajuan dengan apa yang telah selesai dan apa yang tersisa. Ini memastikan sesi berikutnya memiliki titik awal yang akurat.
+
+### Prinsip kunci
+
+Bekerja pada satu fitur sekaligus. Hanya tandai fitur selesai setelah verifikasi end-to-end mengkonfirmasi bahwa fitur tersebut berfungsi, bukan hanya setelah kode ditulis. Ini membuat log kemajuan dapat dipercaya dan mencegah scope creep dari menggabungkan di seluruh sesi.
+
+<Tip>
+Untuk studi kasus terperinci tentang pola ini dalam praktik, termasuk skrip inisialisasi, struktur file kemajuan, dan pemulihan berbasis git, lihat [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
+</Tip>
+
+## Langkah selanjutnya
+
+<CardGroup>
+  <Card href="/docs/id/agents-and-tools/tool-use/tool-reference" title="Lihat semua alat">
+    Direktori alat yang disediakan Anthropic dan propertinya.
+  </Card>
+  <Card href="/docs/id/build-with-claude/context-editing" title="Pengeditan konteks">
+    Kelola panjang percakapan bersama memori.
+  </Card>
+</CardGroup>

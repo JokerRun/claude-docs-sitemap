@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 60772995115323962578b4d839346c444dadb579741a5cb194d89841efb4c40d
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: c077e44828ebed1a0dae1e86a958cc61298c635fecb701fefb0221afdd07b6e8
 ---
 
 ## Retrieve
@@ -23,7 +23,7 @@ Get Session
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 18 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Get Session
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 

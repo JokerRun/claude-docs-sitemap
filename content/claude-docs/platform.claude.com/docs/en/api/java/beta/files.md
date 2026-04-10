@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 23002b6ed568b674c669ec60db8b5a26838932a99f213a6b3236b6007e1d9c70
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: a9df87f7435ff455af36c45fe5f5af248594ac47ecba428bc7c53f6039a43fc9
 ---
 
 # Files
@@ -64,6 +64,8 @@ Upload File
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `String file`
 
@@ -222,6 +224,8 @@ List Files
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
 ### Returns
 
 - `class FileMetadata:`
@@ -357,6 +361,8 @@ Download File
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
 ### Example
 
 ```java
@@ -439,6 +445,8 @@ Get File Metadata
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 
@@ -574,6 +582,8 @@ Delete File
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

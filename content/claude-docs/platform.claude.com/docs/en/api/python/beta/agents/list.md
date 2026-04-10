@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/agents/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 5da0cf8921f30ffa5525fecbee01c717ab5380073fac549d8a4e49be9128d39c
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 4513f5fd71b2a8ff71a109287f36640058123bd4e8dc72b91b6954a82b455973
 ---
 
 ## List
@@ -41,7 +41,7 @@ List Agents
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 18 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ List Agents
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

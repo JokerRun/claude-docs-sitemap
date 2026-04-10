@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/archive
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f5d96ef55b118fb53aac4182c9953fae938b114e5eccfd9168e8c2a1333532e1
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 99da34b9b060123f2cd00436ebc3f6dd492439f10b1c50aa1a76c66ccd39ddeb
 ---
 
 ## Archive
@@ -66,6 +66,8 @@ Archive Credential
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

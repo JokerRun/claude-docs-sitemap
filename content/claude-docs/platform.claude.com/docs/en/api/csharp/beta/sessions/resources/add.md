@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/add
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: aafea55154b328273610e63768f00595e0fd985c304a79426d1c8068ddbf389a
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: cd133f8c06659cdf0c027ac3824c7ed25d6a631012cfca56de5af70151b8df56
 ---
 
 ## Add
@@ -80,6 +80,8 @@ Add Session Resource
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

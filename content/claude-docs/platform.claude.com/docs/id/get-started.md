@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: dbf29a0140a316476be43296e4d1ff2d5094b7a2e8e82635edc2ca200b08f59b
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 85cdfbfd4961358de4af3adc6d1235fc98990d6e9e3ea7ebb12fa9e0590910c9
 ---
 
 # Mulai dengan Claude
 
-Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web sederhana
+Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web sederhana.
 
 ---
 
 ## Prasyarat
 
-- Akun [Konsol Anthropic](/)
+- Akun Anthropic [Console](/)
 - [Kunci API](/settings/keys)
 
 ## Panggil API
@@ -22,11 +22,13 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
   <Tab title="cURL">
     <Steps>
       <Step title="Atur kunci API Anda">
-        Dapatkan kunci API Anda di [Konsol Claude](/settings/keys) dan atur sebagai variabel lingkungan:
+        Dapatkan kunci API Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
 
         ```bash
         export ANTHROPIC_API_KEY='your-api-key-here'
         ```
+
+        Untuk mempertahankan kunci di seluruh sesi shell, tambahkan baris ke profil shell Anda (seperti `~/.zshrc` atau `~/.bashrc`).
       </Step>
 
       <Step title="Buat panggilan API pertama Anda">
@@ -42,7 +44,7 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
             "max_tokens": 1000,
             "messages": [
               {
-                "role": "user", 
+                "role": "user",
                 "content": "What should I search for to find the latest developments in renewable energy?"
               }
             ]
@@ -50,10 +52,69 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
         ```
 
         **Contoh output:**
-        ```json
+        ```json Output
         {
           "id": "msg_01HCDu5LRGeP2o7s2xGmxyx8",
-          "type": "message", 
+          "type": "message",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are some effective search strategies to find the latest renewable energy developments:\n\n## Search Terms to Use:\n- \"renewable energy news 2024\"\n- \"clean energy breakthrough\"\n- \"solar/wind/battery technology advances\"\n- \"green energy innovations\"\n- \"climate tech developments\"\n- \"energy storage solutions\"\n\n## Best Sources to Check:\n\n**News & Industry Sites:**\n- Renewable Energy World\n- GreenTech Media (now Wood Mackenzie)\n- Energy Storage News\n- CleanTechnica\n- PV Magazine (for solar)\n- WindPower Engineering & Development..."
+            }
+          ],
+          "model": "claude-opus-4-6",
+          "stop_reason": "end_turn",
+          "usage": {
+            "input_tokens": 21,
+            "output_tokens": 305
+          }
+        }
+        ```
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="CLI">
+    <Steps>
+      <Step title="Atur kunci API Anda">
+        Dapatkan kunci API Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
+
+        ```bash
+        export ANTHROPIC_API_KEY='your-api-key-here'
+        ```
+
+        Untuk mempertahankan kunci di seluruh sesi shell, tambahkan baris ke profil shell Anda (seperti `~/.zshrc` atau `~/.bashrc`).
+      </Step>
+
+      <Step title="Instal CLI">
+        Instal Anthropic CLI dengan Homebrew:
+
+        ```bash
+        brew install anthropics/tap/ant
+        ```
+
+        Untuk metode instalasi lainnya, lihat [Installation](/docs/id/api/sdks/cli#installation) dalam referensi CLI.
+      </Step>
+
+      <Step title="Buat panggilan API pertama Anda">
+        Jalankan perintah ini untuk membuat asisten pencarian web sederhana:
+
+        ```bash
+        ant messages create \
+          --model claude-opus-4-6 \
+          --max-tokens 1000 \
+          --message '{
+            role: user,
+            content: "What should I search for to find the latest developments in renewable energy?"
+          }'
+        ```
+
+        **Contoh output:**
+        ```json Output
+        {
+          "id": "msg_01HCDu5LRGeP2o7s2xGmxyx8",
+          "type": "message",
           "role": "assistant",
           "content": [
             {
@@ -76,15 +137,17 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
   <Tab title="Python">
     <Steps>
       <Step title="Atur kunci API Anda">
-        Dapatkan kunci API Anda dari [Konsol Claude](/settings/keys) dan atur sebagai variabel lingkungan:
+        Dapatkan kunci API Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
 
         ```bash
         export ANTHROPIC_API_KEY='your-api-key-here'
         ```
+
+        Untuk mempertahankan kunci di seluruh sesi shell, tambahkan baris ke profil shell Anda (seperti `~/.zshrc` atau `~/.bashrc`).
       </Step>
 
       <Step title="Instal SDK">
-        Instal SDK Python Anthropic:
+        Instal Anthropic Python SDK:
 
         ```bash
         pip install anthropic
@@ -105,9 +168,9 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
             messages=[
                 {
                     "role": "user",
-                    "content": "What should I search for to find the latest developments in renewable energy?"
+                    "content": "What should I search for to find the latest developments in renewable energy?",
                 }
-            ]
+            ],
         )
         print(message.content)
         ```
@@ -119,8 +182,13 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
         ```
 
         **Contoh output:**
-        ```python
-        [TextBlock(text='Here are some effective search strategies for finding the latest renewable energy developments:\n\n**Search Terms to Use:**\n- "renewable energy news 2024"\n- "clean energy breakthroughs"\n- "solar/wind/battery technology advances"\n- "energy storage innovations"\n- "green hydrogen developments"\n- "renewable energy policy updates"\n\n**Reliable Sources to Check:**\n- **News & Analysis:** Reuters Energy, Bloomberg New Energy Finance, Greentech Media, Energy Storage News\n- **Industry Publications:** Renewable Energy World, PV Magazine, Wind Power Engineering\n- **Research Organizations:** International Energy Agency (IEA), National Renewable Energy Laboratory (NREL)\n- **Government Sources:** Department of Energy websites, EPA clean energy updates\n\n**Specific Topics to Explore:**\n- Perovskite and next-gen solar cells\n- Offshore wind expansion\n- Grid-scale battery storage\n- Green hydrogen production\n- Carbon capture technologies\n- Smart grid innovations\n- Energy policy changes and incentives...', type='text')]
+        ```text Output
+        [
+            TextBlock(
+                text='Here are some effective search strategies for finding the latest renewable energy developments:\n\n**Search Terms to Use:**\n- "renewable energy news 2024"\n- "clean energy breakthroughs"\n- "solar/wind/battery technology advances"\n- "energy storage innovations"\n- "green hydrogen developments"\n- "renewable energy policy updates"\n\n**Reliable Sources to Check:**\n- **News & Analysis:** Reuters Energy, Bloomberg New Energy Finance, Greentech Media, Energy Storage News\n- **Industry Publications:** Renewable Energy World, PV Magazine, Wind Power Engineering\n- **Research Organizations:** International Energy Agency (IEA), National Renewable Energy Laboratory (NREL)\n- **Government Sources:** Department of Energy websites, EPA clean energy updates\n\n**Specific Topics to Explore:**\n- Perovskite and next-gen solar cells\n- Offshore wind expansion\n- Grid-scale battery storage\n- Green hydrogen production\n- Carbon capture technologies\n- Smart grid innovations\n- Energy policy changes and incentives...',
+                type="text",
+            )
+        ]
         ```
       </Step>
     </Steps>
@@ -129,15 +197,17 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
   <Tab title="TypeScript">
     <Steps>
       <Step title="Atur kunci API Anda">
-        Dapatkan kunci API Anda dari [Konsol Claude](/settings/keys) dan atur sebagai variabel lingkungan:
+        Dapatkan kunci API Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
 
         ```bash
         export ANTHROPIC_API_KEY='your-api-key-here'
         ```
+
+        Untuk mempertahankan kunci di seluruh sesi shell, tambahkan baris ke profil shell Anda (seperti `~/.zshrc` atau `~/.bashrc`).
       </Step>
 
       <Step title="Instal SDK">
-        Instal SDK TypeScript Anthropic:
+        Instal Anthropic TypeScript SDK:
 
         ```bash
         npm install @anthropic-ai/sdk
@@ -147,26 +217,27 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
       <Step title="Buat kode Anda">
         Simpan ini sebagai `quickstart.ts`:
 
-        ```typescript
-        import Anthropic from "@anthropic-ai/sdk";
+```typescript
+import Anthropic from "@anthropic-ai/sdk";
 
-        async function main() {
-          const anthropic = new Anthropic();
+async function main() {
+  const anthropic = new Anthropic();
 
-          const msg = await anthropic.messages.create({
-            model: "claude-opus-4-6",
-            max_tokens: 1000,
-            messages: [
-              {
-                role: "user",
-                content: "What should I search for to find the latest developments in renewable energy?"
-              }
-            ]
-          });
-          console.log(msg);
-        }
+  const msg = await anthropic.messages.create({
+    model: "claude-opus-4-6",
+    max_tokens: 1000,
+    messages: [
+      {
+        role: "user",
+        content:
+          "What should I search for to find the latest developments in renewable energy?"
+      }
+    ]
+  });
+  console.log(msg);
+}
 
-        main().catch(console.error);
+main().catch(console.error);
         ```
       </Step>
 
@@ -176,39 +247,42 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
         ```
 
         **Contoh output:**
-        ```javascript
-        {
-          id: 'msg_01ThFHzad6Bh4TpQ6cHux9t8',
-          type: 'message',
-          role: 'assistant',
-          model: 'claude-opus-4-6',
-          content: [
-            {
-              type: 'text',
-              text: 'Here are some effective search strategies to find the latest renewable energy developments:\n\n' +
-                '## Search Terms to Use:\n' +
-                '- "renewable energy news 2024"\n' +
-                '- "clean energy breakthroughs"\n' +
-                '- "solar wind technology advances"\n' +
-                '- "energy storage innovations"\n' +
-                '- "green hydrogen developments"\n' +
-                '- "offshore wind projects"\n' +
-                '- "battery technology renewable"\n\n' +
-                '## Best Sources to Check:\n\n' +
-                '**News & Industry Sites:**\n' +
-                '- Renewable Energy World\n' +
-                '- CleanTechnica\n' +
-                '- GreenTech Media (now Wood Mackenzie)\n' +
-                '- Energy Storage News\n' +
-                '- PV Magazine (for solar)...'
+        ```javascript Output hidelines={1..2}
+        const _ =
+          // output
+          {
+            id: "msg_01ThFHzad6Bh4TpQ6cHux9t8",
+            type: "message",
+            role: "assistant",
+            model: "claude-opus-4-6",
+            content: [
+              {
+                type: "text",
+                text:
+                  "Here are some effective search strategies to find the latest renewable energy developments:\n\n" +
+                  "## Search Terms to Use:\n" +
+                  '- "renewable energy news 2024"\n' +
+                  '- "clean energy breakthroughs"\n' +
+                  '- "solar wind technology advances"\n' +
+                  '- "energy storage innovations"\n' +
+                  '- "green hydrogen developments"\n' +
+                  '- "offshore wind projects"\n' +
+                  '- "battery technology renewable"\n\n' +
+                  "## Best Sources to Check:\n\n" +
+                  "**News & Industry Sites:**\n" +
+                  "- Renewable Energy World\n" +
+                  "- CleanTechnica\n" +
+                  "- GreenTech Media (now Wood Mackenzie)\n" +
+                  "- Energy Storage News\n" +
+                  "- PV Magazine (for solar)..."
+              }
+            ],
+            stop_reason: "end_turn",
+            usage: {
+              input_tokens: 21,
+              output_tokens: 302
             }
-          ],
-          stop_reason: 'end_turn',
-          usage: {
-            input_tokens: 21,
-            output_tokens: 302
           }
-        }
         ```
       </Step>
     </Steps>
@@ -217,19 +291,21 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
   <Tab title="Java">
     <Steps>
       <Step title="Atur kunci API Anda">
-        Dapatkan kunci API Anda dari [Konsol Claude](/settings/keys) dan atur sebagai variabel lingkungan:
+        Dapatkan kunci API Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
 
         ```bash
         export ANTHROPIC_API_KEY='your-api-key-here'
         ```
+
+        Untuk mempertahankan kunci di seluruh sesi shell, tambahkan baris ke profil shell Anda (seperti `~/.zshrc` atau `~/.bashrc`).
       </Step>
 
       <Step title="Instal SDK">
-        Tambahkan SDK Java Anthropic ke proyek Anda. Pertama temukan versi terbaru di [Maven Central](https://central.sonatype.com/artifact/com.anthropic/anthropic-java).
+        Tambahkan Anthropic Java SDK ke proyek Anda. Pertama temukan versi terkini di [Maven Central](https://central.sonatype.com/artifact/com.anthropic/anthropic-java).
 
         **Gradle:**
         ```groovy
-        implementation("com.anthropic:anthropic-java:1.0.0")
+        implementation("com.anthropic:anthropic-java:2.20.0")
         ```
 
         **Maven:**
@@ -237,7 +313,7 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
         <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>1.0.0</version>
+          <version>2.20.0</version>
         </dependency>
         ```
       </Step>
@@ -252,18 +328,21 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
         import com.anthropic.models.messages.MessageCreateParams;
 
         public class QuickStart {
-            public static void main(String[] args) {
-                AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-                MessageCreateParams params = MessageCreateParams.builder()
-                        .model("claude-opus-4-6")
-                        .maxTokens(1000)
-                        .addUserMessage("What should I search for to find the latest developments in renewable energy?")
-                        .build();
+          public static void main(String[] args) {
+            AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-                Message message = client.messages().create(params);
-                System.out.println(message.content());
-            }
+            MessageCreateParams params = MessageCreateParams.builder()
+              .model("claude-opus-4-6")
+              .maxTokens(1000)
+              .addUserMessage(
+                "What should I search for to find the latest developments in renewable energy?"
+              )
+              .build();
+
+            Message message = client.messages().create(params);
+            System.out.println(message.content());
+          }
         }
         ```
       </Step>
@@ -275,12 +354,12 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
         ```
 
         **Contoh output:**
-        ```java
+        ```text Output
         [ContentBlock{text=TextBlock{text=Here are some effective search strategies to find the latest renewable energy developments:
 
         ## Search Terms to Use:
         - "renewable energy news 2024"
-        - "clean energy breakthroughs"  
+        - "clean energy breakthroughs"
         - "solar/wind/battery technology advances"
         - "energy storage innovations"
         - "green hydrogen developments"
@@ -303,21 +382,24 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
   </Tab>
 </Tabs>
 
-## Langkah selanjutnya
+## Langkah berikutnya
 
-Sekarang setelah Anda membuat permintaan API Claude pertama, saatnya untuk menjelajahi apa lagi yang mungkin:
+Anda telah membuat panggilan API pertama. Selanjutnya, pelajari pola Messages API yang akan Anda gunakan dalam setiap integrasi Claude.
+
+<Card title="Bekerja dengan Messages API" icon="messages" href="/docs/id/build-with-claude/working-with-messages">
+  Pelajari percakapan multi-putaran, prompt sistem, alasan berhenti, dan pola inti lainnya.
+</Card>
+
+Setelah Anda nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
 
 <CardGroup cols={3}>
-  <Card title="Bekerja dengan Pesan" icon="messages" href="/docs/id/build-with-claude/working-with-messages">
-    Pelajari pola umum untuk Messages API.
+  <Card title="Ikhtisar model" icon="brain" href="/docs/id/about-claude/models/overview">
+    Bandingkan model Claude berdasarkan kemampuan dan biaya.
   </Card>
-  <Card title="Ikhtisar Fitur" icon="brain" href="/docs/id/api/overview">
-    Jelajahi fitur dan kemampuan lanjutan Claude.
+  <Card title="Ikhtisar fitur" icon="list" href="/docs/id/build-with-claude/overview">
+    Jelajahi semua kemampuan Claude: alat, manajemen konteks, output terstruktur, dan banyak lagi.
   </Card>
-  <Card title="SDK Klien" icon="code-brackets" href="/docs/id/api/client-sdks">
-    Temukan pustaka klien Anthropic.
-  </Card>
-  <Card title="Buku Resep Claude" icon="chef-hat" href="https://platform.claude.com/cookbooks">
-    Pelajari dengan notebook Jupyter interaktif.
+  <Card title="Client SDKs" icon="code-brackets" href="/docs/id/api/client-sdks">
+    Dokumentasi referensi untuk Python, TypeScript, Java, dan perpustakaan klien lainnya.
   </Card>
 </CardGroup>

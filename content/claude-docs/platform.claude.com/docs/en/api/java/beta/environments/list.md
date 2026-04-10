@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: e70c8f622236c4035dec55775fe856d4342c50e14b146778587a7709c1d3bfab
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 3af7d49a50e3cb6ef3ecbba9a0f719455e493518f95d2d44b7b25cd66ce6e0ff
 ---
 
 ## List
@@ -74,6 +74,8 @@ List environments with pagination support.
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

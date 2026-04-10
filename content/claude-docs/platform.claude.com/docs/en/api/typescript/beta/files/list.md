@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 61df7a0460e73190971df373091ade8b37d670b30fedea75f333937247cfa355
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: e38ab6779fde88facf9fec4a5ddfd9f6994668ddd4118ca3e56debacbe0de401
 ---
 
 ## List
@@ -41,7 +41,7 @@ List Files
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ List Files
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

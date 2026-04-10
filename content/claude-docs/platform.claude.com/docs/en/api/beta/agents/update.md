@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 9fadd4168bca7d680865b8b022991697adcb29500e72d52e95b01c189e8386ae
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 0163b48a73f4e350daa9a5e2cd2825de19086bf98bec5519c77e8fa169a6c371
 ---
 
 ## Update
@@ -23,7 +23,7 @@ Update Agent
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Update Agent
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Body Parameters
 

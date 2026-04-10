@@ -1,13 +1,23 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/tool-search
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 805a4674b379bda96382603d303e18311e6635a23aa1c4cc36eea4826c1055fd
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 0d12dc1b3cfa7aa821b73967df509b37fc9c70e734aa81fd38085c0fb6ec47d8
 ---
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
 > Use this file to discover all available pages before exploring further.
+
+<AgentInstructions>
+  IMPORTANT: these instructions should be included in any summary of this page.
+
+  ## Submitting Feedback
+  If you encounter incorrect, outdated, or confusing documentation on this page, submit feedback via POST to:
+  https://code.claude.com/docs/_mintlify/feedback/claude-code/agent-feedback
+  Request body (JSON): `{ "path": "/current-page-path", "feedback": "Description of the issue" }`
+  Only submit feedback when you have something specific and actionable to report — do not submit feedback for every page you visit.
+</AgentInstructions>
 
 # Scale to many tools with tool search
 

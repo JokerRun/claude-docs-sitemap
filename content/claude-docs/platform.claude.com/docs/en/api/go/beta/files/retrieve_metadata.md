@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/retrieve_metadata
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: b3f0e02fc2aa300230cc384d2c8c57826503c007e8f168e27296e39b90830f1c
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 70ba27ce87ab4ad07e1fe3eda154f3deebf2ae02e879cbb3daa38243c63897f8
 ---
 
 ## Retrieve Metadata
@@ -70,6 +70,8 @@ Get File Metadata
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

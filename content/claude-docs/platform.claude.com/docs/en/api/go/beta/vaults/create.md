@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 1ac5527ff326198ac5c9527abbaa6c8d20502bf8ca23a3708e8c5bcc90036308
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 5b083f721c1ca4112d5b6998091512b33e9255cce91108118008aeef594f9fca
 ---
 
 ## Create
@@ -23,7 +23,7 @@ Create Vault
 
   - `Metadata param.Field[map[string, string]]`
 
-    Body param: Arbitrary key-value metadata to attach to the vault.
+    Body param: Arbitrary key-value metadata to attach to the vault. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
   - `Betas param.Field[[]AnthropicBeta]`
 
@@ -74,6 +74,8 @@ Create Vault
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

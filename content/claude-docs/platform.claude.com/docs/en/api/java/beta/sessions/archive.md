@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/archive
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 118442309bd586c057f2168033ed24460d3cd729237ae9ddb8f63df24049c076
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: a7347c836a8b18811d56b7e0799b93fae6ca87a89363d8b2fc50a9795bc22e43
 ---
 
 ## Archive
@@ -64,6 +64,8 @@ Archive Session
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

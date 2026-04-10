@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/events/send
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: b85257a41afb66350f9d1f1c09c788c5eae19b18163ad848c5daea17e3ec5ce6
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: f7d87c91795986a95cd64f1ac486b6abe06e87b504c5c91c3363690d31e12d6a
 ---
 
 ## Send
@@ -64,6 +64,8 @@ Send Events
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `List<BetaManagedAgentsEventParams> events`
 

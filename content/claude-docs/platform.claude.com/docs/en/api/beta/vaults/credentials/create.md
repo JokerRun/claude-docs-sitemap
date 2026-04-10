@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 710ea3fee0d39d6f9f7fe675ff8feb582f57b03631cd68b4fc4894c857bfc5b7
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 84910084d0fa51d883ab539867b1e564b2a2cb4619d2d506a054b7163b3e24d8
 ---
 
 ## Create
@@ -23,7 +23,7 @@ Create Credential
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 18 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Create Credential
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Body Parameters
 
@@ -175,7 +177,7 @@ Create Credential
 
 - `metadata: optional map[string]`
 
-  Arbitrary key-value metadata to attach to the credential.
+  Arbitrary key-value metadata to attach to the credential. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
 ### Returns
 

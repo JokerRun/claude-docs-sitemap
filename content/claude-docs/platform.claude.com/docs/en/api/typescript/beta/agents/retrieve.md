@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 21af9c198398c99e43cb9522dfa85c51d17fbb2bc7f4b80b5a76bd574b2d0919
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: c31345593125f7a453b065bd070c0025dc84efef129615b20a15146bd445af74
 ---
 
 ## Retrieve
@@ -29,7 +29,7 @@ Get Agent
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 18 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Get Agent
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/archive
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 9081ef1b889111c717d9d3243a22edd61e6f4944d60e0f64a8ae84566fc290c5
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 6c5acc4dbd3ac3557b9f20944d74bd3ebdcdda111877b1f5adc94f63cff3c209
 ---
 
 ## Archive
@@ -64,6 +64,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

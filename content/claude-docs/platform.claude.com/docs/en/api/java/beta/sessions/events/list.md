@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/events/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: e91256530ec90bbfcf4b4045ed9e82a4ec297a6bf0eeda4849daf6d442c1866b
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 39eb4c58889f0d3691b5c3d7af369bddd8911d9e92170df242e6839106f81f9f
 ---
 
 ## List
@@ -80,6 +80,8 @@ List Events
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 55eedf073399d5264d22b3ded1d02bea93108232c95be977034ec738df9fbd90
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: a6cde5f6f93d7bd4f172186f7004990c9f88cc4d04a42d8e9a6555c6eb932733
 ---
 
 ## Create
@@ -125,7 +125,7 @@ Create Credential
 
   - `Metadata param.Field[map[string, string]]`
 
-    Body param: Arbitrary key-value metadata to attach to the credential.
+    Body param: Arbitrary key-value metadata to attach to the credential. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
   - `Betas param.Field[[]AnthropicBeta]`
 
@@ -176,6 +176,8 @@ Create Credential
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

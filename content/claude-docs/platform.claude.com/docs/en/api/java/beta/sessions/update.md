@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: e14d51cf899a7d624306d94a28bf95b056b950b5db833c2f01aa39d0e9696cd8
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 38ef0c94b092129978399ae2f4f4d6b22fc80f6e979985c902ef4d55049b42df
 ---
 
 ## Update
@@ -64,6 +64,8 @@ Update Session
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Optional<Metadata> metadata`
 

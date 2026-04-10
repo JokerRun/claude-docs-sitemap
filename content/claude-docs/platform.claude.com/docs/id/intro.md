@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: a5c982dbb8444dfd4fecf81f87c79d8fce4d8846ffccd215d79cc235afb9f0f9
+fetched_at: 2026-04-10T03:11:42.436400Z
+sha256: 861fe7d581c804df1756cfeb75cc342fcdee319bf33f9b279114fb47855fa3c0
 ---
 
 # Pengenalan Claude
@@ -24,40 +24,59 @@ The latest generation of Claude models:
 </Tip>
 
 <Note>
-Ingin mengobrol dengan Claude? Kunjungi [claude.ai](http://www.claude.ai)!
+Ingin mengobrol dengan Claude? Kunjungi [claude.ai](https://www.claude.ai).
 </Note>
 
-## Memulai
+Anthropic offers two ways to build with Claude, each suited to different use cases:
 
-Jika Anda baru mengenal Claude, mulai di sini untuk mempelajari hal-hal penting dan membuat panggilan API pertama Anda.
+| | Messages API | Claude Managed Agents |
+|---|---|---|
+| **What it is** | Direct model prompting access | Pre-built, configurable agent harness that runs in managed infrastructure |
+| **Best for** | Custom agent loops and fine-grained control | Long-running tasks and asynchronous work |
+| **Learn more** | [Messages API docs](/docs/en/build-with-claude/working-with-messages) | [Claude Managed Agents docs](/docs/en/managed-agents/overview) |
 
-<CardGroup cols={3}>
-  <Card title="Memulai" icon="check" href="/docs/id/get-started">
-    Siapkan lingkungan pengembangan Anda untuk membangun dengan Claude.
-  </Card>
-  <Card title="Pelajari tentang Claude" icon="settings" href="/docs/id/about-claude/models/overview">
-    Pelajari tentang keluarga model Claude.
-  </Card>
-  <Card title="Prompt Engineering" icon="books" href="/docs/id/build-with-claude/prompt-engineering/overview">
-    Pelajari teknik dan praktik terbaik prompt engineering.
-  </Card>
-</CardGroup>
+## Jalur yang direkomendasikan untuk pengembang baru
+
+Ikuti langkah-langkah ini untuk pergi dari nol ke integrasi Claude yang berfungsi.
+
+<Steps>
+  <Step title="Buat panggilan API pertama Anda">
+    Siapkan lingkungan Anda, instal SDK, dan kirim pesan pertama Anda ke Claude.
+
+    [Buka panduan memulai](/docs/id/get-started)
+  </Step>
+  <Step title="Pahami Messages API">
+    Pelajari struktur permintaan dan respons inti, termasuk percakapan multi-putaran, prompt sistem, dan alasan berhenti.
+
+    [Baca panduan Messages API](/docs/id/build-with-claude/working-with-messages)
+  </Step>
+  <Step title="Pilih model yang tepat">
+    Bandingkan model Claude berdasarkan kemampuan dan biaya untuk memilih yang paling sesuai dengan kasus penggunaan Anda.
+
+    [Lihat ikhtisar model](/docs/id/about-claude/models/overview)
+  </Step>
+  <Step title="Jelajahi fitur dan alat">
+    Temukan apa yang dapat dilakukan Claude: pemikiran yang diperluas, pencarian web, penanganan file, output terstruktur, dan banyak lagi.
+
+    [Jelajahi ikhtisar fitur](/docs/id/build-with-claude/overview)
+  </Step>
+</Steps>
 
 ---
 
 ## Kembangkan dengan Claude
 
-Anthropic memiliki alat pengembang kelas terbaik untuk membangun aplikasi yang dapat diskalakan dengan Claude.
+Anthropic menyediakan alat pengembang untuk membantu Anda membangun dan menskalakan aplikasi dengan Claude.
 
 <CardGroup cols={3}>
   <Card title="Developer Console" icon="computer" href="/">
-    Nikmati prompting yang lebih mudah dan lebih kuat di browser Anda dengan Workbench dan alat pembuat prompt.
+    Prototipe dan uji prompt di browser Anda dengan Workbench dan pembuat prompt.
   </Card>
-  <Card title="Referensi API" icon="code" href="/docs/id/api/overview">
-    Jelajahi, implementasikan, dan skalakan dengan Claude API dan SDK.
+  <Card title="API Reference" icon="code" href="/docs/id/api/overview">
+    Jelajahi dokumentasi Claude API lengkap dan SDK klien.
   </Card>
   <Card title="Claude Cookbook" icon="chef-hat" href="https://platform.claude.com/cookbooks">
-    Pelajari dengan notebook Jupyter interaktif yang mendemonstrasikan pengunggahan PDF, embedding, dan banyak lagi.
+    Pelajari dengan notebook Jupyter interaktif yang mencakup PDF, embedding, dan banyak lagi.
   </Card>
 </CardGroup>
 
@@ -71,7 +90,7 @@ Claude dapat membantu dengan banyak tugas yang melibatkan teks, kode, dan gambar
   <Card title="Pembuatan teks dan kode" icon="text-aa" href="/docs/id/build-with-claude/text-generation">
     Ringkas teks, jawab pertanyaan, ekstrak data, terjemahkan teks, dan jelaskan serta hasilkan kode.
   </Card>
-  <Card title="Visi" icon="image" href="/docs/id/build-with-claude/vision">
+  <Card title="Vision" icon="image" href="/docs/id/build-with-claude/vision">
     Proses dan analisis input visual serta hasilkan teks dan kode dari gambar.
   </Card>
 </CardGroup>
@@ -81,11 +100,11 @@ Claude dapat membantu dengan banyak tugas yang melibatkan teks, kode, dan gambar
 ## Dukungan
 
 <CardGroup cols={2}>
-  <Card title="Pusat Bantuan" icon="help" href="https://support.claude.com/en/">
+  <Card title="Help Center" icon="help" href="https://support.claude.com/en/">
     Temukan jawaban untuk pertanyaan akun dan penagihan yang sering diajukan.
   </Card>
 
-  <Card title="Status Layanan" icon="chart" href="https://status.claude.com">
+  <Card title="Service Status" icon="chart" href="https://status.claude.com">
     Periksa status layanan Anthropic.
   </Card>
 </CardGroup>
