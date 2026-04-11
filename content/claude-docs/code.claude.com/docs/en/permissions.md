@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 00c496985e9867ebd09b4ea4a175905af9c0c079884c4dde3cc903c105fe0c31
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: c34cb63aa0488ecd007ba447bf956c87e61a70ceb9cb8dc8eae944a0247481e3
 ---
 
 > ## Documentation Index
@@ -111,7 +111,7 @@ Bash rules support glob patterns with `*`. Wildcards can appear at any position 
 }
 ```
 
-The space before `*` matters: `Bash(ls *)` matches `ls -la` but not `lsof`, while `Bash(ls*)` matches both. The legacy `:*` suffix syntax is equivalent to ` *` but is deprecated.
+The space before `*` matters: `Bash(ls *)` matches `ls -la` but not `lsof`, while `Bash(ls*)` matches both. The `:*` suffix is an equivalent way to write a trailing wildcard. `Bash(ls:*)` matches the same commands as `Bash(ls *)`.
 
 ## Tool-specific permission rules
 
@@ -276,7 +276,7 @@ The following settings are only read from managed settings. Placing them in user
 | Setting                                        | Description                                                                                                                                                                                                                                 |
 | :--------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `allowedChannelPlugins`                        | Allowlist of channel plugins that may push messages. Replaces the default Anthropic allowlist when set. Requires `channelsEnabled: true`. See [Restrict which channel plugins can run](/en/channels#restrict-which-channel-plugins-can-run) |
-| `allowManagedHooksOnly`                        | When `true`, prevents loading of user, project, and plugin hooks. Only managed hooks and SDK hooks are allowed                                                                                                                              |
+| `allowManagedHooksOnly`                        | When `true`, only managed hooks, SDK hooks, and hooks from plugins force-enabled in managed settings `enabledPlugins` are loaded. User, project, and all other plugin hooks are blocked                                                     |
 | `allowManagedMcpServersOnly`                   | When `true`, only `allowedMcpServers` from managed settings are respected. `deniedMcpServers` still merges from all sources. See [Managed MCP configuration](/en/mcp#managed-mcp-configuration)                                             |
 | `allowManagedPermissionRulesOnly`              | When `true`, prevents user and project settings from defining `allow`, `ask`, or `deny` permission rules. Only rules in managed settings apply                                                                                              |
 | `blockedMarketplaces`                          | Blocklist of marketplace sources. Blocked sources are checked before downloading, so they never touch the filesystem. See [managed marketplace restrictions](/en/plugin-marketplaces#managed-marketplace-restrictions)                      |

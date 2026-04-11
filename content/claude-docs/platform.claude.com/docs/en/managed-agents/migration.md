@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/migration
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 0fa85ce009531c3253e4fee180f9b8f00e7ad234b2c3ce4feecb2f15fcdc42de
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: ccabe72569b243603adc6bd5dd6b8b4ce95abde6ffb0ef88dd2e6de4a0d172a3
 ---
 
 # Migration
@@ -11,7 +11,7 @@ Move an existing agent built on the Messages API or the Claude Agent SDK to Clau
 
 ---
 
-Claude Managed Agents replaces your hand-written agent loop with managed infrastructure. This page covers what changes when you migrate from a custom loop built on the [Messages API](/docs/en/build-with-claude/working-with-messages) or from the [Claude Agent SDK](/docs/en/agent-sdk/overview).
+Claude Managed Agents replaces your hand-written agent loop with managed infrastructure. This page covers what changes when you migrate from a custom loop built on the [Messages API](/docs/en/build-with-claude/working-with-messages) or from the [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview).
 
 <Note>
 All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
@@ -605,7 +605,7 @@ end
 
 ## From the Claude Agent SDK
 
-If you built with the [Claude Agent SDK](/docs/en/agent-sdk/overview), you're already working with agents, tools, and sessions as concepts. The difference is where they run: the SDK executes in a process you operate, while Managed Agents runs in Anthropic's infrastructure. Most of the migration is mapping SDK configuration objects to their API-side equivalents.
+If you built with the [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview), you're already working with agents, tools, and sessions as concepts. The difference is where they run: the SDK executes in a process you operate, while Managed Agents runs in Anthropic's infrastructure. Most of the migration is mapping SDK configuration objects to their API-side equivalents.
 
 ### What changes
 

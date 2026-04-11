@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 8bd75fce42f86a4e05f2da95987e23d94e8efb465f0681f254f76e4b87fe0e71
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: 0db1fd327282fbbd7f83379b14aaca8146863a8e89a004c715baf35653037684
 ---
 
 > ## Documentation Index
@@ -684,8 +684,10 @@ To install Claude Code, use one of the following methods:
     brew install --cask claude-code
     ```
 
+    Homebrew offers two casks. `claude-code` tracks the stable release channel, which is typically about a week behind and skips releases with major regressions. `claude-code@latest` tracks the latest channel and receives new versions as soon as they ship.
+
     <Info>
-      Homebrew installations do not auto-update. Run `brew upgrade claude-code` periodically to get the latest features and security fixes.
+      Homebrew installations do not auto-update. Run `brew upgrade claude-code` or `brew upgrade claude-code@latest`, depending on which cask you installed, to get the latest features and security fixes.
     </Info>
   </Tab>
 

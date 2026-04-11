@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 8502a73497018788d0fef651f7aa66a5e6f2b4c34a318711d5c11bc6578ba877
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: eb012f5d0186cc3db4401103cbda0cfccc79a185f6956a47f63fa0a4dd33314f
 ---
 
 > ## Documentation Index
@@ -135,7 +135,7 @@ Tracing is off by default. To enable it, set both `CLAUDE_CODE_ENABLE_TELEMETRY=
 
 Spans redact user prompt text and tool content by default. Set `OTEL_LOG_USER_PROMPTS=1` and `OTEL_LOG_TOOL_CONTENT=1` to include them.
 
-When tracing is active, Bash subprocesses automatically inherit a `TRACEPARENT` environment variable containing the W3C trace context of the active tool execution span. This lets any subprocess that reads `TRACEPARENT` parent its own spans under the same trace, enabling end-to-end distributed tracing through scripts and commands that Claude runs.
+When tracing is active, Bash and PowerShell subprocesses automatically inherit a `TRACEPARENT` environment variable containing the W3C trace context of the active tool execution span. This lets any subprocess that reads `TRACEPARENT` parent its own spans under the same trace, enabling end-to-end distributed tracing through scripts and commands that Claude runs.
 
 ### Dynamic headers
 

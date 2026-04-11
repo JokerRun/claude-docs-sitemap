@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 703368f8127fbdc62ac39a4155db6c22cd319a213e02279aad49d5685ea0786a
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: 695238a6bc917a949ebe5853cd6c5990d584f5bd04106b271fc444af468d8a63
 ---
 
 > ## Documentation Index
@@ -421,5 +421,4 @@ See [Write effective instructions](#write-effective-instructions) for guidance o
 
 * [Skills](/en/skills): package repeatable workflows that load on demand
 * [Settings](/en/settings): configure Claude Code behavior with settings files
-* [Manage sessions](/en/sessions): manage context, resume conversations, and run parallel sessions
 * [Subagent memory](/en/sub-agents#enable-persistent-memory): let subagents maintain their own auto memory

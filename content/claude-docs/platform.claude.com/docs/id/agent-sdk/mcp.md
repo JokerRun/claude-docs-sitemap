@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/mcp
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 6315eaaec59f4e29f31184ea87241e258b925fbb5b6259c6cf304fdd9876fb5a
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: 8722f23607777d4a89c8016020bd5ef000e02691cf95a57505dca5f3e115f6dc
 ---
 
 > ## Documentation Index
@@ -154,17 +154,18 @@ Everything that makes Claude Code powerful is available in the SDK:
   <Tab title="Built-in tools">
     Your agent can read files, run commands, and search codebases out of the box. Key tools include:
 
-    | Tool                                                                        | What it does                                                   |
-    | --------------------------------------------------------------------------- | -------------------------------------------------------------- |
-    | **Read**                                                                    | Read any file in the working directory                         |
-    | **Write**                                                                   | Create new files                                               |
-    | **Edit**                                                                    | Make precise edits to existing files                           |
-    | **Bash**                                                                    | Run terminal commands, scripts, git operations                 |
-    | **Glob**                                                                    | Find files by pattern (`**/*.ts`, `src/**/*.py`)               |
-    | **Grep**                                                                    | Search file contents with regex                                |
-    | **WebSearch**                                                               | Search the web for current information                         |
-    | **WebFetch**                                                                | Fetch and parse web page content                               |
-    | **[AskUserQuestion](/en/agent-sdk/user-input#handle-clarifying-questions)** | Ask the user clarifying questions with multiple choice options |
+    | Tool                                                                        | What it does                                                        |
+    | --------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+    | **Read**                                                                    | Read any file in the working directory                              |
+    | **Write**                                                                   | Create new files                                                    |
+    | **Edit**                                                                    | Make precise edits to existing files                                |
+    | **Bash**                                                                    | Run terminal commands, scripts, git operations                      |
+    | **Monitor**                                                                 | Watch a background script and react to each output line as an event |
+    | **Glob**                                                                    | Find files by pattern (`**/*.ts`, `src/**/*.py`)                    |
+    | **Grep**                                                                    | Search file contents with regex                                     |
+    | **WebSearch**                                                               | Search the web for current information                              |
+    | **WebFetch**                                                                | Fetch and parse web page content                                    |
+    | **[AskUserQuestion](/en/agent-sdk/user-input#handle-clarifying-questions)** | Ask the user clarifying questions with multiple choice options      |
 
     This example creates an agent that searches your codebase for TODO comments:
 

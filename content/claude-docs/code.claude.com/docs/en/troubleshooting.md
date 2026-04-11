@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: e3ae1807579b6fecd5f5f4b0fadce455394bfc0bc6112a05e29f384ca52fe564
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: 8a041425b99cd4513a829ec5ed3e2b6641f7b0c1a90e91c60ecafd5d0a712a3d
 ---
 
 > ## Documentation Index
@@ -189,7 +189,7 @@ Uninstall an npm global install:
 npm uninstall -g @anthropic-ai/claude-code
 ```
 
-Remove a Homebrew install on macOS:
+Remove a Homebrew install on macOS (use `claude-code@latest` if you installed that cask):
 
 ```bash  theme={null}
 brew uninstall --cask claude-code
@@ -345,7 +345,7 @@ Errors like `curl: (35) TLS connect error`, `schannel: next InitializeSecurityCo
    ```
    Ask your IT team for the certificate file if you don't have it. You can also try on a direct connection to confirm the proxy is the cause.
 
-4. **On Windows, bypass certificate revocation checks** if you see `CRYPT_E_REVOCATION_OFFLINE (0x80092013)`. This means curl reached the server but your network blocks the certificate revocation lookup, which is common behind corporate firewalls. Add `--ssl-revoke-best-effort` to the install command:
+4. **On Windows, bypass certificate revocation checks** if you see `CRYPT_E_NO_REVOCATION_CHECK (0x80092012)` or `CRYPT_E_REVOCATION_OFFLINE (0x80092013)`. These mean curl reached the server but your network blocks the certificate revocation lookup, which is common behind corporate firewalls. Add `--ssl-revoke-best-effort` to the install command:
    ```bat  theme={null}
    curl --ssl-revoke-best-effort -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
    ```

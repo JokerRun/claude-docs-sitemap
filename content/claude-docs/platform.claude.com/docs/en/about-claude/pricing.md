@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 1ceb301eb46b4c8a5de640a7f5214fe39a30ed7682170086fd08539d5df5df01
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: 2bce1e4f67f569d3dfd82c39ef9b1ddaefc8bd99697788170184b606dc32ffc6
 ---
 
 # Pricing
@@ -40,7 +40,7 @@ MTok = Million tokens. The "Base Input Tokens" column shows standard input prici
 
 ## Third-party platform pricing
 
-Claude models are available on [AWS Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), [Google Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). For official pricing, visit:
+Claude models are available on [AWS Bedrock](/docs/en/build-with-claude/claude-on-amazon-bedrock), [Google Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). For official pricing, visit:
 - [AWS Bedrock pricing](https://aws.amazon.com/bedrock/pricing/)
 - [Google Vertex AI pricing](https://cloud.google.com/vertex-ai/generative-ai/pricing)
 - [Microsoft Foundry pricing](https://azure.microsoft.com/en-us/pricing/details/ai-foundry/#pricing)

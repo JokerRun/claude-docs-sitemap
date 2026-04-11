@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 40d062923e5804bd5dd1a8c88fb72241f110f675ad311f7df0408e7c5a1e43e6
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: e8ca8b67215301e464767bf3763b29ab1151927fd03f67ac2ee98ee029c44267
 ---
 
 # Claude on Amazon Bedrock
@@ -12,7 +12,7 @@ Anthropic's Claude models are now generally available through Amazon Bedrock.
 ---
 
 <Note>
-This page covers the legacy Amazon Bedrock integration (the `InvokeModel` API with ARN-versioned model identifiers and AWS event-stream encoding). For the new AWS-managed offering with the Messages API at `/anthropic/v1/messages` and SSE streaming, see [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock).
+This page covers the Amazon Bedrock integration available today (the `InvokeModel` and `Converse` APIs with ARN-versioned model identifiers and AWS event-stream encoding). A research preview of a new AWS-managed offering, with the Messages API at `/anthropic/v1/messages` and SSE streaming, is documented at [Claude in Amazon Bedrock (research preview)](/docs/en/build-with-claude/claude-in-amazon-bedrock-research-preview).
 </Note>
 
 Calling Claude through Bedrock slightly differs from how you would call Claude when using Anthropic's client SDKs. This guide walks you through completing an API call to Claude on Bedrock using one of Anthropic's [client SDKs](/docs/en/api/client-sdks).

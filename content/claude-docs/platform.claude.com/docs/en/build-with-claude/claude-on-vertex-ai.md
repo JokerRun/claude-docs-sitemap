@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 48f0fb6cc3854aba715c1a083b1c9cbe37a011e6700a823edecdeee243193b28
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: 1baa98f1e8f0407865d8b7671bd9c8b60353880f708486240e6c8a3441a41435
 ---
 
 # Claude on Vertex AI
@@ -344,7 +344,7 @@ The following examples show how to generate text from Claude on Vertex AI:
 
 See the [client SDKs](/docs/en/api/client-sdks) and the official [Vertex AI docs](https://cloud.google.com/vertex-ai/docs) for more details.
 
-Claude is also available through [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock) and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry).
+Claude is also available through [Amazon Bedrock](/docs/en/build-with-claude/claude-on-amazon-bedrock) and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry).
 
 ## Activity logging
 

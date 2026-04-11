@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: bb3dd7c985f8c8e33ebc93e3c4b947a19cceb2821532811692657e1bd76cfa2e
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: 8292ac109376f71c84cae4be278aab8a69c3e42156f2b5cdb0c5c38caecd8d18
 ---
 
 # Programmatic tool calling
@@ -27,7 +27,16 @@ This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-
 
 ## Model compatibility
 
-For model compatibility and tool version details, see the [Tool reference](/docs/en/agents-and-tools/tool-use/tool-reference). Programmatic tool calling is available via the Claude API and Microsoft Foundry.
+Programmatic tool calling requires `code_execution_20260120`, which is supported on the following models:
+
+| Model |
+|-------|
+| Claude Opus 4.6 (`claude-opus-4-6`) |
+| Claude Sonnet 4.6 (`claude-sonnet-4-6`) |
+| Claude Opus 4.5 (`claude-opus-4-5-20251101`) |
+| Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`) |
+
+For the full code execution tool version matrix, see the [code execution tool model compatibility table](/docs/en/agents-and-tools/tool-use/code-execution-tool#model-compatibility). Programmatic tool calling is available via the Claude API and Microsoft Foundry.
 
 ## Quick start
 

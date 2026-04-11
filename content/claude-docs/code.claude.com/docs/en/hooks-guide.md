@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 1e1d5ea0fd06fb07808f936552a76f6341234a5a6ef578d2b6da2a699ab1d4a9
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: 441dfe90e1041d49c6e62d41575c3a4c432d83e687a415e1d543b8cb73e9129f
 ---
 
 > ## Documentation Index
@@ -59,7 +59,28 @@ To create a hook, add a `hooks` block to a [settings file](#configure-hook-locat
     }
     ```
 
-    If your settings file already has a `hooks` key, merge the `Notification` entry into it rather than replacing the whole object. You can also ask Claude to write the hook for you by describing what you want in the CLI.
+    If your settings file already has a `hooks` key, add `Notification` as a sibling of the existing event keys rather than replacing the whole object. Each event name is a key inside the single `hooks` object:
+
+    ```json  theme={null}
+    {
+      "hooks": {
+        "PostToolUse": [
+          {
+            "matcher": "Edit|Write",
+            "hooks": [{ "type": "command", "command": "jq -r '.tool_input.file_path' | xargs npx prettier --write" }]
+          }
+        ],
+        "Notification": [
+          {
+            "matcher": "",
+            "hooks": [{ "type": "command", "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'" }]
+          }
+        ]
+      }
+    }
+    ```
+
+    You can also ask Claude to write the hook for you by describing what you want in the CLI.
   </Step>
 
   <Step title="Verify the configuration">

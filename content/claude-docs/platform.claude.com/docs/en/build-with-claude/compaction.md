@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 2e89d7d810212e19aa5e4fd1cbb320726eb9d3f98aa2004472937f046385b8c5
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: 04bd7adfcad797366dc0c58e848226a5fd4ac39d797e9e678d206dc051539c5f
 ---
 
 # Compaction
@@ -1628,7 +1628,9 @@ for await (const event of stream) {
   } else if (event.type === "content_block_delta") {
     if ((event.delta as { type: string }).type === "compaction_delta") {
       console.log(
-        `Compaction complete: ${(event.delta as unknown as { content: string }).content.length} chars`
+        `Compaction complete: ${
+          (event.delta as unknown as { content: string }).content.length
+        } chars`
       );
     } else if (event.delta.type === "text_delta") {
       process.stdout.write(event.delta.text);

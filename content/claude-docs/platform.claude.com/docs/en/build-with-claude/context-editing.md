@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8fbd0328f940abaa8e382dd4414780804b8a8753f57dfd86ba3c53e4520aef12
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: 7135d1992f2f5720f3320689914fc9bcee061638ceae9f899dd2a9a7c22c214e
 ---
 
 # Context editing
@@ -1650,7 +1650,9 @@ const response = await anthropic.beta.messages.countTokens({
 console.log(`Original tokens: ${response.context_management?.original_input_tokens}`);
 console.log(`After clearing: ${response.input_tokens}`);
 console.log(
-  `Savings: ${(response.context_management?.original_input_tokens || 0) - response.input_tokens} tokens`
+  `Savings: ${
+    (response.context_management?.original_input_tokens || 0) - response.input_tokens
+  } tokens`
 );
 ```
 

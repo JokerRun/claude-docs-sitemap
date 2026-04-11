@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: d2f98af60589680d6cc9b6ec7704ec67f3051d60e24d102eda07f915ff37a072
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: dd9be568878e622dfcda38374aefc1a3e975775bebae807b17f25bd703d5cda5
 ---
 
 > ## Documentation Index
@@ -1547,7 +1547,7 @@ class RateLimitInfo:
 
 ### `TaskStartedMessage`
 
-Emitted when a background task starts. A background task is anything tracked outside the main turn: a backgrounded Bash command, a subagent spawned via the Agent tool, or a remote agent. The `task_type` field tells you which. This naming is unrelated to the `Task`-to-`Agent` tool rename.
+Emitted when a background task starts. A background task is anything tracked outside the main turn: a backgrounded Bash command, a [Monitor](#monitor) watch, a subagent spawned via the Agent tool, or a remote agent. The `task_type` field tells you which. This naming is unrelated to the `Task`-to-`Agent` tool rename.
 
 ```python  theme={null}
 @dataclass
@@ -1560,14 +1560,14 @@ class TaskStartedMessage(SystemMessage):
     task_type: str | None = None
 ```
 
-| Field         | Type          | Description                                                                      |
-| :------------ | :------------ | :------------------------------------------------------------------------------- |
-| `task_id`     | `str`         | Unique identifier for the task                                                   |
-| `description` | `str`         | Description of the task                                                          |
-| `uuid`        | `str`         | Unique message identifier                                                        |
-| `session_id`  | `str`         | Session identifier                                                               |
-| `tool_use_id` | `str \| None` | Associated tool use ID                                                           |
-| `task_type`   | `str \| None` | Which kind of background task: `"local_bash"`, `"local_agent"`, `"remote_agent"` |
+| Field         | Type          | Description                                                                                                                 |
+| :------------ | :------------ | :-------------------------------------------------------------------------------------------------------------------------- |
+| `task_id`     | `str`         | Unique identifier for the task                                                                                              |
+| `description` | `str`         | Description of the task                                                                                                     |
+| `uuid`        | `str`         | Unique message identifier                                                                                                   |
+| `session_id`  | `str`         | Session identifier                                                                                                          |
+| `tool_use_id` | `str \| None` | Associated tool use ID                                                                                                      |
+| `task_type`   | `str \| None` | Which kind of background task: `"local_bash"` for background Bash and Monitor watches, `"local_agent"`, or `"remote_agent"` |
 
 ### `TaskUsage`
 
@@ -1608,7 +1608,7 @@ class TaskProgressMessage(SystemMessage):
 
 ### `TaskNotificationMessage`
 
-Emitted when a task completes, fails, or is stopped.
+Emitted when a background task completes, fails, or is stopped. Background tasks include `run_in_background` Bash commands, Monitor watches, and background subagents.
 
 ```python  theme={null}
 @dataclass
@@ -2315,6 +2315,33 @@ Asks the user clarifying questions during execution. See [Handle approvals and u
     "exitCode": int,  # Exit code of the command
     "killed": bool | None,  # Whether command was killed due to timeout
     "shellId": str | None,  # Shell ID for background processes
+}
+```
+
+### Monitor
+
+**Tool name:** `Monitor`
+
+Runs a background script and delivers each stdout line to Claude as an event so it can react without polling. Monitor follows the same permission rules as Bash. See the [Monitor tool reference](/en/tools-reference#monitor-tool) for behavior and provider availability.
+
+**Input:**
+
+```python  theme={null}
+{
+    "command": str,  # Shell script; each stdout line is an event, exit ends the watch
+    "description": str,  # Short description shown in notifications
+    "timeout_ms": int | None,  # Kill after this deadline (default 300000, max 3600000)
+    "persistent": bool | None,  # Run for the lifetime of the session; stop with TaskStop
+}
+```
+
+**Output:**
+
+```python  theme={null}
+{
+    "taskId": str,  # ID of the background monitor task
+    "timeoutMs": int,  # Timeout deadline in milliseconds (0 when persistent)
+    "persistent": bool | None,  # True when running until TaskStop or session end
 }
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 07376a4f9027f65a2feb18c7b9953ef344e2f6240ee1005bd7277ac7fa9fa0de
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: d973ccaabc400d7f632461ebff7ed1f56065f4abc09c7e49059635e52515c638
 ---
 
 > ## Documentation Index
@@ -186,7 +186,7 @@ Where you define a hook determines its scope:
 | [Plugin](/en/plugins) `hooks/hooks.json`                   | When plugin is enabled        | Yes, bundled with the plugin       |
 | [Skill](/en/skills) or [agent](/en/sub-agents) frontmatter | While the component is active | Yes, defined in the component file |
 
-For details on settings file resolution, see [settings](/en/settings). Enterprise administrators can use `allowManagedHooksOnly` to block user, project, and plugin hooks. See [Hook configuration](/en/settings#hook-configuration).
+For details on settings file resolution, see [settings](/en/settings). Enterprise administrators can use `allowManagedHooksOnly` to block user, project, and plugin hooks. Hooks from plugins force-enabled in managed settings `enabledPlugins` are exempt, so administrators can distribute vetted hooks through an organization marketplace. See [Hook configuration](/en/settings#hook-configuration).
 
 ### Matcher patterns
 

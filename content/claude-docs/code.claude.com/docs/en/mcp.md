@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 0457a43b0539ef56567c4f01440614efab1827b09b095fba5e9af89d2523a6a1
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: 6f044532aa9bbec0170cbc708b6624755dc495d996eb6452721f7dcdef6bc76f
 ---
 
 > ## Documentation Index
@@ -522,9 +522,15 @@ claude mcp add --transport http hubspot --scope user https://mcp.hubspot.com/ant
 
 ### Scope hierarchy and precedence
 
-MCP server configurations follow a clear precedence hierarchy. When servers with the same name exist at multiple scopes, the system resolves conflicts by prioritizing local-scoped servers first, followed by project-scoped servers, and finally user-scoped servers. This design ensures that personal configurations can override shared ones when needed.
+When the same server is defined in more than one place, Claude Code connects to it once, using the definition from the highest-precedence source:
 
-If a server is configured both locally and through a [claude.ai connector](#use-mcp-servers-from-claude-ai), the local configuration takes precedence and the connector entry is skipped.
+1. Local scope
+2. Project scope
+3. User scope
+4. [Plugin-provided servers](/en/plugins)
+5. [claude.ai connectors](#use-mcp-servers-from-claude-ai)
+
+The three scopes match duplicates by name. Plugins and connectors match by endpoint, so one that points at the same URL or command as a server above is treated as a duplicate.
 
 ### Environment variable expansion in `.mcp.json`
 

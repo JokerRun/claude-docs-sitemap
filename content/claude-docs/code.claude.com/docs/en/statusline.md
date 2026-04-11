@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: fc798b8cbcb72d1e818b8e6384ce07c20beceac7da11106ce45879a31da038cc
+fetched_at: 2026-04-11T03:08:39.024196Z
+sha256: 9d0b048721f6fcb1e54aa35105cb1ef3a2754b9ae908db471b0c5ea7aa1bee7c
 ---
 
 > ## Documentation Index
@@ -1044,6 +1044,6 @@ Community projects like [ccstatusline](https://github.com/sirmalloc/ccstatusline
 
 **Notifications share the status line row**
 
-* System notifications like MCP server errors, auto-updates, and token warnings display on the right side of the same row as your status line
+* System notifications like MCP server errors and auto-updates display on the right side of the same row as your status line. Transient notifications such as the context-low warning also cycle through this area.
 * Enabling verbose mode adds a token counter to this area
 * On narrow terminals, these notifications may truncate your status line output
