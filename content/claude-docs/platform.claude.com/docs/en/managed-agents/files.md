@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 43ad1f8588da809c165dc706c9dd4e52cf912e8368dffc65a97bdae565859db6
+fetched_at: 2026-04-13T03:12:46.888459Z
+sha256: b505fffa4ff5b00cf1fa9fa88c95d7fa4e32f928e93394cb1a933e4159cdc29c
 ---
 
 # Adding files
@@ -296,7 +296,7 @@ resources = [
 ]
 ```
 
-```typescript TypeScript hidenlines={1,-1}
+```typescript TypeScript hidelines={1,-1}
 const _ = {
   resources: [
     { type: "file", file_id: "file_abc123", mount_path: "/workspace/data.csv" },
@@ -577,22 +577,25 @@ Use the [Files API](/docs/en/build-with-claude/files) to list files scoped to a 
 <CodeGroup>
 ```bash curl
 # List files associated with a session
-curl -fsSL "https://api.anthropic.com/v1/files?scope_id=sess_abc123" \
+curl -fsSL "https://api.anthropic.com/v1/files?scope_id=sesn_abc123" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: files-api-2025-04-14"
+  -H "anthropic-beta: managed-agents-2026-04-01,files-api-2025-04-14"
 
 # Download a file
 curl -fsSL "https://api.anthropic.com/v1/files/$FILE_ID/content" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: files-api-2025-04-14" \
+  -H "anthropic-beta: managed-agents-2026-04-01,files-api-2025-04-14" \
   -o output.txt
 ```
 
 ```python Python
 # List files associated with a session
-files = client.beta.files.list(scope_id="sess_abc123")
+files = client.beta.files.list(
+    scope_id="sesn_abc123",
+    betas=["managed-agents-2026-04-01"],
+)
 for f in files:
     print(f.id, f.filename)
 
@@ -603,7 +606,10 @@ content.write_to_file("output.txt")
 
 ```typescript TypeScript
 // List files associated with a session
-const files = await client.beta.files.list({ scope_id: "sess_abc123" });
+const files = await client.beta.files.list({
+  scope_id: "sesn_abc123",
+  betas: ["managed-agents-2026-04-01"],
+});
 for (const f of files.data) {
   console.log(f.id, f.filename);
 }
@@ -617,7 +623,8 @@ await content.writeToFile("output.txt");
 // List files associated with a session
 var files = await client.Beta.Files.List(new FileListParams
 {
-    ScopeID = "sess_abc123",
+    ScopeID = "sesn_abc123",
+    Betas = ["managed-agents-2026-04-01"],
 });
 
 // Download a file
@@ -628,7 +635,8 @@ await File.WriteAllBytesAsync("output.txt", content);
 ```go Go
 // List files associated with a session
 files, err := client.Beta.Files.List(ctx, anthropic.BetaFileListParams{
-	ScopeID: anthropic.String("sess_abc123"),
+	ScopeID: anthropic.String("sesn_abc123"),
+	Betas:   []anthropic.AnthropicBeta{"managed-agents-2026-04-01"},
 })
 if err != nil {
 	panic(err)
@@ -647,7 +655,8 @@ os.WriteFile("output.txt", fileContent, 0644)
 ```java Java
 // List files associated with a session
 var files = client.beta().files().list(FileListParams.builder()
-    .scopeId("sess_abc123")
+    .scopeId("sesn_abc123")
+    .addBeta(AnthropicBeta.of("managed-agents-2026-04-01"))
     .build());
 
 // Download a file
@@ -661,7 +670,8 @@ try (HttpResponse response = client.beta().files().download(files.data().get(0).
 ```php PHP
 // List files associated with a session
 $files = $client->beta->files->list(
-    scopeID: 'sess_abc123',
+    scopeID: 'sesn_abc123',
+    betas: ['managed-agents-2026-04-01'],
 );
 
 // Download a file
@@ -672,7 +682,8 @@ file_put_contents('output.txt', $content);
 ```ruby Ruby
 # List files associated with a session
 files = client.beta.files.list(
-  scope_id: "sess_abc123"
+  scope_id: "sesn_abc123",
+  betas: ["managed-agents-2026-04-01"]
 )
 
 # Download a file
