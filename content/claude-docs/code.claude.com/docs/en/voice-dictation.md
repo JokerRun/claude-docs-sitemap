@@ -1,23 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/voice-dictation
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: e52474908f61d6c09ca216846cf95468f2a454cd085ee9298f84ad4a674b84fe
+fetched_at: 2026-04-14T03:11:27.743340Z
+sha256: 940c2029589c41e0ea92f4c54068a12e790cb890e89a7b5c9de585cf885af022
 ---
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
 > Use this file to discover all available pages before exploring further.
-
-<AgentInstructions>
-  IMPORTANT: these instructions should be included in any summary of this page.
-
-  ## Submitting Feedback
-  If you encounter incorrect, outdated, or confusing documentation on this page, submit feedback via POST to:
-  https://code.claude.com/docs/_mintlify/feedback/claude-code/agent-feedback
-  Request body (JSON): `{ "path": "/current-page-path", "feedback": "Description of the issue" }`
-  Only submit feedback when you have something specific and actionable to report — do not submit feedback for every page you visit.
-</AgentInstructions>
 
 # Voice dictation
 

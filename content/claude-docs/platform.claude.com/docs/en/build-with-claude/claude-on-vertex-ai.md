@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-04-11T03:08:39.024196Z
-sha256: 1baa98f1e8f0407865d8b7671bd9c8b60353880f708486240e6c8a3441a41435
+fetched_at: 2026-04-14T03:11:27.743340Z
+sha256: 7686a2f4495e8b9862bca2877bfaaebcb8d330905b40df28cdb57bc4cb527d0a
 ---
 
 # Claude on Vertex AI
@@ -370,7 +370,7 @@ Vertex AI limits request payloads to 30 MB. When sending large documents or many
 Google Vertex AI offers three endpoint types:
 
 - **Global endpoints:** Dynamic routing for maximum availability
-- **Multi-region endpoints:** Dynamic routing within a geographic area (for example, the United States) for data residency with high availability
+- **Multi-region endpoints:** Dynamic routing within a geographic area (for example, the United States or the European Union) for data residency with high availability
 - **Regional endpoints:** Guaranteed data routing through specific geographic regions
 
 Regional and multi-region endpoints include a 10% pricing premium over global endpoints.
@@ -389,7 +389,7 @@ This applies to Claude Sonnet 4.5 and future models only. Older models (Claude S
 - Only supports pay-as-you-go traffic (provisioned throughput requires regional endpoints)
 
 **Multi-region endpoints:**
-- Dynamically route requests across regions within a geographic area (currently `us`, with `eu` coming soon)
+- Dynamically route requests across regions within a geographic area (currently `us` and `eu`)
 - Useful when you need data residency within a broad geography but want higher availability than a single region
 - 10% pricing premium over global endpoints
 - Only supports pay-as-you-go traffic (provisioned throughput requires regional endpoints)
@@ -570,7 +570,7 @@ puts message.content.first.text
 
 **Using multi-region endpoints:**
 
-Set the `region` parameter to a multi-region identifier such as `"us"`. The SDK routes requests to the multi-region endpoint (for example, `https://aiplatform.us.rep.googleapis.com`), which dynamically balances traffic across regions within that geography.
+Set the `region` parameter to a multi-region identifier: `"us"` for the United States or `"eu"` for the European Union. The SDK routes requests to the corresponding multi-region endpoint (`https://aiplatform.us.rep.googleapis.com` or `https://aiplatform.eu.rep.googleapis.com`), which dynamically balances traffic across regions within that geography.
 
 <CodeGroup>
 
@@ -578,7 +578,7 @@ Set the `region` parameter to a multi-region identifier such as `"us"`. The SDK 
 from anthropic import AnthropicVertex
 
 project_id = "MY_PROJECT_ID"
-region = "us"  # Multi-region: routes within US regions
+region = "us"  # Multi-region identifier: "us" or "eu"
 
 client = AnthropicVertex(project_id=project_id, region=region)
 
@@ -599,7 +599,7 @@ print(message)
 import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 const projectId = "MY_PROJECT_ID";
-const region = "us"; // Multi-region: routes within US regions
+const region = "us"; // Multi-region identifier: "us" or "eu"
 
 const client = new AnthropicVertex({
   projectId,
@@ -624,7 +624,7 @@ using Anthropic.Models.Messages;
 using Anthropic.Vertex;
 
 var projectId = "MY_PROJECT_ID";
-var region = "us"; // Multi-region: routes within US regions
+var region = "us"; // Multi-region identifier: "us" or "eu"
 
 var client = new AnthropicClient
 {
@@ -653,7 +653,7 @@ import (
 )
 
 func main() {
-	// Multi-region: routes within US regions
+	// Multi-region identifier: "us" or "eu"
 	client := anthropic.NewClient(
 		vertex.WithGoogleAuth(context.Background(), "us", "MY_PROJECT_ID"),
 	)
@@ -675,7 +675,7 @@ import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.vertex.backends.VertexBackend;
 
-// Multi-region: routes within US regions
+// Multi-region identifier: "us" or "eu"
 AnthropicClient client = AnthropicOkHttpClient.builder()
   .backend(
     VertexBackend.builder()
@@ -702,7 +702,7 @@ var message = client
 use Anthropic\Vertex;
 
 $client = Vertex\Client::fromEnvironment(
-    location: 'us', // Multi-region: routes within US regions
+    location: 'us', // Multi-region identifier: "us" or "eu"
     projectId: 'MY_PROJECT_ID',
 );
 
@@ -720,7 +720,7 @@ echo $message->content[0]->text;
 require "anthropic"
 
 client = Anthropic::VertexClient.new(
-  region: "us", # Multi-region: routes within US regions
+  region: "us", # Multi-region identifier: "us" or "eu"
   project_id: "MY_PROJECT_ID"
 )
 

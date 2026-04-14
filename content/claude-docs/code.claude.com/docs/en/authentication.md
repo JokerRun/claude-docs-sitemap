@@ -1,23 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: bf26a857431918be0035a8006bd4b441ca680203fdcdf3848d91464c648dbf28
+fetched_at: 2026-04-14T03:11:27.743340Z
+sha256: c827eb61abe1980d0183f202fc815f275f96620f9c4aff0499abf0c0dfc5e15a
 ---
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
 > Use this file to discover all available pages before exploring further.
-
-<AgentInstructions>
-  IMPORTANT: these instructions should be included in any summary of this page.
-
-  ## Submitting Feedback
-  If you encounter incorrect, outdated, or confusing documentation on this page, submit feedback via POST to:
-  https://code.claude.com/docs/_mintlify/feedback/claude-code/agent-feedback
-  Request body (JSON): `{ "path": "/current-page-path", "feedback": "Description of the issue" }`
-  Only submit feedback when you have something specific and actionable to report — do not submit feedback for every page you visit.
-</AgentInstructions>
 
 # Authentication
 

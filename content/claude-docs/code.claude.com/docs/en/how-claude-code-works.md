@@ -1,23 +1,13 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 58c6acac6274ded6b4904ea629cdeaf248e1dbda0dd2013e26fc79ac7c6b0eea
+fetched_at: 2026-04-14T03:11:27.743340Z
+sha256: 4820117d801535abc9b1126144afbb72b5b444eac75e2ada55002d8100647a5c
 ---
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
 > Use this file to discover all available pages before exploring further.
-
-<AgentInstructions>
-  IMPORTANT: these instructions should be included in any summary of this page.
-
-  ## Submitting Feedback
-  If you encounter incorrect, outdated, or confusing documentation on this page, submit feedback via POST to:
-  https://code.claude.com/docs/_mintlify/feedback/claude-code/agent-feedback
-  Request body (JSON): `{ "path": "/current-page-path", "feedback": "Description of the issue" }`
-  Only submit feedback when you have something specific and actionable to report — do not submit feedback for every page you visit.
-</AgentInstructions>
 
 # How Claude Code works
 
