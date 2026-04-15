@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 05578150cad02a920d67f2d93a3bdc99fc5c957205cd38bbd48940f3bfb1dd20
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 40c1221d7d6a6979c952a18c917498e5b141bb7c13a167a1ddfcd10aeef4f713
 ---
 
 > ## Documentation Index
@@ -13,7 +13,7 @@ sha256: 05578150cad02a920d67f2d93a3bdc99fc5c957205cd38bbd48940f3bfb1dd20
 
 > Track token usage, set team spend limits, and reduce Claude Code costs with context management, model selection, extended thinking settings, and preprocessing hooks.
 
-Claude Code charges by API token consumption. Per-developer costs vary widely based on model selection, codebase size, and usage patterns such as running multiple instances or automation.
+Claude Code charges by API token consumption. For subscription plan pricing (Pro, Max, Team, Enterprise), see [claude.com/pricing](https://claude.com/pricing). Per-developer costs vary widely based on model selection, codebase size, and usage patterns such as running multiple instances or automation.
 
 Across enterprise deployments, the average cost is around \$13 per developer per active day and \$150-250 per developer per month, with costs remaining below \$30 per active day for 90% of users. To estimate spend for your own team, start with a small pilot group and use the tracking tools below to establish a baseline before wider rollout.
 
@@ -29,7 +29,7 @@ This page covers how to [track your costs](#track-your-costs), [manage costs for
 
 The `/cost` command provides detailed token usage statistics for your current session:
 
-```text  theme={null}
+```text theme={null}
 Total cost:            $0.55
 Total duration (API):  6m 19.7s
 Total duration (wall): 6h 33m 10.2s
@@ -96,7 +96,7 @@ Use `/cost` to check your current token usage, or [configure your status line](/
 
 You can also customize compaction behavior in your CLAUDE.md:
 
-```markdown  theme={null}
+```markdown theme={null}
 # Compact instructions
 
 When you are using compact, please focus on test output and code changes
@@ -129,7 +129,7 @@ For example, this PreToolUse hook filters test output to show only failures:
   <Tab title="settings.json">
     Add this to your [settings.json](/en/settings#settings-files) to run the hook before every Bash command:
 
-    ```json  theme={null}
+    ```json theme={null}
     {
       "hooks": {
         "PreToolUse": [
@@ -151,7 +151,7 @@ For example, this PreToolUse hook filters test output to show only failures:
   <Tab title="filter-test-output.sh">
     The hook calls this script, which checks if the command is a test runner and modifies it to show only failures:
 
-    ```bash  theme={null}
+    ```bash theme={null}
     #!/bin/bash
     input=$(cat)
     cmd=$(echo "$input" | jq -r '.tool_input.command')

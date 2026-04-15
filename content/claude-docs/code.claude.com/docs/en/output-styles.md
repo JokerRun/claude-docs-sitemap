@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/output-styles
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: d2848f00f6bec9935b40bd599cd567f98d3981f35c78e450f2648006336eacc1
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: e01b3a0d9e7f116cb9feb003a46be177b5fe9995c201ba7c788bc1d5e6e1044f
 ---
 
 > ## Documentation Index
@@ -61,7 +61,7 @@ selection is saved to `.claude/settings.local.json` at the
 To set a style without the menu, edit the `outputStyle` field directly in a
 settings file:
 
-```json  theme={null}
+```json theme={null}
 {
   "outputStyle": "Explanatory"
 }
@@ -77,7 +77,7 @@ cost.
 Custom output styles are Markdown files with frontmatter and the text that will
 be added to the system prompt:
 
-```markdown  theme={null}
+```markdown theme={null}
 ---
 name: My Custom Style
 description:

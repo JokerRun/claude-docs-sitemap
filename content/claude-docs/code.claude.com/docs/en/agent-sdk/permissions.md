@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/permissions
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: d6b5cc38e5f06092b6e1f0c7571fc2ce7167f656367f24c26c13c6f11696ce58
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 29a553373ad420477d1370c54739b716861eedeacde14df349e43a184469d794
 ---
 
 > ## Documentation Index
@@ -63,7 +63,7 @@ This page focuses on **allow and deny rules** and **permission modes**. For the 
 
 For a locked-down agent, pair `allowedTools` with `permissionMode: "dontAsk"`. Listed tools are approved; anything else is denied outright instead of prompting:
 
-```typescript  theme={null}
+```typescript theme={null}
 const options = {
   allowedTools: ["Read", "Glob", "Grep"],
   permissionMode: "dontAsk"

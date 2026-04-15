@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 3d5b77093a8a8206832b834d8f798bbab288f2bfa6545a7c5887edad3f954f56
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: ecc24e4ae85b25cb7e7aa082519a4de60df1e11081700613104478a4dc91eeaa
 ---
 
 > ## Documentation Index
@@ -106,7 +106,7 @@ On Windows, Claude Code can run PowerShell commands natively instead of routing 
 
 Set `CLAUDE_CODE_USE_POWERSHELL_TOOL=1` in your environment or in `settings.json`:
 
-```json  theme={null}
+```json theme={null}
 {
   "env": {
     "CLAUDE_CODE_USE_POWERSHELL_TOOL": "1"
@@ -140,7 +140,7 @@ The PowerShell tool has the following known limitations during the preview:
 
 Your exact tool set depends on your provider, platform, and settings. To check what's loaded in a running session, ask Claude directly:
 
-```text  theme={null}
+```text theme={null}
 What tools do you have access to?
 ```
 

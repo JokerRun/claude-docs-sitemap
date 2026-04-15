@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: b4ca2c4fa6584b17497c7fa1813e7f99ca5c1d840f420964cb109f43352157d1
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 8416c8e5b22a5912b81ab96b886a039d6a3f77c9abbffa333b48fdc86983d385
 ---
 
 > ## Documentation Index
@@ -264,7 +264,7 @@ Here's a full example demonstrating plugin loading and usage:
 
 A plugin directory must contain a `.claude-plugin/plugin.json` manifest file. It can optionally include:
 
-```text  theme={null}
+```text theme={null}
 my-plugin/
 ├── .claude-plugin/
 │   └── plugin.json          # Required: plugin manifest
@@ -291,7 +291,7 @@ For detailed information on creating plugins, see:
 
 Load plugins during development without installing them globally:
 
-```typescript  theme={null}
+```typescript theme={null}
 plugins: [{ type: "local", path: "./dev-plugins/my-plugin" }];
 ```
 
@@ -299,7 +299,7 @@ plugins: [{ type: "local", path: "./dev-plugins/my-plugin" }];
 
 Include plugins in your project repository for team-wide consistency:
 
-```typescript  theme={null}
+```typescript theme={null}
 plugins: [{ type: "local", path: "./project-plugins/team-workflows" }];
 ```
 
@@ -307,7 +307,7 @@ plugins: [{ type: "local", path: "./project-plugins/team-workflows" }];
 
 Combine plugins from different locations:
 
-```typescript  theme={null}
+```typescript theme={null}
 plugins: [
   { type: "local", path: "./local-plugin" },
   { type: "local", path: "~/.claude/custom-plugins/shared-plugin" }

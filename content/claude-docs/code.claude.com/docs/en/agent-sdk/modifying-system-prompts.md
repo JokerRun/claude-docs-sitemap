@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: e511a8d79c07e66369c683e410dd79cb9a1b87ba6702f70a64161f56ece4c003
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 1521862a92f82c448da7e0a6cacad9802d54ad00ea7ca55530f10855d2ccefd5
 ---
 
 > ## Documentation Index
@@ -62,7 +62,7 @@ CLAUDE.md files use plain markdown and can contain:
 
 #### Example CLAUDE.md
 
-```markdown  theme={null}
+```markdown theme={null}
 # Project Guidelines
 
 ## Code Style

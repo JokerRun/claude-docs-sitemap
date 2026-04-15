@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 551d7809663772d5dc449138ba88b40e5c06d3d4a707142fcc492125b8c9f34e
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 27e528432af366789bc622c0da28de63a38a2ec6aaabae59c715b1ab80574c61
 ---
 
 > ## Documentation Index
@@ -19,7 +19,7 @@ Track Claude Code usage, costs, and tool activity across your organization by ex
 
 Configure OpenTelemetry using environment variables:
 
-```bash  theme={null}
+```bash theme={null}
 # 1. Enable telemetry
 export CLAUDE_CODE_ENABLE_TELEMETRY=1
 
@@ -54,7 +54,7 @@ Administrators can configure OpenTelemetry settings for all users through the [m
 
 Example managed settings configuration:
 
-```json  theme={null}
+```json theme={null}
 {
   "env": {
     "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
@@ -135,7 +135,7 @@ For enterprise environments that require dynamic authentication, you can configu
 
 Add to your `.claude/settings.json`:
 
-```json  theme={null}
+```json theme={null}
 {
   "otelHeadersHelper": "/bin/generate_opentelemetry_headers.sh"
 }
@@ -145,7 +145,7 @@ Add to your `.claude/settings.json`:
 
 The script must output valid JSON with string key-value pairs representing HTTP headers:
 
-```bash  theme={null}
+```bash theme={null}
 #!/bin/bash
 # Example: Multiple headers
 echo "{\"Authorization\": \"Bearer $(get-token.sh)\", \"X-API-Key\": \"$(get-api-key.sh)\"}"
@@ -159,7 +159,7 @@ The headers helper script runs at startup and periodically thereafter to support
 
 Organizations with multiple teams or departments can add custom attributes to distinguish between different groups using the `OTEL_RESOURCE_ATTRIBUTES` environment variable:
 
-```bash  theme={null}
+```bash theme={null}
 # Add custom attributes for team identification
 export OTEL_RESOURCE_ATTRIBUTES="department=engineering,team.id=platform,cost_center=eng-123"
 ```
@@ -183,7 +183,7 @@ These custom attributes will be included in all metrics and events, allowing you
 
   **Examples:**
 
-  ```bash  theme={null}
+  ```bash theme={null}
   # ❌ Invalid - contains spaces
   export OTEL_RESOURCE_ATTRIBUTES="org.name=John's Organization"
 
@@ -202,7 +202,7 @@ These custom attributes will be included in all metrics and events, allowing you
 
 Set these environment variables before running `claude`. Each block shows a complete configuration for a different exporter or deployment scenario:
 
-```bash  theme={null}
+```bash theme={null}
 # Console debugging (1-second intervals)
 export CLAUDE_CODE_ENABLE_TELEMETRY=1
 export OTEL_METRICS_EXPORTER=console

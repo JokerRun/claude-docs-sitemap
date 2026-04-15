@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: 7e435c6d28bf7b3af668ca0052394f44b46ae0d15c075c5b11dba98c07545216
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 0d5c8c3f7fd702cf096ec160b5c850d61fa3a76e979e435eadacab3fd0fe799c
 ---
 
 # Streaming refusals
@@ -47,7 +47,7 @@ You will be billed for output tokens up until the refusal.
 </Note>
 
 <Tip>
-If you encounter `refusal` stop reasons frequently while using Claude Sonnet 4.5 or Opus 4.1, you can try updating your API calls to use Sonnet 4 (`claude-sonnet-4-20250514`), which has different usage restrictions.
+If you encounter `refusal` stop reasons frequently while using Claude Sonnet 4.5 or Opus 4.1, you can try updating your API calls to use Haiku 4.5 (`claude-haiku-4-5-20251001`), which has different usage restrictions. Learn more about [understanding Sonnet 4.5's API safety filters](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
 </Tip>
 
 ## Implementation guide

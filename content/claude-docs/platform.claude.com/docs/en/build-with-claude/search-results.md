@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 78a8c66b72b812cc86ae40bfed952d16e5e488596e56349b68bdc153f213d9aa
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 0d85faca457f58e3082e3362eaca4a9c86d54a54fe4a448ff40c5851c011692c
 ---
 
 # Search results
@@ -24,8 +24,8 @@ The search results feature is available on the following models:
 - Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 - Claude Opus 4.1 (`claude-opus-4-1-20250805`)
-- Claude Opus 4 (`claude-opus-4-20250514`)
-- Claude Sonnet 4 (`claude-sonnet-4-20250514`)
+- Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-opus-4-20250514`)
+- Claude Sonnet 4 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-sonnet-4-20250514`)
 - Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-3-7-sonnet-20250219`)
 - Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
 - Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-3-5-haiku-20241022`)

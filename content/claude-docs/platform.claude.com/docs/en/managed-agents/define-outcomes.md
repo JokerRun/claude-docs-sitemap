@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8d50c2a236b5121a8644f2dae78287086870ad1e91e2de5145d8b047f168ae16
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 991f7584d9c6428b24adf772cfa5fe32bec0b7d8d3fc2a25bfc7e2151812391f
 ---
 
 # Define outcomes
@@ -191,7 +191,7 @@ After creating a session, send a `user.define_outcome` event. The agent begins w
   # Create a session
   SESSION_ID=$(ant beta:sessions create \
     --agent "$AGENT_ID" \
-    --environment "$ENVIRONMENT_ID" \
+    --environment-id "$ENVIRONMENT_ID" \
     --title "Financial analysis on Costco" \
     --transform id --format yaml)
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/subagents
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 32a0ad30cfaeb56914a8531311f61de02cfc96b8ec4d3b291274778fe190a27a
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 06fbd624c06de877ccc989a67f4bb49d53b560ff14ffee7c7ec8fff4ef40007f
 ---
 
 > ## Documentation Index
@@ -214,7 +214,7 @@ Write clear, specific descriptions so Claude can match tasks to the right subage
 
 To guarantee Claude uses a specific subagent, mention it by name in your prompt:
 
-```text  theme={null}
+```text theme={null}
 "Use the code-reviewer agent to check the authentication module"
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/jetbrains
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: de4597b24b8075fb2393df6e0128575b9e9df49b596c9fa86edbe722e3ac6073
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: ea60616a5ca6a980d3f4a2c7ef3c6ee75df6dce8d28de1c3146db720fca3bd81
 ---
 
 > ## Documentation Index
@@ -56,11 +56,11 @@ Run `claude` from your IDE's integrated terminal, and all integration features w
 
 Use the `/ide` command in any external terminal to connect Claude Code to your JetBrains IDE and activate all features:
 
-```bash  theme={null}
+```bash theme={null}
 claude
 ```
 
-```text  theme={null}
+```text theme={null}
 /ide
 ```
 

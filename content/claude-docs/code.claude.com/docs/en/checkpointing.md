@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/checkpointing
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 0eb94992298dc42b7d03ad0a30fa0367b97abae4e04e5e90a1cb6ec488403016
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 94f7cd24eb795c68743834b79edf4e0ea6ea10ac84a26788fcafc466a85b63ce
 ---
 
 > ## Documentation Index
@@ -69,7 +69,7 @@ Checkpoints are particularly useful when:
 
 Checkpointing does not track files modified by bash commands. For example, if Claude Code runs:
 
-```bash  theme={null}
+```bash theme={null}
 rm file.txt
 mv old.txt new.txt
 cp source.txt dest.txt

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/migration
-fetched_at: 2026-04-11T03:08:39.024196Z
-sha256: ccabe72569b243603adc6bd5dd6b8b4ce95abde6ffb0ef88dd2e6de4a0d172a3
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 078b9535d0438944f5d61148828905897644385e32bba3d71e174c0964a3bac7
 ---
 
 # Migration
@@ -317,7 +317,7 @@ end
 
   session_id=$(ant beta:sessions create \
     --agent "{type: agent, id: $agent_id, version: $agent_version}" \
-    --environment "$environment_id" \
+    --environment-id "$environment_id" \
     --transform id --format yaml)
 
   # Open the stream first, then send the user message

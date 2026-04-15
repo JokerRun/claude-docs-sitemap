@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 1584d489de308c24523faddf80aeac77c6f49d8bfbc8d9ae662ad8f3e9decd3b
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: c5a367f97d0575ca7ff75d70681ab3318fde97cc1341cd4428fb8c628d99ceb4
 ---
 
 > ## Documentation Index
@@ -88,7 +88,7 @@ If you have configured custom model names in your gateway, use the environment v
 
 Simplest method using a fixed API key:
 
-```bash  theme={null}
+```bash theme={null}
 # Set in environment
 export ANTHROPIC_AUTH_TOKEN=sk-litellm-static-key
 
@@ -108,7 +108,7 @@ For rotating keys or per-user authentication:
 
 1. Create an API key helper script:
 
-```bash  theme={null}
+```bash theme={null}
 #!/bin/bash
 # ~/bin/get-litellm-key.sh
 
@@ -124,7 +124,7 @@ jwt encode \
 
 2. Configure Claude Code settings to use the helper:
 
-```json  theme={null}
+```json theme={null}
 {
   "apiKeyHelper": "~/bin/get-litellm-key.sh"
 }
@@ -132,7 +132,7 @@ jwt encode \
 
 3. Set token refresh interval:
 
-```bash  theme={null}
+```bash theme={null}
 # Refresh every hour (3600000 ms)
 export CLAUDE_CODE_API_KEY_HELPER_TTL_MS=3600000
 ```
@@ -143,7 +143,7 @@ This value will be sent as `Authorization` and `X-Api-Key` headers. The `apiKeyH
 
 Using LiteLLM's [Anthropic format endpoint](https://docs.litellm.ai/docs/anthropic_unified):
 
-```bash  theme={null}
+```bash theme={null}
 export ANTHROPIC_BASE_URL=https://litellm-server:4000
 ```
 
@@ -159,7 +159,7 @@ export ANTHROPIC_BASE_URL=https://litellm-server:4000
 
 Using [pass-through endpoint](https://docs.litellm.ai/docs/pass_through/anthropic_completion):
 
-```bash  theme={null}
+```bash theme={null}
 export ANTHROPIC_BASE_URL=https://litellm-server:4000/anthropic
 ```
 
@@ -167,7 +167,7 @@ export ANTHROPIC_BASE_URL=https://litellm-server:4000/anthropic
 
 Using [pass-through endpoint](https://docs.litellm.ai/docs/pass_through/bedrock):
 
-```bash  theme={null}
+```bash theme={null}
 export ANTHROPIC_BEDROCK_BASE_URL=https://litellm-server:4000/bedrock
 export CLAUDE_CODE_SKIP_BEDROCK_AUTH=1
 export CLAUDE_CODE_USE_BEDROCK=1
@@ -177,7 +177,7 @@ export CLAUDE_CODE_USE_BEDROCK=1
 
 Using [pass-through endpoint](https://docs.litellm.ai/docs/pass_through/vertex_ai):
 
-```bash  theme={null}
+```bash theme={null}
 export ANTHROPIC_VERTEX_BASE_URL=https://litellm-server:4000/vertex_ai/v1
 export ANTHROPIC_VERTEX_PROJECT_ID=your-gcp-project-id
 export CLAUDE_CODE_SKIP_VERTEX_AUTH=1

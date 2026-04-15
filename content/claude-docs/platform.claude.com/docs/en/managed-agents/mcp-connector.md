@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8401150371f4b464b65957e7751ed58c3838bfc35edd6db18bd4d983d0eed00c
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 18430c04e623385fe1afb17e491b7f3d8fbcda940ec49cf3018f8ba464200ea0
 ---
 
 # MCP connector
@@ -265,7 +265,7 @@ session_id=$(jq -r '.id' <<<"$session_response")
 ````bash
 SESSION_ID=$(ant beta:sessions create \
   --agent "$AGENT_ID" \
-  --environment "$ENVIRONMENT_ID" \
+  --environment-id "$ENVIRONMENT_ID" \
   --vault-id "$VAULT_ID" \
   --transform id --format yaml)
 ````

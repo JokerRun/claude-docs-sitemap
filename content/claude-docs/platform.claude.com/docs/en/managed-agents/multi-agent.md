@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/multi-agent
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f4632ec8ed31078f1247afcd7e81d9952cb0e7a50741153fbe936bc947135e7b
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 80e93e916f77b141e9d62f518811db3a70cd9e1060744188f79ff2c0a9f07dcc
 ---
 
 # Multiagent sessions
@@ -245,7 +245,7 @@ session=$(curl -fsS https://api.anthropic.com/v1/sessions \
 ```bash CLI
 ant beta:sessions create \
   --agent "$ORCHESTRATOR_ID" \
-  --environment "$ENVIRONMENT_ID"
+  --environment-id "$ENVIRONMENT_ID"
 ```
 
 ```python Python

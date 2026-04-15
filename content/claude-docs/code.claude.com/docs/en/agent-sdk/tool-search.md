@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/tool-search
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 805a4674b379bda96382603d303e18311e6635a23aa1c4cc36eea4826c1055fd
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 4f082773c04e674bbb2361928e5110fe646b49996b8a8640732cbed1737c2ca5
 ---
 
 > ## Documentation Index
@@ -117,7 +117,7 @@ The search mechanism matches queries against tool names and descriptions. Names 
 
 You can also add a system prompt section listing available tool categories. This gives the agent context about what kinds of tools are available to search for:
 
-```text  theme={null}
+```text theme={null}
 You can search for tools to interact with Slack, GitHub, and Jira.
 ```
 

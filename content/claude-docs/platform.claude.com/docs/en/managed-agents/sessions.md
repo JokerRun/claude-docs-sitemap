@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/sessions
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 309763a513acee8a9987e88c4317e6bbd382fe9dc2bff98d3d3066e3ed91ec5b
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: b0fcf4a5dac1eafaf2fa54b61b8d8e94e84130cd838a3c7f0910cda1f4213562
 ---
 
 # Start a session
@@ -42,7 +42,7 @@ A session requires an `agent` ID and an `environment` ID. Agents are versioned r
   ```bash CLI
   ant beta:sessions create \
     --agent "$AGENT_ID" \
-    --environment "$ENVIRONMENT_ID"
+    --environment-id "$ENVIRONMENT_ID"
   ```
   ```python Python
   session = client.beta.sessions.create(

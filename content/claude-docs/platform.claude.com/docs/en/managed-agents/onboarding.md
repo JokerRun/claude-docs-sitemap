@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/onboarding
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8df87205bd38cb099e205174476958cccef251455d096cf8f06a653c12360de8
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 957d4fdae5159f03c3599a2ec1c8a098082d2955f4e2f7429c1c436fa3513215
 ---
 
 # Prototype in Console
@@ -57,7 +57,7 @@ session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
 ```bash CLI
 ant beta:sessions create \
   --agent agent_01XXXXXXXXXXXXXXXXXXXXXX \
-  --environment env_01XXXXXXXXXXXXXXXXXXXXXX \
+  --environment-id env_01XXXXXXXXXXXXXXXXXXXXXX \
   --title "My first session"
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/structured-outputs
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 2effa4798088269fc2ec7efc98f85ab363bea82a6809ad744eb146caf62916f5
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 6bccbb6a14f40445793b4d15f34d49629b6d7f3cb20cebf1d492bda2f9b1b06c
 ---
 
 > ## Documentation Index
@@ -40,7 +40,7 @@ Build AI agents that autonomously read files, run commands, search the web, edit
   import { query } from "@anthropic-ai/claude-agent-sdk";
 
   for await (const message of query({
-    prompt: "Find and fix the bug in auth.py",
+    prompt: "Find and fix the bug in auth.ts",
     options: { allowedTools: ["Read", "Edit", "Bash"] }
   })) {
     console.log(message); // Claude reads the file, finds the bug, edits it
@@ -66,13 +66,13 @@ The Agent SDK includes built-in tools for reading files, running commands, and e
   <Step title="Install the SDK">
     <Tabs>
       <Tab title="TypeScript">
-        ```bash  theme={null}
+        ```bash theme={null}
         npm install @anthropic-ai/claude-agent-sdk
         ```
       </Tab>
 
       <Tab title="Python">
-        ```bash  theme={null}
+        ```bash theme={null}
         pip install claude-agent-sdk
         ```
       </Tab>
@@ -82,7 +82,7 @@ The Agent SDK includes built-in tools for reading files, running commands, and e
   <Step title="Set your API key">
     Get an API key from the [Console](https://platform.claude.com/), then set it as an environment variable:
 
-    ```bash  theme={null}
+    ```bash theme={null}
     export ANTHROPIC_API_KEY=your-api-key
     ```
 
@@ -513,7 +513,7 @@ The Claude Platform offers multiple ways to build with Claude. Here's how the Ag
       }
 
       // Agent SDK: Claude handles tools autonomously
-      for await (const message of query({ prompt: "Fix the bug in auth.py" })) {
+      for await (const message of query({ prompt: "Fix the bug in auth.ts" })) {
         console.log(message);
       }
       ```

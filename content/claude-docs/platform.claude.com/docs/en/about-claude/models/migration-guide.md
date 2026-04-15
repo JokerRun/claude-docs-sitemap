@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/migration-guide
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 2ced9168d6a1abc93e792020574330c580ae009a1e2a687bb668bf8dcf69a906
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: ca7f016ad8fcf280a697208310a604ca59f3d14f28b278136716bebc29b3e65f
 ---
 
 # Migration guide
@@ -220,7 +220,7 @@ These are not required but will improve your experience:
 
 ### Migrating from Claude 4.1 or earlier to Claude 4.6
 
-If you're migrating from Opus 4.1, Sonnet 4, or earlier models directly to Claude 4.6, apply the Claude 4.6 breaking changes above plus the additional changes in this section.
+If you're migrating from Opus 4.1, Sonnet 4 (deprecated), or earlier models directly to Claude 4.6, apply the Claude 4.6 breaking changes above plus the additional changes in this section.
 
 ```python
 # From Opus 4.1

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: ffa3ee57c040ef5983148b01c009c37a7c556be0f927ceaf3a87ef98301e52b0
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: b598b07dc558916d48d915669c260f0ba159f50335f45c7f937180929c5be147
 ---
 
 # Context windows
@@ -102,7 +102,7 @@ Claude Sonnet 3.7 does not support interleaved thinking, so there is no interlea
 For more information about using tools with extended thinking, see the [extended thinking guide](/docs/en/build-with-claude/extended-thinking#extended-thinking-with-tool-use).
 </Note>
 
-[Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.6, and Claude Sonnet 4.6 have a 1M-token context window. Other Claude models, including Claude Sonnet 4.5 and Sonnet 4, have a 200k-token context window.
+[Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.6, and Claude Sonnet 4.6 have a 1M-token context window. Other Claude models, including Claude Sonnet 4.5 and Sonnet 4 (deprecated), have a 200k-token context window.
 
 A single request can include up to 600 images or PDF pages (100 for models with a 200k-token context window). When sending many images or large documents, you may approach [request size limits](/docs/en/api/overview#request-size-limits) before the token limit.
 

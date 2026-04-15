@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 36e08e195b6db9d58aed00410ac7620fe737127ade145a70ecec948f1989406f
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 999c7a9b2a3b6dc21bc5a76deb4b5022ab76d5692db1cb589203bfaa3f091cd6
 ---
 
 > ## Documentation Index
@@ -242,7 +242,7 @@ To disable all background task functionality, set the `CLAUDE_CODE_DISABLE_BACKG
 
 Run bash commands directly without going through Claude by prefixing your input with `!`:
 
-```bash  theme={null}
+```bash theme={null}
 ! npm test
 ! git status
 ! ls -la
@@ -275,7 +275,7 @@ Suggestions are automatically skipped after the first turn of a conversation, in
 
 To disable prompt suggestions entirely, set the environment variable or toggle the setting in `/config`:
 
-```bash  theme={null}
+```bash theme={null}
 export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/structured-outputs
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: f28f041eb42895353cbd2670fbceaf076b6c826e82048e819257a2960194443f
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 8ad72cce00d84bfea6826de2cd5bdb10718a04521b1d3017fe80a5097ac0b2b6
 ---
 
 > ## Documentation Index
@@ -25,7 +25,7 @@ Consider a recipe app where an agent searches the web and brings back recipes. W
 
 <AccordionGroup>
   <Accordion title="Without structured outputs">
-    ```text  theme={null}
+    ```text theme={null}
     Here's a classic chocolate chip cookie recipe!
 
     **Chocolate Chip Cookies**
@@ -41,7 +41,7 @@ Consider a recipe app where an agent searches the web and brings back recipes. W
   </Accordion>
 
   <Accordion title="With structured outputs">
-    ```json  theme={null}
+    ```json theme={null}
     {
       "name": "Chocolate Chip Cookies",
       "prep_time_minutes": 15,

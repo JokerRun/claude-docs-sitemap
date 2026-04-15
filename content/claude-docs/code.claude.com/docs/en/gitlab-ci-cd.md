@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/gitlab-ci-cd
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 403923d27de2e04959367f1316130f1757b1ae209e23db823e04f1cd722c6f98
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 9e89b6ae92bcca3909daffba57d1db66598335df276a82b901c141812dc8c48e
 ---
 
 > ## Documentation Index
@@ -69,7 +69,7 @@ The fastest way to get started is to add a minimal job to your `.gitlab-ci.yml` 
 
 2. **Add a Claude job to `.gitlab-ci.yml`**
 
-```yaml  theme={null}
+```yaml theme={null}
 stages:
   - ai
 
@@ -133,7 +133,7 @@ If you prefer a more controlled setup or need enterprise providers:
 
 In an issue comment:
 
-```text  theme={null}
+```text theme={null}
 @claude implement this feature based on the issue description
 ```
 
@@ -143,7 +143,7 @@ Claude analyzes the issue and codebase, writes changes in a branch, and opens an
 
 In an MR discussion:
 
-```text  theme={null}
+```text theme={null}
 @claude suggest a concrete approach to cache the results of this API call
 ```
 
@@ -153,7 +153,7 @@ Claude proposes changes, adds code with appropriate caching, and updates the MR.
 
 In an issue or MR comment:
 
-```text  theme={null}
+```text theme={null}
 @claude fix the TypeError in the user dashboard component
 ```
 
@@ -194,7 +194,7 @@ For enterprise environments, you can run Claude Code entirely on your cloud infr
 
     Add variables in Settings → CI/CD → Variables:
 
-    ```yaml  theme={null}
+    ```yaml theme={null}
     # For AWS Bedrock:
     - AWS_ROLE_TO_ASSUME
     - AWS_REGION
@@ -234,7 +234,7 @@ For enterprise environments, you can run Claude Code entirely on your cloud infr
 
     Add variables in Settings → CI/CD → Variables:
 
-    ```yaml  theme={null}
+    ```yaml theme={null}
     # For Google Vertex AI:
     - GCP_WORKLOAD_IDENTITY_PROVIDER
     - GCP_SERVICE_ACCOUNT
@@ -251,7 +251,7 @@ Below are ready-to-use snippets you can adapt to your pipeline.
 
 ### Basic .gitlab-ci.yml (Claude API)
 
-```yaml  theme={null}
+```yaml theme={null}
 stages:
   - ai
 
@@ -291,7 +291,7 @@ claude:
 * `AWS_ROLE_TO_ASSUME`: ARN of the IAM role for Bedrock access
 * `AWS_REGION`: Bedrock region (for example, `us-west-2`)
 
-```yaml  theme={null}
+```yaml theme={null}
 claude-bedrock:
   stage: ai
   image: node:24-alpine3.21
@@ -343,7 +343,7 @@ claude-bedrock:
 * `GCP_SERVICE_ACCOUNT`: Service account email
 * `CLOUD_ML_REGION`: Vertex region (for example, `us-east5`)
 
-```yaml  theme={null}
+```yaml theme={null}
 claude-vertex:
   stage: ai
   image: gcr.io/google.com/cloudsdktool/google-cloud-cli:slim

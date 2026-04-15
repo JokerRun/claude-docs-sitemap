@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: d1f29bd96bf4ddc70d3afa66650f6934a54ae49607b7d88dafd8294776360e09
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 1a50da44af32339d055d892e411e01c5c74677c85cf13a7fcfac8cb7cfb5364a
 ---
 
 > ## Documentation Index
@@ -96,7 +96,7 @@ Skills are defined as directories containing a `SKILL.md` file with YAML frontma
 
 **Example directory structure**:
 
-```bash  theme={null}
+```bash theme={null}
 .claude/skills/processing-pdfs/
 └── SKILL.md
 ```
@@ -267,7 +267,7 @@ See the "Using Skills with the SDK" section above for the complete pattern.
 
 **Verify filesystem location**:
 
-```bash  theme={null}
+```bash theme={null}
 # Check project Skills
 ls .claude/skills/*/SKILL.md
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 901ab6bfc0eb9e8a91ec5886fe5c9dfd09d67ee9169c70f5727777cc13089d65
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: c40c85ec6f69d22fbaf94af6b0fb0ae0f6a6cf0b310dc96425327f18650148ee
 ---
 
 > ## Documentation Index
@@ -245,13 +245,13 @@ Claude Code uses the default AWS SDK credential chain. Set up your credentials u
 
 **Option A: AWS CLI configuration**
 
-```bash  theme={null}
+```bash theme={null}
 aws configure
 ```
 
 **Option B: Environment variables (access key)**
 
-```bash  theme={null}
+```bash theme={null}
 export AWS_ACCESS_KEY_ID=your-access-key-id
 export AWS_SECRET_ACCESS_KEY=your-secret-access-key
 export AWS_SESSION_TOKEN=your-session-token
@@ -259,7 +259,7 @@ export AWS_SESSION_TOKEN=your-session-token
 
 **Option C: Environment variables (SSO profile)**
 
-```bash  theme={null}
+```bash theme={null}
 aws sso login --profile=<your-profile-name>
 
 export AWS_PROFILE=your-profile-name
@@ -267,7 +267,7 @@ export AWS_PROFILE=your-profile-name
 
 **Option D: AWS Management Console credentials**
 
-```bash  theme={null}
+```bash theme={null}
 aws login
 ```
 
@@ -275,7 +275,7 @@ aws login
 
 **Option E: Bedrock API keys**
 
-```bash  theme={null}
+```bash theme={null}
 export AWS_BEARER_TOKEN_BEDROCK=your-bedrock-api-key
 ```
 
@@ -289,7 +289,7 @@ When Claude Code detects that your AWS credentials are expired (either locally b
 
 ##### Example configuration
 
-```json  theme={null}
+```json theme={null}
 {
   "awsAuthRefresh": "aws sso login --profile myprofile",
   "env": {
@@ -304,7 +304,7 @@ When Claude Code detects that your AWS credentials are expired (either locally b
 
 **`awsCredentialExport`**: Only use this if you can't modify `.aws` and must directly return credentials. Output is captured silently and not shown to the user. The command must output JSON in this format:
 
-```json  theme={null}
+```json theme={null}
 {
   "Credentials": {
     "AccessKeyId": "value",
@@ -318,7 +318,7 @@ When Claude Code detects that your AWS credentials are expired (either locally b
 
 Set the following environment variables to enable Bedrock:
 
-```bash  theme={null}
+```bash theme={null}
 # Enable Bedrock integration
 export CLAUDE_CODE_USE_BEDROCK=1
 export AWS_REGION=us-east-1  # or your preferred region
@@ -345,7 +345,7 @@ When enabling Bedrock for Claude Code, keep the following in mind:
 
 Set these environment variables to specific Bedrock model IDs:
 
-```bash  theme={null}
+```bash theme={null}
 export ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-6-v1'
 export ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-4-6'
 export ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
@@ -362,7 +362,7 @@ Claude Code uses these default models when no pinning variables are set:
 
 To customize models further, use one of these methods:
 
-```bash  theme={null}
+```bash theme={null}
 # Using inference profile ID
 export ANTHROPIC_MODEL='global.anthropic.claude-sonnet-4-6'
 export ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
@@ -382,7 +382,7 @@ The `ANTHROPIC_DEFAULT_*_MODEL` environment variables configure one inference pr
 
 This example maps three Opus versions to distinct ARNs so users can switch between them without bypassing your organization's inference profiles:
 
-```json  theme={null}
+```json theme={null}
 {
   "modelOverrides": {
     "claude-opus-4-6": "arn:aws:bedrock:us-east-2:123456789012:application-inference-profile/opus-46-prod",
@@ -406,7 +406,7 @@ If you have not pinned a model and the current default is unavailable in your ac
 
 Create an IAM policy with the required permissions for Claude Code:
 
-```json  theme={null}
+```json theme={null}
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -462,7 +462,7 @@ To enable the 1M context window for your pinned model, append `[1m]` to the mode
 
 Example configuration:
 
-```json  theme={null}
+```json theme={null}
 {
   "env": {
     "ANTHROPIC_CUSTOM_HEADERS": "X-Amzn-Bedrock-GuardrailIdentifier: your-guardrail-id\nX-Amzn-Bedrock-GuardrailVersion: 1"
@@ -482,7 +482,7 @@ Mantle is an Amazon Bedrock endpoint that serves Claude models through the nativ
 
 With AWS credentials already configured, set `CLAUDE_CODE_USE_MANTLE` to route requests to the Mantle endpoint:
 
-```bash  theme={null}
+```bash theme={null}
 export CLAUDE_CODE_USE_MANTLE=1
 export AWS_REGION=us-east-1
 ```
@@ -497,7 +497,7 @@ Mantle uses model IDs prefixed with `anthropic.` and without a version suffix, f
 
 Set the model with the `--model` flag or with `/model` inside Claude Code:
 
-```bash  theme={null}
+```bash theme={null}
 claude --model anthropic.claude-haiku-4-5
 ```
 
@@ -505,14 +505,14 @@ claude --model anthropic.claude-haiku-4-5
 
 The models available to you on Mantle may not include every model you use today. Setting both `CLAUDE_CODE_USE_BEDROCK` and `CLAUDE_CODE_USE_MANTLE` lets Claude Code call both endpoints from the same session. Model IDs that match the Mantle format are routed to Mantle, and all other model IDs go to the Bedrock Invoke API.
 
-```bash  theme={null}
+```bash theme={null}
 export CLAUDE_CODE_USE_BEDROCK=1
 export CLAUDE_CODE_USE_MANTLE=1
 ```
 
 To surface a Mantle model in the `/model` picker, list its ID in `availableModels` in your [settings file](/en/settings). This setting also restricts the picker to the listed entries, so include every alias you want to keep available:
 
-```json  theme={null}
+```json theme={null}
 {
   "availableModels": ["opus", "sonnet", "haiku", "anthropic.claude-haiku-4-5"]
 }
@@ -526,7 +526,7 @@ When both providers are active, `/status` shows `Amazon Bedrock + Amazon Bedrock
 
 If your organization routes model traffic through a centralized [LLM gateway](/en/llm-gateway) that injects AWS credentials server-side, disable client-side authentication so Claude Code sends requests without SigV4 signatures or `x-api-key` headers:
 
-```bash  theme={null}
+```bash theme={null}
 export CLAUDE_CODE_USE_MANTLE=1
 export CLAUDE_CODE_SKIP_MANTLE_AUTH=1
 export ANTHROPIC_BEDROCK_MANTLE_BASE_URL=https://your-gateway.example.com

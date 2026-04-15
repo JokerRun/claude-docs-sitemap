@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/streaming-output
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: fc207d0e76406b4a93aacd0d3afb0f85cdd6c4c79aaa8fe4b7194b8df91fc752
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 64829275d0b9b78cbf8a8d564cf6344042ed5d2540d83cbe2bb3bf67b4cdb892
 ---
 
 > ## Documentation Index
@@ -123,7 +123,7 @@ The `event` field contains the raw streaming event from the [Claude API](https:/
 
 With partial messages enabled, you receive messages in this order:
 
-```text  theme={null}
+```text theme={null}
 StreamEvent (message_start)
 StreamEvent (content_block_start) - text block
 StreamEvent (content_block_delta) - text chunks...

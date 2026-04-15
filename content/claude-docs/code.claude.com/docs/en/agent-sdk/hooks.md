@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 216940c760dd7af41cea7741553d5aebe8c72e2d2fb164a18ab6157850f99fb5
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 39b9b0ffef8b4031aaf0264ba9a8abd90a687dc87dc5279568c0399ddac9607f
 ---
 
 > ## Documentation Index
@@ -739,7 +739,7 @@ This example forwards every notification to a Slack channel. It requires a [Slac
 
 Matchers only match **tool names**, not file paths or other arguments. To filter by file path, check `tool_input.file_path` inside your hook:
 
-```typescript  theme={null}
+```typescript theme={null}
 const myHook: HookCallback = async (input, toolUseID, { signal }) => {
   const preInput = input as PreToolUseHookInput;
   const toolInput = preInput.tool_input as Record<string, unknown>;
@@ -765,7 +765,7 @@ const myHook: HookCallback = async (input, toolUseID, { signal }) => {
 
 * Ensure `updatedInput` is inside `hookSpecificOutput`, not at the top level:
 
-  ```typescript  theme={null}
+  ```typescript theme={null}
   return {
     hookSpecificOutput: {
       hookEventName: "PreToolUse",

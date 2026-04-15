@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/model-deprecations
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: cebc827b87f099d1c5f132fb76e95cc707451139199787123018263346d1c403
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: cde7b8720c40471c5b64372997b81ff097672c6a09aa5d70474d874a7f5d84aa
 ---
 
 # Model deprecations
@@ -72,10 +72,10 @@ All publicly released models are listed below with their status:
 | `claude-opus-4-6`             | Active              | N/A               | Not sooner than February 5, 2027 |
 | `claude-opus-4-5-20251101`  | Active              | N/A               | Not sooner than November 24, 2026 |
 | `claude-opus-4-1-20250805`  | Active              | N/A               | Not sooner than August 5, 2026 |
-| `claude-opus-4-20250514`    | Active              | N/A               | Not sooner than May 14, 2026 |
+| `claude-opus-4-20250514`    | Deprecated          | April 14, 2026    | June 15, 2026            |
 | `claude-sonnet-4-6`         | Active              | N/A               | Not sooner than February 17, 2027 |
 | `claude-sonnet-4-5-20250929`| Active              | N/A               | Not sooner than September 29, 2026 |
-| `claude-sonnet-4-20250514`  | Active              | N/A               | Not sooner than May 14, 2026 |
+| `claude-sonnet-4-20250514`  | Deprecated          | April 14, 2026    | June 15, 2026            |
 | `claude-3-7-sonnet-20250219`| Retired             | October 28, 2025  | February 19, 2026          |
 | `claude-haiku-4-5-20251001` | Active              | N/A               | Not sooner than October 15, 2026 |
 | `claude-3-5-haiku-20241022` | Retired             | December 19, 2025 | February 19, 2026          |
@@ -84,6 +84,15 @@ All publicly released models are listed below with their status:
 ## Deprecation history
 
 All deprecations are listed below, with the most recent announcements at the top.
+
+### 2026-04-14: Claude Sonnet 4 and Claude Opus 4 models
+
+On April 14, 2026, Anthropic notified developers using Claude Sonnet 4 and Claude Opus 4 models of their upcoming retirement on the Claude API.
+
+| Retirement Date             | Deprecated Model            | Recommended Replacement         |
+|:----------------------------|:----------------------------|:--------------------------------|
+| June 15, 2026               | `claude-sonnet-4-20250514`  | `claude-sonnet-4-6`             |
+| June 15, 2026               | `claude-opus-4-20250514`    | `claude-opus-4-6`               |
 
 ### 2026-02-19: Claude Haiku 3 model
 

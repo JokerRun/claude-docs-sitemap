@@ -465,6 +465,10 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/api/claude-code/routines-fire</loc>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/api/rate-limits</loc>
 <priority>0.8</priority>
 </url>

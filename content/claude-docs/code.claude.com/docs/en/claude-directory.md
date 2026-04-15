@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-directory
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 09d89c354e7f6f1b5bf62ce546dd314ce3aa40f402333a251c84aa8df2e8e6ef
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 9a24ff953473343c94df01705c8fa5c30e5fc5bf2db1815667babb9f9b590b7a
 ---
 
 > ## Documentation Index
@@ -1503,7 +1503,7 @@ The following paths are not covered by automatic cleanup and persist indefinitel
 Transcripts and history are not encrypted at rest. OS file permissions are the only protection. If a tool reads a `.env` file or a command prints a credential, that value is written to `projects/<project>/<session>.jsonl`. To reduce exposure:
 
 * Lower `cleanupPeriodDays` to shorten how long transcripts are kept
-* In non-interactive mode, pass `--no-session-persistence` alongside `-p` to skip writing transcripts entirely. In the Agent SDK, set `persistSession: false`. There is no interactive-mode equivalent.
+* Set the [`CLAUDE_CODE_SKIP_PROMPT_HISTORY`](/en/env-vars) environment variable to skip writing transcripts and prompt history in any mode. In non-interactive mode, you can instead pass `--no-session-persistence` alongside `-p`, or set `persistSession: false` in the Agent SDK.
 * Use [permission rules](/en/permissions) to deny reads of credential files
 
 ### Clear local data

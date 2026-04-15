@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: b981c7b4ee1ee9875584705f8ca195caaaebec1eee239b83b52eaf9765fe0256
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 08952f8b79df6a1e2018b131fbcc3e78aef55938cfeacbc6cad53eb3d591a119
 ---
 
 > ## Documentation Index
@@ -52,7 +52,7 @@ If your devices are enrolled in an MDM or endpoint management solution, endpoint
 
     This example enforces a permission deny list, prevents users from bypassing permissions, and restricts permission rules to those defined in managed settings:
 
-    ```json  theme={null}
+    ```json theme={null}
     {
       "permissions": {
         "deny": [
@@ -71,7 +71,7 @@ If your devices are enrolled in an MDM or endpoint management solution, endpoint
 
     This example runs an audit script after every file edit across the organization:
 
-    ```json  theme={null}
+    ```json theme={null}
     {
       "hooks": {
         "PostToolUse": [
@@ -88,7 +88,7 @@ If your devices are enrolled in an MDM or endpoint management solution, endpoint
 
     To configure the [auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) classifier so it knows which repos, buckets, and domains your organization trusts:
 
-    ```json  theme={null}
+    ```json theme={null}
     {
       "autoMode": {
         "environment": [
@@ -168,7 +168,7 @@ When this setting is active, the CLI blocks at startup until remote settings are
 
 To enable this, add the key to your managed settings configuration:
 
-```json  theme={null}
+```json theme={null}
 {
   "forceRemoteSettingsRefresh": true
 }

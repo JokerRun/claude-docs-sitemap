@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/cli
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: c0ef693ee27cf5b886346948a787b9ee08339c163942f72ca02e3091dd18cf09
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 12067664a6d983b36ae95a1bb2f6db6cc1c1d184c8483c8b99ee11daef00e5b3
 ---
 
 # CLI
@@ -240,7 +240,7 @@ Scalar fields map directly to flags. Structured fields accept a relaxed YAML-lik
 ```bash
 ant beta:sessions create \
   --agent '{type: agent, id: agent_011CYm1BLqPXpQRk5khsSXrs, version: 1}' \
-  --environment env_01595EKxaaTTGwwY3kyXdtbs \
+  --environment-id env_01595EKxaaTTGwwY3kyXdtbs \
   --title "CLI docs test session"
 ```
 
@@ -402,7 +402,7 @@ Paste the agent `id` and environment `id` from the previous outputs into the ses
 ```bash highlight={2..3}
 ant beta:sessions create \
   --agent agent_011CYm1BLqPXpQRk5khsSXrs \
-  --environment env_01595EKxaaTTGwwY3kyXdtbs \
+  --environment-id env_01595EKxaaTTGwwY3kyXdtbs \
   --title "Summarization task"
 ```
 

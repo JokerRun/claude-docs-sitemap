@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/multilingual-support
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 1fda7688add21d09411abbbe754e5a651f6e23795f7cb7d1f7624b015fd8f36e
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 2d75e26f84f65c0ac46e97465d4be08db9e0280690a51bf60bc912fd0603c818
 ---
 
 # Multilingual support
@@ -21,7 +21,7 @@ Note that Claude is capable in many languages beyond those benchmarked below. Co
 
 Below are the zero-shot chain-of-thought evaluation scores for Claude models across different languages, shown as a percent relative to English performance (100%):
 
-| Language | Claude Opus 4.1<sup>1</sup> | Claude Opus 4<sup>1</sup> | Claude Sonnet 4.5<sup>1</sup> | Claude Sonnet 4<sup>1</sup> | Claude Haiku 4.5<sup>1</sup> |
+| Language | Claude Opus 4.1<sup>1</sup> | Claude Opus 4 (deprecated)<sup>1</sup> | Claude Sonnet 4.5<sup>1</sup> | Claude Sonnet 4 (deprecated)<sup>1</sup> | Claude Haiku 4.5<sup>1</sup> |
 |----------|---------------|---------------|---------------|-----------------|------------------|
 | English (baseline, fixed to 100%) | 100% | 100% | 100% | 100% | 100% |
 | Spanish | 98.1% | 98.0% | 98.2% | 97.5% | 96.4% |

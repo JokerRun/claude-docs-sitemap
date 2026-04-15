@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 26002ee5de7a7f3e98e7018559b4714576cda88b171641c1b158d0a88fd6c88e
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 5e80c0b2cb23732716da1df6882a0dcf6a9847f2b0f9b0ddf671678f8028fec6
 ---
 
 # Mengakses GitHub
@@ -274,7 +274,7 @@ JSON
 ````bash
 SESSION_ID=$(ant beta:sessions create \
   --agent "$AGENT_ID" \
-  --environment "$ENVIRONMENT_ID" \
+  --environment-id "$ENVIRONMENT_ID" \
   --transform id --format yaml <<'EOF'
 resources:
   - type: github_repository

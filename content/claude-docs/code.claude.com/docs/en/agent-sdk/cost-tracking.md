@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/cost-tracking
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: c69dd346b2e14ef764f33d593f3c6293cd5ec81ffab61c49e269b2ea543fa8bc
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: bd478af482a0d9291a13746a7cf63c548ce08a889838b28db61ddb41ed21c667
 ---
 
 > ## Documentation Index
@@ -92,7 +92,7 @@ Each assistant message contains a nested `BetaMessage` (accessed via `message.me
 
 The following example accumulates input and output tokens across all steps, counting each unique message ID only once:
 
-```typescript  theme={null}
+```typescript theme={null}
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
 const seenIds = new Set<string>();
@@ -123,7 +123,7 @@ The result message includes [`modelUsage`](/en/agent-sdk/typescript#model-usage)
 
 The following example runs a query and prints the cost and token breakdown for each model used:
 
-```typescript  theme={null}
+```typescript theme={null}
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
 for await (const message of query({ prompt: "Summarize this project" })) {

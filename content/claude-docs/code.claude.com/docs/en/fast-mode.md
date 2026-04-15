@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 6741462f186f5a68e9a9700f6dfe2b0d6aac30e7cb8c916881c78ab9f28d1bb3
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: fbe089348b29c1f2857397dac9fd21dba8fb01f61e3b430edf19267f141f87b0
 ---
 
 > ## Documentation Index
@@ -121,7 +121,7 @@ Another option to disable fast mode entirely is to set `CLAUDE_CODE_DISABLE_FAST
 
 By default, fast mode persists across sessions: if a user enables fast mode, it stays on in future sessions. Administrators on [Team](https://claude.com/pricing?utm_source=claude_code\&utm_medium=docs\&utm_content=fast_mode_teams#team-&-enterprise) or [Enterprise](https://anthropic.com/contact-sales?utm_source=claude_code\&utm_medium=docs\&utm_content=fast_mode_enterprise) plans can prevent this by setting `fastModePerSessionOptIn` to `true` in [managed settings](/en/settings#settings-files) or [server-managed settings](/en/server-managed-settings). This causes each session to start with fast mode off, requiring users to explicitly enable it with `/fast`.
 
-```json  theme={null}
+```json theme={null}
 {
   "fastModePerSessionOptIn": true
 }

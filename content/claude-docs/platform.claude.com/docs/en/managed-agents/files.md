@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 042e1c33514ba6f9e5e38ed71f263b81a3e88fda408535e702d39ae046e01af1
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 5f1ffdd866eeb2f5e05003936a63515850142dd145b48c02dd2ced643eaa69ff
 ---
 
 # Adding files
@@ -144,7 +144,7 @@ session_id=$(jq -er '.id' <<<"${session}")
 ````bash
 SESSION_ID=$(ant beta:sessions create \
   --agent "$AGENT_ID" \
-  --environment "$ENVIRONMENT_ID" \
+  --environment-id "$ENVIRONMENT_ID" \
   --transform id --format yaml <<EOF
 resources:
   - type: file
@@ -286,6 +286,19 @@ Mount multiple files by adding entries to the `resources` array:
     { "type": "file", "file_id": "file_ghi789", "mount_path": "/workspace/src/main.py" }
   ]
 }
+```
+
+```yaml CLI
+resources:
+  - type: file
+    file_id: file_abc123
+    mount_path: /workspace/data.csv
+  - type: file
+    file_id: file_def456
+    mount_path: /workspace/config.json
+  - type: file
+    file_id: file_ghi789
+    mount_path: /workspace/src/main.py
 ```
 
 ```python Python
@@ -590,6 +603,16 @@ curl -fsSL "https://api.anthropic.com/v1/files/$FILE_ID/content" \
   -o output.txt
 ```
 
+```bash CLI
+# List files associated with a session
+ant beta:files list --scope-id sesn_abc123 \
+  --beta files-api-2025-04-14 \
+  --beta managed-agents-2026-04-01
+
+# Download a file
+ant beta:files download --file-id "$FILE_ID" --output output.txt
+```
+
 ```python Python
 # List files associated with a session
 files = client.beta.files.list(
@@ -608,7 +631,7 @@ content.write_to_file("output.txt")
 // List files associated with a session
 const files = await client.beta.files.list({
   scope_id: "sesn_abc123",
-  betas: ["managed-agents-2026-04-01"],
+  betas: ["managed-agents-2026-04-01"]
 });
 for (const f of files.data) {
   console.log(f.id, f.filename);

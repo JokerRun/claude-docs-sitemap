@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 10444833c6f021bc4139e85c326eef9f849a00c19d67dc205d0deb1d6ae3af21
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 301ef3ce98b6745ce22b976df741d97f717c1433ce7004c38821a9cdf5687251
 ---
 
 # Autentikasi dengan vault
@@ -688,7 +688,7 @@ EOF
 ````bash
 SESSION_ID=$(ant beta:sessions create \
   --agent "$AGENT_ID" \
-  --environment "$ENVIRONMENT_ID" \
+  --environment-id "$ENVIRONMENT_ID" \
   --vault-id "$VAULT_ID" \
   --title "Alice's Slack digest" \
   --transform id --format yaml)

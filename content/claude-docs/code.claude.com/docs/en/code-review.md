@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 62c6d019e364f80aba9435f1f29e0085955796c88a0081fcf49965111e69c962
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 80924a91ee3d4c89b459b1040d6cdc9b56511da32c9c30df8a493f575f02f449
 ---
 
 > ## Documentation Index
@@ -71,7 +71,7 @@ Each finding also appears as an annotation in the **Files changed** tab, marked 
 
 The check run always completes with a neutral conclusion so it never blocks merging through branch protection rules. If you want to gate merges on Code Review findings, read the severity breakdown from the check run output in your own CI. The last line of the Details text is a machine-readable comment your workflow can parse with `gh` and jq:
 
-```bash  theme={null}
+```bash theme={null}
 gh api repos/OWNER/REPO/check-runs/CHECK_RUN_ID \
   --jq '.output.text | split("bughunter-severity: ")[1] | split(" -->")[0] | fromjson'
 ```
@@ -172,7 +172,7 @@ Add a `REVIEW.md` file to your repository root for review-specific rules. Use it
 
 Example `REVIEW.md`:
 
-```markdown  theme={null}
+```markdown theme={null}
 # Code Review Guidelines
 
 ## Always check

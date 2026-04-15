@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/user-input
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 426883b8e81bb144f18848b4715d914afa77b450967e0a28ab5336cb47a700a1
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: bebc3ae00d658a9f69b7156997817c5cd4d081a1102eb9528e507c49339881b5
 ---
 
 > ## Documentation Index
@@ -439,7 +439,7 @@ The following steps show how to handle clarifying questions:
   <Step title="Parse the question input">
     The input contains Claude's questions in a `questions` array. Each question has a `question` (the text to display), `options` (the choices), and `multiSelect` (whether multiple selections are allowed):
 
-    ```json  theme={null}
+    ```json theme={null}
     {
       "questions": [
         {
@@ -523,7 +523,7 @@ The input contains Claude's generated questions in a `questions` array. Each que
 
 The structure your callback receives:
 
-```json  theme={null}
+```json theme={null}
 {
   "questions": [
     {
@@ -551,7 +551,7 @@ The structure your callback receives:
 
 The format applies to all questions in the session. Claude includes `preview` on options where a visual comparison helps (layout choices, color schemes) and omits it where one wouldn't (yes/no confirmations, text-only choices). Check for `undefined` before rendering.
 
-```typescript  theme={null}
+```typescript theme={null}
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
 for await (const message of query({
@@ -572,7 +572,7 @@ for await (const message of query({
 
 An option with an HTML preview:
 
-```json  theme={null}
+```json theme={null}
 {
   "label": "Compact",
   "description": "Title and metric value only",
@@ -591,7 +591,7 @@ Return an `answers` object mapping each question's `question` field to the selec
 
 For multi-select questions, join multiple labels with `", "`. For free-text input, use the user's custom text directly.
 
-```json  theme={null}
+```json theme={null}
 {
   "questions": [
     // ...

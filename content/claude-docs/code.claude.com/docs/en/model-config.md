@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 2cd4839dbe89cc38051b4bf68e0e1520b6ca286258c0ab12d5c9027b06fc00a5
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 4d151d7ebdbd1fab29290ded6315549fe2ab7cb98308bfd17e52c05a0d4a373f
 ---
 
 > ## Documentation Index
@@ -54,7 +54,7 @@ You can configure your model in several ways, listed in order of priority:
 
 Example usage:
 
-```bash  theme={null}
+```bash theme={null}
 # Start with Opus
 claude --model opus
 
@@ -64,7 +64,7 @@ claude --model opus
 
 Example settings file:
 
-```json  theme={null}
+```json theme={null}
 {
     "permissions": {
         ...
@@ -79,7 +79,7 @@ Enterprise administrators can use `availableModels` in [managed or policy settin
 
 When `availableModels` is set, users cannot switch to models not in the list via `/model`, `--model` flag, Config tool, or `ANTHROPIC_MODEL` environment variable.
 
-```json  theme={null}
+```json theme={null}
 {
   "availableModels": ["sonnet", "haiku"]
 }
@@ -103,7 +103,7 @@ To fully control the model experience, combine three settings:
 
 This example starts users on Sonnet 4.5, limits the picker to Sonnet and Haiku, and pins Default to resolve to Sonnet 4.5 rather than the latest release:
 
-```json  theme={null}
+```json theme={null}
 {
   "model": "claude-sonnet-4-5",
   "availableModels": ["claude-sonnet-4-5", "haiku"],
@@ -194,7 +194,7 @@ If your account supports 1M context, the option appears in the model picker (`/m
 
 You can also use the `[1m]` suffix with model aliases or full model names:
 
-```bash  theme={null}
+```bash theme={null}
 # Use the opus[1m] or sonnet[1m] alias
 /model opus[1m]
 /model sonnet[1m]
@@ -216,7 +216,7 @@ Use `ANTHROPIC_CUSTOM_MODEL_OPTION` to add a single custom entry to the `/model`
 
 This example sets all three variables to make a gateway-routed Opus deployment selectable:
 
-```bash  theme={null}
+```bash theme={null}
 export ANTHROPIC_CUSTOM_MODEL_OPTION="my-gateway/claude-opus-4-6"
 export ANTHROPIC_CUSTOM_MODEL_OPTION_NAME="Opus via Gateway"
 export ANTHROPIC_CUSTOM_MODEL_OPTION_DESCRIPTION="Custom deployment routed through the internal LLM gateway"
@@ -263,7 +263,7 @@ Apply the same pattern for `ANTHROPIC_DEFAULT_SONNET_MODEL` and `ANTHROPIC_DEFAU
 
 To enable [extended context](#extended-context) for a pinned model, append `[1m]` to the model ID in `ANTHROPIC_DEFAULT_OPUS_MODEL` or `ANTHROPIC_DEFAULT_SONNET_MODEL`:
 
-```bash  theme={null}
+```bash theme={null}
 export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-6[1m]'
 ```
 
@@ -301,7 +301,7 @@ When `_SUPPORTED_CAPABILITIES` is set, listed capabilities are enabled and unlis
 
 This example pins Opus to a Bedrock custom model ARN, sets a friendly name, and declares its capabilities:
 
-```bash  theme={null}
+```bash theme={null}
 export ANTHROPIC_DEFAULT_OPUS_MODEL='arn:aws:bedrock:us-east-1:123456789012:custom-model/abc'
 export ANTHROPIC_DEFAULT_OPUS_MODEL_NAME='Opus via Bedrock'
 export ANTHROPIC_DEFAULT_OPUS_MODEL_DESCRIPTION='Opus 4.6 routed through a Bedrock custom endpoint'
@@ -318,7 +318,7 @@ This lets enterprise administrators route each model version to a specific Bedro
 
 Set `modelOverrides` in your [settings file](/en/settings#settings-files):
 
-```json  theme={null}
+```json theme={null}
 {
   "modelOverrides": {
     "claude-opus-4-6": "arn:aws:bedrock:us-east-2:123456789012:application-inference-profile/opus-prod",

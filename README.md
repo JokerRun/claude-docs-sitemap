@@ -34,11 +34,11 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-04-08 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/modifying-... | 2026-04-08 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/observability | 2026-04-08 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/overview | 2026-04-10 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/overview | 2026-04-15 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/permissions | 2026-04-09 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/plugins | 2026-04-08 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/python | 2026-04-10 |  |
-| ... | _(~1304 more rows)_ | | |
+| ... | _(~1305 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

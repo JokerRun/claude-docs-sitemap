@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/workspaces
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 713ddcfccb42812a5501d80f2b0defa6df26f742ca022265a8a521b2730846c4
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: e628632be97d6df02e8144221d6c5804bc1513521a1fa83e5def3772eb8699e5
 ---
 
 # Workspaces
@@ -61,8 +61,8 @@ Create and manage workspaces in the [Claude Console](/settings/workspaces).
   <Step title="Open workspace settings">
     In the Claude Console, go to **Settings > Workspaces**.
   </Step>
-  <Step title="Add a new workspace">
-    Click **Add Workspace**.
+  <Step title="Create a workspace">
+    Click **Create workspace**.
   </Step>
   <Step title="Configure the workspace">
     Enter a workspace name and select a color for visual identification.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/migration-guide
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 6371f9a2d7030dd0ed2634bb698f5428b27734a4e537afb1c8732c3d1b023c97
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 5bd2327230410103314dfcd0fd8c74418d3134bb92d925afa880d1d5d39419a0
 ---
 
 > ## Documentation Index
@@ -35,13 +35,13 @@ The Claude Code SDK has been renamed to the **Claude Agent SDK** and its documen
 
 **1. Uninstall the old package:**
 
-```bash  theme={null}
+```bash theme={null}
 npm uninstall @anthropic-ai/claude-code
 ```
 
 **2. Install the new package:**
 
-```bash  theme={null}
+```bash theme={null}
 npm install @anthropic-ai/claude-agent-sdk
 ```
 
@@ -49,7 +49,7 @@ npm install @anthropic-ai/claude-agent-sdk
 
 Change all imports from `@anthropic-ai/claude-code` to `@anthropic-ai/claude-agent-sdk`:
 
-```typescript  theme={null}
+```typescript theme={null}
 // Before
 import { query, tool, createSdkMcpServer } from "@anthropic-ai/claude-code";
 
@@ -63,7 +63,7 @@ If you have the package listed in your `package.json`, update it:
 
 Before:
 
-```json  theme={null}
+```json theme={null}
 {
   "dependencies": {
     "@anthropic-ai/claude-code": "^0.0.42"
@@ -73,7 +73,7 @@ Before:
 
 After:
 
-```json  theme={null}
+```json theme={null}
 {
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "^0.2.0"
@@ -87,13 +87,13 @@ That's it! No other code changes are required.
 
 **1. Uninstall the old package:**
 
-```bash  theme={null}
+```bash theme={null}
 pip uninstall claude-code-sdk
 ```
 
 **2. Install the new package:**
 
-```bash  theme={null}
+```bash theme={null}
 pip install claude-agent-sdk
 ```
 
@@ -101,7 +101,7 @@ pip install claude-agent-sdk
 
 Change all imports from `claude_code_sdk` to `claude_agent_sdk`:
 
-```python  theme={null}
+```python theme={null}
 # Before
 from claude_code_sdk import query, ClaudeCodeOptions
 
@@ -113,7 +113,7 @@ from claude_agent_sdk import query, ClaudeAgentOptions
 
 Change `ClaudeCodeOptions` to `ClaudeAgentOptions`:
 
-```python  theme={null}
+```python theme={null}
 # Before
 from claude_code_sdk import query, ClaudeCodeOptions
 
@@ -141,7 +141,7 @@ Make any code changes needed to complete the migration.
 
 **Migration:**
 
-```python  theme={null}
+```python theme={null}
 # BEFORE (claude-code-sdk)
 from claude_code_sdk import query, ClaudeCodeOptions
 

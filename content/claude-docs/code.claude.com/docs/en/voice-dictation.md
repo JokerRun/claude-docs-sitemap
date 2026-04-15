@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/voice-dictation
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 940c2029589c41e0ea92f4c54068a12e790cb890e89a7b5c9de585cf885af022
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 45d9b0708fbd82b04841636b6145800574d4f0f9114b9186ab551107c4f65db6
 ---
 
 > ## Documentation Index
@@ -38,7 +38,7 @@ Voice mode enabled. Hold Space to record. Dictation language: en (/config to cha
 
 Voice dictation persists across sessions. Run `/voice` again to turn it off, or set it directly in your [user settings file](/en/settings):
 
-```json  theme={null}
+```json theme={null}
 {
   "voiceEnabled": true
 }
@@ -97,7 +97,7 @@ Voice dictation uses the same [`language` setting](/en/settings) that controls C
 
 Set the language in `/config` or directly in settings. You can use either the [BCP 47 language code](https://en.wikipedia.org/wiki/IETF_language_tag) or the language name:
 
-```json  theme={null}
+```json theme={null}
 {
   "language": "japanese"
 }
@@ -109,7 +109,7 @@ If your `language` setting is not in the supported list, `/voice` warns you on e
 
 The push-to-talk key is bound to `voice:pushToTalk` in the `Chat` context and defaults to `Space`. Rebind it in [`~/.claude/keybindings.json`](/en/keybindings):
 
-```json  theme={null}
+```json theme={null}
 {
   "bindings": [
     {

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: c112752c4edbf2ba5946b340840c319f2c8aab012259f5a6ee64c581f74ebbdd
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 7bb140a1142447d7a0f2c3a7333acf1828a22e8fb0cdb8c0962afc7a35f806d9
 ---
 
 > ## Documentation Index
@@ -21,7 +21,7 @@ sha256: c112752c4edbf2ba5946b340840c319f2c8aab012259f5a6ee64c581f74ebbdd
 
 ## Installation
 
-```bash  theme={null}
+```bash theme={null}
 npm install @anthropic-ai/claude-agent-sdk
 ```
 
@@ -31,7 +31,7 @@ npm install @anthropic-ai/claude-agent-sdk
 
 The primary function for interacting with Claude Code. Creates an async generator that streams messages as they arrive.
 
-```typescript  theme={null}
+```typescript theme={null}
 function query({
   prompt,
   options
@@ -56,7 +56,7 @@ Returns a [`Query`](#query-object) object that extends `AsyncGenerator<`[`SDKMes
 
 Creates a type-safe MCP tool definition for use with SDK MCP servers.
 
-```typescript  theme={null}
+```typescript theme={null}
 function tool<Schema extends AnyZodRawShape>(
   name: string,
   description: string,
@@ -88,7 +88,7 @@ Re-exported from `@modelcontextprotocol/sdk/types.js`. All fields are optional h
 | `idempotentHint`  | `boolean` | `false`     | If `true`, repeated calls with the same arguments have no additional effect (only meaningful when `readOnlyHint` is `false`)                         |
 | `openWorldHint`   | `boolean` | `true`      | If `true`, the tool interacts with external entities (for example, web search). If `false`, the tool's domain is closed (for example, a memory tool) |
 
-```typescript  theme={null}
+```typescript theme={null}
 import { tool } from "@anthropic-ai/claude-agent-sdk";
 import { z } from "zod";
 
@@ -107,7 +107,7 @@ const searchTool = tool(
 
 Creates an MCP server instance that runs in the same process as your application.
 
-```typescript  theme={null}
+```typescript theme={null}
 function createSdkMcpServer(options: {
   name: string;
   version?: string;
@@ -127,7 +127,7 @@ function createSdkMcpServer(options: {
 
 Discovers and lists past sessions with light metadata. Filter by project directory or list sessions across all projects.
 
-```typescript  theme={null}
+```typescript theme={null}
 function listSessions(options?: ListSessionsOptions): Promise<SDKSessionInfo[]>;
 ```
 
@@ -158,7 +158,7 @@ function listSessions(options?: ListSessionsOptions): Promise<SDKSessionInfo[]>;
 
 Print the 10 most recent sessions for a project. Results are sorted by `lastModified` descending, so the first item is the newest. Omit `dir` to search across all projects.
 
-```typescript  theme={null}
+```typescript theme={null}
 import { listSessions } from "@anthropic-ai/claude-agent-sdk";
 
 const sessions = await listSessions({ dir: "/path/to/project", limit: 10 });
@@ -172,7 +172,7 @@ for (const session of sessions) {
 
 Reads user and assistant messages from a past session transcript.
 
-```typescript  theme={null}
+```typescript theme={null}
 function getSessionMessages(
   sessionId: string,
   options?: GetSessionMessagesOptions
@@ -200,7 +200,7 @@ function getSessionMessages(
 
 #### Example
 
-```typescript  theme={null}
+```typescript theme={null}
 import { listSessions, getSessionMessages } from "@anthropic-ai/claude-agent-sdk";
 
 const [latest] = await listSessions({ dir: "/path/to/project", limit: 1 });
@@ -221,7 +221,7 @@ if (latest) {
 
 Reads metadata for a single session by ID without scanning the full project directory.
 
-```typescript  theme={null}
+```typescript theme={null}
 function getSessionInfo(
   sessionId: string,
   options?: GetSessionInfoOptions
@@ -241,7 +241,7 @@ Returns [`SDKSessionInfo`](#return-type-sdk-session-info), or `undefined` if the
 
 Renames a session by appending a custom-title entry. Repeated calls are safe; the most recent title wins.
 
-```typescript  theme={null}
+```typescript theme={null}
 function renameSession(
   sessionId: string,
   title: string,
@@ -261,7 +261,7 @@ function renameSession(
 
 Tags a session. Pass `null` to clear the tag. Repeated calls are safe; the most recent tag wins.
 
-```typescript  theme={null}
+```typescript theme={null}
 function tagSession(
   sessionId: string,
   tag: string | null,
@@ -337,7 +337,7 @@ Configuration object for the `query()` function.
 
 Interface returned by the `query()` function.
 
-```typescript  theme={null}
+```typescript theme={null}
 interface Query extends AsyncGenerator<SDKMessage, void> {
   interrupt(): Promise<void>;
   rewindFiles(
@@ -388,7 +388,7 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
 
 Return type of `initializationResult()`. Contains session initialization data.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKControlInitializeResponse = {
   commands: SlashCommand[];
   agents: AgentInfo[];
@@ -404,7 +404,7 @@ type SDKControlInitializeResponse = {
 
 Configuration for a subagent defined programmatically.
 
-```typescript  theme={null}
+```typescript theme={null}
 type AgentDefinition = {
   description: string;
   tools?: string[];
@@ -434,7 +434,7 @@ type AgentDefinition = {
 
 Specifies MCP servers available to a subagent. Can be a server name (string referencing a server from the parent's `mcpServers` config) or an inline server configuration record mapping server names to configs.
 
-```typescript  theme={null}
+```typescript theme={null}
 type AgentMcpServerSpec = string | Record<string, McpServerConfigForProcessTransport>;
 ```
 
@@ -444,7 +444,7 @@ Where `McpServerConfigForProcessTransport` is `McpStdioServerConfig | McpSSEServ
 
 Controls which filesystem-based configuration sources the SDK loads settings from.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SettingSource = "user" | "project" | "local";
 ```
 
@@ -462,7 +462,7 @@ When `settingSources` is **omitted** or **undefined**, the SDK does **not** load
 
 **Load all filesystem settings (legacy behavior):**
 
-```typescript  theme={null}
+```typescript theme={null}
 // Load all settings like SDK v0.0.x did
 const result = query({
   prompt: "Analyze this code",
@@ -474,7 +474,7 @@ const result = query({
 
 **Load only specific setting sources:**
 
-```typescript  theme={null}
+```typescript theme={null}
 // Load only project settings, ignore user and local
 const result = query({
   prompt: "Run CI checks",
@@ -486,7 +486,7 @@ const result = query({
 
 **Testing and CI environments:**
 
-```typescript  theme={null}
+```typescript theme={null}
 // Ensure consistent behavior in CI by excluding local settings
 const result = query({
   prompt: "Run tests",
@@ -499,7 +499,7 @@ const result = query({
 
 **SDK-only applications:**
 
-```typescript  theme={null}
+```typescript theme={null}
 // Define everything programmatically (default behavior)
 // No filesystem dependencies - settingSources defaults to []
 const result = query({
@@ -519,7 +519,7 @@ const result = query({
 
 **Loading CLAUDE.md project instructions:**
 
-```typescript  theme={null}
+```typescript theme={null}
 // Load project settings to include CLAUDE.md files
 const result = query({
   prompt: "Add a new feature following project conventions",
@@ -546,7 +546,7 @@ Programmatic options (like `agents`, `allowedTools`) always override filesystem 
 
 ### `PermissionMode`
 
-```typescript  theme={null}
+```typescript theme={null}
 type PermissionMode =
   | "default" // Standard permission behavior
   | "acceptEdits" // Auto-accept file edits
@@ -560,7 +560,7 @@ type PermissionMode =
 
 Custom permission function type for controlling tool usage.
 
-```typescript  theme={null}
+```typescript theme={null}
 type CanUseTool = (
   toolName: string,
   input: Record<string, unknown>,
@@ -588,7 +588,7 @@ type CanUseTool = (
 
 Result of a permission check.
 
-```typescript  theme={null}
+```typescript theme={null}
 type PermissionResult =
   | {
       behavior: "allow";
@@ -608,7 +608,7 @@ type PermissionResult =
 
 Configuration for built-in tool behavior.
 
-```typescript  theme={null}
+```typescript theme={null}
 type ToolConfig = {
   askUserQuestion?: {
     previewFormat?: "markdown" | "html";
@@ -624,7 +624,7 @@ type ToolConfig = {
 
 Configuration for MCP servers.
 
-```typescript  theme={null}
+```typescript theme={null}
 type McpServerConfig =
   | McpStdioServerConfig
   | McpSSEServerConfig
@@ -634,7 +634,7 @@ type McpServerConfig =
 
 #### `McpStdioServerConfig`
 
-```typescript  theme={null}
+```typescript theme={null}
 type McpStdioServerConfig = {
   type?: "stdio";
   command: string;
@@ -645,7 +645,7 @@ type McpStdioServerConfig = {
 
 #### `McpSSEServerConfig`
 
-```typescript  theme={null}
+```typescript theme={null}
 type McpSSEServerConfig = {
   type: "sse";
   url: string;
@@ -655,7 +655,7 @@ type McpSSEServerConfig = {
 
 #### `McpHttpServerConfig`
 
-```typescript  theme={null}
+```typescript theme={null}
 type McpHttpServerConfig = {
   type: "http";
   url: string;
@@ -665,7 +665,7 @@ type McpHttpServerConfig = {
 
 #### `McpSdkServerConfigWithInstance`
 
-```typescript  theme={null}
+```typescript theme={null}
 type McpSdkServerConfigWithInstance = {
   type: "sdk";
   name: string;
@@ -675,7 +675,7 @@ type McpSdkServerConfigWithInstance = {
 
 #### `McpClaudeAIProxyServerConfig`
 
-```typescript  theme={null}
+```typescript theme={null}
 type McpClaudeAIProxyServerConfig = {
   type: "claudeai-proxy";
   url: string;
@@ -687,7 +687,7 @@ type McpClaudeAIProxyServerConfig = {
 
 Configuration for loading plugins in the SDK.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SdkPluginConfig = {
   type: "local";
   path: string;
@@ -701,7 +701,7 @@ type SdkPluginConfig = {
 
 **Example:**
 
-```typescript  theme={null}
+```typescript theme={null}
 plugins: [
   { type: "local", path: "./my-plugin" },
   { type: "local", path: "/absolute/path/to/plugin" }
@@ -716,7 +716,7 @@ For complete information on creating and using plugins, see [Plugins](/en/agent-
 
 Union type of all possible messages returned by the query.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKMessage =
   | SDKAssistantMessage
   | SDKUserMessage
@@ -745,7 +745,7 @@ type SDKMessage =
 
 Assistant response message.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKAssistantMessage = {
   type: "assistant";
   uuid: UUID;
@@ -764,7 +764,7 @@ The `message` field is a [`BetaMessage`](https://platform.claude.com/docs/en/api
 
 User input message.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKUserMessage = {
   type: "user";
   uuid?: UUID;
@@ -780,7 +780,7 @@ type SDKUserMessage = {
 
 Replayed user message with required UUID.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKUserMessageReplay = {
   type: "user";
   uuid: UUID;
@@ -797,7 +797,7 @@ type SDKUserMessageReplay = {
 
 Final result message.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKResultMessage =
   | {
       type: "result";
@@ -842,7 +842,7 @@ type SDKResultMessage =
 
 System initialization message.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKSystemMessage = {
   type: "system";
   subtype: "init";
@@ -871,7 +871,7 @@ type SDKSystemMessage = {
 
 Streaming partial message (only when `includePartialMessages` is true).
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKPartialAssistantMessage = {
   type: "stream_event";
   event: BetaRawMessageStreamEvent; // From Anthropic SDK
@@ -885,7 +885,7 @@ type SDKPartialAssistantMessage = {
 
 Message indicating a conversation compaction boundary.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKCompactBoundaryMessage = {
   type: "system";
   subtype: "compact_boundary";
@@ -902,7 +902,7 @@ type SDKCompactBoundaryMessage = {
 
 Information about a denied tool use.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKPermissionDenial = {
   tool_name: string;
   tool_use_id: string;
@@ -918,7 +918,7 @@ For a comprehensive guide on using hooks with examples and common patterns, see 
 
 Available hook events.
 
-```typescript  theme={null}
+```typescript theme={null}
 type HookEvent =
   | "PreToolUse"
   | "PostToolUse"
@@ -944,7 +944,7 @@ type HookEvent =
 
 Hook callback function type.
 
-```typescript  theme={null}
+```typescript theme={null}
 type HookCallback = (
   input: HookInput, // Union of all hook input types
   toolUseID: string | undefined,
@@ -956,7 +956,7 @@ type HookCallback = (
 
 Hook configuration with optional matcher.
 
-```typescript  theme={null}
+```typescript theme={null}
 interface HookCallbackMatcher {
   matcher?: string;
   hooks: HookCallback[];
@@ -968,7 +968,7 @@ interface HookCallbackMatcher {
 
 Union type of all hook input types.
 
-```typescript  theme={null}
+```typescript theme={null}
 type HookInput =
   | PreToolUseHookInput
   | PostToolUseHookInput
@@ -994,7 +994,7 @@ type HookInput =
 
 Base interface that all hook input types extend.
 
-```typescript  theme={null}
+```typescript theme={null}
 type BaseHookInput = {
   session_id: string;
   transcript_path: string;
@@ -1007,7 +1007,7 @@ type BaseHookInput = {
 
 #### `PreToolUseHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type PreToolUseHookInput = BaseHookInput & {
   hook_event_name: "PreToolUse";
   tool_name: string;
@@ -1018,7 +1018,7 @@ type PreToolUseHookInput = BaseHookInput & {
 
 #### `PostToolUseHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type PostToolUseHookInput = BaseHookInput & {
   hook_event_name: "PostToolUse";
   tool_name: string;
@@ -1030,7 +1030,7 @@ type PostToolUseHookInput = BaseHookInput & {
 
 #### `PostToolUseFailureHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type PostToolUseFailureHookInput = BaseHookInput & {
   hook_event_name: "PostToolUseFailure";
   tool_name: string;
@@ -1043,7 +1043,7 @@ type PostToolUseFailureHookInput = BaseHookInput & {
 
 #### `NotificationHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type NotificationHookInput = BaseHookInput & {
   hook_event_name: "Notification";
   message: string;
@@ -1054,7 +1054,7 @@ type NotificationHookInput = BaseHookInput & {
 
 #### `UserPromptSubmitHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type UserPromptSubmitHookInput = BaseHookInput & {
   hook_event_name: "UserPromptSubmit";
   prompt: string;
@@ -1063,7 +1063,7 @@ type UserPromptSubmitHookInput = BaseHookInput & {
 
 #### `SessionStartHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type SessionStartHookInput = BaseHookInput & {
   hook_event_name: "SessionStart";
   source: "startup" | "resume" | "clear" | "compact";
@@ -1074,7 +1074,7 @@ type SessionStartHookInput = BaseHookInput & {
 
 #### `SessionEndHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type SessionEndHookInput = BaseHookInput & {
   hook_event_name: "SessionEnd";
   reason: ExitReason; // String from EXIT_REASONS array
@@ -1083,7 +1083,7 @@ type SessionEndHookInput = BaseHookInput & {
 
 #### `StopHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type StopHookInput = BaseHookInput & {
   hook_event_name: "Stop";
   stop_hook_active: boolean;
@@ -1093,7 +1093,7 @@ type StopHookInput = BaseHookInput & {
 
 #### `SubagentStartHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type SubagentStartHookInput = BaseHookInput & {
   hook_event_name: "SubagentStart";
   agent_id: string;
@@ -1103,7 +1103,7 @@ type SubagentStartHookInput = BaseHookInput & {
 
 #### `SubagentStopHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type SubagentStopHookInput = BaseHookInput & {
   hook_event_name: "SubagentStop";
   stop_hook_active: boolean;
@@ -1116,7 +1116,7 @@ type SubagentStopHookInput = BaseHookInput & {
 
 #### `PreCompactHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type PreCompactHookInput = BaseHookInput & {
   hook_event_name: "PreCompact";
   trigger: "manual" | "auto";
@@ -1126,7 +1126,7 @@ type PreCompactHookInput = BaseHookInput & {
 
 #### `PermissionRequestHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type PermissionRequestHookInput = BaseHookInput & {
   hook_event_name: "PermissionRequest";
   tool_name: string;
@@ -1137,7 +1137,7 @@ type PermissionRequestHookInput = BaseHookInput & {
 
 #### `SetupHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type SetupHookInput = BaseHookInput & {
   hook_event_name: "Setup";
   trigger: "init" | "maintenance";
@@ -1146,7 +1146,7 @@ type SetupHookInput = BaseHookInput & {
 
 #### `TeammateIdleHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type TeammateIdleHookInput = BaseHookInput & {
   hook_event_name: "TeammateIdle";
   teammate_name: string;
@@ -1156,7 +1156,7 @@ type TeammateIdleHookInput = BaseHookInput & {
 
 #### `TaskCompletedHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type TaskCompletedHookInput = BaseHookInput & {
   hook_event_name: "TaskCompleted";
   task_id: string;
@@ -1169,7 +1169,7 @@ type TaskCompletedHookInput = BaseHookInput & {
 
 #### `ConfigChangeHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type ConfigChangeHookInput = BaseHookInput & {
   hook_event_name: "ConfigChange";
   source:
@@ -1184,7 +1184,7 @@ type ConfigChangeHookInput = BaseHookInput & {
 
 #### `WorktreeCreateHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type WorktreeCreateHookInput = BaseHookInput & {
   hook_event_name: "WorktreeCreate";
   name: string;
@@ -1193,7 +1193,7 @@ type WorktreeCreateHookInput = BaseHookInput & {
 
 #### `WorktreeRemoveHookInput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type WorktreeRemoveHookInput = BaseHookInput & {
   hook_event_name: "WorktreeRemove";
   worktree_path: string;
@@ -1204,13 +1204,13 @@ type WorktreeRemoveHookInput = BaseHookInput & {
 
 Hook return value.
 
-```typescript  theme={null}
+```typescript theme={null}
 type HookJSONOutput = AsyncHookJSONOutput | SyncHookJSONOutput;
 ```
 
 #### `AsyncHookJSONOutput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type AsyncHookJSONOutput = {
   async: true;
   asyncTimeout?: number;
@@ -1219,7 +1219,7 @@ type AsyncHookJSONOutput = {
 
 #### `SyncHookJSONOutput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type SyncHookJSONOutput = {
   continue?: boolean;
   suppressOutput?: boolean;
@@ -1289,7 +1289,7 @@ Documentation of input schemas for all built-in Claude Code tools. These types a
 
 Union of all tool input types, exported from `@anthropic-ai/claude-agent-sdk`.
 
-```typescript  theme={null}
+```typescript theme={null}
 type ToolInputSchemas =
   | AgentInput
   | AskUserQuestionInput
@@ -1322,7 +1322,7 @@ type ToolInputSchemas =
 
 **Tool name:** `Agent` (previously `Task`, which is still accepted as an alias)
 
-```typescript  theme={null}
+```typescript theme={null}
 type AgentInput = {
   description: string;
   prompt: string;
@@ -1344,7 +1344,7 @@ Launches a new agent to handle complex, multi-step tasks autonomously.
 
 **Tool name:** `AskUserQuestion`
 
-```typescript  theme={null}
+```typescript theme={null}
 type AskUserQuestionInput = {
   questions: Array<{
     question: string;
@@ -1361,7 +1361,7 @@ Asks the user clarifying questions during execution. See [Handle approvals and u
 
 **Tool name:** `Bash`
 
-```typescript  theme={null}
+```typescript theme={null}
 type BashInput = {
   command: string;
   timeout?: number;
@@ -1377,7 +1377,7 @@ Executes bash commands in a persistent shell session with optional timeout and b
 
 **Tool name:** `Monitor`
 
-```typescript  theme={null}
+```typescript theme={null}
 type MonitorInput = {
   command: string;
   description: string;
@@ -1392,7 +1392,7 @@ Runs a background script and delivers each stdout line to Claude as an event so 
 
 **Tool name:** `TaskOutput`
 
-```typescript  theme={null}
+```typescript theme={null}
 type TaskOutputInput = {
   task_id: string;
   block: boolean;
@@ -1406,7 +1406,7 @@ Retrieves output from a running or completed background task.
 
 **Tool name:** `Edit`
 
-```typescript  theme={null}
+```typescript theme={null}
 type FileEditInput = {
   file_path: string;
   old_string: string;
@@ -1421,7 +1421,7 @@ Performs exact string replacements in files.
 
 **Tool name:** `Read`
 
-```typescript  theme={null}
+```typescript theme={null}
 type FileReadInput = {
   file_path: string;
   offset?: number;
@@ -1436,7 +1436,7 @@ Reads files from the local filesystem, including text, images, PDFs, and Jupyter
 
 **Tool name:** `Write`
 
-```typescript  theme={null}
+```typescript theme={null}
 type FileWriteInput = {
   file_path: string;
   content: string;
@@ -1449,7 +1449,7 @@ Writes a file to the local filesystem, overwriting if it exists.
 
 **Tool name:** `Glob`
 
-```typescript  theme={null}
+```typescript theme={null}
 type GlobInput = {
   pattern: string;
   path?: string;
@@ -1462,7 +1462,7 @@ Fast file pattern matching that works with any codebase size.
 
 **Tool name:** `Grep`
 
-```typescript  theme={null}
+```typescript theme={null}
 type GrepInput = {
   pattern: string;
   path?: string;
@@ -1487,7 +1487,7 @@ Powerful search tool built on ripgrep with regex support.
 
 **Tool name:** `TaskStop`
 
-```typescript  theme={null}
+```typescript theme={null}
 type TaskStopInput = {
   task_id?: string;
   shell_id?: string; // Deprecated: use task_id
@@ -1500,7 +1500,7 @@ Stops a running background task or shell by ID.
 
 **Tool name:** `NotebookEdit`
 
-```typescript  theme={null}
+```typescript theme={null}
 type NotebookEditInput = {
   notebook_path: string;
   cell_id?: string;
@@ -1516,7 +1516,7 @@ Edits cells in Jupyter notebook files.
 
 **Tool name:** `WebFetch`
 
-```typescript  theme={null}
+```typescript theme={null}
 type WebFetchInput = {
   url: string;
   prompt: string;
@@ -1529,7 +1529,7 @@ Fetches content from a URL and processes it with an AI model.
 
 **Tool name:** `WebSearch`
 
-```typescript  theme={null}
+```typescript theme={null}
 type WebSearchInput = {
   query: string;
   allowed_domains?: string[];
@@ -1543,7 +1543,7 @@ Searches the web and returns formatted results.
 
 **Tool name:** `TodoWrite`
 
-```typescript  theme={null}
+```typescript theme={null}
 type TodoWriteInput = {
   todos: Array<{
     content: string;
@@ -1559,7 +1559,7 @@ Creates and manages a structured task list for tracking progress.
 
 **Tool name:** `ExitPlanMode`
 
-```typescript  theme={null}
+```typescript theme={null}
 type ExitPlanModeInput = {
   allowedPrompts?: Array<{
     tool: "Bash";
@@ -1574,7 +1574,7 @@ Exits planning mode. Optionally specifies prompt-based permissions needed to imp
 
 **Tool name:** `ListMcpResources`
 
-```typescript  theme={null}
+```typescript theme={null}
 type ListMcpResourcesInput = {
   server?: string;
 };
@@ -1586,7 +1586,7 @@ Lists available MCP resources from connected servers.
 
 **Tool name:** `ReadMcpResource`
 
-```typescript  theme={null}
+```typescript theme={null}
 type ReadMcpResourceInput = {
   server: string;
   uri: string;
@@ -1599,7 +1599,7 @@ Reads a specific MCP resource from a server.
 
 **Tool name:** `Config`
 
-```typescript  theme={null}
+```typescript theme={null}
 type ConfigInput = {
   setting: string;
   value?: string | boolean | number;
@@ -1612,7 +1612,7 @@ Gets or sets a configuration value.
 
 **Tool name:** `EnterWorktree`
 
-```typescript  theme={null}
+```typescript theme={null}
 type EnterWorktreeInput = {
   name?: string;
   path?: string;
@@ -1629,7 +1629,7 @@ Documentation of output schemas for all built-in Claude Code tools. These types 
 
 Union of all tool output types.
 
-```typescript  theme={null}
+```typescript theme={null}
 type ToolOutputSchemas =
   | AgentOutput
   | AskUserQuestionOutput
@@ -1656,7 +1656,7 @@ type ToolOutputSchemas =
 
 **Tool name:** `Agent` (previously `Task`, which is still accepted as an alias)
 
-```typescript  theme={null}
+```typescript theme={null}
 type AgentOutput =
   | {
       status: "completed";
@@ -1703,7 +1703,7 @@ Returns the result from the subagent. Discriminated on the `status` field: `"com
 
 **Tool name:** `AskUserQuestion`
 
-```typescript  theme={null}
+```typescript theme={null}
 type AskUserQuestionOutput = {
   questions: Array<{
     question: string;
@@ -1721,7 +1721,7 @@ Returns the questions asked and the user's answers.
 
 **Tool name:** `Bash`
 
-```typescript  theme={null}
+```typescript theme={null}
 type BashOutput = {
   stdout: string;
   stderr: string;
@@ -1744,7 +1744,7 @@ Returns command output with stdout/stderr split. Background commands include a `
 
 **Tool name:** `Monitor`
 
-```typescript  theme={null}
+```typescript theme={null}
 type MonitorOutput = {
   taskId: string;
   timeoutMs: number;
@@ -1758,7 +1758,7 @@ Returns the background task ID for the running monitor. Use this ID with `TaskSt
 
 **Tool name:** `Edit`
 
-```typescript  theme={null}
+```typescript theme={null}
 type FileEditOutput = {
   filePath: string;
   oldString: string;
@@ -1790,7 +1790,7 @@ Returns the structured diff of the edit operation.
 
 **Tool name:** `Read`
 
-```typescript  theme={null}
+```typescript theme={null}
 type FileReadOutput =
   | {
       type: "text";
@@ -1848,7 +1848,7 @@ Returns file contents in a format appropriate to the file type. Discriminated on
 
 **Tool name:** `Write`
 
-```typescript  theme={null}
+```typescript theme={null}
 type FileWriteOutput = {
   type: "create" | "update";
   filePath: string;
@@ -1878,7 +1878,7 @@ Returns the write result with structured diff information.
 
 **Tool name:** `Glob`
 
-```typescript  theme={null}
+```typescript theme={null}
 type GlobOutput = {
   durationMs: number;
   numFiles: number;
@@ -1893,7 +1893,7 @@ Returns file paths matching the glob pattern, sorted by modification time.
 
 **Tool name:** `Grep`
 
-```typescript  theme={null}
+```typescript theme={null}
 type GrepOutput = {
   mode?: "content" | "files_with_matches" | "count";
   numFiles: number;
@@ -1912,7 +1912,7 @@ Returns search results. The shape varies by `mode`: file list, content with matc
 
 **Tool name:** `TaskStop`
 
-```typescript  theme={null}
+```typescript theme={null}
 type TaskStopOutput = {
   message: string;
   task_id: string;
@@ -1927,7 +1927,7 @@ Returns confirmation after stopping the background task.
 
 **Tool name:** `NotebookEdit`
 
-```typescript  theme={null}
+```typescript theme={null}
 type NotebookEditOutput = {
   new_source: string;
   cell_id?: string;
@@ -1947,7 +1947,7 @@ Returns the result of the notebook edit with original and updated file contents.
 
 **Tool name:** `WebFetch`
 
-```typescript  theme={null}
+```typescript theme={null}
 type WebFetchOutput = {
   bytes: number;
   code: number;
@@ -1964,7 +1964,7 @@ Returns the fetched content with HTTP status and metadata.
 
 **Tool name:** `WebSearch`
 
-```typescript  theme={null}
+```typescript theme={null}
 type WebSearchOutput = {
   query: string;
   results: Array<
@@ -1984,7 +1984,7 @@ Returns search results from the web.
 
 **Tool name:** `TodoWrite`
 
-```typescript  theme={null}
+```typescript theme={null}
 type TodoWriteOutput = {
   oldTodos: Array<{
     content: string;
@@ -2005,7 +2005,7 @@ Returns the previous and updated task lists.
 
 **Tool name:** `ExitPlanMode`
 
-```typescript  theme={null}
+```typescript theme={null}
 type ExitPlanModeOutput = {
   plan: string | null;
   isAgent: boolean;
@@ -2022,7 +2022,7 @@ Returns the plan state after exiting plan mode.
 
 **Tool name:** `ListMcpResources`
 
-```typescript  theme={null}
+```typescript theme={null}
 type ListMcpResourcesOutput = Array<{
   uri: string;
   name: string;
@@ -2038,7 +2038,7 @@ Returns an array of available MCP resources.
 
 **Tool name:** `ReadMcpResource`
 
-```typescript  theme={null}
+```typescript theme={null}
 type ReadMcpResourceOutput = {
   contents: Array<{
     uri: string;
@@ -2054,7 +2054,7 @@ Returns the contents of the requested MCP resource.
 
 **Tool name:** `Config`
 
-```typescript  theme={null}
+```typescript theme={null}
 type ConfigOutput = {
   success: boolean;
   operation?: "get" | "set";
@@ -2072,7 +2072,7 @@ Returns the result of a configuration get or set operation.
 
 **Tool name:** `EnterWorktree`
 
-```typescript  theme={null}
+```typescript theme={null}
 type EnterWorktreeOutput = {
   worktreePath: string;
   worktreeBranch?: string;
@@ -2080,7 +2080,7 @@ type EnterWorktreeOutput = {
 };
 ```
 
-Returns information about the created git worktree.
+Returns information about the git worktree.
 
 ## Permission Types
 
@@ -2088,7 +2088,7 @@ Returns information about the created git worktree.
 
 Operations for updating permissions.
 
-```typescript  theme={null}
+```typescript theme={null}
 type PermissionUpdate =
   | {
       type: "addRules";
@@ -2127,13 +2127,13 @@ type PermissionUpdate =
 
 ### `PermissionBehavior`
 
-```typescript  theme={null}
+```typescript theme={null}
 type PermissionBehavior = "allow" | "deny" | "ask";
 ```
 
 ### `PermissionUpdateDestination`
 
-```typescript  theme={null}
+```typescript theme={null}
 type PermissionUpdateDestination =
   | "userSettings" // Global user settings
   | "projectSettings" // Per-directory project settings
@@ -2144,7 +2144,7 @@ type PermissionUpdateDestination =
 
 ### `PermissionRuleValue`
 
-```typescript  theme={null}
+```typescript theme={null}
 type PermissionRuleValue = {
   toolName: string;
   ruleContent?: string;
@@ -2155,7 +2155,7 @@ type PermissionRuleValue = {
 
 ### `ApiKeySource`
 
-```typescript  theme={null}
+```typescript theme={null}
 type ApiKeySource = "user" | "project" | "org" | "temporary" | "oauth";
 ```
 
@@ -2163,7 +2163,7 @@ type ApiKeySource = "user" | "project" | "org" | "temporary" | "oauth";
 
 Available beta features that can be enabled via the `betas` option. See [Beta headers](https://platform.claude.com/docs/en/api/beta-headers) for more information.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SdkBeta = "context-1m-2025-08-07";
 ```
 
@@ -2175,7 +2175,7 @@ type SdkBeta = "context-1m-2025-08-07";
 
 Information about an available slash command.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SlashCommand = {
   name: string;
   description: string;
@@ -2187,7 +2187,7 @@ type SlashCommand = {
 
 Information about an available model.
 
-```typescript  theme={null}
+```typescript theme={null}
 type ModelInfo = {
   value: string;
   displayName: string;
@@ -2203,7 +2203,7 @@ type ModelInfo = {
 
 Information about an available subagent that can be invoked via the Agent tool.
 
-```typescript  theme={null}
+```typescript theme={null}
 type AgentInfo = {
   name: string;
   description: string;
@@ -2221,7 +2221,7 @@ type AgentInfo = {
 
 Status of a connected MCP server.
 
-```typescript  theme={null}
+```typescript theme={null}
 type McpServerStatus = {
   name: string;
   status: "connected" | "failed" | "needs-auth" | "pending" | "disabled";
@@ -2248,7 +2248,7 @@ type McpServerStatus = {
 
 The configuration of an MCP server as reported by `mcpServerStatus()`. This is the union of all MCP server transport types.
 
-```typescript  theme={null}
+```typescript theme={null}
 type McpServerStatusConfig =
   | McpStdioServerConfig
   | McpSSEServerConfig
@@ -2263,7 +2263,7 @@ See [`McpServerConfig`](#mcp-server-config) for details on each transport type.
 
 Account information for the authenticated user.
 
-```typescript  theme={null}
+```typescript theme={null}
 type AccountInfo = {
   email?: string;
   organization?: string;
@@ -2277,7 +2277,7 @@ type AccountInfo = {
 
 Per-model usage statistics returned in result messages.
 
-```typescript  theme={null}
+```typescript theme={null}
 type ModelUsage = {
   inputTokens: number;
   outputTokens: number;
@@ -2292,7 +2292,7 @@ type ModelUsage = {
 
 ### `ConfigScope`
 
-```typescript  theme={null}
+```typescript theme={null}
 type ConfigScope = "local" | "user" | "project";
 ```
 
@@ -2300,7 +2300,7 @@ type ConfigScope = "local" | "user" | "project";
 
 A version of [`Usage`](#usage) with all nullable fields made non-nullable.
 
-```typescript  theme={null}
+```typescript theme={null}
 type NonNullableUsage = {
   [K in keyof Usage]: NonNullable<Usage[K]>;
 };
@@ -2310,7 +2310,7 @@ type NonNullableUsage = {
 
 Token usage statistics (from `@anthropic-ai/sdk`).
 
-```typescript  theme={null}
+```typescript theme={null}
 type Usage = {
   input_tokens: number | null;
   output_tokens: number | null;
@@ -2323,7 +2323,7 @@ type Usage = {
 
 MCP tool result type (from `@modelcontextprotocol/sdk/types.js`).
 
-```typescript  theme={null}
+```typescript theme={null}
 type CallToolResult = {
   content: Array<{
     type: "text" | "image" | "resource";
@@ -2337,7 +2337,7 @@ type CallToolResult = {
 
 Controls Claude's thinking/reasoning behavior. Takes precedence over the deprecated `maxThinkingTokens`.
 
-```typescript  theme={null}
+```typescript theme={null}
 type ThinkingConfig =
   | { type: "adaptive" } // The model determines when and how much to reason (Opus 4.6+)
   | { type: "enabled"; budgetTokens?: number } // Fixed thinking token budget
@@ -2348,7 +2348,7 @@ type ThinkingConfig =
 
 Interface for custom process spawning (used with `spawnClaudeCodeProcess` option). `ChildProcess` already satisfies this interface.
 
-```typescript  theme={null}
+```typescript theme={null}
 interface SpawnedProcess {
   stdin: Writable;
   stdout: Readable;
@@ -2377,7 +2377,7 @@ interface SpawnedProcess {
 
 Options passed to the custom spawn function.
 
-```typescript  theme={null}
+```typescript theme={null}
 interface SpawnOptions {
   command: string;
   args: string[];
@@ -2391,7 +2391,7 @@ interface SpawnOptions {
 
 Result of a `setMcpServers()` operation.
 
-```typescript  theme={null}
+```typescript theme={null}
 type McpSetServersResult = {
   added: string[];
   removed: string[];
@@ -2403,7 +2403,7 @@ type McpSetServersResult = {
 
 Result of a `rewindFiles()` operation.
 
-```typescript  theme={null}
+```typescript theme={null}
 type RewindFilesResult = {
   canRewind: boolean;
   error?: string;
@@ -2417,7 +2417,7 @@ type RewindFilesResult = {
 
 Status update message (e.g., compacting).
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKStatusMessage = {
   type: "system";
   subtype: "status";
@@ -2432,7 +2432,7 @@ type SDKStatusMessage = {
 
 Notification when a background task completes, fails, or is stopped. Background tasks include `run_in_background` Bash commands, [Monitor](#monitor) watches, and background subagents.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKTaskNotificationMessage = {
   type: "system";
   subtype: "task_notification";
@@ -2455,7 +2455,7 @@ type SDKTaskNotificationMessage = {
 
 Summary of tool usage in a conversation.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKToolUseSummaryMessage = {
   type: "tool_use_summary";
   summary: string;
@@ -2469,7 +2469,7 @@ type SDKToolUseSummaryMessage = {
 
 Emitted when a hook begins executing.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKHookStartedMessage = {
   type: "system";
   subtype: "hook_started";
@@ -2485,7 +2485,7 @@ type SDKHookStartedMessage = {
 
 Emitted while a hook is running, with stdout/stderr output.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKHookProgressMessage = {
   type: "system";
   subtype: "hook_progress";
@@ -2504,7 +2504,7 @@ type SDKHookProgressMessage = {
 
 Emitted when a hook finishes executing.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKHookResponseMessage = {
   type: "system";
   subtype: "hook_response";
@@ -2525,7 +2525,7 @@ type SDKHookResponseMessage = {
 
 Emitted periodically while a tool is executing to indicate progress.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKToolProgressMessage = {
   type: "tool_progress";
   tool_use_id: string;
@@ -2542,7 +2542,7 @@ type SDKToolProgressMessage = {
 
 Emitted during authentication flows.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKAuthStatusMessage = {
   type: "auth_status";
   isAuthenticating: boolean;
@@ -2557,7 +2557,7 @@ type SDKAuthStatusMessage = {
 
 Emitted when a background task begins. The `task_type` field is `"local_bash"` for background Bash commands and [Monitor](#monitor) watches, `"local_agent"` for subagents, or `"remote_agent"`.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKTaskStartedMessage = {
   type: "system";
   subtype: "task_started";
@@ -2574,7 +2574,7 @@ type SDKTaskStartedMessage = {
 
 Emitted periodically while a background task is running.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKTaskProgressMessage = {
   type: "system";
   subtype: "task_progress";
@@ -2596,7 +2596,7 @@ type SDKTaskProgressMessage = {
 
 Emitted when file checkpoints are persisted to disk.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKFilesPersistedEvent = {
   type: "system";
   subtype: "files_persisted";
@@ -2612,7 +2612,7 @@ type SDKFilesPersistedEvent = {
 
 Emitted when the session encounters a rate limit.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKRateLimitEvent = {
   type: "rate_limit_event";
   rate_limit_info: {
@@ -2629,7 +2629,7 @@ type SDKRateLimitEvent = {
 
 Output from a local slash command (for example, `/voice` or `/cost`). Displayed as assistant-style text in the transcript.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKLocalCommandOutputMessage = {
   type: "system";
   subtype: "local_command_output";
@@ -2643,7 +2643,7 @@ type SDKLocalCommandOutputMessage = {
 
 Emitted after each turn when `promptSuggestions` is enabled. Contains a predicted next user prompt.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SDKPromptSuggestionMessage = {
   type: "prompt_suggestion";
   suggestion: string;
@@ -2656,7 +2656,7 @@ type SDKPromptSuggestionMessage = {
 
 Custom error class for abort operations.
 
-```typescript  theme={null}
+```typescript theme={null}
 class AbortError extends Error {}
 ```
 
@@ -2666,7 +2666,7 @@ class AbortError extends Error {}
 
 Configuration for sandbox behavior. Use this to enable command sandboxing and configure network restrictions programmatically.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SandboxSettings = {
   enabled?: boolean;
   autoAllowBashIfSandboxed?: boolean;
@@ -2694,7 +2694,7 @@ type SandboxSettings = {
 
 #### Example usage
 
-```typescript  theme={null}
+```typescript theme={null}
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
 for await (const message of query({
@@ -2721,7 +2721,7 @@ for await (const message of query({
 
 Network-specific configuration for sandbox mode.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SandboxNetworkConfig = {
   allowedDomains?: string[];
   allowManagedDomainsOnly?: boolean;
@@ -2747,7 +2747,7 @@ type SandboxNetworkConfig = {
 
 Filesystem-specific configuration for sandbox mode.
 
-```typescript  theme={null}
+```typescript theme={null}
 type SandboxFilesystemConfig = {
   allowWrite?: string[];
   denyWrite?: string[];
@@ -2772,7 +2772,7 @@ When `allowUnsandboxedCommands` is enabled, the model can request to run command
   * `allowUnsandboxedCommands`: Lets the model decide at runtime whether to request unsandboxed execution by setting `dangerouslyDisableSandbox: true` in the tool input.
 </Note>
 
-```typescript  theme={null}
+```typescript theme={null}
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
 for await (const message of query({

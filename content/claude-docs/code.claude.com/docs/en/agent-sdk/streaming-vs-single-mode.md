@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: e370739f0d8eb03aca81453b5d51768e0c3a43d7a2abbdae16e744ac2d438e82
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 4ab99898242a364e7be4e8b65d621695d232b6afcb5cd11b736f8dd2e02a5307
 ---
 
 > ## Documentation Index
@@ -30,7 +30,7 @@ It allows the agent to operate as a long lived process that takes in user input,
 
 ### How It Works
 
-```mermaid  theme={null}
+```mermaid theme={null}
 sequenceDiagram
     participant App as Your Application
     participant Agent as Claude Agent

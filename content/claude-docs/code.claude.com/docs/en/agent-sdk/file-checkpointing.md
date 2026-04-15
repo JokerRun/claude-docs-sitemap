@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/file-checkpointing
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: a2c0735332ff8bc51bcb386ec362339804cbc6cdc8adccb466f62bee3c459b2e
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 1f8256a7ac59bfec971e6f67e3166437b63a8df006eb8406221280b2ae9798a4
 ---
 
 > ## Documentation Index
@@ -255,7 +255,7 @@ The following example shows the complete flow: enable checkpointing, capture the
 
     If you capture the session ID and checkpoint ID, you can also rewind from the CLI:
 
-    ```bash  theme={null}
+    ```bash theme={null}
     claude -p --resume <session-id> --rewind-files <checkpoint-uuid>
     ```
   </Step>
@@ -680,13 +680,13 @@ Before you begin, make sure you have the [Claude Agent SDK installed](/en/agent-
 
     <Tabs>
       <Tab title="Python">
-        ```bash  theme={null}
+        ```bash theme={null}
         python try_checkpointing.py
         ```
       </Tab>
 
       <Tab title="TypeScript">
-        ```bash  theme={null}
+        ```bash theme={null}
         npx tsx try_checkpointing.ts
         ```
       </Tab>

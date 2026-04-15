@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: c827eb61abe1980d0183f202fc815f275f96620f9c4aff0499abf0c0dfc5e15a
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: ce6fdcb8aa557f76c674cb9677cd20a89729b6861aa6b93095a3e0cbd4526fef
 ---
 
 > ## Documentation Index
@@ -147,13 +147,13 @@ If you have an active Claude subscription but also have `ANTHROPIC_API_KEY` set 
 
 For CI pipelines, scripts, or other environments where interactive browser login isn't available, generate a one-year OAuth token with `claude setup-token`:
 
-```bash  theme={null}
+```bash theme={null}
 claude setup-token
 ```
 
 The command walks you through OAuth authorization and prints a token to the terminal. It does not save the token anywhere; copy it and set it as the `CLAUDE_CODE_OAUTH_TOKEN` environment variable wherever you want to authenticate:
 
-```bash  theme={null}
+```bash theme={null}
 export CLAUDE_CODE_OAUTH_TOKEN=your-token
 ```
 

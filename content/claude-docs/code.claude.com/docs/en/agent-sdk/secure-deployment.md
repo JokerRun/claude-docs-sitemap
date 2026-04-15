@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/secure-deployment
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 9cf8f31cf3f60fe0bb3be2e67aff7bb55f4a2f1be6c3c5d5eb9a4e8d18c96029
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 49a1648277833e76dfdb30aed95d6c6c0207937af14cdeedb246d85e52fe6e0e
 ---
 
 > ## Documentation Index
@@ -97,7 +97,7 @@ The main advantage is simplicity: no Docker configuration, container images, or 
 
 **Setup:**
 
-```bash  theme={null}
+```bash theme={null}
 npm install @anthropic-ai/sandbox-runtime
 ```
 
@@ -117,7 +117,7 @@ Containers provide isolation through Linux namespaces. Each container has its ow
 
 A security-hardened container configuration might look like this:
 
-```bash  theme={null}
+```bash theme={null}
 docker run \
   --cap-drop ALL \
   --security-opt no-new-privileges \
@@ -172,7 +172,7 @@ If an agent runs malicious code (perhaps due to prompt injection), that code run
 
 To use gVisor with Docker, install the `runsc` runtime and configure the daemon:
 
-```json  theme={null}
+```json theme={null}
 // /etc/docker/daemon.json
 {
   "runtimes": {
@@ -185,7 +185,7 @@ To use gVisor with Docker, install the `runsc` runtime and configure the daemon:
 
 Then run containers with:
 
-```bash  theme={null}
+```bash theme={null}
 docker run --runtime=runsc agent-image
 ```
 
@@ -238,7 +238,7 @@ Claude Code supports two methods for routing sampling requests through a proxy:
 
 **Option 1: ANTHROPIC\_BASE\_URL (simple but only for sampling API requests)**
 
-```bash  theme={null}
+```bash theme={null}
 export ANTHROPIC_BASE_URL="http://localhost:8080"
 ```
 
@@ -246,7 +246,7 @@ This tells Claude Code and the Agent SDK to send sampling requests to your proxy
 
 **Option 2: HTTP\_PROXY / HTTPS\_PROXY (system-wide)**
 
-```bash  theme={null}
+```bash theme={null}
 export HTTP_PROXY="http://localhost:8080"
 export HTTPS_PROXY="http://localhost:8080"
 ```
@@ -305,7 +305,7 @@ Filesystem controls determine what files the agent can read and write.
 
 When the agent needs to analyze code but not modify it, mount the directory read-only:
 
-```bash  theme={null}
+```bash theme={null}
 docker run -v /path/to/code:/workspace:ro agent-image
 ```
 
@@ -334,7 +334,7 @@ If the agent needs to write files, you have a few options depending on whether y
 
 For ephemeral workspaces in containers, use `tmpfs` mounts that exist only in memory and are cleared when the container stops:
 
-```bash  theme={null}
+```bash theme={null}
 docker run \
   --read-only \
   --tmpfs /tmp:rw,noexec,nosuid,size=100m \

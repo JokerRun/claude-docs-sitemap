@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 973bc0c9ef21237085eff102224f0c880e2d26f24f5060c679cf359cb0323b8b
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 2d89ebd0d10862bf9ef417335d2ea19f3f18d0660ae9aa86d7e98850a0c01988
 ---
 
 # Menambahkan file
@@ -144,7 +144,7 @@ session_id=$(jq -er '.id' <<<"${session}")
 ````bash
 SESSION_ID=$(ant beta:sessions create \
   --agent "$AGENT_ID" \
-  --environment "$ENVIRONMENT_ID" \
+  --environment-id "$ENVIRONMENT_ID" \
   --transform id --format yaml <<EOF
 resources:
   - type: file

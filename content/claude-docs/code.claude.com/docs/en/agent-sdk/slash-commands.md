@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/slash-commands
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: d79aa19c9f124c5f3ec126394daab9f5658a4df25b7ccd1cb38cb787a5b81c5f
+fetched_at: 2026-04-15T03:11:27.437490Z
+sha256: 3e390f57203b5ef97488d20608e4ea6c07c5e66458f1d8a51005151fbf4a2820
 ---
 
 > ## Documentation Index
@@ -188,7 +188,7 @@ Each custom command is a markdown file where:
 
 Create `.claude/commands/refactor.md`:
 
-```markdown  theme={null}
+```markdown theme={null}
 Refactor the selected code to improve readability and maintainability.
 Focus on clean code principles and best practices.
 ```
@@ -199,7 +199,7 @@ This creates the `/refactor` command that you can use through the SDK.
 
 Create `.claude/commands/security-check.md`:
 
-```markdown  theme={null}
+```markdown theme={null}
 ---
 allowed-tools: Read, Grep, Glob
 description: Run security vulnerability scan
@@ -279,7 +279,7 @@ Custom commands support dynamic arguments using placeholders:
 
 Create `.claude/commands/fix-issue.md`:
 
-```markdown  theme={null}
+```markdown theme={null}
 ---
 argument-hint: [issue-number] [priority]
 description: Fix a GitHub issue
@@ -330,7 +330,7 @@ Custom commands can execute bash commands and include their output:
 
 Create `.claude/commands/git-commit.md`:
 
-```markdown  theme={null}
+```markdown theme={null}
 ---
 allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*)
 description: Create a git commit
@@ -352,7 +352,7 @@ Include file contents using the `@` prefix:
 
 Create `.claude/commands/review-config.md`:
 
-```markdown  theme={null}
+```markdown theme={null}
 ---
 description: Review configuration files
 ---
@@ -369,7 +369,7 @@ Check for security issues, outdated dependencies, and misconfigurations.
 
 Organize commands in subdirectories for better structure:
 
-```bash  theme={null}
+```bash theme={null}
 .claude/commands/
 ├── frontend/
 │   ├── component.md      # Creates /component (project:frontend)
@@ -388,7 +388,7 @@ The subdirectory appears in the command description but doesn't affect the comma
 
 Create `.claude/commands/code-review.md`:
 
-```markdown  theme={null}
+```markdown theme={null}
 ---
 allowed-tools: Read, Grep, Glob, Bash(git diff:*)
 description: Comprehensive code review
@@ -416,7 +416,7 @@ Provide specific, actionable feedback organized by priority.
 
 Create `.claude/commands/test.md`:
 
-```markdown  theme={null}
+```markdown theme={null}
 ---
 allowed-tools: Bash, Read, Edit
 argument-hint: [test-pattern]
