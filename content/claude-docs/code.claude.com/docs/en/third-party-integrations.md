@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/third-party-integrations
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: e3cfa35c262458c97d03614185cf6da235fee7f58da6c42c5a73641fdd37b944
+fetched_at: 2026-04-16T03:12:06.852234Z
+sha256: 3f7b05c3e48cf042c409896b6fc62bfb0626c9c0f85aee085520991eecbf8615
 ---
 
 > ## Documentation Index
@@ -97,6 +97,7 @@ export const Experiment = ({flag, treatment, children}) => {
   const bucket = (seed, vid) => fnv1a(fnv1a(seed + vid) + '') % 10000 < 5000 ? 'control' : 'treatment';
   const [decision] = useState(() => {
     const params = new URLSearchParams(location.search);
+    const preBucketed = document.documentElement.dataset['gb_' + flag.replace(/-/g, '_')];
     const force = params.get('gb-force');
     if (force) {
       for (const p of force.split(',')) {
@@ -158,8 +159,9 @@ export const Experiment = ({flag, treatment, children}) => {
         track: false
       };
     }
+    const variant = preBucketed === '1' ? 'treatment' : preBucketed === '0' ? 'control' : bucket(flag, vid);
     return {
-      variant: bucket(flag, vid),
+      variant,
       track: true,
       vid
     };

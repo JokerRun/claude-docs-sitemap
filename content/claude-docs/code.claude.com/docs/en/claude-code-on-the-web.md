@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 80745a2fc0082dfaa83ec997056c2a50cd0189e5a11ba3160104b8e3034b4c12
+fetched_at: 2026-04-16T03:12:06.852234Z
+sha256: 29cb742c863e47468e98274f49136881f2412355da2e6a55f1090b15741dbf51
 ---
 
 > ## Documentation Index
@@ -115,6 +115,16 @@ The `gh` CLI is not pre-installed. If you need a `gh` command the built-in tools
     Add a `GH_TOKEN` environment variable to your [environment settings](#configure-your-environment) with a GitHub personal access token. `gh` reads `GH_TOKEN` automatically, so no `gh auth login` step is needed.
   </Step>
 </Steps>
+
+### Link artifacts back to the session
+
+Each cloud session has a transcript URL on claude.ai, and the session can read its own ID from the `CLAUDE_CODE_REMOTE_SESSION_ID` environment variable. Use this to put a traceable link in PR bodies, commit messages, Slack posts, or generated reports so a reviewer can open the run that produced them.
+
+Ask Claude to construct the link from the environment variable. The following command prints the URL:
+
+```bash theme={null}
+echo "https://claude.ai/code/${CLAUDE_CODE_REMOTE_SESSION_ID}"
+```
 
 ### Run tests, start services, and add packages
 

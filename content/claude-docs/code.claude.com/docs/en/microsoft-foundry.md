@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/microsoft-foundry
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: ba9e5c892453c08746dfeb889e3a674be08044c20fa9f6773265f0fd338977d0
+fetched_at: 2026-04-16T03:12:06.852234Z
+sha256: 5578e5c61533a2c1c9d22bff2a48bca0617000ac75d755ce1b473694692dd8ef
 ---
 
 > ## Documentation Index
@@ -97,6 +97,7 @@ export const Experiment = ({flag, treatment, children}) => {
   const bucket = (seed, vid) => fnv1a(fnv1a(seed + vid) + '') % 10000 < 5000 ? 'control' : 'treatment';
   const [decision] = useState(() => {
     const params = new URLSearchParams(location.search);
+    const preBucketed = document.documentElement.dataset['gb_' + flag.replace(/-/g, '_')];
     const force = params.get('gb-force');
     if (force) {
       for (const p of force.split(',')) {
@@ -158,8 +159,9 @@ export const Experiment = ({flag, treatment, children}) => {
         track: false
       };
     }
+    const variant = preBucketed === '1' ? 'treatment' : preBucketed === '0' ? 'control' : bucket(flag, vid);
     return {
-      variant: bucket(flag, vid),
+      variant,
       track: true,
       vid
     };

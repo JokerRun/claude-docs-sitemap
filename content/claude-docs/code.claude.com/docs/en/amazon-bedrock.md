@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: c40c85ec6f69d22fbaf94af6b0fb0ae0f6a6cf0b310dc96425327f18650148ee
+fetched_at: 2026-04-16T03:12:06.852234Z
+sha256: 713ede597b31b8964b547019c6d3d81748daf1180a0b7aca18b4da7ba32bdf44
 ---
 
 > ## Documentation Index
@@ -97,6 +97,7 @@ export const Experiment = ({flag, treatment, children}) => {
   const bucket = (seed, vid) => fnv1a(fnv1a(seed + vid) + '') % 10000 < 5000 ? 'control' : 'treatment';
   const [decision] = useState(() => {
     const params = new URLSearchParams(location.search);
+    const preBucketed = document.documentElement.dataset['gb_' + flag.replace(/-/g, '_')];
     const force = params.get('gb-force');
     if (force) {
       for (const p of force.split(',')) {
@@ -158,8 +159,9 @@ export const Experiment = ({flag, treatment, children}) => {
         track: false
       };
     }
+    const variant = preBucketed === '1' ? 'treatment' : preBucketed === '0' ? 'control' : bucket(flag, vid);
     return {
-      variant: bucket(flag, vid),
+      variant,
       track: true,
       vid
     };

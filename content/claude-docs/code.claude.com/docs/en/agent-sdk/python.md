@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 338b4087dc3a3a9bbb5875065b28b273f96258bb47be9b4633db4a4f5df6327e
+fetched_at: 2026-04-16T03:12:06.852234Z
+sha256: e64afe1e14a14fb4548ea5133cfbc28ff2560afb36923e20935195e35a17ee8e
 ---
 
 > ## Documentation Index
@@ -865,13 +865,15 @@ class SystemPromptPreset(TypedDict):
     type: Literal["preset"]
     preset: Literal["claude_code"]
     append: NotRequired[str]
+    exclude_dynamic_sections: NotRequired[bool]
 ```
 
-| Field    | Required | Description                                                   |
-| :------- | :------- | :------------------------------------------------------------ |
-| `type`   | Yes      | Must be `"preset"` to use a preset system prompt              |
-| `preset` | Yes      | Must be `"claude_code"` to use Claude Code's system prompt    |
-| `append` | No       | Additional instructions to append to the preset system prompt |
+| Field                      | Required | Description                                                                                                                                                                                                                                                                                                      |
+| :------------------------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                     | Yes      | Must be `"preset"` to use a preset system prompt                                                                                                                                                                                                                                                                 |
+| `preset`                   | Yes      | Must be `"claude_code"` to use Claude Code's system prompt                                                                                                                                                                                                                                                       |
+| `append`                   | No       | Additional instructions to append to the preset system prompt                                                                                                                                                                                                                                                    |
+| `exclude_dynamic_sections` | No       | Move per-session context such as working directory, git status, and memory paths from the system prompt into the first user message. Improves prompt-cache reuse across users and machines. See [Modify system prompts](/en/agent-sdk/modifying-system-prompts#improve-prompt-caching-across-users-and-machines) |
 
 ### `SettingSource`
 
@@ -1452,16 +1454,16 @@ The `usage` dict contains the following keys when present:
 
 The `model_usage` dict maps model names to per-model usage. The inner dict keys use camelCase because the value is passed through unmodified from the underlying CLI process, matching the TypeScript [`ModelUsage`](/en/agent-sdk/typescript#model-usage) type:
 
-| Key                        | Type    | Description                                |
-| -------------------------- | ------- | ------------------------------------------ |
-| `inputTokens`              | `int`   | Input tokens for this model.               |
-| `outputTokens`             | `int`   | Output tokens for this model.              |
-| `cacheReadInputTokens`     | `int`   | Cache read tokens for this model.          |
-| `cacheCreationInputTokens` | `int`   | Cache creation tokens for this model.      |
-| `webSearchRequests`        | `int`   | Web search requests made by this model.    |
-| `costUSD`                  | `float` | Cost in USD for this model.                |
-| `contextWindow`            | `int`   | Context window size for this model.        |
-| `maxOutputTokens`          | `int`   | Maximum output token limit for this model. |
+| Key                        | Type    | Description                                                                                                                              |
+| -------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `inputTokens`              | `int`   | Input tokens for this model.                                                                                                             |
+| `outputTokens`             | `int`   | Output tokens for this model.                                                                                                            |
+| `cacheReadInputTokens`     | `int`   | Cache read tokens for this model.                                                                                                        |
+| `cacheCreationInputTokens` | `int`   | Cache creation tokens for this model.                                                                                                    |
+| `webSearchRequests`        | `int`   | Web search requests made by this model.                                                                                                  |
+| `costUSD`                  | `float` | Estimated cost in USD for this model, computed client-side. See [Track cost and usage](/en/agent-sdk/cost-tracking) for billing caveats. |
+| `contextWindow`            | `int`   | Context window size for this model.                                                                                                      |
+| `maxOutputTokens`          | `int`   | Maximum output token limit for this model.                                                                                               |
 
 ### `StreamEvent`
 
@@ -2233,7 +2235,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 {
     "result": str,  # Final result from the subagent
     "usage": dict | None,  # Token usage statistics
-    "total_cost_usd": float | None,  # Total cost in USD
+    "total_cost_usd": float | None,  # Estimated total cost in USD
     "duration_ms": int | None,  # Execution duration in milliseconds
 }
 ```

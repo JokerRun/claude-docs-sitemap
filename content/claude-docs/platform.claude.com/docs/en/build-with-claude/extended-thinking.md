@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 1b4494fb1264ca1e60f4d477680e5875f24fa838a6107b674dde452ea5bd9ad1
+fetched_at: 2026-04-16T03:12:06.852234Z
+sha256: 3cd6d3978c5c8b2782f78912094dda3830b1646e397a2a05a4b8fca74da6da60
 ---
 
 # Building with extended thinking
@@ -786,7 +786,7 @@ For more documentation on streaming via the Messages API, see [Streaming Message
 
 Here's how to handle streaming with thinking:
 
-<CodeGroup>
+<CodeGroup tryInConsole={{ userPrompt: "What is the greatest common divisor of 1071 and 462?", thinkingBudgetTokens: 16000 }}>
 ```bash Shell
 curl https://api.anthropic.com/v1/messages \
      --header "x-api-key: $ANTHROPIC_API_KEY" \
@@ -1157,10 +1157,6 @@ end
 ```
 
 </CodeGroup>
-
-<TryInConsoleButton userPrompt="What is the greatest common divisor of 1071 and 462?" thinkingBudgetTokens={16000}>
-  Try in Console
-</TryInConsoleButton>
 
 Example streaming output:
 ```sse Output

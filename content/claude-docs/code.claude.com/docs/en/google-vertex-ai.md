@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 873f02cbedc85dfc7488fac497f80e664127d6aed11793adc033704a965f8fa3
+fetched_at: 2026-04-16T03:12:06.852234Z
+sha256: ba55d654bd4386b7490a6665e244c16e9ce24683e7170c8ff5dd7c19ac1ab8a1
 ---
 
 > ## Documentation Index
@@ -97,6 +97,7 @@ export const Experiment = ({flag, treatment, children}) => {
   const bucket = (seed, vid) => fnv1a(fnv1a(seed + vid) + '') % 10000 < 5000 ? 'control' : 'treatment';
   const [decision] = useState(() => {
     const params = new URLSearchParams(location.search);
+    const preBucketed = document.documentElement.dataset['gb_' + flag.replace(/-/g, '_')];
     const force = params.get('gb-force');
     if (force) {
       for (const p of force.split(',')) {
@@ -158,8 +159,9 @@ export const Experiment = ({flag, treatment, children}) => {
         track: false
       };
     }
+    const variant = preBucketed === '1' ? 'treatment' : preBucketed === '0' ? 'control' : bucket(flag, vid);
     return {
-      variant: bucket(flag, vid),
+      variant,
       track: true,
       vid
     };

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: aed25b8a23c2ed3f38ea6053c0efb8149d12f23bcd6853831dcb5596ca38a311
+fetched_at: 2026-04-16T03:12:06.852234Z
+sha256: 2731b54eebdfb43d30a22a4be7f7d012af6b5744c9d424484ba04d98fa68b418
 ---
 
 > ## Documentation Index
@@ -139,6 +139,23 @@ With GitHub connected and an environment created, you're ready to submit tasks.
     Claude clones the repositories, runs your setup script if configured, and starts working. Each task gets its own session and its own branch, so you don't need to wait for one to finish before starting another.
   </Step>
 </Steps>
+
+## Pre-fill sessions
+
+You can prefill the prompt, repositories, and environment for a new session by adding query parameters to the [claude.ai/code](https://claude.ai/code) URL. Use this to build integrations such as a button in your issue tracker that opens Claude Code with the issue description as the prompt.
+
+| Parameter      | Description                                                                                                                                                      |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `prompt`       | Prompt text to prefill in the input box. The alias `q` is also accepted.                                                                                         |
+| `prompt_url`   | URL to fetch the prompt text from, for prompts too long to embed in a query string. The URL must allow cross-origin requests. Ignored when `prompt` is also set. |
+| `repositories` | Comma-separated list of `owner/repo` slugs to preselect. The alias `repo` is also accepted.                                                                      |
+| `environment`  | Name or ID of the [environment](#connect-github-and-create-an-environment) to preselect.                                                                         |
+
+URL-encode each value. The example below opens the form with a prompt and a repository already selected:
+
+```text theme={null}
+https://claude.ai/code?prompt=Fix%20the%20login%20bug&repositories=acme/webapp
+```
 
 ## Review and iterate
 

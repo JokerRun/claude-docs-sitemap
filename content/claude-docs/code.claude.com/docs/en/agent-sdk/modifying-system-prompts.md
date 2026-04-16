@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 1521862a92f82c448da7e0a6cacad9802d54ad00ea7ca55530f10855d2ccefd5
+fetched_at: 2026-04-16T03:12:06.852234Z
+sha256: a3a9a8df1724b22fa6e83b5e27371d4a925b6f034567be38a692fff576b7a249
 ---
 
 > ## Documentation Index
@@ -289,6 +289,59 @@ You can use the Claude Code preset with an `append` property to add your custom 
           print(message.message.content)
   ```
 </CodeGroup>
+
+#### Improve prompt caching across users and machines
+
+By default, two sessions that use the same `claude_code` preset and `append` text still cannot share a prompt cache entry if they run from different working directories. This is because the preset embeds per-session context in the system prompt ahead of your `append` text: the working directory, platform and OS version, current date, git status, and auto-memory paths. Any difference in that context produces a different system prompt and a cache miss.
+
+To make the system prompt identical across sessions, set `excludeDynamicSections: true` in TypeScript or `"exclude_dynamic_sections": True` in Python. The per-session context moves into the first user message, leaving only the static preset and your `append` text in the system prompt so identical configurations share a cache entry across users and machines.
+
+<Note>
+  `excludeDynamicSections` requires `@anthropic-ai/claude-agent-sdk` v0.2.98 or later, or `claude-agent-sdk` v0.1.58 or later for Python. It applies only to the preset object form and has no effect when `systemPrompt` is a string.
+</Note>
+
+The following example pairs a shared `append` block with `excludeDynamicSections` so a fleet of agents running from different directories can reuse the same cached system prompt:
+
+<CodeGroup>
+  ```typescript TypeScript theme={null}
+  import { query } from "@anthropic-ai/claude-agent-sdk";
+
+  for await (const message of query({
+    prompt: "Triage the open issues in this repo",
+    options: {
+      systemPrompt: {
+        type: "preset",
+        preset: "claude_code",
+        append: "You operate Acme's internal triage workflow. Label issues by component and severity.",
+        excludeDynamicSections: true
+      }
+    }
+  })) {
+    // ...
+  }
+  ```
+
+  ```python Python theme={null}
+  from claude_agent_sdk import query, ClaudeAgentOptions
+
+  async for message in query(
+      prompt="Triage the open issues in this repo",
+      options=ClaudeAgentOptions(
+          system_prompt={
+              "type": "preset",
+              "preset": "claude_code",
+              "append": "You operate Acme's internal triage workflow. Label issues by component and severity.",
+              "exclude_dynamic_sections": True,
+          },
+      ),
+  ):
+      ...
+  ```
+</CodeGroup>
+
+**Tradeoffs:** the working directory, git status, and memory location still reach Claude, but as part of the first user message rather than the system prompt. Instructions in the user message carry marginally less weight than the same text in the system prompt, so Claude may rely on them less strongly when reasoning about the current directory or auto-memory paths. Enable this option when cross-session cache reuse matters more than maximally authoritative environment context.
+
+For the equivalent flag in non-interactive CLI mode, see [`--exclude-dynamic-system-prompt-sections`](/en/cli-reference).
 
 ### Method 4: Custom system prompts
 

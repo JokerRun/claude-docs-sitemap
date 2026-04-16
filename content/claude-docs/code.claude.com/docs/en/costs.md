@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 40c1221d7d6a6979c952a18c917498e5b141bb7c13a167a1ddfcd10aeef4f713
+fetched_at: 2026-04-16T03:12:06.852234Z
+sha256: 99f9561d8614d2f145d087a6abb53b371fc654ae51bc3645b7e8ffd6a364fe76
 ---
 
 > ## Documentation Index
@@ -27,7 +27,7 @@ This page covers how to [track your costs](#track-your-costs), [manage costs for
   The `/cost` command shows API token usage and is intended for API users. Claude Max and Pro subscribers have usage included in their subscription, so `/cost` data isn't relevant for billing purposes. Subscribers can use `/stats` to view usage patterns.
 </Note>
 
-The `/cost` command provides detailed token usage statistics for your current session:
+The `/cost` command provides detailed token usage statistics for your current session. The dollar figure is an estimate computed locally from token counts and may differ from your actual bill. For authoritative billing, see the Usage page in the [Claude Console](https://platform.claude.com/usage).
 
 ```text theme={null}
 Total cost:            $0.55
