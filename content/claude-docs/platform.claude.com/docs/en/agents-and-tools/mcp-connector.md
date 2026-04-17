@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 3e2f7aa9524eebfb99133ff19548e1abd9b7ca568e6db726a4cd6aa38d134b26
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 2b3ff19436b5aac36936a2a7b5e517eac1bf9d6a66463618667929831ed184fc
 ---
 
 # MCP connector
@@ -49,14 +49,14 @@ This example enables all tools from an MCP server with default configuration:
 
 <CodeGroup>
 
-```bash Shell nocheck
+```bash cURL nocheck
 curl https://api.anthropic.com/v1/messages \
   -H "Content-Type: application/json" \
   -H "X-API-Key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: mcp-client-2025-11-20" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1000,
     "messages": [{"role": "user", "content": "What tools do you have available?"}],
     "mcp_servers": [
@@ -78,7 +78,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI nocheck
 ant beta:messages create --beta mcp-client-2025-11-20 <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1000
 messages:
   - role: user
@@ -100,7 +100,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1000,
     messages=[{"role": "user", "content": "What tools do you have available?"}],
     mcp_servers=[
@@ -124,7 +124,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const anthropic = new Anthropic();
 
 const response = await anthropic.beta.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1000,
   messages: [
     {
@@ -163,7 +163,7 @@ AnthropicClient client = new();
 
 var parameters = new MessageCreateParams
 {
-    Model = Model.ClaudeOpus4_6,
+    Model = Model.ClaudeOpus4_7,
     MaxTokens = 1000,
     Messages = new List<BetaMessageParam>
     {
@@ -204,7 +204,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1000,
 		Messages: []anthropic.BetaMessageParam{
 			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What tools do you have available?")),
@@ -245,7 +245,7 @@ public class Main {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model("claude-opus-4-6")
+            .model("claude-opus-4-7")
             .maxTokens(1000L)
             .addUserMessage("What tools do you have available?")
             .addMcpServer(BetaRequestMcpServerUrlDefinition.builder()
@@ -277,7 +277,7 @@ $message = $client->beta->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'What tools do you have available?']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     mcpServers: [
         [
             'type' => 'url',
@@ -304,7 +304,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 response = client.beta.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1000,
   messages: [
     { role: "user", content: "What tools do you have available?" }
@@ -555,7 +555,7 @@ You can connect to multiple MCP servers by including multiple server definitions
 
 ```json
 {
-  "model": "claude-opus-4-6",
+  "model": "claude-opus-4-7",
   "max_tokens": 1000,
   "messages": [
     {
@@ -694,7 +694,7 @@ await mcpClient.connect(transport);
 // List tools and convert them for the Claude API
 const { tools } = await mcpClient.listTools();
 const runner = await anthropic.beta.messages.toolRunner({
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{ role: "user", content: "What tools do you have available?" }],
   tools: mcpTools(tools, mcpClient)
@@ -710,7 +710,7 @@ import { mcpMessages } from "@anthropic-ai/sdk/helpers/beta/mcp";
 
 const { messages } = await mcpClient.getPrompt({ name: "my-prompt" });
 const response = await anthropic.beta.messages.create({
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: mcpMessages(messages)
 });
@@ -726,7 +726,7 @@ import { mcpResourceToContent, mcpResourceToFile } from "@anthropic-ai/sdk/helpe
 // As a content block in a message
 const resource = await mcpClient.readResource({ uri: "file:///path/to/doc.txt" });
 await anthropic.beta.messages.create({
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     {
@@ -770,7 +770,7 @@ If you're using the deprecated `mcp-client-2025-04-04` beta header, follow this 
 
 ```json
 {
-  "model": "claude-opus-4-6",
+  "model": "claude-opus-4-7",
   "max_tokens": 1000,
   "messages": [
     // ...
@@ -794,7 +794,7 @@ If you're using the deprecated `mcp-client-2025-04-04` beta header, follow this 
 
 ```json
 {
-  "model": "claude-opus-4-6",
+  "model": "claude-opus-4-7",
   "max_tokens": 1000,
   "messages": [
     // ...

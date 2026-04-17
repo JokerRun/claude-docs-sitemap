@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8b60f4e4d98052aab92341a551ea9945f6fe4a4e5646676e71226f3421a43293
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 59e1f657232c1dfa2e620e4f696348f1aa5c09b24622c1b76ded884f6ced0d2d
 ---
 
 # Batches
@@ -2332,6 +2332,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
+
           - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
 
             New class of intelligence, strongest in coding and cybersecurity
@@ -2452,6 +2456,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `const OutputConfigEffortMedium OutputConfigEffort = "medium"`
 
           - `const OutputConfigEffortHigh OutputConfigEffort = "high"`
+
+          - `const OutputConfigEffortXhigh OutputConfigEffort = "xhigh"`
 
           - `const OutputConfigEffortMax OutputConfigEffort = "max"`
 
@@ -5196,6 +5202,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
+
             - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
 
               New class of intelligence, strongest in coding and cybersecurity
@@ -6484,6 +6494,10 @@ func main() {
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
+
             - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
 
               New class of intelligence, strongest in coding and cybersecurity
@@ -7552,6 +7566,10 @@ func main() {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
+
           - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
 
             New class of intelligence, strongest in coding and cybersecurity
@@ -8581,6 +8599,10 @@ func main() {
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
 

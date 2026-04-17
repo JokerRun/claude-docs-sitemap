@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 3ad2a44879e7dd5c6b1844312edd2ec0eeee0d1ae87758d44d257f4232fec00b
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 1da7e654d8bc28c0b56c756e3a862459b3f248ccafa9c47ee58f879ec66f9c61
 ---
 
 # User Profiles
@@ -21,7 +21,7 @@ Create User Profile
 
   - `external_id?: string | null`
 
-    Body param
+    Body param: Platform's own identifier for this user. Not enforced unique. Maximum 255 characters.
 
   - `metadata?: Record<string, string>`
 
@@ -33,7 +33,7 @@ Create User Profile
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -77,6 +77,8 @@ Create User Profile
 
       - `"output-300k-2026-03-24"`
 
+      - `"advisor-tool-2026-03-01"`
+
       - `"user-profiles-2026-03-24"`
 
 ### Returns
@@ -85,23 +87,43 @@ Create User Profile
 
   - `id: string`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
 
   - `metadata: Record<string, string>`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `trust_grants: Record<string, BetaUserProfileTrustGrant>`
 
-    - `status: string`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `type: string`
+    - `status: "active" | "pending" | "rejected"`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: "user_profile"`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
 
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
 
   - `external_id?: string | null`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 
@@ -119,7 +141,7 @@ console.log(betaUserProfile.id);
 
 ## List
 
-`client.beta.userProfiles.list(UserProfileListParamsparams?, RequestOptionsoptions?): PageCursorV2<BetaUserProfile>`
+`client.beta.userProfiles.list(UserProfileListParamsparams?, RequestOptionsoptions?): PageCursor<BetaUserProfile>`
 
 **get** `/v1/user_profiles`
 
@@ -151,7 +173,7 @@ List User Profiles
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -195,6 +217,8 @@ List User Profiles
 
       - `"output-300k-2026-03-24"`
 
+      - `"advisor-tool-2026-03-01"`
+
       - `"user-profiles-2026-03-24"`
 
 ### Returns
@@ -203,23 +227,43 @@ List User Profiles
 
   - `id: string`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
 
   - `metadata: Record<string, string>`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `trust_grants: Record<string, BetaUserProfileTrustGrant>`
 
-    - `status: string`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `type: string`
+    - `status: "active" | "pending" | "rejected"`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: "user_profile"`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
 
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
 
   - `external_id?: string | null`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 
@@ -238,15 +282,15 @@ for await (const betaUserProfile of client.beta.userProfiles.list()) {
 
 ## Retrieve
 
-`client.beta.userProfiles.retrieve(stringid, UserProfileRetrieveParamsparams?, RequestOptionsoptions?): BetaUserProfile`
+`client.beta.userProfiles.retrieve(stringuserProfileID, UserProfileRetrieveParamsparams?, RequestOptionsoptions?): BetaUserProfile`
 
-**get** `/v1/user_profiles/{id}`
+**get** `/v1/user_profiles/{user_profile_id}`
 
 Get User Profile
 
 ### Parameters
 
-- `id: string`
+- `userProfileID: string`
 
 - `params: UserProfileRetrieveParams`
 
@@ -256,7 +300,7 @@ Get User Profile
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -300,6 +344,8 @@ Get User Profile
 
       - `"output-300k-2026-03-24"`
 
+      - `"advisor-tool-2026-03-01"`
+
       - `"user-profiles-2026-03-24"`
 
 ### Returns
@@ -308,23 +354,43 @@ Get User Profile
 
   - `id: string`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
 
   - `metadata: Record<string, string>`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `trust_grants: Record<string, BetaUserProfileTrustGrant>`
 
-    - `status: string`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `type: string`
+    - `status: "active" | "pending" | "rejected"`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: "user_profile"`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
 
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
 
   - `external_id?: string | null`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 
@@ -335,28 +401,28 @@ const client = new Anthropic({
   apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
 });
 
-const betaUserProfile = await client.beta.userProfiles.retrieve('id');
+const betaUserProfile = await client.beta.userProfiles.retrieve('uprof_011CZkZCu8hGbp5mYRQgUmz9');
 
 console.log(betaUserProfile.id);
 ```
 
 ## Update
 
-`client.beta.userProfiles.update(stringid, UserProfileUpdateParamsparams, RequestOptionsoptions?): BetaUserProfile`
+`client.beta.userProfiles.update(stringuserProfileID, UserProfileUpdateParamsparams, RequestOptionsoptions?): BetaUserProfile`
 
-**post** `/v1/user_profiles/{id}`
+**post** `/v1/user_profiles/{user_profile_id}`
 
 Update User Profile
 
 ### Parameters
 
-- `id: string`
+- `userProfileID: string`
 
 - `params: UserProfileUpdateParams`
 
   - `external_id?: string | null`
 
-    Body param
+    Body param: If present, replaces the stored external_id. Omit to leave unchanged. Maximum 255 characters.
 
   - `metadata?: Record<string, string>`
 
@@ -368,7 +434,7 @@ Update User Profile
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -412,6 +478,8 @@ Update User Profile
 
       - `"output-300k-2026-03-24"`
 
+      - `"advisor-tool-2026-03-01"`
+
       - `"user-profiles-2026-03-24"`
 
 ### Returns
@@ -420,23 +488,43 @@ Update User Profile
 
   - `id: string`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
 
   - `metadata: Record<string, string>`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `trust_grants: Record<string, BetaUserProfileTrustGrant>`
 
-    - `status: string`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `type: string`
+    - `status: "active" | "pending" | "rejected"`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: "user_profile"`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
 
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
 
   - `external_id?: string | null`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 
@@ -447,22 +535,22 @@ const client = new Anthropic({
   apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
 });
 
-const betaUserProfile = await client.beta.userProfiles.update('id');
+const betaUserProfile = await client.beta.userProfiles.update('uprof_011CZkZCu8hGbp5mYRQgUmz9');
 
 console.log(betaUserProfile.id);
 ```
 
 ## Create Enrollment URL
 
-`client.beta.userProfiles.createEnrollmentURL(stringid, UserProfileCreateEnrollmentURLParamsparams?, RequestOptionsoptions?): BetaUserProfileEnrollmentURL`
+`client.beta.userProfiles.createEnrollmentURL(stringuserProfileID, UserProfileCreateEnrollmentURLParamsparams?, RequestOptionsoptions?): BetaUserProfileEnrollmentURL`
 
-**post** `/v1/user_profiles/{id}/enrollment_url`
+**post** `/v1/user_profiles/{user_profile_id}/enrollment_url`
 
 Create Enrollment URL
 
 ### Parameters
 
-- `id: string`
+- `userProfileID: string`
 
 - `params: UserProfileCreateEnrollmentURLParams`
 
@@ -472,7 +560,7 @@ Create Enrollment URL
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -515,6 +603,8 @@ Create Enrollment URL
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
       - `"user-profiles-2026-03-24"`
 
@@ -526,9 +616,15 @@ Create Enrollment URL
 
     A timestamp in RFC 3339 format
 
-  - `type: string`
+  - `type: "enrollment_url"`
+
+    Object type. Always `enrollment_url`.
+
+    - `"enrollment_url"`
 
   - `url: string`
+
+    Enrollment URL to send to the end user. Valid until `expires_at`.
 
 ### Example
 
@@ -539,7 +635,9 @@ const client = new Anthropic({
   apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
 });
 
-const betaUserProfileEnrollmentURL = await client.beta.userProfiles.createEnrollmentURL('id');
+const betaUserProfileEnrollmentURL = await client.beta.userProfiles.createEnrollmentURL(
+  'uprof_011CZkZCu8hGbp5mYRQgUmz9',
+);
 
 console.log(betaUserProfileEnrollmentURL.expires_at);
 ```
@@ -552,23 +650,43 @@ console.log(betaUserProfileEnrollmentURL.expires_at);
 
   - `id: string`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
 
   - `metadata: Record<string, string>`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `trust_grants: Record<string, BetaUserProfileTrustGrant>`
 
-    - `status: string`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `type: string`
+    - `status: "active" | "pending" | "rejected"`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: "user_profile"`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
 
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
 
   - `external_id?: string | null`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Beta User Profile Enrollment URL
 
@@ -578,12 +696,26 @@ console.log(betaUserProfileEnrollmentURL.expires_at);
 
     A timestamp in RFC 3339 format
 
-  - `type: string`
+  - `type: "enrollment_url"`
+
+    Object type. Always `enrollment_url`.
+
+    - `"enrollment_url"`
 
   - `url: string`
+
+    Enrollment URL to send to the end user. Valid until `expires_at`.
 
 ### Beta User Profile Trust Grant
 
 - `BetaUserProfileTrustGrant`
 
-  - `status: string`
+  - `status: "active" | "pending" | "rejected"`
+
+    Status of the trust grant.
+
+    - `"active"`
+
+    - `"pending"`
+
+    - `"rejected"`

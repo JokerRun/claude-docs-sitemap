@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/messages
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 31c7ed25987f97db1f27534987a9cc11d943311b3fe2bf8f34e1c8019768ddfa
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 33fac02cd4572165f13856e36cc1870d5885c335e9288a8edf8ceea8ef7ec747
 ---
 
 # Messages
@@ -80,7 +80,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   There is a limit of 100,000 messages in a single request.
 
-- `--model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+- `--model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
   The model that will complete your prompt.
 
@@ -827,11 +827,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `type: "container_upload"`
 
-  - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+  - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-opus-4-7"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-mythos-preview"`
 
@@ -1105,7 +1109,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   There is a limit of 100,000 messages in a single request.
 
-- `--model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+- `--model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
   The model that will complete your prompt.
 
@@ -1215,7 +1219,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 ant messages count-tokens \
   --api-key my-anthropic-api-key \
   --message '{content: [{text: x, type: text}], role: user}' \
-  --model claude-mythos-preview
+  --model claude-opus-4-6
 ```
 
 ## Domain Types
@@ -6098,11 +6102,15 @@ ant messages count-tokens \
 
       - `type: "container_upload"`
 
-  - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+  - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-opus-4-7"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-mythos-preview"`
 
@@ -9219,7 +9227,7 @@ ant messages count-tokens \
 
 - `output_config: object { effort, format }`
 
-  - `effort: optional "low" or "medium" or "high" or "max"`
+  - `effort: optional "low" or "medium" or "high" or 2 more`
 
     All possible effort levels.
 
@@ -9228,6 +9236,8 @@ ant messages count-tokens \
     - `"medium"`
 
     - `"high"`
+
+    - `"xhigh"`
 
     - `"max"`
 
@@ -10748,11 +10758,15 @@ ant messages count-tokens \
 
         - `type: "container_upload"`
 
-    - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+    - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-mythos-preview"`
 
@@ -11564,11 +11578,15 @@ ant messages count-tokens \
 
           - `type: "container_upload"`
 
-      - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+      - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-mythos-preview"`
 
@@ -18688,11 +18706,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `type: "container_upload"`
 
-        - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+        - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-mythos-preview"`
 
@@ -19778,11 +19800,15 @@ ant messages:batches results \
 
             - `type: "container_upload"`
 
-        - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+        - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-mythos-preview"`
 
@@ -20698,11 +20724,15 @@ ant messages:batches results \
 
           - `type: "container_upload"`
 
-      - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+      - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-mythos-preview"`
 
@@ -21580,11 +21610,15 @@ ant messages:batches results \
 
         - `type: "container_upload"`
 
-    - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+    - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-mythos-preview"`
 

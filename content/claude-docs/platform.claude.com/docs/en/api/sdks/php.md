@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/php
-fetched_at: 2026-03-22T03:09:15.957793Z
-sha256: d0496b4436ad3fd6619b40d89d196dce45fa829257e9bd00bc4658f6987cb4ec
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: aa7fe03fbeb4b649a1d4c1c53e9002f7c17b4e7122930dc89746dcc3c76135ff
 ---
 
 # PHP SDK
@@ -47,7 +47,7 @@ $client = new Client(
 $message = $client->messages->create(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-6',
+  model: 'claude-opus-4-7',
 );
 
 var_dump($message->content);
@@ -75,7 +75,7 @@ $client = new Client(
 $stream = $client->messages->createStream(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-6',
+  model: 'claude-opus-4-7',
 );
 
 foreach ($stream as $message) {
@@ -101,7 +101,7 @@ try {
   $message = $client->messages->create(
     maxTokens: 1024,
     messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
   );
 } catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
@@ -151,7 +151,7 @@ $client = new Client(requestOptions: RequestOptions::with(maxRetries: 0));
 $result = $client->messages->create(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-6',
+  model: 'claude-opus-4-7',
   requestOptions: RequestOptions::with(maxRetries: 5),
 );
 ```
@@ -206,7 +206,7 @@ $client = new Client();
 $message = $client->messages->create(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-6',
+  model: 'claude-opus-4-7',
   requestOptions: RequestOptions::with(
     extraQueryParams: ['my_query_parameter' => 'value'],
     extraBodyParams: ['my_body_parameter' => 'value'],

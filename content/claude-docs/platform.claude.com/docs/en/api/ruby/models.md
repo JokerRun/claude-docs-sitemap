@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/models
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 2213575730fb796b5eedb38196e1f4c8f34d6fc861fa28f3d2a8398ffdcb4844
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 15d99a15c323256d4a384f8d9c0e456f84acdc9d291f197d2e3356b3611d5c89
 ---
 
 # Models
@@ -39,7 +39,7 @@ The Models API response can be used to determine which models are available for 
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ The Models API response can be used to determine which models are available for 
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -192,6 +194,14 @@ The Models API response can be used to determine which models are available for 
       - `supported: bool`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: CapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
 
     - `image_input: CapabilitySupport`
 
@@ -303,7 +313,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -348,6 +358,8 @@ The Models API response can be used to determine information about a specific mo
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -456,6 +468,14 @@ The Models API response can be used to determine information about a specific mo
       - `supported: bool`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: CapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
 
     - `image_input: CapabilitySupport`
 
@@ -633,6 +653,14 @@ puts(model_info)
 
     Whether this capability is supported by the model.
 
+  - `xhigh: CapabilitySupport`
+
+    Indicates whether a capability is supported.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
 ### Model Capabilities
 
 - `class ModelCapabilities`
@@ -734,6 +762,14 @@ puts(model_info)
     - `supported: bool`
 
       Whether this capability is supported by the model.
+
+    - `xhigh: CapabilitySupport`
+
+      Indicates whether a capability is supported.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
 
   - `image_input: CapabilitySupport`
 
@@ -894,6 +930,14 @@ puts(model_info)
       - `supported: bool`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: CapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
 
     - `image_input: CapabilitySupport`
 

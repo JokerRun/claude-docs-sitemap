@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/retrieve
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 0e6e86552914a82c3e96e41c6882cc0d9e734148201f0b20201e3a0bdca3e94f
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 88df0d4f9758054744f01f21388b577fa7c30c9674c036fc315d66f3eb80fbce
 ---
 
 ## Retrieve
@@ -68,6 +68,8 @@ Get Credential
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

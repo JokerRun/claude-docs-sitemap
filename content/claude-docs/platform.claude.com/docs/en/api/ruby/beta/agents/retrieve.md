@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/retrieve
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: f653d1f425f67d3bd25b47906b9008a5bb12bc6d1fa3b50d4865f688988705bd
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 26c31b17805efc89ed28f52323c1f8e9a5d99895ec4b297ce8c12f50c711588c
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ Get Agent
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -73,6 +73,8 @@ Get Agent
 
     - `:"advisor-tool-2026-03-01"`
 
+    - `:"user-profiles-2026-03-24"`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent`
@@ -113,11 +115,15 @@ Get Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `:"claude-opus-4-6" | :"claude-sonnet-4-6" | :"claude-haiku-4-5" | 5 more`
+      - `:"claude-opus-4-7" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 6 more`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `:"claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `:"claude-opus-4-6"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/onboarding
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 957d4fdae5159f03c3599a2ec1c8a098082d2955f4e2f7429c1c436fa3513215
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: f5f453a1ca8e64a6b0742b48280a97042e0eff988c98edfffb986a0433ea2e5d
 ---
 
 # Prototype in Console
@@ -48,31 +48,31 @@ session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
   -H "anthropic-beta: managed-agents-2026-04-01" \
   -H "content-type: application/json" \
   -d '{
-    "agent": "agent_01XXXXXXXXXXXXXXXXXXXXXX",
-    "environment_id": "env_01XXXXXXXXXXXXXXXXXXXXXX",
+    "agent": "agent_01J8XkN5uT3vHpLqRfWdY2",
+    "environment_id": "env_01K2mPsT7hNwR4jXuLvCqD8",
     "title": "My first session"
   }')
 ```
 
-```bash CLI
+```bash CLI nocheck
 ant beta:sessions create \
-  --agent agent_01XXXXXXXXXXXXXXXXXXXXXX \
-  --environment-id env_01XXXXXXXXXXXXXXXXXXXXXX \
+  --agent agent_01J8XkN5uT3vHpLqRfWdY2 \
+  --environment-id env_01K2mPsT7hNwR4jXuLvCqD8 \
   --title "My first session"
 ```
 
 ```python Python
 session = client.beta.sessions.create(
-    agent="agent_01XXXXXXXXXXXXXXXXXXXXXX",
-    environment_id="env_01XXXXXXXXXXXXXXXXXXXXXX",
+    agent="agent_01J8XkN5uT3vHpLqRfWdY2",
+    environment_id="env_01K2mPsT7hNwR4jXuLvCqD8",
     title="My first session",
 )
 ```
 
 ```typescript TypeScript
 const session = await client.beta.sessions.create({
-  agent: "agent_01XXXXXXXXXXXXXXXXXXXXXX",
-  environment_id: "env_01XXXXXXXXXXXXXXXXXXXXXX",
+  agent: "agent_01J8XkN5uT3vHpLqRfWdY2",
+  environment_id: "env_01K2mPsT7hNwR4jXuLvCqD8",
   title: "My first session"
 });
 ```
@@ -80,8 +80,8 @@ const session = await client.beta.sessions.create({
 ```csharp C#
 var session = await client.Beta.Sessions.Create(new()
 {
-    Agent = "agent_01XXXXXXXXXXXXXXXXXXXXXX",
-    EnvironmentID = "env_01XXXXXXXXXXXXXXXXXXXXXX",
+    Agent = "agent_01J8XkN5uT3vHpLqRfWdY2",
+    EnvironmentID = "env_01K2mPsT7hNwR4jXuLvCqD8",
     Title = "My first session",
 });
 ```
@@ -91,11 +91,11 @@ session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
 	Agent: anthropic.BetaSessionNewParamsAgentUnion{
 		OfBetaManagedAgentsAgents: &anthropic.BetaManagedAgentsAgentParams{
 			Type:    anthropic.BetaManagedAgentsAgentParamsTypeAgent,
-			ID:      "agent_01XXXXXXXXXXXXXXXXXXXXXX",
+			ID:      "agent_01J8XkN5uT3vHpLqRfWdY2",
 			Version: anthropic.Int(1),
 		},
 	},
-	EnvironmentID: "env_01XXXXXXXXXXXXXXXXXXXXXX",
+	EnvironmentID: "env_01K2mPsT7hNwR4jXuLvCqD8",
 	Title:         anthropic.String("My first session"),
 })
 if err != nil {
@@ -107,8 +107,8 @@ _ = session
 ```java Java
 var session = client.beta().sessions().create(
     SessionCreateParams.builder()
-        .agent("agent_01XXXXXXXXXXXXXXXXXXXXXX")
-        .environmentId("env_01XXXXXXXXXXXXXXXXXXXXXX")
+        .agent("agent_01J8XkN5uT3vHpLqRfWdY2")
+        .environmentId("env_01K2mPsT7hNwR4jXuLvCqD8")
         .title("My first session")
         .build()
 );
@@ -116,16 +116,16 @@ var session = client.beta().sessions().create(
 
 ```php PHP
 $session = $client->beta->sessions->create(
-    agent: 'agent_01XXXXXXXXXXXXXXXXXXXXXX',
-    environmentID: 'env_01XXXXXXXXXXXXXXXXXXXXXX',
+    agent: 'agent_01J8XkN5uT3vHpLqRfWdY2',
+    environmentID: 'env_01K2mPsT7hNwR4jXuLvCqD8',
     title: 'My first session',
 );
 ```
 
 ```ruby Ruby
 session = client.beta.sessions.create(
-  agent: "agent_01XXXXXXXXXXXXXXXXXXXXXX",
-  environment_id: "env_01XXXXXXXXXXXXXXXXXXXXXX",
+  agent: "agent_01J8XkN5uT3vHpLqRfWdY2",
+  environment_id: "env_01K2mPsT7hNwR4jXuLvCqD8",
   title: "My first session"
 )
 ```

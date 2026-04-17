@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 5f84fb66814fd8056515b57800b7f2e6595641100ee083869b1ad89b5917ea14
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 12cfcf30d3b757481721404d5a3d3f6064fbd02514a4a45353e5da8bb0c3fe0c
 ---
 
 ## List
@@ -79,6 +79,8 @@ List User Profiles
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
@@ -87,23 +89,43 @@ List User Profiles
 
   - `String id`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `LocalDateTime createdAt`
 
     A timestamp in RFC 3339 format
 
   - `Metadata metadata`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `TrustGrants trustGrants`
 
-    - `String status`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `String type`
+    - `Status status`
+
+      Status of the trust grant.
+
+      - `ACTIVE("active")`
+
+      - `PENDING("pending")`
+
+      - `REJECTED("rejected")`
+
+  - `Type type`
+
+    Object type. Always `user_profile`.
+
+    - `USER_PROFILE("user_profile")`
 
   - `LocalDateTime updatedAt`
 
     A timestamp in RFC 3339 format
 
   - `Optional<String> externalId`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 

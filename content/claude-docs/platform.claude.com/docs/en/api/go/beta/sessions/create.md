@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/create
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: efbc5f8f23c5ac68d725c47e0cb55dd31f29b63e8c34abf1f1b37ef1c0515178
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: e2c544af35bbe9c0eb6648684c4257d17990677a99ed813d6fa98dc50e0d430c
 ---
 
 ## Create
@@ -171,6 +171,8 @@ Create Session
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
 ### Returns
 
 - `type BetaManagedAgentsSession struct{…}`
@@ -212,6 +214,10 @@ Create Session
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const BetaManagedAgentsModelClaudeOpus4_7 BetaManagedAgentsModel = "claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `const BetaManagedAgentsModelClaudeOpus4_6 BetaManagedAgentsModel = "claude-opus-4-6"`
 

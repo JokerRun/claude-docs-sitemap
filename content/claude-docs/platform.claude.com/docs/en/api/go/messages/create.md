@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 432bdd02e18bbfdde2140fa3c7b5bbe7ab468186dd47d0572050677578e80edd
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: bf41450bb7c6dc7ad9568183cdb813a69e9b0d75069fe0199131b18e42d26b76
 ---
 
 ## Create
@@ -4321,6 +4321,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
 

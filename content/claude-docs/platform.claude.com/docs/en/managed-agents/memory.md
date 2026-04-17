@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/memory
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 15631817eacdac7aefc137bd0f3f312e3b3eddee601a3e086e470bf2b93e00fe
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: b72dd0498ebc307aeda87d72560cc8dad9245167cb058ed238ae81edecf27f2b
 ---
 
 # Using agent memory
@@ -49,7 +49,8 @@ Give the store a `name` and a `description`. The description is passed to the ag
   store_id=$(jq -r '.id' <<< "$store")
   echo "$store_id"  # memstore_01Hx...
   ```
-  ```bash CLI
+  
+  ```bash CLI nocheck
   store_id=$(ant beta:memory-stores create \
     --name "User Preferences" \
     --description "Per-user preferences and project context." \
@@ -134,7 +135,7 @@ Pre-load a store with reference material before any agent runs:
   EOF
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:memory-stores:memories write \
     --memory-store-id "$store_id" \
     --path "/formatting_standards.md" \
@@ -232,7 +233,7 @@ You can configure `access` as well. It defaults to `read_write`, but `read_only`
   )
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:sessions create <<YAML
   agent: $agent_id
   environment_id: $environment_id
@@ -386,7 +387,7 @@ List does not return memory content, just object metadata. Use `path_prefix` for
   jq -r '.data[] | "\(.path)  (\(.size_bytes) bytes, sha=\(.content_sha256[0:8]))"' <<< "$page"
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:memory-stores:memories list \
     --memory-store-id "$store_id" \
     --path-prefix "/"
@@ -470,7 +471,7 @@ Fetching an individual memory returns the full content.
   jq -r '.content' <<< "$mem"
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:memory-stores:memories retrieve \
     --memory-store-id "$store_id" \
     --memory-id "$memory_id"
@@ -545,7 +546,7 @@ Use `memories.write` to upsert a memory **by path**. If nothing exists at the pa
   )
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   mem_sha=$(ant beta:memory-stores:memories write \
     --memory-store-id "$store_id" \
     --path "/preferences/formatting.md" \
@@ -627,7 +628,7 @@ Pass `precondition={"type": "not_exists"}` to `memories.write` to make it a crea
   EOF
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:memory-stores:memories write \
     --memory-store-id "$store_id" \
     > /dev/null <<YAML
@@ -726,7 +727,7 @@ The example below renames a memory to an archive path:
     -d '{"path": "/archive/2026_q1_formatting.md"}' > /dev/null
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:memory-stores:memories update \
     --memory-store-id "$store_id" \
     --memory-id "$mem_id" \
@@ -890,7 +891,7 @@ To edit a memory's content without clobbering a concurrent write, pass a `conten
     -H "anthropic-beta: managed-agents-2026-04-01" > /dev/null
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:memory-stores:memories delete \
     --memory-store-id "$store_id" \
     --memory-id "$mem_id" \

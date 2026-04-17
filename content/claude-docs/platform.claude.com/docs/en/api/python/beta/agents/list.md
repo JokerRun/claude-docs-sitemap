@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/agents/list
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 4513f5fd71b2a8ff71a109287f36640058123bd4e8dc72b91b6954a82b455973
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: a656591c4560d2dfa48fefdd0a1c5e59c6ddaef574ffee8dad6f37dfa3066f56
 ---
 
 ## List
@@ -41,7 +41,7 @@ List Agents
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -87,6 +87,8 @@ List Agents
 
     - `"advisor-tool-2026-03-01"`
 
+    - `"user-profiles-2026-03-24"`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent: …`
@@ -127,12 +129,13 @@ List Agents
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Literal["claude-opus-4-6", "claude-sonnet-4-6", "claude-haiku-4-5", 5 more]`
+      - `Literal["claude-opus-4-7", "claude-opus-4-6", "claude-sonnet-4-6", 6 more]`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
         - `claude-opus-4-6` - Most intelligent model for building agents and coding
         - `claude-sonnet-4-6` - Best combination of speed and intelligence
         - `claude-haiku-4-5` - Fastest model with near-frontier intelligence
@@ -141,6 +144,10 @@ List Agents
         - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
         - `claude-sonnet-4-5` - High-performance model for agents and coding
         - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
+
+        - `"claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-6"`
 

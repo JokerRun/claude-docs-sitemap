@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock-research-preview
-fetched_at: 2026-04-11T03:08:39.024196Z
-sha256: 4299facffa25025242890227d1e3025ff2c707b6729b73175863c5adce5861d5
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: fe9e60f0fe4f4ad9f3fae4a4df6380c737139d35d65ca999698bee8bc4ebe89b
 ---
 
 # Claude in Amazon Bedrock (research preview)
@@ -337,6 +337,7 @@ Model IDs in Claude in Amazon Bedrock carry an `anthropic.` provider prefix. Mod
 
 | Model                 | Model ID                          |
 | --------------------- | --------------------------------- |
+| Claude Opus 4.7       | `anthropic.claude-opus-4-7`       |
 | Claude Mythos Preview | `anthropic.claude-mythos-preview` |
 | Claude Haiku 4.5      | `anthropic.claude-haiku-4-5`      |
 

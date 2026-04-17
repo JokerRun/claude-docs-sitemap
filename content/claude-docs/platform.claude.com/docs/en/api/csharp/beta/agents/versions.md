@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/versions
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: c15dcab8d4a0558356418b3b8f0a729690b04920aea6463f28ac78e7254fb7dd
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 7416d8f7c987fbf8481acdc0beafa8d094f3e1416e547e90b96e21799d45175c
 ---
 
 # Versions
@@ -79,6 +79,8 @@ List Agent Versions
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
 ### Returns
 
 - `class VersionListPageResponse:`
@@ -122,6 +124,10 @@ List Agent Versions
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-7"ClaudeOpus4_7`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-6"ClaudeOpus4_6`
 

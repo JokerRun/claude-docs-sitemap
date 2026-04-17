@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: cc2363876a07e1776314435e8db4d9b1cb3fbe6648f3172f665a1d4c1be9c74e
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 7af2fa7ffd087bd8ad2608b591ba1cec0981747984f448dd93ad3e49af7d255c
 ---
 
 # Fast mode (beta: research preview)
@@ -38,7 +38,7 @@ Fast mode runs the same model with a faster inference configuration. There is no
 ## Basic usage
 
 <CodeGroup>
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
@@ -261,7 +261,7 @@ For tier-specific rate limits, see the [rate limits page](/docs/en/api/rate-limi
 The response `usage` object includes a `speed` field that indicates which speed was used, either `"fast"` or `"standard"`:
 
 <CodeGroup>
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \

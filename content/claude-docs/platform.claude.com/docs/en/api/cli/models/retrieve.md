@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/models/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 88d62a23096c43ff101df9bc264e0f30818aabae61d43caf96df4af7f2ca71e9
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 24989352e5ce809ccb6c521786c58ea6b040ab26c47df6187ff02084630a5ee2
 ---
 
 ## Retrieve
@@ -93,7 +93,7 @@ The Models API response can be used to determine information about a specific mo
 
         Whether this capability is supported by the model.
 
-    - `effort: object { high, low, max, 2 more }`
+    - `effort: object { high, low, max, 3 more }`
 
       Effort (reasoning_effort) support and available levels.
 
@@ -132,6 +132,14 @@ The Models API response can be used to determine information about a specific mo
       - `supported: boolean`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: object { supported }`
+
+        Indicates whether a capability is supported.
+
+        - `supported: boolean`
+
+          Whether this capability is supported by the model.
 
     - `image_input: object { supported }`
 

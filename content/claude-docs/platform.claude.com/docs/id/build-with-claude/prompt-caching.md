@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: b1749a1ebe14fdf48cfcafc31472674a7fa7efddbba1bbce8166b4b2975583b9
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: bebb78ece06e019d102d5b25ca8af7cbf65e5b746aec351d457388c3a127b10c
 ---
 
 # Prompt caching
@@ -276,6 +276,7 @@ Prompt caching memperkenalkan struktur harga baru. Tabel di bawah menunjukkan ha
 
 | Model             | Base Input Tokens | 5m Cache Writes | 1h Cache Writes | Cache Hits & Refreshes | Output Tokens |
 |-------------------|-------------------|-----------------|-----------------|----------------------|---------------|
+| Claude Opus 4.7     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.6     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.5   | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.1   | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |

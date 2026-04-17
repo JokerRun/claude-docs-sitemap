@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/models
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: cad340734210a6a5d151c2f124ecc1b3dfcbb5d46df45a36874d98357cdec50e
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 71cc72dcb8d95c7f4f0da619151723de623b89715342ccd94141774d7a06c3b5
 ---
 
 # Models
@@ -41,7 +41,7 @@ The Models API response can be used to determine which models are available for 
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,8 @@ The Models API response can be used to determine which models are available for 
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -194,6 +196,14 @@ The Models API response can be used to determine which models are available for 
       - `supported: boolean`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: BetaCapabilitySupport | null`
+
+        Indicates whether a capability is supported.
+
+        - `supported: boolean`
+
+          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 
@@ -310,7 +320,7 @@ The Models API response can be used to determine information about a specific mo
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -355,6 +365,8 @@ The Models API response can be used to determine information about a specific mo
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -463,6 +475,14 @@ The Models API response can be used to determine information about a specific mo
       - `supported: boolean`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: BetaCapabilitySupport | null`
+
+        Indicates whether a capability is supported.
+
+        - `supported: boolean`
+
+          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 
@@ -642,6 +662,14 @@ console.log(betaModelInfo.id);
 
     Whether this capability is supported by the model.
 
+  - `xhigh: BetaCapabilitySupport | null`
+
+    Indicates whether a capability is supported.
+
+    - `supported: boolean`
+
+      Whether this capability is supported by the model.
+
 ### Beta Model Capabilities
 
 - `BetaModelCapabilities`
@@ -743,6 +771,14 @@ console.log(betaModelInfo.id);
     - `supported: boolean`
 
       Whether this capability is supported by the model.
+
+    - `xhigh: BetaCapabilitySupport | null`
+
+      Indicates whether a capability is supported.
+
+      - `supported: boolean`
+
+        Whether this capability is supported by the model.
 
   - `image_input: BetaCapabilitySupport`
 
@@ -903,6 +939,14 @@ console.log(betaModelInfo.id);
       - `supported: boolean`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: BetaCapabilitySupport | null`
+
+        Indicates whether a capability is supported.
+
+        - `supported: boolean`
+
+          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 7b9f0deb4955569d35bd445a9fb3c5bbf76d3fbd6c9adde1f2a8167181328c94
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 04e999a5a4763ae4d0ea9d5029154c8ed8560aa013a264031c2822186e62d9a5
 ---
 
 # Credentials
@@ -135,7 +135,7 @@ Create Credential
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -180,6 +180,8 @@ Create Credential
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -354,7 +356,7 @@ List Credentials
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -399,6 +401,8 @@ List Credentials
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -559,7 +563,7 @@ Get Credential
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -604,6 +608,8 @@ Get Credential
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -844,7 +850,7 @@ Update Credential
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -889,6 +895,8 @@ Update Credential
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -1049,7 +1057,7 @@ Delete Credential
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -1094,6 +1102,8 @@ Delete Credential
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -1150,7 +1160,7 @@ Archive Credential
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -1195,6 +1205,8 @@ Archive Credential
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

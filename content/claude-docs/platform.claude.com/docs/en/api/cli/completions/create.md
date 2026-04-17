@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/completions/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: bc91dabfe458359566d83e2621b90265d492cdd5b5158d695f6ab01c849a7cb9
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 050c4c1607a8e5171f923ed5c551d07c2f87afe6309e9bb23c259c4d826d6e96
 ---
 
 ## Create
@@ -25,7 +25,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
 
-- `--model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+- `--model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
   Body param: The model that will complete your prompt.
 
@@ -105,11 +105,15 @@ Future models and features will not be compatible with Text Completions. See our
 
     The resulting completion up to and excluding the stop sequences.
 
-  - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+  - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-opus-4-7"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-mythos-preview"`
 
@@ -196,7 +200,7 @@ Future models and features will not be compatible with Text Completions. See our
 ant completions create \
   --api-key my-anthropic-api-key \
   --max-tokens-to-sample 256 \
-  --model claude-mythos-preview \
+  --model claude-opus-4-7 \
   --prompt '
 
 Human: Hello, world!

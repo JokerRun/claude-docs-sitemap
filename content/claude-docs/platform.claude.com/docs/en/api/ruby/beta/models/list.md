@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/models/list
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 7217473a41df47e1399371f96878d1e2058737862a85faa7c280cb0c71ce7e7a
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 9767e27bfee54801d906f40b5b50ab115186bf9ee03aed7c592699412d3f4455
 ---
 
 ## List
@@ -37,7 +37,7 @@ The Models API response can be used to determine which models are available for 
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ The Models API response can be used to determine which models are available for 
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -190,6 +192,14 @@ The Models API response can be used to determine which models are available for 
       - `supported: bool`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 

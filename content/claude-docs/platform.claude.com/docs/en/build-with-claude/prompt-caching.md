@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 6701067cdaa580f900fdfa40763bbc7e30084ea38de52a4f2b80ef428e18301a
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 05507450c487b124d82d95c45597ea16ad97091cfcde3febbef7a688e94d77c9
 ---
 
 # Prompt caching
@@ -24,13 +24,13 @@ The simplest way to start is with automatic caching:
 
 <CodeGroup>
 
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "cache_control": {"type": "ephemeral"},
     "system": "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.",
@@ -45,7 +45,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create --transform usage <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 cache_control:
   type: ephemeral
@@ -64,7 +64,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     cache_control={"type": "ephemeral"},
     system="You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.",
@@ -84,7 +84,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   cache_control: { type: "ephemeral" },
   system:
@@ -113,7 +113,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 1024,
             CacheControl = new CacheControlEphemeral(),
             System = "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.",
@@ -148,7 +148,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:        anthropic.ModelClaudeOpus4_6,
+		Model:        anthropic.ModelClaudeOpus4_7,
 		MaxTokens:    1024,
 		CacheControl: anthropic.NewCacheControlEphemeralParam(),
 		System: []anthropic.TextBlockParam{
@@ -179,7 +179,7 @@ public class PromptCachingExample {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_6)
+        .model(Model.CLAUDE_OPUS_4_7)
         .maxTokens(1024)
         .cacheControl(CacheControlEphemeral.builder().build())
         .system("You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.")
@@ -205,7 +205,7 @@ $response = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => "Analyze the major themes in 'Pride and Prejudice'."]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     cacheControl: CacheControlEphemeral::with(),
     system: "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.",
 );
@@ -218,7 +218,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 response = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   cache_control: {type: "ephemeral"},
   system: "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.",
@@ -274,6 +274,7 @@ Prompt caching introduces a new pricing structure. The table below shows the pri
 
 | Model             | Base Input Tokens | 5m Cache Writes | 1h Cache Writes | Cache Hits & Refreshes | Output Tokens |
 |-------------------|-------------------|-----------------|-----------------|----------------------|---------------|
+| Claude Opus 4.7     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.6     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.5   | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.1   | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
@@ -310,13 +311,13 @@ Automatic caching is the simplest way to enable prompt caching. Instead of placi
 
 <CodeGroup>
 
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "cache_control": {"type": "ephemeral"},
     "system": "You are a helpful assistant that remembers our conversation.",
@@ -330,7 +331,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create --transform usage <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 cache_control:
   type: ephemeral
@@ -351,7 +352,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     cache_control={"type": "ephemeral"},
     system="You are a helpful assistant that remembers our conversation.",
@@ -373,7 +374,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   cache_control: { type: "ephemeral" },
   system: "You are a helpful assistant that remembers our conversation.",
@@ -403,7 +404,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 1024,
             CacheControl = new CacheControlEphemeral(),
             System = "You are a helpful assistant that remembers our conversation.",
@@ -448,7 +449,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:        anthropic.ModelClaudeOpus4_6,
+		Model:        anthropic.ModelClaudeOpus4_7,
 		MaxTokens:    1024,
 		CacheControl: anthropic.NewCacheControlEphemeralParam(),
 		System: []anthropic.TextBlockParam{
@@ -481,7 +482,7 @@ public class AutomaticCachingExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_4_6)
+                .model(Model.CLAUDE_OPUS_4_7)
                 .maxTokens(1024)
                 .cacheControl(CacheControlEphemeral.builder().build())
                 .system("You are a helpful assistant that remembers our conversation.")
@@ -511,7 +512,7 @@ $response = $client->messages->create(
         ['role' => 'assistant', 'content' => 'Nice to meet you, Alex! How can I help with your ML work today?'],
         ['role' => 'user', 'content' => 'What did I say I work on?'],
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     cacheControl: CacheControlEphemeral::with(),
     system: 'You are a helpful assistant that remembers our conversation.',
 );
@@ -524,7 +525,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 response = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   cache_control: {type: "ephemeral"},
   system: "You are a helpful assistant that remembers our conversation.",
@@ -566,7 +567,7 @@ This lets you combine both approaches. For example, use explicit breakpoints to 
 
 ```json
 {
-  "model": "claude-opus-4-6",
+  "model": "claude-opus-4-7",
   "max_tokens": 1024,
   "cache_control": { "type": "ephemeral" },
   "system": [
@@ -664,7 +665,7 @@ Adding more `cache_control` breakpoints doesn't increase your costs - you still 
 
 ### Cache limitations
 The minimum cacheable prompt length is:
-- 4096 tokens for [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.6, and Claude Opus 4.5
+- 4096 tokens for [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, and Claude Opus 4.5
 - 2048 tokens for Claude Sonnet 4.6
 - 1024 tokens for Claude Sonnet 4.5, Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4, and Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))
 - 4096 tokens for Claude Haiku 4.5
@@ -919,14 +920,14 @@ The following code snippets showcase various prompt caching patterns. These exam
 <section title="Large context caching example">
 
 <CodeGroup>
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages \
      --header "x-api-key: $ANTHROPIC_API_KEY" \
      --header "anthropic-version: 2023-06-01" \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "system": [
         {
@@ -950,7 +951,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 system:
   - type: text
@@ -973,7 +974,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     system=[
         {
@@ -1002,7 +1003,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   system: [
     {
@@ -1043,7 +1044,7 @@ public class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 1024,
             System = new MessageCreateParamsSystem(new List<TextBlockParam>
             {
@@ -1088,7 +1089,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		System: []anthropic.TextBlockParam{
 			{
@@ -1126,7 +1127,7 @@ public class LegalDocumentAnalysisExample {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_6)
+      .model(Model.CLAUDE_OPUS_4_7)
       .maxTokens(1024)
       .systemOfTextBlockParams(
         List.of(
@@ -1165,7 +1166,7 @@ $message = $client->messages->create(
             'content' => 'What are the key terms and conditions in this agreement?'
         ]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     system: [
         [
             'type' => 'text',
@@ -1188,7 +1189,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   system: [
     {
@@ -1231,7 +1232,7 @@ Tool definitions can be cached by placing `cache_control` on the last tool in yo
 
 ```json
 {
-  "model": "claude-opus-4-6",
+  "model": "claude-opus-4-7",
   "max_tokens": 1024,
   "tools": [
     {
@@ -1268,14 +1269,14 @@ For detailed interaction between tool definitions, `defer_loading`, and cache in
 
 <CodeGroup>
 
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages \
      --header "x-api-key: $ANTHROPIC_API_KEY" \
      --header "anthropic-version: 2023-06-01" \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "system": [
         {
@@ -1318,7 +1319,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 system:
   - type: text
@@ -1356,7 +1357,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     system=[
         {
@@ -1402,7 +1403,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   system: [
     {
@@ -1455,7 +1456,7 @@ AnthropicClient client = new();
 
 var parameters = new MessageCreateParams
 {
-    Model = Model.ClaudeOpus4_6,
+    Model = Model.ClaudeOpus4_7,
     MaxTokens = 1024,
     System = new MessageCreateParamsSystem(new List<TextBlockParam>
     {
@@ -1515,7 +1516,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		System: []anthropic.TextBlockParam{
 			{
@@ -1569,7 +1570,7 @@ public class ConversationWithCacheControlExample {
 
     // Create message params
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_6)
+      .model(Model.CLAUDE_OPUS_4_7)
       .maxTokens(1024)
       .systemOfTextBlockParams(List.of(systemPrompt))
       // First user message (without cache control)
@@ -1633,7 +1634,7 @@ $message = $client->messages->create(
             ]
         ]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     system: [
         [
             'type' => 'text',
@@ -1652,7 +1653,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   system: [
     {
@@ -1711,14 +1712,14 @@ When this is set up properly, you should see the following in the usage response
 
 <CodeGroup>
 
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages \
      --header "x-api-key: $ANTHROPIC_API_KEY" \
      --header "anthropic-version: 2023-06-01" \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "tools": [
         {
@@ -1814,7 +1815,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 tools:
   - name: search_documents
@@ -1906,7 +1907,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[
         {
@@ -2001,7 +2002,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [
     {
@@ -2116,7 +2117,7 @@ public class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 1024,
             Tools =
             [
@@ -2233,7 +2234,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		Tools: []anthropic.ToolUnionParam{
 			{OfTool: &anthropic.ToolParam{
@@ -2348,7 +2349,7 @@ public class MultipleCacheBreakpointsExample {
       .build();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_6)
+      .model(Model.CLAUDE_OPUS_4_7)
       .maxTokens(1024)
       // Tools with cache control on the last one
       .addTool(
@@ -2492,7 +2493,7 @@ $message = $client->messages->create(
             ]
         ]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     system: [
         [
             'type' => 'text',
@@ -2547,7 +2548,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [
     {
@@ -2850,7 +2851,7 @@ Note: Starting February 5, 2026, caches will be isolated per workspace instead o
       const client = new Anthropic();
 
       const response = await client.beta.promptCaching.messages.create({
-        model: "claude-opus-4-6",
+        model: "claude-opus-4-7",
         max_tokens: 1024,
         system: [
           {
@@ -2878,7 +2879,7 @@ Note: Starting February 5, 2026, caches will be isolated per workspace instead o
           messages: [
               ['role' => 'user', 'content' => 'Summarize the key points']
           ],
-          model: 'claude-opus-4-6',
+          model: 'claude-opus-4-7',
           system: [
               [
                   'type' => 'text',
@@ -2904,7 +2905,7 @@ Note: Starting February 5, 2026, caches will be isolated per workspace instead o
       const client = new Anthropic();
 
       const response = await client.messages.create({
-        model: "claude-opus-4-6",
+        model: "claude-opus-4-7",
         max_tokens: 1024,
         system: [
           {
@@ -2931,7 +2932,7 @@ Note: Starting February 5, 2026, caches will be isolated per workspace instead o
           messages: [
               ['role' => 'user', 'content' => 'Summarize the key points']
           ],
-          model: 'claude-opus-4-6',
+          model: 'claude-opus-4-7',
           system: [
               [
                   'type' => 'text',
@@ -2950,7 +2951,7 @@ Note: Starting February 5, 2026, caches will be isolated per workspace instead o
       client = Anthropic::Client.new
 
       message = client.messages.create(
-        model: "claude-opus-4-6",
+        model: "claude-opus-4-7",
         max_tokens: 1024,
         system: [
           {

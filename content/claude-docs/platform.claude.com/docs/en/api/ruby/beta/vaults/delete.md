@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/delete
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 1b74a379d8089f18c082463135fd52eb542a7a4d11232f3010f5453f63e9f402
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 4c4874a337e1a564ce24c42fd60faee20f1c1c50b8994b5cea989820616342a7
 ---
 
 ## Delete
@@ -23,7 +23,7 @@ Delete Vault
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Delete Vault
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

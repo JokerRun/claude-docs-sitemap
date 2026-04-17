@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 2ddef90904f6cacc8f3ea146e85502fc1c9b34f3c7da639038978480db70d515
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: e6fa1757196ed1f88900fb4170fac54966e0919826933c993bf609cd84f02853
 ---
 
 ## List
@@ -79,6 +79,8 @@ List User Profiles
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
@@ -87,7 +89,11 @@ List User Profiles
 
   - `required IReadOnlyList<BetaUserProfile> Data`
 
+    User profiles on this page.
+
     - `required string ID`
+
+      Unique identifier for this user profile, prefixed `uprof_`.
 
     - `required DateTimeOffset CreatedAt`
 
@@ -95,11 +101,27 @@ List User Profiles
 
     - `required IReadOnlyDictionary<string, string> Metadata`
 
+      Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
     - `required IReadOnlyDictionary<string, BetaUserProfileTrustGrant> TrustGrants`
 
-      - `required string Status`
+      Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-    - `required string Type`
+      - `required Status Status`
+
+        Status of the trust grant.
+
+        - `"active"Active`
+
+        - `"pending"Pending`
+
+        - `"rejected"Rejected`
+
+    - `required Type Type`
+
+      Object type. Always `user_profile`.
+
+      - `"user_profile"UserProfile`
 
     - `required DateTimeOffset UpdatedAt`
 
@@ -107,7 +129,11 @@ List User Profiles
 
     - `string? ExternalID`
 
+      Platform's own identifier for this user. Not enforced unique.
+
   - `string? NextPage`
+
+    Cursor for the next page, or `null` when there are no more results.
 
 ### Example
 

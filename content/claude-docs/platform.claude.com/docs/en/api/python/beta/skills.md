@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 8350aa43059588abcd739197779cb7ed582747a780e4403fa51f4329da2fb17b
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: cde8be40af9ca1000124ff42c68ecdc04b2cf8379da2b6b4edc63ded92cf62d2
 ---
 
 # Skills
@@ -35,7 +35,7 @@ Create Skill
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Create Skill
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -176,7 +178,7 @@ List Skills
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -221,6 +223,8 @@ List Skills
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -303,7 +307,7 @@ Get Skill
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -348,6 +352,8 @@ Get Skill
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -431,7 +437,7 @@ Delete Skill
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -476,6 +482,8 @@ Delete Skill
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -691,7 +699,7 @@ Create Skill Version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -736,6 +744,8 @@ Create Skill Version
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -832,7 +842,7 @@ List Skill Versions
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -877,6 +887,8 @@ List Skill Versions
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -970,7 +982,7 @@ Get Skill Version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -1015,6 +1027,8 @@ Get Skill Version
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -1108,7 +1122,7 @@ Delete Skill Version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -1153,6 +1167,8 @@ Delete Skill Version
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 8c397b2175bb227e3f2b6192319cb3107a5a1c7e592f173ebd5eb30c9f891659
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: c2aceb17149dfc8fc1ffd3f0fe432562d09bf4d6ed7ab9a13bffad6124deba58
 ---
 
 ## Delete
@@ -25,7 +25,7 @@ Delete Credential
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,6 +70,8 @@ Delete Credential
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

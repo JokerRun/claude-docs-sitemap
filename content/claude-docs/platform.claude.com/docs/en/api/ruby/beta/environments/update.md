@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/update
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 50269ce89497f492a47c73b10f871867fa8208f46098e26c28f6dd9e21282c33
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 784eb8523560be71c82ecd1b9eb4cc34e0d2363532d4cf24cef92340b72c8eb6
 ---
 
 ## Update
@@ -123,7 +123,7 @@ Update an existing environment's configuration.
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -168,6 +168,8 @@ Update an existing environment's configuration.
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

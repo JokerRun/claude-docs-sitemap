@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/versions
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 8d4908533bfa39a02d77832efae23cb24f27c7973bb6086be2cf291096af8515
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: bf6ac1d08108fa1dd13138ae86479f94f3fcd9617b6d8a89249a68d5eeaa1aae
 ---
 
 # Versions
@@ -35,7 +35,7 @@ List Agent Versions
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -81,6 +81,8 @@ List Agent Versions
 
       - `"advisor-tool-2026-03-01"`
 
+      - `"user-profiles-2026-03-24"`
+
 ### Returns
 
 - `BetaManagedAgentsAgent`
@@ -121,7 +123,11 @@ List Agent Versions
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-6" | "claude-sonnet-4-6" | "claude-haiku-4-5" | 5 more`
+      - `"claude-opus-4-7" | "claude-opus-4-6" | "claude-sonnet-4-6" | 6 more`
+
+        - `"claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-6"`
 

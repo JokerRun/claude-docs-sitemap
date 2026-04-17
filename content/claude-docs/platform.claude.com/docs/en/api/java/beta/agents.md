@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: e9ab40cfe200bcae8a9e34fdf8be29049aa1914944bc7be12fd493cd50a920b7
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 7135f34b77a2e76688635e2f4c551c3b8491ba45104aa77b937856907bdf281a
 ---
 
 # Agents
@@ -67,6 +67,8 @@ Create Agent
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
   - `Model model`
 
     Model identifier. Accepts the [model string](https://platform.claude.com/docs/en/about-claude/models/overview#latest-models-comparison), e.g. `claude-opus-4-6`, or a `model_config` object for additional configuration control
@@ -76,6 +78,10 @@ Create Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
@@ -118,6 +124,10 @@ Create Agent
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
@@ -460,6 +470,10 @@ Create Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
@@ -817,6 +831,8 @@ List Agents
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -856,6 +872,10 @@ List Agents
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
@@ -1194,6 +1214,8 @@ Get Agent
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -1233,6 +1255,10 @@ Get Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
@@ -1567,6 +1593,8 @@ Update Agent
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
   - `long version`
 
     The agent's current version, used to prevent concurrent overwrites. Obtain this value from a create or retrieve response. The request fails if this does not match the server's current version.
@@ -1604,6 +1632,10 @@ Update Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
@@ -1646,6 +1678,10 @@ Update Agent
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
@@ -1964,6 +2000,10 @@ Update Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
@@ -2302,6 +2342,8 @@ Archive Agent
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -2341,6 +2383,10 @@ Archive Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
@@ -2654,6 +2700,10 @@ public final class Main {
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
@@ -3677,6 +3727,10 @@ public final class Main {
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+  - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+    Frontier intelligence for long-running agents and coding
+
   - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
     Most intelligent model for building agents and coding
@@ -3720,6 +3774,10 @@ public final class Main {
     The model that will power your agent.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+      Frontier intelligence for long-running agents and coding
 
     - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
@@ -3772,6 +3830,10 @@ public final class Main {
     The model that will power your agent.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+      Frontier intelligence for long-running agents and coding
 
     - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 
@@ -3941,6 +4003,8 @@ List Agent Versions
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -3980,6 +4044,10 @@ List Agent Versions
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 

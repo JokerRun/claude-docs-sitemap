@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/retrieve
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 260a873e088e5585c4612d21e48f8f864c01d7b372b30e7150b7f6808a760f6f
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: a8ec07635c03a26b5ae242318a2f835f7d2017811878022c29db7d4c5b38b5fa
 ---
 
 ## Retrieve
@@ -23,7 +23,7 @@ Retrieve a specific environment by ID.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Retrieve a specific environment by ID.
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

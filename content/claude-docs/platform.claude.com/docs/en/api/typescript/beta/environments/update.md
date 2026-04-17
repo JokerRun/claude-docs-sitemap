@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/update
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 50b3f85212fdaf2ff445ba062147626ce5219d57627b8c709f204d6b6b01cd19
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: f3cb8df48e2dab7c888eb87bd091b682c40ed2a39248c0de0256a35ef4d38b15
 ---
 
 ## Update
@@ -125,7 +125,7 @@ Update an existing environment's configuration.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -170,6 +170,8 @@ Update an existing environment's configuration.
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

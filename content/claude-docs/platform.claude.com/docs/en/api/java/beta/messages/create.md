@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/create
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 119f656fa2f9fe407bddce2429f7098a4120d821785af8f13bdc54dc37ef4b94
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 6970f850cf01b19a20551537f531955ac913cc968ffe84ee849afb31f8045594
 ---
 
 ## Create
@@ -68,6 +68,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `long maxTokens`
 
@@ -2715,6 +2717,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `TTL_1H("1h")`
 
+          - `Optional<String> encryptedContent`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `Role role`
 
       - `USER("user")`
@@ -4289,6 +4295,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+          Frontier intelligence for long-running agents and coding
+
         - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
           New class of intelligence, strongest in coding and cybersecurity
@@ -4610,6 +4620,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
 
     Recommended for advanced use cases only. You usually only need to use `temperature`.
+
+  - `Optional<String> userProfileId`
+
+    The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
 
 ### Returns
 
@@ -5532,6 +5546,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         Summary of compacted content, or null if compaction failed
 
+      - `Optional<String> encryptedContent`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
+
       - `JsonValue; type "compaction"constant`
 
         - `COMPACTION("compaction")`
@@ -5583,6 +5601,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+      Frontier intelligence for long-running agents and coding
 
     - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
@@ -5884,6 +5906,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+            Frontier intelligence for long-running agents and coding
 
           - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 

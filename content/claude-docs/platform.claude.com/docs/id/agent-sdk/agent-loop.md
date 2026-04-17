@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agent-sdk/agent-loop
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 6bccbb6a14f40445793b4d15f34d49629b6d7f3cb20cebf1d492bda2f9b1b06c
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 3c2dbe447fd7d7c748f49c8096b64d3bd465076c2fa0aaac559030b335a80704
 ---
 
 > ## Documentation Index
@@ -18,6 +18,10 @@ sha256: 6bccbb6a14f40445793b4d15f34d49629b6d7f3cb20cebf1d492bda2f9b1b06c
 </Note>
 
 Build AI agents that autonomously read files, run commands, search the web, edit code, and more. The Agent SDK gives you the same tools, agent loop, and context management that power Claude Code, programmable in Python and TypeScript.
+
+<Note>
+  Opus 4.7 (`claude-opus-4-7`) requires Agent SDK v0.2.111 or later. If you see a `thinking.type.enabled` API error, see [Troubleshooting](/en/agent-sdk/quickstart#troubleshooting).
+</Note>
 
 <CodeGroup>
   ```python Python theme={null}
@@ -472,7 +476,7 @@ Everything that makes Claude Code powerful is available in the SDK:
 
 ### Claude Code features
 
-The SDK also supports Claude Code's filesystem-based configuration. To use these features, set `setting_sources=["project"]` (Python) or `settingSources: ['project']` (TypeScript)  in your options.
+The SDK also supports Claude Code's filesystem-based configuration. With default options the SDK loads these from `.claude/` in your working directory and `~/.claude/`. To restrict which sources load, set `setting_sources` (Python) or `settingSources` (TypeScript) in your options.
 
 | Feature                                          | Description                                          | Location                           |
 | ------------------------------------------------ | ---------------------------------------------------- | ---------------------------------- |

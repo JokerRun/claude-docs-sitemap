@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/retrieve
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: b75c03b1eb15e8a4eaba2f501decbccf5f1ec3abd2744a9b928092c89e0d9fe3
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: eecdb3346f293b523df778e7fbb02b36ada2c9f43202d86b367889a512080d4e
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Get Vault
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -70,6 +70,8 @@ Get Vault
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

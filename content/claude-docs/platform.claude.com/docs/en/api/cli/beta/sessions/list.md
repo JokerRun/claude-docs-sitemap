@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8cef3b6445d7af0250068e81f922f9c3ec4ae67195ccae9bc32e536439f2ebb1
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 06986e262c240c4040014e53f8be2e42d3c1ff8afe684ac454f938997282541d
 ---
 
 ## List
@@ -93,11 +93,15 @@ List Sessions
 
         Model identifier and configuration.
 
-        - `id: "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 5 more or string`
+        - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-6"`
 

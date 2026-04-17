@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/list
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: ae1bbbc10a3d081aef6758f55ef7efb21e236669fb4e763cf6a71d7be4d1d14d
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: b9bf236819206ef348e4354041ce7158c722550fb7d28f5205bb4601faa7def9
 ---
 
 ## List
@@ -37,7 +37,7 @@ The Models API response can be used to determine which models are available for 
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ The Models API response can be used to determine which models are available for 
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -190,6 +192,14 @@ The Models API response can be used to determine which models are available for 
       - `supported: boolean`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: boolean`
+
+          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 

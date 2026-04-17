@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/completions
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f9524831e9dd58858e90095eea2ef692bab2eb6d3df50748d1a2f2687830179d
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: fbb2cf98e3d2564fc299c87355e1adaebd0c33bdba852f34dbb261e247ee17c5
 ---
 
 # Completions
@@ -27,7 +27,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
 
-- `--model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+- `--model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
   Body param: The model that will complete your prompt.
 
@@ -107,11 +107,15 @@ Future models and features will not be compatible with Text Completions. See our
 
     The resulting completion up to and excluding the stop sequences.
 
-  - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+  - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-opus-4-7"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-mythos-preview"`
 
@@ -198,7 +202,7 @@ Future models and features will not be compatible with Text Completions. See our
 ant completions create \
   --api-key my-anthropic-api-key \
   --max-tokens-to-sample 256 \
-  --model claude-mythos-preview \
+  --model claude-opus-4-7 \
   --prompt '
 
 Human: Hello, world!
@@ -222,11 +226,15 @@ Assistant:'
 
     The resulting completion up to and excluding the stop sequences.
 
-  - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+  - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-opus-4-7"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-mythos-preview"`
 

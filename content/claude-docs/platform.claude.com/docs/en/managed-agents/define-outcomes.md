@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 991f7584d9c6428b24adf772cfa5fe32bec0b7d8d3fc2a25bfc7e2151812391f
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 03fe519bcede880395bfcabce34b55a5be72284da54794f8271be2be806f3e81
 ---
 
 # Define outcomes
@@ -81,7 +81,7 @@ Pass the rubric as inline text on `user.define_outcome` (shown in the next secti
   printf 'Uploaded rubric: %s\n' "$rubric_id"
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   RUBRIC_ID=$(ant beta:files upload \
     --file /path/to/pr_review_rubric.md \
     --transform id --format yaml)
@@ -187,7 +187,7 @@ After creating a session, send a `user.define_outcome` event. The agent begins w
   # "max_iterations" is optional; default 3, max 20
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   # Create a session
   SESSION_ID=$(ant beta:sessions create \
     --agent "$AGENT_ID" \
@@ -475,7 +475,7 @@ You can either listen on the [event stream](/docs/en/managed-agents/events-and-s
   # outc_01a...: satisfied
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:sessions retrieve --session-id "$SESSION_ID"
   ```
   ```python Python

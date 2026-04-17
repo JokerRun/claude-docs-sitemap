@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: b6c66fd10cd03d4c9fa6a8bff6484f0038d158d72aca2ca1649f5b7d659124c5
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: ddd2086b4061e5ac013328a39277b952f4027f2cf7e28021ad603f1503b0a997
 ---
 
 ## Count Tokens
@@ -68,6 +68,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `List<BetaMessageParam> messages`
 
@@ -2707,6 +2709,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `TTL_1H("1h")`
 
+          - `Optional<String> encryptedContent`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `Role role`
 
       - `USER("user")`
@@ -4212,6 +4218,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 

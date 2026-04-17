@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/results
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 0365668efd9445846c1bc10169a2329418b32746b5f3c31cfb01460fa5fe6e67
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 6fba7c3c572ddcc75b0e2fcb0261c0a70bd0ef5a4acc57c35af806d5a7b02e74
 ---
 
 ## Results
@@ -76,6 +76,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -1016,6 +1018,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               Summary of compacted content, or null if compaction failed
 
+            - `EncryptedContent string`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
+
             - `Type Compaction`
 
               - `const CompactionCompaction Compaction = "compaction"`
@@ -1073,6 +1079,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
 
@@ -1382,6 +1392,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   The model that will complete your prompt.
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                  - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
+
+                    Frontier intelligence for long-running agents and coding
 
                   - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
 

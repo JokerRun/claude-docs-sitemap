@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/update
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: ed78d701de73b5f7559d2e2ca8d3392d294b38cb535fd9c1b507f055d25f0a06
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: d1dcabeb4c08bceee88e58045003eedfb7d484dc2794a3567e74e16ca3b2ed1a
 ---
 
 ## Update
 
 `BetaUserProfile Beta.UserProfiles.Update(UserProfileUpdateParamsparameters, CancellationTokencancellationToken = default)`
 
-**post** `/v1/user_profiles/{id}`
+**post** `/v1/user_profiles/{user_profile_id}`
 
 Update User Profile
 
@@ -17,13 +17,13 @@ Update User Profile
 
 - `UserProfileUpdateParams parameters`
 
-  - `required string id`
+  - `required string userProfileID`
 
-    Path param: Path parameter id
+    Path param: Path parameter user_profile_id
 
   - `string? externalID`
 
-    Body param
+    Body param: If present, replaces the stored external_id. Omit to leave unchanged. Maximum 255 characters.
 
   - `IReadOnlyDictionary<string, string> metadata`
 
@@ -75,6 +75,8 @@ Update User Profile
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
@@ -83,17 +85,35 @@ Update User Profile
 
   - `required string ID`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `required DateTimeOffset CreatedAt`
 
     A timestamp in RFC 3339 format
 
   - `required IReadOnlyDictionary<string, string> Metadata`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `required IReadOnlyDictionary<string, BetaUserProfileTrustGrant> TrustGrants`
 
-    - `required string Status`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `required string Type`
+    - `required Status Status`
+
+      Status of the trust grant.
+
+      - `"active"Active`
+
+      - `"pending"Pending`
+
+      - `"rejected"Rejected`
+
+  - `required Type Type`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"UserProfile`
 
   - `required DateTimeOffset UpdatedAt`
 
@@ -101,10 +121,15 @@ Update User Profile
 
   - `string? ExternalID`
 
+    Platform's own identifier for this user. Not enforced unique.
+
 ### Example
 
 ```csharp
-UserProfileUpdateParams parameters = new() { ID = "id" };
+UserProfileUpdateParams parameters = new()
+{
+    UserProfileID = "uprof_011CZkZCu8hGbp5mYRQgUmz9"
+};
 
 var betaUserProfile = await client.Beta.UserProfiles.Update(parameters);
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: c163b24480a6cad553a51a4bf6ac2f07d433c0d4012724a74992da170fc8e88c
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 17760ed12d63dae3bc258620fcb85338d60dff91f109baa4f06f0343b6fb8a75
 ---
 
 # Bash tool
@@ -35,13 +35,13 @@ For model support, see the [Tool reference](/docs/en/agents-and-tools/tool-use/t
 ## Quick start
 
 <CodeGroup>
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "tools": [
       {
@@ -60,7 +60,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --tool '{type: bash_20250124, name: bash}' \
   --message '{role: user, content: List all Python files in the current directory.}'
@@ -72,7 +72,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[{"type": "bash_20250124", "name": "bash"}],
     messages=[

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/retrieve
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: b1996e99fed4834745965981c604b258583ea3b7c42c4a03b38bc1db8a223317
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 9e564e2ef4a6faae86e2f02482209f2eeaa428baa82342c208ea72c0ae55e11d
 ---
 
 ## Retrieve
@@ -73,6 +73,8 @@ Get Agent
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -112,6 +114,10 @@ Get Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-7"ClaudeOpus4_7`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-6"ClaudeOpus4_6`
 

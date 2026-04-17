@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: ce200a1a9d0303db4ba72501e42c39dd1e36d64ba7507d914f1f6f5e724128f2
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 4f51fd95a96788e59d7120d32f9ecbfa789c57f0cb5fd737bf3fd00b05b2287a
 ---
 
 # User Profiles
@@ -21,7 +21,7 @@ Create User Profile
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -65,11 +65,15 @@ Create User Profile
 
     - `"output-300k-2026-03-24"`
 
+    - `"advisor-tool-2026-03-01"`
+
     - `"user-profiles-2026-03-24"`
 
 ### Body Parameters
 
 - `external_id: optional string`
+
+  Platform's own identifier for this user. Not enforced unique. Maximum 255 characters.
 
 - `metadata: optional map[string]`
 
@@ -81,23 +85,43 @@ Create User Profile
 
   - `id: string`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
 
   - `metadata: map[string]`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `trust_grants: map[BetaUserProfileTrustGrant]`
 
-    - `status: string`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `type: string`
+    - `status: "active" or "pending" or "rejected"`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: "user_profile"`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
 
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
 
   - `external_id: optional string`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 
@@ -142,7 +166,7 @@ List User Profiles
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -186,13 +210,19 @@ List User Profiles
 
     - `"output-300k-2026-03-24"`
 
+    - `"advisor-tool-2026-03-01"`
+
     - `"user-profiles-2026-03-24"`
 
 ### Returns
 
 - `data: array of BetaUserProfile`
 
+  User profiles on this page.
+
   - `id: string`
+
+    Unique identifier for this user profile, prefixed `uprof_`.
 
   - `created_at: string`
 
@@ -200,11 +230,27 @@ List User Profiles
 
   - `metadata: map[string]`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `trust_grants: map[BetaUserProfileTrustGrant]`
 
-    - `status: string`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `type: string`
+    - `status: "active" or "pending" or "rejected"`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: "user_profile"`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
 
   - `updated_at: string`
 
@@ -212,7 +258,11 @@ List User Profiles
 
   - `external_id: optional string`
 
+    Platform's own identifier for this user. Not enforced unique.
+
 - `next_page: optional string`
+
+  Cursor for the next page, or `null` when there are no more results.
 
 ### Example
 
@@ -225,13 +275,13 @@ curl https://api.anthropic.com/v1/user_profiles \
 
 ## Retrieve
 
-**get** `/v1/user_profiles/{id}`
+**get** `/v1/user_profiles/{user_profile_id}`
 
 Get User Profile
 
 ### Path Parameters
 
-- `id: string`
+- `user_profile_id: string`
 
 ### Header Parameters
 
@@ -241,7 +291,7 @@ Get User Profile
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -284,6 +334,8 @@ Get User Profile
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
     - `"user-profiles-2026-03-24"`
 
@@ -293,17 +345,35 @@ Get User Profile
 
   - `id: string`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
 
   - `metadata: map[string]`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `trust_grants: map[BetaUserProfileTrustGrant]`
 
-    - `status: string`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `type: string`
+    - `status: "active" or "pending" or "rejected"`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: "user_profile"`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
 
   - `updated_at: string`
 
@@ -311,10 +381,12 @@ Get User Profile
 
   - `external_id: optional string`
 
+    Platform's own identifier for this user. Not enforced unique.
+
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/user_profiles/$ID \
+curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: user-profiles-2026-03-24' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
@@ -322,13 +394,13 @@ curl https://api.anthropic.com/v1/user_profiles/$ID \
 
 ## Update
 
-**post** `/v1/user_profiles/{id}`
+**post** `/v1/user_profiles/{user_profile_id}`
 
 Update User Profile
 
 ### Path Parameters
 
-- `id: string`
+- `user_profile_id: string`
 
 ### Header Parameters
 
@@ -338,7 +410,7 @@ Update User Profile
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -382,11 +454,15 @@ Update User Profile
 
     - `"output-300k-2026-03-24"`
 
+    - `"advisor-tool-2026-03-01"`
+
     - `"user-profiles-2026-03-24"`
 
 ### Body Parameters
 
 - `external_id: optional string`
+
+  If present, replaces the stored external_id. Omit to leave unchanged. Maximum 255 characters.
 
 - `metadata: optional map[string]`
 
@@ -398,17 +474,35 @@ Update User Profile
 
   - `id: string`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
 
   - `metadata: map[string]`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `trust_grants: map[BetaUserProfileTrustGrant]`
 
-    - `status: string`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `type: string`
+    - `status: "active" or "pending" or "rejected"`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: "user_profile"`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
 
   - `updated_at: string`
 
@@ -416,10 +510,12 @@ Update User Profile
 
   - `external_id: optional string`
 
+    Platform's own identifier for this user. Not enforced unique.
+
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/user_profiles/$ID \
+curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: user-profiles-2026-03-24' \
@@ -429,13 +525,13 @@ curl https://api.anthropic.com/v1/user_profiles/$ID \
 
 ## Create Enrollment URL
 
-**post** `/v1/user_profiles/{id}/enrollment_url`
+**post** `/v1/user_profiles/{user_profile_id}/enrollment_url`
 
 Create Enrollment URL
 
 ### Path Parameters
 
-- `id: string`
+- `user_profile_id: string`
 
 ### Header Parameters
 
@@ -445,7 +541,7 @@ Create Enrollment URL
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -489,6 +585,8 @@ Create Enrollment URL
 
     - `"output-300k-2026-03-24"`
 
+    - `"advisor-tool-2026-03-01"`
+
     - `"user-profiles-2026-03-24"`
 
 ### Returns
@@ -499,14 +597,20 @@ Create Enrollment URL
 
     A timestamp in RFC 3339 format
 
-  - `type: string`
+  - `type: "enrollment_url"`
+
+    Object type. Always `enrollment_url`.
+
+    - `"enrollment_url"`
 
   - `url: string`
+
+    Enrollment URL to send to the end user. Valid until `expires_at`.
 
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/user_profiles/$ID/enrollment_url \
+curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID/enrollment_url \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: user-profiles-2026-03-24' \
@@ -521,23 +625,43 @@ curl https://api.anthropic.com/v1/user_profiles/$ID/enrollment_url \
 
   - `id: string`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
 
   - `metadata: map[string]`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `trust_grants: map[BetaUserProfileTrustGrant]`
 
-    - `status: string`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `type: string`
+    - `status: "active" or "pending" or "rejected"`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: "user_profile"`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
 
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
 
   - `external_id: optional string`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Beta User Profile Enrollment URL
 
@@ -547,12 +671,26 @@ curl https://api.anthropic.com/v1/user_profiles/$ID/enrollment_url \
 
     A timestamp in RFC 3339 format
 
-  - `type: string`
+  - `type: "enrollment_url"`
+
+    Object type. Always `enrollment_url`.
+
+    - `"enrollment_url"`
 
   - `url: string`
+
+    Enrollment URL to send to the end user. Valid until `expires_at`.
 
 ### Beta User Profile Trust Grant
 
 - `BetaUserProfileTrustGrant = object { status }`
 
-  - `status: string`
+  - `status: "active" or "pending" or "rejected"`
+
+    Status of the trust grant.
+
+    - `"active"`
+
+    - `"pending"`
+
+    - `"rejected"`

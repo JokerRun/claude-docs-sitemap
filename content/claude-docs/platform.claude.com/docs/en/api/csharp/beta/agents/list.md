@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/list
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 2a08445ccdef55dab9f55081700f88e49b7955cd95d4f11a9f22b77b01280352
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 60e636b331bbcda41a29ddcb30861c0f417f78a7e9d3b1396dfa241ec8456565
 ---
 
 ## List
@@ -85,6 +85,8 @@ List Agents
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
 ### Returns
 
 - `class AgentListPageResponse:`
@@ -128,6 +130,10 @@ List Agents
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-7"ClaudeOpus4_7`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-6"ClaudeOpus4_6`
 

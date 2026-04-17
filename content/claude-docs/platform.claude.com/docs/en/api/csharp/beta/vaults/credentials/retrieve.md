@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/retrieve
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 67ba746eb07d13a95ba61cf7b759540e6a920e57e00bb100a41dbd243e2aca3b
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 23ede5a56d50897cf83de4554d4068fbd9c5e5bdcae4d2deb3cec640b2e0488e
 ---
 
 ## Retrieve
@@ -72,6 +72,8 @@ Get Credential
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

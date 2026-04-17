@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 2f4dd1b1dc5e08ff28f21e59a0894581f772fbf1284a84feb07e258af78419d4
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 8a600ba5b6ad5a59239cfe8697f2c43c6a59d5df1c0b4f93c34865f2a09e6bfc
 ---
 
 # Batches
@@ -2330,6 +2330,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+          Frontier intelligence for long-running agents and coding
+
         - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
           New class of intelligence, strongest in coding and cybersecurity
@@ -2448,6 +2452,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `MEDIUM("medium")`
 
           - `HIGH("high")`
+
+          - `XHIGH("xhigh")`
 
           - `MAX("max")`
 
@@ -5169,6 +5175,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+            Frontier intelligence for long-running agents and coding
+
           - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
             New class of intelligence, strongest in coding and cybersecurity
@@ -6443,6 +6453,10 @@ public final class Main {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+            Frontier intelligence for long-running agents and coding
+
           - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
             New class of intelligence, strongest in coding and cybersecurity
@@ -7503,6 +7517,10 @@ public final class Main {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+          Frontier intelligence for long-running agents and coding
+
         - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
           New class of intelligence, strongest in coding and cybersecurity
@@ -8524,6 +8542,10 @@ public final class Main {
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 

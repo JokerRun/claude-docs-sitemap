@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/cli
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 12067664a6d983b36ae95a1bb2f6db6cc1c1d184c8483c8b99ee11daef00e5b3
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: acf59285ce16662985aaf4c5a48840c8220e8acb7b07f1209207b36f4803c6c1
 ---
 
 # CLI
@@ -113,14 +113,14 @@ With the binary installed and `ANTHROPIC_API_KEY` set, call the [Messages API](/
 
 ```bash
 ant messages create \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --message '{role: user, content: "Hello, Claude"}'
 ```
 
 ```json Output
 {
-  "model": "claude-opus-4-6",
+  "model": "claude-opus-4-7",
   "id": "msg_01YMmR5XodC5nTqMxLZMKaq6",
   "type": "message",
   "role": "assistant",
@@ -151,7 +151,7 @@ Resources currently in beta — including agents, sessions, deployments, environ
 
 ```bash
 ant models list
-ant messages create --model claude-opus-4-6 --max-tokens 1024 ...
+ant messages create --model claude-opus-4-7 --max-tokens 1024 ...
 ant beta:agents retrieve --agent-id agent_01...
 ant beta:sessions:events list --session-id session_01...
 ```
@@ -171,13 +171,13 @@ ant beta:sessions:events list --session-id session_01...
 The default `auto` format pretty-prints JSON when writing to a terminal and emits compact JSON when piped. Override it with `--format`:
 
 ```bash
-ant models retrieve --model-id claude-opus-4-6 --format yaml
+ant models retrieve --model-id claude-opus-4-7 --format yaml
 ```
 
 ```yaml Output
 type: model
-id: claude-opus-4-6
-display_name: Claude Opus 4.6
+id: claude-opus-4-7
+display_name: Claude Opus 4.7
 created_at: "2026-02-04T00:00:00Z"
 ...
 ```
@@ -249,7 +249,7 @@ Repeatable flags build arrays. Each `--tool` or `--event` appends one element:
 ```bash
 ant beta:agents create \
   --name "Research Agent" \
-  --model '{id: claude-opus-4-6}' \
+  --model '{id: claude-opus-4-7}' \
   --tool '{type: agent_toolset_20260401}' \
   --tool '{type: custom, name: search_docs, input_schema: {type: object, properties: {query: {type: string}}}}'
 ```
@@ -268,7 +268,7 @@ Heredocs work the same way and are convenient for multi-line YAML. Quote the del
 ```bash
 ant beta:agents create <<'YAML'
 name: Research Agent
-model: claude-opus-4-6
+model: claude-opus-4-7
 system: |
   You are a research assistant. Cite sources for every claim.
 tools:
@@ -296,7 +296,7 @@ Inside structured flag values, wrap the path in quotes. To send a PDF to the Mes
 
 ```bash
 ant messages create \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --message '{role: user, content: [
     {type: document, source: {type: base64, media_type: application/pdf, data: "@./scan.pdf"}},
@@ -351,7 +351,7 @@ Note the `id` from the response — you'll pass it to the session create command
 <Tip>
 Check `summarizer.agent.yaml` into your repository and keep it in sync with the API in your CI pipeline. The update command needs the agent ID and current version as flags:
 
-```bash CLI
+```bash CLI nocheck
 ant beta:agents update --agent-id agent_011CYm1BLqPXpQRk5khsSXrs --version 1 < summarizer.agent.yaml
 ```
 </Tip>
@@ -389,7 +389,7 @@ Note the `id` from the response — you'll pass it to the session create command
 <Tip>
 Check `summarizer.environment.yaml` into your repository and keep it in sync with the API in your CI pipeline. The update command needs the environment ID as a flag:
 
-```bash CLI
+```bash CLI nocheck
 ant beta:environments update --environment-id env_01595EKxaaTTGwwY3kyXdtbs < summarizer.environment.yaml
 ```
 </Tip>

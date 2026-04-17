@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/overview
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 52ca456014fa9569533b03db76576d2eacd71135331ee46325384d32385dd23b
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 20a097310cffd991d29a506721c9cec31726df6e31d9a0f69c1d0f7087ae9a27
 ---
 
 # Claude Managed Agents overview
@@ -25,7 +25,7 @@ Claude Managed Agents provides the harness and infrastructure for running Claude
   <Card title="Quickstart" icon="play" href="/docs/en/managed-agents/quickstart">
     Create your first agent session
   </Card>
-  <Card title="API Reference" icon="code-brackets" href="/docs/en/api/beta/sessions">
+  <Card title="API Reference" icon="code-brackets" href="/docs/en/managed-agents/sessions">
     Full endpoint documentation
   </Card>
 </CardGroup>

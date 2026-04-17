@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/sessions
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: b0fcf4a5dac1eafaf2fa54b61b8d8e94e84130cd838a3c7f0910cda1f4213562
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: ae84d9adc1f55123bd85ad4d66699b9fe933a12f6ddd0ecd5d076ecb53705326
 ---
 
 # Start a session
@@ -39,7 +39,7 @@ A session requires an `agent` ID and an `environment` ID. Agents are versioned r
   SESSION_ID=$(jq -r '.id' <<< "$session")
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:sessions create \
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID"
@@ -114,7 +114,7 @@ To pin a session to a specific agent version, pass an object. This lets you cont
   PINNED_SESSION_ID=$(jq -r '.id' <<< "$pinned_session")
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:sessions create <<YAML
   agent:
     type: agent
@@ -213,7 +213,7 @@ If your agent uses MCP tools that require authentication, pass `vault_ids` at se
   VAULT_SESSION_ID=$(jq -r '.id' <<< "$vault_session")
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:sessions create <<YAML
   agent: $AGENT_ID
   environment_id: $ENVIRONMENT_ID
@@ -302,7 +302,7 @@ Creating a session provisions the environment and agent but does not start any w
   EOF
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:sessions:events send \
     --session-id "$SESSION_ID" \
  <<'YAML'
@@ -434,7 +434,7 @@ Sessions progress through these statuses:
   echo "Status: $(jq -r '.status' <<< "$retrieved")"
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:sessions retrieve --session-id "$SESSION_ID"
   ```
   ```python Python
@@ -539,7 +539,7 @@ Archive a session to prevent new events from being sent while preserving its his
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:sessions archive \
     --session-id "$SESSION_ID"
   ```
@@ -584,7 +584,7 @@ Files, memory stores, environments, and agents are independent resources and are
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
   
-  ```bash CLI
+  ```bash CLI nocheck
   ant beta:sessions delete \
     --session-id "$SESSION_ID"
   ```

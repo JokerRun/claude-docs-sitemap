@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 5267aeeff2162eb8285464aeff2aff400a39823327b2fc480e7af518afecc5a0
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 1cd19ca79e23e948fd48935bf85452c1b886e5b1b147b9b07b185b2cfb373fb6
 ---
 
 ## Create
@@ -2330,6 +2330,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
+
           - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
 
             New class of intelligence, strongest in coding and cybersecurity
@@ -2450,6 +2454,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `const OutputConfigEffortMedium OutputConfigEffort = "medium"`
 
           - `const OutputConfigEffortHigh OutputConfigEffort = "high"`
+
+          - `const OutputConfigEffortXhigh OutputConfigEffort = "xhigh"`
 
           - `const OutputConfigEffortMax OutputConfigEffort = "max"`
 

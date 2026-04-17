@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/models/retrieve
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 4b1af399cea3310568d7b145dbd657cfd7aa57b28b587f40e3c2f157f27cbc25
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 877ec6da2325356a16bad81955b43a027a3f57a856a8be243ca3cc066e4287cf
 ---
 
 ## Retrieve
@@ -29,7 +29,7 @@ The Models API response can be used to determine information about a specific mo
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ The Models API response can be used to determine information about a specific mo
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -182,6 +184,14 @@ The Models API response can be used to determine information about a specific mo
       - `supported: boolean`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: BetaCapabilitySupport | null`
+
+        Indicates whether a capability is supported.
+
+        - `supported: boolean`
+
+          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 

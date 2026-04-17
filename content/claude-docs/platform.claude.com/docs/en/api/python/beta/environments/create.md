@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/create
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 83f02b93ae6a15d45e35c9a4d304f5db8ce88af521a0bccf82ce9ea4c9e915a2
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: b4e4a63abf1b1f26b890176b249f16f2d9a54a15538e2fb15627096c5356dc10
 ---
 
 ## Create
@@ -121,7 +121,7 @@ Create a new environment with the specified configuration.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -166,6 +166,8 @@ Create a new environment with the specified configuration.
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

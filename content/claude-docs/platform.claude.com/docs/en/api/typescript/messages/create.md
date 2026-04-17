@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 66250dc8e54c47a7438ffa5f0e448e073a5a66e258c963dea6c88179de73b538
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: eff3828123d2b3357c93ab58044ddcb14ac640eb924ad0d3a1e6b819fadf1be4
 ---
 
 ## Create
@@ -2314,7 +2314,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+      - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+        - `"claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-mythos-preview"`
 
@@ -2427,7 +2431,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Configuration options for the model's output, such as the output format.
 
-      - `effort?: "low" | "medium" | "high" | "max" | null`
+      - `effort?: "low" | "medium" | "high" | 2 more | null`
 
         All possible effort levels.
 
@@ -2436,6 +2440,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"medium"`
 
         - `"high"`
+
+        - `"xhigh"`
 
         - `"max"`
 
@@ -4563,7 +4569,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+    - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+      - `"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-mythos-preview"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/create
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: cb92a8a1257c0db79ff59a1c9f5af3855ad44b18a3d4680dbd4a7ae38ebc6aee
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 9baf1b332e28e055190ed568ed1300ab638436004c9c8fd6180dc3d86fb17652
 ---
 
 ## Create
@@ -19,7 +19,7 @@ Create Vault
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -64,6 +64,8 @@ Create Vault
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Body Parameters
 

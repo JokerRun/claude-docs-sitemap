@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/list
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: c9bff075f9b17f9c148bc5a37289aa2c1137e623bc260a9f24234fdf6765be86
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 7e2fe7bdfa71c3ec88ff1dd5f738ac4d2e842afdc843ef8bb3f7a3c3b46fc350
 ---
 
 ## List
@@ -74,6 +74,8 @@ List Session Resources
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

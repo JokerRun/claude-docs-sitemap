@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 53f3bd6b09f43178ad028fed9e18e2551f8339f2573021827ada0a142b3560e6
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 39cd0bd7f20d2807c5e9ef5c85ec885c82845d1b7c0d984ddc3b1a01d1a49056
 ---
 
 > ## Documentation Index
@@ -311,6 +311,18 @@ With `Bash` enabled, try: `"Write unit tests for utils.py, run them, and fix any
 | `default`                | Requires a `canUseTool` callback to handle approval                             | Custom approval flows                    |
 
 The example above uses `acceptEdits` mode, which auto-approves file operations so the agent can run without interactive prompts. If you want to prompt users for approval, use `default` mode and provide a [`canUseTool` callback](/en/agent-sdk/user-input) that collects user input. For more control, see [Permissions](/en/agent-sdk/permissions).
+
+## Troubleshooting
+
+### API error `thinking.type.enabled` is not supported for this model
+
+Claude Opus 4.7 replaces `thinking.type.enabled` with `thinking.type.adaptive`. Older Agent SDK versions fail with the following API error when you select `claude-opus-4-7`:
+
+```text theme={null}
+API Error: 400 {"type":"invalid_request_error","message":"\"thinking.type.enabled\" is not supported for this model. Use \"thinking.type.adaptive\" and \"output_config.effort\" to control thinking behavior."}
+```
+
+Upgrade to Agent SDK v0.2.111 or later to use Opus 4.7.
 
 ## Next steps
 

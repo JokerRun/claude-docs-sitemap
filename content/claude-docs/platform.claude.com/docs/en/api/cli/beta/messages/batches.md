@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/batches
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 6941d621d09d737f264fce28fc26a7f2f4f3ff4b0dce7b61125ca704645628c3
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 5f57a01112233f2b8b0edf9ad14e764cd6e139587355e8551e244516f5aea73c
 ---
 
 # Batches
@@ -1361,7 +1361,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `type: "container_upload"`
 
-          - `beta_compaction_block: object { content, type }`
+          - `beta_compaction_block: object { content, encrypted_content, type }`
 
             A compaction block returned when autocompact is triggered.
 
@@ -1372,6 +1372,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `content: string`
 
               Summary of compacted content, or null if compaction failed
+
+            - `encrypted_content: string`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `type: "compaction"`
 
@@ -1413,11 +1417,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 The type of context management edit applied.
 
-        - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+        - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-mythos-preview"`
 
@@ -1704,11 +1712,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 The number of input tokens which were used.
 
-              - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+              - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-opus-4-7"`
+
+                  Frontier intelligence for long-running agents and coding
 
                 - `"claude-mythos-preview"`
 
@@ -2881,7 +2893,7 @@ ant beta:messages:batches results \
 
             - `type: "container_upload"`
 
-          - `beta_compaction_block: object { content, type }`
+          - `beta_compaction_block: object { content, encrypted_content, type }`
 
             A compaction block returned when autocompact is triggered.
 
@@ -2892,6 +2904,10 @@ ant beta:messages:batches results \
             - `content: string`
 
               Summary of compacted content, or null if compaction failed
+
+            - `encrypted_content: string`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `type: "compaction"`
 
@@ -2933,11 +2949,15 @@ ant beta:messages:batches results \
 
                 The type of context management edit applied.
 
-        - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+        - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-mythos-preview"`
 
@@ -3224,11 +3244,15 @@ ant beta:messages:batches results \
 
                 The number of input tokens which were used.
 
-              - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+              - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-opus-4-7"`
+
+                  Frontier intelligence for long-running agents and coding
 
                 - `"claude-mythos-preview"`
 
@@ -4231,7 +4255,7 @@ ant beta:messages:batches results \
 
           - `type: "container_upload"`
 
-        - `beta_compaction_block: object { content, type }`
+        - `beta_compaction_block: object { content, encrypted_content, type }`
 
           A compaction block returned when autocompact is triggered.
 
@@ -4242,6 +4266,10 @@ ant beta:messages:batches results \
           - `content: string`
 
             Summary of compacted content, or null if compaction failed
+
+          - `encrypted_content: string`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
 
           - `type: "compaction"`
 
@@ -4283,11 +4311,15 @@ ant beta:messages:batches results \
 
               The type of context management edit applied.
 
-      - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+      - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-mythos-preview"`
 
@@ -4574,11 +4606,15 @@ ant beta:messages:batches results \
 
               The number of input tokens which were used.
 
-            - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+            - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-opus-4-7"`
+
+                Frontier intelligence for long-running agents and coding
 
               - `"claude-mythos-preview"`
 
@@ -5543,7 +5579,7 @@ ant beta:messages:batches results \
 
         - `type: "container_upload"`
 
-      - `beta_compaction_block: object { content, type }`
+      - `beta_compaction_block: object { content, encrypted_content, type }`
 
         A compaction block returned when autocompact is triggered.
 
@@ -5554,6 +5590,10 @@ ant beta:messages:batches results \
         - `content: string`
 
           Summary of compacted content, or null if compaction failed
+
+        - `encrypted_content: string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `type: "compaction"`
 
@@ -5595,11 +5635,15 @@ ant beta:messages:batches results \
 
             The type of context management edit applied.
 
-    - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+    - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-mythos-preview"`
 
@@ -5886,11 +5930,15 @@ ant beta:messages:batches results \
 
             The number of input tokens which were used.
 
-          - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+          - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-mythos-preview"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/update
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 2248a8804832764d92dbe84071036c7d5201d59fc4b98bdde9e7ec4993173a98
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: cc33f49dfe38c4044089368bb33788f8b42630d2e5086d2d9c3cb748117f5d30
 ---
 
 ## Update
@@ -59,6 +59,10 @@ Update Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `"claude-opus-4-7"ClaudeOpus4_7`
+
+        Frontier intelligence for long-running agents and coding
+
       - `"claude-opus-4-6"ClaudeOpus4_6`
 
         Most intelligent model for building agents and coding
@@ -100,6 +104,10 @@ Update Agent
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-7"ClaudeOpus4_7`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-6"ClaudeOpus4_6`
 
@@ -427,6 +435,8 @@ Update Agent
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -466,6 +476,10 @@ Update Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-7"ClaudeOpus4_7`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-6"ClaudeOpus4_6`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/events/stream
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: ce7f09f97cd3caf6ae60f45b7bb3730b8eda32b03d66301cff6f7702190cc9fd
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: e1eadd20d9a9ec43061309b797d6a500ec7bd03514b4caab77fba9979954f40a
 ---
 
 ## Stream
@@ -66,6 +66,8 @@ Stream Events
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

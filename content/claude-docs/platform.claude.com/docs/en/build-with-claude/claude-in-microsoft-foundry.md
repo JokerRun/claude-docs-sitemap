@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 2a7584e48b73fd7e2f96d7c044ae185dea1309a188d8e1df432cb1f44c8316d0
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 960d11eaeb6cc0f88869f4844e2891a49b29d99feb8d570ab0c6895a5c6c1e02
 ---
 
 # Claude in Microsoft Foundry
@@ -139,15 +139,15 @@ The `resource` and `base_url` parameters are mutually exclusive. Provide either 
 **Example using API key:**
 
 <Tabs>
-<Tab title="Shell">
+<Tab title="cURL">
 
-```bash nocheck
+```bash cURL nocheck
 curl https://{resource}.services.ai.azure.com/anthropic/v1/messages \
   -H "content-type: application/json" \
   -H "api-key: YOUR_AZURE_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "messages": [
       {"role": "user", "content": "Hello!"}
@@ -164,7 +164,7 @@ export ANTHROPIC_API_KEY="YOUR_AZURE_API_KEY"
 
 ant messages create \
   --base-url https://example-resource.services.ai.azure.com/anthropic \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --message '{role: user, content: "Hello!"}' \
   --transform content
@@ -183,7 +183,7 @@ client = AnthropicFoundry(
 )
 
 message = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello!"}],
 )
@@ -202,7 +202,7 @@ const client = new AnthropicFoundry({
 });
 
 const message = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello!" }]
 });
@@ -225,7 +225,7 @@ var client = new AnthropicFoundryClient(
 
 var response = await client.Messages.Create(new MessageCreateParams
 {
-    Model = "claude-opus-4-6",
+    Model = "claude-opus-4-7",
     MaxTokens = 1024,
     Messages = [new() { Role = Role.User, Content = "Hello!" }],
 });
@@ -251,7 +251,7 @@ AnthropicClient client = AnthropicOkHttpClient.builder()
   .build();
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .model("claude-opus-4-6")
+  .model("claude-opus-4-7")
   .maxTokens(1024)
   .addUserMessage("Hello!")
   .build();
@@ -279,7 +279,7 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'Hello!']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
 );
 echo $message->content[0]->text;
 ```
@@ -307,9 +307,9 @@ For enhanced security and centralized access management, you can use Entra ID (f
 **Example using Entra ID:**
 
 <Tabs>
-<Tab title="Shell">
+<Tab title="cURL">
 
-```bash nocheck
+```bash cURL nocheck
 # Get Azure Entra ID token
 ACCESS_TOKEN=$(az account get-access-token --resource https://cognitiveservices.azure.com --query accessToken -o tsv)
 
@@ -319,7 +319,7 @@ curl https://{resource}.services.ai.azure.com/anthropic/v1/messages \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "messages": [
       {"role": "user", "content": "Hello!"}
@@ -348,7 +348,7 @@ client = AnthropicFoundry(
 
 # Make request
 message = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello!"}],
 )
@@ -377,7 +377,7 @@ const client = new AnthropicFoundry({
 
 // Make request
 const message = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello!" }]
 });
@@ -401,7 +401,7 @@ var client = new AnthropicFoundryClient(
 
 var response = await client.Messages.Create(new MessageCreateParams
 {
-    Model = "claude-opus-4-6",
+    Model = "claude-opus-4-7",
     MaxTokens = 1024,
     Messages = [new() { Role = Role.User, Content = "Hello!" }],
 });
@@ -437,7 +437,7 @@ AnthropicClient client = AnthropicOkHttpClient.builder()
   .build();
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .model("claude-opus-4-6")
+  .model("claude-opus-4-7")
   .maxTokens(1024)
   .addUserMessage("Hello!")
   .build();
@@ -466,7 +466,7 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'Hello!']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
 );
 echo $message->content[0]->text;
 ```
@@ -493,7 +493,7 @@ Claude on Foundry supports most of Claude's powerful features. You can find all 
 
 ### Context window
 
-Claude Opus 4.6 and Claude Sonnet 4.6 have a [1M-token context window](/docs/en/build-with-claude/context-windows) on Microsoft Foundry. Other Claude models, including Sonnet 4.5, have a 200k-token context window.
+Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 have a [1M-token context window](/docs/en/build-with-claude/context-windows) on Microsoft Foundry. Other Claude models, including Sonnet 4.5, have a 200k-token context window.
 
 ### Features not supported
 
@@ -509,10 +509,11 @@ For details on response headers specific to Foundry, see the [correlation reques
 
 ## API model IDs and deployments
 
-The following Claude models are available through Foundry. The latest generation models (Opus 4.6, Sonnet 4.6, and Haiku 4.5) offer the most advanced capabilities:
+The following Claude models are available through Foundry. The latest generation models (Opus 4.7, Opus 4.6, Sonnet 4.6, and Haiku 4.5) offer the most advanced capabilities:
 
 | Model             | Default Deployment Name     |
 | :---------------- | :-------------------------- |
+| Claude Opus 4.7   | `claude-opus-4-7`           |
 | Claude Opus 4.6     | `claude-opus-4-6`             |
 | Claude Opus 4.5   | `claude-opus-4-5`           |
 | Claude Sonnet 4.6 | `claude-sonnet-4-6`         |

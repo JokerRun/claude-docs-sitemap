@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/list
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: e419b7a02535e461a8861ba29e43b1f40d2b4d14657a745f24ed2b85a48069fd
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: ff0265321ee10cfa016f4643666cc3e2b3eaa92088bbdcd284be2b65985577bd
 ---
 
 ## List
@@ -35,7 +35,7 @@ List environments with pagination support.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ List environments with pagination support.
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

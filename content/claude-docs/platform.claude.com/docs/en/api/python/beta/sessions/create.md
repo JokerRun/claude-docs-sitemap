@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/create
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 3c735cf8c5766e8b132a162f75b25fb3e300ba6e1e58fec04022be2c7eaff123
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 4f0e19f686cb0e62025a30930c843a6442b9518d3d3542de97f43c4370fe0b7b
 ---
 
 ## Create
@@ -123,7 +123,7 @@ Create Session
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -169,6 +169,8 @@ Create Session
 
     - `"advisor-tool-2026-03-01"`
 
+    - `"user-profiles-2026-03-24"`
+
 ### Returns
 
 - `class BetaManagedAgentsSession: …`
@@ -205,12 +207,13 @@ Create Session
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Literal["claude-opus-4-6", "claude-sonnet-4-6", "claude-haiku-4-5", 5 more]`
+        - `Literal["claude-opus-4-7", "claude-opus-4-6", "claude-sonnet-4-6", 6 more]`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
           - `claude-opus-4-6` - Most intelligent model for building agents and coding
           - `claude-sonnet-4-6` - Best combination of speed and intelligence
           - `claude-haiku-4-5` - Fastest model with near-frontier intelligence
@@ -219,6 +222,10 @@ Create Session
           - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
           - `claude-sonnet-4-5` - High-performance model for agents and coding
           - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
+
+          - `"claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-6"`
 

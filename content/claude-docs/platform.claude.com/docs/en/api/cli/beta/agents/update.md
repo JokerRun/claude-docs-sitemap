@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/agents/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 783932565a8dda4e5770c2f80f2b60478757a0401c7bc9da6d34e5030d1ebe8c
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 871c6c74c3a439db61c310b67349fc5a151e94e9dc62c523d38a29deb9e2b780
 ---
 
 ## Update
@@ -93,11 +93,15 @@ Update Agent
 
     Model identifier and configuration.
 
-    - `id: "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 5 more or string`
+    - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
 
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-6"`
 

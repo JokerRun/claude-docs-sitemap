@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models/retrieve
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 57894cb23e4e567838ee5523f959f4b4a2eb7929c8a59dbf2474b9482a9e114d
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 9a8ac712b8f4d2d23214ebf712b6f9f3d6a2cb0c68aae4e81c6c3931960808c1
 ---
 
 ## Retrieve
@@ -70,6 +70,8 @@ The Models API response can be used to determine information about a specific mo
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 
@@ -178,6 +180,14 @@ The Models API response can be used to determine information about a specific mo
       - `boolean supported`
 
         Whether this capability is supported by the model.
+
+      - `Optional<CapabilitySupport> xhigh`
+
+        Indicates whether a capability is supported.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
 
     - `CapabilitySupport imageInput`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: b2d63285ef581fab59d0e77f0b7c8ed8e6b86c9dd8effbc79dd202b334124f9f
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: a6a3abacbff061147bb0fcefd5a2e8cc0bdc923502c33ea6dbe5265c209557e4
 ---
 
 ## Create
@@ -2328,6 +2328,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+          Frontier intelligence for long-running agents and coding
+
         - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
           New class of intelligence, strongest in coding and cybersecurity
@@ -2446,6 +2450,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `MEDIUM("medium")`
 
           - `HIGH("high")`
+
+          - `XHIGH("xhigh")`
 
           - `MAX("max")`
 

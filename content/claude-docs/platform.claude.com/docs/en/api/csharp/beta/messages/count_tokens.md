@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/count_tokens
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 87ac6f3c8760553dca1700c7ab9cbb70df6e2170de25dd0786d91309f7d7fbf6
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: fa14c9af7774f9878f5e1ebe7317dd0bb6687779dc7eb8a0fa72f70f63faf889
 ---
 
 ## Count Tokens
@@ -2301,6 +2301,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `"1h"Ttl1h`
 
+          - `string? EncryptedContent`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `required Role Role`
 
       - `"user"User`
@@ -3675,6 +3679,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-opus-4-7"ClaudeOpus4_7`
+
+          Frontier intelligence for long-running agents and coding
+
         - `"claude-mythos-preview"ClaudeMythosPreview`
 
           New class of intelligence, strongest in coding and cybersecurity
@@ -4009,6 +4017,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
 ### Returns
 
 - `class BetaMessageTokensCount:`
@@ -4034,11 +4044,11 @@ MessageCountTokensParams parameters = new()
     [
         new()
         {
-            Content = "string",
+            Content = "Hello, world",
             Role = Role.User,
         },
     ],
-    Model = Model.ClaudeMythosPreview,
+    Model = Model.ClaudeOpus4_6,
 };
 
 var betaMessageTokensCount = await client.Beta.Messages.CountTokens(parameters);

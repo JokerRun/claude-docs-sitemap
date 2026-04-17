@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/count_tokens
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 2170126f9cfa73c768b1df3c7089d08fc452b313404a3178bcec4f813b5e5b05
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 4b76269bb382fbcd104dbf6b790322d2a57e5613a3366abd74928354fbcbf166
 ---
 
 ## Count Tokens
@@ -3575,7 +3575,7 @@ func main() {
       }},
       Role: anthropic.MessageParamRoleUser,
     }},
-    Model: anthropic.ModelClaudeMythosPreview,
+    Model: anthropic.ModelClaudeOpus4_6,
   })
   if err != nil {
     panic(err.Error())

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8f86a2e46a35c8ca2aacabe52da4f3eb09df3274b81a919d0bfc854b1cc2c7e8
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 13acadc64619c5cb14a3bffd8541b10a28da647081f0f39a2bebffbc945d8163
 ---
 
 # Files API
@@ -413,7 +413,7 @@ The Files API supports different file types that correspond to different content
 For file types that are not supported as `document` blocks (.csv, .txt, .md, .docx, .xlsx), convert the files to plain text, and include the content directly in your message:
 
 <CodeGroup>
-```bash Shell hidelines={3..4}
+```bash cURL hidelines={3..4}
 # Example: Reading a text file and sending it as plain text
 # Note: For files with special characters, consider base64 encoding
 TEXT_CONTENT="This is a sample document. It has multiple lines."
@@ -424,7 +424,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -d @- <<EOF
 {
-  "model": "claude-opus-4-6",
+  "model": "claude-opus-4-7",
   "max_tokens": 1024,
   "messages": [
     {
@@ -445,7 +445,7 @@ EOF
 printf 'This is a test document for upload.\n' > document.txt
 # The "@./path" reference inlines the file contents directly into the field.
 ant messages create \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --transform 'content.0.text' --format yaml <<'YAML'
 messages:
@@ -472,7 +472,7 @@ csv_content = df.to_string()
 
 # Send as plain text in the message
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[
         {
@@ -502,7 +502,7 @@ async function analyzeDocument() {
 
   // Send as plain text in the message
   const response = await anthropic.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 1024,
     messages: [
       {
@@ -544,7 +544,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 1024,
             Messages = [new()
             {
@@ -585,7 +585,7 @@ func main() {
 	}
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock(
@@ -619,7 +619,7 @@ public class FileUploadExample {
         String textContent = Files.readString(Paths.get("document.txt"));
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(1024L)
             .addUserMessage("Here's the document content:\n\n" + textContent + "\n\nPlease summarize this document.")
             .build();
@@ -655,7 +655,7 @@ $message = $client->messages->create(
             ]
         ]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
 );
 
 echo $message->content[0]->text;
@@ -670,7 +670,7 @@ client = Anthropic::Client.new
 text_content = File.read("document.txt")
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     {
@@ -731,14 +731,14 @@ For images, use the `image` content block:
 Retrieve a list of your uploaded files:
 
 <CodeGroup>
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/files \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: files-api-2025-04-14"
 ```
 
-```bash CLI
+```bash CLI nocheck
 ant beta:files list
 ```
 

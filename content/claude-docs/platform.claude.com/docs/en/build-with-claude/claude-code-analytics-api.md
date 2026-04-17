@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-code-analytics-api
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 8a6bec99447e6d2fa9928dcc4b63faf68c78bb4e081ec5c81d1e9ad64f5f4722
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: f78828c0533a8e1f7af027bb927f18278706a6a3160c168f393c9130032e1bc2
 ---
 
 # Claude Code Analytics API
@@ -35,7 +35,7 @@ This API enables you to better monitor, analyze, and optimize your Claude Code a
 
 Get your organization's Claude Code analytics for a specific day:
 
-```bash
+```bash cURL
 curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?\
 starting_at=2025-09-08&\
 limit=20" \
@@ -71,7 +71,7 @@ For complete parameter details and response schemas, see the [Claude Code Analyt
 
 #### Get analytics for a specific day
 
-```bash
+```bash cURL
 curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?\
 starting_at=2025-09-08" \
   --header "anthropic-version: 2023-06-01" \
@@ -80,7 +80,7 @@ starting_at=2025-09-08" \
 
 #### Get analytics with pagination
 
-```bash
+```bash cURL
 # First request
 curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?\
 starting_at=2025-09-08&\
@@ -130,7 +130,7 @@ Breakdown of tool action acceptance and rejection rates by tool type:
 
 #### Model breakdown
 For each Claude model used:
-- **model**: Claude model identifier (e.g., `claude-opus-4-6`)
+- **model**: Claude model identifier (e.g., `claude-opus-4-7`)
 - **tokens.input/output**: Input and output token counts for this model
 - **tokens.cache_read/cache_creation**: Cache-related token usage for this model
 - **estimated_cost.amount**: Estimated cost in cents USD for this model
@@ -181,7 +181,7 @@ The API returns data in the following format:
       },
       "model_breakdown": [
         {
-          "model": "claude-opus-4-6",
+          "model": "claude-opus-4-7",
           "tokens": {
             "input": 100000,
             "output": 35000,

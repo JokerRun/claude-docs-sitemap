@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/archive
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 843e40f062fb52ed86091cef5eacbc332c8354ce9cd98a0c44890da2c82957c9
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 82c64bdd1748eda9964c1d3642912e610cc7c28d322a96b2a3d432890c197cd0
 ---
 
 ## Archive
@@ -71,6 +71,8 @@ Archive Agent
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
 ### Returns
 
 - `type BetaManagedAgentsAgent struct{…}`
@@ -116,6 +118,10 @@ Archive Agent
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const BetaManagedAgentsModelClaudeOpus4_7 BetaManagedAgentsModel = "claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `const BetaManagedAgentsModelClaudeOpus4_6 BetaManagedAgentsModel = "claude-opus-4-6"`
 

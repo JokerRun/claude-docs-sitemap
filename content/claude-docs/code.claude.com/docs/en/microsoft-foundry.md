@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/microsoft-foundry
-fetched_at: 2026-04-16T03:12:06.852234Z
-sha256: 5578e5c61533a2c1c9d22bff2a48bca0617000ac75d755ce1b473694692dd8ef
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 2c3e33a3b7e3ba970762df533d6b7db5c854e77c8b8ace722ea512e159e0226d
 ---
 
 > ## Documentation Index
@@ -270,10 +270,12 @@ export ANTHROPIC_FOUNDRY_RESOURCE={resource}
   Pin specific model versions for every deployment. If you use model aliases (`sonnet`, `opus`, `haiku`) without pinning, Claude Code may attempt to use a newer model version that isn't available in your Foundry account, breaking existing users when Anthropic releases updates. When you create Azure deployments, select a specific model version rather than "auto-update to latest."
 </Warning>
 
-Set the model variables to match the deployment names you created in step 1:
+Set the model variables to match the deployment names you created in step 1.
+
+Without `ANTHROPIC_DEFAULT_OPUS_MODEL`, the `opus` alias on Foundry resolves to Opus 4.6. Set it to the Opus 4.7 ID to use the latest model:
 
 ```bash theme={null}
-export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-6'
+export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-7'
 export ANTHROPIC_DEFAULT_SONNET_MODEL='claude-sonnet-4-6'
 export ANTHROPIC_DEFAULT_HAIKU_MODEL='claude-haiku-4-5'
 ```

@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/retrieve
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 825bda62fce2272ab0f8a812cdd2207883783802ad7293987566d69667a10402
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 70bff8e97b3c14a23ab2a1692c93286960f3aa4921bab4a709496b05ce038c2f
 ---
 
 ## Retrieve
 
 `BetaUserProfile beta().userProfiles().retrieve(UserProfileRetrieveParamsparams = UserProfileRetrieveParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
-**get** `/v1/user_profiles/{id}`
+**get** `/v1/user_profiles/{user_profile_id}`
 
 Get User Profile
 
@@ -17,7 +17,7 @@ Get User Profile
 
 - `UserProfileRetrieveParams params`
 
-  - `Optional<String> id`
+  - `Optional<String> userProfileId`
 
   - `Optional<List<AnthropicBeta>> betas`
 
@@ -65,6 +65,8 @@ Get User Profile
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
@@ -73,23 +75,43 @@ Get User Profile
 
   - `String id`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `LocalDateTime createdAt`
 
     A timestamp in RFC 3339 format
 
   - `Metadata metadata`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `TrustGrants trustGrants`
 
-    - `String status`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `String type`
+    - `Status status`
+
+      Status of the trust grant.
+
+      - `ACTIVE("active")`
+
+      - `PENDING("pending")`
+
+      - `REJECTED("rejected")`
+
+  - `Type type`
+
+    Object type. Always `user_profile`.
+
+    - `USER_PROFILE("user_profile")`
 
   - `LocalDateTime updatedAt`
 
     A timestamp in RFC 3339 format
 
   - `Optional<String> externalId`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 
@@ -107,7 +129,7 @@ public final class Main {
     public static void main(String[] args) {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        BetaUserProfile betaUserProfile = client.beta().userProfiles().retrieve("id");
+        BetaUserProfile betaUserProfile = client.beta().userProfiles().retrieve("uprof_011CZkZCu8hGbp5mYRQgUmz9");
     }
 }
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 6bdd4dfa35c4634bb60e26910d416288b77e7cc9988fddff289c600cd37cdbe9
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 875e9a17bbd5a71b8d1071d7a2675fca8b05622ab667d086f970e621f03be6d6
 ---
 
 # Versions
@@ -35,7 +35,7 @@ List Agent Versions
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,6 +81,8 @@ List Agent Versions
 
     - `"advisor-tool-2026-03-01"`
 
+    - `"user-profiles-2026-03-24"`
+
 ### Returns
 
 - `data: optional array of BetaManagedAgentsAgent`
@@ -121,11 +123,15 @@ List Agent Versions
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 5 more`
+      - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-6"`
 

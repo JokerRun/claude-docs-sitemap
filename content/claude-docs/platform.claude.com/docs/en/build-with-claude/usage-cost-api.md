@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/usage-cost-api
-fetched_at: 2026-03-20T03:04:37.719703Z
-sha256: eb143a3d95490552ba968b0cacd7a603ba575873071139facb27a68c4a1e58f4
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 1e3bbbd0ca23dd110a24b3538032a7c3fe3af1f8392a635bdd28cce3ab8f529d
 ---
 
 # Usage and Cost API
@@ -57,7 +57,7 @@ Leading observability platforms offer ready-to-use integrations for monitoring y
 
 Get your organization's daily usage for the last 7 days:
 
-```bash
+```bash cURL
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2025-01-08T00:00:00Z&\
 ending_at=2025-01-15T00:00:00Z&\
@@ -92,7 +92,7 @@ For complete parameter details and response schemas, see the [Usage API referenc
 
 #### Daily usage by model
 
-```bash
+```bash cURL
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2025-01-01T00:00:00Z&\
 ending_at=2025-01-08T00:00:00Z&\
@@ -104,11 +104,11 @@ bucket_width=1d" \
 
 #### Hourly usage with filtering
 
-```bash
+```bash cURL
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2025-01-15T00:00:00Z&\
 ending_at=2025-01-15T23:59:59Z&\
-models[]=claude-opus-4-6&\
+models[]=claude-opus-4-7&\
 service_tiers[]=batch&\
 context_window[]=0-200k&\
 bucket_width=1h" \
@@ -118,7 +118,7 @@ bucket_width=1h" \
 
 #### Filter usage by API keys and workspaces
 
-```bash
+```bash cURL
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2025-01-01T00:00:00Z&\
 ending_at=2025-01-08T00:00:00Z&\
@@ -141,7 +141,7 @@ To retrieve your organization's workspace IDs, use the [List Workspaces](/docs/e
 
 Track your [data residency controls](/docs/en/build-with-claude/data-residency) by grouping and filtering usage with the `inference_geo` dimension. This is useful for verifying geographic routing across your organization.
 
-```bash
+```bash cURL
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2026-02-01T00:00:00Z&\
 ending_at=2026-02-08T00:00:00Z&\
@@ -154,7 +154,7 @@ bucket_width=1d" \
 
 You can also filter to a specific geo. Valid values are `global`, `us`, and `not_available`:
 
-```bash
+```bash cURL
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2026-02-01T00:00:00Z&\
 ending_at=2026-02-08T00:00:00Z&\
@@ -173,7 +173,7 @@ Models released before February 2026 (prior to Claude Opus 4.6) don't support th
 
 Track [fast mode](/docs/en/build-with-claude/fast-mode) usage by grouping and filtering with the `speed` dimension. This is useful for monitoring standard vs. fast mode usage.
 
-```bash
+```bash cURL
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2026-02-01T00:00:00Z&\
 ending_at=2026-02-08T00:00:00Z&\
@@ -187,7 +187,7 @@ bucket_width=1d" \
 
 You can also filter to a specific speed. Valid values are `standard` and `fast`:
 
-```bash
+```bash cURL
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2026-02-01T00:00:00Z&\
 ending_at=2026-02-08T00:00:00Z&\
@@ -230,7 +230,7 @@ For complete parameter details and response schemas, see the [Cost API reference
 
 ### Basic example
 
-```bash
+```bash cURL
 curl "https://api.anthropic.com/v1/organizations/cost_report?\
 starting_at=2025-01-01T00:00:00Z&\
 ending_at=2025-01-31T00:00:00Z&\
@@ -248,7 +248,7 @@ Both endpoints support pagination for large datasets:
 2. If `has_more` is `true`, use the `next_page` value in your next request
 3. Continue until `has_more` is `false`
 
-```bash
+```bash cURL
 # First request
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2025-01-01T00:00:00Z&\

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/delete
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 7359c00b49f29c67a4ac29ff0d9c2795e43212d459fa0ec3900f8f71ce6e74b3
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: ab51b2132d90c7035e3c7e51d635b8f627e6e97381ce22d77431c9eaab01e601
 ---
 
 ## Delete
@@ -76,6 +76,8 @@ Delete Skill Version
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

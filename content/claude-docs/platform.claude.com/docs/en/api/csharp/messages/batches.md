@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: a64debd7a740c1d1069ac6067e9f9a47bccd201259fccb7b715b6033fa114776
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: f77e980e174e5d8f40816ae405a34af10e409058669170cb5ae9bd241bce9a5c
 ---
 
 # Batches
@@ -2024,6 +2024,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-opus-4-7"ClaudeOpus4_7`
+
+          Frontier intelligence for long-running agents and coding
+
         - `"claude-mythos-preview"ClaudeMythosPreview`
 
           New class of intelligence, strongest in coding and cybersecurity
@@ -2140,6 +2144,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `"medium"Medium`
 
           - `"high"High`
+
+          - `"xhigh"Xhigh`
 
           - `"max"Max`
 
@@ -4685,6 +4691,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-opus-4-7"ClaudeOpus4_7`
+
+            Frontier intelligence for long-running agents and coding
+
           - `"claude-mythos-preview"ClaudeMythosPreview`
 
             New class of intelligence, strongest in coding and cybersecurity
@@ -5778,6 +5788,10 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-opus-4-7"ClaudeOpus4_7`
+
+            Frontier intelligence for long-running agents and coding
+
           - `"claude-mythos-preview"ClaudeMythosPreview`
 
             New class of intelligence, strongest in coding and cybersecurity
@@ -6698,6 +6712,10 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-opus-4-7"ClaudeOpus4_7`
+
+          Frontier intelligence for long-running agents and coding
+
         - `"claude-mythos-preview"ClaudeMythosPreview`
 
           New class of intelligence, strongest in coding and cybersecurity
@@ -7579,6 +7597,10 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-7"ClaudeOpus4_7`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-mythos-preview"ClaudeMythosPreview`
 

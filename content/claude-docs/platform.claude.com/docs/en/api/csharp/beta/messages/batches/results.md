@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/results
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 47b43453c43c6b9c51850b561375cc3bd4696c9ada26050532bc98eee1f80233
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: cf0cb862b65e81045231bb8f7431af044ceaec4a58b46437c228a06ca6264298
 ---
 
 ## Results
@@ -72,6 +72,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -882,6 +884,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               Summary of compacted content, or null if compaction failed
 
+            - `required string? EncryptedContent`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
+
             - `JsonElement Type "compaction"constant`
 
         - `required BetaContextManagementResponse? ContextManagement`
@@ -927,6 +933,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-7"ClaudeOpus4_7`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-mythos-preview"ClaudeMythosPreview`
 
@@ -1218,6 +1228,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-opus-4-7"ClaudeOpus4_7`
+
+                  Frontier intelligence for long-running agents and coding
 
                 - `"claude-mythos-preview"ClaudeMythosPreview`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/csharp
-fetched_at: 2026-03-07T04:03:06.555504Z
-sha256: a3e86414a12cd79dd09c644de418fb8abbc3abeab21b73bfbd93a5626c7083cb
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: e986b219ad74327e1ce61e7a509751adc2d0524e25673dae4f89487cbf1de6e3
 ---
 
 # C# SDK
@@ -57,7 +57,7 @@ MessageCreateParams parameters = new()
             Content = "Hello, Claude",
         },
     ],
-    Model = "claude-opus-4-6",
+    Model = "claude-opus-4-7",
 };
 
 var message = await client.Messages.Create(parameters);
@@ -141,7 +141,7 @@ MessageCreateParams parameters = new()
             Content = "Hello, Claude",
         },
     ],
-    Model = "claude-opus-4-6",
+    Model = "claude-opus-4-7",
 };
 
 await foreach (var message in client.Messages.CreateStreaming(parameters))
@@ -326,7 +326,7 @@ using Microsoft.Extensions.AI;
 using ModelContextProtocol.Client;
 
 // Configured using the ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN and ANTHROPIC_BASE_URL environment variables
-IChatClient chatClient = client.AsIChatClient("claude-opus-4-6")
+IChatClient chatClient = client.AsIChatClient("claude-opus-4-7")
     .AsBuilder()
     .UseFunctionInvocation()
     .Build();

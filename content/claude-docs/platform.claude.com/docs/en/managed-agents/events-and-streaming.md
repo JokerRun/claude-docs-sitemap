@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: a74e7e8d362c6e80f9aa4fb67467e4b35cc51a5eef4913e952a11709c08ef83f
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 6b7f3238b78f76d9c9d538756e79a26de116044ec4e56b912e942f35d42206a0
 ---
 
 # Session event stream
@@ -83,8 +83,6 @@ Span events are observability markers that wrap activity for timing and usage tr
 </Tabs>
 
 Every event includes a `processed_at` timestamp indicating when the event was recorded server-side. If `processed_at` is null, it means the event has been queued by the harness and will be handled after preceding events finish processing.
-
-See the [session events API reference](/docs/en/api/beta/sessions/events/stream) for the full schema of each event type.
 
 ## Integrating events
 

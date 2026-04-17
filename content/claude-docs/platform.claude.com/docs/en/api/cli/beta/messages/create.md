@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/create
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: a9b802958256d020fbf1a6c1a32fc330d86bcfcc63a0638187befa49e676bf31
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 2f35fbcca5ed63256364715fd5720fae4dd149939b7f8e0d2b1e1bfaa4a00ce9
 ---
 
 ## Create
@@ -78,7 +78,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   There is a limit of 100,000 messages in a single request.
 
-- `--model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+- `--model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
   Body param: The model that will complete your prompt.
 
@@ -110,7 +110,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Body param: An object describing metadata about the request.
 
-- `--output-config: optional object { effort, format }`
+- `--output-config: optional object { effort, format, task_budget }`
 
   Body param: Configuration options for the model's output, such as the output format.
 
@@ -243,6 +243,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
   In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
 
   Recommended for advanced use cases only. You usually only need to use `temperature`.
+
+- `--user-profile-id: optional string`
+
+  Body param: The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
 
 - `--beta: optional array of AnthropicBeta`
 
@@ -1027,7 +1031,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `type: "container_upload"`
 
-    - `beta_compaction_block: object { content, type }`
+    - `beta_compaction_block: object { content, encrypted_content, type }`
 
       A compaction block returned when autocompact is triggered.
 
@@ -1038,6 +1042,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `content: string`
 
         Summary of compacted content, or null if compaction failed
+
+      - `encrypted_content: string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: "compaction"`
 
@@ -1079,11 +1087,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           The type of context management edit applied.
 
-  - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+  - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-opus-4-7"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-mythos-preview"`
 
@@ -1370,11 +1382,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           The number of input tokens which were used.
 
-        - `model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+        - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-mythos-preview"`
 

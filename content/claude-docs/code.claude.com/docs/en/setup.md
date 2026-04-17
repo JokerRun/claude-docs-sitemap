@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 459cfd6804d114a31195fac047f39edfebefcb4845c11564d6dd9b7113fc2945
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: a9d42e4c62c03330dc259650e300767e1c6ae7f0e9de1b22ad2bef11c8818eaf
 ---
 
 > ## Documentation Index
@@ -130,7 +130,7 @@ After installation, launch `claude` from PowerShell, CMD, or Git Bash. Claude Co
 }
 ```
 
-Claude Code can also run PowerShell natively on Windows as an opt-in preview. See [PowerShell tool](/en/tools-reference#powershell-tool) for setup and limitations.
+Claude Code can also run PowerShell natively on Windows. The PowerShell tool is rolling out progressively; set `CLAUDE_CODE_USE_POWERSHELL_TOOL=1` to opt in or `0` to opt out. See [PowerShell tool](/en/tools-reference#powershell-tool) for setup and limitations.
 
 **Option 2: WSL**
 
@@ -210,6 +210,23 @@ Configure this via `/config` → **Auto-update channel**, or add it to your [set
 For enterprise deployments, you can enforce a consistent release channel across your organization using [managed settings](/en/permissions#managed-settings).
 
 Homebrew installations choose a channel by cask name instead of this setting: `claude-code` tracks stable and `claude-code@latest` tracks latest.
+
+### Pin a minimum version
+
+The `minimumVersion` setting establishes a floor. Background auto-updates and `claude update` refuse to install any version below this value, so moving to the `"stable"` channel does not downgrade you if you are already on a newer `"latest"` build.
+
+Switching from `"latest"` to `"stable"` via `/config` prompts you to either stay on the current version or allow the downgrade. Choosing to stay sets `minimumVersion` to that version. Switching back to `"latest"` clears it.
+
+Add it to your [settings.json file](/en/settings) to pin a floor explicitly:
+
+```json theme={null}
+{
+  "autoUpdatesChannel": "stable",
+  "minimumVersion": "2.1.100"
+}
+```
+
+In [managed settings](/en/permissions#managed-settings), this enforces an organization-wide minimum that user and project settings cannot override.
 
 ### Disable auto-updates
 
@@ -483,6 +500,8 @@ npm uninstall -g @anthropic-ai/claude-code
 <Warning>
   Removing configuration files will delete all your settings, allowed tools, MCP server configurations, and session history.
 </Warning>
+
+The VS Code extension, the JetBrains plugin, and the Desktop app also write to `~/.claude/`. If any of them is still installed, the directory is recreated the next time it runs. To remove Claude Code completely, uninstall the [VS Code extension](/en/vs-code#uninstall-the-extension), the JetBrains plugin, and the Desktop app before deleting these files.
 
 To remove Claude Code settings and cached data:
 

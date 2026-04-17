@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/retrieve
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 11905b3075f3836f3dc34934fff883915a9151c8293257fa2ba91913a88a99f6
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 484933cdd632a8bfc8dd922f02f155d771989ca4344330342430d2fce4055a91
 ---
 
 ## Retrieve
 
-`beta.user_profiles.retrieve(strid, UserProfileRetrieveParams**kwargs)  -> BetaUserProfile`
+`beta.user_profiles.retrieve(struser_profile_id, UserProfileRetrieveParams**kwargs)  -> BetaUserProfile`
 
-**get** `/v1/user_profiles/{id}`
+**get** `/v1/user_profiles/{user_profile_id}`
 
 Get User Profile
 
 ### Parameters
 
-- `id: str`
+- `user_profile_id: str`
 
 - `betas: Optional[List[AnthropicBetaParam]]`
 
@@ -23,7 +23,7 @@ Get User Profile
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -67,6 +67,8 @@ Get User Profile
 
     - `"output-300k-2026-03-24"`
 
+    - `"advisor-tool-2026-03-01"`
+
     - `"user-profiles-2026-03-24"`
 
 ### Returns
@@ -75,23 +77,43 @@ Get User Profile
 
   - `id: str`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `created_at: datetime`
 
     A timestamp in RFC 3339 format
 
   - `metadata: Dict[str, str]`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `trust_grants: Dict[str, BetaUserProfileTrustGrant]`
 
-    - `status: str`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `type: str`
+    - `status: Literal["active", "pending", "rejected"]`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: Literal["user_profile"]`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
 
   - `updated_at: datetime`
 
     A timestamp in RFC 3339 format
 
   - `external_id: Optional[str]`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 
@@ -103,7 +125,7 @@ client = Anthropic(
     api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
 )
 beta_user_profile = client.beta.user_profiles.retrieve(
-    id="id",
+    user_profile_id="uprof_011CZkZCu8hGbp5mYRQgUmz9",
 )
 print(beta_user_profile.id)
 ```

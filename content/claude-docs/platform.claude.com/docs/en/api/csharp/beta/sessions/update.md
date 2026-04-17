@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/update
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 05b51916bd1d7172141b1820cc4010418f7f0ac8c809da573b64aae1229ea2e6
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: ba619267da6b71ab5637279b7d17411181f67632cf28d4d8ec85f82afcf5ff21
 ---
 
 ## Update
@@ -81,6 +81,8 @@ Update Session
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
 ### Returns
 
 - `class BetaManagedAgentsSession:`
@@ -116,6 +118,10 @@ Update Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-7"ClaudeOpus4_7`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-6"ClaudeOpus4_6`
 

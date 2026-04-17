@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 047bbee9504f26847da9da62280fe7777ca7233eea56d0d7f7cd21ae05f60c34
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 8c489b9cbca4fecc72532c5445af61748cf1676087280dea08d3771fe3e97d83
 ---
 
 # User Profiles
@@ -65,9 +65,13 @@ Create User Profile
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `Optional<String> externalId`
+
+    Platform's own identifier for this user. Not enforced unique. Maximum 255 characters.
 
   - `Optional<Metadata> metadata`
 
@@ -79,23 +83,43 @@ Create User Profile
 
   - `String id`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `LocalDateTime createdAt`
 
     A timestamp in RFC 3339 format
 
   - `Metadata metadata`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `TrustGrants trustGrants`
 
-    - `String status`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `String type`
+    - `Status status`
+
+      Status of the trust grant.
+
+      - `ACTIVE("active")`
+
+      - `PENDING("pending")`
+
+      - `REJECTED("rejected")`
+
+  - `Type type`
+
+    Object type. Always `user_profile`.
+
+    - `USER_PROFILE("user_profile")`
 
   - `LocalDateTime updatedAt`
 
     A timestamp in RFC 3339 format
 
   - `Optional<String> externalId`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 
@@ -192,6 +216,8 @@ List User Profiles
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
@@ -200,23 +226,43 @@ List User Profiles
 
   - `String id`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `LocalDateTime createdAt`
 
     A timestamp in RFC 3339 format
 
   - `Metadata metadata`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `TrustGrants trustGrants`
 
-    - `String status`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `String type`
+    - `Status status`
+
+      Status of the trust grant.
+
+      - `ACTIVE("active")`
+
+      - `PENDING("pending")`
+
+      - `REJECTED("rejected")`
+
+  - `Type type`
+
+    Object type. Always `user_profile`.
+
+    - `USER_PROFILE("user_profile")`
 
   - `LocalDateTime updatedAt`
 
     A timestamp in RFC 3339 format
 
   - `Optional<String> externalId`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 
@@ -243,7 +289,7 @@ public final class Main {
 
 `BetaUserProfile beta().userProfiles().retrieve(UserProfileRetrieveParamsparams = UserProfileRetrieveParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
-**get** `/v1/user_profiles/{id}`
+**get** `/v1/user_profiles/{user_profile_id}`
 
 Get User Profile
 
@@ -251,7 +297,7 @@ Get User Profile
 
 - `UserProfileRetrieveParams params`
 
-  - `Optional<String> id`
+  - `Optional<String> userProfileId`
 
   - `Optional<List<AnthropicBeta>> betas`
 
@@ -299,6 +345,8 @@ Get User Profile
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
@@ -307,23 +355,43 @@ Get User Profile
 
   - `String id`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `LocalDateTime createdAt`
 
     A timestamp in RFC 3339 format
 
   - `Metadata metadata`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `TrustGrants trustGrants`
 
-    - `String status`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `String type`
+    - `Status status`
+
+      Status of the trust grant.
+
+      - `ACTIVE("active")`
+
+      - `PENDING("pending")`
+
+      - `REJECTED("rejected")`
+
+  - `Type type`
+
+    Object type. Always `user_profile`.
+
+    - `USER_PROFILE("user_profile")`
 
   - `LocalDateTime updatedAt`
 
     A timestamp in RFC 3339 format
 
   - `Optional<String> externalId`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 
@@ -341,7 +409,7 @@ public final class Main {
     public static void main(String[] args) {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        BetaUserProfile betaUserProfile = client.beta().userProfiles().retrieve("id");
+        BetaUserProfile betaUserProfile = client.beta().userProfiles().retrieve("uprof_011CZkZCu8hGbp5mYRQgUmz9");
     }
 }
 ```
@@ -350,7 +418,7 @@ public final class Main {
 
 `BetaUserProfile beta().userProfiles().update(UserProfileUpdateParamsparams = UserProfileUpdateParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
-**post** `/v1/user_profiles/{id}`
+**post** `/v1/user_profiles/{user_profile_id}`
 
 Update User Profile
 
@@ -358,7 +426,7 @@ Update User Profile
 
 - `UserProfileUpdateParams params`
 
-  - `Optional<String> id`
+  - `Optional<String> userProfileId`
 
   - `Optional<List<AnthropicBeta>> betas`
 
@@ -406,9 +474,13 @@ Update User Profile
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `Optional<String> externalId`
+
+    If present, replaces the stored external_id. Omit to leave unchanged. Maximum 255 characters.
 
   - `Optional<Metadata> metadata`
 
@@ -420,23 +492,43 @@ Update User Profile
 
   - `String id`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `LocalDateTime createdAt`
 
     A timestamp in RFC 3339 format
 
   - `Metadata metadata`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `TrustGrants trustGrants`
 
-    - `String status`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `String type`
+    - `Status status`
+
+      Status of the trust grant.
+
+      - `ACTIVE("active")`
+
+      - `PENDING("pending")`
+
+      - `REJECTED("rejected")`
+
+  - `Type type`
+
+    Object type. Always `user_profile`.
+
+    - `USER_PROFILE("user_profile")`
 
   - `LocalDateTime updatedAt`
 
     A timestamp in RFC 3339 format
 
   - `Optional<String> externalId`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 
@@ -454,7 +546,7 @@ public final class Main {
     public static void main(String[] args) {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        BetaUserProfile betaUserProfile = client.beta().userProfiles().update("id");
+        BetaUserProfile betaUserProfile = client.beta().userProfiles().update("uprof_011CZkZCu8hGbp5mYRQgUmz9");
     }
 }
 ```
@@ -463,7 +555,7 @@ public final class Main {
 
 `BetaUserProfileEnrollmentUrl beta().userProfiles().createEnrollmentUrl(UserProfileCreateEnrollmentUrlParamsparams = UserProfileCreateEnrollmentUrlParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
-**post** `/v1/user_profiles/{id}/enrollment_url`
+**post** `/v1/user_profiles/{user_profile_id}/enrollment_url`
 
 Create Enrollment URL
 
@@ -471,7 +563,7 @@ Create Enrollment URL
 
 - `UserProfileCreateEnrollmentUrlParams params`
 
-  - `Optional<String> id`
+  - `Optional<String> userProfileId`
 
   - `Optional<List<AnthropicBeta>> betas`
 
@@ -519,6 +611,8 @@ Create Enrollment URL
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
@@ -529,9 +623,15 @@ Create Enrollment URL
 
     A timestamp in RFC 3339 format
 
-  - `String type`
+  - `Type type`
+
+    Object type. Always `enrollment_url`.
+
+    - `ENROLLMENT_URL("enrollment_url")`
 
   - `String url`
+
+    Enrollment URL to send to the end user. Valid until `expires_at`.
 
 ### Example
 
@@ -549,7 +649,7 @@ public final class Main {
     public static void main(String[] args) {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        BetaUserProfileEnrollmentUrl betaUserProfileEnrollmentUrl = client.beta().userProfiles().createEnrollmentUrl("id");
+        BetaUserProfileEnrollmentUrl betaUserProfileEnrollmentUrl = client.beta().userProfiles().createEnrollmentUrl("uprof_011CZkZCu8hGbp5mYRQgUmz9");
     }
 }
 ```
@@ -562,23 +662,43 @@ public final class Main {
 
   - `String id`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `LocalDateTime createdAt`
 
     A timestamp in RFC 3339 format
 
   - `Metadata metadata`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `TrustGrants trustGrants`
 
-    - `String status`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `String type`
+    - `Status status`
+
+      Status of the trust grant.
+
+      - `ACTIVE("active")`
+
+      - `PENDING("pending")`
+
+      - `REJECTED("rejected")`
+
+  - `Type type`
+
+    Object type. Always `user_profile`.
+
+    - `USER_PROFILE("user_profile")`
 
   - `LocalDateTime updatedAt`
 
     A timestamp in RFC 3339 format
 
   - `Optional<String> externalId`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Beta User Profile Enrollment URL
 
@@ -588,12 +708,26 @@ public final class Main {
 
     A timestamp in RFC 3339 format
 
-  - `String type`
+  - `Type type`
+
+    Object type. Always `enrollment_url`.
+
+    - `ENROLLMENT_URL("enrollment_url")`
 
   - `String url`
+
+    Enrollment URL to send to the end user. Valid until `expires_at`.
 
 ### Beta User Profile Trust Grant
 
 - `class BetaUserProfileTrustGrant:`
 
-  - `String status`
+  - `Status status`
+
+    Status of the trust grant.
+
+    - `ACTIVE("active")`
+
+    - `PENDING("pending")`
+
+    - `REJECTED("rejected")`

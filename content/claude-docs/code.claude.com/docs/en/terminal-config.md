@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: f8ab58b61208aeda15c8a100c2c0576ea1b146d68deaff1a936382450568a44d
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: e219d77ca2a2a97e1b8b901968b22104d28442272f9214638d4776a9e318dcd3
 ---
 
 > ## Documentation Index
@@ -15,7 +15,7 @@ sha256: f8ab58b61208aeda15c8a100c2c0576ea1b146d68deaff1a936382450568a44d
 
 ### Themes and appearance
 
-Claude cannot control the theme of your terminal. That's handled by your terminal application. You can match Claude Code's theme to your terminal any time via the `/config` command.
+Claude cannot control the theme of your terminal. That's handled by your terminal application. You can match Claude Code's theme to your terminal via the `/theme` command. Select `auto` in the theme picker to have Claude Code follow your terminal's dark or light mode automatically.
 
 For additional customization of the Claude Code interface itself, you can configure a [custom status line](/en/statusline) to display contextual information like the current model, working directory, or git branch at the bottom of your terminal.
 
@@ -97,7 +97,7 @@ To add custom behavior when notifications fire, such as playing a sound or sendi
 
 ### Reduce flicker and memory usage
 
-If you see flicker during long sessions, or your terminal scroll position jumps to the top while Claude is working, try [fullscreen rendering](/en/fullscreen). It uses an alternate rendering path that keeps memory flat and adds mouse support. Enable it with `CLAUDE_CODE_NO_FLICKER=1`.
+If you see flicker during long sessions, or your terminal scroll position jumps to the top while Claude is working, try [fullscreen rendering](/en/fullscreen). It uses an alternate rendering path that keeps memory flat and adds mouse support. Run `/tui fullscreen` to switch in your current conversation.
 
 ### Handling large inputs
 

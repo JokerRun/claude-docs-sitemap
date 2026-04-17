@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 1ce25fe54ed3e1e8ce4d4eb86a63b10cd024ad384d603b512406c632c64c689e
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: e4886ed06a2ba4989fceebf2df839a08b432084b13ffb64f27eb46f44692db4a
 ---
 
 ## Update
@@ -23,7 +23,7 @@ Update an existing environment's configuration.
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Update an existing environment's configuration.
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Body Parameters
 

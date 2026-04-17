@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 207278a17aa081d8f24fa340fe5776cd14018a5c2e2a8eb7faef040a871da6e4
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: f3f197842e317aa15df6dbab71ae631263fc0f137d278edbe0530a30d35421f1
 ---
 
 # Credentials
@@ -178,6 +178,8 @@ Create Credential
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -392,6 +394,8 @@ List Credentials
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
 ### Returns
 
 - `class CredentialListPageResponse:`
@@ -600,6 +604,8 @@ Get Credential
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -881,6 +887,8 @@ Update Credential
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
 ### Returns
 
 - `class BetaManagedAgentsCredential:`
@@ -1081,6 +1089,8 @@ Delete Credential
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedCredential:`
@@ -1176,6 +1186,8 @@ Archive Credential
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

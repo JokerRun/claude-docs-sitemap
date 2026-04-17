@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/create
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 943657d08d5e83c83f94db5a6d1a4e71a9b7e9f8bda2c5763ecc78c5cbe434e8
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: daa430f4ef54d9c78f9570893a034fa061e3e41000d385ee3a0efb85c6963d19
 ---
 
 ## Create
@@ -17,6 +17,8 @@ Create User Profile
 
 - `external_id: String`
 
+  Platform's own identifier for this user. Not enforced unique. Maximum 255 characters.
+
 - `metadata: Hash[Symbol, String]`
 
   Free-form key-value data to attach to this user profile. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters. Values must be non-empty strings.
@@ -27,7 +29,7 @@ Create User Profile
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -71,6 +73,8 @@ Create User Profile
 
     - `:"output-300k-2026-03-24"`
 
+    - `:"advisor-tool-2026-03-01"`
+
     - `:"user-profiles-2026-03-24"`
 
 ### Returns
@@ -79,23 +83,43 @@ Create User Profile
 
   - `id: String`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `created_at: Time`
 
     A timestamp in RFC 3339 format
 
   - `metadata: Hash[Symbol, String]`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `trust_grants: Hash[Symbol, BetaUserProfileTrustGrant]`
 
-    - `status: String`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `type: String`
+    - `status: :active | :pending | :rejected`
+
+      Status of the trust grant.
+
+      - `:active`
+
+      - `:pending`
+
+      - `:rejected`
+
+  - `type: :user_profile`
+
+    Object type. Always `user_profile`.
+
+    - `:user_profile`
 
   - `updated_at: Time`
 
     A timestamp in RFC 3339 format
 
   - `external_id: String`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 

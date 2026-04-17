@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/delete
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 1e29335de0674d57347544ad5074a612888cd9906c796d7498d2892b389590d4
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: a5560c1151cf6e45cd9ce2b3fb3653e7ef91223ff396a610b0c3d6a03fdd0071
 ---
 
 ## Delete
@@ -68,6 +68,8 @@ Delete Vault
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

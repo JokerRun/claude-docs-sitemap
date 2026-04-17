@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/user_profiles/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: c0923abe56005e88dbce50d291b4e04c6a4aed6f71eada040001fb12629f14c8
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: b45b566567fee085ae888d073bfb899399f6d197e19cef17d14ed21fc8a6bdc2
 ---
 
 ## List
 
-`client.Beta.UserProfiles.List(ctx, params) (*PageCursorV2[BetaUserProfile], error)`
+`client.Beta.UserProfiles.List(ctx, params) (*PageCursor[BetaUserProfile], error)`
 
 **get** `/v1/user_profiles`
 
@@ -83,6 +83,8 @@ List User Profiles
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
@@ -91,23 +93,43 @@ List User Profiles
 
   - `ID string`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `CreatedAt Time`
 
     A timestamp in RFC 3339 format
 
   - `Metadata map[string, string]`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `TrustGrants map[string, BetaUserProfileTrustGrant]`
 
-    - `Status string`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `Type string`
+    - `Status BetaUserProfileTrustGrantStatus`
+
+      Status of the trust grant.
+
+      - `const BetaUserProfileTrustGrantStatusActive BetaUserProfileTrustGrantStatus = "active"`
+
+      - `const BetaUserProfileTrustGrantStatusPending BetaUserProfileTrustGrantStatus = "pending"`
+
+      - `const BetaUserProfileTrustGrantStatusRejected BetaUserProfileTrustGrantStatus = "rejected"`
+
+  - `Type BetaUserProfileType`
+
+    Object type. Always `user_profile`.
+
+    - `const BetaUserProfileTypeUserProfile BetaUserProfileType = "user_profile"`
 
   - `UpdatedAt Time`
 
     A timestamp in RFC 3339 format
 
   - `ExternalID string`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 

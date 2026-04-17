@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/user_profiles/retrieve
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 251e45eb64cd687037e607d2ea38f612fcb228235e275123461b68f644ea1e75
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 897b8d9160819def6d87ea5a6dfc7de1c39ecd19bb4a728ef805fa1ae5cd30bf
 ---
 
 ## Retrieve
 
-`client.Beta.UserProfiles.Get(ctx, id, query) (*BetaUserProfile, error)`
+`client.Beta.UserProfiles.Get(ctx, userProfileID, query) (*BetaUserProfile, error)`
 
-**get** `/v1/user_profiles/{id}`
+**get** `/v1/user_profiles/{user_profile_id}`
 
 Get User Profile
 
 ### Parameters
 
-- `id string`
+- `userProfileID string`
 
 - `query BetaUserProfileGetParams`
 
@@ -69,6 +69,8 @@ Get User Profile
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
@@ -77,23 +79,43 @@ Get User Profile
 
   - `ID string`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `CreatedAt Time`
 
     A timestamp in RFC 3339 format
 
   - `Metadata map[string, string]`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `TrustGrants map[string, BetaUserProfileTrustGrant]`
 
-    - `Status string`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `Type string`
+    - `Status BetaUserProfileTrustGrantStatus`
+
+      Status of the trust grant.
+
+      - `const BetaUserProfileTrustGrantStatusActive BetaUserProfileTrustGrantStatus = "active"`
+
+      - `const BetaUserProfileTrustGrantStatusPending BetaUserProfileTrustGrantStatus = "pending"`
+
+      - `const BetaUserProfileTrustGrantStatusRejected BetaUserProfileTrustGrantStatus = "rejected"`
+
+  - `Type BetaUserProfileType`
+
+    Object type. Always `user_profile`.
+
+    - `const BetaUserProfileTypeUserProfile BetaUserProfileType = "user_profile"`
 
   - `UpdatedAt Time`
 
     A timestamp in RFC 3339 format
 
   - `ExternalID string`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 
@@ -114,7 +136,7 @@ func main() {
   )
   betaUserProfile, err := client.Beta.UserProfiles.Get(
     context.TODO(),
-    "id",
+    "uprof_011CZkZCu8hGbp5mYRQgUmz9",
     anthropic.BetaUserProfileGetParams{
 
     },

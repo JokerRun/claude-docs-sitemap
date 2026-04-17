@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/list
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: e9fa957f1bfc61549824c790b0eb75725947917c3586702e96b6a165b90cd5b6
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 2b8e7e31ccd4c6fdc414121f06ca61135a4eeab24602c785e4e4533e4bf49997
 ---
 
 ## List
@@ -80,6 +80,8 @@ List Skill Versions
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

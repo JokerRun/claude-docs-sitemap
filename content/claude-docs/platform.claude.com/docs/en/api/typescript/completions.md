@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: b8ac8b8506d693d1d33e67d5efb44adcfc90b79cbff3d8cc33db0d8fc071f884
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 9685671b76121b708468c1592c833188be2d0b20c4088569362905651b27a062
 ---
 
 # Completions
@@ -37,7 +37,11 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+      - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+        - `"claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-mythos-preview"`
 
@@ -181,7 +185,7 @@ Future models and features will not be compatible with Text Completions. See our
 
       - `(string & {})`
 
-      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
         - `"message-batches-2024-09-24"`
 
@@ -227,6 +231,8 @@ Future models and features will not be compatible with Text Completions. See our
 
         - `"advisor-tool-2026-03-01"`
 
+        - `"user-profiles-2026-03-24"`
+
   - `CompletionCreateParamsNonStreaming extends CompletionCreateParamsBase`
 
     - `stream?: false`
@@ -267,7 +273,11 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+    - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+      - `"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-mythos-preview"`
 
@@ -363,7 +373,7 @@ const client = new Anthropic({
 
 const completion = await client.completions.create({
   max_tokens_to_sample: 256,
-  model: 'claude-mythos-preview',
+  model: 'claude-2.1',
   prompt: '\n\nHuman: Hello, world!\n\nAssistant:',
 });
 
@@ -392,7 +402,11 @@ console.log(completion.id);
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+    - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+      - `"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-mythos-preview"`
 

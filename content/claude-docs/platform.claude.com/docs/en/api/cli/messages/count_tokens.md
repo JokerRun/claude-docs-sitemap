@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/messages/count_tokens
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 3d5b6299d305ceda639355f47a43204ff19c4e1a4a0e387e57882cb267da56e5
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 417eec14176252e333c529b4105e2ca7c83d66ba172efa164e33cc99b39c46d5
 ---
 
 ## Count Tokens
@@ -70,7 +70,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   There is a limit of 100,000 messages in a single request.
 
-- `--model: "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more or string`
+- `--model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
 
   The model that will complete your prompt.
 
@@ -180,5 +180,5 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 ant messages count-tokens \
   --api-key my-anthropic-api-key \
   --message '{content: [{text: x, type: text}], role: user}' \
-  --model claude-mythos-preview
+  --model claude-opus-4-6
 ```

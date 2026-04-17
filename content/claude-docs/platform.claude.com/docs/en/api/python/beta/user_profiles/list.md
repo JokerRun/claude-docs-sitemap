@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/list
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 6b63681ced10ed5826d4fafa4b5f1ec3c2310af912e535f0f7922e8baad65ca9
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 3bcf8ebaca47ded51521f449009cdfb0db9af305e33944b2dd651fddf5549c70
 ---
 
 ## List
 
-`beta.user_profiles.list(UserProfileListParams**kwargs)  -> SyncPageCursorV2[BetaUserProfile]`
+`beta.user_profiles.list(UserProfileListParams**kwargs)  -> SyncPageCursor[BetaUserProfile]`
 
 **get** `/v1/user_profiles`
 
@@ -37,7 +37,7 @@ List User Profiles
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,6 +81,8 @@ List User Profiles
 
     - `"output-300k-2026-03-24"`
 
+    - `"advisor-tool-2026-03-01"`
+
     - `"user-profiles-2026-03-24"`
 
 ### Returns
@@ -89,23 +91,43 @@ List User Profiles
 
   - `id: str`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `created_at: datetime`
 
     A timestamp in RFC 3339 format
 
   - `metadata: Dict[str, str]`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `trust_grants: Dict[str, BetaUserProfileTrustGrant]`
 
-    - `status: str`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `type: str`
+    - `status: Literal["active", "pending", "rejected"]`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: Literal["user_profile"]`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
 
   - `updated_at: datetime`
 
     A timestamp in RFC 3339 format
 
   - `external_id: Optional[str]`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 

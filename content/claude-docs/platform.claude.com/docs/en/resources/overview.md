@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/overview
-fetched_at: 2026-04-07T03:10:26.992298Z
-sha256: 68da2bcc5c51e039029dd8625879914a2671e5693762a7dcccc9a6ac76c3d5aa
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 965f97a2ea984f110ac73acec4530cf967169a18e882f2d04563be38c56f0f5c
 ---
 
 <h2}>
@@ -10,8 +10,8 @@ sha256: 68da2bcc5c51e039029dd8625879914a2671e5693762a7dcccc9a6ac76c3d5aa
   </h2>
   
 
-    <Card title="Claude Opus 4.6 System Card" icon="file" href="https://www.anthropic.com/claude-opus-4-6-system-card">
-      Detailed documentation of Claude Opus 4.6.
+    <Card title="Claude Opus 4.7 System Card" icon="file" href="https://www.anthropic.com/claude-opus-4-7-system-card">
+      Detailed documentation of Claude Opus 4.7.
     </Card>
 
     <Card title="Claude Sonnet 4.6 System Card" icon="file" href="https://www.anthropic.com/claude-sonnet-4-6-system-card">

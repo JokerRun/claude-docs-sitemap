@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f55461470e4f0952eda3c20b533c6506e56abf29f72d8bc8034c6a05cb6e2b73
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: e37ec05134832adb2f33007b64622c6db0b62f827b3c52e3c7343337a1efd834
 ---
 
 # Rate limits
@@ -230,7 +230,7 @@ If you're seeking higher limits for an Enterprise use case, contact sales throug
 </Tab>
 </Tabs>
 
-_<sup>* - Opus rate limit is a total limit that applies to combined traffic across Opus 4.6, Opus 4.5, Opus 4.1, and Opus 4.</sup>_
+_<sup>* - Opus rate limit is a total limit that applies to combined traffic across Opus 4.7, Opus 4.6, Opus 4.5, Opus 4.1, and Opus 4.</sup>_
 
 _<sup>** - Sonnet 4.x rate limit is a total limit that applies to combined traffic across Sonnet 4.6, Sonnet 4.5, and Sonnet 4.</sup>_
 

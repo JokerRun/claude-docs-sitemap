@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 0d5c8c3f7fd702cf096ec160b5c850d61fa3a76e979e435eadacab3fd0fe799c
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 4bf5b1e3e7ef69584a4195ca8d37f8913665db3507695135f23df4b8c0a83794
 ---
 
 # Streaming refusals
@@ -55,14 +55,14 @@ If you encounter `refusal` stop reasons frequently while using Claude Sonnet 4.5
 Here's how to detect and handle streaming refusals in your application:
 
 <CodeGroup>
-```bash Shell
+```bash cURL
 # Stream request and check for refusal
 response=$(curl -N https://api.anthropic.com/v1/messages \
   --header "anthropic-version: 2023-06-01" \
   --header "content-type: application/json" \
   --header "x-api-key: $ANTHROPIC_API_KEY" \
   --data '{
-    "model": "claude-sonnet-4-6",
+    "model": "claude-opus-4-7",
     "messages": [{"role": "user", "content": "Hello"}],
     "max_tokens": 256,
     "stream": true
@@ -93,7 +93,7 @@ try:
     with client.messages.stream(
         max_tokens=1024,
         messages=messages + [{"role": "user", "content": "Hello"}],
-        model="claude-sonnet-4-6",
+        model="claude-opus-4-7",
     ) as stream:
         for event in stream:
             # Check for refusal in message delta
@@ -120,7 +120,7 @@ function resetConversation() {
 try {
   const stream = await client.messages.stream({
     messages: [...messages, { role: "user", content: "Hello" }],
-    model: "claude-sonnet-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 1024
   });
 
@@ -205,7 +205,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.Model("claude-sonnet-4-6"),
+		Model:     anthropic.Model("claude-opus-4-7"),
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello")),
@@ -295,7 +295,7 @@ try {
         messages: [
             ['role' => 'user', 'content' => 'Hello']
         ],
-        model: 'claude-sonnet-4-6',
+        model: 'claude-opus-4-7',
     );
 
     foreach ($stream as $event) {
@@ -324,7 +324,7 @@ end
 
 begin
   stream = client.messages.stream(
-    model: :"claude-sonnet-4-6",
+    model: :"claude-opus-4-7",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello" }]
   )

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/ruby
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: de860a0859e8270a7096425c827b146049fbfa04258155cdfc7a0a965778b307
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 171c2f58ded529e59e1205bfdb7290057e4b62afdd9c9aa2a0480611b0617e3e
 ---
 
 # Ruby SDK
@@ -41,7 +41,7 @@ anthropic = Anthropic::Client.new(
 message = anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-4-6"
+  model: :"claude-opus-4-7"
 )
 
 puts(message.content)
@@ -57,7 +57,7 @@ anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-4-6"
+  model: :"claude-opus-4-7"
 )
 
 stream.each do |message|
@@ -75,7 +75,7 @@ anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
   max_tokens: 1024,
   messages: [{role: :user, content: "Say hello there!"}],
-  model: :"claude-opus-4-6"
+  model: :"claude-opus-4-7"
 )
 
 stream.text.each do |text|
@@ -108,7 +108,7 @@ end
 
 # Automatically handles tool execution loop
 anthropic.beta.messages.tool_runner(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{role: "user", content: "What's 15 * 7?"}],
   tools: [Calculator.new]
@@ -130,7 +130,7 @@ begin
   message = anthropic.messages.create(
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}],
-    model: :"claude-opus-4-6"
+    model: :"claude-opus-4-7"
   )
 rescue Anthropic::Errors::APIConnectionError => e
   puts("The server could not be reached")
@@ -177,7 +177,7 @@ anthropic = Anthropic::Client.new(
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-4-6",
+  model: :"claude-opus-4-7",
   request_options: {max_retries: 5}
 )
 ```
@@ -196,7 +196,7 @@ anthropic = Anthropic::Client.new(
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-4-6",
+  model: :"claude-opus-4-7",
   request_options: {timeout: 5}
 )
 ```
@@ -274,7 +274,7 @@ anthropic = Anthropic::Client.new
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [Anthropic::MessageParam.new(role: "user", content: "Hello, Claude")],
-  model: :"claude-opus-4-6"
+  model: :"claude-opus-4-7"
 )
 ```
 
@@ -287,14 +287,14 @@ anthropic = Anthropic::Client.new
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-4-6"
+  model: :"claude-opus-4-7"
 )
 
 # You can also splat a full Params class:
 params = Anthropic::MessageCreateParams.new(
   max_tokens: 1024,
   messages: [Anthropic::MessageParam.new(role: "user", content: "Hello, Claude")],
-  model: :"claude-opus-4-6"
+  model: :"claude-opus-4-7"
 )
 anthropic.messages.create(**params)
 ```
@@ -367,7 +367,7 @@ message =
   anthropic.messages.create(
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}],
-    model: :"claude-opus-4-6",
+    model: :"claude-opus-4-7",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},

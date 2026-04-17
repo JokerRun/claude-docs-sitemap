@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/list
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: c2155f93cc9064e3e109deb7ac7fc9b8126b02ec4820e3f903711edcaf412dfe
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: ad9651796e863efaff54b0833a199608a156c3d904e86dd02ff361ad073e46fc
 ---
 
 ## List
@@ -89,6 +89,8 @@ List Agents
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
 ### Returns
 
 - `type BetaManagedAgentsAgent struct{…}`
@@ -134,6 +136,10 @@ List Agents
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const BetaManagedAgentsModelClaudeOpus4_7 BetaManagedAgentsModel = "claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `const BetaManagedAgentsModelClaudeOpus4_6 BetaManagedAgentsModel = "claude-opus-4-6"`
 

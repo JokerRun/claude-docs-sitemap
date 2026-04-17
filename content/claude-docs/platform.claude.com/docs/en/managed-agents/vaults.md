@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 490c87f92f529cfc33eb87bfcc8dc35e8eb21fff81668f38cc86b71f4c3ee4ae
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 47da9057c38308c46cefddd544b029907dd35cec3d88c94460bbfa590e39500f
 ---
 
 # Authenticate with vaults
@@ -398,7 +398,7 @@ curl -fsSL "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials" \
   }'
 ```
 
-```bash CLI
+```bash CLI nocheck
 ant beta:vaults:credentials create --vault-id "$VAULT_ID" <<'YAML'
 display_name: Linear API key
 auth:

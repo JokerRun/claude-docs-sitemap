@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 1a50da44af32339d055d892e411e01c5c74677c85cf13a7fcfac8cb7cfb5364a
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 2d478078db77d8acda7c4811dc34f24a3e92be3d15f4a748bf5e7fcc3213beec
 ---
 
 > ## Documentation Index
@@ -24,7 +24,7 @@ For comprehensive information about Skills, including benefits, architecture, an
 When using the Claude Agent SDK, Skills are:
 
 1. **Defined as filesystem artifacts**: Created as `SKILL.md` files in specific directories (`.claude/skills/`)
-2. **Loaded from filesystem**: Skills are loaded from configured filesystem locations. You must specify `settingSources` (TypeScript) or `setting_sources` (Python) to load Skills from the filesystem
+2. **Loaded from filesystem**: Skills are loaded from filesystem locations governed by `settingSources` (TypeScript) or `setting_sources` (Python)
 3. **Automatically discovered**: Once filesystem settings are loaded, Skill metadata is discovered at startup from user and project directories; full content loaded when triggered
 4. **Model-invoked**: Claude autonomously chooses when to use them based on context
 5. **Enabled via allowed\_tools**: Add `"Skill"` to your `allowed_tools` to enable Skills
@@ -32,7 +32,7 @@ When using the Claude Agent SDK, Skills are:
 Unlike subagents (which can be defined programmatically), Skills must be created as filesystem artifacts. The SDK does not provide a programmatic API for registering Skills.
 
 <Note>
-  **Default behavior**: By default, the SDK does not load any filesystem settings. To use Skills, you must explicitly configure `settingSources: ['user', 'project']` (TypeScript) or `setting_sources=["user", "project"]` (Python) in your options.
+  Skills are discovered through the filesystem setting sources. With default `query()` options, the SDK loads user and project sources, so skills in `~/.claude/skills/` and `<cwd>/.claude/skills/` are available. If you set `settingSources` explicitly, include `'user'` or `'project'` to keep skill discovery, or use the [`plugins` option](/en/agent-sdk/plugins) to load skills from a specific path.
 </Note>
 
 ## Using Skills with the SDK
@@ -211,29 +211,30 @@ Claude automatically invokes the relevant Skill if the description matches your 
 
 ### Skills Not Found
 
-**Check settingSources configuration**: Skills are only loaded when you explicitly configure `settingSources`/`setting_sources`. This is the most common issue:
+**Check settingSources configuration**: Skills are discovered through the `user` and `project` setting sources. If you set `settingSources`/`setting_sources` explicitly and omit those sources, skills are not loaded:
 
 <CodeGroup>
   ```python Python theme={null}
-  # Wrong - Skills won't be loaded
-  options = ClaudeAgentOptions(allowed_tools=["Skill"])
+  # Skills not loaded: setting_sources excludes user and project
+  options = ClaudeAgentOptions(setting_sources=[], allowed_tools=["Skill"])
 
-  # Correct - Skills will be loaded
+  # Skills loaded: user and project sources included
   options = ClaudeAgentOptions(
-      setting_sources=["user", "project"],  # Required to load Skills
+      setting_sources=["user", "project"],
       allowed_tools=["Skill"],
   )
   ```
 
   ```typescript TypeScript theme={null}
-  // Wrong - Skills won't be loaded
+  // Skills not loaded: settingSources excludes user and project
   const options = {
+    settingSources: [],
     allowedTools: ["Skill"]
   };
 
-  // Correct - Skills will be loaded
+  // Skills loaded: user and project sources included
   const options = {
-    settingSources: ["user", "project"], // Required to load Skills
+    settingSources: ["user", "project"],
     allowedTools: ["Skill"]
   };
   ```
@@ -248,7 +249,7 @@ For more details on `settingSources`/`setting_sources`, see the [TypeScript SDK 
   # Ensure your cwd points to the directory containing .claude/skills/
   options = ClaudeAgentOptions(
       cwd="/path/to/project",  # Must contain .claude/skills/
-      setting_sources=["user", "project"],  # Required to load Skills
+      setting_sources=["user", "project"],  # Loads skills from these sources
       allowed_tools=["Skill"],
   )
   ```
@@ -257,7 +258,7 @@ For more details on `settingSources`/`setting_sources`, see the [TypeScript SDK 
   // Ensure your cwd points to the directory containing .claude/skills/
   const options = {
     cwd: "/path/to/project", // Must contain .claude/skills/
-    settingSources: ["user", "project"], // Required to load Skills
+    settingSources: ["user", "project"], // Loads skills from these sources
     allowedTools: ["Skill"]
   };
   ```

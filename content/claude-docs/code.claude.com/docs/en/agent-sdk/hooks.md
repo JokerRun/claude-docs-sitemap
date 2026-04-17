@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 39b9b0ffef8b4031aaf0264ba9a8abd90a687dc87dc5279568c0399ddac9607f
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: b6cc899cd14e163f1b797046e2bb2ec7e306ac843b3c0a19e10eae9b639bdc2d
 ---
 
 > ## Documentation Index
@@ -31,7 +31,7 @@ This guide covers how hooks work, how to configure them, and provides examples f
   </Step>
 
   <Step title="The SDK collects registered hooks">
-    The SDK checks for hooks registered for that event type. This includes callback hooks you pass in `options.hooks` and shell command hooks from settings files, but only if you explicitly load them with [`settingSources`](/en/agent-sdk/typescript#setting-source) or [`setting_sources`](/en/agent-sdk/python#setting-source).
+    The SDK checks for hooks registered for that event type. This includes callback hooks you pass in `options.hooks` and shell command hooks from settings files when the corresponding [`settingSources`](/en/agent-sdk/typescript#setting-source) or [`setting_sources`](/en/agent-sdk/python#setting-source) entry is enabled, which it is for default `query()` options.
   </Step>
 
   <Step title="Matchers filter which hooks run">

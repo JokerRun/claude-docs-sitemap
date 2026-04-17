@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: a0424bd71d3718ae1c39b282f518ecf66e155d620635ecd0fb13068ab92f6d3e
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 042080a990f9e343fb9f4090cfbc3947bca91f86ec0f5188ba5c3ad82c4b6bda
 ---
 
 # Batches
@@ -70,6 +70,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `List<Request> requests`
 
@@ -2733,6 +2735,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `TTL_1H("1h")`
 
+              - `Optional<String> encryptedContent`
+
+                Opaque metadata from prior compaction, to be round-tripped verbatim
+
         - `Role role`
 
           - `USER("user")`
@@ -2744,6 +2750,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
@@ -3036,6 +3046,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `HIGH("high")`
 
+          - `XHIGH("xhigh")`
+
           - `MAX("max")`
 
         - `Optional<BetaJsonOutputFormat> format`
@@ -3049,6 +3061,24 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `JsonValue; type "json_schema"constant`
 
             - `JSON_SCHEMA("json_schema")`
+
+        - `Optional<BetaTokenTaskBudget> taskBudget`
+
+          User-configurable total token budget across contexts.
+
+          - `long total`
+
+            Total token budget across all contexts in the session.
+
+          - `JsonValue; type "tokens"constant`
+
+            The budget type. Currently only 'tokens' is supported.
+
+            - `TOKENS("tokens")`
+
+          - `Optional<Long> remaining`
+
+            Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
       - `Optional<BetaJsonOutputFormat> outputFormat`
 
@@ -4646,6 +4676,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+              Frontier intelligence for long-running agents and coding
+
             - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
               New class of intelligence, strongest in coding and cybersecurity
@@ -4968,6 +5002,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Recommended for advanced use cases only. You usually only need to use `temperature`.
 
+      - `Optional<String> userProfileId`
+
+        The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -5156,6 +5194,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -5343,6 +5383,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -5521,6 +5563,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 
@@ -5701,6 +5745,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
 ### Returns
 
 - `class BetaDeletedMessageBatch:`
@@ -5805,6 +5851,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 
@@ -6745,6 +6793,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               Summary of compacted content, or null if compaction failed
 
+            - `Optional<String> encryptedContent`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
+
             - `JsonValue; type "compaction"constant`
 
               - `COMPACTION("compaction")`
@@ -6796,6 +6848,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+            Frontier intelligence for long-running agents and coding
 
           - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
@@ -7097,6 +7153,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+                  Frontier intelligence for long-running agents and coding
 
                 - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
@@ -8485,6 +8545,10 @@ public final class Main {
 
               Summary of compacted content, or null if compaction failed
 
+            - `Optional<String> encryptedContent`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
+
             - `JsonValue; type "compaction"constant`
 
               - `COMPACTION("compaction")`
@@ -8536,6 +8600,10 @@ public final class Main {
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+            Frontier intelligence for long-running agents and coding
 
           - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
@@ -8837,6 +8905,10 @@ public final class Main {
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+                  Frontier intelligence for long-running agents and coding
 
                 - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
@@ -10011,6 +10083,10 @@ public final class Main {
 
             Summary of compacted content, or null if compaction failed
 
+          - `Optional<String> encryptedContent`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
           - `JsonValue; type "compaction"constant`
 
             - `COMPACTION("compaction")`
@@ -10062,6 +10138,10 @@ public final class Main {
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
@@ -10363,6 +10443,10 @@ public final class Main {
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+                Frontier intelligence for long-running agents and coding
 
               - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
@@ -11499,6 +11583,10 @@ public final class Main {
 
           Summary of compacted content, or null if compaction failed
 
+        - `Optional<String> encryptedContent`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
+
         - `JsonValue; type "compaction"constant`
 
           - `COMPACTION("compaction")`
@@ -11550,6 +11638,10 @@ public final class Main {
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 
@@ -11851,6 +11943,10 @@ public final class Main {
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+              Frontier intelligence for long-running agents and coding
 
             - `CLAUDE_MYTHOS_PREVIEW("claude-mythos-preview")`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/delete
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 45c3501e0aa2ac18735793049c8f960cce449c673f39eb2d1b925a6ecc16e2de
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 6c161b2efc9f92fb95e133a122be68d542317ddb82bfaf53dc5221b3c4150fdf
 ---
 
 ## Delete
@@ -27,7 +27,7 @@ Delete Skill
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Delete Skill
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

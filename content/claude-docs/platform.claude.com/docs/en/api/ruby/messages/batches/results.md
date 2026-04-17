@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/results
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: c127ce7e2b4abbb080cc040fae881c83aaa462b369b6d2ce4bfd4a32c63c8160
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: c1399fc8e1b59127a64e0eae9ad1fa9a57baf8f6589304501334f5b5de45d2b5
 ---
 
 ## Results
@@ -754,11 +754,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `:"claude-mythos-preview" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 13 more`
+          - `:"claude-opus-4-7" | :"claude-mythos-preview" | :"claude-opus-4-6" | 14 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `:"claude-mythos-preview"`
 

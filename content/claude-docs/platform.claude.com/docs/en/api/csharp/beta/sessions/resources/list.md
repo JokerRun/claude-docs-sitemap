@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/list
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 9545732618884e029b4799431e99ef5b47fe9f2f4e92189d4530215c1766eb0a
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 027b0e6c8ccc218881476728a674257306758f96e9c637ab04070aaa42b38243
 ---
 
 ## List
@@ -76,6 +76,8 @@ List Session Resources
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

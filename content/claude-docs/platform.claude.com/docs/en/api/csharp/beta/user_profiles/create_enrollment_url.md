@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 8f8c3a95cadf263ae4af32e882455bf9dc0fa176ce48d5930a90575fad7a7286
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 547df618b69396ca721aa5d30021739039c7c862fe55f41b6c388f2a531e5ab8
 ---
 
 ## Create Enrollment URL
 
 `BetaUserProfileEnrollmentUrl Beta.UserProfiles.CreateEnrollmentUrl(UserProfileCreateEnrollmentUrlParamsparameters, CancellationTokencancellationToken = default)`
 
-**post** `/v1/user_profiles/{id}/enrollment_url`
+**post** `/v1/user_profiles/{user_profile_id}/enrollment_url`
 
 Create Enrollment URL
 
@@ -17,9 +17,9 @@ Create Enrollment URL
 
 - `UserProfileCreateEnrollmentUrlParams parameters`
 
-  - `required string id`
+  - `required string userProfileID`
 
-    Path parameter id
+    Path parameter user_profile_id
 
   - `IReadOnlyList<AnthropicBeta> betas`
 
@@ -67,6 +67,8 @@ Create Enrollment URL
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
@@ -77,14 +79,23 @@ Create Enrollment URL
 
     A timestamp in RFC 3339 format
 
-  - `required string Type`
+  - `required Type Type`
+
+    Object type. Always `enrollment_url`.
+
+    - `"enrollment_url"EnrollmentUrl`
 
   - `required string Url`
+
+    Enrollment URL to send to the end user. Valid until `expires_at`.
 
 ### Example
 
 ```csharp
-UserProfileCreateEnrollmentUrlParams parameters = new() { ID = "id" };
+UserProfileCreateEnrollmentUrlParams parameters = new()
+{
+    UserProfileID = "uprof_011CZkZCu8hGbp5mYRQgUmz9"
+};
 
 var betaUserProfileEnrollmentUrl = await client.Beta.UserProfiles.CreateEnrollmentUrl(parameters);
 

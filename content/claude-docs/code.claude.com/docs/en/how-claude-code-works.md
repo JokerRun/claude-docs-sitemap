@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 3a92de766bd158ae7b435199bfe0b598840e5bfc04e88013903a2aec9c811a6f
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 0871be411dadbcb2a8bae45af958fafb6beae9d0e41ffae0a0b8523f7357696a
 ---
 
 > ## Documentation Index
@@ -107,7 +107,7 @@ Claude Code saves your conversation locally as you work. Each message, tool use,
 
 ### Work across branches
 
-Each Claude Code conversation is a session tied to your current directory. When you resume, you only see sessions from that directory.
+Each Claude Code conversation is a session tied to your current directory. The `/resume` picker shows sessions from the current worktree by default, with keyboard shortcuts to widen the list to other worktrees or projects. See [Resume previous conversations](/en/common-workflows#resume-previous-conversations) for the full list of picker shortcuts and how name resolution works.
 
 Claude sees your current branch's files. When you switch branches, Claude sees the new branch's files, but your conversation history stays the same. Claude remembers what you discussed even after switching.
 

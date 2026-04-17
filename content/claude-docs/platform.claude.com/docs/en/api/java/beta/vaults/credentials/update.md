@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/update
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: c91f73407343e46004daa43c87b65880b3bd3d90e4b5a1ebc72dd1f0050fe27e
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 8d64c9b987527cbf299b02bc64d82679f02153ee2302a8851fc6b4473d40d98f
 ---
 
 ## Update
@@ -68,6 +68,8 @@ Update Credential
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `Optional<Auth> auth`
 

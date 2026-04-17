@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/versions
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 86272b79b480bcd4306ca558dbf10b5ed1813cd0654148ccfb1de52474e3f524
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: bdfc519fce52fea89bee10b2a8a1567fef7214b3856221674ca80b34805f27c9
 ---
 
 # Versions
@@ -81,6 +81,8 @@ List Agent Versions
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
 ### Returns
 
 - `type BetaManagedAgentsAgent struct{…}`
@@ -126,6 +128,10 @@ List Agent Versions
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const BetaManagedAgentsModelClaudeOpus4_7 BetaManagedAgentsModel = "claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `const BetaManagedAgentsModelClaudeOpus4_6 BetaManagedAgentsModel = "claude-opus-4-6"`
 

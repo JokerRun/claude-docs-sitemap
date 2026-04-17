@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/create
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: b42e01d8eb338e57cfbcab8675e2a0ec231b85e5aca630afb322b1d9d40add7c
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 6fc4aa770ea42132f4b49e383dc669db96664d41cd3154d384a70095192516f9
 ---
 
 ## Create
@@ -31,7 +31,7 @@ Create Vault
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ Create Vault
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

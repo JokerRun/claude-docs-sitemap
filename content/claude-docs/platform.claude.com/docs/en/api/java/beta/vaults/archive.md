@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/archive
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 0a0ce63cd042077fa4a797d046f9f90046411a0cb895837fe40b6740b629f685
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 02196d9a6a13e8d998d641591f2acfa92a1621b071d66c2f580db0d45d7ac9e8
 ---
 
 ## Archive
@@ -66,6 +66,8 @@ Archive Vault
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

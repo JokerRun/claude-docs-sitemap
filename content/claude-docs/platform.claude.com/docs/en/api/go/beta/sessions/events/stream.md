@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/events/stream
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: ed88fb80377b8c85a3f1f25a559fb63f82614d8b6d7059916168d86306452542
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 78c286979857c77d77220fc8c29560cc59cbfd6bb106207f08446f48fda13b48
 ---
 
 ## Stream
@@ -70,6 +70,8 @@ Stream Events
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

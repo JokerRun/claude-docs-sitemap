@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/create
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 6ec611f2d0a5a94a7f2a3d67aa51b7e42bbd71a51f04522fe01315f04d7ba0e6
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 5f2ae2d52f56bd5376e793902640bdb5e0c17319b8b17263c3193acc3755b8e4
 ---
 
 ## Create
@@ -64,6 +64,8 @@ Create Session
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `Agent agent`
 
@@ -202,6 +204,10 @@ Create Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 

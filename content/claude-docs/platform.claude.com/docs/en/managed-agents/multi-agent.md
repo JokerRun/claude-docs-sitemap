@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/multi-agent
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 80e93e916f77b141e9d62f518811db3a70cd9e1060744188f79ff2c0a9f07dcc
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: c4b5f85b6c18921a6990dbc4888373958acc93dbaf23acc093d380ad0c22a2e2
 ---
 
 # Multiagent sessions
@@ -51,7 +51,7 @@ orchestrator=$(curl -fsS https://api.anthropic.com/v1/agents \
   -d @- <<EOF
 {
   "name": "Engineering Lead",
-  "model": "claude-sonnet-4-6",
+  "model": "claude-opus-4-7",
   "system": "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
   "tools": [
     {
@@ -70,7 +70,7 @@ EOF
 ```bash CLI
 ant beta:agents create <<YAML
 name: Engineering Lead
-model: claude-sonnet-4-6
+model: claude-opus-4-7
 system: You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.
 tools:
   - type: agent_toolset_20260401
@@ -87,7 +87,7 @@ YAML
 ```python Python
 orchestrator = client.beta.agents.create(
     name="Engineering Lead",
-    model="claude-sonnet-4-6",
+    model="claude-opus-4-7",
     system="You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
     tools=[
         {"type": "agent_toolset_20260401"},
@@ -106,7 +106,7 @@ orchestrator = client.beta.agents.create(
 ```typescript TypeScript
 const orchestrator = await client.beta.agents.create({
   name: "Engineering Lead",
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   system:
     "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
   tools: [{ type: "agent_toolset_20260401" }],
@@ -121,7 +121,7 @@ const orchestrator = await client.beta.agents.create({
 var orchestrator = await client.Beta.Agents.Create(new()
 {
     Name = "Engineering Lead",
-    Model = BetaManagedAgentsModel.ClaudeSonnet4_6,
+    Model = BetaManagedAgentsModel.ClaudeOpus4_7,
     System = "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
     Tools =
     [
@@ -151,7 +151,7 @@ var orchestrator = await client.Beta.Agents.Create(new()
 ```go Go
 orchestrator, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name:   "Engineering Lead",
-	Model:  anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeSonnet4_6},
+	Model:  anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus4_7},
 	System: anthropic.String("You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent."),
 	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
 		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -172,7 +172,7 @@ if err != nil {
 var orchestrator = client.beta().agents().create(
     AgentCreateParams.builder()
         .name("Engineering Lead")
-        .model(BetaManagedAgentsModel.CLAUDE_SONNET_4_6)
+        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
         .system("You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.")
         .addTool(
             BetaManagedAgentsAgentToolset20260401Params.builder()
@@ -200,7 +200,7 @@ var orchestrator = client.beta().agents().create(
 ```php PHP
 $orchestrator = $client->beta->agents->create(
     name: 'Engineering Lead',
-    model: 'claude-sonnet-4-6',
+    model: 'claude-opus-4-7',
     system: 'You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.',
     tools: [
         ['type' => 'agent_toolset_20260401'],
@@ -215,7 +215,7 @@ $orchestrator = $client->beta->agents->create(
 ```ruby Ruby
 orchestrator = client.beta.agents.create(
   name: "Engineering Lead",
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   system: "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
   tools: [
     {type: "agent_toolset_20260401"}
@@ -242,7 +242,7 @@ session=$(curl -fsS https://api.anthropic.com/v1/sessions \
   -d '{"agent": "'$ORCHESTRATOR_ID'", "environment_id": "'$ENVIRONMENT_ID'"}')
 ```
 
-```bash CLI
+```bash CLI nocheck
 ant beta:sessions create \
   --agent "$ORCHESTRATOR_ID" \
   --environment-id "$ENVIRONMENT_ID"
@@ -281,7 +281,7 @@ curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads" \
   | jq -r '.data[] | "[\(.agent_name)] \(.status)"'
 ```
 
-```bash CLI
+```bash CLI nocheck
 ant beta:sessions:threads list --session-id "$SESSION_ID"
 ```
 
@@ -355,7 +355,7 @@ curl -fsSN "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID
   done
 ```
 
-```bash CLI
+```bash CLI nocheck
 ant beta:sessions:threads stream \
   --session-id "$SESSION_ID" \
   --thread-id "$THREAD_ID"
@@ -500,7 +500,7 @@ curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/
   | jq -r '.data[] | "[\(.type)] \(.processed_at)"'
 ```
 
-```bash CLI
+```bash CLI nocheck
 ant beta:sessions:threads:events list \
   --session-id "$SESSION_ID" \
   --thread-id "$THREAD_ID"

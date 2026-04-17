@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/permission-policies
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 7f43690053ca80c01884703e05cbb7ab1076145190ff06b8b5330307525e9e34
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 778df123058e6d1a4bc8dffbda253f8ca0f81cb2f48dd158e64ce6a6c1dfef46
 ---
 
 # Permission policies
@@ -38,7 +38,7 @@ agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
   -H "content-type: application/json" \
   -d '{
     "name": "Coding Assistant",
-    "model": "claude-sonnet-4-6",
+    "model": "claude-opus-4-7",
     "tools": [
       {
         "type": "agent_toolset_20260401",
@@ -53,7 +53,7 @@ agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
 ```bash CLI
 ant beta:agents create <<'YAML'
 name: Coding Assistant
-model: claude-sonnet-4-6
+model: claude-opus-4-7
 tools:
   - type: agent_toolset_20260401
     default_config:
@@ -65,7 +65,7 @@ YAML
 ```python Python
 agent = client.beta.agents.create(
     name="Coding Assistant",
-    model="claude-sonnet-4-6",
+    model="claude-opus-4-7",
     tools=[
         {
             "type": "agent_toolset_20260401",
@@ -80,7 +80,7 @@ agent = client.beta.agents.create(
 ```typescript TypeScript
 const agent = await client.beta.agents.create({
   name: "Coding Assistant",
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   tools: [
     {
       type: "agent_toolset_20260401",
@@ -96,7 +96,7 @@ const agent = await client.beta.agents.create({
 var agent = await client.Beta.Agents.Create(new()
 {
     Name = "Coding Assistant",
-    Model = new("claude-sonnet-4-6"),
+    Model = new("claude-opus-4-7"),
     Tools =
     [
         new BetaManagedAgentsAgentToolset20260401Params
@@ -115,7 +115,7 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Coding Assistant",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-sonnet-4-6",
+		ID:   "claude-opus-4-7",
 		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
 	},
 	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
@@ -140,7 +140,7 @@ if err != nil {
 var agent = client.beta().agents().create(
     AgentCreateParams.builder()
         .name("Coding Assistant")
-        .model(BetaManagedAgentsModel.CLAUDE_SONNET_4_6)
+        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
         .addTool(
             BetaManagedAgentsAgentToolset20260401Params.builder()
                 .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
@@ -163,7 +163,7 @@ var agent = client.beta().agents().create(
 
 $agent = $client->beta->agents->create(
     name: 'Coding Assistant',
-    model: 'claude-sonnet-4-6',
+    model: 'claude-opus-4-7',
     tools: [
         BetaManagedAgentsAgentToolset20260401Params::with(
             type: 'agent_toolset_20260401',
@@ -178,7 +178,7 @@ $agent = $client->beta->agents->create(
 ```ruby Ruby
 agent = client.beta.agents.create(
   name: "Coding Assistant",
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   tools: [
     {
       type: "agent_toolset_20260401",
@@ -210,7 +210,7 @@ agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
   -H "content-type: application/json" \
   -d '{
     "name": "Dev Assistant",
-    "model": "claude-sonnet-4-6",
+    "model": "claude-opus-4-7",
     "mcp_servers": [
       {"type": "url", "name": "github", "url": "https://mcp.example.com/github"}
     ],
@@ -230,7 +230,7 @@ agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
 ```bash CLI
 ant beta:agents create <<'YAML'
 name: Dev Assistant
-model: claude-sonnet-4-6
+model: claude-opus-4-7
 mcp_servers:
   - type: url
     name: github
@@ -248,7 +248,7 @@ YAML
 ```python Python
 agent = client.beta.agents.create(
     name="Dev Assistant",
-    model="claude-sonnet-4-6",
+    model="claude-opus-4-7",
     mcp_servers=[
         {"type": "url", "name": "github", "url": "https://mcp.example.com/github"},
     ],
@@ -268,7 +268,7 @@ agent = client.beta.agents.create(
 ```typescript TypeScript
 const agent = await client.beta.agents.create({
   name: "Dev Assistant",
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   mcp_servers: [{ type: "url", name: "github", url: "https://mcp.example.com/github" }],
   tools: [
     { type: "agent_toolset_20260401" },
@@ -287,7 +287,7 @@ const agent = await client.beta.agents.create({
 var agent = await client.Beta.Agents.Create(new()
 {
     Name = "Dev Assistant",
-    Model = new("claude-sonnet-4-6"),
+    Model = new("claude-opus-4-7"),
     McpServers =
     [
         new() { Type = "url", Name = "github", Url = "https://mcp.example.com/github" },
@@ -315,7 +315,7 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Dev Assistant",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-sonnet-4-6",
+		ID:   "claude-opus-4-7",
 		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
 	},
 	MCPServers: []anthropic.BetaManagedAgentsUrlmcpServerParams{{
@@ -353,7 +353,7 @@ if err != nil {
 var agent = client.beta().agents().create(
     AgentCreateParams.builder()
         .name("Dev Assistant")
-        .model(BetaManagedAgentsModel.CLAUDE_SONNET_4_6)
+        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
         .addMcpServer(
             BetaManagedAgentsUrlmcpServerParams.builder()
                 .type(BetaManagedAgentsUrlmcpServerParams.Type.URL)
@@ -392,7 +392,7 @@ use Anthropic\Beta\Agents\BetaManagedAgentsUrlmcpServerParams;
 
 $agent = $client->beta->agents->create(
     name: 'Dev Assistant',
-    model: 'claude-sonnet-4-6',
+    model: 'claude-opus-4-7',
     mcpServers: [
         BetaManagedAgentsUrlmcpServerParams::with(
             type: 'url',
@@ -418,7 +418,7 @@ $agent = $client->beta->agents->create(
 ```ruby Ruby
 agent = client.beta.agents.create(
   name: "Dev Assistant",
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   mcp_servers: [
     {type: "url", name: "github", url: "https://mcp.example.com/github"}
   ],
@@ -664,7 +664,7 @@ curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
   }'
 ```
 
-```bash CLI
+```bash CLI nocheck
 # Allow the tool to execute
 ant beta:sessions:events send \
   --session-id "$SESSION_ID" \

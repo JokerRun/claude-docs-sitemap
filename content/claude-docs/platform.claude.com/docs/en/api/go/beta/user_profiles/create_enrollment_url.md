@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 6f92983fa847fbf6e2788383f886afa91a483764eff941e823ec38bcb7821f57
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 34e1b7365e5c868e9edeb25804bd727952903da1477b9044ed0722a20deef5a3
 ---
 
 ## Create Enrollment URL
 
-`client.Beta.UserProfiles.NewEnrollmentURL(ctx, id, body) (*BetaUserProfileEnrollmentURL, error)`
+`client.Beta.UserProfiles.NewEnrollmentURL(ctx, userProfileID, body) (*BetaUserProfileEnrollmentURL, error)`
 
-**post** `/v1/user_profiles/{id}/enrollment_url`
+**post** `/v1/user_profiles/{user_profile_id}/enrollment_url`
 
 Create Enrollment URL
 
 ### Parameters
 
-- `id string`
+- `userProfileID string`
 
 - `body BetaUserProfileNewEnrollmentURLParams`
 
@@ -69,6 +69,8 @@ Create Enrollment URL
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
@@ -79,9 +81,15 @@ Create Enrollment URL
 
     A timestamp in RFC 3339 format
 
-  - `Type string`
+  - `Type BetaUserProfileEnrollmentURLType`
+
+    Object type. Always `enrollment_url`.
+
+    - `const BetaUserProfileEnrollmentURLTypeEnrollmentURL BetaUserProfileEnrollmentURLType = "enrollment_url"`
 
   - `URL string`
+
+    Enrollment URL to send to the end user. Valid until `expires_at`.
 
 ### Example
 
@@ -102,7 +110,7 @@ func main() {
   )
   betaUserProfileEnrollmentURL, err := client.Beta.UserProfiles.NewEnrollmentURL(
     context.TODO(),
-    "id",
+    "uprof_011CZkZCu8hGbp5mYRQgUmz9",
     anthropic.BetaUserProfileNewEnrollmentURLParams{
 
     },

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/count_tokens
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 57c715746b7bbef937a9b02d6329aa65e5012c29990a3ca358cab60166f7d5dc
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 7aa2fbd9363a7c9e4ad54ab55e02daba0edb11bbcfa07da11a54a7afb82dcb72
 ---
 
 ## Count Tokens
@@ -2304,7 +2304,11 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+    - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+      - `"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-mythos-preview"`
 
@@ -2399,7 +2403,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     Configuration options for the model's output, such as the output format.
 
-    - `effort?: "low" | "medium" | "high" | "max" | null`
+    - `effort?: "low" | "medium" | "high" | 2 more | null`
 
       All possible effort levels.
 
@@ -2408,6 +2412,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `"medium"`
 
       - `"high"`
+
+      - `"xhigh"`
 
       - `"max"`
 
@@ -3770,8 +3776,8 @@ const client = new Anthropic({
 });
 
 const messageTokensCount = await client.messages.countTokens({
-  messages: [{ content: 'string', role: 'user' }],
-  model: 'claude-mythos-preview',
+  messages: [{ content: 'Hello, world', role: 'user' }],
+  model: 'claude-opus-4-6',
 });
 
 console.log(messageTokensCount.input_tokens);

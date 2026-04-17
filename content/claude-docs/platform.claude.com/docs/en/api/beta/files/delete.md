@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/delete
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 9dc5be1d2069a3613ac092c608f12facbc0871222f2703264364bca5317f0b57
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 7bd5abc08ddf0e32ec5431284acc7bb12fdaedbfe118f3417799aef413d36f4e
 ---
 
 ## Delete
@@ -25,7 +25,7 @@ Delete File
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,6 +70,8 @@ Delete File
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

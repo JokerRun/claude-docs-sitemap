@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/migration-guide
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 5bd2327230410103314dfcd0fd8c74418d3134bb92d925afa880d1d5d39419a0
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 383fc97c1d6237b38e327e4277a0f1bdb572a6465721621b93df7a58a61e65cc
 ---
 
 > ## Documentation Index
@@ -117,12 +117,12 @@ Change `ClaudeCodeOptions` to `ClaudeAgentOptions`:
 # Before
 from claude_code_sdk import query, ClaudeCodeOptions
 
-options = ClaudeCodeOptions(model="claude-opus-4-6")
+options = ClaudeCodeOptions(model="claude-opus-4-7")
 
 # After
 from claude_agent_sdk import query, ClaudeAgentOptions
 
-options = ClaudeAgentOptions(model="claude-opus-4-6")
+options = ClaudeAgentOptions(model="claude-opus-4-7")
 ```
 
 **5. Review [breaking changes](#breaking-changes)**
@@ -145,12 +145,12 @@ Make any code changes needed to complete the migration.
 # BEFORE (claude-code-sdk)
 from claude_code_sdk import query, ClaudeCodeOptions
 
-options = ClaudeCodeOptions(model="claude-opus-4-6", permission_mode="acceptEdits")
+options = ClaudeCodeOptions(model="claude-opus-4-7", permission_mode="acceptEdits")
 
 # AFTER (claude-agent-sdk)
 from claude_agent_sdk import query, ClaudeAgentOptions
 
-options = ClaudeAgentOptions(model="claude-opus-4-6", permission_mode="acceptEdits")
+options = ClaudeAgentOptions(model="claude-opus-4-7", permission_mode="acceptEdits")
 ```
 
 **Why this changed:** The type name now matches the "Claude Agent SDK" branding and provides consistency across the SDK's naming conventions.
@@ -286,9 +286,9 @@ options = ClaudeAgentOptions(model="claude-opus-4-6", permission_mode="acceptEdi
 * **Testing** - Isolated test environments
 * **Multi-tenant systems** - Prevent settings leakage between users
 
-<Note>
-  **Backward compatibility:** If your application relied on filesystem settings (custom slash commands, CLAUDE.md instructions, etc.), add `settingSources: ['user', 'project', 'local']` to your options.
-</Note>
+<Warning>
+  Current SDK releases have reverted this default for `query()`: omitting the option once again loads user, project, and local settings, matching the CLI. Pass `settingSources: []` in TypeScript or `setting_sources=[]` in Python if your application depends on the isolated behavior described above. Python SDK 0.1.59 and earlier treated an empty list the same as omitting the option, so upgrade before relying on `setting_sources=[]`. See [What settingSources does not control](/en/agent-sdk/claude-code-features#what-settingsources-does-not-control) for inputs that are read even when `settingSources` is `[]`.
+</Warning>
 
 ## Why the Rename?
 

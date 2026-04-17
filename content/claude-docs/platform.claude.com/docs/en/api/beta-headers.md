@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 19103d593aea77c0ae69aa9e01385b93d91dded83b163d12f0e8bfc3039c5818
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 74526dc88b8cd72ed0bcee5807f4ceab2cea793efd7a5da0387b3df2ee4cd8a4
 ---
 
 # Beta headers
@@ -34,14 +34,14 @@ When using the SDK, you can specify beta headers in the request options:
 
 <CodeGroup>
 
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: files-api-2025-04-14" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "messages": [
       {"role": "user", "content": "Hello, Claude"}
@@ -52,7 +52,7 @@ curl https://api.anthropic.com/v1/messages \
 ```bash CLI
 ant beta:messages create \
   --beta files-api-2025-04-14 \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --message '{role: user, content: "Hello, Claude"}'
 ```
@@ -63,7 +63,7 @@ from anthropic import Anthropic
 client = Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
     betas=["files-api-2025-04-14"],
@@ -76,7 +76,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const anthropic = new Anthropic();
 
 const msg = await anthropic.beta.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello, Claude" }],
   betas: ["files-api-2025-04-14"]

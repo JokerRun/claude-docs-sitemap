@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 7655d35e839ae089521f5b8f641c30eb263f147e02c4b59e59037b900ebc0f75
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 3f41c8f9676e3dfc8e1b33f8dad6396b7c5be3de5b72167843ecd11bd2817db3
 ---
 
 # Fine-grained tool streaming
@@ -28,13 +28,13 @@ Here's an example of how to use fine-grained tool streaming with the API:
 
 <CodeGroup>
 
-  ```bash Shell
+  ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-6",
+      "model": "claude-opus-4-7",
       "max_tokens": 65536,
       "tools": [
         {
@@ -70,7 +70,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
   ```bash CLI
   ant messages create --stream \
     --transform usage <<'YAML'
-  model: claude-opus-4-6
+  model: claude-opus-4-7
   max_tokens: 65536
   tools:
     - name: make_file
@@ -101,7 +101,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
 
   with client.messages.stream(
       max_tokens=65536,
-      model="claude-opus-4-6",
+      model="claude-opus-4-7",
       tools=[
           {
               "name": "make_file",
@@ -143,7 +143,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
   const anthropic = new Anthropic();
 
   const stream = anthropic.messages.stream({
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 65536,
     tools: [
       {
@@ -234,7 +234,7 @@ client = anthropic.Anthropic()
 tool_inputs = {}  # index -> accumulated JSON string
 
 with client.messages.stream(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[
         {
@@ -274,7 +274,7 @@ const anthropic = new Anthropic();
 const toolInputs: Record<number, string> = {};
 
 const stream = anthropic.messages.stream({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [
     {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 89e68fe2bf621138738929fc221e4b66058000f0fc8a7fc4c4d3f26bb4734a1b
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: be34efa5c571d29f2d4a73614a10686237b0d07e51be307c9f209f78358596c9
 ---
 
 ## Create
@@ -2328,7 +2328,11 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+        - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+          - `"claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-mythos-preview"`
 
@@ -2441,7 +2445,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Configuration options for the model's output, such as the output format.
 
-        - `effort?: "low" | "medium" | "high" | "max" | null`
+        - `effort?: "low" | "medium" | "high" | 2 more | null`
 
           All possible effort levels.
 
@@ -2450,6 +2454,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `"medium"`
 
           - `"high"`
+
+          - `"xhigh"`
 
           - `"max"`
 

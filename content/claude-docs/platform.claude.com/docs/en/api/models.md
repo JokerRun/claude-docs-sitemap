@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 4198291c1d799788a5ed28e6063a03290d5490737ca2eadfd040703b1fd32f97
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 702c6f5e8139f211f6c622c5b2514eafd3dc7acaec1257846ad13deb1d247672
 ---
 
 # Models
@@ -39,7 +39,7 @@ The Models API response can be used to determine which models are available for 
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ The Models API response can be used to determine which models are available for 
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -192,6 +194,14 @@ The Models API response can be used to determine which models are available for 
       - `supported: boolean`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: CapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: boolean`
+
+          Whether this capability is supported by the model.
 
     - `image_input: CapabilitySupport`
 
@@ -311,7 +321,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -356,6 +366,8 @@ The Models API response can be used to determine information about a specific mo
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -464,6 +476,14 @@ The Models API response can be used to determine information about a specific mo
       - `supported: boolean`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: CapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: boolean`
+
+          Whether this capability is supported by the model.
 
     - `image_input: CapabilitySupport`
 
@@ -597,7 +617,7 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
 
 ### Effort Capability
 
-- `EffortCapability = object { high, low, max, 2 more }`
+- `EffortCapability = object { high, low, max, 3 more }`
 
   Effort (reasoning_effort) capability details.
 
@@ -636,6 +656,14 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
   - `supported: boolean`
 
     Whether this capability is supported by the model.
+
+  - `xhigh: CapabilitySupport`
+
+    Indicates whether a capability is supported.
+
+    - `supported: boolean`
+
+      Whether this capability is supported by the model.
 
 ### Model Capabilities
 
@@ -738,6 +766,14 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
     - `supported: boolean`
 
       Whether this capability is supported by the model.
+
+    - `xhigh: CapabilitySupport`
+
+      Indicates whether a capability is supported.
+
+      - `supported: boolean`
+
+        Whether this capability is supported by the model.
 
   - `image_input: CapabilitySupport`
 
@@ -898,6 +934,14 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
       - `supported: boolean`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: CapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `supported: boolean`
+
+          Whether this capability is supported by the model.
 
     - `image_input: CapabilitySupport`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 95b908c43b7fbf83f47aa35b7b91a0662825554fea3518d7bf4aa5d166ed1258
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: b99e3140ec49c0c6b18e9b07949cca7b551bdeed97da87e396845c0f3ae26c58
 ---
 
 > ## Documentation Index
@@ -141,6 +141,25 @@ When an API request fails with a retryable error, Claude Code emits a `system/ap
 | `uuid`           | string          | unique event identifier                                                                                                                      |
 | `session_id`     | string          | session the event belongs to                                                                                                                 |
 
+The `system/init` event reports session metadata including the model, tools, MCP servers, and loaded plugins. It is the first event in the stream unless [`CLAUDE_CODE_SYNC_PLUGIN_INSTALL`](/en/env-vars) is set, in which case `plugin_install` events precede it. Use the plugin fields to fail CI when a plugin did not load:
+
+| Field           | Type  | Description                                                                                                                                                                                                       |
+| --------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `plugins`       | array | plugins that loaded successfully, each with `name` and `path`                                                                                                                                                     |
+| `plugin_errors` | array | plugin load-time errors such as an unsatisfied dependency version, each with `plugin`, `type`, and `message`. Affected plugins are demoted and absent from `plugins`. The key is omitted when there are no errors |
+
+When [`CLAUDE_CODE_SYNC_PLUGIN_INSTALL`](/en/env-vars) is set, Claude Code emits `system/plugin_install` events while marketplace plugins install before the first turn. Use these to surface install progress in your own UI.
+
+| Field        | Type                                                     | Description                                                                                                    |
+| ------------ | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `type`       | `"system"`                                               | message type                                                                                                   |
+| `subtype`    | `"plugin_install"`                                       | identifies this as a plugin install event                                                                      |
+| `status`     | `"started"`, `"installed"`, `"failed"`, or `"completed"` | `started` and `completed` bracket the overall install; `installed` and `failed` report individual marketplaces |
+| `name`       | string, optional                                         | marketplace name, present on `installed` and `failed`                                                          |
+| `error`      | string, optional                                         | failure message, present on `failed`                                                                           |
+| `uuid`       | string                                                   | unique event identifier                                                                                        |
+| `session_id` | string                                                   | session the event belongs to                                                                                   |
+
 For programmatic streaming with callbacks and message objects, see [Stream responses in real-time](/en/agent-sdk/streaming-output) in the Agent SDK documentation.
 
 ### Auto-approve tools
@@ -152,7 +171,7 @@ claude -p "Run the test suite and fix any failures" \
   --allowedTools "Bash,Read,Edit"
 ```
 
-To set a baseline for the whole session instead of listing individual tools, pass a [permission mode](/en/permission-modes). `dontAsk` denies anything not in your `permissions.allow` rules, which is useful for locked-down CI runs. `acceptEdits` lets Claude write files without prompting and also auto-approves common filesystem commands such as `mkdir`, `touch`, `mv`, and `cp`. Other shell commands and network requests still need an `--allowedTools` entry or a `permissions.allow` rule, otherwise the run aborts when one is attempted:
+To set a baseline for the whole session instead of listing individual tools, pass a [permission mode](/en/permission-modes). `dontAsk` denies anything not in your `permissions.allow` rules or the [read-only command set](/en/permissions#read-only-commands), which is useful for locked-down CI runs. `acceptEdits` lets Claude write files without prompting and also auto-approves common filesystem commands such as `mkdir`, `touch`, `mv`, and `cp`. Other shell commands and network requests still need an `--allowedTools` entry or a `permissions.allow` rule, otherwise the run aborts when one is attempted:
 
 ```bash theme={null}
 claude -p "Apply the lint fixes" --permission-mode acceptEdits

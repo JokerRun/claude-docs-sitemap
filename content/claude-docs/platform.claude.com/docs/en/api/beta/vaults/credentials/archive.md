@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 11cdff89b192f8564e561aec8fa92f26f085b2a605dd1bee7c3dec022ddc6519
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 4907d006fa196ede139e71fd8cefdeaec17012697f84f2f00c06f6b8283c9e56
 ---
 
 ## Archive
@@ -25,7 +25,7 @@ Archive Credential
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,6 +70,8 @@ Archive Credential
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

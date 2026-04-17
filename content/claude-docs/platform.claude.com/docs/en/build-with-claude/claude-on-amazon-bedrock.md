@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: b7a0549800cd06b09723e449a1050f157f61ae1ee7474dcaf80b9dbd79f16aa3
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 85b611cf04ae9a67578fe5d281735af912cf9e02f72547e6bc08c4441669ea9c
 ---
 
 # Claude on Amazon Bedrock
@@ -25,7 +25,7 @@ Note that this guide assumes you have already signed up for an [AWS account](htt
 2. Configure your AWS credentials using the AWS configure command (see [Configure the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)) or find your credentials by navigating to "Command line or programmatic access" within your AWS dashboard and following the directions in the popup modal.
 3. Verify that your credentials are working:
 
-```bash Shell
+```bash
 aws sts get-caller-identity
 ```
 
@@ -130,6 +130,13 @@ pip install boto3>=1.28.59
 Go to the [AWS Console > Bedrock > Model Access](https://console.aws.amazon.com/bedrock/home?region=us-west-2#/modelaccess) and request access to Anthropic models. Note that Anthropic model availability varies by region. See [AWS documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html) for latest information.
 
 #### API model IDs
+
+<Note>
+  Claude Opus 4.7 is available on AWS through
+  [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock-research-preview),
+  currently in research preview. It is not available through the standard
+  Bedrock model catalog documented on this page.
+</Note>
 
 | Model | Base Bedrock model ID | `global` | `us` | `eu` | `jp` | `apac` |
 | :---- | :---- | :---- | :---- | :---- | :---- | :---- |

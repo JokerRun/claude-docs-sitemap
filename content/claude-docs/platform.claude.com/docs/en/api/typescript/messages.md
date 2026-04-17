@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8dc219d1932037cc249a1127bb397b8ebb903a9f4299d4249feb1efddffc3f42
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 711d651384aa8ffb10ff3cb7232c981bb78f34b8ccefee4ca25b12399d7bb298
 ---
 
 # Messages
@@ -2316,7 +2316,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+      - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+        - `"claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-mythos-preview"`
 
@@ -2429,7 +2433,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Configuration options for the model's output, such as the output format.
 
-      - `effort?: "low" | "medium" | "high" | "max" | null`
+      - `effort?: "low" | "medium" | "high" | 2 more | null`
 
         All possible effort levels.
 
@@ -2438,6 +2442,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"medium"`
 
         - `"high"`
+
+        - `"xhigh"`
 
         - `"max"`
 
@@ -4565,7 +4571,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+    - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+      - `"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-mythos-preview"`
 
@@ -7089,7 +7099,11 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+    - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+      - `"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-mythos-preview"`
 
@@ -7184,7 +7198,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     Configuration options for the model's output, such as the output format.
 
-    - `effort?: "low" | "medium" | "high" | "max" | null`
+    - `effort?: "low" | "medium" | "high" | 2 more | null`
 
       All possible effort levels.
 
@@ -7193,6 +7207,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `"medium"`
 
       - `"high"`
+
+      - `"xhigh"`
 
       - `"max"`
 
@@ -8555,8 +8571,8 @@ const client = new Anthropic({
 });
 
 const messageTokensCount = await client.messages.countTokens({
-  messages: [{ content: 'string', role: 'user' }],
-  model: 'claude-mythos-preview',
+  messages: [{ content: 'Hello, world', role: 'user' }],
+  model: 'claude-opus-4-6',
 });
 
 console.log(messageTokensCount.input_tokens);
@@ -14252,7 +14268,11 @@ console.log(messageTokensCount.input_tokens);
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+    - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+      - `"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-mythos-preview"`
 
@@ -17783,13 +17803,17 @@ console.log(messageTokensCount.input_tokens);
 
 ### Model
 
-- `Model = "claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more | (string & {})`
+- `Model = "claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more | (string & {})`
 
   The model that will complete your prompt.
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+  - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+    - `"claude-opus-4-7"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-mythos-preview"`
 
@@ -17861,7 +17885,7 @@ console.log(messageTokensCount.input_tokens);
 
 - `OutputConfig`
 
-  - `effort?: "low" | "medium" | "high" | "max" | null`
+  - `effort?: "low" | "medium" | "high" | 2 more | null`
 
     All possible effort levels.
 
@@ -17870,6 +17894,8 @@ console.log(messageTokensCount.input_tokens);
     - `"medium"`
 
     - `"high"`
+
+    - `"xhigh"`
 
     - `"max"`
 
@@ -19664,7 +19690,11 @@ console.log(messageTokensCount.input_tokens);
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+      - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+        - `"claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-mythos-preview"`
 
@@ -20600,7 +20630,11 @@ console.log(messageTokensCount.input_tokens);
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+        - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+          - `"claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-mythos-preview"`
 
@@ -29697,7 +29731,11 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+        - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+          - `"claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-mythos-preview"`
 
@@ -29810,7 +29848,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Configuration options for the model's output, such as the output format.
 
-        - `effort?: "low" | "medium" | "high" | "max" | null`
+        - `effort?: "low" | "medium" | "high" | 2 more | null`
 
           All possible effort levels.
 
@@ -29819,6 +29857,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `"medium"`
 
           - `"high"`
+
+          - `"xhigh"`
 
           - `"max"`
 
@@ -32498,7 +32538,11 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+          - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+            - `"claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-mythos-preview"`
 
@@ -33768,7 +33812,11 @@ console.log(messageBatchIndividualResponse.custom_id);
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+          - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+            - `"claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-mythos-preview"`
 
@@ -34832,7 +34880,11 @@ console.log(messageBatchIndividualResponse.custom_id);
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+        - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+          - `"claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-mythos-preview"`
 
@@ -35858,7 +35910,11 @@ console.log(messageBatchIndividualResponse.custom_id);
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-mythos-preview" | "claude-opus-4-6" | "claude-sonnet-4-6" | 13 more`
+      - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+
+        - `"claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-mythos-preview"`
 

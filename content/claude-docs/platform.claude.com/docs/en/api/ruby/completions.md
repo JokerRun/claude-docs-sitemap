@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/completions
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 8a4aba68421e9bbf08ee53c3160d557fa037208cfc1d345b98b00db81d5f815b
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: c4fc5551382aaa3e2a4fb3916d9a73aa7801a9c8ab5b390b5c72acd699672dc4
 ---
 
 # Completions
@@ -33,11 +33,15 @@ Future models and features will not be compatible with Text Completions. See our
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `:"claude-mythos-preview" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 13 more`
+  - `:"claude-opus-4-7" | :"claude-mythos-preview" | :"claude-opus-4-6" | 14 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `:"claude-opus-4-7"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `:"claude-mythos-preview"`
 
@@ -179,7 +183,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -225,6 +229,8 @@ Future models and features will not be compatible with Text Completions. See our
 
     - `:"advisor-tool-2026-03-01"`
 
+    - `:"user-profiles-2026-03-24"`
+
 ### Returns
 
 - `class Completion`
@@ -245,11 +251,15 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `:"claude-mythos-preview" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 13 more`
+    - `:"claude-opus-4-7" | :"claude-mythos-preview" | :"claude-opus-4-6" | 14 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `:"claude-mythos-preview"`
 
@@ -343,7 +353,7 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
 completion = anthropic.completions.create(
   max_tokens_to_sample: 256,
-  model: :"claude-mythos-preview",
+  model: :"claude-opus-4-7",
   prompt: "\n\nHuman: Hello, world!\n\nAssistant:"
 )
 
@@ -372,11 +382,15 @@ puts(completion)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `:"claude-mythos-preview" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 13 more`
+    - `:"claude-opus-4-7" | :"claude-mythos-preview" | :"claude-opus-4-6" | 14 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `:"claude-mythos-preview"`
 

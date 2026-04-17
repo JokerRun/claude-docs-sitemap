@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 8bd21f8a0b538392d4119bfcb3d89dc13a13eabc7f81ba2b65211ce74560570d
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 82ca4932fa0277d35c360d83dd0abc385863e6fd4f9e612621925541d59f1e58
 ---
 
 # Define your agent
@@ -35,7 +35,7 @@ All Managed Agents API requests require the `managed-agents-2026-04-01` beta hea
 
 ## Create an agent
 
-The following example defines a coding agent that uses Claude Sonnet 4.6 with access to the pre-built agent toolset. The toolset lets the agent write code, read files, search the web, and more. See the [agent tools reference](/docs/en/managed-agents/tools) for the full list of supported tools.
+The following example defines a coding agent that uses Claude Opus 4.7 with access to the pre-built agent toolset. The toolset lets the agent write code, read files, search the web, and more. See the [agent tools reference](/docs/en/managed-agents/tools) for the full list of supported tools.
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -47,7 +47,7 @@ agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
   -H "content-type: application/json" \
   -d '{
     "name": "Coding Assistant",
-    "model": "claude-sonnet-4-6",
+    "model": "claude-opus-4-7",
     "system": "You are a helpful coding agent.",
     "tools": [{"type": "agent_toolset_20260401"}]
   }')
@@ -60,7 +60,7 @@ AGENT_VERSION=$(jq -r '.version' <<< "$agent")
 ````bash
 ant beta:agents create \
   --name "Coding Assistant" \
-  --model '{id: claude-sonnet-4-6}' \
+  --model '{id: claude-opus-4-7}' \
   --system "You are a helpful coding agent." \
   --tool '{type: agent_toolset_20260401}'
 ````
@@ -69,7 +69,7 @@ ant beta:agents create \
 ````python
 agent = client.beta.agents.create(
     name="Coding Assistant",
-    model="claude-sonnet-4-6",
+    model="claude-opus-4-7",
     system="You are a helpful coding agent.",
     tools=[
         {"type": "agent_toolset_20260401"},
@@ -81,7 +81,7 @@ agent = client.beta.agents.create(
 ````typescript
 const agent = await client.beta.agents.create({
   name: "Coding Assistant",
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   system: "You are a helpful coding agent.",
   tools: [{ type: "agent_toolset_20260401" }],
 });
@@ -92,7 +92,7 @@ const agent = await client.beta.agents.create({
 var agent = await client.Beta.Agents.Create(new()
 {
     Name = "Coding Assistant",
-    Model = new("claude-sonnet-4-6"),
+    Model = new("claude-opus-4-7"),
     System = "You are a helpful coding agent.",
     Tools =
     [
@@ -109,7 +109,7 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Coding Assistant",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-sonnet-4-6",
+		ID:   "claude-opus-4-7",
 		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
 	},
 	System: anthropic.String("You are a helpful coding agent."),
@@ -129,7 +129,7 @@ if err != nil {
 var agent = client.beta().agents().create(
     AgentCreateParams.builder()
         .name("Coding Assistant")
-        .model(BetaManagedAgentsModel.CLAUDE_SONNET_4_6)
+        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
         .system("You are a helpful coding agent.")
         .addTool(
             BetaManagedAgentsAgentToolset20260401Params.builder()
@@ -144,7 +144,7 @@ var agent = client.beta().agents().create(
 ````php
 $agent = $client->beta->agents->create(
     name: 'Coding Assistant',
-    model: 'claude-sonnet-4-6',
+    model: 'claude-opus-4-7',
     system: 'You are a helpful coding agent.',
     tools: [
         BetaManagedAgentsAgentToolset20260401Params::with(
@@ -158,7 +158,7 @@ $agent = $client->beta->agents->create(
 ````ruby
 agent = client.beta.agents.create(
   name: "Coding Assistant",
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   system_: "You are a helpful coding agent.",
   tools: [{type: "agent_toolset_20260401"}]
 )
@@ -178,7 +178,7 @@ The response echoes your configuration and adds `id`, `version`, `created_at`, `
   "type": "agent",
   "name": "Coding Assistant",
   "model": {
-    "id": "claude-sonnet-4-6",
+    "id": "claude-opus-4-7",
     "speed": "standard"
   },
   "system": "You are a helpful coding agent.",

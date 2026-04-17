@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/list
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 27b44b9272f3b574da25dfde9d3f3beed1adc52bfe4266e9762a1b5a431e283a
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 72444ccb90a94a3844f4b310e07286db75b796bd1e9172886efba8db3a2a5c07
 ---
 
 ## List
@@ -109,6 +109,8 @@ List Sessions
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
 ### Returns
 
 - `class BetaManagedAgentsSession:`
@@ -144,6 +146,10 @@ List Sessions
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 

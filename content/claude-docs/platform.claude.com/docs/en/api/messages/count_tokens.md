@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/count_tokens
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 10be790030adbfb0c622fc846f8469431644392d82d8bac6d17fc3fa23b1b550
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: bfaa2bb68528b37d0ddbc26ed34ae30c4f88ab434d0d2e5f0962d49f05f4d6a4
 ---
 
 ## Count Tokens
@@ -2300,11 +2300,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `UnionMember0 = "claude-mythos-preview" or "claude-opus-4-6" or "claude-sonnet-4-6" or 13 more`
+  - `UnionMember0 = "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-opus-4-7"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-mythos-preview"`
 
@@ -2399,7 +2403,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   Configuration options for the model's output, such as the output format.
 
-  - `effort: optional "low" or "medium" or "high" or "max"`
+  - `effort: optional "low" or "medium" or "high" or 2 more`
 
     All possible effort levels.
 
@@ -2408,6 +2412,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"medium"`
 
     - `"high"`
+
+    - `"xhigh"`
 
     - `"max"`
 
@@ -3770,10 +3776,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     -d '{
           "messages": [
             {
-              "content": "string",
+              "content": "Hello, world",
               "role": "user"
             }
           ],
-          "model": "claude-mythos-preview"
+          "model": "claude-opus-4-6"
         }'
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/embeddings
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: 1e94a92de3d5332b1bebf9de4f9b2c250fc216a3b535038081a42231e831a3d0
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: f33b8af542f9a8c3b791eda52084e881f9957034b0b9769d0a8fd68e72710841
 ---
 
 # Embeddings
@@ -101,7 +101,7 @@ For more information on the Voyage python package, see [the Voyage documentation
 
 You can also get embeddings by requesting Voyage HTTP API. For example, you can send an HTTP request through the `curl` command in a terminal:
 
-```bash
+```bash cURL
 curl https://api.voyageai.com/v1/embeddings \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $VOYAGE_API_KEY" \

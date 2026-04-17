@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 0e0d18e49fcef63b99dea3f45df8cee8f04cbc84cffedc81a80cb9c3050c8b43
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 2ad03dbdda448dc9a4288e491c4506998918b8f39762b8a7b0167cacc62de44c
 ---
 
 ## Create Enrollment URL
 
-**post** `/v1/user_profiles/{id}/enrollment_url`
+**post** `/v1/user_profiles/{user_profile_id}/enrollment_url`
 
 Create Enrollment URL
 
 ### Path Parameters
 
-- `id: string`
+- `user_profile_id: string`
 
 ### Header Parameters
 
@@ -23,7 +23,7 @@ Create Enrollment URL
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -67,6 +67,8 @@ Create Enrollment URL
 
     - `"output-300k-2026-03-24"`
 
+    - `"advisor-tool-2026-03-01"`
+
     - `"user-profiles-2026-03-24"`
 
 ### Returns
@@ -77,14 +79,20 @@ Create Enrollment URL
 
     A timestamp in RFC 3339 format
 
-  - `type: string`
+  - `type: "enrollment_url"`
+
+    Object type. Always `enrollment_url`.
+
+    - `"enrollment_url"`
 
   - `url: string`
+
+    Enrollment URL to send to the end user. Valid until `expires_at`.
 
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/user_profiles/$ID/enrollment_url \
+curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID/enrollment_url \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: user-profiles-2026-03-24' \

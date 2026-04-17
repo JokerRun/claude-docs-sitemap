@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 4f5c5b8446026ebd4aa6870a9cbcb3e2d815369b81685b932053f8b7bee0f4a2
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 5499cf85cef0cf01ab217904de4bba9e244eb7410ec3605238def82887a6bb9d
 ---
 
 # Tool search tool
@@ -27,7 +27,7 @@ Share feedback on this feature through the [feedback form](https://forms.gle/Mhc
 </Note>
 
 <Note>
-This feature qualifies for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention) with limited technical retention. See the [Data retention](#data-retention) section for details on what is retained and why.
+This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
 </Note>
 
 <Warning>
@@ -62,13 +62,13 @@ This keeps your context window efficient while maintaining high tool selection a
 Here's a simple example with deferred tools:
 
 <CodeGroup>
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
         "max_tokens": 2048,
         "messages": [
             {
@@ -119,7 +119,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 2048
 messages:
   - role: user
@@ -161,7 +161,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=2048,
     messages=[{"role": "user", "content": "What is the weather in San Francisco?"}],
     tools=[
@@ -205,7 +205,7 @@ const client = new Anthropic();
 
 async function main() {
   const response = await client.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 2048,
     messages: [
       {
@@ -274,7 +274,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 2048,
             Messages = [
                 new() {
@@ -341,7 +341,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 2048,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("What is the weather in San Francisco?")),
@@ -426,7 +426,7 @@ public class ToolSearchExample {
             .build();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(2048L)
             .addUserMessage("What is the weather in San Francisco?")
             .addTool(ToolSearchToolRegex20251119.builder()
@@ -464,7 +464,7 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'What is the weather in San Francisco?'],
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     tools: [
         [
             'type' => 'tool_search_tool_regex_20251119',
@@ -514,7 +514,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 2048,
   messages: [
     { role: "user", content: "What is the weather in San Francisco?" }
@@ -851,12 +851,6 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "too
 
 You can include the tool search tool in the [Messages Batches API](/docs/en/build-with-claude/batch-processing). Tool search operations through the Messages Batches API are priced the same as those in regular Messages API requests.
 
-## Data retention
-
-Server-side tool search (`tool_search` tool) indexes and stores tool catalog data (tool names, descriptions, and argument metadata) beyond the immediate API response; this catalog data is retained according to Anthropic's standard retention policy. Custom client-side tool search implementations that use the standard Messages API are fully ZDR-eligible.
-
-For ZDR eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).
-
 ## Limits and best practices
 
 ### Limits
@@ -864,7 +858,7 @@ For ZDR eligibility across all features, see [API and data retention](/docs/en/b
 - **Maximum tools:** 10,000 tools in your catalog
 - **Search results:** Returns 3-5 most relevant tools per search
 - **Pattern length:** Maximum 200 characters for regex patterns
-- **Model support:** [Claude Mythos Preview](https://anthropic.com/glasswing), Sonnet 4.0+, Opus 4.0+ only (no Haiku)
+- **Model support:** [Claude Mythos Preview](https://anthropic.com/glasswing), Sonnet 4.0+, Opus 4.0+, Haiku 4.5+
 
 ### When to use tool search
 

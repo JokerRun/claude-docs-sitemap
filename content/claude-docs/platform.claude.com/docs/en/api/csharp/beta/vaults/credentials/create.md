@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/create
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 73d1f807e5d87459ab3c064ec816847f17a934ebfc0c72b35938acf38b3043b6
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 47d0d9f0374993bc4f7b86449e1180b57ebd51a4fc0a2680e05c6ac9f35cde43
 ---
 
 ## Create
@@ -176,6 +176,8 @@ Create Credential
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

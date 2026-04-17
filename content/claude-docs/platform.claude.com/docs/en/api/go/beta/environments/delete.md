@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/delete
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: d582c9610c771306200396197eb470cb049d87a70348c9bc0cf0361d685a9ddc
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 73953a55ec6559947ed41949c7451678ad9f49263d34e62df594173fa5c3405b
 ---
 
 ## Delete
@@ -70,6 +70,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 8eb3de89a1686e5965cc775790ed0be7e646d1f7b703831c52711fbd59f2661a
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 0a75684a7b84f821ba11f750c6b1b39545c95e082d0e5a2f319cdd3072d1055a
 ---
 
 # Advisor tool
@@ -42,9 +42,10 @@ The executor model (the top-level `model` field) and the advisor model (the `mod
 
 | Executor models                                | Advisor models                      |
 | ---------------------------------------------- | ----------------------------------- |
-| Claude Haiku 4.5 (`claude-haiku-4-5-20251001`) | Claude Opus 4.6 (`claude-opus-4-6`) |
-| Claude Sonnet 4.6 (`claude-sonnet-4-6`)        | Claude Opus 4.6 (`claude-opus-4-6`) |
-| Claude Opus 4.6 (`claude-opus-4-6`)            | Claude Opus 4.6 (`claude-opus-4-6`) |
+| Claude Haiku 4.5 (`claude-haiku-4-5-20251001`) | Claude Opus 4.7 (`claude-opus-4-7`) |
+| Claude Sonnet 4.6 (`claude-sonnet-4-6`)        | Claude Opus 4.7 (`claude-opus-4-7`) |
+| Claude Opus 4.6 (`claude-opus-4-6`)            | Claude Opus 4.7 (`claude-opus-4-7`) |
+| Claude Opus 4.7 (`claude-opus-4-7`)            | Claude Opus 4.7 (`claude-opus-4-7`) |
 
 If you request an invalid pair, the API returns a `400 invalid_request_error` naming the unsupported combination.
 
@@ -55,7 +56,7 @@ The advisor tool is available in beta on the Claude API (Anthropic).
 ## Quick start
 
 <CodeGroup>
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
@@ -68,7 +69,7 @@ curl https://api.anthropic.com/v1/messages \
             {
                 "type": "advisor_20260301",
                 "name": "advisor",
-                "model": "claude-opus-4-6"
+                "model": "claude-opus-4-7"
             }
         ],
         "messages": [{
@@ -85,7 +86,7 @@ max_tokens: 4096
 tools:
   - type: advisor_20260301
     name: advisor
-    model: claude-opus-4-6
+    model: claude-opus-4-7
 messages:
   - role: user
     content: Build a concurrent worker pool in Go with graceful shutdown.
@@ -105,7 +106,7 @@ response = client.beta.messages.create(
         {
             "type": "advisor_20260301",
             "name": "advisor",
-            "model": "claude-opus-4-6",
+            "model": "claude-opus-4-7",
         }
     ],
     messages=[
@@ -133,7 +134,7 @@ async function main() {
       {
         type: "advisor_20260301",
         name: "advisor",
-        model: "claude-opus-4-6"
+        model: "claude-opus-4-7"
       }
     ],
     messages: [
@@ -165,7 +166,7 @@ var parameters = new MessageCreateParams
     {
         new BetaAdvisorTool20260301
         {
-            Model = Messages::Model.ClaudeOpus4_6
+            Model = Messages::Model.ClaudeOpus4_7
         }
     },
     Messages =
@@ -202,7 +203,7 @@ func main() {
 		MaxTokens: 4096,
 		Tools: []anthropic.BetaToolUnionParam{
 			{OfAdvisorTool20260301: &anthropic.BetaAdvisorTool20260301Param{
-				Model: anthropic.ModelClaudeOpus4_6,
+				Model: anthropic.ModelClaudeOpus4_7,
 			}},
 		},
 		Messages: []anthropic.BetaMessageParam{
@@ -239,7 +240,7 @@ $response = $client->beta->messages->create(
         [
             'type' => 'advisor_20260301',
             'name' => 'advisor',
-            'model' => 'claude-opus-4-6',
+            'model' => 'claude-opus-4-7',
         ],
     ],
     betas: ['advisor-tool-2026-03-01'],
@@ -260,7 +261,7 @@ response = client.beta.messages.create(
     {
       type: "advisor_20260301",
       name: "advisor",
-      model: "claude-opus-4-6"
+      model: "claude-opus-4-7"
     }
   ],
   messages: [
@@ -296,7 +297,7 @@ The advisor itself runs without tools and without context management. Its thinki
 | ----------------------- | -------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `type`                  | string         | _required_   | Must be `"advisor_20260301"`.                                                                                                                      |
 | `name`                  | string         | _required_   | Must be `"advisor"`.                                                                                                                               |
-| `model`                 | string         | _required_   | The advisor model ID, such as `"claude-opus-4-6"`. Billed at this model's rates for the sub-inference.                                             |
+| `model`                 | string         | _required_   | The advisor model ID, such as `"claude-opus-4-7"`. Billed at this model's rates for the sub-inference.                                             |
 | `max_uses`              | integer        | unlimited    | Maximum number of advisor calls allowed in a single request. Once the executor reaches this cap, further advisor calls return an `advisor_tool_result_error` with `error_code: "max_uses_exceeded"` and the executor continues without further advice. This is a per-request cap, not a per-conversation cap; see [Cost control](#cost-control) for conversation-level limits. |
 | `caching`               | object \| null | `null` (off) | Enables prompt caching for the advisor's own transcript across calls within a conversation. See [Advisor prompt caching](#advisor-prompt-caching). |
 
@@ -346,7 +347,7 @@ The `advisor_tool_result.content` field is a discriminated union. Which variant 
 
 | Variant                   | Fields              | Returned when                                                       |
 | ------------------------- | ------------------- | ------------------------------------------------------------------- |
-| `advisor_result`          | `text`              | The advisor model returns plaintext (for example, Claude Opus 4.6). |
+| `advisor_result`          | `text`              | The advisor model returns plaintext (for example, Claude Opus 4.7). |
 | `advisor_redacted_result` | `encrypted_content` | The advisor model returns encrypted output.                         |
 
 With `advisor_result`, the `text` field contains human-readable advice. With `advisor_redacted_result`, the `encrypted_content` field contains an opaque blob that you cannot read; on the next turn, the server decrypts it and renders the plaintext into the executor's prompt.
@@ -394,7 +395,7 @@ tools = [
     {
         "type": "advisor_20260301",
         "name": "advisor",
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
     }
 ]
 
@@ -469,7 +470,7 @@ Advisor calls run as a separate sub-inference billed at the advisor model's rate
       },
       {
         "type": "advisor_message",
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
         "input_tokens": 823,
         "cache_read_input_tokens": 0,
         "cache_creation_input_tokens": 0,
@@ -512,7 +513,7 @@ tools = [
     {
         "type": "advisor_20260301",
         "name": "advisor",
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
         "caching": {"type": "ephemeral", "ttl": "5m"},
     }
 ]
@@ -548,7 +549,7 @@ tools = [
     {
         "type": "advisor_20260301",
         "name": "advisor",
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
     },
     {
         "name": "run_bash",

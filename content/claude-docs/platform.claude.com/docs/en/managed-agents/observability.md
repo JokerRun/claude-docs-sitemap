@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/observability
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 4cebacf6c95de773d96a86ad458ff854fb6fe169f9cc9073faf7b74200181f9e
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: ba24eca2e985cb41ed69a419cf194e5e2c52b98b254499b24286e0b59b9b6904
 ---
 
 # Session tracing
@@ -47,7 +47,7 @@ curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
 '
 ```
 
-```bash CLI
+```bash CLI nocheck
 ant beta:sessions:events list --session-id "$SESSION_ID"
 ```
 
@@ -238,7 +238,7 @@ curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
 '
 ```
 
-```bash CLI
+```bash CLI nocheck
 ant beta:sessions:events list \
   --session-id "$SESSION_ID" \
   --format jsonl \

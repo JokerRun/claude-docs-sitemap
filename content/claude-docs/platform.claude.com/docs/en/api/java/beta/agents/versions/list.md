@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/versions/list
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 61c0bf89e914b653691f9bf2081c418318fc05eef8369b5d9f3e0d414c20d707
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: bb45f8bc0270d1e166605ad3f6a5e056981590ce7711e8f5fb3918090766d474
 ---
 
 ## List
@@ -75,6 +75,8 @@ List Agent Versions
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -114,6 +116,10 @@ List Agent Versions
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
+
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_OPUS_4_6("claude-opus-4-6")`
 

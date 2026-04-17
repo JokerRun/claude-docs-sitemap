@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/update
-fetched_at: 2026-04-08T03:10:42.134564Z
-sha256: 4b99c3c6145279edc006185a3a38a3d5b269d62b658f73cf17062a1faad2baa5
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: e62f2fa1a8cfdc7090c9009760db37c936d321c37c530878113f6afb9aa477aa
 ---
 
 ## Update
 
 `BetaUserProfile beta().userProfiles().update(UserProfileUpdateParamsparams = UserProfileUpdateParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
-**post** `/v1/user_profiles/{id}`
+**post** `/v1/user_profiles/{user_profile_id}`
 
 Update User Profile
 
@@ -17,7 +17,7 @@ Update User Profile
 
 - `UserProfileUpdateParams params`
 
-  - `Optional<String> id`
+  - `Optional<String> userProfileId`
 
   - `Optional<List<AnthropicBeta>> betas`
 
@@ -65,9 +65,13 @@ Update User Profile
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `Optional<String> externalId`
+
+    If present, replaces the stored external_id. Omit to leave unchanged. Maximum 255 characters.
 
   - `Optional<Metadata> metadata`
 
@@ -79,23 +83,43 @@ Update User Profile
 
   - `String id`
 
+    Unique identifier for this user profile, prefixed `uprof_`.
+
   - `LocalDateTime createdAt`
 
     A timestamp in RFC 3339 format
 
   - `Metadata metadata`
 
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
   - `TrustGrants trustGrants`
 
-    - `String status`
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
 
-  - `String type`
+    - `Status status`
+
+      Status of the trust grant.
+
+      - `ACTIVE("active")`
+
+      - `PENDING("pending")`
+
+      - `REJECTED("rejected")`
+
+  - `Type type`
+
+    Object type. Always `user_profile`.
+
+    - `USER_PROFILE("user_profile")`
 
   - `LocalDateTime updatedAt`
 
     A timestamp in RFC 3339 format
 
   - `Optional<String> externalId`
+
+    Platform's own identifier for this user. Not enforced unique.
 
 ### Example
 
@@ -113,7 +137,7 @@ public final class Main {
     public static void main(String[] args) {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        BetaUserProfile betaUserProfile = client.beta().userProfiles().update("id");
+        BetaUserProfile betaUserProfile = client.beta().userProfiles().update("uprof_011CZkZCu8hGbp5mYRQgUmz9");
     }
 }
 ```

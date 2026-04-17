@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/agents/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 88d1fef65a29c88a6cc513b96fa5a7ebdfe970624bbf997e6a91b0546654815d
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: fa8d49d1d7e3a55810dfdf522ac0f4b1a814645ba1241870f2bfe728fe36ea3d
 ---
 
 ## Retrieve
@@ -61,11 +61,15 @@ Get Agent
 
     Model identifier and configuration.
 
-    - `id: "claude-opus-4-6" or "claude-sonnet-4-6" or "claude-haiku-4-5" or 5 more or string`
+    - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
 
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-7"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-6"`
 

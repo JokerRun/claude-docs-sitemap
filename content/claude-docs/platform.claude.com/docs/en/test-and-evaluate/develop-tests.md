@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/develop-tests
-fetched_at: 2026-03-04T04:10:50.573217Z
-sha256: f53d8f3ae7a46cae179b8b3472bf1de9e05060914a69baf5dc3579e3d08984cc
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: c4d321a9da7e435c21dd9a1d362d77dcdeed3cd96bb0e69fac80261d62f5112c
 ---
 
 # Define success criteria and build evaluations
@@ -159,7 +159,7 @@ Most use cases will need multidimensional evaluation along several success crite
 
     def get_completion(prompt: str):
         message = client.messages.create(
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
             max_tokens=50,
             messages=[{"role": "user", "content": prompt}],
         )
@@ -226,7 +226,7 @@ Most use cases will need multidimensional evaluation along several success crite
 
     def get_completion(prompt: str):
         message = client.messages.create(
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
             max_tokens=2048,
             messages=[{"role": "user", "content": prompt}],
         )
@@ -281,7 +281,7 @@ Most use cases will need multidimensional evaluation along several success crite
 
     def get_completion(prompt: str):
         message = client.messages.create(
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
             max_tokens=1024,
             messages=[{"role": "user", "content": prompt}],
         )
@@ -336,7 +336,7 @@ Most use cases will need multidimensional evaluation along several success crite
 
     def get_completion(prompt: str):
         message = client.messages.create(
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
             max_tokens=2048,
             messages=[{"role": "user", "content": prompt}],
         )
@@ -352,7 +352,7 @@ Most use cases will need multidimensional evaluation along several success crite
 
         # Generally best practice to use a different model to evaluate than the model used to generate the evaluated output
         response = client.messages.create(
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
             max_tokens=50,
             messages=[{"role": "user", "content": tone_prompt}],
         )
@@ -402,7 +402,7 @@ Most use cases will need multidimensional evaluation along several success crite
 
     def get_completion(prompt: str):
         message = client.messages.create(
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
             max_tokens=1024,
             messages=[{"role": "user", "content": prompt}],
         )
@@ -426,7 +426,7 @@ Most use cases will need multidimensional evaluation along several success crite
 
         # Generally best practice to use a different model to evaluate than the model used to generate the evaluated output
         response = client.messages.create(
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
             max_tokens=50,
             messages=[{"role": "user", "content": binary_prompt}],
         )
@@ -504,7 +504,7 @@ Most use cases will need multidimensional evaluation along several success crite
 
     def get_completion(prompt: str):
         message = client.messages.create(
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
             max_tokens=1024,
             messages=[{"role": "user", "content": prompt}],
         )
@@ -523,7 +523,7 @@ Most use cases will need multidimensional evaluation along several success crite
 
         # Generally best practice to use a different model to evaluate than the model used to generate the evaluated output
         response = client.messages.create(
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
             max_tokens=50,
             messages=[{"role": "user", "content": ordinal_prompt}],
         )
@@ -581,7 +581,7 @@ def build_grader_prompt(answer, rubric):
 def grade_completion(output, golden_answer):
     grader_response = (
         client.messages.create(
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
             max_tokens=2048,
             messages=[
                 {"role": "user", "content": build_grader_prompt(output, golden_answer)}
@@ -609,7 +609,7 @@ eval_data = [
 
 def get_completion(prompt: str):
     message = client.messages.create(
-        model="claude-opus-4-6",
+        model="claude-opus-4-7",
         max_tokens=1024,
         messages=[{"role": "user", "content": prompt}],
     )

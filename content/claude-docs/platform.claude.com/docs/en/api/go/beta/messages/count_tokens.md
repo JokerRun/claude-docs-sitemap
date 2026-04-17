@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/count_tokens
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: c6a818d4f98a576c352fa229b1c54a32e8de1e33d71d909d50f1fc5f075314ef
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 1336adab3ea96434428ffc5c7604031e33ab04bae5c5cafdf929480c661bf8fa
 ---
 
 ## Count Tokens
@@ -2655,6 +2655,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+          - `EncryptedContent string`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `Role BetaMessageParamRole`
 
       - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
@@ -4167,6 +4171,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
+
+            Frontier intelligence for long-running agents and coding
+
           - `const ModelClaudeMythosPreview Model = "claude-mythos-preview"`
 
             New class of intelligence, strongest in coding and cybersecurity
@@ -4527,6 +4535,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
 ### Returns
 
 - `type BetaMessageTokensCount struct{…}`
@@ -4569,7 +4579,7 @@ func main() {
       }},
       Role: anthropic.BetaMessageParamRoleUser,
     }},
-    Model: anthropic.ModelClaudeMythosPreview,
+    Model: anthropic.ModelClaudeOpus4_6,
   })
   if err != nil {
     panic(err.Error())

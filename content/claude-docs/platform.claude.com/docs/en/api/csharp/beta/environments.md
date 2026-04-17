@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 4c97e311fa2e40714361aa9b28eb81230fcb82618079b221a3d4c077c2e9c86f
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 8ed725e6a57277e3687dd135cd4507643caa740fb6261ffa9579bf40d4ffc8b9
 ---
 
 # Environments
@@ -85,6 +85,8 @@ Create a new environment with the specified configuration.
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -279,6 +281,8 @@ List environments with pagination support.
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -476,6 +480,8 @@ Retrieve a specific environment by ID.
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -685,6 +691,8 @@ Update an existing environment's configuration.
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
 ### Returns
 
 - `class BetaEnvironment:`
@@ -872,6 +880,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
 ### Returns
 
 - `class BetaEnvironmentDeleteResponse:`
@@ -960,6 +970,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

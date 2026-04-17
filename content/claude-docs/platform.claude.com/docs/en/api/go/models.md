@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/models
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 25db9e22b018e63f844b34765f26e3ef1f59feed17600b4ff00f9dfde60362ce
+fetched_at: 2026-04-17T03:11:44.711743Z
+sha256: 585a61356443592fd11a0d363fea21aaa75a8e5cdf165a4e7b50e5964b03145d
 ---
 
 # Models
@@ -86,6 +86,8 @@ The Models API response can be used to determine which models are available for 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -194,6 +196,14 @@ The Models API response can be used to determine which models are available for 
       - `Supported bool`
 
         Whether this capability is supported by the model.
+
+      - `Xhigh CapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `Supported bool`
+
+          Whether this capability is supported by the model.
 
     - `ImageInput CapabilitySupport`
 
@@ -368,6 +378,8 @@ The Models API response can be used to determine information about a specific mo
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
 ### Returns
 
 - `type ModelInfo struct{…}`
@@ -475,6 +487,14 @@ The Models API response can be used to determine information about a specific mo
       - `Supported bool`
 
         Whether this capability is supported by the model.
+
+      - `Xhigh CapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `Supported bool`
+
+          Whether this capability is supported by the model.
 
     - `ImageInput CapabilitySupport`
 
@@ -671,6 +691,14 @@ func main() {
 
     Whether this capability is supported by the model.
 
+  - `Xhigh CapabilitySupport`
+
+    Indicates whether a capability is supported.
+
+    - `Supported bool`
+
+      Whether this capability is supported by the model.
+
 ### Model Capabilities
 
 - `type ModelCapabilities struct{…}`
@@ -772,6 +800,14 @@ func main() {
     - `Supported bool`
 
       Whether this capability is supported by the model.
+
+    - `Xhigh CapabilitySupport`
+
+      Indicates whether a capability is supported.
+
+      - `Supported bool`
+
+        Whether this capability is supported by the model.
 
   - `ImageInput CapabilitySupport`
 
@@ -932,6 +968,14 @@ func main() {
       - `Supported bool`
 
         Whether this capability is supported by the model.
+
+      - `Xhigh CapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `Supported bool`
+
+          Whether this capability is supported by the model.
 
     - `ImageInput CapabilitySupport`
 
