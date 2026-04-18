@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hosting
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 9e62437d7283c4f33c286f541cf5de3c410b326300223a4562018075fa7608c4
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 44896d9df467a495248e19104fba84ced51fb56c7e2f770e0d34dc20a4415d21
 ---
 
 > ## Documentation Index
@@ -32,8 +32,8 @@ The SDK also supports [programmatic sandbox configuration](/en/agent-sdk/typescr
 Each SDK instance requires:
 
 * **Runtime dependencies**
-  * Python 3.10+ (for Python SDK) or Node.js 18+ (for TypeScript SDK)
-  * Node.js (required by the bundled Claude Code CLI that the SDK spawns; both SDK packages include it, so no separate install is needed)
+  * Python 3.10+ for the Python SDK, or Node.js 18+ for the TypeScript SDK
+  * Both SDK packages bundle a native Claude Code binary for the host platform, so no separate Claude Code or Node.js install is needed for the spawned CLI
 
 * **Resource allocation**
   * Recommended: 1GiB RAM, 5GiB of disk, and 1 CPU (vary this based on your task as needed)

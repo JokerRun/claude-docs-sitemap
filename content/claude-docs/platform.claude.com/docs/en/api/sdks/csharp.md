@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/csharp
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: e986b219ad74327e1ce61e7a509751adc2d0524e25673dae4f89487cbf1de6e3
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 6167499f860b340a19f9136c150a6ff7a3f881dea98c2530c69093af9abe247d
 ---
 
 # C# SDK
@@ -431,14 +431,17 @@ The SDK is typed for convenient usage of the documented API. However, it also su
 
 <Note>
 For detailed platform setup guides with code examples, see:
-- [Amazon Bedrock](/docs/en/build-with-claude/claude-on-amazon-bedrock)
+- [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock)
+- [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock)
 - [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
 The C# SDK supports Bedrock and Foundry through separate NuGet packages:
 
-- **Bedrock:** `Anthropic.Bedrock`. Uses `AnthropicBedrockClient` with `AnthropicBedrockCredentialsHelper.FromEnv()` or explicit credentials.
-- **Foundry:** `Anthropic.Foundry`. Uses `AnthropicFoundryClient` with `DefaultAnthropicFoundryCredentials.FromEnv()` or explicit credentials.
+- **Bedrock:** `Anthropic.Bedrock`. Use `AnthropicBedrockMantleClient` for the Messages-API Bedrock endpoint, or `AnthropicBedrockClient` (`bedrock-runtime` path). `AnthropicBedrockMantleClient` takes an optional `MantleAwsClientOptions` config object; `AnthropicBedrockClient` accepts `AnthropicBedrockCredentialsHelper.FromEnv()` or explicit credentials.
+- **Foundry:** `Anthropic.Foundry`. Use `AnthropicFoundryClient` with `DefaultAnthropicFoundryCredentials.FromEnv()` or explicit credentials.
+
+Use `AnthropicBedrockMantleClient` for new projects; `AnthropicBedrockClient` remains for existing applications using the Bedrock `InvokeModel` API.
 
 ## Semantic versioning
 

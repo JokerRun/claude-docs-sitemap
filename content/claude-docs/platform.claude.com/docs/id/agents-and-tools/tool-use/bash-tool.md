@@ -1,11 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: c89598892909b9a399d5a0a75e878c404f3373816768d67f394f9e347a6422de
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 237b72caea6c7f253de254dd4948ed21f3cb59f2cb5b01c8a6b05840cc61138b
 ---
 
-# Alat Bash
+# Alat bash
+
+Alat bash memungkinkan Claude menjalankan perintah shell dalam sesi bash yang persisten untuk otomasi baris perintah dan operasi sistem.
 
 ---
 
@@ -13,24 +15,24 @@ sha256: c89598892909b9a399d5a0a75e878c404f3373816768d67f394f9e347a6422de
 This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
 </Note>
 
-Alat bash memungkinkan Claude untuk menjalankan perintah shell dalam sesi bash yang persisten, memungkinkan operasi sistem, eksekusi skrip, dan otomasi baris perintah. Akses shell adalah kemampuan agen yang mendasar. Pada [Terminal-Bench 2.0](https://github.com/terminal-bench/terminal-bench), sebuah tolok ukur yang mengevaluasi tugas terminal dunia nyata menggunakan validasi khusus shell, Claude menunjukkan peningkatan kinerja yang signifikan dengan akses ke sesi bash yang persisten.
+Alat bash memungkinkan Claude menjalankan perintah shell dalam sesi bash yang persisten, memungkinkan operasi sistem, eksekusi skrip, dan otomasi baris perintah. Akses shell adalah kemampuan agen fundamental. Pada [Terminal-Bench 2.0](https://github.com/terminal-bench/terminal-bench), tolok ukur yang mengevaluasi tugas terminal dunia nyata menggunakan validasi hanya shell, Claude menunjukkan peningkatan kinerja yang kuat dengan akses ke sesi bash yang persisten.
 
 ## Ikhtisar
 
 Alat bash menyediakan Claude dengan:
 - Sesi bash persisten yang mempertahankan status
-- Kemampuan untuk menjalankan perintah shell apa pun
+- Kemampuan menjalankan perintah shell apa pun
 - Akses ke variabel lingkungan dan direktori kerja
-- Kemampuan chaining perintah dan skrip
+- Kemampuan perantaian perintah dan skrip
 
 Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
 
 ## Kasus penggunaan
 
-- **Alur kerja pengembangan:** Jalankan perintah build, pengujian, dan alat pengembangan
-- **Otomasi sistem:** Jalankan skrip, kelola file, otomasi tugas
+- **Alur kerja pengembangan:** Jalankan perintah build, tes, dan alat pengembangan
+- **Otomasi sistem:** Jalankan skrip, kelola file, otomatisasi tugas
 - **Pemrosesan data:** Proses file, jalankan skrip analisis, kelola dataset
-- **Pengaturan lingkungan:** Instal paket, konfigurasi lingkungan
+- **Penyiapan lingkungan:** Instal paket, konfigurasi lingkungan
 
 ## Mulai cepat
 
@@ -41,7 +43,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "tools": [
       {
@@ -60,7 +62,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --tool '{type: bash_20250124, name: bash}' \
   --message '{role: user, content: List all Python files in the current directory.}'
@@ -72,7 +74,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[{"type": "bash_20250124", "name": "bash"}],
     messages=[
@@ -91,7 +93,7 @@ Alat bash mempertahankan sesi yang persisten:
 1. Claude menentukan perintah apa yang akan dijalankan
 2. Anda menjalankan perintah dalam shell bash
 3. Kembalikan output (stdout dan stderr) ke Claude
-4. Status sesi tetap ada di antara perintah (variabel lingkungan, direktori kerja)
+4. Status sesi persisten antara perintah (variabel lingkungan, direktori kerja)
 
 ## Parameter
 
@@ -124,14 +126,14 @@ Mulai ulang sesi:
 
 ## Contoh: Otomasi multi-langkah
 
-Claude dapat merangkai perintah untuk menyelesaikan tugas yang kompleks:
+Claude dapat merantai perintah untuk menyelesaikan tugas kompleks:
 
 ```text
 Permintaan pengguna:
-"Instal pustaka requests dan buat skrip Python sederhana yang
-mengambil lelucon dari API, lalu jalankan."
+"Install the requests library and create a simple Python script that
+fetches a joke from an API, then run it."
 
-Penggunaan alat Claude:
+Alat Claude menggunakan:
 1. Instal paket
    {"command": "pip install requests"}
 
@@ -142,11 +144,11 @@ Penggunaan alat Claude:
    {"command": "python fetch_joke.py"}
 ```
 
-Sesi mempertahankan status di antara perintah, sehingga file yang dibuat di langkah 2 tersedia di langkah 3.
+Sesi mempertahankan status antara perintah, jadi file yang dibuat di langkah 2 tersedia di langkah 3.
 
 ## Implementasikan alat bash
 
-Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini, Anda tidak perlu menyediakan skema input seperti alat lainnya; skema sudah tertanam dalam model Claude dan tidak dapat dimodifikasi.
+Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini, Anda tidak perlu menyediakan skema input seperti alat lainnya; skema dibangun ke dalam model Claude dan tidak dapat dimodifikasi.
 
 <Steps>
   <Step title="Siapkan lingkungan bash">
@@ -218,7 +220,7 @@ Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini,
     ```
   </Step>
   <Step title="Implementasikan langkah-langkah keamanan">
-    Tambahkan validasi dan pembatasan. Gunakan daftar izin daripada daftar blokir, karena daftar blokir mudah dilewati. Tolak operator shell agar perintah yang dirantai tidak dapat melewati daftar izin:
+    Tambahkan validasi dan pembatasan. Gunakan daftar izin daripada daftar blokir, karena daftar blokir mudah dilewati. Tolak operator shell sehingga perintah berantai tidak dapat melewati daftar izin:
     ```python
     import shlex
 
@@ -247,7 +249,7 @@ Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini,
 
         return True, None
     ```
-    Pemeriksaan ini adalah lini pertahanan pertama. Untuk isolasi yang lebih kuat, jalankan perintah yang telah divalidasi dengan `shell=False` dan berikan `shlex.split(command)` sebagai daftar argumen, sehingga shell tidak pernah menginterpretasikan string tersebut.
+    Pemeriksaan ini adalah garis pertahanan pertama. Untuk isolasi yang lebih kuat, jalankan perintah yang divalidasi dengan `shell=False` dan teruskan `shlex.split(command)` sebagai daftar argumen, sehingga shell tidak pernah menginterpretasi string.
   </Step>
 </Steps>
 
@@ -257,7 +259,7 @@ Saat mengimplementasikan alat bash, tangani berbagai skenario kesalahan:
 
 <section title="Batas waktu eksekusi perintah">
 
-Jika perintah membutuhkan waktu terlalu lama untuk dijalankan:
+Jika perintah memakan waktu terlalu lama untuk dijalankan:
 
 ```json
 {
@@ -366,7 +368,7 @@ def truncate_output(output, max_lines=100):
 
 <section title="Catat semua perintah">
 
-Simpan jejak audit dari perintah yang dijalankan:
+Simpan jejak audit perintah yang dijalankan:
 ```python
 import logging
 
@@ -399,8 +401,8 @@ def sanitize_output(output):
 ## Keamanan
 
 <Warning>
-Alat bash menyediakan akses sistem langsung. Implementasikan langkah-langkah keamanan penting berikut:
-- Menjalankan dalam lingkungan terisolasi (Docker/VM)
+Alat bash menyediakan akses sistem langsung. Implementasikan langkah-langkah keamanan penting ini:
+- Berjalan di lingkungan terisolasi (Docker/VM)
 - Mengimplementasikan penyaringan perintah dan daftar izin
 - Menetapkan batas sumber daya (CPU, memori, disk)
 - Mencatat semua perintah yang dijalankan
@@ -408,7 +410,7 @@ Alat bash menyediakan akses sistem langsung. Implementasikan langkah-langkah kea
 
 ### Rekomendasi utama
 - Gunakan `ulimit` untuk menetapkan batasan sumber daya
-- Filter perintah berbahaya (`sudo`, `rm -rf`, dll.)
+- Saring perintah berbahaya (`sudo`, `rm -rf`, dll.)
 - Jalankan dengan izin pengguna minimal
 - Pantau dan catat semua eksekusi perintah
 
@@ -426,18 +428,18 @@ Lihat [harga penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricin
 ## Pola umum
 
 ### Alur kerja pengembangan
-- Menjalankan pengujian: `pytest && coverage report`
+- Menjalankan tes: `pytest && coverage report`
 - Membangun proyek: `npm install && npm run build`
 - Operasi Git: `git status && git add . && git commit -m "message"`
 
 #### Checkpointing berbasis Git
 
-Git berfungsi sebagai mekanisme pemulihan terstruktur dalam alur kerja agen yang berjalan lama, bukan hanya cara untuk menyimpan perubahan:
+Git berfungsi sebagai mekanisme pemulihan terstruktur dalam alur kerja agen jangka panjang, bukan hanya cara untuk menyimpan perubahan:
 
-- **Tangkap baseline:** Sebelum pekerjaan agen dimulai, commit status saat ini. Ini adalah titik awal yang diketahui baik.
-- **Commit per fitur:** Setiap fitur yang selesai mendapatkan commit-nya sendiri. Ini berfungsi sebagai titik rollback jika ada yang salah kemudian.
-- **Rekonstruksi status di awal sesi:** Baca `git log` bersama file kemajuan untuk memahami apa yang sudah selesai dan apa yang berikutnya.
-- **Kembalikan saat gagal:** Jika pekerjaan bermasalah, `git checkout` mengembalikan ke commit terakhir yang baik alih-alih mencoba men-debug status yang rusak.
+- **Tangkap baseline:** Sebelum pekerjaan agen dimulai, komit status saat ini. Ini adalah titik awal yang diketahui baik.
+- **Komit per fitur:** Setiap fitur yang selesai mendapat komitnya sendiri. Ini berfungsi sebagai titik rollback jika ada yang salah nanti.
+- **Rekonstruksi status saat memulai sesi:** Baca `git log` bersama file kemajuan untuk memahami apa yang sudah dilakukan dan apa yang akan datang selanjutnya.
+- **Kembalikan saat gagal:** Jika pekerjaan menjadi kacau, `git checkout` kembali ke komit terakhir yang baik daripada mencoba men-debug status yang rusak.
 
 ### Operasi file
 - Memproses data: `wc -l *.csv && ls -lh *.csv`
@@ -447,22 +449,22 @@ Git berfungsi sebagai mekanisme pemulihan terstruktur dalam alur kerja agen yang
 ### Tugas sistem
 - Memeriksa sumber daya: `df -h && free -m`
 - Manajemen proses: `ps aux | grep python`
-- Pengaturan lingkungan: `export PATH=$PATH:/new/path && echo $PATH`
+- Penyiapan lingkungan: `export PATH=$PATH:/new/path && echo $PATH`
 
 ## Keterbatasan
 
 - **Tidak ada perintah interaktif:** Tidak dapat menangani `vim`, `less`, atau prompt kata sandi
 - **Tidak ada aplikasi GUI:** Hanya baris perintah
-- **Cakupan sesi:** Status sesi bash berada di sisi klien. API bersifat stateless. Aplikasi Anda bertanggung jawab untuk mempertahankan sesi shell di antara giliran.
+- **Cakupan sesi:** Status sesi bash adalah sisi klien. API tidak memiliki status. Aplikasi Anda bertanggung jawab untuk mempertahankan sesi shell antara giliran.
 - **Batas output:** Output besar mungkin dipotong
-- **Tidak ada streaming:** Hasil dikembalikan setelah selesai
+- **Tidak ada streaming:** Hasil dikembalikan setelah penyelesaian
 
 ## Menggabungkan dengan alat lain
 
-Alat bash paling kuat ketika dikombinasikan dengan [editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool) dan alat lainnya.
+Alat bash paling kuat ketika digabungkan dengan [editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool) dan alat lainnya.
 
 <Note>
-Jika Anda juga menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool), Claude memiliki akses ke dua lingkungan eksekusi terpisah: sesi bash lokal Anda dan kontainer sandbox Anthropic. Status tidak dibagikan di antara keduanya. Lihat [Menggunakan eksekusi kode dengan alat eksekusi lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#using-code-execution-with-other-execution-tools) untuk panduan tentang cara meminta Claude membedakan antara lingkungan.
+Jika Anda juga menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool), Claude memiliki akses ke dua lingkungan eksekusi terpisah: sesi bash lokal Anda dan kontainer sandbox Anthropic. Status tidak dibagikan di antara mereka. Lihat [Menggunakan eksekusi kode dengan alat eksekusi lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#using-code-execution-with-other-execution-tools) untuk panduan tentang meminta Claude membedakan antara lingkungan.
 </Note>
 
 ## Langkah berikutnya

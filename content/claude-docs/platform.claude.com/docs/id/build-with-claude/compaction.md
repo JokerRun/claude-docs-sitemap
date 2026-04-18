@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: ba7e8a20f06b4b7d1a4ace9b5b77e044cf405ddafef0c109c8dd0f7b5836ba73
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 7320114ed0da131beaa255bf7d7243a59d99ec41b42e6a484cfa612cc8232819
 ---
 
-# Pemadatan
+# Compaction
 
-Pemadatan konteks sisi server untuk mengelola percakapan panjang yang mendekati batas jendela konteks.
+Compaction konteks sisi server untuk mengelola percakapan panjang yang mendekati batas jendela konteks.
 
 ---
 
@@ -16,36 +16,37 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
 </Note>
 
 <Tip>
-Pemadatan sisi server adalah strategi yang direkomendasikan untuk mengelola konteks dalam percakapan jangka panjang dan alur kerja agentic. Ini menangani manajemen konteks secara otomatis dengan usaha integrasi minimal.
+Compaction sisi server adalah strategi yang direkomendasikan untuk mengelola konteks dalam percakapan jangka panjang dan alur kerja agentic. Ini menangani manajemen konteks secara otomatis dengan usaha integrasi minimal.
 </Tip>
 
-Pemadatan memperpanjang panjang konteks efektif untuk percakapan dan tugas jangka panjang dengan secara otomatis merangkum konteks yang lebih lama saat mendekati batas jendela konteks. Ini bukan hanya tentang tetap berada di bawah batas token. Seiring percakapan menjadi lebih panjang, model kesulitan mempertahankan fokus di seluruh riwayat. Pemadatan membuat konteks aktif tetap fokus dan berkinerja dengan mengganti konten basi dengan ringkasan ringkas.
+Compaction memperpanjang panjang konteks efektif untuk percakapan dan tugas jangka panjang dengan secara otomatis merangkum konteks yang lebih lama ketika mendekati batas jendela konteks. Ini bukan hanya tentang tetap berada di bawah batas token. Seiring percakapan menjadi lebih panjang, model kesulitan mempertahankan fokus di seluruh riwayat. Compaction menjaga konteks aktif tetap fokus dan berkinerja dengan mengganti konten basi dengan ringkasan ringkas.
 
 <Tip>
-Untuk melihat lebih dalam mengapa konteks panjang menurun dan bagaimana pemadatan membantu, lihat
-[Rekayasa konteks yang efektif](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+Untuk pandangan yang lebih mendalam tentang mengapa konteks panjang menurun dan bagaimana compaction membantu, lihat
+[Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 </Tip>
 
 Ini ideal untuk:
 
-- Percakapan berbasis obrolan, multi-putaran di mana Anda ingin pengguna menggunakan satu obrolan untuk jangka waktu yang lama
+- Percakapan berbasis chat, multi-turn di mana Anda ingin pengguna menggunakan satu chat untuk jangka waktu yang lama
 - Prompt berorientasi tugas yang memerlukan banyak pekerjaan lanjutan (sering kali penggunaan alat) yang mungkin melebihi jendela konteks
 
 <Note>
-Pemadatan sedang dalam beta. Sertakan [header beta](/docs/id/api/beta-headers) `compact-2026-01-12` dalam permintaan API Anda untuk menggunakan fitur ini.
+Compaction sedang dalam beta. Sertakan [beta header](/docs/id/api/beta-headers) `compact-2026-01-12` dalam permintaan API Anda untuk menggunakan fitur ini.
 </Note>
 
 ## Model yang didukung
 
-Pemadatan didukung pada model berikut:
+Compaction didukung pada model berikut:
 
 - [Claude Mythos Preview](https://anthropic.com/glasswing) (`claude-mythos-preview`)
+- Claude Opus 4.7 (`claude-opus-4-7`)
 - Claude Opus 4.6 (`claude-opus-4-6`)
 - Claude Sonnet 4.6 (`claude-sonnet-4-6`)
 
-## Cara kerja pemadatan
+## Cara kerja compaction
 
-Ketika pemadatan diaktifkan, Claude secara otomatis merangkum percakapan Anda saat mendekati ambang token yang dikonfigurasi. API:
+Ketika compaction diaktifkan, Claude secara otomatis merangkum percakapan Anda ketika mendekati ambang token yang dikonfigurasi. API:
 
 1. Mendeteksi ketika token input melebihi ambang pemicu yang Anda tentukan.
 2. Menghasilkan ringkasan percakapan saat ini.
@@ -54,11 +55,11 @@ Ketika pemadatan diaktifkan, Claude secara otomatis merangkum percakapan Anda sa
 
 Pada permintaan berikutnya, tambahkan respons ke pesan Anda. API secara otomatis menghapus semua blok pesan sebelum blok `compaction`, melanjutkan percakapan dari ringkasan.
 
-![Diagram alur yang menunjukkan proses pemadatan: ketika token input melebihi ambang pemicu, Claude menghasilkan ringkasan dalam blok pemadatan dan melanjutkan respons dengan konteks yang dipadatkan](/docs/images/compaction-flow.svg)
+![Diagram alur yang menunjukkan proses compaction: ketika token input melebihi ambang pemicu, Claude menghasilkan ringkasan dalam blok compaction dan melanjutkan respons dengan konteks yang dipadatkan](/docs/images/compaction-flow.svg)
 
 ## Penggunaan dasar
 
-Aktifkan pemadatan dengan menambahkan strategi `compact_20260112` ke `context_management.edits` dalam permintaan Messages API Anda.
+Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_management.edits` dalam permintaan Messages API Anda.
 
 <CodeGroup>
 ```bash Shell
@@ -69,7 +70,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 4096,
     "messages": [
         {
@@ -89,7 +90,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant beta:messages create --beta compact-2026-01-12 <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -109,7 +110,7 @@ messages = [{"role": "user", "content": "Help me build a website"}]
 
 response = client.beta.messages.create(
     betas=["compact-2026-01-12"],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=messages,
     context_management={"edits": [{"type": "compact_20260112"}]},
@@ -130,7 +131,7 @@ const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
 
 const response = await client.beta.messages.create({
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages,
   context_management: {
@@ -171,7 +172,7 @@ class Program
         var parameters = new MessageCreateParams
         {
             Betas = ["compact-2026-01-12"],
-            Model = "claude-opus-4-6",
+            Model = "claude-opus-4-7",
             MaxTokens = 4096,
             Messages = messages,
             ContextManagement = new BetaContextManagementConfig
@@ -212,7 +213,7 @@ func main() {
 	}
 
 	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 4096,
 		Messages:  messages,
 		ContextManagement: anthropic.BetaContextManagementConfigParam{
@@ -247,7 +248,7 @@ public class CompactionExample {
 
         MessageCreateParams params = MessageCreateParams.builder()
             .addBeta("compact-2026-01-12")
-            .model("claude-opus-4-6")
+            .model("claude-opus-4-7")
             .maxTokens(4096L)
             .addUserMessage("Help me build a website")
             .contextManagement(BetaContextManagementConfig.builder()
@@ -278,7 +279,7 @@ $messages = [
 $response = $client->beta->messages->create(
     maxTokens: 4096,
     messages: $messages,
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     betas: ['compact-2026-01-12'],
     contextManagement: [
         'edits' => [
@@ -304,7 +305,7 @@ messages = [
 
 response = client.beta.messages.create(
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: messages,
   context_management: {
@@ -324,18 +325,18 @@ puts response
 | Parameter | Tipe | Default | Deskripsi |
 |:----------|:-----|:--------|:----------|
 | `type` | string | Diperlukan | Harus `"compact_20260112"` |
-| `trigger` | object | 150.000 token | Kapan memicu pemadatan. Harus minimal 50.000 token. |
-| `pause_after_compaction` | boolean | `false` | Apakah akan berhenti setelah menghasilkan ringkasan pemadatan |
-| `instructions` | string | `null` | Prompt perangkuman khusus. Sepenuhnya menggantikan prompt default saat disediakan. |
+| `trigger` | object | 150.000 token | Kapan memicu compaction. Harus minimal 50.000 token. |
+| `pause_after_compaction` | boolean | `false` | Apakah akan berhenti setelah menghasilkan ringkasan compaction |
+| `instructions` | string | `null` | Prompt perangkuman khusus. Sepenuhnya menggantikan prompt default ketika disediakan. |
 
 ### Konfigurasi pemicu
 
-Konfigurasikan kapan pemadatan dipicu menggunakan parameter `trigger`:
+Konfigurasikan kapan compaction dipicu menggunakan parameter `trigger`:
 
 <CodeGroup>
 ```bash CLI
 ant beta:messages create --beta compact-2026-01-12 <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -356,7 +357,7 @@ client = anthropic.Anthropic()
 messages = [{"role": "user", "content": "Hello, Claude"}]
 response = client.beta.messages.create(
     betas=["compact-2026-01-12"],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=messages,
     context_management={
@@ -378,7 +379,7 @@ const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [];
 
 const response = await client.beta.messages.create({
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages,
   context_management: {
@@ -411,7 +412,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = "claude-opus-4-6",
+            Model = "claude-opus-4-7",
             MaxTokens = 4096,
             Betas = ["compact-2026-01-12"],
             Messages = messages,
@@ -445,7 +446,7 @@ func main() {
 	messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude"))}
 
 	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 4096,
 		Messages:  messages,
 		ContextManagement: anthropic.BetaContextManagementConfigParam{
@@ -478,7 +479,7 @@ public class CompactionExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model("claude-opus-4-6")
+            .model("claude-opus-4-7")
             .maxTokens(4096L)
             .addBeta("compact-2026-01-12")
             .addUserMessage("Hello, Claude")
@@ -508,7 +509,7 @@ $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
 $message = $client->beta->messages->create(
     maxTokens: 4096,
     messages: $messages,
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     betas: ['compact-2026-01-12'],
     contextManagement: [
         'edits' => [
@@ -534,7 +535,7 @@ messages = [{ role: "user", content: "Hello, Claude" }]
 
 response = client.beta.messages.create(
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: messages,
   context_management: {
@@ -555,7 +556,7 @@ puts response
 
 ### Instruksi perangkuman khusus
 
-Secara default, pemadatan menggunakan prompt perangkuman berikut:
+Secara default, compaction menggunakan prompt perangkuman berikut:
 
 ```text
 You have written a partial transcript for the initial task above. Please write a summary of the transcript. The purpose of this summary is to provide continuity so you can continue to make progress towards solving the task in a future context, where the raw history above may not be accessible and will be replaced with this summary. Write down anything that would be helpful, including the state, next steps, learnings etc. You must wrap your summary in a <summary></summary> block.
@@ -566,7 +567,7 @@ Anda dapat memberikan instruksi khusus melalui parameter `instructions` untuk me
 <CodeGroup>
 ```bash CLI
 ant beta:messages create --beta compact-2026-01-12 <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -587,7 +588,7 @@ client = anthropic.Anthropic()
 messages = [{"role": "user", "content": "Hello, Claude"}]
 response = client.beta.messages.create(
     betas=["compact-2026-01-12"],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=messages,
     context_management={
@@ -609,7 +610,7 @@ const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [];
 
 const response = await client.beta.messages.create({
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages,
   context_management: {
@@ -639,7 +640,7 @@ class Program
         var parameters = new MessageCreateParams
         {
             Betas = ["compact-2026-01-12"],
-            Model = "claude-opus-4-6",
+            Model = "claude-opus-4-7",
             MaxTokens = 4096,
             Messages =
             [
@@ -676,7 +677,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 4096,
 		Messages: []anthropic.BetaMessageParam{
 			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Help me build a Python web scraper")),
@@ -713,7 +714,7 @@ public class CompactionExample {
 
         MessageCreateParams params = MessageCreateParams.builder()
             .addBeta("compact-2026-01-12")
-            .model("claude-opus-4-6")
+            .model("claude-opus-4-7")
             .maxTokens(4096L)
             .addUserMessage("Help me build a Python web scraper")
             .addAssistantMessage("I'll help you build a web scraper...")
@@ -744,7 +745,7 @@ $response = $client->beta->messages->create(
         ['role' => 'assistant', 'content' => "I'll help you build a web scraper..."],
         ['role' => 'user', 'content' => 'Add support for JavaScript-rendered pages']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     betas: ['compact-2026-01-12'],
     contextManagement: [
         'edits' => [
@@ -766,7 +767,7 @@ client = Anthropic::Client.new
 
 response = client.beta.messages.create(
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: [
     { role: "user", content: "Help me build a Python web scraper" },
@@ -798,7 +799,7 @@ Ketika diaktifkan, API mengembalikan pesan dengan alasan penghentian `compaction
 ```bash CLI
 ant beta:messages create --beta compact-2026-01-12 \
   --transform '{stop_reason,content}' --format jsonl <<'YAML' > resp.json
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -818,7 +819,7 @@ if grep -q '"stop_reason":"compaction"' resp.json; then
 
   # Continue the request
   ant beta:messages create --beta compact-2026-01-12 <<YAML > /dev/null
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -839,7 +840,7 @@ client = anthropic.Anthropic()
 messages = [{"role": "user", "content": "Hello, Claude"}]
 response = client.beta.messages.create(
     betas=["compact-2026-01-12"],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=messages,
     context_management={
@@ -855,7 +856,7 @@ if response.stop_reason == "compaction":
     # Continue the request
     response = client.beta.messages.create(
         betas=["compact-2026-01-12"],
-        model="claude-opus-4-6",
+        model="claude-opus-4-7",
         max_tokens=4096,
         messages=messages,
         context_management={"edits": [{"type": "compact_20260112"}]},
@@ -870,7 +871,7 @@ const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [];
 
 let response = await client.beta.messages.create({
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages,
   context_management: {
@@ -894,7 +895,7 @@ if ((response.stop_reason as string) === "compaction") {
   // Continue the request
   response = await client.beta.messages.create({
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 4096,
     messages,
     context_management: {
@@ -921,7 +922,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = "claude-opus-4-6",
+            Model = "claude-opus-4-7",
             MaxTokens = 4096,
             Betas = ["compact-2026-01-12"],
             Messages = messages,
@@ -946,7 +947,7 @@ class Program
 
             parameters = new()
             {
-                Model = "claude-opus-4-6",
+                Model = "claude-opus-4-7",
                 MaxTokens = 4096,
                 Betas = ["compact-2026-01-12"],
                 Messages = messages,
@@ -987,7 +988,7 @@ func main() {
 	}
 
 	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:             anthropic.ModelClaudeOpus4_6,
+		Model:             anthropic.ModelClaudeOpus4_7,
 		MaxTokens:         4096,
 		Messages:          messages,
 		ContextManagement: compactEdit,
@@ -1001,7 +1002,7 @@ func main() {
 		messages = append(messages, response.ToParam())
 
 		response, err = client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-			Model:     anthropic.ModelClaudeOpus4_6,
+			Model:     anthropic.ModelClaudeOpus4_7,
 			MaxTokens: 4096,
 			Messages:  messages,
 			ContextManagement: anthropic.BetaContextManagementConfigParam{
@@ -1034,7 +1035,7 @@ public class CompactionPauseExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model("claude-opus-4-6")
+            .model("claude-opus-4-7")
             .maxTokens(4096L)
             .addBeta("compact-2026-01-12")
             .addUserMessage("Help me build a website")
@@ -1053,7 +1054,7 @@ public class CompactionPauseExample {
             // Append the compaction block and continue the request
             // by building a new request with the compacted context
             MessageCreateParams continueParams = MessageCreateParams.builder()
-                .model("claude-opus-4-6")
+                .model("claude-opus-4-7")
                 .maxTokens(4096L)
                 .addBeta("compact-2026-01-12")
                 .addUserMessage("Help me build a website")
@@ -1082,7 +1083,7 @@ $messages = [];
 $response = $client->beta->messages->create(
     maxTokens: 4096,
     messages: $messages,
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     betas: ['compact-2026-01-12'],
     contextManagement: [
         'edits' => [
@@ -1103,7 +1104,7 @@ if ($response->stopReason === 'compaction') {
     $response = $client->beta->messages->create(
         maxTokens: 4096,
         messages: $messages,
-        model: 'claude-opus-4-6',
+        model: 'claude-opus-4-7',
         betas: ['compact-2026-01-12'],
         contextManagement: [
             'edits' => [
@@ -1124,7 +1125,7 @@ messages = []
 
 response = client.beta.messages.create(
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: messages,
   context_management: {
@@ -1142,7 +1143,7 @@ if response.stop_reason == :compaction
 
   response = client.beta.messages.create(
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 4096,
     messages: messages,
     context_management: {
@@ -1157,7 +1158,7 @@ puts response
 
 #### Memberlakukan anggaran token total
 
-Ketika model bekerja pada tugas panjang dengan banyak iterasi penggunaan alat, konsumsi token total dapat meningkat secara signifikan. Anda dapat menggabungkan `pause_after_compaction` dengan penghitung pemadatan untuk memperkirakan penggunaan kumulatif dan menyelesaikan tugas dengan baik setelah anggaran tercapai:
+Ketika model bekerja pada tugas panjang dengan banyak iterasi penggunaan alat, konsumsi token total dapat tumbuh secara signifikan. Anda dapat menggabungkan `pause_after_compaction` dengan penghitung pemadatan untuk memperkirakan penggunaan kumulatif dan menyelesaikan tugas dengan baik setelah anggaran tercapai:
 
 ```python Python hidelines={1..2}
 import anthropic
@@ -1170,7 +1171,7 @@ n_compactions = 0
 
 response = client.beta.messages.create(
     betas=["compact-2026-01-12"],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=messages,
     context_management={
@@ -1219,15 +1220,15 @@ Percakapan yang berjalan lama dapat menghasilkan beberapa pemadatan. Blok pemada
 }
 ```
 
-### Melewatkan blok pemadatan kembali
+### Meneruskan blok pemadatan kembali
 
-Anda harus melewatkan blok `compaction` kembali ke API pada permintaan berikutnya untuk melanjutkan percakapan dengan prompt yang disingkat. Pendekatan paling sederhana adalah menambahkan seluruh konten respons ke pesan Anda:
+Anda harus meneruskan blok `compaction` kembali ke API pada permintaan berikutnya untuk melanjutkan percakapan dengan prompt yang diperpendek. Pendekatan paling sederhana adalah menambahkan seluruh konten respons ke pesan Anda:
 
 <CodeGroup>
 ```bash CLI
 ant beta:messages create --beta compact-2026-01-12 \
   --transform content --format jsonl <<'YAML' > content.json
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -1240,7 +1241,7 @@ YAML
 # After receiving a response with a compaction block, append it as the
 # assistant turn and continue the conversation
 ant beta:messages create --beta compact-2026-01-12 <<YAML
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -1262,7 +1263,7 @@ client = anthropic.Anthropic()
 messages = [{"role": "user", "content": "Hello, Claude"}]
 response = client.beta.messages.create(
     betas=["compact-2026-01-12"],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=messages,
     context_management={"edits": [{"type": "compact_20260112"}]},
@@ -1275,7 +1276,7 @@ messages.append({"role": "user", "content": "Now add error handling"})
 
 response = client.beta.messages.create(
     betas=["compact-2026-01-12"],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=messages,
     context_management={"edits": [{"type": "compact_20260112"}]},
@@ -1291,7 +1292,7 @@ const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [];
 // Assume we already have a response from a previous request
 const response = await client.beta.messages.create({
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages,
   context_management: {
@@ -1310,7 +1311,7 @@ messages.push({ role: "user", content: "Now add error handling" });
 
 const nextResponse = await client.beta.messages.create({
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages,
   context_management: {
@@ -1341,7 +1342,7 @@ class Program
         var response = await client.Beta.Messages.Create(new()
         {
             Betas = ["compact-2026-01-12"],
-            Model = "claude-opus-4-6",
+            Model = "claude-opus-4-7",
             MaxTokens = 4096,
             Messages = messages,
             ContextManagement = new BetaContextManagementConfig
@@ -1361,7 +1362,7 @@ class Program
         var nextResponse = await client.Beta.Messages.Create(new()
         {
             Betas = ["compact-2026-01-12"],
-            Model = "claude-opus-4-6",
+            Model = "claude-opus-4-7",
             MaxTokens = 4096,
             Messages = messages,
             ContextManagement = new BetaContextManagementConfig
@@ -1399,7 +1400,7 @@ func main() {
 	}
 
 	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:             anthropic.ModelClaudeOpus4_6,
+		Model:             anthropic.ModelClaudeOpus4_7,
 		MaxTokens:         4096,
 		Messages:          messages,
 		ContextManagement: compactEdit,
@@ -1414,7 +1415,7 @@ func main() {
 	messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Now add error handling")))
 
 	nextResponse, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:             anthropic.ModelClaudeOpus4_6,
+		Model:             anthropic.ModelClaudeOpus4_7,
 		MaxTokens:         4096,
 		Messages:          messages,
 		ContextManagement: compactEdit,
@@ -1444,7 +1445,7 @@ public class CompactionExample {
         BetaMessage response = client.beta().messages().create(
             MessageCreateParams.builder()
                 .addBeta("compact-2026-01-12")
-                .model("claude-opus-4-6")
+                .model("claude-opus-4-7")
                 .maxTokens(4096L)
                 .addUserMessage("Help me build a web scraper")
                 .contextManagement(BetaContextManagementConfig.builder()
@@ -1457,7 +1458,7 @@ public class CompactionExample {
         BetaMessage nextResponse = client.beta().messages().create(
             MessageCreateParams.builder()
                 .addBeta("compact-2026-01-12")
-                .model("claude-opus-4-6")
+                .model("claude-opus-4-7")
                 .maxTokens(4096L)
                 .addUserMessage("Help me build a web scraper")
                 .addMessage(response)
@@ -1486,7 +1487,7 @@ $messages = [
 $response = $client->beta->messages->create(
     maxTokens: 4096,
     messages: $messages,
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     betas: ['compact-2026-01-12'],
     contextManagement: [
         'edits' => [['type' => 'compact_20260112']]
@@ -1500,7 +1501,7 @@ $messages[] = ['role' => 'user', 'content' => 'Now add error handling'];
 $nextResponse = $client->beta->messages->create(
     maxTokens: 4096,
     messages: $messages,
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     betas: ['compact-2026-01-12'],
     contextManagement: [
         'edits' => [['type' => 'compact_20260112']]
@@ -1521,7 +1522,7 @@ messages = [
 
 response = client.beta.messages.create(
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: messages,
   context_management: {
@@ -1535,7 +1536,7 @@ messages << { role: "user", content: "Now add error handling" }
 
 next_response = client.beta.messages.create(
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: messages,
   context_management: {
@@ -1554,13 +1555,13 @@ Ketika API menerima blok `compaction`, semua blok konten sebelumnya diabaikan. A
 
 ### Streaming
 
-Ketika streaming respons dengan pemadatan diaktifkan, Anda akan menerima acara `content_block_start` ketika pemadatan dimulai. Blok pemadatan streaming berbeda dari blok teks. Anda akan menerima acara `content_block_start`, diikuti oleh satu `content_block_delta` dengan konten ringkasan lengkap (tidak ada streaming perantara), dan kemudian acara `content_block_stop`.
+Ketika streaming respons dengan pemadatan diaktifkan, Anda akan menerima acara `content_block_start` ketika pemadatan dimulai. Blok pemadatan streaming berbeda dari blok teks. Anda akan menerima acara `content_block_start`, diikuti oleh satu `content_block_delta` dengan konten ringkasan lengkap (tanpa streaming perantara), dan kemudian acara `content_block_stop`.
 
 <CodeGroup>
 ```bash CLI
 ant beta:messages create --stream --format jsonl \
   --beta compact-2026-01-12 <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -1579,7 +1580,7 @@ messages = [{"role": "user", "content": "Hello, Claude"}]
 
 with client.beta.messages.stream(
     betas=["compact-2026-01-12"],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=messages,
     context_management={"edits": [{"type": "compact_20260112"}]},
@@ -1610,7 +1611,7 @@ const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [];
 
 const stream = await client.beta.messages.stream({
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages,
   context_management: {
@@ -1628,7 +1629,9 @@ for await (const event of stream) {
   } else if (event.type === "content_block_delta") {
     if ((event.delta as { type: string }).type === "compaction_delta") {
       console.log(
-        `Compaction complete: ${(event.delta as unknown as { content: string }).content.length} chars`
+        `Compaction complete: ${
+          (event.delta as unknown as { content: string }).content.length
+        } chars`
       );
     } else if (event.delta.type === "text_delta") {
       process.stdout.write(event.delta.text);
@@ -1661,7 +1664,7 @@ class Program
         var parameters = new MessageCreateParams
         {
             Betas = ["compact-2026-01-12"],
-            Model = "claude-opus-4-6",
+            Model = "claude-opus-4-7",
             MaxTokens = 4096,
             Messages = messages,
             ContextManagement = new BetaContextManagementConfig
@@ -1714,7 +1717,7 @@ func main() {
 	messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude"))}
 
 	stream := client.Beta.Messages.NewStreaming(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 4096,
 		Messages:  messages,
 		ContextManagement: anthropic.BetaContextManagementConfigParam{
@@ -1762,7 +1765,7 @@ public class CompactionStreamingExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model("claude-opus-4-6")
+            .model("claude-opus-4-7")
             .maxTokens(4096L)
             .addBeta("compact-2026-01-12")
             .addUserMessage("Hello, Claude")
@@ -1807,7 +1810,7 @@ $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
 $stream = $client->beta->messages->createStream(
     maxTokens: 4096,
     messages: $messages,
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     betas: ['compact-2026-01-12'],
     contextManagement: [
         'edits' => [
@@ -1841,7 +1844,7 @@ messages = [{ role: "user", content: "Hello, Claude" }]
 
 stream = client.beta.messages.stream(
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: messages,
   context_management: {
@@ -1870,7 +1873,7 @@ end
 
 ### Prompt caching
 
-Compaction bekerja dengan baik dengan [prompt caching](/docs/id/build-with-claude/prompt-caching). Anda dapat menambahkan breakpoint `cache_control` pada blok compaction untuk menyimpan konten yang diringkas dalam cache. Konten compacted asli diabaikan.
+Compaction bekerja dengan baik dengan [prompt caching](/docs/id/build-with-claude/prompt-caching). Anda dapat menambahkan breakpoint `cache_control` pada blok compaction untuk menyimpan konten yang diringkas dalam cache. Konten compaction asli diabaikan.
 
 ```json
 {
@@ -1893,7 +1896,7 @@ Compaction bekerja dengan baik dengan [prompt caching](/docs/id/build-with-claud
 
 Ketika compaction terjadi, ringkasan menjadi konten baru yang perlu ditulis ke cache. Tanpa breakpoint cache tambahan, ini juga akan membatalkan system prompt yang di-cache, memerlukan untuk di-cache ulang bersama dengan ringkasan compaction.
 
-Untuk memaksimalkan cache hit rates, tambahkan breakpoint `cache_control` di akhir system prompt Anda. Ini menjaga system prompt tetap di-cache secara terpisah dari percakapan, sehingga ketika compaction terjadi:
+Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di akhir system prompt Anda. Ini menjaga system prompt tetap di-cache secara terpisah dari percakapan, sehingga ketika compaction terjadi:
 
 - Cache system prompt tetap valid dan dibaca dari cache
 - Hanya ringkasan compaction yang perlu ditulis sebagai entri cache baru
@@ -1901,7 +1904,7 @@ Untuk memaksimalkan cache hit rates, tambahkan breakpoint `cache_control` di akh
 <CodeGroup>
 ```bash CLI
 ant beta:messages create --beta compact-2026-01-12 <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 system:
   - type: text
@@ -1924,7 +1927,7 @@ client = anthropic.Anthropic()
 messages = [{"role": "user", "content": "Hello, Claude"}]
 response = client.beta.messages.create(
     betas=["compact-2026-01-12"],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     system=[
         {
@@ -1948,7 +1951,7 @@ const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [];
 
 const response = await client.beta.messages.create({
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   system: [
     {
@@ -1980,7 +1983,7 @@ class Program
         var parameters = new MessageCreateParams
         {
             Betas = ["compact-2026-01-12"],
-            Model = "claude-opus-4-6",
+            Model = "claude-opus-4-7",
             MaxTokens = 4096,
             System = new List<BetaTextBlockParam>
             {
@@ -2017,7 +2020,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 4096,
 		System: []anthropic.BetaTextBlockParam{
 			{
@@ -2056,7 +2059,7 @@ public class CompactionExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model("claude-opus-4-6")
+            .model("claude-opus-4-7")
             .maxTokens(4096L)
             .addBeta("compact-2026-01-12")
             .systemOfBetaTextBlockParams(List.of(
@@ -2086,7 +2089,7 @@ $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
 $response = $client->beta->messages->create(
     maxTokens: 4096,
     messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     betas: ['compact-2026-01-12'],
     system: [
         [
@@ -2114,7 +2117,7 @@ client = Anthropic::Client.new
 
 response = client.beta.messages.create(
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   system: [
     {
@@ -2134,11 +2137,11 @@ puts response
 ```
 </CodeGroup>
 
-Pendekatan ini sangat bermanfaat untuk system prompts yang panjang, karena tetap di-cache bahkan di seluruh beberapa peristiwa compaction dalam percakapan.
+Pendekatan ini sangat bermanfaat untuk system prompt yang panjang, karena tetap di-cache bahkan di seluruh beberapa peristiwa compaction dalam percakapan.
 
 ## Memahami penggunaan
 
-Compaction memerlukan langkah sampling tambahan, yang berkontribusi pada rate limits dan billing. API mengembalikan informasi penggunaan terperinci dalam respons:
+Compaction memerlukan langkah sampling tambahan, yang berkontribusi pada batas laju dan penagihan. API mengembalikan informasi penggunaan terperinci dalam respons:
 
 ```json Output
 {
@@ -2161,28 +2164,28 @@ Compaction memerlukan langkah sampling tambahan, yang berkontribusi pada rate li
 }
 ```
 
-Array `iterations` menunjukkan penggunaan untuk setiap iterasi sampling. Ketika compaction terjadi, Anda akan melihat iterasi `compaction` diikuti oleh iterasi `message` utama. Top-level `input_tokens` dan `output_tokens` cocok dengan iterasi `message` persis dalam contoh ini karena hanya ada satu iterasi non-compaction. Penghitungan token iterasi terakhir mencerminkan ukuran konteks efektif setelah compaction.
+Array `iterations` menunjukkan penggunaan untuk setiap iterasi sampling. Ketika compaction terjadi, Anda akan melihat iterasi `compaction` diikuti oleh iterasi `message` utama. `input_tokens` dan `output_tokens` tingkat atas cocok dengan iterasi `message` persis dalam contoh ini karena hanya ada satu iterasi non-compaction. Hitungan token iterasi terakhir mencerminkan ukuran konteks efektif setelah compaction.
 
 <Note>
-Top-level `input_tokens` dan `output_tokens` tidak termasuk penggunaan iterasi compaction. Mereka mencerminkan jumlah dari semua iterasi non-compaction. Untuk menghitung total token yang dikonsumsi dan ditagih untuk permintaan, jumlahkan semua entri dalam array `usage.iterations`.
+`input_tokens` dan `output_tokens` tingkat atas tidak termasuk penggunaan iterasi compaction. Mereka mencerminkan jumlah semua iterasi non-compaction. Untuk menghitung total token yang dikonsumsi dan ditagih untuk permintaan, jumlahkan semua entri dalam array `usage.iterations`.
 
-Jika Anda sebelumnya mengandalkan `usage.input_tokens` dan `usage.output_tokens` untuk pelacakan biaya atau audit, Anda perlu memperbarui logika pelacakan Anda untuk mengagregasi di seluruh `usage.iterations` ketika compaction diaktifkan. Array `iterations` hanya diisi ketika compaction baru dipicu selama permintaan. Menerapkan kembali blok `compaction` sebelumnya tidak menimbulkan biaya compaction tambahan, dan bidang penggunaan top-level tetap akurat dalam kasus itu.
+Jika Anda sebelumnya mengandalkan `usage.input_tokens` dan `usage.output_tokens` untuk pelacakan biaya atau audit, Anda perlu memperbarui logika pelacakan Anda untuk menggabungkan di seluruh `usage.iterations` ketika compaction diaktifkan. Array `iterations` hanya diisi ketika compaction baru dipicu selama permintaan. Menerapkan kembali blok `compaction` sebelumnya tidak menimbulkan biaya compaction tambahan, dan bidang penggunaan tingkat atas tetap akurat dalam kasus itu.
 </Note>
 
 ## Menggabungkan dengan fitur lain
 
 ### Server tools
 
-Ketika menggunakan server tools (seperti web search), pemicu compaction diperiksa di awal setiap iterasi sampling. Compaction dapat terjadi beberapa kali dalam satu permintaan tergantung pada ambang pemicu Anda dan jumlah output yang dihasilkan.
+Saat menggunakan server tools (seperti pencarian web), pemicu compaction diperiksa di awal setiap iterasi sampling. Compaction dapat terjadi beberapa kali dalam satu permintaan tergantung pada ambang pemicu Anda dan jumlah output yang dihasilkan.
 
 ### Token counting
 
-Endpoint token counting (`/v1/messages/count_tokens`) menerapkan blok `compaction` yang ada dalam prompt Anda tetapi tidak memicu compaction baru. Gunakan untuk memeriksa penghitungan token efektif Anda setelah compaction sebelumnya:
+Endpoint token counting (`/v1/messages/count_tokens`) menerapkan blok `compaction` yang ada dalam prompt Anda tetapi tidak memicu compaction baru. Gunakan untuk memeriksa hitungan token efektif Anda setelah compaction sebelumnya:
 
 <CodeGroup>
 ```bash CLI
 cat > request.yaml <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 messages:
   - role: user
     content: Hello, Claude
@@ -2211,7 +2214,7 @@ client = anthropic.Anthropic()
 messages = [{"role": "user", "content": "Hello, Claude"}]
 count_response = client.beta.messages.count_tokens(
     betas=["compact-2026-01-12"],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     messages=messages,
     context_management={"edits": [{"type": "compact_20260112"}]},
 )
@@ -2230,7 +2233,7 @@ const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
 
 const countResponse = await client.beta.messages.countTokens({
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   messages,
   context_management: {
     edits: [{ type: "compact_20260112" }]
@@ -2257,7 +2260,7 @@ class Program
 
         var countParams = new MessageCountTokensParams
         {
-            Model = "claude-opus-4-6",
+            Model = "claude-opus-4-7",
             Messages = messages,
             ContextManagement = new BetaContextManagementConfig
             {
@@ -2288,7 +2291,7 @@ func main() {
 	messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude"))}
 
 	countResponse, err := client.Beta.Messages.CountTokens(context.TODO(), anthropic.BetaMessageCountTokensParams{
-		Model:    anthropic.ModelClaudeOpus4_6,
+		Model:    anthropic.ModelClaudeOpus4_7,
 		Messages: messages,
 		ContextManagement: anthropic.BetaContextManagementConfigParam{
 			Edits: []anthropic.BetaContextManagementConfigEditUnionParam{
@@ -2319,7 +2322,7 @@ public class Main {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
-            .model("claude-opus-4-6")
+            .model("claude-opus-4-7")
             .addUserMessage("Hello, Claude")
             .contextManagement(BetaContextManagementConfig.builder()
                 .addEdit(BetaCompact20260112Edit.builder().build())
@@ -2344,7 +2347,7 @@ $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
 
 $countResponse = $client->beta->messages->countTokens(
     messages: $messages,
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     betas: ['compact-2026-01-12'],
     contextManagement: [
         'edits' => [
@@ -2365,7 +2368,7 @@ messages = [{ role: "user", content: "Hello, Claude" }]
 
 count_response = client.beta.messages.count_tokens(
   betas: ["compact-2026-01-12"],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   messages: messages,
   context_management: {
     edits: [{ type: "compact_20260112" }]
@@ -2388,7 +2391,7 @@ Berikut adalah contoh lengkap percakapan jangka panjang dengan kompresi:
 # permintaan giliran tunggal:
 ant beta:messages create --beta compact-2026-01-12 \
   --transform 'content.#(type=="text").text' --format yaml <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -2415,7 +2418,7 @@ def chat(user_message: str) -> str:
 
     response = client.beta.messages.create(
         betas=["compact-2026-01-12"],
-        model="claude-opus-4-6",
+        model="claude-opus-4-7",
         max_tokens=4096,
         messages=messages,
         context_management={
@@ -2454,7 +2457,7 @@ async function chat(userMessage: string): Promise<string> {
 
   const response = await client.beta.messages.create({
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 4096,
     messages,
     context_management: {
@@ -2509,7 +2512,7 @@ public class Program
         var parameters = new MessageCreateParams
         {
             Betas = ["compact-2026-01-12"],
-            Model = "claude-opus-4-6",
+            Model = "claude-opus-4-7",
             MaxTokens = 4096,
             Messages = messages,
             ContextManagement = new BetaContextManagementConfig
@@ -2557,7 +2560,7 @@ func chat(userMessage string) string {
 	messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(userMessage)))
 
 	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 4096,
 		Messages:  messages,
 		ContextManagement: anthropic.BetaContextManagementConfigParam{
@@ -2620,7 +2623,7 @@ public class CompactionExample {
 
         MessageCreateParams params = MessageCreateParams.builder()
             .addBeta("compact-2026-01-12")
-            .model("claude-opus-4-6")
+            .model("claude-opus-4-7")
             .maxTokens(4096L)
             .messages(messages)
             .contextManagement(BetaContextManagementConfig.builder()
@@ -2659,7 +2662,7 @@ function chat($client, &$messages, $userMessage) {
     $response = $client->beta->messages->create(
         maxTokens: 4096,
         messages: $messages,
-        model: 'claude-opus-4-6',
+        model: 'claude-opus-4-7',
         betas: ['compact-2026-01-12'],
         contextManagement: [
             'edits' => [
@@ -2697,7 +2700,7 @@ def chat(client, messages, user_message)
 
   response = client.beta.messages.create(
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 4096,
     messages: messages,
     context_management: {
@@ -2721,7 +2724,7 @@ puts chat(client, messages, "Now add rate limiting and error handling")
 ```
 </CodeGroup>
 
-Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertahankan pertukaran sebelumnya dan pesan pengguna saat ini (tiga pesan total) secara verbatim daripada merangkumnya:
+Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertahankan pertukaran sebelumnya dan pesan pengguna saat ini (tiga pesan total) secara verbatim alih-alih merangkumnya:
 
 <CodeGroup>
 ```bash CLI
@@ -2730,7 +2733,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 # penanganan pause-and-preserve. Bentuk permintaan giliran tunggal:
 ant beta:messages create --beta compact-2026-01-12 \
   --transform 'content.#(type=="text").text' --format yaml <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -2759,7 +2762,7 @@ def chat(user_message: str) -> str:
 
     response = client.beta.messages.create(
         betas=["compact-2026-01-12"],
-        model="claude-opus-4-6",
+        model="claude-opus-4-7",
         max_tokens=4096,
         messages=messages,
         context_management={
@@ -2791,7 +2794,7 @@ def chat(user_message: str) -> str:
         # Continue the request with the compacted context + preserved messages
         response = client.beta.messages.create(
             betas=["compact-2026-01-12"],
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
             max_tokens=4096,
             messages=messages_after_compaction,
             context_management={"edits": [{"type": "compact_20260112"}]},
@@ -2827,7 +2830,7 @@ async function chat(userMessage: string): Promise<string> {
 
   let response = await client.beta.messages.create({
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 4096,
     messages,
     context_management: {
@@ -2859,7 +2862,7 @@ async function chat(userMessage: string): Promise<string> {
     // Continue the request with the compacted context + preserved messages
     response = await client.beta.messages.create({
       betas: ["compact-2026-01-12"],
-      model: "claude-opus-4-6",
+      model: "claude-opus-4-7",
       max_tokens: 4096,
       messages: messagesAfterCompaction,
       context_management: {
@@ -2906,7 +2909,7 @@ public class CompactionExample
         var response = await client.Beta.Messages.Create(new()
         {
             Betas = ["compact-2026-01-12"],
-            Model = "claude-opus-4-6",
+            Model = "claude-opus-4-7",
             MaxTokens = 4096,
             Messages = messages,
             ContextManagement = new BetaContextManagementConfig
@@ -2941,7 +2944,7 @@ public class CompactionExample
             response = await client.Beta.Messages.Create(new()
             {
                 Betas = ["compact-2026-01-12"],
-                Model = "claude-opus-4-6",
+                Model = "claude-opus-4-7",
                 MaxTokens = 4096,
                 Messages = messagesAfterCompaction,
                 ContextManagement = new BetaContextManagementConfig
@@ -3003,7 +3006,7 @@ func chat(userMessage string) string {
 	}
 
 	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:             anthropic.ModelClaudeOpus4_6,
+		Model:             anthropic.ModelClaudeOpus4_7,
 		MaxTokens:         4096,
 		Messages:          messages,
 		ContextManagement: compactEdit,
@@ -3029,7 +3032,7 @@ func chat(userMessage string) string {
 		messagesAfterCompaction = append(messagesAfterCompaction, preserved...)
 
 		response, err = client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-			Model:     anthropic.ModelClaudeOpus4_6,
+			Model:     anthropic.ModelClaudeOpus4_7,
 			MaxTokens: 4096,
 			Messages:  messagesAfterCompaction,
 			ContextManagement: anthropic.BetaContextManagementConfigParam{
@@ -3088,7 +3091,7 @@ public class CompactionExample {
 
         MessageCreateParams params = MessageCreateParams.builder()
             .addBeta("compact-2026-01-12")
-            .model("claude-opus-4-6")
+            .model("claude-opus-4-7")
             .maxTokens(4096L)
             .messages(messages)
             .contextManagement(BetaContextManagementConfig.builder()
@@ -3119,7 +3122,7 @@ public class CompactionExample {
             // Continue the request with the compacted context + preserved messages
             MessageCreateParams continueParams = MessageCreateParams.builder()
                 .addBeta("compact-2026-01-12")
-                .model("claude-opus-4-6")
+                .model("claude-opus-4-7")
                 .maxTokens(4096L)
                 .messages(messagesAfterCompaction)
                 .contextManagement(BetaContextManagementConfig.builder()
@@ -3166,7 +3169,7 @@ function chat($client, &$messages, $userMessage) {
     $response = $client->beta->messages->create(
         maxTokens: 4096,
         messages: $messages,
-        model: 'claude-opus-4-6',
+        model: 'claude-opus-4-7',
         betas: ['compact-2026-01-12'],
         contextManagement: [
             'edits' => [
@@ -3194,7 +3197,7 @@ function chat($client, &$messages, $userMessage) {
         $response = $client->beta->messages->create(
             maxTokens: 4096,
             messages: $messagesAfterCompaction,
-            model: 'claude-opus-4-6',
+            model: 'claude-opus-4-7',
             betas: ['compact-2026-01-12'],
             contextManagement: [
                 'edits' => [['type' => 'compact_20260112']]
@@ -3230,7 +3233,7 @@ def chat(client, messages, user_message)
 
   response = client.beta.messages.create(
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 4096,
     messages: messages,
     context_management: {
@@ -3255,7 +3258,7 @@ def chat(client, messages, user_message)
 
     response = client.beta.messages.create(
       betas: ["compact-2026-01-12"],
-      model: "claude-opus-4-6",
+      model: "claude-opus-4-7",
       max_tokens: 4096,
       messages: messages_after_compaction,
       context_management: {

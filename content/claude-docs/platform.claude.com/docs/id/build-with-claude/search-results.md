@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: c9373265af3c78352b761ed19dcb25c20200f6695fe280b3129fe2e5f698fc56
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 7e8506ed43f218c5d5a2e951ec0530bb32f92cecc8e585b2501dd89b26af059f
 ---
 
 # Hasil pencarian
@@ -15,17 +15,18 @@ Aktifkan kutipan alami untuk aplikasi RAG dengan menyediakan hasil pencarian den
 This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
 </Note>
 
-Blok konten hasil pencarian memungkinkan kutipan alami dengan atribusi sumber yang tepat, membawa kutipan berkualitas pencarian web ke aplikasi kustom Anda. Fitur ini sangat kuat untuk aplikasi RAG (Retrieval-Augmented Generation) di mana Anda perlu Claude mengutip sumber dengan akurat.
+Blok konten hasil pencarian memungkinkan kutipan alami dengan atribusi sumber yang tepat, membawa kutipan berkualitas pencarian web ke aplikasi kustom Anda. Fitur ini sangat kuat untuk aplikasi RAG (Retrieval-Augmented Generation) di mana Anda memerlukan Claude untuk mengutip sumber secara akurat.
 
 Fitur hasil pencarian tersedia pada model berikut:
 
+- Claude Opus 4.7 (`claude-opus-4-7`)
 - Claude Opus 4.6 (`claude-opus-4-6`)
 - Claude Sonnet 4.6 (`claude-sonnet-4-6`)
 - Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 - Claude Opus 4.1 (`claude-opus-4-1-20250805`)
-- Claude Opus 4 (`claude-opus-4-20250514`)
-- Claude Sonnet 4 (`claude-sonnet-4-20250514`)
+- Claude Opus 4 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-opus-4-20250514`)
+- Claude Sonnet 4 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-sonnet-4-20250514`)
 - Claude Sonnet 3.7 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-3-7-sonnet-20250219`)
 - Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
 - Claude Haiku 3.5 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-3-5-haiku-20241022`)
@@ -33,7 +34,7 @@ Fitur hasil pencarian tersedia pada model berikut:
 ## Manfaat utama
 
 - **Kutipan alami** - Capai kualitas kutipan yang sama seperti pencarian web untuk konten apa pun
-- **Integrasi fleksibel** - Gunakan dalam pengembalian alat untuk RAG dinamis atau sebagai konten tingkat atas untuk data yang telah diambil sebelumnya
+- **Integrasi fleksibel** - Gunakan dalam pengembalian alat untuk RAG dinamis atau sebagai konten tingkat atas untuk data yang sudah diambil
 - **Atribusi sumber yang tepat** - Setiap hasil mencakup informasi sumber dan judul untuk atribusi yang jelas
 - **Tidak perlu solusi berbasis dokumen** - Menghilangkan kebutuhan akan solusi berbasis dokumen
 - **Format kutipan yang konsisten** - Cocok dengan kualitas dan format kutipan dari fungsi pencarian web Claude
@@ -43,7 +44,7 @@ Fitur hasil pencarian tersedia pada model berikut:
 Hasil pencarian dapat disediakan dalam dua cara:
 
 1. **Dari panggilan alat** - Alat kustom Anda mengembalikan hasil pencarian, memungkinkan aplikasi RAG dinamis
-2. **Sebagai konten tingkat atas** - Anda menyediakan hasil pencarian langsung dalam pesan pengguna untuk konten yang telah diambil sebelumnya atau di-cache
+2. **Sebagai konten tingkat atas** - Anda menyediakan hasil pencarian langsung dalam pesan pengguna untuk konten yang sudah diambil atau di-cache
 
 Dalam kedua kasus, Claude dapat secara otomatis mengutip informasi dari hasil pencarian dengan atribusi sumber yang tepat.
 
@@ -155,7 +156,7 @@ def search_knowledge_base(query):
 
 # Create a message with the tool
 response = client.messages.create(
-    model="claude-opus-4-6",  # Works with all supported models
+    model="claude-opus-4-7",  # Works with all supported models
     max_tokens=1024,
     tools=[knowledge_base_tool],
     messages=[
@@ -169,7 +170,7 @@ if response.content[0].type == "tool_use":
 
     # Send the tool result back
     final_response = client.messages.create(
-        model="claude-opus-4-6",  # Works with all supported models
+        model="claude-opus-4-7",  # Works with all supported models
         max_tokens=1024,
         messages=[
             MessageParam(
@@ -245,7 +246,7 @@ function searchKnowledgeBase(query: string) {
 
 // Create a message with the tool
 const response = await anthropic.messages.create({
-  model: "claude-opus-4-6", // Works with all supported models
+  model: "claude-opus-4-7", // Works with all supported models
   max_tokens: 1024,
   tools: [knowledgeBaseTool],
   messages: [
@@ -262,7 +263,7 @@ if (response.content[0].type === "tool_use") {
   const toolResult = searchKnowledgeBase(input.query);
 
   const finalResponse = await anthropic.messages.create({
-    model: "claude-opus-4-6", // Works with all supported models
+    model: "claude-opus-4-7", // Works with all supported models
     max_tokens: 1024,
     messages: [
       { role: "user", content: "How do I configure the timeout settings?" },
@@ -316,7 +317,7 @@ public class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 1024,
             Tools = new[] { knowledgeBaseTool },
             Messages = new[]
@@ -337,7 +338,7 @@ public class Program
 
             var finalParameters = new MessageCreateParams
             {
-                Model = Model.ClaudeOpus4_6,
+                Model = Model.ClaudeOpus4_7,
                 MaxTokens = 1024,
                 Messages = new[]
                 {
@@ -430,7 +431,7 @@ func main() {
 	}
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		Tools:     []anthropic.ToolUnionParam{knowledgeBaseTool},
 		Messages: []anthropic.MessageParam{
@@ -456,7 +457,7 @@ func main() {
 			assistantParam := response.ToParam()
 
 			finalResponse, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-				Model:     anthropic.ModelClaudeOpus4_6,
+				Model:     anthropic.ModelClaudeOpus4_7,
 				MaxTokens: 1024,
 				Messages: []anthropic.MessageParam{
 					anthropic.NewUserMessage(anthropic.NewTextBlock("How do I configure the timeout settings?")),
@@ -536,7 +537,7 @@ public class SearchKnowledgeBaseExample {
             .build();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(1024L)
             .addTool(knowledgeBaseTool)
             .addUserMessage("How do I configure the timeout settings?")
@@ -550,7 +551,7 @@ public class SearchKnowledgeBaseExample {
             );
 
             MessageCreateParams finalParams = MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_4_6)
+                .model(Model.CLAUDE_OPUS_4_7)
                 .maxTokens(1024L)
                 .addTool(knowledgeBaseTool)
                 .addUserMessage("How do I configure the timeout settings?")
@@ -663,7 +664,7 @@ $response = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'How do I configure the timeout settings?']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     tools: [$knowledgeBaseTool],
 );
 
@@ -694,7 +695,7 @@ if ($toolUseBlock !== null) {
                 ]
             ]
         ],
-        model: 'claude-opus-4-6',
+        model: 'claude-opus-4-7',
     );
     echo $finalResponse;
 } else {
@@ -749,7 +750,7 @@ def search_knowledge_base(query)
 end
 
 response = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [knowledge_base_tool],
   messages: [
@@ -761,7 +762,7 @@ if response.content.first.type == :tool_use
   tool_result = search_knowledge_base(response.content.first.input["query"])
 
   final_response = client.messages.create(
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "How do I configure the timeout settings?" },
@@ -786,7 +787,7 @@ end
 ## Metode 2: Hasil pencarian sebagai konten tingkat atas
 
 Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini berguna untuk:
-- Konten yang telah diambil sebelumnya dari infrastruktur pencarian Anda
+- Konten yang sudah diambil dari infrastruktur pencarian Anda
 - Hasil pencarian yang di-cache dari kueri sebelumnya
 - Konten dari layanan pencarian eksternal
 - Pengujian dan pengembangan
@@ -802,7 +803,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "messages": [
         {
@@ -848,7 +849,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 messages:
   - role: user
@@ -890,7 +891,7 @@ client = Anthropic()
 
 # Provide search results directly in the user message
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[
         MessageParam(
@@ -939,7 +940,7 @@ const anthropic = new Anthropic();
 
 // Provide search results directly in the user message
 const response = await anthropic.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     {
@@ -995,7 +996,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 1024,
             Messages =
             [
@@ -1060,7 +1061,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(
@@ -1108,7 +1109,7 @@ public class SearchResultExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(1024L)
             .addUserMessageOfBlockParams(List.of(
                 ContentBlockParam.ofSearchResult(
@@ -1193,7 +1194,7 @@ $message = $client->messages->create(
             ]
         ]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
 );
 
 echo json_encode($message, JSON_PRETTY_PRINT);
@@ -1205,7 +1206,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     {
@@ -1487,7 +1488,7 @@ Kutipan adalah semua-atau-tidak-sama-sekali: baik semua hasil pencarian dalam pe
 
 1. **Struktur hasil secara efektif**
    - Gunakan URL sumber yang jelas dan permanen
-   - Berikan judul deskriptif
+   - Berikan judul yang deskriptif
    - Pisahkan konten panjang menjadi blok teks logis
 
 2. **Pertahankan konsistensi**

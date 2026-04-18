@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/overview
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: b29ea2204c8ee00eb4fb9ed1f6d672eb9e7ec73f88a108ed3e170ce751a05174
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 606ecbff81752629f8926c6731f3a4c9812c16924d6a6661a85802f785ebc853
 ---
 
 # API Overview
@@ -91,7 +91,7 @@ Access Claude through AWS, Google Cloud, or Microsoft Azure:
 
 | Platform | Provider | Documentation |
 |----------|----------|---------------|
-| Amazon Bedrock | AWS | [Claude on Amazon Bedrock](/docs/en/build-with-claude/claude-on-amazon-bedrock) |
+| Amazon Bedrock | AWS | [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock) |
 | Vertex AI | Google Cloud | [Claude on Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai) |
 | Azure AI | Microsoft Azure | [Claude on Azure AI](/docs/en/build-with-claude/claude-in-microsoft-foundry) |
 

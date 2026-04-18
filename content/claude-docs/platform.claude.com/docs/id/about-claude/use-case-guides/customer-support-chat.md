@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: dc81a8b84736f72f1c741bd687db7bd7f073aeb38f73d622395b6ef0349a4b6d
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: f58a51dd31060a5cdefbc45063018a248a5fd1d6a1310bf8a22162574ab79541
 ---
 
 # Agen dukungan pelanggan
@@ -15,14 +15,14 @@ Panduan ini menjelaskan cara memanfaatkan kemampuan percakapan canggih Claude un
 
 ### Tentukan apakah akan menggunakan Claude untuk dukungan obrolan
 
-Berikut adalah beberapa indikator utama bahwa Anda harus menggunakan LLM seperti Claude untuk mengotomatisasi bagian dari proses dukungan pelanggan Anda:
+Berikut adalah beberapa indikator kunci bahwa Anda harus menggunakan LLM seperti Claude untuk mengotomatisasi sebagian dari proses dukungan pelanggan Anda:
 
   <section title="Volume tinggi pertanyaan berulang">
 
     Claude unggul dalam menangani sejumlah besar pertanyaan serupa secara efisien, membebaskan agen manusia untuk masalah yang lebih kompleks.
   
 </section>
-  <section title="Kebutuhan untuk sintesis informasi cepat">
+  <section title="Kebutuhan sintesis informasi cepat">
 
     Claude dapat dengan cepat mengambil, memproses, dan menggabungkan informasi dari basis pengetahuan yang luas, sementara agen manusia mungkin memerlukan waktu untuk meneliti atau berkonsultasi dengan berbagai sumber.
   
@@ -34,7 +34,7 @@ Berikut adalah beberapa indikator utama bahwa Anda harus menggunakan LLM seperti
 </section>
   <section title="Penskalaan cepat selama periode puncak">
 
-    Claude dapat menangani peningkatan mendadak dalam volume pertanyaan tanpa perlu merekrut dan melatih staf tambahan.
+    Claude dapat menangani peningkatan volume pertanyaan yang tiba-tiba tanpa perlu merekrut dan melatih staf tambahan.
   
 </section>
   <section title="Suara merek yang konsisten">
@@ -45,8 +45,8 @@ Berikut adalah beberapa indikator utama bahwa Anda harus menggunakan LLM seperti
 
 Beberapa pertimbangan untuk memilih Claude daripada LLM lainnya:
 
-- Anda memprioritaskan percakapan yang alami dan bernuansa: Pemahaman bahasa canggih Claude memungkinkan percakapan yang lebih alami dan sadar konteks yang terasa lebih manusiawi daripada obrolan dengan LLM lainnya.
-- Anda sering menerima pertanyaan yang kompleks dan terbuka: Claude dapat menangani berbagai topik dan pertanyaan tanpa menghasilkan respons yang sudah jadi atau memerlukan pemrograman ekstensif dari permutasi ucapan pengguna.
+- Anda memprioritaskan percakapan yang alami dan bernuansa: Pemahaman bahasa Claude yang canggih memungkinkan percakapan yang lebih alami dan sadar konteks yang terasa lebih manusiawi daripada obrolan dengan LLM lainnya.
+- Anda sering menerima pertanyaan kompleks dan terbuka: Claude dapat menangani berbagai topik dan pertanyaan tanpa menghasilkan respons yang sudah disiapkan atau memerlukan pemrograman ekstensif tentang permutasi ucapan pengguna.
 - Anda membutuhkan dukungan multibahasa yang dapat diskalakan: Kemampuan multibahasa Claude memungkinkannya untuk terlibat dalam percakapan dalam lebih dari 200 bahasa tanpa perlu chatbot terpisah atau proses terjemahan ekstensif untuk setiap bahasa yang didukung.
 
 ### Tentukan interaksi obrolan ideal Anda
@@ -55,31 +55,31 @@ Uraikan interaksi pelanggan ideal untuk menentukan bagaimana dan kapan Anda meng
 
 Berikut adalah contoh interaksi obrolan untuk dukungan pelanggan asuransi mobil:
 
-* **Pelanggan**: Memulai pengalaman obrolan dukungan
-   * **Claude**: Menyambut pelanggan dengan hangat dan memulai percakapan
-* **Pelanggan**: Menanyakan tentang asuransi untuk mobil listrik baru mereka
-   * **Claude**: Memberikan informasi relevan tentang cakupan kendaraan listrik
-* **Pelanggan**: Mengajukan pertanyaan terkait kebutuhan unik untuk asuransi kendaraan listrik
-   * **Claude**: Merespons dengan jawaban yang akurat dan informatif serta menyediakan tautan ke sumber
-* **Pelanggan**: Mengajukan pertanyaan di luar topik yang tidak terkait dengan asuransi atau mobil
-   * **Claude**: Mengklarifikasi bahwa tidak membahas topik yang tidak terkait dan mengarahkan pengguna kembali ke asuransi mobil
-* **Pelanggan**: Mengekspresikan minat dalam penawaran asuransi
-   * **Claude**: Mengajukan serangkaian pertanyaan untuk menentukan penawaran yang sesuai, beradaptasi dengan respons mereka
-   * **Claude**: Mengirimkan permintaan untuk menggunakan alat API pembuatan penawaran bersama dengan informasi yang diperlukan yang dikumpulkan dari pengguna
-   * **Claude**: Menerima informasi respons dari penggunaan alat API, mensintesis informasi menjadi respons alami, dan menyajikan penawaran yang disediakan kepada pengguna
-* **Pelanggan**: Mengajukan pertanyaan lanjutan
-   * **Claude**: Menjawab pertanyaan lanjutan sesuai kebutuhan
-   * **Claude**: Memandu pelanggan ke langkah berikutnya dalam proses asuransi dan menutup percakapan
+* **Pelanggan:** Memulai pengalaman obrolan dukungan
+   * **Claude:** Menyambut pelanggan dengan hangat dan memulai percakapan
+* **Pelanggan:** Menanyakan tentang asuransi untuk mobil listrik baru mereka
+   * **Claude:** Memberikan informasi relevan tentang cakupan kendaraan listrik
+* **Pelanggan:** Mengajukan pertanyaan yang terkait dengan kebutuhan unik untuk asuransi kendaraan listrik
+   * **Claude:** Merespons dengan jawaban yang akurat dan informatif serta menyediakan tautan ke sumber
+* **Pelanggan:** Mengajukan pertanyaan di luar topik yang tidak terkait dengan asuransi atau mobil
+   * **Claude:** Mengklarifikasi bahwa tidak membahas topik yang tidak terkait dan mengarahkan pengguna kembali ke asuransi mobil
+* **Pelanggan:** Mengekspresikan minat dalam penawaran asuransi
+   * **Claude:** Mengajukan serangkaian pertanyaan untuk menentukan penawaran yang sesuai, beradaptasi dengan respons mereka
+   * **Claude:** Mengirimkan permintaan untuk menggunakan alat API pembuatan penawaran bersama dengan informasi yang diperlukan yang dikumpulkan dari pengguna
+   * **Claude:** Menerima informasi respons dari penggunaan alat API, mensintesis informasi menjadi respons alami, dan menyajikan penawaran yang disediakan kepada pengguna
+* **Pelanggan:** Mengajukan pertanyaan lanjutan
+   * **Claude:** Menjawab pertanyaan lanjutan sesuai kebutuhan
+   * **Claude:** Memandu pelanggan ke langkah berikutnya dalam proses asuransi dan menutup percakapan
 
 <Tip>Dalam contoh nyata yang Anda tulis untuk kasus penggunaan Anda sendiri, Anda mungkin merasa berguna untuk menuliskan kata-kata sebenarnya dalam interaksi ini sehingga Anda juga dapat merasakan nada ideal, panjang respons, dan tingkat detail yang Anda inginkan dari Claude.</Tip>
 
-### Pisahkan interaksi menjadi tugas unik
+### Pisahkan interaksi menjadi tugas-tugas unik
 
-Obrolan dukungan pelanggan adalah kumpulan dari berbagai tugas yang berbeda, mulai dari menjawab pertanyaan hingga pengambilan informasi hingga mengambil tindakan atas permintaan, yang dibungkus dalam satu interaksi pelanggan. Sebelum Anda mulai membangun, uraikan interaksi pelanggan ideal Anda menjadi setiap tugas yang ingin Anda lakukan Claude. Ini memastikan Anda dapat memberi prompt dan mengevaluasi Claude untuk setiap tugas, dan memberi Anda pemahaman yang baik tentang rentang interaksi yang perlu Anda pertimbangkan saat menulis kasus uji.
+Obrolan dukungan pelanggan adalah kumpulan dari berbagai tugas yang berbeda, dari menjawab pertanyaan hingga pengambilan informasi hingga mengambil tindakan atas permintaan, yang dibungkus dalam satu interaksi pelanggan. Sebelum Anda mulai membangun, uraikan interaksi pelanggan ideal Anda menjadi setiap tugas yang ingin Anda lakukan Claude. Ini memastikan Anda dapat membuat prompt dan mengevaluasi Claude untuk setiap tugas, dan memberi Anda pemahaman yang baik tentang jangkauan interaksi yang perlu Anda pertimbangkan saat menulis kasus uji.
 
 <Tip>Pelanggan kadang-kadang merasa berguna untuk memvisualisasikan ini sebagai bagan alur interaksi dari kemungkinan titik infleksi percakapan tergantung pada permintaan pengguna.</Tip>
 
-Berikut adalah tugas-tugas utama yang terkait dengan contoh interaksi asuransi di atas:
+Berikut adalah tugas-tugas kunci yang terkait dengan contoh interaksi asuransi di atas:
 
 1. Salam dan panduan umum
    - Menyambut pelanggan dengan hangat dan memulai percakapan
@@ -87,8 +87,8 @@ Berikut adalah tugas-tugas utama yang terkait dengan contoh interaksi asuransi d
 
 2. Informasi Produk
    - Memberikan informasi tentang cakupan kendaraan listrik
-   <Note>Ini akan memerlukan bahwa Claude memiliki informasi yang diperlukan dalam konteksnya, dan mungkin menyiratkan bahwa integrasi [RAG](https://platform.claude.com/cookbook/capabilities-retrieval-augmented-generation-guide) diperlukan.</Note>
-   - Menjawab pertanyaan terkait kebutuhan asuransi kendaraan listrik yang unik
+   <Note>Ini akan memerlukan bahwa Claude memiliki informasi yang diperlukan dalam konteksnya, dan mungkin menyiratkan bahwa [integrasi RAG](https://platform.claude.com/cookbook/capabilities-retrieval-augmented-generation-guide) diperlukan.</Note>
+   - Menjawab pertanyaan yang terkait dengan kebutuhan asuransi kendaraan listrik yang unik
    - Menjawab pertanyaan lanjutan tentang penawaran atau detail asuransi
    - Menawarkan tautan ke sumber jika sesuai
 
@@ -98,17 +98,17 @@ Berikut adalah tugas-tugas utama yang terkait dengan contoh interaksi asuransi d
 
 4. Pembuatan Penawaran
    - Mengajukan pertanyaan yang sesuai untuk menentukan kelayakan penawaran
-   - Menyesuaikan pertanyaan berdasarkan respons pelanggan
+   - Beradaptasi dengan pertanyaan berdasarkan respons pelanggan
    - Mengirimkan informasi yang dikumpulkan ke API pembuatan penawaran
    - Menyajikan penawaran yang disediakan kepada pelanggan
 
 ### Tetapkan kriteria kesuksesan
 
-Bekerja dengan tim dukungan Anda untuk [menentukan kriteria kesuksesan yang jelas](/docs/id/test-and-evaluate/define-success) dan menulis [evaluasi terperinci](/docs/id/test-and-evaluate/develop-tests) dengan tolok ukur dan tujuan yang terukur.
+Bekerja dengan tim dukungan Anda untuk [menentukan kriteria kesuksesan dan menulis evaluasi terperinci](/docs/id/test-and-evaluate/develop-tests) dengan tolok ukur dan tujuan yang terukur.
 
 Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi seberapa berhasil Claude melakukan tugas-tugas yang ditentukan:
 
-  <section title="Akurasi pemahaman pertanyaan">
+  <section title="Akurasi pemahaman kueri">
 
     Metrik ini mengevaluasi seberapa akurat Claude memahami pertanyaan pelanggan di berbagai topik. Ukur ini dengan meninjau sampel percakapan dan menilai apakah Claude memiliki interpretasi yang benar tentang niat pelanggan, langkah-langkah kritis berikutnya, seperti apa resolusi yang berhasil, dan lainnya. Targetkan akurasi pemahaman 95% atau lebih tinggi.
   
@@ -120,7 +120,7 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi s
 </section>
   <section title="Akurasi respons">
 
-    Menilai kebenaran informasi perusahaan dan produk umum yang diberikan kepada pengguna, berdasarkan informasi yang diberikan kepada Claude dalam konteks. Targetkan akurasi 100% dalam informasi pengantar ini.
+    Menilai kebenaran informasi perusahaan dan produk umum yang diberikan kepada pengguna, berdasarkan informasi yang diberikan kepada Claude dalam konteks. Targetkan akurasi 100% dalam informasi pengenalan ini.
   
 </section>
   <section title="Relevansi penyediaan kutipan">
@@ -130,17 +130,17 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi s
 </section>
   <section title="Kepatuhan topik">
 
-    Ukur seberapa baik Claude tetap pada topik, seperti topik asuransi mobil dalam implementasi contoh kami. Targetkan 95% respons untuk langsung terkait dengan asuransi mobil atau pertanyaan spesifik pelanggan.
+    Ukur seberapa baik Claude tetap pada topik, seperti topik asuransi mobil dalam implementasi contoh. Targetkan 95% respons untuk langsung terkait dengan asuransi mobil atau pertanyaan spesifik pelanggan.
   
 </section>
   <section title="Efektivitas pembuatan konten">
 
-    Ukur seberapa berhasil Claude dalam menentukan kapan harus menghasilkan konten informatif dan seberapa relevan konten tersebut. Misalnya, dalam implementasi kami, kami akan menentukan seberapa baik Claude memahami kapan harus menghasilkan penawaran dan seberapa akurat penawaran tersebut. Targetkan akurasi 100%, karena ini adalah informasi penting untuk interaksi pelanggan yang berhasil.
+    Ukur seberapa berhasil Claude dalam menentukan kapan harus menghasilkan konten informasi dan seberapa relevan konten tersebut. Misalnya, dalam implementasi ini, Anda akan menentukan seberapa baik Claude memahami kapan harus menghasilkan penawaran dan seberapa akurat penawaran tersebut. Targetkan akurasi 100%, karena ini adalah informasi penting untuk interaksi pelanggan yang berhasil.
   
 </section>
   <section title="Efisiensi eskalasi">
 
-    Ini mengukur kemampuan Claude untuk mengenali kapan pertanyaan memerlukan intervensi manusia dan melakukan eskalasi dengan tepat. Lacak persentase percakapan yang di-eskalasi dengan benar versus yang seharusnya di-eskalasi tetapi tidak. Targetkan akurasi eskalasi 95% atau lebih tinggi.
+    Ini mengukur kemampuan Claude untuk mengenali kapan kueri memerlukan intervensi manusia dan melakukan eskalasi dengan tepat. Lacak persentase percakapan yang di-eskalasi dengan benar versus yang seharusnya di-eskalasi tetapi tidak. Targetkan akurasi eskalasi 95% atau lebih tinggi.
   
 </section>
 
@@ -173,26 +173,26 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi d
 
 Pilihan model tergantung pada pertukaran antara biaya, akurasi, dan waktu respons.
 
-Untuk obrolan dukungan pelanggan, Claude Opus 4.6 cocok untuk menyeimbangkan kecerdasan, latensi, dan biaya. Namun, untuk kasus di mana Anda memiliki alur percakapan dengan beberapa prompt termasuk RAG, penggunaan alat, dan/atau prompt konteks panjang, Claude Haiku 4.5 mungkin lebih cocok untuk mengoptimalkan latensi.
+Untuk obrolan dukungan pelanggan, Claude Opus 4.7 cocok untuk menyeimbangkan kecerdasan, latensi, dan biaya. Namun, untuk contoh di mana Anda memiliki alur percakapan dengan beberapa prompt termasuk RAG, penggunaan alat, dan/atau prompt konteks panjang, Claude Haiku 4.5 mungkin lebih cocok untuk mengoptimalkan latensi.
 
 ### Bangun prompt yang kuat
 
 Menggunakan Claude untuk dukungan pelanggan memerlukan Claude memiliki cukup arahan dan konteks untuk merespons dengan tepat, sambil memiliki fleksibilitas yang cukup untuk menangani berbagai pertanyaan pelanggan.
 
-Mari kita mulai dengan menulis elemen prompt yang kuat, dimulai dengan system prompt:
+Mulai dengan menulis elemen prompt yang kuat, dimulai dengan prompt sistem:
 
 ```python
-IDENTITY = """You are Eva, a friendly and knowledgeable AI assistant for Acme Insurance 
-Company. Your role is to warmly welcome customers and provide information on 
-Acme's insurance offerings, which include car insurance and electric car 
+IDENTITY = """You are Eva, a friendly and knowledgeable AI assistant for Acme Insurance
+Company. Your role is to warmly welcome customers and provide information on
+Acme's insurance offerings, which include car insurance and electric car
 insurance. You can also help customers get quotes for their insurance needs."""
 ```
 
-<Tip>Meskipun Anda mungkin tergoda untuk memasukkan semua informasi Anda di dalam system prompt sebagai cara untuk memisahkan instruksi dari percakapan pengguna, Claude sebenarnya bekerja paling baik dengan sebagian besar konten prompt ditulis di dalam giliran `User` pertama (dengan satu-satunya pengecualian adalah prompt peran). Baca lebih lanjut di [Memberikan Claude peran dengan system prompt](/docs/id/build-with-claude/prompt-engineering/system-prompts).</Tip>
+<Tip>Meskipun Anda mungkin tergoda untuk memasukkan semua informasi Anda di dalam prompt sistem sebagai cara untuk memisahkan instruksi dari percakapan pengguna, Claude sebenarnya bekerja paling baik dengan sebagian besar konten prompt ditulis di dalam giliran `User` pertama (dengan satu-satunya pengecualian adalah prompt peran). Baca lebih lanjut di [Memberikan Claude peran dengan prompt sistem](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).</Tip>
 
-Sebaiknya uraikan prompt kompleks menjadi subseksi dan tulis satu bagian pada satu waktu. Untuk setiap tugas, Anda mungkin menemukan kesuksesan yang lebih besar dengan mengikuti proses langkah demi langkah untuk menentukan bagian-bagian prompt yang Claude butuhkan untuk melakukan tugas dengan baik. Untuk contoh dukungan pelanggan asuransi mobil ini, kami akan menulis secara bertahap semua bagian untuk prompt dimulai dengan tugas "Salam dan panduan umum". Ini juga membuat debugging prompt Anda lebih mudah karena Anda dapat dengan cepat menyesuaikan bagian individual dari prompt keseluruhan.
+Sebaiknya uraikan prompt kompleks menjadi subseksi dan tulis satu bagian sekaligus. Untuk setiap tugas, Anda mungkin menemukan kesuksesan yang lebih besar dengan mengikuti proses langkah demi langkah untuk menentukan bagian-bagian prompt yang Claude perlukan untuk melakukan tugas dengan baik. Untuk contoh dukungan pelanggan asuransi mobil ini, Anda akan menulis secara bertahap semua bagian untuk prompt mulai dengan tugas "Salam dan panduan umum". Ini juga membuat debugging prompt Anda lebih mudah karena Anda dapat dengan cepat menyesuaikan bagian individual dari prompt keseluruhan.
 
-Kami akan menempatkan semua potongan ini dalam file yang disebut `config.py`.
+Letakkan semua potongan ini dalam file bernama `config.py`.
 
 ```python
 STATIC_GREETINGS_AND_GENERAL = """
@@ -200,13 +200,13 @@ STATIC_GREETINGS_AND_GENERAL = """
 Acme Auto Insurance: Your Trusted Companion on the Road
 
 About:
-At Acme Insurance, we understand that your vehicle is more than just a mode of transportation—it's your ticket to life's adventures. 
+At Acme Insurance, we understand that your vehicle is more than just a mode of transportation—it's your ticket to life's adventures.
 Since 1985, we've been crafting auto insurance policies that give drivers the confidence to explore, commute, and travel with peace of mind.
-Whether you're navigating city streets or embarking on cross-country road trips, Acme is there to protect you and your vehicle. 
+Whether you're navigating city streets or embarking on cross-country road trips, Acme is there to protect you and your vehicle.
 Our innovative auto insurance policies are designed to adapt to your unique needs, covering everything from fender benders to major collisions.
-With Acme's award-winning customer service and swift claim resolution, you can focus on the joy of driving while we handle the rest. 
+With Acme's award-winning customer service and swift claim resolution, you can focus on the joy of driving while we handle the rest.
 We're not just an insurance provider—we're your co-pilot in life's journeys.
-Choose Acme Auto Insurance and experience the assurance that comes with superior coverage and genuine care. Because at Acme, we don't just 
+Choose Acme Auto Insurance and experience the assurance that comes with superior coverage and genuine care. Because at Acme, we don't just
 insure your car—we fuel your adventures on the open road.
 
 Note: We also offer specialized coverage for electric vehicles, ensuring that drivers of all car types can benefit from our protection.
@@ -222,10 +222,10 @@ Customer service number: 1-800-123-4567
 """
 ```
 
-Kami akan melakukan hal yang sama untuk informasi asuransi mobil dan asuransi mobil listrik kami.
+Kemudian lakukan hal yang sama untuk informasi asuransi mobil dan asuransi mobil listrik Anda.
 
 ```python
-STATIC_CAR_INSURANCE="""
+STATIC_CAR_INSURANCE = """
 <static_context>
 Car Insurance Coverage:
 Acme's car insurance policies typically cover:
@@ -242,41 +242,41 @@ Optional coverages include:
 </static_context>
 """
 
-STATIC_ELECTRIC_CAR_INSURANCE="""
+STATIC_ELECTRIC_CAR_INSURANCE = """
 <static_context>
 Electric Car Insurance:
-Our specialized electric car insurance goes beyond traditional auto coverage, 
+Our specialized electric car insurance goes beyond traditional auto coverage,
 offering tailored protection for your high-tech investment. In addition to standard coverages, we offer:
 - Safeguarding expensive battery systems
 - Covering home charging equipment
 - Adapting to the rapidly evolving world of electric vehicles
 
-Whether you're driving a Rivian, Nissan Leaf, Chevrolet Bolt, 
-or any other electric vehicle, our knowledgeable agents are ready to craft a policy 
+Whether you're driving a Rivian, Nissan Leaf, Chevrolet Bolt,
+or any other electric vehicle, our knowledgeable agents are ready to craft a policy
 that gives you the confidence to enjoy every electron-powered mile.
 </static_context>
 """
 ```
 
-Sekarang setelah kami memiliki konten statis kami, mari tambahkan setidaknya 4-5 sampel interaksi "baik" untuk memandu respons Claude. Contoh-contoh ini harus mewakili interaksi pelanggan ideal Anda dan dapat mencakup guardrail, panggilan alat, dll.
+Sekarang yang Anda miliki konten statis, tambahkan setidaknya 4-5 sampel interaksi "baik" untuk memandu respons Claude. Contoh-contoh ini harus mewakili interaksi pelanggan ideal Anda dan dapat mencakup penjaga, panggilan alat, dll.
 
 ```python
-EXAMPLES="""
+EXAMPLES = """
 Here are a few examples of how you can interact with customers:
 
 <example 1>
 H: Hi, do you offer commercial insurance for small businesses?
 
-A: Ah! Unfortunately, we don't offer commercial insurance at this time. 
-However, we do provide a range of personal insurance products including car insurance and electric car insurance. 
+A: Ah! Unfortunately, we don't offer commercial insurance at this time.
+However, we do provide a range of personal insurance products including car insurance and electric car insurance.
 Would you like to know more about these offerings?
 </example 1>
 
 <example 2>
 H: Hi, what are your business hours?
 
-A: Our business hours are Monday to Friday, 9 AM to 5 PM EST. 
-If you have any questions or need assistance, feel free to reach out during those times. 
+A: Our business hours are Monday to Friday, 9 AM to 5 PM EST.
+If you have any questions or need assistance, feel free to reach out during those times.
 How else can I assist you today?
 </example 2>
 
@@ -290,14 +290,14 @@ A: Great choice! Acme's car insurance policies typically include:
 - Medical payments coverage: Pays for medical expenses after an accident
 - Uninsured/underinsured motorist coverage: Protects you from drivers with insufficient insurance
 
-We also offer optional coverages like rental car reimbursement, roadside assistance, and new car replacement. 
+We also offer optional coverages like rental car reimbursement, roadside assistance, and new car replacement.
 Would you like more details on any of these coverages, or do you have specific questions about insuring your vehicle?
 </example 3>
 
 <example 4>
 H: I'd like to hear about your electric car insurance.
 
-A: Certainly! Our electric car insurance is specially designed to meet the unique needs of electric vehicle owners. 
+A: Certainly! Our electric car insurance is specially designed to meet the unique needs of electric vehicle owners.
 In addition to all the standard coverages we offer for regular cars, our electric car policies include:
 
 - Battery coverage: Protection against damage or degradation of your vehicle's expensive battery system
@@ -306,15 +306,15 @@ In addition to all the standard coverages we offer for regular cars, our electri
 - Cybersecurity protection: Coverage against hacking or digital threats
 - Specialized roadside assistance: Includes flatbed towing to protect the vehicle's undercarriage
 
-We cover a wide range of electric vehicles, including popular models from Tesla, Rivian, Nissan, Chevrolet, and more. 
+We cover a wide range of electric vehicles, including popular models from Tesla, Rivian, Nissan, Chevrolet, and more.
 Is there a specific electric vehicle you're looking to insure, or would you like more details on any of these coverages?
 </example 4>
 
 <example 5>
 H: I'd like to get a quote for my car insurance.
 
-A: Certainly! I'd be happy to help you get a quote for your car insurance. 
-To provide you with an accurate quote, I'll need to collect some information about your vehicle and the primary driver. 
+A: Certainly! I'd be happy to help you get a quote for your car insurance.
+To provide you with an accurate quote, I'll need to collect some information about your vehicle and the primary driver.
 Let's start with the basics:
 
 1. What is the make and model of your vehicle?
@@ -327,13 +327,13 @@ Once you provide this information, I'll use our quoting tool to generate a perso
 """
 ```
 
-Anda juga akan ingin menyertakan instruksi penting yang menguraikan Do's dan Don'ts tentang bagaimana Claude harus berinteraksi dengan pelanggan. 
-Ini mungkin berasal dari guardrail merek atau kebijakan dukungan.
+Anda juga akan ingin menyertakan instruksi penting yang menguraikan Do's dan Don'ts tentang bagaimana Claude harus berinteraksi dengan pelanggan.
+Ini mungkin diambil dari penjaga merek atau kebijakan dukungan.
 
 ```python
 ADDITIONAL_GUARDRAILS = """Please adhere to the following guardrails:
 1. Only provide information about insurance types listed in our offerings.
-2. If asked about an insurance type we don't offer, politely state 
+2. If asked about an insurance type we don't offer, politely state
 that we don't provide that service.
 3. Do not speculate about future product offerings or company plans.
 4. Don't make promises or enter into agreements it's not authorized to make.
@@ -342,44 +342,58 @@ You only provide information and guidance.
 """
 ```
 
-Sekarang mari kita gabungkan semua bagian ini menjadi satu string untuk digunakan sebagai prompt kami.
+Sekarang gabungkan semua bagian ini menjadi satu string untuk digunakan sebagai prompt Anda.
 
-```python
-TASK_SPECIFIC_INSTRUCTIONS = ' '.join([
-   STATIC_GREETINGS_AND_GENERAL,
-   STATIC_CAR_INSURANCE,
-   STATIC_ELECTRIC_CAR_INSURANCE,
-   EXAMPLES,
-   ADDITIONAL_GUARDRAILS,
-])
+```python nocheck
+TASK_SPECIFIC_INSTRUCTIONS = " ".join(
+    [
+        STATIC_GREETINGS_AND_GENERAL,
+        STATIC_CAR_INSURANCE,
+        STATIC_ELECTRIC_CAR_INSURANCE,
+        EXAMPLES,
+        ADDITIONAL_GUARDRAILS,
+    ]
+)
 ```
 
 ### Tambahkan kemampuan dinamis dan agentic dengan penggunaan alat
 
 Claude mampu mengambil tindakan dan mengambil informasi secara dinamis menggunakan fungsionalitas penggunaan alat sisi klien. Mulai dengan membuat daftar alat eksternal atau API apa pun yang harus digunakan prompt.
 
-Untuk contoh ini, kami akan mulai dengan satu alat untuk menghitung penawaran.
+Untuk contoh ini, mulai dengan satu alat untuk menghitung penawaran.
 
 <Tip>Sebagai pengingat, alat ini tidak akan melakukan perhitungan sebenarnya, itu hanya akan memberi sinyal kepada aplikasi bahwa alat harus digunakan dengan argumen apa pun yang ditentukan.</Tip>
 
 Contoh kalkulator penawaran asuransi:
 
 ```python
-TOOLS = [{
-  "name": "get_quote",
-  "description": "Calculate the insurance quote based on user input. Returned value is per month premium.",
-  "input_schema": {
-    "type": "object",
-    "properties": {
-      "make": {"type": "string", "description": "The make of the vehicle."},
-      "model": {"type": "string", "description": "The model of the vehicle."},
-      "year": {"type": "integer", "description": "The year the vehicle was manufactured."},
-      "mileage": {"type": "integer", "description": "The mileage on the vehicle."},
-      "driver_age": {"type": "integer", "description": "The age of the primary driver."}
-    },
-    "required": ["make", "model", "year", "mileage", "driver_age"]
-  }
-}]
+TOOLS = [
+    {
+        "name": "get_quote",
+        "description": "Calculate the insurance quote based on user input. Returned value is per month premium.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "make": {"type": "string", "description": "The make of the vehicle."},
+                "model": {"type": "string", "description": "The model of the vehicle."},
+                "year": {
+                    "type": "integer",
+                    "description": "The year the vehicle was manufactured.",
+                },
+                "mileage": {
+                    "type": "integer",
+                    "description": "The mileage on the vehicle.",
+                },
+                "driver_age": {
+                    "type": "integer",
+                    "description": "The age of the primary driver.",
+                },
+            },
+            "required": ["make", "model", "year", "mileage", "driver_age"],
+        },
+    }
+]
+
 
 def get_quote(make, model, year, mileage, driver_age):
     """Returns the premium per month in USD"""
@@ -389,150 +403,157 @@ def get_quote(make, model, year, mileage, driver_age):
     return 100
 ```
 
-### Sebarkan prompt Anda
+### Terapkan prompt Anda
 
-Sulit untuk mengetahui seberapa baik prompt Anda bekerja tanpa menyebarkannya dalam pengaturan produksi uji dan [menjalankan evaluasi](/docs/id/test-and-evaluate/develop-tests) jadi mari kita bangun aplikasi kecil menggunakan prompt kami, SDK Anthropic, dan streamlit untuk antarmuka pengguna.
+Sulit untuk mengetahui seberapa baik prompt Anda bekerja tanpa menerapkannya dalam pengaturan produksi uji dan [menjalankan evaluasi](/docs/id/test-and-evaluate/develop-tests) jadi mari kita bangun aplikasi kecil menggunakan prompt, SDK Anthropic, dan streamlit untuk antarmuka pengguna.
 
-Dalam file yang disebut `chatbot.py`, mulai dengan menyiapkan kelas ChatBot, yang akan merangkum interaksi dengan SDK Anthropic.
+Dalam file bernama `chatbot.py`, mulai dengan menyiapkan kelas ChatBot, yang akan merangkum interaksi dengan SDK Anthropic.
 
 Kelas harus memiliki dua metode utama: `generate_message` dan `process_user_input`.
 
-```python
+```python nocheck
 from anthropic import Anthropic
 from config import IDENTITY, TOOLS, MODEL, get_quote
 from dotenv import load_dotenv
 
 load_dotenv()
 
+
 class ChatBot:
-   def __init__(self, session_state):
-       self.anthropic = Anthropic()
-       self.session_state = session_state
+    def __init__(self, session_state):
+        self.anthropic = Anthropic()
+        self.session_state = session_state
 
-   def generate_message(
-       self,
-       messages,
-       max_tokens,
-   ):
-       try:
-           response = self.anthropic.messages.create(
-               model=MODEL,
-               system=IDENTITY,
-               max_tokens=max_tokens,
-               messages=messages,
-               tools=TOOLS,
-           )
-           return response
-       except Exception as e:
-           return {"error": str(e)}
+    def generate_message(
+        self,
+        messages,
+        max_tokens,
+    ):
+        try:
+            response = self.anthropic.messages.create(
+                model=MODEL,
+                system=IDENTITY,
+                max_tokens=max_tokens,
+                messages=messages,
+                tools=TOOLS,
+            )
+            return response
+        except Exception as e:
+            return {"error": str(e)}
 
-   def process_user_input(self, user_input):
-       self.session_state.messages.append({"role": "user", "content": user_input})
+    def process_user_input(self, user_input):
+        self.session_state.messages.append({"role": "user", "content": user_input})
 
-       response_message = self.generate_message(
-           messages=self.session_state.messages,
-           max_tokens=2048,
-       )
+        response_message = self.generate_message(
+            messages=self.session_state.messages,
+            max_tokens=2048,
+        )
 
-       if "error" in response_message:
-           return f"An error occurred: {response_message['error']}"
+        if "error" in response_message:
+            return f"An error occurred: {response_message['error']}"
 
-       if response_message.content[-1].type == "tool_use":
-           tool_use = response_message.content[-1]
-           func_name = tool_use.name
-           func_params = tool_use.input
-           tool_use_id = tool_use.id
+        if response_message.content[-1].type == "tool_use":
+            tool_use = response_message.content[-1]
+            func_name = tool_use.name
+            func_params = tool_use.input
+            tool_use_id = tool_use.id
 
-           result = self.handle_tool_use(func_name, func_params)
-           self.session_state.messages.append(
-               {"role": "assistant", "content": response_message.content}
-           )
-           self.session_state.messages.append({
-               "role": "user",
-               "content": [{
-                   "type": "tool_result",
-                   "tool_use_id": tool_use_id,
-                   "content": f"{result}",
-               }],
-           })
+            result = self.handle_tool_use(func_name, func_params)
+            self.session_state.messages.append(
+                {"role": "assistant", "content": response_message.content}
+            )
+            self.session_state.messages.append(
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "tool_result",
+                            "tool_use_id": tool_use_id,
+                            "content": f"{result}",
+                        }
+                    ],
+                }
+            )
 
-           follow_up_response = self.generate_message(
-               messages=self.session_state.messages,
-               max_tokens=2048,
-           )
+            follow_up_response = self.generate_message(
+                messages=self.session_state.messages,
+                max_tokens=2048,
+            )
 
-           if "error" in follow_up_response:
-               return f"An error occurred: {follow_up_response['error']}"
+            if "error" in follow_up_response:
+                return f"An error occurred: {follow_up_response['error']}"
 
-           response_text = follow_up_response.content[0].text
-           self.session_state.messages.append(
-               {"role": "assistant", "content": response_text}
-           )
-           return response_text
-      
-       elif response_message.content[0].type == "text":
-           response_text = response_message.content[0].text
-           self.session_state.messages.append(
-               {"role": "assistant", "content": response_text}
-           )
-           return response_text
-      
-       else:
-           raise Exception("An error occurred: Unexpected response type")
+            response_text = follow_up_response.content[0].text
+            self.session_state.messages.append(
+                {"role": "assistant", "content": response_text}
+            )
+            return response_text
 
-   def handle_tool_use(self, func_name, func_params):
-       if func_name == "get_quote":
-           premium = get_quote(**func_params)
-           return f"Quote generated: ${premium:.2f} per month"
-      
-       raise Exception("An unexpected tool was used")
+        elif response_message.content[0].type == "text":
+            response_text = response_message.content[0].text
+            self.session_state.messages.append(
+                {"role": "assistant", "content": response_text}
+            )
+            return response_text
+
+        else:
+            raise Exception("An error occurred: Unexpected response type")
+
+    def handle_tool_use(self, func_name, func_params):
+        if func_name == "get_quote":
+            premium = get_quote(**func_params)
+            return f"Quote generated: ${premium:.2f} per month"
+
+        raise Exception("An unexpected tool was used")
 ```
 
 ### Bangun antarmuka pengguna Anda
 
-Uji penyebaran kode ini dengan Streamlit menggunakan metode utama. Fungsi `main()` ini menyiapkan antarmuka obrolan berbasis Streamlit.
+Uji penerapan kode ini dengan Streamlit menggunakan metode utama. Fungsi `main()` ini menyiapkan antarmuka obrolan berbasis Streamlit.
 
-Kami akan melakukan ini dalam file yang disebut `app.py`
+Lakukan ini dalam file bernama `app.py`
 
-```python
+```python nocheck
 import streamlit as st
 from chatbot import ChatBot
 from config import TASK_SPECIFIC_INSTRUCTIONS
 
+
 def main():
-   st.title("Chat with Eva, Acme Insurance Company's Assistant🤖")
+    st.title("Chat with Eva, Acme Insurance Company's Assistant🤖")
 
-   if "messages" not in st.session_state:
-       st.session_state.messages = [
-           {'role': "user", "content": TASK_SPECIFIC_INSTRUCTIONS},
-           {'role': "assistant", "content": "Understood"},
-       ]
+    if "messages" not in st.session_state:
+        st.session_state.messages = [
+            {"role": "user", "content": TASK_SPECIFIC_INSTRUCTIONS},
+            {"role": "assistant", "content": "Understood"},
+        ]
 
-   chatbot = ChatBot(st.session_state)
+    chatbot = ChatBot(st.session_state)
 
-   # Display user and assistant messages skipping the first two
-   for message in st.session_state.messages[2:]:
-       # ignore tool use blocks
-       if isinstance(message["content"], str):
-           with st.chat_message(message["role"]):
-               st.markdown(message["content"])
+    # Display user and assistant messages skipping the first two
+    for message in st.session_state.messages[2:]:
+        # ignore tool use blocks
+        if isinstance(message["content"], str):
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
 
-   if user_msg := st.chat_input("Type your message here..."):
-       st.chat_message("user").markdown(user_msg)
+    if user_msg := st.chat_input("Type your message here..."):
+        st.chat_message("user").markdown(user_msg)
 
-       with st.chat_message("assistant"):
-           with st.spinner("Eva is thinking..."):
-               response_placeholder = st.empty()
-               full_response = chatbot.process_user_input(user_msg)
-               response_placeholder.markdown(full_response)
+        with st.chat_message("assistant"):
+            with st.spinner("Eva is thinking..."):
+                response_placeholder = st.empty()
+                full_response = chatbot.process_user_input(user_msg)
+                response_placeholder.markdown(full_response)
+
 
 if __name__ == "__main__":
-   main()
+    main()
 ```
 
 Jalankan program dengan:
 
-```
+```bash
 streamlit run app.py
 ```
 
@@ -540,77 +561,77 @@ streamlit run app.py
 
 Prompting sering memerlukan pengujian dan optimasi agar siap produksi. Untuk menentukan kesiapan solusi Anda, evaluasi kinerja chatbot menggunakan proses sistematis yang menggabungkan metode kuantitatif dan kualitatif. Membuat [evaluasi empiris yang kuat](/docs/id/test-and-evaluate/develop-tests#building-evals-and-test-cases) berdasarkan kriteria kesuksesan yang ditentukan akan memungkinkan Anda mengoptimalkan prompt Anda.
 
-<Tip>[Konsol Claude](/dashboard) sekarang menampilkan alat Evaluasi yang memungkinkan Anda menguji prompt Anda dalam berbagai skenario.</Tip>
+<Tip>Claude Console sekarang menampilkan alat Evaluasi yang memungkinkan Anda menguji prompt Anda dalam berbagai skenario.</Tip>
 
 ### Tingkatkan kinerja
 
-Dalam skenario kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik prompt engineering](/docs/id/build-with-claude/prompt-engineering/overview) standar & [strategi implementasi guardrail](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
+Dalam skenario kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik prompt engineering](/docs/id/build-with-claude/prompt-engineering/overview) standar & [strategi implementasi penjaga](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
 
 #### Kurangi latensi konteks panjang dengan RAG
 
-Ketika menangani sejumlah besar konteks statis dan dinamis, memasukkan semua informasi dalam prompt dapat menyebabkan biaya tinggi, waktu respons lebih lambat, dan mencapai batas jendela konteks. Dalam skenario ini, mengimplementasikan teknik Retrieval Augmented Generation (RAG) dapat secara signifikan meningkatkan kinerja dan efisiensi.
+Ketika menangani sejumlah besar konteks statis dan dinamis, memasukkan semua informasi dalam prompt dapat menyebabkan biaya tinggi, waktu respons lebih lambat, dan mencapai batas jendela konteks. Dalam skenario ini, menerapkan teknik Retrieval Augmented Generation (RAG) dapat secara signifikan meningkatkan kinerja dan efisiensi.
 
 Dengan menggunakan [model embedding seperti Voyage](/docs/id/build-with-claude/embeddings) untuk mengonversi informasi menjadi representasi vektor, Anda dapat membuat sistem yang lebih dapat diskalakan dan responsif. Pendekatan ini memungkinkan pengambilan informasi yang relevan secara dinamis berdasarkan kueri saat ini, daripada memasukkan semua konteks yang mungkin dalam setiap prompt.
 
-Mengimplementasikan RAG untuk kasus penggunaan dukungan [resep RAG](https://platform.claude.com/cookbook/capabilities-retrieval-augmented-generation-guide) telah terbukti meningkatkan akurasi, mengurangi waktu respons, dan mengurangi biaya API dalam sistem dengan persyaratan konteks yang luas.
+Menerapkan RAG untuk kasus penggunaan dukungan [resep RAG](https://platform.claude.com/cookbook/capabilities-retrieval-augmented-generation-guide) telah terbukti meningkatkan akurasi, mengurangi waktu respons, dan mengurangi biaya API dalam sistem dengan persyaratan konteks yang luas.
 
 #### Integrasikan data real-time dengan penggunaan alat
 
 Ketika menangani pertanyaan yang memerlukan informasi real-time, seperti saldo akun atau detail kebijakan, pendekatan RAG berbasis embedding tidak cukup. Sebaliknya, Anda dapat memanfaatkan penggunaan alat untuk secara signifikan meningkatkan kemampuan chatbot Anda untuk memberikan respons yang akurat dan real-time. Misalnya, Anda dapat menggunakan penggunaan alat untuk mencari informasi pelanggan, mengambil detail pesanan, dan membatalkan pesanan atas nama pelanggan.
 
-Pendekatan ini, [diuraikan dalam resep agen layanan pelanggan penggunaan alat kami](https://platform.claude.com/cookbook/tool-use-customer-service-agent), memungkinkan Anda untuk dengan mulus mengintegrasikan data langsung ke dalam respons Claude dan memberikan pengalaman pelanggan yang lebih personal dan efisien.
+Pendekatan ini, [dijelaskan dalam resep penggunaan alat: agen layanan pelanggan](https://platform.claude.com/cookbook/tool-use-customer-service-agent), memungkinkan Anda untuk dengan mulus mengintegrasikan data langsung ke dalam respons Claude dan memberikan pengalaman pelanggan yang lebih personal dan efisien.
 
-#### Perkuat guardrail input dan output
+#### Perkuat penjaga input dan output
 
-Saat menyebarkan chatbot, terutama dalam skenario layanan pelanggan, sangat penting untuk mencegah risiko yang terkait dengan penyalahgunaan, pertanyaan di luar cakupan, dan respons yang tidak pantas. Meskipun Claude secara inheren tahan terhadap skenario seperti itu, berikut adalah langkah-langkah tambahan untuk memperkuat guardrail chatbot Anda:
+Saat menerapkan chatbot, terutama dalam skenario layanan pelanggan, sangat penting untuk mencegah risiko yang terkait dengan penyalahgunaan, pertanyaan di luar cakupan, dan respons yang tidak pantas. Meskipun Claude secara inheren tahan terhadap skenario seperti itu, berikut adalah langkah-langkah tambahan untuk memperkuat penjaga chatbot Anda:
 
-- [Kurangi halusinasi](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations): Implementasikan mekanisme pemeriksaan fakta dan [kutipan](https://platform.claude.com/cookbook/misc-using-citations) untuk mendasarkan respons pada informasi yang disediakan.
-- Verifikasi silang informasi: Verifikasi bahwa respons agen selaras dengan kebijakan perusahaan Anda dan fakta yang diketahui.
-- Hindari komitmen kontraktual: Pastikan agen tidak membuat janji atau memasuki perjanjian yang tidak diotorisasi untuk dibuat.
+- [Kurangi halusinasi](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations): Terapkan mekanisme pemeriksaan fakta dan [kutipan](https://platform.claude.com/cookbook/misc-using-citations) untuk mendasarkan respons pada informasi yang disediakan.
+- Periksa silang informasi: Verifikasi bahwa respons agen selaras dengan kebijakan perusahaan Anda dan fakta yang diketahui.
+- Hindari komitmen kontraktual: Pastikan agen tidak membuat janji atau memasuki perjanjian yang tidak berwenang untuk dibuat.
 - [Mitigasi jailbreak](/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks): Gunakan metode seperti layar kerusakan dan validasi input untuk mencegah pengguna mengeksploitasi kerentanan model, bertujuan untuk menghasilkan konten yang tidak pantas.
-- Hindari menyebutkan pesaing: Implementasikan filter penyebutan pesaing untuk mempertahankan fokus merek dan tidak menyebutkan produk atau layanan pesaing apa pun.
-- [Jaga Claude tetap dalam karakter](/docs/id/test-and-evaluate/strengthen-guardrails/keep-claude-in-character): Cegah Claude mengubah gaya konteks mereka, bahkan selama interaksi yang panjang dan kompleks.
-- Hapus Informasi Identitas Pribadi (PII): Kecuali secara eksplisit diperlukan dan diotorisasi, hapus PII apa pun dari respons.
+- Hindari menyebutkan pesaing: Terapkan filter penyebutan pesaing untuk mempertahankan fokus merek dan tidak menyebutkan produk atau layanan pesaing apa pun.
+- [Tingkatkan konsistensi output](/docs/id/test-and-evaluate/strengthen-guardrails/increase-consistency): Cegah Claude mengubah gaya atau keluar dari karakter, bahkan selama interaksi yang panjang dan kompleks.
+- Hapus Informasi Pengenal Pribadi (PII): Kecuali secara eksplisit diperlukan dan diotorisasi, hapus PII apa pun dari respons.
 
 #### Kurangi waktu respons yang dirasakan dengan streaming
 
-Ketika menangani respons yang berpotensi panjang, mengimplementasikan streaming dapat secara signifikan meningkatkan keterlibatan dan kepuasan pengguna. Dalam skenario ini, pengguna menerima jawaban secara progresif daripada menunggu seluruh respons dihasilkan.
+Ketika menangani respons yang berpotensi panjang, menerapkan streaming dapat secara signifikan meningkatkan keterlibatan dan kepuasan pengguna. Dalam skenario ini, pengguna menerima jawaban secara progresif daripada menunggu seluruh respons dihasilkan.
 
 Berikut adalah cara mengimplementasikan streaming:
 1. Gunakan [Anthropic Streaming API](/docs/id/build-with-claude/streaming) untuk mendukung respons streaming.
 2. Siapkan frontend Anda untuk menangani potongan teks yang masuk.
 3. Tampilkan setiap potongan saat tiba, mensimulasikan pengetikan real-time.
-4. Implementasikan mekanisme untuk menyimpan respons lengkap, memungkinkan pengguna untuk melihatnya jika mereka menavigasi pergi dan kembali.
+4. Terapkan mekanisme untuk menyimpan respons lengkap, memungkinkan pengguna untuk melihatnya jika mereka menavigasi dan kembali.
 
 Dalam beberapa kasus, streaming memungkinkan penggunaan model yang lebih canggih dengan latensi dasar yang lebih tinggi, karena tampilan progresif mengurangi dampak waktu pemrosesan yang lebih lama.
 
 #### Skalakan Chatbot Anda
 
-Seiring dengan meningkatnya kompleksitas Chatbot Anda, arsitektur aplikasi Anda dapat berkembang untuk mencocokkan. Sebelum Anda menambahkan lapisan lebih lanjut ke arsitektur Anda, pertimbangkan opsi berikut yang kurang lengkap:
+Seiring dengan meningkatnya kompleksitas Chatbot Anda, arsitektur aplikasi Anda dapat berkembang untuk cocok. Sebelum Anda menambahkan lapisan lebih lanjut ke arsitektur Anda, pertimbangkan opsi berikut yang kurang lengkap:
 
-- Pastikan Anda memanfaatkan prompt Anda sebaik-baiknya dan mengoptimalkan melalui prompt engineering. Gunakan [panduan prompt engineering](/docs/id/build-with-claude/prompt-engineering/overview) kami untuk menulis prompt yang paling efektif.
-- Tambahkan [alat](/docs/id/build-with-claude/tool-use) tambahan ke prompt (yang dapat mencakup [rantai prompt](/docs/id/build-with-claude/prompt-engineering/chain-prompts)) dan lihat apakah Anda dapat mencapai fungsionalitas yang diperlukan.
+- Pastikan Anda memanfaatkan prompt Anda sebaik-baiknya dan mengoptimalkan melalui prompt engineering. Gunakan [panduan prompt engineering](/docs/id/build-with-claude/prompt-engineering/overview) untuk menulis prompt yang paling efektif.
+- Tambahkan [alat](/docs/id/build-with-claude/tool-use) tambahan ke prompt (yang dapat mencakup [rantai prompt](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#chain-complex-prompts)) dan lihat apakah Anda dapat mencapai fungsionalitas yang diperlukan.
 
-Jika Chatbot Anda menangani tugas yang sangat beragam, Anda mungkin ingin mempertimbangkan penambahan [pengklasifikasi niat terpisah](https://platform.claude.com/cookbook/capabilities-classification-guide) untuk merutekan pertanyaan pelanggan awal. Untuk aplikasi yang ada, ini akan melibatkan pembuatan pohon keputusan yang akan merutekan pertanyaan pelanggan melalui pengklasifikasi dan kemudian ke percakapan khusus (dengan set alat dan system prompt mereka sendiri). Perhatikan, metode ini memerlukan panggilan tambahan ke Claude yang dapat meningkatkan latensi.
+Jika Chatbot Anda menangani tugas yang sangat bervariasi, Anda mungkin ingin mempertimbangkan penambahan [pengklasifikasi niat terpisah](https://platform.claude.com/cookbook/capabilities-classification-guide) untuk merutekan kueri pelanggan awal. Untuk aplikasi yang ada, ini akan melibatkan pembuatan pohon keputusan yang akan merutekan pertanyaan pelanggan melalui pengklasifikasi dan kemudian ke percakapan khusus (dengan set alat dan prompt sistem mereka sendiri). Perhatikan, metode ini memerlukan panggilan tambahan ke Claude yang dapat meningkatkan latensi.
 
 ### Integrasikan Claude ke dalam alur kerja dukungan Anda
 
-Meskipun contoh kami telah fokus pada fungsi Python yang dapat dipanggil dalam lingkungan Streamlit, menyebarkan Claude untuk chatbot dukungan real-time memerlukan layanan API.
+Meskipun contoh di atas telah fokus pada fungsi Python yang dapat dipanggil dalam lingkungan Streamlit, menerapkan Claude untuk chatbot dukungan real-time memerlukan layanan API.
 
 Berikut adalah cara Anda dapat mendekati ini:
 
 1. Buat pembungkus API: Kembangkan pembungkus API sederhana di sekitar fungsi klasifikasi Anda. Misalnya, Anda dapat menggunakan Flask API atau Fast API untuk membungkus kode Anda menjadi Layanan HTTP. Layanan HTTP Anda dapat menerima input pengguna dan mengembalikan respons Asisten secara keseluruhan. Dengan demikian, layanan Anda dapat memiliki karakteristik berikut:
-   - Server-Sent Events (SSE): SSE memungkinkan streaming real-time respons dari server ke klien. Ini sangat penting untuk memberikan pengalaman yang mulus dan interaktif saat bekerja dengan LLM.
-   - Caching: Mengimplementasikan caching dapat secara signifikan meningkatkan waktu respons dan mengurangi panggilan API yang tidak perlu.
-   - Retensi konteks: Mempertahankan konteks ketika pengguna menavigasi pergi dan kembali penting untuk kontinuitas dalam percakapan.
+   - Server-Sent Events (SSE): SSE memungkinkan streaming respons real-time dari server ke klien. Ini sangat penting untuk memberikan pengalaman yang mulus dan interaktif saat bekerja dengan LLM.
+   - Caching: Menerapkan caching dapat secara signifikan meningkatkan waktu respons dan mengurangi panggilan API yang tidak perlu.
+   - Retensi konteks: Mempertahankan konteks ketika pengguna menavigasi dan kembali penting untuk kontinuitas dalam percakapan.
 
-2. Bangun antarmuka web: Implementasikan antarmuka web yang ramah pengguna untuk berinteraksi dengan agen bertenaga Claude.
+2. Bangun antarmuka web: Terapkan UI web yang ramah pengguna untuk berinteraksi dengan agen bertenaga Claude.
 
 <CardGroup cols={2}>
   <Card title="Retrieval Augmented Generation (RAG) cookbook" icon="link" href="https://platform.claude.com/cookbook/capabilities-retrieval-augmented-generation-guide">
-    Kunjungi resep cookbook RAG kami untuk kode contoh lebih lanjut dan panduan terperinci.
+    Kunjungi resep RAG cookbook untuk kode contoh lebih lanjut dan panduan terperinci.
   </Card>
   <Card title="Citations cookbook" icon="link" href="https://platform.claude.com/cookbook/misc-using-citations">
-    Jelajahi resep cookbook Kutipan kami untuk cara memastikan akurasi dan penjelasan informasi.
+    Jelajahi resep Citations cookbook untuk cara memastikan akurasi dan penjelasan informasi.
   </Card>
 </CardGroup>

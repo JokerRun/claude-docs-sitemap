@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 0239c70a6c552a5271cbe3042b0f5531f966367ae2b4e457ab73969e64ba0327
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 9bc0f21108ea236b44752878a78ae2d3f3fdf3951f0744897cb808c38a205860
 ---
 
 # Penggunaan alat dengan Claude
 
-Hubungkan Claude ke alat dan API eksternal. Pelajari di mana alat dieksekusi dan bagaimana agentic loop bekerja.
+Hubungkan Claude ke alat dan API eksternal. Pelajari di mana alat dijalankan dan bagaimana loop agentic bekerja.
 
 ---
 
-Penggunaan alat memungkinkan Claude memanggil fungsi yang Anda definisikan atau yang disediakan oleh Anthropic. Claude memutuskan kapan harus memanggil alat berdasarkan permintaan pengguna dan deskripsi alat, kemudian mengembalikan panggilan terstruktur yang dieksekusi oleh aplikasi Anda (client tools) atau yang dieksekusi oleh Anthropic (server tools).
+Penggunaan alat memungkinkan Claude memanggil fungsi yang Anda tentukan atau yang disediakan Anthropic. Claude memutuskan kapan memanggil alat berdasarkan permintaan pengguna dan deskripsi alat, kemudian mengembalikan panggilan terstruktur yang dijalankan aplikasi Anda (alat klien) atau yang dijalankan Anthropic (alat server).
 
-Berikut adalah contoh paling sederhana menggunakan server tool, di mana Anthropic menangani eksekusi:
+Berikut adalah contoh paling sederhana menggunakan alat server, di mana Anthropic menangani eksekusi:
 
 <CodeGroup>
 ```bash Shell
@@ -22,7 +22,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "tools": [{"type": "web_search_20260209", "name": "web_search"}],
     "messages": [{"role": "user", "content": "What'\''s the latest on the Mars rover?"}]
@@ -31,7 +31,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create --transform content --format yaml \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --tool '{type: web_search_20260209, name: web_search}' \
   --message '{role: user, content: "What is the latest on the Mars rover?"}'
@@ -42,7 +42,7 @@ import anthropic
 
 client = anthropic.Anthropic()
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[{"type": "web_search_20260209", "name": "web_search"}],
     messages=[{"role": "user", "content": "What's the latest on the Mars rover?"}],
@@ -55,7 +55,7 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [{ type: "web_search_20260209", name: "web_search" }],
   messages: [{ role: "user", content: "What's the latest on the Mars rover?" }]
@@ -68,31 +68,31 @@ console.log(response.content);
 
 ## Cara kerja penggunaan alat
 
-Alat-alat berbeda terutama berdasarkan di mana kode dieksekusi. **Client tools** (termasuk alat yang didefinisikan pengguna dan alat skema Anthropic seperti bash dan text_editor) berjalan di aplikasi Anda: Claude merespons dengan `stop_reason: "tool_use"` dan satu atau lebih blok `tool_use`, kode Anda mengeksekusi operasi, dan Anda mengirimkan kembali `tool_result`. **Server tools** (web_search, code_execution, web_fetch, tool_search) berjalan di infrastruktur Anthropic: Anda melihat hasilnya secara langsung tanpa menangani eksekusi.
+Alat berbeda terutama berdasarkan tempat kode dijalankan. **Alat klien** (termasuk alat yang ditentukan pengguna dan alat skema Anthropic seperti bash dan text_editor) berjalan di aplikasi Anda: Claude merespons dengan `stop_reason: "tool_use"` dan satu atau lebih blok `tool_use`, kode Anda menjalankan operasi, dan Anda mengirim kembali `tool_result`. **Alat server** (web_search, code_execution, web_fetch, tool_search) berjalan di infrastruktur Anthropic: Anda melihat hasilnya secara langsung tanpa menangani eksekusi.
 
-Untuk model konseptual lengkap termasuk agentic loop dan kapan harus memilih setiap pendekatan, lihat [Cara kerja penggunaan alat](/docs/id/agents-and-tools/tool-use/how-tool-use-works).
+Untuk model konseptual lengkap termasuk loop agentic dan kapan memilih setiap pendekatan, lihat [Cara kerja penggunaan alat](/docs/id/agents-and-tools/tool-use/how-tool-use-works).
 
-Untuk menghubungkan ke server MCP, lihat [MCP connector](/docs/id/agents-and-tools/mcp-connector). Untuk membangun klien MCP Anda sendiri, lihat [modelcontextprotocol.io](https://modelcontextprotocol.io/docs/develop/build-client).
+Untuk menghubungkan ke server MCP, lihat [konektor MCP](/docs/id/agents-and-tools/mcp-connector). Untuk membangun klien MCP Anda sendiri, lihat [modelcontextprotocol.io](https://modelcontextprotocol.io/docs/develop/build-client).
 
 <Tip>
-**Jamin kesesuaian skema dengan strict tool use**
+**Jamin kesesuaian skema dengan penggunaan alat ketat**
 
-Tambahkan `strict: true` ke definisi alat Anda untuk memastikan panggilan alat Claude selalu sesuai dengan skema Anda secara tepat. Lihat [Strict tool use](/docs/id/agents-and-tools/tool-use/strict-tool-use).
+Tambahkan `strict: true` ke definisi alat Anda untuk memastikan panggilan alat Claude selalu cocok dengan skema Anda dengan tepat. Lihat [Penggunaan alat ketat](/docs/id/agents-and-tools/tool-use/strict-tool-use).
 </Tip>
 
-Akses alat adalah salah satu primitif dengan leverage tertinggi yang dapat Anda berikan kepada agen. Pada tolok ukur seperti [LAB-Bench FigQA](https://lab-bench.org/) (interpretasi gambar ilmiah) dan [SWE-bench](https://www.swebench.com/) (rekayasa perangkat lunak dunia nyata), menambahkan bahkan alat dasar menghasilkan peningkatan kemampuan yang luar biasa, sering kali melampaui baseline ahli manusia.
+Akses alat adalah salah satu primitif dengan leverage tertinggi yang dapat Anda berikan kepada agen. Pada benchmark seperti [LAB-Bench FigQA](https://lab-bench.org/) (interpretasi gambar ilmiah) dan [SWE-bench](https://www.swebench.com/) (rekayasa perangkat lunak dunia nyata), menambahkan bahkan alat dasar menghasilkan keuntungan kemampuan yang luar biasa, sering kali melampaui baseline ahli manusia.
 
 ---
 
 ## Contoh penggunaan alat
 
-Untuk panduan langkah demi langkah yang lengkap, lihat [tutorial](/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent). Untuk contoh referensi konsep individual, lihat [Definisikan alat](/docs/id/agents-and-tools/tool-use/define-tools) dan [Tangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
+Untuk panduan langsung lengkap, lihat [tutorial](/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent). Untuk contoh referensi konsep individual, lihat [Tentukan alat](/docs/id/agents-and-tools/tool-use/define-tools) dan [Tangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 
-<section title="Apa yang terjadi ketika Claude membutuhkan lebih banyak informasi">
+<section title="Apa yang terjadi ketika Claude membutuhkan informasi lebih lanjut">
 
-Jika prompt pengguna tidak menyertakan informasi yang cukup untuk mengisi semua parameter yang diperlukan untuk suatu alat, Claude Opus jauh lebih mungkin untuk mengenali bahwa parameter hilang dan memintanya. Claude Sonnet mungkin bertanya, terutama ketika diminta untuk berpikir sebelum mengeluarkan permintaan alat. Tetapi mungkin juga melakukan yang terbaik untuk menyimpulkan nilai yang masuk akal.
+Jika prompt pengguna tidak menyertakan informasi yang cukup untuk mengisi semua parameter yang diperlukan untuk alat, Claude Opus jauh lebih mungkin mengenali bahwa parameter hilang dan memintanya. Claude Sonnet mungkin bertanya, terutama ketika diminta untuk berpikir sebelum mengeluarkan permintaan alat. Tetapi mungkin juga melakukan yang terbaik untuk menyimpulkan nilai yang masuk akal.
 
-Misalnya, diberikan alat `get_weather` yang memerlukan parameter `location`, jika Anda bertanya kepada Claude "Bagaimana cuacanya?" tanpa menentukan lokasi, Claude (khususnya Claude Sonnet) mungkin membuat tebakan tentang input alat:
+Misalnya, diberikan alat `get_weather` yang memerlukan parameter `location`, jika Anda bertanya kepada Claude "Bagaimana cuacanya?" tanpa menentukan lokasi, Claude (terutama Claude Sonnet) mungkin membuat tebakan tentang input alat:
 
 ```json JSON
 {
@@ -103,7 +103,7 @@ Misalnya, diberikan alat `get_weather` yang memerlukan parameter `location`, jik
 }
 ```
 
-Perilaku ini tidak dijamin, terutama untuk prompt yang lebih ambigu dan untuk model yang kurang cerdas. Jika Claude Opus tidak memiliki cukup konteks untuk mengisi parameter yang diperlukan, kemungkinan besar akan merespons dengan pertanyaan klarifikasi alih-alih melakukan panggilan alat.
+Perilaku ini tidak dijamin, terutama untuk prompt yang lebih ambigu dan untuk model yang kurang cerdas. Jika Claude Opus tidak memiliki konteks yang cukup untuk mengisi parameter yang diperlukan, jauh lebih mungkin untuk merespons dengan pertanyaan klarifikasi daripada membuat panggilan alat.
 
 </section>
 
@@ -145,13 +145,13 @@ When you use `tools`, we also automatically include a special system prompt for 
 
 These token counts are added to your normal input and output tokens to calculate the total cost of a request.
 
-Lihat [tabel ikhtisar model](/docs/id/about-claude/models/overview#latest-models-comparison) untuk harga per model saat ini.
+Lihat [tabel ringkasan model](/docs/id/about-claude/models/overview#latest-models-comparison) untuk harga per model saat ini.
 
-Ketika Anda mengirim prompt penggunaan alat, seperti permintaan API lainnya, respons akan mengeluarkan jumlah token input dan output sebagai bagian dari metrik `usage` yang dilaporkan.
+Ketika Anda mengirim prompt penggunaan alat, seperti permintaan API lainnya, respons akan menampilkan jumlah token input dan output sebagai bagian dari metrik `usage` yang dilaporkan.
 
 ---
 
-## Langkah selanjutnya
+## Langkah berikutnya
 
 ### Pilih jalur Anda
 
@@ -160,9 +160,9 @@ Ketika Anda mengirim prompt penggunaan alat, seperti permintaan API lainnya, res
     Di mana alat berjalan, bagaimana loop bekerja, dan kapan menggunakan alat.
   </Card>
   <Card href="/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent" title="Bangun langkah demi langkah">
-    Tutorial: dari satu panggilan alat hingga produksi.
+    Tutorial: dari panggilan alat tunggal hingga produksi.
   </Card>
   <Card href="/docs/id/agents-and-tools/tool-use/tool-reference" title="Jelajahi semua alat">
-    Direktori alat yang disediakan Anthropic dan propertinya.
+    Direktori alat yang disediakan Anthropic dan properti.
   </Card>
 </CardGroup>

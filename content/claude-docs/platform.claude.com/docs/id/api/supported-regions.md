@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/supported-regions
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: b2f286819d937b082549324ee61802bec7d79adf66fa49ee6425278ee7ae8c93
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 123708f4d28dd9dfc93e7e8add242f8b67782059928e1bae025282c046b25e96
 ---
 
 # Wilayah yang didukung
 
-Berikut adalah negara, wilayah, dan teritorial yang saat ini dapat kami dukung aksesnya:
+Berikut adalah negara, wilayah, dan teritori yang saat ini dapat kami dukung akses darinya:
 
 ---
 
@@ -42,12 +42,12 @@ Berikut adalah negara, wilayah, dan teritorial yang saat ini dapat kami dukung a
 * Kamerun
 * Kanada
 * Chad
-* Chile
+* Chili
 * Kolombia
 * Komoro
 * Kongo, Republik
 * Kosta Rika
-* Pantai Gading
+* Côte d'Ivoire
 * Kroasia
 * Siprus
 * Czechia (Republik Ceko)
@@ -93,15 +93,15 @@ Berikut adalah negara, wilayah, dan teritorial yang saat ini dapat kami dukung a
 * Kenya
 * Kiribati
 * Kuwait
-* Kyrgyzstan
+* Kirgistan
 * Laos
 * Latvia
 * Lebanon
 * Lesotho
 * Liberia
 * Liechtenstein
-* Lithuania
-* Luksemburg
+* Lituania
+* Luxemburg
 * Madagaskar
 * Malawi
 * Malaysia
@@ -113,7 +113,7 @@ Berikut adalah negara, wilayah, dan teritorial yang saat ini dapat kami dukung a
 * Meksiko
 * Mikronesia
 * Moldova
-* Monaco
+* Monako
 * Mongolia
 * Montenegro
 * Maroko
@@ -139,7 +139,7 @@ Berikut adalah negara, wilayah, dan teritorial yang saat ini dapat kami dukung a
 * Polandia
 * Portugal
 * Qatar
-* Romania
+* Rumania
 * Rwanda
 * Saint Kitts dan Nevis
 * Saint Lucia
@@ -176,7 +176,7 @@ Berikut adalah negara, wilayah, dan teritorial yang saat ini dapat kami dukung a
 * Turkmenistan
 * Tuvalu
 * Uganda
-* Ukraina (kecuali wilayah Krimea, Donetsk, dan Luhansk)
+* Ukraina (kecuali wilayah Crimea, Donetsk, dan Luhansk)
 * Uni Emirat Arab
 * Inggris Raya
 * Amerika Serikat

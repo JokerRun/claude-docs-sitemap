@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 85cdfbfd4961358de4af3adc6d1235fc98990d6e9e3ea7ebb12fa9e0590910c9
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 045d81a96496b38ab2b606079f8d869cebe90d395fb3d3b0751945545480a3f6
 ---
 
 # Mulai dengan Claude
@@ -14,15 +14,15 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
 ## Prasyarat
 
 - Akun Anthropic [Console](/)
-- [Kunci API](/settings/keys)
+- [API key](/settings/keys)
 
 ## Panggil API
 
 <Tabs>
   <Tab title="cURL">
     <Steps>
-      <Step title="Atur kunci API Anda">
-        Dapatkan kunci API Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
+      <Step title="Atur API key Anda">
+        Dapatkan API key Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
 
         ```bash
         export ANTHROPIC_API_KEY='your-api-key-here'
@@ -40,7 +40,7 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
           -H "x-api-key: $ANTHROPIC_API_KEY" \
           -H "anthropic-version: 2023-06-01" \
           -d '{
-            "model": "claude-opus-4-6",
+            "model": "claude-opus-4-7",
             "max_tokens": 1000,
             "messages": [
               {
@@ -63,7 +63,7 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
               "text": "Here are some effective search strategies to find the latest renewable energy developments:\n\n## Search Terms to Use:\n- \"renewable energy news 2024\"\n- \"clean energy breakthrough\"\n- \"solar/wind/battery technology advances\"\n- \"green energy innovations\"\n- \"climate tech developments\"\n- \"energy storage solutions\"\n\n## Best Sources to Check:\n\n**News & Industry Sites:**\n- Renewable Energy World\n- GreenTech Media (now Wood Mackenzie)\n- Energy Storage News\n- CleanTechnica\n- PV Magazine (for solar)\n- WindPower Engineering & Development..."
             }
           ],
-          "model": "claude-opus-4-6",
+          "model": "claude-opus-4-7",
           "stop_reason": "end_turn",
           "usage": {
             "input_tokens": 21,
@@ -77,8 +77,8 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
 
   <Tab title="CLI">
     <Steps>
-      <Step title="Atur kunci API Anda">
-        Dapatkan kunci API Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
+      <Step title="Atur API key Anda">
+        Dapatkan API key Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
 
         ```bash
         export ANTHROPIC_API_KEY='your-api-key-here'
@@ -102,7 +102,7 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
 
         ```bash
         ant messages create \
-          --model claude-opus-4-6 \
+          --model claude-opus-4-7 \
           --max-tokens 1000 \
           --message '{
             role: user,
@@ -122,7 +122,7 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
               "text": "Here are some effective search strategies to find the latest renewable energy developments:\n\n## Search Terms to Use:\n- \"renewable energy news 2024\"\n- \"clean energy breakthrough\"\n- \"solar/wind/battery technology advances\"\n- \"green energy innovations\"\n- \"climate tech developments\"\n- \"energy storage solutions\"\n\n## Best Sources to Check:\n\n**News & Industry Sites:**\n- Renewable Energy World\n- GreenTech Media (now Wood Mackenzie)\n- Energy Storage News\n- CleanTechnica\n- PV Magazine (for solar)\n- WindPower Engineering & Development..."
             }
           ],
-          "model": "claude-opus-4-6",
+          "model": "claude-opus-4-7",
           "stop_reason": "end_turn",
           "usage": {
             "input_tokens": 21,
@@ -136,8 +136,8 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
 
   <Tab title="Python">
     <Steps>
-      <Step title="Atur kunci API Anda">
-        Dapatkan kunci API Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
+      <Step title="Atur API key Anda">
+        Dapatkan API key Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
 
         ```bash
         export ANTHROPIC_API_KEY='your-api-key-here'
@@ -163,7 +163,7 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
         client = anthropic.Anthropic()
 
         message = client.messages.create(
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
             max_tokens=1000,
             messages=[
                 {
@@ -196,8 +196,8 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
 
   <Tab title="TypeScript">
     <Steps>
-      <Step title="Atur kunci API Anda">
-        Dapatkan kunci API Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
+      <Step title="Atur API key Anda">
+        Dapatkan API key Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
 
         ```bash
         export ANTHROPIC_API_KEY='your-api-key-here'
@@ -224,7 +224,7 @@ async function main() {
   const anthropic = new Anthropic();
 
   const msg = await anthropic.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 1000,
     messages: [
       {
@@ -254,7 +254,7 @@ main().catch(console.error);
             id: "msg_01ThFHzad6Bh4TpQ6cHux9t8",
             type: "message",
             role: "assistant",
-            model: "claude-opus-4-6",
+            model: "claude-opus-4-7",
             content: [
               {
                 type: "text",
@@ -290,8 +290,8 @@ main().catch(console.error);
 
   <Tab title="Java">
     <Steps>
-      <Step title="Atur kunci API Anda">
-        Dapatkan kunci API Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
+      <Step title="Atur API key Anda">
+        Dapatkan API key Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
 
         ```bash
         export ANTHROPIC_API_KEY='your-api-key-here'
@@ -301,7 +301,7 @@ main().catch(console.error);
       </Step>
 
       <Step title="Instal SDK">
-        Tambahkan Anthropic Java SDK ke proyek Anda. Pertama temukan versi terkini di [Maven Central](https://central.sonatype.com/artifact/com.anthropic/anthropic-java).
+        Tambahkan Anthropic Java SDK ke proyek Anda. Pertama temukan versi terbaru di [Maven Central](https://central.sonatype.com/artifact/com.anthropic/anthropic-java).
 
         **Gradle:**
         ```groovy
@@ -333,7 +333,7 @@ main().catch(console.error);
             AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
             MessageCreateParams params = MessageCreateParams.builder()
-              .model("claude-opus-4-6")
+              .model("claude-opus-4-7")
               .maxTokens(1000)
               .addUserMessage(
                 "What should I search for to find the latest developments in renewable energy?"
@@ -397,7 +397,7 @@ Setelah Anda nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
     Bandingkan model Claude berdasarkan kemampuan dan biaya.
   </Card>
   <Card title="Ikhtisar fitur" icon="list" href="/docs/id/build-with-claude/overview">
-    Jelajahi semua kemampuan Claude: alat, manajemen konteks, output terstruktur, dan banyak lagi.
+    Jelajahi semua kemampuan Claude: alat, manajemen konteks, output terstruktur, dan lainnya.
   </Card>
   <Card title="Client SDKs" icon="code-brackets" href="/docs/id/api/client-sdks">
     Dokumentasi referensi untuk Python, TypeScript, Java, dan perpustakaan klien lainnya.

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/administration-api
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: f85cae78ed04e503196de7207897a1bb9639b93ac1595799a2437fa20bc8fee6
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: d5d7c57ad5e5586bfd52192bdb9a6b9b55ea4812a65e482205b91eb6f030e1b4
 ---
 
-# Gambaran umum Admin API
+# Ikhtisar Admin API
 
 Kelola sumber daya organisasi Anda secara terprogram dengan Admin API, termasuk anggota organisasi, ruang kerja, dan kunci API.
 
@@ -15,7 +15,7 @@ Kelola sumber daya organisasi Anda secara terprogram dengan Admin API, termasuk 
 **The Admin API is unavailable for individual accounts.** To collaborate with teammates and add members, set up your organization in **Console → Settings → Organization**.
 </Tip>
 
-[Admin API](/docs/id/api/admin) memungkinkan Anda mengelola sumber daya organisasi Anda secara terprogram, termasuk anggota organisasi, ruang kerja, dan kunci API. Ini memberikan kontrol terprogram atas tugas administratif yang sebaliknya memerlukan konfigurasi manual di [Claude Console](/).
+[Admin API](/docs/id/api/admin) memungkinkan Anda mengelola sumber daya organisasi secara terprogram, termasuk anggota organisasi, ruang kerja, dan kunci API. Ini memberikan kontrol terprogram atas tugas administratif yang sebaliknya memerlukan konfigurasi manual di [Claude Console](/).
 
 <Check>
   **Admin API memerlukan akses khusus**
@@ -41,7 +41,7 @@ Ini berguna untuk:
 
 ## Peran dan izin organisasi
 
-Ada lima peran tingkat organisasi. Lihat detail selengkapnya [di sini](https://support.claude.com/en/articles/10186004-api-console-roles-and-permissions).
+Ada lima peran tingkat organisasi. Lihat detail lebih lanjut di artikel [peran dan izin API Console](https://support.claude.com/en/articles/10186004-api-console-roles-and-permissions).
 
 | Peran | Izin |
 |------|-------------|
@@ -49,7 +49,7 @@ Ada lima peran tingkat organisasi. Lihat detail selengkapnya [di sini](https://s
 | claude_code_user | Dapat menggunakan Workbench dan [Claude Code](https://code.claude.com/docs/en/overview) |
 | developer | Dapat menggunakan Workbench dan mengelola kunci API |
 | billing | Dapat menggunakan Workbench dan mengelola detail penagihan |
-| admin | Dapat melakukan semua di atas, ditambah mengelola pengguna |
+| admin | Dapat melakukan semua hal di atas, plus mengelola pengguna |
 
 ## Konsep kunci
 
@@ -59,18 +59,18 @@ Anda dapat membuat daftar [anggota organisasi](/docs/id/api/admin-api/users/get-
 
 <CodeGroup>
 ```bash Shell
-# List organization members
+# Daftar anggota organisasi
 curl "https://api.anthropic.com/v1/organizations/users?limit=10" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
-# Update member role
+# Perbarui peran anggota
 curl "https://api.anthropic.com/v1/organizations/users/{user_id}" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
   --data '{"role": "developer"}'
 
-# Remove member
+# Hapus anggota
 curl --request DELETE "https://api.anthropic.com/v1/organizations/users/{user_id}" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
@@ -85,7 +85,7 @@ Anda dapat mengundang pengguna ke organisasi dan mengelola [undangan](/docs/id/a
 <CodeGroup>
 
 ```bash Shell
-# Create invite
+# Buat undangan
 curl --request POST "https://api.anthropic.com/v1/organizations/invites" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
@@ -94,12 +94,12 @@ curl --request POST "https://api.anthropic.com/v1/organizations/invites" \
     "role": "developer"
   }'
 
-# List invites
+# Daftar undangan
 curl "https://api.anthropic.com/v1/organizations/invites?limit=10" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
-# Delete invite
+# Hapus undangan
 curl --request DELETE "https://api.anthropic.com/v1/organizations/invites/{invite_id}" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
@@ -109,31 +109,7 @@ curl --request DELETE "https://api.anthropic.com/v1/organizations/invites/{invit
 
 ### Ruang Kerja
 
-Untuk panduan komprehensif tentang ruang kerja, lihat [Ruang Kerja](/docs/id/build-with-claude/workspaces).
-
-Buat dan kelola [ruang kerja](/docs/id/api/admin-api/workspaces/get-workspace) ([konsol](/settings/workspaces)) untuk mengorganisir sumber daya Anda:
-
-<CodeGroup>
-
-```bash Shell
-# Create workspace
-curl --request POST "https://api.anthropic.com/v1/organizations/workspaces" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --data '{"name": "Production"}'
-
-# List workspaces
-curl "https://api.anthropic.com/v1/organizations/workspaces?limit=10&include_archived=false" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
-
-# Archive workspace
-curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/archive" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
-```
-
-</CodeGroup>
+Untuk panduan komprehensif tentang ruang kerja, termasuk contoh Console dan API, lihat [Ruang Kerja](/docs/id/build-with-claude/workspaces).
 
 ### Anggota Ruang Kerja
 
@@ -142,7 +118,7 @@ Kelola [akses pengguna ke ruang kerja tertentu](/docs/id/api/admin-api/workspace
 <CodeGroup>
 
 ```bash Shell
-# Add member to workspace
+# Tambahkan anggota ke ruang kerja
 curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
@@ -151,12 +127,12 @@ curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{work
     "workspace_role": "workspace_developer"
   }'
 
-# List workspace members
+# Daftar anggota ruang kerja
 curl "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members?limit=10" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
-# Update member role
+# Perbarui peran anggota
 curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
@@ -164,7 +140,7 @@ curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{work
     "workspace_role": "workspace_admin"
   }'
 
-# Remove member from workspace
+# Hapus anggota dari ruang kerja
 curl --request DELETE "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
@@ -179,12 +155,12 @@ Pantau dan kelola [kunci API](/docs/id/api/admin-api/apikeys/get-api-key):
 <CodeGroup>
 
 ```bash Shell
-# List API keys
+# Daftar kunci API
 curl "https://api.anthropic.com/v1/organizations/api_keys?limit=10&status=active&workspace_id=wrkspc_xxx" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
-# Update API key
+# Perbarui kunci API
 curl --request POST "https://api.anthropic.com/v1/organizations/api_keys/{api_key_id}" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
@@ -220,22 +196,13 @@ Endpoint ini berguna untuk menentukan secara terprogram organisasi mana yang dim
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi API Informasi Organisasi](/docs/id/api/admin-api/organization/get-me).
 
-## Mengakses laporan penggunaan dan biaya
+## Laporan penggunaan dan biaya
 
-Untuk mengakses laporan penggunaan dan biaya untuk organisasi Anda, gunakan endpoint API Penggunaan dan Biaya:
+Lacak penggunaan dan biaya organisasi Anda dengan [Usage and Cost API](/docs/id/build-with-claude/usage-cost-api).
 
-- [**Endpoint Penggunaan**](/docs/id/build-with-claude/usage-cost-api#usage-api) (`/v1/organizations/usage_report/messages`) menyediakan data penggunaan terperinci, termasuk jumlah token dan metrik permintaan, dikelompokkan menurut berbagai dimensi seperti ruang kerja, pengguna, dan model.
-- [**Endpoint Biaya**](/docs/id/build-with-claude/usage-cost-api#cost-api) (`/v1/organizations/cost_report`) menyediakan data biaya yang terkait dengan penggunaan organisasi Anda, memungkinkan Anda melacak pengeluaran dan mengalokasikan biaya berdasarkan ruang kerja atau deskripsi.
+## Analitik Claude Code
 
-Endpoint ini memberikan wawasan terperinci tentang penggunaan organisasi Anda dan biaya terkait.
-
-## Mengakses analitik Claude Code
-
-Untuk organisasi yang menggunakan Claude Code, [**API Analitik Claude Code**](/docs/id/build-with-claude/claude-code-analytics-api) menyediakan metrik produktivitas terperinci dan wawasan penggunaan:
-
-- [**Endpoint Analitik Claude Code**](/docs/id/build-with-claude/claude-code-analytics-api) (`/v1/organizations/usage_report/claude_code`) menyediakan metrik agregat harian untuk penggunaan Claude Code, termasuk sesi, baris kode, komit, permintaan tarik, statistik penggunaan alat, dan data biaya yang dipecah menurut pengguna dan model.
-
-API ini memungkinkan Anda melacak produktivitas pengembang, menganalisis adopsi Claude Code, dan membangun dasbor khusus untuk organisasi Anda.
+Pantau produktivitas pengembang dan adopsi Claude Code dengan [Claude Code Analytics API](/docs/id/build-with-claude/claude-code-analytics-api).
 
 ## Praktik terbaik
 
@@ -243,9 +210,9 @@ Untuk menggunakan Admin API secara efektif:
 
 - Gunakan nama dan deskripsi yang bermakna untuk ruang kerja dan kunci API
 - Implementasikan penanganan kesalahan yang tepat untuk operasi yang gagal
-- Audit secara teratur peran dan izin anggota
-- Bersihkan ruang kerja yang tidak digunakan dan undangan yang kadaluarsa
-- Pantau penggunaan kunci API dan rotasi kunci secara berkala
+- Audit peran dan izin anggota secara teratur
+- Bersihkan ruang kerja yang tidak digunakan dan undangan yang kedaluwarsa
+- Pantau penggunaan kunci API dan putar kunci secara berkala
 
 ## FAQ
 
@@ -273,44 +240,10 @@ Tidak, anggota organisasi dengan peran admin tidak dapat dihapus melalui API unt
 
 </section>
 
-<section title="Berapa lama undangan organisasi berlangsung?">
+<section title="Berapa lama undangan organisasi berlaku?">
 
-Undangan organisasi berakhir setelah 21 hari. Saat ini tidak ada cara untuk mengubah periode kedaluwarsa ini.
-
-</section>
-
-<section title="Apakah ada batasan pada ruang kerja?">
-
-Ya, Anda dapat memiliki maksimal 100 ruang kerja per Organisasi. Ruang kerja yang diarsipkan tidak dihitung menuju batas ini.
+Undangan organisasi kedaluwarsa setelah 21 hari. Saat ini tidak ada cara untuk mengubah periode kedaluwarsa ini.
 
 </section>
 
-<section title="Apa itu Ruang Kerja Default?">
-
-Setiap Organisasi memiliki "Ruang Kerja Default" yang tidak dapat diedit atau dihapus, dan tidak memiliki ID. Ruang Kerja ini tidak muncul di endpoint daftar ruang kerja.
-
-</section>
-
-<section title="Bagaimana peran organisasi mempengaruhi akses Ruang Kerja?">
-
-Admin organisasi secara otomatis mendapatkan peran `workspace_admin` ke semua ruang kerja. Anggota penagihan organisasi secara otomatis mendapatkan peran `workspace_billing`. Pengguna dan pengembang organisasi harus ditambahkan secara manual ke setiap ruang kerja.
-
-</section>
-
-<section title="Peran mana yang dapat ditetapkan di ruang kerja?">
-
-Pengguna dan pengembang organisasi dapat ditetapkan peran `workspace_admin`, `workspace_developer`, atau `workspace_user`. Peran `workspace_billing` tidak dapat ditetapkan secara manual - ini diwariskan dari memiliki peran organisasi `billing`.
-
-</section>
-
-<section title="Bisakah peran ruang kerja admin atau anggota penagihan organisasi diubah?">
-
-Hanya anggota penagihan organisasi yang dapat memiliki peran ruang kerja mereka ditingkatkan ke peran admin. Jika tidak, admin organisasi dan anggota penagihan tidak dapat memiliki peran ruang kerja mereka diubah atau dihapus dari ruang kerja saat mereka memegang peran organisasi tersebut. Akses ruang kerja mereka harus dimodifikasi dengan mengubah peran organisasi mereka terlebih dahulu.
-
-</section>
-
-<section title="Apa yang terjadi pada akses ruang kerja saat peran organisasi berubah?">
-
-Jika admin organisasi atau anggota penagihan diturunkan menjadi pengguna atau pengembang, mereka kehilangan akses ke semua ruang kerja kecuali yang mereka tetapkan secara manual. Saat pengguna dipromosikan ke peran admin atau penagihan, mereka mendapatkan akses otomatis ke semua ruang kerja.
-
-</section>
+Untuk pertanyaan khusus ruang kerja, lihat [FAQ Ruang Kerja](/docs/id/build-with-claude/workspaces#faq).

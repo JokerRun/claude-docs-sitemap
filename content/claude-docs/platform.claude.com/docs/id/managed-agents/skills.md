@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 7b9809cc527847fe82a4cb7e69812315150300c6587d677b765194935246f2bf
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: a21c5f31d2b014f43fd50631322bba4252f2183466c42e18a9b46d1df64d76d6
 ---
 
 # Keterampilan
@@ -11,7 +11,7 @@ Lampirkan keahlian berbasis sistem file yang dapat digunakan kembali ke agen And
 
 ---
 
-Keterampilan adalah sumber daya berbasis sistem file yang dapat digunakan kembali dan memberikan agen Anda keahlian khusus domain: alur kerja, konteks, dan praktik terbaik yang mengubah agen tujuan umum menjadi spesialis. Tidak seperti prompt (instruksi tingkat percakapan untuk tugas sekali jalan), keterampilan dimuat sesuai permintaan, hanya berdampak pada jendela konteks saat diperlukan.
+Keterampilan adalah sumber daya berbasis sistem file yang dapat digunakan kembali dan memberikan agen Anda keahlian khusus domain: alur kerja, konteks, dan praktik terbaik yang mengubah agen tujuan umum menjadi spesialis. Tidak seperti prompt (instruksi tingkat percakapan untuk tugas sekali jadi), keterampilan dimuat sesuai permintaan, hanya berdampak pada jendela konteks saat diperlukan.
 
 Dua jenis keterampilan didukung. Keduanya bekerja dengan cara yang sama: agen Anda menginvokasinya secara otomatis ketika relevan dengan tugas.
 
@@ -37,7 +37,7 @@ agent=$(curl -sS https://api.anthropic.com/v1/agents \
   --json @- <<'EOF'
 {
   "name": "Financial Analyst",
-  "model": "claude-sonnet-4-6",
+  "model": "claude-opus-4-7",
   "system": "You are a financial analysis agent.",
   "skills": [
     {"type": "anthropic", "skill_id": "xlsx"},
@@ -51,7 +51,7 @@ EOF
 ```bash CLI
 ant beta:agents create <<'YAML'
 name: Financial Analyst
-model: claude-sonnet-4-6
+model: claude-opus-4-7
 system: You are a financial analysis agent.
 skills:
   - type: anthropic
@@ -65,7 +65,7 @@ YAML
 ```python Python
 agent = client.beta.agents.create(
     name="Financial Analyst",
-    model="claude-sonnet-4-6",
+    model="claude-opus-4-7",
     system="You are a financial analysis agent.",
     skills=[
         {
@@ -84,7 +84,7 @@ agent = client.beta.agents.create(
 ```typescript TypeScript
 const agent = await client.beta.agents.create({
   name: "Financial Analyst",
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   system: "You are a financial analysis agent.",
   skills: [
     {
@@ -104,7 +104,7 @@ const agent = await client.beta.agents.create({
 var agent = await client.Beta.Agents.Create(new()
 {
     Name = "Financial Analyst",
-    Model = BetaManagedAgentsModel.ClaudeSonnet4_6,
+    Model = BetaManagedAgentsModel.ClaudeOpus4_7,
     System = "You are a financial analysis agent.",
     Skills =
     [
@@ -118,7 +118,7 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Financial Analyst",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-sonnet-4-6",
+		ID:   "claude-opus-4-7",
 		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
 	},
 	System: anthropic.String("You are a financial analysis agent."),
@@ -143,7 +143,7 @@ if err != nil {
 var agent = client.beta().agents().create(
     AgentCreateParams.builder()
         .name("Financial Analyst")
-        .model(BetaManagedAgentsModel.CLAUDE_SONNET_4_6)
+        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
         .system("You are a financial analysis agent.")
         .addSkill(
             BetaManagedAgentsAnthropicSkillParams.builder()
@@ -165,7 +165,7 @@ var agent = client.beta().agents().create(
 ```php PHP
 $agent = $client->beta->agents->create(
     name: 'Financial Analyst',
-    model: 'claude-sonnet-4-6',
+    model: 'claude-opus-4-7',
     system: 'You are a financial analysis agent.',
     skills: [
         ['type' => 'anthropic', 'skill_id' => 'xlsx'],
@@ -177,7 +177,7 @@ $agent = $client->beta->agents->create(
 ```ruby Ruby
 agent = client.beta.agents.create(
   name: "Financial Analyst",
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   system_: "You are a financial analysis agent.",
   skills: [
     {type: "anthropic", skill_id: "xlsx"},
@@ -193,4 +193,4 @@ agent = client.beta.agents.create(
 | --- | --- |
 | `type` | Baik `anthropic` untuk keterampilan pra-bangun atau `custom` untuk keterampilan yang dibuat organisasi. |
 | `skill_id` | Pengenal keterampilan. Untuk keterampilan Anthropic, gunakan nama pendek (misalnya, `xlsx`). Untuk keterampilan khusus, gunakan ID `skill_*` yang dikembalikan saat pembuatan. |
-| `version` | Hanya keterampilan khusus. Sematkan ke versi tertentu atau gunakan `latest`. |
+| `version` | Keterampilan khusus saja. Sematkan ke versi tertentu atau gunakan `latest`. |

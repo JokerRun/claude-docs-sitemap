@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/client-sdks
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: d1479a303b05385bd537f1a75fab685e2c0013ae6abe9f0635e9d156eaff73bf
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 5f52bb6e15401e9e8def72cd317ca9eedec0e00de2f872f45d2ef6dabfc45791
 ---
 
 # SDK Klien
@@ -11,7 +11,7 @@ SDK resmi untuk membangun dengan Claude API dalam Python, TypeScript, Java, Go, 
 
 ---
 
-Anthropic menyediakan SDK klien resmi dalam berbagai bahasa pemrograman untuk memudahkan pekerjaan dengan Claude API. Setiap SDK menyediakan antarmuka idiomatis, keamanan tipe, dan dukungan bawaan untuk fitur-fitur seperti streaming, percobaan ulang, dan penanganan kesalahan.
+Anthropic menyediakan SDK klien resmi dalam berbagai bahasa pemrograman untuk memudahkan pekerjaan dengan Claude API. Setiap SDK menyediakan antarmuka idiomatik, keamanan tipe, dan dukungan bawaan untuk fitur-fitur seperti streaming, percobaan ulang, dan penanganan kesalahan.
 
 <CardGroup cols={3}>
   <Card title="CLI" href="/docs/id/api/sdks/cli">
@@ -100,7 +100,7 @@ bundler add anthropic
 <CodeGroup>
 ```bash CLI
 ant messages create \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --message '{role: user, content: "Hello, Claude"}' \
   --transform content
@@ -112,7 +112,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 message = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
 )
@@ -125,7 +125,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const message = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello, Claude" }]
 });
@@ -140,7 +140,7 @@ var client = new AnthropicClient();
 
 var message = await client.Messages.Create(new MessageCreateParams
 {
-    Model = "claude-opus-4-6",
+    Model = "claude-opus-4-7",
     MaxTokens = 1024,
     Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
 });
@@ -162,7 +162,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -187,7 +187,7 @@ public class Main {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(1024L)
             .addUserMessage("Hello, Claude")
             .build();
@@ -205,7 +205,7 @@ use Anthropic\Client;
 $client = new Client(apiKey: getenv('ANTHROPIC_API_KEY'));
 
 $message = $client->messages->create(
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     maxTokens: 1024,
     messages: [
         ['role' => 'user', 'content' => 'Hello, Claude']
@@ -218,7 +218,7 @@ echo $message->content[0]->text;
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     { role: "user", content: "Hello, Claude" }
@@ -235,7 +235,7 @@ Semua SDK mendukung berbagai opsi penerapan:
 | Platform | Deskripsi |
 |----------|-------------|
 | Claude API | Terhubung langsung ke titik akhir Claude API |
-| [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) | Gunakan Claude melalui AWS |
+| [Amazon Bedrock](/docs/id/build-with-claude/claude-on-amazon-bedrock) | Gunakan Claude melalui AWS |
 | [Google Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai) | Gunakan Claude melalui Google Cloud |
 | [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry) | Gunakan Claude melalui Microsoft Azure |
 
@@ -249,7 +249,7 @@ Akses fitur beta menggunakan namespace `beta` di SDK apa pun:
 
 ```bash CLI nocheck
 ant beta:messages create \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --message '{role: user, content: "Hello"}' \
   --beta feature-name
@@ -257,7 +257,7 @@ ant beta:messages create \
 
 ```python Python nocheck
 message = client.beta.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello"}],
     betas=["feature-name"],
@@ -266,7 +266,7 @@ message = client.beta.messages.create(
 
 ```typescript TypeScript nocheck
 const message = await client.beta.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello" }],
   betas: ["feature-name"]
@@ -276,7 +276,7 @@ const message = await client.beta.messages.create({
 ```csharp C# nocheck
 var message = await client.Beta.Messages.Create(new MessageCreateParams
 {
-    Model = "claude-opus-4-6",
+    Model = "claude-opus-4-7",
     MaxTokens = 1024,
     Messages = [new() { Role = Role.User, Content = "Hello" }],
     Betas = ["feature-name"],
@@ -285,7 +285,7 @@ var message = await client.Beta.Messages.Create(new MessageCreateParams
 
 ```go Go nocheck hidelines={9}
 message, _ := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
-	Model:     anthropic.ModelClaudeOpus4_6,
+	Model:     anthropic.ModelClaudeOpus4_7,
 	MaxTokens: 1024,
 	Messages: []anthropic.BetaMessageParam{
 		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello")),
@@ -300,7 +300,7 @@ import com.anthropic.models.beta.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
 
 MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_4_6)
+    .model(Model.CLAUDE_OPUS_4_7)
     .maxTokens(1024L)
     .addUserMessage("Hello")
     .addBeta("feature-name")
@@ -311,7 +311,7 @@ client.beta().messages().create(params);
 
 ```php PHP nocheck
 $message = $client->beta->messages->create(
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     maxTokens: 1024,
     messages: [['role' => 'user', 'content' => 'Hello']],
     betas: ['feature-name'],
@@ -320,7 +320,7 @@ $message = $client->beta->messages->create(
 
 ```ruby Ruby nocheck
 message = client.beta.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello" }],
   betas: ["feature-name"]
@@ -328,7 +328,7 @@ message = client.beta.messages.create(
 ```
 </CodeGroup>
 
-Lihat [Header beta](/docs/id/api/beta-headers) untuk fitur beta yang tersedia.
+Lihat [Beta headers](/docs/id/api/beta-headers) untuk fitur beta yang tersedia.
 
 ## Persyaratan
 

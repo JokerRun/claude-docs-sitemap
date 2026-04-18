@@ -19,7 +19,7 @@
   lastmod: '2026-04-16T18:46:14.574Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/hosting
-  lastmod: '2026-04-08T17:53:06.431Z'
+  lastmod: '2026-04-17T19:51:45.092Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/mcp
   lastmod: '2026-04-16T18:46:14.573Z'
@@ -34,7 +34,7 @@
   lastmod: '2026-04-16T18:46:14.568Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/overview
-  lastmod: '2026-04-16T18:46:14.572Z'
+  lastmod: '2026-04-17T19:51:45.109Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/permissions
   lastmod: '2026-04-16T18:46:14.569Z'
@@ -46,7 +46,7 @@
   lastmod: '2026-04-16T18:46:17.413Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/quickstart
-  lastmod: '2026-04-16T15:23:16.754Z'
+  lastmod: '2026-04-17T19:51:45.097Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/secure-deployment
   lastmod: '2026-04-16T18:46:17.408Z'
@@ -79,10 +79,10 @@
   lastmod: '2026-04-08T17:53:11.120Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/typescript
-  lastmod: '2026-04-16T20:18:49.874Z'
+  lastmod: '2026-04-17T19:51:45.126Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview
-  lastmod: '2026-04-16T15:23:16.778Z'
+  lastmod: '2026-04-17T19:51:45.106Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/user-input
   lastmod: '2026-04-08T17:53:11.121Z'
@@ -103,7 +103,7 @@
   lastmod: '2026-04-03T02:12:42.175Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-04-16T20:39:55.243Z'
+  lastmod: '2026-04-17T21:48:05.487Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-03-25T19:03:14.403Z'
@@ -193,7 +193,7 @@
   lastmod: '2026-04-16T20:18:57.323Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
-  lastmod: '2026-04-16T20:18:57.367Z'
+  lastmod: '2026-04-17T21:49:19.817Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks-guide
   lastmod: '2026-04-16T20:18:57.359Z'
@@ -226,7 +226,7 @@
   lastmod: '2026-04-16T15:23:16.908Z'
 - source: code
   loc: https://code.claude.com/docs/en/model-config
-  lastmod: '2026-04-16T20:19:22.233Z'
+  lastmod: '2026-04-17T15:42:03.257Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
   lastmod: '2026-04-16T20:19:22.234Z'
@@ -268,7 +268,7 @@
   lastmod: '2026-04-16T20:19:22.270Z'
 - source: code
   loc: https://code.claude.com/docs/en/routines
-  lastmod: '2026-04-16T19:38:49.313Z'
+  lastmod: '2026-04-17T15:33:26.179Z'
 - source: code
   loc: https://code.claude.com/docs/en/sandboxing
   lastmod: '2026-04-03T02:17:17.357Z'
@@ -286,7 +286,7 @@
   lastmod: '2026-04-16T20:19:26.349Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
-  lastmod: '2026-04-16T20:19:26.346Z'
+  lastmod: '2026-04-17T19:51:45.096Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
   lastmod: '2026-04-16T20:19:26.342Z'
@@ -310,7 +310,7 @@
   lastmod: '2026-04-16T20:20:03.054Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshooting
-  lastmod: '2026-04-16T20:39:55.514Z'
+  lastmod: '2026-04-17T19:51:45.114Z'
 - source: code
   loc: https://code.claude.com/docs/en/ultraplan
   lastmod: '2026-04-16T20:20:03.047Z'
@@ -3561,7 +3561,7 @@
   loc: https://platform.claude.com/docs/en/build-with-claude/claude-code-analytics-api
   priority: '0.8'
 - source: platform
-  loc: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock-research-preview
+  loc: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
@@ -3768,7 +3768,7 @@
   loc: https://platform.claude.com/docs/id/about-claude/models/overview
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/id/about-claude/models/whats-new-claude-4-6
+  loc: https://platform.claude.com/docs/id/about-claude/models/whats-new-claude-4-7
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/about-claude/pricing
@@ -3789,91 +3789,10 @@
   loc: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
   priority: '0.7'
 - source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/agent-loop
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/claude-code-features
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/cost-tracking
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/custom-tools
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/file-checkpointing
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/hooks
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/hosting
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/mcp
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/migration-guide
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/modifying-system-prompts
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/overview
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/permissions
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/plugins
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/python
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/quickstart
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/secure-deployment
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/sessions
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/skills
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/slash-commands
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/streaming-output
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/streaming-vs-single-mode
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/structured-outputs
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/subagents
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/todo-tracking
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/tool-search
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/typescript
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/typescript-v2-preview
-  priority: '0.7'
-- source: platform
-  loc: https://platform.claude.com/docs/id/agent-sdk/user-input
-  priority: '0.7'
-- source: platform
   loc: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise
@@ -3889,6 +3808,9 @@
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/agents-and-tools/remote-mcp-servers
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
@@ -3918,6 +3840,9 @@
   loc: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
   priority: '0.7'
 - source: platform
+  loc: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference
+  priority: '0.7'
+- source: platform
   loc: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
   priority: '0.7'
 - source: platform
@@ -3928,6 +3853,9 @@
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/api/beta-headers
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/api/claude-code/routines-fire
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/api/client-sdks
@@ -3997,6 +3925,9 @@
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/claude-code-analytics-api
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock-research-preview
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
@@ -4069,6 +4000,9 @@
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/task-budgets
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/token-counting

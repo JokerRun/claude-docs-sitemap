@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 398fc2e3300ccf080ce594962f40146bf64447c66dd62e57ba9e551d91328ab6
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 2b96627d8da10120d40ee17dda1c6584eeb119c9ca41f21fe853020a3550b366
 ---
 
 # Adaptive thinking
@@ -898,7 +898,7 @@ Here are some important considerations on thinking encryption:
 - When [streaming responses](/docs/en/build-with-claude/extended-thinking#streaming-thinking), the signature is added via a `signature_delta` inside a `content_block_delta` event just before the `content_block_stop` event.
 - `signature` values are significantly longer in Claude 4 models than in previous models.
 - The `signature` field is an opaque field and should not be interpreted or parsed.
-- `signature` values are compatible across platforms (Claude APIs, [Amazon Bedrock](/docs/en/build-with-claude/claude-on-amazon-bedrock), and [Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai)). Values generated on one platform will be compatible with another.
+- `signature` values are compatible across platforms (Claude APIs, [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), and [Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai)). Values generated on one platform will be compatible with another.
 
 ### Pricing
 

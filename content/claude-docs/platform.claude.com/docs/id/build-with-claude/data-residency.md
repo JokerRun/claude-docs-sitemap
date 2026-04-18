@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/data-residency
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: f3efeb5c9907865003ee426d632c3cae583bde2191dba182bfcdc33a75fbf3cd
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: b663a8c67ffdd4893e9834ba874a8981481efdf6e986a86ca4c7e22f420bccc2
 ---
 
 # Residensi data
@@ -17,16 +17,16 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
 
 Kontrol residensi data memungkinkan Anda mengelola di mana data Anda diproses dan disimpan. Dua pengaturan independen mengatur hal ini:
 
-- **Geo inferensi:** Mengontrol di mana inferensi model berjalan, berdasarkan per-permintaan. Diatur melalui parameter API `inference_geo` atau sebagai default workspace.
-- **Geo workspace:** Mengontrol di mana data disimpan saat tidak aktif dan di mana pemrosesan endpoint (transcoding gambar, eksekusi kode, dll.) terjadi. Dikonfigurasi di tingkat workspace di [Console](https://platform.claude.com).
+- **Inference geo:** Mengontrol di mana inferensi model berjalan, berdasarkan per-permintaan. Diatur melalui parameter API `inference_geo` atau sebagai default workspace.
+- **Workspace geo:** Mengontrol di mana data disimpan saat istirahat dan di mana pemrosesan endpoint (transcoding gambar, eksekusi kode, dll.) terjadi. Dikonfigurasi di tingkat workspace di [Console](https://platform.claude.com).
 
-## Geo inferensi
+## Inference geo
 
-Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk permintaan API tertentu. Tambahkan ke panggilan `POST /v1/messages` mana pun.
+Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk permintaan API tertentu. Tambahkan ke panggilan `POST /v1/messages` apa pun.
 
 | Nilai | Deskripsi |
 |:------|:------------|
-| `"global"` | Default. Inferensi dapat berjalan di geografi mana pun yang tersedia untuk performa dan ketersediaan optimal. |
+| `"global"` | Default. Inferensi dapat berjalan di geografi mana pun yang tersedia untuk kinerja dan ketersediaan optimal. |
 | `"us"` | Inferensi hanya berjalan di infrastruktur berbasis AS. |
 
 ### Penggunaan API
@@ -38,7 +38,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-version: 2023-06-01" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
         "max_tokens": 1024,
         "inference_geo": "us",
         "messages": [{
@@ -50,7 +50,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --inference-geo us \
   --message '{role: user, content: "Summarize the key points of this document."}' \
@@ -63,7 +63,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     inference_geo="us",
     messages=[
@@ -82,7 +82,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   inference_geo: "us",
   messages: [
@@ -104,7 +104,7 @@ console.log(`Inference geo: ${response.usage.inference_geo}`);
 
 ### Respons
 
-Objek `usage` dalam respons menyertakan field `inference_geo` yang menunjukkan di mana inferensi berjalan:
+Objek `usage` respons mencakup field `inference_geo` yang menunjukkan di mana inferensi berjalan:
 
 ```json Output
 {
@@ -118,94 +118,94 @@ Objek `usage` dalam respons menyertakan field `inference_geo` yang menunjukkan d
 
 ### Ketersediaan model
 
-Parameter `inference_geo` didukung pada Claude Opus 4.6 dan semua model berikutnya. Model lama yang dirilis sebelum Opus 4.6 tidak mendukung parameter ini. Permintaan dengan `inference_geo` pada model lama akan mengembalikan error 400.
+Parameter `inference_geo` didukung di Claude Opus 4.6 dan semua model berikutnya. Model yang lebih lama dirilis sebelum Opus 4.6 tidak mendukung parameter ini. Permintaan dengan `inference_geo` pada model legacy mengembalikan error 400.
 
 <Note>
-Parameter `inference_geo` hanya tersedia di Claude API (1P). Pada platform pihak ketiga (AWS Bedrock, Google Vertex AI), wilayah inferensi ditentukan oleh URL endpoint atau profil inferensi, sehingga `inference_geo` tidak berlaku. Parameter `inference_geo` juga tidak tersedia melalui [endpoint kompatibilitas OpenAI SDK](/docs/id/api/openai-sdk).
+Parameter `inference_geo` hanya tersedia di Claude API (1P). Di platform pihak ketiga (AWS Bedrock, Google Vertex AI), wilayah inferensi ditentukan oleh URL endpoint atau profil inferensi, jadi `inference_geo` tidak berlaku. Parameter `inference_geo` juga tidak tersedia melalui [endpoint kompatibilitas OpenAI SDK](/docs/id/api/openai-sdk).
 </Note>
 
 ### Pembatasan tingkat workspace
 
-Pengaturan workspace juga mendukung pembatasan geo inferensi mana yang tersedia:
+Pengaturan workspace juga mendukung pembatasan inference geo mana yang tersedia:
 
-- **`allowed_inference_geos`:** Membatasi geo mana yang dapat digunakan oleh workspace. Jika permintaan menentukan `inference_geo` yang tidak ada dalam daftar ini, API akan mengembalikan error.
+- **`allowed_inference_geos`:** Membatasi geo mana yang dapat digunakan workspace. Jika permintaan menentukan `inference_geo` yang tidak ada dalam daftar ini, API mengembalikan error.
 - **`default_inference_geo`:** Menetapkan geo fallback ketika `inference_geo` dihilangkan dari permintaan. Permintaan individual dapat mengganti ini dengan menetapkan `inference_geo` secara eksplisit.
 
 Pengaturan ini dapat dikonfigurasi melalui Console atau [Admin API](/docs/id/build-with-claude/administration-api) di bawah field `data_residency`.
 
-## Geo workspace
+## Workspace geo
 
-Geo workspace ditetapkan saat Anda membuat workspace dan tidak dapat diubah setelahnya. Saat ini, `"us"` adalah satu-satunya geo workspace yang tersedia.
+Workspace geo diatur ketika Anda membuat workspace dan tidak dapat diubah setelahnya. Saat ini, `"us"` adalah satu-satunya workspace geo yang tersedia.
 
-Untuk menetapkan geo workspace, buat workspace baru di [Console](https://platform.claude.com):
+Untuk menetapkan workspace geo, buat workspace baru di [Console](https://platform.claude.com):
 
 1. Buka **Settings** > **Workspaces**.
 2. Buat workspace baru.
-3. Pilih geo workspace.
+3. Pilih workspace geo.
 
 ## Harga
 
-Harga residensi data bervariasi berdasarkan generasi model:
+Harga residensi data bervariasi menurut generasi model:
 
-- **Claude Opus 4.6 dan yang lebih baru:** Inferensi khusus AS (`inference_geo: "us"`) dihargai 1,1x tarif standar di semua kategori harga token (token input, token output, penulisan cache, dan pembacaan cache).
-- **Perutean global** (`inference_geo: "global"` atau dihilangkan): Harga standar berlaku.
-- **Model lama:** Harga yang ada tidak berubah terlepas dari pengaturan `inference_geo`.
+- **Claude Opus 4.6 dan lebih baru:** Inferensi hanya AS (`inference_geo: "us"`) dihargai pada tingkat 1,1x standar di semua kategori harga token (token input, token output, cache writes, dan cache reads).
+- **Routing global** (`inference_geo: "global"` atau dihilangkan): Harga standar berlaku.
+- **Model yang lebih lama:** Harga yang ada tidak berubah terlepas dari pengaturan `inference_geo`.
 
-Harga ini hanya berlaku untuk Claude API (1P). Platform pihak ketiga (AWS Bedrock, Google Vertex AI) memiliki harga regional mereka sendiri. Lihat [halaman harga](/docs/id/about-claude/pricing#data-residency-pricing) untuk detailnya.
+Harga ini berlaku untuk Claude API (1P) saja. Platform pihak ketiga (AWS Bedrock, Google Vertex AI) memiliki harga regional mereka sendiri. Lihat [halaman harga](/docs/id/about-claude/pricing#data-residency-pricing) untuk detail.
 
 <Note>
-Jika Anda menggunakan [Priority Tier](/docs/id/api/service-tiers), pengali 1,1x untuk inferensi khusus AS juga memengaruhi cara token dihitung terhadap kapasitas Priority Tier Anda. Setiap token yang dikonsumsi dengan `inference_geo: "us"` akan mengurangi 1,1 token dari TPM yang Anda komitkan, konsisten dengan cara pengali harga lainnya (seperti prompt caching) memengaruhi tingkat burndown.
+Jika Anda menggunakan [Priority Tier](/docs/id/api/service-tiers), pengganda 1,1x untuk inferensi hanya AS juga mempengaruhi cara token dihitung terhadap kapasitas Priority Tier Anda. Setiap token yang dikonsumsi dengan `inference_geo: "us"` mengurangi 1,1 token dari TPM yang berkomitmen, konsisten dengan bagaimana pengganda harga lainnya (seperti prompt caching) mempengaruhi tingkat burndown.
 </Note>
 
 ## Dukungan Batch API
 
-Parameter `inference_geo` didukung pada [Batch API](/docs/id/build-with-claude/batch-processing). Setiap permintaan dalam batch dapat menentukan nilai `inference_geo`-nya sendiri.
+Parameter `inference_geo` didukung di [Batch API](/docs/id/build-with-claude/batch-processing). Setiap permintaan dalam batch dapat menentukan nilai `inference_geo` miliknya sendiri.
 
-## Migrasi dari opt-out lama
+## Migrasi dari opt-out legacy
 
-Jika organisasi Anda sebelumnya memilih keluar dari perutean global untuk menjaga inferensi di AS, workspace Anda telah dikonfigurasi secara otomatis dengan `allowed_inference_geos: ["us"]` dan `default_inference_geo: "us"`. Tidak diperlukan perubahan kode. Persyaratan residensi data Anda yang ada terus diterapkan melalui kontrol geo baru.
+Jika organisasi Anda sebelumnya memilih untuk tidak menggunakan routing global untuk menjaga inferensi di AS, workspace Anda telah dikonfigurasi secara otomatis dengan `allowed_inference_geos: ["us"]` dan `default_inference_geo: "us"`. Tidak ada perubahan kode yang diperlukan. Persyaratan residensi data yang ada terus ditegakkan melalui kontrol geo baru.
 
 ### Apa yang berubah
 
-Opt-out lama adalah pengaturan tingkat organisasi yang membatasi semua permintaan ke infrastruktur berbasis AS. Kontrol residensi data baru menggantikan ini dengan dua mekanisme:
+Opt-out legacy adalah pengaturan tingkat organisasi yang membatasi semua permintaan ke infrastruktur berbasis AS. Kontrol residensi data baru menggantikan ini dengan dua mekanisme:
 
-- **Kontrol per-permintaan:** Parameter `inference_geo` memungkinkan Anda menentukan `"us"` atau `"global"` pada setiap panggilan API, memberikan fleksibilitas tingkat permintaan.
-- **Kontrol workspace:** Pengaturan `default_inference_geo` dan `allowed_inference_geos` di Console memungkinkan Anda menerapkan kebijakan geo di semua kunci dalam workspace.
+- **Kontrol per-permintaan:** Parameter `inference_geo` memungkinkan Anda menentukan `"us"` atau `"global"` pada setiap panggilan API, memberikan Anda fleksibilitas tingkat permintaan.
+- **Kontrol workspace:** Pengaturan `default_inference_geo` dan `allowed_inference_geos` di Console memungkinkan Anda memberlakukan kebijakan geo di semua kunci dalam workspace.
 
 ### Apa yang terjadi pada workspace Anda
 
 Workspace Anda dimigrasikan secara otomatis:
 
-| Pengaturan lama | Ekuivalen baru |
+| Pengaturan Legacy | Setara baru |
 |:---------------|:---------------|
-| Opt-out perutean global (khusus AS) | `allowed_inference_geos: ["us"]`, `default_inference_geo: "us"` |
+| Opt-out routing global (hanya AS) | `allowed_inference_geos: ["us"]`, `default_inference_geo: "us"` |
 
-Semua permintaan API yang menggunakan kunci dari workspace Anda terus berjalan di infrastruktur berbasis AS. Tidak diperlukan tindakan untuk mempertahankan perilaku Anda saat ini.
+Semua permintaan API menggunakan kunci dari workspace Anda terus berjalan di infrastruktur berbasis AS. Tidak ada tindakan yang diperlukan untuk mempertahankan perilaku saat ini Anda.
 
-### Jika Anda ingin menggunakan perutean global
+### Jika Anda ingin menggunakan routing global
 
-Jika persyaratan residensi data Anda telah berubah dan Anda ingin memanfaatkan perutean global untuk performa dan ketersediaan yang lebih baik, perbarui pengaturan geo inferensi workspace Anda untuk menyertakan `"global"` dalam geo yang diizinkan dan tetapkan `default_inference_geo` ke `"global"`. Lihat [Pembatasan tingkat workspace](#workspace-level-restrictions) untuk detailnya.
+Jika persyaratan residensi data Anda telah berubah dan Anda ingin memanfaatkan routing global untuk kinerja dan ketersediaan yang lebih baik, perbarui pengaturan inference geo workspace Anda untuk menyertakan `"global"` dalam geo yang diizinkan dan atur `default_inference_geo` ke `"global"`. Lihat [Pembatasan tingkat workspace](#workspace-level-restrictions) untuk detail.
 
 ### Dampak harga
 
-Model lama tidak terpengaruh oleh migrasi ini. Untuk harga terkini pada model yang lebih baru, lihat [Harga](#pricing).
+Model legacy tidak terpengaruh oleh migrasi ini. Untuk harga saat ini pada model yang lebih baru, lihat [Harga](#pricing).
 
-## Keterbatasan saat ini
+## Batasan saat ini
 
-- **Batas rate bersama:** Batas rate dibagikan di semua geo.
-- **Geo inferensi:** Hanya `"us"` dan `"global"` yang tersedia saat peluncuran. Wilayah tambahan akan ditambahkan seiring waktu.
-- **Geo workspace:** Hanya `"us"` yang saat ini tersedia. Geo workspace tidak dapat diubah setelah pembuatan workspace.
+- **Batas laju bersama:** Batas laju dibagikan di semua geo.
+- **Inference geo:** Hanya `"us"` dan `"global"` yang tersedia saat peluncuran. Wilayah tambahan akan ditambahkan seiring waktu.
+- **Workspace geo:** Hanya `"us"` yang saat ini tersedia. Workspace geo tidak dapat diubah setelah pembuatan workspace.
 
-## Langkah selanjutnya
+## Langkah berikutnya
 
 <CardGroup>
   <Card title="Harga" icon="dollar-sign" href="/docs/id/about-claude/pricing#data-residency-pricing">
     Lihat detail harga residensi data.
   </Card>
-  <Card title="Workspace" icon="building" href="/docs/id/build-with-claude/workspaces">
+  <Card title="Workspaces" icon="building" href="/docs/id/build-with-claude/workspaces">
     Pelajari tentang konfigurasi workspace.
   </Card>
-  <Card title="API Penggunaan dan Biaya" icon="chart" href="/docs/id/build-with-claude/usage-cost-api">
+  <Card title="Usage and Cost API" icon="chart" href="/docs/id/build-with-claude/usage-cost-api">
     Lacak penggunaan dan biaya berdasarkan residensi data.
   </Card>
 </CardGroup>

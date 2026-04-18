@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/adaptive-thinking
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 528262521ae8bf51a00b76f5aa5ebc5fb0d9998e9bc51df7453ce9dc2c6f6132
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 9f4f862d01ec78f32d5efe08004a2090cb5cbe40840e68c26b03985e5b95554c
 ---
 
 # Pemikiran adaptif
@@ -15,12 +15,12 @@ Biarkan Claude secara dinamis menentukan kapan dan berapa banyak menggunakan pem
 This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
 </Note>
 
-Pemikiran adaptif adalah cara yang direkomendasikan untuk menggunakan [pemikiran yang diperluas](/docs/id/build-with-claude/extended-thinking) dengan Claude Opus 4.6 dan Claude Sonnet 4.6, dan merupakan mode default pada [Claude Mythos Preview](https://anthropic.com/glasswing) (di mana ini secara otomatis diterapkan kapan pun `thinking` tidak diatur). Alih-alih secara manual menetapkan anggaran token pemikiran, pemikiran adaptif memungkinkan Claude secara dinamis menentukan kapan dan berapa banyak menggunakan pemikiran yang diperluas berdasarkan kompleksitas setiap permintaan.
+Pemikiran adaptif adalah cara yang direkomendasikan untuk menggunakan [pemikiran yang diperluas](/docs/id/build-with-claude/extended-thinking) dengan Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, dan merupakan mode default pada [Claude Mythos Preview](https://anthropic.com/glasswing) (di mana ia secara otomatis diterapkan kapan pun `thinking` tidak diatur). Alih-alih secara manual menetapkan anggaran token pemikiran, pemikiran adaptif memungkinkan Claude secara dinamis menentukan kapan dan berapa banyak menggunakan pemikiran yang diperluas berdasarkan kompleksitas setiap permintaan. Pada Claude Opus 4.7, pemikiran adaptif adalah **satu-satunya** mode pemikiran yang didukung; manual `thinking: {type: "enabled", budget_tokens: N}` tidak lagi diterima.
 
 <Tip>
-Pemikiran adaptif dapat mendorong kinerja yang lebih baik daripada pemikiran yang diperluas dengan `budget_tokens` tetap untuk banyak beban kerja, terutama tugas bimodal dan alur kerja agentic jangka panjang. Tidak ada header beta yang diperlukan.
+Pemikiran adaptif dapat menghasilkan kinerja yang lebih baik daripada pemikiran yang diperluas dengan `budget_tokens` tetap untuk banyak beban kerja, terutama tugas bimodal dan alur kerja agentic jangka panjang. Tidak ada header beta yang diperlukan.
 
-Jika beban kerja Anda memerlukan latensi yang dapat diprediksi atau kontrol presisi atas biaya pemikiran, pemikiran yang diperluas dengan `budget_tokens` masih berfungsi pada model ini tetapi sudah usang dan tidak lagi direkomendasikan. Lihat peringatan di bawah.
+Jika beban kerja Anda memerlukan latensi yang dapat diprediksi atau kontrol presisi atas biaya pemikiran, pemikiran yang diperluas dengan `budget_tokens` masih berfungsi pada Claude Opus 4.6 dan Claude Sonnet 4.6 tetapi sudah usang dan tidak lagi direkomendasikan. Lihat peringatan di bawah.
 </Tip>
 
 ## Model yang didukung
@@ -28,6 +28,7 @@ Jika beban kerja Anda memerlukan latensi yang dapat diprediksi atau kontrol pres
 Pemikiran adaptif didukung pada model berikut:
 
 - Claude Mythos Preview (`claude-mythos-preview`), pemikiran adaptif adalah default; `thinking: {type: "disabled"}` tidak didukung
+- Claude Opus 4.7 (`claude-opus-4-7`), pemikiran adaptif adalah satu-satunya mode pemikiran yang didukung. Pemikiran dimatikan kecuali Anda secara eksplisit menetapkan `thinking: {type: "adaptive"}` dalam permintaan Anda; manual `thinking: {type: "enabled"}` ditolak dengan kesalahan 400.
 - Claude Opus 4.6 (`claude-opus-4-6`)
 - Claude Sonnet 4.6 (`claude-sonnet-4-6`)
 
@@ -55,7 +56,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 16000,
     "thinking": {
         "type": "adaptive"
@@ -71,7 +72,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 16000 \
   --thinking '{type: adaptive}' \
   --message '{role: user, content: Explain why the sum of two even numbers is always even.}' \
@@ -88,7 +89,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=16000,
     thinking={"type": "adaptive"},
     messages=[
@@ -112,7 +113,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 16000,
   thinking: {
     type: "adaptive"
@@ -148,7 +149,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 16000,
             Thinking = new ThinkingConfigAdaptive(),
             Messages = [
@@ -191,7 +192,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 16000,
 		Thinking: anthropic.ThinkingConfigParamUnion{
 			OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -228,7 +229,7 @@ public class ExtendedThinkingExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(16000L)
             .thinking(ThinkingConfigAdaptive.builder().build())
             .addUserMessage("Explain why the sum of two even numbers is always even.")
@@ -263,7 +264,7 @@ $message = $client->messages->create(
             'content' => 'Explain why the sum of two even numbers is always even.'
         ]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     thinking: ['type' => 'adaptive'],
 );
 
@@ -282,7 +283,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 16000,
   thinking: {
     type: "adaptive"
@@ -308,12 +309,13 @@ end
 
 ## Pemikiran adaptif dengan parameter upaya
 
-Anda dapat menggabungkan pemikiran adaptif dengan [parameter upaya](/docs/id/build-with-claude/effort) untuk memandu berapa banyak pemikiran yang dilakukan Claude. Tingkat upaya bertindak sebagai panduan lembut untuk alokasi pemikiran Claude:
+Anda dapat menggabungkan pemikiran adaptif dengan [parameter upaya](/docs/id/build-with-claude/effort) untuk memandu seberapa banyak Claude berpikir. Tingkat upaya bertindak sebagai panduan lembut untuk alokasi pemikiran Claude:
 
 | Tingkat upaya | Perilaku pemikiran |
 |:-------------|:------------------|
-| `max` | Claude selalu berpikir tanpa batasan pada kedalaman pemikiran. Tersedia pada Claude Opus 4.6 dan Claude Sonnet 4.6. |
-| `high` (default) | Claude selalu berpikir. Memberikan penalaran mendalam pada tugas kompleks. |
+| `max` | Claude selalu berpikir tanpa batasan pada kedalaman pemikiran. Tersedia pada Claude Mythos Preview, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. |
+| `xhigh` | Claude selalu berpikir mendalam dengan eksplorasi yang diperluas. Tersedia pada Claude Opus 4.7. |
+| `high` (default) | Claude selalu berpikir. Memberikan penalaran mendalam pada tugas yang kompleks. |
 | `medium` | Claude menggunakan pemikiran moderat. Mungkin melewati pemikiran untuk pertanyaan yang sangat sederhana. |
 | `low` | Claude meminimalkan pemikiran. Melewati pemikiran untuk tugas sederhana di mana kecepatan paling penting. |
 
@@ -325,7 +327,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 16000,
     "thinking": {
         "type": "adaptive"
@@ -345,7 +347,7 @@ curl https://api.anthropic.com/v1/messages \
 ```bash CLI
 ant messages create \
   --transform 'content.0.text' --format yaml <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 16000
 thinking:
   type: adaptive
@@ -363,7 +365,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=16000,
     thinking={"type": "adaptive"},
     output_config={"effort": "medium"},
@@ -379,7 +381,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 16000,
   thinking: {
     type: "adaptive"
@@ -416,7 +418,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 16000,
             Thinking = new ThinkingConfigAdaptive(),
             OutputConfig = new OutputConfig { Effort = Effort.Medium },
@@ -444,7 +446,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 16000,
 		Thinking: anthropic.ThinkingConfigParamUnion{
 			OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -477,7 +479,7 @@ public class Main {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(16000L)
             .thinking(ThinkingConfigAdaptive.builder().build())
             .outputConfig(OutputConfig.builder()
@@ -506,7 +508,7 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'What is the capital of France?']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     thinking: ['type' => 'adaptive'],
     outputConfig: ['effort' => 'medium'],
 );
@@ -520,7 +522,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 16000,
   thinking: {
     type: "adaptive"
@@ -544,7 +546,7 @@ Pemikiran adaptif bekerja dengan mulus dengan [streaming](/docs/id/build-with-cl
 <CodeGroup>
 ```bash CLI
 ant messages create --stream --format jsonl \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 16000 \
   --thinking '{type: adaptive}' \
   --message '{role: user, content: What is the greatest common divisor of 1071 and 462?}'
@@ -556,7 +558,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 with client.messages.stream(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=16000,
     thinking={"type": "adaptive"},
     messages=[
@@ -582,7 +584,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const stream = await client.messages.stream({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 16000,
   thinking: { type: "adaptive" },
   messages: [{ role: "user", content: "What is the greatest common divisor of 1071 and 462?" }]
@@ -615,7 +617,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 16000,
             Thinking = new ThinkingConfigAdaptive(),
             Messages = [new() { Role = Role.User, Content = "What is the greatest common divisor of 1071 and 462?" }]
@@ -644,7 +646,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 16000,
 		Thinking: anthropic.ThinkingConfigParamUnion{
 			OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -686,7 +688,7 @@ public class StreamingThinkingExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(16000L)
             .thinking(ThinkingConfigAdaptive.builder().build())
             .addUserMessage("What is the greatest common divisor of 1071 and 462?")
@@ -729,7 +731,7 @@ $stream = $client->messages->createStream(
     messages: [
         ['role' => 'user', 'content' => 'What is the greatest common divisor of 1071 and 462?']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     thinking: ['type' => 'adaptive'],
 );
 
@@ -752,7 +754,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 stream = client.messages.stream(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 16000,
   thinking: { type: "adaptive" },
   messages: [
@@ -775,15 +777,15 @@ end
 
 | Mode | Konfigurasi | Ketersediaan | Kapan digunakan |
 |:-----|:-------|:-------------|:------------|
-| **Adaptif** | `thinking: {type: "adaptive"}` | Claude Mythos Preview (default), Opus 4.6, Sonnet 4.6 | Claude menentukan kapan dan berapa banyak menggunakan pemikiran yang diperluas. Gunakan `effort` untuk memandu. |
-| **Manual** | `thinking: {type: "enabled", budget_tokens: N}` | Semua model. Usang pada Opus 4.6 dan Sonnet 4.6 (pertimbangkan mode adaptif sebagai gantinya). | Ketika Anda memerlukan kontrol presisi atas pengeluaran token pemikiran. |
+| **Adaptif** | `thinking: {type: "adaptive"}` | Claude Mythos Preview (default), Opus 4.7 (hanya mode), Opus 4.6, Sonnet 4.6 | Claude menentukan kapan dan berapa banyak menggunakan pemikiran yang diperluas. Gunakan `effort` untuk memandu. |
+| **Manual** | `thinking: {type: "enabled", budget_tokens: N}` | Semua model kecuali Claude Opus 4.7 (ditolak). Usang pada Opus 4.6 dan Sonnet 4.6 (pertimbangkan mode adaptif sebagai gantinya). | Ketika Anda memerlukan kontrol presisi atas pengeluaran token pemikiran. |
 | **Dinonaktifkan** | Hilangkan parameter `thinking` atau lewatkan `{type: "disabled"}` | Semua model kecuali Claude Mythos Preview | Ketika Anda tidak memerlukan pemikiran yang diperluas dan menginginkan latensi terendah. |
 
 <Note>
-Pemikiran adaptif tersedia pada Claude Mythos Preview, Opus 4.6, dan Sonnet 4.6. Pada Mythos Preview, pemikiran adaptif adalah default dan diterapkan secara otomatis kapan pun `thinking` tidak diatur. Model yang lebih lama hanya mendukung `type: "enabled"` dengan `budget_tokens`. Pada Opus 4.6 dan Sonnet 4.6, `type: "enabled"` dengan `budget_tokens` masih berfungsi tetapi usang.
+Pemikiran adaptif tersedia pada Claude Mythos Preview, Claude Opus 4.7, Opus 4.6, dan Sonnet 4.6. Pada Mythos Preview, pemikiran adaptif adalah default dan diterapkan secara otomatis kapan pun `thinking` tidak diatur. Pada Claude Opus 4.7, pemikiran adaptif adalah satu-satunya mode yang didukung dan `type: "enabled"` dengan `budget_tokens` ditolak. Model yang lebih lama hanya mendukung `type: "enabled"` dengan `budget_tokens`. Pada Opus 4.6 dan Sonnet 4.6, `type: "enabled"` dengan `budget_tokens` masih berfungsi tetapi usang.
 
 **Ketersediaan pemikiran yang disisipi menurut mode:**
-- **Mode adaptif:** Pemikiran yang disisipi secara otomatis diaktifkan pada Claude Mythos Preview, Opus 4.6, dan Sonnet 4.6. Pada Mythos Preview, penalaran antar-alat selalu berada di dalam blok pemikiran.
+- **Mode adaptif:** Pemikiran yang disisipi secara otomatis diaktifkan pada Claude Mythos Preview, Claude Opus 4.7, Opus 4.6, dan Sonnet 4.6. Pada Mythos Preview dan Opus 4.7, penalaran antar-alat selalu berada di dalam blok pemikiran.
 - **Mode manual pada Sonnet 4.6:** Pemikiran yang disisipi bekerja melalui header beta `interleaved-thinking-2025-05-14`.
 - **Mode manual pada Opus 4.6:** Pemikiran yang disisipi tidak tersedia. Jika alur kerja agentic Anda memerlukan pemikiran di antara panggilan alat pada Opus 4.6, gunakan mode adaptif.
 </Note>
@@ -798,7 +800,7 @@ Saat menggunakan pemikiran adaptif, giliran asisten sebelumnya tidak perlu dimul
 
 Permintaan berturut-turut menggunakan pemikiran `adaptive` mempertahankan titik henti [cache prompt](/docs/id/build-with-claude/prompt-caching). Namun, beralih antara mode pemikiran `adaptive` dan `enabled`/`disabled` memecah titik henti cache untuk pesan. Prompt sistem dan definisi alat tetap di-cache terlepas dari perubahan mode.
 
-### Menyesuaikan perilaku pemikiran
+### Menyetel perilaku pemikiran
 
 Perilaku pemicu pemikiran adaptif dapat dipromptkan. Jika Claude berpikir lebih atau kurang sering daripada yang Anda inginkan, Anda dapat menambahkan panduan ke prompt sistem Anda:
 
@@ -814,15 +816,15 @@ Mengarahkan Claude untuk berpikir lebih jarang dapat mengurangi kualitas pada tu
 
 ### Kontrol biaya
 
-Gunakan `max_tokens` sebagai batas keras pada total output (pemikiran + teks respons). Parameter `effort` memberikan panduan lembut tambahan tentang berapa banyak pemikiran yang dialokasikan Claude. Bersama-sama, ini memberikan Anda kontrol efektif atas biaya.
+Gunakan `max_tokens` sebagai batas keras pada total output (pemikiran + teks respons). Parameter `effort` memberikan panduan lembut tambahan tentang berapa banyak pemikiran yang Claude alokasikan. Bersama-sama, ini memberi Anda kontrol yang efektif atas biaya.
 
-Pada tingkat upaya `high` dan `max`, Claude dapat berpikir lebih ekstensif dan lebih mungkin menghabiskan anggaran `max_tokens`. Jika Anda mengamati `stop_reason: "max_tokens"` dalam respons, pertimbangkan untuk meningkatkan `max_tokens` untuk memberikan model lebih banyak ruang, atau menurunkan tingkat upaya.
+Pada tingkat upaya `high` dan `max`, Claude mungkin berpikir lebih ekstensif dan dapat lebih mungkin menghabiskan anggaran `max_tokens`. Jika Anda mengamati `stop_reason: "max_tokens"` dalam respons, pertimbangkan untuk meningkatkan `max_tokens` untuk memberi model lebih banyak ruang, atau menurunkan tingkat upaya.
 
 ## Bekerja dengan blok pemikiran
 
 Konsep berikut berlaku untuk semua model yang mendukung pemikiran yang diperluas, terlepas dari apakah Anda menggunakan mode adaptif atau manual.
 
-### Pemikiran yang dirangkum
+### Pemikiran yang diringkas
 
 With extended thinking enabled, the Messages API for Claude 4 models returns a summary of Claude's full thinking process. Summarized thinking provides the full intelligence benefits of extended thinking, while preventing misuse. This is the default behavior on Claude 4 models when the `display` field on the thinking configuration is unset or set to `"summarized"`. On Claude Opus 4.7 and [Claude Mythos Preview](https://anthropic.com/glasswing), `display` defaults to `"omitted"` instead, so you must set `display: "summarized"` explicitly to receive summarized thinking.
 
@@ -865,6 +867,17 @@ Here are some important considerations for omitted thinking:
 The `signature` field is identical whether `display` is `"summarized"` or `"omitted"`. Switching `display` values between turns in a conversation is supported.
 </Note>
 
+<Note>
+Pada Claude Opus 4.7, `thinking.display` default ke `"omitted"`. Blok pemikiran masih muncul dalam aliran respons, tetapi bidang `thinking` mereka kosong kecuali Anda secara eksplisit memilih. Ini adalah perubahan senyap dari Claude Opus 4.6, di mana default adalah `"summarized"`. Untuk mengembalikan teks pemikiran yang diringkas pada Claude Opus 4.7, atur `thinking.display` ke `"summarized"` secara eksplisit:
+
+```python
+thinking = {
+    "type": "adaptive",
+    "display": "summarized",
+}
+```
+</Note>
+
 Untuk contoh kode dan perilaku streaming dengan `display: "omitted"`, lihat [Mengontrol tampilan pemikiran](/docs/id/build-with-claude/extended-thinking#controlling-thinking-display) di halaman pemikiran yang diperluas. Contoh di sana menggunakan `type: "enabled"`; dengan pemikiran adaptif, gunakan:
 
 ```python
@@ -885,7 +898,7 @@ Here are some important considerations on thinking encryption:
 - When [streaming responses](/docs/en/build-with-claude/extended-thinking#streaming-thinking), the signature is added via a `signature_delta` inside a `content_block_delta` event just before the `content_block_stop` event.
 - `signature` values are significantly longer in Claude 4 models than in previous models.
 - The `signature` field is an opaque field and should not be interpreted or parsed.
-- `signature` values are compatible across platforms (Claude APIs, [Amazon Bedrock](/docs/en/build-with-claude/claude-on-amazon-bedrock), and [Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai)). Values generated on one platform will be compatible with another.
+- `signature` values are compatible across platforms (Claude APIs, [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), and [Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai)). Values generated on one platform will be compatible with another.
 
 ### Harga
 

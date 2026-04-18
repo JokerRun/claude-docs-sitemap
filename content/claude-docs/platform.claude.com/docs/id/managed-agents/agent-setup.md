@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 964c0fc05193b1c4130908c5505a350537e6108d604d371752682a1774b61041
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: c717d805276834334b2dbcdc1989d215ea00a5f84db4b8e1c68ef4d805475d9a
 ---
 
 # Tentukan agen Anda
@@ -11,7 +11,7 @@ Buat konfigurasi agen yang dapat digunakan kembali dan memiliki versi.
 
 ---
 
-Agen adalah konfigurasi yang dapat digunakan kembali dan memiliki versi yang mendefinisikan persona dan kemampuan. Agen menggabungkan model, system prompt, tools, MCP servers, dan skills yang membentuk perilaku Claude selama sesi.
+Agen adalah konfigurasi yang dapat digunakan kembali dan memiliki versi yang mendefinisikan persona dan kemampuan. Agen menggabungkan model, system prompt, tools, server MCP, dan skills yang membentuk cara Claude berperilaku selama sesi.
 
 Buat agen sekali sebagai sumber daya yang dapat digunakan kembali dan referensikan berdasarkan ID setiap kali Anda [memulai sesi](/docs/id/managed-agents/sessions). Agen memiliki versi dan lebih mudah dikelola di banyak sesi.
 
@@ -24,18 +24,18 @@ Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-
 | Bidang | Deskripsi |
 | --- | --- |
 | `name` | Diperlukan. Nama yang dapat dibaca manusia untuk agen. |
-| `model` | Diperlukan. Claude [model](/docs/id/about-claude/models/overview) yang mendukung agen. Semua model Claude 4.5 dan yang lebih baru didukung. |
+| `model` | Diperlukan. Claude [model](/docs/id/about-claude/models/overview) yang menggerakkan agen. Semua model Claude 4.5 dan yang lebih baru didukung. |
 | `system` | [System prompt](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) yang mendefinisikan perilaku dan persona agen. System prompt berbeda dari [pesan pengguna](/docs/id/managed-agents/events-and-streaming#user-events), yang harus mendeskripsikan pekerjaan yang akan dilakukan. |
 | `tools` | Tools yang tersedia untuk agen. Menggabungkan [pre-built agent tools](/docs/id/managed-agents/tools), [MCP tools](/docs/id/managed-agents/mcp-connector), dan [custom tools](/docs/id/managed-agents/tools#custom-tools). |
-| `mcp_servers` | MCP servers yang menyediakan kemampuan pihak ketiga yang terstandar. |
+| `mcp_servers` | Server MCP yang menyediakan kemampuan pihak ketiga yang terstandar. |
 | `skills` | [Skills](/docs/id/managed-agents/skills) yang menyediakan konteks khusus domain dengan pengungkapan progresif. |
-| `callable_agents` | Agen lain yang dapat dipanggil oleh agen ini untuk [orkestrasi multi-agen](/docs/id/managed-agents/multi-agent). Ini adalah fitur pratinjau penelitian; [minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.|
+| `callable_agents` | Agen lain yang dapat dipanggil agen ini untuk [orkestrasi multi-agen](/docs/id/managed-agents/multi-agent). Ini adalah fitur pratinjau penelitian; [minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.|
 | `description` | Deskripsi tentang apa yang dilakukan agen. |
 | `metadata` | Pasangan kunci-nilai arbitrer untuk pelacakan Anda sendiri. |
 
 ## Buat agen
 
-Contoh berikut mendefinisikan agen pengkodean yang menggunakan Claude Sonnet 4.6 dengan akses ke toolset agen pre-built. Toolset memungkinkan agen menulis kode, membaca file, mencari web, dan banyak lagi. Lihat [referensi agent tools](/docs/id/managed-agents/tools) untuk daftar lengkap tools yang didukung.
+Contoh berikut mendefinisikan agen pengkodean yang menggunakan Claude Opus 4.7 dengan akses ke toolset agen pre-built. Toolset memungkinkan agen menulis kode, membaca file, mencari web, dan banyak lagi. Lihat [referensi agent tools](/docs/id/managed-agents/tools) untuk daftar lengkap tools yang didukung.
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -178,7 +178,7 @@ Respons mengulangi konfigurasi Anda dan menambahkan bidang `id`, `version`, `cre
   "type": "agent",
   "name": "Coding Assistant",
   "model": {
-    "id": "claude-sonnet-4-6",
+    "id": "claude-opus-4-7",
     "speed": "standard"
   },
   "system": "You are a helpful coding agent.",
@@ -412,7 +412,7 @@ end
 
 ### Arsipkan agen
 
-Pengarsipan membuat agen read-only. Sesi yang ada terus berjalan, tetapi sesi baru tidak dapat mereferensikan agen. Respons menetapkan `archived_at` ke stempel waktu arsip.
+Pengarsipan membuat agen read-only. Sesi yang ada terus berjalan, tetapi sesi baru tidak dapat mereferensikan agen. Respons mengatur `archived_at` ke stempel waktu arsip.
 
 <CodeGroup defaultLanguage="CLI">
   

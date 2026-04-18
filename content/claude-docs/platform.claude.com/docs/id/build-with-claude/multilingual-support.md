@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 2221cf570eae5a0aa9464dcbc4eea5ddf71dd0d2c74c1250f271e8e59504f51c
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: f42bab8af7b1b6099fb7ff885c6d2d84fcb282bff4a227dca01e97de215f979e
 ---
 
 # Dukungan multibahasa
@@ -13,15 +13,15 @@ Claude unggul dalam tugas di berbagai bahasa, mempertahankan kinerja lintas baha
 
 ## Ikhtisar
 
-Claude menunjukkan kemampuan multibahasa yang kuat, dengan kinerja yang sangat baik dalam tugas zero-shot di berbagai bahasa. Model mempertahankan kinerja relatif yang konsisten di seluruh bahasa yang banyak digunakan dan bahasa dengan sumber daya terbatas, menjadikannya pilihan yang andal untuk aplikasi multibahasa.
+Claude menunjukkan kemampuan multibahasa yang kuat, dengan kinerja yang sangat baik dalam tugas zero-shot di berbagai bahasa. Model mempertahankan kinerja relatif yang konsisten di seluruh bahasa yang banyak digunakan dan bahasa dengan sumber daya terbatas, menjadikannya pilihan yang dapat diandalkan untuk aplikasi multibahasa.
 
-Perhatikan bahwa Claude mampu dalam banyak bahasa di luar yang dijadwal acuan di bawah. Kami mendorong pengujian dengan bahasa apa pun yang relevan dengan kasus penggunaan spesifik Anda.
+Perhatikan bahwa Claude mampu dalam banyak bahasa di luar yang diukur di bawah. Pertimbangkan untuk menguji dengan bahasa apa pun yang relevan dengan kasus penggunaan spesifik Anda.
 
 ## Data kinerja
 
 Di bawah ini adalah skor evaluasi chain-of-thought zero-shot untuk model Claude di berbagai bahasa, ditampilkan sebagai persentase relatif terhadap kinerja bahasa Inggris (100%):
 
-| Bahasa | Claude Opus 4.1<sup>1</sup> | Claude Opus 4<sup>1</sup> | Claude Sonnet 4.5<sup>1</sup> | Claude Sonnet 4<sup>1</sup> | Claude Haiku 4.5<sup>1</sup> |
+| Bahasa | Claude Opus 4.1<sup>1</sup> | Claude Opus 4 (deprecated)<sup>1</sup> | Claude Sonnet 4.5<sup>1</sup> | Claude Sonnet 4 (deprecated)<sup>1</sup> | Claude Haiku 4.5<sup>1</sup> |
 |----------|---------------|---------------|---------------|-----------------|------------------|
 | Bahasa Inggris (baseline, tetap 100%) | 100% | 100% | 100% | 100% | 100% |
 | Spanyol | 98.1% | 98.0% | 98.2% | 97.5% | 96.4% |
@@ -55,7 +55,7 @@ Saat bekerja dengan konten multibahasa:
 2. **Gunakan skrip asli**: Kirimkan teks dalam skrip aslinya daripada transliterasi untuk hasil optimal
 3. **Pertimbangkan konteks budaya**: Komunikasi yang efektif sering kali memerlukan kesadaran budaya dan regional di luar sekadar terjemahan
 
-Kami juga menyarankan mengikuti [panduan rekayasa prompt](/docs/id/build-with-claude/prompt-engineering/overview) umum kami untuk lebih meningkatkan kinerja Claude.
+Juga ikuti [panduan rekayasa prompt](/docs/id/build-with-claude/prompt-engineering/overview) umum untuk lebih meningkatkan kinerja Claude.
 
 ***
 

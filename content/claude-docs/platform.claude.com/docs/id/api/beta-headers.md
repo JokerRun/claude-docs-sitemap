@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 9c45f471a9b7150c72f454dee43573404a8f3f0619342344d2aced7367ff821a
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 4c2dc779f3e72be16b6942f5e7e0ea6d70299ee98be9fd7de4afe3607c27c633
 ---
 
 # Header beta
@@ -16,7 +16,7 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 Fitur-fitur ini dapat berubah dan mungkin dimodifikasi atau dihapus dalam rilis mendatang.
 
 <Info>
-Header beta sering digunakan bersama dengan [namespace beta di SDK klien](/docs/id/api/client-sdks#beta-namespace-in-client-sdks)
+Header beta sering digunakan bersama dengan [namespace beta dalam SDK klien](/docs/id/api/client-sdks#beta-namespace-in-client-sdks)
 </Info>
 
 ## Cara menggunakan header beta
@@ -41,7 +41,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-beta: files-api-2025-04-14" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "messages": [
       {"role": "user", "content": "Hello, Claude"}
@@ -52,7 +52,7 @@ curl https://api.anthropic.com/v1/messages \
 ```bash CLI
 ant beta:messages create \
   --beta files-api-2025-04-14 \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --message '{role: user, content: "Hello, Claude"}'
 ```
@@ -63,7 +63,7 @@ from anthropic import Anthropic
 client = Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
     betas=["files-api-2025-04-14"],
@@ -76,7 +76,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const anthropic = new Anthropic();
 
 const msg = await anthropic.beta.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello, Claude" }],
   betas: ["files-api-2025-04-14"]

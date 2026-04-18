@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 92859ca4d38ec855f545968baccb9208a89cf5a1678ef651ec44616820b3d0ad
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 124344dc4896d480638c4ce20c7e77be5d68b2afc0c5150ed0dfe6388709754a
 ---
 
 > ## Documentation Index
@@ -299,7 +299,7 @@ These fields apply to all hook types:
 | `if`            | no       | Permission rule syntax to filter when this hook runs, such as `"Bash(git *)"` or `"Edit(*.ts)"`. The hook only spawns if the tool call matches the pattern. Only evaluated on tool events: `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PermissionRequest`, and `PermissionDenied`. On other events, a hook with `if` set never runs. Uses the same syntax as [permission rules](/en/permissions) |
 | `timeout`       | no       | Seconds before canceling. Defaults: 600 for command, 30 for prompt, 60 for agent                                                                                                                                                                                                                                                                                                                         |
 | `statusMessage` | no       | Custom spinner message displayed while the hook runs                                                                                                                                                                                                                                                                                                                                                     |
-| `once`          | no       | If `true`, runs only once per session then is removed. Skills only, not agents. See [Hooks in skills and agents](#hooks-in-skills-and-agents)                                                                                                                                                                                                                                                            |
+| `once`          | no       | If `true`, runs once per session then is removed. Only honored for hooks declared in [skill frontmatter](#hooks-in-skills-and-agents); ignored in settings files and agent frontmatter                                                                                                                                                                                                                   |
 
 #### Command hook fields
 

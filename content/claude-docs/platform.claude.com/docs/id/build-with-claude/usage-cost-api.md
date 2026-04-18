@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/usage-cost-api
-fetched_at: 2026-02-06T04:18:04.377404Z
-sha256: 6716ff5cfe9420dd9e26cca942e7cb5311b6c172512803f426385871b558bd7c
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: cc812806618b8ee96f8efcc85be99db15d8a5bde438321a54a275b7d9349e7ef
 ---
 
 # Usage and Cost API
@@ -15,7 +15,7 @@ Akses secara terprogram data penggunaan API dan biaya organisasi Anda dengan Usa
 **The Admin API is unavailable for individual accounts.** To collaborate with teammates and add members, set up your organization in **Console → Settings → Organization**.
 </Tip>
 
-Usage & Cost Admin API menyediakan akses terprogram dan granular ke data penggunaan API historis dan biaya untuk organisasi Anda. Data ini serupa dengan informasi yang tersedia di halaman [Usage](/usage) dan [Cost](/cost) dari Claude Console.
+Usage & Cost Admin API menyediakan akses terprogram dan granular ke data penggunaan API dan biaya historis untuk organisasi Anda. Data ini serupa dengan informasi yang tersedia di halaman [Usage](/usage) dan [Cost](/cost) dari Claude Console.
 
 API ini memungkinkan Anda untuk lebih baik memantau, menganalisis, dan mengoptimalkan implementasi Claude Anda:
 
@@ -27,7 +27,7 @@ API ini memungkinkan Anda untuk lebih baik memantau, menganalisis, dan mengoptim
 
 <Check>
   **Admin API key diperlukan**
-  
+
   API ini adalah bagian dari [Admin API](/docs/id/build-with-claude/administration-api). Endpoint ini memerlukan Admin API key (dimulai dengan `sk-ant-admin...`) yang berbeda dari API key standar. Hanya anggota organisasi dengan peran admin yang dapat menyediakan Admin API key melalui [Claude Console](/settings/admin-keys).
 </Check>
 
@@ -68,9 +68,9 @@ bucket_width=1d" \
 
 <Tip>
   **Atur header User-Agent untuk integrasi**
-  
+
   Jika Anda membangun integrasi, atur header User-Agent Anda untuk membantu kami memahami pola penggunaan:
-  ```
+  ```text
   User-Agent: YourApp/1.0.0 (https://yourapp.com)
   ```
 </Tip>
@@ -81,10 +81,10 @@ Lacak konsumsi token di seluruh organisasi Anda dengan rincian terperinci menuru
 
 ### Konsep kunci
 
-- **Time buckets**: Agregat data penggunaan dalam interval tetap (`1m`, `1h`, atau `1d`)
-- **Pelacakan token**: Ukur input tanpa cache, input cache, pembuatan cache, dan token output
-- **Penyaringan & pengelompokan**: Filter berdasarkan API key, workspace, model, service tier, context window, atau [data residency](/docs/id/build-with-claude/data-residency), dan kelompokkan hasil berdasarkan dimensi ini
-- **Penggunaan server tool**: Lacak penggunaan server-side tools seperti web search
+- **Time buckets**: Agregasi data penggunaan dalam interval tetap (`1m`, `1h`, atau `1d`)
+- **Token tracking**: Ukur input tanpa cache, input cache, pembuatan cache, dan token output
+- **Filtering & grouping**: Filter berdasarkan API key, workspace, model, service tier, context window, [data residency](/docs/id/build-with-claude/data-residency), atau speed (beta), dan kelompokkan hasil menurut dimensi ini
+- **Server tool usage**: Lacak penggunaan alat sisi server seperti web search
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Usage API](/docs/id/api/admin-api/usage-cost/get-messages-usage-report).
 
@@ -102,13 +102,13 @@ bucket_width=1d" \
   --header "x-api-key: $ADMIN_API_KEY"
 ```
 
-#### Penggunaan per jam dengan penyaringan
+#### Penggunaan per jam dengan filtering
 
 ```bash
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2025-01-15T00:00:00Z&\
 ending_at=2025-01-15T23:59:59Z&\
-models[]=claude-opus-4-6&\
+models[]=claude-opus-4-7&\
 service_tiers[]=batch&\
 context_window[]=0-200k&\
 bucket_width=1h" \
@@ -139,7 +139,7 @@ Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces]
 
 #### Data residency
 
-Lacak [kontrol data residency](/docs/id/build-with-claude/data-residency) Anda dengan mengelompokkan dan menyaring penggunaan dengan dimensi `inference_geo`. Ini berguna untuk memverifikasi perutean geografis di seluruh organisasi Anda.
+Lacak [kontrol data residency](/docs/id/build-with-claude/data-residency) Anda dengan mengelompokkan dan memfilter penggunaan dengan dimensi `inference_geo`. Ini berguna untuk memverifikasi perutean geografis di seluruh organisasi Anda.
 
 ```bash
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
@@ -152,7 +152,7 @@ bucket_width=1d" \
   --header "x-api-key: $ADMIN_API_KEY"
 ```
 
-Anda juga dapat menyaring ke geo spesifik. Nilai yang valid adalah `global`, `us`, dan `not_available`:
+Anda juga dapat memfilter ke geo tertentu. Nilai yang valid adalah `global`, `us`, dan `not_available`:
 
 ```bash
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
@@ -167,6 +167,40 @@ bucket_width=1d" \
 
 <Note>
 Model yang dirilis sebelum Februari 2026 (sebelum Claude Opus 4.6) tidak mendukung parameter permintaan `inference_geo`, jadi laporan penggunaan mereka mengembalikan `"not_available"` untuk dimensi ini. Anda dapat menggunakan `not_available` sebagai nilai filter dalam `inference_geos[]` untuk menargetkan model tersebut.
+</Note>
+
+#### Fast mode (beta: research preview)
+
+Lacak penggunaan [fast mode](/docs/id/build-with-claude/fast-mode) dengan mengelompokkan dan memfilter dengan dimensi `speed`. Ini berguna untuk memantau penggunaan mode standar vs. mode cepat.
+
+```bash
+curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
+starting_at=2026-02-01T00:00:00Z&\
+ending_at=2026-02-08T00:00:00Z&\
+group_by[]=speed&\
+group_by[]=model&\
+bucket_width=1d" \
+  --header "anthropic-version: 2023-06-01" \
+  --header "anthropic-beta: fast-mode-2026-02-01" \
+  --header "x-api-key: $ADMIN_API_KEY"
+```
+
+Anda juga dapat memfilter ke speed tertentu. Nilai yang valid adalah `standard` dan `fast`:
+
+```bash
+curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
+starting_at=2026-02-01T00:00:00Z&\
+ending_at=2026-02-08T00:00:00Z&\
+speeds[]=fast&\
+group_by[]=model&\
+bucket_width=1d" \
+  --header "anthropic-version: 2023-06-01" \
+  --header "anthropic-beta: fast-mode-2026-02-01" \
+  --header "x-api-key: $ADMIN_API_KEY"
+```
+
+<Note>
+Baik filter `speeds[]` maupun nilai group_by `speed` memerlukan header beta `fast-mode-2026-02-01`.
 </Note>
 
 ### Batas granularitas waktu
@@ -184,14 +218,14 @@ Ambil rincian biaya tingkat layanan dalam USD dengan endpoint `/v1/organizations
 ### Konsep kunci
 
 - **Mata uang**: Semua biaya dalam USD, dilaporkan sebagai string desimal dalam unit terendah (sen)
-- **Jenis biaya**: Lacak biaya penggunaan token, web search, dan eksekusi kode
-- **Pengelompokan**: Kelompokkan biaya menurut workspace atau deskripsi untuk rincian terperinci. Saat mengelompokkan menurut `description`, respons menyertakan bidang yang diurai seperti `model` dan `inference_geo`
+- **Jenis biaya**: Lacak penggunaan token, web search, dan biaya eksekusi kode
+- **Grouping**: Kelompokkan biaya menurut workspace atau deskripsi untuk rincian terperinci. Saat mengelompokkan menurut `description`, respons menyertakan bidang yang diurai seperti `model` dan `inference_geo`
 - **Time buckets**: Granularitas harian saja (`1d`)
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Cost API](/docs/id/api/admin-api/usage-cost/get-cost-report).
 
 <Warning>
-  Biaya Priority Tier menggunakan model penagihan yang berbeda dan tidak termasuk dalam endpoint biaya. Lacak penggunaan Priority Tier melalui endpoint penggunaan sebagai gantinya.
+  Biaya Priority Tier menggunakan model penagihan yang berbeda dan tidak disertakan dalam endpoint biaya. Lacak penggunaan Priority Tier melalui endpoint penggunaan sebagai gantinya.
 </Warning>
 
 ### Contoh dasar
@@ -206,9 +240,9 @@ group_by[]=description" \
   --header "x-api-key: $ADMIN_API_KEY"
 ```
 
-## Paginasi
+## Pagination
 
-Kedua endpoint mendukung paginasi untuk dataset besar:
+Kedua endpoint mendukung pagination untuk dataset besar:
 
 1. Buat permintaan awal Anda
 2. Jika `has_more` adalah `true`, gunakan nilai `next_page` dalam permintaan berikutnya
@@ -225,7 +259,7 @@ limit=7" \
 
 # Respons mencakup: "has_more": true, "next_page": "page_xyz..."
 
-# Permintaan berikutnya dengan paginasi
+# Permintaan berikutnya dengan pagination
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2025-01-01T00:00:00Z&\
 ending_at=2025-01-31T00:00:00Z&\
@@ -240,7 +274,7 @@ page=page_xyz..." \
 Jelajahi implementasi terperinci di [Claude Cookbook](https://platform.claude.com/cookbooks):
 
 - **Laporan penggunaan harian**: Lacak tren konsumsi token
-- **Atribusi biaya**: Alokasikan pengeluaran menurut workspace untuk chargeback
+- **Atribusi biaya**: Alokasikan pengeluaran menurut workspace untuk chargebacks
 - **Efisiensi cache**: Ukur dan optimalkan prompt caching
 - **Pemantauan anggaran**: Atur peringatan untuk ambang batas pengeluaran
 - **Ekspor CSV**: Hasilkan laporan untuk tim keuangan
@@ -254,7 +288,7 @@ Data penggunaan dan biaya biasanya muncul dalam 5 menit setelah penyelesaian per
 API mendukung polling sekali per menit untuk penggunaan berkelanjutan. Untuk burst pendek (misalnya, mengunduh data yang dipaginasi), polling yang lebih sering dapat diterima. Cache hasil untuk dashboard yang memerlukan pembaruan sering.
 
 ### Bagaimana cara melacak penggunaan eksekusi kode?
-Biaya eksekusi kode muncul di endpoint biaya yang dikelompokkan di bawah `Code Execution Usage` di bidang deskripsi. Eksekusi kode tidak termasuk dalam endpoint penggunaan.
+Biaya eksekusi kode muncul di endpoint biaya yang dikelompokkan di bawah `Code Execution Usage` di bidang deskripsi. Eksekusi kode tidak disertakan dalam endpoint penggunaan.
 
 ### Bagaimana cara melacak penggunaan Priority Tier?
 Filter atau kelompokkan menurut `service_tier` di endpoint penggunaan dan cari nilai `priority`. Biaya Priority Tier tidak tersedia di endpoint biaya.
@@ -267,14 +301,14 @@ Penggunaan dan biaya yang dikaitkan dengan workspace default memiliki nilai `nul
 
 ### Bagaimana cara mendapatkan rincian biaya per pengguna untuk Claude Code?
 
-Gunakan [Claude Code Analytics API](/docs/id/build-with-claude/claude-code-analytics-api), yang menyediakan biaya perkiraan per pengguna dan metrik produktivitas tanpa keterbatasan kinerja memecah biaya menurut banyak API key. Untuk penggunaan API umum dengan banyak key, gunakan [Usage API](#usage-api) untuk melacak konsumsi token sebagai proxy biaya.
+Gunakan [Claude Code Analytics API](/docs/id/build-with-claude/claude-code-analytics-api), yang menyediakan biaya perkiraan per pengguna dan metrik produktivitas tanpa keterbatasan kinerja dari memecah biaya menurut banyak API key. Untuk penggunaan API umum dengan banyak key, gunakan [Usage API](#usage-api) untuk melacak konsumsi token sebagai proxy biaya.
 
 ## Lihat juga
-Usage dan Cost API dapat digunakan untuk membantu Anda memberikan pengalaman yang lebih baik bagi pengguna Anda, membantu Anda mengelola biaya, dan menjaga rate limit Anda. Pelajari lebih lanjut tentang beberapa fitur lain ini:
+Usage dan Cost API dapat digunakan untuk membantu Anda memberikan pengalaman yang lebih baik bagi pengguna Anda, membantu Anda mengelola biaya, dan menjaga rate limit Anda. Pelajari lebih lanjut tentang beberapa fitur lainnya:
 
-- [Gambaran umum Admin API](/docs/id/build-with-claude/administration-api)
+- [Ikhtisar Admin API](/docs/id/build-with-claude/administration-api)
 - [Referensi Admin API](/docs/id/api/admin)
-- [Harga](/docs/id/about-claude/pricing)
+- [Pricing](/docs/id/about-claude/pricing)
 - [Prompt caching](/docs/id/build-with-claude/prompt-caching) - Optimalkan biaya dengan caching
 - [Batch processing](/docs/id/build-with-claude/batch-processing) - Diskon 50% untuk permintaan batch
 - [Rate limits](/docs/id/api/rate-limits) - Pahami tier penggunaan

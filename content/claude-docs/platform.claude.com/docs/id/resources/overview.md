@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/overview
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 9addfc3cdf6f015c8af55a1e91629e92c084bfe1725fd9725e040099ae4eff17
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: f0dd4950fc8c18f6bb921d55a0a47012958e4b0cb77cebb60201d8d1f8f393c1
 ---
 
 <h2}>
@@ -10,28 +10,32 @@ sha256: 9addfc3cdf6f015c8af55a1e91629e92c084bfe1725fd9725e040099ae4eff17
   </h2>
   
 
-    <Card title="Kartu Sistem Claude Opus 4.6" icon="file" href="https://www.anthropic.com/claude-opus-4-6-system-card">
-      Dokumentasi terperinci dari Claude Opus 4.6.
+    <Card title="Kartu Sistem Claude Opus 4.7" icon="file" href="https://www.anthropic.com/claude-opus-4-7-system-card">
+      Dokumentasi terperinci tentang Claude Opus 4.7.
+    </Card>
+
+    <Card title="Kartu Sistem Claude Sonnet 4.6" icon="file" href="https://www.anthropic.com/claude-sonnet-4-6-system-card">
+      Dokumentasi terperinci tentang Claude Sonnet 4.6.
     </Card>
 
     <Card title="Kartu Sistem Claude Opus 4.5" icon="file" href="https://www.anthropic.com/claude-opus-4-5-system-card">
-      Dokumentasi terperinci dari Claude Opus 4.5.
+      Dokumentasi terperinci tentang Claude Opus 4.5.
     </Card>
 
     <Card title="Kartu Sistem Claude Haiku 4.5" icon="file" href="https://www.anthropic.com/claude-haiku-4-5-system-card">
-      Dokumentasi terperinci dari Claude Haiku 4.5.
+      Dokumentasi terperinci tentang Claude Haiku 4.5.
     </Card>
 
     <Card title="Kartu Sistem Claude Sonnet 4.5" icon="file" href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
-      Dokumentasi terperinci dari Claude Sonnet 4.5.
+      Dokumentasi terperinci tentang Claude Sonnet 4.5.
     </Card>
 
     <Card title="Kartu Sistem Claude Opus 4.1" icon="file" href="https://www.anthropic.com/claude-opus-4-1-system-card">
-      Dokumentasi terperinci dari Claude Opus 4.1.
+      Dokumentasi terperinci tentang Claude Opus 4.1.
     </Card>
 
     <Card title="Kartu Sistem Claude 4" icon="file" href="https://www-cdn.anthropic.com/6be99a52cb68eb70eb9572b4cafad13df32ed995.pdf">
-      Dokumentasi terperinci dari model Claude 4.
+      Dokumentasi terperinci tentang model Claude 4.
     </Card>
 
     <Card title="Kartu Sistem Claude Sonnet 3.7" icon="file" href="https://anthropic.com/claude-3-7-sonnet-system-card">
@@ -39,7 +43,7 @@ sha256: 9addfc3cdf6f015c8af55a1e91629e92c084bfe1725fd9725e040099ae4eff17
     </Card>
 
     <Card title="Kartu Model Claude 3" icon="file" href="https://assets.anthropic.com/m/61e7d27f8c8f5919/original/Claude-3-Model-Card.pdf">
-      Dokumentasi terperinci dari model Claude 3 termasuk lampiran terbaru 3.5.
+      Dokumentasi terperinci tentang model Claude 3 termasuk lampiran terbaru 3.5.
     </Card>
 
   
@@ -50,7 +54,7 @@ sha256: 9addfc3cdf6f015c8af55a1e91629e92c084bfe1725fd9725e040099ae4eff17
   
 
     <Card title="Panduan Cepat" icon="lightning" href="https://github.com/anthropics/anthropic-quickstarts">
-      Aplikasi yang dapat digunakan yang dibangun dengan API kami.
+      Aplikasi yang dapat digunakan yang dibangun dengan API.
     </Card>
 
     <Card title="Kursus" icon="graduation-cap" href="https://anthropic.skilljar.com/">
@@ -75,7 +79,7 @@ sha256: 9addfc3cdf6f015c8af55a1e91629e92c084bfe1725fd9725e040099ae4eff17
   </h2>
   
 
-    <Card title="Primer API untuk penyerapan Claude" icon="settings" href="/docs/id/claude_api_primer.md">
+    <Card title="Primer API untuk penyerapan Claude" icon="settings" href="/docs/id/claude_api_primer">
       Panduan API ringkas yang dimaksudkan untuk penyerapan oleh Claude.
     </Card>
 
@@ -85,8 +89,4 @@ sha256: 9addfc3cdf6f015c8af55a1e91629e92c084bfe1725fd9725e040099ae4eff17
 
     <Card title="llms.txt" icon="file" href="/llms.txt">
       Indeks dokumentasi yang dioptimalkan untuk LLM.
-    </Card>
-
-    <Card title="llms-full.txt" icon="file" href="/llms-full.txt">
-      Dokumentasi lengkap yang dioptimalkan untuk LLM.
     </Card>

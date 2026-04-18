@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/python
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: b8be264a2fef22b5c1ef14a0c42cced6f45abf689fc5112ff3792999aeffdb45
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 6b6326337fe8c671a33190c2775e61860082a4e5033fcad0e3e37a75a8623e28
 ---
 
 # Python SDK
@@ -776,18 +776,22 @@ response = client.beta.messages.create(
 
 <Note>
 For detailed platform setup guides with code examples, see:
-- [Amazon Bedrock](/docs/en/build-with-claude/claude-on-amazon-bedrock)
+- [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock)
+- [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock)
 - [Google Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai)
 - [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
-All three client classes are included in the base `anthropic` package:
+All four client classes are included in the base `anthropic` package:
 
 | Provider | Client | Extra dependencies |
 |-----------|--------|-------------------|
-| Bedrock | `from anthropic import AnthropicBedrock` | `pip install anthropic[bedrock]` |
+| Bedrock | `from anthropic import AnthropicBedrockMantle` | `pip install anthropic[bedrock]` |
+| Bedrock (`bedrock-runtime` path) | `from anthropic import AnthropicBedrock` | `pip install anthropic[bedrock]` |
 | Vertex AI | `from anthropic import AnthropicVertex` | `pip install anthropic[vertex]` |
 | Foundry | `from anthropic import AnthropicFoundry` | None |
+
+Use `AnthropicBedrockMantle` for new projects; `AnthropicBedrock` remains for existing applications using the Bedrock `InvokeModel` API.
 
 ## Semantic versioning
 

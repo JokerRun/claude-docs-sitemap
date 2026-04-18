@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 2b7aab647974e1301723741577feeb6799185b860ebe7281ba687e41a16733fd
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 02db72c7c385e1511189a7a96b0f76be4b7938081c714a52fc9801baad7258c1
 ---
 
 # Alat web fetch
 
-Ambil dan baca konten dari URL tertentu untuk melengkapi konteks Claude dengan konten web langsung.
+Ambil dan baca konten dari URL tertentu untuk memperkaya konteks Claude dengan konten web langsung.
 
 ---
 
 Alat web fetch memungkinkan Claude untuk mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan.
 
-Versi alat web fetch terbaru (`web_fetch_20260209`) mendukung **penyaringan dinamis** dengan [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.6, dan Claude Sonnet 4.6. Claude dapat menulis dan menjalankan kode untuk menyaring konten yang diambil sebelum mencapai jendela konteks, hanya menyimpan informasi yang relevan dan membuang sisanya. Ini mengurangi konsumsi token sambil mempertahankan kualitas respons. Versi alat sebelumnya (`web_fetch_20250910`) tetap tersedia tanpa penyaringan dinamis.
+Versi alat web fetch terbaru (`web_fetch_20260209`) mendukung **penyaringan dinamis** dengan [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. Claude dapat menulis dan menjalankan kode untuk menyaring konten yang diambil sebelum mencapai jendela konteks, hanya menyimpan informasi yang relevan dan membuang sisanya. Ini mengurangi konsumsi token sambil mempertahankan kualitas respons. Versi alat sebelumnya (`web_fetch_20250910`) tetap tersedia tanpa penyaringan dinamis.
 
 <Note>
 Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), web fetch didukung di Claude API dan Microsoft Foundry saja. Tidak tersedia untuk Mythos Preview di Amazon Bedrock atau Google Vertex AI.
@@ -26,14 +26,14 @@ Gunakan [formulir umpan balik](https://forms.gle/NhWcgmkcvPCMmPE86) untuk member
 Untuk kelayakan Zero Data Retention dan solusi `allowed_callers`, lihat [Server tools](/docs/id/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers).
 
 <Warning>
-Mengaktifkan alat web fetch di lingkungan tempat Claude memproses input yang tidak dipercaya bersama data sensitif menimbulkan risiko eksfiltrasi data. Hanya gunakan alat ini di lingkungan terpercaya atau saat menangani data non-sensitif.
+Mengaktifkan alat web fetch di lingkungan di mana Claude memproses input yang tidak terpercaya bersama data sensitif menimbulkan risiko eksfiltrasi data. Hanya gunakan alat ini di lingkungan terpercaya atau saat menangani data non-sensitif.
 
-Untuk meminimalkan risiko eksfiltrasi, Claude tidak diizinkan untuk secara dinamis membuat URL. Claude hanya dapat mengambil URL yang telah secara eksplisit disediakan oleh pengguna atau yang berasal dari hasil pencarian web atau web fetch sebelumnya. Namun, masih ada risiko sisa yang harus dipertimbangkan dengan hati-hati saat menggunakan alat ini.
+Untuk meminimalkan risiko eksfiltrasi, Claude tidak diizinkan untuk secara dinamis membangun URL. Claude hanya dapat mengambil URL yang telah secara eksplisit disediakan oleh pengguna atau yang berasal dari hasil pencarian web atau web fetch sebelumnya. Namun, masih ada risiko sisa yang harus dipertimbangkan dengan hati-hati saat menggunakan alat ini.
 
 Jika eksfiltrasi data menjadi perhatian, pertimbangkan:
 - Menonaktifkan alat web fetch sepenuhnya
 - Menggunakan parameter `max_uses` untuk membatasi jumlah permintaan
-- Menggunakan parameter `allowed_domains` untuk membatasi ke domain yang diketahui aman
+- Menggunakan parameter `allowed_domains` untuk membatasi ke domain yang dikenal aman
 </Warning>
 
 Untuk dukungan model, lihat [Tool reference](/docs/id/agents-and-tools/tool-use/tool-reference).
@@ -74,7 +74,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-version: 2023-06-01" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
         "max_tokens": 4096,
         "messages": [
             {
@@ -91,7 +91,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -110,7 +110,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=[
         {
@@ -130,7 +130,7 @@ const anthropic = new Anthropic();
 
 async function main() {
   const response = await anthropic.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 4096,
     messages: [
       {
@@ -165,7 +165,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 4096,
             Messages = [new() { Role = Role.User, Content = "Fetch the content at https://example.com/research-paper and extract the key findings." }],
             Tools = [new ToolUnion(new WebFetchTool20260209())]
@@ -192,7 +192,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 4096,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Fetch the content at https://example.com/research-paper and extract the key findings.")),
@@ -221,7 +221,7 @@ public class WebFetchExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(4096L)
             .addUserMessage("Fetch the content at https://example.com/research-paper and extract the key findings.")
             .addTool(WebFetchTool20260209.builder().build())
@@ -245,7 +245,7 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'Fetch the content at https://example.com/research-paper and extract the key findings.']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     tools: [[
         'type' => 'web_fetch_20260209',
         'name' => 'web_fetch',
@@ -260,7 +260,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: [
     { role: "user", content: "Fetch the content at https://example.com/research-paper and extract the key findings." }
@@ -285,7 +285,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-version: 2023-06-01" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
         "max_tokens": 1024,
         "messages": [
             {
@@ -303,7 +303,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --message '{role: user, content: "Please analyze the content at https://example.com/article"}' \
   --tool '{type: web_fetch_20250910, name: web_fetch, max_uses: 5}'
@@ -315,7 +315,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[
         {
@@ -335,7 +335,7 @@ const client = new Anthropic();
 
 async function main() {
   const response = await client.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 1024,
     messages: [
       {
@@ -375,7 +375,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 1024,
             Messages = [new() { Role = Role.User, Content = "Please analyze the content at https://example.com/article" }],
             Tools = [new ToolUnion(new WebFetchTool20250910() { MaxUses = 5 })]
@@ -402,7 +402,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Please analyze the content at https://example.com/article")),
@@ -433,7 +433,7 @@ public class WebFetchExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(1024L)
             .addUserMessage("Please analyze the content at https://example.com/article")
             .addTool(WebFetchTool20250910.builder()
@@ -459,7 +459,7 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'Please analyze the content at https://example.com/article']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     tools: [[
         'type' => 'web_fetch_20250910',
         'name' => 'web_fetch',
@@ -475,7 +475,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     { role: "user", content: "Please analyze the content at https://example.com/article" }
@@ -513,7 +513,7 @@ Alat web fetch mendukung parameter berikut:
     "enabled": true
   },
 
-  // Opsional: Panjang konten maksimal dalam token
+  // Opsional: Panjang konten maksimum dalam token
   "max_content_tokens": 100000
 }
 ```
@@ -539,7 +539,7 @@ Batas parameter `max_content_tokens` bersifat perkiraan. Jumlah token input aktu
 Tidak seperti pencarian web di mana kutipan selalu diaktifkan, kutipan bersifat opsional untuk web fetch. Atur `"citations": {"enabled": true}` untuk memungkinkan Claude mengutip bagian tertentu dari dokumen yang diambil.
 
 <Note>
-Saat menampilkan output API secara langsung kepada pengguna akhir, kutipan harus disertakan ke sumber asli. Jika Anda melakukan modifikasi pada output API, termasuk dengan memproses ulang dan/atau menggabungkannya dengan materi Anda sendiri sebelum menampilkannya kepada pengguna akhir, tampilkan kutipan sesuai kebutuhan berdasarkan konsultasi dengan tim hukum Anda.
+Saat menampilkan output API langsung kepada pengguna akhir, kutipan harus disertakan ke sumber asli. Jika Anda membuat modifikasi pada output API, termasuk dengan memproses ulang dan/atau menggabungkannya dengan materi Anda sendiri sebelum menampilkannya kepada pengguna akhir, tampilkan kutipan sesuai kebutuhan berdasarkan konsultasi dengan tim hukum Anda.
 </Note>
 
 ### Respons
@@ -669,17 +669,17 @@ Ketika alat web fetch mengalami kesalahan, Claude API mengembalikan respons 200 
 Ini adalah kode kesalahan yang mungkin:
 
 - `invalid_input`: Format URL tidak valid
-- `url_too_long`: URL melebihi panjang maksimal (250 karakter)
+- `url_too_long`: URL melebihi panjang maksimum (250 karakter)
 - `url_not_allowed`: URL diblokir oleh aturan penyaringan domain dan pembatasan model
 - `url_not_accessible`: Gagal mengambil konten (kesalahan HTTP)
 - `too_many_requests`: Batas laju terlampaui
 - `unsupported_content_type`: Jenis konten tidak didukung (hanya teks dan PDF)
-- `max_uses_exceeded`: Penggunaan alat web fetch maksimal terlampaui
+- `max_uses_exceeded`: Penggunaan alat web fetch maksimum terlampaui
 - `unavailable`: Kesalahan internal terjadi
 
 ## Validasi URL
 
-Untuk alasan keamanan, alat web fetch hanya dapat mengambil URL yang sebelumnya muncul dalam konteks percakapan. Ini mencakup:
+Untuk alasan keamanan, alat web fetch hanya dapat mengambil URL yang telah muncul sebelumnya dalam konteks percakapan. Ini mencakup:
 
 - URL dalam pesan pengguna
 - URL dalam hasil alat sisi klien
@@ -697,7 +697,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=[
         {
@@ -758,7 +758,7 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "web
 
 ## Permintaan batch
 
-Anda dapat menyertakan alat web fetch dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat web fetch melalui Messages Batches API dihargai sama dengan yang ada dalam permintaan Messages API biasa.
+Anda dapat menyertakan alat web fetch dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat web fetch melalui Messages Batches API memiliki harga yang sama dengan permintaan Messages API biasa.
 
 ## Penggunaan dan harga
 
@@ -789,7 +789,7 @@ Example token usage for typical content:
 
 <CardGroup>
   <Card href="/docs/id/agents-and-tools/tool-use/server-tools" title="Server tools">
-    Mekanik bersama untuk alat yang dieksekusi Anthropic.
+    Mekanik bersama untuk alat yang dijalankan Anthropic.
   </Card>
   <Card href="/docs/id/agents-and-tools/tool-use/tool-reference" title="Tool reference">
     Direktori semua alat yang disediakan Anthropic.

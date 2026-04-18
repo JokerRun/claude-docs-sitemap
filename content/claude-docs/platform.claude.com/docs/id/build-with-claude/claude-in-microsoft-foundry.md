@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 63b8e63db62a40ce5c9cd60dd29e65875506b094a557c2335c9419eb077c65eb
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 1bad9d12011aa0ca4e0531df4b23db61c1981f70a1d7ed43bf9d4ad29b97e632
 ---
 
 # Claude di Microsoft Foundry
 
-Akses model Claude melalui Microsoft Foundry dengan endpoint dan autentikasi native Azure.
+Akses model Claude melalui Microsoft Foundry dengan endpoint asli Azure dan autentikasi.
 
 ---
 
-Panduan ini memandu Anda melalui proses pengaturan dan pembuatan panggilan API ke Claude di Foundry menggunakan Python, TypeScript, atau menggunakan permintaan HTTP langsung. Ketika Anda dapat mengakses Claude di Foundry, Anda ditagih untuk penggunaan Claude di Microsoft Marketplace dengan langganan Azure Anda, memungkinkan Anda mengakses kemampuan terbaru Claude sambil mengelola biaya melalui langganan Azure Anda.
+Panduan ini memandu Anda melalui proses pengaturan dan pembuatan panggilan API ke Claude di Foundry dalam Python, TypeScript, atau menggunakan permintaan HTTP langsung. Ketika Anda dapat mengakses Claude di Foundry, Anda ditagih untuk penggunaan Claude di Microsoft Marketplace dengan langganan Azure Anda, memungkinkan Anda mengakses kemampuan terbaru Claude sambil mengelola biaya melalui langganan Azure Anda.
 
-Ketersediaan regional: Saat peluncuran, Claude tersedia sebagai tipe deployment Global Standard di sumber daya Foundry (US DataZone segera hadir). Harga untuk Claude di Microsoft Marketplace menggunakan harga API standar Anthropic. Kunjungi [halaman harga](https://claude.com/pricing#api) untuk detailnya.
+Ketersediaan regional: Saat peluncuran, Claude tersedia sebagai jenis penyebaran Global Standard dalam sumber daya Foundry (US DataZone akan segera hadir). Harga Claude di Microsoft Marketplace menggunakan harga API standar Anthropic. Kunjungi [halaman harga](https://claude.com/pricing#api) untuk detail.
 
 <Note>
 Foundry didukung oleh SDK C#, Java, PHP, Python, dan TypeScript. SDK Go dan Ruby saat ini tidak mendukung Microsoft Foundry. Untuk integrasi platform SDK yang tersedia, lihat [Client SDKs](/docs/id/api/client-sdks).
@@ -21,19 +21,19 @@ Foundry didukung oleh SDK C#, Java, PHP, Python, dan TypeScript. SDK Go dan Ruby
 
 ## Pratinjau
 
-Dalam integrasi platform pratinjau ini, model Claude berjalan di infrastruktur Anthropic. Ini adalah integrasi komersial untuk penagihan dan akses melalui Azure. Sebagai pemroses independen untuk Microsoft, pelanggan yang menggunakan Claude melalui Microsoft Foundry tunduk pada ketentuan penggunaan data Anthropic. Anthropic terus memberikan komitmen keamanan dan data terdepan di industri, termasuk ketersediaan zero data retention.
+Dalam integrasi platform pratinjau ini, model Claude berjalan di infrastruktur Anthropic. Ini adalah integrasi komersial untuk penagihan dan akses melalui Azure. Sebagai pemroses independen untuk Microsoft, pelanggan yang menggunakan Claude melalui Microsoft Foundry tunduk pada syarat penggunaan data Anthropic. Anthropic terus memberikan komitmen keamanan dan data terdepan di industri, termasuk ketersediaan retensi data nol.
 
 ## Prasyarat
 
-Sebelum memulai, pastikan Anda memiliki:
+Sebelum Anda mulai, pastikan Anda memiliki:
 
 - Langganan Azure yang aktif
 - Akses ke [Foundry](https://ai.azure.com/)
-- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) yang terinstal (opsional, untuk manajemen sumber daya)
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) terinstal (opsional, untuk manajemen sumber daya)
 
 ## Instal SDK
 
-[Client SDK](/docs/id/api/client-sdks) Anthropic mendukung Foundry melalui paket khusus platform.
+[Client SDKs](/docs/id/api/client-sdks) Anthropic mendukung Foundry melalui paket khusus platform.
 
 <Tabs>
 <Tab title="Python">
@@ -82,9 +82,9 @@ composer require anthropic-ai/sdk
 
 ## Penyediaan
 
-Foundry menggunakan hierarki dua tingkat: **sumber daya** berisi konfigurasi keamanan dan penagihan Anda, sementara **deployment** adalah instans model yang Anda panggil melalui API. Anda akan terlebih dahulu membuat sumber daya Foundry, kemudian membuat satu atau lebih deployment Claude di dalamnya.
+Foundry menggunakan hierarki dua tingkat: **sumber daya** berisi konfigurasi keamanan dan penagihan Anda, sementara **penyebaran** adalah instans model yang Anda panggil melalui API. Anda akan terlebih dahulu membuat sumber daya Foundry, kemudian membuat satu atau lebih penyebaran Claude di dalamnya.
 
-### Menyediakan sumber daya Foundry
+### Penyediaan sumber daya Foundry
 
 Buat sumber daya Foundry, yang diperlukan untuk menggunakan dan mengelola layanan di Azure. Anda dapat mengikuti instruksi ini untuk membuat [sumber daya Foundry](https://learn.microsoft.com/en-us/azure/ai-services/multi-service-resource?pivots=azportal#create-a-new-azure-ai-foundry-resource). Atau, Anda dapat memulai dengan membuat [proyek Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry), yang melibatkan pembuatan sumber daya Foundry.
 
@@ -92,48 +92,48 @@ Untuk menyediakan sumber daya Anda:
 
 1. Navigasikan ke [portal Foundry](https://ai.azure.com/)
 2. Buat sumber daya Foundry baru atau pilih yang sudah ada
-3. Konfigurasikan manajemen akses menggunakan kunci API yang diterbitkan Azure atau Entra ID untuk kontrol akses berbasis peran
-4. Secara opsional konfigurasikan sumber daya agar menjadi bagian dari jaringan privat (Azure Virtual Network) untuk keamanan yang ditingkatkan
-5. Catat nama sumber daya Anda. Anda akan menggunakannya sebagai `{resource}` di endpoint API (misalnya, `https://{resource}.services.ai.azure.com/anthropic/v1/*`)
+3. Konfigurasi manajemen akses menggunakan kunci API yang dikeluarkan Azure atau Entra ID untuk kontrol akses berbasis peran
+4. Secara opsional konfigurasi sumber daya untuk menjadi bagian dari jaringan pribadi (Azure Virtual Network) untuk keamanan yang ditingkatkan
+5. Catat nama sumber daya Anda. Anda akan menggunakannya sebagai `{resource}` dalam titik akhir API (misalnya, `https://{resource}.services.ai.azure.com/anthropic/v1/*`)
 
-### Membuat deployment Foundry
+### Membuat penyebaran Foundry
 
-Setelah membuat sumber daya Anda, deploy model Claude untuk membuatnya tersedia untuk panggilan API:
+Setelah membuat sumber daya Anda, sebarkan model Claude untuk membuatnya tersedia untuk panggilan API:
 
 1. Di portal Foundry, navigasikan ke sumber daya Anda
-2. Pergi ke **Models + endpoints** dan pilih **+ Deploy model** > **Deploy base model**
+2. Buka **Models + endpoints** dan pilih **+ Deploy model** > **Deploy base model**
 3. Cari dan pilih model Claude (misalnya, `claude-sonnet-4-6`)
-4. Konfigurasikan pengaturan deployment:
-   - **Nama deployment:** Default ke ID model, tetapi Anda dapat menyesuaikannya (misalnya, `my-claude-deployment`). Nama deployment tidak dapat diubah setelah dibuat.
-   - **Tipe deployment:** Pilih Global Standard (direkomendasikan untuk Claude)
+4. Konfigurasi pengaturan penyebaran:
+   - **Deployment name:** Secara default ke ID model, tetapi Anda dapat menyesuaikannya (misalnya, `my-claude-deployment`). Nama penyebaran tidak dapat diubah setelah dibuat.
+   - **Deployment type:** Pilih Global Standard (direkomendasikan untuk Claude)
 5. Pilih **Deploy** dan tunggu penyediaan selesai
-6. Setelah di-deploy, Anda dapat menemukan URL endpoint dan kunci Anda di bawah **Keys and Endpoint**
+6. Setelah disebarkan, Anda dapat menemukan URL titik akhir dan kunci Anda di bawah **Keys and Endpoint**
 
 <Note>
-  Nama deployment yang Anda pilih menjadi nilai yang Anda masukkan dalam parameter `model` dari permintaan API Anda. Anda dapat membuat beberapa deployment dari model yang sama dengan nama berbeda untuk mengelola konfigurasi atau batas laju yang terpisah.
+  Nama penyebaran yang Anda pilih menjadi nilai yang Anda teruskan dalam parameter `model` dari permintaan API Anda. Anda dapat membuat beberapa penyebaran model yang sama dengan nama berbeda untuk mengelola konfigurasi terpisah atau batas laju.
 </Note>
 
 ## Autentikasi
 
-Claude di Foundry mendukung dua metode autentikasi: kunci API dan token Entra ID. Kedua metode menggunakan endpoint yang dihosting Azure dalam format `https://{resource}.services.ai.azure.com/anthropic/v1/*`.
+Claude di Foundry mendukung dua metode autentikasi: kunci API dan token Entra ID. Kedua metode menggunakan titik akhir yang dihosting Azure dalam format `https://{resource}.services.ai.azure.com/anthropic/v1/*`.
 
 ### Autentikasi kunci API
 
 Setelah menyediakan sumber daya Claude Foundry Anda, Anda dapat memperoleh kunci API dari portal Foundry:
 
 1. Navigasikan ke sumber daya Anda di portal Foundry
-2. Pergi ke bagian **Keys and Endpoint**
+2. Buka bagian **Keys and Endpoint**
 3. Salin salah satu kunci API yang disediakan
 4. Gunakan header `api-key` atau `x-api-key` dalam permintaan Anda, atau berikan ke SDK
 
-SDK Python dan TypeScript memerlukan kunci API dan nama sumber daya atau URL dasar. SDK akan secara otomatis membaca ini dari variabel lingkungan berikut jika didefinisikan:
+SDK Python dan TypeScript memerlukan kunci API dan nama sumber daya atau URL dasar. SDK akan secara otomatis membaca ini dari variabel lingkungan berikut jika ditentukan:
 
 - `ANTHROPIC_FOUNDRY_API_KEY` - Kunci API Anda
 - `ANTHROPIC_FOUNDRY_RESOURCE` - Nama sumber daya Anda (misalnya, `example-resource`)
 - `ANTHROPIC_FOUNDRY_BASE_URL` - Alternatif untuk nama sumber daya; URL dasar lengkap (misalnya, `https://example-resource.services.ai.azure.com/anthropic/`)
 
 <Note>
-Parameter `resource` dan `base_url` bersifat saling eksklusif. Berikan nama sumber daya (yang digunakan SDK untuk membuat URL sebagai `https://{resource}.services.ai.azure.com/anthropic/`) atau URL dasar lengkap secara langsung.
+Parameter `resource` dan `base_url` saling eksklusif. Berikan nama sumber daya (yang digunakan SDK untuk membuat URL sebagai `https://{resource}.services.ai.azure.com/anthropic/`) atau URL dasar lengkap secara langsung.
 </Note>
 
 **Contoh menggunakan kunci API:**
@@ -147,7 +147,7 @@ curl https://{resource}.services.ai.azure.com/anthropic/v1/messages \
   -H "api-key: YOUR_AZURE_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "messages": [
       {"role": "user", "content": "Hello!"}
@@ -164,7 +164,7 @@ export ANTHROPIC_API_KEY="YOUR_AZURE_API_KEY"
 
 ant messages create \
   --base-url https://example-resource.services.ai.azure.com/anthropic \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --message '{role: user, content: "Hello!"}' \
   --transform content
@@ -183,7 +183,7 @@ client = AnthropicFoundry(
 )
 
 message = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello!"}],
 )
@@ -202,7 +202,7 @@ const client = new AnthropicFoundry({
 });
 
 const message = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello!" }]
 });
@@ -225,7 +225,7 @@ var client = new AnthropicFoundryClient(
 
 var response = await client.Messages.Create(new MessageCreateParams
 {
-    Model = "claude-opus-4-6",
+    Model = "claude-opus-4-7",
     MaxTokens = 1024,
     Messages = [new() { Role = Role.User, Content = "Hello!" }],
 });
@@ -251,7 +251,7 @@ AnthropicClient client = AnthropicOkHttpClient.builder()
   .build();
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .model("claude-opus-4-6")
+  .model("claude-opus-4-7")
   .maxTokens(1024)
   .addUserMessage("Hello!")
   .build();
@@ -279,7 +279,7 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'Hello!']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
 );
 echo $message->content[0]->text;
 ```
@@ -287,13 +287,13 @@ echo $message->content[0]->text;
 
 <Tab title="Ruby">
 <Note>
-SDK Ruby Anthropic saat ini tidak mendukung Microsoft Azure AI Foundry. Anda dapat menggunakan `Anthropic::Client` standar dengan `base_url` kustom yang mengarah ke endpoint Foundry Anda, tetapi autentikasi khusus Azure (Entra ID) tidak tersedia secara bawaan. Untuk dukungan Foundry penuh, gunakan SDK Python atau TypeScript.
+SDK Ruby Anthropic saat ini tidak mendukung Microsoft Azure AI Foundry. Anda dapat menggunakan `Anthropic::Client` standar dengan `base_url` kustom yang menunjuk ke titik akhir Foundry Anda, tetapi autentikasi khusus Azure (Entra ID) tidak tertanam. Untuk dukungan Foundry penuh, gunakan SDK Python atau TypeScript.
 </Note>
 </Tab>
 </Tabs>
 
 <Warning>
-Jaga keamanan kunci API Anda. Jangan pernah menyimpannya di version control atau membagikannya secara publik. Siapa pun yang memiliki akses ke kunci API Anda dapat membuat permintaan ke Claude melalui sumber daya Foundry Anda.
+Jaga keamanan kunci API Anda. Jangan pernah komitkan ke kontrol versi atau bagikan secara publik. Siapa pun yang memiliki akses ke kunci API Anda dapat membuat permintaan ke Claude melalui sumber daya Foundry Anda.
 </Warning>
 
 ## Autentikasi Microsoft Entra
@@ -319,7 +319,7 @@ curl https://{resource}.services.ai.azure.com/anthropic/v1/messages \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "messages": [
       {"role": "user", "content": "Hello!"}
@@ -348,7 +348,7 @@ client = AnthropicFoundry(
 
 # Make request
 message = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello!"}],
 )
@@ -377,7 +377,7 @@ const client = new AnthropicFoundry({
 
 // Make request
 const message = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello!" }]
 });
@@ -401,7 +401,7 @@ var client = new AnthropicFoundryClient(
 
 var response = await client.Messages.Create(new MessageCreateParams
 {
-    Model = "claude-opus-4-6",
+    Model = "claude-opus-4-7",
     MaxTokens = 1024,
     Messages = [new() { Role = Role.User, Content = "Hello!" }],
 });
@@ -437,7 +437,7 @@ AnthropicClient client = AnthropicOkHttpClient.builder()
   .build();
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .model("claude-opus-4-6")
+  .model("claude-opus-4-7")
   .maxTokens(1024)
   .addUserMessage("Hello!")
   .build();
@@ -466,7 +466,7 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'Hello!']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
 );
 echo $message->content[0]->text;
 ```
@@ -474,45 +474,46 @@ echo $message->content[0]->text;
 
 <Tab title="Ruby">
 <Note>
-SDK Ruby Anthropic saat ini tidak mendukung Microsoft Azure AI Foundry. Anda dapat menggunakan `Anthropic::Client` standar dengan `base_url` kustom yang mengarah ke endpoint Foundry Anda, tetapi autentikasi khusus Azure (Entra ID) tidak tersedia secara bawaan. Untuk dukungan Foundry penuh, gunakan SDK Python atau TypeScript.
+SDK Ruby Anthropic saat ini tidak mendukung Microsoft Azure AI Foundry. Anda dapat menggunakan `Anthropic::Client` standar dengan `base_url` kustom yang menunjuk ke titik akhir Foundry Anda, tetapi autentikasi khusus Azure (Entra ID) tidak tertanam. Untuk dukungan Foundry penuh, gunakan SDK Python atau TypeScript.
 </Note>
 </Tab>
 </Tabs>
 
 <Note>
-Autentikasi Azure Entra ID memungkinkan Anda mengelola akses menggunakan Azure RBAC, berintegrasi dengan manajemen identitas organisasi Anda, dan menghindari pengelolaan kunci API secara manual.
+Autentikasi Azure Entra ID memungkinkan Anda mengelola akses menggunakan Azure RBAC, mengintegrasikan dengan manajemen identitas organisasi Anda, dan menghindari pengelolaan kunci API secara manual.
 </Note>
 
 ## ID permintaan korelasi
 
-Foundry menyertakan pengidentifikasi permintaan dalam header respons HTTP untuk debugging dan pelacakan. Saat menghubungi dukungan, berikan nilai `request-id` dan `apim-request-id` untuk membantu tim menemukan dan menyelidiki permintaan Anda dengan cepat di seluruh sistem Anthropic dan Azure.
+Foundry menyertakan pengidentifikasi permintaan dalam header respons HTTP untuk debugging dan pelacakan. Saat menghubungi dukungan, berikan nilai `request-id` dan `apim-request-id` untuk membantu tim dengan cepat menemukan dan menyelidiki permintaan Anda di seluruh sistem Anthropic dan Azure.
 
 ## Fitur yang didukung
 
-Claude di Foundry mendukung sebagian besar fitur Claude yang canggih. Anda dapat menemukan semua fitur yang saat ini didukung dalam [dokumentasi ikhtisar](/docs/id/build-with-claude/overview).
+Claude di Foundry mendukung sebagian besar fitur Claude yang kuat. Anda dapat menemukan semua fitur yang saat ini didukung dalam [dokumentasi gambaran umum](/docs/id/build-with-claude/overview).
 
 ### Jendela konteks
 
-Claude Opus 4.6 dan Claude Sonnet 4.6 memiliki [jendela konteks 1M token](/docs/id/build-with-claude/context-windows) di Microsoft Foundry. Model Claude lainnya, termasuk Sonnet 4.5, memiliki jendela konteks 200k token.
+Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6 memiliki [jendela konteks 1M-token](/docs/id/build-with-claude/context-windows) di Microsoft Foundry. Model Claude lainnya, termasuk Sonnet 4.5, memiliki jendela konteks 200k-token.
 
 ### Fitur yang tidak didukung
 
-- Admin API (endpoint `/v1/organizations/*`)
+- Admin API (titik akhir `/v1/organizations/*`)
 - Models API (`/v1/models`)
 - Message Batch API (`/v1/messages/batches`)
 
 ## Respons API
 
-Respons API dari Claude di Foundry mengikuti [format respons API Claude](/docs/id/api/messages/create) standar. Ini mencakup objek `usage` dalam badan respons, yang memberikan informasi konsumsi token terperinci untuk permintaan Anda. Objek `usage` konsisten di semua platform (API pihak pertama, Foundry, Amazon Bedrock, dan Google Vertex AI).
+Respons API dari Claude di Foundry mengikuti [format respons API Claude](/docs/id/api/messages/create) standar. Ini termasuk objek `usage` dalam badan respons, yang memberikan informasi konsumsi token terperinci untuk permintaan Anda. Objek `usage` konsisten di semua platform (API pihak pertama, Foundry, Amazon Bedrock, dan Google Vertex AI).
 
 Untuk detail tentang header respons khusus Foundry, lihat [bagian ID permintaan korelasi](#correlation-request-ids).
 
-## ID model API dan deployment
+## ID model API dan penyebaran
 
-Model Claude berikut tersedia melalui Foundry. Model generasi terbaru (Opus 4.6, Sonnet 4.6, dan Haiku 4.5) menawarkan kemampuan paling canggih:
+Model Claude berikut tersedia melalui Foundry. Model generasi terbaru (Opus 4.7, Opus 4.6, Sonnet 4.6, dan Haiku 4.5) menawarkan kemampuan paling canggih:
 
-| Model             | Nama Deployment Default     |
+| Model             | Nama Penyebaran Default     |
 | :---------------- | :-------------------------- |
+| Claude Opus 4.7   | `claude-opus-4-7`           |
 | Claude Opus 4.6     | `claude-opus-4-6`             |
 | Claude Opus 4.5   | `claude-opus-4-5`           |
 | Claude Sonnet 4.6 | `claude-sonnet-4-6`         |
@@ -520,56 +521,56 @@ Model Claude berikut tersedia melalui Foundry. Model generasi terbaru (Opus 4.6,
 | Claude Opus 4.1   | `claude-opus-4-1`           |
 | Claude Haiku 4.5  | `claude-haiku-4-5`          |
 
-Secara default, nama deployment cocok dengan ID model yang ditampilkan di atas. Namun, Anda dapat membuat deployment kustom dengan nama berbeda di portal Foundry untuk mengelola konfigurasi, versi, atau batas laju yang berbeda. Gunakan nama deployment (bukan ID model) dalam permintaan API Anda.
+Secara default, nama penyebaran cocok dengan ID model yang ditunjukkan di atas. Namun, Anda dapat membuat penyebaran kustom dengan nama berbeda di portal Foundry untuk mengelola konfigurasi, versi, atau batas laju yang berbeda. Gunakan nama penyebaran (tidak harus ID model) dalam permintaan API Anda.
 
-## Pemantauan dan pencatatan log
+## Pemantauan dan logging
 
-Azure menyediakan kemampuan pemantauan dan pencatatan log yang komprehensif untuk penggunaan Claude Anda melalui pola Azure standar:
+Azure menyediakan kemampuan pemantauan dan logging komprehensif untuk penggunaan Claude Anda melalui pola Azure standar:
 
 - **Azure Monitor:** Lacak penggunaan API, latensi, dan tingkat kesalahan
 - **Azure Log Analytics:** Kueri dan analisis log permintaan/respons
 - **Cost Management:** Pantau dan perkirakan biaya yang terkait dengan penggunaan Claude
 
-Anthropic merekomendasikan pencatatan aktivitas Anda setidaknya pada basis bergulir 30 hari untuk memahami pola penggunaan dan menyelidiki potensi masalah.
+Anthropic merekomendasikan logging aktivitas Anda setidaknya pada dasar 30 hari bergulir untuk memahami pola penggunaan dan menyelidiki potensi masalah.
 
 <Note>
-Layanan pencatatan log Azure dikonfigurasi dalam langganan Azure Anda. Mengaktifkan pencatatan log tidak memberikan akses Microsoft atau Anthropic ke konten Anda di luar apa yang diperlukan untuk penagihan dan operasi layanan.
+Layanan logging Azure dikonfigurasi dalam langganan Azure Anda. Mengaktifkan logging tidak memberikan Microsoft atau Anthropic akses ke konten Anda di luar apa yang diperlukan untuk penagihan dan operasi layanan.
 </Note>
 
 ## Pemecahan masalah
 
 ### Kesalahan autentikasi
 
-**Kesalahan:** `401 Unauthorized` atau `Invalid API key`
+**Error:** `401 Unauthorized` atau `Invalid API key`
 
-- **Solusi:** Verifikasi kunci API Anda sudah benar. Anda dapat memperoleh kunci API baru dari portal Azure di bawah **Keys and Endpoint** untuk sumber daya Claude Anda.
+- **Solusi:** Verifikasi kunci API Anda benar. Anda dapat memperoleh kunci API baru dari portal Azure di bawah **Keys and Endpoint** untuk sumber daya Claude Anda.
 - **Solusi:** Jika menggunakan Azure Entra ID, pastikan token akses Anda valid dan belum kedaluwarsa. Token biasanya kedaluwarsa setelah 1 jam.
 
-**Kesalahan:** `403 Forbidden`
+**Error:** `403 Forbidden`
 
-- **Solusi:** Akun Azure Anda mungkin tidak memiliki izin yang diperlukan. Pastikan Anda memiliki peran Azure RBAC yang sesuai yang ditetapkan (misalnya, "Cognitive Services OpenAI User").
+- **Solusi:** Akun Azure Anda mungkin kekurangan izin yang diperlukan. Pastikan Anda memiliki peran Azure RBAC yang sesuai ditugaskan (misalnya, "Cognitive Services OpenAI User").
 
 ### Pembatasan laju
 
-**Kesalahan:** `429 Too Many Requests`
+**Error:** `429 Too Many Requests`
 
-- **Solusi:** Anda telah melampaui batas laju Anda. Implementasikan logika backoff eksponensial dan percobaan ulang dalam aplikasi Anda.
+- **Solusi:** Anda telah melampaui batas laju Anda. Implementasikan logika backoff eksponensial dan coba lagi dalam aplikasi Anda.
 - **Solusi:** Pertimbangkan untuk meminta peningkatan batas laju melalui portal Azure atau dukungan Azure.
 
 #### Header batas laju
 
 Foundry tidak menyertakan header batas laju standar Anthropic (`anthropic-ratelimit-tokens-limit`, `anthropic-ratelimit-tokens-remaining`, `anthropic-ratelimit-tokens-reset`, `anthropic-ratelimit-input-tokens-limit`, `anthropic-ratelimit-input-tokens-remaining`, `anthropic-ratelimit-input-tokens-reset`, `anthropic-ratelimit-output-tokens-limit`, `anthropic-ratelimit-output-tokens-remaining`, dan `anthropic-ratelimit-output-tokens-reset`) dalam respons. Kelola pembatasan laju melalui alat pemantauan Azure sebagai gantinya.
 
-### Kesalahan model dan deployment
+### Kesalahan model dan penyebaran
 
-**Kesalahan:** `Model not found` atau `Deployment not found`
+**Error:** `Model not found` atau `Deployment not found`
 
-- **Solusi:** Verifikasi Anda menggunakan nama deployment yang benar. Jika Anda belum membuat deployment kustom, gunakan ID model default (misalnya, `claude-sonnet-4-6`).
-- **Solusi:** Pastikan model/deployment tersedia di region Azure Anda.
+- **Solusi:** Verifikasi Anda menggunakan nama penyebaran yang benar. Jika Anda belum membuat penyebaran kustom, gunakan ID model default (misalnya, `claude-sonnet-4-6`).
+- **Solusi:** Pastikan model/penyebaran tersedia di wilayah Azure Anda.
 
-**Kesalahan:** `Invalid model parameter`
+**Error:** `Invalid model parameter`
 
-- **Solusi:** Parameter model harus berisi nama deployment Anda, yang dapat dikustomisasi di portal Foundry. Verifikasi deployment ada dan dikonfigurasi dengan benar.
+- **Solusi:** Parameter model harus berisi nama penyebaran Anda, yang dapat disesuaikan di portal Foundry. Verifikasi penyebaran ada dan dikonfigurasi dengan benar.
 
 <Info>
 [Claude Mythos Preview](https://anthropic.com/glasswing) adalah pratinjau penelitian yang tersedia untuk pelanggan yang diundang di Microsoft Foundry. Untuk informasi lebih lanjut, lihat [Project Glasswing](https://anthropic.com/glasswing).
@@ -579,6 +580,6 @@ Foundry tidak menyertakan header batas laju standar Anthropic (`anthropic-rateli
 
 - **Dokumentasi Foundry:** [ai.azure.com/catalog](https://ai.azure.com/catalog/publishers/anthropic)
 - **Harga Azure:** [azure.microsoft.com/en-us/pricing](https://azure.microsoft.com/en-us/pricing/)
-- **Detail harga Anthropic:** [Dokumentasi harga](/docs/id/about-claude/pricing#third-party-platform-pricing)
+- **Detail harga Anthropic:** [Dokumentasi Harga](/docs/id/about-claude/pricing#third-party-platform-pricing)
 - **Panduan autentikasi:** Lihat [bagian autentikasi](#authentication) di atas
 - **Portal Azure:** [portal.azure.com](https://portal.azure.com/)

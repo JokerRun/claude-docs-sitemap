@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 7c6a913651ffd25cc5ab8f196d014c54d4b74ded833fa1007e2695e4a57ed726
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 51398b94a968e241e6298077821451e2dca9583b0947afd5ce66e14e39907c6d
 ---
 
 # Alat editor teks
 
-Pelajari cara menggunakan alat editor teks Claude untuk melihat dan memodifikasi file teks, membantu Anda men-debug, memperbaiki, dan meningkatkan kode atau dokumen teks lainnya.
+Claude dapat menggunakan alat editor teks dengan skema Anthropic untuk melihat dan memodifikasi file teks, membantu Anda men-debug, memperbaiki, dan meningkatkan kode atau dokumen teks lainnya.
 
 ---
 
@@ -15,21 +15,21 @@ Pelajari cara menggunakan alat editor teks Claude untuk melihat dan memodifikasi
 This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
 </Note>
 
-Claude dapat menggunakan alat editor teks berdasarkan skema Anthropic untuk melihat dan memodifikasi file teks, membantu Anda men-debug, memperbaiki, dan meningkatkan kode atau dokumen teks lainnya. Ini memungkinkan Claude untuk berinteraksi langsung dengan file Anda, memberikan bantuan langsung daripada sekadar menyarankan perubahan.
+Claude dapat menggunakan alat editor teks dengan skema Anthropic untuk melihat dan memodifikasi file teks, membantu Anda men-debug, memperbaiki, dan meningkatkan kode atau dokumen teks lainnya. Ini memungkinkan Claude untuk berinteraksi langsung dengan file Anda, memberikan bantuan langsung daripada hanya menyarankan perubahan.
 
 Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
 
 ## Kapan menggunakan alat editor teks
 
-Beberapa contoh kapan menggunakan alat editor teks:
-- **Debugging kode:** Minta Claude mengidentifikasi dan memperbaiki bug dalam kode Anda, mulai dari kesalahan sintaks hingga masalah logika.
-- **Refactoring kode:** Biarkan Claude meningkatkan struktur kode, keterbacaan, dan performa melalui pengeditan yang tepat sasaran.
-- **Pembuatan dokumentasi:** Minta Claude menambahkan docstring, komentar, atau file README ke basis kode Anda.
-- **Pembuatan pengujian:** Minta Claude membuat unit test untuk kode Anda berdasarkan pemahamannya tentang implementasi.
+Beberapa contoh kapan menggunakan alat editor teks adalah:
+- **Debugging kode:** Biarkan Claude mengidentifikasi dan memperbaiki bug dalam kode Anda, dari kesalahan sintaks hingga masalah logika.
+- **Refactoring kode:** Biarkan Claude meningkatkan struktur kode, keterbacaan, dan kinerja melalui pengeditan yang ditargetkan.
+- **Pembuatan dokumentasi:** Minta Claude untuk menambahkan docstring, komentar, atau file README ke basis kode Anda.
+- **Pembuatan tes:** Biarkan Claude membuat tes unit untuk kode Anda berdasarkan pemahamannya tentang implementasi.
 
 ## Gunakan alat editor teks
 
-Berikan alat editor teks (bernama `str_replace_based_edit_tool`) kepada Claude menggunakan Messages API.
+Sediakan alat editor teks (bernama `str_replace_based_edit_tool`) ke Claude menggunakan Messages API.
 
 Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontrol pemotongan saat melihat file besar.
 
@@ -45,7 +45,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "tools": [
       {
@@ -65,7 +65,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --tool '{type: text_editor_20250728, name: str_replace_based_edit_tool, max_characters: 10000}' \
   --message '{role: user, content: There is a syntax error in my primes.py file. Can you help me fix it?}'
@@ -77,7 +77,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[
         {
@@ -103,7 +103,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const anthropic = new Anthropic();
 
 const response = await anthropic.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [
     {
@@ -140,7 +140,7 @@ void main() {
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_4_6)
+    .model(Model.CLAUDE_OPUS_4_7)
     .maxTokens(1024)
     .addTool(editorTool)
     .addUserMessage("There's a syntax error in my primes.py file. Can you help me fix it?")
@@ -155,28 +155,28 @@ void main() {
 Alat editor teks dapat digunakan dengan cara berikut:
 
 <Steps>
-  <Step title="Berikan Claude alat editor teks dan prompt pengguna">
+  <Step title="Sediakan Claude dengan alat editor teks dan prompt pengguna">
     - Sertakan alat editor teks dalam permintaan API Anda
-    - Berikan prompt pengguna yang mungkin memerlukan pemeriksaan atau modifikasi file, seperti "Bisakah Anda memperbaiki kesalahan sintaks dalam kode saya?"
+    - Sediakan prompt pengguna yang mungkin memerlukan pemeriksaan atau modifikasi file, seperti "Bisakah Anda memperbaiki kesalahan sintaks dalam kode saya?"
   </Step>
   <Step title="Claude menggunakan alat untuk memeriksa file atau direktori">
-    - Claude menilai apa yang perlu dilihat dan menggunakan perintah `view` untuk memeriksa konten file atau mencantumkan konten direktori
+    - Claude menilai apa yang perlu dilihat dan menggunakan perintah `view` untuk memeriksa konten file atau mendaftar konten direktori
     - Respons API akan berisi blok konten `tool_use` dengan perintah `view`
   </Step>
-  <Step title="Jalankan perintah view dan kembalikan hasilnya">
+  <Step title="Jalankan perintah view dan kembalikan hasil">
     - Ekstrak jalur file atau direktori dari permintaan penggunaan alat Claude
-    - Baca konten file atau cantumkan konten direktori
-    - Jika parameter `max_characters` ditentukan dalam konfigurasi alat, potong konten file hingga panjang tersebut
-    - Kembalikan hasilnya ke Claude dengan melanjutkan percakapan dengan pesan `user` baru yang berisi blok konten `tool_result`
+    - Baca konten file atau daftar konten direktori
+    - Jika parameter `max_characters` ditentukan dalam konfigurasi alat, potong konten file ke panjang tersebut
+    - Kembalikan hasil ke Claude dengan melanjutkan percakapan dengan pesan `user` baru yang berisi blok konten `tool_result`
   </Step>
   <Step title="Claude menggunakan alat untuk memodifikasi file">
     - Setelah memeriksa file atau direktori, Claude dapat menggunakan perintah seperti `str_replace` untuk membuat perubahan atau `insert` untuk menambahkan teks pada nomor baris tertentu.
-    - Jika Claude menggunakan perintah `str_replace`, Claude membuat permintaan penggunaan alat yang diformat dengan benar dengan teks lama dan teks baru untuk menggantikannya
+    - Jika Claude menggunakan perintah `str_replace`, Claude membuat permintaan penggunaan alat yang diformat dengan benar dengan teks lama dan teks baru untuk menggantinya
   </Step>
-  <Step title="Jalankan pengeditan dan kembalikan hasilnya">
+  <Step title="Jalankan pengeditan dan kembalikan hasil">
     - Ekstrak jalur file, teks lama, dan teks baru dari permintaan penggunaan alat Claude
     - Lakukan penggantian teks dalam file
-    - Kembalikan hasilnya ke Claude
+    - Kembalikan hasil ke Claude
   </Step>
   <Step title="Claude memberikan analisis dan penjelasannya">
     - Setelah memeriksa dan mungkin mengedit file, Claude memberikan penjelasan lengkap tentang apa yang ditemukannya dan perubahan apa yang dilakukannya
@@ -189,12 +189,12 @@ Alat editor teks mendukung beberapa perintah untuk melihat dan memodifikasi file
 
 #### view
 
-Perintah `view` memungkinkan Claude untuk memeriksa konten file atau mencantumkan konten direktori. Perintah ini dapat membaca seluruh file atau rentang baris tertentu.
+Perintah `view` memungkinkan Claude untuk memeriksa konten file atau mendaftar konten direktori. Ini dapat membaca seluruh file atau rentang baris tertentu.
 
 Parameter:
-- `command`: Harus berupa "view"
+- `command`: Harus "view"
 - `path`: Jalur ke file atau direktori yang akan dilihat
-- `view_range` (opsional): Array dari dua bilangan bulat yang menentukan nomor baris awal dan akhir yang akan dilihat. Nomor baris diindeks mulai dari 1, dan -1 untuk baris akhir berarti baca hingga akhir file. Parameter ini hanya berlaku saat melihat file, bukan direktori.
+- `view_range` (opsional): Array dari dua bilangan bulat yang menentukan nomor baris awal dan akhir yang akan dilihat. Nomor baris dimulai dari 1, dan -1 untuk baris akhir berarti baca hingga akhir file. Parameter ini hanya berlaku saat melihat file, bukan direktori.
 
 <section title="Contoh perintah view">
 
@@ -230,10 +230,10 @@ Contoh untuk melihat direktori:
 
 #### str_replace
 
-Perintah `str_replace` memungkinkan Claude untuk mengganti string tertentu dalam file dengan string baru. Ini digunakan untuk membuat pengeditan yang tepat.
+Perintah `str_replace` memungkinkan Claude untuk mengganti string tertentu dalam file dengan string baru. Ini digunakan untuk membuat pengeditan yang presisi.
 
 Parameter:
-- `command`: Harus berupa "str_replace"
+- `command`: Harus "str_replace"
 - `path`: Jalur ke file yang akan dimodifikasi
 - `old_str`: Teks yang akan diganti (harus cocok persis, termasuk spasi dan indentasi)
 - `new_str`: Teks baru yang akan disisipkan menggantikan teks lama
@@ -261,7 +261,7 @@ Parameter:
 Perintah `create` memungkinkan Claude untuk membuat file baru dengan konten yang ditentukan.
 
 Parameter:
-- `command`: Harus berupa "create"
+- `command`: Harus "create"
 - `path`: Jalur tempat file baru harus dibuat
 - `file_text`: Konten yang akan ditulis ke file baru
 
@@ -287,9 +287,9 @@ Parameter:
 Perintah `insert` memungkinkan Claude untuk menyisipkan teks pada lokasi tertentu dalam file.
 
 Parameter:
-- `command`: Harus berupa "insert"
+- `command`: Harus "insert"
 - `path`: Jalur ke file yang akan dimodifikasi
-- `insert_line`: Nomor baris setelah mana teks akan disisipkan (0 untuk awal file)
+- `insert_line`: Nomor baris setelah teks akan disisipkan (0 untuk awal file)
 - `insert_text`: Teks yang akan disisipkan
 
 <section title="Contoh perintah insert">
@@ -310,11 +310,11 @@ Parameter:
 
 </section>
 
-### Contoh: Memperbaiki kesalahan sintaks dengan alat teks editor
+### Contoh: Memperbaiki kesalahan sintaks dengan alat editor teks
 
-Contoh ini mendemonstrasikan bagaimana Claude menggunakan alat teks editor untuk memperbaiki kesalahan sintaks dalam file Python.
+Contoh ini menunjukkan bagaimana Claude menggunakan alat editor teks untuk memperbaiki kesalahan sintaks dalam file Python.
 
-Pertama, aplikasi Anda menyediakan Claude dengan alat teks editor dan prompt untuk memperbaiki kesalahan sintaks:
+Pertama, aplikasi Anda menyediakan Claude dengan alat editor teks dan prompt untuk memperbaiki kesalahan sintaks:
 
 <CodeGroup>
 ```bash Shell
@@ -323,7 +323,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "tools": [
       {
@@ -342,7 +342,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --tool '{type: text_editor_20250728, name: str_replace_based_edit_tool}' \
   --message '{role: user, content: There is a syntax error in my primes.py file. Can you help me fix it?}'
@@ -354,7 +354,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[{"type": "text_editor_20250728", "name": "str_replace_based_edit_tool"}],
     messages=[
@@ -374,7 +374,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const anthropic = new Anthropic();
 
 const response = await anthropic.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [
     {
@@ -408,7 +408,7 @@ void main() {
     ToolTextEditor20250728.builder().build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_4_6)
+    .model(Model.CLAUDE_OPUS_4_7)
     .maxTokens(1024)
     .addTool(editorTool)
     .addUserMessage("There's a syntax error in my primes.py file. Can you help me fix it?")
@@ -420,12 +420,12 @@ void main() {
 ```
 </CodeGroup>
 
-Claude menggunakan alat teks editor terlebih dahulu untuk melihat file:
+Claude menggunakan alat editor teks terlebih dahulu untuk melihat file:
 
 ```json Output
 {
   "id": "msg_01XAbCDeFgHiJkLmNoPQrStU",
-  "model": "claude-opus-4-6",
+  "model": "claude-opus-4-7",
   "stop_reason": "tool_use",
   "role": "assistant",
   "content": [
@@ -455,7 +455,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "tools": [
       {
@@ -502,7 +502,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 tools:
   - type: text_editor_20250728
@@ -565,7 +565,7 @@ YAML
 
 ```python Python
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[{"type": "text_editor_20250728", "name": "str_replace_based_edit_tool"}],
     messages=[
@@ -610,7 +610,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const anthropic = new Anthropic();
 
 const response = await anthropic.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [
     {
@@ -678,7 +678,7 @@ public class TextEditorToolResultExample {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_6)
+      .model(Model.CLAUDE_OPUS_4_7)
       .maxTokens(1024)
       .addTool(ToolTextEditor20250728.builder().build())
       .addUserMessage("There's a syntax error in my primes.py file. Can you help me fix it?")
@@ -725,7 +725,7 @@ public class TextEditorToolResultExample {
 <Tip>
 **Nomor baris**
 
-Dalam contoh di atas, hasil alat `view` menyertakan isi file dengan nomor baris yang ditambahkan di awal setiap baris (misalnya, "1: def is_prime(n):"). Nomor baris tidak wajib, tetapi sangat penting untuk berhasil menggunakan parameter `view_range` guna memeriksa bagian tertentu dari file dan parameter `insert_line` untuk menambahkan konten di lokasi yang tepat.
+Dalam contoh di atas, hasil alat `view` mencakup isi file dengan nomor baris yang ditambahkan di depan setiap baris (misalnya, "1: def is_prime(n):"). Nomor baris tidak diperlukan, tetapi sangat penting untuk berhasil menggunakan parameter `view_range` untuk memeriksa bagian tertentu dari file dan parameter `insert_line` untuk menambahkan konten di lokasi yang tepat.
 </Tip>
 
 Claude mengidentifikasi kesalahan sintaks dan menggunakan perintah `str_replace` untuk memperbaikinya:
@@ -733,7 +733,7 @@ Claude mengidentifikasi kesalahan sintaks dan menggunakan perintah `str_replace`
 ```json Output
 {
   "id": "msg_01VwXyZAbCdEfGhIjKlMnO",
-  "model": "claude-opus-4-6",
+  "model": "claude-opus-4-7",
   "stop_reason": "tool_use",
   "role": "assistant",
   "content": [
@@ -756,18 +756,18 @@ Claude mengidentifikasi kesalahan sintaks dan menggunakan perintah `str_replace`
 }
 ```
 
-Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
+Aplikasi Anda kemudian harus membuat edit dan mengembalikan hasilnya:
 
 <CodeGroup>
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 tools:
   - type: text_editor_20250728
     name: str_replace_based_edit_tool
 messages:
-  # Pesan-pesan sebelumnya...
+  # Previous messages...
   - role: assistant
     content:
       - type: text
@@ -793,11 +793,11 @@ YAML
 
 ```python Python
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[{"type": "text_editor_20250728", "name": "str_replace_based_edit_tool"}],
     messages=[
-        # Pesan-pesan sebelumnya...
+        # Previous messages...
         {
             "role": "assistant",
             "content": [
@@ -836,7 +836,7 @@ print(response)
 
 ```typescript TypeScript
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [
     {
@@ -845,7 +845,7 @@ const response = await client.messages.create({
     }
   ],
   messages: [
-    // Pesan-pesan sebelumnya...
+    // Previous messages...
     {
       role: "assistant",
       content: [
@@ -902,10 +902,10 @@ public class TextEditorConversationExample {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_6)
+      .model(Model.CLAUDE_OPUS_4_7)
       .maxTokens(1024)
       .addTool(ToolTextEditor20250728.builder().build())
-      // Pesan-pesan sebelumnya akan ditempatkan di sini
+      // Previous messages would go here
       .addAssistantMessageOfBlockParams(
         List.of(
           ContentBlockParam.ofText(
@@ -956,12 +956,12 @@ public class TextEditorConversationExample {
 ```
 </CodeGroup>
 
-Akhirnya, Claude memberikan penjelasan lengkap tentang perbaikan tersebut:
+Terakhir, Claude memberikan penjelasan lengkap tentang perbaikannya:
 
 ```json Output
 {
   "id": "msg_01IjKlMnOpQrStUvWxYzAb",
-  "model": "claude-opus-4-6",
+  "model": "claude-opus-4-7",
   "stop_reason": "end_turn",
   "role": "assistant",
   "content": [
@@ -973,11 +973,11 @@ Akhirnya, Claude memberikan penjelasan lengkap tentang perbaikan tersebut:
 }
 ```
 
-## Implementasikan alat teks editor
+## Implementasikan alat editor teks
 
-Alat teks editor diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini, Anda tidak perlu menyediakan skema input seperti pada alat lainnya; skema sudah tertanam dalam model Claude dan tidak dapat dimodifikasi.
+Alat editor teks diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini, Anda tidak perlu memberikan skema input seperti dengan alat lainnya; skema sudah tertanam dalam model Claude dan tidak dapat dimodifikasi.
 
-Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
+Jenis alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
 
 <Steps>
   <Step title="Inisialisasi implementasi editor Anda">
@@ -992,23 +992,23 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
         file_path = input_params.get("path", "")
 
         if command == "view":
-            # Baca dan kembalikan isi file
+            # Read and return file contents
             pass
         elif command == "str_replace":
-            # Ganti teks dalam file
+            # Replace text in file
             pass
         elif command == "create":
-            # Buat file baru
+            # Create new file
             pass
         elif command == "insert":
-            # Sisipkan teks di lokasi
+            # Insert text at location
             pass
     ```
   </Step>
   <Step title="Implementasikan langkah-langkah keamanan">
     Tambahkan validasi dan pemeriksaan keamanan:
-    - Validasi jalur file untuk mencegah directory traversal
-    - Buat cadangan sebelum melakukan perubahan
+    - Validasi jalur file untuk mencegah traversal direktori
+    - Buat cadangan sebelum membuat perubahan
     - Tangani kesalahan dengan baik
     - Implementasikan pemeriksaan izin
   </Step>
@@ -1030,13 +1030,13 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
         return "ok"
 
 
-    # Proses penggunaan alat dalam respons Claude
+    # Process tool use in Claude's response
     for content in response.content:
         if content.type == "tool_use":
-            # Jalankan alat berdasarkan perintah
+            # Execute the tool based on command
             result = handle_editor_tool(content)
 
-            # Kembalikan hasil ke Claude
+            # Return result to Claude
             tool_result = {
                 "type": "tool_result",
                 "tool_use_id": content.id,
@@ -1047,17 +1047,17 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
 </Steps>
 
 <Warning>
-Saat mengimplementasikan alat teks editor, perlu diingat:
+Saat mengimplementasikan alat editor teks, perlu diingat:
 
 1. **Keamanan:** Alat ini memiliki akses ke sistem file lokal Anda, jadi implementasikan langkah-langkah keamanan yang tepat.
-2. **Cadangan:** Selalu buat cadangan sebelum mengizinkan pengeditan pada file penting.
+2. **Cadangan:** Selalu buat cadangan sebelum memungkinkan pengeditan file penting.
 3. **Validasi:** Validasi semua input untuk mencegah perubahan yang tidak diinginkan.
 4. **Pencocokan unik:** Pastikan penggantian cocok dengan tepat satu lokasi untuk menghindari pengeditan yang tidak diinginkan.
 </Warning>
 
 ### Tangani kesalahan
 
-Saat menggunakan alat teks editor, berbagai kesalahan mungkin terjadi. Berikut panduan cara menanganinya:
+Saat menggunakan alat editor teks, berbagai kesalahan dapat terjadi. Berikut adalah panduan tentang cara menanganinya:
 
 <section title="File tidak ditemukan">
 
@@ -1121,7 +1121,7 @@ Jika perintah `str_replace` Claude tidak cocok dengan teks apa pun dalam file, k
 
 <section title="Kesalahan izin">
 
-Jika ada masalah izin saat membuat, membaca, atau memodifikasi file, kembalikan pesan kesalahan yang sesuai:
+Jika ada masalah izin dengan membuat, membaca, atau memodifikasi file, kembalikan pesan kesalahan yang sesuai:
 
 ```json
 {
@@ -1143,34 +1143,34 @@ Jika ada masalah izin saat membuat, membaca, atau memodifikasi file, kembalikan 
 
 <section title="Berikan konteks yang jelas">
 
-Saat meminta Claude untuk memperbaiki atau memodifikasi kode, jelaskan secara spesifik file mana yang perlu diperiksa atau masalah apa yang perlu ditangani. Konteks yang jelas membantu Claude mengidentifikasi file yang tepat dan membuat perubahan yang sesuai.
+Saat meminta Claude untuk memperbaiki atau memodifikasi kode, spesifik tentang file mana yang perlu diperiksa atau masalah apa yang perlu ditangani. Konteks yang jelas membantu Claude mengidentifikasi file yang tepat dan membuat perubahan yang sesuai.
 
-**Prompt yang kurang membantu**: "Bisakah kamu memperbaiki kode saya?"
+**Prompt yang kurang membantu**: "Bisakah Anda memperbaiki kode saya?"
 
-**Prompt yang lebih baik**: "Ada kesalahan sintaks dalam file primes.py saya yang mencegahnya berjalan. Bisakah kamu memperbaikinya?"
+**Prompt yang lebih baik**: "Ada kesalahan sintaks dalam file primes.py saya yang mencegahnya berjalan. Bisakah Anda memperbaikinya?"
 
 </section>
 
-<section title="Jelaskan jalur file secara eksplisit">
+<section title="Jadilah eksplisit tentang jalur file">
 
-Tentukan jalur file dengan jelas bila diperlukan, terutama jika Anda bekerja dengan beberapa file atau file di direktori yang berbeda.
+Tentukan jalur file dengan jelas saat diperlukan, terutama jika Anda bekerja dengan beberapa file atau file di direktori berbeda.
 
-**Prompt yang kurang membantu**: "Periksa file helper saya"
+**Prompt yang kurang membantu**: "Tinjau file pembantu saya"
 
-**Prompt yang lebih baik**: "Bisakah kamu memeriksa file utils/helpers.py saya untuk masalah performa?"
+**Prompt yang lebih baik**: "Bisakah Anda memeriksa file utils/helpers.py saya untuk masalah kinerja apa pun?"
 
 </section>
 
 <section title="Buat cadangan sebelum mengedit">
 
-Implementasikan sistem cadangan dalam aplikasi Anda yang membuat salinan file sebelum mengizinkan Claude mengeditnya, terutama untuk kode penting atau kode produksi.
+Implementasikan sistem cadangan dalam aplikasi Anda yang membuat salinan file sebelum memungkinkan Claude mengeditnya, terutama untuk kode penting atau produksi.
 
 ```python hidelines={1}
 import os
 
 
 def backup_file(file_path):
-    """Buat cadangan file sebelum mengedit."""
+    """Create a backup of a file before editing."""
     backup_path = f"{file_path}.backup"
     if os.path.exists(file_path):
         with open(file_path, "r") as src, open(backup_path, "w") as dst:
@@ -1184,7 +1184,7 @@ def backup_file(file_path):
 Perintah `str_replace` memerlukan kecocokan yang tepat untuk teks yang akan diganti. Aplikasi Anda harus memastikan bahwa ada tepat satu kecocokan untuk teks lama atau memberikan pesan kesalahan yang sesuai.
 ```python
 def safe_replace(file_path, old_text, new_text):
-    """Ganti teks hanya jika ada tepat satu kecocokan."""
+    """Replace text only if there's exactly one match."""
     with open(file_path, "r") as f:
         content = f.read()
 
@@ -1204,12 +1204,12 @@ def safe_replace(file_path, old_text, new_text):
 
 <section title="Verifikasi perubahan">
 
-Setelah Claude membuat perubahan pada file, verifikasi perubahan dengan menjalankan pengujian atau memeriksa bahwa kode masih berfungsi seperti yang diharapkan.
+Setelah Claude membuat perubahan pada file, verifikasi perubahan dengan menjalankan tes atau memeriksa bahwa kode masih berfungsi seperti yang diharapkan.
 ```python
 def verify_changes(file_path):
-    """Jalankan pengujian atau pemeriksaan setelah membuat perubahan."""
+    """Run tests or checks after making changes."""
     try:
-        # Untuk file Python, periksa kesalahan sintaks
+        # For Python files, check for syntax errors
         if file_path.endswith(".py"):
             import ast
 
@@ -1235,34 +1235,34 @@ In addition to the base tokens, the following additional input tokens are needed
 | `text_editor_20250429` (Claude 4.x) | 700 tokens |
 | `text_editor_20250124` (Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))) | 700 tokens |
 
-Untuk informasi lebih rinci tentang harga alat, lihat [Harga penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricing).
+Untuk informasi lebih detail tentang harga alat, lihat [Harga penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricing).
 
-## Integrasikan alat teks editor dengan alat lain
+## Integrasikan alat editor teks dengan alat lain
 
-Alat teks editor dapat digunakan bersama alat Claude lainnya. Saat menggabungkan alat, pastikan Anda:
-- Mencocokkan versi alat dengan model yang Anda gunakan
-- Memperhitungkan penggunaan token tambahan untuk semua alat yang disertakan dalam permintaan Anda
+Alat editor teks dapat digunakan bersama dengan alat Claude lainnya. Saat menggabungkan alat, pastikan Anda:
+- Cocokkan versi alat dengan model yang Anda gunakan
+- Hitung penggunaan token tambahan untuk semua alat yang disertakan dalam permintaan Anda
 
-## Log perubahan
+## Catatan perubahan
 
 | Tanggal | Versi | Perubahan |
 | ---- | ------- | ------- |
-| 28 Juli 2025 | `text_editor_20250728` | Rilis alat teks editor yang diperbarui yang memperbaiki beberapa masalah dan menambahkan parameter `max_characters` opsional. Selain itu identik dengan `text_editor_20250429`. |
-| 29 April 2025 | `text_editor_20250429` | Rilis alat teks editor untuk Claude 4. Versi ini menghapus perintah `undo_edit` tetapi mempertahankan semua kemampuan lainnya. Nama alat telah diperbarui untuk mencerminkan arsitektur berbasis str_replace-nya. |
-| 13 Maret 2025 | `text_editor_20250124` | Pengenalan dokumentasi alat teks editor mandiri. Versi ini dioptimalkan untuk Claude Sonnet 3.7 tetapi memiliki kemampuan yang identik dengan versi sebelumnya. |
-| 22 Oktober 2024 | `text_editor_20241022` | Rilis awal alat teks editor dengan Claude Sonnet 3.5 ([dihentikan](/docs/id/about-claude/model-deprecations)). Menyediakan kemampuan untuk melihat, membuat, dan mengedit file melalui perintah `view`, `create`, `str_replace`, `insert`, dan `undo_edit`. |
+| 28 Juli 2025 | `text_editor_20250728` | Rilis alat editor teks yang diperbarui yang memperbaiki beberapa masalah dan menambahkan parameter `max_characters` opsional. Sebaliknya identik dengan `text_editor_20250429`. |
+| 29 April 2025 | `text_editor_20250429` | Rilis alat editor teks untuk Claude 4. Versi ini menghapus perintah `undo_edit` tetapi mempertahankan semua kemampuan lainnya. Nama alat telah diperbarui untuk mencerminkan arsitekturnya yang berbasis str_replace. |
+| 13 Maret 2025 | `text_editor_20250124` | Pengenalan dokumentasi alat editor teks mandiri. Versi ini dioptimalkan untuk Claude Sonnet 3.7 tetapi memiliki kemampuan identik dengan versi sebelumnya. |
+| 22 Oktober 2024 | `text_editor_20241022` | Rilis awal alat editor teks dengan Claude Sonnet 3.5 ([pensiun](/docs/id/about-claude/model-deprecations)). Menyediakan kemampuan untuk melihat, membuat, dan mengedit file melalui perintah `view`, `create`, `str_replace`, `insert`, dan `undo_edit`. |
 
-## Langkah selanjutnya
+## Langkah berikutnya
 
-Berikut beberapa ide tentang cara menggunakan alat teks editor dengan cara yang lebih nyaman dan powerful:
+Berikut adalah beberapa ide tentang cara menggunakan alat editor teks dengan cara yang lebih nyaman dan kuat:
 
-- **Integrasikan dengan alur kerja pengembangan Anda**: Bangun alat teks editor ke dalam alat pengembangan atau IDE Anda
-- **Buat sistem tinjauan kode**: Minta Claude meninjau kode Anda dan membuat perbaikan
+- **Integrasikan dengan alur kerja pengembangan Anda**: Bangun alat editor teks ke dalam alat pengembangan atau IDE Anda
+- **Buat sistem tinjauan kode**: Biarkan Claude meninjau kode Anda dan membuat perbaikan
 - **Bangun asisten debugging**: Buat sistem di mana Claude dapat membantu Anda mendiagnosis dan memperbaiki masalah dalam kode Anda
 - **Implementasikan konversi format file**: Biarkan Claude membantu Anda mengonversi file dari satu format ke format lain
-- **Otomatiskan dokumentasi**: Siapkan alur kerja agar Claude secara otomatis mendokumentasikan kode Anda
+- **Otomatiskan dokumentasi**: Atur alur kerja untuk Claude secara otomatis mendokumentasikan kode Anda
 
-Alat teks editor memungkinkan Claude bekerja langsung dengan basis kode Anda, mendukung alur kerja mulai dari debugging hingga dokumentasi otomatis.
+Alat editor teks memungkinkan Claude untuk bekerja langsung dengan basis kode Anda, mendukung alur kerja dari debugging hingga dokumentasi otomatis.
 
 <CardGroup cols={3}>
   <Card

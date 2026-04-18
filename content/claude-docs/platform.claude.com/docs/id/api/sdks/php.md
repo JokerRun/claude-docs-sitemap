@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/sdks/php
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 80c3de3ddf654dab84642d2f88ccf9e2928614512d6e9e368ff97b4c43dcc651
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 2bdcf333ace62335fb9cc6aed965ec0f6918477eced9a58a66d6ee91b5685dc2
 ---
 
 # PHP SDK
@@ -35,7 +35,7 @@ PHP 8.1.0 atau lebih tinggi.
 
 Perpustakaan ini menggunakan parameter bernama untuk menentukan argumen opsional. Parameter dengan nilai default harus diatur berdasarkan nama.
 
-```php
+```php hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -47,7 +47,7 @@ $client = new Client(
 $message = $client->messages->create(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-6',
+  model: 'claude-opus-4-7',
 );
 
 var_dump($message->content);
@@ -63,7 +63,7 @@ Namun, builder juga disediakan `(new Base64ImageSource)->withData("U3RhaW5sZXNzI
 
 SDK menyediakan dukungan untuk streaming respons menggunakan Server-Sent Events (SSE).
 
-```php
+```php hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -75,7 +75,7 @@ $client = new Client(
 $stream = $client->messages->createStream(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-6',
+  model: 'claude-opus-4-7',
 );
 
 foreach ($stream as $message) {
@@ -85,20 +85,23 @@ foreach ($stream as $message) {
 
 ## Penanganan kesalahan
 
-Ketika perpustakaan tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subclass dari `Anthropic\Core\Exceptions\APIException` akan dilempar:
+Ketika perpustakaan tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subkelas `Anthropic\Core\Exceptions\APIException` akan dilempar:
 
-```php
+```php hidelines={2..3,7..9}
 <?php
+use Anthropic\Client;
 
 use Anthropic\Core\Exceptions\APIConnectionException;
 use Anthropic\Core\Exceptions\APIStatusException;
 use Anthropic\Core\Exceptions\RateLimitException;
 
+$client = new Client();
+
 try {
   $message = $client->messages->create(
     maxTokens: 1024,
     messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
   );
 } catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
@@ -129,26 +132,26 @@ Kode kesalahan adalah sebagai berikut:
 
 ## Percobaan ulang
 
-Kesalahan tertentu secara otomatis dicoba ulang 2 kali secara default, dengan backoff eksponensial singkat.
+Kesalahan tertentu secara otomatis dicoba ulang 2 kali secara default, dengan backoff eksponensial pendek.
 
-Kesalahan koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, dan timeouts semuanya dicoba ulang secara default.
+Kesalahan koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, dan timeout semuanya dicoba ulang secara default.
 
 Anda dapat menggunakan opsi `maxRetries` untuk mengonfigurasi atau menonaktifkan ini:
 
-```php
+```php hidelines={1..3,5}
 <?php
 
 use Anthropic\Client;
 use Anthropic\RequestOptions;
 
-// Configure the default for all requests:
-$client = new Client(maxRetries: 0);
+// Konfigurasi default untuk semua permintaan:
+$client = new Client(requestOptions: RequestOptions::with(maxRetries: 0));
 
-// Or, configure per-request:
+// Atau, konfigurasi per-permintaan:
 $result = $client->messages->create(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-6',
+  model: 'claude-opus-4-7',
   requestOptions: RequestOptions::with(maxRetries: 5),
 );
 ```
@@ -159,7 +162,7 @@ Metode daftar dalam Claude API dipaginasi.
 
 Perpustakaan ini menyediakan iterator auto-paginating dengan setiap respons daftar, sehingga Anda tidak perlu meminta halaman berturut-turut secara manual:
 
-```php
+```php hidelines={1..4}
 <?php
 
 use Anthropic\Client;
@@ -168,15 +171,15 @@ $client = new Client(
   apiKey: getenv("ANTHROPIC_API_KEY") ?: "my-anthropic-api-key"
 );
 
-$page = $client->messages->batches->list();
+$page = $client->beta->messages->batches->list(limit: 20);
 
 var_dump($page);
 
-// fetch items from the current page
+// ambil item dari halaman saat ini
 foreach ($page->getItems() as $item) {
   var_dump($item->id);
 }
-// make additional network requests to fetch items from all pages, including and after the current page
+// buat permintaan jaringan tambahan untuk mengambil item dari semua halaman, termasuk dan setelah halaman saat ini
 foreach ($page->pagingEachItem() as $item) {
   var_dump($item->id);
 }
@@ -184,23 +187,26 @@ foreach ($page->pagingEachItem() as $item) {
 
 ## Penggunaan lanjutan
 
-### Properti yang tidak didokumentasikan
+### Properti yang tidak terdokumentasi
 
-Anda dapat mengirim parameter yang tidak didokumentasikan ke titik akhir apa pun, dan membaca properti respons yang tidak didokumentasikan, seperti ini:
+Anda dapat mengirim parameter yang tidak terdokumentasi ke titik akhir apa pun, dan membaca properti respons yang tidak terdokumentasi, seperti ini:
 
 <Note>
-Parameter `extra*` dengan nama yang sama menggantikan parameter yang didokumentasikan.
+Parameter `extra*` dengan nama yang sama menggantikan parameter yang terdokumentasi.
 </Note>
 
-```php
+```php hidelines={2..3,5..7}
 <?php
+use Anthropic\Client;
 
 use Anthropic\RequestOptions;
+
+$client = new Client();
 
 $message = $client->messages->create(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-6',
+  model: 'claude-opus-4-7',
   requestOptions: RequestOptions::with(
     extraQueryParams: ['my_query_parameter' => 'value'],
     extraBodyParams: ['my_body_parameter' => 'value'],
@@ -209,16 +215,18 @@ $message = $client->messages->create(
 );
 ```
 
-### Parameter permintaan yang tidak didokumentasikan
+### Parameter permintaan yang tidak terdokumentasi
 
 Jika Anda ingin secara eksplisit mengirim parameter tambahan, Anda dapat melakukannya dengan opsi `extraQueryParams`, `extraBodyParams`, dan `extraHeaders` di bawah `RequestOptions::with()` saat membuat permintaan, seperti yang terlihat dalam contoh di atas.
 
-### Titik akhir yang tidak didokumentasikan
+### Titik akhir yang tidak terdokumentasi
 
-Untuk membuat permintaan ke titik akhir yang tidak didokumentasikan sambil mempertahankan manfaat auth, retries, dan sebagainya, Anda dapat membuat permintaan menggunakan `client->request`, seperti ini:
+Untuk membuat permintaan ke titik akhir yang tidak terdokumentasi sambil mempertahankan manfaat auth, retry, dan sebagainya, Anda dapat membuat permintaan menggunakan `client->request`, seperti ini:
 
-```php
+```php hidelines={1..2} nocheck
 <?php
+use Anthropic\Client;
+$client = new Client();
 
 $response = $client->request(
   method: "post",
@@ -228,6 +236,12 @@ $response = $client->request(
   body: ['hello' => 'world']
 );
 ```
+
+## Semantic versioning
+
+Paket ini mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html). Karena perpustakaan dalam pengembangan awal dan memiliki versi utama `0`, API dapat berubah kapan saja.
+
+Paket ini menganggap peningkatan pada definisi tipe PHPDoc (non-runtime) sebagai perubahan yang tidak merusak.
 
 ## Sumber daya tambahan
 

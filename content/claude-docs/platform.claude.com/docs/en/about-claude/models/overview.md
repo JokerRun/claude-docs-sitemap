@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/overview
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 3befae5e1470e944dfa2b7d0068a8a24ecf3c587c24207619d194c1c262910e5
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 142873c1fff1231348ab4bcd5c2c2fceee38d29e003e9c4a8a17943925dd3721
 ---
 
 # Models overview
@@ -42,7 +42,7 @@ _<sup>1 - See the [pricing page](/docs/en/about-claude/pricing) for complete pri
 
 _<sup>2 - **Reliable knowledge cutoff** indicates the date through which a model's knowledge is most extensive and reliable. **Training data cutoff** is the broader date range of training data used. For more information, see [Anthropic's Transparency Hub](https://www.anthropic.com/transparency).</sup>_
 
-_<sup>3 - Claude Opus 4.7 on AWS is available through [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock-research-preview), currently in research preview.</sup>_
+_<sup>3 - Claude Opus 4.7 on AWS is available through [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock) (the Messages-API Bedrock endpoint).</sup>_
 
 <Info>
 [Claude Mythos Preview](https://anthropic.com/glasswing) is offered separately as a research preview model for defensive cybersecurity workflows as part of [Project Glasswing](https://anthropic.com/glasswing). Access is invitation-only and there is no self-serve sign-up.

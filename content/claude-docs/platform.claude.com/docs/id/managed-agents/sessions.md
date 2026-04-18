@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 2137629cc2872f69bdcf742ea613af46f4d78785a948089b6cff7639e5cfab7e
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 167cd8da777db8cadb9e49be0ab32f6608533c5207dcee8365fb3a50bac3a0a7
 ---
 
 # Mulai sesi
 
-Buat sesi untuk menjalankan agen Anda dan mulai mengeksekusi tugas.
+Buat sesi untuk menjalankan agen Anda dan mulai menjalankan tugas.
 
 ---
 
-Sesi adalah instans agen yang sedang berjalan dalam sebuah lingkungan. Setiap sesi mereferensikan sebuah [agen](/docs/id/managed-agents/agent-setup) dan sebuah [lingkungan](/docs/id/managed-agents/environments) (keduanya dibuat secara terpisah), dan mempertahankan riwayat percakapan di berbagai interaksi.
+Sesi adalah instans agen yang berjalan dalam lingkungan. Setiap sesi mereferensikan [agen](/docs/id/managed-agents/agent-setup) dan [lingkungan](/docs/id/managed-agents/environments) (keduanya dibuat secara terpisah), dan mempertahankan riwayat percakapan di seluruh interaksi ganda.
 
 <Note>
 Semua permintaan API Managed Agents memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis.
@@ -19,7 +19,7 @@ Semua permintaan API Managed Agents memerlukan header beta `managed-agents-2026-
 
 ## Membuat sesi
 
-Sebuah sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya yang diberi versi; memasukkan ID `agent` sebagai string akan memulai sesi dengan versi agen terbaru.
+Sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya yang memiliki versi; melewatkan ID `agent` sebagai string memulai sesi dengan versi agen terbaru.
 
 <CodeGroup>
   
@@ -42,7 +42,7 @@ Sebuah sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya 
   ```bash CLI
   ant beta:sessions create \
     --agent "$AGENT_ID" \
-    --environment "$ENVIRONMENT_ID"
+    --environment-id "$ENVIRONMENT_ID"
   ```
   ```python Python
   session = client.beta.sessions.create(
@@ -94,7 +94,7 @@ Sebuah sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya 
   ```
 </CodeGroup>
 
-Untuk menyematkan sesi ke versi agen tertentu, masukkan sebuah objek. Ini memungkinkan Anda mengontrol versi mana yang berjalan dan melakukan peluncuran bertahap versi baru secara independen.
+Untuk mengikat sesi ke versi agen tertentu, lewatkan objek. Ini memungkinkan Anda mengontrol dengan tepat versi mana yang berjalan dan melakukan peluncuran versi baru secara independen.
 
 <CodeGroup>
   
@@ -187,12 +187,12 @@ Untuk menyematkan sesi ke versi agen tertentu, masukkan sebuah objek. Ini memung
 </CodeGroup>
 
 <Tip>
-Agen mendefinisikan bagaimana Claude berperilaku dalam sesi, termasuk model, system prompt, alat, dan server MCP. Lihat [Pengaturan agen](/docs/id/managed-agents/agent-setup) untuk detailnya.
+Agen mendefinisikan bagaimana Claude berperilaku dalam sesi, termasuk model, prompt sistem, alat, dan server MCP. Lihat [Pengaturan Agen](/docs/id/managed-agents/agent-setup) untuk detail.
 </Tip>
 
 ## Autentikasi MCP melalui vault
 
-Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, masukkan `vault_ids` saat pembuatan sesi untuk mereferensikan vault yang berisi kredensial OAuth yang tersimpan. Anthropic mengelola pembaruan token atas nama Anda. Lihat [Autentikasi dengan vault](/docs/id/managed-agents/vaults) untuk cara membuat vault dan mendaftarkan kredensial.
+Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, lewatkan `vault_ids` saat pembuatan sesi untuk mereferensikan vault yang berisi kredensial OAuth yang disimpan. Anthropic mengelola penyegaran token atas nama Anda. Lihat [Autentikasi dengan vault](/docs/id/managed-agents/vaults) untuk cara membuat vault dan mendaftarkan kredensial.
 
 <CodeGroup>
   
@@ -280,7 +280,7 @@ Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, masukkan `vault
 
 ## Memulai sesi
 
-Membuat sesi menyediakan lingkungan dan agen tetapi tidak memulai pekerjaan apa pun. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [user event](/docs/id/managed-agents/events-and-streaming#user-events). Sesi bertindak sebagai mesin status yang melacak kemajuan sementara event mendorong eksekusi yang sebenarnya.
+Membuat sesi menyediakan lingkungan dan agen tetapi tidak memulai pekerjaan apa pun. Untuk mendelegasikan tugas, kirim peristiwa ke sesi menggunakan [peristiwa pengguna](/docs/id/managed-agents/events-and-streaming#user-events). Sesi bertindak sebagai mesin keadaan yang melacak kemajuan sementara peristiwa mendorong eksekusi sebenarnya.
 
 <CodeGroup>
   
@@ -407,17 +407,17 @@ Membuat sesi menyediakan lingkungan dan agen tetapi tidak memulai pekerjaan apa 
   ```
 </CodeGroup>
 
-Lihat [Event dan streaming](/docs/id/managed-agents/events-and-streaming) untuk cara melakukan streaming respons agen dan menangani konfirmasi alat.
+Lihat [Peristiwa dan streaming](/docs/id/managed-agents/events-and-streaming) untuk cara melakukan streaming respons agen dan menangani konfirmasi alat.
 
 ## Status sesi
 
-Sesi berkembang melalui status-status berikut:
+Sesi berkembang melalui status ini:
 
 | Status | Deskripsi |
 |--------|-------------|
-| `idle` | Agen sedang menunggu input, termasuk pesan pengguna atau konfirmasi alat. Sesi dimulai dalam status `idle`. |
+| `idle` | Agen menunggu input, termasuk pesan pengguna atau konfirmasi alat. Sesi dimulai dalam `idle`. |
 | `running` | Agen sedang aktif mengeksekusi |
-| `rescheduling` | Terjadi kesalahan sementara, mencoba ulang secara otomatis |
+| `rescheduling` | Kesalahan transien terjadi, mencoba ulang secara otomatis |
 | `terminated` | Sesi telah berakhir karena kesalahan yang tidak dapat dipulihkan |
 
 ## Operasi sesi lainnya
@@ -470,7 +470,7 @@ Sesi berkembang melalui status-status berikut:
   ```
 </CodeGroup>
 
-### Mendaftar sesi
+### Daftar sesi
 
 <CodeGroup>
   ```bash curl
@@ -528,7 +528,7 @@ Sesi berkembang melalui status-status berikut:
 
 ### Mengarsipkan sesi
 
-Arsipkan sesi untuk mencegah event baru dikirim sambil mempertahankan riwayatnya:
+Arsipkan sesi untuk mencegah peristiwa baru dikirim sambil mempertahankan riwayatnya:
 
 <CodeGroup>
   
@@ -571,7 +571,7 @@ Arsipkan sesi untuk mencegah event baru dikirim sambil mempertahankan riwayatnya
 
 ### Menghapus sesi
 
-Hapus sesi untuk menghapus catatan, event, dan kontainer terkaitnya secara permanen. Sesi yang sedang `running` tidak dapat dihapus; kirim [interrupt event](/docs/id/managed-agents/events-and-streaming#user-events) jika Anda perlu menghapusnya segera.
+Hapus sesi untuk menghapus secara permanen catatan, peristiwa, dan kontainer terkaitnya. Sesi `running` tidak dapat dihapus; kirim [peristiwa interrupt](/docs/id/managed-agents/events-and-streaming#user-events) jika Anda perlu menghapusnya segera.
 
 File, penyimpanan memori, lingkungan, dan agen adalah sumber daya independen dan tidak terpengaruh oleh penghapusan sesi.
 

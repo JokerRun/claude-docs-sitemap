@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 90795f0605d79e6b0de4b9151eb39c9f5d3f510fac7ceaeeb8fabf5942b8dcdf
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 09c14263e7f0c3b8ddc5766ef4b2dc680861b0a87d5bbd46826feb0f7719ea8c
 ---
 
 > ## Documentation Index
@@ -156,6 +156,8 @@ The `opusplan` model alias provides an automated hybrid approach:
 
 This gives you the best of both worlds: Opus's superior reasoning for planning,
 and Sonnet's efficiency for execution.
+
+The plan-mode Opus phase runs with the standard 200K context window. The automatic 1M upgrade described in [Extended context](#extended-context) applies to the `opus` model setting and does not extend to `opusplan`.
 
 ### Adjust effort level
 

@@ -1,25 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 53e5d57ec28718db242965fe4c87dca4b6c04ae6acb0737fca6236d53b4947ae
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 7ae6334a0314e95c50f45ffaca83049b6c5d3b640b9c76020b1e5790bd990f75
 ---
 
-# Output terstruktur
+# Keluaran terstruktur
 
 Dapatkan hasil JSON yang divalidasi dari alur kerja agen
 
 ---
 
-Output terstruktur membatasi respons Claude untuk mengikuti skema tertentu, memastikan output yang valid dan dapat diurai untuk pemrosesan hilir. Dua fitur yang saling melengkapi tersedia:
+Keluaran terstruktur membatasi respons Claude untuk mengikuti skema tertentu, memastikan keluaran yang valid dan dapat diurai untuk pemrosesan hilir. Keluaran terstruktur menyediakan dua fitur yang saling melengkapi:
 
-- **Output JSON** (`output_config.format`): Dapatkan respons Claude dalam format JSON tertentu
-- **Penggunaan alat ketat** (`strict: true`): Jamin validasi skema pada nama alat dan input
+- **Keluaran JSON** (`output_config.format`): Dapatkan respons Claude dalam format JSON tertentu
+- **Penggunaan alat yang ketat** (`strict: true`): Jamin validasi skema pada nama alat dan input
 
-Fitur-fitur ini dapat digunakan secara independen atau bersama-sama dalam permintaan yang sama.
+Anda dapat menggunakan fitur-fitur ini secara independen atau bersama-sama dalam permintaan yang sama.
 
 <Note>
-Output terstruktur secara umum tersedia di Claude API dan Amazon Bedrock untuk [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5. Output terstruktur dalam beta di Microsoft Foundry. Output terstruktur tidak didukung di Google Cloud's Vertex AI untuk Claude Mythos Preview.
+Keluaran terstruktur tersedia secara umum di Claude API untuk [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5. Di Amazon Bedrock, keluaran terstruktur tersedia secara umum untuk Claude Mythos Preview, Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5; Claude Opus 4.7 tersedia melalui [pratinjau penelitian Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock-research-preview). Keluaran terstruktur dalam beta di Microsoft Foundry. Keluaran terstruktur tidak didukung di Vertex AI Google Cloud untuk Claude Mythos Preview.
 </Note>
 
 <Note>
@@ -30,22 +30,22 @@ This feature qualifies for [Zero Data Retention (ZDR)](/docs/en/build-with-claud
 **Bermigrasi dari beta?** Parameter `output_format` telah dipindahkan ke `output_config.format`, dan header beta tidak lagi diperlukan. Header beta lama (`structured-outputs-2025-11-13`) dan parameter `output_format` akan terus berfungsi selama periode transisi. Lihat contoh kode di bawah untuk bentuk API yang diperbarui.
 </Tip>
 
-## Mengapa menggunakan output terstruktur
+## Mengapa menggunakan keluaran terstruktur
 
-Tanpa output terstruktur, Claude dapat menghasilkan respons JSON yang salah bentuk atau input alat yang tidak valid yang merusak aplikasi Anda. Bahkan dengan prompting yang hati-hati, Anda mungkin mengalami:
+Tanpa keluaran terstruktur, Claude dapat menghasilkan respons JSON yang salah bentuk atau input alat yang tidak valid yang merusak aplikasi Anda. Bahkan dengan prompt yang hati-hati, Anda mungkin mengalami:
 - Kesalahan penguraian dari sintaks JSON yang tidak valid
 - Bidang yang diperlukan hilang
 - Tipe data yang tidak konsisten
 - Pelanggaran skema yang memerlukan penanganan kesalahan dan percobaan ulang
 
-Output terstruktur menjamin respons yang sesuai dengan skema melalui decoding terbatas:
+Keluaran terstruktur menjamin respons yang sesuai dengan skema melalui decoding terbatas:
 - **Selalu valid**: Tidak ada lagi kesalahan `JSON.parse()`
 - **Aman tipe**: Tipe bidang dan bidang yang diperlukan dijamin
 - **Andal**: Tidak perlu percobaan ulang untuk pelanggaran skema
 
-## Output JSON
+## Keluaran JSON
 
-Output JSON mengontrol format respons Claude, memastikan Claude mengembalikan JSON yang valid sesuai dengan skema Anda. Gunakan output JSON ketika Anda perlu:
+Keluaran JSON mengontrol format respons Claude, memastikan Claude mengembalikan JSON yang valid sesuai dengan skema Anda. Gunakan keluaran JSON ketika Anda perlu:
 
 - Mengontrol format respons Claude
 - Mengekstrak data dari gambar atau teks
@@ -62,7 +62,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "messages": [
       {
@@ -93,7 +93,7 @@ curl https://api.anthropic.com/v1/messages \
 ant messages create \
   --transform 'content.0.text|@fromstr' \
   --format jsonl <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 messages:
   - role: user
@@ -122,7 +122,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[
         {
@@ -153,12 +153,10 @@ print(response.content[0].text)
 ```typescript TypeScript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
-const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
-});
+const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     {
@@ -184,14 +182,15 @@ const response = await client.messages.create({
     }
   }
 });
-const textBlock = response.content.find((block) => block.type === "text");
-if (textBlock && textBlock.type === "text") {
-  console.log(textBlock.text);
+
+for (const block of response.content) {
+  if (block.type === "text") {
+    console.log(block.text);
+  }
 }
 ```
 
 ```csharp C#
-using System.Collections.Generic;
 using System.Text.Json;
 using Anthropic;
 using Anthropic.Models.Messages;
@@ -200,7 +199,7 @@ AnthropicClient client = new();
 
 var parameters = new MessageCreateParams
 {
-    Model = Model.ClaudeOpus4_6,
+    Model = Model.ClaudeOpus4_7,
     MaxTokens = 1024,
     Messages = [new() { Role = Role.User, Content = "Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan." }],
     OutputConfig = new OutputConfig
@@ -243,7 +242,7 @@ func main() {
 
 	response, _ := client.Messages.New(context.Background(),
 		anthropic.MessageNewParams{
-			Model:     anthropic.ModelClaudeOpus4_6,
+			Model:     anthropic.ModelClaudeOpus4_7,
 			MaxTokens: 1024,
 			Messages: []anthropic.MessageParam{
 				anthropic.NewUserMessage(
@@ -252,9 +251,9 @@ func main() {
 			},
 			OutputConfig: anthropic.OutputConfigParam{
 				Format: anthropic.JSONOutputFormatParam{
-					Schema: map[string]interface{}{
+					Schema: map[string]any{
 						"type": "object",
-						"properties": map[string]interface{}{
+						"properties": map[string]any{
 							"name":           map[string]string{"type": "string"},
 							"email":          map[string]string{"type": "string"},
 							"plan_interest":  map[string]string{"type": "string"},
@@ -279,28 +278,28 @@ import com.anthropic.models.messages.StructuredMessage;
 import com.anthropic.models.messages.StructuredMessageCreateParams;
 import com.anthropic.models.messages.Model;
 
-class ContactInfo {
+static class ContactInfo {
     public String name;
     public String email;
     public String plan_interest;
     public boolean demo_requested;
 }
 
-public class StructuredOutputQuickStart {
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        StructuredMessageCreateParams<ContactInfo> params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
-            .maxTokens(1024)
-            .addUserMessage("Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan.")
-            .outputConfig(ContactInfo.class)
-            .build();
+    StructuredMessageCreateParams<ContactInfo> params = MessageCreateParams.builder()
+        .model(Model.CLAUDE_OPUS_4_7)
+        .maxTokens(1024)
+        .addUserMessage("Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan.")
+        .outputConfig(ContactInfo.class)
+        .build();
 
-        StructuredMessage<ContactInfo> response = client.messages().create(params);
-        ContactInfo contact = response.content().get(0).asText().text();
-        System.out.println(contact.name + " (" + contact.email + ")");
-    }
+    StructuredMessage<ContactInfo> response = client.messages().create(params);
+    ContactInfo contact = response.content().stream()
+        .flatMap(block -> block.text().stream())
+        .findFirst().orElseThrow().text();
+    IO.println(contact.name + " (" + contact.email + ")");
 }
 ```
 
@@ -309,9 +308,7 @@ public class StructuredOutputQuickStart {
 
 use Anthropic\Client;
 
-$client = new Client(
-    apiKey: getenv("ANTHROPIC_API_KEY")
-);
+$client = new Client();
 
 $response = $client->messages->create(
     maxTokens: 1024,
@@ -321,7 +318,7 @@ $response = $client->messages->create(
             'content' => 'Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan.'
         ]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     outputConfig: [
         'format' => [
             'type' => 'json_schema',
@@ -349,7 +346,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 response = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     {
@@ -400,17 +397,17 @@ puts response.content[0].text
   <Step title="Tambahkan parameter output_config.format">
     Sertakan parameter `output_config.format` dalam permintaan API Anda dengan `type: "json_schema"` dan definisi skema Anda.
   </Step>
-  <Step title="Analisis respons">
+  <Step title="Urai respons">
     Respons Claude adalah JSON yang valid sesuai dengan skema Anda, dikembalikan di `response.content[0].text`.
   </Step>
 </Steps>
 
 ### Bekerja dengan output JSON di SDK
 
-SDK menyediakan helper yang memudahkan bekerja dengan output JSON, termasuk transformasi skema, validasi otomatis, dan integrasi dengan library skema populer.
+SDK menyediakan helper yang memudahkan pekerjaan dengan output JSON, termasuk transformasi skema, validasi otomatis, dan integrasi dengan perpustakaan skema populer.
 
 <Note>
-Metode helper SDK (seperti `.parse()` dan integrasi Pydantic/Zod) masih menerima `output_format` sebagai parameter kenyamanan. SDK menangani terjemahan ke `output_config.format` secara internal. Contoh di bawah menunjukkan sintaks helper SDK.
+SDK Python `client.messages.parse()` masih menerima `output_format` sebagai parameter kenyamanan dan menerjemahkannya ke `output_config.format` secara internal. SDK lainnya memerlukan `output_config` secara langsung. Contoh di bawah menunjukkan sintaks helper SDK.
 </Note>
 
 #### Menggunakan definisi skema native
@@ -418,10 +415,11 @@ Metode helper SDK (seperti `.parse()` dan integrasi Pydantic/Zod) masih menerima
 Alih-alih menulis skema JSON mentah, Anda dapat menggunakan alat definisi skema yang familiar di bahasa Anda:
 
 - **Python**: Model [Pydantic](https://docs.pydantic.dev/) dengan `client.messages.parse()`
-- **TypeScript**: Skema [Zod](https://zod.dev/) dengan `zodOutputFormat()`
-- **Java**: Kelas Java biasa dengan derivasi skema otomatis via `outputConfig(Class<T>)`
+- **TypeScript**: Skema [Zod](https://zod.dev/) dengan `zodOutputFormat()` atau literal JSON Schema yang diketik dengan `jsonSchemaOutputFormat()`
+- **Java**: Kelas Java biasa dengan derivasi skema otomatis melalui `outputConfig(Class<T>)`
 - **Ruby**: Kelas `Anthropic::BaseModel` dengan `output_config: {format: Model}`
-- **CLI**, **C#**, **Go**, **PHP**: Skema JSON mentah dilewatkan via `output_config`
+- **PHP**: Kelas yang mengimplementasikan `StructuredOutputModel` dengan `outputConfig: ['format' => MyClass::class]`
+- **CLI**, **C#**, **Go**: Skema JSON mentah dilewatkan melalui `output_config`
 
 <CodeGroup>
 
@@ -429,7 +427,7 @@ Alih-alih menulis skema JSON mentah, Anda dapat menggunakan alat definisi skema 
 { read -r _ NAME; read -r _ EMAIL; } < <(
   ant messages create \
     --transform 'content.0.text|@fromstr|{name,email}' --format yaml <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 messages:
   - role: user
@@ -469,7 +467,7 @@ class ContactInfo(BaseModel):
 client = Anthropic()
 
 response = client.messages.parse(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[
         {
@@ -498,7 +496,7 @@ const ContactInfoSchema = z.object({
 const client = new Anthropic();
 
 const response = await client.messages.parse({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     {
@@ -523,7 +521,7 @@ var client = new AnthropicClient();
 
 var response = await client.Messages.Create(new MessageCreateParams
 {
-    Model = "claude-opus-4-6",
+    Model = "claude-opus-4-7",
     MaxTokens = 1024,
     Messages = [new() {
         Role = Role.User,
@@ -551,10 +549,12 @@ var response = await client.Messages.Create(new MessageCreateParams
     },
 });
 
-var json = (response.Content.First().Value as TextBlock)!.Text;
-// JSON is guaranteed to match the schema
-var contact = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
-Console.WriteLine($"{contact["name"]} ({contact["email"]})");
+if (response.Content[0].TryPickText(out var textBlock))
+{
+    // JSON is guaranteed to match the schema
+    var contact = JsonSerializer.Deserialize<Dictionary<string, object>>(textBlock.Text)!;
+    Console.WriteLine($"{contact["name"]} ({contact["email"]})");
+}
 ```
 
 ```go Go hidelines={1..2,4..7,27..29,-1}
@@ -590,7 +590,7 @@ func main() {
 	schema := generateSchema(&ContactInfo{})
 
 	message, _ := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock(
@@ -615,7 +615,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..7,14..16,-2..}
+```java Java hidelines={1..7}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;
@@ -623,61 +623,63 @@ import com.anthropic.models.messages.StructuredMessage;
 import com.anthropic.models.messages.StructuredMessageCreateParams;
 import com.anthropic.models.messages.Model;
 
-class ContactInfo {
+static class ContactInfo {
     public String name;
     public String email;
     public String planInterest;
     public boolean demoRequested;
 }
 
-public class NativeSchemaExample {
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        StructuredMessageCreateParams<ContactInfo> createParams = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
-            .maxTokens(1024)
-            .outputConfig(ContactInfo.class)
-            .addUserMessage("Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm.")
-            .build();
+    StructuredMessageCreateParams<ContactInfo> createParams = MessageCreateParams.builder()
+        .model(Model.CLAUDE_OPUS_4_7)
+        .maxTokens(1024)
+        .outputConfig(ContactInfo.class)
+        .addUserMessage("Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm.")
+        .build();
 
-        StructuredMessage<ContactInfo> response = client.messages().create(createParams);
-        ContactInfo contact = response.content().get(0).asText().text();
-        System.out.println(contact.name + " (" + contact.email + ")");
-    }
+    StructuredMessage<ContactInfo> response = client.messages().create(createParams);
+    ContactInfo contact = response.content().stream()
+        .flatMap(block -> block.text().stream())
+        .findFirst().orElseThrow().text();
+    IO.println(contact.name + " (" + contact.email + ")");
 }
 ```
 
-```php PHP hidelines={1..3,6}
+```php PHP hidelines={1..3}
 <?php
 
 use Anthropic\Client;
-use Anthropic\Messages\OutputConfig;
-use Anthropic\Messages\JSONOutputFormat;
+use Anthropic\Lib\Concerns\StructuredOutputModelTrait;
+use Anthropic\Lib\Contracts\StructuredOutputModel;
 
 $client = new Client();
 
-$response = $client->messages->create(
+class ContactInfo implements StructuredOutputModel
+{
+    use StructuredOutputModelTrait;
+
+    public string $name;
+    public string $email;
+    public string $plan_interest;
+    public bool $demo_requested;
+}
+
+$message = $client->messages->create(
     maxTokens: 1024,
     messages: [
         ['role' => 'user', 'content' => 'Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm.'],
     ],
-    model: 'claude-opus-4-6',
-    outputConfig: OutputConfig::with(format: JSONOutputFormat::with(schema: [
-        'type' => 'object',
-        'properties' => [
-            'name' => ['type' => 'string'],
-            'email' => ['type' => 'string'],
-            'plan_interest' => ['type' => 'string'],
-            'demo_requested' => ['type' => 'boolean'],
-        ],
-        'required' => ['name', 'email', 'plan_interest', 'demo_requested'],
-        'additionalProperties' => false,
-    ])),
+    model: 'claude-opus-4-7',
+    outputConfig: ['format' => ContactInfo::class],
 );
 
-$data = json_decode($response->content[0]->text, true);
-echo $data['name'] . ' (' . $data['email'] . ')';
+$contact = $message->parsedOutput();
+if ($contact instanceof ContactInfo) {
+    echo "{$contact->name} ({$contact->email})\n";
+}
 ```
 
 ```ruby Ruby hidelines={1..2}
@@ -693,7 +695,7 @@ class ContactInfo < Anthropic::BaseModel
 end
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{
     role: "user",
@@ -710,22 +712,20 @@ puts "#{contact.name} (#{contact.email})"
 
 #### Metode spesifik SDK
 
-Setiap SDK menyediakan helper yang membuat bekerja dengan output terstruktur lebih mudah. Lihat halaman SDK individual untuk detail lengkap.
+Setiap SDK menyediakan helper yang membuat pekerjaan dengan output terstruktur lebih mudah. Lihat halaman SDK individual untuk detail lengkap.
 
 <Tabs>
 <Tab title="CLI">
 
-**Skema JSON mentah via heredoc body**
+**Skema JSON mentah melalui heredoc body**
 
 CLI melewatkan skema JSON mentah sebagai heredoc body YAML. Gunakan modifier GJSON `@fromstr` dengan `--transform` untuk mengurai string JSON yang dikembalikan dalam `content[0].text` dan memproyeksikan field tertentu.
-
-<section title="Contoh penggunaan">
 
 ```bash
 ant messages create \
   --transform 'content.0.text|@fromstr|{name,email}' \
   --format yaml <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 messages:
   - role: user
@@ -751,16 +751,12 @@ name: John Smith
 email: john@example.com
 ```
 
-</section>
-
 </Tab>
 <Tab title="Python">
 
 **`client.messages.parse()` (Direkomendasikan)**
 
 Metode `parse()` secara otomatis mengubah model Pydantic Anda, memvalidasi respons, dan mengembalikan atribut `parsed_output`.
-
-<section title="Contoh penggunaan">
 
 ```python hidelines={2..4,9..12}
 from pydantic import BaseModel
@@ -776,7 +772,7 @@ class ContactInfo(BaseModel):
 client = anthropic.Anthropic()
 
 response = client.messages.parse(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[
         {
@@ -792,13 +788,9 @@ contact = response.parsed_output
 print(contact.name, contact.email)
 ```
 
-</section>
-
 **Helper `transform_schema()`**
 
 Untuk ketika Anda perlu secara manual mengubah skema sebelum mengirim, atau ketika Anda ingin memodifikasi skema yang dihasilkan Pydantic. Tidak seperti `client.messages.parse()`, yang mengubah skema yang disediakan secara otomatis, ini memberi Anda skema yang diubah sehingga Anda dapat menyesuaikannya lebih lanjut.
-
-<section title="Contoh penggunaan">
 
 ```python nocheck
 from anthropic import transform_schema
@@ -811,7 +803,7 @@ schema = transform_schema(schema)
 schema["properties"]["custom_field"] = {"type": "string"}
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[{"role": "user", "content": "..."}],
     output_config={
@@ -820,16 +812,12 @@ response = client.messages.create(
 )
 ```
 
-</section>
-
 </Tab>
 <Tab title="TypeScript">
 
 **`client.messages.parse()` dengan `zodOutputFormat()`**
 
 Metode `parse()` menerima skema Zod, memvalidasi respons, dan mengembalikan atribut `parsed_output` dengan tipe TypeScript yang disimpulkan sesuai dengan skema.
-
-<section title="Contoh penggunaan">
 
 ```typescript hidelines={1}
 import Anthropic from "@anthropic-ai/sdk";
@@ -845,7 +833,7 @@ const ContactInfo = z.object({
 const client = new Anthropic();
 
 const response = await client.messages.parse({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     {
@@ -860,16 +848,55 @@ const response = await client.messages.parse({
 console.log(response.parsed_output!.email);
 ```
 
-</section>
+**`client.messages.parse()` dengan `jsonSchemaOutputFormat()`**
+
+Helper `jsonSchemaOutputFormat()` menerima objek JSON Schema dan mengintegrasikannya dengan `parse()` tanpa memerlukan Zod. Zod adalah dependensi peer opsional yang Anda instal secara terpisah; `jsonSchemaOutputFormat()` bekerja langsung dari kotak karena SDK menggabungkan `json-schema-to-ts` secara langsung.
+
+Untuk **literal skema inline** (dideklarasikan dengan `as const` di sumber Anda), Anda juga mendapatkan inferensi tipe waktu kompilasi: `parsed_output` diketik untuk mencocokkan struktur skema. Untuk **skema yang diimpor atau dihasilkan** (dari file JSON atau codegen OpenAPI), helper masih mengirim skema dan mengurai respons, tetapi tipe yang disimpulkan adalah `unknown` karena `as const` hanya dapat diterapkan pada ekspresi literal.
+
+```typescript hidelines={1}
+import Anthropic from "@anthropic-ai/sdk";
+import { jsonSchemaOutputFormat } from "@anthropic-ai/sdk/helpers/json-schema";
+
+const client = new Anthropic();
+
+const response = await client.messages.parse({
+  model: "claude-opus-4-7",
+  max_tokens: 1024,
+  messages: [
+    {
+      role: "user",
+      content: "Extract contact info: John Smith, john@example.com, interested in the Pro plan"
+    }
+  ],
+  output_config: {
+    format: jsonSchemaOutputFormat({
+      type: "object",
+      properties: {
+        name: { type: "string" },
+        email: { type: "string" },
+        planInterest: { type: "string" }
+      },
+      required: ["name", "email", "planInterest"],
+      additionalProperties: false
+    } as const)
+  }
+});
+
+// response.parsed_output is typed as { name: string; email: string; planInterest: string } | null
+console.log(response.parsed_output!.email);
+```
+
+**Inferensi tipe memerlukan `as const`.** Gunakan ekspresi objek literal dengan pernyataan `const` sehingga TypeScript dapat mempersempit tipe properti. Tanpa `as const`, tipe yang disimpulkan runtuh menjadi `unknown`.
+
+**Transformasi skema.** Secara default, helper mengubah skema dengan cara yang sama seperti `zodOutputFormat()`: menghapus batasan yang tidak didukung, menambahkan `additionalProperties: false` ke objek, dan memfilter format string. Lewatkan `jsonSchemaOutputFormat(schema, { transform: false })` untuk mengirim skema Anda ke API tanpa perubahan. Lihat [Cara kerja transformasi SDK](#how-sdk-transformation-works).
 
 </Tab>
 <Tab title="C#">
 
-**Skema JSON mentah via `OutputConfig`**
+**Skema JSON mentah melalui `OutputConfig`**
 
 SDK C# menggunakan skema JSON mentah yang dibangun secara terprogram dengan `JsonSerializer.SerializeToElement`. Deserialize respons JSON dengan `JsonSerializer.Deserialize`.
-
-<section title="Contoh penggunaan">
 
 ```csharp
 using System.Text.Json;
@@ -880,7 +907,7 @@ var client = new AnthropicClient();
 
 var response = await client.Messages.Create(new MessageCreateParams
 {
-    Model = "claude-opus-4-6",
+    Model = "claude-opus-4-7",
     MaxTokens = 1024,
     Messages = [new() {
         Role = Role.User,
@@ -907,22 +934,20 @@ var response = await client.Messages.Create(new MessageCreateParams
     },
 });
 
-var json = (response.Content.First().Value as TextBlock)!.Text;
-// JSON is guaranteed to match the schema
-var contact = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
-Console.WriteLine($"{contact["name"]} ({contact["email"]})");
+if (response.Content[0].TryPickText(out var textBlock))
+{
+    // JSON is guaranteed to match the schema
+    var contact = JsonSerializer.Deserialize<Dictionary<string, object>>(textBlock.Text)!;
+    Console.WriteLine($"{contact["name"]} ({contact["email"]})");
+}
 ```
-
-</section>
 
 </Tab>
 <Tab title="Go">
 
-**Skema JSON mentah via `OutputConfigParam`**
+**Skema JSON mentah melalui `OutputConfigParam`**
 
 SDK Go bekerja dengan skema JSON mentah. Tentukan struct Go dengan tag json, hasilkan skema JSON (misalnya, menggunakan `invopop/jsonschema`), dan unmarshal teks respons ke dalam struct Anda.
-
-<section title="Contoh penggunaan">
 
 ```go hidelines={1..2,4..7,26..28,-1}
 package main
@@ -956,7 +981,7 @@ func main() {
 	schema := generateSchema(&ContactInfo{})
 
 	message, _ := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock(
@@ -981,16 +1006,18 @@ func main() {
 }
 ```
 
-</section>
-
 </Tab>
 <Tab title="Java">
 
+Contoh Java di halaman ini menggunakan sintaks [JDK 25 compact source file](https://openjdk.org/jeps/512); lihat [persyaratan Java SDK](/docs/id/api/sdks/java#requirements) untuk substitusi pada JDK sebelumnya.
+
 **Metode `outputConfig(Class<T>)`**
 
-Lewatkan kelas Java ke `outputConfig()` dan SDK secara otomatis menurunkan skema JSON, memvalidasinya, dan mengembalikan `StructuredMessageCreateParams<T>`. Akses hasil yang diparse via `response.content().get(0).asText().text()`.
+Lewatkan kelas Java ke `outputConfig()` dan SDK secara otomatis menurunkan skema JSON, memvalidasinya, dan mengembalikan `StructuredMessageCreateParams<T>`. Akses hasil yang diurai melalui `response.content().stream().flatMap(block -> block.text().stream()).findFirst().orElseThrow().text()`.
 
-<section title="Contoh penggunaan">
+<Note>
+Deklarasikan kelas skema Anda sebagai kelas tingkat atas atau kelas bersarang `static`. Persyaratan ini berasal dari perpustakaan Jackson Databind (`com.fasterxml.jackson.databind`), yang digunakan SDK untuk mendeserialisasi respons JSON ke dalam instance kelas Anda dan tidak dapat membuat instance kelas inner non-static.
+</Note>
 
 ```java hidelines={1..7}
 import com.anthropic.client.AnthropicClient;
@@ -1000,43 +1027,41 @@ import com.anthropic.models.messages.StructuredMessage;
 import com.anthropic.models.messages.StructuredMessageCreateParams;
 import com.anthropic.models.messages.Model;
 
-class ContactInfo {
+static class ContactInfo {
     public String name;
     public String email;
     public String planInterest;
 }
 
-public class StructuredOutputExample {
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        StructuredMessageCreateParams<ContactInfo> createParams = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
-            .maxTokens(1024)
-            .outputConfig(ContactInfo.class)
-            .addUserMessage("Extract contact info: John Smith, john@example.com, interested in the Pro plan")
-            .build();
+    StructuredMessageCreateParams<ContactInfo> createParams = MessageCreateParams.builder()
+        .model(Model.CLAUDE_OPUS_4_7)
+        .maxTokens(1024)
+        .outputConfig(ContactInfo.class)
+        .addUserMessage("Extract contact info: John Smith, john@example.com, interested in the Pro plan")
+        .build();
 
-        StructuredMessage<ContactInfo> response = client.messages().create(createParams);
-        ContactInfo contact = response.content().get(0).asText().text();
-        System.out.println(contact.name + " (" + contact.email + ")");
-    }
+    StructuredMessage<ContactInfo> response = client.messages().create(createParams);
+    ContactInfo contact = response.content().stream()
+        .flatMap(block -> block.text().stream())
+        .findFirst().orElseThrow().text();
+    IO.println(contact.name + " (" + contact.email + ")");
 }
 ```
 
-</section>
-
 <section title="Penghapusan tipe generik">
 
-Informasi tipe generik untuk field dipertahankan dalam metadata kelas, tetapi penghapusan tipe generik berlaku dalam cakupan lain. Meskipun skema JSON dapat diturunkan dari field `BookList.books` dengan tipe `List<Book>`, skema JSON yang valid tidak dapat diturunkan dari variabel lokal dari tipe yang sama.
+Java mempertahankan informasi tipe generik untuk field dalam metadata kelas, tetapi penghapusan tipe generik berlaku dalam cakupan lain. Meskipun skema JSON dapat diturunkan dari field `BookList.books` dengan tipe `List<Book>`, skema JSON yang valid tidak dapat diturunkan dari variabel lokal dari tipe yang sama.
 
-Jika kesalahan terjadi saat mengonversi respons JSON ke instance kelas Java, pesan kesalahan mencakup respons JSON untuk membantu diagnosis. Jika respons JSON Anda mungkin berisi informasi sensitif, hindari mencatat langsung, atau pastikan Anda menyunting detail sensitif apa pun dari pesan kesalahan.
+Jika kesalahan terjadi saat mengonversi respons JSON ke instance kelas Java, pesan kesalahan menyertakan respons JSON untuk membantu diagnosis. Jika respons JSON Anda mungkin berisi informasi sensitif, hindari mencatat langsung, atau pastikan Anda menyunting detail sensitif apa pun dari pesan kesalahan.
 
 </section>
 
 <section title="Validasi skema lokal">
 
-Output terstruktur mendukung [subset dari bahasa JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Skema dihasilkan secara otomatis dari kelas untuk selaras dengan subset ini. Metode `outputConfig(Class<T>)` melakukan pemeriksaan validasi pada skema yang diturunkan dari kelas yang ditentukan.
+Output terstruktur mendukung [subset dari bahasa JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations). SDK menghasilkan skema secara otomatis dari kelas untuk selaras dengan subset ini. Metode `outputConfig(Class<T>)` melakukan pemeriksaan validasi pada skema yang diturunkan dari kelas yang ditentukan.
 
 Poin kunci:
 
@@ -1045,29 +1070,23 @@ Poin kunci:
 - **Kompatibilitas versi**: Validasi lokal mungkin gagal sementara validasi jarak jauh berhasil jika versi SDK sudah ketinggalan zaman.
 - **Menonaktifkan validasi lokal**: Lewatkan `JsonSchemaLocalValidation.NO` jika Anda mengalami masalah kompatibilitas:
 
-```java hidelines={1..2,4..15,22..23}
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+```java hidelines={2..4}
 import com.anthropic.core.JsonSchemaLocalValidation;
 import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.models.messages.StructuredMessageCreateParams;
 import com.anthropic.models.messages.Model;
 
-class BookList {
-    public java.util.List<String> books;
+static class BookList {
+    public List<String> books;
 }
 
-public class LocalValidationExample {
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-        StructuredMessageCreateParams<BookList> createParams = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
-            .maxTokens(2048)
-            .outputConfig(BookList.class, JsonSchemaLocalValidation.NO)
-            .addUserMessage("List some famous late twentieth century novels.")
-            .build();
-    }
+void main() {
+    StructuredMessageCreateParams<BookList> createParams = MessageCreateParams.builder()
+        .model(Model.CLAUDE_OPUS_4_7)
+        .maxTokens(2048)
+        .outputConfig(BookList.class, JsonSchemaLocalValidation.NO)
+        .addUserMessage("List some famous late twentieth century novels.")
+        .build();
 }
 ```
 
@@ -1075,29 +1094,128 @@ public class LocalValidationExample {
 
 <section title="Streaming">
 
-Output terstruktur juga dapat digunakan dengan streaming. Saat respons tiba dalam event stream, Anda perlu mengumpulkan respons lengkap sebelum deserialize JSON.
+Output terstruktur juga bekerja dengan streaming. Saat respons tiba dalam event stream, Anda perlu mengumpulkan respons lengkap sebelum mendeserialisasi JSON.
 
-Gunakan `BetaMessageAccumulator` untuk mengumpulkan string JSON dari stream. Setelah dikumpulkan, panggil `BetaMessageAccumulator.message(Class<T>)` untuk mengonversi `BetaMessage` yang terakumulasi menjadi `StructuredMessage`, yang secara otomatis mendeserialize JSON ke dalam kelas Java Anda.
+Gunakan `MessageAccumulator` untuk mengumpulkan string JSON dari stream. Setelah dikumpulkan, panggil `MessageAccumulator.message(Class<T>)` untuk mengonversi `Message` yang terakumulasi menjadi `StructuredMessage`, yang secara otomatis mendeserialisasi JSON ke dalam kelas Java Anda.
 
 </section>
 
 <section title="Properti skema JSON">
 
-Ketika skema JSON diturunkan dari kelas Java Anda, semua properti yang diwakili oleh field `public` atau metode getter `public` disertakan secara default. Field non-`public` dan metode getter dikecualikan.
+Ketika SDK menurunkan skema JSON dari kelas Java Anda, secara default menyertakan semua properti yang diwakili oleh field `public` atau metode getter `public` dan mengecualikan field non-`public` dan metode getter.
 
 Anda dapat mengontrol visibilitas dengan anotasi:
 
 - `@JsonIgnore` mengecualikan field `public` atau metode getter
 - `@JsonProperty` menyertakan field atau metode getter non-`public`
 
-Jika Anda mendefinisikan field `private` dengan metode getter `public`, nama properti diturunkan dari getter (misalnya, field `private` `myValue` dengan metode `public` `getMyValue()` menghasilkan properti `"myValue"`). Untuk menggunakan nama getter non-konvensional, anotasi metode dengan `@JsonProperty`.
+Jika Anda mendefinisikan field `private` dengan metode getter `public`, SDK menurunkan nama properti dari getter (misalnya, field `private` `myValue` dengan metode `public` `getMyValue()` menghasilkan properti `"myValue"`). Untuk menggunakan nama getter non-konvensional, anotasi metode dengan `@JsonProperty`.
 
 Setiap kelas harus mendefinisikan setidaknya satu properti untuk skema JSON. Kesalahan validasi terjadi jika tidak ada field atau metode getter yang dapat menghasilkan properti skema, seperti ketika:
 
-- Tidak ada field atau metode getter dalam kelas
+- Tidak ada field atau metode getter di kelas
 - Semua anggota `public` dianotasi dengan `@JsonIgnore`
 - Semua anggota non-`public` tidak memiliki anotasi `@JsonProperty`
 - Field menggunakan tipe `Map`, yang menghasilkan field `"properties"` kosong
+
+</section>
+
+<section title="Komposisi dan warisan">
+
+Kelas Java Anda dapat menggunakan komposisi dan warisan untuk berbagi struktur saat mendefinisikan skema JSON. Setiap pola mempengaruhi struktur output secara berbeda.
+
+**Komposisi** menghasilkan output JSON bersarang. Menurunkan skema dari kelas `Composed` yang menggabungkan `A` dan `B`:
+
+```java hidelines={1..7,20..35}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.anthropic.models.messages.StructuredMessage;
+import com.anthropic.models.messages.StructuredMessageCreateParams;
+
+static class A {
+    public String a;
+}
+
+static class B {
+    public String b;
+}
+
+static class Composed {
+    public A composedA;
+    public B composedB;
+}
+
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+    StructuredMessageCreateParams<Composed> params = MessageCreateParams.builder()
+        .model(Model.CLAUDE_OPUS_4_7)
+        .maxTokens(1024)
+        .outputConfig(Composed.class)
+        .addUserMessage("Populate field a with 'hello' and field b with 'world'.")
+        .build();
+    StructuredMessage<Composed> response = client.messages().create(params);
+    Composed result = response.content().stream()
+        .flatMap(block -> block.text().stream())
+        .findFirst().orElseThrow().text();
+    IO.println("composedA.a=" + result.composedA.a);
+    IO.println("composedB.b=" + result.composedB.b);
+}
+```
+
+Output JSON memiliki struktur bersarang ini:
+
+```json
+{
+  "composedA": { "a": "hello" },
+  "composedB": { "b": "world" }
+}
+```
+
+**Warisan** menghasilkan output JSON datar. Menurunkan skema dari kelas `Derived` yang memperluas `Base`:
+
+```java hidelines={1..7,15..30}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.anthropic.models.messages.StructuredMessage;
+import com.anthropic.models.messages.StructuredMessageCreateParams;
+
+static class Base {
+    public String a;
+}
+
+static class Derived extends Base {
+    public String b;
+}
+
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+    StructuredMessageCreateParams<Derived> params = MessageCreateParams.builder()
+        .model(Model.CLAUDE_OPUS_4_7)
+        .maxTokens(1024)
+        .outputConfig(Derived.class)
+        .addUserMessage("Populate field a with 'hello' and field b with 'world'.")
+        .build();
+    StructuredMessage<Derived> response = client.messages().create(params);
+    Derived result = response.content().stream()
+        .flatMap(block -> block.text().stream())
+        .findFirst().orElseThrow().text();
+    IO.println("a=" + result.a);
+    IO.println("b=" + result.b);
+}
+```
+
+Output JSON memiliki struktur datar ini:
+
+```json
+{
+  "a": "hello",
+  "b": "world"
+}
+```
 
 </section>
 
@@ -1105,13 +1223,12 @@ Setiap kelas harus mendefinisikan setidaknya satu properti untuk skema JSON. Kes
 
 Anda dapat menggunakan anotasi Jackson Databind untuk memperkaya skema JSON yang diturunkan dari kelas Java Anda:
 
-```java hidelines={4..5,-2..}
+```java hidelines={-2..}
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
-import java.util.List;
 
-class Person {
+static class Person {
 
   @JsonPropertyDescription("The first name and surname of the person")
   public String name;
@@ -1123,7 +1240,7 @@ class Person {
 }
 
 @JsonClassDescription("The details of one published book")
-class Book {
+static class Book {
 
   public String title;
   public Person author;
@@ -1135,11 +1252,11 @@ class Book {
   public String genre;
 }
 
-class BookList {
+static class BookList {
   public List<Book> books;
 }
 
-public class Example { public static void main(String[] args) {} }
+void main() {}
 ```
 
 Ringkasan anotasi:
@@ -1149,16 +1266,15 @@ Ringkasan anotasi:
 - `@JsonIgnore`: Kecualikan field `public` atau getter dari skema
 - `@JsonProperty`: Sertakan field atau getter non-`public` dalam skema
 
-Jika Anda menggunakan `@JsonProperty(required = false)`, nilai `false` diabaikan. Skema JSON Anthropic harus menandai semua properti sebagai diperlukan.
+Jika Anda menggunakan `@JsonProperty(required = false)`, SDK mengabaikan nilai `false`. Skema JSON Anthropic harus menandai semua properti sebagai diperlukan.
 
-Anda juga dapat menggunakan anotasi OpenAPI Swagger 2 `@Schema` dan `@ArraySchema` untuk batasan spesifik tipe:
+Anda juga dapat menggunakan anotasi OpenAPI Swagger 2 `@Schema` dan `@ArraySchema` untuk batasan khusus tipe:
 
-```java hidelines={3..4,-2..}
+```java hidelines={-2..}
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.List;
 
-class Article {
+static class Article {
 
   @ArraySchema(minItems = 1)
   public List<String> authors;
@@ -1172,7 +1288,7 @@ class Article {
   public int pageCount;
 }
 
-public class Example { public static void main(String[] args) {} }
+void main() {}
 ```
 
 Validasi lokal memeriksa bahwa Anda belum menggunakan kata kunci batasan yang tidak didukung, tetapi nilai batasan tidak divalidasi secara lokal. Misalnya, nilai `"format"` yang tidak didukung mungkin lulus validasi lokal tetapi menyebabkan kesalahan jarak jauh.
@@ -1181,16 +1297,156 @@ Jika Anda menggunakan anotasi Jackson dan Swagger untuk menetapkan field skema y
 
 </section>
 
+<section title="Mendefinisikan skema tanpa kelas Java">
+
+Derivasi skema berbasis kelas adalah jalur paling nyaman, tetapi untuk kontrol langsung atas struktur skema Anda dapat membangun `JsonOutputFormat.Schema` secara manual dan membungkusnya dalam `OutputConfig`.
+
+```java hidelines={1..2,5..6}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.core.JsonValue;
+import com.anthropic.models.messages.JsonOutputFormat;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.anthropic.models.messages.OutputConfig;
+
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+    JsonOutputFormat.Schema schema = JsonOutputFormat.Schema.builder()
+        .putAdditionalProperty("type", JsonValue.from("object"))
+        .putAdditionalProperty("properties", JsonValue.from(Map.of(
+            "name", Map.of("type", "string"),
+            "email", Map.of("type", "string"),
+            "plan_interest", Map.of("type", "string"))))
+        .putAdditionalProperty("required", JsonValue.from(
+            List.of("name", "email", "plan_interest")))
+        .putAdditionalProperty("additionalProperties", JsonValue.from(false))
+        .build();
+
+    OutputConfig outputConfig = OutputConfig.builder()
+        .format(JsonOutputFormat.builder().schema(schema).build())
+        .build();
+
+    MessageCreateParams createParams = MessageCreateParams.builder()
+        .model(Model.CLAUDE_OPUS_4_7)
+        .maxTokens(1024)
+        .outputConfig(outputConfig)
+        .addUserMessage(
+            "John Smith (john@example.com) is interested in our Enterprise plan.")
+        .build();
+
+    client.messages().create(createParams).content().stream()
+        .flatMap(contentBlock -> contentBlock.text().stream())
+        .forEach(textBlock -> IO.println(textBlock.text()));
+}
+```
+
+Untuk contoh yang lebih luas yang membangun skema bersarang dengan array dan deskripsi, lihat [`StructuredOutputsRawExample.java`](https://github.com/anthropics/anthropic-sdk-java/blob/main/anthropic-java-example/src/main/java/com/anthropic/example/StructuredOutputsRawExample.java) di repositori SDK.
+
+</section>
+
 </Tab>
 <Tab title="PHP">
 
-**Skema JSON mentah via `OutputConfig::with()`**
+**Kelas melalui antarmuka `StructuredOutputModel`**
 
-SDK PHP melewatkan skema JSON mentah sebagai array asosiatif via `OutputConfig::with()`. Decode respons dengan `json_decode()`.
+Tentukan kelas PHP yang mengimplementasikan `StructuredOutputModel` (menggunakan `StructuredOutputModelTrait`) dan lewatkan nama kelas ke `outputConfig: ['format' => MyClass::class]`. SDK menurunkan skema JSON dari tipe properti PHP 8 native Anda dan mengembalikan instance yang diketik melalui `$message->parsedOutput()`.
 
-<section title="Contoh penggunaan">
+`parsedOutput()` mengembalikan instance model Anda saat berhasil, atau `null` (atau array kesalahan) jika penguraian gagal. Gunakan `instanceof` untuk mempersempit tipe sebelum mengakses field.
 
-```php hidelines={1..3,6}
+```php hidelines={1..3}
+<?php
+
+use Anthropic\Client;
+use Anthropic\Lib\Concerns\StructuredOutputModelTrait;
+use Anthropic\Lib\Contracts\StructuredOutputModel;
+
+$client = new Client();
+
+class ContactInfo implements StructuredOutputModel
+{
+    use StructuredOutputModelTrait;
+
+    public string $name;
+    public string $email;
+    public string $plan_interest;
+}
+
+$message = $client->messages->create(
+    maxTokens: 1024,
+    messages: [
+        ['role' => 'user', 'content' => 'Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan.'],
+    ],
+    model: 'claude-opus-4-7',
+    outputConfig: ['format' => ContactInfo::class],
+);
+
+$contact = $message->parsedOutput();
+if ($contact instanceof ContactInfo) {
+    echo "{$contact->name} ({$contact->email})\n";
+}
+```
+
+<section title="Inferensi tipe">
+
+SDK memetakan tipe properti PHP 8 native ke JSON Schema:
+
+| Tipe PHP | JSON Schema |
+|---|---|
+| `string` | `"string"` |
+| `int` | `"integer"` |
+| `float` | `"number"` |
+| `bool` | `"boolean"` |
+| `array` | `"array"` (lihat di bawah) |
+| `?type` (nullable) | Field opsional |
+| Kelas yang mengimplementasikan `StructuredOutputModel` | Objek bersarang |
+
+Untuk properti `array`, SDK menambahkan skema `items` hanya ketika tipe elemen adalah `StructuredOutputModel` bersarang, dideklarasikan melalui `#[Constrained(itemClass: MyModel::class)]` atau docblock `/** @var MyModel[] */`. Array skalar (`string[]`, `int[]`) memancarkan `{"type":"array"}` tanpa batasan.
+
+Semua properti non-nullable menjadi field yang diperlukan.
+
+</section>
+
+<section title="Batasan melalui atribut #[Constrained]">
+
+Tambahkan batasan dengan atribut `#[Constrained]`:
+
+```php hidelines={..2} highlight={3}
+<?php
+
+use Anthropic\Lib\Attributes\Constrained;
+use Anthropic\Lib\Concerns\StructuredOutputModelTrait;
+use Anthropic\Lib\Contracts\StructuredOutputModel;
+
+class Address implements StructuredOutputModel { use StructuredOutputModelTrait; public string $street; }
+
+class Profile implements StructuredOutputModel
+{
+    use StructuredOutputModelTrait;
+
+    #[Constrained(description: 'Age in years', minimum: 0, maximum: 150)]
+    public int $age;
+
+    #[Constrained(format: 'email')]
+    public string $email;
+
+    #[Constrained(itemClass: Address::class, minItems: 1)]
+    public array $addresses;
+}
+```
+
+**Batasan yang diberlakukan API** (dikirim dalam skema): `description`, `format`, `const`, `itemClass`, `minItems` (0 atau 1 saja).
+
+**Batasan yang divalidasi SDK** (dihapus dari skema wire, ditambahkan ke deskripsi, dan divalidasi terhadap respons): `minimum`, `maximum`, `multipleOf`, `minLength`, `maxLength`.
+
+</section>
+
+<section title="Fallback skema JSON mentah">
+
+Untuk skema yang tidak dapat diekspresikan oleh petunjuk tipe PHP, lewatkan array asosiatif mentah melalui `OutputConfig::with()`. Jalur ini melewatkan helper `parsedOutput()`; decode respons dengan `json_decode()`:
+
+```php hidelines={1..3}
 <?php
 
 use Anthropic\Client;
@@ -1199,12 +1455,12 @@ use Anthropic\Messages\JSONOutputFormat;
 
 $client = new Client();
 
-$response = $client->messages->create(
+$message = $client->messages->create(
     maxTokens: 1024,
     messages: [
         ['role' => 'user', 'content' => 'Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan.'],
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     outputConfig: OutputConfig::with(format: JSONOutputFormat::with(schema: [
         'type' => 'object',
         'properties' => [
@@ -1217,8 +1473,8 @@ $response = $client->messages->create(
     ])),
 );
 
-$data = json_decode($response->content[0]->text, true);
-echo $data['name'] . ' (' . $data['email'] . ')';
+$contact = json_decode($message->content[0]->text, associative: true);
+echo "{$contact['name']} ({$contact['email']})\n";
 ```
 
 </section>
@@ -1228,9 +1484,7 @@ echo $data['name'] . ' (' . $data['email'] . ')';
 
 **`output_config: {format: Model}` dengan `parsed_output`**
 
-Tentukan kelas model yang memperluas `Anthropic::BaseModel` dan lewatkan sebagai format ke `messages.create()`. Respons mencakup atribut `parsed_output` dengan objek Ruby yang diketik.
-
-<section title="Contoh penggunaan">
+Tentukan kelas model yang memperluas `Anthropic::BaseModel` dan lewatkan sebagai format ke `messages.create()`. Respons menyertakan atribut `parsed_output` dengan objek Ruby yang diketik.
 
 ```ruby hidelines={1..2}
 require "anthropic"
@@ -1244,7 +1498,7 @@ end
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     {
@@ -1259,14 +1513,12 @@ contact = message.parsed_output
 puts "#{contact.name} (#{contact.email})"
 ```
 
-</section>
-
 <section title="Fitur model lanjutan">
 
 SDK Ruby mendukung fitur definisi model tambahan untuk skema yang lebih kaya:
 
 - **Kata kunci `doc:`:** Tambahkan deskripsi ke field untuk output skema yang lebih informatif
-- **`Anthropic::ArrayOf[T]`:** Array yang diketik dengan batasan `min_length` dan `max_length`
+- **`Anthropic::ArrayOf[T]`:** Array yang diketik. Lewatkan batasan tingkat array (`min_items:`, `max_items:`) sebagai kata kunci pada `required`/`optional`, bukan pada `ArrayOf` itu sendiri
 - **`Anthropic::EnumOf[:a, :b]`:** Field enum dengan nilai terbatas
 - **`Anthropic::UnionOf[T1, T2]`:** Tipe union dipetakan ke `anyOf`
 
@@ -1277,11 +1529,11 @@ class FamousNumber < Anthropic::BaseModel
 end
 
 class Output < Anthropic::BaseModel
-  required :numbers, Anthropic::ArrayOf[FamousNumber], min_length: 3, max_length: 5
+  required :numbers, Anthropic::ArrayOf[FamousNumber], min_items: 3, max_items: 5
 end
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{role: "user", content: "give me some famous numbers"}],
   output_config: {format: Output}
@@ -1296,19 +1548,19 @@ message.parsed_output
 </Tab>
 </Tabs>
 
-#### Cara transformasi SDK bekerja
+#### Cara kerja transformasi SDK
 
-SDK Python dan TypeScript secara otomatis mengubah skema dengan fitur yang tidak didukung:
+SDK Python, TypeScript, Ruby, dan PHP secara otomatis mengubah skema dengan fitur yang tidak didukung:
 
 1. **Hapus batasan yang tidak didukung** (misalnya, `minimum`, `maximum`, `minLength`, `maxLength`)
-2. **Perbarui deskripsi** dengan informasi batasan (misalnya, "Harus setidaknya 100"), ketika batasan tidak langsung didukung dengan output terstruktur
+2. **Perbarui deskripsi** dengan informasi batasan (misalnya, "Harus minimal 100"), ketika batasan tidak langsung didukung dengan output terstruktur
 3. **Tambahkan `additionalProperties: false`** ke semua objek
 4. **Filter format string** ke daftar yang didukung saja
 5. **Validasi respons** terhadap skema asli Anda (dengan semua batasan)
 
-Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda masih menerapkan semua batasan melalui validasi.
+Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda masih memberlakukan semua batasan melalui validasi.
 
-**Contoh:** Field Pydantic dengan `minimum: 100` menjadi integer biasa dalam skema yang dikirim, tetapi deskripsi diperbarui menjadi "Harus setidaknya 100", dan SDK memvalidasi respons terhadap batasan asli.
+**Contoh:** Field Pydantic dengan `minimum: 100` menjadi integer biasa dalam skema yang dikirim, tetapi SDK memperbarui deskripsi menjadi "Harus minimal 100" dan memvalidasi respons terhadap batasan asli.
 
 ### Kasus penggunaan umum
 
@@ -1321,7 +1573,7 @@ Ekstrak data terstruktur dari teks tidak terstruktur:
 ```bash CLI
 ant messages create \
   --transform 'content.0.text|@fromstr' --format jsonl <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -1344,27 +1596,32 @@ output_config:
 YAML
 ```
 
-```python Python nocheck
+```python Python hidelines={1}
+import anthropic
 from pydantic import BaseModel
-from typing import List
 
 
 class Invoice(BaseModel):
     invoice_number: str
     date: str
     total_amount: float
-    line_items: List[dict]
+    line_items: list[dict]
     customer_name: str
 
 
+client = anthropic.Anthropic()
+invoice_text = "Invoice #12345, Date: 2024-01-15, Total: $500.00"
+
 response = client.messages.parse(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     output_format=Invoice,
     messages=[
         {"role": "user", "content": f"Extract invoice data from: {invoice_text}"}
     ],
 )
+
+print(response.parsed_output)
 ```
 
 ```typescript TypeScript hidelines={1}
@@ -1384,77 +1641,60 @@ const InvoiceSchema = z.object({
 
 const invoiceText = "Invoice #12345, Date: 2024-01-15, Total: $500.00";
 const response = await client.messages.parse({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   output_config: { format: zodOutputFormat(InvoiceSchema) },
   messages: [{ role: "user", content: `Extract invoice data from: ${invoiceText}` }]
 });
+console.log(response.parsed_output);
 ```
 
-```csharp C#
-using System;
-using System.Collections.Generic;
+```csharp C# hidelines={1..4}
 using System.Text.Json;
-using System.Threading.Tasks;
 using Anthropic;
 using Anthropic.Models.Messages;
 
-public class InvoiceExtraction
+AnthropicClient client = new();
+
+string invoiceText = "Invoice #12345, Date: 2024-01-15, Total: $500.00";
+
+var parameters = new MessageCreateParams
 {
-    public class Invoice
+    Model = Model.ClaudeOpus4_7,
+    MaxTokens = 4096,
+    OutputConfig = new OutputConfig
     {
-        public string invoice_number { get; set; }
-        public string date { get; set; }
-        public double total_amount { get; set; }
-        public List<Dictionary<string, object>> line_items { get; set; }
-        public string customer_name { get; set; }
-    }
-
-    static async Task Main()
-    {
-        AnthropicClient client = new();
-
-        string invoiceText = "Invoice #12345, Date: 2024-01-15, Total: $500.00";
-
-        var parameters = new MessageCreateParams
+        Format = new JsonOutputFormat
         {
-            Model = Model.ClaudeOpus4_6,
-            MaxTokens = 4096,
-            OutputConfig = new OutputConfig
+            Schema = new Dictionary<string, JsonElement>
             {
-                Format = new JsonOutputFormat
+                ["type"] = JsonSerializer.SerializeToElement("object"),
+                ["properties"] = JsonSerializer.SerializeToElement(new
                 {
-                    Schema = new Dictionary<string, JsonElement>
+                    invoice_number = new { type = "string" },
+                    date = new { type = "string" },
+                    total_amount = new { type = "number" },
+                    line_items = new
                     {
-                        ["type"] = JsonSerializer.SerializeToElement("object"),
-                        ["properties"] = JsonSerializer.SerializeToElement(new
+                        type = "array",
+                        items = new
                         {
-                            invoice_number = new { type = "string" },
-                            date = new { type = "string" },
-                            total_amount = new { type = "number" },
-                            line_items = new
-                            {
-                                type = "array",
-                                items = new
-                                {
-                                    type = "object",
-                                    additionalProperties = false,
-                                },
-                            },
-                            customer_name = new { type = "string" },
-                        }),
-                        ["required"] = JsonSerializer.SerializeToElement(new[] { "invoice_number", "date", "total_amount", "line_items", "customer_name" }),
-                        ["additionalProperties"] = JsonSerializer.SerializeToElement(false),
+                            type = "object",
+                            additionalProperties = false,
+                        },
                     },
-                },
+                    customer_name = new { type = "string" },
+                }),
+                ["required"] = JsonSerializer.SerializeToElement(new[] { "invoice_number", "date", "total_amount", "line_items", "customer_name" }),
+                ["additionalProperties"] = JsonSerializer.SerializeToElement(false),
             },
-            Messages = [new() { Role = Role.User, Content = $"Extract invoice data from: {invoiceText}" }]
-        };
+        },
+    },
+    Messages = [new() { Role = Role.User, Content = $"Extract invoice data from: {invoiceText}" }]
+};
 
-        var message = await client.Messages.Create(parameters);
-        Console.WriteLine(message);
-    }
-}
+var message = await client.Messages.Create(parameters);
+Console.WriteLine(message);
 ```
 
 ```go Go hidelines={1..11,-1}
@@ -1499,7 +1739,7 @@ func main() {
 	}
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 4096,
 		OutputConfig: anthropic.OutputConfigParam{
 			Format: anthropic.JSONOutputFormatParam{
@@ -1522,7 +1762,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..6,8..10}
+```java Java hidelines={1..6}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;
@@ -1530,62 +1770,74 @@ import com.anthropic.models.messages.StructuredMessage;
 import com.anthropic.models.messages.StructuredMessageCreateParams;
 import com.anthropic.models.messages.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
-import java.util.Map;
 
-public class InvoiceExtraction {
-    static class LineItem {
-        @JsonProperty("description")
-        public String description;
+static class LineItem {
+    @JsonProperty("description")
+    public String description;
 
-        @JsonProperty("quantity")
-        public int quantity;
+    @JsonProperty("quantity")
+    public int quantity;
 
-        @JsonProperty("unit_price")
-        public double unitPrice;
-    }
+    @JsonProperty("unit_price")
+    public double unitPrice;
+}
 
-    static class Invoice {
-        @JsonProperty("invoice_number")
-        public String invoiceNumber;
+static class Invoice {
+    @JsonProperty("invoice_number")
+    public String invoiceNumber;
 
-        @JsonProperty("date")
-        public String date;
+    @JsonProperty("date")
+    public String date;
 
-        @JsonProperty("total_amount")
-        public double totalAmount;
+    @JsonProperty("total_amount")
+    public double totalAmount;
 
-        @JsonProperty("line_items")
-        public List<LineItem> lineItems;
+    @JsonProperty("line_items")
+    public List<LineItem> lineItems;
 
-        @JsonProperty("customer_name")
-        public String customerName;
-    }
+    @JsonProperty("customer_name")
+    public String customerName;
+}
 
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        String invoiceText = "Invoice #12345, Date: 2024-01-15, Total: $500.00";
+    String invoiceText = "Invoice #12345, Date: 2024-01-15, Total: $500.00";
 
-        StructuredMessageCreateParams<Invoice> params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
-            .maxTokens(4096L)
-            .outputConfig(Invoice.class)
-            .addUserMessage("Extract invoice data from: " + invoiceText)
-            .build();
+    StructuredMessageCreateParams<Invoice> params = MessageCreateParams.builder()
+        .model(Model.CLAUDE_OPUS_4_7)
+        .maxTokens(4096L)
+        .outputConfig(Invoice.class)
+        .addUserMessage("Extract invoice data from: " + invoiceText)
+        .build();
 
-        StructuredMessage<Invoice> response = client.messages().create(params);
-        System.out.println(response);
-    }
+    StructuredMessage<Invoice> response = client.messages().create(params);
+    Invoice invoice = response.content().stream()
+        .flatMap(block -> block.text().stream())
+        .findFirst().orElseThrow().text();
+    IO.println(invoice.invoiceNumber + ": $" + invoice.totalAmount);
 }
 ```
 
-```php PHP hidelines={1..4}
+```php PHP hidelines={1..3}
 <?php
 
 use Anthropic\Client;
+use Anthropic\Lib\Concerns\StructuredOutputModelTrait;
+use Anthropic\Lib\Contracts\StructuredOutputModel;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
+
+class Invoice implements StructuredOutputModel
+{
+    use StructuredOutputModelTrait;
+
+    public string $invoice_number;
+    public string $date;
+    public float $total_amount;
+    public array $line_items;
+    public string $customer_name;
+}
 
 $invoiceText = "Invoice #12345, Date: 2024-01-15, Total: $500.00";
 
@@ -1594,33 +1846,14 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => "Extract invoice data from: $invoiceText"]
     ],
-    model: 'claude-opus-4-6',
-    outputConfig: [
-        'format' => [
-            'type' => 'json_schema',
-            'schema' => [
-                'type' => 'object',
-                'properties' => [
-                    'invoice_number' => ['type' => 'string'],
-                    'date' => ['type' => 'string'],
-                    'total_amount' => ['type' => 'number'],
-                    'line_items' => [
-                        'type' => 'array',
-                        'items' => [
-                            'type' => 'object',
-                            'additionalProperties' => false
-                        ]
-                    ],
-                    'customer_name' => ['type' => 'string']
-                ],
-                'required' => ['invoice_number', 'date', 'total_amount', 'line_items', 'customer_name'],
-                'additionalProperties' => false
-            ]
-        ]
-    ],
+    model: 'claude-opus-4-7',
+    outputConfig: ['format' => Invoice::class],
 );
 
-echo $message;
+$invoice = $message->parsedOutput();
+if ($invoice instanceof Invoice) {
+    echo "Invoice {$invoice->invoice_number}: \${$invoice->total_amount}\n";
+}
 ```
 
 ```ruby Ruby hidelines={1..2}
@@ -1628,39 +1861,32 @@ require "anthropic"
 
 client = Anthropic::Client.new
 
+class LineItem < Anthropic::BaseModel
+  required :description, String
+  required :amount, Float
+end
+
+class Invoice < Anthropic::BaseModel
+  required :invoice_number, String
+  required :date, String
+  required :total_amount, Float
+  required :line_items, Anthropic::ArrayOf[LineItem]
+  required :customer_name, String
+end
+
 invoice_text = "Invoice #12345, Date: 2024-01-15, Total: $500.00"
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
-  output_config: {
-    format: {
-      type: :json_schema,
-      schema: {
-        type: "object",
-        properties: {
-          invoice_number: { type: "string" },
-          date: { type: "string" },
-          total_amount: { type: "number" },
-          line_items: {
-            type: "array",
-            items: {
-              type: "object",
-              additionalProperties: false
-            }
-          },
-          customer_name: { type: "string" }
-        },
-        required: ["invoice_number", "date", "total_amount", "line_items", "customer_name"],
-        additionalProperties: false
-      }
-    }
-  },
+  output_config: {format: Invoice},
   messages: [
-    { role: "user", content: "Extract invoice data from: #{invoice_text}" }
+    {role: "user", content: "Extract invoice data from: #{invoice_text}"}
   ]
 )
-puts message.content.first.text
+
+invoice = message.parsed_output
+puts "Invoice #{invoice.invoice_number}: $#{invoice.total_amount}"
 ```
 
 </CodeGroup>
@@ -1676,7 +1902,7 @@ Klasifikasikan konten dengan kategori terstruktur:
 ```bash CLI
 ant messages create \
   --transform 'content.0.text|@fromstr' --format jsonl <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 messages:
   - role: user
@@ -1709,7 +1935,6 @@ YAML
 ```python Python hidelines={1}
 from anthropic import Anthropic
 from pydantic import BaseModel
-from typing import List
 
 client = Anthropic()
 
@@ -1717,17 +1942,19 @@ client = Anthropic()
 class Classification(BaseModel):
     category: str
     confidence: float
-    tags: List[str]
+    tags: list[str]
     sentiment: str
 
 
 feedback_text = "Great product, but the delivery was slow."
 response = client.messages.parse(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     output_format=Classification,
     messages=[{"role": "user", "content": f"Classify this feedback: {feedback_text}"}],
 )
+
+print(response.parsed_output)
 ```
 
 ```typescript TypeScript hidelines={1}
@@ -1746,15 +1973,16 @@ const ClassificationSchema = z.object({
 
 const feedbackText = "Great product, but the delivery was slow.";
 const response = await client.messages.parse({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   output_config: { format: zodOutputFormat(ClassificationSchema) },
   messages: [{ role: "user", content: `Classify this feedback: ${feedbackText}` }]
 });
+
+console.log(response.parsed_output);
 ```
 
-```csharp C# hidelines={1..7}
-using System.Collections.Generic;
+```csharp C# hidelines={1..6}
 using System.Text.Json;
 using Anthropic;
 using Anthropic.Models.Messages;
@@ -1765,7 +1993,7 @@ string feedbackText = "Great product, fast shipping!";
 
 var parameters = new MessageCreateParams
 {
-    Model = Model.ClaudeOpus4_6,
+    Model = Model.ClaudeOpus4_7,
     MaxTokens = 1024,
     Messages = [new() { Role = Role.User, Content = $"Classify this feedback: {feedbackText}" }],
     OutputConfig = new OutputConfig
@@ -1823,7 +2051,7 @@ func main() {
 	}
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		OutputConfig: anthropic.OutputConfigParam{
 			Format: anthropic.JSONOutputFormatParam{
@@ -1848,7 +2076,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..6,8..9}
+```java Java hidelines={1..6}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;
@@ -1856,48 +2084,59 @@ import com.anthropic.models.messages.StructuredMessage;
 import com.anthropic.models.messages.StructuredMessageCreateParams;
 import com.anthropic.models.messages.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-public class ClassificationExample {
-    static class Classification {
-        @JsonProperty("category")
-        public String category;
+static class Classification {
+    @JsonProperty("category")
+    public String category;
 
-        @JsonProperty("confidence")
-        public double confidence;
+    @JsonProperty("confidence")
+    public double confidence;
 
-        @JsonProperty("tags")
-        public List<String> tags;
+    @JsonProperty("tags")
+    public List<String> tags;
 
-        @JsonProperty("sentiment")
-        public String sentiment;
-    }
+    @JsonProperty("sentiment")
+    public String sentiment;
+}
 
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        String feedbackText = "Great product, fast shipping!";
+    String feedbackText = "Great product, fast shipping!";
 
-        StructuredMessageCreateParams<Classification> params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
-            .maxTokens(1024L)
-            .outputConfig(Classification.class)
-            .addUserMessage("Classify this feedback: " + feedbackText)
-            .build();
+    StructuredMessageCreateParams<Classification> params = MessageCreateParams.builder()
+        .model(Model.CLAUDE_OPUS_4_7)
+        .maxTokens(1024L)
+        .outputConfig(Classification.class)
+        .addUserMessage("Classify this feedback: " + feedbackText)
+        .build();
 
-        StructuredMessage<Classification> response = client.messages().create(params);
-        Classification result = response.content().get(0).asText().text();
-        System.out.println(result.category + " (" + result.confidence + ")");
-    }
+    StructuredMessage<Classification> response = client.messages().create(params);
+    Classification result = response.content().stream()
+        .flatMap(block -> block.text().stream())
+        .findFirst().orElseThrow().text();
+    IO.println(result.category + " (" + result.confidence + ")");
 }
 ```
 
-```php PHP hidelines={1..4}
+```php PHP hidelines={1..3}
 <?php
 
 use Anthropic\Client;
+use Anthropic\Lib\Concerns\StructuredOutputModelTrait;
+use Anthropic\Lib\Contracts\StructuredOutputModel;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
+
+class Classification implements StructuredOutputModel
+{
+    use StructuredOutputModelTrait;
+
+    public string $category;
+    public float $confidence;
+    public array $tags;
+    public string $sentiment;
+}
 
 $feedbackText = "Great product, fast shipping!";
 
@@ -1906,25 +2145,14 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => "Classify this feedback: {$feedbackText}"]
     ],
-    model: 'claude-opus-4-6',
-    outputConfig: [
-        'format' => [
-            'type' => 'json_schema',
-            'schema' => [
-                'type' => 'object',
-                'properties' => [
-                    'category' => ['type' => 'string'],
-                    'confidence' => ['type' => 'number'],
-                    'tags' => ['type' => 'array', 'items' => ['type' => 'string']],
-                    'sentiment' => ['type' => 'string']
-                ],
-                'required' => ['category', 'confidence', 'tags', 'sentiment'],
-                'additionalProperties' => false
-            ]
-        ]
-    ],
+    model: 'claude-opus-4-7',
+    outputConfig: ['format' => Classification::class],
 );
-echo $message->content[0]->text;
+
+$result = $message->parsedOutput();
+if ($result instanceof Classification) {
+    echo "{$result->category} ({$result->confidence}): {$result->sentiment}\n";
+}
 ```
 
 ```ruby Ruby hidelines={1..2}
@@ -1942,7 +2170,7 @@ end
 feedback_text = "Great product, fast shipping!"
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   output_config: {format: Classification},
   messages: [
@@ -1965,7 +2193,7 @@ Hasilkan respons siap API:
 ```bash CLI
 ant messages create \
   --transform 'content.0.text' --format yaml <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 output_config:
   format:
@@ -2000,7 +2228,6 @@ YAML
 ```python Python hidelines={1}
 from anthropic import Anthropic
 from pydantic import BaseModel
-from typing import List, Optional
 
 client = Anthropic()
 
@@ -2008,16 +2235,18 @@ client = Anthropic()
 class APIResponse(BaseModel):
     status: str
     data: dict
-    errors: Optional[List[dict]]
+    errors: list[dict] | None
     metadata: dict
 
 
 response = client.messages.parse(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     output_format=APIResponse,
     messages=[{"role": "user", "content": "Process this request: ..."}],
 )
+
+print(response.parsed_output)
 ```
 
 ```typescript TypeScript hidelines={1}
@@ -2035,15 +2264,16 @@ const APIResponseSchema = z.object({
 });
 
 const response = await client.messages.parse({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   output_config: { format: zodOutputFormat(APIResponseSchema) },
   messages: [{ role: "user", content: "Process this request..." }]
 });
+
+console.log(response.parsed_output);
 ```
 
-```csharp C# hidelines={1..7}
-using System.Collections.Generic;
+```csharp C# hidelines={1..6}
 using System.Text.Json;
 using Anthropic;
 using Anthropic.Models.Messages;
@@ -2052,7 +2282,7 @@ AnthropicClient client = new();
 
 var parameters = new MessageCreateParams
 {
-    Model = Model.ClaudeOpus4_6,
+    Model = Model.ClaudeOpus4_7,
     MaxTokens = 1024,
     Messages = [new() { Role = Role.User, Content = "Process this request: ..." }],
     OutputConfig = new OutputConfig
@@ -2099,7 +2329,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		OutputConfig: anthropic.OutputConfigParam{
 			Format: anthropic.JSONOutputFormatParam{
@@ -2146,7 +2376,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..6,8..9}
+```java Java hidelines={1..6}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;
@@ -2154,99 +2384,103 @@ import com.anthropic.models.messages.StructuredMessage;
 import com.anthropic.models.messages.StructuredMessageCreateParams;
 import com.anthropic.models.messages.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-public class StructuredOutputExample {
-    static class APIData {
-        @JsonProperty("message")
-        public String message;
+static class APIData {
+    @JsonProperty("message")
+    public String message;
 
-        @JsonProperty("resource_id")
-        public String resourceId;
-    }
+    @JsonProperty("resource_id")
+    public String resourceId;
+}
 
-    static class APIError {
-        @JsonProperty("code")
-        public String code;
+static class APIError {
+    @JsonProperty("code")
+    public String code;
 
-        @JsonProperty("message")
-        public String message;
-    }
+    @JsonProperty("message")
+    public String message;
+}
 
-    static class APIMetadata {
-        @JsonProperty("request_id")
-        public String requestId;
+static class APIMetadata {
+    @JsonProperty("request_id")
+    public String requestId;
 
-        @JsonProperty("timestamp")
-        public String timestamp;
-    }
+    @JsonProperty("timestamp")
+    public String timestamp;
+}
 
-    static class APIResponse {
-        @JsonProperty("status")
-        public String status;
+static class APIResponse {
+    @JsonProperty("status")
+    public String status;
 
-        @JsonProperty("data")
-        public APIData data;
+    @JsonProperty("data")
+    public APIData data;
 
-        @JsonProperty("errors")
-        public List<APIError> errors;
+    @JsonProperty("errors")
+    public List<APIError> errors;
 
-        @JsonProperty("metadata")
-        public APIMetadata metadata;
-    }
+    @JsonProperty("metadata")
+    public APIMetadata metadata;
+}
 
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        StructuredMessageCreateParams<APIResponse> params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
-            .maxTokens(1024L)
-            .outputConfig(APIResponse.class)
-            .addUserMessage("Process this request: ...")
-            .build();
+    StructuredMessageCreateParams<APIResponse> params = MessageCreateParams.builder()
+        .model(Model.CLAUDE_OPUS_4_7)
+        .maxTokens(1024L)
+        .outputConfig(APIResponse.class)
+        .addUserMessage("Process this request: ...")
+        .build();
 
-        StructuredMessage<APIResponse> response = client.messages().create(params);
-        APIResponse result = response.content().get(0).asText().text();
-        System.out.println(result.status);
-    }
+    StructuredMessage<APIResponse> response = client.messages().create(params);
+    APIResponse result = response.content().stream()
+        .flatMap(block -> block.text().stream())
+        .findFirst().orElseThrow().text();
+    IO.println(result.status);
 }
 ```
 
-```php PHP hidelines={1..4}
+```php PHP hidelines={1..3}
 <?php
 
 use Anthropic\Client;
+use Anthropic\Lib\Attributes\Constrained;
+use Anthropic\Lib\Concerns\StructuredOutputModelTrait;
+use Anthropic\Lib\Contracts\StructuredOutputModel;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
+
+class Payload implements StructuredOutputModel { use StructuredOutputModelTrait; public string $message; }
+
+class APIError implements StructuredOutputModel { use StructuredOutputModelTrait; public string $code; public string $detail; }
+
+class Metadata implements StructuredOutputModel { use StructuredOutputModelTrait; public string $request_id; }
+
+class APIResponse implements StructuredOutputModel
+{
+    use StructuredOutputModelTrait;
+
+    public string $status;
+    public Payload $data;
+    #[Constrained(itemClass: APIError::class)]
+    public ?array $errors;
+    public Metadata $metadata;
+}
 
 $message = $client->messages->create(
     maxTokens: 1024,
     messages: [
         ['role' => 'user', 'content' => 'Process this request: ...']
     ],
-    model: 'claude-opus-4-6',
-    outputConfig: [
-        'format' => [
-            'type' => 'json_schema',
-            'schema' => [
-                'type' => 'object',
-                'properties' => [
-                    'status' => ['type' => 'string'],
-                    'data' => ['type' => 'object', 'additionalProperties' => false],
-                    'errors' => [
-                        'type' => 'array',
-                        'items' => ['type' => 'object', 'additionalProperties' => false]
-                    ],
-                    'metadata' => ['type' => 'object', 'additionalProperties' => false]
-                ],
-                'required' => ['status', 'data', 'metadata'],
-                'additionalProperties' => false
-            ]
-        ]
-    ],
+    model: 'claude-opus-4-7',
+    outputConfig: ['format' => APIResponse::class],
 );
 
-echo $message;
+$result = $message->parsedOutput();
+if ($result instanceof APIResponse) {
+    echo "{$result->status}: {$result->data->message}\n";
+}
 ```
 
 ```ruby Ruby hidelines={1..2}
@@ -2254,33 +2488,35 @@ require "anthropic"
 
 client = Anthropic::Client.new
 
+class Payload < Anthropic::BaseModel
+  required :message, String
+end
+
+class APIError < Anthropic::BaseModel
+  required :code, String
+  required :detail, String
+end
+
+class Metadata < Anthropic::BaseModel
+  required :request_id, String
+end
+
+class APIResponse < Anthropic::BaseModel
+  required :status, String
+  required :data, Payload
+  optional :errors, Anthropic::ArrayOf[APIError]
+  required :metadata, Metadata
+end
+
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
-  output_config: {
-    format: {
-      type: :json_schema,
-      schema: {
-        type: "object",
-        properties: {
-          status: { type: "string" },
-          data: { type: "object", additionalProperties: false },
-          errors: {
-            type: "array",
-            items: { type: "object", additionalProperties: false }
-          },
-          metadata: { type: "object", additionalProperties: false }
-        },
-        required: ["status", "data", "metadata"],
-        additionalProperties: false
-      }
-    }
-  },
+  output_config: {format: APIResponse},
   messages: [
-    { role: "user", content: "Process this request: ..." }
+    {role: "user", content: "Process this request: ..."}
   ]
 )
-puts message.content.first.text
+puts message.parsed_output
 ```
 
 </CodeGroup>
@@ -2293,18 +2529,18 @@ Untuk menegakkan kepatuhan JSON Schema pada input alat dengan pengambilan sampel
 
 ## Menggunakan kedua fitur bersama-sama
 
-Output JSON dan penggunaan alat ketat menyelesaikan masalah yang berbeda dan dapat digunakan bersama-sama:
+Output JSON dan penggunaan alat ketat menyelesaikan masalah yang berbeda dan bekerja bersama:
 
 - **Output JSON** mengontrol format respons Claude (apa yang Claude katakan)
 - **Penggunaan alat ketat** memvalidasi parameter alat (bagaimana Claude memanggil fungsi Anda)
 
-Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin valid DAN mengembalikan respons JSON terstruktur. Ini berguna untuk alur kerja agentic di mana Anda memerlukan panggilan alat yang andal dan output akhir terstruktur.
+Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin valid DAN mengembalikan respons JSON terstruktur. Ini berguna untuk alur kerja agentic di mana Anda memerlukan panggilan alat yang andal dan output akhir yang terstruktur.
 
 <CodeGroup>
 
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 messages:
   - role: user
@@ -2343,7 +2579,7 @@ YAML
 
 ```python Python
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[
         {
@@ -2383,11 +2619,13 @@ response = client.messages.create(
         }
     ],
 )
+
+print(response)
 ```
 
 ```typescript TypeScript
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Help me plan a trip to Paris departing May 15, 2026" }],
   // JSON outputs: structured response format
@@ -2435,8 +2673,7 @@ for (const block of response.content) {
 }
 ```
 
-```csharp C# hidelines={1..7}
-using System.Collections.Generic;
+```csharp C# hidelines={1..6}
 using System.Text.Json;
 using Anthropic;
 using Anthropic.Models.Messages;
@@ -2445,7 +2682,7 @@ AnthropicClient client = new();
 
 var parameters = new MessageCreateParams
 {
-    Model = Model.ClaudeOpus4_6,
+    Model = Model.ClaudeOpus4_7,
     MaxTokens = 1024,
     Messages = [new() { Role = Role.User, Content = "Help me plan a trip to Paris departing May 15, 2026" }],
     // JSON outputs: structured response format
@@ -2506,7 +2743,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Help me plan a trip to Paris departing May 15, 2026")),
@@ -2549,7 +2786,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..15,-2..}
+```java Java hidelines={1..12,53}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
@@ -2560,83 +2797,77 @@ import com.anthropic.models.messages.Model;
 import com.anthropic.models.messages.OutputConfig;
 import com.anthropic.models.messages.Tool;
 import com.anthropic.models.messages.Tool.InputSchema;
-import java.util.List;
-import java.util.Map;
 
-public class StructuredOutputExample {
-    public static void main(String[] args) {
-        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        // JSON outputs: structured response format
-        JsonOutputFormat.Schema outputSchema = JsonOutputFormat.Schema.builder()
-            .putAdditionalProperty("type", JsonValue.from("object"))
-            .putAdditionalProperty("properties", JsonValue.from(Map.of(
-                "summary", Map.of("type", "string"),
-                "next_steps", Map.of("type", "array", "items", Map.of("type", "string"))
-            )))
-            .putAdditionalProperty("required", JsonValue.from(List.of("summary", "next_steps")))
-            .putAdditionalProperty("additionalProperties", JsonValue.from(false))
-            .build();
+    // JSON outputs: structured response format
+    JsonOutputFormat.Schema outputSchema = JsonOutputFormat.Schema.builder()
+        .putAdditionalProperty("type", JsonValue.from("object"))
+        .putAdditionalProperty("properties", JsonValue.from(Map.of(
+            "summary", Map.of("type", "string"),
+            "next_steps", Map.of("type", "array", "items", Map.of("type", "string"))
+        )))
+        .putAdditionalProperty("required", JsonValue.from(List.of("summary", "next_steps")))
+        .putAdditionalProperty("additionalProperties", JsonValue.from(false))
+        .build();
 
-        // Strict tool use: guaranteed tool parameters
-        InputSchema toolSchema = InputSchema.builder()
-            .properties(JsonValue.from(Map.of(
-                "destination", Map.of("type", "string"),
-                "date", Map.of("type", "string", "format", "date")
-            )))
-            .putAdditionalProperty("required", JsonValue.from(List.of("destination", "date")))
-            .putAdditionalProperty("additionalProperties", JsonValue.from(false))
-            .build();
+    // Strict tool use: guaranteed tool parameters
+    InputSchema toolSchema = InputSchema.builder()
+        .properties(JsonValue.from(Map.of(
+            "destination", Map.of("type", "string"),
+            "date", Map.of("type", "string", "format", "date")
+        )))
+        .putAdditionalProperty("required", JsonValue.from(List.of("destination", "date")))
+        .putAdditionalProperty("additionalProperties", JsonValue.from(false))
+        .build();
 
-        MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
-            .maxTokens(1024L)
-            .addUserMessage("Help me plan a trip to Paris departing May 15, 2026")
-            .outputConfig(OutputConfig.builder()
-                .format(JsonOutputFormat.builder().schema(outputSchema).build())
-                .build())
-            .addTool(Tool.builder()
-                .name("search_flights")
-                .description("Search for available flights to a destination on a specific date")
-                .strict(true)
-                .inputSchema(toolSchema)
-                .build())
-            .build();
+    MessageCreateParams params = MessageCreateParams.builder()
+        .model(Model.CLAUDE_OPUS_4_7)
+        .maxTokens(1024L)
+        .addUserMessage("Help me plan a trip to Paris departing May 15, 2026")
+        .outputConfig(OutputConfig.builder()
+            .format(JsonOutputFormat.builder().schema(outputSchema).build())
+            .build())
+        .addTool(Tool.builder()
+            .name("search_flights")
+            .description("Search for available flights to a destination on a specific date")
+            .strict(true)
+            .inputSchema(toolSchema)
+            .build())
+        .build();
 
-        Message response = client.messages().create(params);
-        System.out.println(response);
-    }
+    Message response = client.messages().create(params);
+    IO.println(response);
 }
 ```
 
-```php PHP hidelines={1..4}
+```php PHP hidelines={1..3}
 <?php
 
 use Anthropic\Client;
+use Anthropic\Lib\Concerns\StructuredOutputModelTrait;
+use Anthropic\Lib\Contracts\StructuredOutputModel;
+use Anthropic\Messages\ToolUseBlock;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
+
+class TripPlan implements StructuredOutputModel
+{
+    use StructuredOutputModelTrait;
+
+    public string $summary;
+    public array $next_steps;
+}
 
 $message = $client->messages->create(
     maxTokens: 1024,
     messages: [
         ['role' => 'user', 'content' => 'Help me plan a trip to Paris departing May 15, 2026']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     // JSON outputs: structured response format
-    outputConfig: [
-        'format' => [
-            'type' => 'json_schema',
-            'schema' => [
-                'type' => 'object',
-                'properties' => [
-                    'summary' => ['type' => 'string'],
-                    'next_steps' => ['type' => 'array', 'items' => ['type' => 'string']]
-                ],
-                'required' => ['summary', 'next_steps'],
-                'additionalProperties' => false
-            ]
-        ]
-    ],
+    outputConfig: ['format' => TripPlan::class],
     // Strict tool use: guaranteed tool parameters
     tools: [
         [
@@ -2654,7 +2885,14 @@ $message = $client->messages->create(
         ]
     ],
 );
-echo $message;
+
+// Claude may call the tool first (tool_use) or respond with JSON (text)
+$plan = $message->parsedOutput();
+if ($plan instanceof TripPlan) {
+    echo $plan->summary, "\n";
+} elseif ($toolUse = array_find($message->content, fn($block) => $block instanceof ToolUseBlock)) {
+    echo "Tool call: {$toolUse->name}(", json_encode($toolUse->input), ")\n";
+}
 ```
 
 ```ruby Ruby hidelines={1..2}
@@ -2663,7 +2901,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     {role: "user", content: "Help me plan a trip to Paris departing May 15, 2026"}
@@ -2724,7 +2962,7 @@ Saat menggunakan output terstruktur, Claude secara otomatis menerima prompt sist
 
 - Jumlah token input Anda sedikit lebih tinggi
 - Prompt yang disuntikkan menghabiskan token Anda seperti prompt sistem lainnya
-- Mengubah parameter `output_config.format` akan membatalkan [prompt cache](/docs/id/build-with-claude/prompt-caching) untuk utas percakapan itu
+- Mengubah parameter `output_config.format` akan membatalkan [prompt cache](/docs/id/build-with-claude/prompt-caching) apa pun untuk utas percakapan tersebut
 
 ### Batasan JSON Schema
 
@@ -2761,23 +2999,23 @@ Jika Anda menggunakan fitur yang tidak didukung, Anda akan menerima kesalahan 40
 <section title="Dukungan pola (regex)">
 
 **Fitur regex yang didukung:**
-- Pencocokan penuh (`^...$`) dan pencocokan sebagian
-- Quantifier: `*`, `+`, `?`, kasus `{n,m}` sederhana
+- Pencocokan penuh (`^...$`) dan pencocokan parsial
+- Kuantifier: `*`, `+`, `?`, kasus `{n,m}` sederhana
 - Kelas karakter: `[]`, `.`, `\d`, `\w`, `\s`
 - Grup: `(...)`
 
 **TIDAK didukung:**
-- Backreference ke grup (misalnya, `\1`, `\2`)
+- Backreferences ke grup (misalnya, `\1`, `\2`)
 - Pernyataan lookahead/lookbehind (misalnya, `(?=...)`, `(?!...)`)
 - Batas kata: `\b`, `\B`
-- Quantifier `{n,m}` kompleks dengan rentang besar
+- Kuantifier `{n,m}` kompleks dengan rentang besar
 
-Pola regex sederhana bekerja dengan baik. Pola kompleks mungkin menghasilkan kesalahan 400.
+Pola regex sederhana bekerja dengan baik. Pola kompleks dapat menghasilkan kesalahan 400.
 
 </section>
 
 <Tip>
-SDK Python dan TypeScript dapat secara otomatis mengubah skema dengan fitur yang tidak didukung dengan menghapusnya dan menambahkan batasan ke deskripsi bidang. Lihat [metode khusus SDK](#sdk-specific-methods) untuk detail.
+SDK Python, TypeScript, Ruby, dan PHP dapat secara otomatis mengubah skema dengan fitur yang tidak didukung dengan menghapusnya dan menambahkan batasan ke deskripsi bidang. Lihat [metode khusus SDK](#sdk-specific-methods) untuk detail.
 </Tip>
 
 ### Pengurutan properti
@@ -2818,7 +3056,7 @@ Ini berarti output mungkin terlihat seperti:
 }
 ```
 
-Jika urutan properti dalam output penting untuk aplikasi Anda, pastikan semua properti ditandai sebagai diperlukan, atau pertimbangkan pengurutan ulang ini dalam logika parsing Anda.
+Jika urutan properti dalam output penting untuk aplikasi Anda, tandai semua properti sebagai diperlukan, atau pertimbangkan pengurutan ulang ini dalam logika parsing Anda.
 
 ### Output tidak valid
 
@@ -2826,7 +3064,7 @@ Meskipun output terstruktur menjamin kepatuhan skema dalam sebagian besar kasus,
 
 **Penolakan** (`stop_reason: "refusal"`)
 
-Claude mempertahankan properti keamanan dan kegunaannya bahkan saat menggunakan output terstruktur. Jika Claude menolak permintaan karena alasan keamanan:
+Claude mempertahankan properti keselamatan dan kegunaannya bahkan saat menggunakan output terstruktur. Jika Claude menolak permintaan karena alasan keselamatan:
 
 - Respons memiliki `stop_reason: "refusal"`
 - Anda akan menerima kode status 200
@@ -2835,7 +3073,7 @@ Claude mempertahankan properti keamanan dan kegunaannya bahkan saat menggunakan 
 
 **Batas token tercapai** (`stop_reason: "max_tokens"`)
 
-Jika respons dipotong karena mencapai batas `max_tokens`:
+Jika respons terpotong karena mencapai batas `max_tokens`:
 
 - Respons memiliki `stop_reason: "max_tokens"`
 - Output mungkin tidak lengkap dan tidak cocok dengan skema Anda
@@ -2851,19 +3089,19 @@ Batasan berikut berlaku untuk semua permintaan dengan `output_config.format` ata
 
 | Batasan | Nilai | Deskripsi |
 |-------|-------|-------------|
-| Alat ketat per permintaan | 20 | Jumlah maksimum alat dengan `strict: true`. Alat non-ketat tidak dihitung terhadap batasan ini. |
-| Parameter opsional | 24 | Total parameter opsional di semua skema alat ketat dan skema output JSON. Setiap parameter yang tidak tercantum dalam `required` dihitung terhadap batasan ini. |
+| Alat ketat per permintaan | 20 | Jumlah maksimum alat dengan `strict: true`. Alat non-ketat tidak dihitung menuju batasan ini. |
+| Parameter opsional | 24 | Total parameter opsional di semua skema alat ketat dan skema output JSON. Setiap parameter yang tidak tercantum dalam `required` dihitung menuju batasan ini. |
 | Parameter dengan tipe union | 16 | Total parameter yang menggunakan `anyOf` atau array tipe (misalnya, `"type": ["string", "null"]`) di semua skema ketat. Ini sangat mahal karena menciptakan biaya kompilasi eksponensial. |
 
 <Note>
-Batasan ini berlaku untuk total gabungan di semua skema ketat dalam satu permintaan. Misalnya, jika Anda memiliki 4 alat ketat dengan 6 parameter opsional masing-masing, Anda akan mencapai batasan 24 parameter meskipun tidak ada satu alat pun yang tampak kompleks.
+Batasan ini berlaku untuk total gabungan di semua skema ketat dalam satu permintaan. Misalnya, jika Anda memiliki 4 alat ketat dengan 6 parameter opsional masing-masing, Anda akan mencapai batas parameter 24 meskipun tidak ada alat tunggal yang tampak kompleks.
 </Note>
 
 #### Batasan internal tambahan
 
-Di luar batasan eksplisit di atas, ada batasan internal tambahan pada ukuran tata bahasa yang dikompilasi. Batasan ini ada karena kompleksitas skema tidak berkurang menjadi satu dimensi: fitur seperti parameter opsional, tipe union, objek bersarang, dan jumlah alat berinteraksi satu sama lain dengan cara yang dapat membuat tata bahasa yang dikompilasi menjadi tidak proporsional besar.
+Di luar batasan eksplisit di atas, ada batasan internal tambahan pada ukuran tata bahasa yang dikompilasi. Batasan ini ada karena kompleksitas skema tidak berkurang menjadi dimensi tunggal: fitur seperti parameter opsional, tipe union, objek bersarang, dan jumlah alat berinteraksi satu sama lain dengan cara yang dapat membuat tata bahasa yang dikompilasi secara tidak proporsional besar.
 
-Ketika batasan ini terlampaui, Anda akan menerima kesalahan 400 dengan pesan "Schema is too complex for compilation." Kesalahan ini berarti kompleksitas gabungan skema Anda melebihi apa yang dapat dikompilasi secara efisien, bahkan jika setiap batasan individual di atas terpenuhi. Sebagai penghenti terakhir, API juga memberlakukan **batas waktu kompilasi 180 detik**. Skema yang lulus semua pemeriksaan eksplisit tetapi menghasilkan tata bahasa yang dikompilasi sangat besar mungkin mencapai batas waktu ini.
+Ketika batasan ini terlampaui, Anda akan menerima kesalahan 400 dengan pesan "Schema is too complex for compilation." Kesalahan ini berarti kompleksitas gabungan skema Anda melebihi apa yang dapat dikompilasi secara efisien, bahkan jika setiap batasan individual di atas terpenuhi. Sebagai penghenti terakhir, API juga memberlakukan **waktu tunggu kompilasi 180 detik**. Skema yang melewati semua pemeriksaan eksplisit tetapi menghasilkan tata bahasa yang dikompilasi sangat besar mungkin mencapai waktu tunggu ini.
 
 #### Tips untuk mengurangi kompleksitas skema
 
@@ -2871,19 +3109,19 @@ Jika Anda mencapai batasan kompleksitas, coba strategi ini secara berurutan:
 
 1. **Tandai hanya alat penting sebagai ketat.** Jika Anda memiliki banyak alat, cadangkan untuk alat di mana pelanggaran skema menyebabkan masalah nyata, dan andalkan kepatuhan alami Claude untuk alat yang lebih sederhana.
 
-2. **Kurangi parameter opsional.** Buat parameter `required` jika memungkinkan. Setiap parameter opsional kira-kira menggandakan sebagian dari ruang keadaan tata bahasa. Jika parameter selalu memiliki default yang masuk akal, pertimbangkan untuk membuatnya diperlukan dan biarkan Claude memberikan default itu secara eksplisit.
+2. **Kurangi parameter opsional.** Buat parameter `required` jika memungkinkan. Setiap parameter opsional kira-kira menggandakan sebagian dari ruang keadaan tata bahasa. Jika parameter selalu memiliki default yang masuk akal, pertimbangkan untuk membuatnya diperlukan dan memiliki Claude memberikan default itu secara eksplisit.
 
 3. **Sederhanakan struktur bersarang.** Objek bersarang dalam dengan bidang opsional menambah kompleksitas. Ratakan struktur jika memungkinkan.
 
 4. **Pisahkan menjadi beberapa permintaan.** Jika Anda memiliki banyak alat ketat, pertimbangkan untuk membaginya di seluruh permintaan terpisah atau sub-agen.
 
-Untuk masalah persisten dengan skema yang valid, [hubungi dukungan](https://support.claude.com/en/articles/9015913-how-to-get-support) dengan definisi skema Anda.
+Untuk masalah berkelanjutan dengan skema yang valid, [hubungi dukungan](https://support.claude.com/en/articles/9015913-how-to-get-support) dengan definisi skema Anda.
 
 ## Retensi data
 
-Prompt dan respons diproses dengan ZDR saat menggunakan output terstruktur. Namun, skema JSON itu sendiri di-cache sementara selama hingga 24 jam sejak penggunaan terakhir untuk tujuan optimasi. Tidak ada data prompt atau respons yang disimpan di luar respons API.
+Prompt dan respons diproses dengan ZDR saat menggunakan output terstruktur. Namun, skema JSON itu sendiri disimpan dalam cache sementara selama hingga 24 jam sejak penggunaan terakhir untuk tujuan optimasi. Tidak ada data prompt atau respons yang disimpan di luar respons API.
 
-Output terstruktur memenuhi syarat HIPAA, tetapi **PHI tidak boleh disertakan dalam definisi skema JSON**. API mengkompilasi skema JSON menjadi tata bahasa yang di-cache terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti skema, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana dilindungi di bawah perlindungan HIPAA.
+Output terstruktur memenuhi syarat HIPAA, tetapi **PHI tidak boleh disertakan dalam definisi skema JSON**. API mengkompilasi skema JSON menjadi tata bahasa yang disimpan dalam cache terpisah dari konten pesan, dan skema yang disimpan dalam cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti skema, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana dilindungi di bawah perlindungan HIPAA.
 
 Untuk kelayakan ZDR dan HIPAA di semua fitur, lihat [API dan retensi data](/docs/id/build-with-claude/api-and-data-retention).
 
@@ -2900,5 +3138,5 @@ Untuk kelayakan ZDR dan HIPAA di semua fitur, lihat [API dan retensi data](/docs
 - **Prefilling Pesan**: Tidak kompatibel dengan output JSON
 
 <Tip>
-**Cakupan tata bahasa**: Tata bahasa hanya berlaku untuk output langsung Claude, bukan untuk panggilan penggunaan alat, hasil alat, atau tag pemikiran (saat menggunakan [Extended Thinking](/docs/id/build-with-claude/extended-thinking)). Status tata bahasa direset antar bagian, memungkinkan Claude berpikir bebas sambil tetap menghasilkan output terstruktur dalam respons akhir.
+**Cakupan tata bahasa**: Tata bahasa hanya berlaku untuk output langsung Claude, bukan untuk panggilan penggunaan alat, hasil alat, atau tag pemikiran (saat menggunakan [Extended Thinking](/docs/id/build-with-claude/extended-thinking)). Status tata bahasa direset di antara bagian, memungkinkan Claude berpikir bebas sambil tetap menghasilkan output terstruktur dalam respons akhir.
 </Tip>

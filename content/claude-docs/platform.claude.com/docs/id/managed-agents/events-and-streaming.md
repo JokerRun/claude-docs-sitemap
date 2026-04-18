@@ -1,32 +1,32 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: f9712009105e3157bbd9a50c4504c7776a1c1319fd5173b417ed9f8168cf1733
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 8d375088897ae2d9a4e3209cdd6c5e365c4431d839d0693bc6fcaa1b927b57a1
 ---
 
-# Aliran event sesi
+# Aliran peristiwa sesi
 
-Kirim event, streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
+Kirim peristiwa, streaming respons, dan hentikan atau alihkan sesi Anda di tengah eksekusi.
 
 ---
 
-Komunikasi dengan Claude Managed Agents berbasis event. Anda mengirim event pengguna ke agen, dan menerima event agen serta event sesi kembali untuk melacak status.
+Komunikasi dengan Claude Managed Agents berbasis peristiwa. Anda mengirim peristiwa pengguna ke agen, dan menerima peristiwa agen dan sesi kembali untuk melacak status.
 
 <Note>
-Semua permintaan API Managed Agents memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis.
+Semua permintaan API Managed Agents memerlukan header beta `managed-agents-2026-04-01`. SDK secara otomatis menetapkan header beta.
 </Note>
 
-## Jenis event
+## Jenis peristiwa
 
-Event mengalir dalam dua arah.
-- **Event pengguna** adalah apa yang Anda kirim ke agen untuk memulai sesi dan mengarahkannya saat berlangsung.
-- **Event sesi**, **event span**, dan **event agen** dikirim kepada Anda untuk observabilitas ke dalam status sesi dan kemajuan agen.
+Peristiwa mengalir dalam dua arah.
+- **Peristiwa pengguna** adalah apa yang Anda kirim ke agen untuk memulai sesi dan mengarahkannya saat berkembang.
+- **Peristiwa sesi**, **peristiwa span**, dan **peristiwa agen** dikirim kepada Anda untuk observabilitas ke dalam status sesi dan kemajuan agen Anda.
 
-String jenis event mengikuti konvensi penamaan `{domain}.{action}`.
+String jenis peristiwa mengikuti konvensi penamaan `{domain}.{action}`.
 
 <Tabs>
-  <Tab title="Event pengguna">
+  <Tab title="Peristiwa pengguna">
 
 | Jenis | Deskripsi |
 | --- | --- |
@@ -34,64 +34,62 @@ String jenis event mengikuti konvensi penamaan `{domain}.{action}`.
 | `user.interrupt` | Hentikan agen di tengah eksekusi. |
 | `user.custom_tool_result` | Respons terhadap panggilan alat kustom dari agen. |
 | `user.tool_confirmation` | Setujui atau tolak panggilan alat agen atau MCP ketika kebijakan izin memerlukan konfirmasi. |
-| `user.define_outcome` | Tentukan sebuah [outcome](/docs/id/managed-agents/define-outcomes) untuk dikerjakan oleh agen. |
+| `user.define_outcome` | Tentukan [hasil](/docs/id/managed-agents/define-outcomes) untuk agen bekerja menuju.  |
 
   </Tab>
-  <Tab title="Event agen">
+  <Tab title="Peristiwa agen">
 
 | Jenis | Deskripsi |
 | --- | --- |
 | `agent.message` | Respons agen yang berisi blok konten teks. |
-| `agent.thinking` | Konten pemikiran agen, dipancarkan secara terpisah dari pesan. |
-| `agent.tool_use` | Agen memanggil alat agen bawaan (bash, operasi file, dan sebagainya). |
-| `agent.tool_result` | Hasil eksekusi alat agen bawaan. |
-| `agent.mcp_tool_use` | Agen memanggil alat server MCP. |
+| `agent.thinking` | Konten pemikiran agen, dipancarkan terpisah dari pesan. |
+| `agent.tool_use` | Agen menjalankan alat agen pra-bangun (bash, operasi file, dan sebagainya). |
+| `agent.tool_result` | Hasil eksekusi alat agen pra-bangun. |
+| `agent.mcp_tool_use` | Agen menjalankan alat server MCP. |
 | `agent.mcp_tool_result` | Hasil eksekusi alat MCP. |
-| `agent.custom_tool_use` | Agen memanggil salah satu alat kustom Anda. Balas dengan event `user.custom_tool_result`. |
-| `agent.thread_context_compacted` | Riwayat percakapan dipadatkan agar sesuai dengan jendela konteks. |
-| `agent.thread_message_sent` | Agen mengirim pesan ke thread [multiagent](/docs/id/managed-agents/multi-agent) lain. |
-| `agent.thread_message_received` | Agen menerima pesan dari thread [multiagent](/docs/id/managed-agents/multi-agent) lain. |
+| `agent.custom_tool_use` | Agen menjalankan salah satu alat kustom Anda. Respons dengan peristiwa `user.custom_tool_result`. |
+| `agent.thread_context_compacted` | Riwayat percakapan dikompres agar sesuai dengan jendela konteks. |
+| `agent.thread_message_sent` | Agen mengirim pesan ke [multiagent](/docs/id/managed-agents/multi-agent) thread lain. |
+| `agent.thread_message_received` | Agen menerima pesan dari [multiagent](/docs/id/managed-agents/multi-agent) thread lain. |
 
   </Tab>
-  <Tab title="Event sesi">
+  <Tab title="Peristiwa sesi">
 
 | Jenis | Deskripsi |
 | --- | --- |
-| `session.status_running` | Agen sedang aktif memproses. |
-| `session.status_idle` | Agen menyelesaikan tugas saat ini dan menunggu input. Menyertakan `stop_reason` yang menunjukkan mengapa agen berhenti. |
-| `session.status_rescheduled` | Terjadi kesalahan sementara dan sesi sedang mencoba ulang secara otomatis. |
+| `session.status_running` | Agen sedang memproses secara aktif. |
+| `session.status_idle` | Agen menyelesaikan tugas saat ini dan menunggu masukan. Mencakup `stop_reason` yang menunjukkan mengapa agen berhenti. |
+| `session.status_rescheduled` | Kesalahan transien terjadi dan sesi sedang mencoba ulang secara otomatis. |
 | `session.status_terminated` | Sesi berakhir karena kesalahan yang tidak dapat dipulihkan. |
-| `session.error` | Terjadi kesalahan selama pemrosesan. Menyertakan objek `error` bertipe dengan `retry_status`. |
-| `session.outcome_evaluated` | Evaluasi [outcome](/docs/id/managed-agents/define-outcomes) telah mencapai status terminal. |
-| `session.thread_created` | Koordinator memunculkan thread [multiagent](/docs/id/managed-agents/multi-agent) baru. |
-| `session.thread_idle` | Thread [multiagent](/docs/id/managed-agents/multi-agent) menyelesaikan pekerjaan saat ini. |
+| `session.error` | Kesalahan terjadi selama pemrosesan. Mencakup objek `error` yang diketik dengan `retry_status`. |
+| `session.outcome_evaluated` | Evaluasi [hasil](/docs/id/managed-agents/define-outcomes) telah mencapai status terminal.  |
+| `session.thread_created` | Koordinator menelurkan [multiagent](/docs/id/managed-agents/multi-agent) thread baru. |
+| `session.thread_idle` | [multiagent](/docs/id/managed-agents/multi-agent) thread menyelesaikan pekerjaan saat ini. |
 
   </Tab>
-  <Tab title="Event span">
+  <Tab title="Peristiwa span">
 
-Event span adalah penanda observabilitas yang membungkus aktivitas untuk pelacakan waktu dan penggunaan.
+Peristiwa span adalah penanda observabilitas yang membungkus aktivitas untuk waktu dan pelacakan penggunaan.
 
 | Jenis | Deskripsi |
 | --- | --- |
 | `span.model_request_start` | Panggilan inferensi model telah dimulai. |
-| `span.model_request_end` | Panggilan inferensi model telah selesai. Menyertakan `model_usage` dengan jumlah token. |
-| `span.outcome_evaluation_start` | Evaluasi [Outcome](/docs/id/managed-agents/define-outcomes) telah dimulai. |
-| `span.outcome_evaluation_ongoing` | Heartbeat selama evaluasi [outcome](/docs/id/managed-agents/define-outcomes) yang sedang berlangsung. |
-| `span.outcome_evaluation_end` | Evaluasi [Outcome](/docs/id/managed-agents/define-outcomes) telah selesai. |
+| `span.model_request_end` | Panggilan inferensi model telah selesai. Mencakup `model_usage` dengan jumlah token. |
+| `span.outcome_evaluation_start` | Evaluasi [hasil](/docs/id/managed-agents/define-outcomes) telah dimulai.  |
+| `span.outcome_evaluation_ongoing` | Detak jantung selama evaluasi [hasil](/docs/id/managed-agents/define-outcomes) yang sedang berlangsung.  |
+| `span.outcome_evaluation_end` | Evaluasi [hasil](/docs/id/managed-agents/define-outcomes) telah selesai.  |
 
   </Tab>
 </Tabs>
 
-Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event dicatat di sisi server. Jika `processed_at` bernilai null, artinya event telah diantrekan oleh harness dan akan ditangani setelah event sebelumnya selesai diproses.
+Setiap peristiwa mencakup stempel waktu `processed_at` yang menunjukkan kapan peristiwa dicatat di sisi server. Jika `processed_at` adalah null, itu berarti peristiwa telah antri oleh harness dan akan ditangani setelah peristiwa sebelumnya selesai diproses.
 
-Lihat [referensi API event sesi](/docs/id/api/beta/sessions/events/stream) untuk skema lengkap setiap jenis event.
-
-## Mengintegrasikan event
+## Mengintegrasikan peristiwa
 
 <Tabs>
-  <Tab title="Mengirim event">
+  <Tab title="Mengirim peristiwa">
 
-Kirim event `user.message` untuk memulai atau melanjutkan pekerjaan agen:
+Kirim peristiwa `user.message` untuk memulai atau melanjutkan pekerjaan agen:
 
 <CodeGroup>
 ```bash curl
@@ -229,12 +227,12 @@ client.beta.sessions.events.send_(
 ```
 </CodeGroup>
 
-Kirim event `user.interrupt` untuk menghentikan agen di tengah eksekusi, lalu tindak lanjuti dengan event `user.message` untuk mengalihkannya:
+Kirim peristiwa `user.interrupt` untuk menghentikan agen di tengah eksekusi, kemudian ikuti dengan peristiwa `user.message` untuk mengalihkannya:
 
 <CodeGroup>
 ```bash curl
-# Agen sedang menganalisis file...
-# Interupsi dengan arah baru:
+# Agent is currently analyzing a file...
+# Interrupt with a new direction:
 curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -256,8 +254,8 @@ EOF
 ```
 
 ```python Python
-# Agen sedang menganalisis file...
-# Interupsi dengan arah baru:
+# Agent is currently analyzing a file...
+# Interrupt with a new direction:
 client.beta.sessions.events.send(
     session.id,
     events=[
@@ -276,8 +274,8 @@ client.beta.sessions.events.send(
 ```
 
 ```typescript TypeScript
-// Agen sedang menganalisis file...
-// Interupsi dengan arah baru:
+// Agent is currently analyzing a file...
+// Interrupt with a new direction:
 await client.beta.sessions.events.send(session.id, {
   events: [
     { type: "user.interrupt" },
@@ -295,8 +293,8 @@ await client.beta.sessions.events.send(session.id, {
 ```
 
 ```csharp C#
-// Agen sedang menganalisis file...
-// Interupsi dengan arah baru:
+// Agent is currently analyzing a file...
+// Interrupt with a new direction:
 await client.Beta.Sessions.Events.Send(session.ID, new()
 {
     Events =
@@ -322,8 +320,8 @@ await client.Beta.Sessions.Events.Send(session.ID, new()
 ```
 
 ```go Go
-// Agen sedang menganalisis file...
-// Interupsi dengan arah baru:
+// Agent is currently analyzing a file...
+// Interrupt with a new direction:
 if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
 	Events: []anthropic.SendEventsParamsUnion{
 		{
@@ -349,8 +347,8 @@ if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSes
 ```
 
 ```java Java
-// Agen sedang menganalisis file...
-// Interupsi dengan arah baru:
+// Agent is currently analyzing a file...
+// Interrupt with a new direction:
 client.beta().sessions().events().send(
     session.id(),
     EventSendParams.builder()
@@ -365,8 +363,8 @@ client.beta().sessions().events().send(
 ```
 
 ```php PHP
-// Agen sedang menganalisis file...
-// Interupsi dengan arah baru:
+// Agent is currently analyzing a file...
+// Interrupt with a new direction:
 $client->beta->sessions->events->send(
     $session->id,
     events: [
@@ -385,8 +383,8 @@ $client->beta->sessions->events->send(
 ```
 
 ```ruby Ruby
-# Agen sedang menganalisis file...
-# Interupsi dengan arah baru:
+# Agent is currently analyzing a file...
+# Interrupt with a new direction:
 client.beta.sessions.events.send_(
   session.id,
   events: [
@@ -402,12 +400,12 @@ client.beta.sessions.events.send_(
 ```
 </CodeGroup>
 
-Agen akan mengakui interupsi dan beralih ke tugas baru.
+Agen akan mengakui gangguan dan beralih ke tugas baru.
 
   </Tab>
   <Tab title="Streaming respons">
 
-Stream event dari sesi untuk menerima pembaruan real-time saat agen bekerja. Hanya event yang dipancarkan setelah stream dibuka yang dikirimkan, jadi buka stream sebelum mengirim event untuk menghindari kondisi balapan.
+Streaming peristiwa dari sesi untuk menerima pembaruan real-time saat agen bekerja. Hanya peristiwa yang dipancarkan setelah aliran dibuka yang disampaikan, jadi buka aliran sebelum mengirim peristiwa untuk menghindari kondisi balapan.
 
 <CodeGroup>
   
@@ -736,7 +734,7 @@ end
 
 </CodeGroup>
 
-Untuk menyambung kembali ke sesi yang ada tanpa melewatkan event, buka stream baru lalu daftarkan riwayat lengkap untuk mengisi sekumpulan ID event yang sudah dilihat. Ikuti stream langsung sambil melewati event yang sudah dikembalikan oleh daftar riwayat.
+Untuk terhubung kembali ke sesi yang ada tanpa melewatkan peristiwa, buka aliran baru dan kemudian daftar riwayat lengkap untuk menabur set ID peristiwa yang terlihat. Ikuti aliran langsung sambil melewati peristiwa apa pun yang sudah dikembalikan oleh daftar riwayat.
 
 <CodeGroup>
   
@@ -1021,9 +1019,9 @@ end
 </CodeGroup>
 
   </Tab>
-  <Tab title="Mendaftar event masa lalu">
+  <Tab title="Mendaftar peristiwa masa lalu">
 
-Ambil riwayat event lengkap untuk sebuah sesi:
+Ambil riwayat peristiwa lengkap untuk sesi:
 
 <CodeGroup>
 ```bash curl
@@ -1099,12 +1097,12 @@ events.data.each { puts "[#{it.type}] #{it.processed_at}" }
 
 ### Menangani panggilan alat kustom
 
-Ketika agen memanggil [alat kustom](/docs/id/managed-agents/tools#custom-tools):
+Ketika agen menjalankan [alat kustom](/docs/id/managed-agents/tools#custom-tools):
 
-1. Sesi memancarkan event `agent.custom_tool_use` yang berisi nama alat dan input.
-2. Sesi berhenti sejenak dengan event `session.status_idle` yang berisi `stop_reason: requires_action`. ID event yang memblokir ada di array `stop_reason.requires_action.event_ids`.
-3. Jalankan alat di sistem Anda dan kirim event `user.custom_tool_result` untuk masing-masing, dengan meneruskan ID event di parameter `custom_tool_use_id` beserta konten hasilnya.
-4. Setelah semua event yang memblokir diselesaikan, sesi bertransisi kembali ke `running`.
+1. Sesi memancarkan peristiwa `agent.custom_tool_use` yang berisi nama alat dan masukan.
+2. Sesi dijeda dengan peristiwa `session.status_idle` yang berisi `stop_reason: requires_action`. ID peristiwa pemblokiran ada di array `stop_reason.requires_action.event_ids`.
+3. Jalankan alat di sistem Anda dan kirim peristiwa `user.custom_tool_result` untuk masing-masing, meneruskan ID peristiwa dalam parameter `custom_tool_use_id` bersama dengan konten hasil.
+4. Setelah semua peristiwa pemblokiran diselesaikan, sesi beralih kembali ke `running`.
 
 <CodeGroup>
 ```bash curl
@@ -1123,9 +1121,9 @@ while IFS= read -r -u "$fd" line; do
   case $(jq -r '.stop_reason.type // empty' <<<"$data") in
     requires_action)
       while IFS= read -r event_id; do
-        # Cari event penggunaan alat kustom dan jalankan
+        # Look up the custom tool use event and execute it
         result=$(call_tool "$event_id")
-        # Kirim hasilnya kembali
+        # Send the result back
         jq -n --arg id "$event_id" --arg result "$result" \
           '{events: [{type: "user.custom_tool_result", custom_tool_use_id: $id, content: [{type: "text", text: $result}]}]}' |
           curl -sS --fail-with-body \
@@ -1152,11 +1150,11 @@ with client.beta.sessions.events.stream(session.id) as stream:
             match stop.type:
                 case "requires_action":
                     for event_id in stop.event_ids:
-                        # Cari event penggunaan alat kustom dan jalankan
+                        # Look up the custom tool use event and execute it
                         tool_event = events_by_id[event_id]
                         result = call_tool(tool_event.name, tool_event.input)
 
-                        # Kirim hasilnya kembali
+                        # Send the result back
                         client.beta.sessions.events.send(
                             session.id,
                             events=[
@@ -1178,11 +1176,11 @@ for await (const event of stream) {
   if (event.type === "session.status_idle") {
     if (event.stop_reason?.type === "requires_action") {
       for (const eventId of event.stop_reason.event_ids) {
-        // Cari event penggunaan alat kustom dan jalankan
+        // Look up the custom tool use event and execute it
         const toolEvent = eventsById[eventId];
         const result = await callTool(toolEvent.name, toolEvent.input);
 
-        // Kirim hasilnya kembali
+        // Send the result back
         await client.beta.sessions.events.send(session.id, {
           events: [
             {
@@ -1209,10 +1207,10 @@ await foreach (var streamEvent in client.Beta.Sessions.Events.StreamStreaming(se
         {
             foreach (var eventId in requiresAction.EventIds)
             {
-                // Cari event penggunaan alat kustom dan jalankan
+                // Look up the custom tool use event and execute it
                 var toolEvent = eventsById[eventId];
                 var result = await CallTool(toolEvent.Name, toolEvent.Input);
-                // Kirim hasilnya kembali
+                // Send the result back
                 await client.Beta.Sessions.Events.Send(session.ID, new()
                 {
                     Events =
@@ -1255,10 +1253,10 @@ for stream.Next() {
 	switch stopReason := event.StopReason.AsAny().(type) {
 	case anthropic.BetaManagedAgentsSessionRequiresAction:
 		for _, eventID := range stopReason.EventIDs {
-			// Cari event penggunaan alat kustom dan jalankan
+			// Look up the custom tool use event and execute it
 			toolEvent := eventsByID[eventID]
 			result := callTool(toolEvent.Name, toolEvent.Input)
-			// Kirim hasilnya kembali
+			// Send the result back
 			if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
 				Events: []anthropic.SendEventsParamsUnion{{
 					OfUserCustomToolResult: &anthropic.BetaManagedAgentsUserCustomToolResultEventParams{
@@ -1292,10 +1290,10 @@ try (var stream = client.beta().sessions().events().streamStreaming(session.id()
         var stopReason = event.asSessionStatusIdle().stopReason().orElseThrow();
         if (stopReason.isRequiresAction()) {
             for (var eventId : stopReason.asRequiresAction().eventIds()) {
-                // Cari event penggunaan alat kustom dan jalankan
+                // Look up the custom tool use event and execute it
                 var toolEvent = eventsById.get(eventId);
                 var result = callTool(toolEvent.name(), toolEvent.input());
-                // Kirim hasilnya kembali
+                // Send the result back
                 client.beta().sessions().events().send(
                     session.id(),
                     EventSendParams.builder()
@@ -1323,11 +1321,11 @@ foreach ($stream as $event) {
     if ($event->type === 'session.status_idle' && $event->stopReason) {
         if ($event->stopReason->type === 'requires_action') {
             foreach ($event->stopReason->eventIDs as $eventId) {
-                // Cari event penggunaan alat kustom dan jalankan
+                // Look up the custom tool use event and execute it
                 $toolEvent = $eventsById[$eventId];
                 $result = callTool($toolEvent->name, $toolEvent->input);
 
-                // Kirim hasilnya kembali
+                // Send the result back
                 $client->beta->sessions->events->send(
                     $session->id,
                     events: [
@@ -1351,10 +1349,10 @@ client.beta.sessions.events.stream_events(session.id).each do |event|
   case event
   in {type: :"session.status_idle", stop_reason: {type: :requires_action, event_ids:}}
     event_ids.each do |event_id|
-      # Cari event penggunaan alat kustom dan jalankan
+      # Look up the custom tool use event and execute it
       tool_event = events_by_id[event_id]
       result = call_tool(tool_event.name, tool_event.input)
-      # Kirim hasilnya kembali
+      # Send the result back
       client.beta.sessions.events.send_(
         session.id,
         events: [
@@ -1376,12 +1374,12 @@ end
 
 ### Konfirmasi alat
 
-Ketika [kebijakan izin](/docs/id/managed-agents/permission-policies) memerlukan konfirmasi sebelum alat dieksekusi:
+Ketika [kebijakan izin](/docs/id/managed-agents/permission-policies) memerlukan konfirmasi sebelum alat dijalankan:
 
-1. Sesi memancarkan event `agent.tool_use` atau `agent.mcp_tool_use`.
-2. Sesi berhenti sementara dengan event `session.status_idle` yang berisi `stop_reason: requires_action`. ID event yang memblokir ada di dalam array `stop_reason.requires_action.event_ids`.
-3. Kirim event `user.tool_confirmation` untuk masing-masing, dengan meneruskan ID event di parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan.
-4. Setelah semua event yang memblokir diselesaikan, sesi bertransisi kembali ke `running`.
+1. Sesi mengeluarkan acara `agent.tool_use` atau `agent.mcp_tool_use`.
+2. Sesi berhenti dengan acara `session.status_idle` yang berisi `stop_reason: requires_action`. ID acara pemblokir berada dalam array `stop_reason.requires_action.event_ids`.
+3. Kirim acara `user.tool_confirmation` untuk masing-masing, meneruskan ID acara dalam parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan.
+4. Setelah semua acara pemblokir diselesaikan, sesi kembali ke `running`.
 
 <CodeGroup>
 ```bash curl
@@ -1400,7 +1398,7 @@ while IFS= read -r -u "$fd" line; do
   case $(jq -r '.stop_reason.type // empty' <<<"$data") in
     requires_action)
       while IFS= read -r event_id; do
-        # Setujui panggilan alat yang tertunda
+        # Approve the pending tool call
         jq -n --arg id "$event_id" \
           '{events: [{type: "user.tool_confirmation", tool_use_id: $id, result: "allow"}]}' |
           curl -sS --fail-with-body \
@@ -1427,7 +1425,7 @@ with client.beta.sessions.events.stream(session.id) as stream:
             match stop.type:
                 case "requires_action":
                     for event_id in stop.event_ids:
-                        # Setujui panggilan alat yang tertunda
+                        # Approve the pending tool call
                         client.beta.sessions.events.send(
                             session.id,
                             events=[
@@ -1449,7 +1447,7 @@ for await (const event of stream) {
   if (event.type === "session.status_idle") {
     if (event.stop_reason?.type === "requires_action") {
       for (const eventId of event.stop_reason.event_ids) {
-        // Setujui panggilan alat yang tertunda
+        // Approve the pending tool call
         await client.beta.sessions.events.send(session.id, {
           events: [
             {
@@ -1476,7 +1474,7 @@ await foreach (var streamEvent in client.Beta.Sessions.Events.StreamStreaming(se
         {
             foreach (var eventId in requiresAction.EventIds)
             {
-                // Setujui panggilan alat yang tertunda
+                // Approve the pending tool call
                 await client.Beta.Sessions.Events.Send(session.ID, new()
                 {
                     Events =
@@ -1512,7 +1510,7 @@ for stream.Next() {
 	switch stopReason := event.StopReason.AsAny().(type) {
 	case anthropic.BetaManagedAgentsSessionRequiresAction:
 		for _, eventID := range stopReason.EventIDs {
-			// Setujui panggilan alat yang tertunda
+			// Approve the pending tool call
 			if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
 				Events: []anthropic.SendEventsParamsUnion{{
 					OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
@@ -1541,7 +1539,7 @@ try (var stream = client.beta().sessions().events().streamStreaming(session.id()
         var stopReason = event.asSessionStatusIdle().stopReason().orElseThrow();
         if (stopReason.isRequiresAction()) {
             for (var eventId : stopReason.asRequiresAction().eventIds()) {
-                // Setujui panggilan alat yang tertunda
+                // Approve the pending tool call
                 client.beta().sessions().events().send(
                     session.id(),
                     EventSendParams.builder()
@@ -1569,7 +1567,7 @@ foreach ($stream as $event) {
     if ($event->type === 'session.status_idle' && $event->stopReason) {
         if ($event->stopReason->type === 'requires_action') {
             foreach ($event->stopReason->eventIDs as $eventId) {
-                // Setujui panggilan alat yang tertunda
+                // Approve the pending tool call
                 $client->beta->sessions->events->send(
                     $session->id,
                     events: [
@@ -1593,7 +1591,7 @@ client.beta.sessions.events.stream_events(session.id).each do |event|
   case event
   in {type: :"session.status_idle", stop_reason: {type: :requires_action, event_ids:}}
     event_ids.each do |event_id|
-      # Setujui panggilan alat yang tertunda
+      # Approve the pending tool call
       client.beta.sessions.events.send_(
         session.id,
         events: [
@@ -1611,7 +1609,7 @@ end
 
 ### Melacak penggunaan
 
-Objek sesi menyertakan field `usage` dengan statistik token kumulatif. Ambil sesi setelah sesi tersebut menjadi idle untuk membaca total terbaru, dan gunakan untuk melacak biaya, menerapkan anggaran, atau memantau konsumsi.
+Objek sesi mencakup bidang `usage` dengan statistik token kumulatif. Ambil sesi setelah menjadi idle untuk membaca total terbaru, dan gunakan untuk melacak biaya, memberlakukan anggaran, atau memantau konsumsi.
 
 ```json
 {
@@ -1626,4 +1624,4 @@ Objek sesi menyertakan field `usage` dengan statistik token kumulatif. Ambil ses
 }
 ```
 
-`input_tokens` melaporkan token input yang tidak di-cache dan `output_tokens` melaporkan total token output di semua panggilan model dalam sesi. Field `cache_creation_input_tokens` dan `cache_read_input_tokens` mencerminkan aktivitas prompt caching. Entri cache menggunakan TTL 5 menit, sehingga giliran berturut-turut dalam jendela waktu tersebut mendapat manfaat dari pembacaan cache, yang mengurangi biaya per token.
+`input_tokens` melaporkan token input yang tidak di-cache dan `output_tokens` melaporkan total token output di semua panggilan model dalam sesi. Bidang `cache_creation_input_tokens` dan `cache_read_input_tokens` mencerminkan aktivitas prompt caching. Entri cache menggunakan TTL 5 menit, jadi giliran berturut-turut dalam jendela itu mendapat manfaat dari pembacaan cache, yang mengurangi biaya per-token.

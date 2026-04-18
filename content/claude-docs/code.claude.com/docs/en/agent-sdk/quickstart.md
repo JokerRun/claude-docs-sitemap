@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 39cd0bd7f20d2807c5e9ef5c85ec885c82845d1b7c0d984ddc3b1a01d1a49056
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 2bc81ce92a6baa96bc5693d4a0473f5137cba5db44db95a8f965694acd1f3a60
 ---
 
 > ## Documentation Index
@@ -66,6 +66,10 @@ Use the Agent SDK to build an AI agent that reads your code, finds bugs, and fix
         ```
       </Tab>
     </Tabs>
+
+    <Note>
+      The TypeScript SDK bundles a native Claude Code binary for your platform as an optional dependency, so you don't need to install Claude Code separately.
+    </Note>
   </Step>
 
   <Step title="Set your API key">

@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 65f75ad1d4ed1bfa39fc9a1ff5cdd4ad123bbac921cc350207a771d7f5fef793
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 57ef28a1a27548e81a0e89630a451c9ae2a50a46672f5cb767d048031ea8c468
 ---
 
 # Tentukan hasil
 
-Beri tahu agen seperti apa 'selesai' itu, dan biarkan ia beriterasi hingga mencapainya.
+Beritahu agen seperti apa 'selesai' itu, dan biarkan agen melakukan iterasi sampai mencapainya.
 
 ---
 
@@ -15,11 +15,11 @@ Beri tahu agen seperti apa 'selesai' itu, dan biarkan ia beriterasi hingga menca
 Outcomes adalah fitur Research Preview. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
 </Tip>
 
-`outcome` meningkatkan sesi dari *percakapan* menjadi *pekerjaan*. Anda mendefinisikan seperti apa hasil akhirnya dan bagaimana mengukur kualitasnya. Agen bekerja menuju target tersebut, mengevaluasi diri sendiri dan beriterasi hingga hasil tercapai.
+`outcome` meningkatkan sesi dari *percakapan* menjadi *pekerjaan*. Anda menentukan seperti apa hasil akhirnya dan cara mengukur kualitasnya. Agen bekerja menuju target tersebut, mengevaluasi diri sendiri dan melakukan iterasi sampai hasil tercapai.
 
-Ketika Anda mendefinisikan sebuah outcome, harness secara otomatis menyediakan *grader* untuk mengevaluasi artefak terhadap rubrik. Ini memanfaatkan jendela konteks terpisah untuk menghindari pengaruh dari pilihan implementasi agen utama.
+Ketika Anda menentukan hasil, harness secara otomatis menyediakan *grader* untuk mengevaluasi artefak terhadap rubrik. Ini memanfaatkan jendela konteks terpisah untuk menghindari dipengaruhi oleh pilihan implementasi agen utama.
 
-Grader mengembalikan rincian per-kriteria: baik konfirmasi bahwa artefak memenuhi rubrik, atau kesenjangan spesifik antara pekerjaan saat ini dan persyaratan. Umpan balik tersebut diberikan kembali kepada agen untuk iterasi berikutnya.
+Grader mengembalikan rincian per-kriteria: baik konfirmasi bahwa artefak memenuhi rubrik, atau celah spesifik antara pekerjaan saat ini dan persyaratan. Umpan balik tersebut diberikan kembali kepada agen untuk iterasi berikutnya.
 
 <Note>
 Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. Fitur research preview juga memerlukan `managed-agents-2026-04-01-research-preview`. SDK menetapkan header beta ini secara otomatis.
@@ -27,45 +27,45 @@ Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-
 
 ## Buat rubrik
 
-Rubrik adalah dokumen markdown yang mendeskripsikan penilaian per-kriteria. Rubrik wajib ada.
+Rubrik adalah dokumen markdown yang menjelaskan penilaian per-kriteria. Rubrik diperlukan.
 
 <section title="Tips untuk menulis rubrik yang efektif">
 
-Susun rubrik sebagai kriteria yang eksplisit dan dapat dinilai, seperti "CSV berisi kolom harga dengan nilai numerik" daripada "Data terlihat bagus." Grader menilai setiap kriteria secara independen, sehingga kriteria yang samar menghasilkan evaluasi yang tidak akurat.
+Struktur rubrik sebagai kriteria yang eksplisit dan dapat dinilai, seperti "CSV berisi kolom harga dengan nilai numerik" daripada "Data terlihat bagus." Grader menilai setiap kriteria secara independen, jadi kriteria yang samar menghasilkan evaluasi yang bising.
 
-Jika Anda tidak memiliki rubrik yang siap, coba berikan Claude contoh artefak yang diketahui baik dan minta untuk menganalisis apa yang membuat konten tersebut baik, lalu ubah analisis tersebut menjadi rubrik. Pendekatan jalan tengah ini sering menghasilkan hasil yang lebih baik daripada menulis kriteria dari awal.
+Jika Anda tidak memiliki rubrik di tangan, coba berikan Claude contoh artefak yang diketahui baik dan minta untuk menganalisis apa yang membuat konten itu baik, kemudian ubah analisis itu menjadi rubrik. Pendekatan jalan tengah ini sering menghasilkan hasil yang lebih baik daripada menulis kriteria dari awal.
 
 </section>
 
 Contoh rubrik:
 
 ```markdown
-# DCF Model Rubric
+# Rubrik Model DCF
 
-## Revenue Projections
-- Uses historical revenue data from the last 5 fiscal years
-- Projects revenue for at least 5 years forward
-- Growth rate assumptions are explicitly stated and reasonable
+## Proyeksi Pendapatan
+- Menggunakan data pendapatan historis dari 5 tahun fiskal terakhir
+- Memproyeksikan pendapatan setidaknya 5 tahun ke depan
+- Asumsi tingkat pertumbuhan dinyatakan secara eksplisit dan masuk akal
 
-## Cost Structure
-- COGS and operating expenses are modeled separately
-- Margins are consistent with historical trends or deviations are justified
+## Struktur Biaya
+- COGS dan biaya operasional dimodelkan secara terpisah
+- Margin konsisten dengan tren historis atau penyimpangan dibenarkan
 
-## Discount Rate
-- WACC is calculated with stated assumptions for cost of equity and cost of debt
-- Beta, risk-free rate, and equity risk premium are sourced or justified
+## Tingkat Diskon
+- WACC dihitung dengan asumsi yang dinyatakan untuk biaya ekuitas dan biaya utang
+- Beta, tingkat bebas risiko, dan premi risiko ekuitas bersumber atau dibenarkan
 
-## Terminal Value
-- Uses either perpetuity growth or exit multiple method (stated which)
-- Terminal growth rate does not exceed long-term GDP growth
+## Nilai Terminal
+- Menggunakan metode pertumbuhan perpetuitas atau kelipatan keluar (nyatakan mana)
+- Tingkat pertumbuhan terminal tidak melebihi pertumbuhan PDB jangka panjang
 
-## Output Quality
-- All figures are in a single .xlsx file with clearly labeled sheets
-- Key assumptions are on a separate "Assumptions" sheet
-- Sensitivity analysis on WACC and terminal growth rate is included
+## Kualitas Output
+- Semua angka dalam satu file .xlsx dengan lembar yang diberi label dengan jelas
+- Asumsi kunci ada di lembar "Assumptions" terpisah
+- Analisis sensitivitas pada WACC dan tingkat pertumbuhan terminal disertakan
 ```
 
-Berikan rubrik sebagai teks inline pada `user.define_outcome` (ditampilkan di bagian berikutnya), atau unggah melalui Files API untuk digunakan kembali di berbagai sesi:
+Berikan rubrik sebagai teks inline pada `user.define_outcome` (ditunjukkan di bagian berikutnya), atau unggah melalui Files API untuk digunakan kembali di seluruh sesi:
 
 **Memerlukan header beta `files-api-2025-04-14`.**
 
@@ -144,9 +144,9 @@ Berikan rubrik sebagai teks inline pada `user.define_outcome` (ditampilkan di ba
   ```
 </CodeGroup>
 
-## Buat sesi dengan outcome
+## Buat sesi dengan hasil
 
-Setelah membuat sesi, kirim event `user.define_outcome`. Agen mulai bekerja segera; tidak diperlukan event pesan pengguna tambahan.
+Setelah membuat sesi, kirim acara `user.define_outcome`. Agen mulai bekerja segera; tidak ada acara pesan pengguna tambahan yang diperlukan.
 
 <CodeGroup>
   
@@ -191,7 +191,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen mulai bekerja sege
   # Create a session
   SESSION_ID=$(ant beta:sessions create \
     --agent "$AGENT_ID" \
-    --environment "$ENVIRONMENT_ID" \
+    --environment-id "$ENVIRONMENT_ID" \
     --title "Financial analysis on Costco" \
     --transform id --format yaml)
 
@@ -375,22 +375,22 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen mulai bekerja sege
   ```
 </CodeGroup>
 
-## Event outcome
+## Acara hasil
 
-Kemajuan pada sesi yang berorientasi outcome ditampilkan pada [stream](/docs/id/managed-agents/events-and-streaming) event.
+Kemajuan pada sesi berorientasi hasil ditampilkan pada [aliran](/docs/id/managed-agents/events-and-streaming) acara.
 
-- Event `agent.*` (pesan, penggunaan alat, dll.) menunjukkan kemajuan menuju outcome.
-- Event `span.outcome_evaluation_*` hanya dipancarkan untuk sesi yang berorientasi outcome dan menunjukkan jumlah loop iterasi serta proses umpan balik grader.
-- Anda juga dapat mengirim [event](/docs/id/managed-agents/events-and-streaming#user-events) `user.message` ke sesi yang berorientasi outcome, untuk mengarahkan pekerjaan agen saat berlangsung, tetapi ini tidak terlalu diperlukan; agen tahu untuk bekerja hingga iterasinya habis atau outcome tercapai.
-- Event `user.interrupt` akan menghentikan sementara pekerjaan pada outcome saat ini dan menandai `span.outcome_evaluation_end.result` sebagai `interrupted`, memungkinkan Anda memulai outcome baru.
-- Setelah evaluasi outcome terakhir, sesi dapat dilanjutkan sebagai sesi percakapan, atau outcome baru dapat dimulai. Sesi akan menyimpan riwayat outcome sebelumnya.
+- Acara `agent.*` (pesan, penggunaan alat, dll.) menunjukkan kemajuan menuju hasil.
+- Acara `span.outcome_evaluation_*` hanya dipancarkan untuk sesi berorientasi hasil dan menunjukkan jumlah loop iterasi dan proses umpan balik grader.
+- Anda juga dapat mengirim acara `user.message` [events](/docs/id/managed-agents/events-and-streaming#user-events) ke sesi berorientasi hasil, untuk mengarahkan pekerjaan agen saat berkembang, tetapi ini tidak perlu; agen tahu untuk bekerja sampai telah menghabiskan iterasinya atau mencapai hasil.
+- Acara `user.interrupt` akan menghentikan pekerjaan pada hasil saat ini dan menandai `span.outcome_evaluation_end.result` sebagai `interrupted`, memungkinkan Anda untuk memulai hasil baru.
+- Setelah evaluasi hasil akhir, sesi dapat dilanjutkan sebagai sesi percakapan, atau hasil baru dapat dimulai. Sesi akan mempertahankan riwayat hasil sebelumnya.
 
-### Event pengguna define outcome
+### Tentukan acara pengguna hasil
 <Note>
-Hanya satu outcome yang didukung pada satu waktu, tetapi Anda dapat menggabungkan outcome secara berurutan. Untuk melakukan ini, kirim event `user.define_outcome` baru setelah event terminal dari outcome sebelumnya.
+Hanya satu hasil yang didukung pada satu waktu, tetapi Anda dapat merantai hasil bersama secara berurutan. Untuk melakukan ini, kirim acara `user.define_outcome` baru setelah acara terminal hasil sebelumnya.
 </Note>
 
-Ini adalah event yang Anda kirim untuk memulai sebuah outcome. Event ini dikembalikan saat diterima, termasuk timestamp `processed_at` dan `outcome_id`.
+Ini adalah acara yang Anda kirim untuk memulai hasil. Ini diulang kembali saat diterima, termasuk stempel waktu `processed_at` dan `outcome_id`.
 
 ```json
 {
@@ -401,9 +401,9 @@ Ini adalah event yang Anda kirim untuk memulai sebuah outcome. Event ini dikemba
 }
 ```
 
-### Mulai evaluasi outcome
+### Awal evaluasi hasil
 
-Dipancarkan setelah grader memulai evaluasi atas satu loop iterasi. Field `iteration` adalah penghitung revisi yang diindeks dari 0: `0` adalah evaluasi pertama, `1` adalah evaluasi ulang setelah revisi pertama, dan seterusnya.
+Dipancarkan setelah grader memulai evaluasi atas satu loop iterasi. Bidang `iteration` adalah penghitung revisi berbasis 0: `0` adalah evaluasi pertama, `1` adalah re-evaluasi setelah revisi pertama, dan seterusnya.
 
 ```json
 {
@@ -415,9 +415,9 @@ Dipancarkan setelah grader memulai evaluasi atas satu loop iterasi. Field `itera
 }
 ```
 
-### Evaluasi outcome sedang berlangsung
+### Evaluasi hasil sedang berlangsung
 
-Heartbeat yang dipancarkan saat grader berjalan. Penalaran internal grader bersifat tidak transparan: Anda melihat bahwa ia sedang bekerja, bukan apa yang sedang dipikirkannya.
+Detak jantung yang dipancarkan saat grader berjalan. Penalaran internal grader tidak transparan: Anda melihat bahwa itu bekerja, bukan apa yang dipikirkannya.
 
 ```json
 {
@@ -428,17 +428,17 @@ Heartbeat yang dipancarkan saat grader berjalan. Penalaran internal grader bersi
 }
 ```
 
-### Akhir evaluasi outcome
+### Akhir evaluasi hasil
 
-Dipancarkan setelah grader selesai mengevaluasi satu iterasi. Field `result` menunjukkan apa yang terjadi selanjutnya.
+Dipancarkan setelah grader selesai mengevaluasi satu iterasi. Bidang `result` menunjukkan apa yang terjadi selanjutnya.
 
 | Hasil | Selanjutnya |
 | --- | --- |
 | `satisfied` | Sesi beralih ke `idle`. |
 | `needs_revision` | Agen memulai siklus iterasi baru. |
-| `max_iterations_reached` | Tidak ada siklus evaluasi lebih lanjut. Agen dapat menjalankan satu revisi terakhir sebelum sesi beralih ke `idle`. |
+| `max_iterations_reached` | Tidak ada siklus evaluasi lebih lanjut. Agen dapat menjalankan satu revisi akhir sebelum sesi beralih ke `idle`. |
 | `failed` | Sesi beralih ke `idle`. Dikembalikan ketika rubrik secara fundamental tidak cocok dengan tugas, misalnya jika deskripsi dan rubrik saling bertentangan. |
-| `interrupted` | Hanya dipancarkan jika `outcome_evaluation_start` sudah terpicu sebelum interupsi. |
+| `interrupted` | Hanya dipancarkan jika `outcome_evaluation_start` sudah dipecat sebelum gangguan. |
 
 ```json
 {
@@ -459,9 +459,9 @@ Dipancarkan setelah grader selesai mengevaluasi satu iterasi. Field `result` men
 }
 ```
 
-## Memeriksa status outcome
+## Memeriksa status hasil
 
-Anda dapat mendengarkan [stream event](/docs/id/managed-agents/events-and-streaming) untuk `span.outcome_evaluation_end`, atau melakukan polling `GET /v1/sessions/:id` dan membaca `outcome_evaluations[].result`:
+Anda dapat mendengarkan pada [aliran acara](/docs/id/managed-agents/events-and-streaming) untuk `span.outcome_evaluation_end`, atau polling `GET /v1/sessions/:id` dan membaca `outcome_evaluations[].result`:
 
 <CodeGroup>
   
@@ -541,7 +541,7 @@ Anda dapat mendengarkan [stream event](/docs/id/managed-agents/events-and-stream
 
 ## Mengambil deliverable
 
-Agen menulis file output ke `/mnt/session/outputs/` di dalam container. Setelah sesi idle, ambil melalui [Files API](/docs/id/build-with-claude/files) yang dicakup ke sesi:
+Agen menulis file output ke `/mnt/session/outputs/` di dalam kontainer. Setelah sesi idle, ambil melalui [Files API](/docs/id/build-with-claude/files) yang dibatasi pada sesi:
 
 <CodeGroup>
   ```bash curl

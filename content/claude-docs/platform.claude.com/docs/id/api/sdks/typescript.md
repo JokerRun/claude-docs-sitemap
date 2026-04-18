@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/sdks/typescript
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 077e0fe60ad5105b275f3da222e6a63f6aef2bb022ecaa1d51ce230fb4fe2284
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 0e92903968c479dd9dc71a80e90e596f9c078f3661d236abe74c9009b1f58084
 ---
 
 # TypeScript SDK
 
-Instal dan konfigurasi Anthropic TypeScript SDK untuk Node.js, Deno, Bun, dan lingkungan browser
+Instal dan konfigurasi Anthropic TypeScript SDK untuk lingkungan Node.js, Deno, Bun, dan browser
 
 ---
 
@@ -40,11 +40,11 @@ Runtime berikut didukung:
 
 Perhatikan bahwa React Native tidak didukung saat ini.
 
-Jika Anda tertarik dengan lingkungan runtime lain, silakan buka atau dukung masalah di [GitHub](https://github.com/anthropics/anthropic-sdk-typescript).
+Jika Anda tertarik dengan lingkungan runtime lain, silakan buka atau berikan suara pada masalah di [GitHub](https://github.com/anthropics/anthropic-sdk-typescript).
 
 ## Penggunaan
 
-```typescript
+```typescript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -54,17 +54,17 @@ const client = new Anthropic({
 const message = await client.messages.create({
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello, Claude" }],
-  model: "claude-opus-4-6"
+  model: "claude-opus-4-7"
 });
 
 console.log(message.content);
 ```
 
-## Tipe Permintaan & Respons
+## Jenis permintaan dan respons
 
 Perpustakaan ini mencakup definisi TypeScript untuk semua parameter permintaan dan bidang respons. Anda dapat mengimpor dan menggunakannya seperti ini:
 
-```typescript
+```typescript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -74,14 +74,14 @@ const client = new Anthropic({
 const params: Anthropic.MessageCreateParams = {
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello, Claude" }],
-  model: "claude-opus-4-6"
+  model: "claude-opus-4-7"
 };
 const message: Anthropic.Message = await client.messages.create(params);
 ```
 
 Dokumentasi untuk setiap metode, parameter permintaan, dan bidang respons tersedia dalam docstring dan akan muncul saat mengarahkan kursor di sebagian besar editor modern.
 
-## Menghitung Token
+## Menghitung token
 
 Anda dapat melihat penggunaan yang tepat untuk permintaan tertentu melalui properti respons `usage`, misalnya
 
@@ -93,9 +93,9 @@ console.log(message.usage);
 
 ## Respons streaming
 
-Kami menyediakan dukungan untuk respons streaming menggunakan Server Sent Events (SSE).
+SDK menyediakan dukungan untuk respons streaming menggunakan Server Sent Events (SSE).
 
-```typescript
+```typescript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -103,7 +103,7 @@ const client = new Anthropic();
 const stream = await client.messages.create({
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello, Claude" }],
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   stream: true
 });
 for await (const messageStreamEvent of stream) {
@@ -111,13 +111,13 @@ for await (const messageStreamEvent of stream) {
 }
 ```
 
-Atau `break` di dalam loop iterasi untuk membatalkan.
+Jika Anda perlu membatalkan aliran, Anda dapat `break` dari loop atau memanggil `stream.controller.abort()`.
 
-## Pembantu Streaming
+## Pembantu streaming
 
 Perpustakaan ini menyediakan beberapa kemudahan untuk pesan streaming, misalnya:
 
-```typescript
+```typescript hidelines={1..5,-3..-1}
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
@@ -125,7 +125,7 @@ const anthropic = new Anthropic();
 async function main() {
   const stream = anthropic.messages
     .stream({
-      model: "claude-opus-4-6",
+      model: "claude-opus-4-7",
       max_tokens: 1024,
       messages: [
         {
@@ -149,13 +149,13 @@ Streaming dengan `client.messages.stream(...)` mengekspos berbagai pembantu untu
 
 Alternatifnya, Anda dapat menggunakan `client.messages.create({ ..., stream: true })` yang hanya mengembalikan iterable asinkron dari acara dalam aliran dan dengan demikian menggunakan lebih sedikit memori (tidak membangun objek pesan akhir untuk Anda).
 
-## Pembantu Alat
+## Pembantu alat
 
 SDK ini menyediakan pembantu untuk memudahkan pembuatan dan menjalankan alat di Messages API. Anda dapat menggunakan skema Zod atau JSON Schemas untuk mendeskripsikan input ke alat. Anda kemudian dapat menjalankan alat tersebut menggunakan metode `client.messages.toolRunner()`. Metode ini akan menangani melewatkan input yang dihasilkan oleh model yang dipilih ke alat yang tepat dan melewatkan hasilnya kembali ke model.
 
-Untuk detail lebih lanjut tentang penggunaan alat, lihat [ikhtisar penggunaan alat](/docs/id/agents-and-tools/tool-use/overview).
+Untuk detail lebih lanjut tentang penggunaan alat, lihat [gambaran umum penggunaan alat](/docs/id/agents-and-tools/tool-use/overview).
 
-```typescript
+```typescript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
@@ -175,18 +175,123 @@ const weatherTool = betaZodTool({
 });
 
 const finalMessage = await anthropic.beta.messages.toolRunner({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1000,
   messages: [{ role: "user", content: "What is the weather in San Francisco?" }],
   tools: [weatherTool]
 });
 ```
 
+### Kesalahan alat
+
+Untuk melaporkan kesalahan dari alat kembali ke model, lemparkan `ToolError` dari fungsi `run`. Tidak seperti `Error` biasa, `ToolError` menerima blok konten, memungkinkan Anda untuk menyertakan gambar atau konten terstruktur lainnya dalam respons kesalahan:
+
+```typescript nocheck
+import { ToolError } from "@anthropic-ai/sdk/lib/tools/BetaRunnableTool";
+
+const screenshotTool = betaZodTool({
+  name: "take_screenshot",
+  inputSchema: z.object({ url: z.string() }),
+  run: async (input) => {
+    if (!isValidUrl(input.url)) {
+      throw new ToolError(`Invalid URL: ${input.url}`);
+    }
+    const result = await takeScreenshot(input.url);
+    if (result.error) {
+      // Include the error screenshot so the model can see what went wrong
+      throw new ToolError([
+        { type: "text", text: `Failed to load page: ${result.error}` },
+        {
+          type: "image",
+          source: { type: "base64", data: result.screenshot, media_type: "image/png" }
+        }
+      ]);
+    }
+    return {
+      type: "image",
+      source: { type: "base64", data: result.screenshot, media_type: "image/png" }
+    };
+  }
+});
+```
+
+Jika `Error` biasa dilemparkan, pesan akan dikonversi ke blok konten teks.
+
 ## Penggunaan alat
 
-SDK ini menyediakan dukungan untuk penggunaan alat, alias pemanggilan fungsi. Detail lebih lanjut dapat ditemukan di [ikhtisar penggunaan alat](/docs/id/agents-and-tools/tool-use/overview).
+SDK ini menyediakan dukungan untuk penggunaan alat, alias pemanggilan fungsi. Detail lebih lanjut dapat ditemukan di [gambaran umum penggunaan alat](/docs/id/agents-and-tools/tool-use/overview).
 
-## Batch Pesan
+## Pembantu MCP
+
+SDK ini menyediakan pembantu untuk integrasi dengan server [Model Context Protocol (MCP)](https://modelcontextprotocol.io/). Pembantu ini mengonversi jenis MCP ke jenis Claude API, mengurangi boilerplate saat bekerja dengan alat MCP, prompt, dan sumber daya.
+
+<Tip>
+Claude API juga mendukung parameter [`mcp_servers`](/docs/id/agents-and-tools/mcp) yang memungkinkan Claude terhubung langsung ke server MCP jarak jauh. Gunakan `mcp_servers` ketika Anda memiliki server jarak jauh yang dapat diakses melalui URL dan hanya memerlukan dukungan alat. Gunakan pembantu MCP ketika Anda memerlukan server MCP lokal, prompt, sumber daya, atau kontrol lebih besar atas koneksi MCP.
+</Tip>
+
+Untuk dukungan server MCP jarak jauh bawaan Claude API, lihat [MCP Connector](/docs/id/agents-and-tools/mcp-connector).
+
+```typescript nocheck hidelines={1}
+import Anthropic from "@anthropic-ai/sdk";
+import {
+  mcpTools,
+  mcpMessages,
+  mcpResourceToContent,
+  mcpResourceToFile
+} from "@anthropic-ai/sdk/helpers/beta/mcp";
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+
+const anthropic = new Anthropic();
+
+// Connect to an MCP server
+const transport = new StdioClientTransport({ command: "mcp-server", args: [] });
+const mcpClient = new Client({ name: "my-client", version: "1.0.0" });
+await mcpClient.connect(transport);
+
+// Use MCP prompts
+const { messages } = await mcpClient.getPrompt({ name: "my-prompt" });
+const response = await anthropic.beta.messages.create({
+  model: "claude-opus-4-7",
+  max_tokens: 1024,
+  messages: mcpMessages(messages)
+});
+
+// Use MCP tools with toolRunner
+const { tools } = await mcpClient.listTools();
+const runner = await anthropic.beta.messages.toolRunner({
+  model: "claude-opus-4-7",
+  max_tokens: 1024,
+  messages: [{ role: "user", content: "Use the available tools" }],
+  tools: mcpTools(tools, mcpClient)
+});
+
+// Use MCP resources as content
+const resource = await mcpClient.readResource({ uri: "file:///path/to/doc.txt" });
+await anthropic.beta.messages.create({
+  model: "claude-opus-4-7",
+  max_tokens: 1024,
+  messages: [
+    {
+      role: "user",
+      content: [
+        mcpResourceToContent(resource),
+        { type: "text", text: "Summarize this document" }
+      ]
+    }
+  ]
+});
+
+// Upload MCP resources as files
+const fileResource = await mcpClient.readResource({ uri: "file:///path/to/data.json" });
+await anthropic.beta.files.upload({ file: mcpResourceToFile(fileResource) });
+```
+
+### Penanganan kesalahan MCP
+
+Fungsi konversi melemparkan `UnsupportedMCPValueError` jika nilai MCP tidak didukung oleh Claude API (misalnya, jenis konten yang tidak didukung, jenis MIME yang tidak didukung, tautan sumber daya non-http/https).
+
+## Batch pesan
 
 SDK ini menyediakan dukungan untuk [Message Batches API](/docs/id/build-with-claude/batch-processing) di bawah namespace `client.messages.batches`.
 
@@ -195,12 +300,12 @@ SDK ini menyediakan dukungan untuk [Message Batches API](/docs/id/build-with-cla
 Message Batches mengambil array permintaan, di mana setiap objek memiliki pengidentifikasi `custom_id`, dan `params` permintaan yang sama persis dengan Messages API standar:
 
 ```typescript
-await anthropic.messages.batches.create({
+await client.messages.batches.create({
   requests: [
     {
       custom_id: "my-first-request",
       params: {
-        model: "claude-opus-4-6",
+        model: "claude-opus-4-7",
         max_tokens: 1024,
         messages: [{ role: "user", content: "Hello, world" }]
       }
@@ -208,7 +313,7 @@ await anthropic.messages.batches.create({
     {
       custom_id: "my-second-request",
       params: {
-        model: "claude-opus-4-6",
+        model: "claude-opus-4-7",
         max_tokens: 1024,
         messages: [{ role: "user", content: "Hi again, friend" }]
       }
@@ -221,8 +326,8 @@ await anthropic.messages.batches.create({
 
 Setelah Message Batch diproses, ditunjukkan oleh `.processing_status === 'ended'`, Anda dapat mengakses hasil dengan `.batches.results()`
 
-```typescript
-const results = await anthropic.messages.batches.results(batch_id);
+```typescript nocheck
+const results = await client.messages.batches.results(batch_id);
 for await (const entry of results) {
   if (entry.result.type === "succeeded") {
     console.log(entry.result.message.content);
@@ -232,39 +337,41 @@ for await (const entry of results) {
 
 ## Unggahan file
 
-Parameter permintaan yang sesuai dengan unggahan file dapat diteruskan dalam berbagai bentuk:
+Parameter permintaan yang sesuai dengan unggahan file dapat diteruskan dalam banyak bentuk berbeda:
 
 - `File` (atau objek dengan struktur yang sama)
-- `fetch` `Response` (atau objek dengan struktur yang sama)
+- `Response` `fetch` (atau objek dengan struktur yang sama)
 - `fs.ReadStream`
-- nilai pengembalian dari pembantu `toFile` kami
+- nilai pengembalian dari pembantu `toFile`
 
-Perhatikan bahwa kami merekomendasikan Anda mengatur tipe konten secara eksplisit karena API file tidak akan menyimpulkannya untuk Anda:
+Atur jenis konten secara eksplisit karena API file tidak akan menyimpulkannya untuk Anda:
 
-```typescript
+```typescript nocheck
 import fs from "fs";
 import Anthropic, { toFile } from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
-// Jika Anda memiliki akses ke Node `fs` kami merekomendasikan menggunakan `fs.createReadStream()`:
+// If you have access to Node `fs` we recommend using `fs.createReadStream()`:
 await client.beta.files.upload({
-  file: await toFile(fs.createReadStream("/path/to/file"), undefined, { type: "application/json" }),
+  file: await toFile(fs.createReadStream("/path/to/file"), undefined, {
+    type: "application/json"
+  }),
   betas: ["files-api-2025-04-14"]
 });
 
-// Atau jika Anda memiliki web `File` API Anda dapat melewatkan instance `File`:
+// Or if you have the web `File` API you can pass a `File` instance:
 await client.beta.files.upload({
   file: new File(["my bytes"], "file.txt", { type: "text/plain" }),
   betas: ["files-api-2025-04-14"]
 });
-// Anda juga dapat melewatkan `fetch` `Response`:
+// You can also pass a `fetch` `Response`:
 await client.beta.files.upload({
   file: await fetch("https://somesite/file"),
   betas: ["files-api-2025-04-14"]
 });
 
-// Atau `Buffer` / `Uint8Array`
+// Or a `Buffer` / `Uint8Array`
 await client.beta.files.upload({
   file: await toFile(Buffer.from("my bytes"), "file", { type: "text/plain" }),
   betas: ["files-api-2025-04-14"]
@@ -279,18 +386,14 @@ await client.beta.files.upload({
 
 Ketika perpustakaan tidak dapat terhubung ke API,
 atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx),
-subkelas `APIError` akan dilempar:
+subkelas `APIError` akan dilemparkan:
 
 ```typescript
-import Anthropic from "@anthropic-ai/sdk";
-
-const client = new Anthropic();
-
 const message = await client.messages
   .create({
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }],
-    model: "claude-opus-4-6"
+    model: "claude-opus-4-7"
   })
   .catch(async (err) => {
     if (err instanceof Anthropic.APIError) {
@@ -305,7 +408,7 @@ const message = await client.messages
 
 Kode kesalahan adalah sebagai berikut:
 
-| Kode Status | Tipe Kesalahan              |
+| Kode Status | Jenis Kesalahan             |
 | ----------- | -------------------------- |
 | 400         | `BadRequestError`          |
 | 401         | `AuthenticationError`      |
@@ -318,7 +421,7 @@ Kode kesalahan adalah sebagai berikut:
 
 ## ID Permintaan
 
-> Untuk informasi lebih lanjut tentang debugging permintaan, lihat [dokumen ini](/docs/id/api/errors#request-id)
+> Untuk informasi lebih lanjut tentang permintaan debugging, lihat [dokumen ini](/docs/id/api/errors#request-id)
 
 Semua respons objek dalam SDK menyediakan properti `_request_id` yang ditambahkan dari header respons `request-id` sehingga Anda dapat dengan cepat mencatat permintaan yang gagal dan melaporkannya kembali ke Anthropic.
 
@@ -326,36 +429,41 @@ Semua respons objek dalam SDK menyediakan properti `_request_id` yang ditambahka
 const message = await client.messages.create({
   max_tokens: 1024,
   messages: [{ role: "user", content: "Hello, Claude" }],
-  model: "claude-opus-4-6"
+  model: "claude-opus-4-7"
 });
 console.log(message._request_id); // req_018EeWyXxfu5pfWkrYcMdjWG
 ```
 
-## Percobaan Ulang
+## Percobaan ulang
 
 Kesalahan tertentu akan secara otomatis dicoba ulang 2 kali secara default, dengan backoff eksponensial pendek.
 Kesalahan koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict,
-429 Rate Limit, dan >=500 kesalahan Internal semuanya akan dicoba ulang secara default.
+429 Rate Limit, dan >=500 Internal errors semuanya akan dicoba ulang secara default.
 
 Anda dapat menggunakan opsi `maxRetries` untuk mengonfigurasi atau menonaktifkan ini:
 
 ```typescript
-// Konfigurasi default untuk semua permintaan:
+// Configure the default for all requests:
 const client = new Anthropic({
-  maxRetries: 0 // default adalah 2
+  maxRetries: 0 // default is 2
 });
 
-// Atau, konfigurasi per-permintaan:
-await client.messages.create({ max_tokens: 1024, messages: [{ role: "user", content: "Hello, Claude" }], model: "claude-opus-4-6" }, {
-  maxRetries: 5
-});
+// Or, configure per-request:
+await client.messages.create(
+  {
+    max_tokens: 1024,
+    messages: [{ role: "user", content: "Hello, Claude" }],
+    model: "claude-opus-4-7"
+  },
+  { maxRetries: 5 }
+);
 ```
 
-## Batas Waktu
+## Batas waktu
 
-Secara default permintaan habis waktu setelah 10 menit. Namun jika Anda telah menentukan nilai `max_tokens` besar dan _tidak_ streaming, batas waktu default akan dihitung secara dinamis menggunakan rumus:
+Secara default, permintaan habis waktu setelah 10 menit. Namun jika Anda telah menentukan nilai `max_tokens` besar dan _tidak_ streaming, batas waktu default akan dihitung secara dinamis menggunakan rumus:
 
-```typescript
+```typescript nocheck
 const minimum = 10 * 60;
 const calculated = (60 * 60 * maxTokens) / 128_000;
 return calculated < minimum ? minimum * 1000 : calculated * 1000;
@@ -366,49 +474,54 @@ yang akan menghasilkan batas waktu hingga 60 menit, diskalakan oleh parameter `m
 Anda dapat mengonfigurasi ini dengan opsi `timeout`:
 
 ```typescript
-// Konfigurasi default untuk semua permintaan:
+// Configure the default for all requests:
 const client = new Anthropic({
-  timeout: 20 * 1000 // 20 detik (default adalah 10 menit)
+  timeout: 20 * 1000 // 20 seconds (default is 10 minutes)
 });
 
-// Timpa per-permintaan:
-await client.messages.create({ max_tokens: 1024, messages: [{ role: "user", content: "Hello, Claude" }], model: "claude-opus-4-6" }, {
-  timeout: 5 * 1000
-});
+// Override per-request:
+await client.messages.create(
+  {
+    max_tokens: 1024,
+    messages: [{ role: "user", content: "Hello, Claude" }],
+    model: "claude-opus-4-7"
+  },
+  { timeout: 5 * 1000 }
+);
 ```
 
-Saat batas waktu, `APIConnectionTimeoutError` dilempar.
+Pada batas waktu, `APIConnectionTimeoutError` dilemparkan.
 
 Perhatikan bahwa permintaan yang habis waktu akan [dicoba ulang dua kali secara default](#retries).
 
-## Permintaan Panjang
+## Permintaan panjang
 
 <Warning>
-Kami sangat mendorong Anda menggunakan [Messages API](#streaming-responses) streaming untuk permintaan yang berjalan lebih lama.
+Pertimbangkan menggunakan [Messages API](#streaming-responses) streaming untuk permintaan yang berjalan lebih lama.
 </Warning>
 
-Kami tidak merekomendasikan pengaturan nilai `max_tokens` besar tanpa menggunakan streaming.
-Beberapa jaringan dapat menghapus koneksi idle setelah periode waktu tertentu, yang
+Hindari mengatur nilai `max_tokens` besar tanpa menggunakan streaming.
+Beberapa jaringan mungkin menghapus koneksi idle setelah periode waktu tertentu, yang
 dapat menyebabkan permintaan gagal atau [habis waktu](#timeouts) tanpa menerima respons dari Anthropic.
 
-SDK ini juga akan melempar kesalahan jika permintaan non-streaming diharapkan lebih lama dari kira-kira 10 menit.
+SDK ini juga akan melemparkan kesalahan jika permintaan non-streaming diharapkan lebih lama dari kira-kira 10 menit.
 Melewatkan `stream: true` atau [menimpa](#timeouts) opsi `timeout` di tingkat klien atau permintaan menonaktifkan kesalahan ini.
 
 Latensi permintaan yang diharapkan lebih lama dari [batas waktu](#timeouts) untuk permintaan non-streaming
-akan menghasilkan klien mengakhiri koneksi dan mencoba ulang tanpa menerima respons.
+akan menghasilkan klien menghentikan koneksi dan mencoba ulang tanpa menerima respons.
 
-Ketika didukung oleh implementasi `fetch`, kami mengatur opsi [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/overview.html) untuk mengurangi dampak batas waktu koneksi idle pada beberapa jaringan.
+Ketika didukung oleh implementasi `fetch`, SDK menetapkan opsi [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/overview.html) untuk mengurangi dampak batas waktu koneksi idle pada beberapa jaringan.
 Ini dapat [ditimpa](#configuring-proxies) dengan mengonfigurasi proxy khusus.
 
-## Paginasi Otomatis
+## Paginasi otomatis
 
 Metode daftar di Claude API dipaginasi.
 Anda dapat menggunakan sintaks `for await ... of` untuk mengulangi item di semua halaman:
 
 ```typescript
-async function fetchAllMessageBatches(params) {
+async function fetchAllMessageBatches(params: Record<string, unknown>) {
   const allMessageBatches = [];
-  // Secara otomatis mengambil lebih banyak halaman sesuai kebutuhan.
+  // Automatically fetches more pages as needed.
   for await (const messageBatch of client.messages.batches.list({ limit: 20 })) {
     allMessageBatches.push(messageBatch);
   }
@@ -424,22 +537,22 @@ for (const messageBatch of page.data) {
   console.log(messageBatch);
 }
 
-// Metode kenyamanan disediakan untuk paginasi manual:
+// Convenience methods are provided for manually paginating:
 while (page.hasNextPage()) {
   page = await page.getNextPage();
   // ...
 }
 ```
 
-## Header Default
+## Header default
 
-Kami secara otomatis mengirim header `anthropic-version` yang ditetapkan ke `2023-06-01`.
+SDK secara otomatis mengirim header `anthropic-version` yang diatur ke `2023-06-01`.
 
 Jika perlu, Anda dapat menimpanya dengan mengatur header default berdasarkan per-permintaan.
 
-Perhatikan bahwa melakukan hal ini dapat menghasilkan tipe yang tidak benar dan perilaku yang tidak terduga atau tidak ditentukan lainnya dalam SDK.
+Perhatikan bahwa melakukan hal ini dapat menghasilkan jenis yang tidak benar dan perilaku yang tidak terduga atau tidak ditentukan lainnya dalam SDK.
 
-```typescript
+```typescript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -448,21 +561,21 @@ const message = await client.messages.create(
   {
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }],
-    model: "claude-opus-4-6"
+    model: "claude-opus-4-7"
   },
   { headers: { "anthropic-version": "My-Custom-Value" } }
 );
 ```
 
-## Penggunaan Lanjutan
+## Penggunaan lanjutan
 
 ### Mengakses data Response mentah (misalnya, header)
 
-`Response` "mentah" yang dikembalikan oleh `fetch()` dapat diakses melalui metode `.asResponse()` pada tipe `APIPromise` yang semua metode kembalikan.
-Metode ini mengembalikan segera setelah header untuk respons yang berhasil diterima dan tidak mengonsumsi badan respons, jadi Anda bebas menulis logika parsing atau streaming khusus.
+`Response` "mentah" yang dikembalikan oleh `fetch()` dapat diakses melalui metode `.asResponse()` pada jenis `APIPromise` yang dikembalikan semua metode.
+Metode ini mengembalikan segera setelah header untuk respons yang berhasil diterima dan tidak mengonsumsi badan respons, sehingga Anda bebas menulis logika parsing atau streaming khusus.
 
-Anda juga dapat menggunakan metode `.withResponse()` untuk mendapatkan `Response` mentah bersama dengan data yang diurai.
-Tidak seperti `.asResponse()` metode ini mengonsumsi badan, mengembalikan setelah diurai.
+Anda juga dapat menggunakan metode `.withResponse()` untuk mendapatkan `Response` mentah bersama dengan data yang diuraikan.
+Tidak seperti `.asResponse()` metode ini mengonsumsi badan, mengembalikan setelah diuraikan.
 
 ```typescript
 const client = new Anthropic();
@@ -471,17 +584,17 @@ const response = await client.messages
   .create({
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }],
-    model: "claude-opus-4-6"
+    model: "claude-opus-4-7"
   })
   .asResponse();
 console.log(response.headers.get("X-My-Header"));
-console.log(response.statusText); // akses objek Response yang mendasar
+console.log(response.statusText); // access the underlying Response object
 
 const { data: message, response: raw } = await client.messages
   .create({
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }],
-    model: "claude-opus-4-6"
+    model: "claude-opus-4-7"
   })
   .withResponse();
 console.log(raw.headers.get("X-My-Header"));
@@ -502,15 +615,15 @@ Tingkat log dapat dikonfigurasi dengan dua cara:
 1. Melalui variabel lingkungan `ANTHROPIC_LOG`
 2. Menggunakan opsi klien `logLevel` (menimpa variabel lingkungan jika diatur)
 
-```typescript
+```typescript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
-  logLevel: "debug" // Tampilkan semua pesan log
+  logLevel: "debug" // Show all log messages
 });
 ```
 
-Tingkat log yang tersedia, dari paling ke paling tidak verbose:
+Tingkat log yang tersedia, dari paling ke paling sedikit verbose:
 
 - `'debug'` - Tampilkan pesan debug, info, peringatan, dan kesalahan
 - `'info'` - Tampilkan pesan info, peringatan, dan kesalahan
@@ -530,7 +643,7 @@ Sebagian besar perpustakaan logging didukung, termasuk [pino](https://www.npmjs.
 Saat menyediakan logger khusus, opsi `logLevel` masih mengontrol pesan mana yang dipancarkan, pesan
 di bawah tingkat yang dikonfigurasi tidak akan dikirim ke logger Anda.
 
-```typescript
+```typescript nocheck hidelines={1}
 import Anthropic from "@anthropic-ai/sdk";
 import pino from "pino";
 
@@ -538,21 +651,21 @@ const logger = pino();
 
 const client = new Anthropic({
   logger: logger.child({ name: "Anthropic" }),
-  logLevel: "debug" // Kirim semua pesan ke pino, memungkinkannya untuk memfilter
+  logLevel: "debug" // Send all messages to pino, allowing it to filter
 });
 ```
 
 ### Membuat permintaan khusus/tidak terdokumentasi
 
-Perpustakaan ini diketik untuk akses yang mudah ke API yang terdokumentasi. Jika Anda perlu mengakses titik akhir,
-parameter, atau properti respons yang tidak terdokumentasi, perpustakaan masih dapat digunakan.
+Perpustakaan ini diketik untuk akses yang mudah ke API yang terdokumentasi. Jika Anda perlu mengakses endpoint,
+param, atau properti respons yang tidak terdokumentasi, perpustakaan masih dapat digunakan.
 
-#### Titik akhir yang tidak terdokumentasi
+#### Endpoint yang tidak terdokumentasi
 
-Untuk membuat permintaan ke titik akhir yang tidak terdokumentasi, Anda dapat menggunakan `client.get`, `client.post`, dan kata kerja HTTP lainnya.
+Untuk membuat permintaan ke endpoint yang tidak terdokumentasi, Anda dapat menggunakan `client.get`, `client.post`, dan kata kerja HTTP lainnya.
 Opsi pada klien, seperti percobaan ulang, akan dihormati saat membuat permintaan ini.
 
-```typescript
+```typescript nocheck
 await client.post("/some/path", {
   body: { some_prop: "foo" },
   query: { some_query_arg: "bar" }
@@ -561,12 +674,12 @@ await client.post("/some/path", {
 
 #### Parameter permintaan yang tidak terdokumentasi
 
-Untuk membuat permintaan menggunakan parameter yang tidak terdokumentasi, Anda dapat menggunakan `// @ts-expect-error` pada parameter yang tidak terdokumentasi. Perpustakaan ini tidak memvalidasi pada waktu runtime bahwa permintaan cocok dengan tipe, jadi nilai tambahan apa pun yang Anda kirim akan dikirim apa adanya.
+Untuk membuat permintaan menggunakan parameter yang tidak terdokumentasi, Anda dapat menggunakan `// @ts-expect-error` pada parameter yang tidak terdokumentasi. Perpustakaan ini tidak memvalidasi pada runtime bahwa permintaan cocok dengan jenis, jadi nilai tambahan apa pun yang Anda kirim akan dikirim apa adanya.
 
 ```typescript
 client.messages.create({
   // ...
-  // @ts-expect-error baz belum publik
+  // @ts-expect-error baz is not yet public
   baz: "undocumented option"
 });
 ```
@@ -577,7 +690,7 @@ Jika Anda ingin secara eksplisit mengirim argumen tambahan, Anda dapat melakukan
 
 #### Properti respons yang tidak terdokumentasi
 
-Untuk mengakses properti respons yang tidak terdokumentasi, Anda dapat mengakses objek respons dengan `// @ts-expect-error` pada objek respons, atau mentransmisikan objek respons ke tipe yang diperlukan. Seperti parameter permintaan, kami tidak memvalidasi atau menghapus properti tambahan dari respons dari API.
+Untuk mengakses properti respons yang tidak terdokumentasi, Anda dapat mengakses objek respons dengan `// @ts-expect-error` pada objek respons, atau mentransmisikan objek respons ke jenis yang diperlukan. Seperti parameter permintaan, SDK tidak memvalidasi atau menghapus properti tambahan dari respons dari API.
 
 ### Menyesuaikan klien fetch
 
@@ -585,7 +698,7 @@ Secara default, perpustakaan ini mengharapkan fungsi `fetch` global didefinisika
 
 Jika Anda ingin menggunakan fungsi `fetch` yang berbeda, Anda dapat mempolyfill global:
 
-```typescript
+```typescript nocheck
 import fetch from "my-fetch";
 
 globalThis.fetch = fetch;
@@ -593,7 +706,7 @@ globalThis.fetch = fetch;
 
 Atau teruskan ke klien:
 
-```typescript
+```typescript nocheck hidelines={1}
 import Anthropic from "@anthropic-ai/sdk";
 import fetch from "my-fetch";
 
@@ -604,12 +717,12 @@ const client = new Anthropic({ fetch });
 
 Jika Anda ingin mengatur opsi `fetch` khusus tanpa menimpa fungsi `fetch`, Anda dapat menyediakan objek `fetchOptions` saat membuat instance klien atau membuat permintaan. (Opsi khusus permintaan menimpa opsi klien.)
 
-```typescript
+```typescript hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
   fetchOptions: {
-    // opsi `RequestInit`
+    // `RequestInit` options
   }
 });
 ```
@@ -620,7 +733,8 @@ Untuk memodifikasi perilaku proxy, Anda dapat menyediakan `fetchOptions` khusus 
 
 <Tabs>
 <Tab title="Node.js">
-```typescript
+
+```typescript nocheck hidelines={1}
 import Anthropic from "@anthropic-ai/sdk";
 import * as undici from "undici";
 
@@ -633,7 +747,8 @@ const client = new Anthropic({
 ```
 </Tab>
 <Tab title="Bun">
-```typescript
+
+```typescript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -644,7 +759,8 @@ const client = new Anthropic({
 ```
 </Tab>
 <Tab title="Deno">
-```typescript
+
+```typescript nocheck
 import Anthropic from "npm:@anthropic-ai/sdk";
 
 const httpClient = Deno.createHttpClient({ proxy: { url: "http://localhost:8888" } });
@@ -657,20 +773,20 @@ const client = new Anthropic({
 </Tab>
 </Tabs>
 
-## Fitur Beta
+## Fitur beta
 
-Kami memperkenalkan fitur beta sebelum tersedia secara umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [ikhtisar build with Claude](/docs/id/build-with-claude/overview).
+Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [gambaran umum build with Claude](/docs/id/build-with-claude/overview).
 
 Anda dapat mengakses sebagian besar fitur API beta melalui properti beta klien. Untuk mengaktifkan fitur beta tertentu, Anda perlu menambahkan [header beta](/docs/id/api/beta-headers) yang sesuai ke bidang `betas` saat membuat pesan.
 
 Misalnya, untuk menggunakan [Files API](/docs/id/build-with-claude/files):
 
-```typescript
+```typescript nocheck hidelines={1..2}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 const response = await client.beta.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     {
@@ -701,7 +817,7 @@ Mengaktifkan opsi `dangerouslyAllowBrowser` dapat berbahaya karena mengekspos kr
 
 Dalam skenario tertentu di mana mengaktifkan dukungan browser mungkin tidak menimbulkan risiko signifikan:
 
-- **Alat Internal:** Jika aplikasi digunakan hanya dalam lingkungan internal yang terkontrol di mana pengguna dipercaya, risiko paparan kredensial dapat dimitigasi.
+- **Alat Internal:** Jika aplikasi digunakan semata-mata dalam lingkungan internal yang terkontrol di mana pengguna dipercaya, risiko paparan kredensial dapat dimitigasi.
 - **Tujuan pengembangan atau debugging:** Mengaktifkan fitur ini secara sementara mungkin dapat diterima, asalkan kredensial berumur pendek, tidak juga digunakan di lingkungan produksi, atau sering dirotasi.
 
 </section>
@@ -709,57 +825,29 @@ Dalam skenario tertentu di mana mengaktifkan dukungan browser mungkin tidak meni
 ## Integrasi platform
 
 <Note>
-Untuk panduan penyiapan platform terperinci, lihat:
+Untuk panduan penyiapan platform terperinci dengan contoh kode, lihat:
 - [Amazon Bedrock](/docs/id/build-with-claude/claude-on-amazon-bedrock)
 - [Google Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai)
-- [Microsoft Azure / Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry)
+- [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
-### Amazon Bedrock
+TypeScript SDK mendukung Bedrock, Vertex AI, dan Foundry melalui paket npm terpisah:
 
-Kami menyediakan dukungan untuk [Anthropic Bedrock API](https://aws.amazon.com/bedrock/claude/) melalui paket terpisah.
+- **Bedrock:** `npm install @anthropic-ai/bedrock-sdk`: Menyediakan klien `AnthropicBedrock`
+- **Vertex AI:** `npm install @anthropic-ai/vertex-sdk`: Menyediakan klien `AnthropicVertex`
+- **Foundry:** `npm install @anthropic-ai/foundry-sdk`: Menyediakan klien `AnthropicFoundry`
 
-```bash
-npm install @anthropic-ai/bedrock-sdk
-```
+## Versioning semantik
 
-```typescript
-import { AnthropicBedrock } from "@anthropic-ai/bedrock-sdk";
+Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan yang tidak kompatibel ke belakang tertentu dapat dirilis sebagai versi minor:
 
-const client = new AnthropicBedrock();
+1. Perubahan yang hanya mempengaruhi jenis statis, tanpa merusak perilaku runtime.
+2. Perubahan pada internal perpustakaan yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal. _(Silakan buka masalah GitHub untuk memberi tahu pengelola jika Anda mengandalkan internal tersebut.)_
+3. Perubahan yang tidak diharapkan berdampak pada sebagian besar pengguna dalam praktik.
 
-const message = await client.messages.create({
-  model: "anthropic.claude-opus-4-6-v1",
-  max_tokens: 1024,
-  messages: [{ role: "user", content: "Hello, Claude" }]
-});
-```
+Kompatibilitas ke belakang ditanggapi dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang lancar.
 
-### Google Vertex AI
-
-Kami menyediakan dukungan untuk [Anthropic Vertex AI API](https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude) melalui paket terpisah.
-
-```bash
-npm install @anthropic-ai/vertex-sdk
-```
-
-```typescript
-import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
-
-const client = new AnthropicVertex();
-
-const message = await client.messages.create({
-  model: "claude-opus-4-6",
-  max_tokens: 1024,
-  messages: [{ role: "user", content: "Hello, Claude" }]
-});
-```
-
-### Microsoft Azure / Foundry
-
-Untuk informasi tentang menggunakan Claude melalui Microsoft Azure dan Azure AI Foundry, lihat [Claude in Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry).
-
-## Pertanyaan yang Sering Diajukan
+## Pertanyaan yang sering diajukan
 
 Lihat [repositori GitHub](https://github.com/anthropics/anthropic-sdk-typescript) untuk FAQ, masalah, dan dukungan komunitas.
 

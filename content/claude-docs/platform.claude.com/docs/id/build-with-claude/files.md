@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 44dc0b6c27f85d548c9156d28eba375c95f8229bf24ff147a4c9682119d6207b
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 6f089c1218485d87e1553c96a482c83b50d49f0382416020d6823f6ecab87ce3
 ---
 
 # Files API
 
-API untuk mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa perlu mengunggah ulang konten dengan setiap permintaan.
+Unggah dan kelola file untuk digunakan dengan Claude API tanpa perlu mengunggah ulang konten dengan setiap permintaan.
 
 ---
 
-Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa perlu mengunggah ulang konten dengan setiap permintaan. Ini sangat berguna saat menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya dataset dan dokumen) dan kemudian mengunduh output (misalnya bagan). Anda juga dapat menggunakan Files API untuk menghindari perlu mengunggah ulang dokumen dan gambar yang sering digunakan di berbagai panggilan API. Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/files-create), selain panduan ini.
+Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa perlu mengunggah ulang konten dengan setiap permintaan. Ini sangat berguna saat menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya dataset dan dokumen) dan kemudian mengunduh output (misalnya bagan). Anda juga dapat menggunakan Files API untuk menghindari harus terus mengunggah ulang dokumen dan gambar yang sering digunakan di seluruh panggilan API. Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/files-create), selain panduan ini.
 
 <Note>
 Files API sedang dalam beta. Hubungi kami melalui [formulir umpan balik](https://forms.gle/tisHyierGwgN4DUE9) untuk berbagi pengalaman Anda dengan Files API.
@@ -29,7 +29,7 @@ Files API saat ini tidak didukung di Amazon Bedrock atau Google Vertex AI.
 
 ## Cara kerja Files API
 
-Files API menyediakan pendekatan sederhana upload-sekali-gunakan-berkali-kali untuk bekerja dengan file:
+Files API menyediakan pendekatan buat-sekali-gunakan-berkali-kali yang sederhana untuk bekerja dengan file:
 
 - **Unggah file** ke penyimpanan aman Anthropic dan terima `file_id` unik
 - **Unduh file** yang dibuat dari skill atau alat eksekusi kode
@@ -152,7 +152,7 @@ puts file.id
 
 </CodeGroup>
 
-Respons dari pengunggahan file akan mencakup:
+Respons dari mengunggah file akan mencakup:
 
 ```json Output
 {
@@ -426,7 +426,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -d @- <<EOF
 {
-  "model": "claude-opus-4-6",
+  "model": "claude-opus-4-7",
   "max_tokens": 1024,
   "messages": [
     {
@@ -447,7 +447,7 @@ EOF
 printf 'This is a test document for upload.\n' > document.txt
 # Referensi "@./path" menyisipkan konten file langsung ke dalam bidang.
 ant messages create \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --max-tokens 1024 \
   --transform 'content.0.text' --format yaml <<'YAML'
 messages:
@@ -474,7 +474,7 @@ csv_content = df.to_string()
 
 # Kirim sebagai teks biasa dalam pesan
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[
         {
@@ -504,7 +504,7 @@ async function analyzeDocument() {
 
   // Kirim sebagai teks biasa dalam pesan
   const response = await anthropic.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 1024,
     messages: [
       {
@@ -546,7 +546,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 1024,
             Messages = [new()
             {
@@ -587,7 +587,7 @@ func main() {
 	}
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock(
@@ -621,7 +621,7 @@ public class FileUploadExample {
         String textContent = Files.readString(Paths.get("document.txt"));
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(1024L)
             .addUserMessage("Here's the document content:\n\n" + textContent + "\n\nPlease summarize this document.")
             .build();
@@ -657,7 +657,7 @@ $message = $client->messages->create(
             ]
         ]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
 );
 
 echo $message->content[0]->text;
@@ -672,7 +672,7 @@ client = Anthropic::Client.new
 text_content = File.read("document.txt")
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     {
@@ -1092,14 +1092,14 @@ Anda hanya dapat mengunduh file yang dibuat oleh [skill](/docs/id/build-with-cla
 - File dibatasi pada ruang kerja kunci API. Kunci API lain dapat menggunakan file yang dibuat oleh kunci API lain apa pun yang terkait dengan ruang kerja yang sama
 - File bertahan sampai Anda menghapusnya
 - File yang dihapus tidak dapat dipulihkan
-- File tidak dapat diakses melalui API segera setelah penghapusan, tetapi mungkin tetap ada dalam panggilan Messages API aktif dan penggunaan alat terkait
+- File tidak dapat diakses melalui API segera setelah penghapusan, tetapi mungkin tetap ada dalam panggilan API `Messages` aktif dan penggunaan alat terkait
 - File yang dihapus pengguna akan dihapus sesuai dengan [kebijakan retensi data](/docs/id/build-with-claude/api-and-data-retention) Anthropic.
 
 ---
 
 ## Retensi data
 
-File yang diunggah melalui Files API disimpan sampai secara eksplisit dihapus menggunakan endpoint `DELETE /v1/files/{file_id}`. File disimpan untuk digunakan kembali di berbagai permintaan API.
+File yang diunggah melalui Files API disimpan sampai dihapus secara eksplisit menggunakan endpoint `DELETE /v1/files/{file_id}`. File disimpan untuk digunakan kembali di seluruh permintaan API.
 
 Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/build-with-claude/api-and-data-retention).
 
@@ -1108,7 +1108,7 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/build-
 Kesalahan umum saat menggunakan Files API meliputi:
 
 - **File tidak ditemukan (404):** `file_id` yang ditentukan tidak ada atau Anda tidak memiliki akses ke file tersebut
-- **Jenis file tidak valid (400):** Jenis file tidak cocok dengan jenis blok konten (misalnya menggunakan file gambar dalam blok dokumen)
+- **Jenis file tidak valid (400):** Jenis file tidak cocok dengan jenis blok konten (misalnya, menggunakan file gambar dalam blok dokumen)
 - **Melebihi ukuran jendela konteks (400):** File lebih besar dari ukuran jendela konteks (misalnya menggunakan file plaintext 500 MB dalam permintaan `/v1/messages`)
 - **Nama file tidak valid (400):** Nama file tidak memenuhi persyaratan panjang (1-255 karakter) atau berisi karakter terlarang (`<`, `>`, `:`, `"`, `|`, `?`, `*`, `\`, `/`, atau karakter unicode 0-31)
 - **File terlalu besar (413):** File melebihi batas 500 MB

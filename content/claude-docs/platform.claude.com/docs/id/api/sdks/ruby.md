@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/sdks/ruby
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 0d2f91573d9bbe5f902c5caf6acd95767192f43ddb456e2e846b454af629ee92
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 9e59145c3e65933fd8a4a01da6f086afdab802224663cf011165eea5b65caa4f
 ---
 
 # Ruby SDK
@@ -14,7 +14,7 @@ Instal dan konfigurasi Anthropic Ruby SDK dengan tipe Sorbet, pembantu streaming
 Perpustakaan Ruby Anthropic menyediakan akses yang mudah ke Anthropic REST API dari aplikasi Ruby 3.2.0+ apa pun. Dilengkapi dengan tipe komprehensif dan docstring di Yard, RBS, dan RBI. Perpustakaan standar `net/http` digunakan sebagai transport HTTP, dengan connection pooling melalui gem `connection_pool`.
 
 <Info>
-Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini mencakup fitur dan konfigurasi SDK khusus Ruby.
+Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini mencakup fitur SDK khusus Ruby dan konfigurasi.
 </Info>
 
 ## Instalasi
@@ -41,7 +41,7 @@ anthropic = Anthropic::Client.new(
 message = anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-4-6"
+  model: :"claude-opus-4-7"
 )
 
 puts(message.content)
@@ -57,7 +57,7 @@ anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-4-6"
+  model: :"claude-opus-4-7"
 )
 
 stream.each do |message|
@@ -67,7 +67,7 @@ end
 
 ### Pembantu streaming
 
-Perpustakaan ini menyediakan beberapa kemudahan untuk pesan streaming, misalnya:
+Perpustakaan ini menyediakan beberapa kemudahan untuk streaming pesan, misalnya:
 
 ```ruby hidelines={1}
 require "anthropic"
@@ -75,7 +75,7 @@ anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
   max_tokens: 1024,
   messages: [{role: :user, content: "Say hello there!"}],
-  model: :"claude-opus-4-6"
+  model: :"claude-opus-4-7"
 )
 
 stream.text.each do |text|
@@ -83,11 +83,11 @@ stream.text.each do |text|
 end
 ```
 
-Streaming dengan `anthropic.messages.stream(...)` mengekspos berbagai pembantu termasuk akumulasi dan peristiwa khusus SDK.
+Streaming dengan `anthropic.messages.stream(...)` mengekspos berbagai pembantu termasuk akumulasi dan acara khusus SDK.
 
 ## Skema input dan pemanggilan alat
 
-SDK menyediakan mekanisme pembantu untuk menentukan kelas data terstruktur untuk alat dan membiarkan Claude secara otomatis menjalankannya. Untuk dokumentasi terperinci tentang pola penggunaan alat termasuk tool runner, lihat [Tool Runner (SDK)](/docs/id/agents-and-tools/tool-use/tool-runner).
+SDK menyediakan mekanisme pembantu untuk mendefinisikan kelas data terstruktur untuk alat dan membiarkan Claude secara otomatis menjalankannya. Untuk dokumentasi terperinci tentang pola penggunaan alat termasuk tool runner, lihat [Tool Runner (SDK)](/docs/id/agents-and-tools/tool-use/tool-runner).
 
 ```ruby hidelines={1}
 require "anthropic"
@@ -108,7 +108,7 @@ end
 
 # Secara otomatis menangani loop eksekusi alat
 anthropic.beta.messages.tool_runner(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [{role: "user", content: "What's 15 * 7?"}],
   tools: [Calculator.new]
@@ -130,7 +130,7 @@ begin
   message = anthropic.messages.create(
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}],
-    model: :"claude-opus-4-6"
+    model: :"claude-opus-4-7"
   )
 rescue Anthropic::Errors::APIConnectionError => e
   puts("The server could not be reached")
@@ -145,19 +145,19 @@ end
 
 Kode kesalahan adalah sebagai berikut:
 
-| Penyebab          | Tipe Kesalahan             |
-| ----------------- | -------------------------- |
-| HTTP 400          | `BadRequestError`          |
-| HTTP 401          | `AuthenticationError`      |
-| HTTP 403          | `PermissionDeniedError`    |
-| HTTP 404          | `NotFoundError`            |
-| HTTP 409          | `ConflictError`            |
+| Penyebab          | Jenis Kesalahan         |
+| ----------------- | ----------------------- |
+| HTTP 400          | `BadRequestError`       |
+| HTTP 401          | `AuthenticationError`   |
+| HTTP 403          | `PermissionDeniedError` |
+| HTTP 404          | `NotFoundError`         |
+| HTTP 409          | `ConflictError`         |
 | HTTP 422          | `UnprocessableEntityError` |
-| HTTP 429          | `RateLimitError`           |
-| HTTP >= 500       | `InternalServerError`      |
-| Kesalahan HTTP lainnya | `APIStatusError`           |
-| Timeout           | `APITimeoutError`          |
-| Kesalahan jaringan | `APIConnectionError`       |
+| HTTP 429          | `RateLimitError`        |
+| HTTP >= 500       | `InternalServerError`   |
+| Kesalahan HTTP lainnya | `APIStatusError`   |
+| Timeout           | `APITimeoutError`       |
+| Kesalahan jaringan | `APIConnectionError`    |
 
 ## Percobaan ulang
 
@@ -177,7 +177,7 @@ anthropic = Anthropic::Client.new(
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-4-6",
+  model: :"claude-opus-4-7",
   request_options: {max_retries: 5}
 )
 ```
@@ -196,7 +196,7 @@ anthropic = Anthropic::Client.new(
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-4-6",
+  model: :"claude-opus-4-7",
   request_options: {timeout: 5}
 )
 ```
@@ -209,7 +209,7 @@ Perhatikan bahwa permintaan yang timeout dicoba ulang secara default.
 
 Metode daftar dalam Claude API dipaginasi.
 
-Perpustakaan ini menyediakan iterator auto-paging dengan setiap respons daftar, sehingga Anda tidak harus meminta halaman berturut-turut secara manual:
+Perpustakaan ini menyediakan iterator auto-paging dengan setiap respons daftar, sehingga Anda tidak perlu meminta halaman berturut-turut secara manual:
 
 ```ruby hidelines={1}
 require "anthropic"
@@ -247,20 +247,20 @@ require "anthropic"
 anthropic = Anthropic::Client.new
 require "pathname"
 
-# Gunakan `Pathname` untuk mengirim nama file dan/atau menghindari paging file besar ke dalam memori:
+# Gunakan `Pathname` untuk mengirim nama file dan/atau menghindari paging file besar ke memori:
 file_metadata = anthropic.beta.files.upload(file: Pathname("/path/to/file"))
 
 # Alternatifnya, teruskan konten file atau `StringIO` secara langsung:
 file_metadata = anthropic.beta.files.upload(file: File.read("/path/to/file"))
 
-# Atau, untuk mengontrol nama file dan/atau tipe konten:
+# Atau, untuk mengontrol nama file dan/atau jenis konten:
 file = Anthropic::FilePart.new(File.read("/path/to/file"), filename: "/path/to/file", content_type: "...")
 file_metadata = anthropic.beta.files.upload(file: file)
 
 puts(file_metadata.id)
 ```
 
-Perhatikan bahwa Anda juga dapat meneruskan deskriptor `IO` mentah, tetapi ini menonaktifkan percobaan ulang, karena perpustakaan tidak dapat memastikan apakah deskriptor adalah file atau pipa (yang tidak dapat digulung kembali).
+Perhatikan bahwa Anda juga dapat meneruskan deskriptor `IO` mentah, tetapi ini menonaktifkan percobaan ulang, karena perpustakaan tidak dapat memastikan apakah deskriptor adalah file atau pipe (yang tidak dapat diputar ulang).
 
 ## Sorbet
 
@@ -274,7 +274,7 @@ anthropic = Anthropic::Client.new
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [Anthropic::MessageParam.new(role: "user", content: "Hello, Claude")],
-  model: :"claude-opus-4-6"
+  model: :"claude-opus-4-7"
 )
 ```
 
@@ -287,14 +287,14 @@ anthropic = Anthropic::Client.new
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-4-6"
+  model: :"claude-opus-4-7"
 )
 
 # Anda juga dapat splat kelas Params lengkap:
 params = Anthropic::MessageCreateParams.new(
   max_tokens: 1024,
   messages: [Anthropic::MessageParam.new(role: "user", content: "Hello, Claude")],
-  model: :"claude-opus-4-6"
+  model: :"claude-opus-4-7"
 )
 anthropic.messages.create(**params)
 ```
@@ -333,7 +333,7 @@ Semua parameter dan objek respons mewarisi dari `Anthropic::Internal::Type::Base
 
 1. Semua bidang, termasuk yang tidak dikenal, dapat diakses dengan sintaks `obj[:prop]`, dan dapat didestruktur dengan `obj => {prop: prop}` atau sintaks pattern-matching.
 
-2. Kesetaraan struktural untuk kesetaraan; jika dua panggilan API mengembalikan nilai yang sama, membandingkan respons dengan == akan mengembalikan true.
+2. Kesetaraan struktural untuk persamaan; jika dua panggilan API mengembalikan nilai yang sama, membandingkan respons dengan == akan mengembalikan true.
 
 3. Baik instance maupun kelas itu sendiri dapat dicetak dengan indah.
 
@@ -347,7 +347,7 @@ Setiap instance `Anthropic::Client` memiliki pool koneksi HTTP sendiri dengan uk
 
 Ketika semua koneksi yang tersedia dari pool diperiksa, permintaan menunggu koneksi baru menjadi tersedia, dengan waktu antrian dihitung menuju timeout permintaan.
 
-Kecuali ditentukan lain, kelas lain dalam SDK tidak memiliki kunci yang melindungi struktur data yang mendasarinya.
+Kecuali ditentukan lain, kelas lain dalam SDK tidak memiliki kunci yang melindungi struktur data dasarnya.
 
 ## Membuat permintaan kustom atau tidak terdokumentasi
 
@@ -367,7 +367,7 @@ message =
   anthropic.messages.create(
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}],
-    model: :"claude-opus-4-6",
+    model: :"claude-opus-4-7",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -399,7 +399,7 @@ response = anthropic.request(
 ## Integrasi platform
 
 <Note>
-Untuk panduan setup platform terperinci dengan contoh kode, lihat:
+Untuk panduan penyiapan platform terperinci dengan contoh kode, lihat:
 - [Amazon Bedrock](/docs/id/build-with-claude/claude-on-amazon-bedrock)
 - [Google Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai)
 </Note>
@@ -413,7 +413,7 @@ Ruby SDK mendukung Bedrock dan Vertex AI melalui kelas klien khusus:
 
 Paket ini mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html). Karena perpustakaan dalam pengembangan awal dan memiliki versi utama `0`, API dapat berubah kapan saja.
 
-Paket ini menganggap peningkatan pada definisi tipe `*.rbi` dan `*.rbs` (non-runtime) sebagai perubahan non-breaking.
+Paket ini menganggap peningkatan pada definisi tipe (non-runtime) `*.rbi` dan `*.rbs` sebagai perubahan non-breaking.
 
 ## Sumber daya tambahan
 

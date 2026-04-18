@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/typescript
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 07d3368a05bff143bce5e3ca11b06982f89a80e594553db7c6b85f0709217cd8
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 21bc5347ec08f1337f92b445a90f7724b677363be32e631030129a2a45ae0a5e
 ---
 
 # TypeScript SDK
@@ -835,16 +835,19 @@ In certain scenarios where enabling browser support might not pose significant r
 
 <Note>
 For detailed platform setup guides with code examples, see:
-- [Amazon Bedrock](/docs/en/build-with-claude/claude-on-amazon-bedrock)
+- [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock)
+- [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock)
 - [Google Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai)
 - [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
 The TypeScript SDK supports Bedrock, Vertex AI, and Foundry through separate npm packages:
 
-- **Bedrock:** `npm install @anthropic-ai/bedrock-sdk`: Provides `AnthropicBedrock` client
+- **Bedrock:** `npm install @anthropic-ai/bedrock-sdk`: Provides `AnthropicBedrockMantle` client, and `AnthropicBedrock` for the `bedrock-runtime` path
 - **Vertex AI:** `npm install @anthropic-ai/vertex-sdk`: Provides `AnthropicVertex` client
 - **Foundry:** `npm install @anthropic-ai/foundry-sdk`: Provides `AnthropicFoundry` client
+
+Use `AnthropicBedrockMantle` for new projects; `AnthropicBedrock` remains for existing applications using the Bedrock `InvokeModel` API.
 
 ## Semantic versioning
 

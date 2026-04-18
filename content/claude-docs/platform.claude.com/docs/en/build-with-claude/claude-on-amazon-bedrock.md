@@ -1,18 +1,18 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 85b611cf04ae9a67578fe5d281735af912cf9e02f72547e6bc08c4441669ea9c
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: e6c2017af323b94f7303c62dc77b895a1ceb0934b96a046e4d5c433c31992172
 ---
 
-# Claude on Amazon Bedrock
+# Claude on Amazon Bedrock (legacy)
 
-Anthropic's Claude models are now generally available through Amazon Bedrock.
+The legacy Amazon Bedrock integration for Claude models, using InvokeModel and Converse APIs with ARN-versioned model identifiers.
 
 ---
 
 <Note>
-This page covers the Amazon Bedrock integration available today (the `InvokeModel` and `Converse` APIs with ARN-versioned model identifiers and AWS event-stream encoding). A research preview of a new AWS-managed offering, with the Messages API at `/anthropic/v1/messages` and SSE streaming, is documented at [Claude in Amazon Bedrock (research preview)](/docs/en/build-with-claude/claude-in-amazon-bedrock-research-preview).
+This page covers the legacy Amazon Bedrock integration: the `InvokeModel` and `Converse` APIs with ARN-versioned model identifiers and AWS event-stream encoding. For models available on the Messages-API Bedrock endpoint, see [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), which uses the Messages API at `/anthropic/v1/messages` with SSE streaming.
 </Note>
 
 Calling Claude through Bedrock slightly differs from how you would call Claude when using Anthropic's client SDKs. This guide walks you through completing an API call to Claude on Bedrock using one of Anthropic's [client SDKs](/docs/en/api/client-sdks).
@@ -132,10 +132,12 @@ Go to the [AWS Console > Bedrock > Model Access](https://console.aws.amazon.com/
 #### API model IDs
 
 <Note>
-  Claude Opus 4.7 is available on AWS through
-  [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock-research-preview),
-  currently in research preview. It is not available through the standard
-  Bedrock model catalog documented on this page.
+  Claude Opus 4.7 is reachable through `InvokeModel` on `bedrock-runtime`.
+  These requests are served by the same infrastructure as the
+  [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock)
+  endpoint. For the native Messages API request shape and full feature
+  parity, use that page. Claude Opus 4.7 is omitted from the model table
+  on this page because it does not have an ARN-versioned model ID.
 </Note>
 
 | Model | Base Bedrock model ID | `global` | `us` | `eu` | `jp` | `apac` |

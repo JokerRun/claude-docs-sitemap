@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multi-agent
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 07963699518af0112a4a46a4394befdb363b66f6dbcaae199728782ac4027fa7
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 51796ff1ac6b218ac6b38a4baebd31f99c4c1808c9147528846b3aac599ca2eb
 ---
 
 # Sesi multiagen
@@ -15,31 +15,31 @@ Koordinasikan beberapa agen dalam satu sesi.
 Multiagen adalah fitur Research Preview. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
 </Tip>
 
-Orkestrasi multi-agen memungkinkan satu agen berkoordinasi dengan agen lain untuk menyelesaikan pekerjaan yang kompleks. Agen dapat bekerja secara paralel dengan konteks terisolasi masing-masing, yang membantu meningkatkan kualitas output dan mempercepat waktu penyelesaian.
+Orkestrasi multi-agen memungkinkan satu agen untuk berkoordinasi dengan agen lain untuk menyelesaikan pekerjaan yang kompleks. Agen dapat bertindak secara paralel dengan konteks terisolasi mereka sendiri, yang membantu meningkatkan kualitas output dan mempercepat waktu penyelesaian.
 
 <Note>
-Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. Header beta tambahan diperlukan untuk fitur research preview. SDK menetapkan header beta ini secara otomatis.
+Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. Header beta tambahan diperlukan untuk fitur research preview. SDK mengatur header beta ini secara otomatis.
 </Note>
 
 ## Cara kerjanya
 
-Semua agen berbagi container dan filesystem yang sama, tetapi setiap agen berjalan dalam **thread** sesinya sendiri, yaitu aliran event yang terisolasi konteksnya dengan riwayat percakapan tersendiri. Koordinator melaporkan aktivitas di **thread utama** (yang sama dengan aliran event tingkat sesi); thread tambahan dibuat saat runtime ketika koordinator memutuskan untuk mendelegasikan.
+Semua agen berbagi kontainer dan sistem file yang sama, tetapi setiap agen berjalan di **thread** sesinya sendiri, aliran peristiwa yang terisolasi konteks dengan riwayat percakapan tersendiri. Koordinator melaporkan aktivitas di **thread utama** (yang sama dengan aliran peristiwa tingkat sesi); thread tambahan dihasilkan saat runtime ketika koordinator memutuskan untuk mendelegasikan.
 
-Thread bersifat persisten: koordinator dapat mengirim tindak lanjut ke agen yang dipanggilnya sebelumnya, dan agen tersebut menyimpan semua informasi dari giliran sebelumnya.
+Thread bersifat persisten: koordinator dapat mengirim tindak lanjut kepada agen yang dipanggilnya sebelumnya, dan agen itu mempertahankan semuanya dari putaran sebelumnya.
 
-Setiap agen menggunakan konfigurasinya sendiri (model, system prompt, tools, server MCP, dan skill) sebagaimana didefinisikan saat agen tersebut dibuat. Tools dan konteks tidak dibagikan.
+Setiap agen menggunakan konfigurasi sendiri (model, system prompt, tools, server MCP, dan skills) seperti yang ditentukan saat agen itu dibuat. Tools dan konteks tidak dibagikan.
 
-### Apa yang perlu didelegasikan
+### Apa yang harus didelegasikan
 
-Sesi multiagen bekerja paling baik ketika ada beberapa tugas yang terdefinisi dengan baik dan terspesialisasi dalam tujuan keseluruhan:
+Sesi multiagen bekerja paling baik ketika ada beberapa tugas khusus dan terspesialisasi dalam tujuan keseluruhan:
 
-- **Tinjauan kode:** Agen peninjau dengan system prompt yang terfokus dan tools hanya-baca.
-- **Pembuatan pengujian:** Agen pengujian yang menulis dan menjalankan pengujian tanpa menyentuh kode produksi.
-- **Riset:** Agen pencarian dengan tools web yang merangkum temuan kembali ke koordinator.
+- **Tinjauan kode:** Agen reviewer dengan system prompt yang terfokus dan tools read-only.
+- **Pembuatan tes:** Agen tes yang menulis dan menjalankan tes tanpa menyentuh kode produksi.
+- **Penelitian:** Agen pencarian dengan web tools yang merangkum temuan kembali ke koordinator.
 
 ## Deklarasikan agen yang dapat dipanggil
 
-Saat [mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup), cantumkan ID tambahan dari agen yang diizinkan untuk dipanggil:
+Saat [mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup), daftarkan ID agen tambahan yang diizinkan untuk dipanggil:
 
 <CodeGroup defaultLanguage="CLI">
 ```bash curl
@@ -51,7 +51,7 @@ orchestrator=$(curl -fsS https://api.anthropic.com/v1/agents \
   -d @- <<EOF
 {
   "name": "Engineering Lead",
-  "model": "claude-sonnet-4-6",
+  "model": "claude-opus-4-7",
   "system": "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
   "tools": [
     {
@@ -70,7 +70,7 @@ EOF
 ```bash CLI
 ant beta:agents create <<YAML
 name: Engineering Lead
-model: claude-sonnet-4-6
+model: claude-opus-4-7
 system: You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.
 tools:
   - type: agent_toolset_20260401
@@ -87,7 +87,7 @@ YAML
 ```python Python
 orchestrator = client.beta.agents.create(
     name="Engineering Lead",
-    model="claude-sonnet-4-6",
+    model="claude-opus-4-7",
     system="You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
     tools=[
         {"type": "agent_toolset_20260401"},
@@ -106,7 +106,7 @@ orchestrator = client.beta.agents.create(
 ```typescript TypeScript
 const orchestrator = await client.beta.agents.create({
   name: "Engineering Lead",
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   system:
     "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
   tools: [{ type: "agent_toolset_20260401" }],
@@ -121,7 +121,7 @@ const orchestrator = await client.beta.agents.create({
 var orchestrator = await client.Beta.Agents.Create(new()
 {
     Name = "Engineering Lead",
-    Model = BetaManagedAgentsModel.ClaudeSonnet4_6,
+    Model = BetaManagedAgentsModel.ClaudeOpus4_7,
     System = "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
     Tools =
     [
@@ -151,7 +151,7 @@ var orchestrator = await client.Beta.Agents.Create(new()
 ```go Go
 orchestrator, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name:   "Engineering Lead",
-	Model:  anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeSonnet4_6},
+	Model:  anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus4_7},
 	System: anthropic.String("You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent."),
 	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
 		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -172,7 +172,7 @@ if err != nil {
 var orchestrator = client.beta().agents().create(
     AgentCreateParams.builder()
         .name("Engineering Lead")
-        .model(BetaManagedAgentsModel.CLAUDE_SONNET_4_6)
+        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
         .system("You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.")
         .addTool(
             BetaManagedAgentsAgentToolset20260401Params.builder()
@@ -200,7 +200,7 @@ var orchestrator = client.beta().agents().create(
 ```php PHP
 $orchestrator = $client->beta->agents->create(
     name: 'Engineering Lead',
-    model: 'claude-sonnet-4-6',
+    model: 'claude-opus-4-7',
     system: 'You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.',
     tools: [
         ['type' => 'agent_toolset_20260401'],
@@ -215,7 +215,7 @@ $orchestrator = $client->beta->agents->create(
 ```ruby Ruby
 orchestrator = client.beta.agents.create(
   name: "Engineering Lead",
-  model: "claude-sonnet-4-6",
+  model: "claude-opus-4-7",
   system: "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
   tools: [
     {type: "agent_toolset_20260401"}
@@ -228,9 +228,9 @@ orchestrator = client.beta.agents.create(
 ```
 </CodeGroup>
 
-Setiap entri dalam `callable_agents` harus berupa ID dari agen yang sudah ada. Hanya satu tingkat delegasi yang didukung: koordinator dapat memanggil agen lain, tetapi agen-agen tersebut tidak dapat memanggil agen milik mereka sendiri.
+Setiap entri dalam `callable_agents` harus berupa ID agen yang sudah ada. Hanya satu tingkat delegasi yang didukung: koordinator dapat memanggil agen lain, tetapi agen tersebut tidak dapat memanggil agen mereka sendiri.
 
-Kemudian buat sesi yang merujuk ke orkestrator:
+Kemudian buat sesi yang mereferensikan orchestrator:
 
 <CodeGroup>
 ```bash curl
@@ -245,7 +245,7 @@ session=$(curl -fsS https://api.anthropic.com/v1/sessions \
 ```bash CLI
 ant beta:sessions create \
   --agent "$ORCHESTRATOR_ID" \
-  --environment "$ENVIRONMENT_ID"
+  --environment-id "$ENVIRONMENT_ID"
 ```
 
 ```python Python
@@ -263,13 +263,13 @@ const session = await client.beta.sessions.create({
 ```
 </CodeGroup>
 
-Agen yang dapat dipanggil diselesaikan dari konfigurasi orkestrator. Anda tidak perlu merujuknya saat pembuatan sesi.
+Agen yang dapat dipanggil diselesaikan dari konfigurasi orchestrator. Anda tidak perlu mereferensikannya saat pembuatan sesi.
 
 ## Thread sesi
 
-**Aliran event tingkat sesi** (`/v1/sessions/:id/stream`) dianggap sebagai **thread utama**, yang berisi tampilan ringkas dari semua aktivitas di semua thread. Anda tidak akan melihat jejak individual agen yang dipanggil, tetapi Anda akan melihat awal dan akhir pekerjaan mereka. **Thread sesi** adalah tempat Anda menelusuri lebih dalam penalaran dan pemanggilan tool agen tertentu.
+**Aliran peristiwa tingkat sesi** (`/v1/sessions/:id/stream`) dianggap sebagai **thread utama**, berisi tampilan ringkas dari semua aktivitas di semua thread. Anda tidak akan melihat jejak individual agen yang dipanggil, tetapi Anda akan melihat awal dan akhir pekerjaan mereka. **Thread sesi** adalah tempat Anda menggali lebih dalam ke dalam penalaran dan pemanggilan tool agen tertentu.
 
-Status sesi juga merupakan agregasi dari semua aktivitas agen; jika setidaknya satu thread berstatus `running`, maka status sesi keseluruhan juga akan menjadi `running`.
+Status sesi juga merupakan agregasi dari semua aktivitas agen; jika setidaknya satu thread adalah `running`, maka status sesi keseluruhan juga akan `running`.
 
 Daftarkan semua thread dalam sesi sebagai berikut:
 <CodeGroup>
@@ -333,7 +333,7 @@ end
 ```
 </CodeGroup>
 
-Stream event dari thread tertentu:
+Streaming peristiwa dari thread tertentu:
 
 <CodeGroup>
 ```bash curl
@@ -489,7 +489,7 @@ end
 ```
 </CodeGroup>
 
-Daftarkan event masa lalu untuk sebuah thread:
+Daftarkan peristiwa masa lalu untuk thread:
 
 <CodeGroup>
 ```bash curl
@@ -573,26 +573,26 @@ end
 ```
 </CodeGroup>
 
-## Tipe event multiagen
+## Jenis peristiwa multiagen
 
-Event-event ini menampilkan aktivitas multiagen pada aliran sesi tingkat atas.
+Peristiwa ini menampilkan aktivitas multiagen pada aliran sesi tingkat atas.
 
 | Tipe | Deskripsi |
 | --- | --- |
-| `session.thread_created` | Koordinator membuat thread baru. Menyertakan `session_thread_id` dan `model`. |
+| `session.thread_created` | Koordinator menelurkan thread baru. Termasuk `session_thread_id` dan `model`. |
 | `session.thread_idle` | Thread agen menyelesaikan pekerjaan saat ini. |
-| `agent.thread_message_sent` | Agen mengirim pesan ke thread lain. Menyertakan `to_thread_id` dan `content`. |
-| `agent.thread_message_received` | Agen menerima pesan dari thread lain. Menyertakan `from_thread_id` dan `content`. |
+| `agent.thread_message_sent` | Agen mengirim pesan ke thread lain. Termasuk `to_thread_id` dan `content`. |
+| `agent.thread_message_received` | Agen menerima pesan dari thread lain. Termasuk `from_thread_id` dan `content`. |
 
 ## Izin tool dan tool kustom dalam thread
 
-Ketika thread `callable_agent` membutuhkan sesuatu dari klien Anda ([izin](/docs/id/managed-agents/events-and-streaming#tool-confirmation) untuk menjalankan tool `always_ask`, atau [hasil dari tool kustom](/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls)) permintaan tersebut muncul di **aliran sesi** dengan field `session_thread_id`. Sertakan `session_thread_id` yang sama saat Anda memposting respons agar platform mengarahkannya kembali ke thread yang menunggu.
+Ketika thread `callable_agent` membutuhkan sesuatu dari klien Anda ([izin](/docs/id/managed-agents/events-and-streaming#tool-confirmation) untuk menjalankan tool `always_ask`, atau [hasil dari tool kustom](/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls)) permintaan muncul di **aliran sesi** dengan bidang `session_thread_id`. Sertakan `session_thread_id` yang sama saat Anda memposting respons Anda sehingga platform merutekannya kembali ke thread yang menunggu.
 
-- **`session_thread_id` ada:** event berasal dari thread subagen. Sertakan kembali dalam balasan Anda.
-- **`session_thread_id` tidak ada:** event berasal dari thread utama. Balas tanpa field tersebut.
-- Cocokkan `tool_use_id` untuk memasangkan permintaan dengan respons.
+- **`session_thread_id` ada:** peristiwa berasal dari thread subagen. Ulangi pada balasan Anda.
+- **`session_thread_id` tidak ada:** peristiwa berasal dari thread utama. Balas tanpa bidang.
+- Cocokkan pada `tool_use_id` untuk memasangkan permintaan dengan respons.
 
-Contoh di bawah ini memperluas [penangan konfirmasi tool](/docs/id/managed-agents/events-and-streaming#tool-confirmation) untuk merutekan balasan. Pola yang sama berlaku untuk `user.custom_tool_result`.
+Contoh di bawah memperluas [penanganan konfirmasi tool](/docs/id/managed-agents/events-and-streaming#tool-confirmation) untuk merutekan balasan. Pola yang sama berlaku untuk `user.custom_tool_result`.
 
 <CodeGroup>
 ```bash curl

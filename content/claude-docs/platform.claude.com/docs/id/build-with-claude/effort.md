@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 83ab590da54000842d763ec2d5564a7f68036685b1fa362a4633459489104e7c
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: d838ab4f23ac97bdc46339abfc996488d3c9ea6db739c8e5151e9a4c0c2fa79e
 ---
 
 # Effort
@@ -18,16 +18,16 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
 Parameter effort memungkinkan Anda mengontrol seberapa bersemangat Claude dalam menghabiskan token saat merespons permintaan. Ini memberi Anda kemampuan untuk menukar antara kelengkapan respons dan efisiensi token, semuanya dengan satu model. Parameter effort secara umum tersedia di semua model yang didukung tanpa memerlukan header beta.
 
 <Note>
-  Parameter effort didukung oleh [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5.
+  Parameter effort didukung oleh [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5.
 </Note>
 
 <Tip>
 Untuk Claude Opus 4.6 dan Sonnet 4.6, effort menggantikan `budget_tokens` sebagai cara yang direkomendasikan untuk mengontrol kedalaman pemikiran. Gabungkan effort dengan [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking) (`thinking: {type: "adaptive"}`) untuk pengalaman terbaik. Meskipun `budget_tokens` masih diterima di Opus 4.6 dan Sonnet 4.6, ini sudah usang dan akan dihapus dalam rilis model di masa depan. Pada effort `high` (default) dan `max`, Claude hampir selalu akan berpikir. Pada tingkat effort yang lebih rendah, mungkin akan melewati pemikiran untuk masalah yang lebih sederhana.
 </Tip>
 
-## Cara kerja effort
+## Cara effort bekerja
 
-Secara default, Claude menggunakan effort tinggi, menghabiskan sebanyak token yang diperlukan untuk hasil yang sangat baik. Anda dapat menaikkan tingkat effort ke `max` untuk kemampuan tertinggi absolut, atau menurunkannya untuk lebih hemat dengan penggunaan token, mengoptimalkan kecepatan dan biaya sambil menerima beberapa pengurangan dalam kemampuan.
+Secara default, Claude menggunakan high effort, menghabiskan sebanyak token yang diperlukan untuk hasil yang sangat baik. Anda dapat menaikkan tingkat effort ke `max` untuk kemampuan tertinggi yang mutlak, atau menurunkannya untuk lebih konservatif dengan penggunaan token, mengoptimalkan kecepatan dan biaya sambil menerima beberapa pengurangan dalam kemampuan.
 
 <Tip>
 Mengatur `effort` ke `"high"` menghasilkan perilaku yang persis sama dengan menghilangkan parameter `effort` sepenuhnya.
@@ -37,7 +37,7 @@ Parameter effort mempengaruhi **semua token** dalam respons, termasuk:
 
 - Respons teks dan penjelasan
 - Panggilan alat dan argumen fungsi
-- Pemikiran yang diperluas (saat diaktifkan)
+- Pemikiran yang diperluas (ketika diaktifkan)
 
 Pendekatan ini memiliki dua keuntungan utama:
 
@@ -48,7 +48,8 @@ Pendekatan ini memiliki dua keuntungan utama:
 
 | Level    | Deskripsi                                                                                                                      | Kasus penggunaan umum                                                                      |
 | -------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `max`    | Kemampuan maksimum absolut tanpa batasan pada pengeluaran token. Tersedia di Claude Mythos Preview, Claude Opus 4.6, dan Claude Sonnet 4.6. | Tugas yang memerlukan penalaran paling mendalam dan analisis paling menyeluruh |
+| `max`    | Kemampuan maksimum mutlak tanpa batasan pada pengeluaran token. Tersedia di Claude Mythos Preview, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. | Tugas yang memerlukan penalaran paling mendalam dan analisis paling menyeluruh |
+| `xhigh`  | Kemampuan yang diperluas untuk pekerjaan jangka panjang. Tersedia di Claude Opus 4.7. | Tugas agentic dan coding yang berjalan lama (lebih dari 30 menit) dengan anggaran token dalam jutaan |
 | `high`   | Kemampuan tinggi. Setara dengan tidak mengatur parameter. | Penalaran kompleks, masalah coding yang sulit, tugas agentic                           |
 | `medium` | Pendekatan seimbang dengan penghematan token moderat. | Tugas agentic yang memerlukan keseimbangan kecepatan, biaya, dan kinerja                                                         |
 | `low`    | Paling efisien. Penghematan token signifikan dengan beberapa pengurangan kemampuan. | Tugas yang lebih sederhana yang membutuhkan kecepatan terbaik dan biaya terendah, seperti subagents                     |
@@ -61,10 +62,28 @@ Effort adalah sinyal perilaku, bukan anggaran token yang ketat. Pada tingkat eff
 
 Sonnet 4.6 default ke effort `high`. Atur effort secara eksplisit saat menggunakan Sonnet 4.6 untuk menghindari latensi yang tidak terduga:
 
-- **Effort medium** (default yang direkomendasikan): Keseimbangan terbaik antara kecepatan, biaya, dan kinerja untuk sebagian besar aplikasi. Cocok untuk coding agentic, alur kerja yang berat alat, dan pembuatan kode.
-- **Effort low:** Untuk beban kerja dengan volume tinggi atau sensitif terhadap latensi. Cocok untuk chat dan kasus penggunaan non-coding di mana turnaround yang lebih cepat diprioritaskan.
-- **Effort high:** Untuk tugas yang memerlukan intelijen maksimum dari Sonnet 4.6.
-- **Effort max:** Untuk tugas yang memerlukan kemampuan tertinggi absolut tanpa batasan pada pengeluaran token.
+- **Medium effort** (default yang direkomendasikan): Keseimbangan terbaik antara kecepatan, biaya, dan kinerja untuk sebagian besar aplikasi. Cocok untuk coding agentic, alur kerja yang kaya alat, dan pembuatan kode.
+- **Low effort:** Untuk beban kerja dengan volume tinggi atau sensitif latensi. Cocok untuk chat dan kasus penggunaan non-coding di mana turnaround yang lebih cepat diprioritaskan.
+- **High effort:** Untuk tugas yang memerlukan intelijen maksimum dari Sonnet 4.6.
+- **Max effort:** Untuk tugas yang memerlukan kemampuan tertinggi yang mutlak tanpa batasan pada pengeluaran token.
+
+### Tingkat effort yang direkomendasikan untuk Claude Opus 4.7
+
+**Mulai dengan `xhigh` untuk kasus penggunaan coding dan agentic**, dan gunakan `high` sebagai minimum untuk sebagian besar beban kerja yang sensitif terhadap intelijen. Turun ke `medium` untuk beban kerja yang sensitif terhadap biaya, atau naik ke `max` hanya ketika eval Anda menunjukkan ruang kepala yang terukur di `xhigh`.
+
+Default API adalah `high`. Untuk menggunakan `xhigh`, atur `effort` secara eksplisit; nilai yang Anda berikan menggantikan default.
+
+| Effort | Panduan untuk Claude Opus 4.7 |
+|--------|------------------------------|
+| `low`    | Efisien, tetapi terbaik untuk tugas yang singkat dan terbatas. Pasangkan `low` dengan daftar periksa eksplisit jika tugas Anda memiliki beberapa bagian. |
+| `medium` | Pengganti untuk alur kerja rata-rata di mana Anda menginginkan hasil yang baik sambil mengurangi biaya. |
+| `high`   | Kasus penggunaan lanjutan yang masih memerlukan keseimbangan intelijen dan konsumsi token. Ini sering kali menjadi sweet spot yang menyeimbangkan kualitas dan efisiensi token. |
+| `xhigh`  | Titik awal yang direkomendasikan untuk pekerjaan coding dan agentic, dan untuk tugas eksplorasi seperti panggilan alat berulang, pencarian web terperinci, dan pencarian basis pengetahuan. Harapkan penggunaan token yang jauh lebih tinggi daripada `high`. |
+| `max`    | Cadangkan untuk masalah perbatasan yang benar-benar asli. Pada sebagian besar beban kerja `max` menambah biaya signifikan untuk keuntungan kualitas yang relatif kecil, dan pada beberapa tugas output terstruktur atau kurang sensitif terhadap intelijen, dapat menyebabkan overthinking. |
+
+Claude Opus 4.7 juga menghormati tingkat effort lebih ketat daripada Claude Opus 4.6, terutama di `low` dan `medium`. Pada tingkat effort yang lebih rendah, model membatasi pekerjaan ke apa yang diminta daripada melampaui. Jika Anda mengamati penalaran dangkal pada masalah kompleks dengan Claude Opus 4.7, naikkan effort daripada meminta di sekitarnya. Jika Anda harus menjaga effort tetap rendah untuk latensi, tambahkan panduan yang ditargetkan seperti "Tugas ini melibatkan penalaran multi-langkah. Pikirkan dengan hati-hati sebelum merespons."
+
+Saat menjalankan Claude Opus 4.7 pada effort `xhigh` atau `max`, atur `max_tokens` yang besar sehingga model memiliki ruang untuk berpikir dan bertindak di seluruh subagents dan panggilan alat. Mulai dari 64k token dan menyesuaikan dari sana adalah default yang masuk akal.
 
 ## Penggunaan dasar
 
@@ -75,7 +94,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-version: 2023-06-01" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
         "max_tokens": 4096,
         "messages": [{
             "role": "user",
@@ -89,7 +108,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create --transform 'content.0.text' --format yaml <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -105,7 +124,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=[
         {
@@ -125,7 +144,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: [
     {
@@ -158,7 +177,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 4096,
             Messages = [new() { Role = Role.User, Content = "Analyze the trade-offs between microservices and monolithic architectures" }],
             OutputConfig = new OutputConfig
@@ -188,7 +207,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 4096,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Analyze the trade-offs between microservices and monolithic architectures")),
@@ -217,7 +236,7 @@ public class Main {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(4096L)
             .addUserMessage("Analyze the trade-offs between microservices and monolithic architectures")
             .outputConfig(OutputConfig.builder()
@@ -245,7 +264,7 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'Analyze the trade-offs between microservices and monolithic architectures']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     outputConfig: ['effort' => 'medium'],
 );
 
@@ -258,7 +277,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: [
     { role: "user", content: "Analyze the trade-offs between microservices and monolithic architectures" }
@@ -275,8 +294,9 @@ puts message.content.first.text
 
 ## Kapan menyesuaikan parameter effort
 
-- Gunakan **max effort** ketika Anda membutuhkan kemampuan tertinggi absolut tanpa batasan: penalaran paling menyeluruh dan analisis paling mendalam. Tersedia di Claude Mythos Preview, Claude Opus 4.6, dan Claude Sonnet 4.6.
-- Gunakan **high effort** (default) ketika Anda membutuhkan pekerjaan terbaik Claude: penalaran kompleks, analisis bernuansa, masalah coding yang sulit, atau tugas apa pun di mana kualitas adalah prioritas utama.
+- Gunakan **max effort** ketika Anda memerlukan kemampuan tertinggi yang mutlak tanpa batasan: penalaran paling menyeluruh dan analisis paling mendalam. Tersedia di Claude Mythos Preview, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6.
+- Gunakan **xhigh effort** untuk pekerjaan coding lanjutan dan agentic kompleks yang memerlukan eksplorasi yang diperluas, seperti panggilan alat berulang dan pencarian terperinci. Tersedia di Claude Opus 4.7.
+- Gunakan **high effort** (default) ketika Anda memerlukan pekerjaan terbaik Claude: penalaran kompleks, analisis bernuansa, masalah coding yang sulit, atau tugas apa pun di mana kualitas adalah prioritas utama.
 - Gunakan **medium effort** sebagai opsi seimbang ketika Anda menginginkan kinerja solid tanpa pengeluaran token penuh dari high effort.
 - Gunakan **low effort** ketika Anda mengoptimalkan untuk kecepatan (karena Claude menjawab dengan lebih sedikit token) atau biaya. Misalnya, tugas klasifikasi sederhana, pencarian cepat, atau kasus penggunaan volume tinggi di mana peningkatan kualitas marginal tidak membenarkan latensi atau pengeluaran tambahan.
 
@@ -300,7 +320,8 @@ Tingkat effort yang lebih tinggi mungkin:
 
 Parameter effort bekerja bersama pemikiran yang diperluas. Perilakunya tergantung pada model:
 
-- **Claude Mythos Preview** menggunakan [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking) secara default (tidak ada konfigurasi `thinking` yang diperlukan). `thinking: {type: "disabled"}` ditolak. Effort mengontrol kedalaman pemikiran dengan cara yang sama seperti di Opus 4.6.
+- **Claude Mythos Preview** menggunakan [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking) secara default (tidak ada konfigurasi `thinking` yang diperlukan). `thinking: {type: "disabled"}` ditolak. Effort mengontrol kedalaman pemikiran dengan cara yang sama seperti di Opus 4.7 dan Opus 4.6.
+- **Claude Opus 4.7** menggunakan [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking) (`thinking: {type: "adaptive"}`), di mana effort adalah kontrol yang direkomendasikan untuk kedalaman pemikiran. Pemikiran yang diperluas manual (`thinking: {type: "enabled", budget_tokens: N}`) tidak lagi didukung di Opus 4.7; gunakan adaptive thinking dengan effort sebagai gantinya. Pada effort `high`, `xhigh`, dan `max`, Claude hampir selalu berpikir mendalam. Pada tingkat yang lebih rendah, mungkin akan melewati pemikiran untuk masalah yang lebih sederhana.
 - **Claude Opus 4.6** menggunakan [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking) (`thinking: {type: "adaptive"}`), di mana effort adalah kontrol yang direkomendasikan untuk kedalaman pemikiran. Meskipun `budget_tokens` masih diterima di Opus 4.6, ini sudah usang dan akan dihapus dalam rilis di masa depan. Pada effort `high` dan `max`, Claude hampir selalu berpikir mendalam. Pada tingkat yang lebih rendah, mungkin akan melewati pemikiran untuk masalah yang lebih sederhana.
 - **Claude Sonnet 4.6** menggunakan [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking) (di mana effort mengontrol kedalaman pemikiran). Pemikiran manual dengan [interleaved mode](/docs/id/build-with-claude/extended-thinking#interleaved-thinking) (`thinking: {type: "enabled", budget_tokens: N}`) masih berfungsi tetapi sudah usang.
 - **Claude Opus 4.5 dan model Claude 4 lainnya** menggunakan pemikiran manual (`thinking: {type: "enabled", budget_tokens: N}`), di mana effort bekerja bersama anggaran token pemikiran. Atur tingkat effort untuk tugas Anda, kemudian atur anggaran token pemikiran berdasarkan kompleksitas tugas.
@@ -311,5 +332,5 @@ Parameter effort dapat digunakan dengan atau tanpa pemikiran yang diperluas diak
 
 1. **Atur effort secara eksplisit:** API default ke `high`, tetapi titik awal yang tepat tergantung pada model dan beban kerja Anda.
 2. **Gunakan low untuk tugas yang sensitif terhadap kecepatan atau sederhana:** Ketika latensi penting atau tugas sederhana, low effort dapat secara signifikan mengurangi waktu respons dan biaya.
-3. **Uji kasus penggunaan Anda:** Dampak tingkat effort bervariasi menurut jenis tugas. Evaluasi kinerja pada kasus penggunaan spesifik Anda sebelum menerapkan.
+3. **Uji kasus penggunaan Anda:** Dampak tingkat effort bervariasi menurut jenis tugas. Evaluasi kinerja pada kasus penggunaan spesifik Anda sebelum melakukan deployment.
 4. **Pertimbangkan effort dinamis:** Sesuaikan effort berdasarkan kompleksitas tugas. Kueri sederhana mungkin memerlukan low effort sementara coding agentic dan penalaran kompleks mendapat manfaat dari high effort.

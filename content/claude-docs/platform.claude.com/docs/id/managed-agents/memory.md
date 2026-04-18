@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 17862f1b7510463482d273b8c375bfd74f864c975ff4c245f9ccab8ba5acd9bb
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 81462c3d08e06a8395eb0838cfc7deeec4bfd0ed90ae3537b09323df363461b9
 ---
 
-# Menggunakan memori
+# Menggunakan memori agen
 
 Berikan agen Anda memori persisten yang bertahan di seluruh sesi menggunakan penyimpan memori.
 
@@ -15,22 +15,22 @@ Berikan agen Anda memori persisten yang bertahan di seluruh sesi menggunakan pen
 Agent Memory adalah fitur Research Preview. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
 </Tip>
 
-Sesi API Managed Agents bersifat sementara secara default. Ketika sesi berakhir, apa pun yang dipelajari agen hilang. Penyimpan memori memungkinkan agen membawa pembelajaran di seluruh sesi: preferensi pengguna, konvensi proyek, kesalahan sebelumnya, dan konteks domain.
+Sesi Managed Agents API bersifat sementara secara default. Ketika sesi berakhir, apa pun yang dipelajari agen hilang. Penyimpan memori memungkinkan agen membawa pembelajaran di seluruh sesi: preferensi pengguna, konvensi proyek, kesalahan sebelumnya, dan konteks domain.
 
 <Note>
 Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. Header beta tambahan diperlukan untuk fitur research preview. SDK menetapkan header beta ini secara otomatis.
 </Note>
 
-## Gambaran Umum
+## Ikhtisar
 **Penyimpan memori** adalah koleksi dokumen teks yang dibatasi ruang kerja dan dioptimalkan untuk Claude. Ketika satu atau lebih penyimpan memori dilampirkan ke sesi, agen secara otomatis memeriksa penyimpan sebelum memulai tugas dan menulis pembelajaran yang tahan lama setelah selesai - tidak perlu prompting atau konfigurasi tambahan dari pihak Anda.
 
 Setiap **memori** dalam penyimpan dapat diakses dan diedit langsung melalui API atau Console, memungkinkan penyetelan, impor, dan ekspor memori.
 
-Setiap perubahan pada memori membuat **memory_version** yang tidak dapat diubah untuk mendukung audit dan rollback perubahan memori.
+Setiap perubahan pada memori membuat **versi memori** yang tidak dapat diubah untuk mendukung audit dan pengembalian perubahan memori.
 
 ## Buat penyimpan memori
 
-Berikan penyimpan nama `name` dan `description`. Deskripsi dilewatkan ke agen, memberi tahu apa yang berisi penyimpan.
+Berikan penyimpan `name` dan `description`. Deskripsi dilewatkan ke agen, memberitahunya apa yang berisi penyimpan.
 
 <CodeGroup>
   ```bash curl
@@ -199,7 +199,7 @@ Pra-muat penyimpan dengan materi referensi sebelum agen apa pun berjalan:
 Memori individual dalam penyimpan dibatasi pada 100KB (~25K token). Struktur memori sebagai banyak file kecil yang terfokus, bukan beberapa file besar.
 </Tip>
 
-## Lampirkan memori ke sesi
+## Lampirkan penyimpan memori ke sesi
 
 Penyimpan memori dilampirkan dalam array `resources[]` sesi.
 
@@ -362,19 +362,19 @@ Ketika penyimpan memori dilampirkan ke sesi, agen secara otomatis mendapatkan ak
 
 | Alat | Deskripsi |
 | --- | --- |
-| `memory_list` | Daftar dokumen dalam penyimpan, secara opsional disaring berdasarkan awalan jalur. |
-| `memory_search` | Pencarian teks lengkap di seluruh konten dokumen. |
-| `memory_read` | Baca konten dokumen. |
-| `memory_write` | Buat atau timpa dokumen di jalur. |
-| `memory_edit` | Ubah dokumen yang ada. |
-| `memory_delete` | Hapus dokumen. |
+| `memory_list` | Daftar memori dalam penyimpan, secara opsional disaring berdasarkan awalan jalur. |
+| `memory_search` | Pencarian teks lengkap di seluruh konten memori. |
+| `memory_read` | Baca konten memori. |
+| `memory_write` | Buat atau timpa memori di jalur. |
+| `memory_edit` | Ubah memori yang ada. |
+| `memory_delete` | Hapus memori. |
 
-## Inspeksi dan perbaiki memori
+## Lihat dan edit memori
 
 Penyimpan memori dapat dikelola langsung melalui API. Gunakan ini untuk membangun alur kerja tinjauan, memperbaiki memori buruk, atau menyemai penyimpan sebelum sesi apa pun berjalan.
 
 ### Daftar memori
-Daftar tidak mengembalikan konten memori, hanya metadata objek. Gunakan `path_prefix` untuk daftar yang dibatasi direktori (sertakan garis miring trailing: `/notes/` cocok dengan `/notes/a.md` tetapi bukan `/notes_backup/old.md`).
+Daftar tidak mengembalikan konten memori, hanya metadata objek. Gunakan `path_prefix` untuk daftar yang dibatasi direktori (sertakan garis miring di belakang: `/notes/` cocok dengan `/notes/a.md` tetapi bukan `/notes_backup/old.md`).
 
 <CodeGroup>
   
@@ -458,7 +458,7 @@ Daftar tidak mengembalikan konten memori, hanya metadata objek. Gunakan `path_pr
 </CodeGroup>
 
 ### Baca memori
-Mengambil memori individual mengembalikan konten dokumen lengkap.
+Mengambil memori individual mengembalikan konten lengkap.
 
 <CodeGroup>
   
@@ -524,9 +524,9 @@ Mengambil memori individual mengembalikan konten dokumen lengkap.
   ```
 </CodeGroup>
 
-### Tulis dokumen
+### Buat memori
 
-Gunakan `memories.write` untuk upsert dokumen **berdasarkan jalur**. Jika tidak ada yang ada di jalur, itu dibuat; jika dokumen sudah ada di sana, kontennya diganti. Untuk mutasi dokumen yang ada **berdasarkan ID `mem_...`** (misalnya, untuk mengganti nama jalurnya atau dengan aman menerapkan edit konten), gunakan `memories.update` sebagai gantinya (lihat [Update](#update) di bawah).
+Gunakan `memories.write` untuk upsert memori **berdasarkan jalur**. Jika tidak ada yang ada di jalur, itu dibuat; jika memori sudah ada di sana, kontennya diganti. Untuk mutasi memori yang ada **berdasarkan `mem_...` ID** (misalnya, untuk mengganti nama jalurnya atau dengan aman menerapkan edit konten), gunakan `memories.update` sebagai gantinya (lihat [Perbarui memori](#update-a-memory) di bawah).
 
 <CodeGroup>
   
@@ -606,9 +606,9 @@ Gunakan `memories.write` untuk upsert dokumen **berdasarkan jalur**. Jika tidak 
   ```
 </CodeGroup>
 
-### Buat hanya jika jalur bebas
+#### Penulisan aman (keselarasan optimis)
 
-Lewatkan `precondition={"type": "not_exists"}` ke `memories.write` untuk menjadikannya penjaga create-only. Jika dokumen sudah ada di jalur, penulisan mengembalikan `409 memory_precondition_failed` alih-alih menggantinya. Gunakan ini saat menyemai penyimpan dan Anda ingin menghindari menimpa konten yang ada.
+Lewatkan `precondition={"type": "not_exists"}` ke `memories.write` untuk menjadikannya penjaga create-only. Jika memori sudah ada di jalur, penulisan mengembalikan `409 memory_precondition_failed` alih-alih menggantinya. Gunakan ini saat menyemai penyimpan dan Anda ingin menghindari menimpa konten yang ada.
 
 <CodeGroup>
   
@@ -705,15 +705,15 @@ Lewatkan `precondition={"type": "not_exists"}` ke `memories.write` untuk menjadi
   ```
 </CodeGroup>
 
-Untuk dengan aman mengedit dokumen yang ada (baca, ubah, tulis kembali tanpa menimpa perubahan bersamaan), gunakan `memories.update` dengan kondisi awal `content_sha256` sebagai gantinya. Lihat [Update](#update) di bawah.
+Untuk dengan aman mengedit memori yang ada (baca, ubah, tulis kembali tanpa menimpa perubahan bersamaan), gunakan `memories.update` dengan kondisi awal `content_sha256` sebagai gantinya. Lihat [Perbarui memori](#update-a-memory) di bawah.
 
-### Update
+### Perbarui memori
 
-`memories.update()` memodifikasi dokumen yang ada berdasarkan ID `mem_...` nya. Anda dapat mengubah `content`, `path` (penggantian nama), atau keduanya dalam satu panggilan.
+`memories.update()` memodifikasi memori yang ada berdasarkan `mem_...` ID-nya. Anda dapat mengubah `content`, `path` (penggantian nama), atau keduanya dalam satu panggilan.
 
-Mengganti nama ke jalur yang ditempati mengembalikan `409 conflict`. Pemanggil harus menghapus atau mengganti nama pemblokir terlebih dahulu, atau meneruskan `precondition={"type": "not_exists"}` untuk membuat penggantian nama menjadi no-op jika ada yang sudah ada di target.
+Penggantian nama ke jalur yang ditempati mengembalikan `409 conflict`. Pemanggil harus menghapus atau mengganti nama pemblokir terlebih dahulu, atau meneruskan `precondition={"type": "not_exists"}` untuk membuat penggantian nama menjadi no-op jika ada yang sudah ada di target.
 
-Contoh di bawah mengganti nama dokumen ke jalur arsip:
+Contoh di bawah mengganti nama memori ke jalur arsip:
 
 <CodeGroup>
   
@@ -787,9 +787,9 @@ Contoh di bawah mengganti nama dokumen ke jalur arsip:
   ```
 </CodeGroup>
 
-#### Edit konten yang aman (keselarasan optimis)
+#### Edit konten aman (keselarasan optimis)
 
-Untuk mengedit konten dokumen tanpa menimpa penulisan bersamaan, lewatkan kondisi awal `content_sha256`. Pembaruan hanya berlaku jika hash yang disimpan masih cocok dengan yang Anda baca; pada ketidakcocokan itu mengembalikan `409 memory_precondition_failed`, di mana titik Anda membaca ulang dokumen dan mencoba lagi terhadap status segar.
+Untuk mengedit konten memori tanpa menimpa penulisan bersamaan, lewatkan kondisi awal `content_sha256`. Pembaruan hanya berlaku jika hash yang disimpan masih cocok dengan yang Anda baca; pada ketidakcocokan itu mengembalikan `409 memory_precondition_failed`, di mana titik Anda membaca ulang memori dan mencoba lagi terhadap status segar.
 
 <CodeGroup>
   ```bash curl
@@ -879,7 +879,7 @@ Untuk mengedit konten dokumen tanpa menimpa penulisan bersamaan, lewatkan kondis
   ```
 </CodeGroup>
 
-### Hapus dokumen
+### Hapus memori
 
 <CodeGroup>
   
@@ -940,9 +940,9 @@ Untuk mengedit konten dokumen tanpa menimpa penulisan bersamaan, lewatkan kondis
 
 Secara opsional lewatkan `expected_content_sha256` untuk penghapusan bersyarat.
 
-## Versi memori
+## Audit perubahan memori
 
-Setiap mutasi ke memori membuat **memory version** yang tidak dapat diubah (`memver_...`). Versi terakumulasi untuk seumur hidup memori induk dan membentuk permukaan audit dan rollback di bawahnya. Panggilan `memories.retrieve` langsung selalu mengembalikan kepala saat ini; titik akhir versi memberi Anda riwayat lengkap.
+Setiap mutasi ke memori membuat **versi memori** yang tidak dapat diubah (`memver_...`). Versi terakumulasi untuk seumur hidup memori induk dan membentuk permukaan audit dan rollback di bawahnya. Panggilan `memories.retrieve` langsung selalu mengembalikan kepala saat ini; titik akhir versi memberi Anda riwayat lengkap.
 
 Versi baru ditulis pada setiap mutasi:
 
@@ -1029,7 +1029,7 @@ Daftar metadata versi yang dipaginasi untuk sebuah toko, terbaru terlebih dahulu
 
 ### Ambil sebuah versi
 
-Mengambil versi individual mengembalikan bidang yang sama dengan respons daftar ditambah badan `content` lengkap.
+Mengambil versi individual mengembalikan bidang yang sama seperti respons daftar ditambah badan `content` lengkap.
 
 <CodeGroup>
   ```bash curl

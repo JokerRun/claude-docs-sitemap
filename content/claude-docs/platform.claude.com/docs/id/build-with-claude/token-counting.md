@@ -1,18 +1,18 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 6eca6ae61c31bf68f400be042bc3e20625576fc0fee5eb3e097bdb06330ccf9d
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 9d7b1998298fdd6b2bc9e62c2b76cab6cb6d08866ef137207000cb137dffa1c8
 ---
 
 # Penghitungan token
 
-Pelajari cara menghitung token dalam pesan sebelum mengirimnya ke Claude untuk membuat keputusan yang tepat tentang prompt dan penggunaan Anda.
+Pelajari cara menghitung token dalam pesan sebelum mengirimnya ke Claude untuk mengelola biaya dan laju batas dengan lebih baik.
 
 ---
 
-Penghitungan token memungkinkan Anda menentukan jumlah token dalam pesan sebelum mengirimnya ke Claude, membantu Anda membuat keputusan yang tepat tentang prompt dan penggunaan Anda. Dengan penghitungan token, Anda dapat
-- Mengelola batas laju dan biaya secara proaktif
+Penghitungan token memungkinkan Anda menentukan jumlah token dalam pesan sebelum mengirimnya ke Claude, membantu Anda membuat keputusan berdasarkan informasi tentang prompt dan penggunaan Anda. Dengan penghitungan token, Anda dapat
+- Secara proaktif mengelola batas laju dan biaya
 - Membuat keputusan perutean model yang cerdas
 - Mengoptimalkan prompt agar memiliki panjang tertentu
 
@@ -27,9 +27,9 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
 Titik akhir [penghitungan token](/docs/id/api/messages-count-tokens) menerima daftar input terstruktur yang sama untuk membuat pesan, termasuk dukungan untuk prompt sistem, [alat](/docs/id/agents-and-tools/tool-use/overview), [gambar](/docs/id/build-with-claude/vision), dan [PDF](/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
 
 <Note>
-Jumlah token harus dianggap sebagai **perkiraan**. Dalam beberapa kasus, jumlah token input aktual yang digunakan saat membuat pesan mungkin berbeda dalam jumlah kecil.
+Penghitungan token harus dianggap sebagai **perkiraan**. Dalam beberapa kasus, jumlah sebenarnya dari token input yang digunakan saat membuat pesan mungkin berbeda dalam jumlah kecil.
 
-Jumlah token mungkin mencakup token yang ditambahkan secara otomatis oleh Anthropic untuk optimasi sistem. **Anda tidak ditagih untuk token yang ditambahkan sistem**. Penagihan hanya mencerminkan konten Anda.
+Penghitungan token mungkin mencakup token yang ditambahkan secara otomatis oleh Anthropic untuk optimasi sistem. **Anda tidak ditagih untuk token yang ditambahkan sistem**. Penagihan hanya mencerminkan konten Anda.
 </Note>
 
 ### Model yang didukung
@@ -45,7 +45,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     --header "content-type: application/json" \
     --header "anthropic-version: 2023-06-01" \
     --data '{
-      "model": "claude-opus-4-6",
+      "model": "claude-opus-4-7",
       "system": "You are a scientist",
       "messages": [{
         "role": "user",
@@ -56,7 +56,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 ```bash CLI
 ant messages count-tokens \
-  --model claude-opus-4-6 \
+  --model claude-opus-4-7 \
   --system "You are a scientist" \
   --message '{role: user, content: "Hello, Claude"}'
 ```
@@ -67,7 +67,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.count_tokens(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     system="You are a scientist",
     messages=[{"role": "user", "content": "Hello, Claude"}],
 )
@@ -81,7 +81,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.countTokens({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   system: "You are a scientist",
   messages: [
     {
@@ -108,7 +108,7 @@ class Program
 
         var parameters = new MessageCountTokensParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             System = "You are a scientist",
             Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
         };
@@ -134,7 +134,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-		Model: anthropic.ModelClaudeOpus4_6,
+		Model: anthropic.ModelClaudeOpus4_7,
 		System: anthropic.MessageCountTokensParamsSystemUnion{
 			OfString: anthropic.String("You are a scientist"),
 		},
@@ -163,7 +163,7 @@ public class CountTokensExample {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     MessageCountTokensParams params = MessageCountTokensParams.builder()
-      .model(Model.CLAUDE_OPUS_4_6)
+      .model(Model.CLAUDE_OPUS_4_7)
       .system("You are a scientist")
       .addUserMessage("Hello, Claude")
       .build();
@@ -185,7 +185,7 @@ $response = $client->messages->countTokens(
     messages: [
         ['role' => 'user', 'content' => 'Hello, Claude']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     system: 'You are a scientist',
 );
 
@@ -198,7 +198,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 response = client.messages.count_tokens(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   system: "You are a scientist",
   messages: [
     { role: "user", content: "Hello, Claude" }
@@ -216,7 +216,7 @@ puts response
 ### Hitung token dalam pesan dengan alat
 
 <Note>
-Jumlah token [alat server](/docs/id/agents-and-tools/tool-use/server-tools) hanya berlaku untuk panggilan sampling pertama.
+Penghitungan token [alat server](/docs/id/agents-and-tools/tool-use/server-tools) hanya berlaku untuk panggilan sampling pertama.
 </Note>
 
 <CodeGroup>
@@ -227,7 +227,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     --header "content-type: application/json" \
     --header "anthropic-version: 2023-06-01" \
     --data '{
-      "model": "claude-opus-4-6",
+      "model": "claude-opus-4-7",
       "tools": [
         {
           "name": "get_weather",
@@ -255,7 +255,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 ```bash CLI
 ant messages count-tokens <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 tools:
   - name: get_weather
     description: Get the current weather in a given location
@@ -279,7 +279,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.count_tokens(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     tools=[
         {
             "name": "get_weather",
@@ -308,7 +308,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.countTokens({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   tools: [
     {
       name: "get_weather",
@@ -347,7 +347,7 @@ class Program
 
         var parameters = new MessageCountTokensParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             Tools =
             [
                 new MessageCountTokensTool(new Tool()
@@ -389,7 +389,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-		Model: anthropic.ModelClaudeOpus4_6,
+		Model: anthropic.ModelClaudeOpus4_7,
 		Tools: []anthropic.MessageCountTokensToolUnionParam{
 			{OfTool: &anthropic.ToolParam{
 				Name:        "get_weather",
@@ -453,7 +453,7 @@ public class CountTokensWithToolsExample {
       .build();
 
     MessageCountTokensParams params = MessageCountTokensParams.builder()
-      .model(Model.CLAUDE_OPUS_4_6)
+      .model(Model.CLAUDE_OPUS_4_7)
       .addTool(
         Tool.builder()
           .name("get_weather")
@@ -481,7 +481,7 @@ $response = $client->messages->countTokens(
     messages: [
         ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     tools: [
         [
             'name' => 'get_weather',
@@ -509,7 +509,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 response = client.messages.count_tokens(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   tools: [
     {
       name: "get_weather",
@@ -555,7 +555,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
      --header "content-type: application/json" \
      --data @- <<EOF
 {
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "messages": [
         {"role": "user", "content": [
             {"type": "image", "source": {
@@ -575,7 +575,7 @@ IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavom
 curl -s "$IMAGE_URL" -o ./ant.jpg
 
 ant messages count-tokens <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 messages:
   - role: user
     content:
@@ -601,7 +601,7 @@ image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf
 client = anthropic.Anthropic()
 
 response = client.messages.count_tokens(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     messages=[
         {
             "role": "user",
@@ -634,7 +634,7 @@ const image_array_buffer = await (await fetch(image_url)).arrayBuffer();
 const image_data = Buffer.from(image_array_buffer).toString("base64");
 
 const response = await anthropic.messages.countTokens({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   messages: [
     {
       role: "user",
@@ -680,7 +680,7 @@ public class Program
 
         var parameters = new MessageCountTokensParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             Messages =
             [
                 new()
@@ -745,7 +745,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-		Model: anthropic.ModelClaudeOpus4_6,
+		Model: anthropic.ModelClaudeOpus4_7,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(
 				anthropic.NewImageBlockBase64("image/jpeg", imageData),
@@ -810,7 +810,7 @@ public class CountTokensImageExample {
     );
 
     MessageCountTokensParams params = MessageCountTokensParams.builder()
-      .model(Model.CLAUDE_OPUS_4_6)
+      .model(Model.CLAUDE_OPUS_4_7)
       .addUserMessageOfBlockParams(List.of(imageBlock, textBlock))
       .build();
 
@@ -848,7 +848,7 @@ $response = $client->messages->countTokens(
             ]
         ]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
 );
 print_r($response);
 ```
@@ -867,7 +867,7 @@ image_data = Base64.strict_encode64(Net::HTTP.get(uri))
 client = Anthropic::Client.new
 
 response = client.messages.count_tokens(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   messages: [
     {
       role: "user",
@@ -1286,7 +1286,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     --header "anthropic-version: 2023-06-01" \
     --data @- <<EOF
 {
-  "model": "claude-opus-4-6",
+  "model": "claude-opus-4-7",
   "messages": [{
     "role": "user",
     "content": [
@@ -1313,7 +1313,7 @@ PDF_URL="https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model
 curl -s "$PDF_URL" -o document.pdf
 
 ant messages count-tokens <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 messages:
   - role: user
     content:
@@ -1337,7 +1337,7 @@ with open("document.pdf", "rb") as pdf_file:
     pdf_base64 = base64.standard_b64encode(pdf_file.read()).decode("utf-8")
 
 response = client.messages.count_tokens(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     messages=[
         {
             "role": "user",
@@ -1368,7 +1368,7 @@ const client = new Anthropic();
 const pdfBase64 = await readFile("document.pdf", { encoding: "base64" });
 
 const response = await client.messages.countTokens({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   messages: [
     {
       role: "user",
@@ -1412,7 +1412,7 @@ class Program
 
         var parameters = new MessageCountTokensParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             Messages =
             [
                 new()
@@ -1462,7 +1462,7 @@ func main() {
 	pdfBase64 := base64.StdEncoding.EncodeToString(pdfBytes)
 
 	response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-		Model: anthropic.ModelClaudeOpus4_6,
+		Model: anthropic.ModelClaudeOpus4_7,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(
 				anthropic.NewDocumentBlock(anthropic.Base64PDFSourceParam{
@@ -1519,7 +1519,7 @@ public class CountTokensPdfExample {
     );
 
     MessageCountTokensParams params = MessageCountTokensParams.builder()
-      .model(Model.CLAUDE_OPUS_4_6)
+      .model(Model.CLAUDE_OPUS_4_7)
       .addUserMessageOfBlockParams(List.of(documentBlock, textBlock))
       .build();
 
@@ -1558,7 +1558,7 @@ $response = $client->messages->countTokens(
             ]
         ]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
 );
 
 echo json_encode($response);
@@ -1573,7 +1573,7 @@ client = Anthropic::Client.new
 pdf_base64 = Base64.strict_encode64(File.binread("document.pdf"))
 
 response = client.messages.count_tokens(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   messages: [
     {
       role: "user",
@@ -1617,7 +1617,7 @@ Penghitungan token **gratis digunakan** tetapi tunduk pada batas laju permintaan
 | 4          | 8.000                     |
 
 <Note>
-  Penghitungan token dan pembuatan pesan memiliki batas laju yang terpisah dan independen. Penggunaan satu tidak dihitung terhadap batas yang lain.
+  Penghitungan token dan pembuatan pesan memiliki batas laju yang terpisah dan independen. Penggunaan salah satu tidak dihitung terhadap batas yang lain.
 </Note>
 
 ---
@@ -1625,6 +1625,6 @@ Penghitungan token **gratis digunakan** tetapi tunduk pada batas laju permintaan
 
   <section title="Apakah penghitungan token menggunakan prompt caching?">
 
-    Tidak, penghitungan token memberikan perkiraan tanpa menggunakan logika caching. Meskipun Anda dapat memberikan blok `cache_control` dalam permintaan penghitungan token Anda, prompt caching hanya terjadi selama pembuatan pesan aktual.
+    Tidak, penghitungan token memberikan perkiraan tanpa menggunakan logika caching. Meskipun Anda dapat menyediakan blok `cache_control` dalam permintaan penghitungan token Anda, prompt caching hanya terjadi selama pembuatan pesan aktual.
   
 </section>

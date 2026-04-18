@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: d29bc745ea58ca59a96faf4c4c38533196d9f37c40ca105b6faac6e5bda4006e
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 219ea5502763f40497f6d33e16032f5a839c015fb857438485a89fb392e86dcc
 ---
 
 # Pengeditan konteks
 
-Kelola otomatis konteks percakapan saat berkembang dengan pengeditan konteks.
+Kelola percakapan konteks secara otomatis saat berkembang dengan pengeditan konteks.
 
 ---
 
@@ -18,12 +18,12 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
 ## Ikhtisar
 
 <Note>
-Untuk sebagian besar kasus penggunaan, [pemadatan sisi server](/docs/id/build-with-claude/compaction) adalah strategi utama untuk mengelola konteks dalam percakapan jangka panjang. Strategi di halaman ini berguna untuk skenario spesifik di mana Anda memerlukan kontrol yang lebih halus atas konten apa yang dihapus.
+Untuk sebagian besar kasus penggunaan, [pemadatan sisi server](/docs/id/build-with-claude/compaction) adalah strategi utama untuk mengelola konteks dalam percakapan yang berjalan lama. Strategi di halaman ini berguna untuk skenario spesifik di mana Anda memerlukan kontrol yang lebih halus atas konten apa yang dihapus.
 </Note>
 
-Pengeditan konteks memungkinkan Anda untuk secara selektif menghapus konten tertentu dari riwayat percakapan saat berkembang. Selain mengoptimalkan biaya dan tetap dalam batas, ini tentang secara aktif mengkurasi apa yang Claude lihat: konteks adalah sumber daya terbatas dengan hasil yang menurun, dan konten yang tidak relevan merusak fokus model. Pengeditan konteks memberi Anda kontrol runtime yang halus atas kurasi tersebut. Untuk prinsip yang lebih luas di balik manajemen konteks, lihat [Rekayasa konteks yang efektif](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Halaman ini mencakup:
+Pengeditan konteks memungkinkan Anda untuk secara selektif menghapus konten tertentu dari riwayat percakapan saat berkembang. Selain mengoptimalkan biaya dan tetap dalam batas, ini tentang secara aktif mengkurasi apa yang Claude lihat: konteks adalah sumber daya yang terbatas dengan hasil yang semakin berkurang, dan konten yang tidak relevan merusak fokus model. Pengeditan konteks memberi Anda kontrol runtime yang halus atas kurasi tersebut. Untuk prinsip yang lebih luas di balik manajemen konteks, lihat [Rekayasa konteks yang efektif](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Halaman ini mencakup:
 
-- **Penghapusan hasil alat** - Terbaik untuk alur kerja agentic dengan penggunaan alat berat di mana hasil alat lama tidak lagi diperlukan
+- **Penghapusan hasil alat** - Terbaik untuk alur kerja agentic dengan penggunaan alat yang berat di mana hasil alat lama tidak lagi diperlukan
 - **Penghapusan blok pemikiran** - Untuk mengelola blok pemikiran saat menggunakan pemikiran yang diperluas, dengan opsi untuk mempertahankan pemikiran terbaru untuk kontinuitas konteks
 - **Pemadatan SDK sisi klien** - Alternatif berbasis SDK untuk manajemen konteks berbasis ringkasan (pemadatan sisi server umumnya lebih disukai)
 
@@ -42,16 +42,16 @@ Bagikan umpan balik tentang fitur ini melalui [formulir umpan balik](https://for
 
 ### Penghapusan hasil alat
 
-Strategi `clear_tool_uses_20250919` menghapus hasil alat saat konteks percakapan berkembang melampaui ambang batas yang dikonfigurasi. Ini sangat berguna untuk alur kerja agentic dengan penggunaan alat berat. Hasil alat yang lebih lama (seperti konten file atau hasil pencarian) tidak lagi diperlukan setelah Claude memprosesnya.
+Strategi `clear_tool_uses_20250919` menghapus hasil alat ketika konteks percakapan tumbuh melampaui ambang batas yang dikonfigurasi. Ini sangat berguna untuk alur kerja agentic dengan penggunaan alat yang berat. Hasil alat yang lebih lama (seperti konten file atau hasil pencarian) tidak lagi diperlukan setelah Claude memprosesnya.
 
-Saat diaktifkan, API secara otomatis menghapus hasil alat tertua dalam urutan kronologis. API mengganti setiap hasil yang dihapus dengan teks placeholder sehingga Claude tahu itu telah dihapus. Secara default, hanya hasil alat yang dihapus. Anda dapat secara opsional menghapus baik hasil alat maupun panggilan alat (parameter penggunaan alat) dengan mengatur `clear_tool_inputs` ke true.
+Ketika diaktifkan, API secara otomatis menghapus hasil alat tertua dalam urutan kronologis. API mengganti setiap hasil yang dihapus dengan teks placeholder sehingga Claude tahu itu telah dihapus. Secara default, hanya hasil alat yang dihapus. Anda dapat secara opsional menghapus baik hasil alat maupun panggilan alat (parameter penggunaan alat) dengan mengatur `clear_tool_inputs` ke true.
 
 ### Penghapusan blok pemikiran
 
-Strategi `clear_thinking_20251015` mengelola blok `thinking` dalam percakapan saat pemikiran yang diperluas diaktifkan. Strategi ini memberi Anda kontrol atas pelestarian pemikiran: Anda dapat memilih untuk menyimpan lebih banyak blok pemikiran untuk mempertahankan kontinuitas penalaran, atau menghapusnya lebih agresif untuk menghemat ruang konteks.
+Strategi `clear_thinking_20251015` mengelola blok `thinking` dalam percakapan ketika pemikiran yang diperluas diaktifkan. Strategi ini memberi Anda kontrol atas pelestarian pemikiran: Anda dapat memilih untuk menyimpan lebih banyak blok pemikiran untuk mempertahankan kontinuitas penalaran, atau menghapusnya lebih agresif untuk menghemat ruang konteks.
 
 <Tip>
-**Perilaku default:** Saat pemikiran yang diperluas diaktifkan tanpa mengonfigurasi strategi `clear_thinking_20251015`, API secara otomatis menyimpan hanya blok pemikiran dari giliran asisten terakhir (setara dengan `keep: {type: "thinking_turns", value: 1}`).
+**Perilaku default:** Ketika pemikiran yang diperluas diaktifkan tanpa mengonfigurasi strategi `clear_thinking_20251015`, API secara otomatis menyimpan hanya blok pemikiran dari giliran asisten terakhir (setara dengan `keep: {type: "thinking_turns", value: 1}`).
 
 Untuk memaksimalkan cache hits, pertahankan semua blok pemikiran dengan mengatur `keep: "all"`.
 </Tip>
@@ -64,11 +64,11 @@ Pengeditan konteks diterapkan sisi server sebelum prompt mencapai Claude. Aplika
 
 ### Pengeditan konteks dan caching prompt
 
-Interaksi pengeditan konteks dengan [caching prompt](/docs/id/build-with-claude/prompt-caching) bervariasi menurut strategi:
+Interaksi pengeditan konteks dengan [prompt caching](/docs/id/build-with-claude/prompt-caching) bervariasi menurut strategi:
 
-- **Penghapusan hasil alat**: Membatalkan prefiks prompt yang di-cache saat konten dihapus. Untuk memperhitungkan ini, hapus cukup token untuk membuat pembatalan cache layak. Gunakan parameter `clear_at_least` untuk memastikan jumlah token minimum dihapus setiap kali. Anda akan menimbulkan biaya penulisan cache setiap kali konten dihapus, tetapi permintaan berikutnya dapat menggunakan kembali prefiks yang baru di-cache.
+- **Penghapusan hasil alat**: Membatalkan prefix prompt yang di-cache ketika konten dihapus. Untuk memperhitungkan ini, hapus cukup token untuk membuat pembatalan cache layak. Gunakan parameter `clear_at_least` untuk memastikan jumlah token minimum dihapus setiap kali. Anda akan dikenakan biaya penulisan cache setiap kali konten dihapus, tetapi permintaan berikutnya dapat menggunakan kembali prefix yang baru di-cache.
 
-- **Penghapusan blok pemikiran**: Saat blok pemikiran **dipertahankan** dalam konteks (tidak dihapus), cache prompt dipertahankan, memungkinkan cache hits dan mengurangi biaya token input. Saat blok pemikiran **dihapus**, cache dibatalkan pada titik di mana penghapusan terjadi. Konfigurasikan parameter `keep` berdasarkan apakah Anda ingin memprioritaskan kinerja cache atau ketersediaan jendela konteks.
+- **Penghapusan blok pemikiran**: Ketika blok pemikiran **disimpan** dalam konteks (tidak dihapus), cache prompt dipertahankan, memungkinkan cache hits dan mengurangi biaya token input. Ketika blok pemikiran **dihapus**, cache dibatalkan pada titik di mana penghapusan terjadi. Konfigurasikan parameter `keep` berdasarkan apakah Anda ingin memprioritaskan kinerja cache atau ketersediaan jendela konteks.
 
 ## Model yang didukung
 
@@ -87,7 +87,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "content-type: application/json" \
     --header "anthropic-beta: context-management-2025-06-27" \
     --data '{
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
         "max_tokens": 4096,
         "messages": [
             {
@@ -111,7 +111,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant beta:messages create --beta context-management-2025-06-27 <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -127,7 +127,7 @@ YAML
 
 ```python Python
 response = client.beta.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=[{"role": "user", "content": "Search for recent developments in AI"}],
     tools=[{"type": "web_search_20250305", "name": "web_search"}],
@@ -144,7 +144,7 @@ const anthropic = new Anthropic({
 });
 
 const response = await anthropic.beta.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: [
     {
@@ -173,7 +173,7 @@ AnthropicClient client = new();
 
 var parameters = new MessageCreateParams
 {
-    Model = "claude-opus-4-6",
+    Model = "claude-opus-4-7",
     MaxTokens = 4096,
     Messages = [
         new() { Role = Role.User, Content = "Search for recent developments in AI" }
@@ -207,7 +207,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 4096,
 		Messages: []anthropic.BetaMessageParam{
 			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Search for recent developments in AI")),
@@ -247,7 +247,7 @@ public class WebSearchExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(4096L)
             .addUserMessage("Search for recent developments in AI")
             .addTool(BetaWebSearchTool20250305.builder().build())
@@ -275,7 +275,7 @@ $response = $client->beta->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'Search for recent developments in AI']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     betas: ['context-management-2025-06-27'],
     tools: [
         ['type' => 'web_search_20250305', 'name' => 'web_search']
@@ -296,7 +296,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 response = client.beta.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: [
     { role: "user", content: "Search for recent developments in AI" }
@@ -329,7 +329,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "content-type: application/json" \
     --header "anthropic-beta: context-management-2025-06-27" \
     --data '{
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
         "max_tokens": 4096,
         "messages": [
             {
@@ -374,7 +374,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant beta:messages create --beta context-management-2025-06-27 <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -405,7 +405,7 @@ YAML
 
 ```python Python
 response = client.beta.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=[
         {
@@ -448,7 +448,7 @@ const anthropic = new Anthropic({
 });
 
 const response = await anthropic.beta.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: [
     {
@@ -511,7 +511,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = "claude-opus-4-6",
+            Model = "claude-opus-4-7",
             MaxTokens = 4096,
             Messages = new List<BetaMessageParam>
             {
@@ -587,7 +587,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 4096,
 		Messages: []anthropic.BetaMessageParam{
 			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Create a simple command line calculator app using Python")),
@@ -647,7 +647,7 @@ public class ContextManagementExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(4096L)
             .addUserMessage("Create a simple command line calculator app using Python")
             .addTool(BetaToolTextEditor20250728.builder()
@@ -694,7 +694,7 @@ $message = $client->beta->messages->create(
             'content' => 'Create a simple command line calculator app using Python'
         ]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     betas: ['context-management-2025-06-27'],
     tools: [
         [
@@ -739,7 +739,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 response = client.beta.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: [
     {
@@ -788,7 +788,7 @@ puts response
 
 ## Penggunaan pembersihan blok pemikiran
 
-Aktifkan pembersihan blok pemikiran untuk mengelola konteks dan penyimpanan cache prompt secara efektif ketika pemikiran yang diperluas diaktifkan:
+Aktifkan pembersihan blok pemikiran untuk mengelola konteks dan prompt caching secara efektif ketika pemikiran yang diperluas diaktifkan:
 
 <CodeGroup>
 
@@ -1080,7 +1080,7 @@ Strategi `clear_thinking_20251015` mendukung konfigurasi berikut:
 
 | Opsi konfigurasi | Default | Deskripsi |
 |---------------------|---------|-------------|
-| `keep` | `{type: "thinking_turns", value: 1}` | Menentukan berapa banyak putaran asisten terbaru dengan blok pemikiran yang akan dipertahankan. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk menyimpan N putaran terakhir, atau `"all"` untuk menyimpan semua blok pemikiran. |
+| `keep` | `{type: "thinking_turns", value: 1}` | Menentukan berapa banyak putaran asisten terbaru dengan blok pemikiran yang akan dipertahankan. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk mempertahankan N putaran terakhir, atau `"all"` untuk mempertahankan semua blok pemikiran. |
 
 **Contoh konfigurasi:**
 
@@ -1457,9 +1457,9 @@ puts response
 | Opsi konfigurasi | Default | Deskripsi |
 |---------------------|---------|-------------|
 | `trigger` | 100.000 token input | Menentukan kapan strategi pengeditan konteks diaktifkan. Setelah prompt melebihi ambang batas ini, pembersihan akan dimulai. Anda dapat menentukan nilai ini dalam `input_tokens` atau `tool_uses`. |
-| `keep` | 3 penggunaan alat | Menentukan berapa banyak pasangan penggunaan alat/hasil terbaru yang akan dipertahankan setelah pembersihan terjadi. API menghapus interaksi alat tertua terlebih dahulu, menjaga yang paling baru. |
+| `keep` | 3 penggunaan alat | Menentukan berapa banyak pasangan penggunaan alat/hasil terbaru yang akan dipertahankan setelah pembersihan terjadi. API menghapus interaksi alat tertua terlebih dahulu, mempertahankan yang paling baru. |
 | `clear_at_least` | Tidak ada | Memastikan jumlah token minimum dihapus setiap kali strategi diaktifkan. Jika API tidak dapat menghapus setidaknya jumlah yang ditentukan, strategi tidak akan diterapkan. Ini membantu menentukan apakah pembersihan konteks layak memecahkan cache prompt Anda. |
-| `exclude_tools` | Tidak ada | Daftar nama alat yang penggunaan alat dan hasilnya tidak boleh pernah dihapus. Berguna untuk menjaga konteks penting. |
+| `exclude_tools` | Tidak ada | Daftar nama alat yang penggunaan alat dan hasilnya tidak boleh pernah dihapus. Berguna untuk mempertahankan konteks penting. |
 | `clear_tool_inputs` | `false` | Mengontrol apakah parameter panggilan alat dihapus bersama dengan hasil alat. Secara default, hanya hasil alat yang dihapus sambil menjaga panggilan alat asli Claude tetap terlihat. |
 
 ## Respons pengeditan konteks
@@ -1529,7 +1529,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     --header "content-type: application/json" \
     --header "anthropic-beta: context-management-2025-06-27" \
     --data '{
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
         "messages": [
             {
                 "role": "user",
@@ -1557,7 +1557,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 ```bash CLI
 cat > request.yaml <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 messages:
   - role: user
     content: Continue our conversation...
@@ -1589,7 +1589,7 @@ printf 'Savings: %s tokens\n' "$((ORIGINAL - INPUT_TOKENS))"
 
 ```python Python nocheck
 response = client.beta.messages.count_tokens(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     messages=[{"role": "user", "content": "Continue our conversation..."}],
     tools=[...],  # Your tool definitions
     betas=["context-management-2025-06-27"],
@@ -1619,7 +1619,7 @@ const anthropic = new Anthropic({
 });
 
 const response = await anthropic.beta.messages.countTokens({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   messages: [
     {
       role: "user",
@@ -1650,7 +1650,9 @@ const response = await anthropic.beta.messages.countTokens({
 console.log(`Original tokens: ${response.context_management?.original_input_tokens}`);
 console.log(`After clearing: ${response.input_tokens}`);
 console.log(
-  `Savings: ${(response.context_management?.original_input_tokens || 0) - response.input_tokens} tokens`
+  `Savings: ${
+    (response.context_management?.original_input_tokens || 0) - response.input_tokens
+  } tokens`
 );
 ```
 
@@ -1665,7 +1667,7 @@ var client = new AnthropicClient
 
 var parameters = new BetaMessageTokensCountParams
 {
-    Model = "claude-opus-4-6",
+    Model = "claude-opus-4-7",
     Messages = [new() { Role = Role.User, Content = "Continue our conversation..." }],
     Betas = ["context-management-2025-06-27"],
     ContextManagement = new BetaContextManagementConfig
@@ -1702,7 +1704,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Beta.Messages.CountTokens(context.TODO(), anthropic.BetaMessageCountTokensParams{
-		Model: anthropic.ModelClaudeOpus4_6,
+		Model: anthropic.ModelClaudeOpus4_7,
 		Messages: []anthropic.BetaMessageParam{
 			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Continue our conversation...")),
 		},
@@ -1751,7 +1753,7 @@ public class TokenCountExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCountTokensParams params = MessageCountTokensParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .addUserMessage("Continue our conversation...")
             .addBeta(AnthropicBeta.CONTEXT_MANAGEMENT_2025_06_27)
             .contextManagement(BetaContextManagementConfig.builder()
@@ -1786,7 +1788,7 @@ $response = $client->beta->messages->countTokens(
     messages: [
         ['role' => 'user', 'content' => 'Continue our conversation...']
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     betas: ['context-management-2025-06-27'],
     contextManagement: [
         'edits' => [
@@ -1816,7 +1818,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 response = client.beta.messages.count_tokens(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   messages: [
     { role: "user", content: "Continue our conversation..." }
   ],
@@ -1856,17 +1858,17 @@ puts "Savings: #{response.context_management.original_input_tokens - response.in
 
 Respons menunjukkan baik jumlah token akhir setelah manajemen konteks diterapkan (`input_tokens`) dan jumlah token asli sebelum pembersihan apa pun terjadi (`original_input_tokens`).
 
-## Menggunakan dengan Memory Tool
+## Menggunakan dengan Alat Memory
 
-Pengeditan konteks dapat digabungkan dengan [memory tool](/docs/id/agents-and-tools/tool-use/memory-tool). Ketika konteks percakapan Anda mendekati ambang batas pembersihan yang dikonfigurasi, Claude menerima peringatan otomatis untuk menyimpan informasi penting. Ini memungkinkan Claude untuk menyimpan hasil alat atau konteks ke file memorinya sebelum dihapus dari riwayat percakapan.
+Pengeditan konteks dapat digabungkan dengan [alat memory](/docs/id/agents-and-tools/tool-use/memory-tool). Ketika konteks percakapan Anda mendekati ambang batas pembersihan yang dikonfigurasi, Claude menerima peringatan otomatis untuk menyimpan informasi penting. Ini memungkinkan Claude untuk menyimpan hasil alat atau konteks ke file memory sebelum dihapus dari riwayat percakapan.
 
 Kombinasi ini memungkinkan Anda untuk:
 
-- **Menyimpan konteks penting**: Claude dapat menulis informasi penting dari hasil alat ke file memori sebelum hasil tersebut dihapus
+- **Menyimpan konteks penting**: Claude dapat menulis informasi penting dari hasil alat ke file memory sebelum hasil tersebut dihapus
 - **Mempertahankan alur kerja jangka panjang**: Mengaktifkan alur kerja agentic yang sebaliknya akan melampaui batas konteks dengan memindahkan informasi ke penyimpanan persisten
-- **Mengakses informasi sesuai permintaan**: Claude dapat mencari informasi yang sebelumnya dihapus dari file memori saat diperlukan, daripada menyimpan semuanya di jendela konteks aktif
+- **Mengakses informasi sesuai permintaan**: Claude dapat mencari informasi yang sebelumnya dihapus dari file memory saat diperlukan, daripada menyimpan semuanya di jendela konteks aktif
 
-Misalnya, dalam alur kerja pengeditan file di mana Claude melakukan banyak operasi, Claude dapat merangkum perubahan yang selesai ke file memori seiring pertumbuhan konteks. Ketika hasil alat dihapus, Claude mempertahankan akses ke informasi tersebut melalui sistem memorinya dan dapat terus bekerja secara efektif.
+Misalnya, dalam alur kerja pengeditan file di mana Claude melakukan banyak operasi, Claude dapat merangkum perubahan yang selesai ke file memory saat konteks berkembang. Ketika hasil alat dihapus, Claude mempertahankan akses ke informasi tersebut melalui sistem memory dan dapat terus bekerja secara efektif.
 
 Untuk menggunakan kedua fitur bersama-sama, aktifkan keduanya dalam permintaan API Anda:
 
@@ -1874,7 +1876,7 @@ Untuk menggunakan kedua fitur bersama-sama, aktifkan keduanya dalam permintaan A
 
 ```bash CLI
 ant beta:messages create --beta context-management-2025-06-27 <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 4096
 messages:
   - role: user
@@ -1890,7 +1892,7 @@ YAML
 
 ```python Python nocheck
 response = client.beta.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=4096,
     messages=[...],
     tools=[
@@ -1910,7 +1912,7 @@ const anthropic = new Anthropic({
 });
 
 const response = await anthropic.beta.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: [
     // ...
@@ -1943,7 +1945,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_6,
+            Model = Model.ClaudeOpus4_7,
             MaxTokens = 4096,
             Messages = [],
             Tools = [
@@ -1981,7 +1983,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 4096,
 		Messages:  []anthropic.BetaMessageParam{},
 		Tools: []anthropic.BetaToolUnionParam{
@@ -2017,7 +2019,7 @@ public class Main {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_6)
+            .model(Model.CLAUDE_OPUS_4_7)
             .maxTokens(4096L)
             .addTool(BetaMemoryTool20250818.builder().build())
             .addBeta(AnthropicBeta.CONTEXT_MANAGEMENT_2025_06_27)
@@ -2042,7 +2044,7 @@ $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
 $response = $client->beta->messages->create(
     maxTokens: 4096,
     messages: [],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     betas: ['context-management-2025-06-27'],
     tools: [
         [
@@ -2066,7 +2068,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 response = client.beta.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 4096,
   messages: [
     # ...
@@ -2089,7 +2091,7 @@ puts response
 
 </CodeGroup>
 
-Untuk referensi memory tool lengkap termasuk perintah dan contoh, lihat [Memory tool](/docs/id/agents-and-tools/tool-use/memory-tool).
+Untuk referensi alat memory lengkap termasuk perintah dan contoh, lihat [Alat Memory](/docs/id/agents-and-tools/tool-use/memory-tool).
 
 ## Pemadatan sisi klien (SDK)
 
@@ -2110,11 +2112,11 @@ Ketika pemadatan diaktifkan, SDK memantau penggunaan token setelah setiap respon
 1. **Pemeriksaan ambang batas:** SDK menghitung total token sebagai `input_tokens + cache_creation_input_tokens + cache_read_input_tokens + output_tokens`.
 2. **Pembuatan ringkasan:** Ketika ambang batas terlampaui, prompt ringkasan disuntikkan sebagai giliran pengguna, dan Claude menghasilkan ringkasan terstruktur yang dibungkus dalam tag `<summary></summary>`.
 3. **Penggantian konteks:** SDK mengekstrak ringkasan dan mengganti seluruh riwayat pesan dengannya.
-4. **Kelanjutan:** Percakapan dilanjutkan dari ringkasan, dengan Claude melanjutkan dari mana ia berhenti.
+4. **Kelanjutan:** Percakapan dilanjutkan dari ringkasan, dengan Claude melanjutkan dari tempat ia berhenti.
 
 ### Menggunakan pemadatan
 
-Tambahkan `compaction_control` ke panggilan `tool_runner` Anda untuk mengaktifkan perangkuman otomatis ketika penggunaan token melebihi ambang batas.
+Tambahkan `compaction_control` ke panggilan `tool_runner` Anda untuk mengaktifkan perangkuman otomatis ketika penggunaan token melampaui ambang batas.
 
 <Tabs>
 <Tab title="CLI">
@@ -2140,7 +2142,7 @@ def read_file(path: str) -> str:
 client = anthropic.Anthropic()
 
 runner = client.beta.messages.tool_runner(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[read_file],
     messages=[{"role": "user", "content": "What's in config.json?"}],
@@ -2173,7 +2175,7 @@ async function main() {
   const client = new Anthropic();
 
   const runner = client.beta.messages.toolRunner({
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 1024,
     tools: [readFile],
     messages: [{ role: "user", content: "What's in config.json?" }],
@@ -2238,7 +2240,7 @@ end
 client = Anthropic::Client.new
 
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [ReadFile.new],
   messages: [{ role: "user", content: "What's in config.json?" }],
@@ -2255,7 +2257,7 @@ end
 
 #### Apa yang terjadi selama pemadatan
 
-Seiring pertumbuhan percakapan, riwayat pesan terakumulasi:
+Seiring percakapan berkembang, riwayat pesan terakumulasi:
 
 **Sebelum pemadatan (mendekati 100k token):**
 ```json
@@ -2276,7 +2278,7 @@ Seiring pertumbuhan percakapan, riwayat pesan terakumulasi:
 ]
 ```
 
-Ketika token melebihi ambang batas, SDK menyuntikkan permintaan ringkasan dan Claude menghasilkan ringkasan. Seluruh riwayat kemudian diganti:
+Ketika token melampaui ambang batas, SDK menyuntikkan permintaan ringkasan dan Claude menghasilkan ringkasan. Seluruh riwayat kemudian diganti:
 
 **Setelah pemadatan (kembali ke ~2-3k token):**
 ```json
@@ -2297,7 +2299,7 @@ Claude melanjutkan bekerja dari ringkasan ini seolah-olah itu adalah riwayat per
 | `enabled` | boolean | Ya | - | Apakah akan mengaktifkan pemadatan otomatis |
 | `context_token_threshold` | number | Tidak | 100,000 | Jumlah token di mana pemadatan dipicu |
 | `model` | string | Tidak | Model yang sama dengan model utama | Model yang digunakan untuk menghasilkan ringkasan |
-| `summary_prompt` | string | Tidak | Lihat di bawah | Prompt kustom untuk pembuatan ringkasan |
+| `summary_prompt` | string | Tidak | Lihat di bawah | Prompt khusus untuk pembuatan ringkasan |
 
 #### Memilih ambang batas token
 
@@ -2359,9 +2361,9 @@ const _ = {
 
 </CodeGroup>
 
-#### Prompt ringkasan kustom
+#### Prompt ringkasan khusus
 
-Anda dapat memberikan prompt kustom untuk kebutuhan khusus domain. Prompt Anda harus menginstruksikan Claude untuk membungkus ringkasannya dalam tag `<summary></summary>`.
+Anda dapat memberikan prompt khusus untuk kebutuhan spesifik domain. Prompt Anda harus menginstruksikan Claude untuk membungkus ringkasannya dalam tag `<summary></summary>`.
 
 <CodeGroup>
 
@@ -2403,7 +2405,7 @@ Prompt ringkasan bawaan menginstruksikan Claude untuk membuat ringkasan kelanjut
 2. **Status Saat Ini:** Apa yang telah selesai, file yang dimodifikasi, dan artefak yang dihasilkan.
 3. **Penemuan Penting:** Batasan teknis, keputusan yang dibuat, kesalahan yang diselesaikan, dan pendekatan yang gagal.
 4. **Langkah Berikutnya:** Tindakan spesifik yang diperlukan, pemblokir, dan urutan prioritas.
-5. **Konteks untuk Dipertahankan:** Preferensi pengguna, detail khusus domain, dan komitmen yang dibuat.
+5. **Konteks untuk Dipertahankan:** Preferensi pengguna, detail spesifik domain, dan komitmen yang dibuat.
 
 Struktur ini memungkinkan Claude untuk melanjutkan pekerjaan secara efisien tanpa kehilangan konteks penting atau mengulangi kesalahan.
 
@@ -2449,7 +2451,7 @@ Wrap your summary in <summary></summary> tags.
 #### Alat sisi server
 
 <Warning>
-Pemadatan memerlukan pertimbangan khusus saat menggunakan alat sisi server seperti [web search](/docs/id/agents-and-tools/tool-use/web-search-tool) atau [web fetch](/docs/id/agents-and-tools/tool-use/web-fetch-tool).
+Pemadatan memerlukan pertimbangan khusus saat menggunakan alat sisi server seperti [pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) atau [pengambilan web](/docs/id/agents-and-tools/tool-use/web-fetch-tool).
 </Warning>
 
 Saat menggunakan alat sisi server, SDK mungkin menghitung penggunaan token secara tidak benar, menyebabkan pemadatan dipicu pada waktu yang salah.
@@ -2466,11 +2468,11 @@ Misalnya, setelah operasi pencarian web, respons API mungkin menunjukkan:
 }
 ```
 
-SDK menghitung penggunaan total sebagai 63.000 + 270.000 = 333.000 token. Namun, nilai `cache_read_input_tokens` mencakup pembacaan yang terakumulasi dari beberapa panggilan API internal yang dibuat oleh alat sisi server, bukan konteks percakapan aktual Anda. Panjang konteks nyata Anda mungkin hanya 63.000 `input_tokens`, tetapi SDK melihat 333k dan memicu pemadatan secara prematur.
+SDK menghitung penggunaan total sebagai 63.000 + 270.000 = 333.000 token. Namun, nilai `cache_read_input_tokens` mencakup pembacaan terakumulasi dari beberapa panggilan API internal yang dibuat oleh alat sisi server, bukan konteks percakapan aktual Anda. Panjang konteks nyata Anda mungkin hanya 63.000 `input_tokens`, tetapi SDK melihat 333k dan memicu pemadatan secara prematur.
 
 **Solusi:**
 
-- Gunakan endpoint [token counting](/docs/id/build-with-claude/token-counting) untuk mendapatkan panjang konteks yang akurat
+- Gunakan endpoint [penghitungan token](/docs/id/build-with-claude/token-counting) untuk mendapatkan panjang konteks yang akurat
 - Hindari pemadatan saat menggunakan alat sisi server secara ekstensif
 
 #### Kasus tepi penggunaan alat
@@ -2500,7 +2502,7 @@ logging.getLogger("anthropic.lib.tools").setLevel(logging.INFO)
 </Tab>
 <Tab title="TypeScript">
 
-`toolRunner` SDK TypeScript mendukung pemadatan tetapi tidak mencatat peristiwa. Deteksi pemadatan dengan menonton `runner.params.messages.length` menyusut di antara giliran:
+`toolRunner` SDK TypeScript mendukung pemadatan tetapi tidak mencatat peristiwa. Deteksi pemadatan dengan menonton `runner.params.messages.length` menyusut antar putaran:
 
 ```typescript TypeScript hidelines={1..25,-3..}
 import Anthropic from "@anthropic-ai/sdk";
@@ -2521,7 +2523,7 @@ async function main() {
   const client = new Anthropic();
 
   const runner = client.beta.messages.toolRunner({
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 1024,
     tools: [readFile],
     messages: [{ role: "user", content: "What's in config.json?" }],
@@ -2594,7 +2596,7 @@ end
 client = Anthropic::Client.new
 
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [ReadFile.new],
   messages: [{ role: "user", content: "What's in config.json?" }],
@@ -2626,6 +2628,6 @@ end
 
 **Kasus penggunaan yang kurang ideal:**
 
-- Tugas yang memerlukan ingatan presisi dari detail percakapan awal
+- Tugas yang memerlukan recall presisi dari detail percakapan awal
 - Alur kerja menggunakan alat sisi server secara ekstensif
 - Tugas yang perlu mempertahankan status yang tepat di banyak variabel

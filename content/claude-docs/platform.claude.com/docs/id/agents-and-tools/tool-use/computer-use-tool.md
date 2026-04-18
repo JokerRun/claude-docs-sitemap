@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 2a44dc8643cafbfc69b5b06473dbe753fe3250acbf8c74e0bb3e4e95573e3361
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: 0f25a187b2d2007e89b7b09cb5556956a3458e176f3cc5ec16548ad349b7e9ed
 ---
 
 # Alat computer use
@@ -11,11 +11,11 @@ Claude dapat berinteraksi dengan lingkungan desktop melalui alat computer use ya
 
 ---
 
-Claude dapat berinteraksi dengan lingkungan komputer melalui alat computer use, yang menyediakan kemampuan screenshot dan kontrol mouse/keyboard untuk interaksi desktop otonom. Di [WebArena](https://webarena.dev/), sebuah benchmark untuk navigasi web otonom di seluruh situs web nyata, Claude mencapai hasil terdepan di antara sistem single-agent, menunjukkan kemampuan kuat untuk menyelesaikan tugas browser multi-langkah dari awal hingga akhir.
+Claude dapat berinteraksi dengan lingkungan desktop melalui alat computer use, yang menyediakan kemampuan screenshot dan kontrol mouse/keyboard untuk interaksi desktop otonom. Di [WebArena](https://webarena.dev/), sebuah benchmark untuk navigasi web otonom di seluruh situs web nyata, Claude mencapai hasil terdepan di antara sistem single-agent, menunjukkan kemampuan kuat untuk menyelesaikan tugas browser multi-langkah dari awal hingga akhir.
 
 <Note>
 Computer use sedang dalam beta dan memerlukan [beta header](/docs/id/api/beta-headers):
-- `"computer-use-2025-11-24"` untuk Claude Opus 4.6, Claude Sonnet 4.6, Claude Opus 4.5
+- `"computer-use-2025-11-24"` untuk Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, Claude Opus 4.5
 - `"computer-use-2025-01-24"` untuk Sonnet 4.5, Haiku 4.5, Opus 4.1, Sonnet 4, Opus 4, dan Sonnet 3.7 ([deprecated](/docs/id/about-claude/model-deprecations))
 
 Hubungi kami melalui [formulir umpan balik](https://forms.gle/H6UFuXaaLywri9hz6) untuk berbagi umpan balik Anda tentang fitur ini.
@@ -34,7 +34,7 @@ Computer use adalah fitur beta yang memungkinkan Claude berinteraksi dengan ling
 - **Input keyboard**: Ketik teks dan gunakan pintasan keyboard
 - **Otomasi desktop**: Berinteraksi dengan aplikasi atau antarmuka apa pun
 
-Meskipun computer use dapat ditingkatkan dengan alat lain seperti bash dan editor teks untuk alur kerja otomasi yang lebih komprehensif, computer use secara khusus mengacu pada kemampuan alat computer use untuk melihat dan mengontrol lingkungan desktop.
+Meskipun computer use dapat ditingkatkan dengan alat lain seperti bash dan editor teks untuk alur kerja otomasi yang lebih komprehensif, computer use secara khusus mengacu pada kemampuan alat computer use untuk melihat dan mengendalikan lingkungan desktop.
 
 Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
 
@@ -48,16 +48,16 @@ Untuk meminimalkan risiko, pertimbangkan untuk mengambil tindakan pencegahan sep
 1. Menggunakan mesin virtual atau kontainer khusus dengan hak istimewa minimal untuk mencegah serangan sistem langsung atau kecelakaan.
 2. Menghindari pemberian model akses ke data sensitif, seperti informasi login akun, untuk mencegah pencurian informasi.
 3. Membatasi akses internet ke daftar putih domain untuk mengurangi paparan terhadap konten berbahaya.
-4. Meminta manusia untuk mengonfirmasi keputusan yang mungkin menghasilkan konsekuensi dunia nyata yang bermakna serta tugas apa pun yang memerlukan persetujuan afirmatif, seperti menerima cookie, menjalankan transaksi keuangan, atau menyetujui syarat layanan.
+4. Meminta manusia untuk mengkonfirmasi keputusan yang mungkin menghasilkan konsekuensi dunia nyata yang bermakna serta tugas apa pun yang memerlukan persetujuan afirmatif, seperti menerima cookie, melaksanakan transaksi keuangan, atau menyetujui syarat layanan.
 </Warning>
 
-Dalam beberapa keadaan, Claude akan mengikuti perintah yang ditemukan dalam konten bahkan jika bertentangan dengan instruksi pengguna. Misalnya, instruksi Claude di halaman web atau yang terdapat dalam gambar dapat mengganti instruksi atau menyebabkan Claude membuat kesalahan. Ambil tindakan pencegahan untuk mengisolasi Claude dari data dan tindakan sensitif untuk menghindari risiko yang terkait dengan prompt injection.
+Dalam beberapa keadaan, Claude akan mengikuti perintah yang ditemukan dalam konten bahkan jika bertentangan dengan instruksi pengguna. Misalnya, instruksi Claude di halaman web atau yang terdapat dalam gambar dapat mengganti instruksi atau menyebabkan Claude membuat kesalahan. Ambil tindakan pencegahan untuk mengisolasi Claude dari data dan tindakan sensitif untuk menghindari risiko terkait injeksi prompt.
 
-Model telah dilatih untuk menahan prompt injection ini, dan lapisan pertahanan tambahan telah ditambahkan. Jika Anda menggunakan alat computer use, pengklasifikasi akan secara otomatis berjalan pada prompt Anda untuk menandai kemungkinan instance prompt injection. Ketika pengklasifikasi ini mengidentifikasi prompt injection potensial dalam screenshot, mereka akan secara otomatis mengarahkan model untuk meminta konfirmasi pengguna sebelum melanjutkan dengan tindakan berikutnya. Perlindungan tambahan ini tidak akan ideal untuk setiap kasus penggunaan (misalnya, kasus penggunaan tanpa manusia dalam loop), jadi jika Anda ingin menolak dan mematikannya, silakan [hubungi dukungan](https://support.claude.com/en/).
+Model telah dilatih untuk menahan injeksi prompt ini, dan lapisan pertahanan tambahan telah ditambahkan. Jika Anda menggunakan alat computer use, pengklasifikasi akan secara otomatis berjalan pada prompt Anda untuk menandai kemungkinan contoh injeksi prompt. Ketika pengklasifikasi ini mengidentifikasi kemungkinan injeksi prompt dalam screenshot, mereka akan secara otomatis mengarahkan model untuk meminta konfirmasi pengguna sebelum melanjutkan dengan tindakan berikutnya. Perlindungan tambahan ini tidak akan ideal untuk setiap kasus penggunaan (misalnya, kasus penggunaan tanpa manusia dalam loop), jadi jika Anda ingin memilih keluar dan mematikannya, silakan [hubungi dukungan](https://support.claude.com/en/).
 
 Tindakan pencegahan ini tetap penting bahkan dengan lapisan pertahanan pengklasifikasi yang ada.
 
-Informasikan pengguna akhir tentang risiko yang relevan dan dapatkan persetujuan mereka sebelum mengaktifkan computer use di produk Anda sendiri.
+Beri tahu pengguna akhir tentang risiko yang relevan dan dapatkan persetujuan mereka sebelum mengaktifkan computer use di produk Anda sendiri.
 
 <Card
   title="Implementasi referensi computer use"
@@ -83,7 +83,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: computer-use-2025-11-24" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "tools": [
       {
@@ -113,7 +113,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant beta:messages create --beta computer-use-2025-11-24 <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 tools:
   - type: computer_20251124
@@ -137,7 +137,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-opus-4-6",  # or another compatible model
+    model="claude-opus-4-7",  # or another compatible model
     max_tokens=1024,
     tools=[
         {
@@ -162,7 +162,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.beta.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [
     {
@@ -197,7 +197,7 @@ var client = new AnthropicClient();
 
 var parameters = new MessageCreateParams
 {
-    Model = Messages::Model.ClaudeOpus4_6,
+    Model = Messages::Model.ClaudeOpus4_7,
     MaxTokens = 1024,
     Tools = new BetaToolUnion[]
     {
@@ -240,7 +240,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_6,
+		Model:     anthropic.ModelClaudeOpus4_7,
 		MaxTokens: 1024,
 		Tools: []anthropic.BetaToolUnionParam{
 			{OfComputerUseTool20251124: &anthropic.BetaToolComputerUse20251124Param{
@@ -279,7 +279,7 @@ public class ComputerUseExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model("claude-opus-4-6")
+            .model("claude-opus-4-7")
             .maxTokens(1024L)
             .addTool(BetaToolComputerUse20251124.builder()
                 .displayWidthPx(1024L)
@@ -310,7 +310,7 @@ $response = $client->beta->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'Save a picture of a cat to my desktop.'],
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-7',
     tools: [
         [
             'type' => 'computer_20251124',
@@ -340,7 +340,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 response = client.beta.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [
     {
@@ -384,7 +384,7 @@ Contoh di atas menunjukkan ketiga alat digunakan bersama-sama, yang memerlukan b
     title="Berikan Claude dengan alat computer use dan prompt pengguna"
     icon="tool"
   >
-    - Tambahkan alat computer use (dan secara opsional alat lain) ke permintaan API Anda.
+    - Tambahkan alat computer use (dan secara opsional alat lainnya) ke permintaan API Anda.
     - Sertakan prompt pengguna yang memerlukan interaksi desktop, misalnya, "Simpan gambar kucing ke desktop saya."
   </Step>
   <Step title="Claude memutuskan untuk menggunakan alat computer use" icon="wrench">
@@ -401,7 +401,7 @@ Contoh di atas menunjukkan ketiga alat digunakan bersama-sama, yang memerlukan b
     - Lanjutkan percakapan dengan pesan `user` baru yang berisi blok konten `tool_result`.
   </Step>
   <Step
-    title="Claude terus memanggil alat computer use sampai menyelesaikan tugas"
+    title="Claude terus memanggil alat computer use hingga menyelesaikan tugas"
     icon="arrows-clockwise"
   >
     - Claude menganalisis hasil alat untuk menentukan apakah penggunaan alat lebih lanjut diperlukan atau tugas telah selesai.
@@ -416,11 +416,11 @@ Pengulangan langkah 3 dan 4 tanpa input pengguna disebut sebagai "agent loop" (y
 
 Computer use memerlukan lingkungan komputasi bersandal di mana Claude dapat dengan aman berinteraksi dengan aplikasi dan web. Lingkungan ini mencakup:
 
-1. **Tampilan virtual**: Server tampilan X11 virtual (menggunakan Xvfb) yang merender antarmuka desktop yang akan Claude lihat melalui screenshot dan kontrol dengan tindakan mouse/keyboard.
+1. **Tampilan virtual**: Server tampilan X11 virtual (menggunakan Xvfb) yang merender antarmuka desktop yang akan dilihat Claude melalui screenshot dan dikontrol dengan tindakan mouse/keyboard.
 
 2. **Lingkungan desktop**: UI ringan dengan window manager (Mutter) dan panel (Tint2) yang berjalan di Linux, yang menyediakan antarmuka grafis yang konsisten untuk Claude berinteraksi.
 
-3. **Aplikasi**: Aplikasi Linux pra-instal seperti Firefox, LibreOffice, editor teks, dan file manager yang dapat Claude gunakan untuk menyelesaikan tugas.
+3. **Aplikasi**: Aplikasi Linux yang sudah diinstal sebelumnya seperti Firefox, LibreOffice, editor teks, dan pengelola file yang dapat digunakan Claude untuk menyelesaikan tugas.
 
 4. **Implementasi alat**: Kode integrasi yang menerjemahkan permintaan alat abstrak Claude (seperti "pindahkan mouse" atau "ambil screenshot") menjadi operasi aktual di lingkungan virtual.
 
@@ -544,7 +544,7 @@ async def sampling_loop(
         messages.append({"role": "user", "content": tool_results})
 ```
 
-Loop berlanjut sampai Claude merespons tanpa meminta alat apa pun (penyelesaian tugas) atau batas iterasi maksimal tercapai. Perlindungan ini mencegah loop tak terbatas potensial yang dapat menghasilkan biaya API yang tidak terduga.
+Loop berlanjut sampai Claude merespons tanpa meminta alat apa pun (penyelesaian tugas) atau batas iterasi maksimum tercapai. Perlindungan ini mencegah kemungkinan loop tak terbatas yang dapat menghasilkan biaya API yang tidak terduga.
 
 Coba implementasi referensi sebelum membaca sisa dokumentasi ini.
 
@@ -552,14 +552,14 @@ Coba implementasi referensi sebelum membaca sisa dokumentasi ini.
 
 Berikut adalah beberapa tips tentang cara mendapatkan output berkualitas terbaik:
 
-1. Tentukan tugas sederhana dan terdefinisi dengan baik serta berikan instruksi eksplisit untuk setiap langkah.
+1. Tentukan tugas sederhana yang terdefinisi dengan baik dan berikan instruksi eksplisit untuk setiap langkah.
 2. Claude kadang-kadang mengasumsikan hasil tindakannya tanpa secara eksplisit memeriksa hasilnya. Untuk mencegah ini, Anda dapat memberi prompt Claude dengan `After each step, take a screenshot and carefully evaluate if you have achieved the right outcome. Explicitly show your thinking: "I have evaluated step X..." If not correct, try again. Only when you confirm a step was executed correctly should you move on to the next one.`
-3. Beberapa elemen UI (seperti dropdown dan scrollbar) mungkin sulit bagi Claude untuk dimanipulasi menggunakan gerakan mouse. Jika Anda mengalami ini, coba beri prompt model untuk menggunakan pintasan keyboard.
+3. Beberapa elemen UI (seperti dropdown dan scrollbar) mungkin sulit untuk Claude manipulasi menggunakan gerakan mouse. Jika Anda mengalami ini, coba beri prompt model untuk menggunakan pintasan keyboard.
 4. Untuk tugas yang dapat diulang atau interaksi UI, sertakan contoh screenshot dan panggilan alat hasil yang berhasil dalam prompt Anda.
-5. Jika Anda perlu model untuk login, berikan nama pengguna dan kata sandi dalam prompt Anda di dalam tag xml seperti `<robot_credentials>`. Menggunakan computer use dalam aplikasi yang memerlukan login meningkatkan risiko hasil buruk karena prompt injection. Tinjau [panduan tentang mitigasi prompt injection](/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks) sebelum memberikan model kredensial login.
+5. Jika Anda perlu model untuk login, berikan nama pengguna dan kata sandi dalam prompt Anda di dalam tag xml seperti `<robot_credentials>`. Menggunakan computer use dalam aplikasi yang memerlukan login meningkatkan risiko hasil buruk sebagai akibat dari injeksi prompt. Tinjau [panduan tentang mitigasi injeksi prompt](/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks) sebelum memberikan model kredensial login.
 
 <Tip>
-  Jika Anda berulang kali mengalami serangkaian masalah yang jelas atau mengetahui sebelumnya tugas yang perlu Claude selesaikan, gunakan system prompt untuk memberikan Claude tips atau instruksi eksplisit tentang cara menyelesaikan tugas dengan sukses.
+  Jika Anda berulang kali mengalami serangkaian masalah yang jelas atau mengetahui sebelumnya tugas yang perlu diselesaikan Claude, gunakan system prompt untuk memberikan Claude tips atau instruksi eksplisit tentang cara menyelesaikan tugas dengan sukses.
 </Tip>
 
 <Tip>
@@ -576,7 +576,7 @@ Seperti dengan tool use reguler, field `system_prompt` yang disediakan pengguna 
 
 ### Tindakan yang tersedia
 
-Alat computer use mendukung tindakan berikut:
+Alat computer use mendukung tindakan-tindakan ini:
 
 **Tindakan dasar (semua versi)**
 - **screenshot** - Tangkap tampilan saat ini
@@ -590,13 +590,13 @@ Tersedia di model Claude 4 dan Claude Sonnet 3.7:
 - **scroll** - Gulir ke arah mana pun dengan kontrol jumlah
 - **left_click_drag** - Klik dan seret antara koordinat
 - **right_click**, **middle_click** - Tombol mouse tambahan
-- **double_click**, **triple_click** - Klik ganda
+- **double_click**, **triple_click** - Beberapa klik
 - **left_mouse_down**, **left_mouse_up** - Kontrol klik terperinci
 - **hold_key** - Tahan tombol untuk durasi tertentu (dalam detik)
 - **wait** - Jeda antara tindakan
 
 **Tindakan yang ditingkatkan (`computer_20251124`)**
-Tersedia di Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5:
+Tersedia di Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5:
 - Semua tindakan dari `computer_20250124`
 - **zoom** - Lihat wilayah tertentu dari layar pada resolusi penuh. Memerlukan `enable_zoom: true` dalam definisi alat. Mengambil parameter `region` dengan koordinat `[x1, y1, x2, y2]` yang menentukan sudut kiri atas dan kanan bawah area untuk diperiksa.
 
@@ -610,7 +610,7 @@ Ambil screenshot:
 }
 ```
 
-Klik pada posisi:
+Klik di posisi:
 
 ```json
 {
@@ -639,7 +639,7 @@ Gulir ke bawah (Claude 4/3.7):
 }
 ```
 
-Zoom untuk melihat wilayah secara detail (Opus 4.6, Sonnet 4.6, Opus 4.5):
+Zoom untuk melihat wilayah secara detail (Opus 4.7, Opus 4.6, Sonnet 4.6, Opus 4.5):
 
 ```json
 {
@@ -712,7 +712,7 @@ Parameter `text` dalam tindakan klik/gulir menerima tombol pengubah seperti `shi
 | `enable_zoom` | Tidak | Aktifkan tindakan zoom (`computer_20251124` saja). Atur ke `true` untuk memungkinkan Claude zoom ke wilayah layar tertentu. Default: `false` |
 
 <Note>
-**Penting:** Alat computer use harus secara eksplisit dijalankan oleh aplikasi Anda - Claude tidak dapat menjalankannya secara langsung. Anda bertanggung jawab untuk mengimplementasikan penangkapan screenshot, gerakan mouse, input keyboard, dan tindakan lain berdasarkan permintaan Claude.
+**Penting:** Alat computer use harus secara eksplisit dijalankan oleh aplikasi Anda - Claude tidak dapat menjalankannya secara langsung. Anda bertanggung jawab untuk mengimplementasikan penangkapan screenshot, gerakan mouse, input keyboard, dan tindakan lainnya berdasarkan permintaan Claude.
 </Note>
 
 ### Menggabungkan dengan extended thinking
@@ -725,11 +725,11 @@ Untuk menambahkan alat lain bersama computer use, sertakan mereka dalam array `t
 
 ### Bangun lingkungan penggunaan komputer khusus
 
-[Implementasi referensi](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo) dimaksudkan untuk membantu Anda memulai dengan penggunaan komputer. Ini mencakup semua komponen yang diperlukan agar Claude dapat menggunakan komputer. Namun, Anda dapat membangun lingkungan Anda sendiri untuk penggunaan komputer sesuai kebutuhan Anda. Anda akan memerlukan:
+[Implementasi referensi](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo) dirancang untuk membantu Anda memulai dengan penggunaan komputer. Ini mencakup semua komponen yang diperlukan agar Claude dapat menggunakan komputer. Namun, Anda dapat membangun lingkungan Anda sendiri untuk penggunaan komputer sesuai kebutuhan Anda. Anda akan memerlukan:
 
 - Lingkungan virtual atau terkontainerisasi yang sesuai untuk penggunaan komputer dengan Claude
 - Implementasi setidaknya satu dari alat penggunaan komputer skema Anthropic
-- Loop agen yang berinteraksi dengan API Claude dan mengeksekusi hasil `tool_use` menggunakan implementasi alat Anda
+- Loop agen yang berinteraksi dengan Claude API dan menjalankan hasil `tool_use` menggunakan implementasi alat Anda
 - API atau UI yang memungkinkan input pengguna untuk memulai loop agen
 
 #### Implementasikan alat penggunaan komputer
@@ -807,7 +807,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
 
     while True:
         response = client.beta.messages.create(
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
             max_tokens=4096,
             messages=messages,
             tools=tools,
@@ -829,7 +829,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
 
 #### Tangani kesalahan
 
-Saat mengimplementasikan alat penggunaan komputer, berbagai kesalahan dapat terjadi. Berikut cara menanganinya:
+Saat mengimplementasikan alat penggunaan komputer, berbagai kesalahan mungkin terjadi. Berikut cara menanganinya:
 
 <section title="Kegagalan penangkapan tangkapan layar">
 
@@ -873,7 +873,7 @@ Jika Claude memberikan koordinat di luar batas tampilan:
 
 <section title="Kegagalan eksekusi tindakan">
 
-Jika tindakan gagal dieksekusi:
+Jika tindakan gagal dijalankan:
 
 ```json
 {
@@ -891,13 +891,17 @@ Jika tindakan gagal dieksekusi:
 
 </section>
 
-#### Tangani penskalaan koordinat untuk resolusi yang lebih tinggi
+#### Tangani penskalaan koordinat untuk resolusi lebih tinggi
 
-API membatasi gambar hingga maksimal 1568 piksel pada tepi terpanjang dan sekitar 1,15 megapiksel total (lihat [pengubahan ukuran gambar](/docs/id/build-with-claude/vision#evaluate-image-size) untuk detail). Misalnya, layar 1512x982 dikecilkan menjadi sekitar 1330x864. Claude menganalisis gambar yang lebih kecil ini dan mengembalikan koordinat dalam ruang itu, tetapi alat Anda mengeksekusi klik dalam ruang layar asli.
+<Note>
+Claude Opus 4.7 mendukung hingga 2576 piksel di tepi panjang, dan koordinatnya adalah 1:1 dengan piksel gambar (tidak diperlukan konversi faktor skala). Panduan 1568 piksel di bawah berlaku untuk model sebelumnya.
+</Note>
+
+API membatasi gambar hingga maksimal 1568 piksel di tepi terpanjang dan sekitar 1,15 megapiksel total (lihat [pengubahan ukuran gambar](/docs/id/build-with-claude/vision#evaluate-image-size) untuk detail). Misalnya, layar 1512x982 dikecilkan menjadi sekitar 1330x864. Claude menganalisis gambar yang lebih kecil ini dan mengembalikan koordinat dalam ruang itu, tetapi alat Anda menjalankan klik dalam ruang layar asli.
 
 Ini dapat menyebabkan koordinat klik Claude melewatkan target mereka kecuali Anda menangani transformasi koordinat.
 
-Untuk memperbaikinya, ubah ukuran tangkapan layar sendiri dan skalakan koordinat Claude kembali:
+Untuk memperbaiki ini, ubah ukuran tangkapan layar sendiri dan skalakan koordinat Claude kembali:
 
 <CodeGroup>
 ```python Python hidelines={1..7}
@@ -979,7 +983,7 @@ function executeClick(x: number, y: number): void {
 
 <section title="Gunakan resolusi tampilan yang sesuai">
 
-Atur dimensi tampilan yang sesuai dengan kasus penggunaan Anda sambil tetap berada dalam batas yang direkomendasikan:
+Atur dimensi tampilan yang sesuai dengan kasus penggunaan Anda sambil tetap dalam batas yang direkomendasikan:
 - Untuk tugas desktop umum: 1024x768 atau 1280x720
 - Untuk aplikasi web: 1280x800 atau 1366x768
 - Hindari resolusi di atas 1920x1080 untuk mencegah masalah kinerja
@@ -992,7 +996,7 @@ Saat mengembalikan tangkapan layar ke Claude:
 - Enkode tangkapan layar sebagai PNG atau JPEG base64
 - Pertimbangkan untuk mengompresi tangkapan layar besar untuk meningkatkan kinerja
 - Sertakan metadata yang relevan seperti stempel waktu atau status tampilan
-- Jika menggunakan resolusi yang lebih tinggi, pastikan koordinat diskalakan dengan akurat
+- Jika menggunakan resolusi lebih tinggi, pastikan koordinat diskalakan dengan akurat
 
 </section>
 
@@ -1047,19 +1051,19 @@ def log_action(action_type, params, result):
 
 Fungsionalitas penggunaan komputer masih dalam beta. Meskipun kemampuan Claude terdepan, pengembang harus menyadari keterbatasannya:
 
-1. **Latensi**: latensi penggunaan komputer saat ini untuk interaksi manusia-AI mungkin terlalu lambat dibandingkan dengan tindakan komputer yang diarahkan manusia biasa. Fokus pada kasus penggunaan di mana kecepatan tidak kritis (misalnya, pengumpulan informasi latar belakang, pengujian perangkat lunak otomatis) di lingkungan terpercaya.
-2. **Akurasi dan keandalan visi komputer**: Claude mungkin membuat kesalahan atau berhalusinasi saat mengeluarkan koordinat spesifik sambil menghasilkan tindakan. Claude Sonnet 3.7 memperkenalkan kemampuan pemikiran yang dapat membantu Anda memahami penalaran model dan mengidentifikasi potensi masalah.
-3. **Akurasi dan keandalan pemilihan alat**: Claude mungkin membuat kesalahan atau berhalusinasi saat memilih alat sambil menghasilkan tindakan atau mengambil tindakan yang tidak terduga untuk menyelesaikan masalah. Selain itu, keandalan mungkin lebih rendah saat berinteraksi dengan aplikasi niche atau beberapa aplikasi sekaligus. Prompt model dengan hati-hati saat meminta tugas kompleks.
+1. **Latensi**: latensi penggunaan komputer saat ini untuk interaksi manusia-AI mungkin terlalu lambat dibandingkan dengan tindakan komputer yang diarahkan manusia biasa. Fokus pada kasus penggunaan di mana kecepatan tidak penting (misalnya, pengumpulan informasi latar belakang, pengujian perangkat lunak otomatis) di lingkungan terpercaya.
+2. **Akurasi dan keandalan visi komputer**: Claude mungkin membuat kesalahan atau berhalusinasi saat menampilkan koordinat spesifik sambil menghasilkan tindakan. Claude Sonnet 3.7 memperkenalkan kemampuan pemikiran yang dapat membantu Anda memahami penalaran model dan mengidentifikasi masalah potensial.
+3. **Akurasi dan keandalan pemilihan alat**: Claude mungkin membuat kesalahan atau berhalusinasi saat memilih alat sambil menghasilkan tindakan atau mengambil tindakan yang tidak terduga untuk menyelesaikan masalah. Selain itu, keandalan mungkin lebih rendah saat berinteraksi dengan aplikasi niche atau beberapa aplikasi sekaligus. Minta model dengan hati-hati saat meminta tugas kompleks.
 4. **Keandalan pengguliran**: Claude Sonnet 3.7 memperkenalkan tindakan pengguliran khusus dengan kontrol arah yang meningkatkan keandalan. Model sekarang dapat secara eksplisit menggulir ke arah mana pun (atas/bawah/kiri/kanan) dengan jumlah yang ditentukan.
 5. **Interaksi spreadsheet**: Klik mouse untuk interaksi spreadsheet telah ditingkatkan di Claude Sonnet 3.7 dengan penambahan tindakan kontrol mouse yang lebih presisi seperti `left_mouse_down`, `left_mouse_up`, dan dukungan tombol pengubah baru. Pemilihan sel dapat lebih andal dengan menggunakan kontrol butir halus ini dan menggabungkan tombol pengubah dengan klik.
 6. **Pembuatan akun dan pembuatan konten di platform media sosial dan komunikasi**: Meskipun Claude akan mengunjungi situs web, kemampuan Claude untuk membuat akun atau menghasilkan dan berbagi konten atau sebaliknya terlibat dalam penyamaran manusia di seluruh situs web dan platform media sosial terbatas. Kemampuan ini mungkin diperbarui di masa depan.
-7. **Kerentanan**: Kerentanan seperti jailbreaking atau injeksi prompt mungkin tetap ada di seluruh sistem AI frontier, termasuk API penggunaan komputer beta. Dalam beberapa keadaan, Claude akan mengikuti perintah yang ditemukan dalam konten, kadang-kadang bahkan bertentangan dengan instruksi pengguna. Misalnya, instruksi Claude di halaman web atau yang terdapat dalam gambar dapat mengganti instruksi atau menyebabkan Claude membuat kesalahan. Pertimbangkan hal berikut:
+7. **Kerentanan**: Kerentanan seperti jailbreaking atau injeksi prompt mungkin tetap ada di seluruh sistem AI frontier, termasuk API penggunaan komputer beta. Dalam beberapa keadaan, Claude akan mengikuti perintah yang ditemukan dalam konten, kadang-kadang bahkan bertentangan dengan instruksi pengguna. Misalnya, instruksi Claude di halaman web atau yang terdapat dalam gambar mungkin menggantikan instruksi atau menyebabkan Claude membuat kesalahan. Pertimbangkan hal berikut:
    a. Membatasi penggunaan komputer ke lingkungan terpercaya seperti mesin virtual atau kontainer dengan hak istimewa minimal
-   b. Menghindari pemberian akses penggunaan komputer ke akun atau data sensitif tanpa pengawasan ketat
+   b. Menghindari pemberian akses penggunaan komputer ke akun sensitif atau data tanpa pengawasan ketat
    c. Menginformasikan pengguna akhir tentang risiko yang relevan dan mendapatkan persetujuan mereka sebelum mengaktifkan atau meminta izin yang diperlukan untuk fitur penggunaan komputer di aplikasi Anda
 8. **Tindakan yang tidak pantas atau ilegal**: Sesuai dengan syarat layanan Anthropic, Anda tidak boleh menggunakan penggunaan komputer untuk melanggar hukum apa pun atau Kebijakan Penggunaan yang Dapat Diterima.
 
-Selalu tinjau dan verifikasi dengan hati-hati tindakan dan log penggunaan komputer Claude. Jangan gunakan Claude untuk tugas yang memerlukan presisi sempurna atau informasi pengguna sensitif tanpa pengawasan manusia.
+Selalu tinjau dan verifikasi dengan hati-hati tindakan penggunaan komputer Claude dan log. Jangan gunakan Claude untuk tugas yang memerlukan presisi sempurna atau informasi pengguna sensitif tanpa pengawasan manusia.
 
 ## Retensi data
 

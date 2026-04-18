@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/sdks/python
-fetched_at: 2026-02-19T04:23:04.153807Z
-sha256: 783cfdb2d9c89f4550f5a5a3b83bcafc8b7957f368aa1b6510e213ba5d675075
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: fcaffc009f71521e35288514c28b0ed8b9b3439d425f54bdc8379f94bf22a85c
 ---
 
 # Python SDK
@@ -32,7 +32,7 @@ pip install anthropic[bedrock]
 # Untuk dukungan Google Vertex AI
 pip install anthropic[vertex]
 
-# Untuk performa asinkron yang lebih baik dengan aiohttp
+# Untuk performa async yang lebih baik dengan aiohttp
 pip install anthropic[aiohttp]
 ```
 
@@ -59,10 +59,14 @@ message = client.messages.create(
             "content": "Hello, Claude",
         }
     ],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
 )
 print(message.content)
 ```
+
+<Tip>
+Pertimbangkan menggunakan [python-dotenv](https://pypi.org/project/python-dotenv/) untuk menambahkan `ANTHROPIC_API_KEY="my-anthropic-api-key"` ke file `.env` Anda sehingga kunci API Anda tidak disimpan dalam kontrol sumber.
+</Tip>
 
 ## Penggunaan asinkron
 
@@ -85,7 +89,7 @@ async def main() -> None:
                 "content": "Hello, Claude",
             }
         ],
-        model="claude-opus-4-6",
+        model="claude-opus-4-7",
     )
     print(message.content)
 
@@ -95,9 +99,9 @@ asyncio.run(main())
 
 ### Menggunakan aiohttp untuk konkurensi yang lebih baik
 
-Untuk performa asinkron yang lebih baik, Anda dapat menggunakan backend HTTP `aiohttp` sebagai pengganti `httpx` default:
+Untuk performa async yang lebih baik, Anda dapat menggunakan backend HTTP `aiohttp` sebagai pengganti `httpx` default:
 
-```python
+```python nocheck
 import os
 import asyncio
 from anthropic import AsyncAnthropic, DefaultAioHttpClient
@@ -116,7 +120,7 @@ async def main() -> None:
                     "content": "Hello, Claude",
                 }
             ],
-            model="claude-opus-4-6",
+            model="claude-opus-4-7",
         )
         print(message.content)
 
@@ -126,9 +130,9 @@ asyncio.run(main())
 
 ## Respons streaming
 
-Kami menyediakan dukungan untuk respons streaming menggunakan Server-Sent Events (SSE).
+SDK menyediakan dukungan untuk respons streaming menggunakan Server-Sent Events (SSE).
 
-```python
+```python hidelines={1..2}
 from anthropic import Anthropic
 
 client = Anthropic()
@@ -141,18 +145,40 @@ stream = client.messages.create(
             "content": "Hello, Claude",
         }
     ],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     stream=True,
 )
 for event in stream:
     print(event.type)
 ```
 
+Klien asinkron menggunakan antarmuka yang sama persis:
+
+```python hidelines={1..2}
+from anthropic import AsyncAnthropic
+
+client = AsyncAnthropic()
+
+stream = await client.messages.create(
+    max_tokens=1024,
+    messages=[
+        {
+            "role": "user",
+            "content": "Hello, Claude",
+        }
+    ],
+    model="claude-opus-4-7",
+    stream=True,
+)
+async for event in stream:
+    print(event.type)
+```
+
 ### Pembantu streaming
 
-SDK juga menyediakan pembantu streaming yang menggunakan context manager dan memberikan akses ke teks yang terakumulasi dan pesan final:
+SDK juga menyediakan pembantu streaming yang menggunakan context manager dan memberikan akses ke teks yang terakumulasi dan pesan akhir:
 
-```python
+```python hidelines={1..6}
 import asyncio
 from anthropic import AsyncAnthropic
 
@@ -168,7 +194,7 @@ async def main() -> None:
                 "content": "Say hello there!",
             }
         ],
-        model="claude-opus-4-6",
+        model="claude-opus-4-7",
     ) as stream:
         async for text in stream.text_stream:
             print(text, end="", flush=True)
@@ -181,15 +207,15 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
-Streaming dengan `client.messages.stream(...)` mengekspos berbagai pembantu termasuk penanganan event dan akumulasi.
+Streaming dengan `client.messages.stream(...)` mengekspos berbagai pembantu termasuk akumulasi dan event khusus SDK.
 
-Sebagai alternatif, Anda dapat menggunakan `client.messages.create({ ..., stream=True })` yang hanya mengembalikan iterator dari event dalam stream dan menggunakan lebih sedikit memori (tidak membangun objek pesan final untuk Anda).
+Alternatifnya, Anda dapat menggunakan `client.messages.create(..., stream=True)` yang hanya mengembalikan async iterable dari event dalam stream dan menggunakan lebih sedikit memori (tidak membangun objek pesan akhir untuk Anda).
 
 ## Penghitungan token
 
 Anda dapat melihat penggunaan yang tepat untuk permintaan tertentu melalui properti respons `usage`:
 
-```python
+```python nocheck
 message = client.messages.create(...)
 print(message.usage)
 # Usage(input_tokens=25, output_tokens=13)
@@ -199,7 +225,7 @@ Anda juga dapat menghitung token sebelum membuat permintaan:
 
 ```python
 count = client.messages.count_tokens(
-    model="claude-opus-4-6", messages=[{"role": "user", "content": "Hello, world"}]
+    model="claude-opus-4-7", messages=[{"role": "user", "content": "Hello, world"}]
 )
 print(count.input_tokens)  # 10
 ```
@@ -210,20 +236,23 @@ SDK ini menyediakan dukungan untuk penggunaan alat, juga dikenal sebagai functio
 
 ### Pembantu alat
 
-SDK juga menyediakan pembantu untuk dengan mudah mendefinisikan dan menjalankan alat sebagai fungsi Python:
+SDK menyediakan pembantu untuk mendefinisikan dan menjalankan alat sebagai fungsi Python murni. Anda dapat menggunakan dekorator `@beta_tool` untuk kontrol yang lebih besar:
 
 ```python
 import json
-from anthropic import Anthropic
+from anthropic import Anthropic, beta_tool
 
 client = Anthropic()
 
 
+@beta_tool
 def get_weather(location: str) -> str:
     """Get the weather for a given location.
 
     Args:
         location: The city and state, e.g. San Francisco, CA
+    Returns:
+        A dictionary containing the location, temperature, and weather condition.
     """
     return json.dumps(
         {
@@ -237,7 +266,7 @@ def get_weather(location: str) -> str:
 # Use the tool_runner to automatically handle tool calls
 runner = client.beta.messages.tool_runner(
     max_tokens=1024,
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     tools=[get_weather],
     messages=[
         {"role": "user", "content": "What is the weather in SF?"},
@@ -247,7 +276,9 @@ for message in runner:
     print(message)
 ```
 
-## Batch Pesan
+Pada setiap iterasi, permintaan API dibuat. Jika Claude ingin memanggil salah satu alat yang diberikan, alat tersebut secara otomatis dipanggil, dan hasilnya dikembalikan langsung ke model dalam iterasi berikutnya.
+
+## Batch pesan
 
 SDK ini menyediakan dukungan untuk [Message Batches API](/docs/id/build-with-claude/batch-processing) di bawah `client.messages.batches`.
 
@@ -261,7 +292,7 @@ client.messages.batches.create(
         {
             "custom_id": "my-first-request",
             "params": {
-                "model": "claude-opus-4-6",
+                "model": "claude-opus-4-7",
                 "max_tokens": 1024,
                 "messages": [{"role": "user", "content": "Hello, world"}],
             },
@@ -269,7 +300,7 @@ client.messages.batches.create(
         {
             "custom_id": "my-second-request",
             "params": {
-                "model": "claude-opus-4-6",
+                "model": "claude-opus-4-7",
                 "max_tokens": 1024,
                 "messages": [{"role": "user", "content": "Hi again, friend"}],
             },
@@ -282,23 +313,27 @@ client.messages.batches.create(
 
 Setelah Message Batch diproses, ditunjukkan oleh `.processing_status == 'ended'`, Anda dapat mengakses hasil dengan `.batches.results()`:
 
-```python
+```python nocheck hidelines={1..2}
+import anthropic
+
+client = anthropic.Anthropic()
+batch_id = "batch_abc123"
 result_stream = client.messages.batches.results(batch_id)
 for entry in result_stream:
     if entry.result.type == "succeeded":
         print(entry.result.message.content)
 ```
 
-## Unggah file
+## Unggahan file
 
-Parameter permintaan yang sesuai dengan unggahan file dapat dilewatkan dalam berbagai bentuk:
+Parameter permintaan yang sesuai dengan unggahan file dapat diteruskan dalam berbagai bentuk:
 
 - Objek `PathLike` (misalnya, `pathlib.Path`)
 - Tuple dari `(filename, content, content_type)`
 - Objek file-like `BinaryIO`
 - Nilai pengembalian dari pembantu `toFile`
 
-```python
+```python nocheck
 from pathlib import Path
 from anthropic import Anthropic
 
@@ -317,11 +352,13 @@ client.beta.files.upload(
 )
 ```
 
+Klien asinkron menggunakan antarmuka yang sama persis. Jika Anda melewatkan instans `PathLike`, konten file dibaca secara asinkron secara otomatis.
+
 ## Menangani kesalahan
 
-Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subclass dari `APIError` akan dimunculkan:
+Ketika perpustakaan tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subkelas `APIError` akan dimunculkan:
 
-```python
+```python hidelines={2..5}
 import anthropic
 from anthropic import Anthropic
 
@@ -336,7 +373,7 @@ try:
                 "content": "Hello, Claude",
             }
         ],
-        model="claude-opus-4-6",
+        model="claude-opus-4-7",
     )
 except anthropic.APIConnectionError as e:
     print("The server could not be reached")
@@ -372,18 +409,22 @@ Semua respons objek dalam SDK menyediakan properti `_request_id` yang ditambahka
 message = client.messages.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
 )
 print(message._request_id)  # e.g., req_018EeWyXxfu5pfWkrYcMdjWG
 ```
 
+<Note>
+Tidak seperti properti lain yang menggunakan awalan `_`, properti `_request_id` bersifat publik. Kecuali didokumentasikan sebaliknya, semua properti, metode, dan modul awalan `_` lainnya bersifat pribadi.
+</Note>
+
 ## Percobaan ulang
 
-Kesalahan tertentu akan secara otomatis dicoba ulang 2 kali secara default, dengan backoff eksponensial pendek. Kesalahan koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan >=500 Internal errors semuanya akan dicoba ulang secara default.
+Kesalahan tertentu secara otomatis dicoba ulang 2 kali secara default, dengan backoff eksponensial pendek. Kesalahan koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan >=500 Internal errors semuanya dicoba ulang secara default.
 
 Anda dapat menggunakan opsi `max_retries` untuk mengonfigurasi atau menonaktifkan ini:
 
-```python
+```python hidelines={1..2}
 from anthropic import Anthropic
 
 # Configure the default for all requests:
@@ -395,13 +436,13 @@ client = Anthropic(
 client.with_options(max_retries=5).messages.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
 )
 ```
 
 ## Batas waktu
 
-Secara default, permintaan habis waktu setelah 10 menit. Anda dapat mengonfigurasi ini dengan opsi `timeout`, yang menerima float atau objek `httpx.Timeout`:
+Secara default permintaan habis waktu setelah 10 menit. Anda dapat mengonfigurasi ini dengan opsi `timeout`, yang menerima float atau objek `httpx.Timeout`:
 
 ```python
 import httpx
@@ -421,31 +462,33 @@ client = Anthropic(
 client.with_options(timeout=5.0).messages.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
 )
 ```
 
-Pada batas waktu, `APITimeoutError` dilemparkan.
+Pada batas waktu, `APITimeoutError` akan dimunculkan.
 
 Perhatikan bahwa permintaan yang habis waktu akan [dicoba ulang dua kali secara default](#retries).
 
 ## Permintaan panjang
 
 <Warning>
-Kami sangat mendorong Anda untuk menggunakan [Messages API](#streaming-responses) streaming untuk permintaan yang berjalan lebih lama.
+Pertimbangkan menggunakan streaming [Messages API](#streaming-responses) untuk permintaan yang berjalan lebih lama.
 </Warning>
 
-Kami tidak merekomendasikan menetapkan nilai `max_tokens` besar tanpa menggunakan streaming. Beberapa jaringan mungkin menghapus koneksi idle setelah periode waktu tertentu, yang dapat menyebabkan permintaan gagal atau [habis waktu](#timeouts) tanpa menerima respons dari Anthropic.
+Hindari menetapkan nilai `max_tokens` besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutuskan koneksi idle setelah periode waktu tertentu, yang dapat menyebabkan permintaan gagal atau [habis waktu](#timeouts) tanpa menerima respons dari Anthropic.
 
-SDK akan melemparkan kesalahan jika permintaan non-streaming diharapkan memakan waktu lebih lama dari sekitar 10 menit. Melewatkan `stream=True` atau menimpa opsi `timeout` di tingkat klien atau permintaan menonaktifkan kesalahan ini.
+SDK akan melempar `ValueError` jika permintaan non-streaming diharapkan memakan waktu lebih lama dari sekitar 10 menit. Melewatkan `stream=True` atau mengganti opsi `timeout` di tingkat klien atau permintaan menonaktifkan kesalahan ini.
 
-Latensi permintaan yang diharapkan lebih lama dari [batas waktu](#timeouts) untuk permintaan non-streaming akan menghasilkan klien menghentikan koneksi dan mencoba ulang tanpa menerima respons.
+Latensi permintaan yang diharapkan lebih lama dari [batas waktu](#timeouts) untuk permintaan non-streaming akan menghasilkan klien mengakhiri koneksi dan mencoba ulang tanpa menerima respons.
+
+SDK menetapkan opsi [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/overview.html) untuk mengurangi dampak batas waktu koneksi idle pada beberapa jaringan. Ini dapat ditimpa dengan melewatkan opsi `http_client` kustom ke klien.
 
 ## Paginasi otomatis
 
 Metode daftar dalam Claude API dipaginasi. Anda dapat menggunakan sintaks `for` untuk mengulangi item di semua halaman:
 
-```python
+```python hidelines={1..2}
 from anthropic import Anthropic
 
 client = Anthropic()
@@ -459,7 +502,7 @@ print(all_batches)
 
 Untuk iterasi asinkron:
 
-```python
+```python hidelines={1..6}
 import asyncio
 from anthropic import AsyncAnthropic
 
@@ -476,34 +519,54 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
-Sebagai alternatif, Anda dapat meminta satu halaman sekaligus:
+Alternatifnya, Anda dapat menggunakan metode `.has_next_page()`, `.next_page_info()`, atau `.get_next_page()` untuk kontrol yang lebih granular saat bekerja dengan halaman:
 
-```python
+```python nocheck
 first_page = await client.messages.batches.list(limit=20)
 
 if first_page.has_next_page():
     print(f"will fetch next page using these details: {first_page.next_page_info()}")
     next_page = await first_page.get_next_page()
     print(f"number of items we just fetched: {len(next_page.data)}")
+
+# Remove `await` for non-async usage.
+```
+
+Atau bekerja langsung dengan data yang dikembalikan:
+
+```python nocheck
+first_page = await client.messages.batches.list(limit=20)
+
+print(f"next page cursor: {first_page.last_id}")
+for batch in first_page.data:
+    print(batch.id)
+
+# Remove `await` for non-async usage.
 ```
 
 ## Header default
 
-Kami secara otomatis mengirim header `anthropic-version` yang diatur ke `2023-06-01`.
+SDK secara otomatis mengirimkan header `anthropic-version` yang diatur ke `2023-06-01`.
 
-Jika perlu, Anda dapat menimpanya dengan menetapkan header default berdasarkan per-permintaan.
+Jika perlu, Anda dapat menimpanya dengan menetapkan header default pada objek klien atau per-permintaan.
 
-Perhatikan bahwa melakukan hal ini dapat menghasilkan tipe yang tidak benar dan perilaku tidak terduga atau tidak terdefinisi lainnya dalam SDK.
+<Warning>
+Menimpa header default dapat menghasilkan tipe yang tidak benar dan perilaku tidak terduga atau tidak terdefinisi lainnya dalam SDK.
+</Warning>
 
-```python
+```python nocheck hidelines={1..2}
 from anthropic import Anthropic
 
-client = Anthropic()
+# Set default headers for all requests on the client
+client = Anthropic(
+    default_headers={"anthropic-version": "My-Custom-Value"},
+)
 
+# Or override per-request
 client.messages.with_raw_response.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     extra_headers={"anthropic-version": "My-Custom-Value"},
 )
 ```
@@ -514,11 +577,13 @@ client.messages.with_raw_response.create(
 
 Parameter permintaan bersarang adalah [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Respons adalah [model Pydantic](https://docs.pydantic.dev) yang juga memiliki metode pembantu untuk hal-hal seperti serialisasi kembali ke JSON ([`v1`](https://docs.pydantic.dev/1.10/usage/models/), [`v2`](https://docs.pydantic.dev/latest/concepts/serialization/)).
 
+Permintaan dan respons yang diketik memberikan autocomplete dan dokumentasi dalam editor Anda. Jika Anda ingin melihat kesalahan tipe di VS Code untuk membantu menangkap bug lebih awal, atur `python.analysis.typeCheckingMode` ke `basic`.
+
 ### Model respons
 
 Untuk mengonversi model Pydantic ke kamus, gunakan metode pembantu:
 
-```python
+```python nocheck
 message = client.messages.create(...)
 
 # Convert to JSON string
@@ -528,11 +593,16 @@ json_str = message.to_json()
 data = message.to_dict()
 ```
 
-### Menangani null vs bidang yang hilang
+### Menangani null vs field yang hilang
 
-Dalam respons, Anda dapat membedakan antara bidang yang secara eksplisit `null` versus bidang yang tidak dikembalikan (hilang):
+Dalam respons, Anda dapat membedakan antara field yang secara eksplisit `null` versus field yang tidak dikembalikan (hilang):
 
-```python
+```python nocheck
+response = client.messages.create(
+    model="claude-opus-4-7",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Hello"}],
+)
 if response.my_field is None:
     if "my_field" not in response.model_fields_set:
         print("field was not in the response")
@@ -544,9 +614,9 @@ if response.my_field is None:
 
 ### Mengakses data respons mentah (misalnya, header)
 
-`Response` mentah yang dikembalikan oleh `httpx` dapat diakses melalui properti `.with_raw_response` pada klien. Ini berguna untuk mengakses header respons atau metadata lainnya:
+`Response` "mentah" yang dikembalikan oleh `httpx` dapat diakses melalui properti `.with_raw_response` pada klien. Ini berguna untuk mengakses header respons atau metadata lainnya:
 
-```python
+```python hidelines={1..2}
 from anthropic import Anthropic
 
 client = Anthropic()
@@ -554,7 +624,7 @@ client = Anthropic()
 response = client.messages.with_raw_response.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
 )
 
 print(response.headers.get("x-request-id"))
@@ -566,11 +636,29 @@ print(message.content)
 
 Metode ini mengembalikan objek `APIResponse`.
 
-### Pencatatan
+### Streaming body respons
 
-SDK menggunakan modul `logging` dari standard library.
+Pendekatan `.with_raw_response` di atas dengan antusias membaca body respons penuh saat Anda membuat permintaan. Untuk streaming body respons sebagai gantinya, gunakan `.with_streaming_response`, yang memerlukan context manager dan hanya membaca body respons setelah Anda memanggil `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()`, atau `.parse()`. Dalam klien asinkron, ini adalah metode asinkron.
 
-Anda dapat mengaktifkan pencatatan dengan menetapkan variabel lingkungan `ANTHROPIC_LOG` ke salah satu dari `debug`, `info`, `warn`, atau `off`:
+```python
+with client.messages.with_streaming_response.create(
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Hello, Claude"}],
+    model="claude-opus-4-7",
+) as response:
+    print(response.headers.get("x-request-id"))
+
+    for line in response.iter_lines():
+        print(line)
+```
+
+Context manager diperlukan sehingga respons akan ditutup dengan andal.
+
+### Logging
+
+SDK menggunakan modul `logging` perpustakaan standar.
+
+Anda dapat mengaktifkan logging dengan menetapkan variabel lingkungan `ANTHROPIC_LOG` ke salah satu dari `debug`, `info`, `warn`, atau `off`:
 
 ```bash
 export ANTHROPIC_LOG=debug
@@ -578,13 +666,13 @@ export ANTHROPIC_LOG=debug
 
 ### Membuat permintaan kustom/tidak terdokumentasi
 
-Library ini diketik untuk akses yang mudah ke API yang terdokumentasi. Jika Anda perlu mengakses endpoint, param, atau properti respons yang tidak terdokumentasi, library masih dapat digunakan.
+Perpustakaan ini diketik untuk akses yang nyaman ke API yang terdokumentasi. Jika Anda perlu mengakses endpoint, param, atau properti respons yang tidak terdokumentasi, perpustakaan masih dapat digunakan.
 
-#### Endpoint tidak terdokumentasi
+#### Endpoint yang tidak terdokumentasi
 
-Untuk membuat permintaan ke endpoint yang tidak terdokumentasi, Anda dapat menggunakan `client.get`, `client.post`, dan HTTP verb lainnya. Opsi pada klien, seperti percobaan ulang, akan dihormati saat membuat permintaan ini.
+Untuk membuat permintaan ke endpoint yang tidak terdokumentasi, Anda dapat menggunakan `client.get`, `client.post`, dan verba HTTP lainnya. Opsi pada klien, seperti percobaan ulang, akan dihormati saat membuat permintaan ini.
 
-```python
+```python nocheck
 import httpx
 
 response = client.post(
@@ -596,28 +684,40 @@ response = client.post(
 print(response.json())
 ```
 
-#### Param permintaan tidak terdokumentasi
+#### Param permintaan yang tidak terdokumentasi
 
 Jika Anda ingin secara eksplisit mengirim param tambahan, Anda dapat melakukannya dengan opsi permintaan `extra_query`, `extra_body`, dan `extra_headers`.
 
-#### Properti respons tidak terdokumentasi
+<Warning>
+Parameter `extra_` menimpa parameter terdokumentasi dengan nama yang sama. Untuk alasan keamanan, pastikan metode ini hanya digunakan dengan data input yang terpercaya.
+</Warning>
 
-Untuk mengakses properti respons yang tidak terdokumentasi, Anda dapat mengakses bidang ekstra seperti `response.unknown_prop`. Anda juga dapat mendapatkan semua bidang ekstra pada model Pydantic sebagai dict dengan `response.model_extra`.
+#### Properti respons yang tidak terdokumentasi
+
+Untuk mengakses properti respons yang tidak terdokumentasi, Anda dapat mengakses field tambahan seperti `response.unknown_prop`. Anda juga dapat mendapatkan semua field tambahan pada model Pydantic sebagai dict dengan `response.model_extra`.
 
 ### Mengonfigurasi klien HTTP
 
-Anda dapat secara langsung menimpa [klien httpx](https://www.python-httpx.org/api/#client) untuk menyesuaikannya dengan kasus penggunaan Anda, termasuk dukungan untuk proxy dan transport:
+Anda dapat langsung menimpa [klien httpx](https://www.python-httpx.org/api/#client) untuk menyesuaikannya dengan kasus penggunaan Anda, termasuk dukungan untuk proxy dan transport:
 
 ```python
 import httpx
 from anthropic import Anthropic, DefaultHttpxClient
 
 client = Anthropic(
+    # Or use the `ANTHROPIC_BASE_URL` env var
+    base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxy="http://my.test.proxy.example.com",
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
 )
+```
+
+Anda juga dapat menyesuaikan klien berdasarkan per-permintaan dengan menggunakan `with_options()`:
+
+```python
+client.with_options(http_client=DefaultHttpxClient(...))
 ```
 
 <Note>
@@ -626,9 +726,9 @@ Gunakan `DefaultHttpxClient` dan `DefaultAsyncHttpxClient` sebagai pengganti `ht
 
 ### Mengelola sumber daya HTTP
 
-Secara default, library menutup koneksi HTTP yang mendasar setiap kali klien [dikumpulkan sampah](https://docs.python.org/3/reference/datamodel.html#object.__del__). Anda dapat secara manual menutup klien menggunakan metode `.close()` jika diinginkan, atau dengan context manager yang ditutup saat keluar.
+Secara default perpustakaan menutup koneksi HTTP yang mendasar setiap kali klien [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). Anda dapat secara manual menutup klien menggunakan metode `.close()` jika diinginkan, atau dengan context manager yang ditutup saat keluar.
 
-```python
+```python nocheck hidelines={1..2}
 from anthropic import Anthropic
 
 with Anthropic() as client:
@@ -639,19 +739,19 @@ with Anthropic() as client:
 
 ## Fitur beta
 
-Kami memperkenalkan fitur beta sebelum tersedia secara umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [ikhtisar build with Claude](/docs/id/build-with-claude/overview).
+Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [ikhtisar build with Claude](/docs/id/build-with-claude/overview).
 
-Anda dapat mengakses sebagian besar fitur API beta melalui properti `beta` klien. Untuk mengaktifkan fitur beta tertentu, Anda perlu menambahkan [header beta](/docs/id/api/beta-headers) yang sesuai ke bidang `betas` saat membuat pesan.
+Anda dapat mengakses sebagian besar fitur API beta melalui properti `beta` klien. Untuk mengaktifkan fitur beta tertentu, Anda perlu menambahkan [header beta](/docs/id/api/beta-headers) yang sesuai ke field `betas` saat membuat pesan.
 
 Misalnya, untuk menggunakan [Files API](/docs/id/build-with-claude/files):
 
-```python
+```python nocheck hidelines={1..2}
 from anthropic import Anthropic
 
 client = Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[
         {
@@ -675,67 +775,37 @@ response = client.beta.messages.create(
 ## Integrasi platform
 
 <Note>
-Untuk panduan penyiapan platform terperinci, lihat:
+Untuk panduan penyiapan platform terperinci dengan contoh kode, lihat:
 - [Amazon Bedrock](/docs/id/build-with-claude/claude-on-amazon-bedrock)
 - [Google Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai)
+- [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
-### Amazon Bedrock
+Ketiga kelas klien disertakan dalam paket `anthropic` dasar:
 
-```python
-from anthropic import AnthropicBedrock
+| Penyedia | Klien | Dependensi tambahan |
+|-----------|--------|-------------------|
+| Bedrock | `from anthropic import AnthropicBedrock` | `pip install anthropic[bedrock]` |
+| Vertex AI | `from anthropic import AnthropicVertex` | `pip install anthropic[vertex]` |
+| Foundry | `from anthropic import AnthropicFoundry` | Tidak ada |
 
-client = AnthropicBedrock()
+## Semantic versioning
 
-message = client.messages.create(
-    max_tokens=1024,
-    messages=[
-        {
-            "role": "user",
-            "content": "Hello!",
-        }
-    ],
-    model="anthropic.claude-opus-4-6-v1",
-)
-print(message)
+Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan yang tidak kompatibel ke belakang tertentu dapat dirilis sebagai versi minor:
+
+1. Perubahan yang hanya mempengaruhi tipe statis, tanpa merusak perilaku runtime.
+2. Perubahan pada internal perpustakaan yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
+3. Perubahan yang tidak diharapkan berdampak pada sebagian besar pengguna dalam praktik.
+
+### Menentukan versi yang diinstal
+
+Jika Anda telah meningkatkan ke versi terbaru tetapi tidak melihat fitur baru yang Anda harapkan, lingkungan Python Anda kemungkinan masih menggunakan versi yang lebih lama. Anda dapat menentukan versi yang digunakan saat runtime dengan:
+
+```python hidelines={1..2}
+import anthropic
+
+print(anthropic.__version__)
 ```
-
-Untuk daftar lengkap model Bedrock yang tersedia, lihat [dokumentasi Amazon Bedrock](/docs/id/build-with-claude/claude-on-amazon-bedrock).
-
-Anda juga dapat mengonfigurasi kredensial AWS secara eksplisit:
-
-```python
-client = AnthropicBedrock(
-    aws_region="us-east-1",
-    aws_access_key="...",
-    aws_secret_key="...",
-    # Optional
-    aws_session_token="...",
-    aws_profile="my-profile",
-)
-```
-
-### Google Vertex AI
-
-```python
-from anthropic import AnthropicVertex
-
-client = AnthropicVertex()
-
-message = client.messages.create(
-    model="claude-opus-4-6",
-    max_tokens=1024,
-    messages=[
-        {
-            "role": "user",
-            "content": "Hello!",
-        }
-    ],
-)
-print(message)
-```
-
-Untuk daftar lengkap model Vertex yang tersedia, lihat [dokumentasi Google Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai).
 
 ## Sumber daya tambahan
 

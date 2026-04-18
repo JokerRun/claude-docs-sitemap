@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 4ab2aeef602b088385dcd56d774cf51a4be3bba257a43af1fd5d79696c4d54f0
+fetched_at: 2026-04-18T03:10:04.936408Z
+sha256: f54fbe7cbe82dc95f5c118080810c40379ab953221a6c9b4493b5c2f1ab14dd8
 ---
 
 # Dukungan PDF
@@ -24,12 +24,12 @@ Anda dapat bertanya kepada Claude tentang teks, gambar, bagan, dan tabel apa pun
 ## Sebelum Anda memulai
 
 ### Periksa persyaratan PDF
-Claude bekerja dengan PDF standar apa pun. Pastikan ukuran permintaan Anda memenuhi persyaratan ini:
+Claude bekerja dengan PDF standar apa pun. Pastikan ukuran permintaan Anda memenuhi persyaratan berikut:
 
 | Persyaratan | Batas |
 |------------|--------|
 | Ukuran permintaan maksimal | 32&nbsp;MB ([bervariasi menurut platform](/docs/id/api/overview#request-size-limits)) |
-| Halaman maksimal per permintaan | 600 (100 untuk model dengan jendela konteks 200k-token) |
+| Halaman maksimal per permintaan | 600 (100 untuk model dengan jendela konteks token 200k) |
 | Format | PDF Standar (tanpa kata sandi/enkripsi) |
 
 Kedua batas berada pada seluruh muatan permintaan, termasuk konten lain apa pun yang dikirim bersama PDF. Untuk PDF besar, pertimbangkan untuk mengunggah dengan [Files API](#option-3-files-api) dan mereferensikan dengan `file_id` untuk menjaga muatan permintaan tetap kecil.
@@ -60,7 +60,7 @@ Saat menggunakan dukungan PDF melalui Converse API Amazon Bedrock, ada dua mode 
    - Menyediakan ekstraksi teks dasar dari PDF
    - Tidak dapat menganalisis gambar, bagan, atau tata letak visual dalam PDF
    - Menggunakan sekitar 1.000 token untuk PDF 3 halaman
-   - Digunakan secara otomatis ketika kutipan tidak diaktifkan
+   - Digunakan secara otomatis saat kutipan tidak diaktifkan
 
 2. **Claude PDF Chat** (Mode baru - Pemahaman visual penuh)
    - Menyediakan analisis visual lengkap PDF
@@ -76,14 +76,14 @@ Saat menggunakan dukungan PDF melalui Converse API Amazon Bedrock, ada dua mode 
 
 #### Masalah Umum
 
-Jika pelanggan melaporkan bahwa Claude tidak melihat gambar atau bagan dalam PDF mereka saat menggunakan Converse API, mereka kemungkinan perlu mengaktifkan flag kutipan. Tanpa itu, Converse kembali ke ekstraksi teks dasar saja.
+Jika pelanggan melaporkan bahwa Claude tidak melihat gambar atau bagan dalam PDF mereka saat menggunakan Converse API, mereka mungkin perlu mengaktifkan flag kutipan. Tanpa itu, Converse kembali ke ekstraksi teks dasar saja.
 
 <Note>
-Ini adalah batasan yang diketahui dengan Converse API. Untuk aplikasi yang memerlukan analisis PDF visual tanpa kutipan, pertimbangkan menggunakan InvokeModel API sebagai gantinya.
+Ini adalah batasan yang diketahui dengan Converse API. Untuk aplikasi yang memerlukan analisis PDF visual tanpa kutipan, pertimbangkan untuk menggunakan InvokeModel API sebagai gantinya.
 </Note>
 
 <Note>
-Untuk file non-PDF seperti .csv, .xlsx, .docx, .md, atau .txt, lihat [Bekerja dengan format file lain](/docs/id/build-with-claude/files#working-with-other-file-formats).
+Untuk file non-PDF seperti file .csv, .xlsx, .docx, .md, atau .txt, lihat [Bekerja dengan format file lain](/docs/id/build-with-claude/files#working-with-other-file-formats).
 </Note>
 
 ***
@@ -108,7 +108,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
       -H "x-api-key: $ANTHROPIC_API_KEY" \
       -H "anthropic-version: 2023-06-01" \
       -d '{
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
         "max_tokens": 1024,
         "messages": [{
             "role": "user",
@@ -128,7 +128,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
     ```
     ```bash CLI
     ant messages create --transform content --format yaml <<'YAML'
-    model: claude-opus-4-6
+    model: claude-opus-4-7
     max_tokens: 1024
     messages:
       - role: user
@@ -146,7 +146,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
 
     client = anthropic.Anthropic()
     message = client.messages.create(
-        model="claude-opus-4-6",
+        model="claude-opus-4-7",
         max_tokens=1024,
         messages=[
             {
@@ -174,7 +174,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
 
     async function main() {
       const response = await anthropic.messages.create({
-        model: "claude-opus-4-6",
+        model: "claude-opus-4-7",
         max_tokens: 1024,
         messages: [
           {
@@ -225,7 +225,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
 
         // Create a message with document and text content blocks
         MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_6)
+          .model(Model.CLAUDE_OPUS_4_7)
           .maxTokens(1024)
           .addUserMessageOfBlockParams(
             List.of(
@@ -248,7 +248,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
 
 #### Opsi 2: Dokumen PDF yang dikodekan base64
 
-Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersedia:
+Jika Anda perlu mengirim PDF dari sistem lokal Anda atau saat URL tidak tersedia:
 
 <CodeGroup>
     ```bash Shell hidelines={1}
@@ -261,7 +261,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
     # Create a JSON request file using the pdf_base64.txt content
     jq -n --rawfile PDF_BASE64 pdf_base64.txt '{
-        "model": "claude-opus-4-6",
+        "model": "claude-opus-4-7",
         "max_tokens": 1024,
         "messages": [{
             "role": "user",
@@ -291,7 +291,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
     cd "$(mktemp -d)"
     curl -sSo document.pdf https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf
     ant messages create \
-      --model claude-opus-4-6 \
+      --model claude-opus-4-7 \
       --max-tokens 1024 \
       --transform content --format yaml <<'YAML'
     messages:
@@ -322,7 +322,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
     # Send to Claude using base64 encoding
     client = anthropic.Anthropic()
     message = client.messages.create(
-        model="claude-opus-4-6",
+        model="claude-opus-4-7",
         max_tokens=1024,
         messages=[
             {
@@ -362,7 +362,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
       // Send the API request with base64-encoded PDF
       const anthropic = new Anthropic();
       const response = await anthropic.messages.create({
-        model: "claude-opus-4-6",
+        model: "claude-opus-4-7",
         max_tokens: 1024,
         messages: [
           {
@@ -437,7 +437,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
         // Create a message with document and text content blocks
         MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_6)
+          .model(Model.CLAUDE_OPUS_4_7)
           .maxTokens(1024)
           .addUserMessageOfBlockParams(
             List.of(
@@ -461,7 +461,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
 #### Opsi 3: Files API
 
-Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghindari overhead pengkodean, gunakan [Files API](/docs/id/build-with-claude/files):
+Untuk PDF yang akan Anda gunakan berulang kali, atau saat Anda ingin menghindari overhead pengkodean, gunakan [Files API](/docs/id/build-with-claude/files):
 
 <CodeGroup>
 ```bash Shell hidelines={1..2}
@@ -481,7 +481,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: files-api-2025-04-14" \
   -d '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "messages": [{
       "role": "user",
@@ -512,7 +512,7 @@ FILE_ID=$(ant beta:files upload \
 ant beta:messages create \
   --beta files-api-2025-04-14 \
   --transform content --format yaml <<YAML
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 messages:
   - role: user
@@ -537,7 +537,7 @@ with open("document.pdf", "rb") as f:
 
 # Use the uploaded file in a message
 message = client.beta.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     betas=["files-api-2025-04-14"],
     messages=[
@@ -574,7 +574,7 @@ async function main() {
 
   // Use the uploaded file in a message
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 1024,
     betas: ["files-api-2025-04-14"],
     messages: [
@@ -631,7 +631,7 @@ public class PdfFilesExample {
 
     // Use the uploaded file in a message
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_6)
+      .model(Model.CLAUDE_OPUS_4_7)
       .addBeta("files-api-2025-04-14")
       .maxTokens(1024)
       .addUserMessageOfBetaContentBlockParams(
@@ -662,7 +662,7 @@ public class PdfFilesExample {
 </CodeGroup>
 
 ### Cara kerja dukungan PDF
-Ketika Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
+Saat Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
 <Steps>
   <Step title="Sistem mengekstrak konten dokumen.">
     - Sistem mengonversi setiap halaman dokumen menjadi gambar.
@@ -681,9 +681,9 @@ Ketika Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
 </Steps>
 
 ### Perkirakan biaya Anda
-Jumlah token file PDF tergantung pada total teks yang diekstrak dari dokumen serta jumlah halaman:
+Jumlah token dari file PDF tergantung pada total teks yang diekstrak dari dokumen serta jumlah halaman:
 - Biaya token teks: Setiap halaman biasanya menggunakan 1.500-3.000 token per halaman tergantung pada kepadatan konten. Harga API standar berlaku tanpa biaya PDF tambahan.
-- Biaya token gambar: Karena setiap halaman dikonversi menjadi gambar, [perhitungan biaya berbasis gambar](/docs/id/build-with-claude/vision#evaluate-image-size) yang sama diterapkan.
+- Biaya token gambar: Karena setiap halaman dikonversi menjadi gambar, perhitungan biaya berbasis [gambar](/docs/id/build-with-claude/vision#evaluate-image-size) yang sama diterapkan.
 
 Anda dapat menggunakan [token counting](/docs/id/build-with-claude/token-counting) untuk memperkirakan biaya untuk PDF spesifik Anda.
 
@@ -696,7 +696,7 @@ Ikuti praktik terbaik ini untuk hasil optimal:
 - Tempatkan PDF sebelum teks dalam permintaan Anda
 - Gunakan font standar
 - Pastikan teks jelas dan mudah dibaca
-- Putar halaman ke orientasi tegak yang benar
+- Putar halaman ke orientasi tegak yang tepat
 - Gunakan nomor halaman logis (dari penampil PDF) dalam prompt
 - Bagi PDF besar menjadi potongan saat diperlukan
 - Aktifkan prompt caching untuk analisis berulang
@@ -712,7 +712,7 @@ cd "$(mktemp -d)"
 curl -s "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf" | base64 | tr -d '\n' > pdf_base64.txt
 # Buat file permintaan JSON menggunakan konten pdf_base64.txt
 jq -n --rawfile PDF_BASE64 pdf_base64.txt '{
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
     "max_tokens": 1024,
     "messages": [{
         "role": "user",
@@ -745,7 +745,7 @@ curl https://api.anthropic.com/v1/messages \
 cd "$(mktemp -d)"
 curl -sSo document.pdf https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf
 ant messages create <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-7
 max_tokens: 1024
 messages:
   - role: user
@@ -777,7 +777,7 @@ writer.write(buf)
 pdf_data = base64.standard_b64encode(buf.getvalue()).decode("utf-8")
 
 message = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     messages=[
         {
@@ -801,7 +801,7 @@ message = client.messages.create(
 
 ```typescript TypeScript nocheck
 const response = await anthropic.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
     {
@@ -853,7 +853,7 @@ public class MessagesDocumentExample {
     String pdfBase64 = new String(pdfBytes);
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_6)
+      .model(Model.CLAUDE_OPUS_4_7)
       .maxTokens(1024)
       .addUserMessageOfBlockParams(
         List.of(
@@ -894,7 +894,7 @@ jq -n --rawfile PDF_BASE64 pdf_base64.txt '
       {
           "custom_id": "my-first-request",
           "params": {
-              "model": "claude-opus-4-6",
+              "model": "claude-opus-4-7",
               "max_tokens": 1024,
               "messages": [
                 {
@@ -920,7 +920,7 @@ jq -n --rawfile PDF_BASE64 pdf_base64.txt '
       {
           "custom_id": "my-second-request",
           "params": {
-              "model": "claude-opus-4-6",
+              "model": "claude-opus-4-7",
               "max_tokens": 1024,
               "messages": [
                 {
@@ -961,7 +961,7 @@ ant messages:batches create <<'YAML'
 requests:
   - custom_id: my-first-request
     params:
-      model: claude-opus-4-6
+      model: claude-opus-4-7
       max_tokens: 1024
       messages:
         - role: user
@@ -977,7 +977,7 @@ requests:
                 across each use-case?
   - custom_id: my-second-request
     params:
-      model: claude-opus-4-6
+      model: claude-opus-4-7
       max_tokens: 1024
       messages:
         - role: user
@@ -1011,7 +1011,7 @@ message_batch = client.messages.batches.create(
         {
             "custom_id": "doc1",
             "params": {
-                "model": "claude-opus-4-6",
+                "model": "claude-opus-4-7",
                 "max_tokens": 1024,
                 "messages": [
                     {
@@ -1061,7 +1061,7 @@ const response = await anthropic.messages.batches.create({
             role: "user"
           }
         ],
-        model: "claude-opus-4-6"
+        model: "claude-opus-4-7"
       }
     },
     {
@@ -1087,7 +1087,7 @@ const response = await anthropic.messages.batches.create({
             role: "user"
           }
         ],
-        model: "claude-opus-4-6"
+        model: "claude-opus-4-7"
       }
     }
   ]
@@ -1120,7 +1120,7 @@ public class MessagesBatchDocumentExample {
           .customId("my-first-request")
           .params(
             BatchCreateParams.Request.Params.builder()
-              .model(Model.CLAUDE_OPUS_4_6)
+              .model(Model.CLAUDE_OPUS_4_7)
               .maxTokens(1024)
               .addUserMessageOfBlockParams(
                 List.of(
@@ -1147,7 +1147,7 @@ public class MessagesBatchDocumentExample {
           .customId("my-second-request")
           .params(
             BatchCreateParams.Request.Params.builder()
-              .model(Model.CLAUDE_OPUS_4_6)
+              .model(Model.CLAUDE_OPUS_4_7)
               .maxTokens(1024)
               .addUserMessageOfBlockParams(
                 List.of(
