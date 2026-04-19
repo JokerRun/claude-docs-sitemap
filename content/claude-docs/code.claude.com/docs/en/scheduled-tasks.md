@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/scheduled-tasks
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: ccd24ca4c617546609756f2826ae9e8c80154eea3099bc923f502501cdcff386
+fetched_at: 2026-04-19T03:11:32.038084Z
+sha256: 3319a1fd81d9084bbd66b7ca541c77efc3af8a91242f6301f59c1741271f8ae7
 ---
 
 > ## Documentation Index
@@ -124,6 +124,10 @@ quiet, say so in one line.
 ```
 
 Edits to `loop.md` take effect on the next iteration, so you can refine the instructions while a loop is running. When no `loop.md` exists in either location, the loop falls back to the built-in maintenance prompt. Keep the file concise: content beyond 25,000 bytes is truncated.
+
+### Stop a loop
+
+To stop a `/loop` while it is waiting for the next iteration, press `Esc`. This clears the pending wakeup so the loop does not fire again. Tasks you scheduled by [asking Claude directly](#manage-scheduled-tasks) are not affected by `Esc` and stay in place until you delete them.
 
 ## Set a one-time reminder
 

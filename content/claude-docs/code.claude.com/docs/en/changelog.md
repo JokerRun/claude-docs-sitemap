@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 79226c4912f7c18b486075b93bda5f4a38f3c462f72916ef2a618261f70d7b31
+fetched_at: 2026-04-19T03:11:32.038084Z
+sha256: dac1ae1d50fc466fad8a16a6408c09d23ac9271b23648e34ae2882cb646e69dc
 ---
 
 > ## Documentation Index
@@ -16,6 +16,10 @@ sha256: 79226c4912f7c18b486075b93bda5f4a38f3c462f72916ef2a618261f70d7b31
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.114" description="April 18, 2026">
+  * Fixed a crash in the permission dialog when an agent teams teammate requested tool permission
+</Update>
 
 <Update label="2.1.113" description="April 17, 2026">
   * Changed the CLI to spawn a native Claude Code binary (via a per-platform optional dependency) instead of bundled JavaScript

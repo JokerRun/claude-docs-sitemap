@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 7063f54bf0f448b9ff9d149304f2229a234e5b263eda2c060d7d2ff6bab15bb0
+fetched_at: 2026-04-19T03:11:32.038084Z
+sha256: 34ba4558adec5d16f93354653f9dd8e3d7f836563eb124bb7e515f21356910a4
 ---
 
 > ## Documentation Index
@@ -62,6 +62,8 @@ Fullscreen rendering captures mouse events and handles them inside Claude Code:
 * **Scroll with the mouse wheel** to move through the conversation.
 
 Selected text copies to your clipboard automatically on mouse release. To turn this off, toggle Copy on select in `/config`. With it off, press `Ctrl+Shift+c` to copy manually. On terminals that support the kitty keyboard protocol, such as kitty, WezTerm, Ghostty, and iTerm2, `Cmd+c` also works. If you have a selection active, `Ctrl+c` copies instead of cancelling.
+
+With a selection active, hold `Shift` and press the arrow keys to extend it from the keyboard. `Shift+↑` and `Shift+↓` scroll the viewport when the selection reaches the top or bottom edge. `Shift+Home` and `Shift+End` extend to the start or end of the current line.
 
 ## Scroll the conversation
 

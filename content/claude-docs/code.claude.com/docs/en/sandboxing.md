@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 621c43a38b1c2c98ff2af33ef31ace9b7e2422258c46e0abb464bb0a145a9408
+fetched_at: 2026-04-19T03:11:32.038084Z
+sha256: 979b05813d7368aeed0a5931caa018831f3a6b4814ee40d79c0bc79ddec85ebe
 ---
 
 > ## Documentation Index
@@ -257,6 +257,7 @@ Filesystem and network restrictions are configured through both sandbox settings
 * Use `Read` and `Edit` deny rules to block access to specific files or directories
 * Use `WebFetch` allow/deny rules to control domain access
 * Use sandbox `allowedDomains` to control which domains Bash commands can reach
+* Use sandbox `deniedDomains` to block specific domains even when a broader `allowedDomains` wildcard would otherwise permit them
 
 Paths from both `sandbox.filesystem` settings and permission rules are merged together into the final sandbox configuration.
 

@@ -79,7 +79,7 @@
   lastmod: '2026-04-08T17:53:11.120Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/typescript
-  lastmod: '2026-04-17T19:51:45.126Z'
+  lastmod: '2026-04-18T15:32:28.986Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview
   lastmod: '2026-04-17T19:51:45.106Z'
@@ -103,7 +103,7 @@
   lastmod: '2026-04-03T02:12:42.175Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-04-17T21:48:05.487Z'
+  lastmod: '2026-04-18T15:03:42.188Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-03-25T19:03:14.403Z'
@@ -130,7 +130,7 @@
   lastmod: '2026-04-15T18:05:02.165Z'
 - source: code
   loc: https://code.claude.com/docs/en/commands
-  lastmod: '2026-04-16T20:18:57.287Z'
+  lastmod: '2026-04-18T15:32:28.926Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
   lastmod: '2026-04-16T20:18:57.288Z'
@@ -175,7 +175,7 @@
   lastmod: '2026-04-09T20:20:54.353Z'
 - source: code
   loc: https://code.claude.com/docs/en/fullscreen
-  lastmod: '2026-04-16T20:18:57.322Z'
+  lastmod: '2026-04-18T15:32:28.951Z'
 - source: code
   loc: https://code.claude.com/docs/en/github-actions
   lastmod: '2026-04-16T15:23:16.875Z'
@@ -202,13 +202,13 @@
   lastmod: '2026-04-16T20:18:57.353Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
-  lastmod: '2026-04-16T20:18:57.360Z'
+  lastmod: '2026-04-18T15:32:28.907Z'
 - source: code
   loc: https://code.claude.com/docs/en/jetbrains
   lastmod: '2026-04-15T18:07:50.573Z'
 - source: code
   loc: https://code.claude.com/docs/en/keybindings
-  lastmod: '2026-04-16T20:18:57.352Z'
+  lastmod: '2026-04-18T15:32:28.822Z'
 - source: code
   loc: https://code.claude.com/docs/en/legal-and-compliance
   lastmod: '2026-04-08T17:53:11.144Z'
@@ -244,7 +244,7 @@
   lastmod: '2026-04-16T20:48:02.765Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
-  lastmod: '2026-04-16T20:48:02.762Z'
+  lastmod: '2026-04-18T15:32:28.825Z'
 - source: code
   loc: https://code.claude.com/docs/en/platforms
   lastmod: '2026-04-14T16:40:25.436Z'
@@ -265,16 +265,16 @@
   lastmod: '2026-04-15T21:27:45.636Z'
 - source: code
   loc: https://code.claude.com/docs/en/remote-control
-  lastmod: '2026-04-16T20:19:22.270Z'
+  lastmod: '2026-04-18T15:32:28.903Z'
 - source: code
   loc: https://code.claude.com/docs/en/routines
   lastmod: '2026-04-17T15:33:26.179Z'
 - source: code
   loc: https://code.claude.com/docs/en/sandboxing
-  lastmod: '2026-04-03T02:17:17.357Z'
+  lastmod: '2026-04-18T15:32:28.804Z'
 - source: code
   loc: https://code.claude.com/docs/en/scheduled-tasks
-  lastmod: '2026-04-16T20:19:22.266Z'
+  lastmod: '2026-04-18T15:32:28.959Z'
 - source: code
   loc: https://code.claude.com/docs/en/security
   lastmod: '2026-03-18T10:24:44.072Z'
@@ -283,7 +283,7 @@
   lastmod: '2026-04-10T16:34:33.573Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-04-16T20:19:26.349Z'
+  lastmod: '2026-04-18T15:32:29.107Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-04-17T19:51:45.096Z'
@@ -316,7 +316,7 @@
   lastmod: '2026-04-16T20:20:03.047Z'
 - source: code
   loc: https://code.claude.com/docs/en/ultrareview
-  lastmod: '2026-04-16T18:50:16.809Z'
+  lastmod: '2026-04-18T15:32:29.095Z'
 - source: code
   loc: https://code.claude.com/docs/en/voice-dictation
   lastmod: '2026-04-09T20:21:55.690Z'
