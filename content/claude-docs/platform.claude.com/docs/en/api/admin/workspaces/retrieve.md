@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 712e308dfc8639e77eed7b71bbf7ac79b5e9fe569ca8c0c0ade733c79ca3a311
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: e4e9c89d38d23f7561bbcac61d7c80fc3486f8301f5c55bb3a0a7e7aae3458d4
 ---
 
 ## Retrieve
@@ -70,3 +70,11 @@ Get Workspace
     For Workspaces, this is always `"workspace"`.
 
     - `"workspace"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```

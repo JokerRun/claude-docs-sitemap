@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/retrieve
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 3d8e9c815d01f139e35a977703497ded039129c6168dc8b5a840d390f64a8ea5
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: a68b4bcb124e781eed20abbd3e69b17378a90a51a6e12a892d45eeee11c3ece4
 ---
 
 ## Retrieve
@@ -41,7 +41,7 @@ Get Workspace Member
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
@@ -49,6 +49,16 @@ Get Workspace Member
 
     - `"workspace_developer"`
 
+    - `"workspace_restricted_developer"`
+
     - `"workspace_admin"`
 
     - `"workspace_billing"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```

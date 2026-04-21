@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/list
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 7dfa8e482ed76a66bcf5e3c8bd1650977b05190c52e0ff2d1c66e624886fc33a
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: 725de557d80ae18e1e5c2e6792cad3aa31cf5fc0cabf858079a411d25f4ba00b
 ---
 
 ## List
@@ -53,13 +53,15 @@ List Workspace Members
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
     - `"workspace_user"`
 
     - `"workspace_developer"`
+
+    - `"workspace_restricted_developer"`
 
     - `"workspace_admin"`
 
@@ -76,3 +78,11 @@ List Workspace Members
 - `last_id: string`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```

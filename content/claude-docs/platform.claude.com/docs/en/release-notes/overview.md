@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 5bdec647448af09420ade6c911b6a2a484cd70e8d03207ebb870a6361485176a
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: 6fdeec5a5cd14454eaf5513bece77a17abc3aacc67e31fe41a8d4ad5098a52b3
 ---
 
 # Claude Platform
@@ -16,6 +16,9 @@ For release notes on Claude Apps, see the [Release notes for Claude Apps in the 
 
 For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### April 20, 2026
+- We've retired the Claude Haiku 3 model (`claude-3-haiku-20240307`). All requests to this model will now return an error. We recommend upgrading to [Claude Haiku 4.5](/docs/en/about-claude/models/overview#latest-models-comparison).
 
 ### April 16, 2026
 - We've launched [Claude Opus 4.7](https://www.anthropic.com/news/claude-opus-4-7), our most capable generally available model for complex reasoning and agentic coding, at the same $5 / $25 per MTok pricing as Opus 4.6. See [What's new in Claude Opus 4.7](/docs/en/about-claude/models/whats-new-claude-4-7) for capability improvements, new features, and the updated tokenizer. Opus 4.7 includes API breaking changes versus Opus 4.6; see [Migrating to Claude Opus 4.7](/docs/en/about-claude/models/migration-guide#migrating-to-claude-opus-4-7) before upgrading.

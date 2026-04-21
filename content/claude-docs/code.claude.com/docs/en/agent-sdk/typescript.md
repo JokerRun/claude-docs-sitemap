@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-04-19T03:11:32.038084Z
-sha256: fee8086d195a225f7af8e31bb11789228d01afb1866372a6a501f94fb34da390
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: 18d92ec96e41d9529cf2b60763046c8ce517499158f2a75b9061fda982cadf30
 ---
 
 > ## Documentation Index
@@ -807,6 +807,7 @@ type SDKMessage =
   | SDKTaskNotificationMessage
   | SDKTaskStartedMessage
   | SDKTaskProgressMessage
+  | SDKTaskUpdatedMessage
   | SDKFilesPersistedEvent
   | SDKToolUseSummaryMessage
   | SDKRateLimitEvent
@@ -2678,6 +2679,28 @@ type SDKTaskProgressMessage = {
     duration_ms: number;
   };
   last_tool_name?: string;
+  uuid: UUID;
+  session_id: string;
+};
+```
+
+### `SDKTaskUpdatedMessage`
+
+Emitted when a background task's state changes, such as when it transitions from `running` to `completed`. Merge `patch` into your local task map keyed by `task_id`. The `end_time` field is a Unix epoch timestamp in milliseconds, comparable with `Date.now()`.
+
+```typescript theme={null}
+type SDKTaskUpdatedMessage = {
+  type: "system";
+  subtype: "task_updated";
+  task_id: string;
+  patch: {
+    status?: "pending" | "running" | "completed" | "failed" | "killed";
+    description?: string;
+    end_time?: number;
+    total_paused_ms?: number;
+    error?: string;
+    is_backgrounded?: boolean;
+  };
   uuid: UUID;
   session_id: string;
 };

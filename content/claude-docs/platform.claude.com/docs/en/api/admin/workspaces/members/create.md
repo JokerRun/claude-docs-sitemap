@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/create
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: be48bc1e3c5e927b93197412ab43cd8c2297039ebb2aa21550f22cdfd4a89fad
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: f4ff1d3a792de5d597788fdf4f6e90afc2e4265e0ad124d62a2df90e4ac0e59b
 ---
 
 ## Create
@@ -23,13 +23,15 @@ Create Workspace Member
 
   ID of the User.
 
-- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin"`
+- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or "workspace_admin"`
 
   Role of the new Workspace Member. Cannot be "workspace_billing".
 
   - `"workspace_user"`
 
   - `"workspace_developer"`
+
+  - `"workspace_restricted_developer"`
 
   - `"workspace_admin"`
 
@@ -53,7 +55,7 @@ Create Workspace Member
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
@@ -61,6 +63,21 @@ Create Workspace Member
 
     - `"workspace_developer"`
 
+    - `"workspace_restricted_developer"`
+
     - `"workspace_admin"`
 
     - `"workspace_billing"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{
+          "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+          "workspace_role": "workspace_user"
+        }'
+```

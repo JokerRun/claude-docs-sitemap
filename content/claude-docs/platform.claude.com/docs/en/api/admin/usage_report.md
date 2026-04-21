@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 50892ca01d4c21aef3f2a06cb2ac20ec3c28f0413c369eb8bcd79c5bb9e99a7b
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: 14081050d2023663c76e26bed2908d069e7ab8ff2687743a12a81e3e89e781c7
 ---
 
 # Usage Report
@@ -236,6 +236,14 @@ Get Messages Usage Report
 
     Token to provide in as `page` in the subsequent request to retrieve the next page of data.
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/usage_report/messages \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
 ## Retrieve Claude Code
 
 **get** `/v1/organizations/usage_report/claude_code`
@@ -404,6 +412,14 @@ Enables organizations to analyze developer productivity and build custom dashboa
   - `next_page: string`
 
     Opaque cursor token for fetching the next page of results, or null if no more pages are available.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## Domain Types
 

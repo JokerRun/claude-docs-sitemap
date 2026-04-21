@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 84005638a33739039bd4911c7ae28394a37d1d790d31445cc5560be27b9c00de
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: bbd0ced014d6ef418508faac5f4c2956f59d3bd211afd10daa414b0a219bbbfa
 ---
 
 # Admin
@@ -34,6 +34,14 @@ Retrieve information about the organization associated with the authenticated AP
     For Organizations, this is always `"organization"`.
 
     - `"organization"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/me \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## Domain Types
 
@@ -141,6 +149,19 @@ Create Invite
 
     - `"invite"`
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/invites \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{
+          "email": "user@emaildomain.com",
+          "role": "user"
+        }'
+```
+
 ## Retrieve
 
 **get** `/v1/organizations/invites/{invite_id}`
@@ -208,6 +229,14 @@ Get Invite
     For Invites, this is always `"invite"`.
 
     - `"invite"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## List
 
@@ -299,6 +328,14 @@ List Invites
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/invites \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
 ## Delete
 
 **delete** `/v1/organizations/invites/{invite_id}`
@@ -324,6 +361,15 @@ Delete Invite
   For Invites, this is always `"invite_deleted"`.
 
   - `"invite_deleted"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
+    -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## Domain Types
 
@@ -383,6 +429,22 @@ Delete Invite
 
     - `"invite"`
 
+### Invite Delete Response
+
+- `InviteDeleteResponse = object { id, type }`
+
+  - `id: string`
+
+    ID of the Invite.
+
+  - `type: "invite_deleted"`
+
+    Deleted object type.
+
+    For Invites, this is always `"invite_deleted"`.
+
+    - `"invite_deleted"`
+
 # Users
 
 ## Retrieve
@@ -440,6 +502,14 @@ Get User
     For Users, this is always `"user"`.
 
     - `"user"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## List
 
@@ -523,6 +593,14 @@ List Users
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/users \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
 ## Update
 
 **post** `/v1/organizations/users/{user_id}`
@@ -595,6 +673,18 @@ Update User
 
     - `"user"`
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{
+          "role": "user"
+        }'
+```
+
 ## Delete
 
 **delete** `/v1/organizations/users/{user_id}`
@@ -620,6 +710,15 @@ Remove User
   For Users, this is always `"user_deleted"`.
 
   - `"user_deleted"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
+    -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## Domain Types
 
@@ -666,6 +765,22 @@ Remove User
     For Users, this is always `"user"`.
 
     - `"user"`
+
+### User Delete Response
+
+- `UserDeleteResponse = object { id, type }`
+
+  - `id: string`
+
+    ID of the User.
+
+  - `type: "user_deleted"`
+
+    Deleted object type.
+
+    For Users, this is always `"user_deleted"`.
+
+    - `"user_deleted"`
 
 # Workspaces
 
@@ -757,6 +872,18 @@ Create Workspace
 
     - `"workspace"`
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{
+          "name": "x"
+        }'
+```
+
 ## Retrieve
 
 **get** `/v1/organizations/workspaces/{workspace_id}`
@@ -822,6 +949,14 @@ Get Workspace
     For Workspaces, this is always `"workspace"`.
 
     - `"workspace"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## List
 
@@ -915,6 +1050,14 @@ List Workspaces
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
 ## Update
 
 **post** `/v1/organizations/workspaces/{workspace_id}`
@@ -1005,6 +1148,18 @@ Update Workspace
 
     - `"workspace"`
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{
+          "name": "x"
+        }'
+```
+
 ## Archive
 
 **post** `/v1/organizations/workspaces/{workspace_id}/archive`
@@ -1071,6 +1226,15 @@ Archive Workspace
 
     - `"workspace"`
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/archive \
+    -X POST \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
 # Members
 
 ## Create
@@ -1091,13 +1255,15 @@ Create Workspace Member
 
   ID of the User.
 
-- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin"`
+- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or "workspace_admin"`
 
   Role of the new Workspace Member. Cannot be "workspace_billing".
 
   - `"workspace_user"`
 
   - `"workspace_developer"`
+
+  - `"workspace_restricted_developer"`
 
   - `"workspace_admin"`
 
@@ -1121,7 +1287,7 @@ Create Workspace Member
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
@@ -1129,9 +1295,24 @@ Create Workspace Member
 
     - `"workspace_developer"`
 
+    - `"workspace_restricted_developer"`
+
     - `"workspace_admin"`
 
     - `"workspace_billing"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{
+          "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+          "workspace_role": "workspace_user"
+        }'
+```
 
 ## Retrieve
 
@@ -1169,7 +1350,7 @@ Get Workspace Member
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
@@ -1177,9 +1358,19 @@ Get Workspace Member
 
     - `"workspace_developer"`
 
+    - `"workspace_restricted_developer"`
+
     - `"workspace_admin"`
 
     - `"workspace_billing"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## List
 
@@ -1229,13 +1420,15 @@ List Workspace Members
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
     - `"workspace_user"`
 
     - `"workspace_developer"`
+
+    - `"workspace_restricted_developer"`
 
     - `"workspace_admin"`
 
@@ -1252,6 +1445,14 @@ List Workspace Members
 - `last_id: string`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## Update
 
@@ -1271,13 +1472,15 @@ Update Workspace Member
 
 ### Body Parameters
 
-- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
   New workspace role for the User.
 
   - `"workspace_user"`
 
   - `"workspace_developer"`
+
+  - `"workspace_restricted_developer"`
 
   - `"workspace_admin"`
 
@@ -1303,7 +1506,7 @@ Update Workspace Member
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
@@ -1311,9 +1514,23 @@ Update Workspace Member
 
     - `"workspace_developer"`
 
+    - `"workspace_restricted_developer"`
+
     - `"workspace_admin"`
 
     - `"workspace_billing"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{
+          "workspace_role": "workspace_user"
+        }'
+```
 
 ## Delete
 
@@ -1349,6 +1566,15 @@ Delete Workspace Member
 
   ID of the Workspace.
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
+    -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
 ## Domain Types
 
 ### Workspace Member
@@ -1371,7 +1597,7 @@ Delete Workspace Member
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
@@ -1379,9 +1605,31 @@ Delete Workspace Member
 
     - `"workspace_developer"`
 
+    - `"workspace_restricted_developer"`
+
     - `"workspace_admin"`
 
     - `"workspace_billing"`
+
+### Member Delete Response
+
+- `MemberDeleteResponse = object { type, user_id, workspace_id }`
+
+  - `type: "workspace_member_deleted"`
+
+    Deleted object type.
+
+    For Workspace Members, this is always `"workspace_member_deleted"`.
+
+    - `"workspace_member_deleted"`
+
+  - `user_id: string`
+
+    ID of the User.
+
+  - `workspace_id: string`
+
+    ID of the Workspace.
 
 # API Keys
 
@@ -1450,6 +1698,14 @@ Get API Key
   - `workspace_id: string`
 
     ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## List
 
@@ -1557,6 +1813,14 @@ List API Keys
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/api_keys \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
 ## Update
 
 **post** `/v1/organizations/api_keys/{api_key_id}`
@@ -1638,6 +1902,16 @@ Update API Key
   - `workspace_id: string`
 
     ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{}'
+```
 
 # Usage Report
 
@@ -1870,6 +2144,14 @@ Get Messages Usage Report
 
     Token to provide in as `page` in the subsequent request to retrieve the next page of data.
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/usage_report/messages \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
 ## Retrieve Claude Code
 
 **get** `/v1/organizations/usage_report/claude_code`
@@ -2038,6 +2320,14 @@ Enables organizations to analyze developer productivity and build custom dashboa
   - `next_page: string`
 
     Opaque cursor token for fetching the next page of results, or null if no more pages are available.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## Domain Types
 
@@ -2445,6 +2735,14 @@ Get Cost Report
   - `next_page: string`
 
     Token to provide in as `page` in the subsequent request to retrieve the next page of data.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/cost_report \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## Domain Types
 

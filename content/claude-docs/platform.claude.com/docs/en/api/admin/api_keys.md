@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 240219aa05bd7e445f5bca793506082ea001026a7c67e539df87383c60c1ea99
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: 097f20a7853922de90b2e21ab79a32bb3e26106f6a838c339e6d97a9e8c1d2ea
 ---
 
 # API Keys
@@ -72,6 +72,14 @@ Get API Key
   - `workspace_id: string`
 
     ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## List
 
@@ -179,6 +187,14 @@ List API Keys
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/api_keys \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
 ## Update
 
 **post** `/v1/organizations/api_keys/{api_key_id}`
@@ -260,3 +276,13 @@ Update API Key
   - `workspace_id: string`
 
     ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{}'
+```

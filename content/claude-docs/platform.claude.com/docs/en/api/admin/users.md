@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: a9fad3b3137a34f01711182946734a6b89536af2b1c046c4901c39827ed990d1
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: fd038c7c7e2e07029b73f7fb6155919bf3c1216c4ceb72aa9fbe449e77b1143c
 ---
 
 # Users
@@ -62,6 +62,14 @@ Get User
     For Users, this is always `"user"`.
 
     - `"user"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## List
 
@@ -145,6 +153,14 @@ List Users
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/users \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
 ## Update
 
 **post** `/v1/organizations/users/{user_id}`
@@ -217,6 +233,18 @@ Update User
 
     - `"user"`
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{
+          "role": "user"
+        }'
+```
+
 ## Delete
 
 **delete** `/v1/organizations/users/{user_id}`
@@ -242,6 +270,15 @@ Remove User
   For Users, this is always `"user_deleted"`.
 
   - `"user_deleted"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
+    -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## Domain Types
 
@@ -288,3 +325,19 @@ Remove User
     For Users, this is always `"user"`.
 
     - `"user"`
+
+### User Delete Response
+
+- `UserDeleteResponse = object { id, type }`
+
+  - `id: string`
+
+    ID of the User.
+
+  - `type: "user_deleted"`
+
+    Deleted object type.
+
+    For Users, this is always `"user_deleted"`.
+
+    - `"user_deleted"`

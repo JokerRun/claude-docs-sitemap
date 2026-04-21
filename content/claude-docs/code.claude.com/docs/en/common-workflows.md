@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 3f167e0c41bf7854506b97cfa83b4959f595286e2be3bd2db97d1b246a94e8f7
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: aefd8be9a27d14bce4048da30d5c565143731cb7fb3ab9821e6d0884156b4de7
 ---
 
 > ## Documentation Index
@@ -407,6 +407,14 @@ Suppose you need to add or update documentation for your code.
   * Ask for examples in the documentation
   * Request documentation for public APIs, interfaces, and complex logic
 </Tip>
+
+***
+
+## Work in notes and non-code folders
+
+Claude Code works in any directory. Run it inside a notes vault, a documentation folder, or any collection of markdown files to search, edit, and reorganize content the same way you would code.
+
+The `.claude/` directory and `CLAUDE.md` sit alongside other tools' config directories without conflict. Claude reads files fresh on each tool call, so it sees edits you make in another application the next time it reads that file.
 
 ***
 

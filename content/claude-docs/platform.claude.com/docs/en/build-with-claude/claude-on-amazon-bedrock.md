@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: e6c2017af323b94f7303c62dc77b895a1ceb0934b96a046e4d5c433c31992172
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: f4c049b56df6d778086d306659910499a12299a8a2f36359afc18d86c835a3b1
 ---
 
 # Claude on Amazon Bedrock (legacy)
@@ -152,7 +152,6 @@ Go to the [AWS Console > Bedrock > Model Access](https://console.aws.amazon.com/
 | Claude Opus 4 <Tooltip tooltipContent="Deprecated as of April 14, 2026. Retiring October 14, 2026.">⚠️</Tooltip> | anthropic.claude-opus-4-20250514-v1:0 | No | Yes | No | No | No |
 | Claude Haiku 4.5 | anthropic.claude-haiku-4-5-20251001-v1:0 | Yes | Yes | Yes | No | No |
 | Claude Haiku 3.5 <Tooltip tooltipContent="Retired as of February 19, 2026.">⚠️</Tooltip> | anthropic.claude-3-5-haiku-20241022-v1:0 | No | Yes | No | No | No |
-| Claude Haiku 3 <Tooltip tooltipContent="Deprecated as of February 19, 2026. Retiring April 19, 2026.">⚠️</Tooltip> | anthropic.claude-3-haiku-20240307-v1:0 | No | Yes | Yes | No | Yes |
 
 For more information about regional vs global model IDs, see the [Global vs regional endpoints](#global-vs-regional-endpoints) section below.
 

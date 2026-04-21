@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: a663ddb00e43a484fb4b4062238583c8fe34831989d1c2db52a33c1cea24bbc3
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: baf3d594cd7ae187f1bd665d9306980927398bc377adb2bef319684624c5de7a
 ---
 
 # Members
@@ -25,13 +25,15 @@ Create Workspace Member
 
   ID of the User.
 
-- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin"`
+- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or "workspace_admin"`
 
   Role of the new Workspace Member. Cannot be "workspace_billing".
 
   - `"workspace_user"`
 
   - `"workspace_developer"`
+
+  - `"workspace_restricted_developer"`
 
   - `"workspace_admin"`
 
@@ -55,7 +57,7 @@ Create Workspace Member
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
@@ -63,9 +65,24 @@ Create Workspace Member
 
     - `"workspace_developer"`
 
+    - `"workspace_restricted_developer"`
+
     - `"workspace_admin"`
 
     - `"workspace_billing"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{
+          "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+          "workspace_role": "workspace_user"
+        }'
+```
 
 ## Retrieve
 
@@ -103,7 +120,7 @@ Get Workspace Member
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
@@ -111,9 +128,19 @@ Get Workspace Member
 
     - `"workspace_developer"`
 
+    - `"workspace_restricted_developer"`
+
     - `"workspace_admin"`
 
     - `"workspace_billing"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## List
 
@@ -163,13 +190,15 @@ List Workspace Members
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
     - `"workspace_user"`
 
     - `"workspace_developer"`
+
+    - `"workspace_restricted_developer"`
 
     - `"workspace_admin"`
 
@@ -186,6 +215,14 @@ List Workspace Members
 - `last_id: string`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
 
 ## Update
 
@@ -205,13 +242,15 @@ Update Workspace Member
 
 ### Body Parameters
 
-- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
   New workspace role for the User.
 
   - `"workspace_user"`
 
   - `"workspace_developer"`
+
+  - `"workspace_restricted_developer"`
 
   - `"workspace_admin"`
 
@@ -237,7 +276,7 @@ Update Workspace Member
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
@@ -245,9 +284,23 @@ Update Workspace Member
 
     - `"workspace_developer"`
 
+    - `"workspace_restricted_developer"`
+
     - `"workspace_admin"`
 
     - `"workspace_billing"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{
+          "workspace_role": "workspace_user"
+        }'
+```
 
 ## Delete
 
@@ -283,6 +336,15 @@ Delete Workspace Member
 
   ID of the Workspace.
 
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
+    -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
 ## Domain Types
 
 ### Workspace Member
@@ -305,7 +367,7 @@ Delete Workspace Member
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
@@ -313,6 +375,28 @@ Delete Workspace Member
 
     - `"workspace_developer"`
 
+    - `"workspace_restricted_developer"`
+
     - `"workspace_admin"`
 
     - `"workspace_billing"`
+
+### Member Delete Response
+
+- `MemberDeleteResponse = object { type, user_id, workspace_id }`
+
+  - `type: "workspace_member_deleted"`
+
+    Deleted object type.
+
+    For Workspace Members, this is always `"workspace_member_deleted"`.
+
+    - `"workspace_member_deleted"`
+
+  - `user_id: string`
+
+    ID of the User.
+
+  - `workspace_id: string`
+
+    ID of the Workspace.

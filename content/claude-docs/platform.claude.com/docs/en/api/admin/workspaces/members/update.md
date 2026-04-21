@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/update
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 27028ebb7cf3e1c827cf4579c0c953ead89b1bb3fdadcea03a99fbca60d63ddd
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: a03e7cf161cbbd359fb67ea2ac42e1354a5cb51cb69cb0ff54c9d2295b50487e
 ---
 
 ## Update
@@ -23,13 +23,15 @@ Update Workspace Member
 
 ### Body Parameters
 
-- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
   New workspace role for the User.
 
   - `"workspace_user"`
 
   - `"workspace_developer"`
+
+  - `"workspace_restricted_developer"`
 
   - `"workspace_admin"`
 
@@ -55,7 +57,7 @@ Update Workspace Member
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_admin" or "workspace_billing"`
+  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
 
     Role of the Workspace Member.
 
@@ -63,6 +65,20 @@ Update Workspace Member
 
     - `"workspace_developer"`
 
+    - `"workspace_restricted_developer"`
+
     - `"workspace_admin"`
 
     - `"workspace_billing"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{
+          "workspace_role": "workspace_user"
+        }'
+```

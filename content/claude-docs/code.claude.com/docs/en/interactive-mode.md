@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-04-19T03:11:32.038084Z
-sha256: fe95f0f2f26f4d07e17157e91f9655278863544a87346134f3c514de9416c684
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: 25815d3fe10e34610abf148ca62b2549795f93355ac6f9ff03934f47243f4f28
 ---
 
 > ## Documentation Index
@@ -20,8 +20,8 @@ sha256: fe95f0f2f26f4d07e17157e91f9655278863544a87346134f3c514de9416c684
 
   **macOS users**: Option/Alt key shortcuts (`Alt+B`, `Alt+F`, `Alt+Y`, `Alt+M`, `Alt+P`, `Alt+T`) require configuring Option as Meta in your terminal:
 
-  * **iTerm2**: settings → Profiles → Keys → set Left/Right Option key to "Esc+"
-  * **Terminal.app**: settings → Profiles → Keyboard → check "Use Option as Meta Key"
+  * **iTerm2**: Settings → Profiles → Keys → General → set Left/Right Option key to "Esc+"
+  * **Apple Terminal**: Settings → Profiles → Keyboard → check "Use Option as Meta Key"
   * **VS Code**: set `"terminal.integrated.macOptionIsMeta": true` in VS Code settings
 
   See [Terminal configuration](/en/terminal-config) for details.
@@ -71,16 +71,16 @@ sha256: fe95f0f2f26f4d07e17157e91f9655278863544a87346134f3c514de9416c684
 
 ### Multiline input
 
-| Method           | Shortcut       | Context                                                 |
-| :--------------- | :------------- | :------------------------------------------------------ |
-| Quick escape     | `\` + `Enter`  | Works in all terminals                                  |
-| macOS default    | `Option+Enter` | Default on macOS                                        |
-| Shift+Enter      | `Shift+Enter`  | Works out of the box in iTerm2, WezTerm, Ghostty, Kitty |
-| Control sequence | `Ctrl+J`       | Line feed character for multiline                       |
-| Paste mode       | Paste directly | For code blocks, logs                                   |
+| Method           | Shortcut       | Context                                                                                            |
+| :--------------- | :------------- | :------------------------------------------------------------------------------------------------- |
+| Quick escape     | `\` + `Enter`  | Works in all terminals                                                                             |
+| Option key       | `Option+Enter` | After enabling [Option as Meta](/en/terminal-config#enable-option-key-shortcuts-on-macos) on macOS |
+| Shift+Enter      | `Shift+Enter`  | Native in iTerm2, WezTerm, Ghostty, Kitty, Warp, Apple Terminal                                    |
+| Control sequence | `Ctrl+J`       | Works in any terminal without configuration                                                        |
+| Paste mode       | Paste directly | For code blocks, logs                                                                              |
 
 <Tip>
-  Shift+Enter works without configuration in iTerm2, WezTerm, Ghostty, and Kitty. For other terminals (VS Code, Alacritty, Zed, Warp), run `/terminal-setup` to install the binding.
+  Shift+Enter works without configuration in iTerm2, WezTerm, Ghostty, Kitty, Warp, and Apple Terminal. For VS Code, Cursor, Windsurf, Alacritty, and Zed, run `/terminal-setup` to install the binding.
 </Tip>
 
 ### Quick commands
@@ -172,6 +172,7 @@ Enable vim-style editing via `/config` → Editor mode.
 | `>>`           | Indent line             |
 | `<<`           | Dedent line             |
 | `J`            | Join lines              |
+| `u`            | Undo                    |
 | `.`            | Repeat last change      |
 
 ### Text objects (NORMAL mode)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_messages
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 4c2a60e7b4dcad6a8cadd54bbad65eae8eaac593530007a45130c36df992a0d0
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: 11ec5b1595ee1be68e2d38825d74c552b7ddf119e6ef4d0ad2969a224ec9db0e
 ---
 
 ## Retrieve Messages
@@ -233,3 +233,11 @@ Get Messages Usage Report
   - `next_page: string`
 
     Token to provide in as `page` in the subsequent request to retrieve the next page of data.
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/usage_report/messages \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```

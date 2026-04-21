@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/zero-data-retention
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 1f0d099cd9c062470ccbd16f86fea0804e1d660de9dca1de00a0e2b9846682c9
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: 2b5fd173a73cda130d4af99047fdef7225a517f1d84d3b4daebb2ea0051b8729
 ---
 
 > ## Documentation Index
@@ -68,6 +68,6 @@ Even with ZDR enabled, Anthropic may retain data where required by law or to add
 
 ## Request ZDR
 
-To request ZDR for Claude Code on Claude for Enterprise, contact your Anthropic account team. Your account team will submit the request internally, and Anthropic will review and enable ZDR on your organization after confirming eligibility. All enablement actions are audit-logged.
+To request ZDR for Claude Code on Claude for Enterprise, [contact sales](https://www.anthropic.com/contact-sales?utm_source=claude_code\&utm_medium=docs\&utm_content=zero_data_retention_request) or your Anthropic account team. Your account team will submit the request internally, and Anthropic will review and enable ZDR on your organization after confirming eligibility. All enablement actions are audit-logged.
 
 If you are currently using ZDR for Claude Code via pay-as-you-go API keys, you can transition to Claude for Enterprise to gain access to administrative features while maintaining ZDR for Claude Code. Contact your account team to coordinate the migration.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/update
-fetched_at: 2026-02-12T04:27:12.104729Z
-sha256: 6a4949d246eb41cbd532566865ec15feb6e1664af708b0c295127c1868c8a902
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: e4ebb7c367e14c951cf8bde3d7d84cac463d9ec05faf273bfdff69c9c02f6cc1
 ---
 
 ## Update
@@ -94,3 +94,15 @@ Update Workspace
     For Workspaces, this is always `"workspace"`.
 
     - `"workspace"`
+
+### Example
+
+```http
+curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -d '{
+          "name": "x"
+        }'
+```

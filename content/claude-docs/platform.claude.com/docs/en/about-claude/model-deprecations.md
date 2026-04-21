@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/model-deprecations
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: c459426cada4cba935014380fd16947583fe2123abc74d09e96fb3ba21bfec57
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: 51979b6538e2b1592e55f4a42e43024751f5f87dd9a1cac9ca2ecd3cfee2d186
 ---
 
 # Model deprecations
@@ -80,7 +80,7 @@ All publicly released models are listed below with their status:
 | `claude-3-7-sonnet-20250219`| Retired             | October 28, 2025  | February 19, 2026          |
 | `claude-haiku-4-5-20251001` | Active              | N/A               | Not sooner than October 15, 2026 |
 | `claude-3-5-haiku-20241022` | Retired             | December 19, 2025 | February 19, 2026          |
-| `claude-3-haiku-20240307`   | Deprecated          | February 19, 2026 | April 20, 2026             |
+| `claude-3-haiku-20240307`   | Retired             | February 19, 2026 | April 20, 2026             |
 
 ## Deprecation history
 
@@ -96,6 +96,10 @@ On April 14, 2026, Anthropic notified developers using Claude Sonnet 4 and Claud
 | June 15, 2026               | `claude-opus-4-20250514`    | `claude-opus-4-7`               |
 
 ### 2026-02-19: Claude Haiku 3 model
+
+<Note>
+This model was retired April 20, 2026.
+</Note>
 
 On February 19, 2026, Anthropic notified developers using Claude Haiku 3 model of its upcoming retirement on the Claude API.
 

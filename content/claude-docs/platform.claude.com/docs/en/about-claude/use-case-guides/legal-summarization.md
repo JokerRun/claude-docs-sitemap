@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 6b58231437592dd28dc874b41948150112a2669923d0e036b305bfa83b45940f
+fetched_at: 2026-04-21T03:11:28.016230Z
+sha256: 0b045c60add4fce6ba097c8b6a0531d636f69bdf173ca3b7ef65e323c6494a9b
 ---
 
 # Legal summarization
@@ -101,10 +101,10 @@ To help estimate these costs, below is a comparison of the cost to summarize 1,0
     * Output token cost: 0.35 MTok * \$25.00/MTok = \$8.75
     * Total cost: \$430.00 + \$8.75 = \$438.75
 
-* **Claude Haiku 3 estimated cost**
-    * Input token cost: 86 MTok * \$0.25/MTok = \$21.50
-    * Output token cost: 0.35 MTok * \$1.25/MTok = \$0.44
-    * Total cost: \$21.50 + \$0.44 = \$21.96
+* **Claude Haiku 4.5 estimated cost**
+    * Input token cost: 86 MTok * \$1.00/MTok = \$86.00
+    * Output token cost: 0.35 MTok * \$5.00/MTok = \$1.75
+    * Total cost: \$86.00 + \$1.75 = \$87.75
 
 <Tip>Actual costs may differ from these estimates. These estimates are based on the example highlighted in the section on [prompting](#build-a-strong-prompt).</Tip>
 
