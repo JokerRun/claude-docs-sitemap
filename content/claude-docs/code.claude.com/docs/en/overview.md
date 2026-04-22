@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-04-16T03:12:06.852234Z
-sha256: 19588070589e8aebab240f5e713e4bc3a75de39166d33be9cd0cf1d95828f8f9
+fetched_at: 2026-04-22T03:11:35.366211Z
+sha256: 7473bcb4d6cfcbf401867ea3954fd9fc49eac3a6262ad373a99c53ce129cca23
 ---
 
 > ## Documentation Index
@@ -646,14 +646,7 @@ export const Experiment = ({flag, treatment, children}) => {
 Claude Code is an AI-powered coding assistant that helps you build features, fix bugs, and automate development tasks. It understands your entire codebase and can work across multiple files and tools to get things done.
 
 <div data-gb-slot="overview-install-configurator">
-  <Experiment
-    flag="overview-install-configurator"
-    treatment={
-<Experiment flag="install-configurator-default-surface" treatment={<InstallConfigurator defaultSurface="desktop" />}>
-  <InstallConfigurator />
-</Experiment>
-}
-  />
+  <Experiment flag="overview-install-configurator" treatment={<InstallConfigurator />} />
 </div>
 
 ## Get started

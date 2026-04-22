@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: dbcb6a086946da9271559d147fe61ede565af1d5c3af79426b3c85771ece4dac
+fetched_at: 2026-04-22T03:11:35.366211Z
+sha256: 6bedd49c08e669eb6381a6161c3b743717d33578446d5908f149c8a9e3b80d72
 ---
 
 > ## Documentation Index
@@ -174,13 +174,14 @@ Each plugin entry needs at minimum a `name` and `source` (where to fetch it from
 | `name`  | string | Yes      | Name of the maintainer or team   |
 | `email` | string | No       | Contact email for the maintainer |
 
-### Optional metadata
+### Optional fields
 
-| Field                  | Type   | Description                                                                                                                                                               |
-| :--------------------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `metadata.description` | string | Brief marketplace description                                                                                                                                             |
-| `metadata.version`     | string | Marketplace version                                                                                                                                                       |
-| `metadata.pluginRoot`  | string | Base directory prepended to relative plugin source paths (for example, `"./plugins"` lets you write `"source": "formatter"` instead of `"source": "./plugins/formatter"`) |
+| Field                                 | Type   | Description                                                                                                                                                                                                                                                        |
+| :------------------------------------ | :----- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `metadata.description`                | string | Brief marketplace description                                                                                                                                                                                                                                      |
+| `metadata.version`                    | string | Marketplace version                                                                                                                                                                                                                                                |
+| `metadata.pluginRoot`                 | string | Base directory prepended to relative plugin source paths (for example, `"./plugins"` lets you write `"source": "formatter"` instead of `"source": "./plugins/formatter"`)                                                                                          |
+| `allowCrossMarketplaceDependenciesOn` | array  | Other marketplaces that plugins in this marketplace may depend on. Dependencies from a marketplace not listed here are blocked at install. See [Depend on a plugin from another marketplace](/en/plugin-dependencies#depend-on-a-plugin-from-another-marketplace). |
 
 ## Plugin entries
 

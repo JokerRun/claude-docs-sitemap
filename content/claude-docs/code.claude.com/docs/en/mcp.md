@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 10d449112d7734731f83a4795ed57f40647d54e6d70926a8e12bde92937f09a1
+fetched_at: 2026-04-22T03:11:35.366211Z
+sha256: 9a5e8d56ebac6de8ec8224e332b664cbd0208be9a01ce3a5157d717bd60fcf04
 ---
 
 > ## Documentation Index
@@ -945,7 +945,7 @@ If you've logged into Claude Code with a [Claude.ai](https://claude.ai) account,
 
 <Steps>
   <Step title="Configure MCP servers in Claude.ai">
-    Add servers at [claude.ai/settings/connectors](https://claude.ai/settings/connectors). On Team and Enterprise plans, only admins can add servers.
+    Add servers at [claude.ai/customize/connectors](https://claude.ai/customize/connectors). On Team and Enterprise plans, only admins can add servers.
   </Step>
 
   <Step title="Authenticate the MCP server">

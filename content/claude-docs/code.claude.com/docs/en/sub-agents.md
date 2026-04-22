@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: 28b14aab0d32eb0706b80843dd2ca7802d54b4e69ece8715504d71885fe72503
+fetched_at: 2026-04-22T03:11:35.366211Z
+sha256: 88215df8fdc973126c9f5673dea7fcb31a558fe2b5c6ccf6822d24700ed33db2
 ---
 
 > ## Documentation Index
@@ -388,6 +388,8 @@ Implement API endpoints. Follow the conventions and patterns from the preloaded 
 
 The full content of each skill is injected into the subagent's context, not just made available for invocation. Subagents don't inherit skills from the parent conversation; you must list them explicitly.
 
+You cannot preload skills that set [`disable-model-invocation: true`](/en/skills#control-who-invokes-a-skill), since preloading draws from the same set of skills Claude can invoke. If a listed skill is missing or disabled, Claude Code skips it and logs a warning to the debug log.
+
 <Note>
   This is the inverse of [running a skill in a subagent](/en/skills#run-skills-in-a-subagent). With `skills` in a subagent, the subagent controls the system prompt and loads skill content. With `context: fork` in a skill, the skill content is injected into the agent you specify. Both use the same underlying system.
 </Note>
@@ -507,7 +509,7 @@ Subagents can define [hooks](/en/hooks) that run during the subagent's lifecycle
 Define hooks directly in the subagent's markdown file. These hooks only run while that specific subagent is active and are cleaned up when it finishes.
 
 <Note>
-  Frontmatter hooks fire when the agent is spawned as a subagent through the Agent tool or an @-mention. They do not fire when the agent runs as the main session via [`--agent`](#invoke-subagents-explicitly) or the `agent` setting. For session-wide hooks, configure them in [`settings.json`](/en/hooks).
+  Frontmatter hooks fire when the agent is spawned as a subagent through the Agent tool or an @-mention, and when the agent runs as the main session via [`--agent`](#invoke-subagents-explicitly) or the `agent` setting. In the main-session case they run alongside any hooks defined in [`settings.json`](/en/hooks).
 </Note>
 
 All [hook events](/en/hooks#hook-events) are supported. The most common events for subagents are:
@@ -538,7 +540,7 @@ hooks:
 ---
 ```
 
-`Stop` hooks in frontmatter are automatically converted to `SubagentStop` events.
+When the agent is invoked as a subagent, `Stop` hooks in frontmatter are automatically converted to `SubagentStop` events.
 
 #### Project-level hooks for subagent events
 

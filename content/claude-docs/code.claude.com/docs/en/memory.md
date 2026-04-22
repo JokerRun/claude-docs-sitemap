@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 87465a7cab94cc6dc356a1c4c4372f13aebce5d751ac5c94aa2dee69255371d4
+fetched_at: 2026-04-22T03:11:35.366211Z
+sha256: b7da940889bead4c40ffdcb4e86e77a5256a764071a3937cfdcbe765a9cb3b2a
 ---
 
 > ## Documentation Index
@@ -409,6 +409,7 @@ See [Write effective instructions](#write-effective-instructions) for guidance o
 
 ## Related resources
 
+* [Debug your configuration](/en/debug-your-config): diagnose why CLAUDE.md or settings aren't taking effect
 * [Skills](/en/skills): package repeatable workflows that load on demand
 * [Settings](/en/settings): configure Claude Code behavior with settings files
 * [Subagent memory](/en/sub-agents#enable-persistent-memory): let subagents maintain their own auto memory

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 6b7f3238b78f76d9c9d538756e79a26de116044ec4e56b912e942f35d42206a0
+fetched_at: 2026-04-22T03:11:35.366211Z
+sha256: 8c00282409acbb5b96f39091f6f3e7a9b963fe0bb10d97c7866ebeedc5804792
 ---
 
 # Session event stream
@@ -43,11 +43,11 @@ Event type strings follow a `{domain}.{action}` naming convention.
 | --- | --- |
 | `agent.message` | Agent response containing text content blocks. |
 | `agent.thinking` | Agent thinking content, emitted separately from messages. |
-| `agent.tool_use` | Agent invoked a pre-built agent tool (bash, file operations, and so on). |
+| `agent.tool_use` | Agent invokes a pre-built agent tool (bash, file operations, and so on). |
 | `agent.tool_result` | Result of a pre-built agent tool execution. |
-| `agent.mcp_tool_use` | Agent invoked an MCP server tool. |
+| `agent.mcp_tool_use` | Agent invokes an MCP server tool. |
 | `agent.mcp_tool_result` | Result of an MCP tool execution. |
-| `agent.custom_tool_use` | Agent invoked one of your custom tools. Respond with a `user.custom_tool_result` event. |
+| `agent.custom_tool_use` | Agent invokes one of your custom tools. Respond with a `user.custom_tool_result` event. |
 | `agent.thread_context_compacted` | Conversation history was compacted to fit the context window. |
 | `agent.thread_message_sent` | Agent sent a message to another [multiagent](/docs/en/managed-agents/multi-agent) thread. |
 | `agent.thread_message_received` | Agent received a message from another [multiagent](/docs/en/managed-agents/multi-agent) thread. |
@@ -1606,6 +1606,34 @@ client.beta.sessions.events.stream_events(session.id).each do |event|
 end
 ```
 </CodeGroup>
+
+### Resuming an idle session
+
+Sessions persist between interactions. Conversation history is preserved unless the session is explicitly deleted. When a session goes idle, its container is checkpointed, preserving the full container state, including the filesystem, installed packages, and any files the agent created. This allows you to resume cleanly from inactivity.
+
+<Note>
+While session history is persisted until deleted, checkpoints are only preserved for 30 days after the session's last activity. If your workflow requires the full container state (files, installed tools, and so on) to persist beyond 30 days, send periodic `user.message` events to reset the inactivity timer before the checkpoint expires.
+</Note>
+
+To resume a session, send a `user.message` event to it as usual:
+
+```python
+# Resume a previously created session by ID
+client.beta.sessions.events.send(
+    "sesn_01...",
+    events=[
+        {
+            "type": "user.message",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Now run the tests against the changes you made earlier.",
+                },
+            ],
+        },
+    ],
+)
+```
 
 ### Tracking usage
 

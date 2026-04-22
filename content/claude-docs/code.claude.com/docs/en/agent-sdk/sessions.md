@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/sessions
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 438e949d6ef91016c38cddb82cd0dcdb6c0e70d7f9f79d6677db9fde72ca7781
+fetched_at: 2026-04-22T03:11:35.366211Z
+sha256: 6a9bcc256268fcb6175c3fe4531cdf3470278dc512c8cb8315fc44730f8572f9
 ---
 
 > ## Documentation Index
@@ -239,6 +239,8 @@ This example resumes the session from [Capture the session ID](#capture-the-sess
 <Tip>
   If a `resume` call returns a fresh session instead of the expected history, the most common cause is a mismatched `cwd`. Sessions are stored under `~/.claude/projects/<encoded-cwd>/*.jsonl`, where `<encoded-cwd>` is the absolute working directory with every non-alphanumeric character replaced by `-` (so `/Users/me/proj` becomes `-Users-me-proj`). If your resume call runs from a different directory, the SDK looks in the wrong place. The session file also needs to exist on the current machine.
 </Tip>
+
+To resume sessions across machines or in serverless environments, mirror transcripts to shared storage with a [`SessionStore` adapter](/en/agent-sdk/session-storage).
 
 ### Fork to explore alternatives
 

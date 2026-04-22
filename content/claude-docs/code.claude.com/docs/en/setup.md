@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: e12df694c40413312eea8a2d2219c2025ff5a5b7338201003901dc8a7baa53cd
+fetched_at: 2026-04-22T03:11:35.366211Z
+sha256: 543dee6332abe992404bcd5faf0706fbc3f1f892f7efe1520f43197f8c60b459
 ---
 
 > ## Documentation Index
@@ -371,7 +371,7 @@ Steps 1-3 require a POSIX shell with `gpg` and `curl`. On Windows, run them in G
     Set `VERSION` to the release you want to verify.
 
     ```bash theme={null}
-    REPO=https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases
+    REPO=https://downloads.claude.ai/claude-code-releases
     VERSION=2.1.89
     curl -fsSLO "$REPO/$VERSION/manifest.json"
     curl -fsSLO "$REPO/$VERSION/manifest.json.sig"

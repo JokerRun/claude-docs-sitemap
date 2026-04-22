@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: ae4ff5de0d1339171e0ab7a25c0a9517115592ebce01440f543cb3c70caef080
+fetched_at: 2026-04-22T03:11:35.366211Z
+sha256: ec33d58c707e3689d9ac5ae1c3902706617ccccd0c42dc1f7b5dbc31478bb67f
 ---
 
 > ## Documentation Index
@@ -36,7 +36,7 @@ In most terminals you can also press Shift+Enter, but support varies by terminal
 | VS Code, Cursor, Windsurf, Alacritty, Zed                                           | Run `/terminal-setup` once                  |
 | Windows Terminal, gnome-terminal, JetBrains IDEs such as PyCharm and Android Studio | Not available; use Ctrl+J or `\` then Enter |
 
-For VS Code, Cursor, Windsurf, Alacritty, and Zed, `/terminal-setup` writes Shift+Enter and other keybindings into the terminal's configuration file. If it reports a conflict such as `Found existing VSCode terminal Shift+Enter key binding`, remove that entry from the terminal's own keybindings file, for example VS Code's `keybindings.json`, and run the command again. Run `/terminal-setup` directly in the host terminal rather than inside tmux or screen, since it needs to write to the host terminal's configuration.
+For VS Code, Cursor, Windsurf, Alacritty, and Zed, `/terminal-setup` writes Shift+Enter and other keybindings into the terminal's configuration file. In VS Code, Cursor, and Windsurf it also sets `terminal.integrated.mouseWheelScrollSensitivity` in the editor settings for smoother scrolling in [fullscreen mode](/en/fullscreen). Existing bindings and settings are left in place; if you see a message such as `VSCode terminal Shift+Enter key binding already configured`, no change was made. Run `/terminal-setup` directly in the host terminal rather than inside tmux or screen, since it needs to write to the host terminal's configuration.
 
 If you are running inside tmux, Shift+Enter also requires the [tmux configuration below](#configure-tmux) even when the outer terminal supports it.
 

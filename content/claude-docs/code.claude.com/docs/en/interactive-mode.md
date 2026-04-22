@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: 25815d3fe10e34610abf148ca62b2549795f93355ac6f9ff03934f47243f4f28
+fetched_at: 2026-04-22T03:11:35.366211Z
+sha256: b154a0ec6015f01e4b870fd2fa9c6a82608863dfea23de9e6bc073307d7c6a23
 ---
 
 > ## Documentation Index
@@ -308,7 +308,7 @@ Press **Space**, **Enter**, or **Escape** to dismiss the answer and return to th
 
 When working on complex, multi-step work, Claude creates a task list to track progress. Tasks appear in the status area of your terminal with indicators showing what's pending, in progress, or complete.
 
-* Press `Ctrl+T` to toggle the task list view. The display shows up to 10 tasks at a time
+* Press `Ctrl+T` to toggle the task list view. The display shows up to 5 tasks at a time
 * To see all tasks or clear them, ask Claude directly: "show me all tasks" or "clear all tasks"
 * Tasks persist across context compactions, helping Claude stay organized on larger projects
 * To share a task list across sessions, set `CLAUDE_CODE_TASK_LIST_ID` to use a named directory in `~/.claude/tasks/`: `CLAUDE_CODE_TASK_LIST_ID=my-project claude`
@@ -319,7 +319,7 @@ When you return to the terminal after stepping away, Claude Code shows a one-lin
 
 Run `/recap` to generate a summary on demand. To turn automatic recaps off, open `/config` and disable **Session recap**.
 
-Session recap is on by default for every plan and provider. To override the `/config` toggle, set [`CLAUDE_CODE_ENABLE_AWAY_SUMMARY`](/en/env-vars) to `0` or `1`. The recap is always skipped in non-interactive mode.
+Session recap is on by default for every plan and provider. The recap is always skipped in non-interactive mode.
 
 ## PR review status
 
