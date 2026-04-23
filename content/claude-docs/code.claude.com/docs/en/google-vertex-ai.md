@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 64d74bada7dca73d78a6816b2ae5c76e7ea8943547339f4329d09717e75a0a71
+fetched_at: 2026-04-23T03:11:35.814149Z
+sha256: c618f1dbb804809ef156e0187cec63d7a52380c0b82f5d09667883eba834abbb
 ---
 
 > ## Documentation Index
@@ -233,10 +233,10 @@ After you've signed in, run `/setup-vertex` any time to reopen the wizard and ch
 
 ## Region configuration
 
-Claude Code can be used with both Vertex AI [global](https://cloud.google.com/blog/products/ai-machine-learning/global-endpoint-for-claude-models-generally-available-on-vertex-ai) and regional endpoints.
+Claude Code supports Vertex AI [global](https://cloud.google.com/blog/products/ai-machine-learning/global-endpoint-for-claude-models-generally-available-on-vertex-ai), multi-region, and regional endpoints. Set `CLOUD_ML_REGION` to `global`, a multi-region location such as `eu` or `us`, or a specific region such as `us-east5`. Claude Code selects the correct Vertex AI hostname for each form, including the `aiplatform.eu.rep.googleapis.com` and `aiplatform.us.rep.googleapis.com` hosts for multi-region locations.
 
 <Note>
-  Vertex AI may not support the Claude Code default models in all [regions](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/locations#genai-partner-models) or on [global endpoints](https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-partner-models#supported_models). You may need to switch to a supported region, use a regional endpoint, or specify a supported model.
+  Vertex AI may not support the Claude Code default models on every endpoint type. Model availability varies across [specific regions](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/locations#genai-partner-models), multi-region locations, and [global endpoints](https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-partner-models#supported_models). You may need to switch to a supported location or specify a supported model.
 </Note>
 
 ## Set up manually
@@ -370,10 +370,10 @@ If you encounter quota issues:
 If you encounter "model not found" 404 errors:
 
 * Confirm model is Enabled in [Model Garden](https://console.cloud.google.com/vertex-ai/model-garden)
-* Verify you have access to the specified region
+* Verify the model is available in the location you specified. Some models are offered only on `global` or multi-region locations such as `eu` and `us`, not in specific regions
 * If using `CLOUD_ML_REGION=global`, check that your models support global endpoints in [Model Garden](https://console.cloud.google.com/vertex-ai/model-garden) under "Supported features". For models that don't support global endpoints, either:
   * Specify a supported model via `ANTHROPIC_MODEL` or `ANTHROPIC_DEFAULT_HAIKU_MODEL`, or
-  * Set a regional endpoint using `VERTEX_REGION_<MODEL_NAME>` environment variables
+  * Set a region or multi-region location using `VERTEX_REGION_<MODEL_NAME>` environment variables
 
 If you encounter 429 errors:
 

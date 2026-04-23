@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-04-22T03:11:35.366211Z
-sha256: 7473bcb4d6cfcbf401867ea3954fd9fc49eac3a6262ad373a99c53ce129cca23
+fetched_at: 2026-04-23T03:11:35.814149Z
+sha256: c9b1de8da843043aa56976215d55adfaad66980c7b67675ab2a7583d3293cc61
 ---
 
 > ## Documentation Index
@@ -710,6 +710,8 @@ Choose your environment to get started. Most surfaces require a [Claude subscrip
         </Info>
       </Tab>
     </Tabs>
+
+    You can also install with [apt, dnf, or apk](/en/setup#install-with-linux-package-managers) on Debian, Fedora, RHEL, and Alpine.
 
     Then start Claude Code in any project:
 

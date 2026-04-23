@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: b6cc899cd14e163f1b797046e2bb2ec7e306ac843b3c0a19e10eae9b639bdc2d
+fetched_at: 2026-04-23T03:11:35.814149Z
+sha256: fd6644e168c38862b9324c5b4fa45ac7dfcdf4ef6c1db79224a441232c8dbdef
 ---
 
 > ## Documentation Index
@@ -242,12 +242,12 @@ Every hook callback receives three arguments:
 Your callback returns an object with two categories of fields:
 
 * **Top-level fields** control the conversation: `systemMessage` injects a message into the conversation visible to the model, and `continue` (`continue_` in Python) determines whether the agent keeps running after this hook.
-* **`hookSpecificOutput`** controls the current operation. The fields inside depend on the hook event type. For `PreToolUse` hooks, this is where you set `permissionDecision` (`"allow"`, `"deny"`, or `"ask"`), `permissionDecisionReason`, and `updatedInput`. For `PostToolUse` hooks, you can set `additionalContext` to append information to the tool result.
+* **`hookSpecificOutput`** controls the current operation. The fields inside depend on the hook event type. For `PreToolUse` hooks, this is where you set `permissionDecision` (`"allow"`, `"deny"`, or `"ask"`), `permissionDecisionReason`, and `updatedInput`. In the TypeScript SDK, `permissionDecision` also accepts `"defer"` to end the query and [resume later](/en/hooks#defer-a-tool-call-for-later); this value is not available in the Python SDK. For `PostToolUse` hooks, you can set `additionalContext` to append information to the tool result.
 
 Return `{}` to allow the operation without changes. SDK callback hooks use the same JSON output format as [Claude Code shell command hooks](/en/hooks#json-output), which documents every field and event-specific option. For the SDK type definitions, see the [TypeScript](/en/agent-sdk/typescript#sync-hook-json-output) and [Python](/en/agent-sdk/python#sync-hook-json-output) SDK references.
 
 <Note>
-  When multiple hooks or permission rules apply, **deny** takes priority over **ask**, which takes priority over **allow**. If any hook returns `deny`, the operation is blocked regardless of other hooks.
+  When multiple hooks or permission rules apply, **deny** takes priority over **defer**, which takes priority over **ask**, which takes priority over **allow**. If any hook returns `deny`, the operation is blocked regardless of other hooks.
 </Note>
 
 #### Asynchronous output

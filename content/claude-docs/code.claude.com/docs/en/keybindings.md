@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-04-19T03:11:32.038084Z
-sha256: fba77e1de0d57d909811bd7a4846419786fca311aa4964833ea823fdd867710e
+fetched_at: 2026-04-23T03:11:35.814149Z
+sha256: 0b7bda9340c3b82767343eca7eb090dbbb71138c2c2523adabdbe3f1cb9f2892
 ---
 
 > ## Documentation Index
@@ -314,9 +314,9 @@ Actions available in the `Doctor` context:
 
 Actions available in the `Chat` context when [voice dictation](/en/voice-dictation) is enabled:
 
-| Action             | Default | Description              |
-| :----------------- | :------ | :----------------------- |
-| `voice:pushToTalk` | Space   | Hold to dictate a prompt |
+| Action             | Default | Description                                              |
+| :----------------- | :------ | :------------------------------------------------------- |
+| `voice:pushToTalk` | Space   | Dictate a prompt. Hold or tap depending on `/voice` mode |
 
 ### Scroll actions
 

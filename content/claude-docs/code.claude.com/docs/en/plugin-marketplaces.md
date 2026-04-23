@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-04-22T03:11:35.366211Z
-sha256: 6bedd49c08e669eb6381a6161c3b743717d33578446d5908f149c8a9e3b80d72
+fetched_at: 2026-04-23T03:11:35.814149Z
+sha256: a53f258c02e8e0406902311cc73b53e7fc02bc80b7dfeb141cbe6bc86c1f88e0
 ---
 
 > ## Documentation Index
@@ -684,7 +684,7 @@ Use `".*"` as the `pathPattern` to allow any filesystem path while still control
 
 #### How restrictions work
 
-Restrictions are validated early in the plugin installation process, before any network requests or filesystem operations occur. This prevents unauthorized marketplace access attempts.
+Restrictions are checked before any network or filesystem operation. The check runs on marketplace add and on plugin install, update, refresh, and auto-update. If a marketplace was added before the policy was configured and its source no longer matches the allowlist, Claude Code refuses to install or update plugins from it. The same enforcement applies to `blockedMarketplaces`.
 
 The allowlist uses exact matching for most source types. For a marketplace to be allowed, all specified fields must match exactly:
 

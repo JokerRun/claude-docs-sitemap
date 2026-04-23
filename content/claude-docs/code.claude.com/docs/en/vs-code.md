@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: b854cafdbda254c4959104b8ad5038d481d53449be838064dfde35792186491b
+fetched_at: 2026-04-23T03:11:35.814149Z
+sha256: d9c68b51159872e31650a430c096c1480ea962f70b1c919639131c5bc5b4c500
 ---
 
 > ## Documentation Index
@@ -347,10 +347,11 @@ When Claude runs long-running commands, the extension shows progress in the stat
 
 MCP (Model Context Protocol) servers give Claude access to external tools, databases, and APIs.
 
-To add an MCP server, open the integrated terminal (`` Ctrl+` `` or `` Cmd+` ``) and run:
+To add an MCP server, open the integrated terminal (`` Ctrl+` `` or `` Cmd+` ``) and run `claude mcp add`. The example below adds GitHub's remote MCP server, which authenticates with a [personal access token](https://github.com/settings/personal-access-tokens) passed as a header:
 
 ```bash theme={null}
-claude mcp add --transport http github https://api.githubcopilot.com/mcp/
+claude mcp add --transport http github https://api.githubcopilot.com/mcp/ \
+  --header "Authorization: Bearer YOUR_GITHUB_PAT"
 ```
 
 Once configured, ask Claude to use the tools (e.g., "Review PR #456").

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-04-22T03:11:35.366211Z
-sha256: bb20f168f076efde49d6291617048f5e42e3d489d5be021e49fd1161a9676d86
+fetched_at: 2026-04-23T03:11:35.814149Z
+sha256: fc751d9be10a9f33e925ad64d4aa567cd56aed50f34b7897e22b6452b00d905c
 ---
 
 > ## Documentation Index
@@ -607,6 +607,8 @@ To install Claude Code, use one of the following methods:
     </Info>
   </Tab>
 </Tabs>
+
+You can also install with [apt, dnf, or apk](/en/setup#install-with-linux-package-managers) on Debian, Fedora, RHEL, and Alpine.
 
 ## Step 2: Log in to your account
 

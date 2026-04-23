@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-04-22T03:11:35.366211Z
-sha256: 47726be6f8cebcf89f7be97afa6882cb286c8e3c12cd023cb7b06e64eefa8bd7
+fetched_at: 2026-04-23T03:11:35.814149Z
+sha256: a5a6b515171ba7d7573133f127c5e6318a3c2d3e55c04dea020e7f4fb29e8956
 ---
 
 > ## Documentation Index
@@ -570,6 +570,8 @@ When starting Claude Code, you can resume a previous session:
 * `claude --from-pr 123` resumes sessions linked to a specific pull request
 
 From inside an active session, use `/resume` to switch to a different conversation.
+
+When the selected session is old and large enough that re-reading it would consume a substantial share of your usage limits, `--resume`, `--continue`, and `/resume` offer to resume from a summary instead of loading the full transcript. This prompt is not available on Amazon Bedrock, Google Cloud Vertex AI, or Microsoft Foundry.
 
 Sessions are stored per project directory. By default, the `/resume` picker shows interactive sessions from the current worktree, with keyboard shortcuts to widen the list to other worktrees or projects, search, preview, and rename. See [Use the session picker](#use-the-session-picker) below for the full shortcut reference.
 

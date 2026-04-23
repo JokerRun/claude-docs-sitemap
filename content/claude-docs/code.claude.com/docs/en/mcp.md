@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-04-22T03:11:35.366211Z
-sha256: 9a5e8d56ebac6de8ec8224e332b664cbd0208be9a01ce3a5157d717bd60fcf04
+fetched_at: 2026-04-23T03:11:35.814149Z
+sha256: 815587b7b8126718284fd03870953d29a0b59d9fa75a96221c87bcdb333df0df
 ---
 
 > ## Documentation Index
@@ -610,14 +610,11 @@ Which deployment introduced these new errors?
 
 ### Example: Connect to GitHub for code reviews
 
+GitHub's remote MCP server authenticates with a GitHub personal access token passed as a header. To get one, open your [GitHub token settings](https://github.com/settings/personal-access-tokens), generate a new fine-grained token with access to the repositories you want Claude to work with, then add the server:
+
 ```bash theme={null}
-claude mcp add --transport http github https://api.githubcopilot.com/mcp/
-```
-
-Authenticate if needed by selecting "Authenticate" for GitHub:
-
-```text theme={null}
-/mcp
+claude mcp add --transport http github https://api.githubcopilot.com/mcp/ \
+  --header "Authorization: Bearer YOUR_GITHUB_PAT"
 ```
 
 Then work with GitHub:

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 08952f8b79df6a1e2018b131fbcc3e78aef55938cfeacbc6cad53eb3d591a119
+fetched_at: 2026-04-23T03:11:35.814149Z
+sha256: b9704970c7005ac823011707c1a5cc4fdb318d1d401e6c3a81e75c635432aac9
 ---
 
 > ## Documentation Index
@@ -100,7 +100,7 @@ If your devices are enrolled in an MDM or endpoint management solution, endpoint
     }
     ```
 
-    Because hooks execute shell commands, users see a [security approval dialog](#security-approval-dialogs) before they're applied. See [Configure the auto mode classifier](/en/permissions#configure-the-auto-mode-classifier) for how the `autoMode` entries affect what the classifier blocks and important warnings about the `allow` and `soft_deny` fields.
+    Because hooks execute shell commands, users see a [security approval dialog](#security-approval-dialogs) before they're applied. See [Configure auto mode](/en/auto-mode-config) for how the `autoMode` entries affect what the classifier blocks and important warnings about the `allow` and `soft_deny` fields.
   </Step>
 
   <Step title="Save and deploy">

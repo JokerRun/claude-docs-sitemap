@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-04-22T03:11:35.366211Z
-sha256: 7cb51ba14374f0262614b6caf708644fa6632c13a9ab5e4eb7ef3f9dbfb2a7e8
+fetched_at: 2026-04-23T03:11:35.814149Z
+sha256: 57266a94642181f933ce43d02d21295513f60df2105c9c679ae450838f5f5392
 ---
 
 > ## Documentation Index
@@ -902,6 +902,7 @@ type SDKResultMessage =
       modelUsage: { [modelName: string]: ModelUsage };
       permission_denials: SDKPermissionDenial[];
       structured_output?: unknown;
+      deferred_tool_use?: { id: string; name: string; input: Record<string, unknown> };
     }
   | {
       type: "result";
@@ -924,6 +925,8 @@ type SDKResultMessage =
       errors: string[];
     };
 ```
+
+When a `PreToolUse` hook returns `permissionDecision: "defer"`, the result has `stop_reason: "tool_deferred"` and `deferred_tool_use` carries the pending tool's `id`, `name`, and `input`. Read this field to surface the request in your own UI, then resume with the same `session_id` to continue. See [Defer a tool call for later](/en/hooks#defer-a-tool-call-for-later) for the full round trip.
 
 ### `SDKSystemMessage`
 
@@ -1333,7 +1336,7 @@ type SyncHookJSONOutput = {
   hookSpecificOutput?:
     | {
         hookEventName: "PreToolUse";
-        permissionDecision?: "allow" | "deny" | "ask";
+        permissionDecision?: "allow" | "deny" | "ask" | "defer";
         permissionDecisionReason?: string;
         updatedInput?: Record<string, unknown>;
         additionalContext?: string;

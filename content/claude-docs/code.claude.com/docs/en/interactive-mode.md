@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-04-22T03:11:35.366211Z
-sha256: b154a0ec6015f01e4b870fd2fa9c6a82608863dfea23de9e6bc073307d7c6a23
+fetched_at: 2026-04-23T03:11:35.814149Z
+sha256: de74e4d06f7f2dd3f7e0b5d1f87f14e046b1a9335369dab1eccc42750f49a627
 ---
 
 > ## Documentation Index
@@ -104,9 +104,9 @@ When the transcript viewer is open (toggled with `Ctrl+O`), these shortcuts are 
 
 ### Voice input
 
-| Shortcut     | Description            | Notes                                                                                                                                                      |
-| :----------- | :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Hold `Space` | Push-to-talk dictation | Requires [voice dictation](/en/voice-dictation) to be enabled. Transcript inserts at cursor. [Rebindable](/en/voice-dictation#rebind-the-push-to-talk-key) |
+| Shortcut            | Description     | Notes                                                                                                                                                                            |
+| :------------------ | :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hold or tap `Space` | Voice dictation | Requires [voice dictation](/en/voice-dictation) to be enabled. Hold to record, or run `/voice tap` for tap-to-toggle. [Rebindable](/en/voice-dictation#rebind-the-dictation-key) |
 
 ## Commands
 
