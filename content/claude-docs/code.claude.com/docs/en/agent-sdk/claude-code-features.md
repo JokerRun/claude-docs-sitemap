@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/claude-code-features
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 4a918b27354b4772e1db86121855a029018df1ef0de64078d31990e02921bade
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 6797746e4b603c1c5a1407e0b38fdc47ff2425b6857fb2e9a2bd76082fa1ec71
 ---
 
 > ## Documentation Index
@@ -249,10 +249,10 @@ Hook callbacks receive the tool input and return a decision dict. Returning `{}`
 
 ### When to use which hook type
 
-| Hook type                                 | Best for                                                                                                                                                                                                                                                  |
-| :---------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Filesystem** (`settings.json`)          | Sharing hooks between CLI and SDK sessions. Supports `"command"` (shell scripts), `"http"` (POST to an endpoint), `"prompt"` (LLM evaluates a prompt), and `"agent"` (spawns a verifier agent). These fire in the main agent and any subagents it spawns. |
-| **Programmatic** (callbacks in `query()`) | Application-specific logic; returning structured decisions; in-process integration. Scoped to the main session only.                                                                                                                                      |
+| Hook type                                 | Best for                                                                                                                                                                                                                                                                                                     |
+| :---------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Filesystem** (`settings.json`)          | Sharing hooks between CLI and SDK sessions. Supports `"command"` (shell scripts), `"http"` (POST to an endpoint), `"mcp_tool"` (call a connected MCP server's tool), `"prompt"` (LLM evaluates a prompt), and `"agent"` (spawns a verifier agent). These fire in the main agent and any subagents it spawns. |
+| **Programmatic** (callbacks in `query()`) | Application-specific logic; returning structured decisions; in-process integration. Scoped to the main session only.                                                                                                                                                                                         |
 
 <Note>
   The TypeScript SDK supports additional hook events beyond Python, including `SessionStart`, `SessionEnd`, `TeammateIdle`, and `TaskCompleted`. See the [hooks guide](/en/agent-sdk/hooks) for the full event compatibility table.

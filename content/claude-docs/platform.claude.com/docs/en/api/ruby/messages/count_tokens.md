@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/count_tokens
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 8252872dbcf2045242b480da193c008268ecb5f48ab49bfa59400b7aa5457577
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 75d73e5448811d38e92a7d4b068a629d63c4ba0a165acd1195f6b7568b81bb56
 ---
 
 ## Count Tokens
@@ -2405,7 +2405,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   Configuration options for the model's output, such as the output format.
 
-  - `effort: :low | :medium | :high | 2 more`
+  - `effort: :low | :medium | :high | :max`
 
     All possible effort levels.
 
@@ -2414,8 +2414,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `:medium`
 
     - `:high`
-
-    - `:xhigh`
 
     - `:max`
 

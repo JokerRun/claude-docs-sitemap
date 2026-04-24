@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: f6a9dba6e1677f34d8da2ffccb3a7ef722a70d49fdb1c23eb8687da96ca9f216
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: dcc4a1e9535c56e90017749408c66ecd773a851e32cb0d6396fd76f2bb81324a
 ---
 
 # Agents
@@ -398,8 +398,6 @@ Create Agent
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -817,8 +815,6 @@ List Agents
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
-
 ### Returns
 
 - `type BetaManagedAgentsAgent struct{…}`
@@ -1217,8 +1213,6 @@ Get Agent
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -1951,8 +1945,6 @@ Update Agent
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
-
 ### Returns
 
 - `type BetaManagedAgentsAgent struct{…}`
@@ -2351,8 +2343,6 @@ Archive Agent
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -4066,8 +4056,6 @@ List Agent Versions
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: ee4b1e9b8b02981b28bf570ffc3712121761d090d81efd107d55bede1fc17e01
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: acaf159f14a54a5006e3390559bd1fb13738c000b77c5b09c39fbc173aa333d9
 ---
 
 ## Retrieve
@@ -68,8 +68,6 @@ Get Vault
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 6bbdc8edab9575a7f45e459b758ec50f9aa319a48229c80744232a9716507baa
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 4b66ca78eefeebdc31ac30fae9d4877925a50f08fc27c599fa1b43da89971707
 ---
 
 # Get started with Agent Skills in the API
@@ -54,7 +54,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 # List Anthropic-managed Skills
-skills = client.beta.skills.list(source="anthropic", betas=["skills-2025-10-02"])
+skills = client.beta.skills.list(source="anthropic")
 
 for skill in skills.data:
     print(f"{skill.id}: {skill.display_title}")
@@ -67,8 +67,7 @@ const client = new Anthropic();
 
 // List Anthropic-managed Skills
 const skills = await client.beta.skills.list({
-  source: "anthropic",
-  betas: ["skills-2025-10-02"]
+  source: "anthropic"
 });
 
 for (const skill of skills.data) {
@@ -275,9 +274,7 @@ for block in response.content:
 
 if file_id:
     # Download the file
-    file_content = client.beta.files.download(
-        file_id=file_id, betas=["files-api-2025-04-14"]
-    )
+    file_content = client.beta.files.download(file_id=file_id)
 
     # Save to disk
     with open("renewable_energy.pptx", "wb") as f:
@@ -303,9 +300,7 @@ for (const block of response.content) {
 
 if (fileId) {
   // Download the file
-  const fileContent = await client.beta.files.download(fileId, {
-    betas: ["files-api-2025-04-14"]
-  });
+  const fileContent = await client.beta.files.download(fileId);
 
   // Save to disk
   const fs = require("fs/promises");

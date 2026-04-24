@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/models
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 0acd8d948894eda8792ee21d9ed9eeb7ed0644a308c79fc43a4d165d79bb816e
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: bebc8508a9d48220c4e5e81787258e184624e4359ec7ae17f981bb74b144c902
 ---
 
 # Models
@@ -82,8 +82,6 @@ The Models API response can be used to determine which models are available for 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -194,14 +192,6 @@ The Models API response can be used to determine which models are available for 
         - `required Boolean Supported`
 
           Whether this capability is supported by the model.
-
-        - `required BetaCapabilitySupport? Xhigh`
-
-          Indicates whether a capability is supported.
-
-          - `required Boolean Supported`
-
-            Whether this capability is supported by the model.
 
       - `required BetaCapabilitySupport ImageInput`
 
@@ -367,8 +357,6 @@ The Models API response can be used to determine information about a specific mo
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
-
 ### Returns
 
 - `class BetaModelInfo:`
@@ -476,14 +464,6 @@ The Models API response can be used to determine information about a specific mo
       - `required Boolean Supported`
 
         Whether this capability is supported by the model.
-
-      - `required BetaCapabilitySupport? Xhigh`
-
-        Indicates whether a capability is supported.
-
-        - `required Boolean Supported`
-
-          Whether this capability is supported by the model.
 
     - `required BetaCapabilitySupport ImageInput`
 
@@ -657,14 +637,6 @@ Console.WriteLine(betaModelInfo);
 
     Whether this capability is supported by the model.
 
-  - `required BetaCapabilitySupport? Xhigh`
-
-    Indicates whether a capability is supported.
-
-    - `required Boolean Supported`
-
-      Whether this capability is supported by the model.
-
 ### Beta Model Capabilities
 
 - `class BetaModelCapabilities:`
@@ -766,14 +738,6 @@ Console.WriteLine(betaModelInfo);
     - `required Boolean Supported`
 
       Whether this capability is supported by the model.
-
-    - `required BetaCapabilitySupport? Xhigh`
-
-      Indicates whether a capability is supported.
-
-      - `required Boolean Supported`
-
-        Whether this capability is supported by the model.
 
   - `required BetaCapabilitySupport ImageInput`
 
@@ -934,14 +898,6 @@ Console.WriteLine(betaModelInfo);
       - `required Boolean Supported`
 
         Whether this capability is supported by the model.
-
-      - `required BetaCapabilitySupport? Xhigh`
-
-        Indicates whether a capability is supported.
-
-        - `required Boolean Supported`
-
-          Whether this capability is supported by the model.
 
     - `required BetaCapabilitySupport ImageInput`
 

@@ -23,12 +23,13 @@ Automated daily English sitemap collection from Claude documentation sources.
 <!-- tsv_preview_start -->
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
+| code | https://code.claude.com/docs/en/admin-setup | 2026-04-23 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-04-16 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-04-16 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-04-16 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-04-23 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-04-23 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/custom-tools | 2026-04-08 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/file-check... | 2026-04-08 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-04-22 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-04-23 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/hosting | 2026-04-17 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-04-16 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-04-16 |  |
@@ -37,8 +38,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/overview | 2026-04-17 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/permissions | 2026-04-16 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/plugins | 2026-04-08 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/python | 2026-04-21 |  |
-| ... | _(~1360 more rows)_ | | |
+| ... | _(~1471 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

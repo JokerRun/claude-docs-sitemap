@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: afc956457e89294abfaf4784c4a431f9c4e3a328de1d6f9f3a615a590bd91d4f
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 69bae30de3500ea4b0d8c65bdb99ee4c7bdadc78186e6112a9fc21b601300456
 ---
 
 ## List
@@ -31,7 +31,7 @@ List Session Resources
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,11 +77,11 @@ List Session Resources
 
     - `"advisor-tool-2026-03-01"`
 
-    - `"user-profiles-2026-03-24"`
-
 ### Returns
 
 - `BetaManagedAgentsSessionResource`
+
+  A memory store attached to an agent session.
 
   - `class BetaManagedAgentsGitHubRepositoryResource: …`
 
@@ -144,6 +144,42 @@ List Session Resources
     - `updated_at: datetime`
 
       A timestamp in RFC 3339 format
+
+  - `class BetaManagedAgentsMemoryStoreResource: …`
+
+    A memory store attached to an agent session.
+
+    - `memory_store_id: str`
+
+      The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+    - `type: Literal["memory_store"]`
+
+      - `"memory_store"`
+
+    - `access: Optional[Literal["read_write", "read_only"]]`
+
+      Access mode for an attached memory store.
+
+      - `"read_write"`
+
+      - `"read_only"`
+
+    - `description: Optional[str]`
+
+      Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+    - `instructions: Optional[str]`
+
+      Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+    - `mount_path: Optional[str]`
+
+      Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+    - `name: Optional[str]`
+
+      Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
 ### Example
 

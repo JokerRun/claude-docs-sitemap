@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/count_tokens
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 1336adab3ea96434428ffc5c7604031e33ab04bae5c5cafdf929480c661bf8fa
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: ef4ef2095ba7d92c78fd6059dc48f0783400d35c62e50b7deed6296e31e88585
 ---
 
 ## Count Tokens
@@ -2655,10 +2655,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
-          - `EncryptedContent string`
-
-            Opaque metadata from prior compaction, to be round-tripped verbatim
-
     - `Role BetaMessageParamRole`
 
       - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
@@ -4534,8 +4530,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

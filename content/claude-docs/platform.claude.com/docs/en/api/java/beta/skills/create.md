@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 3ee83f0f4c5ddae35f9b93a4bb5411126cc31efd76b87a0e1f2f74b7c97a577f
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 02303a28fb83eb98e8c9cdd3b82a3e42cc0b6ee71c8d70c4442f552895e12fdf
 ---
 
 ## Create
@@ -64,8 +64,6 @@ Create Skill
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `Optional<String> displayTitle`
 

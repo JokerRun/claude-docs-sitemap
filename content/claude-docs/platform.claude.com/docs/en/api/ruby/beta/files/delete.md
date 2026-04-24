@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/delete
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: c8545bf69daf49b1a5cd5779332a7d3b81b3013edb07830a3d1be0de416f62e9
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: f27e89abc3e8e56e4698e55bccd7287e41c59415fd085762a410cc8ded5b05ae
 ---
 
 ## Delete
@@ -25,7 +25,7 @@ Delete File
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -70,8 +70,6 @@ Delete File
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

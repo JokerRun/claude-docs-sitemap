@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 821d6ad03f890217454509abd83efdfd84e88a9de4f3a9a9c18e74a5082e9bfb
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 054f11e5a5a05d19171d30b6500e347ee41b84556275bcfabc0d7ca4233fd391
 ---
 
 # Agents
@@ -21,7 +21,7 @@ Create Agent
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,8 +66,6 @@ Create Agent
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Body Parameters
 
@@ -801,7 +799,7 @@ List Agents
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -846,8 +844,6 @@ List Agents
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -1188,7 +1184,7 @@ Get Agent
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -1233,8 +1229,6 @@ Get Agent
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -1565,7 +1559,7 @@ Update Agent
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -1610,8 +1604,6 @@ Update Agent
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Body Parameters
 
@@ -2330,7 +2322,7 @@ Archive Agent
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -2375,8 +2367,6 @@ Archive Agent
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -4024,7 +4014,7 @@ List Agent Versions
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -4069,8 +4059,6 @@ List Agent Versions
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

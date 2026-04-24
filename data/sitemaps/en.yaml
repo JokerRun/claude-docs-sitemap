@@ -1,13 +1,16 @@
 ---
 - source: code
+  loc: https://code.claude.com/docs/en/admin-setup
+  lastmod: '2026-04-23T16:53:33.663Z'
+- source: code
   loc: https://code.claude.com/docs/en/agent-sdk/agent-loop
   lastmod: '2026-04-16T20:18:46.980Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/claude-code-features
-  lastmod: '2026-04-16T18:46:14.575Z'
+  lastmod: '2026-04-23T16:53:33.663Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/cost-tracking
-  lastmod: '2026-04-16T18:46:14.568Z'
+  lastmod: '2026-04-23T22:35:57.288Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/custom-tools
   lastmod: '2026-04-08T17:53:06.432Z'
@@ -16,7 +19,7 @@
   lastmod: '2026-04-08T17:53:06.435Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/hooks
-  lastmod: '2026-04-22T22:36:09.696Z'
+  lastmod: '2026-04-23T16:53:33.660Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/hosting
   lastmod: '2026-04-17T19:51:45.092Z'
@@ -43,7 +46,7 @@
   lastmod: '2026-04-08T17:53:09.103Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/python
-  lastmod: '2026-04-21T18:43:17.891Z'
+  lastmod: '2026-04-23T22:35:57.478Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/quickstart
   lastmod: '2026-04-17T19:51:45.097Z'
@@ -58,7 +61,7 @@
   lastmod: '2026-04-16T18:46:17.401Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/slash-commands
-  lastmod: '2026-04-16T20:18:49.823Z'
+  lastmod: '2026-04-23T16:53:33.723Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/streaming-output
   lastmod: '2026-04-08T17:53:09.102Z'
@@ -79,7 +82,7 @@
   lastmod: '2026-04-08T17:53:11.120Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/typescript
-  lastmod: '2026-04-22T22:36:09.720Z'
+  lastmod: '2026-04-23T22:35:57.401Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview
   lastmod: '2026-04-17T19:51:45.106Z'
@@ -88,10 +91,10 @@
   lastmod: '2026-04-22T22:36:09.719Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-teams
-  lastmod: '2026-04-03T23:27:35.690Z'
+  lastmod: '2026-04-23T16:53:33.746Z'
 - source: code
   loc: https://code.claude.com/docs/en/amazon-bedrock
-  lastmod: '2026-04-16T20:18:49.866Z'
+  lastmod: '2026-04-23T22:35:57.380Z'
 - source: code
   loc: https://code.claude.com/docs/en/analytics
   lastmod: '2026-04-02T15:23:24.396Z'
@@ -100,13 +103,13 @@
   lastmod: '2026-04-09T16:44:35.803Z'
 - source: code
   loc: https://code.claude.com/docs/en/auto-mode-config
-  lastmod: '2026-04-22T20:58:26.809Z'
+  lastmod: '2026-04-23T16:53:33.742Z'
 - source: code
   loc: https://code.claude.com/docs/en/best-practices
   lastmod: '2026-04-21T02:42:53.265Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-04-23T00:57:27.762Z'
+  lastmod: '2026-04-23T23:31:50.397Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-03-25T19:03:14.403Z'
@@ -124,19 +127,19 @@
   lastmod: '2026-04-16T20:39:55.221Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-directory
-  lastmod: '2026-04-22T19:40:29.561Z'
+  lastmod: '2026-04-23T16:53:33.779Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
-  lastmod: '2026-04-16T20:18:57.255Z'
+  lastmod: '2026-04-23T16:53:33.777Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review
   lastmod: '2026-04-15T18:05:02.165Z'
 - source: code
   loc: https://code.claude.com/docs/en/commands
-  lastmod: '2026-04-22T20:59:34.934Z'
+  lastmod: '2026-04-23T23:10:49.958Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
-  lastmod: '2026-04-22T19:40:29.559Z'
+  lastmod: '2026-04-23T16:53:33.802Z'
 - source: code
   loc: https://code.claude.com/docs/en/computer-use
   lastmod: '2026-04-10T17:56:24.575Z'
@@ -145,10 +148,10 @@
   lastmod: '2026-04-09T20:20:54.341Z'
 - source: code
   loc: https://code.claude.com/docs/en/costs
-  lastmod: '2026-04-16T00:40:07.255Z'
+  lastmod: '2026-04-23T16:53:33.804Z'
 - source: code
   loc: https://code.claude.com/docs/en/data-usage
-  lastmod: '2026-04-21T22:27:18.462Z'
+  lastmod: '2026-04-23T17:36:29.431Z'
 - source: code
   loc: https://code.claude.com/docs/en/debug-your-config
   lastmod: '2026-04-22T00:20:43.737Z'
@@ -160,7 +163,7 @@
   lastmod: '2026-04-16T21:18:54.063Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-scheduled-tasks
-  lastmod: '2026-04-16T20:18:57.293Z'
+  lastmod: '2026-04-23T17:02:21.898Z'
 - source: code
   loc: https://code.claude.com/docs/en/devcontainer
   lastmod: '2026-04-08T18:23:32.834Z'
@@ -169,7 +172,7 @@
   lastmod: '2026-04-16T20:18:57.326Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-04-21T18:43:18.039Z'
+  lastmod: '2026-04-23T23:10:49.963Z'
 - source: code
   loc: https://code.claude.com/docs/en/errors
   lastmod: '2026-04-22T19:40:29.558Z'
@@ -178,7 +181,7 @@
   lastmod: '2026-04-16T15:23:16.878Z'
 - source: code
   loc: https://code.claude.com/docs/en/features-overview
-  lastmod: '2026-04-09T20:20:54.353Z'
+  lastmod: '2026-04-23T17:33:26.913Z'
 - source: code
   loc: https://code.claude.com/docs/en/fullscreen
   lastmod: '2026-04-18T15:32:28.951Z'
@@ -193,28 +196,28 @@
   lastmod: '2026-04-08T17:53:11.145Z'
 - source: code
   loc: https://code.claude.com/docs/en/google-vertex-ai
-  lastmod: '2026-04-22T21:04:44.530Z'
+  lastmod: '2026-04-23T22:35:57.383Z'
 - source: code
   loc: https://code.claude.com/docs/en/headless
   lastmod: '2026-04-16T20:18:57.323Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
-  lastmod: '2026-04-22T22:36:09.717Z'
+  lastmod: '2026-04-23T16:53:33.860Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks-guide
-  lastmod: '2026-04-21T18:43:18.069Z'
+  lastmod: '2026-04-23T16:53:33.859Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
   lastmod: '2026-04-16T20:18:57.353Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
-  lastmod: '2026-04-22T20:59:34.931Z'
+  lastmod: '2026-04-23T16:53:33.858Z'
 - source: code
   loc: https://code.claude.com/docs/en/jetbrains
   lastmod: '2026-04-15T18:07:50.573Z'
 - source: code
   loc: https://code.claude.com/docs/en/keybindings
-  lastmod: '2026-04-22T20:59:34.932Z'
+  lastmod: '2026-04-23T17:32:27.289Z'
 - source: code
   loc: https://code.claude.com/docs/en/legal-and-compliance
   lastmod: '2026-04-08T17:53:11.144Z'
@@ -229,10 +232,10 @@
   lastmod: '2026-04-22T19:22:25.316Z'
 - source: code
   loc: https://code.claude.com/docs/en/microsoft-foundry
-  lastmod: '2026-04-16T15:23:16.908Z'
+  lastmod: '2026-04-23T22:35:57.315Z'
 - source: code
   loc: https://code.claude.com/docs/en/model-config
-  lastmod: '2026-04-22T19:40:29.560Z'
+  lastmod: '2026-04-23T16:53:33.882Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
   lastmod: '2026-04-22T19:40:29.563Z'
@@ -247,40 +250,40 @@
   lastmod: '2026-04-23T02:48:06.207Z'
 - source: code
   loc: https://code.claude.com/docs/en/permission-modes
-  lastmod: '2026-04-22T20:58:27.085Z'
+  lastmod: '2026-04-23T16:53:33.883Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
-  lastmod: '2026-04-22T20:58:27.081Z'
+  lastmod: '2026-04-23T16:53:33.880Z'
 - source: code
   loc: https://code.claude.com/docs/en/platforms
   lastmod: '2026-04-14T16:40:25.436Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-dependencies
-  lastmod: '2026-04-22T19:40:29.556Z'
+  lastmod: '2026-04-23T16:53:33.902Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-marketplaces
-  lastmod: '2026-04-22T19:40:29.564Z'
+  lastmod: '2026-04-23T16:53:33.909Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins
-  lastmod: '2026-04-16T19:33:10.777Z'
+  lastmod: '2026-04-23T16:53:33.903Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins-reference
-  lastmod: '2026-04-21T22:50:53.321Z'
+  lastmod: '2026-04-23T16:53:33.905Z'
 - source: code
   loc: https://code.claude.com/docs/en/quickstart
   lastmod: '2026-04-23T02:48:06.263Z'
 - source: code
   loc: https://code.claude.com/docs/en/remote-control
-  lastmod: '2026-04-22T19:23:14.859Z'
+  lastmod: '2026-04-23T16:53:33.907Z'
 - source: code
   loc: https://code.claude.com/docs/en/routines
-  lastmod: '2026-04-17T15:33:26.179Z'
+  lastmod: '2026-04-23T17:02:22.002Z'
 - source: code
   loc: https://code.claude.com/docs/en/sandboxing
   lastmod: '2026-04-21T18:43:18.143Z'
 - source: code
   loc: https://code.claude.com/docs/en/scheduled-tasks
-  lastmod: '2026-04-18T15:32:28.959Z'
+  lastmod: '2026-04-23T17:02:22.000Z'
 - source: code
   loc: https://code.claude.com/docs/en/security
   lastmod: '2026-03-18T10:24:44.072Z'
@@ -289,10 +292,10 @@
   lastmod: '2026-04-22T20:58:27.122Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-04-22T20:59:34.937Z'
+  lastmod: '2026-04-23T16:53:33.938Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
-  lastmod: '2026-04-23T02:48:06.296Z'
+  lastmod: '2026-04-23T16:53:33.937Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
   lastmod: '2026-04-22T00:20:43.974Z'
@@ -301,13 +304,13 @@
   lastmod: '2026-04-08T18:15:55.057Z'
 - source: code
   loc: https://code.claude.com/docs/en/statusline
-  lastmod: '2026-04-21T02:42:53.262Z'
+  lastmod: '2026-04-23T16:53:33.938Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-04-22T19:40:33.349Z'
+  lastmod: '2026-04-23T23:10:49.961Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
-  lastmod: '2026-04-21T18:43:18.434Z'
+  lastmod: '2026-04-23T16:53:33.939Z'
 - source: code
   loc: https://code.claude.com/docs/en/third-party-integrations
   lastmod: '2026-04-15T21:27:45.657Z'
@@ -624,6 +627,57 @@
   loc: https://platform.claude.com/docs/en/api/beta/files/upload
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/memories
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/memory_stores/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/beta/messages
   priority: '0.9'
 - source: platform
@@ -744,24 +798,6 @@
   loc: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/user_profiles
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-  priority: '0.9'
-- source: platform
   loc: https://platform.claude.com/docs/en/api/beta/vaults
   priority: '0.9'
 - source: platform
@@ -874,6 +910,57 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/cli/beta/files/upload
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memories
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memories/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memories/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memories/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memories/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memories/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memory_versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memory_versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memory_versions/redact
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memory_versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/cli/beta/messages
@@ -994,24 +1081,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/cli/beta/skills/versions/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/create_enrollment_url
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/cli/beta/vaults
@@ -1179,6 +1248,57 @@
   loc: https://platform.claude.com/docs/en/api/csharp/beta/files/upload
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memory_versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memory_versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memory_versions/redact
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memory_versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/csharp/beta/messages
   priority: '0.9'
 - source: platform
@@ -1297,24 +1417,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create_enrollment_url
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults
@@ -1476,6 +1578,57 @@
   loc: https://platform.claude.com/docs/en/api/go/beta/files/upload
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memories
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memories/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memories/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memories/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memories/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memories/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memory_versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memory_versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memory_versions/redact
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memory_versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/memory_stores/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/go/beta/messages
   priority: '0.9'
 - source: platform
@@ -1594,24 +1747,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/go/beta/skills/versions/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/create_enrollment_url
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/go/beta/vaults
@@ -1773,6 +1908,57 @@
   loc: https://platform.claude.com/docs/en/api/java/beta/files/upload
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memory_versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memory_versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memory_versions/redact
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memory_versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/memory_stores/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/java/beta/messages
   priority: '0.9'
 - source: platform
@@ -1891,24 +2077,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/java/beta/skills/versions/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/create_enrollment_url
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/java/beta/vaults
@@ -2112,6 +2280,57 @@
   loc: https://platform.claude.com/docs/en/api/php/beta/files/upload
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/memories
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/memories/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/memories/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/memories/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/memories/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/memories/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/memory_versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/memory_versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/memory_versions/redact
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/memory_versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/memory_stores/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/php/beta/messages
   priority: '0.9'
 - source: platform
@@ -2230,24 +2449,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/php/beta/skills/versions/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/create_enrollment_url
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/php/beta/vaults
@@ -2406,6 +2607,57 @@
   loc: https://platform.claude.com/docs/en/api/python/beta/files/upload
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memories
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memories/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memories/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memories/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memories/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memories/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memory_versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memory_versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memory_versions/redact
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memory_versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/memory_stores/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/python/beta/messages
   priority: '0.9'
 - source: platform
@@ -2524,24 +2776,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/python/beta/skills/versions/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/create_enrollment_url
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/python/beta/vaults
@@ -2703,6 +2937,57 @@
   loc: https://platform.claude.com/docs/en/api/ruby/beta/files/upload
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memory_versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memory_versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memory_versions/redact
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memory_versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/ruby/beta/messages
   priority: '0.9'
 - source: platform
@@ -2821,24 +3106,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/create_enrollment_url
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults
@@ -3027,6 +3294,57 @@
   loc: https://platform.claude.com/docs/en/api/terraform/beta/files/upload
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memory_versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memory_versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memory_versions/redact
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memory_versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/terraform/beta/messages
   priority: '0.9'
 - source: platform
@@ -3145,24 +3463,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/terraform/beta/skills/versions/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/create_enrollment_url
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults
@@ -3321,6 +3621,57 @@
   loc: https://platform.claude.com/docs/en/api/typescript/beta/files/upload
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories/update
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memory_versions
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memory_versions/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memory_versions/redact
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memory_versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/update
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/typescript/beta/messages
   priority: '0.9'
 - source: platform
@@ -3439,24 +3790,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/create
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/create_enrollment_url
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/list
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/retrieve
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/update
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults

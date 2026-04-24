@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 13acadc64619c5cb14a3bffd8541b10a28da647081f0f39a2bebffbc945d8163
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: dacd285bb29c6030bd0016975b707994ad0ee2b3378348594e5e0fafd1d40c50
 ---
 
 # Files API
@@ -73,7 +73,6 @@ const uploaded = await anthropic.beta.files.upload({
     undefined,
     { type: "application/pdf" },
   ),
-  betas: ["files-api-2025-04-14"],
 });
 ````
 
@@ -96,8 +95,7 @@ defer f.Close()
 
 response, err := client.Beta.Files.Upload(context.Background(),
 	anthropic.BetaFileUploadParams{
-		File:  anthropic.File(f, "document.pdf", "application/pdf"),
-		Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
+		File: anthropic.File(f, "document.pdf", "application/pdf"),
 	})
 if err != nil {
 	log.Fatal(err)
@@ -131,7 +129,6 @@ $client = new Client(
 
 $file = $client->beta->files->upload(
     file: fopen('/path/to/document.pdf', 'r'),
-    betas: ['files-api-2025-04-14'],
 );
 
 echo $file->id;
@@ -753,9 +750,7 @@ files = client.beta.files.list()
 import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
-const files = await anthropic.beta.files.list({
-  betas: ["files-api-2025-04-14"]
-});
+const files = await anthropic.beta.files.list();
 ```
 
 ```csharp C# nocheck
@@ -770,10 +765,7 @@ class Program
     {
         AnthropicClient client = new();
 
-        var files = await client.Beta.Files.List(new FileListParams
-        {
-            Betas = ["files-api-2025-04-14"]
-        });
+        var files = await client.Beta.Files.List();
         Console.WriteLine(files);
     }
 }
@@ -793,9 +785,7 @@ import (
 func main() {
 	client := anthropic.NewClient()
 
-	files, err := client.Beta.Files.List(context.TODO(), anthropic.BetaFileListParams{
-		Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-	})
+	files, err := client.Beta.Files.List(context.TODO(), anthropic.BetaFileListParams{})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -825,9 +815,7 @@ use Anthropic\Client;
 
 $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
 
-$files = $client->beta->files->list(
-    betas: ['files-api-2025-04-14'],
-);
+$files = $client->beta->files->list();
 print_r($files);
 ```
 
@@ -836,9 +824,7 @@ require "anthropic"
 
 client = Anthropic::Client.new
 
-files = client.beta.files.list(
-  betas: ["files-api-2025-04-14"]
-)
+files = client.beta.files.list
 puts files
 ```
 </CodeGroup>
@@ -866,9 +852,7 @@ file = client.beta.files.retrieve_metadata(file_id)
 ````
 
 ````typescript
-const file = await anthropic.beta.files.retrieveMetadata(uploaded.id, {
-  betas: ["files-api-2025-04-14"],
-});
+const file = await anthropic.beta.files.retrieveMetadata(uploaded.id);
 ````
 
 ````csharp
@@ -880,9 +864,7 @@ Console.WriteLine(file);
 metadata, err := client.Beta.Files.GetMetadata(
 	context.TODO(),
 	fileID,
-	anthropic.BetaFileGetMetadataParams{
-		Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-	},
+	anthropic.BetaFileGetMetadataParams{},
 )
 if err != nil {
 	log.Fatal(err)
@@ -900,7 +882,6 @@ System.out.println(metadata);
 ````php
 $file = $client->beta->files->retrieveMetadata(
     fileID: $fileId,
-    betas: ['files-api-2025-04-14'],
 );
 echo $file;
 ````
@@ -935,9 +916,7 @@ result = client.beta.files.delete(file_id)
 ````
 
 ````typescript
-await anthropic.beta.files.delete(uploaded.id, {
-  betas: ["files-api-2025-04-14"],
-});
+await anthropic.beta.files.delete(uploaded.id);
 ````
 
 ````csharp
@@ -948,9 +927,7 @@ await client.Beta.Files.Delete(fileId);
 _, err = client.Beta.Files.Delete(
 	context.TODO(),
 	fileID,
-	anthropic.BetaFileDeleteParams{
-		Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-	},
+	anthropic.BetaFileDeleteParams{},
 )
 if err != nil {
 	log.Fatal(err)
@@ -964,7 +941,6 @@ client.beta().files().delete(fileId);
 ````php
 $result = $client->beta->files->delete(
     fileID: $fileId,
-    betas: ['files-api-2025-04-14'],
 );
 ````
 
@@ -1002,9 +978,7 @@ file_content.write_to_file("downloaded_file.txt")
 ````
 
 ````typescript
-const content = await anthropic.beta.files.download(uploaded.id, {
-  betas: ["files-api-2025-04-14"],
-});
+const content = await anthropic.beta.files.download(uploaded.id);
 
 const bytes = Buffer.from(await content.arrayBuffer());
 await fsp.writeFile("downloaded_file.txt", bytes);
@@ -1021,9 +995,7 @@ func downloadFile(client anthropic.Client, fileID string) error {
 	resp, err := client.Beta.Files.Download(
 		context.TODO(),
 		fileID,
-		anthropic.BetaFileDownloadParams{
-			Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-		},
+		anthropic.BetaFileDownloadParams{},
 	)
 	if err != nil {
 		return err
@@ -1058,7 +1030,6 @@ $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
 
 $fileContent = $client->beta->files->download(
     fileID: 'file_011CNha8iCJcU1wXNR6q4V8w',
-    betas: ['files-api-2025-04-14'],
 );
 
 file_put_contents("downloaded_file.txt", $fileContent);

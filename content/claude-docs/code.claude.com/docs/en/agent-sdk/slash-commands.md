@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/slash-commands
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: f36961372b7c5aec79f972cd99a1d65419d55d7aadffa8f932689b2910a09b85
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: eb3bd10cac95eef681338cb36f02f5bc736abc038be137f4b3d58cf654992deb
 ---
 
 > ## Documentation Index
@@ -29,7 +29,7 @@ The Claude Agent SDK provides information about available slash commands in the 
   })) {
     if (message.type === "system" && message.subtype === "init") {
       console.log("Available slash commands:", message.slash_commands);
-      // Example output: ["/compact", "/context", "/cost"]
+      // Example output: ["/compact", "/context", "/usage"]
     }
   }
   ```
@@ -43,7 +43,7 @@ The Claude Agent SDK provides information about available slash commands in the 
       async for message in query(prompt="Hello Claude", options=ClaudeAgentOptions(max_turns=1)):
           if isinstance(message, SystemMessage) and message.subtype == "init":
               print("Available slash commands:", message.data["slash_commands"])
-              # Example output: ["/compact", "/context", "/cost"]
+              # Example output: ["/compact", "/context", "/usage"]
 
 
   asyncio.run(main())
@@ -206,7 +206,7 @@ Once defined in the filesystem, custom commands are automatically available thro
     if (message.type === "system" && message.subtype === "init") {
       // Will include both built-in and custom commands
       console.log("Available commands:", message.slash_commands);
-      // Example: ["/compact", "/context", "/cost", "/refactor", "/security-check"]
+      // Example: ["/compact", "/context", "/usage", "/refactor", "/security-check"]
     }
   }
   ```
@@ -231,7 +231,7 @@ Once defined in the filesystem, custom commands are automatically available thro
           if isinstance(message, SystemMessage) and message.subtype == "init":
               # Will include both built-in and custom commands
               print("Available commands:", message.data["slash_commands"])
-              # Example: ["/compact", "/context", "/cost", "/refactor", "/security-check"]
+              # Example: ["/compact", "/context", "/usage", "/refactor", "/security-check"]
 
 
   asyncio.run(main())

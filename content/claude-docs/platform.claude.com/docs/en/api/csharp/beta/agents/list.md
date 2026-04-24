@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 60e636b331bbcda41a29ddcb30861c0f417f78a7e9d3b1396dfa241ec8456565
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: def82571eef70b5ca002fd0d51e8fce0c5406742cf65ad9c82ac830ad299b589
 ---
 
 ## List
@@ -84,8 +84,6 @@ List Agents
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

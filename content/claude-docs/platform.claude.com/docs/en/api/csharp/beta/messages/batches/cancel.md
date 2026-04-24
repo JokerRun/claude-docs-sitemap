@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/cancel
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 7636849ac6a96f73a440a4ef634f606bc06c7c343384999aae73723234277f78
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 5a196d3339c07721ab936743aa1272db1ac19ae06a8337c53b0961cd02f36ec1
 ---
 
 ## Cancel
@@ -72,8 +72,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

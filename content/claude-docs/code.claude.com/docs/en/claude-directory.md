@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-directory
-fetched_at: 2026-04-23T03:11:35.814149Z
-sha256: 959ee679e5182ff162fa56f946573eee1b058fbcaf4016312cfd0b48cbdb3a13
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 6afc369a7fd488c64267ef7175bd62c903cee273c9eaf20cb48bc36a23a9950c
 ---
 
 > ## Documentation Index
@@ -508,6 +508,26 @@ Every finding must include a concrete fix.`
   ]
 }`,
           docsLink: '/en/keybindings'
+        }, {
+          id: 'themes',
+          label: 'themes/',
+          type: 'folder',
+          icon: 'folder',
+          color: '#5AA7A7',
+          oneLiner: 'Custom color themes',
+          when: <>Read at session start and hot-reloaded when files change. Listed in <C>/theme</C></>,
+          description: <>Each <C>.json</C> file defines a custom color theme: a built-in <C>base</C> preset plus an <C>overrides</C> map of color tokens. Create one interactively with <C>/theme</C> or write the JSON by hand. Selecting a custom theme stores <C>custom:&lt;slug&gt;</C> as your theme preference.</>,
+          example: `{
+  "name": "Dracula",
+  "base": "dark",
+  "overrides": {
+    "claude": "#bd93f9",
+    "error": "#ff5555",
+    "success": "#50fa7b"
+  }
+}`,
+          docsLink: '/en/terminal-config#create-a-custom-theme',
+          children: []
         }, {
           id: 'global-projects',
           label: 'projects/',
@@ -1467,6 +1487,7 @@ Click a filename to open that node in the explorer above.
 | [`~/.claude.json`](#ce-claude-json)                 | Global only        |        | App state, OAuth, UI toggles, personal MCP servers    | [Global config](/en/settings#global-config-settings)                 |
 | [`projects/<project>/memory/`](#ce-global-projects) | Global only        |        | Auto memory: Claude's notes to itself across sessions | [Auto memory](/en/memory#auto-memory)                                |
 | [`keybindings.json`](#ce-keybindings)               | Global only        |        | Custom keyboard shortcuts                             | [Keybindings](/en/keybindings)                                       |
+| [`themes/*.json`](#ce-themes)                       | Global only        |        | Custom color themes                                   | [Custom themes](/en/terminal-config#create-a-custom-theme)           |
 
 ## Troubleshoot configuration
 
@@ -1500,7 +1521,7 @@ The following paths are not covered by automatic cleanup and persist indefinitel
 | Path under `~/.claude/` | Contents                                                                              |
 | ----------------------- | ------------------------------------------------------------------------------------- |
 | `history.jsonl`         | Every prompt you've typed, with timestamp and project path. Used for up-arrow recall. |
-| `stats-cache.json`      | Aggregated token and cost counts shown by `/cost`                                     |
+| `stats-cache.json`      | Aggregated token and cost counts shown by `/usage`                                    |
 | `todos/`                | Legacy per-session task lists. No longer written by current versions; safe to delete. |
 
 Other small cache and lock files appear depending on which features you use and are safe to delete.
@@ -1522,7 +1543,7 @@ You can delete any of the application-data paths above at any time. New sessions
 | `~/.claude/projects/`                                                                                                                                                                        | Resume, continue, and rewind for past sessions             |
 | `~/.claude/history.jsonl`                                                                                                                                                                    | Up-arrow prompt recall                                     |
 | `~/.claude/file-history/`                                                                                                                                                                    | Checkpoint restore for past sessions                       |
-| `~/.claude/stats-cache.json`                                                                                                                                                                 | Historical totals shown by `/cost`                         |
+| `~/.claude/stats-cache.json`                                                                                                                                                                 | Historical totals shown by `/usage`                        |
 | `~/.claude/debug/`, `~/.claude/plans/`, `~/.claude/paste-cache/`, `~/.claude/image-cache/`, `~/.claude/session-env/`, `~/.claude/tasks/`, `~/.claude/shell-snapshots/`, `~/.claude/backups/` | Nothing user-facing                                        |
 | `~/.claude/todos/`                                                                                                                                                                           | Nothing. Legacy directory not written by current versions. |
 

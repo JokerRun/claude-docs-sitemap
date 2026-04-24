@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/events
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: d5d4f17fc67338f2250a82b11992ac8142fbb6a226b7dfd6c2c1aa89f6be7dd4
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 594b3481fce8e3c610bc9c282293b08e2f3ccae11cb5dc83b6899038f3e7b016
 ---
 
 # Events
@@ -88,8 +88,6 @@ List Events
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -1910,8 +1908,6 @@ Send Events
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
-
 ### Returns
 
 - `type BetaManagedAgentsSendSessionEvents struct{…}`
@@ -2408,8 +2404,6 @@ Stream Events
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

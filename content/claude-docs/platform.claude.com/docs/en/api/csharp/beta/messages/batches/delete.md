@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/delete
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 91d14ccfaa155d484daefa5a41e14c1019aad6aa3d0610992fa18d7d51712b6d
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: b2a113b2cd425adcaa296e012a8360f9f83b2fd17e0fc84ae879aabf0e02d3c7
 ---
 
 ## Delete
@@ -72,8 +72,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 4db9eaad4891d5bd8e6ee97960f1fb67401f3b7aae97055b88a0e9775fe2baf4
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 1e8ff0bb0a442edea9a97181e8fa340a3104886a91d185ef7c449daa316a9b52
 ---
 
 # Files
@@ -29,7 +29,7 @@ Upload File
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -74,8 +74,6 @@ Upload File
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -180,7 +178,7 @@ List Files
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -225,8 +223,6 @@ List Files
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -317,7 +313,7 @@ Download File
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -362,8 +358,6 @@ Download File
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -408,7 +402,7 @@ Get File Metadata
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -453,8 +447,6 @@ Get File Metadata
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -544,7 +536,7 @@ Delete File
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -589,8 +581,6 @@ Delete File
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/models/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 79371ec8e10fc7366ac6ce644198c35bb91cd89e079717a3bcbcd66fec85df6b
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: b97b073d73a12aa0b6f62c9e6d0cc04e3920467db02e36b0823803e53b837f49
 ---
 
 ## List
@@ -84,8 +84,6 @@ The Models API response can be used to determine which models are available for 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -194,14 +192,6 @@ The Models API response can be used to determine which models are available for 
       - `Supported bool`
 
         Whether this capability is supported by the model.
-
-      - `Xhigh CapabilitySupport`
-
-        Indicates whether a capability is supported.
-
-        - `Supported bool`
-
-          Whether this capability is supported by the model.
 
     - `ImageInput CapabilitySupport`
 

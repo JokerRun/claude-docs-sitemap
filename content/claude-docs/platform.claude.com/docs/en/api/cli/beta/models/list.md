@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/models/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 6e63e273090a47ce8da6c775561dd26f3862e17fefc0054f8019372310a7bcaf
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 5ec77a878ac157492e27f9afdf6277299424ee48854f8be48a4aaf04ec9352af
 ---
 
 ## List
@@ -105,7 +105,7 @@ The Models API response can be used to determine which models are available for 
 
           Whether this capability is supported by the model.
 
-      - `effort: object { high, low, max, 3 more }`
+      - `effort: object { high, low, max, 2 more }`
 
         Effort (reasoning_effort) support and available levels.
 
@@ -144,14 +144,6 @@ The Models API response can be used to determine which models are available for 
         - `supported: boolean`
 
           Whether this capability is supported by the model.
-
-        - `xhigh: object { supported }`
-
-          Indicates whether a capability is supported.
-
-          - `supported: boolean`
-
-            Whether this capability is supported by the model.
 
       - `image_input: object { supported }`
 

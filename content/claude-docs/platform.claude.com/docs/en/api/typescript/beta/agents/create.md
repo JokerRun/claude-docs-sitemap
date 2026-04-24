@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: b7448605cce9cd7a9b7d33d5d93706249e7a8b7ef08fedf5415bf78c7471416d
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: dee9f146dfb5546f96f1c3cba14f2e1721a3ccc7889229f0341a97fe494d4e4e
 ---
 
 ## Create
@@ -393,7 +393,7 @@ Create Agent
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -438,8 +438,6 @@ Create Agent
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

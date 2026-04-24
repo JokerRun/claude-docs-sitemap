@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: ddd2086b4061e5ac013328a39277b952f4027f2cf7e28021ad603f1503b0a997
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 3e8d6e7e80ab9235dfea57c31417921f305863852e6acfd8f4c5b6a4e7af3385
 ---
 
 ## Count Tokens
@@ -68,8 +68,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `List<BetaMessageParam> messages`
 
@@ -2708,10 +2706,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
               - `TTL_5M("5m")`
 
               - `TTL_1H("1h")`
-
-          - `Optional<String> encryptedContent`
-
-            Opaque metadata from prior compaction, to be round-tripped verbatim
 
     - `Role role`
 

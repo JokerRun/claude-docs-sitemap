@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/models/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: c205c5a44b959166c5f9ecbc5c3fcff8ea954c55b50d2d0e916c761e93042987
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: ea157f6718a5436dc63fd6aec45a59f2aa3a196f4977c16a3d2a029b8b3a580b
 ---
 
 ## List
@@ -39,7 +39,7 @@ The Models API response can be used to determine which models are available for 
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -84,8 +84,6 @@ The Models API response can be used to determine which models are available for 
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -194,14 +192,6 @@ The Models API response can be used to determine which models are available for 
       - `supported: boolean`
 
         Whether this capability is supported by the model.
-
-      - `xhigh: BetaCapabilitySupport | null`
-
-        Indicates whether a capability is supported.
-
-        - `supported: boolean`
-
-          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 

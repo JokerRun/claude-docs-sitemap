@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/update
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: bd9332146a4a673b1febd1014ef210d584d70d7b84e46a1f4e808d966289a645
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: e1a4f735ea8e8288a51a7cc018d80a280990c4542e244c80b14327d70c7a37c1
 ---
 
 ## Update
@@ -76,8 +76,6 @@ Update Vault
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

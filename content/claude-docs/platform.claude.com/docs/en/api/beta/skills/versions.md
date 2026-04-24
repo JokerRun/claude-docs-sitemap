@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: b6783110ebf54b938a6370e2fee0c4437cac68e01efa2698d43b58b9ced95c22
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 9a050a7643122647f5ac3bd58ac14e7ba99a24233bc581e288062d979a058ac1
 ---
 
 # Versions
@@ -29,7 +29,7 @@ Create Skill Version
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,8 +74,6 @@ Create Skill Version
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -167,7 +165,7 @@ List Skill Versions
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -212,8 +210,6 @@ List Skill Versions
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -310,7 +306,7 @@ Get Skill Version
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -355,8 +351,6 @@ Get Skill Version
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -441,7 +435,7 @@ Delete Skill Version
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -486,8 +480,6 @@ Delete Skill Version
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

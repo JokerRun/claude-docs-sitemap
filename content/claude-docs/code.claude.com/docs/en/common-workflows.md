@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-04-23T03:11:35.814149Z
-sha256: a5a6b515171ba7d7573133f127c5e6318a3c2d3e55c04dea020e7f4fb29e8956
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: c90940612369f186a5359c13c37e0d85ded6946780a7c8a6f6a07332802577fc
 ---
 
 > ## Documentation Index
@@ -573,7 +573,7 @@ From inside an active session, use `/resume` to switch to a different conversati
 
 When the selected session is old and large enough that re-reading it would consume a substantial share of your usage limits, `--resume`, `--continue`, and `/resume` offer to resume from a summary instead of loading the full transcript. This prompt is not available on Amazon Bedrock, Google Cloud Vertex AI, or Microsoft Foundry.
 
-Sessions are stored per project directory. By default, the `/resume` picker shows interactive sessions from the current worktree, with keyboard shortcuts to widen the list to other worktrees or projects, search, preview, and rename. See [Use the session picker](#use-the-session-picker) below for the full shortcut reference.
+Sessions are stored per project directory. By default, the `/resume` picker shows interactive sessions from the current worktree, with keyboard shortcuts to widen the list to other worktrees or projects, search, preview, and rename. Sessions started elsewhere that added the current directory with `/add-dir` are also included by default. See [Use the session picker](#use-the-session-picker) below for the full shortcut reference.
 
 When you select a session from another worktree of the same repository, Claude Code resumes it directly without requiring you to switch directories first. Selecting a session from an unrelated project copies a `cd` and resume command to your clipboard instead.
 

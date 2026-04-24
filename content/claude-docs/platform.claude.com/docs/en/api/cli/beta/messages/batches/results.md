@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/batches/results
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: daeaf855cf7a04e68ae4b935187ee9f9a03ffd1b1d241447df81aeec8d484fc1
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 8b1677d1b488a260c027b1c2b666eea6da935202fd2631f9c14e42609ef3bd4d
 ---
 
 ## Results
@@ -824,7 +824,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `type: "container_upload"`
 
-          - `beta_compaction_block: object { content, encrypted_content, type }`
+          - `beta_compaction_block: object { content, type }`
 
             A compaction block returned when autocompact is triggered.
 
@@ -835,10 +835,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `content: string`
 
               Summary of compacted content, or null if compaction failed
-
-            - `encrypted_content: string`
-
-              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `type: "compaction"`
 

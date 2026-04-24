@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-04-23T03:11:35.814149Z
-sha256: de74e4d06f7f2dd3f7e0b5d1f87f14e046b1a9335369dab1eccc42750f49a627
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: c5c4efb32ceaaf28e15e3e52628f5eaa1752e0f674e248fa254b7782c0fdc0d7
 ---
 
 > ## Documentation Index
@@ -120,15 +120,17 @@ Enable vim-style editing via `/config` → Editor mode.
 
 ### Mode switching
 
-| Command | Action                      | From mode |
-| :------ | :-------------------------- | :-------- |
-| `Esc`   | Enter NORMAL mode           | INSERT    |
-| `i`     | Insert before cursor        | NORMAL    |
-| `I`     | Insert at beginning of line | NORMAL    |
-| `a`     | Insert after cursor         | NORMAL    |
-| `A`     | Insert at end of line       | NORMAL    |
-| `o`     | Open line below             | NORMAL    |
-| `O`     | Open line above             | NORMAL    |
+| Command | Action                                | From mode      |
+| :------ | :------------------------------------ | :------------- |
+| `Esc`   | Enter NORMAL mode                     | INSERT, VISUAL |
+| `i`     | Insert before cursor                  | NORMAL         |
+| `I`     | Insert at beginning of line           | NORMAL         |
+| `a`     | Insert after cursor                   | NORMAL         |
+| `A`     | Insert at end of line                 | NORMAL         |
+| `o`     | Open line below                       | NORMAL         |
+| `O`     | Open line above                       | NORMAL         |
+| `v`     | Start character-wise visual selection | NORMAL         |
+| `V`     | Start line-wise visual selection      | NORMAL         |
 
 ### Navigation (NORMAL mode)
 
@@ -188,6 +190,26 @@ Text objects work with operators like `d`, `c`, and `y`:
 | `i(`/`a(` | Inner/around parentheses                 |
 | `i[`/`a[` | Inner/around brackets                    |
 | `i{`/`a{` | Inner/around braces                      |
+
+### Visual mode
+
+Press `v` for character-wise selection or `V` for line-wise selection. Motions extend the selection, and operators act on it directly.
+
+| Command          | Action                                               |
+| :--------------- | :--------------------------------------------------- |
+| `d`/`x`          | Delete selection                                     |
+| `y`              | Yank selection                                       |
+| `c`/`s`          | Change selection                                     |
+| `p`              | Replace selection with register contents             |
+| `r{char}`        | Replace every selected character with `{char}`       |
+| `~`/`u`/`U`      | Toggle, lowercase, or uppercase selection            |
+| `>`/`<`          | Indent or dedent selected lines                      |
+| `J`              | Join selected lines                                  |
+| `o`              | Swap cursor and anchor                               |
+| `iw`/`aw`/`i"`/… | Select a text object                                 |
+| `v`/`V`          | Toggle between character-wise and line-wise, or exit |
+
+Block-wise visual mode with `Ctrl+V` is not supported.
 
 ## Command history
 

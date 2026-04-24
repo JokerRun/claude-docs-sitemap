@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/stream
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 9887fbc32abad230fafe82584096388c5604e98e5d7dc479767f746422182f2e
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: f42870faead3458d959e741fda9c68184c517c8263421e5fffb9f65689afe751
 ---
 
 ## Stream
@@ -23,7 +23,7 @@ Stream Events
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -68,8 +68,6 @@ Stream Events
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

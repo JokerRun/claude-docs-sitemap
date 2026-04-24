@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/go
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 272a868825eff9948cc4ae51a553addcd33af2c5607914f71183102fd5c1e653
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 8be3f84c9f65e94e81b6215b5a7da1ad0e0307226a30c483b08f165312107f8b
 ---
 
 # Go SDK
@@ -707,14 +707,12 @@ helper, which wraps any `io.Reader` with the appropriate file name and content t
 // A file from the file system
 file, err := os.Open("/path/to/file.json")
 anthropic.BetaFileUploadParams{
-	File:  anthropic.File(file, "custom-name.json", "application/json"),
-	Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
+	File: anthropic.File(file, "custom-name.json", "application/json"),
 }
 
 // A file from a string
 anthropic.BetaFileUploadParams{
-	File:  anthropic.File(strings.NewReader("my file contents"), "custom-name.json", "application/json"),
-	Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
+	File: anthropic.File(strings.NewReader("my file contents"), "custom-name.json", "application/json"),
 }
 ```
 

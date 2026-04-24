@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/archive
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 3589b99bdd94e1fe49abbf5100965b62a07c256fe44c9adfd16fc5173594844e
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: b74b36a8e088248ebefb62a613015aec79ddc9da1ea3b5ae8b32e39aae1389f0
 ---
 
 ## Archive
@@ -66,8 +66,6 @@ Archive Agent
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

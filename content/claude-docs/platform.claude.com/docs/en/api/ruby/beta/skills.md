@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 533cc3819163704604aa6702b29111a2af4bddfb3d69d961d8d8a9d486506509
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 2f698cae9770c2ad383f86d47f12835c7659469a7a2efe6d94ceb43c7cc35429
 ---
 
 # Skills
@@ -35,7 +35,7 @@ Create Skill
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -80,8 +80,6 @@ Create Skill
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -177,7 +175,7 @@ List Skills
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -222,8 +220,6 @@ List Skills
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -304,7 +300,7 @@ Get Skill
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -349,8 +345,6 @@ Get Skill
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -431,7 +425,7 @@ Delete Skill
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -476,8 +470,6 @@ Delete Skill
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -690,7 +682,7 @@ Create Skill Version
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -735,8 +727,6 @@ Create Skill Version
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -830,7 +820,7 @@ List Skill Versions
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -875,8 +865,6 @@ List Skill Versions
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -966,7 +954,7 @@ Get Skill Version
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -1011,8 +999,6 @@ Get Skill Version
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -1102,7 +1088,7 @@ Delete Skill Version
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -1147,8 +1133,6 @@ Delete Skill Version
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

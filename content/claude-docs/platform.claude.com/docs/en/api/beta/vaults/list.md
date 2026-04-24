@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: aca010890ba2a4562537ae6be4e6877028fd957d6610c92f52278eb9e5b1d85c
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 4c1d43d233dedafef4c22a1da7dd358c4575f4157d12cc1e2b073fc46343370a
 ---
 
 ## List
@@ -33,7 +33,7 @@ List Vaults
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -78,8 +78,6 @@ List Vaults
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

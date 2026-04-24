@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: f72cb2b4503d9e3e4dcf1f3a26c2767425b05dc44f98018558331cc7b3aa84a5
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 7c8114a06d7c4348943af9f4db1ccd7b426869564e273d3eebc9fe9ed4c46a7d
 ---
 
 > ## Documentation Index
@@ -179,7 +179,7 @@ Claude Code sends the following JSON fields to your script via stdin:
 | `transcript_path`                                                                | Path to conversation transcript file                                                                                                                                                                                                       |
 | `version`                                                                        | Claude Code version                                                                                                                                                                                                                        |
 | `output_style.name`                                                              | Name of the current output style                                                                                                                                                                                                           |
-| `vim.mode`                                                                       | Current vim mode (`NORMAL` or `INSERT`) when [vim mode](/en/interactive-mode#vim-editor-mode) is enabled                                                                                                                                   |
+| `vim.mode`                                                                       | Current vim mode (`NORMAL`, `INSERT`, `VISUAL`, or `VISUAL LINE`) when [vim mode](/en/interactive-mode#vim-editor-mode) is enabled                                                                                                         |
 | `agent.name`                                                                     | Agent name when running with the `--agent` flag or agent settings configured                                                                                                                                                               |
 | `worktree.name`                                                                  | Name of the active worktree. Present only during `--worktree` sessions                                                                                                                                                                     |
 | `worktree.path`                                                                  | Absolute path to the worktree directory                                                                                                                                                                                                    |

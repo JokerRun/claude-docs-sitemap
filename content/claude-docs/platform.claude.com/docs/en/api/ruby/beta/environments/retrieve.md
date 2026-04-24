@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: d2acf7a5ce40a8dc6193435282f143b0c0655b071536deced9b6f0c43f43c3e2
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: d7c0235e735331444778f88d1106abc14eefba0f92695d59f6389903bbf7c314
 ---
 
 ## Retrieve
@@ -23,7 +23,7 @@ Retrieve a specific environment by ID.
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -68,8 +68,6 @@ Retrieve a specific environment by ID.
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

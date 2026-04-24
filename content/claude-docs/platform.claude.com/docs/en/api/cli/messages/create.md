@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/messages/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 608a51f6a903a040716b61845130de753500d2d304ccb9042c658e728f27bdc8
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 0a922ab2c17a55bde35133b408d34dbd57a00a2de46606699366a2aeaf8cc32f
 ---
 
 ## Create
@@ -214,15 +214,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
+  Recommended for advanced use cases only.
 
 - `--top-p: optional number`
 
   Use nucleus sampling.
 
-  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
+  Recommended for advanced use cases only.
 
 ### Returns
 

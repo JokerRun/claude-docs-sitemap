@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: dacb7ff85fc328f3264319ccf2002f6abe63c9b25fecae4ba348d9927dae9257
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: c4ad2bed33ab66dfece1c0ccd19646c05e9f29a874ee87201c061c15203d874a
 ---
 
 ## Retrieve
@@ -74,8 +74,6 @@ Get Credential
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

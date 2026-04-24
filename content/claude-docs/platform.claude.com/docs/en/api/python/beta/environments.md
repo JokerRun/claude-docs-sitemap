@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 770028b2abb162614bb7a32ecf6f89cdce4155d5e6030d1e86ad6588e8cc688e
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: d62fe1ba95cce6082ca84f14fd1e2fb2d978411876b70e5f6d85549352fd0958
 ---
 
 # Environments
@@ -123,7 +123,7 @@ Create a new environment with the specified configuration.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -168,8 +168,6 @@ Create a new environment with the specified configuration.
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -334,7 +332,7 @@ List environments with pagination support.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -379,8 +377,6 @@ List environments with pagination support.
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -534,7 +530,7 @@ Retrieve a specific environment by ID.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -579,8 +575,6 @@ Retrieve a specific environment by ID.
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -835,7 +829,7 @@ Update an existing environment's configuration.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -880,8 +874,6 @@ Update an existing environment's configuration.
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -1036,7 +1028,7 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -1081,8 +1073,6 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -1133,7 +1123,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -1178,8 +1168,6 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

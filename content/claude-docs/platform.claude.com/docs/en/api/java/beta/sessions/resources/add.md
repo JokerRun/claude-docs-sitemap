@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/add
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 79e7c781b8feaa5da27461d008db197f4c1dc5596eb8b966a37347ffca39a8dc
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 7a50f15e42f7b7e792707a2cf60f09a8063011404898d822f88598e5bd2d778a
 ---
 
 ## Add
@@ -66,8 +66,6 @@ Add Session Resource
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `BetaManagedAgentsFileResourceParams betaManagedAgentsFileResourceParams`
 

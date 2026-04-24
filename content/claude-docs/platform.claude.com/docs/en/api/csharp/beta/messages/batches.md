@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 72e4b3a5d7147969ed12c4ac67702dda0f6958e0660a029102a93aece8df4065
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 66e26751310da7ea133f42fd1f4dbec61f391a6e8ac4f3d1a0319c094ff7735f
 ---
 
 # Batches
@@ -2327,10 +2327,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"1h"Ttl1h`
 
-              - `string? EncryptedContent`
-
-                Opaque metadata from prior compaction, to be round-tripped verbatim
-
         - `required Role Role`
 
           - `"user"User`
@@ -2612,8 +2608,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"high"High`
 
-          - `"xhigh"Xhigh`
-
           - `"max"Max`
 
         - `BetaJsonOutputFormat? Format`
@@ -2625,22 +2619,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             The JSON schema of the format
 
           - `JsonElement Type "json_schema"constant`
-
-        - `BetaTokenTaskBudget? TaskBudget`
-
-          User-configurable total token budget across contexts.
-
-          - `required Long Total`
-
-            Total token budget across all contexts in the session.
-
-          - `JsonElement Type "tokens"constant`
-
-            The budget type. Currently only 'tokens' is supported.
-
-          - `Long? Remaining`
-
-            Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
       - `BetaJsonOutputFormat? OutputFormat`
 
@@ -4388,19 +4366,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-        Recommended for advanced use cases only. You usually only need to use `temperature`.
+        Recommended for advanced use cases only.
 
       - `Double TopP`
 
         Use nucleus sampling.
 
-        In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+        In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-        Recommended for advanced use cases only. You usually only need to use `temperature`.
-
-      - `string? UserProfileID`
-
-        The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+        Recommended for advanced use cases only.
 
   - `IReadOnlyList<AnthropicBeta> betas`
 
@@ -4449,8 +4423,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -4625,11 +4597,6 @@ BatchCreateParams parameters = new()
                             { "foo", JsonSerializer.SerializeToElement("bar") }
                         },
                     },
-                    TaskBudget = new()
-                    {
-                        Total = 1024,
-                        Remaining = 0,
-                    },
                 },
                 OutputFormat = new()
                 {
@@ -4713,7 +4680,6 @@ BatchCreateParams parameters = new()
                 ],
                 TopK = 5,
                 TopP = 0.7,
-                UserProfileID = "user_profile_id",
             },
         },
     ],
@@ -4789,8 +4755,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -4965,8 +4929,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -5150,8 +5112,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
-
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -5318,8 +5278,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
-
 ### Returns
 
 - `class BetaDeletedMessageBatch:`
@@ -5411,8 +5369,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -6222,10 +6178,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `required string? Content`
 
               Summary of compacted content, or null if compaction failed
-
-            - `required string? EncryptedContent`
-
-              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `JsonElement Type "compaction"constant`
 
@@ -7758,10 +7710,6 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
               Summary of compacted content, or null if compaction failed
 
-            - `required string? EncryptedContent`
-
-              Opaque metadata from prior compaction, to be round-tripped verbatim
-
             - `JsonElement Type "compaction"constant`
 
         - `required BetaContextManagementResponse? ContextManagement`
@@ -9120,10 +9068,6 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
             Summary of compacted content, or null if compaction failed
 
-          - `required string? EncryptedContent`
-
-            Opaque metadata from prior compaction, to be round-tripped verbatim
-
           - `JsonElement Type "compaction"constant`
 
       - `required BetaContextManagementResponse? ContextManagement`
@@ -10443,10 +10387,6 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
         - `required string? Content`
 
           Summary of compacted content, or null if compaction failed
-
-        - `required string? EncryptedContent`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `JsonElement Type "compaction"constant`
 

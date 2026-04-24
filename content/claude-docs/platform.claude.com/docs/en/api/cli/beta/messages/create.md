@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 2f35fbcca5ed63256364715fd5720fae4dd149939b7f8e0d2b1e1bfaa4a00ce9
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 875f28c9987e4ef92d38d04c803edf56f0dddf2c5f26e94c9c4976cf0ff6062c
 ---
 
 ## Create
@@ -110,7 +110,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Body param: An object describing metadata about the request.
 
-- `--output-config: optional object { effort, format, task_budget }`
+- `--output-config: optional object { effort, format }`
 
   Body param: Configuration options for the model's output, such as the output format.
 
@@ -234,19 +234,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
+  Recommended for advanced use cases only.
 
 - `--top-p: optional number`
 
   Body param: Use nucleus sampling.
 
-  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
-
-- `--user-profile-id: optional string`
-
-  Body param: The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+  Recommended for advanced use cases only.
 
 - `--beta: optional array of AnthropicBeta`
 
@@ -1031,7 +1027,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `type: "container_upload"`
 
-    - `beta_compaction_block: object { content, encrypted_content, type }`
+    - `beta_compaction_block: object { content, type }`
 
       A compaction block returned when autocompact is triggered.
 
@@ -1042,10 +1038,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `content: string`
 
         Summary of compacted content, or null if compaction failed
-
-      - `encrypted_content: string`
-
-        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: "compaction"`
 

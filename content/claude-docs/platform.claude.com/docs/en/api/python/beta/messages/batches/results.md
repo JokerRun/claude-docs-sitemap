@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/results
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: f15c37282cc5f040e7ec514fc5db8786917a84e25674288778406e1b965a391a
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: dc532ae2169402084f233d2cd847fe71ced9815426246278436cdd23d3c0e2a4
 ---
 
 ## Results
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,8 +74,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -1015,10 +1013,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `content: Optional[str]`
 
               Summary of compacted content, or null if compaction failed
-
-            - `encrypted_content: Optional[str]`
-
-              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `type: Literal["compaction"]`
 

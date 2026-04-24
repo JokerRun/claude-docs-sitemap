@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: cb8e6b9f2c49f667d82b5998f9ed4a557ab444d0165cb7296340908435cd3ade
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 1a4f2687b19c0fc7b8cf5a73633e671e877c69a266488232e6bfecc8f1d37742
 ---
 
 ## Create
@@ -167,15 +167,15 @@ Future models and features will not be compatible with Text Completions. See our
 
       Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-      Recommended for advanced use cases only. You usually only need to use `temperature`.
+      Recommended for advanced use cases only.
 
     - `top_p?: number`
 
       Body param: Use nucleus sampling.
 
-      In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+      In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-      Recommended for advanced use cases only. You usually only need to use `temperature`.
+      Recommended for advanced use cases only.
 
     - `betas?: Array<AnthropicBeta>`
 
@@ -183,7 +183,7 @@ Future models and features will not be compatible with Text Completions. See our
 
       - `(string & {})`
 
-      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
         - `"message-batches-2024-09-24"`
 
@@ -228,8 +228,6 @@ Future models and features will not be compatible with Text Completions. See our
         - `"output-300k-2026-03-24"`
 
         - `"advisor-tool-2026-03-01"`
-
-        - `"user-profiles-2026-03-24"`
 
   - `CompletionCreateParamsNonStreaming extends CompletionCreateParamsBase`
 

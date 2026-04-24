@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: f1c49f7f7723c6801150ccfbd9f9b167980da798c1eed6020c3713882ac51818
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 9c215be9e94c3711e1d04e22c54630a0ef99cc1b84f3d220317a81f816a29b33
 ---
 
 ## Retrieve
@@ -75,8 +75,6 @@ Get Session Resource
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
-
 ### Returns
 
 - `type BetaSessionResourceGetResponseUnion interface{…}`
@@ -144,6 +142,42 @@ Get Session Resource
     - `UpdatedAt Time`
 
       A timestamp in RFC 3339 format
+
+  - `type BetaManagedAgentsMemoryStoreResource struct{…}`
+
+    A memory store attached to an agent session.
+
+    - `MemoryStoreID string`
+
+      The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+    - `Type BetaManagedAgentsMemoryStoreResourceType`
+
+      - `const BetaManagedAgentsMemoryStoreResourceTypeMemoryStore BetaManagedAgentsMemoryStoreResourceType = "memory_store"`
+
+    - `Access BetaManagedAgentsMemoryStoreResourceAccess`
+
+      Access mode for an attached memory store.
+
+      - `const BetaManagedAgentsMemoryStoreResourceAccessReadWrite BetaManagedAgentsMemoryStoreResourceAccess = "read_write"`
+
+      - `const BetaManagedAgentsMemoryStoreResourceAccessReadOnly BetaManagedAgentsMemoryStoreResourceAccess = "read_only"`
+
+    - `Description string`
+
+      Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+    - `Instructions string`
+
+      Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+    - `MountPath string`
+
+      Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+    - `Name string`
+
+      Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
 ### Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/update
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: cc33f49dfe38c4044089368bb33788f8b42630d2e5086d2d9c3cb748117f5d30
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 5f4f9a510d9b9fc8e3ad2ac3f9d63941c1879fd3bb1a9864c8195cd404975301
 ---
 
 ## Update
@@ -434,8 +434,6 @@ Update Agent
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

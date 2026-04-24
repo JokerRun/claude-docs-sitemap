@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-04-23T03:11:35.814149Z
-sha256: 06d79f8c250acfbc2b7758c04e53fd5b169fd2d82126678836c8bc373ea67f09
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 789a5b8cc6b59c48d8e1f1da71c8e8f97ef29e97864da7ff57353c92f18bafa8
 ---
 
 # Vision
@@ -986,8 +986,7 @@ const anthropic = new Anthropic();
 async function main() {
   // Upload the image file
   const fileUpload = await anthropic.beta.files.upload({
-    file: await toFile(fs.createReadStream("image.jpg"), undefined, { type: "image/jpeg" }),
-    betas: ["files-api-2025-04-14"]
+    file: await toFile(fs.createReadStream("image.jpg"), undefined, { type: "image/jpeg" })
   });
 
   // Use the uploaded file in a message
@@ -1082,8 +1081,7 @@ func main() {
 
 	fileUpload, err := client.Beta.Files.Upload(context.Background(),
 		anthropic.BetaFileUploadParams{
-			File:  file,
-			Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
+			File: file,
 		})
 	if err != nil {
 		log.Fatal(err)
@@ -1168,7 +1166,6 @@ $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
 // Upload the image file
 $fileUpload = $client->beta->files->upload(
     file: fopen('image.jpg', 'r'),
-    betas: ['files-api-2025-04-14'],
 );
 
 // Use the uploaded file in a message

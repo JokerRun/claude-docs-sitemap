@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 2b5cc1814780c7e9885377990d4fea690526181d726e063853580074e297686c
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: f5911f2f49e31cc59929d42baa0ee6d3866c28350b8de816229fac7ab9a98c80
 ---
 
 ## Create
@@ -2665,10 +2665,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `:"1h"`
 
-        - `encrypted_content: String`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
-
   - `role: :user | :assistant`
 
     - `:user`
@@ -2974,7 +2970,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Configuration options for the model's output, such as the output format.
 
-  - `effort: :low | :medium | :high | 2 more`
+  - `effort: :low | :medium | :high | :max`
 
     All possible effort levels.
 
@@ -2983,8 +2979,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `:medium`
 
     - `:high`
-
-    - `:xhigh`
 
     - `:max`
 
@@ -2999,24 +2993,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `type: :json_schema`
 
       - `:json_schema`
-
-  - `task_budget: BetaTokenTaskBudget`
-
-    User-configurable total token budget across contexts.
-
-    - `total: Integer`
-
-      Total token budget across all contexts in the session.
-
-    - `type: :tokens`
-
-      The budget type. Currently only 'tokens' is supported.
-
-      - `:tokens`
-
-    - `remaining: Integer`
-
-      Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 - `output_format: BetaJSONOutputFormat`
 
@@ -4938,19 +4914,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
+  Recommended for advanced use cases only.
 
 - `top_p: Float`
 
   Use nucleus sampling.
 
-  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
-
-- `user_profile_id: String`
-
-  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+  Recommended for advanced use cases only.
 
 - `betas: Array[AnthropicBeta]`
 
@@ -4958,7 +4930,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -5003,8 +4975,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -5926,10 +5896,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `content: String`
 
         Summary of compacted content, or null if compaction failed
-
-      - `encrypted_content: String`
-
-        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: :compaction`
 

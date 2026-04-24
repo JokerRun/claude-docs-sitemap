@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 506abdfc5b8573b1642fea42d17cc0f3b7ff9e6955861dcfc49e7d124a3c1fa3
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: fbccac24cc75964af6ba55937e193ac03042ddf201cae5561ca80795cca6a706
 ---
 
 ## Create
@@ -121,7 +121,7 @@ Create a new environment with the specified configuration.
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -166,8 +166,6 @@ Create a new environment with the specified configuration.
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

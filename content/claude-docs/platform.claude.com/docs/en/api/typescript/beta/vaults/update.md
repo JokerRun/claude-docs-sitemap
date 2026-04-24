@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/update
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 8b602376ec254c122031f34b8389ad1ee21ed566516f2821773c2819a77d6e32
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: bb26ea95c8ad98ff7aee3bccace3d9a373c62639f3094b398c6461d9c922b3d9
 ---
 
 ## Update
@@ -33,7 +33,7 @@ Update Vault
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -78,8 +78,6 @@ Update Vault
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

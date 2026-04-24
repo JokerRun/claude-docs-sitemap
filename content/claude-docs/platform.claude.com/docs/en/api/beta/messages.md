@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: cf29206887c54a39b37ba839832f36357c3bb2669a60944448e863592ff52622
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 629bde7c38e789511d1026b7bd854c893e6c73c38d887c5fcd6c1f2ed1d245b2
 ---
 
 # Messages
@@ -25,7 +25,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,8 +70,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Body Parameters
 
@@ -2680,7 +2678,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"1h"`
 
-      - `BetaCompactionBlockParam = object { content, type, cache_control, encrypted_content }`
+      - `BetaCompactionBlockParam = object { content, type, cache_control }`
 
         A compaction block containing summary of previous context.
 
@@ -2720,10 +2718,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
             - `"5m"`
 
             - `"1h"`
-
-        - `encrypted_content: optional string`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
 
   - `role: "user" or "assistant"`
 
@@ -3030,7 +3024,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Configuration options for the model's output, such as the output format.
 
-  - `effort: optional "low" or "medium" or "high" or 2 more`
+  - `effort: optional "low" or "medium" or "high" or "max"`
 
     All possible effort levels.
 
@@ -3039,8 +3033,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"medium"`
 
     - `"high"`
-
-    - `"xhigh"`
 
     - `"max"`
 
@@ -3055,24 +3047,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `type: "json_schema"`
 
       - `"json_schema"`
-
-  - `task_budget: optional BetaTokenTaskBudget`
-
-    User-configurable total token budget across contexts.
-
-    - `total: number`
-
-      Total token budget across all contexts in the session.
-
-    - `type: "tokens"`
-
-      The budget type. Currently only 'tokens' is supported.
-
-      - `"tokens"`
-
-    - `remaining: optional number`
-
-      Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 - `output_format: optional BetaJSONOutputFormat`
 
@@ -4994,19 +4968,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
+  Recommended for advanced use cases only.
 
 - `top_p: optional number`
 
   Use nucleus sampling.
 
-  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
-
-- `user_profile_id: optional string`
-
-  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+  Recommended for advanced use cases only.
 
 ### Returns
 
@@ -5917,7 +5887,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `"container_upload"`
 
-    - `BetaCompactionBlock = object { content, encrypted_content, type }`
+    - `BetaCompactionBlock = object { content, type }`
 
       A compaction block returned when autocompact is triggered.
 
@@ -5928,10 +5898,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `content: string`
 
         Summary of compacted content, or null if compaction failed
-
-      - `encrypted_content: string`
-
-        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: "compaction"`
 
@@ -6456,7 +6422,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -6501,8 +6467,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Body Parameters
 
@@ -9103,7 +9067,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             - `"1h"`
 
-      - `BetaCompactionBlockParam = object { content, type, cache_control, encrypted_content }`
+      - `BetaCompactionBlockParam = object { content, type, cache_control }`
 
         A compaction block containing summary of previous context.
 
@@ -9143,10 +9107,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
             - `"5m"`
 
             - `"1h"`
-
-        - `encrypted_content: optional string`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
 
   - `role: "user" or "assistant"`
 
@@ -9405,7 +9365,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   Configuration options for the model's output, such as the output format.
 
-  - `effort: optional "low" or "medium" or "high" or 2 more`
+  - `effort: optional "low" or "medium" or "high" or "max"`
 
     All possible effort levels.
 
@@ -9414,8 +9374,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"medium"`
 
     - `"high"`
-
-    - `"xhigh"`
 
     - `"max"`
 
@@ -9430,24 +9388,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `type: "json_schema"`
 
       - `"json_schema"`
-
-  - `task_budget: optional BetaTokenTaskBudget`
-
-    User-configurable total token budget across contexts.
-
-    - `total: number`
-
-      Total token budget across all contexts in the session.
-
-    - `type: "tokens"`
-
-      The budget type. Currently only 'tokens' is supported.
-
-      - `"tokens"`
-
-    - `remaining: optional number`
-
-      Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 - `output_format: optional BetaJSONOutputFormat`
 
@@ -13192,7 +13132,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 ### Beta Compaction Block
 
-- `BetaCompactionBlock = object { content, encrypted_content, type }`
+- `BetaCompactionBlock = object { content, type }`
 
   A compaction block returned when autocompact is triggered.
 
@@ -13204,17 +13144,13 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     Summary of compacted content, or null if compaction failed
 
-  - `encrypted_content: string`
-
-    Opaque metadata from prior compaction, to be round-tripped verbatim
-
   - `type: "compaction"`
 
     - `"compaction"`
 
 ### Beta Compaction Block Param
 
-- `BetaCompactionBlockParam = object { content, type, cache_control, encrypted_content }`
+- `BetaCompactionBlockParam = object { content, type, cache_control }`
 
   A compaction block containing summary of previous context.
 
@@ -13255,19 +13191,11 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"1h"`
 
-  - `encrypted_content: optional string`
-
-    Opaque metadata from prior compaction, to be round-tripped verbatim
-
 ### Beta Compaction Content Block Delta
 
-- `BetaCompactionContentBlockDelta = object { content, encrypted_content, type }`
+- `BetaCompactionContentBlockDelta = object { content, type }`
 
   - `content: string`
-
-  - `encrypted_content: string`
-
-    Opaque metadata from prior compaction, to be round-tripped verbatim
 
   - `type: "compaction_delta"`
 
@@ -14269,7 +14197,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"container_upload"`
 
-  - `BetaCompactionBlock = object { content, encrypted_content, type }`
+  - `BetaCompactionBlock = object { content, type }`
 
     A compaction block returned when autocompact is triggered.
 
@@ -14280,10 +14208,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     - `content: string`
 
       Summary of compacted content, or null if compaction failed
-
-    - `encrypted_content: string`
-
-      Opaque metadata from prior compaction, to be round-tripped verbatim
 
     - `type: "compaction"`
 
@@ -16835,7 +16759,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"1h"`
 
-  - `BetaCompactionBlockParam = object { content, type, cache_control, encrypted_content }`
+  - `BetaCompactionBlockParam = object { content, type, cache_control }`
 
     A compaction block containing summary of previous context.
 
@@ -16875,10 +16799,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
         - `"5m"`
 
         - `"1h"`
-
-    - `encrypted_content: optional string`
-
-      Opaque metadata from prior compaction, to be round-tripped verbatim
 
 ### Beta Content Block Source
 
@@ -19296,7 +19216,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"container_upload"`
 
-    - `BetaCompactionBlock = object { content, encrypted_content, type }`
+    - `BetaCompactionBlock = object { content, type }`
 
       A compaction block returned when autocompact is triggered.
 
@@ -19307,10 +19227,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
       - `content: string`
 
         Summary of compacted content, or null if compaction failed
-
-      - `encrypted_content: string`
-
-        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: "compaction"`
 
@@ -22625,7 +22541,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"1h"`
 
-      - `BetaCompactionBlockParam = object { content, type, cache_control, encrypted_content }`
+      - `BetaCompactionBlockParam = object { content, type, cache_control }`
 
         A compaction block containing summary of previous context.
 
@@ -22666,10 +22582,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"1h"`
 
-        - `encrypted_content: optional string`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
-
   - `role: "user" or "assistant"`
 
     - `"user"`
@@ -22704,9 +22616,9 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 ### Beta Output Config
 
-- `BetaOutputConfig = object { effort, format, task_budget }`
+- `BetaOutputConfig = object { effort, format }`
 
-  - `effort: optional "low" or "medium" or "high" or 2 more`
+  - `effort: optional "low" or "medium" or "high" or "max"`
 
     All possible effort levels.
 
@@ -22715,8 +22627,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     - `"medium"`
 
     - `"high"`
-
-    - `"xhigh"`
 
     - `"max"`
 
@@ -22731,24 +22641,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     - `type: "json_schema"`
 
       - `"json_schema"`
-
-  - `task_budget: optional BetaTokenTaskBudget`
-
-    User-configurable total token budget across contexts.
-
-    - `total: number`
-
-      Total token budget across all contexts in the session.
-
-    - `type: "tokens"`
-
-      The budget type. Currently only 'tokens' is supported.
-
-      - `"tokens"`
-
-    - `remaining: optional number`
-
-      Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 ### Beta Plain Text Source
 
@@ -22894,13 +22786,9 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"signature_delta"`
 
-  - `BetaCompactionContentBlockDelta = object { content, encrypted_content, type }`
+  - `BetaCompactionContentBlockDelta = object { content, type }`
 
     - `content: string`
-
-    - `encrypted_content: string`
-
-      Opaque metadata from prior compaction, to be round-tripped verbatim
 
     - `type: "compaction_delta"`
 
@@ -23038,13 +22926,9 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"signature_delta"`
 
-    - `BetaCompactionContentBlockDelta = object { content, encrypted_content, type }`
+    - `BetaCompactionContentBlockDelta = object { content, type }`
 
       - `content: string`
-
-      - `encrypted_content: string`
-
-        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: "compaction_delta"`
 
@@ -23902,7 +23786,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"container_upload"`
 
-    - `BetaCompactionBlock = object { content, encrypted_content, type }`
+    - `BetaCompactionBlock = object { content, type }`
 
       A compaction block returned when autocompact is triggered.
 
@@ -23913,10 +23797,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
       - `content: string`
 
         Summary of compacted content, or null if compaction failed
-
-      - `encrypted_content: string`
-
-        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: "compaction"`
 
@@ -25221,7 +25101,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `"container_upload"`
 
-      - `BetaCompactionBlock = object { content, encrypted_content, type }`
+      - `BetaCompactionBlock = object { content, type }`
 
         A compaction block returned when autocompact is triggered.
 
@@ -25232,10 +25112,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
         - `content: string`
 
           Summary of compacted content, or null if compaction failed
-
-        - `encrypted_content: string`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `type: "compaction"`
 
@@ -26647,7 +26523,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             - `"container_upload"`
 
-        - `BetaCompactionBlock = object { content, encrypted_content, type }`
+        - `BetaCompactionBlock = object { content, type }`
 
           A compaction block returned when autocompact is triggered.
 
@@ -26658,10 +26534,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
           - `content: string`
 
             Summary of compacted content, or null if compaction failed
-
-          - `encrypted_content: string`
-
-            Opaque metadata from prior compaction, to be round-tripped verbatim
 
           - `type: "compaction"`
 
@@ -28372,7 +28244,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `"container_upload"`
 
-      - `BetaCompactionBlock = object { content, encrypted_content, type }`
+      - `BetaCompactionBlock = object { content, type }`
 
         A compaction block returned when autocompact is triggered.
 
@@ -28383,10 +28255,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
         - `content: string`
 
           Summary of compacted content, or null if compaction failed
-
-        - `encrypted_content: string`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `type: "compaction"`
 
@@ -28528,13 +28396,9 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `"signature_delta"`
 
-      - `BetaCompactionContentBlockDelta = object { content, encrypted_content, type }`
+      - `BetaCompactionContentBlockDelta = object { content, type }`
 
         - `content: string`
-
-        - `encrypted_content: string`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `type: "compaction_delta"`
 
@@ -30325,26 +30189,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     - `"thinking_turns"`
 
   - `value: number`
-
-### Beta Token Task Budget
-
-- `BetaTokenTaskBudget = object { total, type, remaining }`
-
-  User-configurable total token budget across contexts.
-
-  - `total: number`
-
-    Total token budget across all contexts in the session.
-
-  - `type: "tokens"`
-
-    The budget type. Currently only 'tokens' is supported.
-
-    - `"tokens"`
-
-  - `remaining: optional number`
-
-    Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 ### Beta Tool
 
@@ -35870,7 +35714,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -35916,8 +35760,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"advisor-tool-2026-03-01"`
 
-    - `"user-profiles-2026-03-24"`
-
 ### Body Parameters
 
 - `requests: array of object { custom_id, params }`
@@ -35930,7 +35772,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     Must be unique for each request within the Message Batch.
 
-  - `params: object { max_tokens, messages, model, 20 more }`
+  - `params: object { max_tokens, messages, model, 19 more }`
 
     Messages API creation parameters for the individual request.
 
@@ -38541,7 +38383,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `"1h"`
 
-          - `BetaCompactionBlockParam = object { content, type, cache_control, encrypted_content }`
+          - `BetaCompactionBlockParam = object { content, type, cache_control }`
 
             A compaction block containing summary of previous context.
 
@@ -38581,10 +38423,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 - `"5m"`
 
                 - `"1h"`
-
-            - `encrypted_content: optional string`
-
-              Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `role: "user" or "assistant"`
 
@@ -38891,7 +38729,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Configuration options for the model's output, such as the output format.
 
-      - `effort: optional "low" or "medium" or "high" or 2 more`
+      - `effort: optional "low" or "medium" or "high" or "max"`
 
         All possible effort levels.
 
@@ -38900,8 +38738,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `"medium"`
 
         - `"high"`
-
-        - `"xhigh"`
 
         - `"max"`
 
@@ -38916,24 +38752,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `type: "json_schema"`
 
           - `"json_schema"`
-
-      - `task_budget: optional BetaTokenTaskBudget`
-
-        User-configurable total token budget across contexts.
-
-        - `total: number`
-
-          Total token budget across all contexts in the session.
-
-        - `type: "tokens"`
-
-          The budget type. Currently only 'tokens' is supported.
-
-          - `"tokens"`
-
-        - `remaining: optional number`
-
-          Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
     - `output_format: optional BetaJSONOutputFormat`
 
@@ -40855,19 +40673,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-      Recommended for advanced use cases only. You usually only need to use `temperature`.
+      Recommended for advanced use cases only.
 
     - `top_p: optional number`
 
       Use nucleus sampling.
 
-      In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+      In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-      Recommended for advanced use cases only. You usually only need to use `temperature`.
-
-    - `user_profile_id: optional string`
-
-      The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+      Recommended for advanced use cases only.
 
 ### Returns
 
@@ -41008,7 +40822,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -41053,8 +40867,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -41187,7 +40999,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -41232,8 +41044,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -41370,7 +41180,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -41415,8 +41225,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -41542,7 +41350,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -41587,8 +41395,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -41640,7 +41446,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -41685,8 +41491,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -42615,7 +42419,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `"container_upload"`
 
-          - `BetaCompactionBlock = object { content, encrypted_content, type }`
+          - `BetaCompactionBlock = object { content, type }`
 
             A compaction block returned when autocompact is triggered.
 
@@ -42626,10 +42430,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `content: string`
 
               Summary of compacted content, or null if compaction failed
-
-            - `encrypted_content: string`
-
-              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `type: "compaction"`
 
@@ -44370,7 +44170,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
               - `"container_upload"`
 
-          - `BetaCompactionBlock = object { content, encrypted_content, type }`
+          - `BetaCompactionBlock = object { content, type }`
 
             A compaction block returned when autocompact is triggered.
 
@@ -44381,10 +44181,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
             - `content: string`
 
               Summary of compacted content, or null if compaction failed
-
-            - `encrypted_content: string`
-
-              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `type: "compaction"`
 
@@ -45924,7 +45720,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             - `"container_upload"`
 
-        - `BetaCompactionBlock = object { content, encrypted_content, type }`
+        - `BetaCompactionBlock = object { content, type }`
 
           A compaction block returned when autocompact is triggered.
 
@@ -45935,10 +45731,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
           - `content: string`
 
             Summary of compacted content, or null if compaction failed
-
-          - `encrypted_content: string`
-
-            Opaque metadata from prior compaction, to be round-tripped verbatim
 
           - `type: "compaction"`
 
@@ -47440,7 +47232,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `"container_upload"`
 
-      - `BetaCompactionBlock = object { content, encrypted_content, type }`
+      - `BetaCompactionBlock = object { content, type }`
 
         A compaction block returned when autocompact is triggered.
 
@@ -47451,10 +47243,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
         - `content: string`
 
           Summary of compacted content, or null if compaction failed
-
-        - `encrypted_content: string`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `type: "compaction"`
 

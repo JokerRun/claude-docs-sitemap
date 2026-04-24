@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/cli
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: acf59285ce16662985aaf4c5a48840c8220e8acb7b07f1209207b36f4803c6c1
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 8c9199e1715753856f13dc0ca0aced2e926bba6fac3589ba341aa69bc261a803
 ---
 
 # CLI
@@ -26,12 +26,6 @@ For endpoint-specific parameters and response schemas, see the [API reference](/
 
 ```bash
 brew install anthropics/tap/ant
-```
-
-On macOS, unquarantine the binary:
-
-```bash
-xattr -d com.apple.quarantine "$(brew --prefix)/bin/ant"
 ```
 
 </Tab>

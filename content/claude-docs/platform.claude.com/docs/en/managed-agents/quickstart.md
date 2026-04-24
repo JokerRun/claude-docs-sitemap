@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 6492826dd9d57d2a165fc763a22d52cbd8651edc931860e7147aa26ce3ccf192
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: e67f4927b808b71b1debccacf5c6bdad5f4e3b6ae5446616ccbe746022907d1a
 ---
 
 # Get started with Claude Managed Agents
@@ -38,12 +38,6 @@ This guide walks you through creating an agent, setting up an environment, start
 
 ```bash
 brew install anthropics/tap/ant
-```
-
-On macOS, unquarantine the binary:
-
-```bash
-xattr -d com.apple.quarantine "$(brew --prefix)/bin/ant"
 ```
 
 </Tab>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-04-23T03:11:35.814149Z
-sha256: d8009b26e3f26d33885c8ed80d7d06d575b2ed63812efbf1e28517c1e0e58eaf
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 81e474698e83c97ff1af9fa7b16620576b5aafe47f04e055acabcc717db8777e
 ---
 
 > ## Documentation Index
@@ -40,7 +40,7 @@ You can switch modes mid-session, at startup, or as a persistent default. The mo
   <Tab title="CLI">
     **During a session**: press `Shift+Tab` to cycle `default` → `acceptEdits` → `plan`. The current mode appears in the status bar. Not every mode is in the default cycle:
 
-    * `auto`: appears when your account meets the [auto mode requirements](#eliminate-prompts-with-auto-mode)
+    * `auto`: appears when your account meets the [auto mode requirements](#eliminate-prompts-with-auto-mode); cycling to auto shows an opt-in prompt until you accept it, or select **No, don't ask again** to remove auto from the cycle
     * `bypassPermissions`: appears after you start with `--permission-mode bypassPermissions`, `--dangerously-skip-permissions`, or `--allow-dangerously-skip-permissions`; the `--allow-` variant adds the mode to the cycle without activating it
     * `dontAsk`: never appears in the cycle; set it with `--permission-mode dontAsk`
 

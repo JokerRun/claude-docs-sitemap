@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/download
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 291d8b456d515aae8763b8c960f4a94c35248d0dacd52b29f66c8be15ea0811d
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: fa9828c234d283f048b05d54c7c7486ab32d690e5cf50d4dea1d3194a0f9341a
 ---
 
 ## Download
@@ -25,7 +25,7 @@ Download File
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -70,8 +70,6 @@ Download File
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

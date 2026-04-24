@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 15d57c9a53f052cc9500a13b7bc0a1a747b85ff7681d1eeeeb417160354aa646
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 605552b630da26addbdce03928822aec808c53e79429bf9e4fe6fa72384e6e75
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,8 +72,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

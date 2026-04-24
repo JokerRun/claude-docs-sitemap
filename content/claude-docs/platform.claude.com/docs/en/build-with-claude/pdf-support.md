@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 8acc48cc1e847ffbda1e1bcf7207fbc79b88fc7e44d4206e29346bb0bb638c13
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 01e729abfc916650bd70d063bbb3fe9994ac68737a27d608dd569fd3a1893826
 ---
 
 # PDF support
@@ -568,8 +568,7 @@ async function main() {
   const fileUpload = await anthropic.beta.files.upload({
     file: await toFile(fs.createReadStream("document.pdf"), undefined, {
       type: "application/pdf"
-    }),
-    betas: ["files-api-2025-04-14"]
+    })
   });
 
   // Use the uploaded file in a message

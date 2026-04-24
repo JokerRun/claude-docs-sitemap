@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: fa8f77b5437903a2666313aea391d925d7be1ce1c63bd14b03bd3a4bd2f4a048
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 10002e122fec273690bedd911e01d24c2ad689ea559672408f6e1082ba692686
 ---
 
 ## List
@@ -33,7 +33,7 @@ List environments with pagination support.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -78,8 +78,6 @@ List environments with pagination support.
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

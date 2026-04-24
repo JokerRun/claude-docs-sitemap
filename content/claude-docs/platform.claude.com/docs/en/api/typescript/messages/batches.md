@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: e33e702c30bf54052f0de016f56ff20e7e6f15abe9053062108603d75a3baf21
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 98ce88e31ae4003ce128b6d94bfcd36a8f6c89486877ea0b6a9b7735a115c11f
 ---
 
 # Batches
@@ -2447,7 +2447,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Configuration options for the model's output, such as the output format.
 
-        - `effort?: "low" | "medium" | "high" | 2 more | null`
+        - `effort?: "low" | "medium" | "high" | "max" | null`
 
           All possible effort levels.
 
@@ -2456,8 +2456,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `"medium"`
 
           - `"high"`
-
-          - `"xhigh"`
 
           - `"max"`
 
@@ -3840,15 +3838,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-        Recommended for advanced use cases only. You usually only need to use `temperature`.
+        Recommended for advanced use cases only.
 
       - `top_p?: number`
 
         Use nucleus sampling.
 
-        In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+        In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-        Recommended for advanced use cases only. You usually only need to use `temperature`.
+        Recommended for advanced use cases only.
 
 ### Returns
 

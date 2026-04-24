@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: eff3828123d2b3357c93ab58044ddcb14ac640eb924ad0d3a1e6b819fadf1be4
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: d3193b53fa7a31df1f2cedb757b16a1667f154dd06eaec0be9135eb0f8f829a3
 ---
 
 ## Create
@@ -2431,7 +2431,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Configuration options for the model's output, such as the output format.
 
-      - `effort?: "low" | "medium" | "high" | 2 more | null`
+      - `effort?: "low" | "medium" | "high" | "max" | null`
 
         All possible effort levels.
 
@@ -2440,8 +2440,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `"medium"`
 
         - `"high"`
-
-        - `"xhigh"`
 
         - `"max"`
 
@@ -3826,15 +3824,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-      Recommended for advanced use cases only. You usually only need to use `temperature`.
+      Recommended for advanced use cases only.
 
     - `top_p?: number`
 
       Use nucleus sampling.
 
-      In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+      In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-      Recommended for advanced use cases only. You usually only need to use `temperature`.
+      Recommended for advanced use cases only.
 
   - `MessageCreateParamsNonStreaming extends MessageCreateParamsBase`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 438438bc0afed14ce972cd15c6bdafd19c7a24070dc4d32aeea1284f87bd3707
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 36d0a7d171da531a50fe225150589fa6c41cf76efff8d8d02661668092bbddea
 ---
 
 ## Create
@@ -66,8 +66,6 @@ Create Credential
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `Auth auth`
 

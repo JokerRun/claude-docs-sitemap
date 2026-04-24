@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: c5453437bcc86179ac52d1b5d86b6bba42f5ab3fe8fd0d5af3c77121ad480825
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: e534eda3cef373161890575262a2253319796f199a580e0b60197abde699a4bb
 ---
 
 ## List
@@ -82,8 +82,6 @@ List Files
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

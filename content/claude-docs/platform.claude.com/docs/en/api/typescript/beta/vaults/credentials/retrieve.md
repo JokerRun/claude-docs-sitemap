@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 52ba2246832b113cfa1b00baf47260a7ae7b8ae8458eadd9f0f4b456c52c9947
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 38e483eb737800df83d2e5e53cd7fd0bdcba3753672342917650134f25ab5362
 ---
 
 ## Retrieve
@@ -29,7 +29,7 @@ Get Credential
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -74,8 +74,6 @@ Get Credential
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 

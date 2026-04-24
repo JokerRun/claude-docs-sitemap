@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: 6fdeec5a5cd14454eaf5513bece77a17abc3aacc67e31fe41a8d4ad5098a52b3
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 56b0005fe6e48abc163bf516103acd031918a845966a286d88cb6479e6011336
 ---
 
 # Claude Platform
@@ -16,6 +16,9 @@ For release notes on Claude Apps, see the [Release notes for Claude Apps in the 
 
 For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### April 23, 2026
+- **Memory** for Claude Managed Agents is now in public beta under the standard `managed-agents-2026-04-01` header. See [Using agent memory](/docs/en/managed-agents/memory) for the full integration guide.
 
 ### April 20, 2026
 - We've retired the Claude Haiku 3 model (`claude-3-haiku-20240307`). All requests to this model will now return an error. We recommend upgrading to [Claude Haiku 4.5](/docs/en/about-claude/models/overview#latest-models-comparison).

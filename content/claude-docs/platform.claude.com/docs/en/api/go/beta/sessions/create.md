@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: e2c544af35bbe9c0eb6648684c4257d17990677a99ed813d6fa98dc50e0d430c
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 5501e2375b4a60d680cb2111416693442c56a7cdc64261bed7073472c64e0953
 ---
 
 ## Create
@@ -111,6 +111,30 @@ Create Session
 
         Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
 
+    - `type BetaManagedAgentsMemoryStoreResourceParamResp struct{…}`
+
+      Parameters for attaching a memory store to an agent session.
+
+      - `MemoryStoreID string`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `Type BetaManagedAgentsMemoryStoreResourceParamType`
+
+        - `const BetaManagedAgentsMemoryStoreResourceParamTypeMemoryStore BetaManagedAgentsMemoryStoreResourceParamType = "memory_store"`
+
+      - `Access BetaManagedAgentsMemoryStoreResourceParamAccess`
+
+        Access mode for an attached memory store.
+
+        - `const BetaManagedAgentsMemoryStoreResourceParamAccessReadWrite BetaManagedAgentsMemoryStoreResourceParamAccess = "read_write"`
+
+        - `const BetaManagedAgentsMemoryStoreResourceParamAccessReadOnly BetaManagedAgentsMemoryStoreResourceParamAccess = "read_only"`
+
+      - `Instructions string`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
   - `Title param.Field[string]`
 
     Body param: Human-readable session title.
@@ -170,8 +194,6 @@ Create Session
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -540,6 +562,42 @@ Create Session
       - `UpdatedAt Time`
 
         A timestamp in RFC 3339 format
+
+    - `type BetaManagedAgentsMemoryStoreResource struct{…}`
+
+      A memory store attached to an agent session.
+
+      - `MemoryStoreID string`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `Type BetaManagedAgentsMemoryStoreResourceType`
+
+        - `const BetaManagedAgentsMemoryStoreResourceTypeMemoryStore BetaManagedAgentsMemoryStoreResourceType = "memory_store"`
+
+      - `Access BetaManagedAgentsMemoryStoreResourceAccess`
+
+        Access mode for an attached memory store.
+
+        - `const BetaManagedAgentsMemoryStoreResourceAccessReadWrite BetaManagedAgentsMemoryStoreResourceAccess = "read_write"`
+
+        - `const BetaManagedAgentsMemoryStoreResourceAccessReadOnly BetaManagedAgentsMemoryStoreResourceAccess = "read_only"`
+
+      - `Description string`
+
+        Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+      - `Instructions string`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+      - `MountPath string`
+
+        Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+      - `Name string`
+
+        Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
   - `Stats BetaManagedAgentsSessionStats`
 

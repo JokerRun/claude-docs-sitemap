@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/update
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 070876524a09c70a69b5f248baa810d447fcba36b9fa85c5dcfaa980cb412271
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 0b296a685d57af8bc12456c2c41ad65ddc644990b73c5a0d342f5ddedafb6c04
 ---
 
 ## Update
@@ -152,8 +152,6 @@ Update Credential
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

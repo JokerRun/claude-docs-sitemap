@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 3a7045ca4eae0df60b8c7c7f4d95b3c07303bf8b4db67b6522de798e607131e1
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 65b1d8de37203b637ff4520eb2e4993f87e2849841b57a7ac6853cc2f9786300
 ---
 
 ## Create
@@ -29,7 +29,7 @@ Create Vault
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74,8 +74,6 @@ Create Vault
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

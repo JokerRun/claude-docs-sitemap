@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 2a936ca41e336c3d259a350ff4750fef1d19d8ab982d5a19b2d4f46b567d9fe6
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: e181f638a60a81afc12aea073d93891d85ea97a1121225480fd9ba06ef7da26b
 ---
 
 # Messages
@@ -3599,15 +3599,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-    Recommended for advanced use cases only. You usually only need to use `temperature`.
+    Recommended for advanced use cases only.
 
   - `Optional<Double> topP`
 
     Use nucleus sampling.
 
-    In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+    In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-    Recommended for advanced use cases only. You usually only need to use `temperature`.
+    Recommended for advanced use cases only.
 
 ### Returns
 
@@ -17439,8 +17439,6 @@ public final class Main {
 
     - `HIGH("high")`
 
-    - `XHIGH("xhigh")`
-
     - `MAX("max")`
 
   - `Optional<JsonOutputFormat> format`
@@ -29390,8 +29388,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `HIGH("high")`
 
-          - `XHIGH("xhigh")`
-
           - `MAX("max")`
 
         - `Optional<JsonOutputFormat> format`
@@ -30773,15 +30769,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-        Recommended for advanced use cases only. You usually only need to use `temperature`.
+        Recommended for advanced use cases only.
 
       - `Optional<Double> topP`
 
         Use nucleus sampling.
 
-        In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+        In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-        Recommended for advanced use cases only. You usually only need to use `temperature`.
+        Recommended for advanced use cases only.
 
 ### Returns
 

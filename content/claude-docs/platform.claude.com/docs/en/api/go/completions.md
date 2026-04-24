@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 19254c4891b554b9374fd9572d9dc356fd09877a7817b02705c0b9d60f1ad7dd
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 760ed40fb11266197953d9aa12c95617a050a7ea9e86821945b146eec63a3fe7
 ---
 
 # Completions
@@ -83,15 +83,15 @@ Future models and features will not be compatible with Text Completions. See our
 
     Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-    Recommended for advanced use cases only. You usually only need to use `temperature`.
+    Recommended for advanced use cases only.
 
   - `TopP param.Field[float64]`
 
     Body param: Use nucleus sampling.
 
-    In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+    In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-    Recommended for advanced use cases only. You usually only need to use `temperature`.
+    Recommended for advanced use cases only.
 
   - `Betas param.Field[[]AnthropicBeta]`
 
@@ -144,8 +144,6 @@ Future models and features will not be compatible with Text Completions. See our
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 

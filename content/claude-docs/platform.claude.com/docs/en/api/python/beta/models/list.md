@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/models/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 88c34657590522193d3551a3f36dc0b6a23c4ca555697e7f8683a7f0a15e087d
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 87c31713e62719a11e9444a20c0203ebdb64260f19978a0f6ee561af72d9745f
 ---
 
 ## List
@@ -37,7 +37,7 @@ The Models API response can be used to determine which models are available for 
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,8 +82,6 @@ The Models API response can be used to determine which models are available for 
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -192,14 +190,6 @@ The Models API response can be used to determine which models are available for 
       - `supported: bool`
 
         Whether this capability is supported by the model.
-
-      - `xhigh: Optional[BetaCapabilitySupport]`
-
-        Indicates whether a capability is supported.
-
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 

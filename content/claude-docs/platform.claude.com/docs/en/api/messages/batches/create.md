@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 25d9fb3de9dd15687e9a402dc697f7b5d692ee8f6740005106e5874854d2e028
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: cf002296b8ec5ac8ccb860ec61b3a0ef21002d01d65183ec5f20c18aede64867
 ---
 
 ## Create
@@ -2445,7 +2445,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Configuration options for the model's output, such as the output format.
 
-      - `effort: optional "low" or "medium" or "high" or 2 more`
+      - `effort: optional "low" or "medium" or "high" or "max"`
 
         All possible effort levels.
 
@@ -2454,8 +2454,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `"medium"`
 
         - `"high"`
-
-        - `"xhigh"`
 
         - `"max"`
 
@@ -3838,15 +3836,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-      Recommended for advanced use cases only. You usually only need to use `temperature`.
+      Recommended for advanced use cases only.
 
     - `top_p: optional number`
 
       Use nucleus sampling.
 
-      In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+      In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-      Recommended for advanced use cases only. You usually only need to use `temperature`.
+      Recommended for advanced use cases only.
 
 ### Returns
 

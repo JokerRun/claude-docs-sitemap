@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-scheduled-tasks
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 514e0509193b0310e42b1bb7bb65df247e1867f9c015ca53919046dfbe8fa887
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 0e2f0e0cfbab4c6f4af2b2f70c92dfd14a2ae3d3cdf04e2c31146b3fb09be890
 ---
 
 > ## Documentation Index
@@ -17,7 +17,7 @@ By default, scheduled tasks start a new session automatically at a time and freq
 
 ## Compare scheduling options
 
-Claude Code offers three ways to schedule recurring work:
+Claude Code offers three ways to schedule recurring or one-off work:
 
 |                            | [Cloud](/en/routines)          | [Desktop](/en/desktop-scheduled-tasks) | [`/loop`](/en/scheduled-tasks)      |
 | :------------------------- | :----------------------------- | :------------------------------------- | :---------------------------------- |

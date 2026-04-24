@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/upload
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: d4f3a7e72f86295aff4559f4e674e4536197be047995e23ce9e1f4db6117dd8f
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 78185274b4447c55edfc1c336d102e726f4dbbb3e6663dd44fa33324e2e0c0db
 ---
 
 ## Upload
@@ -68,8 +68,6 @@ Upload File
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

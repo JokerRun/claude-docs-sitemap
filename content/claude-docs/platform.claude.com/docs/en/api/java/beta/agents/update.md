@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/update
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 49b5f88aba65230617153ac2d5d9707a50578d6798a9f65f36b5136f28657a5c
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 5dec9494701595a15da601b5b1088af917d32db9179eafcb89753580211dbc11
 ---
 
 ## Update
@@ -66,8 +66,6 @@ Update Agent
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `long version`
 

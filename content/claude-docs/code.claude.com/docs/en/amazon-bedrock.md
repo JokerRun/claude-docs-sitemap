@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 705aa97f9c115f896c74faafcc2fa5b69763db6d40eea5a320318fe38a5405e2
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 2ccf86e296f78081f4f37304af813407db1ade955e0f57f55a00a98443f47899
 ---
 
 > ## Documentation Index
@@ -376,9 +376,12 @@ export ANTHROPIC_MODEL='arn:aws:bedrock:us-east-2:your-account-id:application-in
 
 # Optional: Disable prompt caching if needed
 export DISABLE_PROMPT_CACHING=1
+
+# Optional: Request 1-hour prompt cache TTL instead of the 5-minute default
+export ENABLE_PROMPT_CACHING_1H=1
 ```
 
-<Note>[Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) may not be available in all regions.</Note>
+<Note>[Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) may not be available in all regions. Cache writes with a 1-hour TTL are billed at a higher rate than 5-minute writes.</Note>
 
 #### Map each model version to an inference profile
 

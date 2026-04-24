@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 34f4483b7140a7ba60f501fbf737e2ea7d4dba7e083111212e9cae6dbbadd4f1
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 48a753bfbfc86e0a224c99ce227a42d57ed3ff1102dadc61571856327718695e
 ---
 
 # Versions
@@ -72,8 +72,6 @@ Create Skill Version
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `Optional<List<String>> files`
 
@@ -226,8 +224,6 @@ List Skill Versions
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
-
 ### Returns
 
 - `class VersionListResponse:`
@@ -368,8 +364,6 @@ Get Skill Version
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 
@@ -515,8 +509,6 @@ Delete Skill Version
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

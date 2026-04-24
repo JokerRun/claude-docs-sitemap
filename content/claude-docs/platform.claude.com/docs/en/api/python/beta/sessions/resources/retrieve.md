@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: e42870abece9c6d267c71442deeba1f5dd8f5f97d80719acf6220b344890e342
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: a38a6df205f1b3686c9a102b47eb801d5e815c8d78f71d85ba9d540e41833019
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Get Session Resource
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,8 +70,6 @@ Get Session Resource
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -140,6 +138,42 @@ Get Session Resource
     - `updated_at: datetime`
 
       A timestamp in RFC 3339 format
+
+  - `class BetaManagedAgentsMemoryStoreResource: …`
+
+    A memory store attached to an agent session.
+
+    - `memory_store_id: str`
+
+      The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+    - `type: Literal["memory_store"]`
+
+      - `"memory_store"`
+
+    - `access: Optional[Literal["read_write", "read_only"]]`
+
+      Access mode for an attached memory store.
+
+      - `"read_write"`
+
+      - `"read_only"`
+
+    - `description: Optional[str]`
+
+      Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+    - `instructions: Optional[str]`
+
+      Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+    - `mount_path: Optional[str]`
+
+      Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+    - `name: Optional[str]`
+
+      Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
 ### Example
 

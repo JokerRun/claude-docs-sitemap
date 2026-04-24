@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 462e1b358584bf1a6a910928d6b2c25671123ad27a136b5917f89cf6e59658bd
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 2b0c869591ced54853e12f4a198cd75c5839b584266d6b66f08780200e77a887
 ---
 
 # Beta
@@ -11,11 +11,11 @@ sha256: 462e1b358584bf1a6a910928d6b2c25671123ad27a136b5917f89cf6e59658bd
 
 ### Anthropic Beta
 
-- `AnthropicBeta = String | :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+- `AnthropicBeta = String | :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -60,8 +60,6 @@ sha256: 462e1b358584bf1a6a910928d6b2c25671123ad27a136b5917f89cf6e59658bd
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Beta API Error
 
@@ -347,7 +345,7 @@ The Models API response can be used to determine which models are available for 
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -392,8 +390,6 @@ The Models API response can be used to determine which models are available for 
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -502,14 +498,6 @@ The Models API response can be used to determine which models are available for 
       - `supported: bool`
 
         Whether this capability is supported by the model.
-
-      - `xhigh: BetaCapabilitySupport`
-
-        Indicates whether a capability is supported.
-
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 
@@ -621,7 +609,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -666,8 +654,6 @@ The Models API response can be used to determine information about a specific mo
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -776,14 +762,6 @@ The Models API response can be used to determine information about a specific mo
       - `supported: bool`
 
         Whether this capability is supported by the model.
-
-      - `xhigh: BetaCapabilitySupport`
-
-        Indicates whether a capability is supported.
-
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 
@@ -961,14 +939,6 @@ puts(beta_model_info)
 
     Whether this capability is supported by the model.
 
-  - `xhigh: BetaCapabilitySupport`
-
-    Indicates whether a capability is supported.
-
-    - `supported: bool`
-
-      Whether this capability is supported by the model.
-
 ### Beta Model Capabilities
 
 - `class BetaModelCapabilities`
@@ -1070,14 +1040,6 @@ puts(beta_model_info)
     - `supported: bool`
 
       Whether this capability is supported by the model.
-
-    - `xhigh: BetaCapabilitySupport`
-
-      Indicates whether a capability is supported.
-
-      - `supported: bool`
-
-        Whether this capability is supported by the model.
 
   - `image_input: BetaCapabilitySupport`
 
@@ -1238,14 +1200,6 @@ puts(beta_model_info)
       - `supported: bool`
 
         Whether this capability is supported by the model.
-
-      - `xhigh: BetaCapabilitySupport`
-
-        Indicates whether a capability is supported.
-
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 
@@ -4037,10 +3991,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `:"1h"`
 
-        - `encrypted_content: String`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
-
   - `role: :user | :assistant`
 
     - `:user`
@@ -4346,7 +4296,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Configuration options for the model's output, such as the output format.
 
-  - `effort: :low | :medium | :high | 2 more`
+  - `effort: :low | :medium | :high | :max`
 
     All possible effort levels.
 
@@ -4355,8 +4305,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `:medium`
 
     - `:high`
-
-    - `:xhigh`
 
     - `:max`
 
@@ -4371,24 +4319,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `type: :json_schema`
 
       - `:json_schema`
-
-  - `task_budget: BetaTokenTaskBudget`
-
-    User-configurable total token budget across contexts.
-
-    - `total: Integer`
-
-      Total token budget across all contexts in the session.
-
-    - `type: :tokens`
-
-      The budget type. Currently only 'tokens' is supported.
-
-      - `:tokens`
-
-    - `remaining: Integer`
-
-      Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 - `output_format: BetaJSONOutputFormat`
 
@@ -6310,19 +6240,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
+  Recommended for advanced use cases only.
 
 - `top_p: Float`
 
   Use nucleus sampling.
 
-  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
-
-- `user_profile_id: String`
-
-  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+  Recommended for advanced use cases only.
 
 - `betas: Array[AnthropicBeta]`
 
@@ -6330,7 +6256,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -6375,8 +6301,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -7298,10 +7222,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `content: String`
 
         Summary of compacted content, or null if compaction failed
-
-      - `encrypted_content: String`
-
-        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: :compaction`
 
@@ -10456,10 +10376,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             - `:"1h"`
 
-        - `encrypted_content: String`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
-
   - `role: :user | :assistant`
 
     - `:user`
@@ -10717,7 +10633,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   Configuration options for the model's output, such as the output format.
 
-  - `effort: :low | :medium | :high | 2 more`
+  - `effort: :low | :medium | :high | :max`
 
     All possible effort levels.
 
@@ -10726,8 +10642,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `:medium`
 
     - `:high`
-
-    - `:xhigh`
 
     - `:max`
 
@@ -10742,24 +10656,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `type: :json_schema`
 
       - `:json_schema`
-
-  - `task_budget: BetaTokenTaskBudget`
-
-    User-configurable total token budget across contexts.
-
-    - `total: Integer`
-
-      Total token budget across all contexts in the session.
-
-    - `type: :tokens`
-
-      The budget type. Currently only 'tokens' is supported.
-
-      - `:tokens`
-
-    - `remaining: Integer`
-
-      Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 - `output_format: BetaJSONOutputFormat`
 
@@ -12649,7 +12545,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -12694,8 +12590,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -14567,10 +14461,6 @@ puts(beta_message_tokens_count)
 
     Summary of compacted content, or null if compaction failed
 
-  - `encrypted_content: String`
-
-    Opaque metadata from prior compaction, to be round-tripped verbatim
-
   - `type: :compaction`
 
     - `:compaction`
@@ -14618,19 +14508,11 @@ puts(beta_message_tokens_count)
 
       - `:"1h"`
 
-  - `encrypted_content: String`
-
-    Opaque metadata from prior compaction, to be round-tripped verbatim
-
 ### Beta Compaction Content Block Delta
 
 - `class BetaCompactionContentBlockDelta`
 
   - `content: String`
-
-  - `encrypted_content: String`
-
-    Opaque metadata from prior compaction, to be round-tripped verbatim
 
   - `type: :compaction_delta`
 
@@ -15643,10 +15525,6 @@ puts(beta_message_tokens_count)
     - `content: String`
 
       Summary of compacted content, or null if compaction failed
-
-    - `encrypted_content: String`
-
-      Opaque metadata from prior compaction, to be round-tripped verbatim
 
     - `type: :compaction`
 
@@ -18239,10 +18117,6 @@ puts(beta_message_tokens_count)
 
         - `:"1h"`
 
-    - `encrypted_content: String`
-
-      Opaque metadata from prior compaction, to be round-tripped verbatim
-
 ### Beta Content Block Source
 
 - `class BetaContentBlockSource`
@@ -20670,10 +20544,6 @@ puts(beta_message_tokens_count)
       - `content: String`
 
         Summary of compacted content, or null if compaction failed
-
-      - `encrypted_content: String`
-
-        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: :compaction`
 
@@ -24029,10 +23899,6 @@ puts(beta_message_tokens_count)
 
             - `:"1h"`
 
-        - `encrypted_content: String`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
-
   - `role: :user | :assistant`
 
     - `:user`
@@ -24069,7 +23935,7 @@ puts(beta_message_tokens_count)
 
 - `class BetaOutputConfig`
 
-  - `effort: :low | :medium | :high | 2 more`
+  - `effort: :low | :medium | :high | :max`
 
     All possible effort levels.
 
@@ -24078,8 +23944,6 @@ puts(beta_message_tokens_count)
     - `:medium`
 
     - `:high`
-
-    - `:xhigh`
 
     - `:max`
 
@@ -24094,24 +23958,6 @@ puts(beta_message_tokens_count)
     - `type: :json_schema`
 
       - `:json_schema`
-
-  - `task_budget: BetaTokenTaskBudget`
-
-    User-configurable total token budget across contexts.
-
-    - `total: Integer`
-
-      Total token budget across all contexts in the session.
-
-    - `type: :tokens`
-
-      The budget type. Currently only 'tokens' is supported.
-
-      - `:tokens`
-
-    - `remaining: Integer`
-
-      Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 ### Beta Plain Text Source
 
@@ -24261,10 +24107,6 @@ puts(beta_message_tokens_count)
 
     - `content: String`
 
-    - `encrypted_content: String`
-
-      Opaque metadata from prior compaction, to be round-tripped verbatim
-
     - `type: :compaction_delta`
 
       - `:compaction_delta`
@@ -24404,10 +24246,6 @@ puts(beta_message_tokens_count)
     - `class BetaCompactionContentBlockDelta`
 
       - `content: String`
-
-      - `encrypted_content: String`
-
-        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: :compaction_delta`
 
@@ -25276,10 +25114,6 @@ puts(beta_message_tokens_count)
       - `content: String`
 
         Summary of compacted content, or null if compaction failed
-
-      - `encrypted_content: String`
-
-        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: :compaction`
 
@@ -26595,10 +26429,6 @@ puts(beta_message_tokens_count)
         - `content: String`
 
           Summary of compacted content, or null if compaction failed
-
-        - `encrypted_content: String`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `type: :compaction`
 
@@ -28021,10 +27851,6 @@ puts(beta_message_tokens_count)
           - `content: String`
 
             Summary of compacted content, or null if compaction failed
-
-          - `encrypted_content: String`
-
-            Opaque metadata from prior compaction, to be round-tripped verbatim
 
           - `type: :compaction`
 
@@ -29747,10 +29573,6 @@ puts(beta_message_tokens_count)
 
           Summary of compacted content, or null if compaction failed
 
-        - `encrypted_content: String`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
-
         - `type: :compaction`
 
           - `:compaction`
@@ -29894,10 +29716,6 @@ puts(beta_message_tokens_count)
       - `class BetaCompactionContentBlockDelta`
 
         - `content: String`
-
-        - `encrypted_content: String`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `type: :compaction_delta`
 
@@ -31688,26 +31506,6 @@ puts(beta_message_tokens_count)
     - `:thinking_turns`
 
   - `value: Integer`
-
-### Beta Token Task Budget
-
-- `class BetaTokenTaskBudget`
-
-  User-configurable total token budget across contexts.
-
-  - `total: Integer`
-
-    Total token budget across all contexts in the session.
-
-  - `type: :tokens`
-
-    The budget type. Currently only 'tokens' is supported.
-
-    - `:tokens`
-
-  - `remaining: Integer`
-
-    Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 ### Beta Tool
 
@@ -37239,7 +37037,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     Must be unique for each request within the Message Batch.
 
-  - `params: { max_tokens, messages, model, 20 more}`
+  - `params: { max_tokens, messages, model, 19 more}`
 
     Messages API creation parameters for the individual request.
 
@@ -39891,10 +39689,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `:"1h"`
 
-            - `encrypted_content: String`
-
-              Opaque metadata from prior compaction, to be round-tripped verbatim
-
       - `role: :user | :assistant`
 
         - `:user`
@@ -40200,7 +39994,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Configuration options for the model's output, such as the output format.
 
-      - `effort: :low | :medium | :high | 2 more`
+      - `effort: :low | :medium | :high | :max`
 
         All possible effort levels.
 
@@ -40209,8 +40003,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `:medium`
 
         - `:high`
-
-        - `:xhigh`
 
         - `:max`
 
@@ -40225,24 +40017,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `type: :json_schema`
 
           - `:json_schema`
-
-      - `task_budget: BetaTokenTaskBudget`
-
-        User-configurable total token budget across contexts.
-
-        - `total: Integer`
-
-          Total token budget across all contexts in the session.
-
-        - `type: :tokens`
-
-          The budget type. Currently only 'tokens' is supported.
-
-          - `:tokens`
-
-        - `remaining: Integer`
-
-          Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
     - `output_format: BetaJSONOutputFormat`
 
@@ -42164,19 +41938,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-      Recommended for advanced use cases only. You usually only need to use `temperature`.
+      Recommended for advanced use cases only.
 
     - `top_p: Float`
 
       Use nucleus sampling.
 
-      In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+      In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-      Recommended for advanced use cases only. You usually only need to use `temperature`.
-
-    - `user_profile_id: String`
-
-      The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+      Recommended for advanced use cases only.
 
 - `betas: Array[AnthropicBeta]`
 
@@ -42184,7 +41954,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -42229,8 +41999,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -42363,7 +42131,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -42408,8 +42176,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -42545,7 +42311,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -42590,8 +42356,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -42719,7 +42483,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -42764,8 +42528,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -42893,7 +42655,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -42938,8 +42700,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -42993,7 +42753,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -43038,8 +42798,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -43979,10 +43737,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `content: String`
 
               Summary of compacted content, or null if compaction failed
-
-            - `encrypted_content: String`
-
-              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `type: :compaction`
 
@@ -45738,10 +45492,6 @@ puts(beta_message_batch_individual_response)
 
               Summary of compacted content, or null if compaction failed
 
-            - `encrypted_content: String`
-
-              Opaque metadata from prior compaction, to be round-tripped verbatim
-
             - `type: :compaction`
 
               - `:compaction`
@@ -47292,10 +47042,6 @@ puts(beta_message_batch_individual_response)
 
             Summary of compacted content, or null if compaction failed
 
-          - `encrypted_content: String`
-
-            Opaque metadata from prior compaction, to be round-tripped verbatim
-
           - `type: :compaction`
 
             - `:compaction`
@@ -48808,10 +48554,6 @@ puts(beta_message_batch_individual_response)
 
           Summary of compacted content, or null if compaction failed
 
-        - `encrypted_content: String`
-
-          Opaque metadata from prior compaction, to be round-tripped verbatim
-
         - `type: :compaction`
 
           - `:compaction`
@@ -49697,7 +49439,7 @@ Create Agent
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -49742,8 +49484,6 @@ Create Agent
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -50095,7 +49835,7 @@ List Agents
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -50140,8 +49880,6 @@ List Agents
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -50479,7 +50217,7 @@ Get Agent
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -50524,8 +50262,6 @@ Get Agent
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -51241,7 +50977,7 @@ Update Agent
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -51286,8 +51022,6 @@ Update Agent
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -51621,7 +51355,7 @@ Archive Agent
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -51666,8 +51400,6 @@ Archive Agent
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -53315,7 +53047,7 @@ List Agent Versions
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -53360,8 +53092,6 @@ List Agent Versions
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -53795,7 +53525,7 @@ Create a new environment with the specified configuration.
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -53840,8 +53570,6 @@ Create a new environment with the specified configuration.
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -54003,7 +53731,7 @@ List environments with pagination support.
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -54048,8 +53776,6 @@ List environments with pagination support.
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -54201,7 +53927,7 @@ Retrieve a specific environment by ID.
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -54246,8 +53972,6 @@ Retrieve a specific environment by ID.
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -54499,7 +54223,7 @@ Update an existing environment's configuration.
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -54544,8 +54268,6 @@ Update an existing environment's configuration.
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -54697,7 +54419,7 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -54742,8 +54464,6 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -54791,7 +54511,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -54836,8 +54556,6 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -55460,7 +55178,7 @@ Create Session
 
   Arbitrary key-value metadata attached to the session. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
-- `resources: Array[BetaManagedAgentsGitHubRepositoryResourceParams | BetaManagedAgentsFileResourceParams]`
+- `resources: Array[BetaManagedAgentsGitHubRepositoryResourceParams | BetaManagedAgentsFileResourceParams | BetaManagedAgentsMemoryStoreResourceParam]`
 
   Resources (e.g. repositories, files) to mount into the session's container.
 
@@ -55524,6 +55242,30 @@ Create Session
 
       Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
 
+  - `class BetaManagedAgentsMemoryStoreResourceParam`
+
+    Parameters for attaching a memory store to an agent session.
+
+    - `memory_store_id: String`
+
+      The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+    - `type: :memory_store`
+
+      - `:memory_store`
+
+    - `access: :read_write | :read_only`
+
+      Access mode for an attached memory store.
+
+      - `:read_write`
+
+      - `:read_only`
+
+    - `instructions: String`
+
+      Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
 - `title: String`
 
   Human-readable session title.
@@ -55538,7 +55280,7 @@ Create Session
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -55583,8 +55325,6 @@ Create Session
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -55953,6 +55693,42 @@ Create Session
       - `updated_at: Time`
 
         A timestamp in RFC 3339 format
+
+    - `class BetaManagedAgentsMemoryStoreResource`
+
+      A memory store attached to an agent session.
+
+      - `memory_store_id: String`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `type: :memory_store`
+
+        - `:memory_store`
+
+      - `access: :read_write | :read_only`
+
+        Access mode for an attached memory store.
+
+        - `:read_write`
+
+        - `:read_only`
+
+      - `description: String`
+
+        Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+      - `instructions: String`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+      - `mount_path: String`
+
+        Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+      - `name: String`
+
+        Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
   - `stats: BetaManagedAgentsSessionStats`
 
@@ -56095,7 +55871,7 @@ List Sessions
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -56140,8 +55916,6 @@ List Sessions
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -56510,6 +56284,42 @@ List Sessions
       - `updated_at: Time`
 
         A timestamp in RFC 3339 format
+
+    - `class BetaManagedAgentsMemoryStoreResource`
+
+      A memory store attached to an agent session.
+
+      - `memory_store_id: String`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `type: :memory_store`
+
+        - `:memory_store`
+
+      - `access: :read_write | :read_only`
+
+        Access mode for an attached memory store.
+
+        - `:read_write`
+
+        - `:read_only`
+
+      - `description: String`
+
+        Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+      - `instructions: String`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+      - `mount_path: String`
+
+        Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+      - `name: String`
+
+        Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
   - `stats: BetaManagedAgentsSessionStats`
 
@@ -56607,7 +56417,7 @@ Get Session
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -56652,8 +56462,6 @@ Get Session
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -57022,6 +56830,42 @@ Get Session
       - `updated_at: Time`
 
         A timestamp in RFC 3339 format
+
+    - `class BetaManagedAgentsMemoryStoreResource`
+
+      A memory store attached to an agent session.
+
+      - `memory_store_id: String`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `type: :memory_store`
+
+        - `:memory_store`
+
+      - `access: :read_write | :read_only`
+
+        Access mode for an attached memory store.
+
+        - `:read_write`
+
+        - `:read_only`
+
+      - `description: String`
+
+        Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+      - `instructions: String`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+      - `mount_path: String`
+
+        Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+      - `name: String`
+
+        Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
   - `stats: BetaManagedAgentsSessionStats`
 
@@ -57131,7 +56975,7 @@ Update Session
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -57176,8 +57020,6 @@ Update Session
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -57546,6 +57388,42 @@ Update Session
       - `updated_at: Time`
 
         A timestamp in RFC 3339 format
+
+    - `class BetaManagedAgentsMemoryStoreResource`
+
+      A memory store attached to an agent session.
+
+      - `memory_store_id: String`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `type: :memory_store`
+
+        - `:memory_store`
+
+      - `access: :read_write | :read_only`
+
+        Access mode for an attached memory store.
+
+        - `:read_write`
+
+        - `:read_only`
+
+      - `description: String`
+
+        Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+      - `instructions: String`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+      - `mount_path: String`
+
+        Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+      - `name: String`
+
+        Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
   - `stats: BetaManagedAgentsSessionStats`
 
@@ -57643,7 +57521,7 @@ Delete Session
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -57688,8 +57566,6 @@ Delete Session
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -57733,7 +57609,7 @@ Archive Session
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -57778,8 +57654,6 @@ Archive Session
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -58148,6 +58022,42 @@ Archive Session
       - `updated_at: Time`
 
         A timestamp in RFC 3339 format
+
+    - `class BetaManagedAgentsMemoryStoreResource`
+
+      A memory store attached to an agent session.
+
+      - `memory_store_id: String`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `type: :memory_store`
+
+        - `:memory_store`
+
+      - `access: :read_write | :read_only`
+
+        Access mode for an attached memory store.
+
+        - `:read_write`
+
+        - `:read_only`
+
+      - `description: String`
+
+        Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+      - `instructions: String`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+      - `mount_path: String`
+
+        Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+      - `name: String`
+
+        Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
   - `stats: BetaManagedAgentsSessionStats`
 
@@ -58360,6 +58270,32 @@ puts(beta_managed_agents_session)
   - `mount_path: String`
 
     Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+### Beta Managed Agents Memory Store Resource Param
+
+- `class BetaManagedAgentsMemoryStoreResourceParam`
+
+  Parameters for attaching a memory store to an agent session.
+
+  - `memory_store_id: String`
+
+    The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+  - `type: :memory_store`
+
+    - `:memory_store`
+
+  - `access: :read_write | :read_only`
+
+    Access mode for an attached memory store.
+
+    - `:read_write`
+
+    - `:read_only`
+
+  - `instructions: String`
+
+    Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
 
 ### Beta Managed Agents Session
 
@@ -58728,6 +58664,42 @@ puts(beta_managed_agents_session)
       - `updated_at: Time`
 
         A timestamp in RFC 3339 format
+
+    - `class BetaManagedAgentsMemoryStoreResource`
+
+      A memory store attached to an agent session.
+
+      - `memory_store_id: String`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `type: :memory_store`
+
+        - `:memory_store`
+
+      - `access: :read_write | :read_only`
+
+        Access mode for an attached memory store.
+
+        - `:read_write`
+
+        - `:read_only`
+
+      - `description: String`
+
+        Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+      - `instructions: String`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+      - `mount_path: String`
+
+        Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+      - `name: String`
+
+        Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
   - `stats: BetaManagedAgentsSessionStats`
 
@@ -59161,7 +59133,7 @@ List Events
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -59206,8 +59178,6 @@ List Events
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -60961,7 +60931,7 @@ Send Events
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -61006,8 +60976,6 @@ Send Events
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -61432,7 +61400,7 @@ Stream Events
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -61477,8 +61445,6 @@ Stream Events
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -68796,7 +68762,7 @@ Add Session Resource
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -68841,8 +68807,6 @@ Add Session Resource
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -68908,7 +68872,7 @@ List Session Resources
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -68954,11 +68918,11 @@ List Session Resources
 
     - `:"advisor-tool-2026-03-01"`
 
-    - `:"user-profiles-2026-03-24"`
-
 ### Returns
 
-- `BetaManagedAgentsSessionResource = BetaManagedAgentsGitHubRepositoryResource | BetaManagedAgentsFileResource`
+- `BetaManagedAgentsSessionResource = BetaManagedAgentsGitHubRepositoryResource | BetaManagedAgentsFileResource | BetaManagedAgentsMemoryStoreResource`
+
+  A memory store attached to an agent session.
 
   - `class BetaManagedAgentsGitHubRepositoryResource`
 
@@ -69022,6 +68986,42 @@ List Session Resources
 
       A timestamp in RFC 3339 format
 
+  - `class BetaManagedAgentsMemoryStoreResource`
+
+    A memory store attached to an agent session.
+
+    - `memory_store_id: String`
+
+      The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+    - `type: :memory_store`
+
+      - `:memory_store`
+
+    - `access: :read_write | :read_only`
+
+      Access mode for an attached memory store.
+
+      - `:read_write`
+
+      - `:read_only`
+
+    - `description: String`
+
+      Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+    - `instructions: String`
+
+      Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+    - `mount_path: String`
+
+      Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+    - `name: String`
+
+      Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
+
 ### Example
 
 ```ruby
@@ -69054,7 +69054,7 @@ Get Session Resource
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -69100,11 +69100,9 @@ Get Session Resource
 
     - `:"advisor-tool-2026-03-01"`
 
-    - `:"user-profiles-2026-03-24"`
-
 ### Returns
 
-- `ResourceRetrieveResponse = BetaManagedAgentsGitHubRepositoryResource | BetaManagedAgentsFileResource`
+- `ResourceRetrieveResponse = BetaManagedAgentsGitHubRepositoryResource | BetaManagedAgentsFileResource | BetaManagedAgentsMemoryStoreResource`
 
   The requested session resource.
 
@@ -69170,6 +69168,42 @@ Get Session Resource
 
       A timestamp in RFC 3339 format
 
+  - `class BetaManagedAgentsMemoryStoreResource`
+
+    A memory store attached to an agent session.
+
+    - `memory_store_id: String`
+
+      The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+    - `type: :memory_store`
+
+      - `:memory_store`
+
+    - `access: :read_write | :read_only`
+
+      Access mode for an attached memory store.
+
+      - `:read_write`
+
+      - `:read_only`
+
+    - `description: String`
+
+      Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+    - `instructions: String`
+
+      Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+    - `mount_path: String`
+
+      Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+    - `name: String`
+
+      Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
+
 ### Example
 
 ```ruby
@@ -69209,7 +69243,7 @@ Update Session Resource
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -69255,11 +69289,9 @@ Update Session Resource
 
     - `:"advisor-tool-2026-03-01"`
 
-    - `:"user-profiles-2026-03-24"`
-
 ### Returns
 
-- `ResourceUpdateResponse = BetaManagedAgentsGitHubRepositoryResource | BetaManagedAgentsFileResource`
+- `ResourceUpdateResponse = BetaManagedAgentsGitHubRepositoryResource | BetaManagedAgentsFileResource | BetaManagedAgentsMemoryStoreResource`
 
   The updated session resource.
 
@@ -69325,6 +69357,42 @@ Update Session Resource
 
       A timestamp in RFC 3339 format
 
+  - `class BetaManagedAgentsMemoryStoreResource`
+
+    A memory store attached to an agent session.
+
+    - `memory_store_id: String`
+
+      The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+    - `type: :memory_store`
+
+      - `:memory_store`
+
+    - `access: :read_write | :read_only`
+
+      Access mode for an attached memory store.
+
+      - `:read_write`
+
+      - `:read_only`
+
+    - `description: String`
+
+      Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+    - `instructions: String`
+
+      Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+    - `mount_path: String`
+
+      Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+    - `name: String`
+
+      Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
+
 ### Example
 
 ```ruby
@@ -69361,7 +69429,7 @@ Delete Session Resource
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -69406,8 +69474,6 @@ Delete Session Resource
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -69516,9 +69582,49 @@ puts(beta_managed_agents_delete_session_resource)
 
         - `:commit`
 
+### Beta Managed Agents Memory Store Resource
+
+- `class BetaManagedAgentsMemoryStoreResource`
+
+  A memory store attached to an agent session.
+
+  - `memory_store_id: String`
+
+    The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+  - `type: :memory_store`
+
+    - `:memory_store`
+
+  - `access: :read_write | :read_only`
+
+    Access mode for an attached memory store.
+
+    - `:read_write`
+
+    - `:read_only`
+
+  - `description: String`
+
+    Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+  - `instructions: String`
+
+    Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+  - `mount_path: String`
+
+    Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+  - `name: String`
+
+    Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
+
 ### Beta Managed Agents Session Resource
 
-- `BetaManagedAgentsSessionResource = BetaManagedAgentsGitHubRepositoryResource | BetaManagedAgentsFileResource`
+- `BetaManagedAgentsSessionResource = BetaManagedAgentsGitHubRepositoryResource | BetaManagedAgentsFileResource | BetaManagedAgentsMemoryStoreResource`
+
+  A memory store attached to an agent session.
 
   - `class BetaManagedAgentsGitHubRepositoryResource`
 
@@ -69582,9 +69688,45 @@ puts(beta_managed_agents_delete_session_resource)
 
       A timestamp in RFC 3339 format
 
+  - `class BetaManagedAgentsMemoryStoreResource`
+
+    A memory store attached to an agent session.
+
+    - `memory_store_id: String`
+
+      The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+    - `type: :memory_store`
+
+      - `:memory_store`
+
+    - `access: :read_write | :read_only`
+
+      Access mode for an attached memory store.
+
+      - `:read_write`
+
+      - `:read_only`
+
+    - `description: String`
+
+      Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+    - `instructions: String`
+
+      Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+    - `mount_path: String`
+
+      Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+    - `name: String`
+
+      Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
+
 ### Resource Retrieve Response
 
-- `ResourceRetrieveResponse = BetaManagedAgentsGitHubRepositoryResource | BetaManagedAgentsFileResource`
+- `ResourceRetrieveResponse = BetaManagedAgentsGitHubRepositoryResource | BetaManagedAgentsFileResource | BetaManagedAgentsMemoryStoreResource`
 
   The requested session resource.
 
@@ -69650,9 +69792,45 @@ puts(beta_managed_agents_delete_session_resource)
 
       A timestamp in RFC 3339 format
 
+  - `class BetaManagedAgentsMemoryStoreResource`
+
+    A memory store attached to an agent session.
+
+    - `memory_store_id: String`
+
+      The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+    - `type: :memory_store`
+
+      - `:memory_store`
+
+    - `access: :read_write | :read_only`
+
+      Access mode for an attached memory store.
+
+      - `:read_write`
+
+      - `:read_only`
+
+    - `description: String`
+
+      Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+    - `instructions: String`
+
+      Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+    - `mount_path: String`
+
+      Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+    - `name: String`
+
+      Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
+
 ### Resource Update Response
 
-- `ResourceUpdateResponse = BetaManagedAgentsGitHubRepositoryResource | BetaManagedAgentsFileResource`
+- `ResourceUpdateResponse = BetaManagedAgentsGitHubRepositoryResource | BetaManagedAgentsFileResource | BetaManagedAgentsMemoryStoreResource`
 
   The updated session resource.
 
@@ -69718,6 +69896,42 @@ puts(beta_managed_agents_delete_session_resource)
 
       A timestamp in RFC 3339 format
 
+  - `class BetaManagedAgentsMemoryStoreResource`
+
+    A memory store attached to an agent session.
+
+    - `memory_store_id: String`
+
+      The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+    - `type: :memory_store`
+
+      - `:memory_store`
+
+    - `access: :read_write | :read_only`
+
+      Access mode for an attached memory store.
+
+      - `:read_write`
+
+      - `:read_only`
+
+    - `description: String`
+
+      Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+    - `instructions: String`
+
+      Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+    - `mount_path: String`
+
+      Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+    - `name: String`
+
+      Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
+
 # Vaults
 
 ## Create
@@ -69744,7 +69958,7 @@ Create Vault
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -69789,8 +70003,6 @@ Create Vault
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -69866,7 +70078,7 @@ List Vaults
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -69911,8 +70123,6 @@ List Vaults
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -69978,7 +70188,7 @@ Get Vault
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -70023,8 +70233,6 @@ Get Vault
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -70098,7 +70306,7 @@ Update Vault
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -70143,8 +70351,6 @@ Update Vault
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -70210,7 +70416,7 @@ Delete Vault
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -70255,8 +70461,6 @@ Delete Vault
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -70302,7 +70506,7 @@ Archive Vault
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -70347,8 +70551,6 @@ Archive Vault
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -70574,7 +70776,7 @@ Create Credential
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -70619,8 +70821,6 @@ Create Credential
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -70789,7 +70989,7 @@ List Credentials
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -70834,8 +71034,6 @@ List Credentials
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -70987,7 +71185,7 @@ Get Credential
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -71032,8 +71230,6 @@ Get Credential
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -71268,7 +71464,7 @@ Update Credential
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -71313,8 +71509,6 @@ Update Credential
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -71469,7 +71663,7 @@ Delete Credential
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -71514,8 +71708,6 @@ Delete Credential
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -71566,7 +71758,7 @@ Archive Credential
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -71611,8 +71803,6 @@ Archive Credential
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -72383,21 +72573,23 @@ puts(beta_managed_agents_credential)
 
     Updated OAuth client secret.
 
-# Files
+# Memory Stores
 
-## Upload
+## Create
 
-`beta.files.upload(**kwargs) -> FileMetadata`
+`beta.memory_stores.create(**kwargs) -> BetaManagedAgentsMemoryStore`
 
-**post** `/v1/files`
+**post** `/v1/memory_stores`
 
-Upload File
+CreateMemoryStore
 
 ### Parameters
 
-- `file: String`
+- `name: String`
 
-  The file to upload
+- `description: String`
+
+- `metadata: Hash[Symbol, String]`
 
 - `betas: Array[AnthropicBeta]`
 
@@ -72405,7 +72597,7 @@ Upload File
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -72451,7 +72643,2169 @@ Upload File
 
     - `:"advisor-tool-2026-03-01"`
 
-    - `:"user-profiles-2026-03-24"`
+### Returns
+
+- `class BetaManagedAgentsMemoryStore`
+
+  - `id: String`
+
+  - `type: :memory_store`
+
+    - `:memory_store`
+
+  - `archived_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `description: String`
+
+  - `metadata: Hash[Symbol, String]`
+
+  - `name: String`
+
+  - `updated_at: Time`
+
+    A timestamp in RFC 3339 format
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+beta_managed_agents_memory_store = anthropic.beta.memory_stores.create(name: "x")
+
+puts(beta_managed_agents_memory_store)
+```
+
+## List
+
+`beta.memory_stores.list(**kwargs) -> PageCursor<BetaManagedAgentsMemoryStore>`
+
+**get** `/v1/memory_stores`
+
+ListMemoryStores
+
+### Parameters
+
+- `created_at_gte: Time`
+
+  Return stores created at or after this time (inclusive).
+
+- `created_at_lte: Time`
+
+  Return stores created at or before this time (inclusive).
+
+- `include_archived: bool`
+
+  Query parameter for include_archived
+
+- `limit: Integer`
+
+  Query parameter for limit
+
+- `page: String`
+
+  Query parameter for page
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaManagedAgentsMemoryStore`
+
+  - `id: String`
+
+  - `type: :memory_store`
+
+    - `:memory_store`
+
+  - `archived_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `description: String`
+
+  - `metadata: Hash[Symbol, String]`
+
+  - `name: String`
+
+  - `updated_at: Time`
+
+    A timestamp in RFC 3339 format
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+page = anthropic.beta.memory_stores.list
+
+puts(page)
+```
+
+## Retrieve
+
+`beta.memory_stores.retrieve(memory_store_id, **kwargs) -> BetaManagedAgentsMemoryStore`
+
+**get** `/v1/memory_stores/{memory_store_id}`
+
+GetMemoryStore
+
+### Parameters
+
+- `memory_store_id: String`
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaManagedAgentsMemoryStore`
+
+  - `id: String`
+
+  - `type: :memory_store`
+
+    - `:memory_store`
+
+  - `archived_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `description: String`
+
+  - `metadata: Hash[Symbol, String]`
+
+  - `name: String`
+
+  - `updated_at: Time`
+
+    A timestamp in RFC 3339 format
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+beta_managed_agents_memory_store = anthropic.beta.memory_stores.retrieve("memory_store_id")
+
+puts(beta_managed_agents_memory_store)
+```
+
+## Update
+
+`beta.memory_stores.update(memory_store_id, **kwargs) -> BetaManagedAgentsMemoryStore`
+
+**post** `/v1/memory_stores/{memory_store_id}`
+
+UpdateMemoryStore
+
+### Parameters
+
+- `memory_store_id: String`
+
+- `description: String`
+
+- `metadata: Hash[Symbol, String]`
+
+  Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omit the field to preserve. The stored bag is limited to 16 keys (up to 64 chars each) with values up to 512 chars.
+
+- `name: String`
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaManagedAgentsMemoryStore`
+
+  - `id: String`
+
+  - `type: :memory_store`
+
+    - `:memory_store`
+
+  - `archived_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `description: String`
+
+  - `metadata: Hash[Symbol, String]`
+
+  - `name: String`
+
+  - `updated_at: Time`
+
+    A timestamp in RFC 3339 format
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+beta_managed_agents_memory_store = anthropic.beta.memory_stores.update("memory_store_id")
+
+puts(beta_managed_agents_memory_store)
+```
+
+## Delete
+
+`beta.memory_stores.delete(memory_store_id, **kwargs) -> BetaManagedAgentsDeletedMemoryStore`
+
+**delete** `/v1/memory_stores/{memory_store_id}`
+
+DeleteMemoryStore
+
+### Parameters
+
+- `memory_store_id: String`
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaManagedAgentsDeletedMemoryStore`
+
+  - `id: String`
+
+  - `type: :memory_store_deleted`
+
+    - `:memory_store_deleted`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+beta_managed_agents_deleted_memory_store = anthropic.beta.memory_stores.delete("memory_store_id")
+
+puts(beta_managed_agents_deleted_memory_store)
+```
+
+## Archive
+
+`beta.memory_stores.archive(memory_store_id, **kwargs) -> BetaManagedAgentsMemoryStore`
+
+**post** `/v1/memory_stores/{memory_store_id}/archive`
+
+ArchiveMemoryStore
+
+### Parameters
+
+- `memory_store_id: String`
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaManagedAgentsMemoryStore`
+
+  - `id: String`
+
+  - `type: :memory_store`
+
+    - `:memory_store`
+
+  - `archived_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `description: String`
+
+  - `metadata: Hash[Symbol, String]`
+
+  - `name: String`
+
+  - `updated_at: Time`
+
+    A timestamp in RFC 3339 format
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+beta_managed_agents_memory_store = anthropic.beta.memory_stores.archive("memory_store_id")
+
+puts(beta_managed_agents_memory_store)
+```
+
+## Domain Types
+
+### Beta Managed Agents Deleted Memory Store
+
+- `class BetaManagedAgentsDeletedMemoryStore`
+
+  - `id: String`
+
+  - `type: :memory_store_deleted`
+
+    - `:memory_store_deleted`
+
+### Beta Managed Agents Memory Store
+
+- `class BetaManagedAgentsMemoryStore`
+
+  - `id: String`
+
+  - `type: :memory_store`
+
+    - `:memory_store`
+
+  - `archived_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `description: String`
+
+  - `metadata: Hash[Symbol, String]`
+
+  - `name: String`
+
+  - `updated_at: Time`
+
+    A timestamp in RFC 3339 format
+
+# Memories
+
+## Create
+
+`beta.memory_stores.memories.create(memory_store_id, **kwargs) -> BetaManagedAgentsMemory`
+
+**post** `/v1/memory_stores/{memory_store_id}/memories`
+
+CreateMemory
+
+### Parameters
+
+- `memory_store_id: String`
+
+- `content: String`
+
+- `path: String`
+
+- `view: BetaManagedAgentsMemoryView`
+
+  Query parameter for view
+
+  - `:basic`
+
+  - `:full`
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaManagedAgentsMemory`
+
+  - `id: String`
+
+  - `content_sha256: String`
+
+  - `content_size_bytes: Integer`
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `memory_store_id: String`
+
+  - `memory_version_id: String`
+
+  - `path: String`
+
+  - `type: :memory`
+
+    - `:memory`
+
+  - `updated_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `content: String`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+beta_managed_agents_memory = anthropic.beta.memory_stores.memories.create("memory_store_id", content: "content", path: "xx")
+
+puts(beta_managed_agents_memory)
+```
+
+## List
+
+`beta.memory_stores.memories.list(memory_store_id, **kwargs) -> PageCursor<BetaManagedAgentsMemoryListItem>`
+
+**get** `/v1/memory_stores/{memory_store_id}/memories`
+
+ListMemories
+
+### Parameters
+
+- `memory_store_id: String`
+
+- `depth: Integer`
+
+  Query parameter for depth
+
+- `limit: Integer`
+
+  Query parameter for limit
+
+- `order: :asc | :desc`
+
+  Query parameter for order
+
+  - `:asc`
+
+  - `:desc`
+
+- `order_by: String`
+
+  Query parameter for order_by
+
+- `page: String`
+
+  Query parameter for page
+
+- `path_prefix: String`
+
+  Optional path prefix filter (raw string-prefix match; include a trailing slash for directory-scoped lists). This value appears in request URLs. Do not include secrets or personally identifiable information.
+
+- `view: BetaManagedAgentsMemoryView`
+
+  Query parameter for view
+
+  - `:basic`
+
+  - `:full`
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `BetaManagedAgentsMemoryListItem = BetaManagedAgentsMemory | BetaManagedAgentsMemoryPrefix`
+
+  - `class BetaManagedAgentsMemory`
+
+    - `id: String`
+
+    - `content_sha256: String`
+
+    - `content_size_bytes: Integer`
+
+    - `created_at: Time`
+
+      A timestamp in RFC 3339 format
+
+    - `memory_store_id: String`
+
+    - `memory_version_id: String`
+
+    - `path: String`
+
+    - `type: :memory`
+
+      - `:memory`
+
+    - `updated_at: Time`
+
+      A timestamp in RFC 3339 format
+
+    - `content: String`
+
+  - `class BetaManagedAgentsMemoryPrefix`
+
+    - `path: String`
+
+    - `type: :memory_prefix`
+
+      - `:memory_prefix`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+page = anthropic.beta.memory_stores.memories.list("memory_store_id")
+
+puts(page)
+```
+
+## Retrieve
+
+`beta.memory_stores.memories.retrieve(memory_id, **kwargs) -> BetaManagedAgentsMemory`
+
+**get** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
+
+GetMemory
+
+### Parameters
+
+- `memory_store_id: String`
+
+- `memory_id: String`
+
+- `view: BetaManagedAgentsMemoryView`
+
+  Query parameter for view
+
+  - `:basic`
+
+  - `:full`
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaManagedAgentsMemory`
+
+  - `id: String`
+
+  - `content_sha256: String`
+
+  - `content_size_bytes: Integer`
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `memory_store_id: String`
+
+  - `memory_version_id: String`
+
+  - `path: String`
+
+  - `type: :memory`
+
+    - `:memory`
+
+  - `updated_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `content: String`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+beta_managed_agents_memory = anthropic.beta.memory_stores.memories.retrieve("memory_id", memory_store_id: "memory_store_id")
+
+puts(beta_managed_agents_memory)
+```
+
+## Update
+
+`beta.memory_stores.memories.update(memory_id, **kwargs) -> BetaManagedAgentsMemory`
+
+**post** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
+
+UpdateMemory
+
+### Parameters
+
+- `memory_store_id: String`
+
+- `memory_id: String`
+
+- `view: BetaManagedAgentsMemoryView`
+
+  Query parameter for view
+
+  - `:basic`
+
+  - `:full`
+
+- `content: String`
+
+- `path: String`
+
+- `precondition: BetaManagedAgentsPrecondition`
+
+  - `type: :content_sha256`
+
+    - `:content_sha256`
+
+  - `content_sha256: String`
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaManagedAgentsMemory`
+
+  - `id: String`
+
+  - `content_sha256: String`
+
+  - `content_size_bytes: Integer`
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `memory_store_id: String`
+
+  - `memory_version_id: String`
+
+  - `path: String`
+
+  - `type: :memory`
+
+    - `:memory`
+
+  - `updated_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `content: String`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+beta_managed_agents_memory = anthropic.beta.memory_stores.memories.update("memory_id", memory_store_id: "memory_store_id")
+
+puts(beta_managed_agents_memory)
+```
+
+## Delete
+
+`beta.memory_stores.memories.delete(memory_id, **kwargs) -> BetaManagedAgentsDeletedMemory`
+
+**delete** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
+
+DeleteMemory
+
+### Parameters
+
+- `memory_store_id: String`
+
+- `memory_id: String`
+
+- `expected_content_sha256: String`
+
+  Query parameter for expected_content_sha256
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaManagedAgentsDeletedMemory`
+
+  - `id: String`
+
+  - `type: :memory_deleted`
+
+    - `:memory_deleted`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+beta_managed_agents_deleted_memory = anthropic.beta.memory_stores.memories.delete("memory_id", memory_store_id: "memory_store_id")
+
+puts(beta_managed_agents_deleted_memory)
+```
+
+## Domain Types
+
+### Beta Managed Agents Content Sha256 Precondition
+
+- `class BetaManagedAgentsContentSha256Precondition`
+
+  - `type: :content_sha256`
+
+    - `:content_sha256`
+
+  - `content_sha256: String`
+
+### Beta Managed Agents Deleted Memory
+
+- `class BetaManagedAgentsDeletedMemory`
+
+  - `id: String`
+
+  - `type: :memory_deleted`
+
+    - `:memory_deleted`
+
+### Beta Managed Agents Memory
+
+- `class BetaManagedAgentsMemory`
+
+  - `id: String`
+
+  - `content_sha256: String`
+
+  - `content_size_bytes: Integer`
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `memory_store_id: String`
+
+  - `memory_version_id: String`
+
+  - `path: String`
+
+  - `type: :memory`
+
+    - `:memory`
+
+  - `updated_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `content: String`
+
+### Beta Managed Agents Memory List Item
+
+- `BetaManagedAgentsMemoryListItem = BetaManagedAgentsMemory | BetaManagedAgentsMemoryPrefix`
+
+  - `class BetaManagedAgentsMemory`
+
+    - `id: String`
+
+    - `content_sha256: String`
+
+    - `content_size_bytes: Integer`
+
+    - `created_at: Time`
+
+      A timestamp in RFC 3339 format
+
+    - `memory_store_id: String`
+
+    - `memory_version_id: String`
+
+    - `path: String`
+
+    - `type: :memory`
+
+      - `:memory`
+
+    - `updated_at: Time`
+
+      A timestamp in RFC 3339 format
+
+    - `content: String`
+
+  - `class BetaManagedAgentsMemoryPrefix`
+
+    - `path: String`
+
+    - `type: :memory_prefix`
+
+      - `:memory_prefix`
+
+### Beta Managed Agents Memory Path Conflict Error
+
+- `class BetaManagedAgentsMemoryPathConflictError`
+
+  - `type: :memory_path_conflict_error`
+
+    - `:memory_path_conflict_error`
+
+  - `conflicting_memory_id: String`
+
+  - `conflicting_path: String`
+
+  - `message: String`
+
+### Beta Managed Agents Memory Precondition Failed Error
+
+- `class BetaManagedAgentsMemoryPreconditionFailedError`
+
+  - `type: :memory_precondition_failed_error`
+
+    - `:memory_precondition_failed_error`
+
+  - `message: String`
+
+### Beta Managed Agents Memory Prefix
+
+- `class BetaManagedAgentsMemoryPrefix`
+
+  - `path: String`
+
+  - `type: :memory_prefix`
+
+    - `:memory_prefix`
+
+### Beta Managed Agents Memory View
+
+- `BetaManagedAgentsMemoryView = :basic | :full`
+
+  MemoryView enum
+
+  - `:basic`
+
+  - `:full`
+
+### Beta Managed Agents Precondition
+
+- `class BetaManagedAgentsPrecondition`
+
+  - `type: :content_sha256`
+
+    - `:content_sha256`
+
+  - `content_sha256: String`
+
+# Memory Versions
+
+## List
+
+`beta.memory_stores.memory_versions.list(memory_store_id, **kwargs) -> PageCursor<BetaManagedAgentsMemoryVersion>`
+
+**get** `/v1/memory_stores/{memory_store_id}/memory_versions`
+
+ListMemoryVersions
+
+### Parameters
+
+- `memory_store_id: String`
+
+- `api_key_id: String`
+
+  Query parameter for api_key_id
+
+- `created_at_gte: Time`
+
+  Return versions created at or after this time (inclusive).
+
+- `created_at_lte: Time`
+
+  Return versions created at or before this time (inclusive).
+
+- `limit: Integer`
+
+  Query parameter for limit
+
+- `memory_id: String`
+
+  Query parameter for memory_id
+
+- `operation: BetaManagedAgentsMemoryVersionOperation`
+
+  Query parameter for operation
+
+  - `:created`
+
+  - `:modified`
+
+  - `:deleted`
+
+- `page: String`
+
+  Query parameter for page
+
+- `session_id: String`
+
+  Query parameter for session_id
+
+- `view: BetaManagedAgentsMemoryView`
+
+  Query parameter for view
+
+  - `:basic`
+
+  - `:full`
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaManagedAgentsMemoryVersion`
+
+  - `id: String`
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `memory_id: String`
+
+  - `memory_store_id: String`
+
+  - `operation: BetaManagedAgentsMemoryVersionOperation`
+
+    MemoryVersionOperation enum
+
+    - `:created`
+
+    - `:modified`
+
+    - `:deleted`
+
+  - `type: :memory_version`
+
+    - `:memory_version`
+
+  - `content: String`
+
+  - `content_sha256: String`
+
+  - `content_size_bytes: Integer`
+
+  - `created_by: BetaManagedAgentsActor`
+
+    - `class BetaManagedAgentsSessionActor`
+
+      - `session_id: String`
+
+      - `type: :session_actor`
+
+        - `:session_actor`
+
+    - `class BetaManagedAgentsAPIActor`
+
+      - `api_key_id: String`
+
+      - `type: :api_actor`
+
+        - `:api_actor`
+
+    - `class BetaManagedAgentsUserActor`
+
+      - `type: :user_actor`
+
+        - `:user_actor`
+
+      - `user_id: String`
+
+  - `path: String`
+
+  - `redacted_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `redacted_by: BetaManagedAgentsActor`
+
+    - `class BetaManagedAgentsSessionActor`
+
+      - `session_id: String`
+
+      - `type: :session_actor`
+
+        - `:session_actor`
+
+    - `class BetaManagedAgentsAPIActor`
+
+      - `api_key_id: String`
+
+      - `type: :api_actor`
+
+        - `:api_actor`
+
+    - `class BetaManagedAgentsUserActor`
+
+      - `type: :user_actor`
+
+        - `:user_actor`
+
+      - `user_id: String`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+page = anthropic.beta.memory_stores.memory_versions.list("memory_store_id")
+
+puts(page)
+```
+
+## Retrieve
+
+`beta.memory_stores.memory_versions.retrieve(memory_version_id, **kwargs) -> BetaManagedAgentsMemoryVersion`
+
+**get** `/v1/memory_stores/{memory_store_id}/memory_versions/{memory_version_id}`
+
+GetMemoryVersion
+
+### Parameters
+
+- `memory_store_id: String`
+
+- `memory_version_id: String`
+
+- `view: BetaManagedAgentsMemoryView`
+
+  Query parameter for view
+
+  - `:basic`
+
+  - `:full`
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaManagedAgentsMemoryVersion`
+
+  - `id: String`
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `memory_id: String`
+
+  - `memory_store_id: String`
+
+  - `operation: BetaManagedAgentsMemoryVersionOperation`
+
+    MemoryVersionOperation enum
+
+    - `:created`
+
+    - `:modified`
+
+    - `:deleted`
+
+  - `type: :memory_version`
+
+    - `:memory_version`
+
+  - `content: String`
+
+  - `content_sha256: String`
+
+  - `content_size_bytes: Integer`
+
+  - `created_by: BetaManagedAgentsActor`
+
+    - `class BetaManagedAgentsSessionActor`
+
+      - `session_id: String`
+
+      - `type: :session_actor`
+
+        - `:session_actor`
+
+    - `class BetaManagedAgentsAPIActor`
+
+      - `api_key_id: String`
+
+      - `type: :api_actor`
+
+        - `:api_actor`
+
+    - `class BetaManagedAgentsUserActor`
+
+      - `type: :user_actor`
+
+        - `:user_actor`
+
+      - `user_id: String`
+
+  - `path: String`
+
+  - `redacted_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `redacted_by: BetaManagedAgentsActor`
+
+    - `class BetaManagedAgentsSessionActor`
+
+      - `session_id: String`
+
+      - `type: :session_actor`
+
+        - `:session_actor`
+
+    - `class BetaManagedAgentsAPIActor`
+
+      - `api_key_id: String`
+
+      - `type: :api_actor`
+
+        - `:api_actor`
+
+    - `class BetaManagedAgentsUserActor`
+
+      - `type: :user_actor`
+
+        - `:user_actor`
+
+      - `user_id: String`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+beta_managed_agents_memory_version = anthropic.beta.memory_stores.memory_versions.retrieve(
+  "memory_version_id",
+  memory_store_id: "memory_store_id"
+)
+
+puts(beta_managed_agents_memory_version)
+```
+
+## Redact
+
+`beta.memory_stores.memory_versions.redact(memory_version_id, **kwargs) -> BetaManagedAgentsMemoryVersion`
+
+**post** `/v1/memory_stores/{memory_store_id}/memory_versions/{memory_version_id}/redact`
+
+RedactMemoryVersion
+
+### Parameters
+
+- `memory_store_id: String`
+
+- `memory_version_id: String`
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaManagedAgentsMemoryVersion`
+
+  - `id: String`
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `memory_id: String`
+
+  - `memory_store_id: String`
+
+  - `operation: BetaManagedAgentsMemoryVersionOperation`
+
+    MemoryVersionOperation enum
+
+    - `:created`
+
+    - `:modified`
+
+    - `:deleted`
+
+  - `type: :memory_version`
+
+    - `:memory_version`
+
+  - `content: String`
+
+  - `content_sha256: String`
+
+  - `content_size_bytes: Integer`
+
+  - `created_by: BetaManagedAgentsActor`
+
+    - `class BetaManagedAgentsSessionActor`
+
+      - `session_id: String`
+
+      - `type: :session_actor`
+
+        - `:session_actor`
+
+    - `class BetaManagedAgentsAPIActor`
+
+      - `api_key_id: String`
+
+      - `type: :api_actor`
+
+        - `:api_actor`
+
+    - `class BetaManagedAgentsUserActor`
+
+      - `type: :user_actor`
+
+        - `:user_actor`
+
+      - `user_id: String`
+
+  - `path: String`
+
+  - `redacted_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `redacted_by: BetaManagedAgentsActor`
+
+    - `class BetaManagedAgentsSessionActor`
+
+      - `session_id: String`
+
+      - `type: :session_actor`
+
+        - `:session_actor`
+
+    - `class BetaManagedAgentsAPIActor`
+
+      - `api_key_id: String`
+
+      - `type: :api_actor`
+
+        - `:api_actor`
+
+    - `class BetaManagedAgentsUserActor`
+
+      - `type: :user_actor`
+
+        - `:user_actor`
+
+      - `user_id: String`
+
+### Example
+
+```ruby
+require "anthropic"
+
+anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
+
+beta_managed_agents_memory_version = anthropic.beta.memory_stores.memory_versions.redact(
+  "memory_version_id",
+  memory_store_id: "memory_store_id"
+)
+
+puts(beta_managed_agents_memory_version)
+```
+
+## Domain Types
+
+### Beta Managed Agents Actor
+
+- `BetaManagedAgentsActor = BetaManagedAgentsSessionActor | BetaManagedAgentsAPIActor | BetaManagedAgentsUserActor`
+
+  - `class BetaManagedAgentsSessionActor`
+
+    - `session_id: String`
+
+    - `type: :session_actor`
+
+      - `:session_actor`
+
+  - `class BetaManagedAgentsAPIActor`
+
+    - `api_key_id: String`
+
+    - `type: :api_actor`
+
+      - `:api_actor`
+
+  - `class BetaManagedAgentsUserActor`
+
+    - `type: :user_actor`
+
+      - `:user_actor`
+
+    - `user_id: String`
+
+### Beta Managed Agents API Actor
+
+- `class BetaManagedAgentsAPIActor`
+
+  - `api_key_id: String`
+
+  - `type: :api_actor`
+
+    - `:api_actor`
+
+### Beta Managed Agents Memory Version
+
+- `class BetaManagedAgentsMemoryVersion`
+
+  - `id: String`
+
+  - `created_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `memory_id: String`
+
+  - `memory_store_id: String`
+
+  - `operation: BetaManagedAgentsMemoryVersionOperation`
+
+    MemoryVersionOperation enum
+
+    - `:created`
+
+    - `:modified`
+
+    - `:deleted`
+
+  - `type: :memory_version`
+
+    - `:memory_version`
+
+  - `content: String`
+
+  - `content_sha256: String`
+
+  - `content_size_bytes: Integer`
+
+  - `created_by: BetaManagedAgentsActor`
+
+    - `class BetaManagedAgentsSessionActor`
+
+      - `session_id: String`
+
+      - `type: :session_actor`
+
+        - `:session_actor`
+
+    - `class BetaManagedAgentsAPIActor`
+
+      - `api_key_id: String`
+
+      - `type: :api_actor`
+
+        - `:api_actor`
+
+    - `class BetaManagedAgentsUserActor`
+
+      - `type: :user_actor`
+
+        - `:user_actor`
+
+      - `user_id: String`
+
+  - `path: String`
+
+  - `redacted_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `redacted_by: BetaManagedAgentsActor`
+
+    - `class BetaManagedAgentsSessionActor`
+
+      - `session_id: String`
+
+      - `type: :session_actor`
+
+        - `:session_actor`
+
+    - `class BetaManagedAgentsAPIActor`
+
+      - `api_key_id: String`
+
+      - `type: :api_actor`
+
+        - `:api_actor`
+
+    - `class BetaManagedAgentsUserActor`
+
+      - `type: :user_actor`
+
+        - `:user_actor`
+
+      - `user_id: String`
+
+### Beta Managed Agents Memory Version Operation
+
+- `BetaManagedAgentsMemoryVersionOperation = :created | :modified | :deleted`
+
+  MemoryVersionOperation enum
+
+  - `:created`
+
+  - `:modified`
+
+  - `:deleted`
+
+### Beta Managed Agents Session Actor
+
+- `class BetaManagedAgentsSessionActor`
+
+  - `session_id: String`
+
+  - `type: :session_actor`
+
+    - `:session_actor`
+
+### Beta Managed Agents User Actor
+
+- `class BetaManagedAgentsUserActor`
+
+  - `type: :user_actor`
+
+    - `:user_actor`
+
+  - `user_id: String`
+
+# Files
+
+## Upload
+
+`beta.files.upload(**kwargs) -> FileMetadata`
+
+**post** `/v1/files`
+
+Upload File
+
+### Parameters
+
+- `file: String`
+
+  The file to upload
+
+- `betas: Array[AnthropicBeta]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `String`
+
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+
+    - `:"message-batches-2024-09-24"`
+
+    - `:"prompt-caching-2024-07-31"`
+
+    - `:"computer-use-2024-10-22"`
+
+    - `:"computer-use-2025-01-24"`
+
+    - `:"pdfs-2024-09-25"`
+
+    - `:"token-counting-2024-11-01"`
+
+    - `:"token-efficient-tools-2025-02-19"`
+
+    - `:"output-128k-2025-02-19"`
+
+    - `:"files-api-2025-04-14"`
+
+    - `:"mcp-client-2025-04-04"`
+
+    - `:"mcp-client-2025-11-20"`
+
+    - `:"dev-full-thinking-2025-05-14"`
+
+    - `:"interleaved-thinking-2025-05-14"`
+
+    - `:"code-execution-2025-05-22"`
+
+    - `:"extended-cache-ttl-2025-04-11"`
+
+    - `:"context-1m-2025-08-07"`
+
+    - `:"context-management-2025-06-27"`
+
+    - `:"model-context-window-exceeded-2025-08-26"`
+
+    - `:"skills-2025-10-02"`
+
+    - `:"fast-mode-2026-02-01"`
+
+    - `:"output-300k-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 
@@ -72551,7 +74905,7 @@ List Files
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -72596,8 +74950,6 @@ List Files
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -72683,7 +75035,7 @@ Download File
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -72728,8 +75080,6 @@ Download File
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -72767,7 +75117,7 @@ Get File Metadata
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -72812,8 +75162,6 @@ Get File Metadata
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -72899,7 +75247,7 @@ Delete File
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -72944,8 +75292,6 @@ Delete File
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -73089,7 +75435,7 @@ Create Skill
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -73134,8 +75480,6 @@ Create Skill
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -73231,7 +75575,7 @@ List Skills
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -73276,8 +75620,6 @@ List Skills
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -73358,7 +75700,7 @@ Get Skill
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -73403,8 +75745,6 @@ Get Skill
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -73485,7 +75825,7 @@ Delete Skill
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -73530,8 +75870,6 @@ Delete Skill
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -73744,7 +76082,7 @@ Create Skill Version
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -73789,8 +76127,6 @@ Create Skill Version
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -73884,7 +76220,7 @@ List Skill Versions
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -73929,8 +76265,6 @@ List Skill Versions
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -74020,7 +76354,7 @@ Get Skill Version
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74065,8 +76399,6 @@ Get Skill Version
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -74156,7 +76488,7 @@ Delete Skill Version
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74201,8 +76533,6 @@ Delete Skill Version
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -74393,695 +76723,3 @@ puts(version)
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
-
-# User Profiles
-
-## Create
-
-`beta.user_profiles.create(**kwargs) -> BetaUserProfile`
-
-**post** `/v1/user_profiles`
-
-Create User Profile
-
-### Parameters
-
-- `external_id: String`
-
-  Platform's own identifier for this user. Not enforced unique. Maximum 255 characters.
-
-- `metadata: Hash[Symbol, String]`
-
-  Free-form key-value data to attach to this user profile. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters. Values must be non-empty strings.
-
-- `betas: Array[AnthropicBeta]`
-
-  Optional header to specify the beta version(s) you want to use.
-
-  - `String`
-
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
-
-    - `:"message-batches-2024-09-24"`
-
-    - `:"prompt-caching-2024-07-31"`
-
-    - `:"computer-use-2024-10-22"`
-
-    - `:"computer-use-2025-01-24"`
-
-    - `:"pdfs-2024-09-25"`
-
-    - `:"token-counting-2024-11-01"`
-
-    - `:"token-efficient-tools-2025-02-19"`
-
-    - `:"output-128k-2025-02-19"`
-
-    - `:"files-api-2025-04-14"`
-
-    - `:"mcp-client-2025-04-04"`
-
-    - `:"mcp-client-2025-11-20"`
-
-    - `:"dev-full-thinking-2025-05-14"`
-
-    - `:"interleaved-thinking-2025-05-14"`
-
-    - `:"code-execution-2025-05-22"`
-
-    - `:"extended-cache-ttl-2025-04-11"`
-
-    - `:"context-1m-2025-08-07"`
-
-    - `:"context-management-2025-06-27"`
-
-    - `:"model-context-window-exceeded-2025-08-26"`
-
-    - `:"skills-2025-10-02"`
-
-    - `:"fast-mode-2026-02-01"`
-
-    - `:"output-300k-2026-03-24"`
-
-    - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
-
-### Returns
-
-- `class BetaUserProfile`
-
-  - `id: String`
-
-    Unique identifier for this user profile, prefixed `uprof_`.
-
-  - `created_at: Time`
-
-    A timestamp in RFC 3339 format
-
-  - `metadata: Hash[Symbol, String]`
-
-    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
-
-  - `trust_grants: Hash[Symbol, BetaUserProfileTrustGrant]`
-
-    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
-
-    - `status: :active | :pending | :rejected`
-
-      Status of the trust grant.
-
-      - `:active`
-
-      - `:pending`
-
-      - `:rejected`
-
-  - `type: :user_profile`
-
-    Object type. Always `user_profile`.
-
-    - `:user_profile`
-
-  - `updated_at: Time`
-
-    A timestamp in RFC 3339 format
-
-  - `external_id: String`
-
-    Platform's own identifier for this user. Not enforced unique.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_user_profile = anthropic.beta.user_profiles.create
-
-puts(beta_user_profile)
-```
-
-## List
-
-`beta.user_profiles.list(**kwargs) -> PageCursor<BetaUserProfile>`
-
-**get** `/v1/user_profiles`
-
-List User Profiles
-
-### Parameters
-
-- `limit: Integer`
-
-  Query parameter for limit
-
-- `order: :asc | :desc`
-
-  Query parameter for order
-
-  - `:asc`
-
-  - `:desc`
-
-- `page: String`
-
-  Query parameter for page
-
-- `betas: Array[AnthropicBeta]`
-
-  Optional header to specify the beta version(s) you want to use.
-
-  - `String`
-
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
-
-    - `:"message-batches-2024-09-24"`
-
-    - `:"prompt-caching-2024-07-31"`
-
-    - `:"computer-use-2024-10-22"`
-
-    - `:"computer-use-2025-01-24"`
-
-    - `:"pdfs-2024-09-25"`
-
-    - `:"token-counting-2024-11-01"`
-
-    - `:"token-efficient-tools-2025-02-19"`
-
-    - `:"output-128k-2025-02-19"`
-
-    - `:"files-api-2025-04-14"`
-
-    - `:"mcp-client-2025-04-04"`
-
-    - `:"mcp-client-2025-11-20"`
-
-    - `:"dev-full-thinking-2025-05-14"`
-
-    - `:"interleaved-thinking-2025-05-14"`
-
-    - `:"code-execution-2025-05-22"`
-
-    - `:"extended-cache-ttl-2025-04-11"`
-
-    - `:"context-1m-2025-08-07"`
-
-    - `:"context-management-2025-06-27"`
-
-    - `:"model-context-window-exceeded-2025-08-26"`
-
-    - `:"skills-2025-10-02"`
-
-    - `:"fast-mode-2026-02-01"`
-
-    - `:"output-300k-2026-03-24"`
-
-    - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
-
-### Returns
-
-- `class BetaUserProfile`
-
-  - `id: String`
-
-    Unique identifier for this user profile, prefixed `uprof_`.
-
-  - `created_at: Time`
-
-    A timestamp in RFC 3339 format
-
-  - `metadata: Hash[Symbol, String]`
-
-    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
-
-  - `trust_grants: Hash[Symbol, BetaUserProfileTrustGrant]`
-
-    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
-
-    - `status: :active | :pending | :rejected`
-
-      Status of the trust grant.
-
-      - `:active`
-
-      - `:pending`
-
-      - `:rejected`
-
-  - `type: :user_profile`
-
-    Object type. Always `user_profile`.
-
-    - `:user_profile`
-
-  - `updated_at: Time`
-
-    A timestamp in RFC 3339 format
-
-  - `external_id: String`
-
-    Platform's own identifier for this user. Not enforced unique.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-page = anthropic.beta.user_profiles.list
-
-puts(page)
-```
-
-## Retrieve
-
-`beta.user_profiles.retrieve(user_profile_id, **kwargs) -> BetaUserProfile`
-
-**get** `/v1/user_profiles/{user_profile_id}`
-
-Get User Profile
-
-### Parameters
-
-- `user_profile_id: String`
-
-- `betas: Array[AnthropicBeta]`
-
-  Optional header to specify the beta version(s) you want to use.
-
-  - `String`
-
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
-
-    - `:"message-batches-2024-09-24"`
-
-    - `:"prompt-caching-2024-07-31"`
-
-    - `:"computer-use-2024-10-22"`
-
-    - `:"computer-use-2025-01-24"`
-
-    - `:"pdfs-2024-09-25"`
-
-    - `:"token-counting-2024-11-01"`
-
-    - `:"token-efficient-tools-2025-02-19"`
-
-    - `:"output-128k-2025-02-19"`
-
-    - `:"files-api-2025-04-14"`
-
-    - `:"mcp-client-2025-04-04"`
-
-    - `:"mcp-client-2025-11-20"`
-
-    - `:"dev-full-thinking-2025-05-14"`
-
-    - `:"interleaved-thinking-2025-05-14"`
-
-    - `:"code-execution-2025-05-22"`
-
-    - `:"extended-cache-ttl-2025-04-11"`
-
-    - `:"context-1m-2025-08-07"`
-
-    - `:"context-management-2025-06-27"`
-
-    - `:"model-context-window-exceeded-2025-08-26"`
-
-    - `:"skills-2025-10-02"`
-
-    - `:"fast-mode-2026-02-01"`
-
-    - `:"output-300k-2026-03-24"`
-
-    - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
-
-### Returns
-
-- `class BetaUserProfile`
-
-  - `id: String`
-
-    Unique identifier for this user profile, prefixed `uprof_`.
-
-  - `created_at: Time`
-
-    A timestamp in RFC 3339 format
-
-  - `metadata: Hash[Symbol, String]`
-
-    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
-
-  - `trust_grants: Hash[Symbol, BetaUserProfileTrustGrant]`
-
-    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
-
-    - `status: :active | :pending | :rejected`
-
-      Status of the trust grant.
-
-      - `:active`
-
-      - `:pending`
-
-      - `:rejected`
-
-  - `type: :user_profile`
-
-    Object type. Always `user_profile`.
-
-    - `:user_profile`
-
-  - `updated_at: Time`
-
-    A timestamp in RFC 3339 format
-
-  - `external_id: String`
-
-    Platform's own identifier for this user. Not enforced unique.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_user_profile = anthropic.beta.user_profiles.retrieve("uprof_011CZkZCu8hGbp5mYRQgUmz9")
-
-puts(beta_user_profile)
-```
-
-## Update
-
-`beta.user_profiles.update(user_profile_id, **kwargs) -> BetaUserProfile`
-
-**post** `/v1/user_profiles/{user_profile_id}`
-
-Update User Profile
-
-### Parameters
-
-- `user_profile_id: String`
-
-- `external_id: String`
-
-  If present, replaces the stored external_id. Omit to leave unchanged. Maximum 255 characters.
-
-- `metadata: Hash[Symbol, String]`
-
-  Key-value pairs to merge into the stored metadata. Keys provided overwrite existing values. To remove a key, set its value to an empty string. Keys not provided are left unchanged. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters.
-
-- `betas: Array[AnthropicBeta]`
-
-  Optional header to specify the beta version(s) you want to use.
-
-  - `String`
-
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
-
-    - `:"message-batches-2024-09-24"`
-
-    - `:"prompt-caching-2024-07-31"`
-
-    - `:"computer-use-2024-10-22"`
-
-    - `:"computer-use-2025-01-24"`
-
-    - `:"pdfs-2024-09-25"`
-
-    - `:"token-counting-2024-11-01"`
-
-    - `:"token-efficient-tools-2025-02-19"`
-
-    - `:"output-128k-2025-02-19"`
-
-    - `:"files-api-2025-04-14"`
-
-    - `:"mcp-client-2025-04-04"`
-
-    - `:"mcp-client-2025-11-20"`
-
-    - `:"dev-full-thinking-2025-05-14"`
-
-    - `:"interleaved-thinking-2025-05-14"`
-
-    - `:"code-execution-2025-05-22"`
-
-    - `:"extended-cache-ttl-2025-04-11"`
-
-    - `:"context-1m-2025-08-07"`
-
-    - `:"context-management-2025-06-27"`
-
-    - `:"model-context-window-exceeded-2025-08-26"`
-
-    - `:"skills-2025-10-02"`
-
-    - `:"fast-mode-2026-02-01"`
-
-    - `:"output-300k-2026-03-24"`
-
-    - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
-
-### Returns
-
-- `class BetaUserProfile`
-
-  - `id: String`
-
-    Unique identifier for this user profile, prefixed `uprof_`.
-
-  - `created_at: Time`
-
-    A timestamp in RFC 3339 format
-
-  - `metadata: Hash[Symbol, String]`
-
-    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
-
-  - `trust_grants: Hash[Symbol, BetaUserProfileTrustGrant]`
-
-    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
-
-    - `status: :active | :pending | :rejected`
-
-      Status of the trust grant.
-
-      - `:active`
-
-      - `:pending`
-
-      - `:rejected`
-
-  - `type: :user_profile`
-
-    Object type. Always `user_profile`.
-
-    - `:user_profile`
-
-  - `updated_at: Time`
-
-    A timestamp in RFC 3339 format
-
-  - `external_id: String`
-
-    Platform's own identifier for this user. Not enforced unique.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_user_profile = anthropic.beta.user_profiles.update("uprof_011CZkZCu8hGbp5mYRQgUmz9")
-
-puts(beta_user_profile)
-```
-
-## Create Enrollment URL
-
-`beta.user_profiles.create_enrollment_url(user_profile_id, **kwargs) -> BetaUserProfileEnrollmentURL`
-
-**post** `/v1/user_profiles/{user_profile_id}/enrollment_url`
-
-Create Enrollment URL
-
-### Parameters
-
-- `user_profile_id: String`
-
-- `betas: Array[AnthropicBeta]`
-
-  Optional header to specify the beta version(s) you want to use.
-
-  - `String`
-
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
-
-    - `:"message-batches-2024-09-24"`
-
-    - `:"prompt-caching-2024-07-31"`
-
-    - `:"computer-use-2024-10-22"`
-
-    - `:"computer-use-2025-01-24"`
-
-    - `:"pdfs-2024-09-25"`
-
-    - `:"token-counting-2024-11-01"`
-
-    - `:"token-efficient-tools-2025-02-19"`
-
-    - `:"output-128k-2025-02-19"`
-
-    - `:"files-api-2025-04-14"`
-
-    - `:"mcp-client-2025-04-04"`
-
-    - `:"mcp-client-2025-11-20"`
-
-    - `:"dev-full-thinking-2025-05-14"`
-
-    - `:"interleaved-thinking-2025-05-14"`
-
-    - `:"code-execution-2025-05-22"`
-
-    - `:"extended-cache-ttl-2025-04-11"`
-
-    - `:"context-1m-2025-08-07"`
-
-    - `:"context-management-2025-06-27"`
-
-    - `:"model-context-window-exceeded-2025-08-26"`
-
-    - `:"skills-2025-10-02"`
-
-    - `:"fast-mode-2026-02-01"`
-
-    - `:"output-300k-2026-03-24"`
-
-    - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
-
-### Returns
-
-- `class BetaUserProfileEnrollmentURL`
-
-  - `expires_at: Time`
-
-    A timestamp in RFC 3339 format
-
-  - `type: :enrollment_url`
-
-    Object type. Always `enrollment_url`.
-
-    - `:enrollment_url`
-
-  - `url: String`
-
-    Enrollment URL to send to the end user. Valid until `expires_at`.
-
-### Example
-
-```ruby
-require "anthropic"
-
-anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-
-beta_user_profile_enrollment_url = anthropic.beta.user_profiles.create_enrollment_url("uprof_011CZkZCu8hGbp5mYRQgUmz9")
-
-puts(beta_user_profile_enrollment_url)
-```
-
-## Domain Types
-
-### Beta User Profile
-
-- `class BetaUserProfile`
-
-  - `id: String`
-
-    Unique identifier for this user profile, prefixed `uprof_`.
-
-  - `created_at: Time`
-
-    A timestamp in RFC 3339 format
-
-  - `metadata: Hash[Symbol, String]`
-
-    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
-
-  - `trust_grants: Hash[Symbol, BetaUserProfileTrustGrant]`
-
-    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
-
-    - `status: :active | :pending | :rejected`
-
-      Status of the trust grant.
-
-      - `:active`
-
-      - `:pending`
-
-      - `:rejected`
-
-  - `type: :user_profile`
-
-    Object type. Always `user_profile`.
-
-    - `:user_profile`
-
-  - `updated_at: Time`
-
-    A timestamp in RFC 3339 format
-
-  - `external_id: String`
-
-    Platform's own identifier for this user. Not enforced unique.
-
-### Beta User Profile Enrollment URL
-
-- `class BetaUserProfileEnrollmentURL`
-
-  - `expires_at: Time`
-
-    A timestamp in RFC 3339 format
-
-  - `type: :enrollment_url`
-
-    Object type. Always `enrollment_url`.
-
-    - `:enrollment_url`
-
-  - `url: String`
-
-    Enrollment URL to send to the end user. Valid until `expires_at`.
-
-### Beta User Profile Trust Grant
-
-- `class BetaUserProfileTrustGrant`
-
-  - `status: :active | :pending | :rejected`
-
-    Status of the trust grant.
-
-    - `:active`
-
-    - `:pending`
-
-    - `:rejected`

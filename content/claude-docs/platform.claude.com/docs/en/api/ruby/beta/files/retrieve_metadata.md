@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/retrieve_metadata
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 0095c5094557f25c7ac3b2af4a6938ee06e9b7be4be8b8fb22e05c8b91ac3370
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: f4763a29c93c19542d3ea7f5df2185cfec2058abaacbdde27d468f908481270a
 ---
 
 ## Retrieve Metadata
@@ -25,7 +25,7 @@ Get File Metadata
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -70,8 +70,6 @@ Get File Metadata
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/remote-control
-fetched_at: 2026-04-23T03:11:35.814149Z
-sha256: 5f01ebf5452133ef176414f98df866db152585aa5ad394cfeba3bf1a2f76ed32
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 313e4a4d222403d0a18343a25b67a85f962ad0c7f2e7bd73e7900c63f407570c
 ---
 
 > ## Documentation Index
@@ -195,7 +195,7 @@ If notifications don't arrive:
 * **Local process must keep running**: Remote Control runs as a local process. If you close the terminal, quit VS Code, or otherwise stop the `claude` process, the session ends.
 * **Extended network outage**: if your machine is awake but unable to reach the network for more than roughly 10 minutes, the session times out and the process exits. Run `claude remote-control` again to start a new session.
 * **Ultraplan disconnects Remote Control**: starting an [ultraplan](/en/ultraplan) session disconnects any active Remote Control session because both features occupy the claude.ai/code interface and only one can be connected at a time.
-* **Some commands are local-only**: commands that open an interactive picker in the terminal, such as `/mcp`, `/plugin`, or `/resume`, work only from the local CLI. Commands that produce text output, including `/compact`, `/clear`, `/context`, `/cost`, `/exit`, `/extra-usage`, `/recap`, and `/reload-plugins`, work from mobile and web.
+* **Some commands are local-only**: commands that open an interactive picker in the terminal, such as `/mcp`, `/plugin`, or `/resume`, work only from the local CLI. Commands that produce text output, including `/compact`, `/clear`, `/context`, `/usage`, `/exit`, `/extra-usage`, `/recap`, and `/reload-plugins`, work from mobile and web.
 
 ## Troubleshooting
 

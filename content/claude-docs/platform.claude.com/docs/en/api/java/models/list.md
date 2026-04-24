@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 081f91cb0459014a613845a662472af4e841a11b2cdca82b5b5bf54b5a2c2041
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 25d15be48f41353588b933dd2689c550e3d8a6243fd016dc83bad2fed7003618
 ---
 
 ## List
@@ -80,8 +80,6 @@ The Models API response can be used to determine which models are available for 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 
@@ -190,14 +188,6 @@ The Models API response can be used to determine which models are available for 
       - `boolean supported`
 
         Whether this capability is supported by the model.
-
-      - `Optional<CapabilitySupport> xhigh`
-
-        Indicates whether a capability is supported.
-
-        - `boolean supported`
-
-          Whether this capability is supported by the model.
 
     - `CapabilitySupport imageInput`
 

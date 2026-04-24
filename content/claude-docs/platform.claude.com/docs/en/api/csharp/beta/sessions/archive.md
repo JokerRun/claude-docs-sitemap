@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/archive
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 5ed76f6508ec597ac1b0c16495c574d9af8829fd64bd63f6dee44e8c026af4c6
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 41a2ee3346edace31a4df6aabe9416b1a1b32e0b82af54669ac6e504ca3635db
 ---
 
 ## Archive
@@ -68,8 +68,6 @@ Archive Session
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -430,6 +428,42 @@ Archive Session
       - `required DateTimeOffset UpdatedAt`
 
         A timestamp in RFC 3339 format
+
+    - `class BetaManagedAgentsMemoryStoreResource:`
+
+      A memory store attached to an agent session.
+
+      - `required string MemoryStoreID`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `required Type Type`
+
+        - `"memory_store"MemoryStore`
+
+      - `Access? Access`
+
+        Access mode for an attached memory store.
+
+        - `"read_write"ReadWrite`
+
+        - `"read_only"ReadOnly`
+
+      - `string Description`
+
+        Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+      - `string? Instructions`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+      - `string? MountPath`
+
+        Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+      - `string? Name`
+
+        Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
   - `required BetaManagedAgentsSessionStats Stats`
 

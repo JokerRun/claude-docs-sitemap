@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 3e23d7d852ff0235abda1a5975fe43b5723f19ebbbb31f87cb89863b4ec955c8
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 63d55f1e2bdd71faab2dc921097d51aeeffa862f9dafb30893f92cc51b1b2b38
 ---
 
 # Skills
@@ -78,8 +78,6 @@ Create Skill
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -216,8 +214,6 @@ List Skills
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -358,8 +354,6 @@ Get Skill
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
-
 ### Returns
 
 - `class SkillRetrieveResponse:`
@@ -481,8 +475,6 @@ Delete Skill
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
-
 ### Returns
 
 - `class SkillDeleteResponse:`
@@ -582,8 +574,6 @@ Create Skill Version
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -718,8 +708,6 @@ List Skill Versions
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -865,8 +853,6 @@ Get Skill Version
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
-
 ### Returns
 
 - `class VersionRetrieveResponse:`
@@ -1000,8 +986,6 @@ Delete Skill Version
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

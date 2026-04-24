@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: b509435c6c5ea46dc4dc0d8c65f21f062f63ad253da5089574441c1090af39f8
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 27a1c0b41fb8e26b3183ccfa865e7116daa1f2a96fe4f11ad2ea25c4c3febf9c
 ---
 
 ## Create
@@ -69,8 +69,6 @@ Future models and features will not be compatible with Text Completions. See our
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
-
   - `long maxTokensToSample`
 
     The maximum number of tokens to generate before stopping.
@@ -129,15 +127,15 @@ Future models and features will not be compatible with Text Completions. See our
 
     Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-    Recommended for advanced use cases only. You usually only need to use `temperature`.
+    Recommended for advanced use cases only.
 
   - `Optional<Double> topP`
 
     Use nucleus sampling.
 
-    In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+    In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-    Recommended for advanced use cases only. You usually only need to use `temperature`.
+    Recommended for advanced use cases only.
 
 ### Returns
 

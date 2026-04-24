@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: ca74fed0271b74bcac713f7cfdf3375b3cf72662e551f8d9ea57a50379e7345b
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: e9487bb0ebf71e12a446041335b1d94bfbbfe9e1110dd51e38c7b55daf9b1f5b
 ---
 
 # Messages
@@ -3595,15 +3595,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-    Recommended for advanced use cases only. You usually only need to use `temperature`.
+    Recommended for advanced use cases only.
 
   - `TopP param.Field[float64]`
 
     Use nucleus sampling.
 
-    In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+    In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-    Recommended for advanced use cases only. You usually only need to use `temperature`.
+    Recommended for advanced use cases only.
 
 ### Returns
 
@@ -17467,8 +17467,6 @@ func main() {
 
     - `const OutputConfigEffortHigh OutputConfigEffort = "high"`
 
-    - `const OutputConfigEffortXhigh OutputConfigEffort = "xhigh"`
-
     - `const OutputConfigEffortMax OutputConfigEffort = "max"`
 
   - `Format JSONOutputFormat`
@@ -29436,8 +29434,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `const OutputConfigEffortHigh OutputConfigEffort = "high"`
 
-          - `const OutputConfigEffortXhigh OutputConfigEffort = "xhigh"`
-
           - `const OutputConfigEffortMax OutputConfigEffort = "max"`
 
         - `Format JSONOutputFormat`
@@ -30817,15 +30813,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-        Recommended for advanced use cases only. You usually only need to use `temperature`.
+        Recommended for advanced use cases only.
 
       - `TopP float64`
 
         Use nucleus sampling.
 
-        In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+        In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-        Recommended for advanced use cases only. You usually only need to use `temperature`.
+        Recommended for advanced use cases only.
 
 ### Returns
 

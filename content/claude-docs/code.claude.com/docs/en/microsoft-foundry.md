@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/microsoft-foundry
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 2c3e33a3b7e3ba970762df533d6b7db5c854e77c8b8ace722ea512e159e0226d
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 248fe0204e4a9e8fe969d5eab63cd77514ee4f7acded4524441f0a5e0e2e9ac4
 ---
 
 > ## Documentation Index
@@ -281,6 +281,12 @@ export ANTHROPIC_DEFAULT_HAIKU_MODEL='claude-haiku-4-5'
 ```
 
 For current and legacy model IDs, see [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview). See [Model configuration](/en/model-config#pin-models-for-third-party-deployments) for the full list of environment variables.
+
+[Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) is enabled automatically. To request a 1-hour cache TTL instead of the 5-minute default, set the following variable; cache writes with a 1-hour TTL are billed at a higher rate:
+
+```bash theme={null}
+export ENABLE_PROMPT_CACHING_1H=1
+```
 
 ## Azure RBAC configuration
 

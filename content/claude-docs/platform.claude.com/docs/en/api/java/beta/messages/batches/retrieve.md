@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 66fd948afce3b080c4f59917c1efc6e1a0a1ed69180fddf5d63a4f9bd481b5c1
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 6e3c3b0a48624f5c4f3a30240f62f68f34107ddaa48e5f40e9fbb6356f87c8f7
 ---
 
 ## Retrieve
@@ -70,8 +70,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

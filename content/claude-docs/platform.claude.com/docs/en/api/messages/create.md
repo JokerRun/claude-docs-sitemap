@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 644cb1574eff45152a338cc2b7fb43820b67c50a67f2faba31376b16208366ab
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 07971e1cdf11b7c7ad1974d9e5cff6858de85c29b71eb61d8fedc651a337f818
 ---
 
 ## Create
@@ -2429,7 +2429,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Configuration options for the model's output, such as the output format.
 
-  - `effort: optional "low" or "medium" or "high" or 2 more`
+  - `effort: optional "low" or "medium" or "high" or "max"`
 
     All possible effort levels.
 
@@ -2438,8 +2438,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"medium"`
 
     - `"high"`
-
-    - `"xhigh"`
 
     - `"max"`
 
@@ -3822,15 +3820,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
+  Recommended for advanced use cases only.
 
 - `top_p: optional number`
 
   Use nucleus sampling.
 
-  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
+  Recommended for advanced use cases only.
 
 ### Returns
 

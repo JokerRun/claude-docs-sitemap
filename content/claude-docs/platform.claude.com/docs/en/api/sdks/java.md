@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/java
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 7a8284007b947a4a7f2f7966cd3c992f5eff0216dec2ca46287aaee9a7cf302c
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 3558ff85ef16f1ee2df731e72266df344633bf24ea703ea19db8c1dfcefbf5b7
 ---
 
 # Java SDK
@@ -485,7 +485,6 @@ The SDK defines methods that accept files through the `MultipartField` class:
 
 ```java nocheck
 import com.anthropic.core.MultipartField;
-import com.anthropic.models.beta.AnthropicBeta;
 import com.anthropic.models.beta.files.FileMetadata;
 import com.anthropic.models.beta.files.FileUploadParams;
 
@@ -496,7 +495,6 @@ FileUploadParams params = FileUploadParams.builder()
       .contentType("application/pdf")
       .build()
   )
-  .addBeta(AnthropicBeta.FILES_API_2025_04_14)
   .build();
 
 FileMetadata fileMetadata = client.beta().files().upload(params);
@@ -506,7 +504,6 @@ Or from an `InputStream`:
 
 ```java nocheck
 import com.anthropic.core.MultipartField;
-import com.anthropic.models.beta.AnthropicBeta;
 import com.anthropic.models.beta.files.FileMetadata;
 import com.anthropic.models.beta.files.FileUploadParams;
 
@@ -518,7 +515,6 @@ FileUploadParams params = FileUploadParams.builder()
       .contentType("application/pdf")
       .build()
   )
-  .addBeta(AnthropicBeta.FILES_API_2025_04_14)
   .build();
 
 FileMetadata fileMetadata = client.beta().files().upload(params);
@@ -528,7 +524,6 @@ Or from in-memory bytes:
 
 ```java nocheck
 import com.anthropic.core.MultipartField;
-import com.anthropic.models.beta.AnthropicBeta;
 import com.anthropic.models.beta.files.FileMetadata;
 import com.anthropic.models.beta.files.FileUploadParams;
 
@@ -540,7 +535,6 @@ FileUploadParams params = FileUploadParams.builder()
       .contentType("text/plain")
       .build()
   )
-  .addBeta(AnthropicBeta.FILES_API_2025_04_14)
   .build();
 
 FileMetadata fileMetadata = client.beta().files().upload(params);

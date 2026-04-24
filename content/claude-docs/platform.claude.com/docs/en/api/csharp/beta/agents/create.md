@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: db9c3f55394b89cf67d83e057f3a181eeafc83db55f68ef4f2ea681262ab3bcd
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 01c1a87fb77f1b0a0cc71b5ac0eb96fb60c0183d58bd6fb1a3354a4942431ae8
 ---
 
 ## Create
@@ -426,8 +426,6 @@ Create Agent
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

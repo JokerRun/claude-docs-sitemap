@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 931cbef1fef5bdaf1599453489d950cf07e018073166ff9646f59fded1e54380
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 63b94248d703806433c378e3e5fed4a562224b55e08376e2906020b50cc4fdc5
 ---
 
 # Batches
@@ -2449,7 +2449,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Configuration options for the model's output, such as the output format.
 
-      - `effort: :low | :medium | :high | 2 more`
+      - `effort: :low | :medium | :high | :max`
 
         All possible effort levels.
 
@@ -2458,8 +2458,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `:medium`
 
         - `:high`
-
-        - `:xhigh`
 
         - `:max`
 
@@ -3842,15 +3840,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-      Recommended for advanced use cases only. You usually only need to use `temperature`.
+      Recommended for advanced use cases only.
 
     - `top_p: Float`
 
       Use nucleus sampling.
 
-      In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+      In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-      Recommended for advanced use cases only. You usually only need to use `temperature`.
+      Recommended for advanced use cases only.
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/models/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 7972b204e9482b0fc34f5762fb870d64c8ccc7740a07d1cf9e26407384b927f4
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 2c08672762590c07354955be2a5a571cd33f08ebcce2ac97cf8b06f7a0e03aa7
 ---
 
 ## Retrieve
@@ -74,8 +74,6 @@ The Models API response can be used to determine information about a specific mo
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -184,14 +182,6 @@ The Models API response can be used to determine information about a specific mo
       - `Supported bool`
 
         Whether this capability is supported by the model.
-
-      - `Xhigh BetaCapabilitySupport`
-
-        Indicates whether a capability is supported.
-
-        - `Supported bool`
-
-          Whether this capability is supported by the model.
 
     - `ImageInput BetaCapabilitySupport`
 

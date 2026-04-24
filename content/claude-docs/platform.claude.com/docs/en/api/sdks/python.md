@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/python
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 6b6326337fe8c671a33190c2775e61860082a4e5033fcad0e3e37a75a8623e28
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 06647bc907a7d19f04a283346e83a180552aa5470ed175e507085fd1a5b3a954
 ---
 
 # Python SDK
@@ -342,13 +342,11 @@ client = Anthropic()
 # Upload using a file path
 client.beta.files.upload(
     file=Path("/path/to/file"),
-    betas=["files-api-2025-04-14"],
 )
 
 # Upload using bytes
 client.beta.files.upload(
     file=("file.txt", b"my bytes", "text/plain"),
-    betas=["files-api-2025-04-14"],
 )
 ```
 

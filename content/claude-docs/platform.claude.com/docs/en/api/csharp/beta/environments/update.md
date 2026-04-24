@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/update
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: fdfe6b002b76b573d9224670015c373f6163b02ef9804faa81c41e41c37fd152
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 54f047fda8c1c32efb723ebf7bf51a56e90d199f5c89bef56584d959f2e7c85c
 ---
 
 ## Update
@@ -87,8 +87,6 @@ Update an existing environment's configuration.
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

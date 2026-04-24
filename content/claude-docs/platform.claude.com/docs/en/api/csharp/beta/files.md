@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: daa01fbaad85b5ac24e44912becbd6bd67da59a225c193d84bae8d4dd8350f99
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 554f57a16fb63e4183f506ce390616409cd09c1656393a5c6462ce137880077d
 ---
 
 # Files
@@ -70,8 +70,6 @@ Upload File
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -211,8 +209,6 @@ List Files
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -354,8 +350,6 @@ Download File
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
-
 ### Example
 
 ```csharp
@@ -429,8 +423,6 @@ Get File Metadata
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -553,8 +545,6 @@ Delete File
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

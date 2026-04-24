@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 773853316acf11aeb1788e0351ec7062be5c59190d3e415b47eb69548f816959
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 61718a40f82df0e7e4fe1b9a4f16a8eb2e6cbbc62cb290e544339839b898d6e7
 ---
 
 ## List
@@ -41,7 +41,7 @@ List Agents
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -86,8 +86,6 @@ List Agents
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/completions
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: fbb2cf98e3d2564fc299c87355e1adaebd0c33bdba852f34dbb261e247ee17c5
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 002a1f33fa5aa7c1ebbe11c8fc92b72d841c698ca934d539eae339a7644a57af
 ---
 
 # Completions
@@ -79,15 +79,15 @@ Future models and features will not be compatible with Text Completions. See our
 
   Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
+  Recommended for advanced use cases only.
 
 - `--top-p: optional number`
 
   Body param: Use nucleus sampling.
 
-  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
+  Recommended for advanced use cases only.
 
 - `--beta: optional array of AnthropicBeta`
 

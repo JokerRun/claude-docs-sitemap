@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/agents/update
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 61f419c8e370e19f0f1a2e2082eceaa0044e2e3be74206a1c7a9bbe1ddfbea76
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: aef1b12ce3dfa4477554851f730d83dea6d53b9f1a3258e5958b2ed42ddc1826
 ---
 
 ## Update
@@ -421,7 +421,7 @@ Update Agent
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -466,8 +466,6 @@ Update Agent
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

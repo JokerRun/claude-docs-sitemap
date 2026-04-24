@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-04-22T03:11:35.366211Z
-sha256: 49247abc9a6cec1ed2c76f3654d7c13b001bb5104fac5e3182f4ed81dab1b67f
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 768e7c9a233968641b70fec9023899c5c62bb7e35cdf9b11b1968b72af13c184
 ---
 
 > ## Documentation Index
@@ -822,7 +822,7 @@ class ClaudeAgentOptions:
 | `cli_path`                    | `str \| Path \| None`                                                                  | `None`                             | Custom path to the Claude Code CLI executable                                                                                                                                                                                                                             |
 | `settings`                    | `str \| None`                                                                          | `None`                             | Path to settings file                                                                                                                                                                                                                                                     |
 | `add_dirs`                    | `list[str \| Path]`                                                                    | `[]`                               | Additional directories Claude can access                                                                                                                                                                                                                                  |
-| `env`                         | `dict[str, str]`                                                                       | `{}`                               | Environment variables                                                                                                                                                                                                                                                     |
+| `env`                         | `dict[str, str]`                                                                       | `{}`                               | Environment variables merged on top of the inherited process environment. See [Environment variables](/en/env-vars) for variables the underlying CLI reads                                                                                                                |
 | `extra_args`                  | `dict[str, str \| None]`                                                               | `{}`                               | Additional CLI arguments to pass directly to the CLI                                                                                                                                                                                                                      |
 | `max_buffer_size`             | `int \| None`                                                                          | `None`                             | Maximum bytes when buffering CLI stdout                                                                                                                                                                                                                                   |
 | `debug_stderr`                | `Any`                                                                                  | `sys.stderr`                       | *Deprecated* - File-like object for debug output. Use `stderr` callback instead                                                                                                                                                                                           |
@@ -1806,7 +1806,7 @@ HookEvent = Literal[
 ```
 
 <Note>
-  The TypeScript SDK supports additional hook events not yet available in Python: `SessionStart`, `SessionEnd`, `Setup`, `TeammateIdle`, `TaskCompleted`, `ConfigChange`, `WorktreeCreate`, and `WorktreeRemove`.
+  The TypeScript SDK supports additional hook events not yet available in Python: `SessionStart`, `SessionEnd`, `Setup`, `TeammateIdle`, `TaskCompleted`, `ConfigChange`, `WorktreeCreate`, `WorktreeRemove`, and `PostToolBatch`.
 </Note>
 
 ### `HookCallback`

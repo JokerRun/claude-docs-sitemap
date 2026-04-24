@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-04-23T03:11:35.814149Z
-sha256: 0b7bda9340c3b82767343eca7eb090dbbb71138c2c2523adabdbe3f1cb9f2892
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 5c9e210d98563acdf14a58cd007ca9a61cd798d37433ad170ed7bf377bf557fa
 ---
 
 > ## Documentation Index
@@ -112,9 +112,9 @@ Actions available in the `Chat` context:
 | `chat:clearInput`     | Ctrl+L                    | Clear prompt input and force a full screen redraw |
 | `chat:killAgents`     | Ctrl+X Ctrl+K             | Kill all background agents                        |
 | `chat:cycleMode`      | Shift+Tab\*               | Cycle permission modes                            |
-| `chat:modelPicker`    | Cmd+P / Meta+P            | Open model picker                                 |
+| `chat:modelPicker`    | Meta+P                    | Open model picker                                 |
 | `chat:fastMode`       | Meta+O                    | Toggle fast mode                                  |
-| `chat:thinkingToggle` | Cmd+T / Meta+T            | Toggle extended thinking                          |
+| `chat:thinkingToggle` | Meta+T                    | Toggle extended thinking                          |
 | `chat:submit`         | Enter                     | Submit message                                    |
 | `chat:newline`        | Ctrl+J                    | Insert a newline without submitting               |
 | `chat:undo`           | Ctrl+\_, Ctrl+Shift+-     | Undo last action                                  |
@@ -350,16 +350,18 @@ Actions available in the `Scroll` context when [fullscreen rendering](/en/fullsc
 Use modifier keys with the `+` separator:
 
 * `ctrl` or `control` - Control key
-* `alt`, `opt`, or `option` - Alt/Option key
 * `shift` - Shift key
-* `meta`, `cmd`, or `command` - Meta/Command key
+* `alt`, `opt`, `option`, or `meta` - Alt key on Windows and Linux, Option key on macOS
+* `cmd`, `command`, `super`, or `win` - Command key on macOS, Windows key on Windows, Super key on Linux
+
+The `cmd` group is only detected in terminals that report the Super modifier, such as those supporting the Kitty keyboard protocol or xterm's `modifyOtherKeys` mode. Most terminals do not send it, so use `ctrl` or `meta` for bindings you want to work everywhere.
 
 For example:
 
 ```text theme={null}
-ctrl+k          Single key with modifier
+ctrl+k          Ctrl + K
 shift+tab       Shift + Tab
-meta+p          Command/Meta + P
+meta+p          Option + P on macOS, Alt + P elsewhere
 ctrl+shift+c    Multiple modifiers
 ```
 

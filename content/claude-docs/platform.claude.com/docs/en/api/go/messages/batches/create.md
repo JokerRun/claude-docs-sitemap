@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 1cd19ca79e23e948fd48935bf85452c1b886e5b1b147b9b07b185b2cfb373fb6
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 9cdc81b5f3ceb96c11ad94956f9e50a5cd41247c351ac36626fdceba51f7dfc1
 ---
 
 ## Create
@@ -2455,8 +2455,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `const OutputConfigEffortHigh OutputConfigEffort = "high"`
 
-          - `const OutputConfigEffortXhigh OutputConfigEffort = "xhigh"`
-
           - `const OutputConfigEffortMax OutputConfigEffort = "max"`
 
         - `Format JSONOutputFormat`
@@ -3836,15 +3834,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-        Recommended for advanced use cases only. You usually only need to use `temperature`.
+        Recommended for advanced use cases only.
 
       - `TopP float64`
 
         Use nucleus sampling.
 
-        In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+        In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-        Recommended for advanced use cases only. You usually only need to use `temperature`.
+        Recommended for advanced use cases only.
 
 ### Returns
 

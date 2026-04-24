@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/events/stream
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 7590df903791b1853f59e82e3e688ff1431b1a416cf9e77a4cd7ed547c2e572b
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: b24be06ebe5ecb08686052715f95e14748249f89bdbd854efa9854e55dfc59ba
 ---
 
 ## Stream
@@ -23,7 +23,7 @@ Stream Events
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -68,8 +68,6 @@ Stream Events
     - `"output-300k-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
-
-    - `"user-profiles-2026-03-24"`
 
 ### Returns
 

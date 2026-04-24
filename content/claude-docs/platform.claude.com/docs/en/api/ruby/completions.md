@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/completions
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: c4fc5551382aaa3e2a4fb3916d9a73aa7801a9c8ab5b390b5c72acd699672dc4
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: a05392297cb57ddd7b8299c0387479b5d412c87575d3419fb79dfb054325f742
 ---
 
 # Completions
@@ -167,15 +167,15 @@ Future models and features will not be compatible with Text Completions. See our
 
   Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
+  Recommended for advanced use cases only.
 
 - `top_p: Float`
 
   Use nucleus sampling.
 
-  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+  In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
-  Recommended for advanced use cases only. You usually only need to use `temperature`.
+  Recommended for advanced use cases only.
 
 - `betas: Array[AnthropicBeta]`
 
@@ -183,7 +183,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -228,8 +228,6 @@ Future models and features will not be compatible with Text Completions. See our
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 

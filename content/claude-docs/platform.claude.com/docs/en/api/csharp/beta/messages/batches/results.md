@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/results
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: cf0cb862b65e81045231bb8f7431af044ceaec4a58b46437c228a06ca6264298
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 24fd381e2a7dc01ba24575019762a34622ce5959ffb1009e5a7594c9938ad7d5
 ---
 
 ## Results
@@ -72,8 +72,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -883,10 +881,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `required string? Content`
 
               Summary of compacted content, or null if compaction failed
-
-            - `required string? EncryptedContent`
-
-              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `JsonElement Type "compaction"constant`
 

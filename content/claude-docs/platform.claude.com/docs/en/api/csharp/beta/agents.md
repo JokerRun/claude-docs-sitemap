@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: a5bf3122e32cc5b11e2c17b765fb331e1877de73f38b65c4e495088a579525f9
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 0b1932777ffbd9c2d7725c52a99e473542fb17f03e79c753b320e867b49912e6
 ---
 
 # Agents
@@ -429,8 +429,6 @@ Create Agent
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
-
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -819,8 +817,6 @@ List Agents
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
-
 ### Returns
 
 - `class AgentListPageResponse:`
@@ -1202,8 +1198,6 @@ Get Agent
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -1942,8 +1936,6 @@ Update Agent
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
-
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -2315,8 +2307,6 @@ Archive Agent
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -3926,8 +3916,6 @@ List Agent Versions
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

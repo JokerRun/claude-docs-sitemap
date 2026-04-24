@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/models/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 63671bc768874ee2771f9753d069bfd3b39061fcba32eabf9a4b46d4d2baaf67
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: cee06c3353cd230d1920e48b351ea821c58a5573dfebdcf9d674946c29d3c102
 ---
 
 ## Retrieve
@@ -70,8 +70,6 @@ The Models API response can be used to determine information about a specific mo
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 
@@ -180,14 +178,6 @@ The Models API response can be used to determine information about a specific mo
       - `required Boolean Supported`
 
         Whether this capability is supported by the model.
-
-      - `required BetaCapabilitySupport? Xhigh`
-
-        Indicates whether a capability is supported.
-
-        - `required Boolean Supported`
-
-          Whether this capability is supported by the model.
 
     - `required BetaCapabilitySupport ImageInput`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-04-23T03:11:35.814149Z
-sha256: b8c6c73ba2150333991f03bec099ffd6964152cd0a71dc53ac6387915733c057
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 4e217894dc3494ee9cb5d9d6f10372d88b2dfccb8f17708ccb7c1a32cc68f51e
 ---
 
 > ## Documentation Index
@@ -241,6 +241,8 @@ Set `DISABLE_AUTOUPDATER` to `"1"` in the `env` key of your [`settings.json`](/e
   }
 }
 ```
+
+`DISABLE_AUTOUPDATER` only stops the background check; `claude update` and `claude install` still work. To block all update paths, including manual updates, set [`DISABLE_UPDATES`](/en/env-vars) instead. Use this when you distribute Claude Code through your own channels and need users to stay on the version you provide.
 
 ### Update manually
 

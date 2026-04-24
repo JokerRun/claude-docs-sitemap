@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/events/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: e49e181026bb9e34aa2057c1b3759336e9a17d6344f783e6d23d67481ef46438
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 39eb4c58889f0d3691b5c3d7af369bddd8911d9e92170df242e6839106f81f9f
 ---
 
 ## List
@@ -82,8 +82,6 @@ List Events
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

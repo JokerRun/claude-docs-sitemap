@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/models/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 83fdc8e56cfc0130f6b4cab6a8ad32e9e242b600c3601ef8cfef57c952c97293
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: e10ee4385e0a690afa8e6d79f94c14d23d9772f7342fa90bde1ffb0a90cdd780
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -72,8 +72,6 @@ The Models API response can be used to determine information about a specific mo
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -182,14 +180,6 @@ The Models API response can be used to determine information about a specific mo
       - `supported: bool`
 
         Whether this capability is supported by the model.
-
-      - `xhigh: BetaCapabilitySupport`
-
-        Indicates whether a capability is supported.
-
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 

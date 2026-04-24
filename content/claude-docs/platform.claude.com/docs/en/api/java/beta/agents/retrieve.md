@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 678df3b13a20b6b42aa28f55dece8c11ca0e790f7bf273a062fabc4a12c82cc3
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: cd53b686ed3361f630c9b2777b95c9ada401d05eca0e250cceffdcd0b53c2e7a
 ---
 
 ## Retrieve
@@ -70,8 +70,6 @@ Get Agent
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
 ### Returns
 

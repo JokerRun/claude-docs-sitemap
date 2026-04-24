@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 7bf27a35419cb79fa3619a3c20331d100a3a47b4a5457efd12cbb0b0912c8d70
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 3fb5a98e3afafac2eb095e7d77ead8de78b4fbfc18a2bd554c05a5f5bf7c2c90
 ---
 
 ## List
@@ -80,8 +80,6 @@ List Credentials
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
-    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
 ### Returns
 

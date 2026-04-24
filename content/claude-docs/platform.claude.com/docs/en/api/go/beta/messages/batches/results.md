@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/results
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 6fba7c3c572ddcc75b0e2fcb0261c0a70bd0ef5a4acc57c35af806d5a7b02e74
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: f78de1ac13e73bec04e41dc9155e2e9532b24b909ea9a950668b6656e1d08ab6
 ---
 
 ## Results
@@ -76,8 +76,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
-      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -1017,10 +1015,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `Content string`
 
               Summary of compacted content, or null if compaction failed
-
-            - `EncryptedContent string`
-
-              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `Type Compaction`
 

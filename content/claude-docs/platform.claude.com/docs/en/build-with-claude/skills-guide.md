@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 84ff0363332c7a94d374a776325dee1a4175e7b856630435eafcea3283677f57
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 8feadbbf7dbd7119d7ddc5f201955a7f51baab3be7588d4ed2bab7042716a3cf
 ---
 
 # Using Agent Skills with the API
@@ -525,12 +525,8 @@ def extract_file_ids(response):
 
 # Step 3: Download the file using Files API
 for file_id in extract_file_ids(response):
-    file_metadata = client.beta.files.retrieve_metadata(
-        file_id=file_id, betas=["files-api-2025-04-14"]
-    )
-    file_content = client.beta.files.download(
-        file_id=file_id, betas=["files-api-2025-04-14"]
-    )
+    file_metadata = client.beta.files.retrieve_metadata(file_id=file_id)
+    file_content = client.beta.files.download(file_id=file_id)
 
     # Step 4: Save to disk
     file_content.write_to_file(file_metadata.filename)
@@ -583,12 +579,8 @@ function extractFileIds(response: any): string[] {
 
 // Step 3: Download the file using Files API
 for (const fileId of extractFileIds(response)) {
-  const fileMetadata = await client.beta.files.retrieveMetadata(fileId, {
-    betas: ["files-api-2025-04-14"]
-  });
-  const fileContent = await client.beta.files.download(fileId, {
-    betas: ["files-api-2025-04-14"]
-  });
+  const fileMetadata = await client.beta.files.retrieveMetadata(fileId);
+  const fileContent = await client.beta.files.download(fileId);
 
   // Step 4: Save to disk
   await fs.writeFile(fileMetadata.filename, Buffer.from(await fileContent.arrayBuffer()));
@@ -659,17 +651,9 @@ class Program
         // Step 3: Download the file using Files API
         foreach (var fileId in fileIds)
         {
-            var fileMetadata = await client.Beta.Files.RetrieveMetadata(fileId,
-                new FileRetrieveMetadataParams
-                {
-                    Betas = new[] { "files-api-2025-04-14" }
-                });
+            var fileMetadata = await client.Beta.Files.RetrieveMetadata(fileId);
 
-            var fileContent = await client.Beta.Files.Download(fileId,
-                new FileDownloadParams
-                {
-                    Betas = new[] { "files-api-2025-04-14" }
-                });
+            var fileContent = await client.Beta.Files.Download(fileId);
 
             // Step 4: Save to disk
             await File.WriteAllBytesAsync(fileMetadata.Filename, fileContent);
@@ -704,7 +688,7 @@ class Program
 </Tab>
 <Tab title="Go">
 
-```go Go hidelines={1..15,72..73}
+```go Go hidelines={1..15,68..69}
 package main
 
 import (
@@ -752,16 +736,12 @@ func main() {
 
 	// Step 3: Download the file using Files API
 	for _, fileID := range fileIDs {
-		fileMetadata, err := client.Beta.Files.GetMetadata(context.TODO(), fileID, anthropic.BetaFileGetMetadataParams{
-			Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-		})
+		fileMetadata, err := client.Beta.Files.GetMetadata(context.TODO(), fileID, anthropic.BetaFileGetMetadataParams{})
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		fileContent, err := client.Beta.Files.Download(context.TODO(), fileID, anthropic.BetaFileDownloadParams{
-			Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-		})
+		fileContent, err := client.Beta.Files.Download(context.TODO(), fileID, anthropic.BetaFileDownloadParams{})
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -918,7 +898,6 @@ $apiKey = getenv("ANTHROPIC_API_KEY");
 foreach (extractFileIds($response) as $fileId) {
     $fileMetadata = $client->beta->files->retrieveMetadata(
         fileID: $fileId,
-        betas: ['files-api-2025-04-14']
     );
 
     // Download file content via REST API
@@ -986,15 +965,9 @@ end
 
 # Step 3: Download the file using Files API
 extract_file_ids(response).each do |file_id|
-  file_metadata = client.beta.files.retrieve_metadata(
-    file_id,
-    betas: ["files-api-2025-04-14"]
-  )
+  file_metadata = client.beta.files.retrieve_metadata(file_id)
 
-  file_content = client.beta.files.download(
-    file_id,
-    betas: ["files-api-2025-04-14"]
-  )
+  file_content = client.beta.files.download(file_id)
 
   # Step 4: Save to disk
   File.binwrite(file_metadata.filename, file_content.read)
@@ -1052,18 +1025,16 @@ import anthropic
 client = anthropic.Anthropic()
 file_id = "file_abc123"
 # Get file metadata
-file_info = client.beta.files.retrieve_metadata(
-    file_id=file_id, betas=["files-api-2025-04-14"]
-)
+file_info = client.beta.files.retrieve_metadata(file_id=file_id)
 print(f"Filename: {file_info.filename}, Size: {file_info.size_bytes} bytes")
 
 # List all files
-files = client.beta.files.list(betas=["files-api-2025-04-14"])
+files = client.beta.files.list()
 for file in files.data:
     print(f"{file.filename} - {file.created_at}")
 
 # Delete a file
-client.beta.files.delete(file_id=file_id, betas=["files-api-2025-04-14"])
+client.beta.files.delete(file_id=file_id)
 ```
 
 ```typescript TypeScript nocheck hidelines={1..2}
@@ -1073,23 +1044,17 @@ const client = new Anthropic();
 const fileId = "file_011CNha8iCJcU1wXNR6q4V8w";
 
 // Get file metadata
-const fileInfo = await client.beta.files.retrieveMetadata(fileId, {
-  betas: ["files-api-2025-04-14"]
-});
+const fileInfo = await client.beta.files.retrieveMetadata(fileId);
 console.log(`Filename: ${fileInfo.filename}, Size: ${fileInfo.size_bytes} bytes`);
 
 // List all files
-const files = await client.beta.files.list({
-  betas: ["files-api-2025-04-14"]
-});
+const files = await client.beta.files.list();
 for (const file of files.data) {
   console.log(`${file.filename} - ${file.created_at}`);
 }
 
 // Delete a file
-await client.beta.files.delete(fileId, {
-  betas: ["files-api-2025-04-14"]
-});
+await client.beta.files.delete(fileId);
 ```
 
 ```csharp C# nocheck
@@ -1106,18 +1071,18 @@ class Program
         string fileId = "file_abc123";
 
         // Get file metadata
-        var fileInfo = await client.Beta.Files.RetrieveMetadata(fileId, new() { Betas = ["files-api-2025-04-14"] });
+        var fileInfo = await client.Beta.Files.RetrieveMetadata(fileId);
         Console.WriteLine($"Filename: {fileInfo.Filename}, Size: {fileInfo.SizeBytes} bytes");
 
         // List all files
-        var files = await client.Beta.Files.List(new() { Betas = ["files-api-2025-04-14"] });
+        var files = await client.Beta.Files.List();
         foreach (var file in files.Data)
         {
             Console.WriteLine($"{file.Filename} - {file.CreatedAt}");
         }
 
         // Delete a file
-        await client.Beta.Files.Delete(fileId, new() { Betas = ["files-api-2025-04-14"] });
+        await client.Beta.Files.Delete(fileId);
     }
 }
 ```
@@ -1138,27 +1103,21 @@ func main() {
 	fileID := "file_abc123"
 
 	// Get file metadata
-	fileInfo, err := client.Beta.Files.GetMetadata(context.TODO(), fileID, anthropic.BetaFileGetMetadataParams{
-		Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-	})
+	fileInfo, err := client.Beta.Files.GetMetadata(context.TODO(), fileID, anthropic.BetaFileGetMetadataParams{})
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Printf("Filename: %s, Size: %d bytes\n", fileInfo.Filename, fileInfo.SizeBytes)
 
 	// List all files
-	files := client.Beta.Files.ListAutoPaging(context.TODO(), anthropic.BetaFileListParams{
-		Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-	})
+	files := client.Beta.Files.ListAutoPaging(context.TODO(), anthropic.BetaFileListParams{})
 	for files.Next() {
 		file := files.Current()
 		fmt.Printf("%s - %s\n", file.Filename, file.CreatedAt)
 	}
 
 	// Delete a file
-	_, err = client.Beta.Files.Delete(context.TODO(), fileID, anthropic.BetaFileDeleteParams{
-		Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-	})
+	_, err = client.Beta.Files.Delete(context.TODO(), fileID, anthropic.BetaFileDeleteParams{})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -1203,14 +1162,11 @@ $fileId = "file_abc123";
 // Get file metadata
 $fileInfo = $client->beta->files->retrieveMetadata(
     fileID: $fileId,
-    betas: ['files-api-2025-04-14']
 );
 echo "Filename: {$fileInfo->filename}, Size: {$fileInfo->sizeBytes} bytes\n";
 
 // List all files
-$files = $client->beta->files->list(
-    betas: ['files-api-2025-04-14']
-);
+$files = $client->beta->files->list();
 foreach ($files->data as $file) {
     echo "{$file->filename} - {$file->createdAt}\n";
 }
@@ -1218,7 +1174,6 @@ foreach ($files->data as $file) {
 // Delete a file
 $client->beta->files->delete(
     fileID: $fileId,
-    betas: ['files-api-2025-04-14']
 );
 ```
 
@@ -1229,23 +1184,17 @@ client = Anthropic::Client.new
 file_id = "file_abc123"
 
 # Get file metadata
-file_info = client.beta.files.retrieve_metadata(
-  file_id,
-  betas: ["files-api-2025-04-14"]
-)
+file_info = client.beta.files.retrieve_metadata(file_id)
 puts "Filename: #{file_info.filename}, Size: #{file_info.size_bytes} bytes"
 
 # List all files
-files = client.beta.files.list(betas: ["files-api-2025-04-14"])
+files = client.beta.files.list
 files.data.each do |file|
   puts "#{file.filename} - #{file.created_at}"
 end
 
 # Delete a file
-client.beta.files.delete(
-  file_id,
-  betas: ["files-api-2025-04-14"]
-)
+client.beta.files.delete(file_id)
 ```
 </CodeGroup>
 
@@ -2631,14 +2580,12 @@ from anthropic.lib import files_from_dir
 skill = client.beta.skills.create(
     display_title="Financial Analysis",
     files=files_from_dir("/path/to/financial_analysis_skill"),
-    betas=["skills-2025-10-02"],
 )
 
 # Option 2: Using a zip file
 skill = client.beta.skills.create(
     display_title="Financial Analysis",
     files=[("skill.zip", open("financial_analysis_skill.zip", "rb"))],
-    betas=["skills-2025-10-02"],
 )
 
 # Option 3: Using file tuples (filename, file_content, mime_type)
@@ -2656,7 +2603,6 @@ skill = client.beta.skills.create(
             "text/x-python",
         ),
     ],
-    betas=["skills-2025-10-02"],
 )
 
 print(f"Created skill: {skill.id}")
@@ -2672,8 +2618,7 @@ const client = new Anthropic();
 // Option 1: Using a zip file
 const skillFromZip = await client.beta.skills.create({
   display_title: "Financial Analysis",
-  files: [await toFile(fs.createReadStream("financial_analysis_skill.zip"), "skill.zip")],
-  betas: ["skills-2025-10-02"]
+  files: [await toFile(fs.createReadStream("financial_analysis_skill.zip"), "skill.zip")]
 });
 
 // Option 2: Using individual file objects
@@ -2688,8 +2633,7 @@ const skill = await client.beta.skills.create({
       "financial_skill/analyze.py",
       { type: "text/x-python" }
     )
-  ],
-  betas: ["skills-2025-10-02"]
+  ]
 });
 
 console.log(`Created skill: ${skill.id}`);
@@ -2716,7 +2660,6 @@ class Program
             Files = [
                 new FileStream("financial_analysis_skill.zip", FileMode.Open, FileAccess.Read)
             ],
-            Betas = ["skills-2025-10-02"]
         };
 
         var skill = await client.Beta.Skills.Create(parameters);
@@ -2729,7 +2672,6 @@ class Program
                 new FileStream("financial_skill/SKILL.md", FileMode.Open, FileAccess.Read),
                 new FileStream("financial_skill/analyze.py", FileMode.Open, FileAccess.Read)
             ],
-            Betas = ["skills-2025-10-02"]
         };
 
         var skill2 = await client.Beta.Skills.Create(parameters2);
@@ -2766,7 +2708,6 @@ func main() {
 	skill, err := client.Beta.Skills.New(context.TODO(), anthropic.BetaSkillNewParams{
 		DisplayTitle: anthropic.String("Financial Analysis"),
 		Files:        []io.Reader{zipFile},
-		Betas:        []anthropic.AnthropicBeta{anthropic.AnthropicBetaSkills2025_10_02},
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -2788,7 +2729,6 @@ func main() {
 	skill2, err := client.Beta.Skills.New(context.TODO(), anthropic.BetaSkillNewParams{
 		DisplayTitle: anthropic.String("Financial Analysis"),
 		Files:        []io.Reader{skillMd, analyzePy},
-		Betas:        []anthropic.AnthropicBeta{anthropic.AnthropicBetaSkills2025_10_02},
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -2817,7 +2757,6 @@ public class SkillCreate {
         SkillCreateParams params = SkillCreateParams.builder()
             .displayTitle("Financial Analysis")
             .addFile(new FileInputStream("financial_analysis_skill.zip"))
-            .addBeta("skills-2025-10-02")
             .build();
 
         SkillCreateResponse skill = client.beta().skills().create(params);
@@ -2827,7 +2766,6 @@ public class SkillCreate {
             .displayTitle("Financial Analysis")
             .addFile(Path.of("financial_skill/SKILL.md"))
             .addFile(Path.of("financial_skill/analyze.py"))
-            .addBeta("skills-2025-10-02")
             .build();
 
         SkillCreateResponse skill2 = client.beta().skills().create(params2);
@@ -2851,7 +2789,6 @@ $skill = $client->beta->skills->create(
     files: [
         fopen('financial_analysis_skill.zip', 'r')
     ],
-    betas: ['skills-2025-10-02']
 );
 
 // Option 2: Using individual files
@@ -2861,7 +2798,6 @@ $skill = $client->beta->skills->create(
         fopen('financial_skill/SKILL.md', 'r'),
         fopen('financial_skill/analyze.py', 'r')
     ],
-    betas: ['skills-2025-10-02']
 );
 
 echo "Created skill: {$skill->id}\n";
@@ -2878,8 +2814,7 @@ skill = client.beta.skills.create(
   display_title: "Financial Analysis",
   files: [
     File.open("financial_analysis_skill.zip", "rb")
-  ],
-  betas: ["skills-2025-10-02"]
+  ]
 )
 
 # Option 2: Using individual files
@@ -2888,8 +2823,7 @@ skill = client.beta.skills.create(
   files: [
     File.open("financial_skill/SKILL.md", "rb"),
     File.open("financial_skill/analyze.py", "rb")
-  ],
-  betas: ["skills-2025-10-02"]
+  ]
 )
 
 puts "Created skill: #{skill.id}"
@@ -2936,20 +2870,18 @@ ant beta:skills list --source custom
 
 ```python Python
 # List all Skills
-skills = client.beta.skills.list(betas=["skills-2025-10-02"])
+skills = client.beta.skills.list()
 
 for skill in skills.data:
     print(f"{skill.id}: {skill.display_title} (source: {skill.source})")
 
 # List only custom Skills
-custom_skills = client.beta.skills.list(source="custom", betas=["skills-2025-10-02"])
+custom_skills = client.beta.skills.list(source="custom")
 ```
 
 ```typescript TypeScript
 // List all Skills
-const skills = await client.beta.skills.list({
-  betas: ["skills-2025-10-02"]
-});
+const skills = await client.beta.skills.list();
 
 for (const skill of skills.data) {
   console.log(`${skill.id}: ${skill.display_title} (source: ${skill.source})`);
@@ -2957,8 +2889,7 @@ for (const skill of skills.data) {
 
 // List only custom Skills
 const customSkills = await client.beta.skills.list({
-  source: "custom",
-  betas: ["skills-2025-10-02"]
+  source: "custom"
 });
 ```
 
@@ -2975,10 +2906,7 @@ class Program
         AnthropicClient client = new();
 
         // List all Skills
-        var skills = await client.Beta.Skills.List(new SkillListParams
-        {
-            Betas = new[] { "skills-2025-10-02" }
-        });
+        var skills = await client.Beta.Skills.List();
 
         foreach (var skill in skills.Data)
         {
@@ -2989,7 +2917,6 @@ class Program
         var customSkills = await client.Beta.Skills.List(new SkillListParams
         {
             Source = "custom",
-            Betas = new[] { "skills-2025-10-02" }
         });
     }
 }
@@ -3010,9 +2937,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	// List all Skills
-	skills := client.Beta.Skills.ListAutoPaging(context.TODO(), anthropic.BetaSkillListParams{
-		Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaSkills2025_10_02},
-	})
+	skills := client.Beta.Skills.ListAutoPaging(context.TODO(), anthropic.BetaSkillListParams{})
 
 	for skills.Next() {
 		skill := skills.Current()
@@ -3025,7 +2950,6 @@ func main() {
 	// List only custom Skills
 	customSkills := client.Beta.Skills.ListAutoPaging(context.TODO(), anthropic.BetaSkillListParams{
 		Source: anthropic.String("custom"),
-		Betas:  []anthropic.AnthropicBeta{anthropic.AnthropicBetaSkills2025_10_02},
 	})
 
 	for customSkills.Next() {
@@ -3047,11 +2971,7 @@ public class ListSkills {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         // List all Skills
-        SkillListParams params = SkillListParams.builder()
-            .addBeta("skills-2025-10-02")
-            .build();
-
-        SkillListPage skills = client.beta().skills().list(params);
+        SkillListPage skills = client.beta().skills().list();
 
         for (SkillListResponse skill : skills.data()) {
             System.out.println(skill.id() + ": " + skill.displayTitle() + " (source: " + skill.source() + ")");
@@ -3060,7 +2980,6 @@ public class ListSkills {
         // List only custom Skills
         SkillListParams customParams = SkillListParams.builder()
             .source("custom")
-            .addBeta("skills-2025-10-02")
             .build();
 
         SkillListPage customSkills = client.beta().skills().list(customParams);
@@ -3076,9 +2995,7 @@ use Anthropic\Client;
 $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
 
 // List all Skills
-$skills = $client->beta->skills->list(
-    betas: ['skills-2025-10-02']
-);
+$skills = $client->beta->skills->list();
 
 foreach ($skills->data as $skill) {
     echo "{$skill->id}: {$skill->displayTitle} (source: {$skill->source})\n";
@@ -3087,7 +3004,6 @@ foreach ($skills->data as $skill) {
 // List only custom Skills
 $customSkills = $client->beta->skills->list(
     source: 'custom',
-    betas: ['skills-2025-10-02']
 );
 ```
 
@@ -3097,7 +3013,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 # List all Skills
-skills = client.beta.skills.list(betas: ["skills-2025-10-02"])
+skills = client.beta.skills.list
 
 skills.data.each do |skill|
   puts "#{skill.id}: #{skill.display_title} (source: #{skill.source})"
@@ -3105,8 +3021,7 @@ end
 
 # List only custom Skills
 custom_skills = client.beta.skills.list(
-  source: "custom",
-  betas: ["skills-2025-10-02"]
+  source: "custom"
 )
 ```
 </CodeGroup>
@@ -3132,9 +3047,7 @@ ant beta:skills retrieve \
 ```
 
 ```python Python nocheck
-skill = client.beta.skills.retrieve(
-    skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv", betas=["skills-2025-10-02"]
-)
+skill = client.beta.skills.retrieve(skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv")
 
 print(f"Skill: {skill.display_title}")
 print(f"Latest version: {skill.latest_version}")
@@ -3142,9 +3055,7 @@ print(f"Created: {skill.created_at}")
 ```
 
 ```typescript TypeScript nocheck
-const skill = await client.beta.skills.retrieve("skill_01AbCdEfGhIjKlMnOpQrStUv", {
-  betas: ["skills-2025-10-02"]
-});
+const skill = await client.beta.skills.retrieve("skill_01AbCdEfGhIjKlMnOpQrStUv");
 
 console.log(`Skill: ${skill.display_title}`);
 console.log(`Latest version: ${skill.latest_version}`);
@@ -3163,10 +3074,7 @@ class Program
     {
         AnthropicClient client = new();
 
-        var skill = await client.Beta.Skills.Retrieve(
-            "skill_01AbCdEfGhIjKlMnOpQrStUv",
-            new() { Betas = ["skills-2025-10-02"] }
-        );
+        var skill = await client.Beta.Skills.Retrieve("skill_01AbCdEfGhIjKlMnOpQrStUv");
 
         Console.WriteLine($"Skill: {skill.DisplayTitle}");
         Console.WriteLine($"Latest version: {skill.LatestVersion}");
@@ -3192,9 +3100,7 @@ func main() {
 	skill, err := client.Beta.Skills.Get(
 		context.TODO(),
 		"skill_01AbCdEfGhIjKlMnOpQrStUv",
-		anthropic.BetaSkillGetParams{
-			Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaSkills2025_10_02},
-		},
+		anthropic.BetaSkillGetParams{},
 	)
 	if err != nil {
 		log.Fatal(err)
@@ -3206,22 +3112,16 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..2,5..7,-2..}
+```java Java nocheck hidelines={1..2,4..6,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.skills.SkillRetrieveParams;
 import com.anthropic.models.beta.skills.SkillRetrieveResponse;
 
 public class RetrieveSkill {
     public static void main(String[] args) {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        SkillRetrieveResponse skill = client.beta().skills().retrieve(
-            "skill_01AbCdEfGhIjKlMnOpQrStUv",
-            SkillRetrieveParams.builder()
-                .addBeta("skills-2025-10-02")
-                .build()
-        );
+        SkillRetrieveResponse skill = client.beta().skills().retrieve("skill_01AbCdEfGhIjKlMnOpQrStUv");
 
         System.out.println("Skill: " + skill.displayTitle());
         System.out.println("Latest version: " + skill.latestVersion());
@@ -3239,7 +3139,6 @@ $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
 
 $skill = $client->beta->skills->retrieve(
     skillID: "skill_01AbCdEfGhIjKlMnOpQrStUv",
-    betas: ["skills-2025-10-02"]
 );
 
 echo "Skill: " . $skill->displayTitle . "\n";
@@ -3252,10 +3151,7 @@ require "anthropic"
 
 client = Anthropic::Client.new
 
-skill = client.beta.skills.retrieve(
-  "skill_01AbCdEfGhIjKlMnOpQrStUv",
-  betas: ["skills-2025-10-02"]
-)
+skill = client.beta.skills.retrieve("skill_01AbCdEfGhIjKlMnOpQrStUv")
 
 puts "Skill: #{skill.display_title}"
 puts "Latest version: #{skill.latest_version}"
@@ -3296,21 +3192,16 @@ ant beta:skills delete \
 
 ```python Python nocheck
 # Step 1: Delete all versions
-versions = client.beta.skills.versions.list(
-    skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv", betas=["skills-2025-10-02"]
-)
+versions = client.beta.skills.versions.list(skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv")
 
 for version in versions.data:
     client.beta.skills.versions.delete(
         skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv",
         version=version.version,
-        betas=["skills-2025-10-02"],
     )
 
 # Step 2: Delete the Skill
-client.beta.skills.delete(
-    skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv", betas=["skills-2025-10-02"]
-)
+client.beta.skills.delete(skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv")
 ```
 
 ```typescript TypeScript nocheck hidelines={1..2}
@@ -3319,20 +3210,14 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 // Step 1: Delete all versions
-const versions = await client.beta.skills.versions.list("skill_01AbCdEfGhIjKlMnOpQrStUv", {
-  betas: ["skills-2025-10-02"]
-});
+const versions = await client.beta.skills.versions.list("skill_01AbCdEfGhIjKlMnOpQrStUv");
 
 for (const version of versions.data) {
-  await client.beta.skills.versions.delete("skill_01AbCdEfGhIjKlMnOpQrStUv", version.version, {
-    betas: ["skills-2025-10-02"]
-  });
+  await client.beta.skills.versions.delete("skill_01AbCdEfGhIjKlMnOpQrStUv", version.version);
 }
 
 // Step 2: Delete the Skill
-await client.beta.skills.delete("skill_01AbCdEfGhIjKlMnOpQrStUv", {
-  betas: ["skills-2025-10-02"]
-});
+await client.beta.skills.delete("skill_01AbCdEfGhIjKlMnOpQrStUv");
 ```
 
 ```csharp C# nocheck
@@ -3347,25 +3232,18 @@ class Program
         AnthropicClient client = new();
 
         // Step 1: Delete all versions
-        var versions = await client.Beta.Skills.Versions.List(
-            "skill_01AbCdEfGhIjKlMnOpQrStUv",
-            new() { Betas = ["skills-2025-10-02"] }
-        );
+        var versions = await client.Beta.Skills.Versions.List("skill_01AbCdEfGhIjKlMnOpQrStUv");
 
         foreach (var version in versions.Data)
         {
             await client.Beta.Skills.Versions.Delete(
                 "skill_01AbCdEfGhIjKlMnOpQrStUv",
-                version.Version,
-                new() { Betas = ["skills-2025-10-02"] }
+                version.Version
             );
         }
 
         // Step 2: Delete the Skill
-        await client.Beta.Skills.Delete(
-            "skill_01AbCdEfGhIjKlMnOpQrStUv",
-            new() { Betas = ["skills-2025-10-02"] }
-        );
+        await client.Beta.Skills.Delete("skill_01AbCdEfGhIjKlMnOpQrStUv");
     }
 }
 ```
@@ -3387,9 +3265,7 @@ func main() {
 	versions := client.Beta.Skills.Versions.ListAutoPaging(
 		context.TODO(),
 		"skill_01AbCdEfGhIjKlMnOpQrStUv",
-		anthropic.BetaSkillVersionListParams{
-			Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaSkills2025_10_02},
-		},
+		anthropic.BetaSkillVersionListParams{},
 	)
 
 	for versions.Next() {
@@ -3399,7 +3275,6 @@ func main() {
 			version.Version,
 			anthropic.BetaSkillVersionDeleteParams{
 				SkillID: "skill_01AbCdEfGhIjKlMnOpQrStUv",
-				Betas:   []anthropic.AnthropicBeta{anthropic.AnthropicBetaSkills2025_10_02},
 			},
 		)
 		if err != nil {
@@ -3411,9 +3286,7 @@ func main() {
 	_, err := client.Beta.Skills.Delete(
 		context.TODO(),
 		"skill_01AbCdEfGhIjKlMnOpQrStUv",
-		anthropic.BetaSkillDeleteParams{
-			Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaSkills2025_10_02},
-		},
+		anthropic.BetaSkillDeleteParams{},
 	)
 	if err != nil {
 		log.Fatal(err)
@@ -3421,11 +3294,9 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..2,7..9,-2..}
+```java Java nocheck hidelines={1..2,5..7,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.beta.skills.SkillDeleteParams;
-import com.anthropic.models.beta.skills.versions.VersionListParams;
 import com.anthropic.models.beta.skills.versions.VersionListPage;
 import com.anthropic.models.beta.skills.versions.VersionDeleteParams;
 
@@ -3434,30 +3305,19 @@ public class DeleteSkill {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         // Step 1: Delete all versions
-        VersionListPage versions = client.beta().skills().versions().list(
-            "skill_01AbCdEfGhIjKlMnOpQrStUv",
-            VersionListParams.builder()
-                .addBeta("skills-2025-10-02")
-                .build()
-        );
+        VersionListPage versions = client.beta().skills().versions().list("skill_01AbCdEfGhIjKlMnOpQrStUv");
 
         for (var version : versions.data()) {
             client.beta().skills().versions().delete(
                 version.version(),
                 VersionDeleteParams.builder()
                     .skillId("skill_01AbCdEfGhIjKlMnOpQrStUv")
-                    .addBeta("skills-2025-10-02")
                     .build()
             );
         }
 
         // Step 2: Delete the Skill
-        client.beta().skills().delete(
-            "skill_01AbCdEfGhIjKlMnOpQrStUv",
-            SkillDeleteParams.builder()
-                .addBeta("skills-2025-10-02")
-                .build()
-        );
+        client.beta().skills().delete("skill_01AbCdEfGhIjKlMnOpQrStUv");
     }
 }
 ```
@@ -3472,21 +3332,18 @@ $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
 // Step 1: Delete all versions
 $versions = $client->beta->skills->versions->list(
     skillID: "skill_01AbCdEfGhIjKlMnOpQrStUv",
-    betas: ["skills-2025-10-02"]
 );
 
 foreach ($versions->data as $version) {
     $client->beta->skills->versions->delete(
         skillID: "skill_01AbCdEfGhIjKlMnOpQrStUv",
         version: $version->version,
-        betas: ["skills-2025-10-02"]
     );
 }
 
 // Step 2: Delete the Skill
 $client->beta->skills->delete(
     skillID: "skill_01AbCdEfGhIjKlMnOpQrStUv",
-    betas: ["skills-2025-10-02"]
 );
 ```
 
@@ -3496,24 +3353,17 @@ require "anthropic"
 client = Anthropic::Client.new
 
 # Step 1: Delete all versions
-versions = client.beta.skills.versions.list(
-  "skill_01AbCdEfGhIjKlMnOpQrStUv",
-  betas: ["skills-2025-10-02"]
-)
+versions = client.beta.skills.versions.list("skill_01AbCdEfGhIjKlMnOpQrStUv")
 
 versions.data.each do |version|
   client.beta.skills.versions.delete(
     version.version,
-    skill_id: "skill_01AbCdEfGhIjKlMnOpQrStUv",
-    betas: ["skills-2025-10-02"]
+    skill_id: "skill_01AbCdEfGhIjKlMnOpQrStUv"
   )
 end
 
 # Step 2: Delete the Skill
-client.beta.skills.delete(
-  "skill_01AbCdEfGhIjKlMnOpQrStUv",
-  betas: ["skills-2025-10-02"]
-)
+client.beta.skills.delete("skill_01AbCdEfGhIjKlMnOpQrStUv")
 ```
 </CodeGroup>
 
@@ -3639,7 +3489,6 @@ from anthropic.lib import files_from_dir
 new_version = client.beta.skills.versions.create(
     skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv",
     files=files_from_dir("/path/to/updated_skill"),
-    betas=["skills-2025-10-02"],
 )
 
 # Use specific version
@@ -3687,8 +3536,7 @@ const client = new Anthropic();
 
 // Create a new version using a zip file
 const newVersion = await client.beta.skills.versions.create("skill_01AbCdEfGhIjKlMnOpQrStUv", {
-  files: [fs.createReadStream("updated_skill.zip")],
-  betas: ["skills-2025-10-02"]
+  files: [fs.createReadStream("updated_skill.zip")]
 });
 
 // Use specific version
@@ -3749,7 +3597,6 @@ class Program
         var versionParams = new SkillVersionCreateParams
         {
             Files = [File.OpenRead("/path/to/updated_skill/SKILL.md")],
-            Betas = ["skills-2025-10-02"]
         };
 
         var newVersion = await client.Beta.Skills.Versions.Create(
@@ -3841,7 +3688,6 @@ func main() {
 		"skill_01AbCdEfGhIjKlMnOpQrStUv",
 		anthropic.BetaSkillVersionNewParams{
 			Files: []io.Reader{skillFile},
-			Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaSkills2025_10_02},
 		},
 	)
 	if err != nil {
@@ -3933,7 +3779,6 @@ public class SkillVersioning {
         // Create a new version
         VersionCreateParams versionParams = VersionCreateParams.builder()
             .addFile(Path.of("/path/to/updated_skill/SKILL.md"))
-            .addBeta("skills-2025-10-02")
             .build();
 
         VersionCreateResponse newVersion = client.beta().skills().versions()
@@ -3993,7 +3838,6 @@ $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
 $newVersion = $client->beta->skills->versions->create(
     skillID: "skill_01AbCdEfGhIjKlMnOpQrStUv",
     files: [fopen("/path/to/updated_skill/SKILL.md", "r")],
-    betas: ["skills-2025-10-02"]
 );
 
 // Use specific version
@@ -4039,8 +3883,7 @@ client = Anthropic::Client.new
 # Create a new version
 new_version = client.beta.skills.versions.create(
   "skill_01AbCdEfGhIjKlMnOpQrStUv",
-  files: [File.open("/path/to/updated_skill/SKILL.md")],
-  betas: ["skills-2025-10-02"]
+  files: [File.open("/path/to/updated_skill/SKILL.md")]
 )
 
 # Use specific version
@@ -4220,7 +4063,6 @@ from anthropic.lib import files_from_dir
 dcf_skill = client.beta.skills.create(
     display_title="DCF Analysis",
     files=files_from_dir("/path/to/dcf_skill"),
-    betas=["skills-2025-10-02"],
 )
 
 # Use with Excel to create financial model
@@ -4253,8 +4095,7 @@ const client = new Anthropic();
 
 const dcfSkill = await client.beta.skills.create({
   display_title: "DCF Analysis",
-  files: [await toFile(fs.createReadStream("dcf_skill.zip"), "skill.zip")],
-  betas: ["skills-2025-10-02"]
+  files: [await toFile(fs.createReadStream("dcf_skill.zip"), "skill.zip")]
 });
 
 // Use with Excel to create financial model
@@ -4291,7 +4132,6 @@ var dcfSkill = await client.Beta.Skills.Create(new SkillCreateParams
 {
     DisplayTitle = "DCF Analysis",
     Files = new[] { new SkillFileParam { Path = "dcf_skill/SKILL.md", Content = skillContent } },
-    Betas = new[] { "skills-2025-10-02" },
 });
 
 // Use with Excel to create financial model
@@ -4483,8 +4323,7 @@ dcf_skill = client.beta.skills.create(
   display_title: "DCF Analysis",
   files: [
     File.open("dcf_skill/SKILL.md", "rb")
-  ],
-  betas: ["skills-2025-10-02"]
+  ]
 )
 
 # Use with Excel to create financial model

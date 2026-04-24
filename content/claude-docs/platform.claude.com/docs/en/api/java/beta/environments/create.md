@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: cd79270ec1a68008f06e6c57d42517eff3d5be3a3d5e4f9f83ef8200cd3aa60a
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 0b602b5d140258b00b7388303d3d9a39828fb0dae33658cb1b90864b613d39e6
 ---
 
 ## Create
@@ -64,8 +64,6 @@ Create a new environment with the specified configuration.
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
-    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
   - `String name`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/typescript
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 21bc5347ec08f1337f92b445a90f7724b677363be32e631030129a2a45ae0a5e
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 77c99900291b911e94094eda11e07b13d65ec03916fb5bd3b5b61975f739d08d
 ---
 
 # TypeScript SDK
@@ -356,29 +356,24 @@ const client = new Anthropic();
 await client.beta.files.upload({
   file: await toFile(fs.createReadStream("/path/to/file"), undefined, {
     type: "application/json"
-  }),
-  betas: ["files-api-2025-04-14"]
+  })
 });
 
 // Or if you have the web `File` API you can pass a `File` instance:
 await client.beta.files.upload({
-  file: new File(["my bytes"], "file.txt", { type: "text/plain" }),
-  betas: ["files-api-2025-04-14"]
+  file: new File(["my bytes"], "file.txt", { type: "text/plain" })
 });
 // You can also pass a `fetch` `Response`:
 await client.beta.files.upload({
-  file: await fetch("https://somesite/file"),
-  betas: ["files-api-2025-04-14"]
+  file: await fetch("https://somesite/file")
 });
 
 // Or a `Buffer` / `Uint8Array`
 await client.beta.files.upload({
-  file: await toFile(Buffer.from("my bytes"), "file", { type: "text/plain" }),
-  betas: ["files-api-2025-04-14"]
+  file: await toFile(Buffer.from("my bytes"), "file", { type: "text/plain" })
 });
 await client.beta.files.upload({
-  file: await toFile(new Uint8Array([0, 1, 2]), "file", { type: "text/plain" }),
-  betas: ["files-api-2025-04-14"]
+  file: await toFile(new Uint8Array([0, 1, 2]), "file", { type: "text/plain" })
 });
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: 11a24ed2a6a9b3da7e81380b9603e5320ffc82b10376fb0ce1c44e60c8fa9306
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: ce5a2572402a7798fc26f9a31abfc42bbef09b94e54275a1ecdd5a60e3734db8
 ---
 
 # Rate limits
@@ -268,7 +268,7 @@ If you're seeking higher limits for an Enterprise use case, contact sales throug
 
 | Operation | Limit |
 | --- | --- |
-| Create endpoints (agents, sessions, environments, etc.) | 60 requests per minute |
+| Create endpoints (agents, sessions, environments, etc.) | 300 requests per minute |
 | Read endpoints (retrieve, list, stream, etc.) | 600 requests per minute |
 
 ### Fast mode rate limits

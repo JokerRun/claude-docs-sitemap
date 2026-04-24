@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 735eaad0dfbe8a4dcaeaf908acf0402d7b33b1ae1d020afd5130e40118a2c41a
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 67f1002e03b318c0242213a436b5349464c51cfad5d721bb8388ba4a4e139da1
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Get Session
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -70,8 +70,6 @@ Get Session
       - `"output-300k-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
-
-      - `"user-profiles-2026-03-24"`
 
 ### Returns
 
@@ -436,6 +434,42 @@ Get Session
       - `updated_at: string`
 
         A timestamp in RFC 3339 format
+
+    - `BetaManagedAgentsMemoryStoreResource`
+
+      A memory store attached to an agent session.
+
+      - `memory_store_id: string`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `type: "memory_store"`
+
+        - `"memory_store"`
+
+      - `access?: "read_write" | "read_only" | null`
+
+        Access mode for an attached memory store.
+
+        - `"read_write"`
+
+        - `"read_only"`
+
+      - `description?: string`
+
+        Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+
+      - `instructions?: string | null`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+      - `mount_path?: string | null`
+
+        Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+
+      - `name?: string | null`
+
+        Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
   - `stats: BetaManagedAgentsSessionStats`
 

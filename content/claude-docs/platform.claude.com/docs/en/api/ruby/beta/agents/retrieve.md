@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 26c31b17805efc89ed28f52323c1f8e9a5d99895ec4b297ce8c12f50c711588c
+fetched_at: 2026-04-24T03:12:20.532875Z
+sha256: 11d576a2f082fdf37635e1a39a6a70776a8173d8d588042424a90dddf4825a19
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ Get Agent
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -72,8 +72,6 @@ Get Agent
     - `:"output-300k-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
-
-    - `:"user-profiles-2026-03-24"`
 
 ### Returns
 
