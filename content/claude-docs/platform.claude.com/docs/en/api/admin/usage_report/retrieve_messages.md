@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_messages
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: 11ec5b1595ee1be68e2d38825d74c552b7ddf119e6ef4d0ad2969a224ec9db0e
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: a10b0b7a1ab54c3aa48b542f540198122f13550a60251504338cdd5bbcaf803e
 ---
 
 ## Retrieve Messages
@@ -17,6 +17,10 @@ Get Messages Usage Report
 
   Time buckets that start on or after this RFC 3339 timestamp will be returned.
   Each time bucket will be snapped to the start of the minute/hour/day in UTC.
+
+- `account_ids: optional array of string`
+
+  Restrict usage returned to the specified user account ID(s).
 
 - `api_key_ids: optional array of string`
 
@@ -44,7 +48,7 @@ Get Messages Usage Report
 
   Time buckets that end before this RFC 3339 timestamp will be returned.
 
-- `group_by: optional array of "api_key_id" or "workspace_id" or "model" or 4 more`
+- `group_by: optional array of "api_key_id" or "workspace_id" or "model" or 6 more`
 
   Group by any subset of the available options. Grouping by `speed` requires the `fast-mode-2026-02-01` beta header.
 
@@ -61,6 +65,10 @@ Get Messages Usage Report
   - `"inference_geo"`
 
   - `"speed"`
+
+  - `"account_id"`
+
+  - `"service_account_id"`
 
 - `inference_geos: optional array of "global" or "us" or "not_available"`
 
@@ -89,6 +97,10 @@ Get Messages Usage Report
 
   Optionally set to the `next_page` token from the previous response.
 
+- `service_account_ids: optional array of string`
+
+  Restrict usage returned to the specified service account ID(s).
+
 - `service_tiers: optional array of "standard" or "batch" or "priority" or 3 more`
 
   Restrict usage returned to the specified service tier(s).
@@ -107,7 +119,7 @@ Get Messages Usage Report
 
 - `speeds: optional array of "standard" or "fast"`
 
-  Restrict usage returned to the specified speed(s) (research preview).
+  Restrict usage returned to the specified speed(s) (Claude Code research preview).
   Requires the `fast-mode-2026-02-01` beta header.
 
   - `"standard"`
@@ -136,9 +148,13 @@ Get Messages Usage Report
 
       End of the time bucket (exclusive) in RFC 3339 format.
 
-    - `results: array of object { api_key_id, cache_creation, cache_read_input_tokens, 9 more }`
+    - `results: array of object { account_id, api_key_id, cache_creation, 10 more }`
 
       List of usage items for this time bucket.  There may be multiple items if one or more `group_by[]` parameters are specified.
+
+      - `account_id: string`
+
+        ID of the user account that made the request. `null` if not grouping by account or for non-OAuth requests.
 
       - `api_key_id: string`
 
@@ -189,6 +205,10 @@ Get Messages Usage Report
 
           The number of web search requests made.
 
+      - `service_account_id: string`
+
+        ID of the service account that made the request. `null` if not grouping by service account or for non-OIDC-federation requests.
+
       - `service_tier: "standard" or "batch" or "priority" or 3 more`
 
         Service tier used. `null` if not grouping by service tier.
@@ -204,15 +224,6 @@ Get Messages Usage Report
         - `"flex"`
 
         - `"flex_discount"`
-
-      - `speed: "standard" or "fast"`
-
-        Speed of the usage (research preview). `null` if not grouping by speed.
-        Only returned when the `fast-mode-2026-02-01` beta header is provided.
-
-        - `"standard"`
-
-        - `"fast"`
 
       - `uncached_input_tokens: number`
 

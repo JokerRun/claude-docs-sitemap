@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/update
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: 090aead04374c4d3d8d130ec66e866acfc2642d5898c5ed57b2e494a701665fb
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 56bd0224c189b27bdec7b32067c4406d4aa845215b883bd227851a144585a58f
 ---
 
 ## Update
@@ -19,7 +19,7 @@ Update User
 
 ### Body Parameters
 
-- `role: "user" or "developer" or "billing" or 2 more`
+- `role: "user" or "developer" or "billing" or "claude_code_user"`
 
   New role for the User. Cannot be "admin".
 
@@ -30,8 +30,6 @@ Update User
   - `"billing"`
 
   - `"claude_code_user"`
-
-  - `"managed"`
 
 ### Returns
 
@@ -53,7 +51,7 @@ Update User
 
     Name of the User.
 
-  - `role: "user" or "developer" or "billing" or 3 more`
+  - `role: "user" or "developer" or "billing" or 2 more`
 
     Organization role of the User.
 
@@ -66,8 +64,6 @@ Update User
     - `"admin"`
 
     - `"claude_code_user"`
-
-    - `"managed"`
 
   - `type: "user"`
 

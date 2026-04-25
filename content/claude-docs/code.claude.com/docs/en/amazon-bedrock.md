@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 2ccf86e296f78081f4f37304af813407db1ade955e0f57f55a00a98443f47899
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 0f0d5f108cb97426fecdf1c5199362e0ed53befb14f4973499200b59b4795c43
 ---
 
 > ## Documentation Index
@@ -75,7 +75,7 @@ export const ContactSalesCard = ({surface}) => {
           <a href={`https://claude.com/pricing?${utm('view_plans')}#plans-business`} className="cc-cs-btn-ghost">
             View plans
           </a>
-          <a href={`https://www.anthropic.com/contact-sales?${utm('contact_sales')}`} className="cc-cs-btn-clay">
+          <a href={`https://claude.com/contact-sales?${utm('contact_sales')}`} className="cc-cs-btn-clay">
             Contact sales {iconArrowRight()}
           </a>
         </div>

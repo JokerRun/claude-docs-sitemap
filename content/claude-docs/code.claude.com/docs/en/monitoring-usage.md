@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-04-23T03:11:35.814149Z
-sha256: 16d03a06763c17c51163dcddfda629efbde5413b8b8aaa6930521961699ff84c
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: bf03ba26f1f10bf46b307b6a7a78fac91cdba443c6d35d36093baa165accf5f0
 ---
 
 > ## Documentation Index
@@ -523,12 +523,14 @@ Logged when a tool completes execution.
 * `event.timestamp`: ISO 8601 timestamp
 * `event.sequence`: monotonically increasing counter for ordering events within a session
 * `tool_name`: Name of the tool
+* `tool_use_id`: Unique identifier for this tool invocation. Matches the `tool_use_id` passed to hooks, allowing correlation between OTel events and hook-captured data.
 * `success`: `"true"` or `"false"`
 * `duration_ms`: Execution time in milliseconds
 * `error_type`: Error category string when the tool failed, such as `"Error:ENOENT"` or `"ShellError"`
 * `error` (when `OTEL_LOG_TOOL_DETAILS=1`): Full error message when the tool failed
 * `decision_type`: Either `"accept"` or `"reject"`
 * `decision_source`: Decision source - `"config"`, `"hook"`, `"user_permanent"`, `"user_temporary"`, `"user_abort"`, or `"user_reject"`
+* `tool_input_size_bytes`: Size of the JSON-serialized tool input in bytes
 * `tool_result_size_bytes`: Size of the tool result in bytes
 * `mcp_server_scope`: MCP server scope identifier (for MCP tools)
 * `tool_parameters` (when `OTEL_LOG_TOOL_DETAILS=1`): JSON string containing tool-specific parameters:
@@ -636,6 +638,7 @@ Logged when a tool permission decision is made (accept/reject).
 * `event.timestamp`: ISO 8601 timestamp
 * `event.sequence`: monotonically increasing counter for ordering events within a session
 * `tool_name`: Name of the tool (for example, "Read", "Edit", "Write", "NotebookEdit")
+* `tool_use_id`: Unique identifier for this tool invocation. Matches the `tool_use_id` passed to hooks, allowing correlation between OTel events and hook-captured data.
 * `decision`: Either `"accept"` or `"reject"`
 * `source`: Decision source - `"config"`, `"hook"`, `"user_permanent"`, `"user_temporary"`, `"user_abort"`, or `"user_reject"`
 

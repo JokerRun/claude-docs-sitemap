@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: 097f20a7853922de90b2e21ab79a32bb3e26106f6a838c339e6d97a9e8c1d2ea
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 5e6e893cb45d1635a2cae4a59b25ac13dae5c6ac3bacb55ce661b401436ed821
 ---
 
 # API Keys
@@ -21,7 +21,7 @@ Get API Key
 
 ### Returns
 
-- `APIKey = object { id, created_at, created_by, 5 more }`
+- `APIKey = object { id, created_at, created_by, 6 more }`
 
   - `id: string`
 
@@ -43,6 +43,10 @@ Get API Key
 
       Type of the actor that created the object.
 
+  - `expires_at: string`
+
+    RFC 3339 datetime string indicating when the API Key expires, or `null` if it never expires.
+
   - `name: string`
 
     Name of the API key.
@@ -51,7 +55,7 @@ Get API Key
 
     Partially redacted hint for the API key.
 
-  - `status: "active" or "inactive" or "archived"`
+  - `status: "active" or "inactive" or "archived" or "expired"`
 
     Status of the API key.
 
@@ -60,6 +64,8 @@ Get API Key
     - `"inactive"`
 
     - `"archived"`
+
+    - `"expired"`
 
   - `type: "api_key"`
 
@@ -107,7 +113,7 @@ List API Keys
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-- `status: optional "active" or "inactive" or "archived"`
+- `status: optional "active" or "inactive" or "archived" or "expired"`
 
   Filter by API key status.
 
@@ -116,6 +122,8 @@ List API Keys
   - `"inactive"`
 
   - `"archived"`
+
+  - `"expired"`
 
 - `workspace_id: optional string`
 
@@ -145,6 +153,10 @@ List API Keys
 
       Type of the actor that created the object.
 
+  - `expires_at: string`
+
+    RFC 3339 datetime string indicating when the API Key expires, or `null` if it never expires.
+
   - `name: string`
 
     Name of the API key.
@@ -153,7 +165,7 @@ List API Keys
 
     Partially redacted hint for the API key.
 
-  - `status: "active" or "inactive" or "archived"`
+  - `status: "active" or "inactive" or "archived" or "expired"`
 
     Status of the API key.
 
@@ -162,6 +174,8 @@ List API Keys
     - `"inactive"`
 
     - `"archived"`
+
+    - `"expired"`
 
   - `type: "api_key"`
 
@@ -225,7 +239,7 @@ Update API Key
 
 ### Returns
 
-- `APIKey = object { id, created_at, created_by, 5 more }`
+- `APIKey = object { id, created_at, created_by, 6 more }`
 
   - `id: string`
 
@@ -247,6 +261,10 @@ Update API Key
 
       Type of the actor that created the object.
 
+  - `expires_at: string`
+
+    RFC 3339 datetime string indicating when the API Key expires, or `null` if it never expires.
+
   - `name: string`
 
     Name of the API key.
@@ -255,7 +273,7 @@ Update API Key
 
     Partially redacted hint for the API key.
 
-  - `status: "active" or "inactive" or "archived"`
+  - `status: "active" or "inactive" or "archived" or "expired"`
 
     Status of the API key.
 
@@ -264,6 +282,8 @@ Update API Key
     - `"inactive"`
 
     - `"archived"`
+
+    - `"expired"`
 
   - `type: "api_key"`
 

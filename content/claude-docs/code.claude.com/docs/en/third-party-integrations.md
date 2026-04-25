@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/third-party-integrations
-fetched_at: 2026-04-16T03:12:06.852234Z
-sha256: 3f7b05c3e48cf042c409896b6fc62bfb0626c9c0f85aee085520991eecbf8615
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 9d6599ea1a55a30b9e8f753e40e2377f159d5679f35c8142cbe54892a0ac3070
 ---
 
 > ## Documentation Index
@@ -75,7 +75,7 @@ export const ContactSalesCard = ({surface}) => {
           <a href={`https://claude.com/pricing?${utm('view_plans')}#plans-business`} className="cc-cs-btn-ghost">
             View plans
           </a>
-          <a href={`https://www.anthropic.com/contact-sales?${utm('contact_sales')}`} className="cc-cs-btn-clay">
+          <a href={`https://claude.com/contact-sales?${utm('contact_sales')}`} className="cc-cs-btn-clay">
             Contact sales {iconArrowRight()}
           </a>
         </div>

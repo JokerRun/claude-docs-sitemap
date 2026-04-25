@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: f1db7c778496de248df0e839a5a3110946c0c8e35e63c9dd6ef41f1dc79c2e5b
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 571c12ba22c62648dbbabc1ba0204444d5483f7ea31da0b381afdb7e82f817d1
 ---
 
 > ## Documentation Index
@@ -1133,6 +1133,7 @@ type PostToolUseHookInput = BaseHookInput & {
   tool_input: unknown;
   tool_response: unknown;
   tool_use_id: string;
+  duration_ms?: number;
 };
 ```
 
@@ -1146,6 +1147,7 @@ type PostToolUseFailureHookInput = BaseHookInput & {
   tool_use_id: string;
   error: string;
   is_interrupt?: boolean;
+  duration_ms?: number;
 };
 ```
 
@@ -2277,6 +2279,7 @@ type SlashCommand = {
   name: string;
   description: string;
   argumentHint: string;
+  aliases?: string[];
 };
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/update
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: 32a0bfd59094f100321ae9c27cfc120aae245a4ca635aab5f7e1f2cabdb3fae9
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: f2523628a4decbf5bf1efcf2001ecc5ce14830fd22e0edbd32755f5e5c125941
 ---
 
 ## Update
@@ -35,7 +35,7 @@ Update API Key
 
 ### Returns
 
-- `APIKey = object { id, created_at, created_by, 5 more }`
+- `APIKey = object { id, created_at, created_by, 6 more }`
 
   - `id: string`
 
@@ -57,6 +57,10 @@ Update API Key
 
       Type of the actor that created the object.
 
+  - `expires_at: string`
+
+    RFC 3339 datetime string indicating when the API Key expires, or `null` if it never expires.
+
   - `name: string`
 
     Name of the API key.
@@ -65,7 +69,7 @@ Update API Key
 
     Partially redacted hint for the API key.
 
-  - `status: "active" or "inactive" or "archived"`
+  - `status: "active" or "inactive" or "archived" or "expired"`
 
     Status of the API key.
 
@@ -74,6 +78,8 @@ Update API Key
     - `"inactive"`
 
     - `"archived"`
+
+    - `"expired"`
 
   - `type: "api_key"`
 

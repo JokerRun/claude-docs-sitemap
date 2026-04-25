@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: 35e9bc00b21a40fe7c489044d1048485cb4b5e2afe6488a4397cbea360be2eba
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 8049f13ebc57ad3efe06e1c8b40f7f7d40a359f3841f08acd2fa328217900ee1
 ---
 
 # Claude on Vertex AI
@@ -52,14 +52,14 @@ go get github.com/anthropics/anthropic-sdk-go
 <Tab title="Java">
 <CodeGroup>
 ```groovy Gradle
-implementation("com.anthropic:anthropic-java-vertex:2.20.0")
+implementation("com.anthropic:anthropic-java-vertex:2.27.0")
 ```
 
 ```xml Maven
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java-vertex</artifactId>
-    <version>2.20.0</version>
+    <version>2.27.0</version>
 </dependency>
 ```
 

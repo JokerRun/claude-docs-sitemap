@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: 83ec239c45bd6e1b04b58061153ba0cdcd45169056579be7b5d04bd425400f9f
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: c6a7bd3b332bb4d36c94b1d8d772c2b6e0287981cc4f6cd4abec0c3361f26df0
 ---
 
 # Invites
@@ -19,7 +19,7 @@ Create Invite
 
   Email of the User.
 
-- `role: "user" or "developer" or "billing" or 2 more`
+- `role: "user" or "developer" or "billing" or "claude_code_user"`
 
   Role for the invited User. Cannot be "admin".
 
@@ -30,8 +30,6 @@ Create Invite
   - `"billing"`
 
   - `"claude_code_user"`
-
-  - `"managed"`
 
 ### Returns
 
@@ -53,7 +51,7 @@ Create Invite
 
     RFC 3339 datetime string indicating when the Invite was created.
 
-  - `role: "user" or "developer" or "billing" or 3 more`
+  - `role: "user" or "developer" or "billing" or 2 more`
 
     Organization role of the User.
 
@@ -66,8 +64,6 @@ Create Invite
     - `"admin"`
 
     - `"claude_code_user"`
-
-    - `"managed"`
 
   - `status: "accepted" or "expired" or "deleted" or "pending"`
 
@@ -134,7 +130,7 @@ Get Invite
 
     RFC 3339 datetime string indicating when the Invite was created.
 
-  - `role: "user" or "developer" or "billing" or 3 more`
+  - `role: "user" or "developer" or "billing" or 2 more`
 
     Organization role of the User.
 
@@ -147,8 +143,6 @@ Get Invite
     - `"admin"`
 
     - `"claude_code_user"`
-
-    - `"managed"`
 
   - `status: "accepted" or "expired" or "deleted" or "pending"`
 
@@ -220,7 +214,7 @@ List Invites
 
     RFC 3339 datetime string indicating when the Invite was created.
 
-  - `role: "user" or "developer" or "billing" or 3 more`
+  - `role: "user" or "developer" or "billing" or 2 more`
 
     Organization role of the User.
 
@@ -233,8 +227,6 @@ List Invites
     - `"admin"`
 
     - `"claude_code_user"`
-
-    - `"managed"`
 
   - `status: "accepted" or "expired" or "deleted" or "pending"`
 
@@ -333,7 +325,7 @@ curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
 
     RFC 3339 datetime string indicating when the Invite was created.
 
-  - `role: "user" or "developer" or "billing" or 3 more`
+  - `role: "user" or "developer" or "billing" or 2 more`
 
     Organization role of the User.
 
@@ -346,8 +338,6 @@ curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
     - `"admin"`
 
     - `"claude_code_user"`
-
-    - `"managed"`
 
   - `status: "accepted" or "expired" or "deleted" or "pending"`
 

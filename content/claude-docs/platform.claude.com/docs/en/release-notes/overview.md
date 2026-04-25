@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 56b0005fe6e48abc163bf516103acd031918a845966a286d88cb6479e6011336
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 0570f9f21613123ff449a7f050e9c3e4a30aff60ffdbfe098c1cde5ca554c639
 ---
 
 # Claude Platform
@@ -16,6 +16,9 @@ For release notes on Claude Apps, see the [Release notes for Claude Apps in the 
 
 For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### April 24, 2026
+- We've released the [Rate Limits API](/docs/en/build-with-claude/rate-limits-api), allowing administrators to programmatically query the rate limits configured for their organization and workspaces.
 
 ### April 23, 2026
 - **Memory** for Claude Managed Agents is now in public beta under the standard `managed-agents-2026-04-01` header. See [Using agent memory](/docs/en/managed-agents/memory) for the full integration guide.

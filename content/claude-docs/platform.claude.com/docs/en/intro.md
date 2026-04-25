@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: ec79a4b153f231c5856ac2feaffc8ba2e84bd92099ba17120d760b733aa6a6d4
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 09000d9804095d00735a259adfead051ca5b285a31b5b8a918cba25f3156df30
 ---
 
 # Intro to Claude
@@ -87,7 +87,7 @@ Anthropic provides developer tools to help you build and scale applications with
 Claude can assist with many tasks that involve text, code, and images.
 
 <CardGroup cols={2}>
-  <Card title="Text and code generation" icon="text-aa" href="/docs/en/build-with-claude/text-generation">
+  <Card title="Text and code generation" icon="text-aa" href="/docs/en/build-with-claude/overview">
     Summarize text, answer questions, extract data, translate text, and explain and generate code.
   </Card>
   <Card title="Vision" icon="image" href="/docs/en/build-with-claude/vision">

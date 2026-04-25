@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/cli
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 8c9199e1715753856f13dc0ca0aced2e926bba6fac3589ba341aa69bc261a803
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: a2ae8fcd6328f1c6402fdf7a9b16ee6398da8b74bfd49795a3bfb86d86d18077
 ---
 
 # CLI
@@ -34,7 +34,7 @@ brew install anthropics/tap/ant
 For Linux environments, download the release binary directly.
 
 ```bash
-VERSION=1.0.0
+VERSION=1.3.2
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')
 curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \

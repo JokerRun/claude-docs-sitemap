@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 81e474698e83c97ff1af9fa7b16620576b5aafe47f04e055acabcc717db8777e
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: c83d6eff7e57b29c0ef8cecf6a5169997d5e6e69ce43fe1427a48f22b8ef2d2a
 ---
 
 > ## Documentation Index
@@ -216,7 +216,7 @@ Repeated blocks usually mean the classifier is missing context about your infras
 
     On entering auto mode, broad allow rules that grant arbitrary code execution are dropped:
 
-    * Blanket `Bash(*)`
+    * Blanket `Bash(*)` or `PowerShell(*)`
     * Wildcarded interpreters like `Bash(python*)`
     * Package-manager run commands
     * `Agent` allow rules

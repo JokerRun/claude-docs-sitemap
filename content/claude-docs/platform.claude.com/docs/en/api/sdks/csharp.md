@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/csharp
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 6167499f860b340a19f9136c150a6ff7a3f881dea98c2530c69093af9abe247d
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: c3ec9926bf7bf6a382dd5c7f403184a6af17d6da4ac3deebbea78cb2c95f36e2
 ---
 
 # C# SDK
@@ -432,7 +432,7 @@ The SDK is typed for convenient usage of the documented API. However, it also su
 <Note>
 For detailed platform setup guides with code examples, see:
 - [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock)
-- [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock)
+- [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy)
 - [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 

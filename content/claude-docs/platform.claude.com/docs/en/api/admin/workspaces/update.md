@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/update
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: e4ebb7c367e14c951cf8bde3d7d84cac463d9ec05faf273bfdff69c9c02f6cc1
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 44659e11a9840097ebe2a41b1b8712ff2821d92451939c28c48a84302a3ea7e2
 ---
 
 ## Update
@@ -14,8 +14,6 @@ Update Workspace
 ### Path Parameters
 
 - `workspace_id: string`
-
-  ID of the Workspace.
 
 ### Body Parameters
 

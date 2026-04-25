@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/go
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 8be3f84c9f65e94e81b6215b5a7da1ad0e0307226a30c483b08f165312107f8b
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: da9ab007b4cf2e81a42cd682f768cbf92bbfb518a46a4c53534cd5bbc8170aa1
 ---
 
 # Go SDK
@@ -28,7 +28,7 @@ import (
 Or to pin the version:
 
 ```bash
-go get -u 'github.com/anthropics/anthropic-sdk-go@v1.27.1'
+go get -u 'github.com/anthropics/anthropic-sdk-go@v1.38.0'
 ```
 
 ## Requirements
@@ -842,7 +842,7 @@ middleware has been applied.
 <Note>
 For detailed platform setup guides with code examples, see:
 - [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock)
-- [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock)
+- [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy)
 - [Google Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai)
 </Note>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/archive
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: e41d06afeb11b84b87421155dc749bf22a7e8a568fa2b9d1f2c4429c2d932366
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 08df2be86dc87341719c106c4e4582907c29b9feb9ac9550b19d97376f182e86
 ---
 
 ## Archive
@@ -14,8 +14,6 @@ Archive Workspace
 ### Path Parameters
 
 - `workspace_id: string`
-
-  ID of the Workspace.
 
 ### Returns
 

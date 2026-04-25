@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: a1391bf8d8abe12499319a782b15695a8014b206c7e75adf9d8cafda937d8f21
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 75022006b2dab7b0cf84e558d47ebf21f9dc4c22c1b41eecbc5c0af457cefda7
 ---
 
 > ## Documentation Index
@@ -134,7 +134,6 @@ The same main-session working-directory reset behavior described under the Bash 
 
 The PowerShell tool has the following known limitations during the preview:
 
-* Auto mode does not work with the PowerShell tool yet
 * PowerShell profiles are not loaded
 * On Windows, sandboxing is not supported
 * On Windows, Git Bash is still required to start Claude Code

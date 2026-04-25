@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 7c8114a06d7c4348943af9f4db1ccd7b426869564e273d3eebc9fe9ed4c46a7d
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 657267ffb57db31ebdf15fcb85b931fb7fcb8b357d5617276cf9c7e14849aba2
 ---
 
 > ## Documentation Index
@@ -172,6 +172,8 @@ Claude Code sends the following JSON fields to your script via stdin:
 | `context_window.remaining_percentage`                                            | Pre-calculated percentage of context window remaining                                                                                                                                                                                      |
 | `context_window.current_usage`                                                   | Token counts from the last API call, described in [context window fields](#context-window-fields)                                                                                                                                          |
 | `exceeds_200k_tokens`                                                            | Whether the total token count (input, cache, and output tokens combined) from the most recent API response exceeds 200k. This is a fixed threshold regardless of actual context window size.                                               |
+| `effort.level`                                                                   | Current reasoning effort (`low`, `medium`, `high`, `xhigh`, or `max`). Reflects the live session value, including mid-session `/effort` changes. Absent when the current model does not support the effort parameter                       |
+| `thinking.enabled`                                                               | Whether extended thinking is enabled for the session                                                                                                                                                                                       |
 | `rate_limits.five_hour.used_percentage`, `rate_limits.seven_day.used_percentage` | Percentage of the 5-hour or 7-day rate limit consumed, from 0 to 100                                                                                                                                                                       |
 | `rate_limits.five_hour.resets_at`, `rate_limits.seven_day.resets_at`             | Unix epoch seconds when the 5-hour or 7-day rate limit window resets                                                                                                                                                                       |
 | `session_id`                                                                     | Unique session identifier                                                                                                                                                                                                                  |
@@ -231,6 +233,12 @@ Claude Code sends the following JSON fields to your script via stdin:
       }
     },
     "exceeds_200k_tokens": false,
+    "effort": {
+      "level": "high"
+    },
+    "thinking": {
+      "enabled": true
+    },
     "rate_limits": {
       "five_hour": {
         "used_percentage": 23.5,
@@ -261,6 +269,7 @@ Claude Code sends the following JSON fields to your script via stdin:
 
   * `session_name`: appears only when a custom name has been set with `--name` or `/rename`
   * `workspace.git_worktree`: appears only when the current directory is inside a linked git worktree
+  * `effort`: appears only when the current model supports the reasoning effort parameter
   * `vim`: appears only when vim mode is enabled
   * `agent`: appears only when running with the `--agent` flag or agent settings configured
   * `worktree`: appears only during `--worktree` sessions. When present, `branch` and `original_branch` may also be absent for hook-based worktrees

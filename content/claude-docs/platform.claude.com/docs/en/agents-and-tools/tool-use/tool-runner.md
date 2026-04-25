@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: 6778e207434743fa1b896d7581501c6389f6a617119326ada99eeb5cc9f561e1
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 8ab76faf781a5c3c1dc7a0c847f5bf92f9ee993da72b447329869a4b0e4d032d
 ---
 
 # Tool Runner (SDK)
@@ -75,7 +75,7 @@ def calculate_sum(a: int, b: int) -> str:
 
 
 runner = client.beta.messages.tool_runner(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[get_weather, calculate_sum],
     messages=[
@@ -144,7 +144,7 @@ const getWeatherTool = betaZodTool({
 });
 
 const finalMessage = await client.beta.messages.toolRunner({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [getWeatherTool],
   messages: [{ role: "user", content: "What's the weather like in Paris?" }]
@@ -186,7 +186,7 @@ const calculateSumTool = betaTool({
 });
 
 const finalMessage = await client.beta.messages.toolRunner({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [calculateSumTool],
   messages: [{ role: "user", content: "What's 15 + 27?" }]
@@ -244,7 +244,7 @@ end
 
 # Use the tool runner
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [GetWeather.new, CalculateSum.new],
   messages: [
@@ -299,7 +299,7 @@ def calculate_sum(a: int, b: int) -> str:
 
 
 runner = client.beta.messages.tool_runner(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[get_weather, calculate_sum],
     messages=[
@@ -333,7 +333,7 @@ const getWeatherTool = betaZodTool({
 });
 
 const runner = client.beta.messages.toolRunner({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [getWeatherTool],
   messages: [{ role: "user", content: "What's the weather like in Paris?" }]
@@ -375,7 +375,7 @@ class CalculateSum < Anthropic::BaseTool
 end
 
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [GetWeather.new, CalculateSum.new],
   messages: [
@@ -401,7 +401,7 @@ Use `generate_tool_call_response()` to optionally inspect the tool result (the r
 
 ```python nocheck
 runner = client.beta.messages.tool_runner(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[get_weather],
     messages=[{"role": "user", "content": "What's the weather in San Francisco?"}],
@@ -433,7 +433,7 @@ Use `generateToolResponse()` to optionally inspect the tool result (the runner a
 
 ```typescript nocheck
 const runner = client.beta.messages.toolRunner({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [getWeatherTool],
   messages: [{ role: "user", content: "What's the weather in San Francisco?" }]
@@ -476,7 +476,7 @@ class GetWeather < Anthropic::BaseTool
 end
 
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [GetWeather.new],
   messages: [{role: "user", content: "What's the weather in San Francisco?"}]
@@ -538,7 +538,7 @@ def my_tool(query: str) -> str:
 
 
 runner = client.beta.messages.tool_runner(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[my_tool],
     messages=[{"role": "user", "content": "Run the tool"}],
@@ -580,7 +580,7 @@ const myTool = betaZodTool({
 });
 
 const runner = client.beta.messages.toolRunner({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [myTool],
   messages: [{ role: "user", content: "Run the tool" }]
@@ -624,7 +624,7 @@ class MyTool < Anthropic::BaseTool
 end
 
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [MyTool.new],
   messages: [{role: "user", content: "Run the tool"}]
@@ -678,7 +678,7 @@ def search_documents(query: str) -> str:
 
 
 runner = client.beta.messages.tool_runner(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[search_documents],
     messages=[
@@ -724,7 +724,7 @@ const searchDocuments = betaZodTool({
 });
 
 const runner = client.beta.messages.toolRunner({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [searchDocuments],
   messages: [
@@ -768,7 +768,7 @@ class SearchDocuments < Anthropic::BaseTool
 end
 
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [SearchDocuments.new],
   messages: [{role: "user", content: "Search for information about the climate of San Francisco"}]
@@ -826,7 +826,7 @@ def calculate_sum(a: int, b: int) -> str:
 
 
 runner = client.beta.messages.tool_runner(
-    model="claude-opus-4-6",
+    model="claude-opus-4-7",
     max_tokens=1024,
     tools=[calculate_sum],
     messages=[{"role": "user", "content": "What is 15 + 27?"}],
@@ -862,7 +862,7 @@ const getWeatherTool = betaZodTool({
 });
 
 const runner = client.beta.messages.toolRunner({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1000,
   messages: [{ role: "user", content: "What is the weather in San Francisco?" }],
   tools: [getWeatherTool],
@@ -900,7 +900,7 @@ class CalculateSum < Anthropic::BaseTool
 end
 
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-7",
   max_tokens: 1024,
   tools: [CalculateSum.new],
   messages: [{role: "user", content: "What is 15 + 27?"}]

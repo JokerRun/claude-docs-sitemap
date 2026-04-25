@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/python
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 06647bc907a7d19f04a283346e83a180552aa5470ed175e507085fd1a5b3a954
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: c2f25dfe4b6c5a1bc0c3805b1f4f1d815c87f1d519f405bb12c1b18367a4dd06
 ---
 
 # Python SDK
@@ -775,7 +775,7 @@ response = client.beta.messages.create(
 <Note>
 For detailed platform setup guides with code examples, see:
 - [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock)
-- [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock)
+- [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy)
 - [Google Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai)
 - [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry)
 </Note>

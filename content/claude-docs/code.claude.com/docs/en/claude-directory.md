@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-directory
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 6afc369a7fd488c64267ef7175bd62c903cee273c9eaf20cb48bc36a23a9950c
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 06f83438fea0d41b92100c4987923c7240dd89486a6bd00eff764edf96de2172
 ---
 
 > ## Documentation Index
@@ -426,10 +426,10 @@ Every finding must include a concrete fix.`
         oneLiner: 'App state and UI preferences',
         when: <>Read at session start for your preferences and MCP servers. Claude Code writes back to it when you change settings in <C>/config</C> or approve trust prompts</>,
         description: <>Holds state that does not belong in settings.json: theme, OAuth session, per-project trust decisions, your personal MCP servers, and UI toggles. Mostly managed through <C>/config</C> rather than editing directly.</>,
-        tips: [<>UI toggles like <C>showTurnDuration</C> and <C>terminalProgressBarEnabled</C> live here, not in settings.json</>, <>The <C>projects</C> key tracks per-project state like trust-dialog acceptance and last-session metrics. Permission rules you approve in-session go to <C>.claude/settings.local.json</C> instead</>, <>MCP servers here are yours only: user scope applies across all projects, local scope is per-project but not committed. Team-shared servers go in <C>.mcp.json</C> at the project root instead</>],
+        tips: [<>IDE toggles like <C>autoConnectIde</C> and <C>externalEditorContext</C> live here, not in settings.json</>, <>The <C>projects</C> key tracks per-project state like trust-dialog acceptance and last-session metrics. Permission rules you approve in-session go to <C>.claude/settings.local.json</C> instead</>, <>MCP servers here are yours only: user scope applies across all projects, local scope is per-project but not committed. Team-shared servers go in <C>.mcp.json</C> at the project root instead</>],
         example: `{
-  "editorMode": "vim",
-  "showTurnDuration": false,
+  "autoConnectIde": true,
+  "externalEditorContext": true,
   "mcpServers": {
     "my-tools": {
       "command": "npx",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/typescript
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 77c99900291b911e94094eda11e07b13d65ec03916fb5bd3b5b61975f739d08d
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 1f3f5e1a7ae231bd5ce7a62d7cde7e6303d2b1af1087c00a26521d9f4f2a9e3a
 ---
 
 # TypeScript SDK
@@ -831,7 +831,7 @@ In certain scenarios where enabling browser support might not pose significant r
 <Note>
 For detailed platform setup guides with code examples, see:
 - [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock)
-- [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock)
+- [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy)
 - [Google Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai)
 - [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry)
 </Note>

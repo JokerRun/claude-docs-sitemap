@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 7add2af4ec827ef074f69bdd2fa011106f5443f1776944ab3cf928037de633d1
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: e29da6ed1b6af0a1fd743158a5f5b65d0077638e59818d95799b96925959c887
 ---
 
 > ## Documentation Index
@@ -108,7 +108,7 @@ Agent teams support two display modes:
   `tmux` has known limitations on certain operating systems and traditionally works best on macOS. Using `tmux -CC` in iTerm2 is the suggested entrypoint into `tmux`.
 </Note>
 
-The default is `"auto"`, which uses split panes if you're already running inside a tmux session, and in-process otherwise. The `"tmux"` setting enables split-pane mode and auto-detects whether to use tmux or iTerm2 based on your terminal. To override, set `teammateMode` in your [global config](/en/settings#global-config-settings) at `~/.claude.json`:
+The default is `"auto"`, which uses split panes if you're already running inside a tmux session, and in-process otherwise. The `"tmux"` setting enables split-pane mode and auto-detects whether to use tmux or iTerm2 based on your terminal. To override, set [`teammateMode`](/en/settings#available-settings) in `~/.claude/settings.json`:
 
 ```json theme={null}
 {

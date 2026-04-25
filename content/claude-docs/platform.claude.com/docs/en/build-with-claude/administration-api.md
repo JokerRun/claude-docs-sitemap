@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/administration-api
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: e6e6bcb199b57cd0a80ec3f56892a4b6266b208ee66826b50fbef070a03c3fbc
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: eb3a28010616818077a44187dd983fbbe5c49610f6dd4f1f4cdf92275459dc57
 ---
 
 # Admin API overview
@@ -201,6 +201,10 @@ Track your organization's usage and costs with the [Usage and Cost API](/docs/en
 ## Claude Code analytics
 
 Monitor developer productivity and Claude Code adoption with the [Claude Code Analytics API](/docs/en/build-with-claude/claude-code-analytics-api).
+
+## Rate limits
+
+Read the rate limits configured for your organization and its workspaces with the [Rate Limits API](/docs/en/build-with-claude/rate-limits-api).
 
 ## Best practices
 

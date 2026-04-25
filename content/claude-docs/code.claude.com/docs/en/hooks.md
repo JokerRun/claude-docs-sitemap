@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 46b7a111fbc51a583507d60ffa9de28b7254f426d2bff5730b3cd5e25d2ff5b0
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 9168ed62a4bf31aca0cf34605716c49e7f82b988935c799c682ffeaf4296c022
 ---
 
 > ## Documentation Index
@@ -1265,9 +1265,14 @@ Matches on tool name, same values as PreToolUse.
     "filePath": "/path/to/file.txt",
     "success": true
   },
-  "tool_use_id": "toolu_01ABC123..."
+  "tool_use_id": "toolu_01ABC123...",
+  "duration_ms": 12
 }
 ```
+
+| Field         | Description                                                                                                   |
+| :------------ | :------------------------------------------------------------------------------------------------------------ |
+| `duration_ms` | Optional. Tool execution time in milliseconds. Excludes time spent in permission prompts and PreToolUse hooks |
 
 #### PostToolUse decision control
 
@@ -1315,14 +1320,16 @@ PostToolUseFailure hooks receive the same `tool_name` and `tool_input` fields as
   },
   "tool_use_id": "toolu_01ABC123...",
   "error": "Command exited with non-zero status code 1",
-  "is_interrupt": false
+  "is_interrupt": false,
+  "duration_ms": 4187
 }
 ```
 
-| Field          | Description                                                                     |
-| :------------- | :------------------------------------------------------------------------------ |
-| `error`        | String describing what went wrong                                               |
-| `is_interrupt` | Optional boolean indicating whether the failure was caused by user interruption |
+| Field          | Description                                                                                                   |
+| :------------- | :------------------------------------------------------------------------------------------------------------ |
+| `error`        | String describing what went wrong                                                                             |
+| `is_interrupt` | Optional boolean indicating whether the failure was caused by user interruption                               |
+| `duration_ms`  | Optional. Tool execution time in milliseconds. Excludes time spent in permission prompts and PreToolUse hooks |
 
 #### PostToolUseFailure decision control
 

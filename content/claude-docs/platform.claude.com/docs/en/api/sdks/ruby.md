@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/ruby
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 4ba44ba3ac330a7cce80cf026d245098d770c189da25f07d2f6c7c8522ed777e
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 87651d02f94811442b0ce937150e48882e2a6cd5180e6bd2e755905a6956aff6
 ---
 
 # Ruby SDK
@@ -401,7 +401,7 @@ response = anthropic.request(
 <Note>
 For detailed platform setup guides with code examples, see:
 - [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock)
-- [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock)
+- [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy)
 - [Google Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai)
 </Note>
 

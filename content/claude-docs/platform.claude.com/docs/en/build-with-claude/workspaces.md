@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/workspaces
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: f2feb6b579b4eff810048499147eaca390de29df2fc5e8a93c109aa1de0eb12a
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 12135e8f2399ac8c379f1b26a24037235c8c949608e8e5e98a13fddddfc780e7
 ---
 
 # Workspaces
@@ -210,7 +210,7 @@ Workspace limits can be set lower than (but not higher than) your organization's
 - Organization-wide limits always apply, even if workspace limits add up to more
 </Note>
 
-For detailed information on rate limits and how they work, see [Rate limits](/docs/en/api/rate-limits).
+For detailed information on rate limits and how they work, see [Rate limits](/docs/en/api/rate-limits). You can also read your current organization and workspace rate limits programmatically with the [Rate Limits API](/docs/en/build-with-claude/rate-limits-api).
 
 ## Usage and cost tracking
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 7a42558801a461af91b71297590c389fe746bcac87a214493a49f47f4b825432
+fetched_at: 2026-04-25T03:09:48.142425Z
+sha256: 820bbf24ddfe9f95dd700a23c947c2f34fffdd91d269fe6449cd99e2e034f0c6
 ---
 
 # Pricing
@@ -62,7 +62,7 @@ Regional and multi-region endpoints include a 10% premium over global endpoints.
 **Scope:** This pricing structure applies to Claude Sonnet 4.5, Haiku 4.5, and all future models. Earlier models (Claude Sonnet 4 (deprecated), Opus 4 (deprecated), and prior releases) retain their existing pricing.
 
 For implementation details and code examples:
-- [AWS Bedrock global vs regional endpoints](/docs/en/build-with-claude/claude-in-amazon-bedrock#regions) for Opus 4.7, Haiku 4.5, and newer models, or [the legacy integration](/docs/en/build-with-claude/claude-on-amazon-bedrock#global-vs-regional-endpoints) for all other models on Bedrock
+- [AWS Bedrock global vs regional endpoints](/docs/en/build-with-claude/claude-in-amazon-bedrock#regions) for Opus 4.7, Haiku 4.5, and newer models, or [the legacy integration](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy#global-vs-regional-endpoints) for all other models on Bedrock
 - [Google Vertex AI global, multi-region, and regional endpoints](/docs/en/build-with-claude/claude-on-vertex-ai#global-multi-region-and-regional-endpoints)
 </Note>
 
