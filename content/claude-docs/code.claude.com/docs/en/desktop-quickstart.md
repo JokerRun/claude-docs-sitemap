@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-quickstart
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 8e6d178183183acd782cd2b1cb4bec52282b87825a146cb87a75342c8a8818a6
+fetched_at: 2026-04-26T03:12:33.800534Z
+sha256: 3b37772301e27ce1fbc9e6b08ab4c50760cdc97c884989942e17f0a1a419ec99
 ---
 
 > ## Documentation Index
@@ -70,7 +70,7 @@ With the Code tab open, choose a project and give Claude something to do.
     You can also select:
 
     * **Remote**: Run sessions on Anthropic's cloud infrastructure that continue even if you close the app. Remote sessions use the same infrastructure as [Claude Code on the web](/en/claude-code-on-the-web).
-    * **SSH**: Connect to a remote machine over SSH (your own servers, cloud VMs, or dev containers). Claude Code must be installed on the remote machine.
+    * **SSH**: Connect to a remote machine over SSH, such as your own servers, cloud VMs, or dev containers. Desktop installs Claude Code on the remote machine automatically the first time you connect.
   </Step>
 
   <Step title="Choose a model">

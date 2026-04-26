@@ -121,7 +121,7 @@
   lastmod: '2026-04-09T16:25:19.820Z'
 - source: code
   loc: https://code.claude.com/docs/en/chrome
-  lastmod: '2026-04-02T15:23:24.392Z'
+  lastmod: '2026-04-26T01:23:29.445Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-code-on-the-web
   lastmod: '2026-04-16T20:39:55.221Z'
@@ -136,7 +136,7 @@
   lastmod: '2026-04-15T18:05:02.165Z'
 - source: code
   loc: https://code.claude.com/docs/en/commands
-  lastmod: '2026-04-23T23:10:49.958Z'
+  lastmod: '2026-04-26T01:22:47.355Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
   lastmod: '2026-04-23T16:53:33.802Z'
@@ -157,13 +157,13 @@
   lastmod: '2026-04-22T00:20:43.737Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
-  lastmod: '2026-04-22T20:58:26.937Z'
+  lastmod: '2026-04-25T18:38:09.897Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-quickstart
-  lastmod: '2026-04-16T21:18:54.063Z'
+  lastmod: '2026-04-25T18:38:09.887Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-scheduled-tasks
-  lastmod: '2026-04-23T17:02:21.898Z'
+  lastmod: '2026-04-25T18:38:09.889Z'
 - source: code
   loc: https://code.claude.com/docs/en/devcontainer
   lastmod: '2026-04-08T18:23:32.834Z'
@@ -277,7 +277,7 @@
   lastmod: '2026-04-23T16:53:33.907Z'
 - source: code
   loc: https://code.claude.com/docs/en/routines
-  lastmod: '2026-04-23T17:02:22.002Z'
+  lastmod: '2026-04-25T18:38:09.890Z'
 - source: code
   loc: https://code.claude.com/docs/en/sandboxing
   lastmod: '2026-04-21T18:43:18.143Z'
@@ -298,7 +298,7 @@
   lastmod: '2026-04-23T16:53:33.937Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
-  lastmod: '2026-04-22T00:20:43.974Z'
+  lastmod: '2026-04-26T01:22:02.739Z'
 - source: code
   loc: https://code.claude.com/docs/en/slack
   lastmod: '2026-04-08T18:15:55.057Z'
@@ -310,7 +310,7 @@
   lastmod: '2026-04-23T23:10:49.961Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
-  lastmod: '2026-04-24T16:44:58.445Z'
+  lastmod: '2026-04-25T18:37:26.603Z'
 - source: code
   loc: https://code.claude.com/docs/en/third-party-integrations
   lastmod: '2026-04-24T05:18:33.244Z'
