@@ -168,7 +168,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/devcontainer</loc>
-    <lastmod>2026-01-28T13:17:42.710Z</lastmod>
+    <lastmod>2026-04-27T18:29:59.437Z</lastmod>
   </url>
 
   <url>
@@ -288,7 +288,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/network-config</loc>
-    <lastmod>2026-04-22T23:07:31.340Z</lastmod>
+    <lastmod>2026-04-27T18:29:59.515Z</lastmod>
   </url>
 
   <url>
@@ -303,7 +303,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/permission-modes</loc>
-    <lastmod>2026-04-24T17:06:01.112Z</lastmod>
+    <lastmod>2026-04-27T18:29:59.513Z</lastmod>
   </url>
 
   <url>
@@ -353,7 +353,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/sandboxing</loc>
-    <lastmod>2026-04-20T17:08:25.117Z</lastmod>
+    <lastmod>2026-04-27T18:29:59.534Z</lastmod>
   </url>
 
   <url>
@@ -363,7 +363,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/security</loc>
-    <lastmod>2026-02-24T19:23:01.876Z</lastmod>
+    <lastmod>2026-04-27T18:29:59.536Z</lastmod>
   </url>
 
   <url>
@@ -439,6 +439,21 @@
   <url>
     <loc>https://code.claude.com/docs/de/web-quickstart</loc>
     <lastmod>2026-04-16T20:30:48.105Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/de/whats-new/2026-w16</loc>
+    <lastmod>2026-04-27T20:40:18.690Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/de/whats-new/2026-w17</loc>
+    <lastmod>2026-04-27T20:40:18.689Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/de/whats-new</loc>
+    <lastmod>2026-04-27T20:40:18.688Z</lastmod>
   </url>
 
   <url>
@@ -628,7 +643,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/changelog</loc>
-    <lastmod>2026-04-25T02:45:47.027Z</lastmod>
+    <lastmod>2026-04-28T00:46:41.353Z</lastmod>
   </url>
 
   <url>
@@ -723,7 +738,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/devcontainer</loc>
-    <lastmod>2026-04-08T18:23:32.834Z</lastmod>
+    <lastmod>2026-04-27T18:14:19.946Z</lastmod>
   </url>
 
   <url>
@@ -848,7 +863,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/network-config</loc>
-    <lastmod>2026-04-22T23:00:49.756Z</lastmod>
+    <lastmod>2026-04-27T18:14:19.944Z</lastmod>
   </url>
 
   <url>
@@ -863,7 +878,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/permission-modes</loc>
-    <lastmod>2026-04-24T16:44:58.372Z</lastmod>
+    <lastmod>2026-04-27T18:14:19.944Z</lastmod>
   </url>
 
   <url>
@@ -913,7 +928,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/sandboxing</loc>
-    <lastmod>2026-04-21T18:43:18.143Z</lastmod>
+    <lastmod>2026-04-27T18:14:19.945Z</lastmod>
   </url>
 
   <url>
@@ -923,7 +938,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/security</loc>
-    <lastmod>2026-03-18T10:24:44.072Z</lastmod>
+    <lastmod>2026-04-27T18:14:19.943Z</lastmod>
   </url>
 
   <url>
@@ -1022,8 +1037,18 @@
   </url>
 
   <url>
+    <loc>https://code.claude.com/docs/en/whats-new/2026-w16</loc>
+    <lastmod>2026-04-27T20:29:20.688Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/en/whats-new/2026-w17</loc>
+    <lastmod>2026-04-27T20:29:20.683Z</lastmod>
+  </url>
+
+  <url>
     <loc>https://code.claude.com/docs/en/whats-new</loc>
-    <lastmod>2026-04-13T20:10:01.332Z</lastmod>
+    <lastmod>2026-04-27T20:29:20.692Z</lastmod>
   </url>
 
   <url>
@@ -1198,7 +1223,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/devcontainer</loc>
-    <lastmod>2026-01-28T13:17:42.943Z</lastmod>
+    <lastmod>2026-04-27T18:29:59.948Z</lastmod>
   </url>
 
   <url>
@@ -1318,7 +1343,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/network-config</loc>
-    <lastmod>2026-04-22T23:07:31.971Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.011Z</lastmod>
   </url>
 
   <url>
@@ -1383,7 +1408,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/sandboxing</loc>
-    <lastmod>2026-04-20T17:08:25.898Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.054Z</lastmod>
   </url>
 
   <url>
@@ -1393,7 +1418,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/security</loc>
-    <lastmod>2026-02-24T19:23:04.195Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.058Z</lastmod>
   </url>
 
   <url>
@@ -1469,6 +1494,21 @@
   <url>
     <loc>https://code.claude.com/docs/es/web-quickstart</loc>
     <lastmod>2026-04-16T20:31:07.639Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/es/whats-new/2026-w16</loc>
+    <lastmod>2026-04-27T20:40:19.654Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/es/whats-new/2026-w17</loc>
+    <lastmod>2026-04-27T20:40:19.645Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/es/whats-new</loc>
+    <lastmod>2026-04-27T20:40:19.646Z</lastmod>
   </url>
 
   <url>
@@ -1643,7 +1683,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/devcontainer</loc>
-    <lastmod>2026-01-28T13:17:43.093Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.170Z</lastmod>
   </url>
 
   <url>
@@ -1763,7 +1803,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/network-config</loc>
-    <lastmod>2026-04-22T23:07:32.276Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.236Z</lastmod>
   </url>
 
   <url>
@@ -1828,7 +1868,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/sandboxing</loc>
-    <lastmod>2026-04-20T17:08:26.223Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.261Z</lastmod>
   </url>
 
   <url>
@@ -1838,7 +1878,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/security</loc>
-    <lastmod>2026-02-24T19:23:06.551Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.258Z</lastmod>
   </url>
 
   <url>
@@ -1914,6 +1954,21 @@
   <url>
     <loc>https://code.claude.com/docs/fr/web-quickstart</loc>
     <lastmod>2026-04-16T20:31:41.154Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/fr/whats-new/2026-w16</loc>
+    <lastmod>2026-04-27T20:40:20.021Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/fr/whats-new/2026-w17</loc>
+    <lastmod>2026-04-27T20:40:20.020Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/fr/whats-new</loc>
+    <lastmod>2026-04-27T20:40:20.017Z</lastmod>
   </url>
 
   <url>
@@ -2088,7 +2143,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/devcontainer</loc>
-    <lastmod>2026-01-28T13:17:43.234Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.398Z</lastmod>
   </url>
 
   <url>
@@ -2208,7 +2263,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/network-config</loc>
-    <lastmod>2026-04-22T23:07:32.528Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.451Z</lastmod>
   </url>
 
   <url>
@@ -2273,7 +2328,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/sandboxing</loc>
-    <lastmod>2026-04-20T17:08:26.489Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.473Z</lastmod>
   </url>
 
   <url>
@@ -2283,7 +2338,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/security</loc>
-    <lastmod>2026-02-24T19:23:09.274Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.505Z</lastmod>
   </url>
 
   <url>
@@ -2359,6 +2414,21 @@
   <url>
     <loc>https://code.claude.com/docs/id/web-quickstart</loc>
     <lastmod>2026-04-16T20:32:42.910Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/id/whats-new/2026-w16</loc>
+    <lastmod>2026-04-27T20:40:20.457Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/id/whats-new/2026-w17</loc>
+    <lastmod>2026-04-27T20:40:20.452Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/id/whats-new</loc>
+    <lastmod>2026-04-27T20:40:20.456Z</lastmod>
   </url>
 
   <url>
@@ -2533,7 +2603,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/devcontainer</loc>
-    <lastmod>2026-01-28T13:17:43.615Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.608Z</lastmod>
   </url>
 
   <url>
@@ -2653,7 +2723,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/network-config</loc>
-    <lastmod>2026-04-22T23:07:32.794Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.657Z</lastmod>
   </url>
 
   <url>
@@ -2668,7 +2738,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/permission-modes</loc>
-    <lastmod>2026-04-24T17:06:04.047Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.683Z</lastmod>
   </url>
 
   <url>
@@ -2718,7 +2788,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/sandboxing</loc>
-    <lastmod>2026-04-20T17:08:26.813Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.713Z</lastmod>
   </url>
 
   <url>
@@ -2728,7 +2798,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/security</loc>
-    <lastmod>2026-02-24T19:23:11.289Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.715Z</lastmod>
   </url>
 
   <url>
@@ -2804,6 +2874,21 @@
   <url>
     <loc>https://code.claude.com/docs/it/web-quickstart</loc>
     <lastmod>2026-04-16T20:33:30.245Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/it/whats-new/2026-w16</loc>
+    <lastmod>2026-04-27T20:40:20.865Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/it/whats-new/2026-w17</loc>
+    <lastmod>2026-04-27T20:40:20.863Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/it/whats-new</loc>
+    <lastmod>2026-04-27T20:40:20.865Z</lastmod>
   </url>
 
   <url>
@@ -2978,7 +3063,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/devcontainer</loc>
-    <lastmod>2026-01-28T13:17:43.763Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.835Z</lastmod>
   </url>
 
   <url>
@@ -3098,7 +3183,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/network-config</loc>
-    <lastmod>2026-04-22T23:07:33.096Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.901Z</lastmod>
   </url>
 
   <url>
@@ -3163,7 +3248,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/sandboxing</loc>
-    <lastmod>2026-04-20T17:08:27.123Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.921Z</lastmod>
   </url>
 
   <url>
@@ -3173,7 +3258,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/security</loc>
-    <lastmod>2026-02-24T19:23:13.476Z</lastmod>
+    <lastmod>2026-04-27T18:30:00.923Z</lastmod>
   </url>
 
   <url>
@@ -3249,6 +3334,21 @@
   <url>
     <loc>https://code.claude.com/docs/ja/web-quickstart</loc>
     <lastmod>2026-04-16T20:34:15.257Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/ja/whats-new/2026-w16</loc>
+    <lastmod>2026-04-27T20:40:21.204Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/ja/whats-new/2026-w17</loc>
+    <lastmod>2026-04-27T20:40:21.206Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/ja/whats-new</loc>
+    <lastmod>2026-04-27T20:40:21.205Z</lastmod>
   </url>
 
   <url>
@@ -3423,7 +3523,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/devcontainer</loc>
-    <lastmod>2026-01-28T13:17:43.882Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.057Z</lastmod>
   </url>
 
   <url>
@@ -3543,7 +3643,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/network-config</loc>
-    <lastmod>2026-04-22T23:07:33.363Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.105Z</lastmod>
   </url>
 
   <url>
@@ -3558,7 +3658,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/permission-modes</loc>
-    <lastmod>2026-04-23T17:50:25.888Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.125Z</lastmod>
   </url>
 
   <url>
@@ -3608,7 +3708,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/sandboxing</loc>
-    <lastmod>2026-04-20T17:08:27.397Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.145Z</lastmod>
   </url>
 
   <url>
@@ -3618,7 +3718,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/security</loc>
-    <lastmod>2026-02-24T19:23:15.476Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.156Z</lastmod>
   </url>
 
   <url>
@@ -3694,6 +3794,21 @@
   <url>
     <loc>https://code.claude.com/docs/ko/web-quickstart</loc>
     <lastmod>2026-04-16T20:35:04.910Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/ko/whats-new/2026-w16</loc>
+    <lastmod>2026-04-27T20:40:21.543Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/ko/whats-new/2026-w17</loc>
+    <lastmod>2026-04-27T20:40:21.542Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/ko/whats-new</loc>
+    <lastmod>2026-04-27T20:40:21.540Z</lastmod>
   </url>
 
   <url>
@@ -3868,7 +3983,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/devcontainer</loc>
-    <lastmod>2026-01-28T13:17:44.015Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.263Z</lastmod>
   </url>
 
   <url>
@@ -3988,7 +4103,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/network-config</loc>
-    <lastmod>2026-04-22T23:07:33.595Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.349Z</lastmod>
   </url>
 
   <url>
@@ -4003,7 +4118,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/permission-modes</loc>
-    <lastmod>2026-04-24T17:06:05.466Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.353Z</lastmod>
   </url>
 
   <url>
@@ -4053,7 +4168,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/sandboxing</loc>
-    <lastmod>2026-04-20T17:08:27.737Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.390Z</lastmod>
   </url>
 
   <url>
@@ -4063,7 +4178,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/security</loc>
-    <lastmod>2026-02-24T19:23:17.554Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.388Z</lastmod>
   </url>
 
   <url>
@@ -4139,6 +4254,21 @@
   <url>
     <loc>https://code.claude.com/docs/pt/web-quickstart</loc>
     <lastmod>2026-04-16T20:36:50.289Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/pt/whats-new/2026-w16</loc>
+    <lastmod>2026-04-27T20:40:21.855Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/pt/whats-new/2026-w17</loc>
+    <lastmod>2026-04-27T20:40:21.858Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/pt/whats-new</loc>
+    <lastmod>2026-04-27T20:40:21.922Z</lastmod>
   </url>
 
   <url>
@@ -4313,7 +4443,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/devcontainer</loc>
-    <lastmod>2026-01-28T13:17:44.131Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.544Z</lastmod>
   </url>
 
   <url>
@@ -4433,7 +4563,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/network-config</loc>
-    <lastmod>2026-04-22T23:07:33.881Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.609Z</lastmod>
   </url>
 
   <url>
@@ -4448,7 +4578,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/permission-modes</loc>
-    <lastmod>2026-04-23T17:50:26.665Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.611Z</lastmod>
   </url>
 
   <url>
@@ -4498,7 +4628,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/sandboxing</loc>
-    <lastmod>2026-04-20T17:08:28.067Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.633Z</lastmod>
   </url>
 
   <url>
@@ -4508,7 +4638,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/security</loc>
-    <lastmod>2026-02-24T19:23:19.863Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.665Z</lastmod>
   </url>
 
   <url>
@@ -4584,6 +4714,21 @@
   <url>
     <loc>https://code.claude.com/docs/ru/web-quickstart</loc>
     <lastmod>2026-04-16T20:37:30.218Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/ru/whats-new/2026-w16</loc>
+    <lastmod>2026-04-27T20:40:22.229Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/ru/whats-new/2026-w17</loc>
+    <lastmod>2026-04-27T20:40:22.227Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/ru/whats-new</loc>
+    <lastmod>2026-04-27T20:40:22.230Z</lastmod>
   </url>
 
   <url>
@@ -4758,7 +4903,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/devcontainer</loc>
-    <lastmod>2026-01-28T13:17:44.250Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.768Z</lastmod>
   </url>
 
   <url>
@@ -4878,7 +5023,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/network-config</loc>
-    <lastmod>2026-04-22T23:07:34.115Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.814Z</lastmod>
   </url>
 
   <url>
@@ -4943,7 +5088,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/sandboxing</loc>
-    <lastmod>2026-04-20T17:08:28.377Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.860Z</lastmod>
   </url>
 
   <url>
@@ -4953,7 +5098,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/security</loc>
-    <lastmod>2026-02-24T19:23:21.620Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.863Z</lastmod>
   </url>
 
   <url>
@@ -5029,6 +5174,21 @@
   <url>
     <loc>https://code.claude.com/docs/zh-CN/web-quickstart</loc>
     <lastmod>2026-04-16T20:38:16.468Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/zh-CN/whats-new/2026-w16</loc>
+    <lastmod>2026-04-27T20:40:22.551Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/zh-CN/whats-new/2026-w17</loc>
+    <lastmod>2026-04-27T20:40:22.553Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/zh-CN/whats-new</loc>
+    <lastmod>2026-04-27T20:40:22.549Z</lastmod>
   </url>
 
   <url>
@@ -5203,7 +5363,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/devcontainer</loc>
-    <lastmod>2026-01-28T13:17:44.361Z</lastmod>
+    <lastmod>2026-04-27T18:30:01.974Z</lastmod>
   </url>
 
   <url>
@@ -5323,7 +5483,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/network-config</loc>
-    <lastmod>2026-04-22T23:07:34.338Z</lastmod>
+    <lastmod>2026-04-27T18:30:02.052Z</lastmod>
   </url>
 
   <url>
@@ -5338,7 +5498,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/permission-modes</loc>
-    <lastmod>2026-04-23T17:50:27.437Z</lastmod>
+    <lastmod>2026-04-27T18:30:02.052Z</lastmod>
   </url>
 
   <url>
@@ -5388,7 +5548,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/sandboxing</loc>
-    <lastmod>2026-04-20T17:08:28.633Z</lastmod>
+    <lastmod>2026-04-27T18:30:02.074Z</lastmod>
   </url>
 
   <url>
@@ -5398,7 +5558,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/security</loc>
-    <lastmod>2026-02-24T19:23:23.426Z</lastmod>
+    <lastmod>2026-04-27T18:30:02.075Z</lastmod>
   </url>
 
   <url>
@@ -5474,6 +5634,21 @@
   <url>
     <loc>https://code.claude.com/docs/zh-TW/web-quickstart</loc>
     <lastmod>2026-04-16T20:39:11.108Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/zh-TW/whats-new/2026-w16</loc>
+    <lastmod>2026-04-27T20:40:22.865Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/zh-TW/whats-new/2026-w17</loc>
+    <lastmod>2026-04-27T20:40:22.889Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://code.claude.com/docs/zh-TW/whats-new</loc>
+    <lastmod>2026-04-27T20:40:22.891Z</lastmod>
   </url>
 
   <url>

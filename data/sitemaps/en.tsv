@@ -35,7 +35,7 @@ code	https://code.claude.com/docs/en/analytics	2026-04-02T15:23:24.396Z
 code	https://code.claude.com/docs/en/authentication	2026-04-09T16:44:35.803Z	
 code	https://code.claude.com/docs/en/auto-mode-config	2026-04-23T16:53:33.742Z	
 code	https://code.claude.com/docs/en/best-practices	2026-04-21T02:42:53.265Z	
-code	https://code.claude.com/docs/en/changelog	2026-04-25T02:45:47.027Z	
+code	https://code.claude.com/docs/en/changelog	2026-04-28T00:46:41.353Z	
 code	https://code.claude.com/docs/en/channels	2026-03-25T19:03:14.403Z	
 code	https://code.claude.com/docs/en/channels-reference	2026-03-25T19:03:14.401Z	
 code	https://code.claude.com/docs/en/checkpointing	2026-04-09T16:25:19.820Z	
@@ -54,7 +54,7 @@ code	https://code.claude.com/docs/en/debug-your-config	2026-04-22T00:20:43.737Z
 code	https://code.claude.com/docs/en/desktop	2026-04-25T18:38:09.897Z	
 code	https://code.claude.com/docs/en/desktop-quickstart	2026-04-25T18:38:09.887Z	
 code	https://code.claude.com/docs/en/desktop-scheduled-tasks	2026-04-25T18:38:09.889Z	
-code	https://code.claude.com/docs/en/devcontainer	2026-04-08T18:23:32.834Z	
+code	https://code.claude.com/docs/en/devcontainer	2026-04-27T18:14:19.946Z	
 code	https://code.claude.com/docs/en/discover-plugins	2026-04-16T20:18:57.326Z	
 code	https://code.claude.com/docs/en/env-vars	2026-04-24T16:44:58.195Z	
 code	https://code.claude.com/docs/en/errors	2026-04-22T19:40:29.558Z	
@@ -79,10 +79,10 @@ code	https://code.claude.com/docs/en/memory	2026-04-22T19:22:25.316Z
 code	https://code.claude.com/docs/en/microsoft-foundry	2026-04-24T05:18:33.127Z	
 code	https://code.claude.com/docs/en/model-config	2026-04-23T16:53:33.882Z	
 code	https://code.claude.com/docs/en/monitoring-usage	2026-04-24T16:44:58.311Z	
-code	https://code.claude.com/docs/en/network-config	2026-04-22T23:00:49.756Z	
+code	https://code.claude.com/docs/en/network-config	2026-04-27T18:14:19.944Z	
 code	https://code.claude.com/docs/en/output-styles	2026-04-09T20:20:54.337Z	
 code	https://code.claude.com/docs/en/overview	2026-04-23T02:48:06.207Z	
-code	https://code.claude.com/docs/en/permission-modes	2026-04-24T16:44:58.372Z	
+code	https://code.claude.com/docs/en/permission-modes	2026-04-27T18:14:19.944Z	
 code	https://code.claude.com/docs/en/permissions	2026-04-23T16:53:33.880Z	
 code	https://code.claude.com/docs/en/platforms	2026-04-14T16:40:25.436Z	
 code	https://code.claude.com/docs/en/plugin-dependencies	2026-04-24T16:44:58.353Z	
@@ -92,9 +92,9 @@ code	https://code.claude.com/docs/en/plugins-reference	2026-04-23T16:53:33.905Z
 code	https://code.claude.com/docs/en/quickstart	2026-04-23T02:48:06.263Z	
 code	https://code.claude.com/docs/en/remote-control	2026-04-23T16:53:33.907Z	
 code	https://code.claude.com/docs/en/routines	2026-04-25T18:38:09.890Z	
-code	https://code.claude.com/docs/en/sandboxing	2026-04-21T18:43:18.143Z	
+code	https://code.claude.com/docs/en/sandboxing	2026-04-27T18:14:19.945Z	
 code	https://code.claude.com/docs/en/scheduled-tasks	2026-04-23T17:02:22.000Z	
-code	https://code.claude.com/docs/en/security	2026-03-18T10:24:44.072Z	
+code	https://code.claude.com/docs/en/security	2026-04-27T18:14:19.943Z	
 code	https://code.claude.com/docs/en/server-managed-settings	2026-04-22T20:58:27.122Z	
 code	https://code.claude.com/docs/en/settings	2026-04-24T16:44:58.405Z	
 code	https://code.claude.com/docs/en/setup	2026-04-23T16:53:33.937Z	
@@ -111,10 +111,12 @@ code	https://code.claude.com/docs/en/ultrareview	2026-04-21T08:44:33.352Z
 code	https://code.claude.com/docs/en/voice-dictation	2026-04-22T20:59:34.929Z	
 code	https://code.claude.com/docs/en/vs-code	2026-04-22T19:23:14.860Z	
 code	https://code.claude.com/docs/en/web-quickstart	2026-04-16T19:38:49.316Z	
-code	https://code.claude.com/docs/en/whats-new	2026-04-13T20:10:01.332Z	
+code	https://code.claude.com/docs/en/whats-new	2026-04-27T20:29:20.692Z	
 code	https://code.claude.com/docs/en/whats-new/2026-w13	2026-04-16T01:36:08.351Z	
 code	https://code.claude.com/docs/en/whats-new/2026-w14	2026-04-16T01:36:08.352Z	
 code	https://code.claude.com/docs/en/whats-new/2026-w15	2026-04-16T01:36:08.353Z	
+code	https://code.claude.com/docs/en/whats-new/2026-w16	2026-04-27T20:29:20.688Z	
+code	https://code.claude.com/docs/en/whats-new/2026-w17	2026-04-27T20:29:20.683Z	
 code	https://code.claude.com/docs/en/zero-data-retention	2026-04-21T02:42:53.247Z	
 platform	https://platform.claude.com/docs		0.8
 platform	https://platform.claude.com/docs/en/about-claude/glossary		0.8

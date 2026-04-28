@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/sdks/go
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: da9ab007b4cf2e81a42cd682f768cbf92bbfb518a46a4c53534cd5bbc8170aa1
+fetched_at: 2026-04-28T03:13:37.243984Z
+sha256: b21a1fe7ed0a5e61334337e75319a1d4760732524f94a2077416a905de29a939
 ---
 
 # Go SDK
@@ -25,10 +25,10 @@ import (
 )
 ```
 
-Or to pin the version:
+Install with `go get`:
 
 ```bash
-go get -u 'github.com/anthropics/anthropic-sdk-go@v1.38.0'
+go get github.com/anthropics/anthropic-sdk-go
 ```
 
 ## Requirements

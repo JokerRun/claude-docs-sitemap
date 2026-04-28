@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 0a75684a7b84f821ba11f750c6b1b39545c95e082d0e5a2f319cdd3072d1055a
+fetched_at: 2026-04-28T03:13:37.243984Z
+sha256: b7d5781c2c8b3e1f9a27c3894f6ad1d6f8af3cfeaae16404c29de3c815294fdd
 ---
 
 # Advisor tool
@@ -531,8 +531,10 @@ The advisor's prompt on the Nth call is the (N-1)th call's prompt with one more 
   causing advisor-side cache misses. This is a cost degradation only; advice
   quality is unaffected. When extended thinking is enabled without explicit
   `clear_thinking` configuration, the API defaults to
-  `keep: {type: "thinking_turns", value: 1}`, which triggers this behavior.
-  Set `keep: "all"` to preserve advisor cache stability.
+  `keep: {type: "thinking_turns", value: 1}`, which triggers this behavior
+  (the default on earlier Opus/Sonnet models and all Haiku models; on Opus
+  4.5+ and Sonnet 4.6+ the default is to keep all turns). Set `keep: "all"`
+  to preserve advisor cache stability.
 </Warning>
 
 ## Combining with other tools

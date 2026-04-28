@@ -109,7 +109,7 @@
   lastmod: '2026-04-21T02:42:53.265Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-04-25T02:45:47.027Z'
+  lastmod: '2026-04-28T00:46:41.353Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-03-25T19:03:14.403Z'
@@ -166,7 +166,7 @@
   lastmod: '2026-04-25T18:38:09.889Z'
 - source: code
   loc: https://code.claude.com/docs/en/devcontainer
-  lastmod: '2026-04-08T18:23:32.834Z'
+  lastmod: '2026-04-27T18:14:19.946Z'
 - source: code
   loc: https://code.claude.com/docs/en/discover-plugins
   lastmod: '2026-04-16T20:18:57.326Z'
@@ -241,7 +241,7 @@
   lastmod: '2026-04-24T16:44:58.311Z'
 - source: code
   loc: https://code.claude.com/docs/en/network-config
-  lastmod: '2026-04-22T23:00:49.756Z'
+  lastmod: '2026-04-27T18:14:19.944Z'
 - source: code
   loc: https://code.claude.com/docs/en/output-styles
   lastmod: '2026-04-09T20:20:54.337Z'
@@ -250,7 +250,7 @@
   lastmod: '2026-04-23T02:48:06.207Z'
 - source: code
   loc: https://code.claude.com/docs/en/permission-modes
-  lastmod: '2026-04-24T16:44:58.372Z'
+  lastmod: '2026-04-27T18:14:19.944Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
   lastmod: '2026-04-23T16:53:33.880Z'
@@ -280,13 +280,13 @@
   lastmod: '2026-04-25T18:38:09.890Z'
 - source: code
   loc: https://code.claude.com/docs/en/sandboxing
-  lastmod: '2026-04-21T18:43:18.143Z'
+  lastmod: '2026-04-27T18:14:19.945Z'
 - source: code
   loc: https://code.claude.com/docs/en/scheduled-tasks
   lastmod: '2026-04-23T17:02:22.000Z'
 - source: code
   loc: https://code.claude.com/docs/en/security
-  lastmod: '2026-03-18T10:24:44.072Z'
+  lastmod: '2026-04-27T18:14:19.943Z'
 - source: code
   loc: https://code.claude.com/docs/en/server-managed-settings
   lastmod: '2026-04-22T20:58:27.122Z'
@@ -337,7 +337,7 @@
   lastmod: '2026-04-16T19:38:49.316Z'
 - source: code
   loc: https://code.claude.com/docs/en/whats-new
-  lastmod: '2026-04-13T20:10:01.332Z'
+  lastmod: '2026-04-27T20:29:20.692Z'
 - source: code
   loc: https://code.claude.com/docs/en/whats-new/2026-w13
   lastmod: '2026-04-16T01:36:08.351Z'
@@ -347,6 +347,12 @@
 - source: code
   loc: https://code.claude.com/docs/en/whats-new/2026-w15
   lastmod: '2026-04-16T01:36:08.353Z'
+- source: code
+  loc: https://code.claude.com/docs/en/whats-new/2026-w16
+  lastmod: '2026-04-27T20:29:20.688Z'
+- source: code
+  loc: https://code.claude.com/docs/en/whats-new/2026-w17
+  lastmod: '2026-04-27T20:29:20.683Z'
 - source: code
   loc: https://code.claude.com/docs/en/zero-data-retention
   lastmod: '2026-04-21T02:42:53.247Z'

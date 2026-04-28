@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/migration-guide
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: 6c790f7501302942cabaf33166a013940fc858a983c483f2b2a3ba2430775d6a
+fetched_at: 2026-04-28T03:13:37.243984Z
+sha256: ff59fcb21970c7dd1c7ff41a4b009b47efe748ce2de02b98c039bfc61772c2f9
 ---
 
 # Migration guide
@@ -271,7 +271,7 @@ These changes improve your experience on Opus 4.7. Items marked **(required on O
      thinking: { type: "adaptive" },
      output_config: { effort: "high" },
      messages: [{ role: "user", content: "Your prompt here" }]
-   } as unknown as Anthropic.MessageCreateParamsNonStreaming);
+   });
    ```
 
    ```csharp C#

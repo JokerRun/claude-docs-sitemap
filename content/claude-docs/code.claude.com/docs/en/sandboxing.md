@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-04-22T03:11:35.366211Z
-sha256: e5fdd4fd3097d4e602b9c24adf9866464a56841d9a943851ff23512f4854408f
+fetched_at: 2026-04-28T03:13:37.243984Z
+sha256: f32908fb91905def7906f79981489d986211b78f66e3d7ed73917ddb9b8d6297
 ---
 
 > ## Documentation Index
@@ -290,7 +290,7 @@ For organizations requiring advanced network security, you can implement a custo
 The sandboxed bash tool works alongside:
 
 * **Permission rules**: Combine with [permission settings](/en/permissions) for defense-in-depth
-* **Development containers**: Use with [devcontainers](/en/devcontainer) for additional isolation
+* **Development containers**: Use with [dev containers](/en/devcontainer) for additional isolation
 * **Enterprise policies**: Enforce sandbox configurations through [managed settings](/en/settings#settings-precedence)
 
 ## Best practices

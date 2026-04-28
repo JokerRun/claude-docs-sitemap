@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: bf7c54aa4cec5b676688aadbb60def1a6616cd9809f4f56f63f1d34c438efa31
+fetched_at: 2026-04-28T03:13:37.243984Z
+sha256: b45a13992fa80e6e4faafd65bdd8e2f51e35e5fa30f8cea8055ac7e1ba61ccd3
 ---
 
 # Prompt caching
@@ -716,7 +716,7 @@ The following table shows which parts of the cache are invalidated by different 
 | **Tool choice** | ✓ | ✓ | ✘ | Changes to `tool_choice` parameter only affect message blocks |
 | **Images** | ✓ | ✓ | ✘ | Adding/removing images anywhere in the prompt affects message blocks |
 | **Thinking parameters** | ✓ | ✓ | ✘ | Changes to extended thinking settings (enable/disable, budget) affect message blocks |
-| **Non-tool results passed to extended thinking requests** | ✓ | ✓ | ✘ | When non-tool results are passed in requests while extended thinking is enabled, all previously-cached thinking blocks are stripped from context, and any messages in context that follow those thinking blocks are removed from the cache. For more details, see [Caching with thinking blocks](#caching-with-thinking-blocks). |
+| **Non-tool results passed to extended thinking requests** | ✓ | ✓ | Model-specific | On Opus 4.5+ and Sonnet 4.6+, thinking blocks are preserved by default, so the cache remains valid (✓). On earlier Opus/Sonnet models and all Haiku models, all previously-cached thinking blocks are stripped from context, and any messages that follow those thinking blocks are removed from the cache (✘). For more details, see [Caching with thinking blocks](#caching-with-thinking-blocks). |
 
 ### Tracking cache performance
 
@@ -760,7 +760,8 @@ When using [extended thinking](/docs/en/build-with-claude/extended-thinking) wit
 
 **Cache invalidation patterns**:
 - Cache remains valid when only tool results are provided as user messages
-- Cache gets invalidated when non-tool-result user content is added, causing all previous thinking blocks to be stripped
+- On Opus 4.5+ and Sonnet 4.6+, thinking blocks are preserved by default even when non-tool-result user content is added, so the cache remains valid
+- On earlier Opus/Sonnet models and all Haiku models, cache gets invalidated when non-tool-result user content is added, causing all previous thinking blocks to be stripped from context
 - This caching behavior occurs even without explicit `cache_control` markers
 
 For more details on cache invalidation, see [What invalidates the cache](#what-invalidates-the-cache).
@@ -784,11 +785,10 @@ Assistant: [thinking_block_1] + [tool_use block 1],
 User: [tool_result_1, cache=True],
 Assistant: [thinking_block_2] + [text block 2],
 User: [Text response, cache=True]
-# Non-tool-result user block causes all thinking blocks to be ignored
-# This request is processed as if thinking blocks were never present
+# On earlier Opus/Sonnet and all Haiku models, non-tool-result user block causes prior thinking blocks to be stripped; on Opus 4.5+/Sonnet 4.6+ they are kept
 ```
 
-When a non-tool-result user block is included, it designates a new assistant loop and all previous thinking blocks are removed from context.
+On earlier Opus/Sonnet models and all Haiku models, all previous thinking blocks are removed from context at this point. On Opus 4.5+ and Sonnet 4.6+, prior thinking blocks are kept by default and remain part of the cached prefix.
 
 For more detailed information, see the [extended thinking documentation](/docs/en/build-with-claude/extended-thinking#understanding-thinking-block-caching-behavior).
 

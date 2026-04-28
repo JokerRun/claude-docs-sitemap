@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 79983959fd0a9a89fa55a42c02b36200190812d17a3cd82b40a36455cf8d9666
+fetched_at: 2026-04-28T03:13:37.243984Z
+sha256: f40c97f8ac70b3800599df8916ddab8160982ad4dff55cc24c7388d57bba13c3
 ---
 
 # Define tools
@@ -385,7 +385,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..12,-1..}
+```java Java hidelines={1..6,9}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
@@ -394,8 +394,6 @@ import com.anthropic.models.messages.Message;
 import com.anthropic.models.messages.Model;
 import com.anthropic.models.messages.Tool;
 import com.anthropic.models.messages.Tool.InputSchema;
-import java.util.Map;
-import java.util.List;
 
 void main() {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -418,7 +416,7 @@ void main() {
                         "description", "The unit of temperature"
                     )
                 )))
-                .putAdditionalProperty("required", JsonValue.from(List.of("location")))
+                .required(List.of("location"))
                 .build())
             .putAdditionalProperty("input_examples", JsonValue.from(List.of(
                 Map.of(
