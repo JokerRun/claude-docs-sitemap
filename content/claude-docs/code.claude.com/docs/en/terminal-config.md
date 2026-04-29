@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-04-26T03:12:33.800534Z
-sha256: f2b164425e5cdcce580a2e486aa4b9bc8062187f0f65b259dbad1696709cc31d
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: aee5563247db608e98b4f3bb0114b31ada2b34b0b006a360a7d82a3803d65d53
 ---
 
 > ## Documentation Index
@@ -55,6 +55,8 @@ Some Claude Code shortcuts use the Option key, such as Option+Enter for a newlin
 
   <Tab title="iTerm2">
     Open Settings → Profiles → Keys → General and set Left Option key and Right Option key to "Esc+".
+
+    Running `/terminal-setup` in iTerm2 enables "Applications in terminal may access clipboard" under Settings → General → Selection so the `/copy` command can write to your system clipboard. The command detects iTerm2 even when run from inside tmux. Restart iTerm2 for the change to take effect.
   </Tab>
 
   <Tab title="VS Code">

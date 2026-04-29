@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/voice-dictation
-fetched_at: 2026-04-23T03:11:35.814149Z
-sha256: 0555c38d5c7b9da7993de3f66788f9c1986ab31bb8f5e658f5cb754b839d1f10
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: 2572bbbdf5a5a3b877b562e75df43896dc09e8b64090e4be116c385b31573d9a
 ---
 
 > ## Documentation Index
@@ -94,7 +94,7 @@ The first tap only starts recording when the prompt input is empty, so you can s
 
 ## Change the dictation language
 
-Voice dictation uses the same [`language` setting](/en/settings) that controls Claude's response language. If that setting is empty, dictation defaults to English.
+Voice dictation uses the same [`language` setting](/en/settings) that controls Claude's response language. If that setting is empty, dictation defaults to English. In the VS Code extension, if `language` is empty, dictation uses VS Code's `accessibility.voice.speechLanguage` setting before defaulting to English.
 
 <Accordion title="Supported dictation languages">
   | Language   | Code |

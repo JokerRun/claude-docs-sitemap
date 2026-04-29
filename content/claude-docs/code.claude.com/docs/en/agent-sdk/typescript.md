@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 571c12ba22c62648dbbabc1ba0204444d5483f7ea31da0b381afdb7e82f817d1
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: 768a29c8d5d13510936982749125da60e6dca163e0baaec846ad7b0e53e3f0e0
 ---
 
 > ## Documentation Index
@@ -1382,6 +1382,8 @@ type SyncHookJSONOutput = {
     | {
         hookEventName: "PostToolUse";
         additionalContext?: string;
+        updatedToolOutput?: unknown;
+        /** @deprecated Use `updatedToolOutput`, which works for all tools. */
         updatedMCPToolOutput?: unknown;
       }
     | {

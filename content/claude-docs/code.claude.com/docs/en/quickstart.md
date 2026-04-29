@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-04-23T03:11:35.814149Z
-sha256: fc751d9be10a9f33e925ad64d4aa567cd56aed50f34b7897e22b6452b00d905c
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: a9d72ce928509a558ccfe7d7283f0d662119b56879c158058230395add05a585
 ---
 
 > ## Documentation Index
@@ -496,17 +496,17 @@ export const InstallConfigurator = ({defaultSurface = 'terminal'}) => {
       {}
       {target === 'terminal' && <div className="cc-ic-below">
           {isWinInstaller && <span>
-              Requires{' '}
               <a href="https://git-scm.com/downloads/win" target="_blank" rel="noopener">
                 Git for Windows
-              </a>.
+              </a>{' '}
+              recommended. PowerShell is used if Git Bash is absent.
             </span>}
           {(pkg === 'brew' || pkg === 'winget') && <span>
               Does not auto-update. Run{' '}
               <code>{pkg === 'brew' ? 'brew upgrade claude-code' : 'winget upgrade Anthropic.ClaudeCode'}</code>{' '}
               periodically.
             </span>}
-          <a href="/en/troubleshooting">Troubleshooting</a>
+          <a href="/en/troubleshoot-install">Installation troubleshooting</a>
         </div>}
 
       {alt && <div className="cc-ic-handoff">
@@ -578,7 +578,7 @@ To install Claude Code, use one of the following methods:
 
     If you see `The token '&&' is not a valid statement separator`, you're in PowerShell, not CMD. If you see `'irm' is not recognized as an internal or external command`, you're in CMD, not PowerShell. Your prompt shows `PS C:\` when you're in PowerShell and `C:\` without the `PS` when you're in CMD.
 
-    **Native Windows setups require [Git for Windows](https://git-scm.com/downloads/win).** Install it first if you don't have it. WSL setups do not need it.
+    [Git for Windows](https://git-scm.com/downloads/win) is recommended on native Windows so Claude Code can use the Bash tool. If Git for Windows is not installed, Claude Code uses PowerShell as the shell tool instead. WSL setups do not need Git for Windows.
 
     <Info>
       Native installations automatically update in the background to keep you on the latest version.

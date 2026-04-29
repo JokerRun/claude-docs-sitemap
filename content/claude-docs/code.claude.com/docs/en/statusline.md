@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 657267ffb57db31ebdf15fcb85b931fb7fcb8b357d5617276cf9c7e14849aba2
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: 46cc44fb0f79b0c2ec6aa3163edd0cbcbb80f73bb779e2d1ffca48f7401b41aa
 ---
 
 > ## Documentation Index
@@ -70,6 +70,8 @@ The `command` field runs in a shell, so you can also use inline commands instead
 The optional `padding` field adds extra horizontal spacing (in characters) to the status line content. Defaults to `0`. This padding is in addition to the interface's built-in spacing, so it controls relative indentation rather than absolute distance from the terminal edge.
 
 The optional `refreshInterval` field re-runs your command every N seconds in addition to the [event-driven updates](#how-status-lines-work). The minimum is `1`. Set this when your status line shows time-based data such as a clock, or when background subagents change git state while the main session is idle. Leave it unset to run only on events.
+
+The optional `hideVimModeIndicator` field suppresses the built-in `-- INSERT --` text below the prompt. Set this to `true` when your script renders [`vim.mode`](#available-data) itself, so the mode is not shown twice.
 
 ### Disable the status line
 
@@ -921,7 +923,7 @@ Each script checks if the cache file is missing or older than 5 seconds before r
 
 ### Windows configuration
 
-On Windows, Claude Code runs status line commands through Git Bash. You can invoke PowerShell from that shell:
+On Windows, Claude Code runs status line commands through Git Bash when Git Bash is installed, or through PowerShell when Git Bash is absent. To run a PowerShell script as your status line, invoke it via `powershell`; this works from either shell:
 
 <CodeGroup>
   ```json settings.json theme={null}
@@ -948,7 +950,7 @@ On Windows, Claude Code runs status line commands through Git Bash. You can invo
   ```
 </CodeGroup>
 
-Or run a Bash script directly:
+Or, when Git Bash is installed, run a Bash script directly:
 
 <CodeGroup>
   ```json settings.json theme={null}

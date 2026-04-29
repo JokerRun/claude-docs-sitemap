@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 35c49b6fdc2a71e7545bc4afc6ff3d241a924e0fc8a5997033360c28498df89b
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: 2bc759e524b53a240be9fdaab9eb8b6ecdad208dceec375ee6194fc75bf330bc
 ---
 
 > ## Documentation Index
@@ -269,6 +269,8 @@ Request access to Claude models in Vertex AI:
 Claude Code uses standard Google Cloud authentication.
 
 For more information, see [Google Cloud authentication documentation](https://cloud.google.com/docs/authentication).
+
+Claude Code v2.1.121 or later supports [X.509 certificate-based Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation-with-x509-certificates) through the same Application Default Credentials chain. Set `GOOGLE_APPLICATION_CREDENTIALS` to the path of your credential configuration file.
 
 <Note>
   When authenticating, Claude Code will automatically use the project ID from the `ANTHROPIC_VERTEX_PROJECT_ID` environment variable. To override this, set one of these environment variables: `GCLOUD_PROJECT`, `GOOGLE_CLOUD_PROJECT`, or `GOOGLE_APPLICATION_CREDENTIALS`.

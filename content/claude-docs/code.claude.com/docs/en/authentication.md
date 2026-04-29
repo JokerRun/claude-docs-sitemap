@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: ce6fdcb8aa557f76c674cb9677cd20a89729b6861aa6b93095a3e0cbd4526fef
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: 2cd3a474c1e0cc777400232cabe5e2a98020b183717fe1485aa196192146bd1b
 ---
 
 > ## Documentation Index
@@ -32,7 +32,7 @@ You can authenticate with any of these account types:
 
 To log out and re-authenticate, type `/logout` at the Claude Code prompt.
 
-If you're having trouble logging in, see [authentication troubleshooting](/en/troubleshooting#authentication-issues).
+If you're having trouble logging in, see [authentication troubleshooting](/en/troubleshoot-install#login-and-authentication).
 
 ## Set up team authentication
 

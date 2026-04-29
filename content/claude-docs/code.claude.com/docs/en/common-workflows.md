@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: c90940612369f186a5359c13c37e0d85ded6946780a7c8a6f6a07332802577fc
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: 91a2f9d336c094f2a19ad8a9b91b02658a564de6874e3e12d197b2d4ec90d131
 ---
 
 > ## Documentation Index
@@ -364,7 +364,7 @@ You can create pull requests by asking Claude directly ("create a pr for my chan
   </Step>
 </Steps>
 
-When you create a PR using `gh pr create`, the session is automatically linked to that PR. You can resume it later with `claude --from-pr <number>`.
+When you create a PR using `gh pr create`, the session is automatically linked to that PR. To return to it later, run `claude --from-pr <number>` or paste the PR URL into the [`/resume` picker](#use-the-session-picker) search.
 
 <Tip>
   Review Claude's generated PR before submitting and ask Claude to highlight potential risks or considerations.
@@ -625,18 +625,18 @@ The `/resume` command (or `claude --resume` without arguments) opens an interact
 
 **Keyboard shortcuts in the picker:**
 
-| Shortcut                                          | Action                                                                                                                                             |
-| :------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `↑` / `↓`                                         | Navigate between sessions                                                                                                                          |
-| `→` / `←`                                         | Expand or collapse grouped sessions                                                                                                                |
-| `Enter`                                           | Select and resume the highlighted session                                                                                                          |
-| `Space`                                           | Preview the session content. `Ctrl+V` also works on terminals that do not capture it as paste                                                      |
-| `Ctrl+R`                                          | Rename the highlighted session                                                                                                                     |
-| `/` or any printable character other than `Space` | Enter search mode and filter sessions                                                                                                              |
-| `Ctrl+A`                                          | Show sessions from all projects on this machine. Press again to restore the current repository                                                     |
-| `Ctrl+W`                                          | Show sessions from all worktrees of the current repository. Press again to restore the current worktree. Only shown in multi-worktree repositories |
-| `Ctrl+B`                                          | Filter to sessions from your current git branch. Press again to show sessions from all branches                                                    |
-| `Esc`                                             | Exit the picker or search mode                                                                                                                     |
+| Shortcut                                          | Action                                                                                                                                                       |
+| :------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `↑` / `↓`                                         | Navigate between sessions                                                                                                                                    |
+| `→` / `←`                                         | Expand or collapse grouped sessions                                                                                                                          |
+| `Enter`                                           | Select and resume the highlighted session                                                                                                                    |
+| `Space`                                           | Preview the session content. `Ctrl+V` also works on terminals that do not capture it as paste                                                                |
+| `Ctrl+R`                                          | Rename the highlighted session                                                                                                                               |
+| `/` or any printable character other than `Space` | Enter search mode and filter sessions. Paste a GitHub, GitHub Enterprise, GitLab, or Bitbucket pull or merge request URL to find the session that created it |
+| `Ctrl+A`                                          | Show sessions from all projects on this machine. Press again to restore the current repository                                                               |
+| `Ctrl+W`                                          | Show sessions from all worktrees of the current repository. Press again to restore the current worktree. Only shown in multi-worktree repositories           |
+| `Ctrl+B`                                          | Filter to sessions from your current git branch. Press again to show sessions from all branches                                                              |
+| `Esc`                                             | Exit the picker or search mode                                                                                                                               |
 
 **Session organization:**
 
@@ -849,12 +849,14 @@ When you kick off a long-running task and switch to another window, you can set 
   <Step title="Optionally narrow the matcher">
     By default the hook fires on all notification types. To fire only for specific events, set the `matcher` field to one of these values:
 
-    | Matcher              | Fires when                                      |
-    | :------------------- | :---------------------------------------------- |
-    | `permission_prompt`  | Claude needs you to approve a tool use          |
-    | `idle_prompt`        | Claude is done and waiting for your next prompt |
-    | `auth_success`       | Authentication completes                        |
-    | `elicitation_dialog` | Claude is asking you a question                 |
+    | Matcher                | Fires when                                             |
+    | :--------------------- | :----------------------------------------------------- |
+    | `permission_prompt`    | Claude needs you to approve a tool use                 |
+    | `idle_prompt`          | Claude is done and waiting for your next prompt        |
+    | `auth_success`         | Authentication completes                               |
+    | `elicitation_dialog`   | An MCP server opens an elicitation form                |
+    | `elicitation_complete` | An MCP elicitation form is submitted or dismissed      |
+    | `elicitation_response` | An MCP elicitation response is sent back to the server |
   </Step>
 
   <Step title="Verify the hook">

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 8416c8e5b22a5912b81ab96b886a039d6a3f77c9abbffa333b48fdc86983d385
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: 132ef7f76d1befa12a082d9b279f302c57f25705b902dc0422ebf08b582bc834
 ---
 
 > ## Documentation Index
@@ -32,7 +32,7 @@ For complete information on plugin structure and how to create plugins, see [Plu
 
 ## Loading plugins
 
-Load plugins by providing their local file system paths in your options configuration. The SDK supports loading multiple plugins from different locations.
+Load plugins by providing their local file system paths in your options configuration. The `type` field must be `"local"`, the only value the SDK accepts. To use a plugin distributed through a [marketplace](/en/plugin-marketplaces) or remote repository, download it first and provide the local directory path. The SDK supports loading multiple plugins from different locations.
 
 <CodeGroup>
   ```typescript TypeScript theme={null}

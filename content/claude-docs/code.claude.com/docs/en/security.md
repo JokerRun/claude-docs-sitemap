@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security
-fetched_at: 2026-04-28T03:13:37.243984Z
-sha256: 429862bcfae8ad5cdff852587b358e84c2777c8ceb89bc7a8851b5f4f308e6bb
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: 4dee2e390a46ee393689dc0af8fca2529794bb9c3664ab0478417dcfddf67c35
 ---
 
 > ## Documentation Index
@@ -137,7 +137,7 @@ For more details on cloud execution, see [Claude Code on the web](/en/claude-cod
 If you discover a security vulnerability in Claude Code:
 
 1. Do not disclose it publicly
-2. Report it through our [HackerOne program](https://hackerone.com/anthropic-vdp/reports/new?type=team\&report_type=vulnerability)
+2. Report it through our [HackerOne program](https://hackerone.com/4f1f16ba-10d3-4d09-9ecc-c721aad90f24/embedded_submissions/new)
 3. Include detailed reproduction steps
 4. Allow time for us to address the issue before public disclosure
 

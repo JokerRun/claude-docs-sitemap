@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 47f40108ccea2a470fe949492b973f8d0cf9b29a9fdb51241c8735642da33461
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: 102220dfe69bf18a901ceb343016ad481737d940efc6cac68fc8db6128181ddb
 ---
 
 > ## Documentation Index
@@ -339,7 +339,7 @@ When your plugin is ready to share:
 3. **Create or use a marketplace**: Distribute through [plugin marketplaces](/en/plugin-marketplaces) for installation
 4. **Test with others**: Have team members test the plugin before wider distribution
 
-Once your plugin is in a marketplace, others can install it using the instructions in [Discover and install plugins](/en/discover-plugins).
+Once your plugin is in a marketplace, others can install it using the instructions in [Discover and install plugins](/en/discover-plugins). To keep a plugin internal to your team, host the marketplace in a [private repository](/en/plugin-marketplaces#private-repositories).
 
 ### Submit your plugin to the official marketplace
 

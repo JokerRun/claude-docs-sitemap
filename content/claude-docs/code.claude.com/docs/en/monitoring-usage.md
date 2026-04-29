@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: bf03ba26f1f10bf46b307b6a7a78fac91cdba443c6d35d36093baa165accf5f0
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: 23664baf5436c1ce77f3259bfcf9069f4d65fd4c484bccbab8eacbc4b3db54c4
 ---
 
 > ## Documentation Index
@@ -161,28 +161,30 @@ Every span carries the [standard attributes](#standard-attributes) plus a `span.
 
 **`claude_code.llm_request`**
 
-| Attribute                | Description                                                                      | Gated by |
-| ------------------------ | -------------------------------------------------------------------------------- | -------- |
-| `model`                  | Model identifier                                                                 |          |
-| `gen_ai.system`          | Always `anthropic`. OpenTelemetry GenAI semantic convention                      |          |
-| `gen_ai.request.model`   | Same value as `model`. OpenTelemetry GenAI semantic convention                   |          |
-| `query_source`           | Subsystem that issued the request, such as `repl_main_thread` or a subagent name |          |
-| `speed`                  | `fast` or `normal`                                                               |          |
-| `llm_request.context`    | `interaction`, `tool`, or `standalone` depending on the parent span              |          |
-| `duration_ms`            | Wall-clock duration including retries                                            |          |
-| `ttft_ms`                | Time to first token in milliseconds                                              |          |
-| `input_tokens`           | Input token count from the API usage block                                       |          |
-| `output_tokens`          | Output token count                                                               |          |
-| `cache_read_tokens`      | Tokens read from prompt cache                                                    |          |
-| `cache_creation_tokens`  | Tokens written to prompt cache                                                   |          |
-| `request_id`             | Anthropic API request ID from the `request-id` response header                   |          |
-| `gen_ai.response.id`     | Same value as `request_id`. OpenTelemetry GenAI semantic convention              |          |
-| `client_request_id`      | Client-generated `x-client-request-id` of the final attempt                      |          |
-| `attempt`                | Total attempts made for this request                                             |          |
-| `success`                | `true` or `false`                                                                |          |
-| `status_code`            | HTTP status code when the request failed                                         |          |
-| `error`                  | Error message when the request failed                                            |          |
-| `response.has_tool_call` | `true` when the response contained tool-use blocks                               |          |
+| Attribute                        | Description                                                                                                           | Gated by |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------- | -------- |
+| `model`                          | Model identifier                                                                                                      |          |
+| `gen_ai.system`                  | Always `anthropic`. OpenTelemetry GenAI semantic convention                                                           |          |
+| `gen_ai.request.model`           | Same value as `model`. OpenTelemetry GenAI semantic convention                                                        |          |
+| `query_source`                   | Subsystem that issued the request, such as `repl_main_thread` or a subagent name                                      |          |
+| `speed`                          | `fast` or `normal`                                                                                                    |          |
+| `llm_request.context`            | `interaction`, `tool`, or `standalone` depending on the parent span                                                   |          |
+| `duration_ms`                    | Wall-clock duration including retries                                                                                 |          |
+| `ttft_ms`                        | Time to first token in milliseconds                                                                                   |          |
+| `input_tokens`                   | Input token count from the API usage block                                                                            |          |
+| `output_tokens`                  | Output token count                                                                                                    |          |
+| `cache_read_tokens`              | Tokens read from prompt cache                                                                                         |          |
+| `cache_creation_tokens`          | Tokens written to prompt cache                                                                                        |          |
+| `request_id`                     | Anthropic API request ID from the `request-id` response header                                                        |          |
+| `gen_ai.response.id`             | Same value as `request_id`. OpenTelemetry GenAI semantic convention                                                   |          |
+| `client_request_id`              | Client-generated `x-client-request-id` of the final attempt                                                           |          |
+| `attempt`                        | Total attempts made for this request                                                                                  |          |
+| `success`                        | `true` or `false`                                                                                                     |          |
+| `status_code`                    | HTTP status code when the request failed                                                                              |          |
+| `error`                          | Error message when the request failed                                                                                 |          |
+| `response.has_tool_call`         | `true` when the response contained tool-use blocks                                                                    |          |
+| `stop_reason`                    | API response `stop_reason`, such as `end_turn`, `tool_use`, `max_tokens`, `stop_sequence`, `pause_turn`, or `refusal` |          |
+| `gen_ai.response.finish_reasons` | Same value as `stop_reason`, wrapped in a string array. OpenTelemetry GenAI semantic convention                       |          |
 
 Each retry attempt is also recorded as a `gen_ai.request.attempt` span event with `attempt` and `client_request_id` attributes.
 
@@ -233,7 +235,7 @@ This span is emitted only when detailed beta tracing is active, which requires `
 | `num_cancelled`          | Count of hooks cancelled before completion       |                         |
 
 <Note>
-  Additional content-bearing attributes such as `new_context`, `system_prompt_preview`, `tool_input`, and `response.model_output` are emitted only when detailed beta tracing is active. They are not part of the stable span schema.
+  Additional content-bearing attributes such as `new_context`, `system_prompt_preview`, `user_system_prompt`, `tool_input`, and `response.model_output` are emitted only when detailed beta tracing is active. They are not part of the stable span schema. `user_system_prompt` additionally requires `OTEL_LOG_USER_PROMPTS=1`. It carries only the system prompt text you provide via the `systemPrompt` SDK option or `--system-prompt` and `--append-system-prompt` flags, truncated at 60 KB, and is emitted once per session rather than per request.
 </Note>
 
 ### Dynamic headers
@@ -578,7 +580,7 @@ Logged when an API request to Claude fails.
 * `event.sequence`: monotonically increasing counter for ordering events within a session
 * `model`: Model used (for example, "claude-sonnet-4-6")
 * `error`: Error message
-* `status_code`: HTTP status code as a string, or `"undefined"` for non-HTTP errors
+* `status_code`: HTTP status code as a number. Absent for non-HTTP errors such as connection failures.
 * `duration_ms`: Request duration in milliseconds
 * `attempt`: Total number of attempts made, including the initial request (`1` means no retries occurred)
 * `request_id`: Anthropic API request ID from the response's `request-id` header, such as `"req_011..."`. Present only when the API returns one.
@@ -746,6 +748,21 @@ Logged when a skill is invoked.
 * `plugin.name` (when `OTEL_LOG_TOOL_DETAILS=1` or the plugin is from an official marketplace): Name of the owning plugin when the skill is provided by a plugin
 * `marketplace.name` (when `OTEL_LOG_TOOL_DETAILS=1` or the plugin is from an official marketplace): Marketplace the owning plugin was installed from, when the skill is provided by a plugin
 
+#### At mention event
+
+Logged when Claude Code resolves an `@`-mention in a prompt. Not every mention emits an event: early-exit paths such as permission denials, oversized files, PDF reference attachments, and directory listing failures return without logging.
+
+**Event Name**: `claude_code.at_mention`
+
+**Attributes**:
+
+* All [standard attributes](#standard-attributes)
+* `event.name`: `"at_mention"`
+* `event.timestamp`: ISO 8601 timestamp
+* `event.sequence`: monotonically increasing counter for ordering events within a session
+* `mention_type`: Type of mention (`"file"`, `"directory"`, `"agent"`, `"mcp_resource"`)
+* `success`: Whether the mention resolved successfully (`"true"` or `"false"`)
+
 #### API retries exhausted event
 
 Logged once when an API request fails after more than one attempt. Emitted alongside the final `api_error` event.
@@ -760,7 +777,7 @@ Logged once when an API request fails after more than one attempt. Emitted along
 * `event.sequence`: monotonically increasing counter for ordering events within a session
 * `model`: Model used
 * `error`: Final error message
-* `status_code`: HTTP status code as a string
+* `status_code`: HTTP status code as a number. Absent for non-HTTP errors.
 * `total_attempts`: Total number of attempts made
 * `total_retry_duration_ms`: Total wall-clock time across all attempts
 * `speed`: `"fast"` or `"normal"`
@@ -925,7 +942,7 @@ For a comprehensive guide on measuring return on investment for Claude Code, inc
 
 ## Security and privacy
 
-* Telemetry is opt-in and requires explicit configuration
+* OpenTelemetry export to your backend is opt-in and requires explicit configuration. For Anthropic's separate operational telemetry and how to disable it, see [Data usage](/en/data-usage#telemetry-services)
 * Raw file contents and code snippets are not included in metrics or events. Trace spans are a separate data path: see the `OTEL_LOG_TOOL_CONTENT` bullet below
 * When authenticated via OAuth, `user.email` is included in telemetry attributes. If this is a concern for your organization, work with your telemetry backend to filter or redact this field
 * User prompt content is not collected by default. Only prompt length is recorded. To include prompt content, set `OTEL_LOG_USER_PROMPTS=1`

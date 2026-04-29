@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-04-23T03:11:35.814149Z
-sha256: 8648349cb42d12be4854058cbc9e4a33b6bab923658c7090c2e86583516b2acf
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: 1b0e1d4fe4b6761253a17875af57ddb34e9ee18d7a76843b47a281c2a958d963
 ---
 
 > ## Documentation Index
@@ -13,7 +13,7 @@ sha256: 8648349cb42d12be4854058cbc9e4a33b6bab923658c7090c2e86583516b2acf
 
 > Look up Claude Code runtime error messages with what each one means and how to fix it.
 
-This page lists runtime errors Claude Code displays and how to recover from each one, plus what to check when responses seem off without an error. For installation errors such as `command not found` or TLS failures during setup, see [Troubleshooting](/en/troubleshooting).
+This page lists runtime errors Claude Code displays and how to recover from each one, plus what to check when responses seem off without an error. For installation errors such as `command not found` or TLS failures during setup, see [Troubleshoot installation and login](/en/troubleshoot-install).
 
 These errors and recovery commands apply across the CLI, the [Desktop app](/en/desktop), and [Claude Code on the web](/en/claude-code-on-the-web), since all three wrap the same Claude Code CLI. For surface-specific issues, see the troubleshooting section on that surface's page.
 
@@ -223,7 +223,7 @@ Not logged in · Please run /login
 * For CI or automation where interactive login is not possible, configure an [`apiKeyHelper`](/en/settings#available-settings) script that fetches a key at startup
 * See [Authentication precedence](/en/authentication#authentication-precedence) to understand which credential wins when several are present
 
-If you are prompted to log in repeatedly, see [Not logged in or token expired](/en/troubleshooting#not-logged-in-or-token-expired) for system clock and macOS Keychain fixes.
+If you are prompted to log in repeatedly, see [Not logged in or token expired](/en/troubleshoot-install#not-logged-in-or-token-expired) for system clock and macOS Keychain fixes.
 
 ### Invalid API key
 
@@ -272,8 +272,8 @@ API Error: 401 ... authentication_error
 
 * Run `/login` to sign in again
 * If the error returns within the same session after re-authenticating, run `/logout` first to fully clear the stored token, then `/login`
-* For repeated prompts to log in across launches, see the system clock and macOS Keychain checks in [Troubleshooting](/en/troubleshooting#not-logged-in-or-token-expired)
-* For other failures including `403 Forbidden` and OAuth browser issues, see [Permissions and authentication](/en/troubleshooting#permissions-and-authentication)
+* For repeated prompts to log in across launches, see the system clock and macOS Keychain checks in [Troubleshooting](/en/troubleshoot-install#not-logged-in-or-token-expired)
+* For other failures including `403 Forbidden` and OAuth browser issues, see [Login and authentication](/en/troubleshoot-install#login-and-authentication)
 
 ### OAuth scope requirement
 
@@ -450,7 +450,8 @@ There's an issue with the selected model (claude-...). It may not exist or you m
 
 * Run `/model` to pick from models available to your account
 * Use an alias such as `sonnet` or `opus` instead of a full versioned ID. Aliases track the latest release so they do not go stale. See [Model configuration](/en/model-config).
-* See [Model not found](/en/troubleshooting#model-not-found-or-not-accessible) to locate where a stale ID is set across `--model`, `ANTHROPIC_MODEL`, and settings files
+* If the wrong model keeps coming back, a stale ID is set somewhere. Check in [priority order](/en/model-config#setting-your-model): the `--model` flag, the `ANTHROPIC_MODEL` environment variable, then the `model` field in `.claude/settings.local.json`, your project's `.claude/settings.json`, and `~/.claude/settings.json`. Remove the stale value and Claude Code falls back to your account default.
+* For Vertex AI deployments, see [Vertex AI troubleshooting](/en/google-vertex-ai#troubleshooting).
 
 ### Claude Opus is not available with the Claude Pro plan
 
@@ -532,7 +533,7 @@ This page covers errors from the Claude API. For errors from other Claude Code c
 
 * MCP server failed to connect or authenticate: [MCP](/en/mcp)
 * Hook script failed or blocked a tool: [Debug hooks](/en/hooks#debug-hooks)
-* Permission denied or filesystem errors during install: [Troubleshooting](/en/troubleshooting)
+* Permission denied or filesystem errors during install: [Troubleshoot installation and login](/en/troubleshoot-install)
 
 If an error is not listed here or the suggested fix does not help:
 

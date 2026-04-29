@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/overview
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: b27888bae229439e293d0e9a523fdeabc702c9da3a8bb48b505f46d68a672456
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: 34580159869e1ab7be7064f33a1a7024757aec6771e4b6027fc089961b9c8cae
 ---
 
 > ## Documentation Index
@@ -540,6 +540,21 @@ The Claude Platform offers multiple ways to build with Claude. Here's how the Ag
     | Production automation   | SDK         |
 
     Many teams use both: CLI for daily development, SDK for production. Workflows translate directly between them.
+  </Tab>
+
+  <Tab title="Agent SDK vs Managed Agents">
+    [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) is a hosted REST API: Anthropic runs the agent and the sandbox, and your application sends events and streams back results. The **Agent SDK** is a library that runs the agent loop inside your own process.
+
+    |                    | Agent SDK                                                                    | Managed Agents                                                                                                |
+    | ------------------ | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+    | **Runs in**        | Your process, your infrastructure                                            | Anthropic-managed infrastructure                                                                              |
+    | **Interface**      | Python or TypeScript library                                                 | REST API                                                                                                      |
+    | **Agent works on** | Files on your infrastructure                                                 | A managed sandbox per session                                                                                 |
+    | **Session state**  | JSONL on your filesystem                                                     | Anthropic-hosted event log                                                                                    |
+    | **Custom tools**   | In-process Python or TypeScript functions                                    | Claude triggers the tool; you execute and return results                                                      |
+    | **Best for**       | Local prototyping, agents that work directly on your filesystem and services | Production agents without operating sandbox or session infrastructure, long-running and asynchronous sessions |
+
+    A common path is to prototype with the Agent SDK locally, then move to Managed Agents for production.
   </Tab>
 </Tabs>
 

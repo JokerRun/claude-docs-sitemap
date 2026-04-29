@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 75022006b2dab7b0cf84e558d47ebf21f9dc4c22c1b41eecbc5c0af457cefda7
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: 58b6546bf2d693bf193d1f555a0e541d488d4cdd2a39884ba44c653fd3ad8fc6
 ---
 
 > ## Documentation Index
@@ -102,7 +102,7 @@ Plugins can declare monitors that start automatically when the plugin is active,
 
 ## PowerShell tool
 
-The PowerShell tool lets Claude run PowerShell commands natively. On Windows, this means commands run in PowerShell instead of routing through Git Bash. The tool is rolling out progressively on Windows and is opt-in on Linux, macOS, and WSL.
+The PowerShell tool lets Claude run PowerShell commands natively. On Windows, this means commands run in PowerShell instead of routing through Git Bash. On Windows without Git Bash, the tool is enabled automatically. On Windows with Git Bash installed, the tool is rolling out progressively. On Linux, macOS, and WSL, the tool is opt-in.
 
 ### Enable the PowerShell tool
 
@@ -136,7 +136,6 @@ The PowerShell tool has the following known limitations during the preview:
 
 * PowerShell profiles are not loaded
 * On Windows, sandboxing is not supported
-* On Windows, Git Bash is still required to start Claude Code
 
 ## Check which tools are available
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 69d53821d44f8714f0224a99f410429593f782b8271e997f60e614bc5fcd0a5f
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: b0b84323e66c666fe08fab8810c3ecdb46ebf0f3407560e2635240d988a4f28a
 ---
 
 > ## Documentation Index
@@ -794,6 +794,7 @@ Before relying on cloud sessions for a workflow, account for these constraints:
 * **Rate limits**: Claude Code on the web shares rate limits with all other Claude and Claude Code usage within your account. Running multiple tasks in parallel consumes more rate limits proportionately. There is no separate compute charge for the cloud VM.
 * **Repository authentication**: you can only move sessions from web to local when you are authenticated to the same account
 * **Platform restrictions**: repository cloning and pull request creation require GitHub. Self-hosted [GitHub Enterprise Server](/en/github-enterprise-server) instances are supported for Team and Enterprise plans. GitLab, Bitbucket, and other non-GitHub repositories can be sent to cloud sessions as a [local bundle](#send-local-repositories-without-github), but the session can't push results back to the remote
+* **Organization IP allowlist**: cloud sessions call the Anthropic API from Anthropic-managed infrastructure, not your network. If your organization has [IP allowlisting](https://support.claude.com/en/articles/13200993-restrict-access-to-claude-with-ip-allowlisting) enabled, every cloud session fails with an authentication error. The same applies to [Code Review](/en/code-review) and [Routines](/en/routines). Contact [Anthropic support](https://support.claude.com/) to exempt Anthropic-hosted services from your organization's IP allowlist.
 
 ## Related resources
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: c5a367f97d0575ca7ff75d70681ab3318fde97cc1341cd4428fb8c628d99ceb4
+fetched_at: 2026-04-29T03:13:50.297940Z
+sha256: ca7810a9e73b5a62ad4fb79d5e07959e76e600fe23d60e985dc4132900f788e8
 ---
 
 > ## Documentation Index
@@ -51,6 +51,8 @@ Claude Code includes the following headers on every API request:
 | Header                     | Description                                                                                                                                                         |
 | :------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `X-Claude-Code-Session-Id` | A unique identifier for the current Claude Code session. Proxies can use this to aggregate all API requests from a single session without parsing the request body. |
+
+Claude Code also prepends a short attribution block to the system prompt containing the client version and a fingerprint derived from the conversation. The Anthropic API strips this block before processing, so it does not affect first-party prompt caching. If your gateway implements its own prompt cache keyed on the full request body, set [`CLAUDE_CODE_ATTRIBUTION_HEADER=0`](/en/env-vars) to omit it.
 
 ## Configuration
 
