@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: b3859c46b9ba2bf820f9a429090c8e37137cc4325fcc715ce740e894dd8d1108
+fetched_at: 2026-04-30T03:14:15.920856Z
+sha256: 3fa288a829be543c64ed4b1497520f56ecf745369f2f482933532a727cb6843e
 ---
 
 > ## Documentation Index
@@ -31,6 +31,7 @@ Match the error message or symptom you're seeing to a fix:
 | `'bash' is not recognized as the name of a cmdlet`                                          | [Use the Windows installer command](#wrong-install-command-on-windows)                                                  |
 | `Claude Code on Windows requires either Git for Windows (for bash) or PowerShell`           | [Install a shell](#claude-code-on-windows-requires-either-git-for-windows-for-bash-or-powershell)                       |
 | `Claude Code does not support 32-bit Windows`                                               | [Open Windows PowerShell, not the x86 entry](#claude-code-does-not-support-32-bit-windows)                              |
+| `The process cannot access the file ... because it is being used by another process`        | [Clear the downloads folder and retry](#the-process-cannot-access-the-file-during-windows-install)                      |
 | `Error loading shared library`                                                              | [Wrong binary variant for your system](#linux-musl-or-glibc-binary-mismatch)                                            |
 | `Illegal instruction`                                                                       | [Architecture or CPU instruction set mismatch](#illegal-instruction)                                                    |
 | `cannot execute binary file: Exec format error` in WSL                                      | [WSL1 native-binary regression](#exec-format-error-on-wsl1)                                                             |
@@ -117,6 +118,8 @@ Check if the install directory is in your PATH by listing your PATH entries and 
     ```
 
     Alternatively, close and reopen your terminal.
+
+    For other shells such as fish or Nushell, add `~/.local/bin` to your PATH using your shell's own configuration syntax, then restart your terminal.
 
     Verify the fix worked:
 
@@ -459,6 +462,17 @@ If you see `'irm' is not recognized`, `The token '&&' is not valid`, or `'bash' 
   ```powershell theme={null}
   irm https://claude.ai/install.ps1 | iex
   ```
+
+### `The process cannot access the file` during Windows install
+
+If the PowerShell installer fails with `Failed to download binary: The process cannot access the file ... because it is being used by another process`, the installer couldn't write to `%USERPROFILE%\.claude\downloads`. This usually means a previous install attempt is still running, or antivirus software is scanning a partially downloaded binary in that folder.
+
+Close any other PowerShell windows running the installer and wait for antivirus scans to release the file. Then delete the downloads folder and run the installer again:
+
+```powershell theme={null}
+Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\downloads"
+irm https://claude.ai/install.ps1 | iex
+```
 
 ### Install killed on low-memory Linux servers
 

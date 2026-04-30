@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: cc7319690be3991d06dbec72b8083c98ba01ad2116bddd7817add45ca3bf3cc1
+fetched_at: 2026-04-30T03:14:15.920856Z
+sha256: 5deb69984405bab9f4ee790bc0b783730066fe11ed4572ec1bb1a39cb9a51f75
 ---
 
 > ## Documentation Index
@@ -59,6 +59,10 @@ Network access is controlled through a proxy server running outside the sandbox:
 * **User confirmation**: New domain requests trigger permission prompts (unless [`allowManagedDomainsOnly`](/en/settings#sandbox-settings) is enabled, which blocks non-allowed domains automatically)
 * **Custom proxy support**: Advanced users can implement custom rules on outgoing traffic
 * **Comprehensive coverage**: Restrictions apply to all scripts, programs, and subprocesses spawned by commands
+
+<Note>
+  The built-in proxy enforces the allowlist based on the requested hostname and does not terminate or inspect TLS traffic. See [Security limitations](#security-limitations) for the implications of this design, and [Custom proxy configuration](#custom-proxy-configuration) if your threat model requires TLS inspection.
+</Note>
 
 ### OS-level enforcement
 
@@ -236,10 +240,10 @@ When Claude Code attempts to access network resources outside the sandbox:
 
 ## Security Limitations
 
-* Network Sandboxing Limitations: The network filtering system operates by restricting the domains that processes are allowed to connect to. It does not otherwise inspect the traffic passing through the proxy and users are responsible for ensuring they only allow trusted domains in their policy.
+* Network Sandboxing Limitations: The network filtering system operates by restricting the domains that processes are allowed to connect to. The built-in proxy does not terminate or perform TLS inspection on outbound traffic, so the contents of encrypted connections are not examined. You are responsible for ensuring that only trusted domains are allowed in your policy.
 
 <Warning>
-  Users should be aware of potential risks that come from allowing broad domains like `github.com` that may allow for data exfiltration. Also, in some cases it may be possible to bypass the network filtering through [domain fronting](https://en.wikipedia.org/wiki/Domain_fronting).
+  Allowing broad domains such as `github.com` can create paths for data exfiltration. Because the proxy makes its allow decision from the client-supplied hostname without inspecting TLS, code running inside the sandbox can potentially use [domain fronting](https://en.wikipedia.org/wiki/Domain_fronting) or similar techniques to reach hosts outside the allowlist. If your threat model requires stronger guarantees, configure a [custom proxy](#custom-proxy-configuration) that terminates TLS and inspects traffic, and install its CA certificate inside the sandbox. Stronger TLS-aware network isolation is an active area of development.
 </Warning>
 
 * Privilege Escalation via Unix Sockets: The `allowUnixSockets` configuration can inadvertently grant access to powerful system services that could lead to sandbox bypasses. For example, if it is used to allow access to `/var/run/docker.sock` this would effectively grant access to the host system through exploiting the docker socket. Users are encouraged to carefully consider any unix sockets that they allow through the sandbox.

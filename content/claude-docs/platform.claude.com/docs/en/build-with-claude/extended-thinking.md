@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-04-28T03:13:37.243984Z
-sha256: 5d5dd52d3584411f5fc61807d49ba5f310d74c970e2d31c8e06a2b6dbe07dfe2
+fetched_at: 2026-04-30T03:14:15.920856Z
+sha256: e0548bf64651cacc151de50979fb042737bd1bd54a2fecada9a3adb2ae9f090f
 ---
 
 # Building with extended thinking
@@ -334,7 +334,7 @@ The `budget_tokens` parameter determines the maximum number of tokens Claude is 
 [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, and Claude Opus 4.6 support up to 128k output tokens. Claude Sonnet 4.6 and Claude Haiku 4.5 support up to 64k. See the [models overview](/docs/en/about-claude/models/overview) for limits on legacy models. On the [Message Batches API](/docs/en/build-with-claude/batch-processing#extended-output-beta), the `output-300k-2026-03-24` [beta header](/docs/en/api/beta-headers) raises the output limit to 300k for Opus 4.7, Opus 4.6, and Sonnet 4.6.
 </Note>
 
-`budget_tokens` must be set to a value less than `max_tokens`. However, when using [interleaved thinking with tools](#interleaved-thinking), you can exceed this limit as the token limit becomes your entire context window.
+`budget_tokens` must be set to a value less than `max_tokens`. However, when using [interleaved thinking with tools](#interleaved-thinking), you can exceed this limit as the token limit becomes your entire context window. Because `budget_tokens` must be less than `max_tokens`, extended thinking cannot be combined with `max_tokens: 0` ([cache pre-warming](/docs/en/build-with-claude/prompt-caching#pre-warming-the-cache)).
 
 ### Summarized thinking
 

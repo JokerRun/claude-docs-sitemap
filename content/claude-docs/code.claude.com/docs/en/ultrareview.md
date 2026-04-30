@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/ultrareview
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 89f8f1c7ee05b61943386524ea4364e060befcf5b97ae5a1295a07b5eb67495e
+fetched_at: 2026-04-30T03:14:15.920856Z
+sha256: a67476e59cc36003d1bdfd8585c0bcfbfb00094bb80fb44e93cfefddea8165b8
 ---
 
 > ## Documentation Index
@@ -91,6 +91,8 @@ Progress messages and the live session URL go to stderr so stdout stays parseabl
 | `--timeout <minutes>` | Maximum minutes to wait for the review to finish. Defaults to 30    |
 
 Running `claude ultrareview` requires the same authentication and extra usage configuration as `/ultrareview`. The subcommand exits with code 0 when the review completes with or without findings, code 1 when the review fails to launch, the remote session errors, or the timeout elapses, and code 130 when interrupted with Ctrl-C. The remote review keeps running if you interrupt the subcommand; follow the session URL printed to stderr to watch it in the browser.
+
+For automatic reviews on GitHub pull requests, [Code Review](/en/code-review) integrates with your repository directly and posts findings as inline PR comments without a CLI step.
 
 ## How ultrareview compares to /review
 

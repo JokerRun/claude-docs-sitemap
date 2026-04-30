@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: fc061998c068f81e4f9449ce379365a637705869f91f513a956c2696ffbe979a
+fetched_at: 2026-04-30T03:14:15.920856Z
+sha256: 3102cf2c55e06ab3f26694a6b6b6a67ff1ace8d089c660ba9219842f2ccb6dee
 ---
 
 > ## Documentation Index
@@ -16,6 +16,10 @@ sha256: fc061998c068f81e4f9449ce379365a637705869f91f513a956c2696ffbe979a
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.123" description="April 29, 2026">
+  * Fixed OAuth authentication failing with a 401 retry loop when `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` is set
+</Update>
 
 <Update label="2.1.122" description="April 28, 2026">
   * Added `ANTHROPIC_BEDROCK_SERVICE_TIER` environment variable to select a Bedrock service tier (`default`, `flex`, or `priority`), sent as the `X-Amzn-Bedrock-Service-Tier` header

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 6ba9c9619505f62d06d6dad80f789ed3da77b38bf723929e2f79a6aad28d5d23
+fetched_at: 2026-04-30T03:14:15.920856Z
+sha256: b2cd68c996a08bac62ebce129a7140001ef13f91ee3b737cb197cc3c17e6da5c
 ---
 
 > ## Documentation Index
@@ -47,13 +47,12 @@ This example creates a skill that teaches Claude to explain code using visual di
   </Step>
 
   <Step title="Write SKILL.md">
-    Every skill needs a `SKILL.md` file with two parts: YAML frontmatter (between `---` markers) that tells Claude when to use the skill, and markdown content with instructions Claude follows when the skill is invoked. The `name` field becomes the `/slash-command`, and the `description` helps Claude decide when to load it automatically.
+    Every skill needs a `SKILL.md` file with two parts: YAML frontmatter (between `---` markers) that tells Claude when to use the skill, and markdown content with instructions Claude follows when the skill is invoked. The directory name becomes the `/slash-command`, and the `description` helps Claude decide when to load it automatically.
 
     Create `~/.claude/skills/explain-code/SKILL.md`:
 
     ```yaml theme={null}
     ---
-    name: explain-code
     description: Explains code with visual diagrams and analogies. Use when explaining how code works, teaching about a codebase, or when the user asks "how does this work?"
     ---
 
