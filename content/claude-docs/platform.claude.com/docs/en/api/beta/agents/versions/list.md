@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: be98a6737bbe5b28bb6a4d0313b4fc3dad1210d5392e61742f9e6da71d6dbc58
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 7139c84c85803ac049df141b731512ddccf1b9c191529b4f8aedec5df917f316
 ---
 
 ## List
@@ -33,7 +33,7 @@ List Agent Versions
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ List Agent Versions
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 

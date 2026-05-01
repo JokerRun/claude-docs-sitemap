@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 1cafdbce6150ede1645167d01b6dcd149dc60a944f0bdaa21f52b7b7c5c987be
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 2c0ec2fcabe8d9b537adff6f08eed9ee7a648ed00821b1bd49ceec6fd268fb3f
 ---
 
 ## Create
@@ -26,6 +26,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     The maximum number of tokens to generate before stopping.
 
     Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+    Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
     Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 

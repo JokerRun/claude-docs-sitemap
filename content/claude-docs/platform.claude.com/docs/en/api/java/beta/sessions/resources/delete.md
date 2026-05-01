@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 38b282ee84aceb4139a979ec5bdb8f4471bd6d5251d811f27256813b95af2ee4
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 9fb473dc357258b0fe8672ae13e85ed6b9ddf834ef9d12b1ca7072db63c24f18
 ---
 
 ## Delete
@@ -66,6 +66,8 @@ Delete Session Resource
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

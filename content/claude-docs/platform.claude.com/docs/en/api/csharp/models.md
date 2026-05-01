@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/models
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: b1bf3133da5c7cd761bace8fbc845d3f1a9d313e84d8c4033ce12f99290a1a5f
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: e4c9143a04fa576c814a3612bf588400e85e58f17991a55dc657925134e4b79a
 ---
 
 # Models
@@ -80,6 +80,8 @@ The Models API response can be used to determine which models are available for 
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
@@ -192,6 +194,14 @@ The Models API response can be used to determine which models are available for 
         - `required Boolean Supported`
 
           Whether this capability is supported by the model.
+
+        - `required CapabilitySupport? Xhigh`
+
+          Indicates whether a capability is supported.
+
+          - `required Boolean Supported`
+
+            Whether this capability is supported by the model.
 
       - `required CapabilitySupport ImageInput`
 
@@ -355,6 +365,8 @@ The Models API response can be used to determine information about a specific mo
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
@@ -464,6 +476,14 @@ The Models API response can be used to determine information about a specific mo
       - `required Boolean Supported`
 
         Whether this capability is supported by the model.
+
+      - `required CapabilitySupport? Xhigh`
+
+        Indicates whether a capability is supported.
+
+        - `required Boolean Supported`
+
+          Whether this capability is supported by the model.
 
     - `required CapabilitySupport ImageInput`
 
@@ -637,6 +657,14 @@ Console.WriteLine(modelInfo);
 
     Whether this capability is supported by the model.
 
+  - `required CapabilitySupport? Xhigh`
+
+    Indicates whether a capability is supported.
+
+    - `required Boolean Supported`
+
+      Whether this capability is supported by the model.
+
 ### Model Capabilities
 
 - `class ModelCapabilities:`
@@ -738,6 +766,14 @@ Console.WriteLine(modelInfo);
     - `required Boolean Supported`
 
       Whether this capability is supported by the model.
+
+    - `required CapabilitySupport? Xhigh`
+
+      Indicates whether a capability is supported.
+
+      - `required Boolean Supported`
+
+        Whether this capability is supported by the model.
 
   - `required CapabilitySupport ImageInput`
 
@@ -898,6 +934,14 @@ Console.WriteLine(modelInfo);
       - `required Boolean Supported`
 
         Whether this capability is supported by the model.
+
+      - `required CapabilitySupport? Xhigh`
+
+        Indicates whether a capability is supported.
+
+        - `required Boolean Supported`
+
+          Whether this capability is supported by the model.
 
     - `required CapabilitySupport ImageInput`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 07e3fb301af06ed82010c94486deaf45ee639963568aba2c3d3c13cb5b9c95d2
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 6e24efb2e2b4254eccafd13f47e24d7ddefa7bb2fad762fa71841d568c513289
 ---
 
 ## Create
@@ -71,9 +71,9 @@ Create User Profile
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
-    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

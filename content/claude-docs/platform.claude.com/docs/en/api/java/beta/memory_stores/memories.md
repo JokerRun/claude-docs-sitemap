@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: f81c491a2eec465460de2fbfcc0d9118bf23b4c4bbc320fda50c5f991255cc32
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 05435fa8e934b5f28b4ddbe85665a05bcb660870ba4a6553a41f997116b9478f
 ---
 
 # Memories
@@ -13,7 +13,7 @@ sha256: f81c491a2eec465460de2fbfcc0d9118bf23b4c4bbc320fda50c5f991255cc32
 
 **post** `/v1/memory_stores/{memory_store_id}/memories`
 
-CreateMemory
+Create a memory
 
 ### Parameters
 
@@ -71,21 +71,35 @@ CreateMemory
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Optional<String> content`
 
+    UTF-8 text content for the new memory. Maximum 100 kB (102,400 bytes). Required; pass `""` explicitly to create an empty memory.
+
   - `String path`
+
+    Hierarchical path for the new memory, e.g. `/projects/foo/notes.md`. Must start with `/`, contain at least one non-empty segment, and be at most 1,024 bytes. Must not contain empty segments, `.` or `..` segments, control or format characters, and must be NFC-normalized. Paths are case-sensitive.
 
 ### Returns
 
 - `class BetaManagedAgentsMemory:`
 
+  A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+
   - `String id`
+
+    Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
 
   - `String contentSha256`
 
+    Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
   - `long contentSizeBytes`
+
+    Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
   - `LocalDateTime createdAt`
 
@@ -93,9 +107,15 @@ CreateMemory
 
   - `String memoryStoreId`
 
+    ID of the memory store this memory belongs to (a `memstore_...` value).
+
   - `String memoryVersionId`
 
+    ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
   - `String path`
+
+    Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
   - `Type type`
 
@@ -106,6 +126,8 @@ CreateMemory
     A timestamp in RFC 3339 format
 
   - `Optional<String> content`
+
+    The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 
 ### Example
 
@@ -139,7 +161,7 @@ public final class Main {
 
 **get** `/v1/memory_stores/{memory_store_id}/memories`
 
-ListMemories
+List memories
 
 ### Parameters
 
@@ -225,19 +247,31 @@ ListMemories
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 
 - `class BetaManagedAgentsMemoryListItem: A class that can be one of several variants.union`
 
+  One item in a [List memories](/docs/en/api/beta/memory_stores/memories/list) response: either a `memory` object or, when `depth` is set, a `memory_prefix` rollup marker.
+
   - `class BetaManagedAgentsMemory:`
+
+    A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
 
     - `String id`
 
+      Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
+
     - `String contentSha256`
 
+      Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
     - `long contentSizeBytes`
+
+      Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
     - `LocalDateTime createdAt`
 
@@ -245,9 +279,15 @@ ListMemories
 
     - `String memoryStoreId`
 
+      ID of the memory store this memory belongs to (a `memstore_...` value).
+
     - `String memoryVersionId`
 
+      ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
     - `String path`
+
+      Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
     - `Type type`
 
@@ -259,9 +299,15 @@ ListMemories
 
     - `Optional<String> content`
 
+      The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
+
   - `class BetaManagedAgentsMemoryPrefix:`
 
+    A rolled-up directory marker returned by [List memories](/docs/en/api/beta/memory_stores/memories/list) when `depth` is set. Indicates that one or more memories exist deeper than the requested depth under this prefix. This is a list-time rollup, not a stored resource; it has no ID and no lifecycle. Each prefix counts toward the page `limit` and interleaves with `memory` items in path order.
+
     - `String path`
+
+      The rolled-up path prefix, including a trailing `/` (e.g. `/projects/foo/`). Pass this value as `path_prefix` on a subsequent list call to drill into the directory.
 
     - `Type type`
 
@@ -294,7 +340,7 @@ public final class Main {
 
 **get** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
-GetMemory
+Retrieve a memory
 
 ### Parameters
 
@@ -354,17 +400,27 @@ GetMemory
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 
 - `class BetaManagedAgentsMemory:`
 
+  A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+
   - `String id`
+
+    Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
 
   - `String contentSha256`
 
+    Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
   - `long contentSizeBytes`
+
+    Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
   - `LocalDateTime createdAt`
 
@@ -372,9 +428,15 @@ GetMemory
 
   - `String memoryStoreId`
 
+    ID of the memory store this memory belongs to (a `memstore_...` value).
+
   - `String memoryVersionId`
 
+    ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
   - `String path`
+
+    Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
   - `Type type`
 
@@ -385,6 +447,8 @@ GetMemory
     A timestamp in RFC 3339 format
 
   - `Optional<String> content`
+
+    The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 
 ### Example
 
@@ -417,7 +481,7 @@ public final class Main {
 
 **post** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
-UpdateMemory
+Update a memory
 
 ### Parameters
 
@@ -477,23 +541,39 @@ UpdateMemory
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Optional<String> content`
 
+    New UTF-8 text content for the memory. Maximum 100 kB (102,400 bytes). Omit to leave the content unchanged (e.g., for a rename-only update).
+
   - `Optional<String> path`
 
+    New path for the memory (a rename). Must start with `/`, contain at least one non-empty segment, and be at most 1,024 bytes. Must not contain empty segments, `.` or `..` segments, control or format characters, and must be NFC-normalized. Paths are case-sensitive. The memory's `id` is preserved across renames. Omit to leave the path unchanged.
+
   - `Optional<BetaManagedAgentsPrecondition> precondition`
+
+    Optimistic-concurrency precondition: the update applies only if the memory's stored `content_sha256` equals the supplied value. On mismatch, the request returns `memory_precondition_failed_error` (HTTP 409); re-read the memory and retry against the fresh state. If the precondition fails but the stored state already exactly matches the requested `content` and `path`, the server returns 200 instead of 409.
 
 ### Returns
 
 - `class BetaManagedAgentsMemory:`
 
+  A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+
   - `String id`
+
+    Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
 
   - `String contentSha256`
 
+    Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
   - `long contentSizeBytes`
+
+    Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
   - `LocalDateTime createdAt`
 
@@ -501,9 +581,15 @@ UpdateMemory
 
   - `String memoryStoreId`
 
+    ID of the memory store this memory belongs to (a `memstore_...` value).
+
   - `String memoryVersionId`
 
+    ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
   - `String path`
+
+    Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
   - `Type type`
 
@@ -514,6 +600,8 @@ UpdateMemory
     A timestamp in RFC 3339 format
 
   - `Optional<String> content`
+
+    The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 
 ### Example
 
@@ -546,7 +634,7 @@ public final class Main {
 
 **delete** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
-DeleteMemory
+Delete a memory
 
 ### Parameters
 
@@ -606,13 +694,19 @@ DeleteMemory
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 
 - `class BetaManagedAgentsDeletedMemory:`
 
+  Tombstone returned by [Delete a memory](/docs/en/api/beta/memory_stores/memories/delete). The memory's version history persists and remains listable via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) until the store itself is deleted.
+
   - `String id`
+
+    ID of the deleted memory (a `mem_...` value).
 
   - `Type type`
 
@@ -645,9 +739,21 @@ public final class Main {
 
 ## Domain Types
 
+### Beta Managed Agents Conflict Error
+
+- `class BetaManagedAgentsConflictError:`
+
+  - `Type type`
+
+    - `CONFLICT_ERROR("conflict_error")`
+
+  - `Optional<String> message`
+
 ### Beta Managed Agents Content Sha256 Precondition
 
 - `class BetaManagedAgentsContentSha256Precondition:`
+
+  Optimistic-concurrency precondition: the update applies only if the memory's stored `content_sha256` equals the supplied value. On mismatch, the request returns `memory_precondition_failed_error` (HTTP 409); re-read the memory and retry against the fresh state. If the precondition fails but the stored state already exactly matches the requested `content` and `path`, the server returns 200 instead of 409.
 
   - `Type type`
 
@@ -655,25 +761,143 @@ public final class Main {
 
   - `Optional<String> contentSha256`
 
+    Expected `content_sha256` of the stored memory (64 lowercase hexadecimal characters). Typically the `content_sha256` returned by a prior read or list call. Because the server applies no content normalization, clients can also compute this locally as the SHA-256 of the UTF-8 content bytes.
+
 ### Beta Managed Agents Deleted Memory
 
 - `class BetaManagedAgentsDeletedMemory:`
 
+  Tombstone returned by [Delete a memory](/docs/en/api/beta/memory_stores/memories/delete). The memory's version history persists and remains listable via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) until the store itself is deleted.
+
   - `String id`
+
+    ID of the deleted memory (a `mem_...` value).
 
   - `Type type`
 
     - `MEMORY_DELETED("memory_deleted")`
 
+### Beta Managed Agents Error
+
+- `class BetaManagedAgentsError: A class that can be one of several variants.union`
+
+  - `class BetaInvalidRequestError:`
+
+    - `String message`
+
+    - `JsonValue; type "invalid_request_error"constant`
+
+      - `INVALID_REQUEST_ERROR("invalid_request_error")`
+
+  - `class BetaAuthenticationError:`
+
+    - `String message`
+
+    - `JsonValue; type "authentication_error"constant`
+
+      - `AUTHENTICATION_ERROR("authentication_error")`
+
+  - `class BetaBillingError:`
+
+    - `String message`
+
+    - `JsonValue; type "billing_error"constant`
+
+      - `BILLING_ERROR("billing_error")`
+
+  - `class BetaPermissionError:`
+
+    - `String message`
+
+    - `JsonValue; type "permission_error"constant`
+
+      - `PERMISSION_ERROR("permission_error")`
+
+  - `class BetaNotFoundError:`
+
+    - `String message`
+
+    - `JsonValue; type "not_found_error"constant`
+
+      - `NOT_FOUND_ERROR("not_found_error")`
+
+  - `class BetaRateLimitError:`
+
+    - `String message`
+
+    - `JsonValue; type "rate_limit_error"constant`
+
+      - `RATE_LIMIT_ERROR("rate_limit_error")`
+
+  - `class BetaGatewayTimeoutError:`
+
+    - `String message`
+
+    - `JsonValue; type "timeout_error"constant`
+
+      - `TIMEOUT_ERROR("timeout_error")`
+
+  - `class BetaApiError:`
+
+    - `String message`
+
+    - `JsonValue; type "api_error"constant`
+
+      - `API_ERROR("api_error")`
+
+  - `class BetaOverloadedError:`
+
+    - `String message`
+
+    - `JsonValue; type "overloaded_error"constant`
+
+      - `OVERLOADED_ERROR("overloaded_error")`
+
+  - `class BetaManagedAgentsMemoryPreconditionFailedError:`
+
+    - `Type type`
+
+      - `MEMORY_PRECONDITION_FAILED_ERROR("memory_precondition_failed_error")`
+
+    - `Optional<String> message`
+
+  - `class BetaManagedAgentsMemoryPathConflictError:`
+
+    - `Type type`
+
+      - `MEMORY_PATH_CONFLICT_ERROR("memory_path_conflict_error")`
+
+    - `Optional<String> conflictingMemoryId`
+
+    - `Optional<String> conflictingPath`
+
+    - `Optional<String> message`
+
+  - `class BetaManagedAgentsConflictError:`
+
+    - `Type type`
+
+      - `CONFLICT_ERROR("conflict_error")`
+
+    - `Optional<String> message`
+
 ### Beta Managed Agents Memory
 
 - `class BetaManagedAgentsMemory:`
 
+  A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+
   - `String id`
+
+    Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
 
   - `String contentSha256`
 
+    Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
   - `long contentSizeBytes`
+
+    Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
   - `LocalDateTime createdAt`
 
@@ -681,9 +905,15 @@ public final class Main {
 
   - `String memoryStoreId`
 
+    ID of the memory store this memory belongs to (a `memstore_...` value).
+
   - `String memoryVersionId`
 
+    ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
   - `String path`
+
+    Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
   - `Type type`
 
@@ -695,17 +925,29 @@ public final class Main {
 
   - `Optional<String> content`
 
+    The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
+
 ### Beta Managed Agents Memory List Item
 
 - `class BetaManagedAgentsMemoryListItem: A class that can be one of several variants.union`
 
+  One item in a [List memories](/docs/en/api/beta/memory_stores/memories/list) response: either a `memory` object or, when `depth` is set, a `memory_prefix` rollup marker.
+
   - `class BetaManagedAgentsMemory:`
+
+    A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
 
     - `String id`
 
+      Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
+
     - `String contentSha256`
 
+      Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
     - `long contentSizeBytes`
+
+      Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
     - `LocalDateTime createdAt`
 
@@ -713,9 +955,15 @@ public final class Main {
 
     - `String memoryStoreId`
 
+      ID of the memory store this memory belongs to (a `memstore_...` value).
+
     - `String memoryVersionId`
 
+      ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
     - `String path`
+
+      Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
     - `Type type`
 
@@ -727,9 +975,15 @@ public final class Main {
 
     - `Optional<String> content`
 
+      The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
+
   - `class BetaManagedAgentsMemoryPrefix:`
 
+    A rolled-up directory marker returned by [List memories](/docs/en/api/beta/memory_stores/memories/list) when `depth` is set. Indicates that one or more memories exist deeper than the requested depth under this prefix. This is a list-time rollup, not a stored resource; it has no ID and no lifecycle. Each prefix counts toward the page `limit` and interleaves with `memory` items in path order.
+
     - `String path`
+
+      The rolled-up path prefix, including a trailing `/` (e.g. `/projects/foo/`). Pass this value as `path_prefix` on a subsequent list call to drill into the directory.
 
     - `Type type`
 
@@ -763,7 +1017,11 @@ public final class Main {
 
 - `class BetaManagedAgentsMemoryPrefix:`
 
+  A rolled-up directory marker returned by [List memories](/docs/en/api/beta/memory_stores/memories/list) when `depth` is set. Indicates that one or more memories exist deeper than the requested depth under this prefix. This is a list-time rollup, not a stored resource; it has no ID and no lifecycle. Each prefix counts toward the page `limit` and interleaves with `memory` items in path order.
+
   - `String path`
+
+    The rolled-up path prefix, including a trailing `/` (e.g. `/projects/foo/`). Pass this value as `path_prefix` on a subsequent list call to drill into the directory.
 
   - `Type type`
 
@@ -773,7 +1031,7 @@ public final class Main {
 
 - `enum BetaManagedAgentsMemoryView:`
 
-  MemoryView enum
+  Selects which projection of a `memory` or `memory_version` the server returns. `basic` returns the object with `content` set to `null`; `full` populates `content`. When omitted, the default is endpoint-specific: retrieve operations default to `full`; list, create, and update operations default to `basic`. Listing with `view=full` caps `limit` at 20.
 
   - `BASIC("basic")`
 
@@ -783,8 +1041,12 @@ public final class Main {
 
 - `class BetaManagedAgentsPrecondition:`
 
+  Optimistic-concurrency precondition: the update applies only if the memory's stored `content_sha256` equals the supplied value. On mismatch, the request returns `memory_precondition_failed_error` (HTTP 409); re-read the memory and retry against the fresh state. If the precondition fails but the stored state already exactly matches the requested `content` and `path`, the server returns 200 instead of 409.
+
   - `Type type`
 
     - `CONTENT_SHA256("content_sha256")`
 
   - `Optional<String> contentSha256`
+
+    Expected `content_sha256` of the stored memory (64 lowercase hexadecimal characters). Typically the `content_sha256` returned by a prior read or list call. Because the server applies no content normalization, clients can also compute this locally as the SHA-256 of the UTF-8 content bytes.

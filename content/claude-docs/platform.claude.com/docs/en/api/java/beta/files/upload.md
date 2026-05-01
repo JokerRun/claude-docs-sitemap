@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/upload
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 8f01f1838cd69ad2b3eaf7f896b72039ece73b106d155545c98abd2cb86eaa8c
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 3b40635e8545377d4db9301358c0738559ad419e95349c2ee32eb96ab7b8e78a
 ---
 
 ## Upload
@@ -62,6 +62,8 @@ Upload File
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 10f33ec3b7b25771b2e28bfe41af6bfbd577f31e1df6f76d0bff23538b5b8331
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 03d57cc89066b9561a1ef5bdd2535c860d561f8d85974da970bd254dcb85e1ee
 ---
 
 ## List
@@ -79,7 +79,7 @@ List User Profiles
 
       Platform's own identifier for this user. Not enforced unique.
 
-  - `next_page: optional string`
+  - `next_page: string`
 
     Cursor for the next page, or `null` when there are no more results.
 

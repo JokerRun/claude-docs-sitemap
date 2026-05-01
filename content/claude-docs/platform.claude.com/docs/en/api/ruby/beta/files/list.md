@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 5b55a3a3fcc8cbb28b48b69f5a2cd59eb2a54662fb053dc426d5fa73e247da71
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 3524f6f2b8f80dd5742501f733d33b3c5807248d65c00234c750af7b511dfd29
 ---
 
 ## List
@@ -39,7 +39,7 @@ List Files
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ List Files
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
 

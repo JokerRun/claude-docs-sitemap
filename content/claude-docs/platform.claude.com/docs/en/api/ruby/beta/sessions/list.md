@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: c29693e64803d251af5a386fd81c2c22fd4d8dec9e5974e99ead7765dd84a2c7
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 6a7968f226f2ac0b104fe7b0fd154fcb3d87ec9822a6f48cf4a4f0328725df07
 ---
 
 ## List
@@ -47,6 +47,10 @@ List Sessions
 
   Maximum number of results to return.
 
+- `memory_store_id: String`
+
+  Filter sessions whose resources contain a memory_store with this memory store ID.
+
 - `order: :asc | :desc`
 
   Sort direction for results, ordered by created_at. Defaults to desc (newest first).
@@ -65,7 +69,7 @@ List Sessions
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -108,6 +112,8 @@ List Sessions
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
 

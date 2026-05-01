@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: fe747b8b973061bde2970a8c852ec46c3bb9734b29ee995660309836cd8c8da7
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 15143571bdc8daa0fe2780f6c677f0e15cece3b4ae153142b43aa275ed65da00
 ---
 
 # Beta
@@ -11,11 +11,11 @@ sha256: fe747b8b973061bde2970a8c852ec46c3bb9734b29ee995660309836cd8c8da7
 
 ### Anthropic Beta
 
-- `Union[str, Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]]`
+- `Union[str, Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]]`
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -58,6 +58,8 @@ sha256: fe747b8b973061bde2970a8c852ec46c3bb9734b29ee995660309836cd8c8da7
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -345,7 +347,7 @@ The Models API response can be used to determine which models are available for 
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -388,6 +390,8 @@ The Models API response can be used to determine which models are available for 
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -498,6 +502,14 @@ The Models API response can be used to determine which models are available for 
       - `supported: bool`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: Optional[BetaCapabilitySupport]`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 
@@ -611,7 +623,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -654,6 +666,8 @@ The Models API response can be used to determine information about a specific mo
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -764,6 +778,14 @@ The Models API response can be used to determine information about a specific mo
       - `supported: bool`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: Optional[BetaCapabilitySupport]`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
 
     - `image_input: BetaCapabilitySupport`
 
@@ -944,6 +966,14 @@ print(beta_model_info.id)
 
     Whether this capability is supported by the model.
 
+  - `xhigh: Optional[BetaCapabilitySupport]`
+
+    Indicates whether a capability is supported.
+
+    - `supported: bool`
+
+      Whether this capability is supported by the model.
+
 ### Beta Model Capabilities
 
 - `class BetaModelCapabilities: …`
@@ -1045,6 +1075,14 @@ print(beta_model_info.id)
     - `supported: bool`
 
       Whether this capability is supported by the model.
+
+    - `xhigh: Optional[BetaCapabilitySupport]`
+
+      Indicates whether a capability is supported.
+
+      - `supported: bool`
+
+        Whether this capability is supported by the model.
 
   - `image_input: BetaCapabilitySupport`
 
@@ -1206,6 +1244,14 @@ print(beta_model_info.id)
 
         Whether this capability is supported by the model.
 
+      - `xhigh: Optional[BetaCapabilitySupport]`
+
+        Indicates whether a capability is supported.
+
+        - `supported: bool`
+
+          Whether this capability is supported by the model.
+
     - `image_input: BetaCapabilitySupport`
 
       Whether the model accepts image content blocks.
@@ -1355,6 +1401,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
   The maximum number of tokens to generate before stopping.
 
   Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+  Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
   Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -3996,6 +4044,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"1h"`
 
+        - `encrypted_content: Optional[str]`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
+
   - `role: Literal["user", "assistant"]`
 
     - `"user"`
@@ -4319,7 +4371,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Configuration options for the model's output, such as the output format.
 
-  - `effort: Optional[Literal["low", "medium", "high", "max"]]`
+  - `effort: Optional[Literal["low", "medium", "high", 2 more]]`
 
     All possible effort levels.
 
@@ -4328,6 +4380,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"medium"`
 
     - `"high"`
+
+    - `"xhigh"`
 
     - `"max"`
 
@@ -4342,6 +4396,24 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `type: Literal["json_schema"]`
 
       - `"json_schema"`
+
+  - `task_budget: Optional[BetaTokenTaskBudget]`
+
+    User-configurable total token budget across contexts.
+
+    - `total: int`
+
+      Total token budget across all contexts in the session.
+
+    - `type: Literal["tokens"]`
+
+      The budget type. Currently only 'tokens' is supported.
+
+      - `"tokens"`
+
+    - `remaining: Optional[int]`
+
+      Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 - `output_format: Optional[BetaJSONOutputFormatParam]`
 
@@ -6293,13 +6365,17 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Recommended for advanced use cases only.
 
+- `user_profile_id: Optional[str]`
+
+  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
 - `betas: Optional[List[AnthropicBetaParam]]`
 
   Optional header to specify the beta version(s) you want to use.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -6342,6 +6418,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -7265,6 +7343,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `content: Optional[str]`
 
         Summary of compacted content, or null if compaction failed
+
+      - `encrypted_content: Optional[str]`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: Literal["compaction"]`
 
@@ -10459,6 +10541,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             - `"1h"`
 
+        - `encrypted_content: Optional[str]`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
+
   - `role: Literal["user", "assistant"]`
 
     - `"user"`
@@ -10734,7 +10820,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   Configuration options for the model's output, such as the output format.
 
-  - `effort: Optional[Literal["low", "medium", "high", "max"]]`
+  - `effort: Optional[Literal["low", "medium", "high", 2 more]]`
 
     All possible effort levels.
 
@@ -10743,6 +10829,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"medium"`
 
     - `"high"`
+
+    - `"xhigh"`
 
     - `"max"`
 
@@ -10757,6 +10845,24 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `type: Literal["json_schema"]`
 
       - `"json_schema"`
+
+  - `task_budget: Optional[BetaTokenTaskBudget]`
+
+    User-configurable total token budget across contexts.
+
+    - `total: int`
+
+      Total token budget across all contexts in the session.
+
+    - `type: Literal["tokens"]`
+
+      The budget type. Currently only 'tokens' is supported.
+
+      - `"tokens"`
+
+    - `remaining: Optional[int]`
+
+      Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 - `output_format: Optional[BetaJSONOutputFormatParam]`
 
@@ -12664,7 +12770,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -12707,6 +12813,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -14620,6 +14728,10 @@ print(beta_message_tokens_count.context_management)
 
     Summary of compacted content, or null if compaction failed
 
+  - `encrypted_content: Optional[str]`
+
+    Opaque metadata from prior compaction, to be round-tripped verbatim
+
   - `type: Literal["compaction"]`
 
     - `"compaction"`
@@ -14667,11 +14779,19 @@ print(beta_message_tokens_count.context_management)
 
       - `"1h"`
 
+  - `encrypted_content: Optional[str]`
+
+    Opaque metadata from prior compaction, to be round-tripped verbatim
+
 ### Beta Compaction Content Block Delta
 
 - `class BetaCompactionContentBlockDelta: …`
 
   - `content: Optional[str]`
+
+  - `encrypted_content: Optional[str]`
+
+    Opaque metadata from prior compaction, to be round-tripped verbatim
 
   - `type: Literal["compaction_delta"]`
 
@@ -15684,6 +15804,10 @@ print(beta_message_tokens_count.context_management)
     - `content: Optional[str]`
 
       Summary of compacted content, or null if compaction failed
+
+    - `encrypted_content: Optional[str]`
+
+      Opaque metadata from prior compaction, to be round-tripped verbatim
 
     - `type: Literal["compaction"]`
 
@@ -18276,6 +18400,10 @@ print(beta_message_tokens_count.context_management)
 
         - `"1h"`
 
+    - `encrypted_content: Optional[str]`
+
+      Opaque metadata from prior compaction, to be round-tripped verbatim
+
 ### Beta Content Block Source
 
 - `class BetaContentBlockSource: …`
@@ -20721,6 +20849,10 @@ print(beta_message_tokens_count.context_management)
       - `content: Optional[str]`
 
         Summary of compacted content, or null if compaction failed
+
+      - `encrypted_content: Optional[str]`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: Literal["compaction"]`
 
@@ -24130,6 +24262,10 @@ print(beta_message_tokens_count.context_management)
 
             - `"1h"`
 
+        - `encrypted_content: Optional[str]`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
+
   - `role: Literal["user", "assistant"]`
 
     - `"user"`
@@ -24166,7 +24302,7 @@ print(beta_message_tokens_count.context_management)
 
 - `class BetaOutputConfig: …`
 
-  - `effort: Optional[Literal["low", "medium", "high", "max"]]`
+  - `effort: Optional[Literal["low", "medium", "high", 2 more]]`
 
     All possible effort levels.
 
@@ -24175,6 +24311,8 @@ print(beta_message_tokens_count.context_management)
     - `"medium"`
 
     - `"high"`
+
+    - `"xhigh"`
 
     - `"max"`
 
@@ -24189,6 +24327,24 @@ print(beta_message_tokens_count.context_management)
     - `type: Literal["json_schema"]`
 
       - `"json_schema"`
+
+  - `task_budget: Optional[BetaTokenTaskBudget]`
+
+    User-configurable total token budget across contexts.
+
+    - `total: int`
+
+      Total token budget across all contexts in the session.
+
+    - `type: Literal["tokens"]`
+
+      The budget type. Currently only 'tokens' is supported.
+
+      - `"tokens"`
+
+    - `remaining: Optional[int]`
+
+      Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 ### Beta Plain Text Source
 
@@ -24338,6 +24494,10 @@ print(beta_message_tokens_count.context_management)
 
     - `content: Optional[str]`
 
+    - `encrypted_content: Optional[str]`
+
+      Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `type: Literal["compaction_delta"]`
 
       - `"compaction_delta"`
@@ -24477,6 +24637,10 @@ print(beta_message_tokens_count.context_management)
     - `class BetaCompactionContentBlockDelta: …`
 
       - `content: Optional[str]`
+
+      - `encrypted_content: Optional[str]`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: Literal["compaction_delta"]`
 
@@ -25345,6 +25509,10 @@ print(beta_message_tokens_count.context_management)
       - `content: Optional[str]`
 
         Summary of compacted content, or null if compaction failed
+
+      - `encrypted_content: Optional[str]`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: Literal["compaction"]`
 
@@ -26678,6 +26846,10 @@ print(beta_message_tokens_count.context_management)
         - `content: Optional[str]`
 
           Summary of compacted content, or null if compaction failed
+
+        - `encrypted_content: Optional[str]`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `type: Literal["compaction"]`
 
@@ -28136,6 +28308,10 @@ print(beta_message_tokens_count.context_management)
           - `content: Optional[str]`
 
             Summary of compacted content, or null if compaction failed
+
+          - `encrypted_content: Optional[str]`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
 
           - `type: Literal["compaction"]`
 
@@ -29912,6 +30088,10 @@ print(beta_message_tokens_count.context_management)
 
           Summary of compacted content, or null if compaction failed
 
+        - `encrypted_content: Optional[str]`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
+
         - `type: Literal["compaction"]`
 
           - `"compaction"`
@@ -30055,6 +30235,10 @@ print(beta_message_tokens_count.context_management)
       - `class BetaCompactionContentBlockDelta: …`
 
         - `content: Optional[str]`
+
+        - `encrypted_content: Optional[str]`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `type: Literal["compaction_delta"]`
 
@@ -31845,6 +32029,26 @@ print(beta_message_tokens_count.context_management)
     - `"thinking_turns"`
 
   - `value: int`
+
+### Beta Token Task Budget
+
+- `class BetaTokenTaskBudget: …`
+
+  User-configurable total token budget across contexts.
+
+  - `total: int`
+
+    Total token budget across all contexts in the session.
+
+  - `type: Literal["tokens"]`
+
+    The budget type. Currently only 'tokens' is supported.
+
+    - `"tokens"`
+
+  - `remaining: Optional[int]`
+
+    Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 ### Beta Tool
 
@@ -37424,6 +37628,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
 
+      Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
+
       Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
     - `messages: Iterable[BetaMessageParam]`
@@ -40064,6 +40270,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `"1h"`
 
+            - `encrypted_content: Optional[str]`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
+
       - `role: Literal["user", "assistant"]`
 
         - `"user"`
@@ -40387,7 +40597,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Configuration options for the model's output, such as the output format.
 
-      - `effort: Optional[Literal["low", "medium", "high", "max"]]`
+      - `effort: Optional[Literal["low", "medium", "high", 2 more]]`
 
         All possible effort levels.
 
@@ -40396,6 +40606,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `"medium"`
 
         - `"high"`
+
+        - `"xhigh"`
 
         - `"max"`
 
@@ -40410,6 +40622,24 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `type: Literal["json_schema"]`
 
           - `"json_schema"`
+
+      - `task_budget: Optional[BetaTokenTaskBudget]`
+
+        User-configurable total token budget across contexts.
+
+        - `total: int`
+
+          Total token budget across all contexts in the session.
+
+        - `type: Literal["tokens"]`
+
+          The budget type. Currently only 'tokens' is supported.
+
+          - `"tokens"`
+
+        - `remaining: Optional[int]`
+
+          Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
     - `output_format: Optional[BetaJSONOutputFormatParam]`
 
@@ -42359,13 +42589,17 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Recommended for advanced use cases only.
 
+    - `user_profile_id: Optional[str]`
+
+      The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
 - `betas: Optional[List[AnthropicBetaParam]]`
 
   Optional header to specify the beta version(s) you want to use.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -42408,6 +42642,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -42548,7 +42784,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -42591,6 +42827,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -42731,7 +42969,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -42774,6 +43012,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -42905,7 +43145,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -42948,6 +43188,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -43080,7 +43322,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -43123,6 +43365,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -43181,7 +43425,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -43224,6 +43468,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -44165,6 +44411,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `content: Optional[str]`
 
               Summary of compacted content, or null if compaction failed
+
+            - `encrypted_content: Optional[str]`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `type: Literal["compaction"]`
 
@@ -45959,6 +46209,10 @@ for batch in client.beta.messages.batches.results(
 
               Summary of compacted content, or null if compaction failed
 
+            - `encrypted_content: Optional[str]`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
+
             - `type: Literal["compaction"]`
 
               - `"compaction"`
@@ -47545,6 +47799,10 @@ for batch in client.beta.messages.batches.results(
 
             Summary of compacted content, or null if compaction failed
 
+          - `encrypted_content: Optional[str]`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
           - `type: Literal["compaction"]`
 
             - `"compaction"`
@@ -49093,6 +49351,10 @@ for batch in client.beta.messages.batches.results(
 
           Summary of compacted content, or null if compaction failed
 
+        - `encrypted_content: Optional[str]`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
+
         - `type: Literal["compaction"]`
 
           - `"compaction"`
@@ -50030,7 +50292,7 @@ Create Agent
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -50073,6 +50335,8 @@ Create Agent
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -50440,7 +50704,7 @@ List Agents
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -50483,6 +50747,8 @@ List Agents
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -50834,7 +51100,7 @@ Get Agent
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -50877,6 +51143,8 @@ Get Agent
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -51623,7 +51891,7 @@ Update Agent
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -51666,6 +51934,8 @@ Update Agent
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -52015,7 +52285,7 @@ Archive Agent
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -52058,6 +52328,8 @@ Archive Agent
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -53760,7 +54032,7 @@ List Agent Versions
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -53803,6 +54075,8 @@ List Agent Versions
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -54252,7 +54526,7 @@ Create a new environment with the specified configuration.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -54296,13 +54570,15 @@ Create a new environment with the specified configuration.
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaEnvironment: …`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: str`
 
@@ -54461,7 +54737,7 @@ List environments with pagination support.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -54505,13 +54781,15 @@ List environments with pagination support.
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaEnvironment: …`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: str`
 
@@ -54659,7 +54937,7 @@ Retrieve a specific environment by ID.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -54703,13 +54981,15 @@ Retrieve a specific environment by ID.
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaEnvironment: …`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: str`
 
@@ -54958,7 +55238,7 @@ Update an existing environment's configuration.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -55002,13 +55282,15 @@ Update an existing environment's configuration.
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaEnvironment: …`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: str`
 
@@ -55157,7 +55439,7 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -55200,6 +55482,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -55252,7 +55536,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -55296,13 +55580,15 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaEnvironment: …`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: str`
 
@@ -55611,7 +55897,7 @@ print(beta_environment.id)
 
 - `class BetaEnvironment: …`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: str`
 
@@ -56024,7 +56310,7 @@ Create Session
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -56067,6 +56353,8 @@ Create Session
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -56608,6 +56896,10 @@ List Sessions
 
   Maximum number of results to return.
 
+- `memory_store_id: Optional[str]`
+
+  Filter sessions whose resources contain a memory_store with this memory store ID.
+
 - `order: Optional[Literal["asc", "desc"]]`
 
   Sort direction for results, ordered by created_at. Defaults to desc (newest first).
@@ -56626,7 +56918,7 @@ List Sessions
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -56669,6 +56961,8 @@ List Sessions
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -57184,7 +57478,7 @@ Get Session
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -57227,6 +57521,8 @@ Get Session
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -57755,7 +58051,7 @@ Update Session
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -57798,6 +58094,8 @@ Update Session
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -58314,7 +58612,7 @@ Delete Session
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -58357,6 +58655,8 @@ Delete Session
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -58405,7 +58705,7 @@ Archive Session
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -58448,6 +58748,8 @@ Archive Session
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -59962,7 +60264,7 @@ List Events
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -60005,6 +60307,8 @@ List Events
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -61764,7 +62068,7 @@ Send Events
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -61807,6 +62111,8 @@ Send Events
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -62240,7 +62546,7 @@ Stream Events
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -62283,6 +62589,8 @@ Stream Events
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -69605,7 +69913,7 @@ Add Session Resource
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -69648,6 +69956,8 @@ Add Session Resource
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -69716,7 +70026,7 @@ List Session Resources
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -69759,6 +70069,8 @@ List Session Resources
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -69902,7 +70214,7 @@ Get Session Resource
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -69945,6 +70257,8 @@ Get Session Resource
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -70092,7 +70406,7 @@ Update Session Resource
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -70135,6 +70449,8 @@ Update Session Resource
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -70279,7 +70595,7 @@ Delete Session Resource
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -70322,6 +70638,8 @@ Delete Session Resource
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -70809,7 +71127,7 @@ Create Vault
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -70852,6 +71170,8 @@ Create Vault
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -70932,7 +71252,7 @@ List Vaults
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -70975,6 +71295,8 @@ List Vaults
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -71044,7 +71366,7 @@ Get Vault
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -71087,6 +71409,8 @@ Get Vault
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -71165,7 +71489,7 @@ Update Vault
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -71208,6 +71532,8 @@ Update Vault
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -71278,7 +71604,7 @@ Delete Vault
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -71321,6 +71647,8 @@ Delete Vault
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -71371,7 +71699,7 @@ Archive Vault
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -71414,6 +71742,8 @@ Archive Vault
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -71644,7 +71974,7 @@ Create Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -71687,6 +72017,8 @@ Create Credential
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -71858,7 +72190,7 @@ List Credentials
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -71901,6 +72233,8 @@ List Credentials
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -72058,7 +72392,7 @@ Get Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72101,6 +72435,8 @@ Get Credential
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -72338,7 +72674,7 @@ Update Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72381,6 +72717,8 @@ Update Credential
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -72538,7 +72876,7 @@ Delete Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72581,6 +72919,8 @@ Delete Credential
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -72634,7 +72974,7 @@ Archive Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72677,6 +73017,8 @@ Archive Credential
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -73458,15 +73800,21 @@ print(beta_managed_agents_credential.id)
 
 **post** `/v1/memory_stores`
 
-CreateMemoryStore
+Create a memory store
 
 ### Parameters
 
 - `name: str`
 
+  Human-readable name for the store. Required; 1–255 characters; no control characters. The mount-path slug under `/mnt/memory/` is derived from this name (lowercased, non-alphanumeric runs collapsed to a hyphen). Names need not be unique within a workspace.
+
 - `description: Optional[str]`
 
+  Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent.
+
 - `metadata: Optional[Dict[str, str]]`
+
+  Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Not visible to the agent.
 
 - `betas: Optional[List[AnthropicBetaParam]]`
 
@@ -73474,7 +73822,7 @@ CreateMemoryStore
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -73518,35 +73866,47 @@ CreateMemoryStore
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsMemoryStore: …`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `id: str`
+
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
+
+  - `created_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `name: str`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
 
   - `type: Literal["memory_store"]`
 
     - `"memory_store"`
 
-  - `archived_at: Optional[datetime]`
+  - `updated_at: datetime`
 
     A timestamp in RFC 3339 format
 
-  - `created_at: Optional[datetime]`
+  - `archived_at: Optional[datetime]`
 
     A timestamp in RFC 3339 format
 
   - `description: Optional[str]`
 
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
   - `metadata: Optional[Dict[str, str]]`
 
-  - `name: Optional[str]`
-
-  - `updated_at: Optional[datetime]`
-
-    A timestamp in RFC 3339 format
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 
@@ -73569,29 +73929,29 @@ print(beta_managed_agents_memory_store.id)
 
 **get** `/v1/memory_stores`
 
-ListMemoryStores
+List memory stores
 
 ### Parameters
 
 - `created_at_gte: Optional[Union[str, datetime]]`
 
-  Return stores created at or after this time (inclusive).
+  Return only stores whose `created_at` is at or after this time (inclusive). Sent on the wire as `created_at[gte]`.
 
 - `created_at_lte: Optional[Union[str, datetime]]`
 
-  Return stores created at or before this time (inclusive).
+  Return only stores whose `created_at` is at or before this time (inclusive). Sent on the wire as `created_at[lte]`.
 
 - `include_archived: Optional[bool]`
 
-  Query parameter for include_archived
+  When `true`, archived stores are included in the results. Defaults to `false` (archived stores are excluded).
 
 - `limit: Optional[int]`
 
-  Query parameter for limit
+  Maximum number of stores to return per page. Must be between 1 and 100. Defaults to 20 when omitted.
 
 - `page: Optional[str]`
 
-  Query parameter for page
+  Opaque pagination cursor (a `page_...` value). Pass the `next_page` value from a previous response to fetch the next page; omit for the first page.
 
 - `betas: Optional[List[AnthropicBetaParam]]`
 
@@ -73599,7 +73959,7 @@ ListMemoryStores
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -73643,35 +74003,47 @@ ListMemoryStores
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsMemoryStore: …`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `id: str`
+
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
+
+  - `created_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `name: str`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
 
   - `type: Literal["memory_store"]`
 
     - `"memory_store"`
 
-  - `archived_at: Optional[datetime]`
+  - `updated_at: datetime`
 
     A timestamp in RFC 3339 format
 
-  - `created_at: Optional[datetime]`
+  - `archived_at: Optional[datetime]`
 
     A timestamp in RFC 3339 format
 
   - `description: Optional[str]`
 
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
   - `metadata: Optional[Dict[str, str]]`
 
-  - `name: Optional[str]`
-
-  - `updated_at: Optional[datetime]`
-
-    A timestamp in RFC 3339 format
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 
@@ -73693,7 +74065,7 @@ print(page.id)
 
 **get** `/v1/memory_stores/{memory_store_id}`
 
-GetMemoryStore
+Retrieve a memory store
 
 ### Parameters
 
@@ -73705,7 +74077,7 @@ GetMemoryStore
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -73749,35 +74121,47 @@ GetMemoryStore
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsMemoryStore: …`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `id: str`
+
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
+
+  - `created_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `name: str`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
 
   - `type: Literal["memory_store"]`
 
     - `"memory_store"`
 
-  - `archived_at: Optional[datetime]`
+  - `updated_at: datetime`
 
     A timestamp in RFC 3339 format
 
-  - `created_at: Optional[datetime]`
+  - `archived_at: Optional[datetime]`
 
     A timestamp in RFC 3339 format
 
   - `description: Optional[str]`
 
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
   - `metadata: Optional[Dict[str, str]]`
 
-  - `name: Optional[str]`
-
-  - `updated_at: Optional[datetime]`
-
-    A timestamp in RFC 3339 format
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 
@@ -73800,7 +74184,7 @@ print(beta_managed_agents_memory_store.id)
 
 **post** `/v1/memory_stores/{memory_store_id}`
 
-UpdateMemoryStore
+Update a memory store
 
 ### Parameters
 
@@ -73808,11 +74192,15 @@ UpdateMemoryStore
 
 - `description: Optional[str]`
 
+  New description for the store, up to 1024 characters. Pass an empty string to clear it.
+
 - `metadata: Optional[Dict[str, Optional[str]]]`
 
   Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omit the field to preserve. The stored bag is limited to 16 keys (up to 64 chars each) with values up to 512 chars.
 
 - `name: Optional[str]`
+
+  New human-readable name for the store. 1–255 characters; no control characters. Renaming changes the slug used for the store's `mount_path` in sessions created after the update.
 
 - `betas: Optional[List[AnthropicBetaParam]]`
 
@@ -73820,7 +74208,7 @@ UpdateMemoryStore
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -73864,35 +74252,47 @@ UpdateMemoryStore
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsMemoryStore: …`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `id: str`
+
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
+
+  - `created_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `name: str`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
 
   - `type: Literal["memory_store"]`
 
     - `"memory_store"`
 
-  - `archived_at: Optional[datetime]`
+  - `updated_at: datetime`
 
     A timestamp in RFC 3339 format
 
-  - `created_at: Optional[datetime]`
+  - `archived_at: Optional[datetime]`
 
     A timestamp in RFC 3339 format
 
   - `description: Optional[str]`
 
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
   - `metadata: Optional[Dict[str, str]]`
 
-  - `name: Optional[str]`
-
-  - `updated_at: Optional[datetime]`
-
-    A timestamp in RFC 3339 format
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 
@@ -73915,7 +74315,7 @@ print(beta_managed_agents_memory_store.id)
 
 **delete** `/v1/memory_stores/{memory_store_id}`
 
-DeleteMemoryStore
+Delete a memory store
 
 ### Parameters
 
@@ -73927,7 +74327,7 @@ DeleteMemoryStore
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -73971,13 +74371,19 @@ DeleteMemoryStore
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsDeletedMemoryStore: …`
 
+  Confirmation that a `memory_store` was deleted.
+
   - `id: str`
+
+    ID of the deleted memory store (a `memstore_...` identifier). The store and all its memories and versions are no longer retrievable.
 
   - `type: Literal["memory_store_deleted"]`
 
@@ -74004,7 +74410,7 @@ print(beta_managed_agents_deleted_memory_store.id)
 
 **post** `/v1/memory_stores/{memory_store_id}/archive`
 
-ArchiveMemoryStore
+Archive a memory store
 
 ### Parameters
 
@@ -74016,7 +74422,7 @@ ArchiveMemoryStore
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74060,35 +74466,47 @@ ArchiveMemoryStore
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsMemoryStore: …`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `id: str`
+
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
+
+  - `created_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `name: str`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
 
   - `type: Literal["memory_store"]`
 
     - `"memory_store"`
 
-  - `archived_at: Optional[datetime]`
+  - `updated_at: datetime`
 
     A timestamp in RFC 3339 format
 
-  - `created_at: Optional[datetime]`
+  - `archived_at: Optional[datetime]`
 
     A timestamp in RFC 3339 format
 
   - `description: Optional[str]`
 
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
   - `metadata: Optional[Dict[str, str]]`
 
-  - `name: Optional[str]`
-
-  - `updated_at: Optional[datetime]`
-
-    A timestamp in RFC 3339 format
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 
@@ -74111,7 +74529,11 @@ print(beta_managed_agents_memory_store.id)
 
 - `class BetaManagedAgentsDeletedMemoryStore: …`
 
+  Confirmation that a `memory_store` was deleted.
+
   - `id: str`
+
+    ID of the deleted memory store (a `memstore_...` identifier). The store and all its memories and versions are no longer retrievable.
 
   - `type: Literal["memory_store_deleted"]`
 
@@ -74121,29 +74543,39 @@ print(beta_managed_agents_memory_store.id)
 
 - `class BetaManagedAgentsMemoryStore: …`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `id: str`
+
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
+
+  - `created_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `name: str`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
 
   - `type: Literal["memory_store"]`
 
     - `"memory_store"`
 
-  - `archived_at: Optional[datetime]`
+  - `updated_at: datetime`
 
     A timestamp in RFC 3339 format
 
-  - `created_at: Optional[datetime]`
+  - `archived_at: Optional[datetime]`
 
     A timestamp in RFC 3339 format
 
   - `description: Optional[str]`
 
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
   - `metadata: Optional[Dict[str, str]]`
 
-  - `name: Optional[str]`
-
-  - `updated_at: Optional[datetime]`
-
-    A timestamp in RFC 3339 format
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 # Memories
 
@@ -74153,7 +74585,7 @@ print(beta_managed_agents_memory_store.id)
 
 **post** `/v1/memory_stores/{memory_store_id}/memories`
 
-CreateMemory
+Create a memory
 
 ### Parameters
 
@@ -74161,7 +74593,11 @@ CreateMemory
 
 - `content: Optional[str]`
 
+  UTF-8 text content for the new memory. Maximum 100 kB (102,400 bytes). Required; pass `""` explicitly to create an empty memory.
+
 - `path: str`
+
+  Hierarchical path for the new memory, e.g. `/projects/foo/notes.md`. Must start with `/`, contain at least one non-empty segment, and be at most 1,024 bytes. Must not contain empty segments, `.` or `..` segments, control or format characters, and must be NFC-normalized. Paths are case-sensitive.
 
 - `view: Optional[BetaManagedAgentsMemoryView]`
 
@@ -74177,7 +74613,7 @@ CreateMemory
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74221,17 +74657,27 @@ CreateMemory
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsMemory: …`
 
+  A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+
   - `id: str`
+
+    Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
 
   - `content_sha256: str`
 
+    Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
   - `content_size_bytes: int`
+
+    Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
   - `created_at: datetime`
 
@@ -74239,9 +74685,15 @@ CreateMemory
 
   - `memory_store_id: str`
 
+    ID of the memory store this memory belongs to (a `memstore_...` value).
+
   - `memory_version_id: str`
 
+    ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
   - `path: str`
+
+    Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
   - `type: Literal["memory"]`
 
@@ -74252,6 +74704,8 @@ CreateMemory
     A timestamp in RFC 3339 format
 
   - `content: Optional[str]`
+
+    The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 
 ### Example
 
@@ -74276,7 +74730,7 @@ print(beta_managed_agents_memory.id)
 
 **get** `/v1/memory_stores/{memory_store_id}/memories`
 
-ListMemories
+List memories
 
 ### Parameters
 
@@ -74324,7 +74778,7 @@ ListMemories
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74368,19 +74822,31 @@ ListMemories
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `BetaManagedAgentsMemoryListItem`
 
+  One item in a [List memories](/docs/en/api/beta/memory_stores/memories/list) response: either a `memory` object or, when `depth` is set, a `memory_prefix` rollup marker.
+
   - `class BetaManagedAgentsMemory: …`
+
+    A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
 
     - `id: str`
 
+      Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
+
     - `content_sha256: str`
 
+      Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
     - `content_size_bytes: int`
+
+      Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
     - `created_at: datetime`
 
@@ -74388,9 +74854,15 @@ ListMemories
 
     - `memory_store_id: str`
 
+      ID of the memory store this memory belongs to (a `memstore_...` value).
+
     - `memory_version_id: str`
 
+      ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
     - `path: str`
+
+      Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
     - `type: Literal["memory"]`
 
@@ -74402,9 +74874,15 @@ ListMemories
 
     - `content: Optional[str]`
 
+      The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
+
   - `class BetaManagedAgentsMemoryPrefix: …`
 
+    A rolled-up directory marker returned by [List memories](/docs/en/api/beta/memory_stores/memories/list) when `depth` is set. Indicates that one or more memories exist deeper than the requested depth under this prefix. This is a list-time rollup, not a stored resource; it has no ID and no lifecycle. Each prefix counts toward the page `limit` and interleaves with `memory` items in path order.
+
     - `path: str`
+
+      The rolled-up path prefix, including a trailing `/` (e.g. `/projects/foo/`). Pass this value as `path_prefix` on a subsequent list call to drill into the directory.
 
     - `type: Literal["memory_prefix"]`
 
@@ -74432,7 +74910,7 @@ print(page)
 
 **get** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
-GetMemory
+Retrieve a memory
 
 ### Parameters
 
@@ -74454,7 +74932,7 @@ GetMemory
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74498,17 +74976,27 @@ GetMemory
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsMemory: …`
 
+  A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+
   - `id: str`
+
+    Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
 
   - `content_sha256: str`
 
+    Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
   - `content_size_bytes: int`
+
+    Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
   - `created_at: datetime`
 
@@ -74516,9 +75004,15 @@ GetMemory
 
   - `memory_store_id: str`
 
+    ID of the memory store this memory belongs to (a `memstore_...` value).
+
   - `memory_version_id: str`
 
+    ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
   - `path: str`
+
+    Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
   - `type: Literal["memory"]`
 
@@ -74529,6 +75023,8 @@ GetMemory
     A timestamp in RFC 3339 format
 
   - `content: Optional[str]`
+
+    The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 
 ### Example
 
@@ -74552,7 +75048,7 @@ print(beta_managed_agents_memory.id)
 
 **post** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
-UpdateMemory
+Update a memory
 
 ### Parameters
 
@@ -74570,9 +75066,15 @@ UpdateMemory
 
 - `content: Optional[str]`
 
+  New UTF-8 text content for the memory. Maximum 100 kB (102,400 bytes). Omit to leave the content unchanged (e.g., for a rename-only update).
+
 - `path: Optional[str]`
 
+  New path for the memory (a rename). Must start with `/`, contain at least one non-empty segment, and be at most 1,024 bytes. Must not contain empty segments, `.` or `..` segments, control or format characters, and must be NFC-normalized. Paths are case-sensitive. The memory's `id` is preserved across renames. Omit to leave the path unchanged.
+
 - `precondition: Optional[BetaManagedAgentsPreconditionParam]`
+
+  Optimistic-concurrency precondition: the update applies only if the memory's stored `content_sha256` equals the supplied value. On mismatch, the request returns `memory_precondition_failed_error` (HTTP 409); re-read the memory and retry against the fresh state. If the precondition fails but the stored state already exactly matches the requested `content` and `path`, the server returns 200 instead of 409.
 
   - `type: Literal["content_sha256"]`
 
@@ -74580,13 +75082,15 @@ UpdateMemory
 
   - `content_sha256: Optional[str]`
 
+    Expected `content_sha256` of the stored memory (64 lowercase hexadecimal characters). Typically the `content_sha256` returned by a prior read or list call. Because the server applies no content normalization, clients can also compute this locally as the SHA-256 of the UTF-8 content bytes.
+
 - `betas: Optional[List[AnthropicBetaParam]]`
 
   Optional header to specify the beta version(s) you want to use.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74630,17 +75134,27 @@ UpdateMemory
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsMemory: …`
 
+  A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+
   - `id: str`
+
+    Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
 
   - `content_sha256: str`
 
+    Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
   - `content_size_bytes: int`
+
+    Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
   - `created_at: datetime`
 
@@ -74648,9 +75162,15 @@ UpdateMemory
 
   - `memory_store_id: str`
 
+    ID of the memory store this memory belongs to (a `memstore_...` value).
+
   - `memory_version_id: str`
 
+    ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
   - `path: str`
+
+    Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
   - `type: Literal["memory"]`
 
@@ -74661,6 +75181,8 @@ UpdateMemory
     A timestamp in RFC 3339 format
 
   - `content: Optional[str]`
+
+    The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 
 ### Example
 
@@ -74684,7 +75206,7 @@ print(beta_managed_agents_memory.id)
 
 **delete** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
-DeleteMemory
+Delete a memory
 
 ### Parameters
 
@@ -74702,7 +75224,7 @@ DeleteMemory
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74746,13 +75268,19 @@ DeleteMemory
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsDeletedMemory: …`
 
+  Tombstone returned by [Delete a memory](/docs/en/api/beta/memory_stores/memories/delete). The memory's version history persists and remains listable via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) until the store itself is deleted.
+
   - `id: str`
+
+    ID of the deleted memory (a `mem_...` value).
 
   - `type: Literal["memory_deleted"]`
 
@@ -74776,9 +75304,21 @@ print(beta_managed_agents_deleted_memory.id)
 
 ## Domain Types
 
+### Beta Managed Agents Conflict Error
+
+- `class BetaManagedAgentsConflictError: …`
+
+  - `type: Literal["conflict_error"]`
+
+    - `"conflict_error"`
+
+  - `message: Optional[str]`
+
 ### Beta Managed Agents Content Sha256 Precondition
 
 - `class BetaManagedAgentsContentSha256Precondition: …`
+
+  Optimistic-concurrency precondition: the update applies only if the memory's stored `content_sha256` equals the supplied value. On mismatch, the request returns `memory_precondition_failed_error` (HTTP 409); re-read the memory and retry against the fresh state. If the precondition fails but the stored state already exactly matches the requested `content` and `path`, the server returns 200 instead of 409.
 
   - `type: Literal["content_sha256"]`
 
@@ -74786,25 +75326,143 @@ print(beta_managed_agents_deleted_memory.id)
 
   - `content_sha256: Optional[str]`
 
+    Expected `content_sha256` of the stored memory (64 lowercase hexadecimal characters). Typically the `content_sha256` returned by a prior read or list call. Because the server applies no content normalization, clients can also compute this locally as the SHA-256 of the UTF-8 content bytes.
+
 ### Beta Managed Agents Deleted Memory
 
 - `class BetaManagedAgentsDeletedMemory: …`
 
+  Tombstone returned by [Delete a memory](/docs/en/api/beta/memory_stores/memories/delete). The memory's version history persists and remains listable via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) until the store itself is deleted.
+
   - `id: str`
+
+    ID of the deleted memory (a `mem_...` value).
 
   - `type: Literal["memory_deleted"]`
 
     - `"memory_deleted"`
 
+### Beta Managed Agents Error
+
+- `BetaManagedAgentsError`
+
+  - `class BetaInvalidRequestError: …`
+
+    - `message: str`
+
+    - `type: Literal["invalid_request_error"]`
+
+      - `"invalid_request_error"`
+
+  - `class BetaAuthenticationError: …`
+
+    - `message: str`
+
+    - `type: Literal["authentication_error"]`
+
+      - `"authentication_error"`
+
+  - `class BetaBillingError: …`
+
+    - `message: str`
+
+    - `type: Literal["billing_error"]`
+
+      - `"billing_error"`
+
+  - `class BetaPermissionError: …`
+
+    - `message: str`
+
+    - `type: Literal["permission_error"]`
+
+      - `"permission_error"`
+
+  - `class BetaNotFoundError: …`
+
+    - `message: str`
+
+    - `type: Literal["not_found_error"]`
+
+      - `"not_found_error"`
+
+  - `class BetaRateLimitError: …`
+
+    - `message: str`
+
+    - `type: Literal["rate_limit_error"]`
+
+      - `"rate_limit_error"`
+
+  - `class BetaGatewayTimeoutError: …`
+
+    - `message: str`
+
+    - `type: Literal["timeout_error"]`
+
+      - `"timeout_error"`
+
+  - `class BetaAPIError: …`
+
+    - `message: str`
+
+    - `type: Literal["api_error"]`
+
+      - `"api_error"`
+
+  - `class BetaOverloadedError: …`
+
+    - `message: str`
+
+    - `type: Literal["overloaded_error"]`
+
+      - `"overloaded_error"`
+
+  - `class BetaManagedAgentsMemoryPreconditionFailedError: …`
+
+    - `type: Literal["memory_precondition_failed_error"]`
+
+      - `"memory_precondition_failed_error"`
+
+    - `message: Optional[str]`
+
+  - `class BetaManagedAgentsMemoryPathConflictError: …`
+
+    - `type: Literal["memory_path_conflict_error"]`
+
+      - `"memory_path_conflict_error"`
+
+    - `conflicting_memory_id: Optional[str]`
+
+    - `conflicting_path: Optional[str]`
+
+    - `message: Optional[str]`
+
+  - `class BetaManagedAgentsConflictError: …`
+
+    - `type: Literal["conflict_error"]`
+
+      - `"conflict_error"`
+
+    - `message: Optional[str]`
+
 ### Beta Managed Agents Memory
 
 - `class BetaManagedAgentsMemory: …`
 
+  A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+
   - `id: str`
+
+    Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
 
   - `content_sha256: str`
 
+    Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
   - `content_size_bytes: int`
+
+    Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
   - `created_at: datetime`
 
@@ -74812,9 +75470,15 @@ print(beta_managed_agents_deleted_memory.id)
 
   - `memory_store_id: str`
 
+    ID of the memory store this memory belongs to (a `memstore_...` value).
+
   - `memory_version_id: str`
 
+    ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
   - `path: str`
+
+    Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
   - `type: Literal["memory"]`
 
@@ -74826,17 +75490,29 @@ print(beta_managed_agents_deleted_memory.id)
 
   - `content: Optional[str]`
 
+    The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
+
 ### Beta Managed Agents Memory List Item
 
 - `BetaManagedAgentsMemoryListItem`
 
+  One item in a [List memories](/docs/en/api/beta/memory_stores/memories/list) response: either a `memory` object or, when `depth` is set, a `memory_prefix` rollup marker.
+
   - `class BetaManagedAgentsMemory: …`
+
+    A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
 
     - `id: str`
 
+      Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
+
     - `content_sha256: str`
 
+      Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
     - `content_size_bytes: int`
+
+      Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
     - `created_at: datetime`
 
@@ -74844,9 +75520,15 @@ print(beta_managed_agents_deleted_memory.id)
 
     - `memory_store_id: str`
 
+      ID of the memory store this memory belongs to (a `memstore_...` value).
+
     - `memory_version_id: str`
 
+      ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
     - `path: str`
+
+      Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
     - `type: Literal["memory"]`
 
@@ -74858,9 +75540,15 @@ print(beta_managed_agents_deleted_memory.id)
 
     - `content: Optional[str]`
 
+      The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
+
   - `class BetaManagedAgentsMemoryPrefix: …`
 
+    A rolled-up directory marker returned by [List memories](/docs/en/api/beta/memory_stores/memories/list) when `depth` is set. Indicates that one or more memories exist deeper than the requested depth under this prefix. This is a list-time rollup, not a stored resource; it has no ID and no lifecycle. Each prefix counts toward the page `limit` and interleaves with `memory` items in path order.
+
     - `path: str`
+
+      The rolled-up path prefix, including a trailing `/` (e.g. `/projects/foo/`). Pass this value as `path_prefix` on a subsequent list call to drill into the directory.
 
     - `type: Literal["memory_prefix"]`
 
@@ -74894,7 +75582,11 @@ print(beta_managed_agents_deleted_memory.id)
 
 - `class BetaManagedAgentsMemoryPrefix: …`
 
+  A rolled-up directory marker returned by [List memories](/docs/en/api/beta/memory_stores/memories/list) when `depth` is set. Indicates that one or more memories exist deeper than the requested depth under this prefix. This is a list-time rollup, not a stored resource; it has no ID and no lifecycle. Each prefix counts toward the page `limit` and interleaves with `memory` items in path order.
+
   - `path: str`
+
+    The rolled-up path prefix, including a trailing `/` (e.g. `/projects/foo/`). Pass this value as `path_prefix` on a subsequent list call to drill into the directory.
 
   - `type: Literal["memory_prefix"]`
 
@@ -74904,7 +75596,7 @@ print(beta_managed_agents_deleted_memory.id)
 
 - `Literal["basic", "full"]`
 
-  MemoryView enum
+  Selects which projection of a `memory` or `memory_version` the server returns. `basic` returns the object with `content` set to `null`; `full` populates `content`. When omitted, the default is endpoint-specific: retrieve operations default to `full`; list, create, and update operations default to `basic`. Listing with `view=full` caps `limit` at 20.
 
   - `"basic"`
 
@@ -74914,11 +75606,15 @@ print(beta_managed_agents_deleted_memory.id)
 
 - `class BetaManagedAgentsPrecondition: …`
 
+  Optimistic-concurrency precondition: the update applies only if the memory's stored `content_sha256` equals the supplied value. On mismatch, the request returns `memory_precondition_failed_error` (HTTP 409); re-read the memory and retry against the fresh state. If the precondition fails but the stored state already exactly matches the requested `content` and `path`, the server returns 200 instead of 409.
+
   - `type: Literal["content_sha256"]`
 
     - `"content_sha256"`
 
   - `content_sha256: Optional[str]`
+
+    Expected `content_sha256` of the stored memory (64 lowercase hexadecimal characters). Typically the `content_sha256` returned by a prior read or list call. Because the server applies no content normalization, clients can also compute this locally as the SHA-256 of the UTF-8 content bytes.
 
 # Memory Versions
 
@@ -74928,7 +75624,7 @@ print(beta_managed_agents_deleted_memory.id)
 
 **get** `/v1/memory_stores/{memory_store_id}/memory_versions`
 
-ListMemoryVersions
+List memory versions
 
 ### Parameters
 
@@ -74986,7 +75682,7 @@ ListMemoryVersions
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -75030,13 +75726,19 @@ ListMemoryVersions
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsMemoryVersion: …`
 
+  A `memory_version` object: one immutable, attributed row in a memory's append-only history. Every non-no-op mutation to a memory produces a new version. Versions belong to the store (not the individual memory) and persist after the memory is deleted. Retrieving a redacted version returns 200 with `content`, `path`, `content_size_bytes`, and `content_sha256` set to `null`; branch on `redacted_at`, not HTTP status.
+
   - `id: str`
+
+    Unique identifier for this version (a `memver_...` value).
 
   - `created_at: datetime`
 
@@ -75044,11 +75746,15 @@ ListMemoryVersions
 
   - `memory_id: str`
 
+    ID of the memory this version snapshots (a `mem_...` value). Remains valid after the memory is deleted; pass it as `memory_id` to [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) to retrieve the full lineage including the `deleted` row.
+
   - `memory_store_id: str`
+
+    ID of the memory store this version belongs to (a `memstore_...` value).
 
   - `operation: BetaManagedAgentsMemoryVersionOperation`
 
-    MemoryVersionOperation enum
+    The kind of mutation a `memory_version` records. Every non-no-op mutation to a memory appends exactly one version row with one of these values.
 
     - `"created"`
 
@@ -75062,15 +75768,27 @@ ListMemoryVersions
 
   - `content: Optional[str]`
 
+    The memory's UTF-8 text content as of this version. `null` when `view=basic`, when `operation` is `deleted`, or when `redacted_at` is set.
+
   - `content_sha256: Optional[str]`
+
+    Lowercase hex SHA-256 digest of `content` as of this version (64 characters). `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
 
   - `content_size_bytes: Optional[int]`
 
+    Size of `content` in bytes as of this version. `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
+
   - `created_by: Optional[BetaManagedAgentsActor]`
+
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
     - `class BetaManagedAgentsSessionActor: …`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `session_id: str`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `type: Literal["session_actor"]`
 
@@ -75078,7 +75796,11 @@ ListMemoryVersions
 
     - `class BetaManagedAgentsAPIActor: …`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `api_key_id: str`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `type: Literal["api_actor"]`
 
@@ -75086,13 +75808,19 @@ ListMemoryVersions
 
     - `class BetaManagedAgentsUserActor: …`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `type: Literal["user_actor"]`
 
         - `"user_actor"`
 
       - `user_id: str`
 
+        ID of the user who performed the write (a `user_...` value).
+
   - `path: Optional[str]`
+
+    The memory's path at the time of this write. `null` if and only if `redacted_at` is set.
 
   - `redacted_at: Optional[datetime]`
 
@@ -75100,9 +75828,15 @@ ListMemoryVersions
 
   - `redacted_by: Optional[BetaManagedAgentsActor]`
 
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
+
     - `class BetaManagedAgentsSessionActor: …`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `session_id: str`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `type: Literal["session_actor"]`
 
@@ -75110,7 +75844,11 @@ ListMemoryVersions
 
     - `class BetaManagedAgentsAPIActor: …`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `api_key_id: str`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `type: Literal["api_actor"]`
 
@@ -75118,11 +75856,15 @@ ListMemoryVersions
 
     - `class BetaManagedAgentsUserActor: …`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `type: Literal["user_actor"]`
 
         - `"user_actor"`
 
       - `user_id: str`
+
+        ID of the user who performed the write (a `user_...` value).
 
 ### Example
 
@@ -75146,7 +75888,7 @@ print(page.id)
 
 **get** `/v1/memory_stores/{memory_store_id}/memory_versions/{memory_version_id}`
 
-GetMemoryVersion
+Retrieve a memory version
 
 ### Parameters
 
@@ -75168,7 +75910,7 @@ GetMemoryVersion
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -75212,13 +75954,19 @@ GetMemoryVersion
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsMemoryVersion: …`
 
+  A `memory_version` object: one immutable, attributed row in a memory's append-only history. Every non-no-op mutation to a memory produces a new version. Versions belong to the store (not the individual memory) and persist after the memory is deleted. Retrieving a redacted version returns 200 with `content`, `path`, `content_size_bytes`, and `content_sha256` set to `null`; branch on `redacted_at`, not HTTP status.
+
   - `id: str`
+
+    Unique identifier for this version (a `memver_...` value).
 
   - `created_at: datetime`
 
@@ -75226,11 +75974,15 @@ GetMemoryVersion
 
   - `memory_id: str`
 
+    ID of the memory this version snapshots (a `mem_...` value). Remains valid after the memory is deleted; pass it as `memory_id` to [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) to retrieve the full lineage including the `deleted` row.
+
   - `memory_store_id: str`
+
+    ID of the memory store this version belongs to (a `memstore_...` value).
 
   - `operation: BetaManagedAgentsMemoryVersionOperation`
 
-    MemoryVersionOperation enum
+    The kind of mutation a `memory_version` records. Every non-no-op mutation to a memory appends exactly one version row with one of these values.
 
     - `"created"`
 
@@ -75244,15 +75996,27 @@ GetMemoryVersion
 
   - `content: Optional[str]`
 
+    The memory's UTF-8 text content as of this version. `null` when `view=basic`, when `operation` is `deleted`, or when `redacted_at` is set.
+
   - `content_sha256: Optional[str]`
+
+    Lowercase hex SHA-256 digest of `content` as of this version (64 characters). `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
 
   - `content_size_bytes: Optional[int]`
 
+    Size of `content` in bytes as of this version. `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
+
   - `created_by: Optional[BetaManagedAgentsActor]`
+
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
     - `class BetaManagedAgentsSessionActor: …`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `session_id: str`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `type: Literal["session_actor"]`
 
@@ -75260,7 +76024,11 @@ GetMemoryVersion
 
     - `class BetaManagedAgentsAPIActor: …`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `api_key_id: str`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `type: Literal["api_actor"]`
 
@@ -75268,13 +76036,19 @@ GetMemoryVersion
 
     - `class BetaManagedAgentsUserActor: …`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `type: Literal["user_actor"]`
 
         - `"user_actor"`
 
       - `user_id: str`
 
+        ID of the user who performed the write (a `user_...` value).
+
   - `path: Optional[str]`
+
+    The memory's path at the time of this write. `null` if and only if `redacted_at` is set.
 
   - `redacted_at: Optional[datetime]`
 
@@ -75282,9 +76056,15 @@ GetMemoryVersion
 
   - `redacted_by: Optional[BetaManagedAgentsActor]`
 
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
+
     - `class BetaManagedAgentsSessionActor: …`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `session_id: str`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `type: Literal["session_actor"]`
 
@@ -75292,7 +76072,11 @@ GetMemoryVersion
 
     - `class BetaManagedAgentsAPIActor: …`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `api_key_id: str`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `type: Literal["api_actor"]`
 
@@ -75300,11 +76084,15 @@ GetMemoryVersion
 
     - `class BetaManagedAgentsUserActor: …`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `type: Literal["user_actor"]`
 
         - `"user_actor"`
 
       - `user_id: str`
+
+        ID of the user who performed the write (a `user_...` value).
 
 ### Example
 
@@ -75328,7 +76116,7 @@ print(beta_managed_agents_memory_version.id)
 
 **post** `/v1/memory_stores/{memory_store_id}/memory_versions/{memory_version_id}/redact`
 
-RedactMemoryVersion
+Redact a memory version
 
 ### Parameters
 
@@ -75342,7 +76130,7 @@ RedactMemoryVersion
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -75386,13 +76174,19 @@ RedactMemoryVersion
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsMemoryVersion: …`
 
+  A `memory_version` object: one immutable, attributed row in a memory's append-only history. Every non-no-op mutation to a memory produces a new version. Versions belong to the store (not the individual memory) and persist after the memory is deleted. Retrieving a redacted version returns 200 with `content`, `path`, `content_size_bytes`, and `content_sha256` set to `null`; branch on `redacted_at`, not HTTP status.
+
   - `id: str`
+
+    Unique identifier for this version (a `memver_...` value).
 
   - `created_at: datetime`
 
@@ -75400,11 +76194,15 @@ RedactMemoryVersion
 
   - `memory_id: str`
 
+    ID of the memory this version snapshots (a `mem_...` value). Remains valid after the memory is deleted; pass it as `memory_id` to [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) to retrieve the full lineage including the `deleted` row.
+
   - `memory_store_id: str`
+
+    ID of the memory store this version belongs to (a `memstore_...` value).
 
   - `operation: BetaManagedAgentsMemoryVersionOperation`
 
-    MemoryVersionOperation enum
+    The kind of mutation a `memory_version` records. Every non-no-op mutation to a memory appends exactly one version row with one of these values.
 
     - `"created"`
 
@@ -75418,15 +76216,27 @@ RedactMemoryVersion
 
   - `content: Optional[str]`
 
+    The memory's UTF-8 text content as of this version. `null` when `view=basic`, when `operation` is `deleted`, or when `redacted_at` is set.
+
   - `content_sha256: Optional[str]`
+
+    Lowercase hex SHA-256 digest of `content` as of this version (64 characters). `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
 
   - `content_size_bytes: Optional[int]`
 
+    Size of `content` in bytes as of this version. `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
+
   - `created_by: Optional[BetaManagedAgentsActor]`
+
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
     - `class BetaManagedAgentsSessionActor: …`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `session_id: str`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `type: Literal["session_actor"]`
 
@@ -75434,7 +76244,11 @@ RedactMemoryVersion
 
     - `class BetaManagedAgentsAPIActor: …`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `api_key_id: str`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `type: Literal["api_actor"]`
 
@@ -75442,13 +76256,19 @@ RedactMemoryVersion
 
     - `class BetaManagedAgentsUserActor: …`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `type: Literal["user_actor"]`
 
         - `"user_actor"`
 
       - `user_id: str`
 
+        ID of the user who performed the write (a `user_...` value).
+
   - `path: Optional[str]`
+
+    The memory's path at the time of this write. `null` if and only if `redacted_at` is set.
 
   - `redacted_at: Optional[datetime]`
 
@@ -75456,9 +76276,15 @@ RedactMemoryVersion
 
   - `redacted_by: Optional[BetaManagedAgentsActor]`
 
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
+
     - `class BetaManagedAgentsSessionActor: …`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `session_id: str`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `type: Literal["session_actor"]`
 
@@ -75466,7 +76292,11 @@ RedactMemoryVersion
 
     - `class BetaManagedAgentsAPIActor: …`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `api_key_id: str`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `type: Literal["api_actor"]`
 
@@ -75474,11 +76304,15 @@ RedactMemoryVersion
 
     - `class BetaManagedAgentsUserActor: …`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `type: Literal["user_actor"]`
 
         - `"user_actor"`
 
       - `user_id: str`
+
+        ID of the user who performed the write (a `user_...` value).
 
 ### Example
 
@@ -75502,9 +76336,15 @@ print(beta_managed_agents_memory_version.id)
 
 - `BetaManagedAgentsActor`
 
+  Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
+
   - `class BetaManagedAgentsSessionActor: …`
 
+    Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
     - `session_id: str`
+
+      ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
     - `type: Literal["session_actor"]`
 
@@ -75512,7 +76352,11 @@ print(beta_managed_agents_memory_version.id)
 
   - `class BetaManagedAgentsAPIActor: …`
 
+    Attribution for a write made directly via the public API (outside of any session).
+
     - `api_key_id: str`
+
+      ID of the API key that performed the write. This identifies the key, not the secret.
 
     - `type: Literal["api_actor"]`
 
@@ -75520,17 +76364,25 @@ print(beta_managed_agents_memory_version.id)
 
   - `class BetaManagedAgentsUserActor: …`
 
+    Attribution for a write made by a human user through the Anthropic Console.
+
     - `type: Literal["user_actor"]`
 
       - `"user_actor"`
 
     - `user_id: str`
 
+      ID of the user who performed the write (a `user_...` value).
+
 ### Beta Managed Agents API Actor
 
 - `class BetaManagedAgentsAPIActor: …`
 
+  Attribution for a write made directly via the public API (outside of any session).
+
   - `api_key_id: str`
+
+    ID of the API key that performed the write. This identifies the key, not the secret.
 
   - `type: Literal["api_actor"]`
 
@@ -75540,7 +76392,11 @@ print(beta_managed_agents_memory_version.id)
 
 - `class BetaManagedAgentsMemoryVersion: …`
 
+  A `memory_version` object: one immutable, attributed row in a memory's append-only history. Every non-no-op mutation to a memory produces a new version. Versions belong to the store (not the individual memory) and persist after the memory is deleted. Retrieving a redacted version returns 200 with `content`, `path`, `content_size_bytes`, and `content_sha256` set to `null`; branch on `redacted_at`, not HTTP status.
+
   - `id: str`
+
+    Unique identifier for this version (a `memver_...` value).
 
   - `created_at: datetime`
 
@@ -75548,11 +76404,15 @@ print(beta_managed_agents_memory_version.id)
 
   - `memory_id: str`
 
+    ID of the memory this version snapshots (a `mem_...` value). Remains valid after the memory is deleted; pass it as `memory_id` to [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) to retrieve the full lineage including the `deleted` row.
+
   - `memory_store_id: str`
+
+    ID of the memory store this version belongs to (a `memstore_...` value).
 
   - `operation: BetaManagedAgentsMemoryVersionOperation`
 
-    MemoryVersionOperation enum
+    The kind of mutation a `memory_version` records. Every non-no-op mutation to a memory appends exactly one version row with one of these values.
 
     - `"created"`
 
@@ -75566,15 +76426,27 @@ print(beta_managed_agents_memory_version.id)
 
   - `content: Optional[str]`
 
+    The memory's UTF-8 text content as of this version. `null` when `view=basic`, when `operation` is `deleted`, or when `redacted_at` is set.
+
   - `content_sha256: Optional[str]`
+
+    Lowercase hex SHA-256 digest of `content` as of this version (64 characters). `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
 
   - `content_size_bytes: Optional[int]`
 
+    Size of `content` in bytes as of this version. `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
+
   - `created_by: Optional[BetaManagedAgentsActor]`
+
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
     - `class BetaManagedAgentsSessionActor: …`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `session_id: str`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `type: Literal["session_actor"]`
 
@@ -75582,7 +76454,11 @@ print(beta_managed_agents_memory_version.id)
 
     - `class BetaManagedAgentsAPIActor: …`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `api_key_id: str`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `type: Literal["api_actor"]`
 
@@ -75590,13 +76466,19 @@ print(beta_managed_agents_memory_version.id)
 
     - `class BetaManagedAgentsUserActor: …`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `type: Literal["user_actor"]`
 
         - `"user_actor"`
 
       - `user_id: str`
 
+        ID of the user who performed the write (a `user_...` value).
+
   - `path: Optional[str]`
+
+    The memory's path at the time of this write. `null` if and only if `redacted_at` is set.
 
   - `redacted_at: Optional[datetime]`
 
@@ -75604,9 +76486,15 @@ print(beta_managed_agents_memory_version.id)
 
   - `redacted_by: Optional[BetaManagedAgentsActor]`
 
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
+
     - `class BetaManagedAgentsSessionActor: …`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `session_id: str`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `type: Literal["session_actor"]`
 
@@ -75614,7 +76502,11 @@ print(beta_managed_agents_memory_version.id)
 
     - `class BetaManagedAgentsAPIActor: …`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `api_key_id: str`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `type: Literal["api_actor"]`
 
@@ -75622,17 +76514,21 @@ print(beta_managed_agents_memory_version.id)
 
     - `class BetaManagedAgentsUserActor: …`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `type: Literal["user_actor"]`
 
         - `"user_actor"`
 
       - `user_id: str`
 
+        ID of the user who performed the write (a `user_...` value).
+
 ### Beta Managed Agents Memory Version Operation
 
 - `Literal["created", "modified", "deleted"]`
 
-  MemoryVersionOperation enum
+  The kind of mutation a `memory_version` records. Every non-no-op mutation to a memory appends exactly one version row with one of these values.
 
   - `"created"`
 
@@ -75644,7 +76540,11 @@ print(beta_managed_agents_memory_version.id)
 
 - `class BetaManagedAgentsSessionActor: …`
 
+  Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
   - `session_id: str`
+
+    ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
   - `type: Literal["session_actor"]`
 
@@ -75654,11 +76554,15 @@ print(beta_managed_agents_memory_version.id)
 
 - `class BetaManagedAgentsUserActor: …`
 
+  Attribution for a write made by a human user through the Anthropic Console.
+
   - `type: Literal["user_actor"]`
 
     - `"user_actor"`
 
   - `user_id: str`
+
+    ID of the user who performed the write (a `user_...` value).
 
 # Files
 
@@ -75682,7 +76586,7 @@ Upload File
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -75725,6 +76629,8 @@ Upload File
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -75829,7 +76735,7 @@ List Files
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -75872,6 +76778,8 @@ List Files
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -75961,7 +76869,7 @@ Download File
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76004,6 +76912,8 @@ Download File
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -76048,7 +76958,7 @@ Get File Metadata
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76091,6 +77001,8 @@ Get File Metadata
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -76181,7 +77093,7 @@ Delete File
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76224,6 +77136,8 @@ Delete File
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -76372,7 +77286,7 @@ Create Skill
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76415,6 +77329,8 @@ Create Skill
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -76513,7 +77429,7 @@ List Skills
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76556,6 +77472,8 @@ List Skills
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -76640,7 +77558,7 @@ Get Skill
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76683,6 +77601,8 @@ Get Skill
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -76768,7 +77688,7 @@ Delete Skill
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76811,6 +77731,8 @@ Delete Skill
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -77028,7 +77950,7 @@ Create Skill Version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -77071,6 +77993,8 @@ Create Skill Version
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -77169,7 +78093,7 @@ List Skill Versions
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -77212,6 +78136,8 @@ List Skill Versions
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -77307,7 +78233,7 @@ Get Skill Version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -77350,6 +78276,8 @@ Get Skill Version
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -77445,7 +78373,7 @@ Delete Skill Version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -77488,6 +78416,8 @@ Delete Skill Version
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -77684,3 +78614,707 @@ print(version.id)
     Deleted object type.
 
     For Skill Versions, this is always `"skill_version_deleted"`.
+
+# User Profiles
+
+## Create
+
+`beta.user_profiles.create(UserProfileCreateParams**kwargs)  -> BetaUserProfile`
+
+**post** `/v1/user_profiles`
+
+Create User Profile
+
+### Parameters
+
+- `external_id: Optional[str]`
+
+  Platform's own identifier for this user. Not enforced unique. Maximum 255 characters.
+
+- `metadata: Optional[Dict[str, str]]`
+
+  Free-form key-value data to attach to this user profile. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters. Values must be non-empty strings.
+
+- `betas: Optional[List[AnthropicBetaParam]]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `str`
+
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+
+    - `"message-batches-2024-09-24"`
+
+    - `"prompt-caching-2024-07-31"`
+
+    - `"computer-use-2024-10-22"`
+
+    - `"computer-use-2025-01-24"`
+
+    - `"pdfs-2024-09-25"`
+
+    - `"token-counting-2024-11-01"`
+
+    - `"token-efficient-tools-2025-02-19"`
+
+    - `"output-128k-2025-02-19"`
+
+    - `"files-api-2025-04-14"`
+
+    - `"mcp-client-2025-04-04"`
+
+    - `"mcp-client-2025-11-20"`
+
+    - `"dev-full-thinking-2025-05-14"`
+
+    - `"interleaved-thinking-2025-05-14"`
+
+    - `"code-execution-2025-05-22"`
+
+    - `"extended-cache-ttl-2025-04-11"`
+
+    - `"context-1m-2025-08-07"`
+
+    - `"context-management-2025-06-27"`
+
+    - `"model-context-window-exceeded-2025-08-26"`
+
+    - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaUserProfile: …`
+
+  - `id: str`
+
+    Unique identifier for this user profile, prefixed `uprof_`.
+
+  - `created_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `metadata: Dict[str, str]`
+
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `trust_grants: Dict[str, BetaUserProfileTrustGrant]`
+
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
+
+    - `status: Literal["active", "pending", "rejected"]`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: Literal["user_profile"]`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
+
+  - `updated_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `external_id: Optional[str]`
+
+    Platform's own identifier for this user. Not enforced unique.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+beta_user_profile = client.beta.user_profiles.create()
+print(beta_user_profile.id)
+```
+
+## List
+
+`beta.user_profiles.list(UserProfileListParams**kwargs)  -> SyncPageCursor[BetaUserProfile]`
+
+**get** `/v1/user_profiles`
+
+List User Profiles
+
+### Parameters
+
+- `limit: Optional[int]`
+
+  Query parameter for limit
+
+- `order: Optional[Literal["asc", "desc"]]`
+
+  Query parameter for order
+
+  - `"asc"`
+
+  - `"desc"`
+
+- `page: Optional[str]`
+
+  Query parameter for page
+
+- `betas: Optional[List[AnthropicBetaParam]]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `str`
+
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+
+    - `"message-batches-2024-09-24"`
+
+    - `"prompt-caching-2024-07-31"`
+
+    - `"computer-use-2024-10-22"`
+
+    - `"computer-use-2025-01-24"`
+
+    - `"pdfs-2024-09-25"`
+
+    - `"token-counting-2024-11-01"`
+
+    - `"token-efficient-tools-2025-02-19"`
+
+    - `"output-128k-2025-02-19"`
+
+    - `"files-api-2025-04-14"`
+
+    - `"mcp-client-2025-04-04"`
+
+    - `"mcp-client-2025-11-20"`
+
+    - `"dev-full-thinking-2025-05-14"`
+
+    - `"interleaved-thinking-2025-05-14"`
+
+    - `"code-execution-2025-05-22"`
+
+    - `"extended-cache-ttl-2025-04-11"`
+
+    - `"context-1m-2025-08-07"`
+
+    - `"context-management-2025-06-27"`
+
+    - `"model-context-window-exceeded-2025-08-26"`
+
+    - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaUserProfile: …`
+
+  - `id: str`
+
+    Unique identifier for this user profile, prefixed `uprof_`.
+
+  - `created_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `metadata: Dict[str, str]`
+
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `trust_grants: Dict[str, BetaUserProfileTrustGrant]`
+
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
+
+    - `status: Literal["active", "pending", "rejected"]`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: Literal["user_profile"]`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
+
+  - `updated_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `external_id: Optional[str]`
+
+    Platform's own identifier for this user. Not enforced unique.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+page = client.beta.user_profiles.list()
+page = page.data[0]
+print(page.id)
+```
+
+## Retrieve
+
+`beta.user_profiles.retrieve(struser_profile_id, UserProfileRetrieveParams**kwargs)  -> BetaUserProfile`
+
+**get** `/v1/user_profiles/{user_profile_id}`
+
+Get User Profile
+
+### Parameters
+
+- `user_profile_id: str`
+
+- `betas: Optional[List[AnthropicBetaParam]]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `str`
+
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+
+    - `"message-batches-2024-09-24"`
+
+    - `"prompt-caching-2024-07-31"`
+
+    - `"computer-use-2024-10-22"`
+
+    - `"computer-use-2025-01-24"`
+
+    - `"pdfs-2024-09-25"`
+
+    - `"token-counting-2024-11-01"`
+
+    - `"token-efficient-tools-2025-02-19"`
+
+    - `"output-128k-2025-02-19"`
+
+    - `"files-api-2025-04-14"`
+
+    - `"mcp-client-2025-04-04"`
+
+    - `"mcp-client-2025-11-20"`
+
+    - `"dev-full-thinking-2025-05-14"`
+
+    - `"interleaved-thinking-2025-05-14"`
+
+    - `"code-execution-2025-05-22"`
+
+    - `"extended-cache-ttl-2025-04-11"`
+
+    - `"context-1m-2025-08-07"`
+
+    - `"context-management-2025-06-27"`
+
+    - `"model-context-window-exceeded-2025-08-26"`
+
+    - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaUserProfile: …`
+
+  - `id: str`
+
+    Unique identifier for this user profile, prefixed `uprof_`.
+
+  - `created_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `metadata: Dict[str, str]`
+
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `trust_grants: Dict[str, BetaUserProfileTrustGrant]`
+
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
+
+    - `status: Literal["active", "pending", "rejected"]`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: Literal["user_profile"]`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
+
+  - `updated_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `external_id: Optional[str]`
+
+    Platform's own identifier for this user. Not enforced unique.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+beta_user_profile = client.beta.user_profiles.retrieve(
+    user_profile_id="uprof_011CZkZCu8hGbp5mYRQgUmz9",
+)
+print(beta_user_profile.id)
+```
+
+## Update
+
+`beta.user_profiles.update(struser_profile_id, UserProfileUpdateParams**kwargs)  -> BetaUserProfile`
+
+**post** `/v1/user_profiles/{user_profile_id}`
+
+Update User Profile
+
+### Parameters
+
+- `user_profile_id: str`
+
+- `external_id: Optional[str]`
+
+  If present, replaces the stored external_id. Omit to leave unchanged. Maximum 255 characters.
+
+- `metadata: Optional[Dict[str, str]]`
+
+  Key-value pairs to merge into the stored metadata. Keys provided overwrite existing values. To remove a key, set its value to an empty string. Keys not provided are left unchanged. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters.
+
+- `betas: Optional[List[AnthropicBetaParam]]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `str`
+
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+
+    - `"message-batches-2024-09-24"`
+
+    - `"prompt-caching-2024-07-31"`
+
+    - `"computer-use-2024-10-22"`
+
+    - `"computer-use-2025-01-24"`
+
+    - `"pdfs-2024-09-25"`
+
+    - `"token-counting-2024-11-01"`
+
+    - `"token-efficient-tools-2025-02-19"`
+
+    - `"output-128k-2025-02-19"`
+
+    - `"files-api-2025-04-14"`
+
+    - `"mcp-client-2025-04-04"`
+
+    - `"mcp-client-2025-11-20"`
+
+    - `"dev-full-thinking-2025-05-14"`
+
+    - `"interleaved-thinking-2025-05-14"`
+
+    - `"code-execution-2025-05-22"`
+
+    - `"extended-cache-ttl-2025-04-11"`
+
+    - `"context-1m-2025-08-07"`
+
+    - `"context-management-2025-06-27"`
+
+    - `"model-context-window-exceeded-2025-08-26"`
+
+    - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaUserProfile: …`
+
+  - `id: str`
+
+    Unique identifier for this user profile, prefixed `uprof_`.
+
+  - `created_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `metadata: Dict[str, str]`
+
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `trust_grants: Dict[str, BetaUserProfileTrustGrant]`
+
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
+
+    - `status: Literal["active", "pending", "rejected"]`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: Literal["user_profile"]`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
+
+  - `updated_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `external_id: Optional[str]`
+
+    Platform's own identifier for this user. Not enforced unique.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+beta_user_profile = client.beta.user_profiles.update(
+    user_profile_id="uprof_011CZkZCu8hGbp5mYRQgUmz9",
+)
+print(beta_user_profile.id)
+```
+
+## Create Enrollment URL
+
+`beta.user_profiles.create_enrollment_url(struser_profile_id, UserProfileCreateEnrollmentURLParams**kwargs)  -> BetaUserProfileEnrollmentURL`
+
+**post** `/v1/user_profiles/{user_profile_id}/enrollment_url`
+
+Create Enrollment URL
+
+### Parameters
+
+- `user_profile_id: str`
+
+- `betas: Optional[List[AnthropicBetaParam]]`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  - `str`
+
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+
+    - `"message-batches-2024-09-24"`
+
+    - `"prompt-caching-2024-07-31"`
+
+    - `"computer-use-2024-10-22"`
+
+    - `"computer-use-2025-01-24"`
+
+    - `"pdfs-2024-09-25"`
+
+    - `"token-counting-2024-11-01"`
+
+    - `"token-efficient-tools-2025-02-19"`
+
+    - `"output-128k-2025-02-19"`
+
+    - `"files-api-2025-04-14"`
+
+    - `"mcp-client-2025-04-04"`
+
+    - `"mcp-client-2025-11-20"`
+
+    - `"dev-full-thinking-2025-05-14"`
+
+    - `"interleaved-thinking-2025-05-14"`
+
+    - `"code-execution-2025-05-22"`
+
+    - `"extended-cache-ttl-2025-04-11"`
+
+    - `"context-1m-2025-08-07"`
+
+    - `"context-management-2025-06-27"`
+
+    - `"model-context-window-exceeded-2025-08-26"`
+
+    - `"skills-2025-10-02"`
+
+    - `"fast-mode-2026-02-01"`
+
+    - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
+
+### Returns
+
+- `class BetaUserProfileEnrollmentURL: …`
+
+  - `expires_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `type: Literal["enrollment_url"]`
+
+    Object type. Always `enrollment_url`.
+
+    - `"enrollment_url"`
+
+  - `url: str`
+
+    Enrollment URL to send to the end user. Valid until `expires_at`.
+
+### Example
+
+```python
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
+)
+beta_user_profile_enrollment_url = client.beta.user_profiles.create_enrollment_url(
+    user_profile_id="uprof_011CZkZCu8hGbp5mYRQgUmz9",
+)
+print(beta_user_profile_enrollment_url.expires_at)
+```
+
+## Domain Types
+
+### Beta User Profile
+
+- `class BetaUserProfile: …`
+
+  - `id: str`
+
+    Unique identifier for this user profile, prefixed `uprof_`.
+
+  - `created_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `metadata: Dict[str, str]`
+
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `trust_grants: Dict[str, BetaUserProfileTrustGrant]`
+
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
+
+    - `status: Literal["active", "pending", "rejected"]`
+
+      Status of the trust grant.
+
+      - `"active"`
+
+      - `"pending"`
+
+      - `"rejected"`
+
+  - `type: Literal["user_profile"]`
+
+    Object type. Always `user_profile`.
+
+    - `"user_profile"`
+
+  - `updated_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `external_id: Optional[str]`
+
+    Platform's own identifier for this user. Not enforced unique.
+
+### Beta User Profile Enrollment URL
+
+- `class BetaUserProfileEnrollmentURL: …`
+
+  - `expires_at: datetime`
+
+    A timestamp in RFC 3339 format
+
+  - `type: Literal["enrollment_url"]`
+
+    Object type. Always `enrollment_url`.
+
+    - `"enrollment_url"`
+
+  - `url: str`
+
+    Enrollment URL to send to the end user. Valid until `expires_at`.
+
+### Beta User Profile Trust Grant
+
+- `class BetaUserProfileTrustGrant: …`
+
+  - `status: Literal["active", "pending", "rejected"]`
+
+    Status of the trust grant.
+
+    - `"active"`
+
+    - `"pending"`
+
+    - `"rejected"`

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 3532197114b66efae2d9b66cbc7c80e87f0ccbde2650ae84343404d929d7707c
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 11995dd1bfdca207f704e415ad2bf186cc346f7925551c745cc9705944d2dc05
 ---
 
 ## Update
@@ -76,6 +76,8 @@ Update Vault
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 6a2b48baf50730cc10e39ddd1d8e9bb4f46bfe86f6e2ae564959e6be5bc514d0
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: f6d1e60dd7d7684c7a9dc2eb12a96cc0db9fc0ea068480620ffc1e862aa506be
 ---
 
 ## List
@@ -83,9 +83,9 @@ List User Profiles
 
       - `"output-300k-2026-03-24"`
 
-      - `"advisor-tool-2026-03-01"`
-
       - `"user-profiles-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

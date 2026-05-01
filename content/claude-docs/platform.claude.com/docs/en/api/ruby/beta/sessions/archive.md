@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/archive
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: b5a3fb4c0e349039efffe542005b6b7d5a41cdbedffc70da2cbaf2cfed65837e
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 433cb1d98fb672fbf36f07239d867b5002bea77c67f3d7511c0b3e5d106a24bc
 ---
 
 ## Archive
@@ -23,7 +23,7 @@ Archive Session
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Archive Session
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
 

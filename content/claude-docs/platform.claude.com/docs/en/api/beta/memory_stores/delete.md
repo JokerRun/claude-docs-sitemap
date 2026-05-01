@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: a1eb77bf614da4254b0ffff7425007c61190c82d83a39ae3ac66606cabd09fb9
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 69cafcab3d3493029896974950a39e6bb27e1f695c46acd26504e627d4a28da6
 ---
 
 ## Delete
 
 **delete** `/v1/memory_stores/{memory_store_id}`
 
-DeleteMemoryStore
+Delete a memory store
 
 ### Path Parameters
 
@@ -23,7 +23,7 @@ DeleteMemoryStore
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -67,13 +67,19 @@ DeleteMemoryStore
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `BetaManagedAgentsDeletedMemoryStore = object { id, type }`
 
+  Confirmation that a `memory_store` was deleted.
+
   - `id: string`
+
+    ID of the deleted memory store (a `memstore_...` identifier). The store and all its memories and versions are no longer retrievable.
 
   - `type: "memory_store_deleted"`
 

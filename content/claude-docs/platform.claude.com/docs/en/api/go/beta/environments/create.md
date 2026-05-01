@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 216ef9172677c0c2dc7d0c829db93b38f0ab0080978b3519e79ade8c98c18a49
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: d24f47dccfda57c9f69ed221155f0f28af1ecc8b0bd08ef0c2130fa13d623b91
 ---
 
 ## Create
@@ -86,13 +86,15 @@ Create a new environment with the specified configuration.
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaEnvironment struct{…}`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `ID string`
 

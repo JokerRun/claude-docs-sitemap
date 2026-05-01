@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 2c9180cdf6f583110740846e4d1a9775b8cd20b65790ef9ce6c5b865acac3508
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: d1a3223e44cc37bace9716a2d4f0ef0667a17fe7669143618812b4ebaf19f6ac
 ---
 
 ## Delete
@@ -68,6 +68,8 @@ Delete Session
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 

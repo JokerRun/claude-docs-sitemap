@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/results
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: c0b2ceacf3a6944059e28140d66038c9ff22c2afeefac8afd7c2752c0e7be4ab
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 0807b2a06148fdd3c9306a18d6bac90b4b264c55ad28e5f3688589c5b41d90ee
 ---
 
 ## Results
@@ -31,7 +31,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
 
@@ -1015,6 +1017,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `content: string | null`
 
               Summary of compacted content, or null if compaction failed
+
+            - `encrypted_content: string | null`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `type: "compaction"`
 

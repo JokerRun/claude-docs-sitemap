@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/retrieve
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 571e3bf7982d06d03d1c256522361e2d673a69c536542351c54e05f44c3121d3
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: ac85a93f9ae9ed678c5119528b6eadf69514fd773ac111348ecd465ded7c4f96
 ---
 
 ## Retrieve
@@ -70,6 +70,8 @@ Get Session Resource
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 

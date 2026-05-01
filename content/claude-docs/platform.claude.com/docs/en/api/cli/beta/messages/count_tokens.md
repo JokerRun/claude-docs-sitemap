@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/count_tokens
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 3087666dddc2ef81450cfb29ffc1246a6f401b75a6fbc61e0309c51e879ee080
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: c232c0f05b6ec1ea25257941afb44e7ae4623e44b46dc25ce4a1b3956563f941
 ---
 
 ## Count Tokens
@@ -90,7 +90,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   Body param: MCP servers to be utilized in this request
 
-- `--output-config: optional object { effort, format }`
+- `--output-config: optional object { effort, format, task_budget }`
 
   Body param: Configuration options for the model's output, such as the output format.
 

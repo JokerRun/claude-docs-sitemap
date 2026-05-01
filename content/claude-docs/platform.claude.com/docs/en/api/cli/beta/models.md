@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/models
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 385ff34a985419069fb011cd7489b161d1b8dbaf856df9beac38784f2158f000
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 14f5f0661c31c09636d6bb27a9faa30d1537893ce6f075fb3801b47e158e555e
 ---
 
 # Models
@@ -107,7 +107,7 @@ The Models API response can be used to determine which models are available for 
 
           Whether this capability is supported by the model.
 
-      - `effort: object { high, low, max, 2 more }`
+      - `effort: object { high, low, max, 3 more }`
 
         Effort (reasoning_effort) support and available levels.
 
@@ -146,6 +146,14 @@ The Models API response can be used to determine which models are available for 
         - `supported: boolean`
 
           Whether this capability is supported by the model.
+
+        - `xhigh: object { supported }`
+
+          Indicates whether a capability is supported.
+
+          - `supported: boolean`
+
+            Whether this capability is supported by the model.
 
       - `image_input: object { supported }`
 
@@ -328,7 +336,7 @@ The Models API response can be used to determine information about a specific mo
 
         Whether this capability is supported by the model.
 
-    - `effort: object { high, low, max, 2 more }`
+    - `effort: object { high, low, max, 3 more }`
 
       Effort (reasoning_effort) support and available levels.
 
@@ -367,6 +375,14 @@ The Models API response can be used to determine information about a specific mo
       - `supported: boolean`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: object { supported }`
+
+        Indicates whether a capability is supported.
+
+        - `supported: boolean`
+
+          Whether this capability is supported by the model.
 
     - `image_input: object { supported }`
 
@@ -498,7 +514,7 @@ ant beta:models retrieve \
 
 ### Beta Effort Capability
 
-- `beta_effort_capability: object { high, low, max, 2 more }`
+- `beta_effort_capability: object { high, low, max, 3 more }`
 
   Effort (reasoning_effort) capability details.
 
@@ -537,6 +553,14 @@ ant beta:models retrieve \
   - `supported: boolean`
 
     Whether this capability is supported by the model.
+
+  - `xhigh: object { supported }`
+
+    Indicates whether a capability is supported.
+
+    - `supported: boolean`
+
+      Whether this capability is supported by the model.
 
 ### Beta Model Capabilities
 
@@ -600,7 +624,7 @@ ant beta:models retrieve \
 
       Whether this capability is supported by the model.
 
-  - `effort: object { high, low, max, 2 more }`
+  - `effort: object { high, low, max, 3 more }`
 
     Effort (reasoning_effort) support and available levels.
 
@@ -639,6 +663,14 @@ ant beta:models retrieve \
     - `supported: boolean`
 
       Whether this capability is supported by the model.
+
+    - `xhigh: object { supported }`
+
+      Indicates whether a capability is supported.
+
+      - `supported: boolean`
+
+        Whether this capability is supported by the model.
 
   - `image_input: object { supported }`
 
@@ -760,7 +792,7 @@ ant beta:models retrieve \
 
         Whether this capability is supported by the model.
 
-    - `effort: object { high, low, max, 2 more }`
+    - `effort: object { high, low, max, 3 more }`
 
       Effort (reasoning_effort) support and available levels.
 
@@ -799,6 +831,14 @@ ant beta:models retrieve \
       - `supported: boolean`
 
         Whether this capability is supported by the model.
+
+      - `xhigh: object { supported }`
+
+        Indicates whether a capability is supported.
+
+        - `supported: boolean`
+
+          Whether this capability is supported by the model.
 
     - `image_input: object { supported }`
 

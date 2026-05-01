@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: e9487bb0ebf71e12a446041335b1d94bfbbfe9e1110dd51e38c7b55daf9b1f5b
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: eebf6f2cb350b198ff6ebc408357666438862b7f09c23712ef987d6a062f8bd2
 ---
 
 # Messages
@@ -28,6 +28,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     The maximum number of tokens to generate before stopping.
 
     Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+    Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
     Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -17467,6 +17469,8 @@ func main() {
 
     - `const OutputConfigEffortHigh OutputConfigEffort = "high"`
 
+    - `const OutputConfigEffortXhigh OutputConfigEffort = "xhigh"`
+
     - `const OutputConfigEffortMax OutputConfigEffort = "max"`
 
   - `Format JSONOutputFormat`
@@ -27022,6 +27026,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
 
+        Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
+
         Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
       - `Messages []MessageParamResp`
@@ -29433,6 +29439,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `const OutputConfigEffortMedium OutputConfigEffort = "medium"`
 
           - `const OutputConfigEffortHigh OutputConfigEffort = "high"`
+
+          - `const OutputConfigEffortXhigh OutputConfigEffort = "xhigh"`
 
           - `const OutputConfigEffortMax OutputConfigEffort = "max"`
 

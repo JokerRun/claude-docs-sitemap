@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: daa430f4ef54d9c78f9570893a034fa061e3e41000d385ee3a0efb85c6963d19
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 18fc8f50fafe8a7e12169ec2955889cd038df655b3e071561df87fe7fc97eedc
 ---
 
 ## Create
@@ -73,9 +73,9 @@ Create User Profile
 
     - `:"output-300k-2026-03-24"`
 
-    - `:"advisor-tool-2026-03-01"`
-
     - `:"user-profiles-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 

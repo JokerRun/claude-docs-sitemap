@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/retrieve
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: faeea37fc3e29232f49649575daa22e807f0bd9f7ddc13bc1f2b69b402139f4c
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: be74659376ed688d93dd5e5de03a601a4f0b340e703eb94562fc672ec03aae7d
 ---
 
 ## Retrieve
@@ -65,13 +65,15 @@ Retrieve a specific environment by ID.
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 
 - `class BetaEnvironment:`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `String id`
 

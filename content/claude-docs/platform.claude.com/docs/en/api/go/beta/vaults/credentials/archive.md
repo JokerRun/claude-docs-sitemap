@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/archive
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 963a4cb43d42bde2ed321deb208a94de58f63eed40237c3722a7b787e109df0e
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 96bfcc105fdae5d2e72f5de4630c5d1e020d825fb60c723fe4b5c614b5c7087f
 ---
 
 ## Archive
@@ -72,6 +72,8 @@ Archive Credential
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 

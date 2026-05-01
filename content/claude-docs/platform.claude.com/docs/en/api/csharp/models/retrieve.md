@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/models/retrieve
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 18bdbda1bffbb70d04aa174ae6dd325e480450eed9d9770369aa5b077b64f4c8
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 4ca8ef8bcdefc6a135eba4ff2fa386dbadcef3caa7e4dd7d789e071ef9234465
 ---
 
 ## Retrieve
@@ -68,6 +68,8 @@ The Models API response can be used to determine information about a specific mo
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
@@ -178,6 +180,14 @@ The Models API response can be used to determine information about a specific mo
       - `required Boolean Supported`
 
         Whether this capability is supported by the model.
+
+      - `required CapabilitySupport? Xhigh`
+
+        Indicates whether a capability is supported.
+
+        - `required Boolean Supported`
+
+          Whether this capability is supported by the model.
 
     - `required CapabilitySupport ImageInput`
 

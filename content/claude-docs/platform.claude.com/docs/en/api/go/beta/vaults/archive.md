@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/archive
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 6a019cf5a3e8a7be9f8d199d5dee0bc9a04e0cc20b0a8f7f3d193b8b41a2c1a5
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 17d63383c349e9ce824b710fd35c9d882aa280eff65fd187b8fe63cc1e43067e
 ---
 
 ## Archive
@@ -68,6 +68,8 @@ Archive Vault
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 

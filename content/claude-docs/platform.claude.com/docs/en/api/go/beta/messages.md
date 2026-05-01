@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 9dbbc9d7049fed1b0aa304c34579398bc4d3e9be9f5852e7114f9689f266617d
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: fe74b000a151a09311870d8823c35de1a0b1bf27f611a07b58a95918445c9c0b
 ---
 
 # Messages
@@ -28,6 +28,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     Body param: The maximum number of tokens to generate before stopping.
 
     Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+    Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
     Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -2665,6 +2667,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+          - `EncryptedContent string`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `Role BetaMessageParamRole`
 
       - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
@@ -4573,6 +4579,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Recommended for advanced use cases only.
 
+  - `UserProfileID param.Field[string]`
+
+    Body param: The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
   - `Betas param.Field[[]AnthropicBeta]`
 
     Header param: Optional header to specify the beta version(s) you want to use.
@@ -4622,6 +4632,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -5545,6 +5557,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `Content string`
 
         Summary of compacted content, or null if compaction failed
+
+      - `EncryptedContent string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `Type Compaction`
 
@@ -8717,6 +8733,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+          - `EncryptedContent string`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `Role BetaMessageParamRole`
 
       - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
@@ -10590,6 +10610,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -12483,6 +12505,10 @@ func main() {
 
     Summary of compacted content, or null if compaction failed
 
+  - `EncryptedContent string`
+
+    Opaque metadata from prior compaction, to be round-tripped verbatim
+
   - `Type Compaction`
 
     - `const CompactionCompaction Compaction = "compaction"`
@@ -12530,11 +12556,19 @@ func main() {
 
       - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+  - `EncryptedContent string`
+
+    Opaque metadata from prior compaction, to be round-tripped verbatim
+
 ### Beta Compaction Content Block Delta
 
 - `type BetaCompactionContentBlockDelta struct{…}`
 
   - `Content string`
+
+  - `EncryptedContent string`
+
+    Opaque metadata from prior compaction, to be round-tripped verbatim
 
   - `Type CompactionDelta`
 
@@ -13547,6 +13581,10 @@ func main() {
     - `Content string`
 
       Summary of compacted content, or null if compaction failed
+
+    - `EncryptedContent string`
+
+      Opaque metadata from prior compaction, to be round-tripped verbatim
 
     - `Type Compaction`
 
@@ -16137,6 +16175,10 @@ func main() {
 
         - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+    - `EncryptedContent string`
+
+      Opaque metadata from prior compaction, to be round-tripped verbatim
+
 ### Beta Content Block Source
 
 - `type BetaContentBlockSource struct{…}`
@@ -18564,6 +18606,10 @@ func main() {
       - `Content string`
 
         Summary of compacted content, or null if compaction failed
+
+      - `EncryptedContent string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `Type Compaction`
 
@@ -21915,6 +21961,10 @@ func main() {
 
             - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+        - `EncryptedContent string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
+
   - `Role BetaMessageParamRole`
 
     - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
@@ -21961,6 +22011,8 @@ func main() {
 
     - `const BetaOutputConfigEffortHigh BetaOutputConfigEffort = "high"`
 
+    - `const BetaOutputConfigEffortXhigh BetaOutputConfigEffort = "xhigh"`
+
     - `const BetaOutputConfigEffortMax BetaOutputConfigEffort = "max"`
 
   - `Format BetaJSONOutputFormat`
@@ -21974,6 +22026,24 @@ func main() {
     - `Type JSONSchema`
 
       - `const JSONSchemaJSONSchema JSONSchema = "json_schema"`
+
+  - `TaskBudget BetaTokenTaskBudget`
+
+    User-configurable total token budget across contexts.
+
+    - `Total int64`
+
+      Total token budget across all contexts in the session.
+
+    - `Type Tokens`
+
+      The budget type. Currently only 'tokens' is supported.
+
+      - `const TokensTokens Tokens = "tokens"`
+
+    - `Remaining int64`
+
+      Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 ### Beta Plain Text Source
 
@@ -22123,6 +22193,10 @@ func main() {
 
     - `Content string`
 
+    - `EncryptedContent string`
+
+      Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `Type CompactionDelta`
 
       - `const CompactionDeltaCompactionDelta CompactionDelta = "compaction_delta"`
@@ -22262,6 +22336,10 @@ func main() {
     - `type BetaCompactionContentBlockDelta struct{…}`
 
       - `Content string`
+
+      - `EncryptedContent string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `Type CompactionDelta`
 
@@ -23130,6 +23208,10 @@ func main() {
       - `Content string`
 
         Summary of compacted content, or null if compaction failed
+
+      - `EncryptedContent string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `Type Compaction`
 
@@ -24445,6 +24527,10 @@ func main() {
         - `Content string`
 
           Summary of compacted content, or null if compaction failed
+
+        - `EncryptedContent string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `Type Compaction`
 
@@ -25867,6 +25953,10 @@ func main() {
           - `Content string`
 
             Summary of compacted content, or null if compaction failed
+
+          - `EncryptedContent string`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
 
           - `Type Compaction`
 
@@ -27589,6 +27679,10 @@ func main() {
 
           Summary of compacted content, or null if compaction failed
 
+        - `EncryptedContent string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
+
         - `Type Compaction`
 
           - `const CompactionCompaction Compaction = "compaction"`
@@ -27732,6 +27826,10 @@ func main() {
       - `type BetaCompactionContentBlockDelta struct{…}`
 
         - `Content string`
+
+        - `EncryptedContent string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `Type CompactionDelta`
 
@@ -29522,6 +29620,26 @@ func main() {
     - `const ThinkingTurnsThinkingTurns ThinkingTurns = "thinking_turns"`
 
   - `Value int64`
+
+### Beta Token Task Budget
+
+- `type BetaTokenTaskBudget struct{…}`
+
+  User-configurable total token budget across contexts.
+
+  - `Total int64`
+
+    Total token budget across all contexts in the session.
+
+  - `Type Tokens`
+
+    The budget type. Currently only 'tokens' is supported.
+
+    - `const TokensTokens Tokens = "tokens"`
+
+  - `Remaining int64`
+
+    Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 ### Beta Tool
 
@@ -35065,6 +35183,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
 
+        Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
+
         Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
       - `Messages []BetaMessageParamResp`
@@ -37701,6 +37821,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+              - `EncryptedContent string`
+
+                Opaque metadata from prior compaction, to be round-tripped verbatim
+
         - `Role BetaMessageParamRole`
 
           - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
@@ -38016,6 +38140,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `const BetaOutputConfigEffortHigh BetaOutputConfigEffort = "high"`
 
+          - `const BetaOutputConfigEffortXhigh BetaOutputConfigEffort = "xhigh"`
+
           - `const BetaOutputConfigEffortMax BetaOutputConfigEffort = "max"`
 
         - `Format BetaJSONOutputFormat`
@@ -38029,6 +38155,24 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `Type JSONSchema`
 
             - `const JSONSchemaJSONSchema JSONSchema = "json_schema"`
+
+        - `TaskBudget BetaTokenTaskBudget`
+
+          User-configurable total token budget across contexts.
+
+          - `Total int64`
+
+            Total token budget across all contexts in the session.
+
+          - `Type Tokens`
+
+            The budget type. Currently only 'tokens' is supported.
+
+            - `const TokensTokens Tokens = "tokens"`
+
+          - `Remaining int64`
+
+            Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
       - `OutputFormat BetaJSONOutputFormat`
 
@@ -39958,6 +40102,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Recommended for advanced use cases only.
 
+      - `UserProfileID string`
+
+        The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
   - `Betas param.Field[[]AnthropicBeta]`
 
     Header param: Optional header to specify the beta version(s) you want to use.
@@ -40007,6 +40155,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -40209,6 +40359,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -40410,6 +40562,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -40598,6 +40752,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -40792,6 +40948,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -40910,6 +41068,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -41851,6 +42011,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `Content string`
 
               Summary of compacted content, or null if compaction failed
+
+            - `EncryptedContent string`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `Type Compaction`
 
@@ -43628,6 +43792,10 @@ func main() {
 
               Summary of compacted content, or null if compaction failed
 
+            - `EncryptedContent string`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
+
             - `Type Compaction`
 
               - `const CompactionCompaction Compaction = "compaction"`
@@ -45178,6 +45346,10 @@ func main() {
 
             Summary of compacted content, or null if compaction failed
 
+          - `EncryptedContent string`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
           - `Type Compaction`
 
             - `const CompactionCompaction Compaction = "compaction"`
@@ -46689,6 +46861,10 @@ func main() {
         - `Content string`
 
           Summary of compacted content, or null if compaction failed
+
+        - `EncryptedContent string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `Type Compaction`
 

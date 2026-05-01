@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/retrieve
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: e63d7975e24f58eaa63251ae4f7490ea39c3d8ba518383072277194b110fd852
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: c6c2b2dc541109f22616ac80b56133f74d225d9a4a300ed350239599e1247099
 ---
 
 ## Retrieve
@@ -64,6 +64,8 @@ Get Session
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

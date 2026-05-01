@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/user_profiles/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 902e79b5eb0e90c209224a348c2c966722b3b953df8c93034fca0c82729313fb
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 4e002fc1e4fe26537c0d2fadf93c1054e2c85aae0bcba681b6a1bbfd2b336fa8
 ---
 
 ## Create
@@ -75,9 +75,9 @@ Create User Profile
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
-      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

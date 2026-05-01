@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: f016333318e2b4aab7168502a4e5407c2f322ae4bb8767400419edd4ecd8481c
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 07ebed7010ee5a31e0bc0d3cc7a3725009e98c9dccd99232002425cb28b93254
 ---
 
 ## Delete
@@ -11,7 +11,7 @@ sha256: f016333318e2b4aab7168502a4e5407c2f322ae4bb8767400419edd4ecd8481c
 
 **delete** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
-DeleteMemory
+Delete a memory
 
 ### Parameters
 
@@ -75,13 +75,19 @@ DeleteMemory
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
 - `class BetaManagedAgentsDeletedMemory:`
 
+  Tombstone returned by [Delete a memory](/docs/en/api/beta/memory_stores/memories/delete). The memory's version history persists and remains listable via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) until the store itself is deleted.
+
   - `required string ID`
+
+    ID of the deleted memory (a `mem_...` value).
 
   - `required Type Type`
 

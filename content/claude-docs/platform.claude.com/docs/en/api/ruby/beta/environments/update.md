@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 50269ce89497f492a47c73b10f871867fa8208f46098e26c28f6dd9e21282c33
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: fb4901cd30d2c83521ff7ca71e1fe0c9e82affa9a938fb69cda3e6f4050c289c
 ---
 
 ## Update
@@ -123,7 +123,7 @@ Update an existing environment's configuration.
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -167,13 +167,15 @@ Update an existing environment's configuration.
 
     - `:"output-300k-2026-03-24"`
 
+    - `:"user-profiles-2026-03-24"`
+
     - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaEnvironment`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: String`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 27a1c0b41fb8e26b3183ccfa865e7116daa1f2a96fe4f11ad2ea25c4c3febf9c
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: d2278db565c6ac5dddc1982ca820bcb133be215dcae8bddb198bc3d26a70ff8e
 ---
 
 ## Create
@@ -66,6 +66,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

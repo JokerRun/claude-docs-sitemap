@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/results
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 187ada7ebdf362934c0993cad827e1f25c511e712da6b2a878396501bfb27432
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 49a455a962d3bc89a4fff68a3b6a16d7fe39853dd1fc61e50d559c9386b72f16
 ---
 
 ## Results
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
 
@@ -1013,6 +1015,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `content: String`
 
               Summary of compacted content, or null if compaction failed
+
+            - `encrypted_content: String`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `type: :compaction`
 

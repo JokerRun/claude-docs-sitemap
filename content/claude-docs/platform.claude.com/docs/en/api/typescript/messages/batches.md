@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 98ce88e31ae4003ce128b6d94bfcd36a8f6c89486877ea0b6a9b7735a115c11f
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 4f0a4dac4d806f74a9ee872ae1f3be12996f84d51b1a3e4aa3b96d7d3da30f77
 ---
 
 # Batches
@@ -44,6 +44,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         The maximum number of tokens to generate before stopping.
 
         Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+        Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
         Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -2447,7 +2449,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Configuration options for the model's output, such as the output format.
 
-        - `effort?: "low" | "medium" | "high" | "max" | null`
+        - `effort?: "low" | "medium" | "high" | 2 more | null`
 
           All possible effort levels.
 
@@ -2456,6 +2458,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `"medium"`
 
           - `"high"`
+
+          - `"xhigh"`
 
           - `"max"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 8feeed987a5a0b7e2b8496c1a02bdf73d6449352e4072a768e47d5c53a8cd3de
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 09d3a3bf56a6396bd777840e085f45d867b103f2ce5511691c9aa6b05722d48a
 ---
 
 ## Create
@@ -123,7 +123,7 @@ Create a new environment with the specified configuration.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -167,13 +167,15 @@ Create a new environment with the specified configuration.
 
       - `"output-300k-2026-03-24"`
 
+      - `"user-profiles-2026-03-24"`
+
       - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `BetaEnvironment`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: string`
 

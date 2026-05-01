@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 540b932e889e5d012bd5caf9be9fd8557661fe6a4851e41e76383be4decdc5da
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 359c5a14e731b543e1c7df4bc470b94b5c1aacddd6b155a1885a884a75ce65ce
 ---
 
 ## Create
@@ -62,6 +62,8 @@ Create Agent
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

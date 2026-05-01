@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 1c13e68a61345047373a94895ecb1d4c016785283989f816b8705e4a3eff8508
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 405041cab55bea54adce7a5e7e6fa91f1eb3f090cc07f2633b19ab3993837e8e
 ---
 
 ## Delete
@@ -64,6 +64,8 @@ Delete Vault
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

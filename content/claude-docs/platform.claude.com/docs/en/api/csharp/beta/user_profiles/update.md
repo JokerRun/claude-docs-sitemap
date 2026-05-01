@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/update
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: d1dcabeb4c08bceee88e58045003eedfb7d484dc2794a3567e74e16ca3b2ed1a
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: edfc9ca39d5a459cff2d0e91f74bbd4541c66afadc7ccd2ca8e7b5808f26eb61
 ---
 
 ## Update
@@ -75,9 +75,9 @@ Update User Profile
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
-    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

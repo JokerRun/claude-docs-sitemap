@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 61a62d903ecfe4f848640a2eadfbdf85006b64d9e991ae47c54426e0cf977ac0
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 5ea3fc76b39b292f192c70e539eb59d6734eef58fc2fa00fee0882b8d4da3cfd
 ---
 
 ## Update
 
 **post** `/v1/memory_stores/{memory_store_id}`
 
-UpdateMemoryStore
+Update a memory store
 
 ### Path Parameters
 
@@ -23,7 +23,7 @@ UpdateMemoryStore
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -67,11 +67,15 @@ UpdateMemoryStore
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Body Parameters
 
 - `description: optional string`
+
+  New description for the store, up to 1024 characters. Pass an empty string to clear it.
 
 - `metadata: optional map[string]`
 
@@ -79,33 +83,45 @@ UpdateMemoryStore
 
 - `name: optional string`
 
+  New human-readable name for the store. 1–255 characters; no control characters. Renaming changes the slug used for the store's `mount_path` in sessions created after the update.
+
 ### Returns
 
-- `BetaManagedAgentsMemoryStore = object { id, type, archived_at, 5 more }`
+- `BetaManagedAgentsMemoryStore = object { id, created_at, name, 5 more }`
+
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
 
   - `id: string`
+
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
+
+  - `created_at: string`
+
+    A timestamp in RFC 3339 format
+
+  - `name: string`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
 
   - `type: "memory_store"`
 
     - `"memory_store"`
 
-  - `archived_at: optional string`
+  - `updated_at: string`
 
     A timestamp in RFC 3339 format
 
-  - `created_at: optional string`
+  - `archived_at: optional string`
 
     A timestamp in RFC 3339 format
 
   - `description: optional string`
 
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
   - `metadata: optional map[string]`
 
-  - `name: optional string`
-
-  - `updated_at: optional string`
-
-    A timestamp in RFC 3339 format
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 

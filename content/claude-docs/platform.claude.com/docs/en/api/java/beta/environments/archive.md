@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/archive
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 6c5acc4dbd3ac3557b9f20944d74bd3ebdcdda111877b1f5adc94f63cff3c209
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 85b98b964410c50a51428c6f318b7cd3ccbd868ed18ae8a689ae19e39dc7608a
 ---
 
 ## Archive
@@ -65,13 +65,15 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 
 - `class BetaEnvironment:`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `String id`
 

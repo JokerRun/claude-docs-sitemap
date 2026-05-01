@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/update
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: f53eac3972f40845cdeb91ede6ce57f6826a4bae640227f1bd9eb47f567f577a
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 8a360217b4ab26bcc8fb40f5e5b27cc652959b0f246d5eab1e8add55c92b2dc9
 ---
 
 ## Update
@@ -75,9 +75,9 @@ Update User Profile
 
     - `:"output-300k-2026-03-24"`
 
-    - `:"advisor-tool-2026-03-01"`
-
     - `:"user-profiles-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: e419b7a02535e461a8861ba29e43b1f40d2b4d14657a745f24ed2b85a48069fd
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: a0561a4ee678a85b3d0c079daef82d89c14654b09dffa0f175ef28cd1b3aa04f
 ---
 
 ## List
@@ -35,7 +35,7 @@ List environments with pagination support.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -79,13 +79,15 @@ List environments with pagination support.
 
       - `"output-300k-2026-03-24"`
 
+      - `"user-profiles-2026-03-24"`
+
       - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `BetaEnvironment`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: string`
 

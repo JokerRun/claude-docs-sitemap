@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: d78c270b79eed2a9b34485d4f0ccf7e0de2df8484846a560e34f4ca97c8e4b21
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 84857b7e83ee8fe42643b42a8e4a6fe02ad87ed0a565b5601fb66b8acba6ebeb
 ---
 
 ## Update
@@ -46,7 +46,7 @@ Update an existing environment's configuration.
 
 - `beta_environment: object { id, archived_at, config, 6 more }`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: string`
 

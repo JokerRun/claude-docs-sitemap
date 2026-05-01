@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 66f79b06503447ca35b09abb6f6b773985041b67b92f95c1d869902271ec904a
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: bbd3e847884672162ce3809ba714db13a1a3f41c15d6caba01659204160686bb
 ---
 
 ## Create
@@ -75,9 +75,9 @@ Create User Profile
 
       - `"output-300k-2026-03-24"`
 
-      - `"advisor-tool-2026-03-01"`
-
       - `"user-profiles-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

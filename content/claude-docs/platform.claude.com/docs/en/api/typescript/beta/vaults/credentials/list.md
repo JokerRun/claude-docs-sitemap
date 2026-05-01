@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 70dcbd98c6d1cad61591fbede3258e7ed07866a97e3115d0f1bca255da5d2795
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 62c27ab963c430f8fed3ded891c0d12407d0134e974ed923ed851de15026fa95
 ---
 
 ## List
@@ -37,7 +37,7 @@ List Credentials
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ List Credentials
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
 

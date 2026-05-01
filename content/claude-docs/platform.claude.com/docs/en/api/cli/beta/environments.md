@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 0bb5efafae69bd81d9faad0a15ef417613db5a366c7273625f68426cfda700c4
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 1eee1c0533340e181faf7cb6ad46c0ae91968fdb25502d012f2a1d472f8d0357
 ---
 
 # Environments
@@ -44,7 +44,7 @@ Create a new environment with the specified configuration.
 
 - `beta_environment: object { id, archived_at, config, 6 more }`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: string`
 
@@ -336,7 +336,7 @@ Retrieve a specific environment by ID.
 
 - `beta_environment: object { id, archived_at, config, 6 more }`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: string`
 
@@ -493,7 +493,7 @@ Update an existing environment's configuration.
 
 - `beta_environment: object { id, archived_at, config, 6 more }`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: string`
 
@@ -667,7 +667,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
 - `beta_environment: object { id, archived_at, config, 6 more }`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: string`
 
@@ -949,7 +949,7 @@ ant beta:environments archive \
 
 - `beta_environment: object { id, archived_at, config, 6 more }`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: string`
 

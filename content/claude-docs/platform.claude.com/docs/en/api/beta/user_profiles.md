@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 4f51fd95a96788e59d7120d32f9ecbfa789c57f0cb5fd737bf3fd00b05b2287a
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: bc290104b31e0e32a031a2b607efbcf41ed0d308a5341dce2be70c6c3e96b2bc
 ---
 
 # User Profiles
@@ -65,9 +65,9 @@ Create User Profile
 
     - `"output-300k-2026-03-24"`
 
-    - `"advisor-tool-2026-03-01"`
-
     - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Body Parameters
 
@@ -210,9 +210,9 @@ List User Profiles
 
     - `"output-300k-2026-03-24"`
 
-    - `"advisor-tool-2026-03-01"`
-
     - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
@@ -260,7 +260,7 @@ List User Profiles
 
     Platform's own identifier for this user. Not enforced unique.
 
-- `next_page: optional string`
+- `next_page: string`
 
   Cursor for the next page, or `null` when there are no more results.
 
@@ -335,9 +335,9 @@ Get User Profile
 
     - `"output-300k-2026-03-24"`
 
-    - `"advisor-tool-2026-03-01"`
-
     - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
@@ -454,9 +454,9 @@ Update User Profile
 
     - `"output-300k-2026-03-24"`
 
-    - `"advisor-tool-2026-03-01"`
-
     - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Body Parameters
 
@@ -585,9 +585,9 @@ Create Enrollment URL
 
     - `"output-300k-2026-03-24"`
 
-    - `"advisor-tool-2026-03-01"`
-
     - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

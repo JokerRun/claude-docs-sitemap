@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 1da7e654d8bc28c0b56c756e3a862459b3f248ccafa9c47ee58f879ec66f9c61
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: d4547911fa022b137ef0ca2b2b12f27ca8d6b79f6cd40449c24267bb2cdf2631
 ---
 
 # User Profiles
@@ -77,9 +77,9 @@ Create User Profile
 
       - `"output-300k-2026-03-24"`
 
-      - `"advisor-tool-2026-03-01"`
-
       - `"user-profiles-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
@@ -217,9 +217,9 @@ List User Profiles
 
       - `"output-300k-2026-03-24"`
 
-      - `"advisor-tool-2026-03-01"`
-
       - `"user-profiles-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
@@ -344,9 +344,9 @@ Get User Profile
 
       - `"output-300k-2026-03-24"`
 
-      - `"advisor-tool-2026-03-01"`
-
       - `"user-profiles-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
@@ -478,9 +478,9 @@ Update User Profile
 
       - `"output-300k-2026-03-24"`
 
-      - `"advisor-tool-2026-03-01"`
-
       - `"user-profiles-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
@@ -604,9 +604,9 @@ Create Enrollment URL
 
       - `"output-300k-2026-03-24"`
 
-      - `"advisor-tool-2026-03-01"`
-
       - `"user-profiles-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

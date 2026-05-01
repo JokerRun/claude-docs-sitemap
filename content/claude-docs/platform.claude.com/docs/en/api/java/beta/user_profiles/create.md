@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 09329859b179fcdabd5421bdcdcb9a111a35de3046b73b6a300146cc1da727e7
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 12a1bbd4f35cc2cc99827c82a6098b55b7d66ff71801c6cf15ef753b6f53f295
 ---
 
 ## Create
@@ -63,9 +63,9 @@ Create User Profile
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
-    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Optional<String> externalId`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 8c489b9cbca4fecc72532c5445af61748cf1676087280dea08d3771fe3e97d83
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 53341b713a4b5cb993719dcbaa6cb48eee416e75031f816f842d2ff5700228d8
 ---
 
 # User Profiles
@@ -65,9 +65,9 @@ Create User Profile
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
-    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Optional<String> externalId`
 
@@ -216,9 +216,9 @@ List User Profiles
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
-    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 
@@ -345,9 +345,9 @@ Get User Profile
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
-    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 
@@ -474,9 +474,9 @@ Update User Profile
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
-    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Optional<String> externalId`
 
@@ -611,9 +611,9 @@ Create Enrollment URL
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
-    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 

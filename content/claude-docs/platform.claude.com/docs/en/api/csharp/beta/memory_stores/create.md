@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 8d6ae060903937e218d95de96a6d6f15e9889cd90aa1e613b62b7a43f805dbc2
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: d91ee3f812b87e0e43a4877a6635b4cd8d19fe3570e0b1ecc2bed5731e769e6d
 ---
 
 ## Create
@@ -11,7 +11,7 @@ sha256: 8d6ae060903937e218d95de96a6d6f15e9889cd90aa1e613b62b7a43f805dbc2
 
 **post** `/v1/memory_stores`
 
-CreateMemoryStore
+Create a memory store
 
 ### Parameters
 
@@ -19,15 +19,15 @@ CreateMemoryStore
 
   - `required string name`
 
-    Body param
+    Body param: Human-readable name for the store. Required; 1–255 characters; no control characters. The mount-path slug under `/mnt/memory/` is derived from this name (lowercased, non-alphanumeric runs collapsed to a hyphen). Names need not be unique within a workspace.
 
   - `string description`
 
-    Body param
+    Body param: Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent.
 
   - `IReadOnlyDictionary<string, string> metadata`
 
-    Body param
+    Body param: Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Not visible to the agent.
 
   - `IReadOnlyList<AnthropicBeta> betas`
 
@@ -75,35 +75,47 @@ CreateMemoryStore
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
 - `class BetaManagedAgentsMemoryStore:`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `required string ID`
+
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
+
+  - `required DateTimeOffset CreatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required string Name`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
 
   - `required Type Type`
 
     - `"memory_store"MemoryStore`
 
-  - `DateTimeOffset? ArchivedAt`
+  - `required DateTimeOffset UpdatedAt`
 
     A timestamp in RFC 3339 format
 
-  - `DateTimeOffset CreatedAt`
+  - `DateTimeOffset? ArchivedAt`
 
     A timestamp in RFC 3339 format
 
   - `string Description`
 
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
   - `IReadOnlyDictionary<string, string> Metadata`
 
-  - `string Name`
-
-  - `DateTimeOffset UpdatedAt`
-
-    A timestamp in RFC 3339 format
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 

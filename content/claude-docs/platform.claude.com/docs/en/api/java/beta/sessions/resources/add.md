@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/add
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 7a50f15e42f7b7e792707a2cf60f09a8063011404898d822f88598e5bd2d778a
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 1a3f3bb1747910afbd64abdf7d951a68f22cf1d720ffa5b4b534eacbff321a6b
 ---
 
 ## Add
@@ -64,6 +64,8 @@ Add Session Resource
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 954b4830242e2a1d390af4504f7a7c4d33e9d3cea4e6aa510865cbb561406c03
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: a0659f313fd9b0585d2b3556d17dd0167f7a2182d21f4222d6a8f0cb8f99069c
 ---
 
 ## Update
@@ -65,6 +65,8 @@ Update an existing environment's configuration.
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Optional<BetaCloudConfigParams> config`
@@ -90,7 +92,7 @@ Update an existing environment's configuration.
 
 - `class BetaEnvironment:`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `String id`
 

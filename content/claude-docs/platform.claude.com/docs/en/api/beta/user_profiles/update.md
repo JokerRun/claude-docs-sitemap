@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 351956f7b725a2a66d4bd48fddea0f1c4a12d36d4b44a9aa109bfc10e4634c64
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: cdea5cc1116d89aa387e16b27d00e2026fea221e2fd7a34b47c4ffba34312279
 ---
 
 ## Update
@@ -67,9 +67,9 @@ Update User Profile
 
     - `"output-300k-2026-03-24"`
 
-    - `"advisor-tool-2026-03-01"`
-
     - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Body Parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 471060c5d8d43dde56ae72f779438548d1e65b532a3d9e3a5cf61deb3e42aed2
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 56ed78a7020587e454aeb273194bfe369b9286cb6b4cc0db6a70cadd570ab729
 ---
 
 # Beta
@@ -58,6 +58,8 @@ sha256: 471060c5d8d43dde56ae72f779438548d1e65b532a3d9e3a5cf61deb3e42aed2
     - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
     - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+    - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
     - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -391,6 +393,8 @@ The Models API response can be used to determine which models are available for 
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -500,6 +504,14 @@ The Models API response can be used to determine which models are available for 
       - `Supported bool`
 
         Whether this capability is supported by the model.
+
+      - `Xhigh BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `Supported bool`
+
+          Whether this capability is supported by the model.
 
     - `ImageInput BetaCapabilitySupport`
 
@@ -672,6 +684,8 @@ The Models API response can be used to determine information about a specific mo
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -781,6 +795,14 @@ The Models API response can be used to determine information about a specific mo
       - `Supported bool`
 
         Whether this capability is supported by the model.
+
+      - `Xhigh BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `Supported bool`
+
+          Whether this capability is supported by the model.
 
     - `ImageInput BetaCapabilitySupport`
 
@@ -977,6 +999,14 @@ func main() {
 
     Whether this capability is supported by the model.
 
+  - `Xhigh BetaCapabilitySupport`
+
+    Indicates whether a capability is supported.
+
+    - `Supported bool`
+
+      Whether this capability is supported by the model.
+
 ### Beta Model Capabilities
 
 - `type BetaModelCapabilities struct{…}`
@@ -1078,6 +1108,14 @@ func main() {
     - `Supported bool`
 
       Whether this capability is supported by the model.
+
+    - `Xhigh BetaCapabilitySupport`
+
+      Indicates whether a capability is supported.
+
+      - `Supported bool`
+
+        Whether this capability is supported by the model.
 
   - `ImageInput BetaCapabilitySupport`
 
@@ -1239,6 +1277,14 @@ func main() {
 
         Whether this capability is supported by the model.
 
+      - `Xhigh BetaCapabilitySupport`
+
+        Indicates whether a capability is supported.
+
+        - `Supported bool`
+
+          Whether this capability is supported by the model.
+
     - `ImageInput BetaCapabilitySupport`
 
       Whether the model accepts image content blocks.
@@ -1390,6 +1436,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     Body param: The maximum number of tokens to generate before stopping.
 
     Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+    Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
     Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -4027,6 +4075,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+          - `EncryptedContent string`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `Role BetaMessageParamRole`
 
       - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
@@ -5935,6 +5987,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Recommended for advanced use cases only.
 
+  - `UserProfileID param.Field[string]`
+
+    Body param: The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
   - `Betas param.Field[[]AnthropicBeta]`
 
     Header param: Optional header to specify the beta version(s) you want to use.
@@ -5984,6 +6040,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -6907,6 +6965,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `Content string`
 
         Summary of compacted content, or null if compaction failed
+
+      - `EncryptedContent string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `Type Compaction`
 
@@ -10079,6 +10141,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+          - `EncryptedContent string`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `Role BetaMessageParamRole`
 
       - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
@@ -11952,6 +12018,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -13845,6 +13913,10 @@ func main() {
 
     Summary of compacted content, or null if compaction failed
 
+  - `EncryptedContent string`
+
+    Opaque metadata from prior compaction, to be round-tripped verbatim
+
   - `Type Compaction`
 
     - `const CompactionCompaction Compaction = "compaction"`
@@ -13892,11 +13964,19 @@ func main() {
 
       - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+  - `EncryptedContent string`
+
+    Opaque metadata from prior compaction, to be round-tripped verbatim
+
 ### Beta Compaction Content Block Delta
 
 - `type BetaCompactionContentBlockDelta struct{…}`
 
   - `Content string`
+
+  - `EncryptedContent string`
+
+    Opaque metadata from prior compaction, to be round-tripped verbatim
 
   - `Type CompactionDelta`
 
@@ -14909,6 +14989,10 @@ func main() {
     - `Content string`
 
       Summary of compacted content, or null if compaction failed
+
+    - `EncryptedContent string`
+
+      Opaque metadata from prior compaction, to be round-tripped verbatim
 
     - `Type Compaction`
 
@@ -17499,6 +17583,10 @@ func main() {
 
         - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+    - `EncryptedContent string`
+
+      Opaque metadata from prior compaction, to be round-tripped verbatim
+
 ### Beta Content Block Source
 
 - `type BetaContentBlockSource struct{…}`
@@ -19926,6 +20014,10 @@ func main() {
       - `Content string`
 
         Summary of compacted content, or null if compaction failed
+
+      - `EncryptedContent string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `Type Compaction`
 
@@ -23277,6 +23369,10 @@ func main() {
 
             - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+        - `EncryptedContent string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
+
   - `Role BetaMessageParamRole`
 
     - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
@@ -23323,6 +23419,8 @@ func main() {
 
     - `const BetaOutputConfigEffortHigh BetaOutputConfigEffort = "high"`
 
+    - `const BetaOutputConfigEffortXhigh BetaOutputConfigEffort = "xhigh"`
+
     - `const BetaOutputConfigEffortMax BetaOutputConfigEffort = "max"`
 
   - `Format BetaJSONOutputFormat`
@@ -23336,6 +23434,24 @@ func main() {
     - `Type JSONSchema`
 
       - `const JSONSchemaJSONSchema JSONSchema = "json_schema"`
+
+  - `TaskBudget BetaTokenTaskBudget`
+
+    User-configurable total token budget across contexts.
+
+    - `Total int64`
+
+      Total token budget across all contexts in the session.
+
+    - `Type Tokens`
+
+      The budget type. Currently only 'tokens' is supported.
+
+      - `const TokensTokens Tokens = "tokens"`
+
+    - `Remaining int64`
+
+      Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 ### Beta Plain Text Source
 
@@ -23485,6 +23601,10 @@ func main() {
 
     - `Content string`
 
+    - `EncryptedContent string`
+
+      Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `Type CompactionDelta`
 
       - `const CompactionDeltaCompactionDelta CompactionDelta = "compaction_delta"`
@@ -23624,6 +23744,10 @@ func main() {
     - `type BetaCompactionContentBlockDelta struct{…}`
 
       - `Content string`
+
+      - `EncryptedContent string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `Type CompactionDelta`
 
@@ -24492,6 +24616,10 @@ func main() {
       - `Content string`
 
         Summary of compacted content, or null if compaction failed
+
+      - `EncryptedContent string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `Type Compaction`
 
@@ -25807,6 +25935,10 @@ func main() {
         - `Content string`
 
           Summary of compacted content, or null if compaction failed
+
+        - `EncryptedContent string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `Type Compaction`
 
@@ -27229,6 +27361,10 @@ func main() {
           - `Content string`
 
             Summary of compacted content, or null if compaction failed
+
+          - `EncryptedContent string`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
 
           - `Type Compaction`
 
@@ -28951,6 +29087,10 @@ func main() {
 
           Summary of compacted content, or null if compaction failed
 
+        - `EncryptedContent string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
+
         - `Type Compaction`
 
           - `const CompactionCompaction Compaction = "compaction"`
@@ -29094,6 +29234,10 @@ func main() {
       - `type BetaCompactionContentBlockDelta struct{…}`
 
         - `Content string`
+
+        - `EncryptedContent string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `Type CompactionDelta`
 
@@ -30884,6 +31028,26 @@ func main() {
     - `const ThinkingTurnsThinkingTurns ThinkingTurns = "thinking_turns"`
 
   - `Value int64`
+
+### Beta Token Task Budget
+
+- `type BetaTokenTaskBudget struct{…}`
+
+  User-configurable total token budget across contexts.
+
+  - `Total int64`
+
+    Total token budget across all contexts in the session.
+
+  - `Type Tokens`
+
+    The budget type. Currently only 'tokens' is supported.
+
+    - `const TokensTokens Tokens = "tokens"`
+
+  - `Remaining int64`
+
+    Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 ### Beta Tool
 
@@ -36427,6 +36591,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
 
+        Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
+
         Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
       - `Messages []BetaMessageParamResp`
@@ -39063,6 +39229,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+              - `EncryptedContent string`
+
+                Opaque metadata from prior compaction, to be round-tripped verbatim
+
         - `Role BetaMessageParamRole`
 
           - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
@@ -39378,6 +39548,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `const BetaOutputConfigEffortHigh BetaOutputConfigEffort = "high"`
 
+          - `const BetaOutputConfigEffortXhigh BetaOutputConfigEffort = "xhigh"`
+
           - `const BetaOutputConfigEffortMax BetaOutputConfigEffort = "max"`
 
         - `Format BetaJSONOutputFormat`
@@ -39391,6 +39563,24 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `Type JSONSchema`
 
             - `const JSONSchemaJSONSchema JSONSchema = "json_schema"`
+
+        - `TaskBudget BetaTokenTaskBudget`
+
+          User-configurable total token budget across contexts.
+
+          - `Total int64`
+
+            Total token budget across all contexts in the session.
+
+          - `Type Tokens`
+
+            The budget type. Currently only 'tokens' is supported.
+
+            - `const TokensTokens Tokens = "tokens"`
+
+          - `Remaining int64`
+
+            Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
       - `OutputFormat BetaJSONOutputFormat`
 
@@ -41320,6 +41510,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Recommended for advanced use cases only.
 
+      - `UserProfileID string`
+
+        The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
   - `Betas param.Field[[]AnthropicBeta]`
 
     Header param: Optional header to specify the beta version(s) you want to use.
@@ -41369,6 +41563,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -41571,6 +41767,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -41772,6 +41970,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -41960,6 +42160,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -42154,6 +42356,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -42272,6 +42476,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -43213,6 +43419,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `Content string`
 
               Summary of compacted content, or null if compaction failed
+
+            - `EncryptedContent string`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `Type Compaction`
 
@@ -44990,6 +45200,10 @@ func main() {
 
               Summary of compacted content, or null if compaction failed
 
+            - `EncryptedContent string`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
+
             - `Type Compaction`
 
               - `const CompactionCompaction Compaction = "compaction"`
@@ -46540,6 +46754,10 @@ func main() {
 
             Summary of compacted content, or null if compaction failed
 
+          - `EncryptedContent string`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
           - `Type Compaction`
 
             - `const CompactionCompaction Compaction = "compaction"`
@@ -48052,6 +48270,10 @@ func main() {
 
           Summary of compacted content, or null if compaction failed
 
+        - `EncryptedContent string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
+
         - `Type Compaction`
 
           - `const CompactionCompaction Compaction = "compaction"`
@@ -48933,6 +49155,8 @@ Create Agent
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -49349,6 +49573,8 @@ List Agents
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -49747,6 +49973,8 @@ Get Agent
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -50479,6 +50707,8 @@ Update Agent
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -50877,6 +51107,8 @@ Archive Agent
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -52591,6 +52823,8 @@ List Agent Versions
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -53009,13 +53243,15 @@ Create a new environment with the specified configuration.
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaEnvironment struct{…}`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `ID string`
 
@@ -53232,13 +53468,15 @@ List environments with pagination support.
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaEnvironment struct{…}`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `ID string`
 
@@ -53445,13 +53683,15 @@ Retrieve a specific environment by ID.
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaEnvironment struct{…}`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `ID string`
 
@@ -53681,13 +53921,15 @@ Update an existing environment's configuration.
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaEnvironment struct{…}`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `ID string`
 
@@ -53898,6 +54140,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -54011,13 +54255,15 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaEnvironment struct{…}`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `ID string`
 
@@ -54342,7 +54588,7 @@ func main() {
 
 - `type BetaEnvironment struct{…}`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `ID string`
 
@@ -54800,6 +55046,8 @@ Create Session
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -55347,6 +55595,10 @@ List Sessions
 
     Query param: Maximum number of results to return.
 
+  - `MemoryStoreID param.Field[string]`
+
+    Query param: Filter sessions whose resources contain a memory_store with this memory store ID.
+
   - `Order param.Field[BetaSessionListParamsOrder]`
 
     Query param: Sort direction for results, ordered by created_at. Defaults to desc (newest first).
@@ -55408,6 +55660,8 @@ List Sessions
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -55971,6 +56225,8 @@ Get Session
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -56551,6 +56807,8 @@ Update Session
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -57118,6 +57376,8 @@ Delete Session
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -57226,6 +57486,8 @@ Archive Session
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -58771,6 +59033,8 @@ List Events
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -60591,6 +60855,8 @@ Send Events
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -61087,6 +61353,8 @@ Stream Events
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -68466,6 +68734,8 @@ Add Session Resource
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -68595,6 +68865,8 @@ List Session Resources
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -68800,6 +69072,8 @@ Get Session Resource
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -69010,6 +69284,8 @@ Update Session Resource
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -69215,6 +69491,8 @@ Delete Session Resource
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -69555,6 +69833,8 @@ Create Vault
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -69692,6 +69972,8 @@ List Vaults
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -69818,6 +70100,8 @@ Get Vault
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -69958,6 +70242,8 @@ Update Vault
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -70089,6 +70375,8 @@ Delete Vault
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -70199,6 +70487,8 @@ Archive Vault
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -70491,6 +70781,8 @@ Create Credential
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -70724,6 +71016,8 @@ List Credentials
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -70942,6 +71236,8 @@ Get Credential
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -71242,6 +71538,8 @@ Update Credential
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -71461,6 +71759,8 @@ Delete Credential
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -71575,6 +71875,8 @@ Archive Credential
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -72371,7 +72673,7 @@ func main() {
 
 **post** `/v1/memory_stores`
 
-CreateMemoryStore
+Create a memory store
 
 ### Parameters
 
@@ -72379,15 +72681,15 @@ CreateMemoryStore
 
   - `Name param.Field[string]`
 
-    Body param
+    Body param: Human-readable name for the store. Required; 1–255 characters; no control characters. The mount-path slug under `/mnt/memory/` is derived from this name (lowercased, non-alphanumeric runs collapsed to a hyphen). Names need not be unique within a workspace.
 
   - `Description param.Field[string]`
 
-    Body param
+    Body param: Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent.
 
   - `Metadata param.Field[map[string, string]]`
 
-    Body param
+    Body param: Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Not visible to the agent.
 
   - `Betas param.Field[[]AnthropicBeta]`
 
@@ -72439,35 +72741,47 @@ CreateMemoryStore
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsMemoryStore struct{…}`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `ID string`
 
-  - `Type BetaManagedAgentsMemoryStoreType`
-
-    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
-
-  - `ArchivedAt Time`
-
-    A timestamp in RFC 3339 format
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
 
   - `CreatedAt Time`
 
     A timestamp in RFC 3339 format
 
-  - `Description string`
-
-  - `Metadata map[string, string]`
-
   - `Name string`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
+
+  - `Type BetaManagedAgentsMemoryStoreType`
+
+    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
 
   - `UpdatedAt Time`
 
     A timestamp in RFC 3339 format
+
+  - `ArchivedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Description string`
+
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
+  - `Metadata map[string, string]`
+
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 
@@ -72502,7 +72816,7 @@ func main() {
 
 **get** `/v1/memory_stores`
 
-ListMemoryStores
+List memory stores
 
 ### Parameters
 
@@ -72510,23 +72824,23 @@ ListMemoryStores
 
   - `CreatedAtGte param.Field[Time]`
 
-    Query param: Return stores created at or after this time (inclusive).
+    Query param: Return only stores whose `created_at` is at or after this time (inclusive). Sent on the wire as `created_at[gte]`.
 
   - `CreatedAtLte param.Field[Time]`
 
-    Query param: Return stores created at or before this time (inclusive).
+    Query param: Return only stores whose `created_at` is at or before this time (inclusive). Sent on the wire as `created_at[lte]`.
 
   - `IncludeArchived param.Field[bool]`
 
-    Query param: Query parameter for include_archived
+    Query param: When `true`, archived stores are included in the results. Defaults to `false` (archived stores are excluded).
 
   - `Limit param.Field[int64]`
 
-    Query param: Query parameter for limit
+    Query param: Maximum number of stores to return per page. Must be between 1 and 100. Defaults to 20 when omitted.
 
   - `Page param.Field[string]`
 
-    Query param: Query parameter for page
+    Query param: Opaque pagination cursor (a `page_...` value). Pass the `next_page` value from a previous response to fetch the next page; omit for the first page.
 
   - `Betas param.Field[[]AnthropicBeta]`
 
@@ -72578,35 +72892,47 @@ ListMemoryStores
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsMemoryStore struct{…}`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `ID string`
 
-  - `Type BetaManagedAgentsMemoryStoreType`
-
-    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
-
-  - `ArchivedAt Time`
-
-    A timestamp in RFC 3339 format
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
 
   - `CreatedAt Time`
 
     A timestamp in RFC 3339 format
 
-  - `Description string`
-
-  - `Metadata map[string, string]`
-
   - `Name string`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
+
+  - `Type BetaManagedAgentsMemoryStoreType`
+
+    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
 
   - `UpdatedAt Time`
 
     A timestamp in RFC 3339 format
+
+  - `ArchivedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Description string`
+
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
+  - `Metadata map[string, string]`
+
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 
@@ -72641,7 +72967,7 @@ func main() {
 
 **get** `/v1/memory_stores/{memory_store_id}`
 
-GetMemoryStore
+Retrieve a memory store
 
 ### Parameters
 
@@ -72699,35 +73025,47 @@ GetMemoryStore
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsMemoryStore struct{…}`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `ID string`
 
-  - `Type BetaManagedAgentsMemoryStoreType`
-
-    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
-
-  - `ArchivedAt Time`
-
-    A timestamp in RFC 3339 format
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
 
   - `CreatedAt Time`
 
     A timestamp in RFC 3339 format
 
-  - `Description string`
-
-  - `Metadata map[string, string]`
-
   - `Name string`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
+
+  - `Type BetaManagedAgentsMemoryStoreType`
+
+    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
 
   - `UpdatedAt Time`
 
     A timestamp in RFC 3339 format
+
+  - `ArchivedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Description string`
+
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
+  - `Metadata map[string, string]`
+
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 
@@ -72766,7 +73104,7 @@ func main() {
 
 **post** `/v1/memory_stores/{memory_store_id}`
 
-UpdateMemoryStore
+Update a memory store
 
 ### Parameters
 
@@ -72776,7 +73114,7 @@ UpdateMemoryStore
 
   - `Description param.Field[string]`
 
-    Body param
+    Body param: New description for the store, up to 1024 characters. Pass an empty string to clear it.
 
   - `Metadata param.Field[map[string, string]]`
 
@@ -72784,7 +73122,7 @@ UpdateMemoryStore
 
   - `Name param.Field[string]`
 
-    Body param
+    Body param: New human-readable name for the store. 1–255 characters; no control characters. Renaming changes the slug used for the store's `mount_path` in sessions created after the update.
 
   - `Betas param.Field[[]AnthropicBeta]`
 
@@ -72836,35 +73174,47 @@ UpdateMemoryStore
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsMemoryStore struct{…}`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `ID string`
 
-  - `Type BetaManagedAgentsMemoryStoreType`
-
-    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
-
-  - `ArchivedAt Time`
-
-    A timestamp in RFC 3339 format
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
 
   - `CreatedAt Time`
 
     A timestamp in RFC 3339 format
 
-  - `Description string`
-
-  - `Metadata map[string, string]`
-
   - `Name string`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
+
+  - `Type BetaManagedAgentsMemoryStoreType`
+
+    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
 
   - `UpdatedAt Time`
 
     A timestamp in RFC 3339 format
+
+  - `ArchivedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Description string`
+
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
+  - `Metadata map[string, string]`
+
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 
@@ -72903,7 +73253,7 @@ func main() {
 
 **delete** `/v1/memory_stores/{memory_store_id}`
 
-DeleteMemoryStore
+Delete a memory store
 
 ### Parameters
 
@@ -72961,13 +73311,19 @@ DeleteMemoryStore
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsDeletedMemoryStore struct{…}`
 
+  Confirmation that a `memory_store` was deleted.
+
   - `ID string`
+
+    ID of the deleted memory store (a `memstore_...` identifier). The store and all its memories and versions are no longer retrievable.
 
   - `Type BetaManagedAgentsDeletedMemoryStoreType`
 
@@ -73010,7 +73366,7 @@ func main() {
 
 **post** `/v1/memory_stores/{memory_store_id}/archive`
 
-ArchiveMemoryStore
+Archive a memory store
 
 ### Parameters
 
@@ -73068,35 +73424,47 @@ ArchiveMemoryStore
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsMemoryStore struct{…}`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `ID string`
 
-  - `Type BetaManagedAgentsMemoryStoreType`
-
-    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
-
-  - `ArchivedAt Time`
-
-    A timestamp in RFC 3339 format
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
 
   - `CreatedAt Time`
 
     A timestamp in RFC 3339 format
 
-  - `Description string`
-
-  - `Metadata map[string, string]`
-
   - `Name string`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
+
+  - `Type BetaManagedAgentsMemoryStoreType`
+
+    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
 
   - `UpdatedAt Time`
 
     A timestamp in RFC 3339 format
+
+  - `ArchivedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Description string`
+
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
+  - `Metadata map[string, string]`
+
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 
@@ -73135,7 +73503,11 @@ func main() {
 
 - `type BetaManagedAgentsDeletedMemoryStore struct{…}`
 
+  Confirmation that a `memory_store` was deleted.
+
   - `ID string`
+
+    ID of the deleted memory store (a `memstore_...` identifier). The store and all its memories and versions are no longer retrievable.
 
   - `Type BetaManagedAgentsDeletedMemoryStoreType`
 
@@ -73145,29 +73517,39 @@ func main() {
 
 - `type BetaManagedAgentsMemoryStore struct{…}`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `ID string`
 
-  - `Type BetaManagedAgentsMemoryStoreType`
-
-    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
-
-  - `ArchivedAt Time`
-
-    A timestamp in RFC 3339 format
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
 
   - `CreatedAt Time`
 
     A timestamp in RFC 3339 format
 
-  - `Description string`
-
-  - `Metadata map[string, string]`
-
   - `Name string`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
+
+  - `Type BetaManagedAgentsMemoryStoreType`
+
+    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
 
   - `UpdatedAt Time`
 
     A timestamp in RFC 3339 format
+
+  - `ArchivedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Description string`
+
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
+  - `Metadata map[string, string]`
+
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 # Memories
 
@@ -73177,7 +73559,7 @@ func main() {
 
 **post** `/v1/memory_stores/{memory_store_id}/memories`
 
-CreateMemory
+Create a memory
 
 ### Parameters
 
@@ -73187,11 +73569,11 @@ CreateMemory
 
   - `Content param.Field[string]`
 
-    Body param
+    Body param: UTF-8 text content for the new memory. Maximum 100 kB (102,400 bytes). Required; pass `""` explicitly to create an empty memory.
 
   - `Path param.Field[string]`
 
-    Body param
+    Body param: Hierarchical path for the new memory, e.g. `/projects/foo/notes.md`. Must start with `/`, contain at least one non-empty segment, and be at most 1,024 bytes. Must not contain empty segments, `.` or `..` segments, control or format characters, and must be NFC-normalized. Paths are case-sensitive.
 
   - `View param.Field[BetaManagedAgentsMemoryView]`
 
@@ -73247,17 +73629,27 @@ CreateMemory
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsMemory struct{…}`
 
+  A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+
   - `ID string`
+
+    Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
 
   - `ContentSha256 string`
 
+    Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
   - `ContentSizeBytes int64`
+
+    Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
   - `CreatedAt Time`
 
@@ -73265,9 +73657,15 @@ CreateMemory
 
   - `MemoryStoreID string`
 
+    ID of the memory store this memory belongs to (a `memstore_...` value).
+
   - `MemoryVersionID string`
 
+    ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
   - `Path string`
+
+    Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
   - `Type BetaManagedAgentsMemoryType`
 
@@ -73278,6 +73676,8 @@ CreateMemory
     A timestamp in RFC 3339 format
 
   - `Content string`
+
+    The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 
 ### Example
 
@@ -73317,7 +73717,7 @@ func main() {
 
 **get** `/v1/memory_stores/{memory_store_id}/memories`
 
-ListMemories
+List memories
 
 ### Parameters
 
@@ -73407,19 +73807,31 @@ ListMemories
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsMemoryListItemUnion interface{…}`
 
+  One item in a [List memories](/docs/en/api/beta/memory_stores/memories/list) response: either a `memory` object or, when `depth` is set, a `memory_prefix` rollup marker.
+
   - `type BetaManagedAgentsMemory struct{…}`
+
+    A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
 
     - `ID string`
 
+      Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
+
     - `ContentSha256 string`
 
+      Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
     - `ContentSizeBytes int64`
+
+      Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
     - `CreatedAt Time`
 
@@ -73427,9 +73839,15 @@ ListMemories
 
     - `MemoryStoreID string`
 
+      ID of the memory store this memory belongs to (a `memstore_...` value).
+
     - `MemoryVersionID string`
 
+      ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
     - `Path string`
+
+      Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
     - `Type BetaManagedAgentsMemoryType`
 
@@ -73441,9 +73859,15 @@ ListMemories
 
     - `Content string`
 
+      The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
+
   - `type BetaManagedAgentsMemoryPrefix struct{…}`
 
+    A rolled-up directory marker returned by [List memories](/docs/en/api/beta/memory_stores/memories/list) when `depth` is set. Indicates that one or more memories exist deeper than the requested depth under this prefix. This is a list-time rollup, not a stored resource; it has no ID and no lifecycle. Each prefix counts toward the page `limit` and interleaves with `memory` items in path order.
+
     - `Path string`
+
+      The rolled-up path prefix, including a trailing `/` (e.g. `/projects/foo/`). Pass this value as `path_prefix` on a subsequent list call to drill into the directory.
 
     - `Type BetaManagedAgentsMemoryPrefixType`
 
@@ -73486,7 +73910,7 @@ func main() {
 
 **get** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
-GetMemory
+Retrieve a memory
 
 ### Parameters
 
@@ -73552,17 +73976,27 @@ GetMemory
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsMemory struct{…}`
 
+  A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+
   - `ID string`
+
+    Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
 
   - `ContentSha256 string`
 
+    Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
   - `ContentSizeBytes int64`
+
+    Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
   - `CreatedAt Time`
 
@@ -73570,9 +74004,15 @@ GetMemory
 
   - `MemoryStoreID string`
 
+    ID of the memory store this memory belongs to (a `memstore_...` value).
+
   - `MemoryVersionID string`
 
+    ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
   - `Path string`
+
+    Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
   - `Type BetaManagedAgentsMemoryType`
 
@@ -73583,6 +74023,8 @@ GetMemory
     A timestamp in RFC 3339 format
 
   - `Content string`
+
+    The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 
 ### Example
 
@@ -73621,7 +74063,7 @@ func main() {
 
 **post** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
-UpdateMemory
+Update a memory
 
 ### Parameters
 
@@ -73639,15 +74081,15 @@ UpdateMemory
 
   - `Content param.Field[string]`
 
-    Body param
+    Body param: New UTF-8 text content for the memory. Maximum 100 kB (102,400 bytes). Omit to leave the content unchanged (e.g., for a rename-only update).
 
   - `Path param.Field[string]`
 
-    Body param
+    Body param: New path for the memory (a rename). Must start with `/`, contain at least one non-empty segment, and be at most 1,024 bytes. Must not contain empty segments, `.` or `..` segments, control or format characters, and must be NFC-normalized. Paths are case-sensitive. The memory's `id` is preserved across renames. Omit to leave the path unchanged.
 
   - `Precondition param.Field[BetaManagedAgentsPrecondition]`
 
-    Body param
+    Body param: Optimistic-concurrency precondition: the update applies only if the memory's stored `content_sha256` equals the supplied value. On mismatch, the request returns `memory_precondition_failed_error` (HTTP 409); re-read the memory and retry against the fresh state. If the precondition fails but the stored state already exactly matches the requested `content` and `path`, the server returns 200 instead of 409.
 
   - `Betas param.Field[[]AnthropicBeta]`
 
@@ -73699,17 +74141,27 @@ UpdateMemory
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsMemory struct{…}`
 
+  A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+
   - `ID string`
+
+    Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
 
   - `ContentSha256 string`
 
+    Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
   - `ContentSizeBytes int64`
+
+    Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
   - `CreatedAt Time`
 
@@ -73717,9 +74169,15 @@ UpdateMemory
 
   - `MemoryStoreID string`
 
+    ID of the memory store this memory belongs to (a `memstore_...` value).
+
   - `MemoryVersionID string`
 
+    ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
   - `Path string`
+
+    Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
   - `Type BetaManagedAgentsMemoryType`
 
@@ -73730,6 +74188,8 @@ UpdateMemory
     A timestamp in RFC 3339 format
 
   - `Content string`
+
+    The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 
 ### Example
 
@@ -73768,7 +74228,7 @@ func main() {
 
 **delete** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
-DeleteMemory
+Delete a memory
 
 ### Parameters
 
@@ -73834,13 +74294,19 @@ DeleteMemory
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsDeletedMemory struct{…}`
 
+  Tombstone returned by [Delete a memory](/docs/en/api/beta/memory_stores/memories/delete). The memory's version history persists and remains listable via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) until the store itself is deleted.
+
   - `ID string`
+
+    ID of the deleted memory (a `mem_...` value).
 
   - `Type BetaManagedAgentsDeletedMemoryType`
 
@@ -73879,9 +74345,21 @@ func main() {
 
 ## Domain Types
 
+### Beta Managed Agents Conflict Error
+
+- `type BetaManagedAgentsConflictError struct{…}`
+
+  - `Type BetaManagedAgentsConflictErrorType`
+
+    - `const BetaManagedAgentsConflictErrorTypeConflictError BetaManagedAgentsConflictErrorType = "conflict_error"`
+
+  - `Message string`
+
 ### Beta Managed Agents Content Sha256 Precondition
 
 - `type BetaManagedAgentsContentSha256Precondition struct{…}`
+
+  Optimistic-concurrency precondition: the update applies only if the memory's stored `content_sha256` equals the supplied value. On mismatch, the request returns `memory_precondition_failed_error` (HTTP 409); re-read the memory and retry against the fresh state. If the precondition fails but the stored state already exactly matches the requested `content` and `path`, the server returns 200 instead of 409.
 
   - `Type BetaManagedAgentsContentSha256PreconditionType`
 
@@ -73889,25 +74367,143 @@ func main() {
 
   - `ContentSha256 string`
 
+    Expected `content_sha256` of the stored memory (64 lowercase hexadecimal characters). Typically the `content_sha256` returned by a prior read or list call. Because the server applies no content normalization, clients can also compute this locally as the SHA-256 of the UTF-8 content bytes.
+
 ### Beta Managed Agents Deleted Memory
 
 - `type BetaManagedAgentsDeletedMemory struct{…}`
 
+  Tombstone returned by [Delete a memory](/docs/en/api/beta/memory_stores/memories/delete). The memory's version history persists and remains listable via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) until the store itself is deleted.
+
   - `ID string`
+
+    ID of the deleted memory (a `mem_...` value).
 
   - `Type BetaManagedAgentsDeletedMemoryType`
 
     - `const BetaManagedAgentsDeletedMemoryTypeMemoryDeleted BetaManagedAgentsDeletedMemoryType = "memory_deleted"`
 
+### Beta Managed Agents Error
+
+- `type BetaManagedAgentsErrorUnion interface{…}`
+
+  - `type BetaInvalidRequestError struct{…}`
+
+    - `Message string`
+
+    - `Type InvalidRequestError`
+
+      - `const InvalidRequestErrorInvalidRequestError InvalidRequestError = "invalid_request_error"`
+
+  - `type BetaAuthenticationError struct{…}`
+
+    - `Message string`
+
+    - `Type AuthenticationError`
+
+      - `const AuthenticationErrorAuthenticationError AuthenticationError = "authentication_error"`
+
+  - `type BetaBillingError struct{…}`
+
+    - `Message string`
+
+    - `Type BillingError`
+
+      - `const BillingErrorBillingError BillingError = "billing_error"`
+
+  - `type BetaPermissionError struct{…}`
+
+    - `Message string`
+
+    - `Type PermissionError`
+
+      - `const PermissionErrorPermissionError PermissionError = "permission_error"`
+
+  - `type BetaNotFoundError struct{…}`
+
+    - `Message string`
+
+    - `Type NotFoundError`
+
+      - `const NotFoundErrorNotFoundError NotFoundError = "not_found_error"`
+
+  - `type BetaRateLimitError struct{…}`
+
+    - `Message string`
+
+    - `Type RateLimitError`
+
+      - `const RateLimitErrorRateLimitError RateLimitError = "rate_limit_error"`
+
+  - `type BetaGatewayTimeoutError struct{…}`
+
+    - `Message string`
+
+    - `Type TimeoutError`
+
+      - `const TimeoutErrorTimeoutError TimeoutError = "timeout_error"`
+
+  - `type BetaAPIError struct{…}`
+
+    - `Message string`
+
+    - `Type APIError`
+
+      - `const APIErrorAPIError APIError = "api_error"`
+
+  - `type BetaOverloadedError struct{…}`
+
+    - `Message string`
+
+    - `Type OverloadedError`
+
+      - `const OverloadedErrorOverloadedError OverloadedError = "overloaded_error"`
+
+  - `type BetaManagedAgentsMemoryPreconditionFailedError struct{…}`
+
+    - `Type BetaManagedAgentsMemoryPreconditionFailedErrorType`
+
+      - `const BetaManagedAgentsMemoryPreconditionFailedErrorTypeMemoryPreconditionFailedError BetaManagedAgentsMemoryPreconditionFailedErrorType = "memory_precondition_failed_error"`
+
+    - `Message string`
+
+  - `type BetaManagedAgentsMemoryPathConflictError struct{…}`
+
+    - `Type BetaManagedAgentsMemoryPathConflictErrorType`
+
+      - `const BetaManagedAgentsMemoryPathConflictErrorTypeMemoryPathConflictError BetaManagedAgentsMemoryPathConflictErrorType = "memory_path_conflict_error"`
+
+    - `ConflictingMemoryID string`
+
+    - `ConflictingPath string`
+
+    - `Message string`
+
+  - `type BetaManagedAgentsConflictError struct{…}`
+
+    - `Type BetaManagedAgentsConflictErrorType`
+
+      - `const BetaManagedAgentsConflictErrorTypeConflictError BetaManagedAgentsConflictErrorType = "conflict_error"`
+
+    - `Message string`
+
 ### Beta Managed Agents Memory
 
 - `type BetaManagedAgentsMemory struct{…}`
 
+  A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+
   - `ID string`
+
+    Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
 
   - `ContentSha256 string`
 
+    Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
   - `ContentSizeBytes int64`
+
+    Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
   - `CreatedAt Time`
 
@@ -73915,9 +74511,15 @@ func main() {
 
   - `MemoryStoreID string`
 
+    ID of the memory store this memory belongs to (a `memstore_...` value).
+
   - `MemoryVersionID string`
 
+    ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
   - `Path string`
+
+    Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
   - `Type BetaManagedAgentsMemoryType`
 
@@ -73929,17 +74531,29 @@ func main() {
 
   - `Content string`
 
+    The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
+
 ### Beta Managed Agents Memory List Item
 
 - `type BetaManagedAgentsMemoryListItemUnion interface{…}`
 
+  One item in a [List memories](/docs/en/api/beta/memory_stores/memories/list) response: either a `memory` object or, when `depth` is set, a `memory_prefix` rollup marker.
+
   - `type BetaManagedAgentsMemory struct{…}`
+
+    A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
 
     - `ID string`
 
+      Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
+
     - `ContentSha256 string`
 
+      Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+
     - `ContentSizeBytes int64`
+
+      Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
 
     - `CreatedAt Time`
 
@@ -73947,9 +74561,15 @@ func main() {
 
     - `MemoryStoreID string`
 
+      ID of the memory store this memory belongs to (a `memstore_...` value).
+
     - `MemoryVersionID string`
 
+      ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the full history via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
+
     - `Path string`
+
+      Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
 
     - `Type BetaManagedAgentsMemoryType`
 
@@ -73961,9 +74581,15 @@ func main() {
 
     - `Content string`
 
+      The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
+
   - `type BetaManagedAgentsMemoryPrefix struct{…}`
 
+    A rolled-up directory marker returned by [List memories](/docs/en/api/beta/memory_stores/memories/list) when `depth` is set. Indicates that one or more memories exist deeper than the requested depth under this prefix. This is a list-time rollup, not a stored resource; it has no ID and no lifecycle. Each prefix counts toward the page `limit` and interleaves with `memory` items in path order.
+
     - `Path string`
+
+      The rolled-up path prefix, including a trailing `/` (e.g. `/projects/foo/`). Pass this value as `path_prefix` on a subsequent list call to drill into the directory.
 
     - `Type BetaManagedAgentsMemoryPrefixType`
 
@@ -73997,7 +74623,11 @@ func main() {
 
 - `type BetaManagedAgentsMemoryPrefix struct{…}`
 
+  A rolled-up directory marker returned by [List memories](/docs/en/api/beta/memory_stores/memories/list) when `depth` is set. Indicates that one or more memories exist deeper than the requested depth under this prefix. This is a list-time rollup, not a stored resource; it has no ID and no lifecycle. Each prefix counts toward the page `limit` and interleaves with `memory` items in path order.
+
   - `Path string`
+
+    The rolled-up path prefix, including a trailing `/` (e.g. `/projects/foo/`). Pass this value as `path_prefix` on a subsequent list call to drill into the directory.
 
   - `Type BetaManagedAgentsMemoryPrefixType`
 
@@ -74007,7 +74637,7 @@ func main() {
 
 - `type BetaManagedAgentsMemoryView string`
 
-  MemoryView enum
+  Selects which projection of a `memory` or `memory_version` the server returns. `basic` returns the object with `content` set to `null`; `full` populates `content`. When omitted, the default is endpoint-specific: retrieve operations default to `full`; list, create, and update operations default to `basic`. Listing with `view=full` caps `limit` at 20.
 
   - `const BetaManagedAgentsMemoryViewBasic BetaManagedAgentsMemoryView = "basic"`
 
@@ -74017,11 +74647,15 @@ func main() {
 
 - `type BetaManagedAgentsPrecondition struct{…}`
 
+  Optimistic-concurrency precondition: the update applies only if the memory's stored `content_sha256` equals the supplied value. On mismatch, the request returns `memory_precondition_failed_error` (HTTP 409); re-read the memory and retry against the fresh state. If the precondition fails but the stored state already exactly matches the requested `content` and `path`, the server returns 200 instead of 409.
+
   - `Type BetaManagedAgentsPreconditionType`
 
     - `const BetaManagedAgentsPreconditionTypeContentSha256 BetaManagedAgentsPreconditionType = "content_sha256"`
 
   - `ContentSha256 string`
+
+    Expected `content_sha256` of the stored memory (64 lowercase hexadecimal characters). Typically the `content_sha256` returned by a prior read or list call. Because the server applies no content normalization, clients can also compute this locally as the SHA-256 of the UTF-8 content bytes.
 
 # Memory Versions
 
@@ -74031,7 +74665,7 @@ func main() {
 
 **get** `/v1/memory_stores/{memory_store_id}/memory_versions`
 
-ListMemoryVersions
+List memory versions
 
 ### Parameters
 
@@ -74125,13 +74759,19 @@ ListMemoryVersions
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsMemoryVersion struct{…}`
 
+  A `memory_version` object: one immutable, attributed row in a memory's append-only history. Every non-no-op mutation to a memory produces a new version. Versions belong to the store (not the individual memory) and persist after the memory is deleted. Retrieving a redacted version returns 200 with `content`, `path`, `content_size_bytes`, and `content_sha256` set to `null`; branch on `redacted_at`, not HTTP status.
+
   - `ID string`
+
+    Unique identifier for this version (a `memver_...` value).
 
   - `CreatedAt Time`
 
@@ -74139,11 +74779,15 @@ ListMemoryVersions
 
   - `MemoryID string`
 
+    ID of the memory this version snapshots (a `mem_...` value). Remains valid after the memory is deleted; pass it as `memory_id` to [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) to retrieve the full lineage including the `deleted` row.
+
   - `MemoryStoreID string`
+
+    ID of the memory store this version belongs to (a `memstore_...` value).
 
   - `Operation BetaManagedAgentsMemoryVersionOperation`
 
-    MemoryVersionOperation enum
+    The kind of mutation a `memory_version` records. Every non-no-op mutation to a memory appends exactly one version row with one of these values.
 
     - `const BetaManagedAgentsMemoryVersionOperationCreated BetaManagedAgentsMemoryVersionOperation = "created"`
 
@@ -74157,15 +74801,27 @@ ListMemoryVersions
 
   - `Content string`
 
+    The memory's UTF-8 text content as of this version. `null` when `view=basic`, when `operation` is `deleted`, or when `redacted_at` is set.
+
   - `ContentSha256 string`
+
+    Lowercase hex SHA-256 digest of `content` as of this version (64 characters). `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
 
   - `ContentSizeBytes int64`
 
+    Size of `content` in bytes as of this version. `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
+
   - `CreatedBy BetaManagedAgentsActorUnion`
+
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
     - `type BetaManagedAgentsSessionActor struct{…}`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `SessionID string`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `Type BetaManagedAgentsSessionActorType`
 
@@ -74173,7 +74829,11 @@ ListMemoryVersions
 
     - `type BetaManagedAgentsAPIActor struct{…}`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `APIKeyID string`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `Type BetaManagedAgentsAPIActorType`
 
@@ -74181,13 +74841,19 @@ ListMemoryVersions
 
     - `type BetaManagedAgentsUserActor struct{…}`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `Type BetaManagedAgentsUserActorType`
 
         - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
 
       - `UserID string`
 
+        ID of the user who performed the write (a `user_...` value).
+
   - `Path string`
+
+    The memory's path at the time of this write. `null` if and only if `redacted_at` is set.
 
   - `RedactedAt Time`
 
@@ -74195,9 +74861,15 @@ ListMemoryVersions
 
   - `RedactedBy BetaManagedAgentsActorUnion`
 
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
+
     - `type BetaManagedAgentsSessionActor struct{…}`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `SessionID string`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `Type BetaManagedAgentsSessionActorType`
 
@@ -74205,7 +74877,11 @@ ListMemoryVersions
 
     - `type BetaManagedAgentsAPIActor struct{…}`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `APIKeyID string`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `Type BetaManagedAgentsAPIActorType`
 
@@ -74213,11 +74889,15 @@ ListMemoryVersions
 
     - `type BetaManagedAgentsUserActor struct{…}`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `Type BetaManagedAgentsUserActorType`
 
         - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
 
       - `UserID string`
+
+        ID of the user who performed the write (a `user_...` value).
 
 ### Example
 
@@ -74256,7 +74936,7 @@ func main() {
 
 **get** `/v1/memory_stores/{memory_store_id}/memory_versions/{memory_version_id}`
 
-GetMemoryVersion
+Retrieve a memory version
 
 ### Parameters
 
@@ -74322,13 +75002,19 @@ GetMemoryVersion
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsMemoryVersion struct{…}`
 
+  A `memory_version` object: one immutable, attributed row in a memory's append-only history. Every non-no-op mutation to a memory produces a new version. Versions belong to the store (not the individual memory) and persist after the memory is deleted. Retrieving a redacted version returns 200 with `content`, `path`, `content_size_bytes`, and `content_sha256` set to `null`; branch on `redacted_at`, not HTTP status.
+
   - `ID string`
+
+    Unique identifier for this version (a `memver_...` value).
 
   - `CreatedAt Time`
 
@@ -74336,11 +75022,15 @@ GetMemoryVersion
 
   - `MemoryID string`
 
+    ID of the memory this version snapshots (a `mem_...` value). Remains valid after the memory is deleted; pass it as `memory_id` to [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) to retrieve the full lineage including the `deleted` row.
+
   - `MemoryStoreID string`
+
+    ID of the memory store this version belongs to (a `memstore_...` value).
 
   - `Operation BetaManagedAgentsMemoryVersionOperation`
 
-    MemoryVersionOperation enum
+    The kind of mutation a `memory_version` records. Every non-no-op mutation to a memory appends exactly one version row with one of these values.
 
     - `const BetaManagedAgentsMemoryVersionOperationCreated BetaManagedAgentsMemoryVersionOperation = "created"`
 
@@ -74354,15 +75044,27 @@ GetMemoryVersion
 
   - `Content string`
 
+    The memory's UTF-8 text content as of this version. `null` when `view=basic`, when `operation` is `deleted`, or when `redacted_at` is set.
+
   - `ContentSha256 string`
+
+    Lowercase hex SHA-256 digest of `content` as of this version (64 characters). `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
 
   - `ContentSizeBytes int64`
 
+    Size of `content` in bytes as of this version. `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
+
   - `CreatedBy BetaManagedAgentsActorUnion`
+
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
     - `type BetaManagedAgentsSessionActor struct{…}`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `SessionID string`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `Type BetaManagedAgentsSessionActorType`
 
@@ -74370,7 +75072,11 @@ GetMemoryVersion
 
     - `type BetaManagedAgentsAPIActor struct{…}`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `APIKeyID string`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `Type BetaManagedAgentsAPIActorType`
 
@@ -74378,13 +75084,19 @@ GetMemoryVersion
 
     - `type BetaManagedAgentsUserActor struct{…}`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `Type BetaManagedAgentsUserActorType`
 
         - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
 
       - `UserID string`
 
+        ID of the user who performed the write (a `user_...` value).
+
   - `Path string`
+
+    The memory's path at the time of this write. `null` if and only if `redacted_at` is set.
 
   - `RedactedAt Time`
 
@@ -74392,9 +75104,15 @@ GetMemoryVersion
 
   - `RedactedBy BetaManagedAgentsActorUnion`
 
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
+
     - `type BetaManagedAgentsSessionActor struct{…}`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `SessionID string`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `Type BetaManagedAgentsSessionActorType`
 
@@ -74402,7 +75120,11 @@ GetMemoryVersion
 
     - `type BetaManagedAgentsAPIActor struct{…}`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `APIKeyID string`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `Type BetaManagedAgentsAPIActorType`
 
@@ -74410,11 +75132,15 @@ GetMemoryVersion
 
     - `type BetaManagedAgentsUserActor struct{…}`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `Type BetaManagedAgentsUserActorType`
 
         - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
 
       - `UserID string`
+
+        ID of the user who performed the write (a `user_...` value).
 
 ### Example
 
@@ -74453,7 +75179,7 @@ func main() {
 
 **post** `/v1/memory_stores/{memory_store_id}/memory_versions/{memory_version_id}/redact`
 
-RedactMemoryVersion
+Redact a memory version
 
 ### Parameters
 
@@ -74515,13 +75241,19 @@ RedactMemoryVersion
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsMemoryVersion struct{…}`
 
+  A `memory_version` object: one immutable, attributed row in a memory's append-only history. Every non-no-op mutation to a memory produces a new version. Versions belong to the store (not the individual memory) and persist after the memory is deleted. Retrieving a redacted version returns 200 with `content`, `path`, `content_size_bytes`, and `content_sha256` set to `null`; branch on `redacted_at`, not HTTP status.
+
   - `ID string`
+
+    Unique identifier for this version (a `memver_...` value).
 
   - `CreatedAt Time`
 
@@ -74529,11 +75261,15 @@ RedactMemoryVersion
 
   - `MemoryID string`
 
+    ID of the memory this version snapshots (a `mem_...` value). Remains valid after the memory is deleted; pass it as `memory_id` to [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) to retrieve the full lineage including the `deleted` row.
+
   - `MemoryStoreID string`
+
+    ID of the memory store this version belongs to (a `memstore_...` value).
 
   - `Operation BetaManagedAgentsMemoryVersionOperation`
 
-    MemoryVersionOperation enum
+    The kind of mutation a `memory_version` records. Every non-no-op mutation to a memory appends exactly one version row with one of these values.
 
     - `const BetaManagedAgentsMemoryVersionOperationCreated BetaManagedAgentsMemoryVersionOperation = "created"`
 
@@ -74547,15 +75283,27 @@ RedactMemoryVersion
 
   - `Content string`
 
+    The memory's UTF-8 text content as of this version. `null` when `view=basic`, when `operation` is `deleted`, or when `redacted_at` is set.
+
   - `ContentSha256 string`
+
+    Lowercase hex SHA-256 digest of `content` as of this version (64 characters). `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
 
   - `ContentSizeBytes int64`
 
+    Size of `content` in bytes as of this version. `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
+
   - `CreatedBy BetaManagedAgentsActorUnion`
+
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
     - `type BetaManagedAgentsSessionActor struct{…}`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `SessionID string`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `Type BetaManagedAgentsSessionActorType`
 
@@ -74563,7 +75311,11 @@ RedactMemoryVersion
 
     - `type BetaManagedAgentsAPIActor struct{…}`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `APIKeyID string`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `Type BetaManagedAgentsAPIActorType`
 
@@ -74571,13 +75323,19 @@ RedactMemoryVersion
 
     - `type BetaManagedAgentsUserActor struct{…}`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `Type BetaManagedAgentsUserActorType`
 
         - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
 
       - `UserID string`
 
+        ID of the user who performed the write (a `user_...` value).
+
   - `Path string`
+
+    The memory's path at the time of this write. `null` if and only if `redacted_at` is set.
 
   - `RedactedAt Time`
 
@@ -74585,9 +75343,15 @@ RedactMemoryVersion
 
   - `RedactedBy BetaManagedAgentsActorUnion`
 
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
+
     - `type BetaManagedAgentsSessionActor struct{…}`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `SessionID string`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `Type BetaManagedAgentsSessionActorType`
 
@@ -74595,7 +75359,11 @@ RedactMemoryVersion
 
     - `type BetaManagedAgentsAPIActor struct{…}`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `APIKeyID string`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `Type BetaManagedAgentsAPIActorType`
 
@@ -74603,11 +75371,15 @@ RedactMemoryVersion
 
     - `type BetaManagedAgentsUserActor struct{…}`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `Type BetaManagedAgentsUserActorType`
 
         - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
 
       - `UserID string`
+
+        ID of the user who performed the write (a `user_...` value).
 
 ### Example
 
@@ -74646,9 +75418,15 @@ func main() {
 
 - `type BetaManagedAgentsActorUnion interface{…}`
 
+  Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
+
   - `type BetaManagedAgentsSessionActor struct{…}`
 
+    Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
     - `SessionID string`
+
+      ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
     - `Type BetaManagedAgentsSessionActorType`
 
@@ -74656,7 +75434,11 @@ func main() {
 
   - `type BetaManagedAgentsAPIActor struct{…}`
 
+    Attribution for a write made directly via the public API (outside of any session).
+
     - `APIKeyID string`
+
+      ID of the API key that performed the write. This identifies the key, not the secret.
 
     - `Type BetaManagedAgentsAPIActorType`
 
@@ -74664,17 +75446,25 @@ func main() {
 
   - `type BetaManagedAgentsUserActor struct{…}`
 
+    Attribution for a write made by a human user through the Anthropic Console.
+
     - `Type BetaManagedAgentsUserActorType`
 
       - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
 
     - `UserID string`
 
+      ID of the user who performed the write (a `user_...` value).
+
 ### Beta Managed Agents API Actor
 
 - `type BetaManagedAgentsAPIActor struct{…}`
 
+  Attribution for a write made directly via the public API (outside of any session).
+
   - `APIKeyID string`
+
+    ID of the API key that performed the write. This identifies the key, not the secret.
 
   - `Type BetaManagedAgentsAPIActorType`
 
@@ -74684,7 +75474,11 @@ func main() {
 
 - `type BetaManagedAgentsMemoryVersion struct{…}`
 
+  A `memory_version` object: one immutable, attributed row in a memory's append-only history. Every non-no-op mutation to a memory produces a new version. Versions belong to the store (not the individual memory) and persist after the memory is deleted. Retrieving a redacted version returns 200 with `content`, `path`, `content_size_bytes`, and `content_sha256` set to `null`; branch on `redacted_at`, not HTTP status.
+
   - `ID string`
+
+    Unique identifier for this version (a `memver_...` value).
 
   - `CreatedAt Time`
 
@@ -74692,11 +75486,15 @@ func main() {
 
   - `MemoryID string`
 
+    ID of the memory this version snapshots (a `mem_...` value). Remains valid after the memory is deleted; pass it as `memory_id` to [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) to retrieve the full lineage including the `deleted` row.
+
   - `MemoryStoreID string`
+
+    ID of the memory store this version belongs to (a `memstore_...` value).
 
   - `Operation BetaManagedAgentsMemoryVersionOperation`
 
-    MemoryVersionOperation enum
+    The kind of mutation a `memory_version` records. Every non-no-op mutation to a memory appends exactly one version row with one of these values.
 
     - `const BetaManagedAgentsMemoryVersionOperationCreated BetaManagedAgentsMemoryVersionOperation = "created"`
 
@@ -74710,15 +75508,27 @@ func main() {
 
   - `Content string`
 
+    The memory's UTF-8 text content as of this version. `null` when `view=basic`, when `operation` is `deleted`, or when `redacted_at` is set.
+
   - `ContentSha256 string`
+
+    Lowercase hex SHA-256 digest of `content` as of this version (64 characters). `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
 
   - `ContentSizeBytes int64`
 
+    Size of `content` in bytes as of this version. `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
+
   - `CreatedBy BetaManagedAgentsActorUnion`
+
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
     - `type BetaManagedAgentsSessionActor struct{…}`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `SessionID string`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `Type BetaManagedAgentsSessionActorType`
 
@@ -74726,7 +75536,11 @@ func main() {
 
     - `type BetaManagedAgentsAPIActor struct{…}`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `APIKeyID string`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `Type BetaManagedAgentsAPIActorType`
 
@@ -74734,13 +75548,19 @@ func main() {
 
     - `type BetaManagedAgentsUserActor struct{…}`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `Type BetaManagedAgentsUserActorType`
 
         - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
 
       - `UserID string`
 
+        ID of the user who performed the write (a `user_...` value).
+
   - `Path string`
+
+    The memory's path at the time of this write. `null` if and only if `redacted_at` is set.
 
   - `RedactedAt Time`
 
@@ -74748,9 +75568,15 @@ func main() {
 
   - `RedactedBy BetaManagedAgentsActorUnion`
 
+    Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
+
     - `type BetaManagedAgentsSessionActor struct{…}`
 
+      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
       - `SessionID string`
+
+        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
       - `Type BetaManagedAgentsSessionActorType`
 
@@ -74758,7 +75584,11 @@ func main() {
 
     - `type BetaManagedAgentsAPIActor struct{…}`
 
+      Attribution for a write made directly via the public API (outside of any session).
+
       - `APIKeyID string`
+
+        ID of the API key that performed the write. This identifies the key, not the secret.
 
       - `Type BetaManagedAgentsAPIActorType`
 
@@ -74766,17 +75596,21 @@ func main() {
 
     - `type BetaManagedAgentsUserActor struct{…}`
 
+      Attribution for a write made by a human user through the Anthropic Console.
+
       - `Type BetaManagedAgentsUserActorType`
 
         - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
 
       - `UserID string`
 
+        ID of the user who performed the write (a `user_...` value).
+
 ### Beta Managed Agents Memory Version Operation
 
 - `type BetaManagedAgentsMemoryVersionOperation string`
 
-  MemoryVersionOperation enum
+  The kind of mutation a `memory_version` records. Every non-no-op mutation to a memory appends exactly one version row with one of these values.
 
   - `const BetaManagedAgentsMemoryVersionOperationCreated BetaManagedAgentsMemoryVersionOperation = "created"`
 
@@ -74788,7 +75622,11 @@ func main() {
 
 - `type BetaManagedAgentsSessionActor struct{…}`
 
+  Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
+
   - `SessionID string`
+
+    ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
 
   - `Type BetaManagedAgentsSessionActorType`
 
@@ -74798,11 +75636,15 @@ func main() {
 
 - `type BetaManagedAgentsUserActor struct{…}`
 
+  Attribution for a write made by a human user through the Anthropic Console.
+
   - `Type BetaManagedAgentsUserActorType`
 
     - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
 
   - `UserID string`
+
+    ID of the user who performed the write (a `user_...` value).
 
 # Files
 
@@ -74871,6 +75713,8 @@ Upload File
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -75035,6 +75879,8 @@ List Files
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -75182,6 +76028,8 @@ Download File
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -75284,6 +76132,8 @@ Get File Metadata
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -75435,6 +76285,8 @@ Delete File
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -75645,6 +76497,8 @@ Create Skill
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -75802,6 +76656,8 @@ List Skills
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -75943,6 +76799,8 @@ Get Skill
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -76090,6 +76948,8 @@ Delete Skill
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -76214,6 +77074,8 @@ Create Skill Version
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -76374,6 +77236,8 @@ List Skill Versions
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -76528,6 +77392,8 @@ Get Skill Version
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -76684,6 +77550,8 @@ Delete Skill Version
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
@@ -76732,3 +77600,792 @@ func main() {
   fmt.Printf("%+v\n", version.ID)
 }
 ```
+
+# User Profiles
+
+## Create
+
+`client.Beta.UserProfiles.New(ctx, params) (*BetaUserProfile, error)`
+
+**post** `/v1/user_profiles`
+
+Create User Profile
+
+### Parameters
+
+- `params BetaUserProfileNewParams`
+
+  - `ExternalID param.Field[string]`
+
+    Body param: Platform's own identifier for this user. Not enforced unique. Maximum 255 characters.
+
+  - `Metadata param.Field[map[string, string]]`
+
+    Body param: Free-form key-value data to attach to this user profile. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters. Values must be non-empty strings.
+
+  - `Betas param.Field[[]AnthropicBeta]`
+
+    Header param: Optional header to specify the beta version(s) you want to use.
+
+    - `string`
+
+    - `type AnthropicBeta string`
+
+      - `const AnthropicBetaMessageBatches2024_09_24 AnthropicBeta = "message-batches-2024-09-24"`
+
+      - `const AnthropicBetaPromptCaching2024_07_31 AnthropicBeta = "prompt-caching-2024-07-31"`
+
+      - `const AnthropicBetaComputerUse2024_10_22 AnthropicBeta = "computer-use-2024-10-22"`
+
+      - `const AnthropicBetaComputerUse2025_01_24 AnthropicBeta = "computer-use-2025-01-24"`
+
+      - `const AnthropicBetaPDFs2024_09_25 AnthropicBeta = "pdfs-2024-09-25"`
+
+      - `const AnthropicBetaTokenCounting2024_11_01 AnthropicBeta = "token-counting-2024-11-01"`
+
+      - `const AnthropicBetaTokenEfficientTools2025_02_19 AnthropicBeta = "token-efficient-tools-2025-02-19"`
+
+      - `const AnthropicBetaOutput128k2025_02_19 AnthropicBeta = "output-128k-2025-02-19"`
+
+      - `const AnthropicBetaFilesAPI2025_04_14 AnthropicBeta = "files-api-2025-04-14"`
+
+      - `const AnthropicBetaMCPClient2025_04_04 AnthropicBeta = "mcp-client-2025-04-04"`
+
+      - `const AnthropicBetaMCPClient2025_11_20 AnthropicBeta = "mcp-client-2025-11-20"`
+
+      - `const AnthropicBetaDevFullThinking2025_05_14 AnthropicBeta = "dev-full-thinking-2025-05-14"`
+
+      - `const AnthropicBetaInterleavedThinking2025_05_14 AnthropicBeta = "interleaved-thinking-2025-05-14"`
+
+      - `const AnthropicBetaCodeExecution2025_05_22 AnthropicBeta = "code-execution-2025-05-22"`
+
+      - `const AnthropicBetaExtendedCacheTTL2025_04_11 AnthropicBeta = "extended-cache-ttl-2025-04-11"`
+
+      - `const AnthropicBetaContext1m2025_08_07 AnthropicBeta = "context-1m-2025-08-07"`
+
+      - `const AnthropicBetaContextManagement2025_06_27 AnthropicBeta = "context-management-2025-06-27"`
+
+      - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
+
+      - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+### Returns
+
+- `type BetaUserProfile struct{…}`
+
+  - `ID string`
+
+    Unique identifier for this user profile, prefixed `uprof_`.
+
+  - `CreatedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Metadata map[string, string]`
+
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `TrustGrants map[string, BetaUserProfileTrustGrant]`
+
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
+
+    - `Status BetaUserProfileTrustGrantStatus`
+
+      Status of the trust grant.
+
+      - `const BetaUserProfileTrustGrantStatusActive BetaUserProfileTrustGrantStatus = "active"`
+
+      - `const BetaUserProfileTrustGrantStatusPending BetaUserProfileTrustGrantStatus = "pending"`
+
+      - `const BetaUserProfileTrustGrantStatusRejected BetaUserProfileTrustGrantStatus = "rejected"`
+
+  - `Type BetaUserProfileType`
+
+    Object type. Always `user_profile`.
+
+    - `const BetaUserProfileTypeUserProfile BetaUserProfileType = "user_profile"`
+
+  - `UpdatedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `ExternalID string`
+
+    Platform's own identifier for this user. Not enforced unique.
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  betaUserProfile, err := client.Beta.UserProfiles.New(context.TODO(), anthropic.BetaUserProfileNewParams{
+
+  })
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", betaUserProfile.ID)
+}
+```
+
+## List
+
+`client.Beta.UserProfiles.List(ctx, params) (*PageCursor[BetaUserProfile], error)`
+
+**get** `/v1/user_profiles`
+
+List User Profiles
+
+### Parameters
+
+- `params BetaUserProfileListParams`
+
+  - `Limit param.Field[int64]`
+
+    Query param: Query parameter for limit
+
+  - `Order param.Field[BetaUserProfileListParamsOrder]`
+
+    Query param: Query parameter for order
+
+    - `const BetaUserProfileListParamsOrderAsc BetaUserProfileListParamsOrder = "asc"`
+
+    - `const BetaUserProfileListParamsOrderDesc BetaUserProfileListParamsOrder = "desc"`
+
+  - `Page param.Field[string]`
+
+    Query param: Query parameter for page
+
+  - `Betas param.Field[[]AnthropicBeta]`
+
+    Header param: Optional header to specify the beta version(s) you want to use.
+
+    - `string`
+
+    - `type AnthropicBeta string`
+
+      - `const AnthropicBetaMessageBatches2024_09_24 AnthropicBeta = "message-batches-2024-09-24"`
+
+      - `const AnthropicBetaPromptCaching2024_07_31 AnthropicBeta = "prompt-caching-2024-07-31"`
+
+      - `const AnthropicBetaComputerUse2024_10_22 AnthropicBeta = "computer-use-2024-10-22"`
+
+      - `const AnthropicBetaComputerUse2025_01_24 AnthropicBeta = "computer-use-2025-01-24"`
+
+      - `const AnthropicBetaPDFs2024_09_25 AnthropicBeta = "pdfs-2024-09-25"`
+
+      - `const AnthropicBetaTokenCounting2024_11_01 AnthropicBeta = "token-counting-2024-11-01"`
+
+      - `const AnthropicBetaTokenEfficientTools2025_02_19 AnthropicBeta = "token-efficient-tools-2025-02-19"`
+
+      - `const AnthropicBetaOutput128k2025_02_19 AnthropicBeta = "output-128k-2025-02-19"`
+
+      - `const AnthropicBetaFilesAPI2025_04_14 AnthropicBeta = "files-api-2025-04-14"`
+
+      - `const AnthropicBetaMCPClient2025_04_04 AnthropicBeta = "mcp-client-2025-04-04"`
+
+      - `const AnthropicBetaMCPClient2025_11_20 AnthropicBeta = "mcp-client-2025-11-20"`
+
+      - `const AnthropicBetaDevFullThinking2025_05_14 AnthropicBeta = "dev-full-thinking-2025-05-14"`
+
+      - `const AnthropicBetaInterleavedThinking2025_05_14 AnthropicBeta = "interleaved-thinking-2025-05-14"`
+
+      - `const AnthropicBetaCodeExecution2025_05_22 AnthropicBeta = "code-execution-2025-05-22"`
+
+      - `const AnthropicBetaExtendedCacheTTL2025_04_11 AnthropicBeta = "extended-cache-ttl-2025-04-11"`
+
+      - `const AnthropicBetaContext1m2025_08_07 AnthropicBeta = "context-1m-2025-08-07"`
+
+      - `const AnthropicBetaContextManagement2025_06_27 AnthropicBeta = "context-management-2025-06-27"`
+
+      - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
+
+      - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+### Returns
+
+- `type BetaUserProfile struct{…}`
+
+  - `ID string`
+
+    Unique identifier for this user profile, prefixed `uprof_`.
+
+  - `CreatedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Metadata map[string, string]`
+
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `TrustGrants map[string, BetaUserProfileTrustGrant]`
+
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
+
+    - `Status BetaUserProfileTrustGrantStatus`
+
+      Status of the trust grant.
+
+      - `const BetaUserProfileTrustGrantStatusActive BetaUserProfileTrustGrantStatus = "active"`
+
+      - `const BetaUserProfileTrustGrantStatusPending BetaUserProfileTrustGrantStatus = "pending"`
+
+      - `const BetaUserProfileTrustGrantStatusRejected BetaUserProfileTrustGrantStatus = "rejected"`
+
+  - `Type BetaUserProfileType`
+
+    Object type. Always `user_profile`.
+
+    - `const BetaUserProfileTypeUserProfile BetaUserProfileType = "user_profile"`
+
+  - `UpdatedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `ExternalID string`
+
+    Platform's own identifier for this user. Not enforced unique.
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  page, err := client.Beta.UserProfiles.List(context.TODO(), anthropic.BetaUserProfileListParams{
+
+  })
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", page)
+}
+```
+
+## Retrieve
+
+`client.Beta.UserProfiles.Get(ctx, userProfileID, query) (*BetaUserProfile, error)`
+
+**get** `/v1/user_profiles/{user_profile_id}`
+
+Get User Profile
+
+### Parameters
+
+- `userProfileID string`
+
+- `query BetaUserProfileGetParams`
+
+  - `Betas param.Field[[]AnthropicBeta]`
+
+    Optional header to specify the beta version(s) you want to use.
+
+    - `string`
+
+    - `type AnthropicBeta string`
+
+      - `const AnthropicBetaMessageBatches2024_09_24 AnthropicBeta = "message-batches-2024-09-24"`
+
+      - `const AnthropicBetaPromptCaching2024_07_31 AnthropicBeta = "prompt-caching-2024-07-31"`
+
+      - `const AnthropicBetaComputerUse2024_10_22 AnthropicBeta = "computer-use-2024-10-22"`
+
+      - `const AnthropicBetaComputerUse2025_01_24 AnthropicBeta = "computer-use-2025-01-24"`
+
+      - `const AnthropicBetaPDFs2024_09_25 AnthropicBeta = "pdfs-2024-09-25"`
+
+      - `const AnthropicBetaTokenCounting2024_11_01 AnthropicBeta = "token-counting-2024-11-01"`
+
+      - `const AnthropicBetaTokenEfficientTools2025_02_19 AnthropicBeta = "token-efficient-tools-2025-02-19"`
+
+      - `const AnthropicBetaOutput128k2025_02_19 AnthropicBeta = "output-128k-2025-02-19"`
+
+      - `const AnthropicBetaFilesAPI2025_04_14 AnthropicBeta = "files-api-2025-04-14"`
+
+      - `const AnthropicBetaMCPClient2025_04_04 AnthropicBeta = "mcp-client-2025-04-04"`
+
+      - `const AnthropicBetaMCPClient2025_11_20 AnthropicBeta = "mcp-client-2025-11-20"`
+
+      - `const AnthropicBetaDevFullThinking2025_05_14 AnthropicBeta = "dev-full-thinking-2025-05-14"`
+
+      - `const AnthropicBetaInterleavedThinking2025_05_14 AnthropicBeta = "interleaved-thinking-2025-05-14"`
+
+      - `const AnthropicBetaCodeExecution2025_05_22 AnthropicBeta = "code-execution-2025-05-22"`
+
+      - `const AnthropicBetaExtendedCacheTTL2025_04_11 AnthropicBeta = "extended-cache-ttl-2025-04-11"`
+
+      - `const AnthropicBetaContext1m2025_08_07 AnthropicBeta = "context-1m-2025-08-07"`
+
+      - `const AnthropicBetaContextManagement2025_06_27 AnthropicBeta = "context-management-2025-06-27"`
+
+      - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
+
+      - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+### Returns
+
+- `type BetaUserProfile struct{…}`
+
+  - `ID string`
+
+    Unique identifier for this user profile, prefixed `uprof_`.
+
+  - `CreatedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Metadata map[string, string]`
+
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `TrustGrants map[string, BetaUserProfileTrustGrant]`
+
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
+
+    - `Status BetaUserProfileTrustGrantStatus`
+
+      Status of the trust grant.
+
+      - `const BetaUserProfileTrustGrantStatusActive BetaUserProfileTrustGrantStatus = "active"`
+
+      - `const BetaUserProfileTrustGrantStatusPending BetaUserProfileTrustGrantStatus = "pending"`
+
+      - `const BetaUserProfileTrustGrantStatusRejected BetaUserProfileTrustGrantStatus = "rejected"`
+
+  - `Type BetaUserProfileType`
+
+    Object type. Always `user_profile`.
+
+    - `const BetaUserProfileTypeUserProfile BetaUserProfileType = "user_profile"`
+
+  - `UpdatedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `ExternalID string`
+
+    Platform's own identifier for this user. Not enforced unique.
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  betaUserProfile, err := client.Beta.UserProfiles.Get(
+    context.TODO(),
+    "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+    anthropic.BetaUserProfileGetParams{
+
+    },
+  )
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", betaUserProfile.ID)
+}
+```
+
+## Update
+
+`client.Beta.UserProfiles.Update(ctx, userProfileID, params) (*BetaUserProfile, error)`
+
+**post** `/v1/user_profiles/{user_profile_id}`
+
+Update User Profile
+
+### Parameters
+
+- `userProfileID string`
+
+- `params BetaUserProfileUpdateParams`
+
+  - `ExternalID param.Field[string]`
+
+    Body param: If present, replaces the stored external_id. Omit to leave unchanged. Maximum 255 characters.
+
+  - `Metadata param.Field[map[string, string]]`
+
+    Body param: Key-value pairs to merge into the stored metadata. Keys provided overwrite existing values. To remove a key, set its value to an empty string. Keys not provided are left unchanged. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters.
+
+  - `Betas param.Field[[]AnthropicBeta]`
+
+    Header param: Optional header to specify the beta version(s) you want to use.
+
+    - `string`
+
+    - `type AnthropicBeta string`
+
+      - `const AnthropicBetaMessageBatches2024_09_24 AnthropicBeta = "message-batches-2024-09-24"`
+
+      - `const AnthropicBetaPromptCaching2024_07_31 AnthropicBeta = "prompt-caching-2024-07-31"`
+
+      - `const AnthropicBetaComputerUse2024_10_22 AnthropicBeta = "computer-use-2024-10-22"`
+
+      - `const AnthropicBetaComputerUse2025_01_24 AnthropicBeta = "computer-use-2025-01-24"`
+
+      - `const AnthropicBetaPDFs2024_09_25 AnthropicBeta = "pdfs-2024-09-25"`
+
+      - `const AnthropicBetaTokenCounting2024_11_01 AnthropicBeta = "token-counting-2024-11-01"`
+
+      - `const AnthropicBetaTokenEfficientTools2025_02_19 AnthropicBeta = "token-efficient-tools-2025-02-19"`
+
+      - `const AnthropicBetaOutput128k2025_02_19 AnthropicBeta = "output-128k-2025-02-19"`
+
+      - `const AnthropicBetaFilesAPI2025_04_14 AnthropicBeta = "files-api-2025-04-14"`
+
+      - `const AnthropicBetaMCPClient2025_04_04 AnthropicBeta = "mcp-client-2025-04-04"`
+
+      - `const AnthropicBetaMCPClient2025_11_20 AnthropicBeta = "mcp-client-2025-11-20"`
+
+      - `const AnthropicBetaDevFullThinking2025_05_14 AnthropicBeta = "dev-full-thinking-2025-05-14"`
+
+      - `const AnthropicBetaInterleavedThinking2025_05_14 AnthropicBeta = "interleaved-thinking-2025-05-14"`
+
+      - `const AnthropicBetaCodeExecution2025_05_22 AnthropicBeta = "code-execution-2025-05-22"`
+
+      - `const AnthropicBetaExtendedCacheTTL2025_04_11 AnthropicBeta = "extended-cache-ttl-2025-04-11"`
+
+      - `const AnthropicBetaContext1m2025_08_07 AnthropicBeta = "context-1m-2025-08-07"`
+
+      - `const AnthropicBetaContextManagement2025_06_27 AnthropicBeta = "context-management-2025-06-27"`
+
+      - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
+
+      - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+### Returns
+
+- `type BetaUserProfile struct{…}`
+
+  - `ID string`
+
+    Unique identifier for this user profile, prefixed `uprof_`.
+
+  - `CreatedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Metadata map[string, string]`
+
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `TrustGrants map[string, BetaUserProfileTrustGrant]`
+
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
+
+    - `Status BetaUserProfileTrustGrantStatus`
+
+      Status of the trust grant.
+
+      - `const BetaUserProfileTrustGrantStatusActive BetaUserProfileTrustGrantStatus = "active"`
+
+      - `const BetaUserProfileTrustGrantStatusPending BetaUserProfileTrustGrantStatus = "pending"`
+
+      - `const BetaUserProfileTrustGrantStatusRejected BetaUserProfileTrustGrantStatus = "rejected"`
+
+  - `Type BetaUserProfileType`
+
+    Object type. Always `user_profile`.
+
+    - `const BetaUserProfileTypeUserProfile BetaUserProfileType = "user_profile"`
+
+  - `UpdatedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `ExternalID string`
+
+    Platform's own identifier for this user. Not enforced unique.
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  betaUserProfile, err := client.Beta.UserProfiles.Update(
+    context.TODO(),
+    "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+    anthropic.BetaUserProfileUpdateParams{
+
+    },
+  )
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", betaUserProfile.ID)
+}
+```
+
+## Create Enrollment URL
+
+`client.Beta.UserProfiles.NewEnrollmentURL(ctx, userProfileID, body) (*BetaUserProfileEnrollmentURL, error)`
+
+**post** `/v1/user_profiles/{user_profile_id}/enrollment_url`
+
+Create Enrollment URL
+
+### Parameters
+
+- `userProfileID string`
+
+- `body BetaUserProfileNewEnrollmentURLParams`
+
+  - `Betas param.Field[[]AnthropicBeta]`
+
+    Optional header to specify the beta version(s) you want to use.
+
+    - `string`
+
+    - `type AnthropicBeta string`
+
+      - `const AnthropicBetaMessageBatches2024_09_24 AnthropicBeta = "message-batches-2024-09-24"`
+
+      - `const AnthropicBetaPromptCaching2024_07_31 AnthropicBeta = "prompt-caching-2024-07-31"`
+
+      - `const AnthropicBetaComputerUse2024_10_22 AnthropicBeta = "computer-use-2024-10-22"`
+
+      - `const AnthropicBetaComputerUse2025_01_24 AnthropicBeta = "computer-use-2025-01-24"`
+
+      - `const AnthropicBetaPDFs2024_09_25 AnthropicBeta = "pdfs-2024-09-25"`
+
+      - `const AnthropicBetaTokenCounting2024_11_01 AnthropicBeta = "token-counting-2024-11-01"`
+
+      - `const AnthropicBetaTokenEfficientTools2025_02_19 AnthropicBeta = "token-efficient-tools-2025-02-19"`
+
+      - `const AnthropicBetaOutput128k2025_02_19 AnthropicBeta = "output-128k-2025-02-19"`
+
+      - `const AnthropicBetaFilesAPI2025_04_14 AnthropicBeta = "files-api-2025-04-14"`
+
+      - `const AnthropicBetaMCPClient2025_04_04 AnthropicBeta = "mcp-client-2025-04-04"`
+
+      - `const AnthropicBetaMCPClient2025_11_20 AnthropicBeta = "mcp-client-2025-11-20"`
+
+      - `const AnthropicBetaDevFullThinking2025_05_14 AnthropicBeta = "dev-full-thinking-2025-05-14"`
+
+      - `const AnthropicBetaInterleavedThinking2025_05_14 AnthropicBeta = "interleaved-thinking-2025-05-14"`
+
+      - `const AnthropicBetaCodeExecution2025_05_22 AnthropicBeta = "code-execution-2025-05-22"`
+
+      - `const AnthropicBetaExtendedCacheTTL2025_04_11 AnthropicBeta = "extended-cache-ttl-2025-04-11"`
+
+      - `const AnthropicBetaContext1m2025_08_07 AnthropicBeta = "context-1m-2025-08-07"`
+
+      - `const AnthropicBetaContextManagement2025_06_27 AnthropicBeta = "context-management-2025-06-27"`
+
+      - `const AnthropicBetaModelContextWindowExceeded2025_08_26 AnthropicBeta = "model-context-window-exceeded-2025-08-26"`
+
+      - `const AnthropicBetaSkills2025_10_02 AnthropicBeta = "skills-2025-10-02"`
+
+      - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
+
+      - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+### Returns
+
+- `type BetaUserProfileEnrollmentURL struct{…}`
+
+  - `ExpiresAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Type BetaUserProfileEnrollmentURLType`
+
+    Object type. Always `enrollment_url`.
+
+    - `const BetaUserProfileEnrollmentURLTypeEnrollmentURL BetaUserProfileEnrollmentURLType = "enrollment_url"`
+
+  - `URL string`
+
+    Enrollment URL to send to the end user. Valid until `expires_at`.
+
+### Example
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/anthropics/anthropic-sdk-go"
+  "github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func main() {
+  client := anthropic.NewClient(
+    option.WithAPIKey("my-anthropic-api-key"),
+  )
+  betaUserProfileEnrollmentURL, err := client.Beta.UserProfiles.NewEnrollmentURL(
+    context.TODO(),
+    "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+    anthropic.BetaUserProfileNewEnrollmentURLParams{
+
+    },
+  )
+  if err != nil {
+    panic(err.Error())
+  }
+  fmt.Printf("%+v\n", betaUserProfileEnrollmentURL.ExpiresAt)
+}
+```
+
+## Domain Types
+
+### Beta User Profile
+
+- `type BetaUserProfile struct{…}`
+
+  - `ID string`
+
+    Unique identifier for this user profile, prefixed `uprof_`.
+
+  - `CreatedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Metadata map[string, string]`
+
+    Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `TrustGrants map[string, BetaUserProfileTrustGrant]`
+
+    Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
+
+    - `Status BetaUserProfileTrustGrantStatus`
+
+      Status of the trust grant.
+
+      - `const BetaUserProfileTrustGrantStatusActive BetaUserProfileTrustGrantStatus = "active"`
+
+      - `const BetaUserProfileTrustGrantStatusPending BetaUserProfileTrustGrantStatus = "pending"`
+
+      - `const BetaUserProfileTrustGrantStatusRejected BetaUserProfileTrustGrantStatus = "rejected"`
+
+  - `Type BetaUserProfileType`
+
+    Object type. Always `user_profile`.
+
+    - `const BetaUserProfileTypeUserProfile BetaUserProfileType = "user_profile"`
+
+  - `UpdatedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `ExternalID string`
+
+    Platform's own identifier for this user. Not enforced unique.
+
+### Beta User Profile Enrollment URL
+
+- `type BetaUserProfileEnrollmentURL struct{…}`
+
+  - `ExpiresAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Type BetaUserProfileEnrollmentURLType`
+
+    Object type. Always `enrollment_url`.
+
+    - `const BetaUserProfileEnrollmentURLTypeEnrollmentURL BetaUserProfileEnrollmentURLType = "enrollment_url"`
+
+  - `URL string`
+
+    Enrollment URL to send to the end user. Valid until `expires_at`.
+
+### Beta User Profile Trust Grant
+
+- `type BetaUserProfileTrustGrant struct{…}`
+
+  - `Status BetaUserProfileTrustGrantStatus`
+
+    Status of the trust grant.
+
+    - `const BetaUserProfileTrustGrantStatusActive BetaUserProfileTrustGrantStatus = "active"`
+
+    - `const BetaUserProfileTrustGrantStatusPending BetaUserProfileTrustGrantStatus = "pending"`
+
+    - `const BetaUserProfileTrustGrantStatusRejected BetaUserProfileTrustGrantStatus = "rejected"`

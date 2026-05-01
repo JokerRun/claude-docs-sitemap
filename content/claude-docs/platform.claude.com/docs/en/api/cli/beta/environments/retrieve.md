@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: b1cea8a77d98830184054330e7a4299e8b36fd2c7591888df6e19d5ab109ad00
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 9c9a3667ef7f7ced6767b2290de55de3deefdf9af2ae030c4ca19492c72396b3
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Retrieve a specific environment by ID.
 
 - `beta_environment: object { id, archived_at, config, 6 more }`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 90a51551cab91a0d813c9244bdf2164ff454b42a4456a8d4940c8ff97a8121a4
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 61dcae14882ad4f4e2cf41874f3fc27a2745f4927145e97fc817d6a921381509
 ---
 
 ## List
@@ -41,7 +41,7 @@ List Events
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ List Events
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 

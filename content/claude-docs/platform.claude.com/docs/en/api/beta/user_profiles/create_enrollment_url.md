@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 2ad03dbdda448dc9a4288e491c4506998918b8f39762b8a7b0167cacc62de44c
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 185addb45daa8bee61a43a0ba5537236c7ff5406905d82130169625f8f33348d
 ---
 
 ## Create Enrollment URL
@@ -67,9 +67,9 @@ Create Enrollment URL
 
     - `"output-300k-2026-03-24"`
 
-    - `"advisor-tool-2026-03-01"`
-
     - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

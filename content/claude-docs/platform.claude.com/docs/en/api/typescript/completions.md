@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 0052628b8ae0d37d997c355aacb48d626ba6718b8ed637de932b2a645db0f9ba
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: b5a583dfefb6241c2ace41bf6b0b54335ddea6f4de70253238503769a6c87b9d
 ---
 
 # Completions
@@ -185,7 +185,7 @@ Future models and features will not be compatible with Text Completions. See our
 
       - `(string & {})`
 
-      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
         - `"message-batches-2024-09-24"`
 
@@ -228,6 +228,8 @@ Future models and features will not be compatible with Text Completions. See our
         - `"fast-mode-2026-02-01"`
 
         - `"output-300k-2026-03-24"`
+
+        - `"user-profiles-2026-03-24"`
 
         - `"advisor-tool-2026-03-01"`
 

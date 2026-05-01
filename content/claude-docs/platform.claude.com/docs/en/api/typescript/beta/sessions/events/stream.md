@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/events/stream
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: c7abfe314726ec1f11edd4cc9088a23a519271457d53b6072bf71a1f2033eab5
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: b8b9997442e11d371aabd7455a07b0634b79943be7ef97ea47fa466fa94d37fb
 ---
 
 ## Stream
@@ -25,7 +25,7 @@ Stream Events
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Stream Events
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/retrieve
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: ed45f784c9aca0c6b61e3d6f09ee89301cd777a6008404bf33e15e8d6e8712c0
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 9ffab9b036bbe45f5ffd2f7e3575b59b02c362929b9f16fad21596f36621390b
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Retrieve a specific environment by ID.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -69,13 +69,15 @@ Retrieve a specific environment by ID.
 
       - `"output-300k-2026-03-24"`
 
+      - `"user-profiles-2026-03-24"`
+
       - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `BetaEnvironment`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: string`
 

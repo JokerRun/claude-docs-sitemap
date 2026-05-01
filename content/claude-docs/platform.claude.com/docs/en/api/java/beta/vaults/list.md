@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 3250cd77b147eaa00af883481f310f96c2923f7247ed341d9b9c83902a264344
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: c1f953cdeb530f9fa6dc9a0e24a9f436276e9b90b45bddc1ccd993da0e979099
 ---
 
 ## List
@@ -74,6 +74,8 @@ List Vaults
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

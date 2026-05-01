@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 3af7d49a50e3cb6ef3ecbba9a0f719455e493518f95d2d44b7b25cd66ce6e0ff
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: eb3cbb3567a2cfd75452c9202d24fad747728cac6ee1c21314c4fa21d5e0388f
 ---
 
 ## List
@@ -75,13 +75,15 @@ List environments with pagination support.
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 
 - `class BetaEnvironment:`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `String id`
 

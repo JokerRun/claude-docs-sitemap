@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 6568eb536b16b9f8a5ac63f445da8ce89034929f79fd8a133149803716061cbc
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 2cb110edca70148c5a6b37113f2a96bde576e76eb6a1ee35fab7404cd2645a69
 ---
 
 ## Update
@@ -400,6 +400,8 @@ Update Agent
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 

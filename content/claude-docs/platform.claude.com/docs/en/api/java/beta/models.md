@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/models
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 64a10256401948cfc55edc5cc570e45d6fbe9a1d31f42d5519a3fcb2de7d434d
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: b74457c4a6e4bccc449d8eba70f31a45e1ebc17a3ea107c948393a3ee1515787
 ---
 
 # Models
@@ -80,6 +80,8 @@ The Models API response can be used to determine which models are available for 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
@@ -190,6 +192,14 @@ The Models API response can be used to determine which models are available for 
       - `boolean supported`
 
         Whether this capability is supported by the model.
+
+      - `Optional<BetaCapabilitySupport> xhigh`
+
+        Indicates whether a capability is supported.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
 
     - `BetaCapabilitySupport imageInput`
 
@@ -352,6 +362,8 @@ The Models API response can be used to determine information about a specific mo
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
@@ -461,6 +473,14 @@ The Models API response can be used to determine information about a specific mo
       - `boolean supported`
 
         Whether this capability is supported by the model.
+
+      - `Optional<BetaCapabilitySupport> xhigh`
+
+        Indicates whether a capability is supported.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
 
     - `BetaCapabilitySupport imageInput`
 
@@ -647,6 +667,14 @@ public final class Main {
 
     Whether this capability is supported by the model.
 
+  - `Optional<BetaCapabilitySupport> xhigh`
+
+    Indicates whether a capability is supported.
+
+    - `boolean supported`
+
+      Whether this capability is supported by the model.
+
 ### Beta Model Capabilities
 
 - `class BetaModelCapabilities:`
@@ -748,6 +776,14 @@ public final class Main {
     - `boolean supported`
 
       Whether this capability is supported by the model.
+
+    - `Optional<BetaCapabilitySupport> xhigh`
+
+      Indicates whether a capability is supported.
+
+      - `boolean supported`
+
+        Whether this capability is supported by the model.
 
   - `BetaCapabilitySupport imageInput`
 
@@ -908,6 +944,14 @@ public final class Main {
       - `boolean supported`
 
         Whether this capability is supported by the model.
+
+      - `Optional<BetaCapabilitySupport> xhigh`
+
+        Indicates whether a capability is supported.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
 
     - `BetaCapabilitySupport imageInput`
 

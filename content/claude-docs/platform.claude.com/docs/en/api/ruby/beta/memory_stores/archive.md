@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/archive
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 7c047ae1116caa4c9cc84df2cce6bc3b817b2fa94b017b8e25bf035b667a3640
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: deca2dfd450efc9562038c32b9c8653627067f87f77df74628adc353a903f0f9
 ---
 
 ## Archive
@@ -11,7 +11,7 @@ sha256: 7c047ae1116caa4c9cc84df2cce6bc3b817b2fa94b017b8e25bf035b667a3640
 
 **post** `/v1/memory_stores/{memory_store_id}/archive`
 
-ArchiveMemoryStore
+Archive a memory store
 
 ### Parameters
 
@@ -23,7 +23,7 @@ ArchiveMemoryStore
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -67,35 +67,47 @@ ArchiveMemoryStore
 
     - `:"output-300k-2026-03-24"`
 
+    - `:"user-profiles-2026-03-24"`
+
     - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsMemoryStore`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `id: String`
 
-  - `type: :memory_store`
-
-    - `:memory_store`
-
-  - `archived_at: Time`
-
-    A timestamp in RFC 3339 format
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
 
   - `created_at: Time`
 
     A timestamp in RFC 3339 format
 
-  - `description: String`
-
-  - `metadata: Hash[Symbol, String]`
-
   - `name: String`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
+
+  - `type: :memory_store`
+
+    - `:memory_store`
 
   - `updated_at: Time`
 
     A timestamp in RFC 3339 format
+
+  - `archived_at: Time`
+
+    A timestamp in RFC 3339 format
+
+  - `description: String`
+
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
+  - `metadata: Hash[Symbol, String]`
+
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 

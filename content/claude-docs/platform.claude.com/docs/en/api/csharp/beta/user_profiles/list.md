@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: e6fa1757196ed1f88900fb4170fac54966e0919826933c993bf609cd84f02853
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: cd9a1ab5368cb707f71621dfb438c845ecf2b6f931309a4e304c9046180ee705
 ---
 
 ## List
@@ -79,9 +79,9 @@ List User Profiles
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
-    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
@@ -131,7 +131,7 @@ List User Profiles
 
       Platform's own identifier for this user. Not enforced unique.
 
-  - `string? NextPage`
+  - `required string? NextPage`
 
     Cursor for the next page, or `null` when there are no more results.
 

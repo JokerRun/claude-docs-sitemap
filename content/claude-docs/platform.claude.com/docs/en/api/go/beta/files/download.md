@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/download
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: b668832e533853a63c3c70351997e5406f9b2afb0a30ec456ed1fe2eaa1018d1
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 2242b9707b937b7b5e5a505af75698f7b260881bd3a9196a944a4fd0e54cfddd
 ---
 
 ## Download
@@ -70,6 +70,8 @@ Download File
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 

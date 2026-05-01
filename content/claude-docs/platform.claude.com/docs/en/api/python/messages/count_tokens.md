@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/count_tokens
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: e8636113f172e74c865a92e7fcd29085b6f16bd85d9d11ac47a09250aa540af1
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: a7f41ab530adb81dc23b904069d506259ceaba002774fd9f6addf2e45e67516b
 ---
 
 ## Count Tokens
@@ -2423,7 +2423,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   Configuration options for the model's output, such as the output format.
 
-  - `effort: Optional[Literal["low", "medium", "high", "max"]]`
+  - `effort: Optional[Literal["low", "medium", "high", 2 more]]`
 
     All possible effort levels.
 
@@ -2432,6 +2432,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"medium"`
 
     - `"high"`
+
+    - `"xhigh"`
 
     - `"max"`
 

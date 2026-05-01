@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/count_tokens
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 9e3b2f1a28f3ee7ce4645c700982801f775eb0e37a5a2eadf2f472d74cbb6690
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: dc786aec3038eff2baea7d9c149ce942784203f90e3c9b4edc1b07005df5f9c7
 ---
 
 ## Count Tokens
@@ -2301,6 +2301,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `"1h"Ttl1h`
 
+          - `string? EncryptedContent`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `required Role Role`
 
       - `"user"User`
@@ -4010,6 +4014,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 

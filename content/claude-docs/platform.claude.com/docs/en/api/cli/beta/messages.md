@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: e57b2cef825b3c93266bb15c7e371ddf273f8ada56eac0ba6895f624fd074d55
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 3e1b1fb99b59b3950fa19d1ea646aaaa225b43a80b2dbb32921efcbcdfbd02e0
 ---
 
 # Messages
@@ -26,6 +26,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
   Body param: The maximum number of tokens to generate before stopping.
 
   Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+  Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
   Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -112,7 +114,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Body param: An object describing metadata about the request.
 
-- `--output-config: optional object { effort, format }`
+- `--output-config: optional object { effort, format, task_budget }`
 
   Body param: Configuration options for the model's output, such as the output format.
 
@@ -245,6 +247,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
   In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`.
 
   Recommended for advanced use cases only.
+
+- `--user-profile-id: optional string`
+
+  Body param: The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
 
 - `--beta: optional array of AnthropicBeta`
 
@@ -1029,7 +1035,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `type: "container_upload"`
 
-    - `beta_compaction_block: object { content, type }`
+    - `beta_compaction_block: object { content, encrypted_content, type }`
 
       A compaction block returned when autocompact is triggered.
 
@@ -1040,6 +1046,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `content: string`
 
         Summary of compacted content, or null if compaction failed
+
+      - `encrypted_content: string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: "compaction"`
 
@@ -1587,7 +1597,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   Body param: MCP servers to be utilized in this request
 
-- `--output-config: optional object { effort, format }`
+- `--output-config: optional object { effort, format, task_budget }`
 
   Body param: Configuration options for the model's output, such as the output format.
 
@@ -3301,7 +3311,7 @@ ant beta:messages count-tokens \
 
 ### Beta Compaction Block
 
-- `beta_compaction_block: object { content, type }`
+- `beta_compaction_block: object { content, encrypted_content, type }`
 
   A compaction block returned when autocompact is triggered.
 
@@ -3313,11 +3323,15 @@ ant beta:messages count-tokens \
 
     Summary of compacted content, or null if compaction failed
 
+  - `encrypted_content: string`
+
+    Opaque metadata from prior compaction, to be round-tripped verbatim
+
   - `type: "compaction"`
 
 ### Beta Compaction Block Param
 
-- `beta_compaction_block_param: object { content, type, cache_control }`
+- `beta_compaction_block_param: object { content, type, cache_control, encrypted_content }`
 
   A compaction block containing summary of previous context.
 
@@ -3354,11 +3368,19 @@ ant beta:messages count-tokens \
 
       - `"1h"`
 
+  - `encrypted_content: optional string`
+
+    Opaque metadata from prior compaction, to be round-tripped verbatim
+
 ### Beta Compaction Content Block Delta
 
-- `beta_compaction_content_block_delta: object { content, type }`
+- `beta_compaction_content_block_delta: object { content, encrypted_content, type }`
 
   - `content: string`
+
+  - `encrypted_content: string`
+
+    Opaque metadata from prior compaction, to be round-tripped verbatim
 
   - `type: "compaction_delta"`
 
@@ -4220,7 +4242,7 @@ ant beta:messages count-tokens \
 
     - `type: "container_upload"`
 
-  - `beta_compaction_block: object { content, type }`
+  - `beta_compaction_block: object { content, encrypted_content, type }`
 
     A compaction block returned when autocompact is triggered.
 
@@ -4231,6 +4253,10 @@ ant beta:messages count-tokens \
     - `content: string`
 
       Summary of compacted content, or null if compaction failed
+
+    - `encrypted_content: string`
+
+      Opaque metadata from prior compaction, to be round-tripped verbatim
 
     - `type: "compaction"`
 
@@ -6422,7 +6448,7 @@ ant beta:messages count-tokens \
 
         - `"1h"`
 
-  - `beta_compaction_block_param: object { content, type, cache_control }`
+  - `beta_compaction_block_param: object { content, type, cache_control, encrypted_content }`
 
     A compaction block containing summary of previous context.
 
@@ -6458,6 +6484,10 @@ ant beta:messages count-tokens \
         - `"5m"`
 
         - `"1h"`
+
+    - `encrypted_content: optional string`
+
+      Opaque metadata from prior compaction, to be round-tripped verbatim
 
 ### Beta Content Block Source
 
@@ -8559,7 +8589,7 @@ ant beta:messages count-tokens \
 
       - `type: "container_upload"`
 
-    - `beta_compaction_block: object { content, type }`
+    - `beta_compaction_block: object { content, encrypted_content, type }`
 
       A compaction block returned when autocompact is triggered.
 
@@ -8570,6 +8600,10 @@ ant beta:messages count-tokens \
       - `content: string`
 
         Summary of compacted content, or null if compaction failed
+
+      - `encrypted_content: string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: "compaction"`
 
@@ -11472,7 +11506,7 @@ ant beta:messages count-tokens \
 
           - `"1h"`
 
-    - `beta_compaction_block_param: object { content, type, cache_control }`
+    - `beta_compaction_block_param: object { content, type, cache_control, encrypted_content }`
 
       A compaction block containing summary of previous context.
 
@@ -11509,6 +11543,10 @@ ant beta:messages count-tokens \
 
           - `"1h"`
 
+      - `encrypted_content: optional string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
+
   - `role: "user" or "assistant"`
 
     - `"user"`
@@ -11543,9 +11581,9 @@ ant beta:messages count-tokens \
 
 ### Beta Output Config
 
-- `beta_output_config: object { effort, format }`
+- `beta_output_config: object { effort, format, task_budget }`
 
-  - `effort: optional "low" or "medium" or "high" or "max"`
+  - `effort: optional "low" or "medium" or "high" or 2 more`
 
     All possible effort levels.
 
@@ -11554,6 +11592,8 @@ ant beta:messages count-tokens \
     - `"medium"`
 
     - `"high"`
+
+    - `"xhigh"`
 
     - `"max"`
 
@@ -11566,6 +11606,22 @@ ant beta:messages count-tokens \
       The JSON schema of the format
 
     - `type: "json_schema"`
+
+  - `task_budget: optional object { total, type, remaining }`
+
+    User-configurable total token budget across contexts.
+
+    - `total: number`
+
+      Total token budget across all contexts in the session.
+
+    - `type: "tokens"`
+
+      The budget type. Currently only 'tokens' is supported.
+
+    - `remaining: optional number`
+
+      Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 ### Beta Plain Text Source
 
@@ -11687,9 +11743,13 @@ ant beta:messages count-tokens \
 
     - `type: "signature_delta"`
 
-  - `beta_compaction_content_block_delta: object { content, type }`
+  - `beta_compaction_content_block_delta: object { content, encrypted_content, type }`
 
     - `content: string`
+
+    - `encrypted_content: string`
+
+      Opaque metadata from prior compaction, to be round-tripped verbatim
 
     - `type: "compaction_delta"`
 
@@ -11805,9 +11865,13 @@ ant beta:messages count-tokens \
 
       - `type: "signature_delta"`
 
-    - `beta_compaction_content_block_delta: object { content, type }`
+    - `beta_compaction_content_block_delta: object { content, encrypted_content, type }`
 
       - `content: string`
+
+      - `encrypted_content: string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: "compaction_delta"`
 
@@ -12531,7 +12595,7 @@ ant beta:messages count-tokens \
 
       - `type: "container_upload"`
 
-    - `beta_compaction_block: object { content, type }`
+    - `beta_compaction_block: object { content, encrypted_content, type }`
 
       A compaction block returned when autocompact is triggered.
 
@@ -12542,6 +12606,10 @@ ant beta:messages count-tokens \
       - `content: string`
 
         Summary of compacted content, or null if compaction failed
+
+      - `encrypted_content: string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `type: "compaction"`
 
@@ -13688,7 +13756,7 @@ ant beta:messages count-tokens \
 
         - `type: "container_upload"`
 
-      - `beta_compaction_block: object { content, type }`
+      - `beta_compaction_block: object { content, encrypted_content, type }`
 
         A compaction block returned when autocompact is triggered.
 
@@ -13699,6 +13767,10 @@ ant beta:messages count-tokens \
         - `content: string`
 
           Summary of compacted content, or null if compaction failed
+
+        - `encrypted_content: string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `type: "compaction"`
 
@@ -14942,7 +15014,7 @@ ant beta:messages count-tokens \
 
           - `type: "container_upload"`
 
-        - `beta_compaction_block: object { content, type }`
+        - `beta_compaction_block: object { content, encrypted_content, type }`
 
           A compaction block returned when autocompact is triggered.
 
@@ -14953,6 +15025,10 @@ ant beta:messages count-tokens \
           - `content: string`
 
             Summary of compacted content, or null if compaction failed
+
+          - `encrypted_content: string`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
 
           - `type: "compaction"`
 
@@ -16473,7 +16549,7 @@ ant beta:messages count-tokens \
 
         - `type: "container_upload"`
 
-      - `beta_compaction_block: object { content, type }`
+      - `beta_compaction_block: object { content, encrypted_content, type }`
 
         A compaction block returned when autocompact is triggered.
 
@@ -16484,6 +16560,10 @@ ant beta:messages count-tokens \
         - `content: string`
 
           Summary of compacted content, or null if compaction failed
+
+        - `encrypted_content: string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `type: "compaction"`
 
@@ -16601,9 +16681,13 @@ ant beta:messages count-tokens \
 
         - `type: "signature_delta"`
 
-      - `beta_compaction_content_block_delta: object { content, type }`
+      - `beta_compaction_content_block_delta: object { content, encrypted_content, type }`
 
         - `content: string`
+
+        - `encrypted_content: string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `type: "compaction_delta"`
 
@@ -18172,6 +18256,24 @@ ant beta:messages count-tokens \
   - `type: "thinking_turns"`
 
   - `value: number`
+
+### Beta Token Task Budget
+
+- `beta_token_task_budget: object { total, type, remaining }`
+
+  User-configurable total token budget across contexts.
+
+  - `total: number`
+
+    Total token budget across all contexts in the session.
+
+  - `type: "tokens"`
+
+    The budget type. Currently only 'tokens' is supported.
+
+  - `remaining: optional number`
+
+    Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
 ### Beta Tool
 
@@ -24415,7 +24517,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `type: "container_upload"`
 
-          - `beta_compaction_block: object { content, type }`
+          - `beta_compaction_block: object { content, encrypted_content, type }`
 
             A compaction block returned when autocompact is triggered.
 
@@ -24426,6 +24528,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `content: string`
 
               Summary of compacted content, or null if compaction failed
+
+            - `encrypted_content: string`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `type: "compaction"`
 
@@ -25943,7 +26049,7 @@ ant beta:messages:batches results \
 
             - `type: "container_upload"`
 
-          - `beta_compaction_block: object { content, type }`
+          - `beta_compaction_block: object { content, encrypted_content, type }`
 
             A compaction block returned when autocompact is triggered.
 
@@ -25954,6 +26060,10 @@ ant beta:messages:batches results \
             - `content: string`
 
               Summary of compacted content, or null if compaction failed
+
+            - `encrypted_content: string`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `type: "compaction"`
 
@@ -27301,7 +27411,7 @@ ant beta:messages:batches results \
 
           - `type: "container_upload"`
 
-        - `beta_compaction_block: object { content, type }`
+        - `beta_compaction_block: object { content, encrypted_content, type }`
 
           A compaction block returned when autocompact is triggered.
 
@@ -27312,6 +27422,10 @@ ant beta:messages:batches results \
           - `content: string`
 
             Summary of compacted content, or null if compaction failed
+
+          - `encrypted_content: string`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
 
           - `type: "compaction"`
 
@@ -28621,7 +28735,7 @@ ant beta:messages:batches results \
 
         - `type: "container_upload"`
 
-      - `beta_compaction_block: object { content, type }`
+      - `beta_compaction_block: object { content, encrypted_content, type }`
 
         A compaction block returned when autocompact is triggered.
 
@@ -28632,6 +28746,10 @@ ant beta:messages:batches results \
         - `content: string`
 
           Summary of compacted content, or null if compaction failed
+
+        - `encrypted_content: string`
+
+          Opaque metadata from prior compaction, to be round-tripped verbatim
 
         - `type: "compaction"`
 

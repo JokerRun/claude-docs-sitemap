@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 6f03424d7213ccb643bfb61f092218ac6ec080094546816c29f1b09a710e5962
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: bdaef1d80967b15df58f2e1d586764b0dddd358e04ad5b48fcf60027cfa52760
 ---
 
 ## Create
@@ -26,6 +26,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     Body param: The maximum number of tokens to generate before stopping.
 
     Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+    Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
     Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -2663,6 +2665,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `const BetaCacheControlEphemeralTTLTTL1h BetaCacheControlEphemeralTTL = "1h"`
 
+          - `EncryptedContent string`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `Role BetaMessageParamRole`
 
       - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
@@ -4571,6 +4577,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Recommended for advanced use cases only.
 
+  - `UserProfileID param.Field[string]`
+
+    Body param: The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
   - `Betas param.Field[[]AnthropicBeta]`
 
     Header param: Optional header to specify the beta version(s) you want to use.
@@ -4620,6 +4630,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
@@ -5543,6 +5555,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `Content string`
 
         Summary of compacted content, or null if compaction failed
+
+      - `EncryptedContent string`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `Type Compaction`
 

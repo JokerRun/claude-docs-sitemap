@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/update
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: e62f2fa1a8cfdc7090c9009760db37c936d321c37c530878113f6afb9aa477aa
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 85e455dc6fb2a27be534a7f6ea287d5bd051407ae220704df93b631098e9c6ed
 ---
 
 ## Update
@@ -65,9 +65,9 @@ Update User Profile
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
-    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
-
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
+    - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Optional<String> externalId`
 

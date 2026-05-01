@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: b2fc6d295f5ee8868f1227df819cabef32e7865175dab40dba3e139cdd185a75
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 556aa23d12933ce66e3a7a9ec3c572081f265a380e6457039a35cdc84938aa66
 ---
 
 ## Update
@@ -35,7 +35,7 @@ Update Session
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -78,6 +78,8 @@ Update Session
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: ba909a0a5ba25798872c44683513960b17e64c2abd5c2d78e16aae1ed9a27381
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: c0b16d21d5d032a21b4e89b954d905792379571d81e50b845aea913b73f22196
 ---
 
 ## Create
@@ -62,6 +62,8 @@ Create Vault
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

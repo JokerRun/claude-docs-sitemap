@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 305d3a3e2326ac85dd3ea8758e7a44f72328f497b3b0848bf13ecf8c021d2a35
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: d4cb25797a6db0159d4b6c1169c135c998a7b5ad1de916133e3886c15440f216
 ---
 
 ## Delete
 
 **delete** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
-DeleteMemory
+Delete a memory
 
 ### Path Parameters
 
@@ -31,7 +31,7 @@ DeleteMemory
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -75,13 +75,19 @@ DeleteMemory
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `BetaManagedAgentsDeletedMemory = object { id, type }`
 
+  Tombstone returned by [Delete a memory](/docs/en/api/beta/memory_stores/memories/delete). The memory's version history persists and remains listable via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) until the store itself is deleted.
+
   - `id: string`
+
+    ID of the deleted memory (a `mem_...` value).
 
   - `type: "memory_deleted"`
 

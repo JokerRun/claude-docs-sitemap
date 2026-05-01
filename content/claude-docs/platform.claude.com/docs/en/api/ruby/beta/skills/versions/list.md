@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 0f78755be3f1d0ed1ed3e0d34392c87241dcfc0a8ad2f2e586306237ed4a8d5f
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 819c24a4bc7e81b4683bd7d8908dcc4f39234d3e01d3e5d39d449bcedbdaf475
 ---
 
 ## List
@@ -37,7 +37,7 @@ List Skill Versions
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ List Skill Versions
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
 

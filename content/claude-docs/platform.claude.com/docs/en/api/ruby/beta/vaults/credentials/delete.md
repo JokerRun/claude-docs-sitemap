@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 44f1add60ed02edad90a2c929090f429c1626695274fe138a4a89cf12a1ac419
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: b1abf63d24ea47eb6567e95ef686fc33aa51315708dab11df5c135207aed5cf2
 ---
 
 ## Delete
@@ -25,7 +25,7 @@ Delete Credential
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Delete Credential
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
 

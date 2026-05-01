@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 83f02b93ae6a15d45e35c9a4d304f5db8ce88af521a0bccf82ce9ea4c9e915a2
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 8630cba5ed4ff47556c8e9d5ef5c64066dbb6324eb0427091df955e7c02d991e
 ---
 
 ## Create
@@ -121,7 +121,7 @@ Create a new environment with the specified configuration.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -165,13 +165,15 @@ Create a new environment with the specified configuration.
 
     - `"output-300k-2026-03-24"`
 
+    - `"user-profiles-2026-03-24"`
+
     - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaEnvironment: …`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: str`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 0b602b5d140258b00b7388303d3d9a39828fb0dae33658cb1b90864b613d39e6
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 0111e3898721de06a3cca675482b6702bb9e4ac3ae594d3c6fb8751d013f1ff1
 ---
 
 ## Create
@@ -63,6 +63,8 @@ Create a new environment with the specified configuration.
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `String name`
@@ -88,7 +90,7 @@ Create a new environment with the specified configuration.
 
 - `class BetaEnvironment:`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `String id`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/versions
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 10336278381fed3dbd1d3f6581ebff93c92727f2a04dff2e27a6925c87c5870c
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 8564aec402f2fd320be15d1e87a47f441cabef372e0c38bfe2b81c7b3a80f4c0
 ---
 
 # Versions
@@ -74,6 +74,8 @@ List Agent Versions
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

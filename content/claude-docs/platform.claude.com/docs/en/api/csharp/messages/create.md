@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: eaf90cec852042fea3b925e7163104e6aaeeaa07ad62e29034d37de084a8eb92
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: e713fd2335945f06e35c7c213b55ad319f41d89a47c437e09d71e8b683b0c420
 ---
 
 ## Create
@@ -26,6 +26,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     The maximum number of tokens to generate before stopping.
 
     Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+    Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
     Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 840b7ddb29ddd5c37470177c0049ef753c2a0ab19f0623f3664ff033307e8892
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: c9a7abfe2e5a35da4c1756f3ea1a7b4183d9d7777cd06c42dc0ec63674e28374
 ---
 
 ## Create
@@ -19,7 +19,7 @@ Create Agent
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -62,6 +62,8 @@ Create Agent
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 

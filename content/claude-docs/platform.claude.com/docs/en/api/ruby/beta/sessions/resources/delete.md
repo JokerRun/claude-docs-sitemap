@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/resources/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 5e3be4c0cb687de9727f54dd01114127459e97ad39a8e57be2a8fbcf4c62bd1d
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: bf758330c096bc5a63723eb2f9f4fbe9f647756c09fcfab6150c675fb8f0c143
 ---
 
 ## Delete
@@ -25,7 +25,7 @@ Delete Session Resource
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Delete Session Resource
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
 

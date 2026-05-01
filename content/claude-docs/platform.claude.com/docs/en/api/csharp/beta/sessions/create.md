@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 4edc1911eae9fa08b83906f74b3cbe3d275adae7147d81dd3aeef87077767100
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: bac9b7ec62c5e56374ff57e62f9820cc6007a21afe253abcbaf80f3339c7d1b5
 ---
 
 ## Create
@@ -188,6 +188,8 @@ Create Session
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 

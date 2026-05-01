@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/retrieve
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 303d03296046aab7eedd845d08c3884f78f24835fb4d33126a057cae90700088
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 5730fa1be966b34299439b86eb638dcb02ce46e8423ea41b01300b1ced3aabae
 ---
 
 ## Retrieve
@@ -29,7 +29,7 @@ Get Agent
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Get Agent
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 

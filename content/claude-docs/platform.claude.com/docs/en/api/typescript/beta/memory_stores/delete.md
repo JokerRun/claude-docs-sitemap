@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: f2039e0096f46c78057675a4616bc7feb482d6742f71c087190236ae4af1d62d
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 71a98741cfb881b227374f6b83bbad9941b9e76a5a91a9de0c8e2565b79ea092
 ---
 
 ## Delete
@@ -11,7 +11,7 @@ sha256: f2039e0096f46c78057675a4616bc7feb482d6742f71c087190236ae4af1d62d
 
 **delete** `/v1/memory_stores/{memory_store_id}`
 
-DeleteMemoryStore
+Delete a memory store
 
 ### Parameters
 
@@ -25,7 +25,7 @@ DeleteMemoryStore
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -69,13 +69,19 @@ DeleteMemoryStore
 
       - `"output-300k-2026-03-24"`
 
+      - `"user-profiles-2026-03-24"`
+
       - `"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `BetaManagedAgentsDeletedMemoryStore`
 
+  Confirmation that a `memory_store` was deleted.
+
   - `id: string`
+
+    ID of the deleted memory store (a `memstore_...` identifier). The store and all its memories and versions are no longer retrievable.
 
   - `type: "memory_store_deleted"`
 

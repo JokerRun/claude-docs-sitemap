@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/retrieve
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 28d6919ce87dc265b2c00e65638e2c27650d310638e3608e8910a20579fa01c3
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 961172fb9b34989c8d43afbf94416ba70871a26af5dfc23d9640550e31e27589
 ---
 
 ## Retrieve
@@ -23,7 +23,7 @@ Get Vault
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Get Vault
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
 

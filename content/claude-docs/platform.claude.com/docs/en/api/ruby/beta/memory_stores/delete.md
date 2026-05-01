@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 7fab031f27d2ccea1a7dd88f83844877ed117098ee17e552430f84ee4ca54550
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: e27c519a5cd9f907c8a6dae07716a7f70afd260f508449f0a661671f81a1cc3e
 ---
 
 ## Delete
@@ -11,7 +11,7 @@ sha256: 7fab031f27d2ccea1a7dd88f83844877ed117098ee17e552430f84ee4ca54550
 
 **delete** `/v1/memory_stores/{memory_store_id}`
 
-DeleteMemoryStore
+Delete a memory store
 
 ### Parameters
 
@@ -23,7 +23,7 @@ DeleteMemoryStore
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -67,13 +67,19 @@ DeleteMemoryStore
 
     - `:"output-300k-2026-03-24"`
 
+    - `:"user-profiles-2026-03-24"`
+
     - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaManagedAgentsDeletedMemoryStore`
 
+  Confirmation that a `memory_store` was deleted.
+
   - `id: String`
+
+    ID of the deleted memory store (a `memstore_...` identifier). The store and all its memories and versions are no longer retrievable.
 
   - `type: :memory_store_deleted`
 

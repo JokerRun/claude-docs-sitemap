@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 9cdc81b5f3ceb96c11ad94956f9e50a5cd41247c351ac36626fdceba51f7dfc1
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 56232c7e5e0d9e2411fb118fbad82ca678a668454b2230d00c09534e92f3fd56
 ---
 
 ## Create
@@ -42,6 +42,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         The maximum number of tokens to generate before stopping.
 
         Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+        Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
         Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -2454,6 +2456,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `const OutputConfigEffortMedium OutputConfigEffort = "medium"`
 
           - `const OutputConfigEffortHigh OutputConfigEffort = "high"`
+
+          - `const OutputConfigEffortXhigh OutputConfigEffort = "xhigh"`
 
           - `const OutputConfigEffortMax OutputConfigEffort = "max"`
 

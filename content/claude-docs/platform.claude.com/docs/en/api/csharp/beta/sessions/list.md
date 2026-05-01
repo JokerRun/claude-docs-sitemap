@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 9eadfdbd0af3630024f7bf20cc84e15b62e2a1b344be1817ec08dbd1913d206c
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: e387f1e1ac4b80b09495adb98e2fe0ebcf5496cd6ac81fcaafac61725e16e8ee
 ---
 
 ## List
@@ -48,6 +48,10 @@ List Sessions
   - `Int limit`
 
     Query param: Maximum number of results to return.
+
+  - `string memoryStoreID`
+
+    Query param: Filter sessions whose resources contain a memory_store with this memory store ID.
 
   - `Order order`
 
@@ -106,6 +110,8 @@ List Sessions
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 

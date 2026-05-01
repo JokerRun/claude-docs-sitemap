@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: fd4e62202cdd3eafbfcafc996b19a8a31deea1d53b46e924788e99178610e033
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 34cc421fe2dee47f80803858033f7474827718b09b66220143a547facd3d92f4
 ---
 
 # Models
@@ -80,6 +80,8 @@ The Models API response can be used to determine which models are available for 
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
@@ -190,6 +192,14 @@ The Models API response can be used to determine which models are available for 
       - `boolean supported`
 
         Whether this capability is supported by the model.
+
+      - `Optional<CapabilitySupport> xhigh`
+
+        Indicates whether a capability is supported.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
 
     - `CapabilitySupport imageInput`
 
@@ -352,6 +362,8 @@ The Models API response can be used to determine information about a specific mo
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
@@ -461,6 +473,14 @@ The Models API response can be used to determine information about a specific mo
       - `boolean supported`
 
         Whether this capability is supported by the model.
+
+      - `Optional<CapabilitySupport> xhigh`
+
+        Indicates whether a capability is supported.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
 
     - `CapabilitySupport imageInput`
 
@@ -647,6 +667,14 @@ public final class Main {
 
     Whether this capability is supported by the model.
 
+  - `Optional<CapabilitySupport> xhigh`
+
+    Indicates whether a capability is supported.
+
+    - `boolean supported`
+
+      Whether this capability is supported by the model.
+
 ### Model Capabilities
 
 - `class ModelCapabilities:`
@@ -748,6 +776,14 @@ public final class Main {
     - `boolean supported`
 
       Whether this capability is supported by the model.
+
+    - `Optional<CapabilitySupport> xhigh`
+
+      Indicates whether a capability is supported.
+
+      - `boolean supported`
+
+        Whether this capability is supported by the model.
 
   - `CapabilitySupport imageInput`
 
@@ -908,6 +944,14 @@ public final class Main {
       - `boolean supported`
 
         Whether this capability is supported by the model.
+
+      - `Optional<CapabilitySupport> xhigh`
+
+        Indicates whether a capability is supported.
+
+        - `boolean supported`
+
+          Whether this capability is supported by the model.
 
     - `CapabilitySupport imageInput`
 

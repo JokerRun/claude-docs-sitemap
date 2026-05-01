@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: a6f94be48c75a396feffb6b09a5e28ad2f75a3315e12261f25a6a3bb3fdf5515
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: d89cad0918f529fd41a6ebc51c15e5b4e220df45713194a36e11613d4b1b5e4a
 ---
 
 ## List
@@ -74,6 +74,8 @@ List environments with pagination support.
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 

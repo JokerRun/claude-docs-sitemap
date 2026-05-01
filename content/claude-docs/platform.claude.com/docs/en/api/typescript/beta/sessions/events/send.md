@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/events/send
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 1fac917c66221cda767295421224e9b2e198a5bcf431d3bf152eb3df3d490a3d
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: c2ed9a7e2274d02570a6f02acd0fb89dcd0f339fc631fbc9356053616032ac2f
 ---
 
 ## Send
@@ -377,7 +377,7 @@ Send Events
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -420,6 +420,8 @@ Send Events
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
 

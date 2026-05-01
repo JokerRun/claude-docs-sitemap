@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: fdb9fb1938931d2bebb6dc48e68c9d2eface2d932c5abbad896be3574c131bfa
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 7b8e9eff5ea80615f345e41657681068582d5629b9f8d1bfe5cccec0d31339e1
 ---
 
 ## List
@@ -78,6 +78,8 @@ List Skill Versions
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

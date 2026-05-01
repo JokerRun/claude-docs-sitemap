@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 7d2fc80a5a53982781bcd6e1d7501a592d8578df28631fd09aa84c0ecfaa7dea
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 07509e89892b6c92da6ff8d04d02de8ea583f4ff9aa0b840ae4563d65464a993
 ---
 
 ## List
@@ -33,7 +33,7 @@ List Session Resources
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ List Session Resources
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
 

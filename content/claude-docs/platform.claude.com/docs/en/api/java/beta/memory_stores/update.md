@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: e404e4baff61e647b84a6348223b819fcc241a6def078098a6e05554bbb116c3
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: a784c3da9fffad881ccac01c13e5c2d88573c18d3d3b67665c053e98cb021298
 ---
 
 ## Update
@@ -11,7 +11,7 @@ sha256: e404e4baff61e647b84a6348223b819fcc241a6def078098a6e05554bbb116c3
 
 **post** `/v1/memory_stores/{memory_store_id}`
 
-UpdateMemoryStore
+Update a memory store
 
 ### Parameters
 
@@ -65,9 +65,13 @@ UpdateMemoryStore
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `Optional<String> description`
+
+    New description for the store, up to 1024 characters. Pass an empty string to clear it.
 
   - `Optional<Metadata> metadata`
 
@@ -75,33 +79,45 @@ UpdateMemoryStore
 
   - `Optional<String> name`
 
+    New human-readable name for the store. 1–255 characters; no control characters. Renaming changes the slug used for the store's `mount_path` in sessions created after the update.
+
 ### Returns
 
 - `class BetaManagedAgentsMemoryStore:`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `String id`
+
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
+
+  - `LocalDateTime createdAt`
+
+    A timestamp in RFC 3339 format
+
+  - `String name`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
 
   - `Type type`
 
     - `MEMORY_STORE("memory_store")`
 
-  - `Optional<LocalDateTime> archivedAt`
+  - `LocalDateTime updatedAt`
 
     A timestamp in RFC 3339 format
 
-  - `Optional<LocalDateTime> createdAt`
+  - `Optional<LocalDateTime> archivedAt`
 
     A timestamp in RFC 3339 format
 
   - `Optional<String> description`
 
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
   - `Optional<Metadata> metadata`
 
-  - `Optional<String> name`
-
-  - `Optional<LocalDateTime> updatedAt`
-
-    A timestamp in RFC 3339 format
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 

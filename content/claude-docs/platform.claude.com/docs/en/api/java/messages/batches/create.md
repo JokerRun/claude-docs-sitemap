@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 30052453c37504e4a3eb3f273da1ed42e62568981939006c397f6a62670adc5c
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 4824eec01dddce1a136e4bc7f891550bcaf32976d641882cafe26774e66da45b
 ---
 
 ## Create
@@ -42,6 +42,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         The maximum number of tokens to generate before stopping.
 
         Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+        Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
         Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -2450,6 +2452,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `MEDIUM("medium")`
 
           - `HIGH("high")`
+
+          - `XHIGH("xhigh")`
 
           - `MAX("max")`
 

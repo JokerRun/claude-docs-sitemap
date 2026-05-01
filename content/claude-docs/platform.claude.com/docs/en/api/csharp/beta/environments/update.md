@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 54f047fda8c1c32efb723ebf7bf51a56e90d199f5c89bef56584d959f2e7c85c
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 6aebc86e37449739feb23cee7e07ff30f15b79e3a8b7fe0bb32be384dbfeac5e
 ---
 
 ## Update
@@ -86,13 +86,15 @@ Update an existing environment's configuration.
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
 - `class BetaEnvironment:`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `required string ID`
 

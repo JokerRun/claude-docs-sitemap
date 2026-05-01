@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 0bb99ed0ef436f1d7690acdb63fea839891f82452fd2f6d6379d429e8d79f32e
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: dfa0a197f6abf7bba9bf7a0f1a4230fd89082637c8c13fc21839d5a815b70faf
 ---
 
 ## Create
@@ -149,7 +149,7 @@ Create Session
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -192,6 +192,8 @@ Create Session
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
 

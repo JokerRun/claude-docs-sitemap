@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: dfe7bac49802ae6ca64342c01a2a0306064cd3e7bcbf2e638be68e44d56213b9
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 7cdda54fd5a506872e80901d9a710b0212339b061cb373689a683df3e0105c8e
 ---
 
 ## Create
@@ -63,9 +63,9 @@ Create User Profile
 
     - `"output-300k-2026-03-24"`
 
-    - `"advisor-tool-2026-03-01"`
-
     - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Body Parameters
 

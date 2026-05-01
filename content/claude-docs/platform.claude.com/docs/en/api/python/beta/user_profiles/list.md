@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/list
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 3bcf8ebaca47ded51521f449009cdfb0db9af305e33944b2dd651fddf5549c70
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: d8d417210ea6b7c1e205589633ae0040ddf4787cee46e0be24af935dc516afdf
 ---
 
 ## List
@@ -81,9 +81,9 @@ List User Profiles
 
     - `"output-300k-2026-03-24"`
 
-    - `"advisor-tool-2026-03-01"`
-
     - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

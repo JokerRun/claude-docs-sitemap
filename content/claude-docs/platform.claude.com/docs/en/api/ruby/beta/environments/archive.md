@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/archive
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: cb74dcd96f0cd66d8fb1495b47341d8f71bf32173c871a32c0b24c5a105d8b08
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 6a90f74d480191a380e2a9d8817c6967b427bc25830fc66634043ea29dac1a96
 ---
 
 ## Archive
@@ -23,7 +23,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -67,13 +67,15 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
     - `:"output-300k-2026-03-24"`
 
+    - `:"user-profiles-2026-03-24"`
+
     - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `class BetaEnvironment`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: String`
 

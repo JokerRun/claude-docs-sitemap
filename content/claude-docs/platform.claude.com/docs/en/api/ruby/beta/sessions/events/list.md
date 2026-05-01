@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/events/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 439eb8fb9ea36fa4e9ab9b5847fef26165b7ca35190cd7d847051f027c7d913d
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: e62987cbc1a7b603240827e27d985a92ad96847f9da7f61872c973ff68739d1c
 ---
 
 ## List
@@ -39,7 +39,7 @@ List Events
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ List Events
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
 

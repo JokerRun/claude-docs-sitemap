@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/agents/versions
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 663ca8c5bb0d9d8c308af1948676b1f6298b9a1b58aad12b9adfd09a2283c8fe
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 5ba846efb3014c904d3b17522872d9609156817200710774f76c9d91273a7a9a
 ---
 
 # Versions
@@ -33,7 +33,7 @@ List Agent Versions
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ List Agent Versions
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 

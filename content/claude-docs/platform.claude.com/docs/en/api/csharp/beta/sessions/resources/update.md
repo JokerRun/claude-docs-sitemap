@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 6c51ca09c3536b63f70dcfa525dd96dc5ac6227a1d834d129e835f64e365a02e
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 368caa90d801e81d24c9beb2318b9fa1e82af02963b0f25ad3755485001fd4a7
 ---
 
 ## Update
@@ -74,6 +74,8 @@ Update Session Resource
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 

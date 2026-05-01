@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 865ed1ba632a0a55a0c3d2bca4da7cafe13b63a57956f6c6eb5add84e4c024a0
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 3506c96e2723568f9d8d464029929a0e124da06e0c8d7eff63cd057a9407a897
 ---
 
 ## Delete
@@ -64,6 +64,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `"fast-mode-2026-02-01"FastMode2026_02_01`
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 

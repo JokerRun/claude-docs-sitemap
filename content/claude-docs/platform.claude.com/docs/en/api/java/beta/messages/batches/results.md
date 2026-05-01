@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/results
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: ab2d7af53033b31609413f0e1b867d62f2202d13fd9245914db2ccd995617ce2
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: a0f72e1887c658bd126fec8df758ee219bd474cdc69b885bed6ee9d4b9605830
 ---
 
 ## Results
@@ -70,6 +70,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
@@ -1011,6 +1013,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `Optional<String> content`
 
               Summary of compacted content, or null if compaction failed
+
+            - `Optional<String> encryptedContent`
+
+              Opaque metadata from prior compaction, to be round-tripped verbatim
 
             - `JsonValue; type "compaction"constant`
 

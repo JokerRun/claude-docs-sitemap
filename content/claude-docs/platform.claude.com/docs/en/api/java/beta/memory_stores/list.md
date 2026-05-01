@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 54725ff281735d45b60a1782ff6b76115e869ac308f6f304aeee89de42720eb6
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 278f758f9f70656a7e98335fe571c2ce7b155fb96645e57e9d12d9899bf2e15f
 ---
 
 ## List
@@ -11,7 +11,7 @@ sha256: 54725ff281735d45b60a1782ff6b76115e869ac308f6f304aeee89de42720eb6
 
 **get** `/v1/memory_stores`
 
-ListMemoryStores
+List memory stores
 
 ### Parameters
 
@@ -19,23 +19,23 @@ ListMemoryStores
 
   - `Optional<LocalDateTime> createdAtGte`
 
-    Return stores created at or after this time (inclusive).
+    Return only stores whose `created_at` is at or after this time (inclusive). Sent on the wire as `created_at[gte]`.
 
   - `Optional<LocalDateTime> createdAtLte`
 
-    Return stores created at or before this time (inclusive).
+    Return only stores whose `created_at` is at or before this time (inclusive). Sent on the wire as `created_at[lte]`.
 
   - `Optional<Boolean> includeArchived`
 
-    Query parameter for include_archived
+    When `true`, archived stores are included in the results. Defaults to `false` (archived stores are excluded).
 
   - `Optional<Long> limit`
 
-    Query parameter for limit
+    Maximum number of stores to return per page. Must be between 1 and 100. Defaults to 20 when omitted.
 
   - `Optional<String> page`
 
-    Query parameter for page
+    Opaque pagination cursor (a `page_...` value). Pass the `next_page` value from a previous response to fetch the next page; omit for the first page.
 
   - `Optional<List<AnthropicBeta>> betas`
 
@@ -83,35 +83,47 @@ ListMemoryStores
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 
 - `class BetaManagedAgentsMemoryStore:`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `String id`
+
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
+
+  - `LocalDateTime createdAt`
+
+    A timestamp in RFC 3339 format
+
+  - `String name`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
 
   - `Type type`
 
     - `MEMORY_STORE("memory_store")`
 
-  - `Optional<LocalDateTime> archivedAt`
+  - `LocalDateTime updatedAt`
 
     A timestamp in RFC 3339 format
 
-  - `Optional<LocalDateTime> createdAt`
+  - `Optional<LocalDateTime> archivedAt`
 
     A timestamp in RFC 3339 format
 
   - `Optional<String> description`
 
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
   - `Optional<Metadata> metadata`
 
-  - `Optional<String> name`
-
-  - `Optional<LocalDateTime> updatedAt`
-
-    A timestamp in RFC 3339 format
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 

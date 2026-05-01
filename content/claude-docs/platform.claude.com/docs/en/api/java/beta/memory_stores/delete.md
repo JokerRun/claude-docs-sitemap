@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 80a6bbfb41dedfb5d9fb2a526d91369a2696966eaf1c917929410a198179c144
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: c1e33eae19f54d345fa30742cb6495ea6c5be338edb7600226ba889b640f51b8
 ---
 
 ## Delete
@@ -11,7 +11,7 @@ sha256: 80a6bbfb41dedfb5d9fb2a526d91369a2696966eaf1c917929410a198179c144
 
 **delete** `/v1/memory_stores/{memory_store_id}`
 
-DeleteMemoryStore
+Delete a memory store
 
 ### Parameters
 
@@ -65,13 +65,19 @@ DeleteMemoryStore
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
 ### Returns
 
 - `class BetaManagedAgentsDeletedMemoryStore:`
 
+  Confirmation that a `memory_store` was deleted.
+
   - `String id`
+
+    ID of the deleted memory store (a `memstore_...` identifier). The store and all its memories and versions are no longer retrievable.
 
   - `Type type`
 

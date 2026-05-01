@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 2754917f1d876512a6c6cf6097b3c44ba94754f886cdb8348cf357bbc92a4e24
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 85fad7a9d2bde86eab1840283c4c10c947bf888d91f72035d26723ab1e0982b4
 ---
 
 ## Create
@@ -24,6 +24,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
   The maximum number of tokens to generate before stopping.
 
   Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+  Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
   Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -2431,7 +2433,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Configuration options for the model's output, such as the output format.
 
-  - `effort: :low | :medium | :high | :max`
+  - `effort: :low | :medium | :high | 2 more`
 
     All possible effort levels.
 
@@ -2440,6 +2442,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `:medium`
 
     - `:high`
+
+    - `:xhigh`
 
     - `:max`
 

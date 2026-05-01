@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: e181f638a60a81afc12aea073d93891d85ea97a1121225480fd9ba06ef7da26b
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: f646dd79b8de21c441240593ff468fe4941d28df1507a90eef1940269e0926a1
 ---
 
 # Messages
@@ -28,6 +28,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     The maximum number of tokens to generate before stopping.
 
     Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+    Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
     Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -17439,6 +17441,8 @@ public final class Main {
 
     - `HIGH("high")`
 
+    - `XHIGH("xhigh")`
+
     - `MAX("max")`
 
   - `Optional<JsonOutputFormat> format`
@@ -26980,6 +26984,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
 
+        Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
+
         Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
       - `List<MessageParam> messages`
@@ -29387,6 +29393,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `MEDIUM("medium")`
 
           - `HIGH("high")`
+
+          - `XHIGH("xhigh")`
 
           - `MAX("max")`
 

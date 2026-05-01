@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 1b99f1826a404b39e0461f2107fa827b4c21a6632c0261cad879f0d06cf651b9
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: eb80b3ecd4e001495fa6ba453c0d1353a1517b5f9c231727ddbb467d17a567ef
 ---
 
 ## Delete
@@ -11,7 +11,7 @@ sha256: 1b99f1826a404b39e0461f2107fa827b4c21a6632c0261cad879f0d06cf651b9
 
 **delete** `/v1/memory_stores/{memory_store_id}`
 
-DeleteMemoryStore
+Delete a memory store
 
 ### Parameters
 
@@ -67,13 +67,19 @@ DeleteMemoryStore
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
 - `class BetaManagedAgentsDeletedMemoryStore:`
 
+  Confirmation that a `memory_store` was deleted.
+
   - `required string ID`
+
+    ID of the deleted memory store (a `memstore_...` identifier). The store and all its memories and versions are no longer retrievable.
 
   - `required Type Type`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: b400c138ed0b779f2fe890b0ba431d2943f2155137ccedebb6047de1c2c2564d
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 4af2143bcca6fb5e098d0f54d89777a2ff016302c92b6e0f63e8f971fedeaea5
 ---
 
 ## List
@@ -47,6 +47,10 @@ List Sessions
 
   Maximum number of results to return.
 
+- `memory_store_id: Optional[str]`
+
+  Filter sessions whose resources contain a memory_store with this memory store ID.
+
 - `order: Optional[Literal["asc", "desc"]]`
 
   Sort direction for results, ordered by created_at. Defaults to desc (newest first).
@@ -65,7 +69,7 @@ List Sessions
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 19 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -108,6 +112,8 @@ List Sessions
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 

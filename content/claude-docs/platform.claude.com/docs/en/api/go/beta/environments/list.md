@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 68b407142f1e9e6aa96811a3d3be7ebfb407d826142f594252ea9bd84ad2da00
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: b45ee0e8a0089ce8911f69cc74f8751e5489365e8e46f29008929f523a7abf9c
 ---
 
 ## List
@@ -79,13 +79,15 @@ List environments with pagination support.
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaEnvironment struct{…}`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `ID string`
 

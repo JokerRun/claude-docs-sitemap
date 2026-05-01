@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: d1393f503f95cc5ed4ba15c8986b5e24654fd18e06c149a2bf2823974e013c52
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 50bf5f95609f89465ef73e87b7ac91a81fad3bc00a0dc23f32e692497c97a732
 ---
 
 ## List
@@ -48,6 +48,10 @@ List Sessions
   - `Optional<Long> limit`
 
     Maximum number of results to return.
+
+  - `Optional<String> memoryStoreId`
+
+    Filter sessions whose resources contain a memory_store with this memory store ID.
 
   - `Optional<Order> order`
 
@@ -106,6 +110,8 @@ List Sessions
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

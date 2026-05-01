@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/create
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 2f5b02dbf6756b65f5b39b5162298fdc54fd7db66e85569ea72f7df21ce7cf27
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: c3b8e5c8c21aab9d9b604bd4f77f8bd9030666ab419e1787539707483b85c007
 ---
 
 ## Create
@@ -73,9 +73,9 @@ Create User Profile
 
     - `"output-300k-2026-03-24"`
 
-    - `"advisor-tool-2026-03-01"`
-
     - `"user-profiles-2026-03-24"`
+
+    - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

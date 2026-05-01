@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 95a3708cf4d22d6f740fcc2f961ccdd45f183f1007d02404b153845dfc6f222e
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 8a61802aed62b170c4991af3ca0c14f0bf0695868024d36b47d0e42009615904
 ---
 
 ## List
@@ -83,6 +83,8 @@ List Skills
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

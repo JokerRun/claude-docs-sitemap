@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/messages
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 20f70ae0c11388800178df1ac2585d25ece2d9b81a6821a436a13a04760f652b
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: c965355d7ea9db6ac086813b2d08f19ff12f9b59b6871ef62f57c7bfa78e05a7
 ---
 
 # Messages
@@ -26,6 +26,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
   The maximum number of tokens to generate before stopping.
 
   Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+  Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
   Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -9227,7 +9229,7 @@ ant messages count-tokens \
 
 - `output_config: object { effort, format }`
 
-  - `effort: optional "low" or "medium" or "high" or "max"`
+  - `effort: optional "low" or "medium" or "high" or 2 more`
 
     All possible effort levels.
 
@@ -9236,6 +9238,8 @@ ant messages count-tokens \
     - `"medium"`
 
     - `"high"`
+
+    - `"xhigh"`
 
     - `"max"`
 

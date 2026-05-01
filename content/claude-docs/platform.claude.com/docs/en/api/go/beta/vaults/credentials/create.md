@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: a6cde5f6f93d7bd4f172186f7004990c9f88cc4d04a42d8e9a6555c6eb932733
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: d378fd530e2103efd95386d760c2e4c43ea8ecff751516dd9d4403678708241d
 ---
 
 ## Create
@@ -176,6 +176,8 @@ Create Credential
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 

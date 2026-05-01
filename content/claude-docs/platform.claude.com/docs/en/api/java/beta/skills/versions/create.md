@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 732561dea0e1237b947d4067106fb36a0f10ad9518b6a91ddaeabc1c51aa7d6e
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: f84dc209aa7e1ec3cf47ee5654fe176ce17efd1c66315955b02a53027c87f8f2
 ---
 
 ## Create
@@ -68,6 +68,8 @@ Create Skill Version
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

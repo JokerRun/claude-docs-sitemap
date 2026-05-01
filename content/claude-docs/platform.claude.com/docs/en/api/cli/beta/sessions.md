@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 6f69d7e449d00c7cfdc7ab47767e28aece448c9ead933aedf7f47dd1eccd2df7
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 48f1f06c7a4aa3d27f87cda7c6d9f3fac416da6a0191160ae0a2294f2ae740c3
 ---
 
 # Sessions
@@ -557,6 +557,10 @@ List Sessions
 - `--limit: optional number`
 
   Query param: Maximum number of results to return.
+
+- `--memory-store-id: optional string`
+
+  Query param: Filter sessions whose resources contain a memory_store with this memory store ID.
 
 - `--order: optional "asc" or "desc"`
 

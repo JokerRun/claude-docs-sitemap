@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/events/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: ab57b29196367e274dae61afc745540589d458a90d88cf75a282962f7bb56f88
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 19b61584516916c7bcb5ca49051d179eefdcd9c9930424580238b001977bfc18
 ---
 
 ## List
@@ -84,6 +84,8 @@ List Events
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/user_profiles/update
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: b526345c9354e596e86a7a1ca702bd31de19cbff16a8c81e9d628937d219ac9c
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: c7751415c3c6e36c1592c5c831cfc505fddf4ea0724ac3aba229ed80e6aa3bd5
 ---
 
 ## Update
@@ -77,9 +77,9 @@ Update User Profile
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
-      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
-
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
+      - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 

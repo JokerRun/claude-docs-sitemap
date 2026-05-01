@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/archive
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 671d7c4962724f81fe558fbc56b41a1ab2700185dc4d18a160afe394ce0ff9cb
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 949fdcbdec2e086d2a76e10a33e7c7725829d38d92b0793a57afa07431682b8e
 ---
 
 ## Archive
@@ -25,7 +25,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
 - `beta_environment: object { id, archived_at, config, 6 more }`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: string`
 

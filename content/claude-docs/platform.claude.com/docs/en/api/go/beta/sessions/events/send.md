@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/events/send
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 529c2a9d423a8463886c43faff81d9e73eb879946bd63871767b6b409d42599b
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 2d0b59c40c3910503b5b93e331e57f42663e544e1fbf49351807a092d2c7dbfb
 ---
 
 ## Send
@@ -420,6 +420,8 @@ Send Events
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 

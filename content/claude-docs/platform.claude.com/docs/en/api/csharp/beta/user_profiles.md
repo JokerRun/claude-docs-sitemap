@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 9c093d2c34d7bc455316a025e1e602db38df04cdb887fbe3163c3befc2f2299e
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 1b8659da9b29cdfc8bcd2a49cec0c7025d6453a96a9327ccf183f0ce28c5999f
 ---
 
 # User Profiles
@@ -73,9 +73,9 @@ Create User Profile
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
-    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
@@ -205,9 +205,9 @@ List User Profiles
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
-    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
@@ -257,7 +257,7 @@ List User Profiles
 
       Platform's own identifier for this user. Not enforced unique.
 
-  - `string? NextPage`
+  - `required string? NextPage`
 
     Cursor for the next page, or `null` when there are no more results.
 
@@ -335,9 +335,9 @@ Get User Profile
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
-    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
@@ -466,9 +466,9 @@ Update User Profile
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
-    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
@@ -589,9 +589,9 @@ Create Enrollment URL
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
-    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
-
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 

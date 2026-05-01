@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 002c4450d0e783498a14c5dbb1d8a87e1d1758424e1ec6779658169430daae58
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 3f7877f4144da03612401608373513a2dfc4547f0f37b580ed1a68dc10411a5f
 ---
 
 ## Create
@@ -82,13 +82,15 @@ Create a new environment with the specified configuration.
 
     - `"output-300k-2026-03-24"Output300k2026_03_24`
 
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
 ### Returns
 
 - `class BetaEnvironment:`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `required string ID`
 

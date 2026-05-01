@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: da7665c317e4f0034ed202f78c4fd76aa6c1bb48f90abbc9157b46e16255b8d4
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 091d793a77a9d7ce9785fa32a8c4b691346175a7dd280b0e2e5bab872c0ae49a
 ---
 
 ## Retrieve
@@ -67,9 +67,9 @@ Get User Profile
 
     - `:"output-300k-2026-03-24"`
 
-    - `:"advisor-tool-2026-03-01"`
-
     - `:"user-profiles-2026-03-24"`
+
+    - `:"advisor-tool-2026-03-01"`
 
 ### Returns
 

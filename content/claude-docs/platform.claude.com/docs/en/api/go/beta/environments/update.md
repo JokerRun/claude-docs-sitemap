@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 74aa27ef261ec35aabc45d82ed9e539fb57fd575c42ef5b663ce887144ab31a7
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 9a41ffacb5ba544dd389837f08b8e33a801b12fa8eec184271e4e57498f314c9
 ---
 
 ## Update
@@ -88,13 +88,15 @@ Update an existing environment's configuration.
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaEnvironment struct{…}`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `ID string`
 

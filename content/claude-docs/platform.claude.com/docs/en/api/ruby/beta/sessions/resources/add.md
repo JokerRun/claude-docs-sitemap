@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/resources/add
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 54ce83424e45910398a6f2e5d61ceed895abf51d7fbedd325b7c252cf34de941
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 705ff4b5b2450c1818f69a1a97c92e8f3c0223914b53f1673546541d161c395e
 ---
 
 ## Add
@@ -35,7 +35,7 @@ Add Session Resource
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -78,6 +78,8 @@ Add Session Resource
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
 

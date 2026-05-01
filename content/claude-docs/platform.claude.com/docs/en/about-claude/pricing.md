@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 820bbf24ddfe9f95dd700a23c947c2f34fffdd91d269fe6449cd99e2e034f0c6
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: b7f56fc59b8a2e2375bc601f2a7f7b2b92a710c976660f097579e8ee792d9b81
 ---
 
 # Pricing
@@ -310,7 +310,6 @@ The following Messages API modifiers do **not** apply to Claude Managed Agents s
 | [Batch API discount](#batch-processing) | Sessions are stateful and interactive. There is no batch mode. |
 | [Fast mode premium](#fast-mode-pricing) | Inference speed is managed by the runtime. |
 | [Data residency multiplier](#data-residency-pricing) | `inference_geo` is a Messages API request field. |
-| [Long context premium](#long-context-pricing) | Context window is managed by the runtime. |
 | [Third-party platform pricing](#third-party-platform-pricing) | Claude Managed Agents is available only through the Claude API directly. |
 
 ### Session runtime

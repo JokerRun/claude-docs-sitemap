@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: e62ddb329263a8275c40c13dbf75bbe62226ffeb79349d63d95973223ef8a62d
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 34eec29bd6abf07fe1f677cae77d6b55ef11e59c17b32e526ff8facfe0d88019
 ---
 
 ## List
@@ -48,6 +48,10 @@ List Sessions
   - `Limit param.Field[int64]`
 
     Query param: Maximum number of results to return.
+
+  - `MemoryStoreID param.Field[string]`
+
+    Query param: Filter sessions whose resources contain a memory_store with this memory store ID.
 
   - `Order param.Field[BetaSessionListParamsOrder]`
 
@@ -110,6 +114,8 @@ List Sessions
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/add
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: e906aec3ad58d1432499708ca07bd813167a28f8d27a0841eff62425435d0eca
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 1c41e27fd45e258e2f35a270ad5ee4a802a2ddab48d1b14d6077dd22ea04d69c
 ---
 
 ## Add
@@ -23,7 +23,7 @@ Add Session Resource
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Add Session Resource
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 

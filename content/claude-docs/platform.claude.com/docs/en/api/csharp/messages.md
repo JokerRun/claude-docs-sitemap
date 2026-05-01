@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: decc83c8c4392330cd87ca8c41bd8c2c8031b59a6801b63de32d31874bfd0745
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: d5533732c4984d96854e1797b167cf37ea4e72f76d142135079980aa7f223ce3
 ---
 
 # Messages
@@ -28,6 +28,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     The maximum number of tokens to generate before stopping.
 
     Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+    Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
     Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -15207,6 +15209,8 @@ Console.WriteLine(messageTokensCount);
 
     - `"high"High`
 
+    - `"xhigh"Xhigh`
+
     - `"max"Max`
 
   - `JsonOutputFormat? Format`
@@ -23564,6 +23568,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
 
+        Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
+
         Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
       - `required IReadOnlyList<MessageParam> Messages`
@@ -25663,6 +25669,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `"medium"Medium`
 
           - `"high"High`
+
+          - `"xhigh"Xhigh`
 
           - `"max"Max`
 

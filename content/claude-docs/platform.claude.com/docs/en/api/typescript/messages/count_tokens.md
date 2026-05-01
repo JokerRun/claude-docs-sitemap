@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/count_tokens
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: cbf98247de027cf7e24c8c381b13283a9e201117c05a792cca6cae97e3c9ec02
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 7aa2fbd9363a7c9e4ad54ab55e02daba0edb11bbcfa07da11a54a7afb82dcb72
 ---
 
 ## Count Tokens
@@ -2403,7 +2403,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     Configuration options for the model's output, such as the output format.
 
-    - `effort?: "low" | "medium" | "high" | "max" | null`
+    - `effort?: "low" | "medium" | "high" | 2 more | null`
 
       All possible effort levels.
 
@@ -2412,6 +2412,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `"medium"`
 
       - `"high"`
+
+      - `"xhigh"`
 
       - `"max"`
 

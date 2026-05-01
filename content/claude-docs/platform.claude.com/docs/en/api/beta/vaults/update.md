@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 91688b1a4f94f260063197950cf075ef4b3c1f86d778f9cf5b224d69b0f77534
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: e46b614c1185a90d48beb0f338840a53e1d903c0b95ed57d7a7efa004e0eb33f
 ---
 
 ## Update
@@ -23,7 +23,7 @@ Update Vault
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Update Vault
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/archive
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: d7556d01b875376232dbd711c0710d09fec25c0fcb981ae946e60c467e9f6cbf
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 589f2c40e3a75a93cd8ff8f1f3e9e358993bb94114b75cde8607655a4a1e357b
 ---
 
 ## Archive
@@ -25,7 +25,7 @@ Archive Vault
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Archive Vault
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
 

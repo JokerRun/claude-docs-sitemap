@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 759c6db29d8435bbe0034d397d193aa76cd74bd92a8f697bebc8b156fd8dcd6b
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: f38755a60ac1b70ce5ee8716a6c097cd15939ad071d40ac8d748b926b42f9c8d
 ---
 
 ## Create
@@ -67,6 +67,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `long maxTokens`
@@ -74,6 +76,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     The maximum number of tokens to generate before stopping.
 
     Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+    Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
     Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -2715,6 +2719,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `TTL_1H("1h")`
 
+          - `Optional<String> encryptedContent`
+
+            Opaque metadata from prior compaction, to be round-tripped verbatim
+
     - `Role role`
 
       - `USER("user")`
@@ -4615,6 +4623,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Recommended for advanced use cases only.
 
+  - `Optional<String> userProfileId`
+
+    The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
+
 ### Returns
 
 - `class BetaMessage:`
@@ -5535,6 +5547,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `Optional<String> content`
 
         Summary of compacted content, or null if compaction failed
+
+      - `Optional<String> encryptedContent`
+
+        Opaque metadata from prior compaction, to be round-tripped verbatim
 
       - `JsonValue; type "compaction"constant`
 

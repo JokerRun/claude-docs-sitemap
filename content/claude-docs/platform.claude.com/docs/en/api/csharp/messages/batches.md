@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 8821554a6b2fe6046dbc4d9da92b5a205200301b6b8cb5b49d74a22562245f1f
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: fba75253e63032bbfc1234bb301b8e7caec399ed11dd5d86ef2e1aa562a8eb46
 ---
 
 # Batches
@@ -44,6 +44,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         The maximum number of tokens to generate before stopping.
 
         Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+        Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
         Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -2144,6 +2146,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `"medium"Medium`
 
           - `"high"High`
+
+          - `"xhigh"Xhigh`
 
           - `"max"Max`
 

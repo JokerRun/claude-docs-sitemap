@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: e8f05a68fc245c857ca6b625a519b82386401dc7456d7b51c816eeed716b4f75
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 9005c75c4fbe35a63f5fbda58dec59af2b471e53e0ccc60f021bfc4fd85375c1
 ---
 
 ## Update
@@ -64,6 +64,8 @@ Update Vault
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 6076c7c17935ea38963810f8cce554babc7dfd024e9aa4c5105e4917689c10c2
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 0a5389b7dc7cf6ac3979adb197dc096e98b49c17994aa656a69f2e50b520e7e5
 ---
 
 ## Delete
@@ -11,7 +11,7 @@ sha256: 6076c7c17935ea38963810f8cce554babc7dfd024e9aa4c5105e4917689c10c2
 
 **delete** `/v1/memory_stores/{memory_store_id}`
 
-DeleteMemoryStore
+Delete a memory store
 
 ### Parameters
 
@@ -69,13 +69,19 @@ DeleteMemoryStore
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsDeletedMemoryStore struct{…}`
 
+  Confirmation that a `memory_store` was deleted.
+
   - `ID string`
+
+    ID of the deleted memory store (a `memstore_...` identifier). The store and all its memories and versions are no longer retrievable.
 
   - `Type BetaManagedAgentsDeletedMemoryStoreType`
 

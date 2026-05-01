@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/events
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 8033a96b32b1aed2e83de8c417f7fbdd52520b6780f822d9449a9db53b5ace41
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: cb93f0765f22ee168c8daa68b8a9adb1ad565713caeba7ead06dff9b49a91746
 ---
 
 # Events
@@ -82,6 +82,8 @@ List Events
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
@@ -1536,6 +1538,8 @@ Send Events
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
 
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
+
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
   - `List<BetaManagedAgentsEventParams> events`
@@ -2370,6 +2374,8 @@ Stream Events
     - `FAST_MODE_2026_02_01("fast-mode-2026-02-01")`
 
     - `OUTPUT_300K_2026_03_24("output-300k-2026-03-24")`
+
+    - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 

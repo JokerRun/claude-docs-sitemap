@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/archive
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 14649d25d7acad43cd4a649c0659b863ea93d277e6ca7796abdf994f44b6c252
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: a496f8e8ce340201e8cdf47316ad52a6da620ef54530c15f6c2a780cc62d90d3
 ---
 
 ## Archive
@@ -23,7 +23,7 @@ Archive Vault
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 19 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Archive Vault
     - `:"fast-mode-2026-02-01"`
 
     - `:"output-300k-2026-03-24"`
+
+    - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
 

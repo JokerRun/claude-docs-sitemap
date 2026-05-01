@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/update
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: b6606c5a9e822c60cf123d74207ffe447e8ffbd92d279deebf91b64696404826
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 42b6647332edb14b467407f427722b458e80d62a287792e64c39080759a722e4
 ---
 
 ## Update
@@ -77,9 +77,9 @@ Update User Profile
 
       - `"output-300k-2026-03-24"`
 
-      - `"advisor-tool-2026-03-01"`
-
       - `"user-profiles-2026-03-24"`
+
+      - `"advisor-tool-2026-03-01"`
 
 ### Returns
 

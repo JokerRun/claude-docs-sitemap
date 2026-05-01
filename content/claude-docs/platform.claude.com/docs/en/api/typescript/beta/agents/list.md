@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: d18273167411b33d30fddd37950a6eedae9c7d290992dd8818ca3683aeb9323b
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 99ba77d4a3a17649657b85e4bb40864ffa7e17df7252b1c872d0dbc3889908aa
 ---
 
 ## List
@@ -17,11 +17,11 @@ List Agents
 
 - `params: AgentListParams`
 
-  - `createdAtGte?: string`
+  - `"created_at[gte]"?: string`
 
     Query param: Return agents created at or after this time (inclusive).
 
-  - `createdAtLte?: string`
+  - `"created_at[lte]"?: string`
 
     Query param: Return agents created at or before this time (inclusive).
 
@@ -43,7 +43,7 @@ List Agents
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 19 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,8 @@ List Agents
       - `"fast-mode-2026-02-01"`
 
       - `"output-300k-2026-03-24"`
+
+      - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
 

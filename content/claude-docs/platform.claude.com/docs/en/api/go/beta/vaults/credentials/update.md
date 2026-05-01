@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 08915341808baa899e857a12fe1a2e987327ec8ee3a25efec6bba72e1a741f9e
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: b57f3a87b4b89721328a1a98b53c54f033d26a817eac003afa17ba1846b09252
 ---
 
 ## Update
@@ -152,6 +152,8 @@ Update Credential
       - `const AnthropicBetaFastMode2026_02_01 AnthropicBeta = "fast-mode-2026-02-01"`
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
+
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 

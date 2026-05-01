@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/list
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: c0b76985d333fc070606855d5abbc2e75f814b4e4d2f561a3648b9a2026e4a2c
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 6fff10ab37389b8872dddd7e31343885ab8fd2dc4abfe3b737219aac3e54ce0f
 ---
 
 ## List
@@ -45,6 +45,10 @@ List Sessions
 
   Maximum number of results to return.
 
+- `memory_store_id: optional string`
+
+  Filter sessions whose resources contain a memory_store with this memory store ID.
+
 - `order: optional "asc" or "desc"`
 
   Sort direction for results, ordered by created_at. Defaults to desc (newest first).
@@ -65,7 +69,7 @@ List Sessions
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 19 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -108,6 +112,8 @@ List Sessions
     - `"fast-mode-2026-02-01"`
 
     - `"output-300k-2026-03-24"`
+
+    - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 95c9050cef72fe23911b73f6042b6503b9cdc4d753306cc7fb09ccc2b80fe15b
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 0c4fa9cea76bbe2ce03013252ee6912d49ab7ae7302669ccb589e64f8984d6d4
 ---
 
 ## Create
@@ -42,7 +42,7 @@ Create a new environment with the specified configuration.
 
 - `beta_environment: object { id, archived_at, config, 6 more }`
 
-  Unified Environment resource for both cloud and BYOC environments.
+  Unified Environment resource for both cloud and self-hosted environments.
 
   - `id: string`
 

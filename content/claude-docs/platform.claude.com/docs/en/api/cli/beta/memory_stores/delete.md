@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/delete
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 8a40f4429c08c485cd5bdd093b7f941c432ed4cd339dee62e143a741050fdb21
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: 77021bbbb5d4aaf93960eccccf66779636e385343ad0e0d81a37511b33f13426
 ---
 
 ## Delete
@@ -11,7 +11,7 @@ sha256: 8a40f4429c08c485cd5bdd093b7f941c432ed4cd339dee62e143a741050fdb21
 
 **delete** `/v1/memory_stores/{memory_store_id}`
 
-DeleteMemoryStore
+Delete a memory store
 
 ### Parameters
 
@@ -27,7 +27,11 @@ DeleteMemoryStore
 
 - `beta_managed_agents_deleted_memory_store: object { id, type }`
 
+  Confirmation that a `memory_store` was deleted.
+
   - `id: string`
+
+    ID of the deleted memory store (a `memstore_...` identifier). The store and all its memories and versions are no longer retrievable.
 
   - `type: "memory_store_deleted"`
 

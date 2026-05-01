@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 235f2c8804c2bab3075af951bc5b45052c7f5c4566baa8ef1828574513726bf4
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: b43ff853243038f89be9e7bd447b04098e51c013e85855ae8354703d81a71808
 ---
 
 ## Create
@@ -24,6 +24,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
   The maximum number of tokens to generate before stopping.
 
   Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+  Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
   Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
 
@@ -2449,7 +2451,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Configuration options for the model's output, such as the output format.
 
-  - `effort: Optional[Literal["low", "medium", "high", "max"]]`
+  - `effort: Optional[Literal["low", "medium", "high", 2 more]]`
 
     All possible effort levels.
 
@@ -2458,6 +2460,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"medium"`
 
     - `"high"`
+
+    - `"xhigh"`
 
     - `"max"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: f9e512514842c739bd63495cd9289f00be74a0a84f7ebb4d1d37bd81047b34bc
+fetched_at: 2026-05-01T03:13:58.197473Z
+sha256: d4506feda2a5327e812e5b0eec17238f5b70a40c6cd836ea6cb0bbc49a7c87c2
 ---
 
 ## Create
@@ -11,7 +11,7 @@ sha256: f9e512514842c739bd63495cd9289f00be74a0a84f7ebb4d1d37bd81047b34bc
 
 **post** `/v1/memory_stores`
 
-CreateMemoryStore
+Create a memory store
 
 ### Parameters
 
@@ -19,15 +19,15 @@ CreateMemoryStore
 
   - `Name param.Field[string]`
 
-    Body param
+    Body param: Human-readable name for the store. Required; 1–255 characters; no control characters. The mount-path slug under `/mnt/memory/` is derived from this name (lowercased, non-alphanumeric runs collapsed to a hyphen). Names need not be unique within a workspace.
 
   - `Description param.Field[string]`
 
-    Body param
+    Body param: Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent.
 
   - `Metadata param.Field[map[string, string]]`
 
-    Body param
+    Body param: Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Not visible to the agent.
 
   - `Betas param.Field[[]AnthropicBeta]`
 
@@ -79,35 +79,47 @@ CreateMemoryStore
 
       - `const AnthropicBetaOutput300k2026_03_24 AnthropicBeta = "output-300k-2026-03-24"`
 
+      - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
+
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
 ### Returns
 
 - `type BetaManagedAgentsMemoryStore struct{…}`
 
+  A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
   - `ID string`
 
-  - `Type BetaManagedAgentsMemoryStoreType`
-
-    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
-
-  - `ArchivedAt Time`
-
-    A timestamp in RFC 3339 format
+    Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
 
   - `CreatedAt Time`
 
     A timestamp in RFC 3339 format
 
-  - `Description string`
-
-  - `Metadata map[string, string]`
-
   - `Name string`
+
+    Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
+
+  - `Type BetaManagedAgentsMemoryStoreType`
+
+    - `const BetaManagedAgentsMemoryStoreTypeMemoryStore BetaManagedAgentsMemoryStoreType = "memory_store"`
 
   - `UpdatedAt Time`
 
     A timestamp in RFC 3339 format
+
+  - `ArchivedAt Time`
+
+    A timestamp in RFC 3339 format
+
+  - `Description string`
+
+    Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+
+  - `Metadata map[string, string]`
+
+    Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
 ### Example
 
