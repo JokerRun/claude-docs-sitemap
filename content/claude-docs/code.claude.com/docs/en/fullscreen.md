@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: b0acb62731aaed296267734874c6360d3fad8fdd60e4d8eed0b8236ced438277
+fetched_at: 2026-05-02T03:12:03.381331Z
+sha256: ca058477a9a25e6e6843ddfcb63b4e54bb943b794b5efb4a36b4100df6768a36
 ---
 
 > ## Documentation Index
@@ -125,7 +125,7 @@ Press `Esc` or `q` to return to the prompt.
 
 ## Clear the conversation
 
-Press `Ctrl+L` twice within two seconds to run `/clear` and start a new conversation. The first press clears the input box and shows a hint; the second press clears the conversation. On macOS, double-pressing `Cmd+K` also runs `/clear`.
+Press `Ctrl+L` twice within two seconds to run `/clear` and start a new conversation. The first press redraws the screen and shows a hint; the second press clears the conversation. On macOS, double-pressing `Cmd+K` also runs `/clear`.
 
 ## Use with tmux
 

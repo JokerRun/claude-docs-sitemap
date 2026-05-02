@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 23664baf5436c1ce77f3259bfcf9069f4d65fd4c484bccbab8eacbc4b3db54c4
+fetched_at: 2026-05-02T03:12:03.381331Z
+sha256: 866518b1a94c0f6f5baf12acc74e1b1e69a97ea55961fc9176e0e00128bcdf20
 ---
 
 > ## Documentation Index
@@ -733,7 +733,7 @@ Logged when a plugin finishes installing, from both the `claude plugin install` 
 
 #### Skill activated event
 
-Logged when a skill is invoked.
+Logged when a skill is invoked, whether Claude calls it through the Skill tool or you run it as a `/` command.
 
 **Event Name**: `claude_code.skill_activated`
 
@@ -744,6 +744,7 @@ Logged when a skill is invoked.
 * `event.timestamp`: ISO 8601 timestamp
 * `event.sequence`: monotonically increasing counter for ordering events within a session
 * `skill.name`: Name of the skill. For user-defined and third-party plugin skills the value is the placeholder `"custom_skill"` unless `OTEL_LOG_TOOL_DETAILS=1`
+* `invocation_trigger`: How the skill was triggered (`"user-slash"`, `"claude-proactive"`, or `"nested-skill"`)
 * `skill.source`: Where the skill was loaded from (for example, `"bundled"`, `"userSettings"`, `"projectSettings"`, `"plugin"`)
 * `plugin.name` (when `OTEL_LOG_TOOL_DETAILS=1` or the plugin is from an official marketplace): Name of the owning plugin when the skill is provided by a plugin
 * `marketplace.name` (when `OTEL_LOG_TOOL_DETAILS=1` or the plugin is from an official marketplace): Marketplace the owning plugin was installed from, when the skill is provided by a plugin

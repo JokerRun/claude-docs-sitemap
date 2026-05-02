@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: b30dfe0f18cbbd9b2cf25ecc58c2582628edc3645f0dadb3224d90ac1278ce22
+fetched_at: 2026-05-02T03:12:03.381331Z
+sha256: 8e89ca68e5eb50460f4cf3d9b02817e07da06578247960394e75e8f56f730c5c
 ---
 
 > ## Documentation Index
@@ -43,10 +43,9 @@ Run `claude --version` to check your installed version.
   * Fixed `Ctrl+L` clearing the prompt input — it now only forces a screen redraw, matching readline behavior
   * Fixed deferred tools (WebSearch, WebFetch, etc.) not being available to skills with `context: fork` and other subagents on their first turn
   * Fixed plan-mode tools being unavailable in interactive sessions launched with `--channels`
-  * Fixed blank remote-session transcript when certain messaging tools are unavailable
   * Fixed `/plugin` Uninstall reporting "Enabled" instead of "Uninstalled"
   * Bounded total size of file-modified reminders when a linter touches many files at once
-  * Fixed `/remote-control` retries appearing stuck on "connecting…" — each retry now shows its result, and unenrolled trusted-device failures are caught up-front
+  * Fixed `/remote-control` retries appearing stuck on "connecting…" — each retry now shows its result
   * Fixed Remote Control failure notification not showing the error reason for initial connection failures
   * Windows: clipboard writes no longer expose copied content in process command-line arguments visible to EDR/SIEM telemetry; also fixes >22KB selections not reaching the clipboard
   * PowerShell tool: bare `--` (e.g. `git diff -- file`) is no longer mis-flagged as the `--%` stop-parsing token

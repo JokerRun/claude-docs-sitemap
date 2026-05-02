@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: ca7810a9e73b5a62ad4fb79d5e07959e76e600fe23d60e985dc4132900f788e8
+fetched_at: 2026-05-02T03:12:03.381331Z
+sha256: 1c8667ff49cc41c50d2ddc833db8d5ebd6fbbd7435c8349373f18efcd27389bb
 ---
 
 > ## Documentation Index
@@ -58,9 +58,15 @@ Claude Code also prepends a short attribution block to the system prompt contain
 
 ### Model selection
 
-By default, Claude Code will use standard model names for the selected API format.
+By default, Claude Code uses standard model names for the selected API format.
 
-If you have configured custom model names in your gateway, use the environment variables documented in [Model configuration](/en/model-config) to match your custom names.
+When `ANTHROPIC_BASE_URL` points at a gateway that exposes the Anthropic Messages format, Claude Code queries the gateway's `/v1/models` endpoint at startup and adds the returned models to the `/model` picker. Each discovered entry is labeled "From gateway" and uses the `display_name` field from the response when one is provided. This requires Claude Code v2.1.126 or later.
+
+Discovery applies only to the Anthropic Messages format. It does not run for Bedrock or Vertex pass-through endpoints, and it does not run when `ANTHROPIC_BASE_URL` is unset or points at `api.anthropic.com`.
+
+The discovery request authenticates the same way as inference requests: it sends `ANTHROPIC_AUTH_TOKEN` as a bearer token, or `ANTHROPIC_API_KEY` as the `x-api-key` header when no auth token is set, along with any headers from `ANTHROPIC_CUSTOM_HEADERS`. Only models whose ID begins with `claude` or `anthropic` are added to the picker. Results are cached to `~/.claude/cache/gateway-models.json` and refreshed on each startup. If the request fails or the gateway does not implement `/v1/models`, the picker falls back to the cached list from the previous startup or to the built-in model list.
+
+If your gateway uses model names that do not match the discovery filter, use the environment variables documented in [Model configuration](/en/model-config) to add them manually.
 
 ## LiteLLM configuration
 

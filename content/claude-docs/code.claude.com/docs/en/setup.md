@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: e7efeff9d915849cc7281294a4748b793ae7fc50c506466a5bf81346dec63bff
+fetched_at: 2026-05-02T03:12:03.381331Z
+sha256: bbd4a5cc332a08606ac52f077f289fd5743f62ca6b5f9efa9780b17db558d79f
 ---
 
 > ## Documentation Index
@@ -496,7 +496,7 @@ In addition to the signed manifest, individual binaries carry platform-native co
 
 ## Uninstall Claude Code
 
-To remove Claude Code, follow the instructions for your installation method.
+To remove Claude Code, follow the instructions for your installation method. If `claude` still runs afterward, you likely have a second installation or a leftover shell alias from an older installer. See [Check for conflicting installations](/en/troubleshoot-install#check-for-conflicting-installations) to find and remove it.
 
 ### Native installation
 

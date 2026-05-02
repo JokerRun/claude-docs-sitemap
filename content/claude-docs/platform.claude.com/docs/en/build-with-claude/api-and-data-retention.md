@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/api-and-data-retention
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 11a518044234f58f18e8ea99f73d35f0ca3fc7683f1221fef009eb4bf1589664
+fetched_at: 2026-05-02T03:12:03.381331Z
+sha256: 8d4a365327c4cdb381ba09b8953d90fcba2c9f4e415b6b321df90104791cca0b
 ---
 
 # API and data retention
@@ -39,6 +39,7 @@ In the [feature eligibility table](#feature-eligibility), some features are mark
 **What ZDR does NOT cover**
 
 - **Console and Workbench:** Any usage on Console or Workbench
+- **Claude Managed Agents:** Claude Managed Agents is a stateful resource. You can delete session transcripts, but there is no automatic deletion.
 - **Claude consumer products:** Claude Free, Pro, or Max plans, including when customers on those plans use Claude's web, desktop, or mobile apps or Claude Code
 - **Claude Teams and Claude Enterprise:** Claude Teams and Claude Enterprise product interfaces are **not ZDR-eligible**, except for Claude Code when used through Claude Enterprise with ZDR enabled for the organization. For other product interfaces, only Commercial organization API keys are eligible for ZDR.
 - **Third-party integrations:** Data processed by third-party websites, tools, or other integrations is **not ZDR-eligible**, though some may have similar offerings. When using external services in conjunction with the Claude API, make sure to review those services' data handling practices.

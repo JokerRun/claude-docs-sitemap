@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
-fetched_at: 2026-04-22T03:11:35.366211Z
-sha256: 8c00282409acbb5b96f39091f6f3e7a9b963fe0bb10d97c7866ebeedc5804792
+fetched_at: 2026-05-02T03:12:03.381331Z
+sha256: 09ca2128b515d8d0ca55617488ed3fa892ca67818084c9de306f34ffdb9030c7
 ---
 
 # Session event stream
@@ -1653,3 +1653,18 @@ The session object includes a `usage` field with cumulative token statistics. Fe
 ```
 
 `input_tokens` reports uncached input tokens and `output_tokens` reports total output tokens across all model calls in the session. The `cache_creation_input_tokens` and `cache_read_input_tokens` fields reflect prompt caching activity. Cache entries use a 5-minute TTL, so back-to-back turns within that window benefit from cache reads, which reduce per-token cost.
+
+## Console observability
+
+The Console provides a visual timeline view of your agent sessions. Navigate to the Claude Managed Agents section in the Console to see:
+
+- **Session list** - All sessions with their status, creation time, and model
+- **Tracing view** - A chronological view of events (content, timestamps, token usage) within a session. These are only accessible to Developers and Admins.
+- **Tool execution** - Details of each tool call and its result
+
+## Debugging tips
+
+- **Check session events** - Session errors are conveyed through the `session.error` event
+- **Review tool results** - Tool execution failures often explain unexpected agent behavior
+- **Track token usage** - Monitor token consumption to optimize prompts and reduce costs
+- **Use system prompts** - Add logging instructions to the system prompt to make the agent explain its reasoning

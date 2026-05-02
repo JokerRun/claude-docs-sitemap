@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/commands
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 51e1051cfe0a8407973587959246fc0a03b01840bca29bec8c4c20b460741a63
+fetched_at: 2026-05-02T03:12:03.381331Z
+sha256: d391302f3b41b3d39d819ceede7b752674f4af6c51f06525fb545d8917e8fb8a
 ---
 
 > ## Documentation Index
@@ -16,6 +16,8 @@ sha256: 51e1051cfe0a8407973587959246fc0a03b01840bca29bec8c4c20b460741a63
 Commands control Claude Code from inside a session. They provide a quick way to switch models, manage permissions, clear context, run a workflow, and more.
 
 Type `/` to see every command available to you, or type `/` followed by letters to filter.
+
+A command is only recognized at the start of your message. Text that follows the command name is passed to it as arguments.
 
 The table below lists all the commands included in Claude Code. Entries marked **[Skill](/en/skills#bundled-skills)** are bundled skills. They use the same mechanism as skills you write yourself: a prompt handed to Claude, which Claude can also invoke automatically when relevant. Everything else is a built-in command whose behavior is coded into the CLI. To add your own commands, see [skills](/en/skills).
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 58b6546bf2d693bf193d1f555a0e541d488d4cdd2a39884ba44c653fd3ad8fc6
+fetched_at: 2026-05-02T03:12:03.381331Z
+sha256: 7c554fc65eb12d008f8a029704fed4a37ecfab6f52b10aede8a060e861382c3b
 ---
 
 > ## Documentation Index
@@ -118,7 +118,7 @@ Set `CLAUDE_CODE_USE_POWERSHELL_TOOL=1` in your environment or in `settings.json
 
 On Windows, set the variable to `0` to opt out of the rollout. On Linux, macOS, and WSL, the tool requires PowerShell 7 or later: install `pwsh` and ensure it is on your `PATH`.
 
-On Windows, Claude Code auto-detects `pwsh.exe` for PowerShell 7+ with a fallback to `powershell.exe` for PowerShell 5.1. The Bash tool remains registered alongside the PowerShell tool, so you may need to ask Claude to use PowerShell.
+On Windows, Claude Code auto-detects `pwsh.exe` for PowerShell 7+ with a fallback to `powershell.exe` for PowerShell 5.1. When the tool is enabled, Claude treats PowerShell as the primary shell. The Bash tool remains available for POSIX scripts when Git Bash is installed.
 
 ### Shell selection in settings, hooks, and skills
 

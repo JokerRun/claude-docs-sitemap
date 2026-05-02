@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/analytics
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 5356b88d0aa6618737921fea6d052c768a672d33855f60a1027a1c6bf481eb6a
+fetched_at: 2026-05-02T03:12:03.381331Z
+sha256: 533c247f0998fbf1865a1f56fd400f9c4e5b4f795c3fdc05736ac6407d4c6fe9
 ---
 
 > ## Documentation Index
@@ -30,6 +30,8 @@ The Team and Enterprise dashboard includes:
 * **Contribution metrics**: PRs and lines of code shipped with Claude Code assistance, with [GitHub integration](#enable-contribution-metrics)
 * **Leaderboard**: top contributors ranked by Claude Code usage
 * **Data export**: download contribution data as CSV for custom reporting
+
+For per-user token counts and cost estimates, configure [OpenTelemetry export](/en/monitoring-usage).
 
 ### Enable contribution metrics
 

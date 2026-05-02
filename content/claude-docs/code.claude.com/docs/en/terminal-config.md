@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: aee5563247db608e98b4f3bb0114b31ada2b34b0b006a360a7d82a3803d65d53
+fetched_at: 2026-05-02T03:12:03.381331Z
+sha256: dac5f9b2b45f4183314e33086030e1ad41f3592700a60e32e6a762319164e63e
 ---
 
 > ## Documentation Index
@@ -70,7 +70,9 @@ For Ghostty, Kitty, and other terminals, look for an Option-as-Alt or Option-as-
 
 When Claude finishes a task or pauses for a permission prompt, it fires a notification event. Surfacing this as a terminal bell or desktop notification lets you switch to other work while a long task runs.
 
-Claude Code sends a desktop notification only in Ghostty, Kitty, and iTerm2; every other terminal needs a [Notification hook](#play-a-sound-with-a-notification-hook) instead. The notification also reaches your local machine over SSH, so a remote session can still alert you. Ghostty and Kitty forward it to your OS notification center without further setup. iTerm2 requires you to enable forwarding:
+By default Claude Code sends a desktop notification only in Ghostty, Kitty, and iTerm2. In other terminals, set [`preferredNotifChannel`](/en/settings#available-settings) to `"terminal_bell"` to ring the terminal bell instead, or configure a [Notification hook](#play-a-sound-with-a-notification-hook) for a custom sound or command.
+
+The desktop notification reaches your local machine over SSH, so a remote session can still alert you. Ghostty and Kitty forward it to your OS notification center without further setup. iTerm2 requires you to enable forwarding:
 
 <Steps>
   <Step title="Open iTerm2 notification settings">
@@ -86,7 +88,7 @@ If notifications still do not appear, confirm that your terminal application has
 
 ### Play a sound with a Notification hook
 
-In any terminal you can configure a [Notification hook](/en/hooks-guide#get-notified-when-claude-needs-input) to play a sound or run a custom command when Claude needs your attention. Hooks run alongside the desktop notification rather than replacing it. Terminals such as Warp or Apple Terminal rely on a hook alone since Claude Code does not send them a desktop notification.
+In any terminal you can configure a [Notification hook](/en/hooks-guide#get-notified-when-claude-needs-input) to play a sound or run a custom command when Claude needs your attention. Hooks run alongside the built-in notification rather than replacing it, so terminals that do not receive a desktop notification, such as Warp or the VS Code integrated terminal, can use a hook or set `preferredNotifChannel` to `"terminal_bell"` instead.
 
 The example below plays a system sound on macOS. The linked guide has desktop notification commands for macOS, Linux, and Windows.
 

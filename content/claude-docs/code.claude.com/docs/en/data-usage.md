@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/data-usage
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 784d463c72053871c3cb42491f341ba61d0259f8839161a99736600dcbe3b9bb
+fetched_at: 2026-05-02T03:12:03.381331Z
+sha256: d5f3c5ee046a39c27c6cdb622fe4943a83572f02e1d3bb0fcc7c83781600a666
 ---
 
 > ## Documentation Index
@@ -121,6 +121,8 @@ By default, error reporting, telemetry, and bug reporting are disabled when usin
 | **WebFetch domain safety check**     | Default on.<br />`skipWebFetchPreflight: true` in [settings](/en/settings) to disable. | Default on.<br />`skipWebFetchPreflight: true` in [settings](/en/settings) to disable. | Default on.<br />`skipWebFetchPreflight: true` in [settings](/en/settings) to disable. | Default on.<br />`skipWebFetchPreflight: true` in [settings](/en/settings) to disable. |
 
 All environment variables can be checked into `settings.json` (see [settings reference](/en/settings)).
+
+As of v2.1.126, when a host platform sets `CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST`, Statsig metrics default to on for Vertex, Bedrock, and Foundry, and follow the standard `DISABLE_TELEMETRY` opt-out. Sentry error reporting and `/feedback` reports remain off by default on those providers.
 
 ### WebFetch domain safety check
 
