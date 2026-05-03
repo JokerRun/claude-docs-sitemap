@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-05-02T03:12:03.381331Z
-sha256: 866518b1a94c0f6f5baf12acc74e1b1e69a97ea55961fc9176e0e00128bcdf20
+fetched_at: 2026-05-03T03:13:42.903452Z
+sha256: 9eb27f8a3c47de590a3a0485991e5b87ad4459e46ab83910608022034527eedf
 ---
 
 > ## Documentation Index
@@ -866,7 +866,7 @@ The `claude_code.cost.usage` metric helps with:
 * Identifying high-usage sessions for optimization
 
 <Note>
-  Cost metrics are approximations. For official billing data, refer to your API provider (Claude Console, AWS Bedrock, or Google Cloud Vertex).
+  Cost metrics are approximations. For official billing data, refer to your API provider (Claude Console, Amazon Bedrock, or Google Cloud Vertex).
 </Note>
 
 ### Alerting and segmentation

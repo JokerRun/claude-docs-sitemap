@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-04-16T03:12:06.852234Z
-sha256: 09694cae755eeeffd1a92280efbfb770f2e673d7c1ef77700530e52d2fa79c42
+fetched_at: 2026-05-03T03:13:42.903452Z
+sha256: b7813a56e367d265dac8cf0df8db4b1d1ba5435e294e55adb365cd74b1df32ad
 ---
 
 > ## Documentation Index
@@ -249,7 +249,7 @@ The review trigger you choose affects total cost:
 
 In any mode, commenting `@claude review` [opts the PR into push-triggered reviews](#manually-trigger-reviews), so additional cost accrues per push after that comment. To run a single review without subscribing to future pushes, comment `@claude review once` instead.
 
-Costs appear on your Anthropic bill regardless of whether your organization uses AWS Bedrock or Google Vertex AI for other Claude Code features. To set a monthly spend cap for Code Review, go to [claude.ai/admin-settings/usage](https://claude.ai/admin-settings/usage) and configure the limit for the Claude Code Review service.
+Costs appear on your Anthropic bill regardless of whether your organization uses Amazon Bedrock or Google Vertex AI for other Claude Code features. To set a monthly spend cap for Code Review, go to [claude.ai/admin-settings/usage](https://claude.ai/admin-settings/usage) and configure the limit for the Claude Code Review service.
 
 Monitor spend via the weekly cost chart in [analytics](#view-usage) or the per-repo average cost column in admin settings.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/legal-and-compliance
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 6e2bef1e67b0e0efef6f7707b5795d07cfb0e61f768ca76ad0823d671ab4a64d
+fetched_at: 2026-05-03T03:13:42.903452Z
+sha256: 7dbbe118a9a7a46f6295ac93f28608d7c9325e6f54a303650a06546962afb274
 ---
 
 > ## Documentation Index
@@ -24,7 +24,7 @@ Your use of Claude Code is subject to:
 
 ### Commercial agreements
 
-Whether you're using the Claude API directly (1P) or accessing it through AWS Bedrock or Google Vertex (3P), your existing commercial agreement will apply to Claude Code usage, unless we've mutually agreed otherwise.
+Whether you're using the Claude API directly (1P) or accessing it through Amazon Bedrock or Google Vertex (3P), your existing commercial agreement will apply to Claude Code usage, unless we've mutually agreed otherwise.
 
 ## Compliance
 
