@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-05-03T03:13:42.903452Z
-sha256: 086c0dbed9a45582c37890d691c2d9997e95bd26c93b66fc26f8a38a28de8d81
+fetched_at: 2026-05-05T03:13:00.051351Z
+sha256: 92a5222dc5ddfcdab7df5da80177501ccf86655a4b86c85a9593c3dba1a9d2d6
 ---
 
 > ## Documentation Index
@@ -983,7 +983,7 @@ To block a prompt, return a JSON object with `decision` set to `"block"`:
 | `decision`          | `"block"` prevents the prompt from being processed and erases it from context. Omit to allow the prompt to proceed     |
 | `reason`            | Shown to the user when `decision` is `"block"`. Not added to context                                                   |
 | `additionalContext` | String added to Claude's context alongside the submitted prompt. See [Add context for Claude](#add-context-for-claude) |
-| `sessionTitle`      | Sets the session title, same effect as `/rename`. Use to name sessions automatically based on the prompt content       |
+| `sessionTitle`      | Sets the session title. Use to name sessions automatically based on the prompt content                                 |
 
 ```json theme={null}
 {
@@ -2419,10 +2419,20 @@ The LLM must respond with JSON containing:
 }
 ```
 
-| Field    | Description                                                |
-| :------- | :--------------------------------------------------------- |
-| `ok`     | `true` allows the action, `false` prevents it              |
-| `reason` | Required when `ok` is `false`. Explanation shown to Claude |
+| Field    | Description                                              |
+| :------- | :------------------------------------------------------- |
+| `ok`     | `true` allows the action, `false` blocks it              |
+| `reason` | Required when `ok` is `false`. Explanation for the block |
+
+What happens on `ok: false` depends on the event:
+
+* `Stop` and `SubagentStop`: the reason is fed back to Claude as its next instruction and the turn continues
+* `PreToolUse`: the tool call is denied and the reason is returned to Claude as the tool error, equivalent to a command hook's `permissionDecision: "deny"`
+* `PostToolUse`, `PostToolBatch`, `UserPromptSubmit`, and `UserPromptExpansion`: the turn ends and the reason appears in the chat as a warning line, equivalent to returning `"continue": false` from a command hook
+* `PostToolUseFailure`, `TaskCreated`, and `TaskCompleted`: the reason is returned to Claude as a tool error, similar to `PreToolUse`
+* `PermissionRequest`: `ok: false` has no effect. To deny an approval from a hook, use a [command hook](#command-hook-fields) returning `hookSpecificOutput.decision.behavior: "deny"`
+
+If you need finer control on any event, use a [command hook](#command-hook-fields) with the per-event fields described in [Decision control](#decision-control).
 
 ### Example: Multi-criteria Stop hook
 

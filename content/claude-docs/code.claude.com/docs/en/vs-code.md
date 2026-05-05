@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-05-03T03:13:42.903452Z
-sha256: 8870e95955bfd927431b5e378baa640dfc34930d74e33e6aa7f3bc8e409b542f
+fetched_at: 2026-05-05T03:13:00.051351Z
+sha256: f87fe2108aac49fd53d7d36d9955c321917e2eb99205c6628e0c96dab1b56cf9
 ---
 
 > ## Documentation Index
@@ -482,6 +482,16 @@ The Spark icon appears in the **Editor Toolbar** (top-right of editor) when you 
 5. **Check workspace trust**: The extension doesn't work in Restricted Mode
 
 Alternatively, click "✱ Claude Code" in the **Status Bar** (bottom-right corner). This works even without a file open. You can also use the **Command Palette** (`Cmd+Shift+P` / `Ctrl+Shift+P`) and type "Claude Code".
+
+### Cmd+Esc does nothing on macOS
+
+On macOS Tahoe and later, the system Game Overlay shortcut is bound to `Cmd+Esc` by default and intercepts the keypress before it reaches VS Code. To free the shortcut:
+
+1. Open System Settings
+2. Go to Keyboard, then Keyboard Shortcuts, then Game Controllers
+3. Clear the Game Overlay checkbox
+
+Alternatively, rebind the extension to a different key: open the VS Code [Keyboard Shortcuts editor](https://code.visualstudio.com/docs/configure/keybindings) (`Cmd+K Cmd+S`), search for `Claude Code: Focus input`, and assign a new binding.
 
 ### Claude Code never responds
 

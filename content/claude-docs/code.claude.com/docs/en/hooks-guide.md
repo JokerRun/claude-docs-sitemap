@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-05-03T03:13:42.903452Z
-sha256: f0daddabb17eabe9b72d7f6760afd7584453e7c9fde867f4bd48771efa355c84
+fetched_at: 2026-05-05T03:13:00.051351Z
+sha256: ccd1639a9d75881ff461746c92514826d6dc1e2ba49b5c6e167c1de3acc172df
 ---
 
 > ## Documentation Index
@@ -742,7 +742,10 @@ For decisions that require judgment rather than deterministic rules, use `type: 
 The model's only job is to return a yes/no decision as JSON:
 
 * `"ok": true`: the action proceeds
-* `"ok": false`: the action is blocked. The model's `"reason"` is fed back to Claude so it can adjust.
+* `"ok": false`: what happens depends on the event:
+  * `Stop` and `SubagentStop`: the `reason` is fed back to Claude so it keeps working
+  * `PreToolUse`: the tool call is denied and the `reason` is returned to Claude as the tool error, so it can adjust and continue
+  * `PostToolUse`, `PostToolBatch`, `UserPromptSubmit`, and `UserPromptExpansion`: the turn ends and the `reason` appears in the chat as a warning line
 
 This example uses a `Stop` hook to ask the model whether all requested tasks are complete. If the model returns `"ok": false`, Claude keeps working and uses the `reason` as its next instruction:
 

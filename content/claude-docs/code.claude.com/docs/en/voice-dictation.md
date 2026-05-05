@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/voice-dictation
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 2572bbbdf5a5a3b877b562e75df43896dc09e8b64090e4be116c385b31573d9a
+fetched_at: 2026-05-05T03:13:00.051351Z
+sha256: 78e668293ad01a9545e157a3f512c0758e56916018ad264f956edbb1e6946122
 ---
 
 > ## Documentation Index
@@ -151,7 +151,9 @@ The dictation key is bound to `voice:pushToTalk` in the `Chat` context and defau
 
 Setting `"space": null` removes the default binding. Omit it if you want both keys active.
 
-In hold mode, avoid binding a bare letter key like `v` since hold detection relies on key-repeat and the letter types into the prompt during warmup. Use `Space`, or use a modifier combination like `meta+k` to start recording on the first keypress with no warmup. Tap mode has no warmup, so any key works. See [customize keyboard shortcuts](/en/keybindings) for the full keybinding syntax.
+In hold mode, avoid binding a bare letter key like `v` since hold detection relies on key-repeat and the letter types into the prompt during warmup. Use `Space`, or use a modifier combination like `meta+k` to start recording on the first keypress with no warmup. Tap mode has no warmup, so most keys work.
+
+Some keys are not delivered to terminal applications and cannot be bound at all. For example, `Caps Lock` shows an error if you try to bind it. See [customize keyboard shortcuts](/en/keybindings) for the full keybinding syntax and the list of reserved shortcuts.
 
 ## Troubleshooting
 

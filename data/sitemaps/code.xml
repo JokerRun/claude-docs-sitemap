@@ -213,7 +213,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/features-overview</loc>
-    <lastmod>2026-04-17T15:42:03.258Z</lastmod>
+    <lastmod>2026-05-04T23:41:19.705Z</lastmod>
   </url>
 
   <url>
@@ -248,12 +248,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/hooks</loc>
-    <lastmod>2026-05-01T03:45:54.223Z</lastmod>
+    <lastmod>2026-05-04T23:18:22.414Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/de/hooks-guide</loc>
-    <lastmod>2026-05-01T03:45:54.215Z</lastmod>
+    <lastmod>2026-05-04T21:09:39.674Z</lastmod>
   </url>
 
   <url>
@@ -293,7 +293,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/memory</loc>
-    <lastmod>2026-04-30T23:40:32.260Z</lastmod>
+    <lastmod>2026-05-04T04:16:10.134Z</lastmod>
   </url>
 
   <url>
@@ -308,7 +308,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/monitoring-usage</loc>
-    <lastmod>2026-05-02T18:21:50.167Z</lastmod>
+    <lastmod>2026-05-04T13:20:17.027Z</lastmod>
   </url>
 
   <url>
@@ -398,7 +398,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/settings</loc>
-    <lastmod>2026-05-02T18:00:26.826Z</lastmod>
+    <lastmod>2026-05-04T04:16:10.194Z</lastmod>
   </url>
 
   <url>
@@ -423,12 +423,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/sub-agents</loc>
-    <lastmod>2026-05-01T04:28:49.081Z</lastmod>
+    <lastmod>2026-05-04T23:26:33.401Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/de/terminal-config</loc>
-    <lastmod>2026-04-28T04:42:31.630Z</lastmod>
+    <lastmod>2026-05-04T14:29:15.450Z</lastmod>
   </url>
 
   <url>
@@ -458,7 +458,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/voice-dictation</loc>
-    <lastmod>2026-04-28T04:42:31.669Z</lastmod>
+    <lastmod>2026-05-04T22:36:22.933Z</lastmod>
   </url>
 
   <url>
@@ -678,7 +678,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/changelog</loc>
-    <lastmod>2026-05-01T07:00:26.027Z</lastmod>
+    <lastmod>2026-05-04T23:06:57.750Z</lastmod>
   </url>
 
   <url>
@@ -788,7 +788,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/discover-plugins</loc>
-    <lastmod>2026-04-16T20:18:57.326Z</lastmod>
+    <lastmod>2026-05-04T04:11:57.040Z</lastmod>
   </url>
 
   <url>
@@ -808,7 +808,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/features-overview</loc>
-    <lastmod>2026-04-23T17:33:26.913Z</lastmod>
+    <lastmod>2026-05-04T23:27:20.859Z</lastmod>
   </url>
 
   <url>
@@ -848,12 +848,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/hooks</loc>
-    <lastmod>2026-05-02T17:56:30.447Z</lastmod>
+    <lastmod>2026-05-04T22:59:36.495Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/en/hooks-guide</loc>
-    <lastmod>2026-05-02T17:56:30.438Z</lastmod>
+    <lastmod>2026-05-04T21:02:07.326Z</lastmod>
   </url>
 
   <url>
@@ -893,7 +893,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/memory</loc>
-    <lastmod>2026-04-30T23:32:54.362Z</lastmod>
+    <lastmod>2026-05-04T04:04:40.909Z</lastmod>
   </url>
 
   <url>
@@ -908,7 +908,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/monitoring-usage</loc>
-    <lastmod>2026-05-02T18:10:10.309Z</lastmod>
+    <lastmod>2026-05-04T13:11:45.941Z</lastmod>
   </url>
 
   <url>
@@ -998,7 +998,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/settings</loc>
-    <lastmod>2026-05-02T17:56:30.570Z</lastmod>
+    <lastmod>2026-05-04T04:04:40.918Z</lastmod>
   </url>
 
   <url>
@@ -1023,12 +1023,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/sub-agents</loc>
-    <lastmod>2026-05-02T17:56:30.559Z</lastmod>
+    <lastmod>2026-05-04T23:19:09.630Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/en/terminal-config</loc>
-    <lastmod>2026-05-01T03:31:22.656Z</lastmod>
+    <lastmod>2026-05-04T14:18:33.779Z</lastmod>
   </url>
 
   <url>
@@ -1043,7 +1043,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/troubleshoot-install</loc>
-    <lastmod>2026-05-01T03:19:48.002Z</lastmod>
+    <lastmod>2026-05-04T14:06:04.630Z</lastmod>
   </url>
 
   <url>
@@ -1063,12 +1063,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/voice-dictation</loc>
-    <lastmod>2026-04-28T04:16:20.389Z</lastmod>
+    <lastmod>2026-05-04T22:24:31.174Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/en/vs-code</loc>
-    <lastmod>2026-05-02T17:56:30.594Z</lastmod>
+    <lastmod>2026-05-04T22:59:36.497Z</lastmod>
   </url>
 
   <url>
@@ -1323,7 +1323,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/features-overview</loc>
-    <lastmod>2026-04-17T15:42:03.259Z</lastmod>
+    <lastmod>2026-05-04T23:41:20.546Z</lastmod>
   </url>
 
   <url>
@@ -1358,12 +1358,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/hooks</loc>
-    <lastmod>2026-05-01T03:45:54.979Z</lastmod>
+    <lastmod>2026-05-04T23:18:23.202Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/es/hooks-guide</loc>
-    <lastmod>2026-05-01T03:45:54.989Z</lastmod>
+    <lastmod>2026-05-04T21:09:40.313Z</lastmod>
   </url>
 
   <url>
@@ -1403,7 +1403,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/memory</loc>
-    <lastmod>2026-04-30T23:40:33.121Z</lastmod>
+    <lastmod>2026-05-04T04:16:10.890Z</lastmod>
   </url>
 
   <url>
@@ -1418,7 +1418,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/monitoring-usage</loc>
-    <lastmod>2026-05-02T18:21:50.910Z</lastmod>
+    <lastmod>2026-05-04T13:20:17.929Z</lastmod>
   </url>
 
   <url>
@@ -1508,7 +1508,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/settings</loc>
-    <lastmod>2026-05-02T18:00:27.596Z</lastmod>
+    <lastmod>2026-05-04T04:16:10.950Z</lastmod>
   </url>
 
   <url>
@@ -1533,12 +1533,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/sub-agents</loc>
-    <lastmod>2026-05-01T04:28:49.983Z</lastmod>
+    <lastmod>2026-05-04T23:26:34.162Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/es/terminal-config</loc>
-    <lastmod>2026-04-28T04:42:32.709Z</lastmod>
+    <lastmod>2026-05-04T14:29:16.195Z</lastmod>
   </url>
 
   <url>
@@ -1553,7 +1553,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/troubleshoot-install</loc>
-    <lastmod>2026-05-01T03:45:55.110Z</lastmod>
+    <lastmod>2026-05-04T14:17:33.540Z</lastmod>
   </url>
 
   <url>
@@ -1573,12 +1573,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/voice-dictation</loc>
-    <lastmod>2026-04-28T04:42:32.759Z</lastmod>
+    <lastmod>2026-05-04T22:36:23.727Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/es/vs-code</loc>
-    <lastmod>2026-05-02T18:00:27.656Z</lastmod>
+    <lastmod>2026-05-04T23:18:23.332Z</lastmod>
   </url>
 
   <url>
@@ -1818,7 +1818,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/features-overview</loc>
-    <lastmod>2026-04-17T15:42:03.261Z</lastmod>
+    <lastmod>2026-05-04T23:41:20.967Z</lastmod>
   </url>
 
   <url>
@@ -1853,12 +1853,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/hooks</loc>
-    <lastmod>2026-05-01T03:45:55.326Z</lastmod>
+    <lastmod>2026-05-04T23:18:23.511Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/fr/hooks-guide</loc>
-    <lastmod>2026-05-01T03:45:55.312Z</lastmod>
+    <lastmod>2026-05-04T21:09:40.606Z</lastmod>
   </url>
 
   <url>
@@ -1898,7 +1898,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/memory</loc>
-    <lastmod>2026-04-30T23:40:33.470Z</lastmod>
+    <lastmod>2026-05-04T04:16:11.233Z</lastmod>
   </url>
 
   <url>
@@ -1913,7 +1913,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/monitoring-usage</loc>
-    <lastmod>2026-05-02T18:21:51.273Z</lastmod>
+    <lastmod>2026-05-04T13:20:18.362Z</lastmod>
   </url>
 
   <url>
@@ -2003,7 +2003,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/settings</loc>
-    <lastmod>2026-05-02T18:00:27.930Z</lastmod>
+    <lastmod>2026-05-04T04:16:11.293Z</lastmod>
   </url>
 
   <url>
@@ -2028,12 +2028,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/sub-agents</loc>
-    <lastmod>2026-05-01T04:28:50.381Z</lastmod>
+    <lastmod>2026-05-04T23:26:34.642Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/fr/terminal-config</loc>
-    <lastmod>2026-04-28T04:42:33.220Z</lastmod>
+    <lastmod>2026-05-04T14:29:16.470Z</lastmod>
   </url>
 
   <url>
@@ -2048,7 +2048,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/troubleshoot-install</loc>
-    <lastmod>2026-05-01T03:45:55.449Z</lastmod>
+    <lastmod>2026-05-04T14:17:33.975Z</lastmod>
   </url>
 
   <url>
@@ -2068,12 +2068,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/voice-dictation</loc>
-    <lastmod>2026-04-28T04:42:33.258Z</lastmod>
+    <lastmod>2026-05-04T22:36:24.024Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/fr/vs-code</loc>
-    <lastmod>2026-05-02T18:00:27.956Z</lastmod>
+    <lastmod>2026-05-04T23:18:23.634Z</lastmod>
   </url>
 
   <url>
@@ -2313,7 +2313,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/features-overview</loc>
-    <lastmod>2026-04-17T15:42:03.265Z</lastmod>
+    <lastmod>2026-05-04T23:41:21.308Z</lastmod>
   </url>
 
   <url>
@@ -2348,12 +2348,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/hooks</loc>
-    <lastmod>2026-05-01T03:45:55.654Z</lastmod>
+    <lastmod>2026-05-04T23:18:23.819Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/id/hooks-guide</loc>
-    <lastmod>2026-05-01T03:45:55.637Z</lastmod>
+    <lastmod>2026-05-04T21:09:41.157Z</lastmod>
   </url>
 
   <url>
@@ -2393,7 +2393,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/memory</loc>
-    <lastmod>2026-04-22T19:31:38.767Z</lastmod>
+    <lastmod>2026-05-04T04:16:11.545Z</lastmod>
   </url>
 
   <url>
@@ -2408,7 +2408,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/monitoring-usage</loc>
-    <lastmod>2026-05-02T18:21:51.615Z</lastmod>
+    <lastmod>2026-05-04T13:20:18.742Z</lastmod>
   </url>
 
   <url>
@@ -2498,7 +2498,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/settings</loc>
-    <lastmod>2026-05-02T18:00:28.243Z</lastmod>
+    <lastmod>2026-05-04T04:16:11.608Z</lastmod>
   </url>
 
   <url>
@@ -2523,12 +2523,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/sub-agents</loc>
-    <lastmod>2026-05-01T04:28:50.732Z</lastmod>
+    <lastmod>2026-05-04T23:26:35.023Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/id/terminal-config</loc>
-    <lastmod>2026-04-28T04:42:33.703Z</lastmod>
+    <lastmod>2026-05-04T14:29:16.740Z</lastmod>
   </url>
 
   <url>
@@ -2543,7 +2543,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/troubleshoot-install</loc>
-    <lastmod>2026-05-01T03:45:55.772Z</lastmod>
+    <lastmod>2026-05-04T14:17:34.349Z</lastmod>
   </url>
 
   <url>
@@ -2563,12 +2563,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/voice-dictation</loc>
-    <lastmod>2026-04-28T04:42:33.741Z</lastmod>
+    <lastmod>2026-05-04T22:36:24.340Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/id/vs-code</loc>
-    <lastmod>2026-05-02T18:00:28.306Z</lastmod>
+    <lastmod>2026-05-04T23:18:23.986Z</lastmod>
   </url>
 
   <url>
@@ -2808,7 +2808,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/features-overview</loc>
-    <lastmod>2026-04-17T15:42:03.264Z</lastmod>
+    <lastmod>2026-05-04T23:41:21.720Z</lastmod>
   </url>
 
   <url>
@@ -2843,12 +2843,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/hooks</loc>
-    <lastmod>2026-05-01T03:45:56.042Z</lastmod>
+    <lastmod>2026-05-04T23:18:24.145Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/it/hooks-guide</loc>
-    <lastmod>2026-05-01T03:45:56.036Z</lastmod>
+    <lastmod>2026-05-04T21:09:41.406Z</lastmod>
   </url>
 
   <url>
@@ -2888,7 +2888,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/memory</loc>
-    <lastmod>2026-04-30T23:40:34.179Z</lastmod>
+    <lastmod>2026-05-04T04:16:11.852Z</lastmod>
   </url>
 
   <url>
@@ -2903,7 +2903,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/monitoring-usage</loc>
-    <lastmod>2026-05-02T18:21:52.047Z</lastmod>
+    <lastmod>2026-05-04T13:20:19.183Z</lastmod>
   </url>
 
   <url>
@@ -2993,7 +2993,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/settings</loc>
-    <lastmod>2026-05-02T18:00:28.615Z</lastmod>
+    <lastmod>2026-05-04T04:16:11.980Z</lastmod>
   </url>
 
   <url>
@@ -3018,12 +3018,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/sub-agents</loc>
-    <lastmod>2026-05-01T04:28:51.134Z</lastmod>
+    <lastmod>2026-05-04T23:26:35.387Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/it/terminal-config</loc>
-    <lastmod>2026-04-28T04:42:34.220Z</lastmod>
+    <lastmod>2026-05-04T14:29:17.044Z</lastmod>
   </url>
 
   <url>
@@ -3038,7 +3038,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/troubleshoot-install</loc>
-    <lastmod>2026-05-01T03:45:56.159Z</lastmod>
+    <lastmod>2026-05-04T14:17:34.778Z</lastmod>
   </url>
 
   <url>
@@ -3058,12 +3058,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/voice-dictation</loc>
-    <lastmod>2026-04-28T04:42:34.218Z</lastmod>
+    <lastmod>2026-05-04T22:36:24.655Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/it/vs-code</loc>
-    <lastmod>2026-05-02T18:00:28.643Z</lastmod>
+    <lastmod>2026-05-04T23:18:24.324Z</lastmod>
   </url>
 
   <url>
@@ -3303,7 +3303,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/features-overview</loc>
-    <lastmod>2026-04-17T15:42:03.260Z</lastmod>
+    <lastmod>2026-05-04T23:41:22.131Z</lastmod>
   </url>
 
   <url>
@@ -3338,12 +3338,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/hooks</loc>
-    <lastmod>2026-05-01T03:45:56.341Z</lastmod>
+    <lastmod>2026-05-04T23:18:24.501Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/ja/hooks-guide</loc>
-    <lastmod>2026-05-01T03:45:56.339Z</lastmod>
+    <lastmod>2026-05-04T21:09:41.750Z</lastmod>
   </url>
 
   <url>
@@ -3383,7 +3383,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/memory</loc>
-    <lastmod>2026-04-30T23:40:34.539Z</lastmod>
+    <lastmod>2026-05-04T04:16:12.227Z</lastmod>
   </url>
 
   <url>
@@ -3398,7 +3398,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/monitoring-usage</loc>
-    <lastmod>2026-05-02T18:21:52.352Z</lastmod>
+    <lastmod>2026-05-04T13:20:19.542Z</lastmod>
   </url>
 
   <url>
@@ -3488,7 +3488,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/settings</loc>
-    <lastmod>2026-05-02T18:00:28.941Z</lastmod>
+    <lastmod>2026-05-04T04:16:12.294Z</lastmod>
   </url>
 
   <url>
@@ -3513,12 +3513,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/sub-agents</loc>
-    <lastmod>2026-05-01T04:28:51.865Z</lastmod>
+    <lastmod>2026-05-04T23:26:35.673Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/ja/terminal-config</loc>
-    <lastmod>2026-04-28T04:42:34.603Z</lastmod>
+    <lastmod>2026-05-04T14:29:17.315Z</lastmod>
   </url>
 
   <url>
@@ -3533,7 +3533,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/troubleshoot-install</loc>
-    <lastmod>2026-05-01T03:45:56.456Z</lastmod>
+    <lastmod>2026-05-04T14:17:35.151Z</lastmod>
   </url>
 
   <url>
@@ -3553,12 +3553,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/voice-dictation</loc>
-    <lastmod>2026-04-28T04:42:34.640Z</lastmod>
+    <lastmod>2026-05-04T22:36:24.932Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/ja/vs-code</loc>
-    <lastmod>2026-05-02T18:00:28.971Z</lastmod>
+    <lastmod>2026-05-04T23:18:24.616Z</lastmod>
   </url>
 
   <url>
@@ -3798,7 +3798,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/features-overview</loc>
-    <lastmod>2026-04-17T15:42:03.256Z</lastmod>
+    <lastmod>2026-05-04T23:41:22.464Z</lastmod>
   </url>
 
   <url>
@@ -3833,12 +3833,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/hooks</loc>
-    <lastmod>2026-05-01T03:45:56.662Z</lastmod>
+    <lastmod>2026-05-04T23:18:24.811Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/ko/hooks-guide</loc>
-    <lastmod>2026-05-01T03:45:56.655Z</lastmod>
+    <lastmod>2026-05-04T04:31:55.553Z</lastmod>
   </url>
 
   <url>
@@ -3878,7 +3878,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/memory</loc>
-    <lastmod>2026-04-30T23:40:34.868Z</lastmod>
+    <lastmod>2026-05-04T04:16:12.526Z</lastmod>
   </url>
 
   <url>
@@ -3893,7 +3893,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/monitoring-usage</loc>
-    <lastmod>2026-05-02T18:21:52.862Z</lastmod>
+    <lastmod>2026-05-04T13:20:19.916Z</lastmod>
   </url>
 
   <url>
@@ -3983,7 +3983,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/settings</loc>
-    <lastmod>2026-05-02T18:00:29.275Z</lastmod>
+    <lastmod>2026-05-04T04:16:12.603Z</lastmod>
   </url>
 
   <url>
@@ -4008,12 +4008,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/sub-agents</loc>
-    <lastmod>2026-05-01T04:28:52.243Z</lastmod>
+    <lastmod>2026-05-04T23:26:35.960Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/ko/terminal-config</loc>
-    <lastmod>2026-04-28T04:42:35.027Z</lastmod>
+    <lastmod>2026-05-04T14:29:17.572Z</lastmod>
   </url>
 
   <url>
@@ -4028,7 +4028,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/troubleshoot-install</loc>
-    <lastmod>2026-05-01T03:45:56.784Z</lastmod>
+    <lastmod>2026-05-04T14:17:35.530Z</lastmod>
   </url>
 
   <url>
@@ -4048,12 +4048,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/voice-dictation</loc>
-    <lastmod>2026-04-28T04:42:35.073Z</lastmod>
+    <lastmod>2026-05-04T22:36:25.235Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/ko/vs-code</loc>
-    <lastmod>2026-05-02T18:00:29.335Z</lastmod>
+    <lastmod>2026-05-04T23:18:24.940Z</lastmod>
   </url>
 
   <url>
@@ -4293,7 +4293,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/features-overview</loc>
-    <lastmod>2026-04-17T15:42:03.259Z</lastmod>
+    <lastmod>2026-05-04T23:41:22.818Z</lastmod>
   </url>
 
   <url>
@@ -4328,12 +4328,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/hooks</loc>
-    <lastmod>2026-05-01T03:45:57.016Z</lastmod>
+    <lastmod>2026-05-04T23:18:25.114Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/pt/hooks-guide</loc>
-    <lastmod>2026-05-01T03:45:57.014Z</lastmod>
+    <lastmod>2026-05-04T21:09:42.263Z</lastmod>
   </url>
 
   <url>
@@ -4373,7 +4373,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/memory</loc>
-    <lastmod>2026-04-22T19:31:39.955Z</lastmod>
+    <lastmod>2026-05-04T04:16:12.889Z</lastmod>
   </url>
 
   <url>
@@ -4388,7 +4388,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/monitoring-usage</loc>
-    <lastmod>2026-05-02T18:21:53.187Z</lastmod>
+    <lastmod>2026-05-04T13:20:20.324Z</lastmod>
   </url>
 
   <url>
@@ -4478,7 +4478,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/settings</loc>
-    <lastmod>2026-05-02T18:00:29.643Z</lastmod>
+    <lastmod>2026-05-04T04:16:12.973Z</lastmod>
   </url>
 
   <url>
@@ -4503,12 +4503,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/sub-agents</loc>
-    <lastmod>2026-05-01T04:28:52.571Z</lastmod>
+    <lastmod>2026-05-04T23:26:36.238Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/pt/terminal-config</loc>
-    <lastmod>2026-04-28T04:42:35.488Z</lastmod>
+    <lastmod>2026-05-04T14:29:17.843Z</lastmod>
   </url>
 
   <url>
@@ -4523,7 +4523,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/troubleshoot-install</loc>
-    <lastmod>2026-05-01T03:45:57.123Z</lastmod>
+    <lastmod>2026-05-04T14:17:35.975Z</lastmod>
   </url>
 
   <url>
@@ -4543,12 +4543,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/voice-dictation</loc>
-    <lastmod>2026-04-28T04:42:35.522Z</lastmod>
+    <lastmod>2026-05-04T22:36:25.534Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/pt/vs-code</loc>
-    <lastmod>2026-05-02T18:00:29.667Z</lastmod>
+    <lastmod>2026-05-04T23:18:25.256Z</lastmod>
   </url>
 
   <url>
@@ -4788,7 +4788,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/features-overview</loc>
-    <lastmod>2026-04-17T15:42:03.256Z</lastmod>
+    <lastmod>2026-05-04T23:41:23.182Z</lastmod>
   </url>
 
   <url>
@@ -4823,12 +4823,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/hooks</loc>
-    <lastmod>2026-05-01T03:45:57.323Z</lastmod>
+    <lastmod>2026-05-04T23:18:25.462Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/ru/hooks-guide</loc>
-    <lastmod>2026-05-01T03:45:57.308Z</lastmod>
+    <lastmod>2026-05-04T21:09:42.576Z</lastmod>
   </url>
 
   <url>
@@ -4868,7 +4868,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/memory</loc>
-    <lastmod>2026-04-30T23:40:35.599Z</lastmod>
+    <lastmod>2026-05-04T04:16:13.242Z</lastmod>
   </url>
 
   <url>
@@ -4883,7 +4883,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/monitoring-usage</loc>
-    <lastmod>2026-05-02T18:21:53.509Z</lastmod>
+    <lastmod>2026-05-04T13:20:20.754Z</lastmod>
   </url>
 
   <url>
@@ -4973,7 +4973,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/settings</loc>
-    <lastmod>2026-05-02T18:00:29.952Z</lastmod>
+    <lastmod>2026-05-04T04:16:13.306Z</lastmod>
   </url>
 
   <url>
@@ -4998,12 +4998,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/sub-agents</loc>
-    <lastmod>2026-05-01T04:28:52.947Z</lastmod>
+    <lastmod>2026-05-04T23:26:36.591Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/ru/terminal-config</loc>
-    <lastmod>2026-04-28T04:42:35.922Z</lastmod>
+    <lastmod>2026-05-04T14:29:18.128Z</lastmod>
   </url>
 
   <url>
@@ -5018,7 +5018,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/troubleshoot-install</loc>
-    <lastmod>2026-05-01T03:45:57.456Z</lastmod>
+    <lastmod>2026-05-04T14:17:36.376Z</lastmod>
   </url>
 
   <url>
@@ -5038,12 +5038,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/voice-dictation</loc>
-    <lastmod>2026-04-28T04:42:35.979Z</lastmod>
+    <lastmod>2026-05-04T22:36:25.840Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/ru/vs-code</loc>
-    <lastmod>2026-05-02T18:00:30.012Z</lastmod>
+    <lastmod>2026-05-04T23:18:25.613Z</lastmod>
   </url>
 
   <url>
@@ -5283,7 +5283,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/features-overview</loc>
-    <lastmod>2026-04-17T15:42:24.975Z</lastmod>
+    <lastmod>2026-05-04T23:41:23.562Z</lastmod>
   </url>
 
   <url>
@@ -5318,12 +5318,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/hooks</loc>
-    <lastmod>2026-05-01T03:45:57.633Z</lastmod>
+    <lastmod>2026-05-04T23:18:25.751Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/hooks-guide</loc>
-    <lastmod>2026-05-01T03:45:57.629Z</lastmod>
+    <lastmod>2026-05-04T21:09:42.818Z</lastmod>
   </url>
 
   <url>
@@ -5363,7 +5363,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/memory</loc>
-    <lastmod>2026-04-30T23:40:35.911Z</lastmod>
+    <lastmod>2026-05-04T04:16:13.553Z</lastmod>
   </url>
 
   <url>
@@ -5378,7 +5378,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/monitoring-usage</loc>
-    <lastmod>2026-05-02T18:21:53.867Z</lastmod>
+    <lastmod>2026-05-04T13:20:21.174Z</lastmod>
   </url>
 
   <url>
@@ -5468,7 +5468,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/settings</loc>
-    <lastmod>2026-05-02T18:00:30.289Z</lastmod>
+    <lastmod>2026-05-04T04:16:13.643Z</lastmod>
   </url>
 
   <url>
@@ -5493,12 +5493,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/sub-agents</loc>
-    <lastmod>2026-05-01T04:28:53.311Z</lastmod>
+    <lastmod>2026-05-04T23:26:36.823Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/terminal-config</loc>
-    <lastmod>2026-04-28T04:42:36.358Z</lastmod>
+    <lastmod>2026-05-04T14:29:18.363Z</lastmod>
   </url>
 
   <url>
@@ -5513,7 +5513,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/troubleshoot-install</loc>
-    <lastmod>2026-05-01T03:45:57.740Z</lastmod>
+    <lastmod>2026-05-04T14:17:36.760Z</lastmod>
   </url>
 
   <url>
@@ -5533,12 +5533,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/voice-dictation</loc>
-    <lastmod>2026-04-28T04:42:36.357Z</lastmod>
+    <lastmod>2026-05-04T22:36:26.102Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/vs-code</loc>
-    <lastmod>2026-05-02T18:00:30.314Z</lastmod>
+    <lastmod>2026-05-04T23:18:25.880Z</lastmod>
   </url>
 
   <url>
@@ -5778,7 +5778,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/features-overview</loc>
-    <lastmod>2026-04-17T15:42:24.973Z</lastmod>
+    <lastmod>2026-05-04T23:41:23.882Z</lastmod>
   </url>
 
   <url>
@@ -5813,12 +5813,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/hooks</loc>
-    <lastmod>2026-05-01T03:45:57.971Z</lastmod>
+    <lastmod>2026-05-04T23:18:26.039Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/hooks-guide</loc>
-    <lastmod>2026-05-01T03:45:57.930Z</lastmod>
+    <lastmod>2026-05-04T21:09:43.077Z</lastmod>
   </url>
 
   <url>
@@ -5858,7 +5858,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/memory</loc>
-    <lastmod>2026-04-30T23:40:36.340Z</lastmod>
+    <lastmod>2026-05-04T04:16:13.916Z</lastmod>
   </url>
 
   <url>
@@ -5873,7 +5873,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/monitoring-usage</loc>
-    <lastmod>2026-05-02T18:21:54.168Z</lastmod>
+    <lastmod>2026-05-04T13:20:21.533Z</lastmod>
   </url>
 
   <url>
@@ -5963,7 +5963,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/settings</loc>
-    <lastmod>2026-05-02T18:00:30.575Z</lastmod>
+    <lastmod>2026-05-04T04:16:14.005Z</lastmod>
   </url>
 
   <url>
@@ -5988,12 +5988,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/sub-agents</loc>
-    <lastmod>2026-05-01T04:28:53.656Z</lastmod>
+    <lastmod>2026-05-04T23:26:37.117Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/terminal-config</loc>
-    <lastmod>2026-04-28T04:42:36.738Z</lastmod>
+    <lastmod>2026-05-04T14:29:18.621Z</lastmod>
   </url>
 
   <url>
@@ -6008,7 +6008,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/troubleshoot-install</loc>
-    <lastmod>2026-05-01T03:45:58.079Z</lastmod>
+    <lastmod>2026-05-04T14:17:37.106Z</lastmod>
   </url>
 
   <url>
@@ -6028,12 +6028,12 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/voice-dictation</loc>
-    <lastmod>2026-04-28T04:42:36.808Z</lastmod>
+    <lastmod>2026-05-04T22:36:26.344Z</lastmod>
   </url>
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/vs-code</loc>
-    <lastmod>2026-05-02T18:00:30.628Z</lastmod>
+    <lastmod>2026-05-04T23:18:26.157Z</lastmod>
   </url>
 
   <url>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 653cda25f546e83503e05f6670ccf4ceca63ed12699212d8bbb20f1c745628c2
+fetched_at: 2026-05-05T03:13:00.051351Z
+sha256: 7a03f7cec59986e35225812ea520be2ebeaa00f8cae1bdcc21d481d2d44970dd
 ---
 
 > ## Documentation Index
@@ -326,7 +326,7 @@ To disable auto memory via environment variable, set `CLAUDE_CODE_DISABLE_AUTO_M
 
 Each project gets its own memory directory at `~/.claude/projects/<project>/memory/`. The `<project>` path is derived from the git repository, so all worktrees and subdirectories within the same repo share one auto memory directory. Outside a git repo, the project root is used instead.
 
-To store auto memory in a different location, set `autoMemoryDirectory` in your user or local settings:
+To store auto memory in a different location, set `autoMemoryDirectory` in your user settings at `~/.claude/settings.json`:
 
 ```json theme={null}
 {
@@ -334,7 +334,7 @@ To store auto memory in a different location, set `autoMemoryDirectory` in your 
 }
 ```
 
-This setting is accepted from policy, local, and user settings. It is not accepted from project settings (`.claude/settings.json`) to prevent a shared project from redirecting auto memory writes to sensitive locations.
+The value must be an absolute path or start with `~/`. This setting is accepted from policy and user settings, and from the `--settings` flag. It is not accepted from project or local settings, since both files live inside the project directory and a cloned repository could supply either to redirect auto memory writes to sensitive locations.
 
 The directory contains a `MEMORY.md` entrypoint and optional topic files:
 

@@ -112,7 +112,7 @@
   lastmod: '2026-04-28T15:54:10.733Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-05-01T07:00:26.027Z'
+  lastmod: '2026-05-04T23:06:57.750Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-03-25T19:03:14.403Z'
@@ -178,7 +178,7 @@
   lastmod: '2026-04-27T18:14:19.946Z'
 - source: code
   loc: https://code.claude.com/docs/en/discover-plugins
-  lastmod: '2026-04-16T20:18:57.326Z'
+  lastmod: '2026-05-04T04:11:57.040Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
   lastmod: '2026-05-01T17:57:37.748Z'
@@ -190,7 +190,7 @@
   lastmod: '2026-04-16T15:23:16.878Z'
 - source: code
   loc: https://code.claude.com/docs/en/features-overview
-  lastmod: '2026-04-23T17:33:26.913Z'
+  lastmod: '2026-05-04T23:27:20.859Z'
 - source: code
   loc: https://code.claude.com/docs/en/fullscreen
   lastmod: '2026-05-01T03:19:41.374Z'
@@ -214,10 +214,10 @@
   lastmod: '2026-05-02T17:56:30.439Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
-  lastmod: '2026-05-02T17:56:30.447Z'
+  lastmod: '2026-05-04T22:59:36.495Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks-guide
-  lastmod: '2026-05-02T17:56:30.438Z'
+  lastmod: '2026-05-04T21:02:07.326Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
   lastmod: '2026-05-02T17:56:30.467Z'
@@ -241,7 +241,7 @@
   lastmod: '2026-04-29T02:55:11.018Z'
 - source: code
   loc: https://code.claude.com/docs/en/memory
-  lastmod: '2026-04-30T23:32:54.362Z'
+  lastmod: '2026-05-04T04:04:40.909Z'
 - source: code
   loc: https://code.claude.com/docs/en/microsoft-foundry
   lastmod: '2026-04-24T05:18:33.127Z'
@@ -250,7 +250,7 @@
   lastmod: '2026-05-02T17:56:30.476Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
-  lastmod: '2026-05-02T18:10:10.309Z'
+  lastmod: '2026-05-04T13:11:45.941Z'
 - source: code
   loc: https://code.claude.com/docs/en/network-config
   lastmod: '2026-04-27T18:14:19.944Z'
@@ -304,7 +304,7 @@
   lastmod: '2026-04-28T05:27:57.259Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-05-02T17:56:30.570Z'
+  lastmod: '2026-05-04T04:04:40.918Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-05-01T03:45:54.685Z'
@@ -319,10 +319,10 @@
   lastmod: '2026-04-29T02:50:53.180Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-05-02T17:56:30.559Z'
+  lastmod: '2026-05-04T23:19:09.630Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
-  lastmod: '2026-05-01T03:31:22.656Z'
+  lastmod: '2026-05-04T14:18:33.779Z'
 - source: code
   loc: https://code.claude.com/docs/en/third-party-integrations
   lastmod: '2026-04-24T05:18:33.244Z'
@@ -331,7 +331,7 @@
   lastmod: '2026-05-02T17:56:30.556Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshoot-install
-  lastmod: '2026-05-01T03:19:48.002Z'
+  lastmod: '2026-05-04T14:06:04.630Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshooting
   lastmod: '2026-04-28T22:05:53.230Z'
@@ -343,10 +343,10 @@
   lastmod: '2026-04-29T13:49:47.714Z'
 - source: code
   loc: https://code.claude.com/docs/en/voice-dictation
-  lastmod: '2026-04-28T04:16:20.389Z'
+  lastmod: '2026-05-04T22:24:31.174Z'
 - source: code
   loc: https://code.claude.com/docs/en/vs-code
-  lastmod: '2026-05-02T17:56:30.594Z'
+  lastmod: '2026-05-04T22:59:36.497Z'
 - source: code
   loc: https://code.claude.com/docs/en/web-quickstart
   lastmod: '2026-04-16T19:38:49.316Z'
@@ -581,6 +581,12 @@
 - source: platform
   loc: https://platform.claude.com/docs/en/api/admin/workspaces/update
   priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/authentication/overview
+  priority: '1'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/authentication/wif-reference
+  priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/beta
   priority: '0.9'
@@ -4131,7 +4137,28 @@
   loc: https://platform.claude.com/docs/en/build-with-claude/vision
   priority: '0.8'
 - source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/wif-providers/aws
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/wif-providers/azure
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/wif-providers/gcp
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/wif-providers/github-actions
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/wif-providers/kubernetes
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/wif-providers/okta
+  priority: '0.8'
+- source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/workload-identity-federation
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/workspaces
