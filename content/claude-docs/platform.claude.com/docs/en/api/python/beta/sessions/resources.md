@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/resources
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 9d20f194a4dac097e6bc25428037ec14c5fd1de9ce0fbb12479024e403580dab
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 6f72fb7845c411d15f4011ecfa7b33e5f8710ecc61bd3cc3e1d36a2b24ddd29f
 ---
 
 # Resources
@@ -37,7 +37,7 @@ Add Session Resource
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ Add Session Resource
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -150,7 +152,7 @@ List Session Resources
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -197,6 +199,8 @@ List Session Resources
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -338,7 +342,7 @@ Get Session Resource
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -385,6 +389,8 @@ Get Session Resource
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -530,7 +536,7 @@ Update Session Resource
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -577,6 +583,8 @@ Update Session Resource
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -719,7 +727,7 @@ Delete Session Resource
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -766,6 +774,8 @@ Delete Session Resource
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

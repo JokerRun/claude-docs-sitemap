@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 2638e814490e7af0feaa0dbe7acc4ca10bc0ab8d765424cb9fcb614b7739ae2c
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: f064e73e7cc6f552f5a75605e4074199f3de9d4663b0258769122572c1621177
 ---
 
 # Structured outputs
@@ -3123,7 +3123,7 @@ Prompts and responses are processed with ZDR when using structured outputs. Howe
 
 Structured outputs are HIPAA eligible, but **PHI must not be included in JSON schema definitions**. The API compiles JSON schemas into grammars that are cached separately from message content, and these cached schemas do not receive the same PHI protections as prompts and responses. Do not include PHI in schema property names, `enum` values, `const` values, or `pattern` regular expressions. PHI should only appear in message content (prompts and responses), where it is protected under HIPAA safeguards.
 
-For ZDR and HIPAA eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).
+For ZDR and HIPAA eligibility across all features, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 
 ## Feature compatibility
 

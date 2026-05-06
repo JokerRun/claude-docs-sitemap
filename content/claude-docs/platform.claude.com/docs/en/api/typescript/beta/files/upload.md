@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/upload
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 4fc966927a40a4b848ae01b01884e20eee6ff983a7182b858cfe0920f906deb3
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 73f8b94966f76af1a6f6d7cd6b63e01387a2e7f32be12882b71d8be448b6ed93
 ---
 
 ## Upload
@@ -27,7 +27,7 @@ Upload File
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Upload File
       - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"managed-agents-2026-04-01"`
 
 ### Returns
 

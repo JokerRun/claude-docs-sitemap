@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memory_versions/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 4a760527b948cbe6a9234fe9b76e16564efef55b9b0d62eb81b659ecabad49ef
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 4b462129906d64efcc843c32eecd3fe964768bd8e61978e2af7e633e08d528f0
 ---
 
 ## Retrieve
@@ -80,6 +80,8 @@ Retrieve a memory version
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
 ### Returns
 

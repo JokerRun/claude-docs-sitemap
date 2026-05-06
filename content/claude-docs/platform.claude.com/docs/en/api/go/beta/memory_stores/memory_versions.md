@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memory_versions
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 38d6c8f9de88cfeb985f487457412a948555907b98be4fc99f0e2f662b3cf86a
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 0dec8f83006c90fa52894794f7dff98d25e9c1a30e12fb1090af51e18a091238
 ---
 
 # Memory Versions
@@ -110,6 +110,8 @@ List memory versions
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -354,6 +356,8 @@ Retrieve a memory version
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
 ### Returns
 
 - `type BetaManagedAgentsMemoryVersion struct{…}`
@@ -592,6 +596,8 @@ Redact a memory version
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 9195db803362b30b4d30b987f9a7e94cff83cb512f84e4d8ff4f7cf623a85154
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: a0b1baf090a436d6b0641a92f935929fec836ddbb5e5627dc00042340cff9965
 ---
 
 ## List
@@ -35,7 +35,7 @@ List Credentials
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ List Credentials
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 

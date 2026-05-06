@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 29f21787110f8d3ca0d17c3d3fa25b0a8d097d04320c13620af7ff84b377fb93
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 813eb9272cd27bbc743f1d72b1315666e8bc22086f3abab3a2829838c046fa8a
 ---
 
 # Memories
@@ -41,7 +41,7 @@ Create a memory
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -88,6 +88,8 @@ Create a memory
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -201,7 +203,7 @@ List memories
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -248,6 +250,8 @@ List memories
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -351,7 +355,7 @@ Retrieve a memory
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -398,6 +402,8 @@ Retrieve a memory
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -505,7 +511,7 @@ Update a memory
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -552,6 +558,8 @@ Update a memory
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -635,7 +643,7 @@ Delete a memory
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -682,6 +690,8 @@ Delete a memory
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 

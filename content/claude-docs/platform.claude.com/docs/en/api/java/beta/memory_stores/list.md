@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 278f758f9f70656a7e98335fe571c2ce7b155fb96645e57e9d12d9899bf2e15f
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: b6c30eb499b819be2aa6ddc02cd91851573c850737b373070024b22087f2aaad
 ---
 
 ## List
@@ -86,6 +86,8 @@ List memory stores
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

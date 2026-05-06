@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 33a8fcd3a6cce1a4ebcff4f1f0c249c75c6f15b06f1fd12f45fe18c6203aab88
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 5be549e59a8928f63f6b2010472c171d2c2b3ec5b931244923a4a641b5fc3f94
 ---
 
 # Agents
@@ -146,6 +146,10 @@ Create Agent
   - `IReadOnlyDictionary<string, string> metadata`
 
     Body param: Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `BetaManagedAgentsMultiagentParams? multiagent`
+
+    Body param: A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
   - `IReadOnlyList<BetaManagedAgentsSkillParams> skills`
 
@@ -431,6 +435,8 @@ Create Agent
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -514,6 +520,26 @@ Create Agent
       - `"standard"Standard`
 
       - `"fast"Fast`
+
+  - `required BetaManagedAgentsMultiagent? Multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `required IReadOnlyList<BetaManagedAgentsAgentReference> Agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `required string ID`
+
+      - `required Type Type`
+
+        - `"agent"Agent`
+
+      - `required Int Version`
+
+    - `required Type Type`
+
+      - `"coordinator"Coordinator`
 
   - `required string Name`
 
@@ -821,6 +847,8 @@ List Agents
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class AgentListPageResponse:`
@@ -908,6 +936,26 @@ List Agents
         - `"standard"Standard`
 
         - `"fast"Fast`
+
+    - `required BetaManagedAgentsMultiagent? Multiagent`
+
+      Resolved coordinator topology with a concrete agent roster.
+
+      - `required IReadOnlyList<BetaManagedAgentsAgentReference> Agents`
+
+        Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+        - `required string ID`
+
+        - `required Type Type`
+
+          - `"agent"Agent`
+
+        - `required Int Version`
+
+      - `required Type Type`
+
+        - `"coordinator"Coordinator`
 
     - `required string Name`
 
@@ -1205,6 +1253,8 @@ Get Agent
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -1288,6 +1338,26 @@ Get Agent
       - `"standard"Standard`
 
       - `"fast"Fast`
+
+  - `required BetaManagedAgentsMultiagent? Multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `required IReadOnlyList<BetaManagedAgentsAgentReference> Agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `required string ID`
+
+      - `required Type Type`
+
+        - `"agent"Agent`
+
+      - `required Int Version`
+
+    - `required Type Type`
+
+      - `"coordinator"Coordinator`
 
   - `required string Name`
 
@@ -1656,6 +1726,10 @@ Update Agent
 
         - `"fast"Fast`
 
+  - `BetaManagedAgentsMultiagentParams? multiagent`
+
+    Body param: A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
+
   - `string name`
 
     Body param: Human-readable name. 1-256 characters. Omit to preserve. Cannot be cleared.
@@ -1944,6 +2018,8 @@ Update Agent
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -2027,6 +2103,26 @@ Update Agent
       - `"standard"Standard`
 
       - `"fast"Fast`
+
+  - `required BetaManagedAgentsMultiagent? Multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `required IReadOnlyList<BetaManagedAgentsAgentReference> Agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `required string ID`
+
+      - `required Type Type`
+
+        - `"agent"Agent`
+
+      - `required Int Version`
+
+    - `required Type Type`
+
+      - `"coordinator"Coordinator`
 
   - `required string Name`
 
@@ -2318,6 +2414,8 @@ Archive Agent
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -2401,6 +2499,26 @@ Archive Agent
       - `"standard"Standard`
 
       - `"fast"Fast`
+
+  - `required BetaManagedAgentsMultiagent? Multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `required IReadOnlyList<BetaManagedAgentsAgentReference> Agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `required string ID`
+
+      - `required Type Type`
+
+        - `"agent"Agent`
+
+      - `required Int Version`
+
+    - `required Type Type`
+
+      - `"coordinator"Coordinator`
 
   - `required string Name`
 
@@ -2711,6 +2829,26 @@ Console.WriteLine(betaManagedAgentsAgent);
 
       - `"fast"Fast`
 
+  - `required BetaManagedAgentsMultiagent? Multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `required IReadOnlyList<BetaManagedAgentsAgentReference> Agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `required string ID`
+
+      - `required Type Type`
+
+        - `"agent"Agent`
+
+      - `required Int Version`
+
+    - `required Type Type`
+
+      - `"coordinator"Coordinator`
+
   - `required string Name`
 
   - `required IReadOnlyList<Skill> Skills`
@@ -2920,6 +3058,20 @@ Console.WriteLine(betaManagedAgentsAgent);
   - `required Int Version`
 
     The agent's current version. Starts at 1 and increments when the agent is modified.
+
+### Beta Managed Agents Agent Reference
+
+- `class BetaManagedAgentsAgentReference:`
+
+  A resolved agent reference with a concrete version.
+
+  - `required string ID`
+
+  - `required Type Type`
+
+    - `"agent"Agent`
+
+  - `required Int Version`
 
 ### Beta Managed Agents Agent Tool Config
 
@@ -3797,6 +3949,78 @@ Console.WriteLine(betaManagedAgentsAgent);
 
     - `"fast"Fast`
 
+### Beta Managed Agents Multiagent Coordinator
+
+- `class BetaManagedAgentsMultiagentCoordinator:`
+
+  Resolved coordinator topology with a concrete agent roster.
+
+  - `required IReadOnlyList<BetaManagedAgentsAgentReference> Agents`
+
+    Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+    - `required string ID`
+
+    - `required Type Type`
+
+      - `"agent"Agent`
+
+    - `required Int Version`
+
+  - `required Type Type`
+
+    - `"coordinator"Coordinator`
+
+### Beta Managed Agents Multiagent Coordinator Params
+
+- `class BetaManagedAgentsMultiagentCoordinatorParams:`
+
+  A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
+
+  - `required IReadOnlyList<BetaManagedAgentsMultiagentRosterEntryParams> Agents`
+
+    Agents the coordinator may spawn as session threads. 1–20 entries. Each entry is an agent ID string, a versioned `{"type":"agent","id","version"}` reference, or `{"type":"self"}` to allow recursive self-invocation. Entries must reference distinct agents (after resolving `self` and string forms); at most one `self`. Referenced agents must exist, must not be archived, and must not themselves have `multiagent` set (depth limit 1).
+
+    - `string`
+
+    - `class BetaManagedAgentsAgentParams:`
+
+      Specification for an Agent. Provide a specific `version` or use the short-form `agent="agent_id"` for the most recent version
+
+      - `required string ID`
+
+        The `agent` ID.
+
+      - `required Type Type`
+
+        - `"agent"Agent`
+
+      - `Int Version`
+
+        The specific `agent` version to use. Omit to use the latest version. Must be at least 1 if specified.
+
+    - `class BetaManagedAgentsMultiagentSelfParams:`
+
+      Sentinel roster entry meaning "the agent that owns this configuration". Resolved server-side to a concrete agent reference.
+
+      - `required Type Type`
+
+        - `"self"Self`
+
+  - `required Type Type`
+
+    - `"coordinator"Coordinator`
+
+### Beta Managed Agents Multiagent Self Params
+
+- `class BetaManagedAgentsMultiagentSelfParams:`
+
+  Sentinel roster entry meaning "the agent that owns this configuration". Resolved server-side to a concrete agent reference.
+
+  - `required Type Type`
+
+    - `"self"Self`
+
 ### Beta Managed Agents Skill Params
 
 - `class BetaManagedAgentsSkillParams: A class that can be one of several variants.union`
@@ -3929,6 +4153,8 @@ List Agent Versions
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class VersionListPageResponse:`
@@ -4016,6 +4242,26 @@ List Agent Versions
         - `"standard"Standard`
 
         - `"fast"Fast`
+
+    - `required BetaManagedAgentsMultiagent? Multiagent`
+
+      Resolved coordinator topology with a concrete agent roster.
+
+      - `required IReadOnlyList<BetaManagedAgentsAgentReference> Agents`
+
+        Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+        - `required string ID`
+
+        - `required Type Type`
+
+          - `"agent"Agent`
+
+        - `required Int Version`
+
+      - `required Type Type`
+
+        - `"coordinator"Coordinator`
 
     - `required string Name`
 

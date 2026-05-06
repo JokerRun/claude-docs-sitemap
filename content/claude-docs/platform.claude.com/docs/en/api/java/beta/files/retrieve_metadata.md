@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/retrieve_metadata
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 39a449af99152e74c2d148eea3d4ed2967a1c257ff48b69321b39a30b64cc7fa
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 33df2dc26bebe1424abb3c4bd6d8e3d6e84d6dfa5b51035048b5e7ffe82ecdb8
 ---
 
 ## Retrieve Metadata
@@ -70,6 +70,8 @@ Get File Metadata
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

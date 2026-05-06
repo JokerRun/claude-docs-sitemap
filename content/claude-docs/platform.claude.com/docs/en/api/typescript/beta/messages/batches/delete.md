@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/delete
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 393ac34c04694ea569f0d32f89f2497426a8d36e4915a9912e413881abbe213e
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 000f2c234f5957eb7c83b53f5c600dad707609b29036262a1ce08720e072cfc9
 ---
 
 ## Delete
@@ -31,7 +31,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"managed-agents-2026-04-01"`
 
 ### Returns
 

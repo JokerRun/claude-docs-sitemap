@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/create
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 359c5a14e731b543e1c7df4bc470b94b5c1aacddd6b155a1885a884a75ce65ce
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 00848626f516997a82a8231f7f7adbd3317a52902b92c9797b8f28ca66f7ac91
 ---
 
 ## Create
@@ -66,6 +66,8 @@ Create Agent
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `Model model`
 
@@ -194,6 +196,10 @@ Create Agent
   - `Optional<Metadata> metadata`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `Optional<BetaManagedAgentsMultiagentParams> multiagent`
+
+    A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
   - `Optional<List<BetaManagedAgentsSkillParams>> skills`
 
@@ -512,6 +518,26 @@ Create Agent
       - `STANDARD("standard")`
 
       - `FAST("fast")`
+
+  - `Optional<BetaManagedAgentsMultiagent> multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `List<BetaManagedAgentsAgentReference> agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `String id`
+
+      - `Type type`
+
+        - `AGENT("agent")`
+
+      - `long version`
+
+    - `Type type`
+
+      - `COORDINATOR("coordinator")`
 
   - `String name`
 

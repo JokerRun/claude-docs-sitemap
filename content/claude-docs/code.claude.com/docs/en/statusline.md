@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 46cc44fb0f79b0c2ec6aa3163edd0cbcbb80f73bb779e2d1ffca48f7401b41aa
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: ab6fe139f1428f87b24677ff829150adffd4e7767b1fcb2bcc00971ac5d1f459
 ---
 
 > ## Documentation Index
@@ -141,7 +141,7 @@ Claude Code runs your script and pipes [JSON session data](#available-data) to i
 
 **When it updates**
 
-Your script runs after each new assistant message, when the permission mode changes, or when vim mode toggles. Updates are debounced at 300ms, meaning rapid changes batch together and your script runs once things settle. If a new update triggers while your script is still running, the in-flight execution is cancelled. If you edit your script, the changes won't appear until your next interaction with Claude Code triggers an update.
+Your script runs after each new assistant message, after `/compact` finishes, when the permission mode changes, or when vim mode toggles. Updates are debounced at 300ms, meaning rapid changes batch together and your script runs once things settle. If a new update triggers while your script is still running, the in-flight execution is cancelled. If you edit your script, the changes won't appear until your next interaction with Claude Code triggers an update.
 
 These triggers can go quiet when the main session is idle, for example while a coordinator waits on background subagents. To keep time-based or externally-sourced segments current during idle periods, set [`refreshInterval`](#manually-configure-a-status-line) to also re-run the command on a fixed timer.
 
@@ -279,7 +279,7 @@ Claude Code sends the following JSON fields to your script via stdin:
 
   **Fields that may be `null`**:
 
-  * `context_window.current_usage`: `null` before the first API call in a session
+  * `context_window.current_usage`: `null` before the first API call in a session, and again after `/compact` until the next API call repopulates it
   * `context_window.used_percentage`, `context_window.remaining_percentage`: may be `null` early in the session
 
   Handle missing fields with conditional access and null values with fallback defaults in your scripts.
@@ -303,7 +303,7 @@ The `used_percentage` field is calculated from input tokens only: `input_tokens 
 
 If you calculate context percentage manually from `current_usage`, use the same input-only formula to match `used_percentage`.
 
-The `current_usage` object is `null` before the first API call in a session.
+The `current_usage` object is `null` before the first API call in a session, and again immediately after `/compact` until the next API call repopulates it.
 
 ## Examples
 

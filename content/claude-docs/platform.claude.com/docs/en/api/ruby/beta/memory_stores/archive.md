@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/archive
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: deca2dfd450efc9562038c32b9c8653627067f87f77df74628adc353a903f0f9
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 6dc967c0ca60c813910b6fb8fb515ee6aee25c66fa6d420e472f065633295d44
 ---
 
 ## Archive
@@ -23,7 +23,7 @@ Archive a memory store
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -70,6 +70,8 @@ Archive a memory store
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 

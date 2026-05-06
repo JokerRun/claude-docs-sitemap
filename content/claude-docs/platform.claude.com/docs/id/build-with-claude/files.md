@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: b654fa35912f731b87ca57a93528d520cbd293234181b28ece0cbb7979d890af
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 488b4e177b91619b72910345e89cb0bf14a5ec768dc887c31dd0178351f50f89
 ---
 
 # Files API
@@ -894,9 +894,7 @@ System.out.println(metadata);
 ````
 
 ````php
-$file = $client->beta->files->retrieveMetadata(
-    fileID: $fileId,
-);
+$file = $client->beta->files->retrieveMetadata($fileId);
 echo $file;
 ````
 
@@ -953,9 +951,7 @@ client.beta().files().delete(fileId);
 ````
 
 ````php
-$result = $client->beta->files->delete(
-    fileID: $fileId,
-);
+$result = $client->beta->files->delete($fileId);
 ````
 
 ````ruby

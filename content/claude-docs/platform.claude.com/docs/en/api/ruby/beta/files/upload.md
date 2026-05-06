@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/upload
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: adbb849285c5795f7a93abb595a1c2afd5a2de3856e5865ec1e72f9724bbc51e
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 55a4710cfe9f9a608f089aac1c462712b19d8b746ec86cbcc0bf4a85aeefa31a
 ---
 
 ## Upload
@@ -25,7 +25,7 @@ Upload File
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Upload File
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: f4392e4c45e86735336e580fcb44e48e69d471026e720b804aa25692936a5797
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: e00645e73dad7a5c4734c1d173d6839dbea2353cd88073148d4fe40a3ff20181
 ---
 
 ## Retrieve
@@ -33,7 +33,7 @@ Get Skill Version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Get Skill Version
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

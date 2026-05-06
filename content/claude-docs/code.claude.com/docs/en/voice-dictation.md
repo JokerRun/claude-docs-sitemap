@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/voice-dictation
-fetched_at: 2026-05-05T03:13:00.051351Z
-sha256: 78e668293ad01a9545e157a3f512c0758e56916018ad264f956edbb1e6946122
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: f1d71d8beaa7af86a1684eab3ebb021454e28b8cd0db3a86e9fe36e49a0ea469
 ---
 
 > ## Documentation Index
@@ -162,6 +162,7 @@ Common issues when voice dictation does not activate or record:
 * **`Voice mode requires a Claude.ai account`**: you are authenticated with an API key or a third-party provider. Run `/login` to sign in with a Claude.ai account.
 * **`Microphone access is denied`**: grant microphone permission to your terminal in system settings. On macOS, go to System Settings → Privacy & Security → Microphone and enable your terminal app, then run `/voice` again. On Windows, go to Settings → Privacy & security → Microphone and turn on microphone access for desktop apps, then run `/voice` again. If your terminal isn't listed in the macOS settings, see [Terminal not listed in macOS Microphone settings](#terminal-not-listed-in-macos-microphone-settings).
 * **`No audio recording tool found` on Linux**: the native audio module could not load and no fallback is installed. Install SoX with the command shown in the error message, for example `sudo apt-get install sox`.
+* **`Voice input is failing repeatedly and has been paused`**: voice dictation hit several start-up failures in a row and stopped attempting new sessions until one succeeds. This usually means the microphone or audio stack on this host can't capture audio, for example a headless server, a remote shell with no audio passthrough, or a denied microphone permission. Confirm a working input device, fix the underlying cause from the entries above, then trigger voice again.
 * **Nothing happens when holding `Space` in hold mode**: watch the prompt input while you hold. If spaces keep accumulating, voice dictation is likely off; run `/voice hold` to enable it. If only one or two spaces appear and then nothing, voice dictation is on but hold detection is not triggering. Hold detection requires your terminal to send key-repeat events, so it cannot detect a held key if key-repeat is disabled at the OS level. Switch to tap mode with `/voice tap` to avoid the key-repeat requirement.
 * **Tapping `Space` types a space instead of recording in tap mode**: the first tap only starts recording when the prompt input is empty. Clear the input first, or check that you are in tap mode by running `/voice tap`.
 * **`No audio detected from microphone`**: recording started but captured silence. Confirm the correct input device is set as the system default and that its input level is not muted or near zero. On Windows, open Settings → System → Sound → Input and select your microphone. On macOS, open System Settings → Sound → Input.

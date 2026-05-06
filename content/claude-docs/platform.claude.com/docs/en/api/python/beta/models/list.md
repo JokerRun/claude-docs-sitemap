@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/models/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 5fd0339bec39ed0c1206050f71ae332d0fd0f4e836dbc0b3734ea2bcdf2c3b9c
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 6e2e68f0044aef1cb91c4440352a86f859aeed5e22c0d19254f4ab419e075e29
 ---
 
 ## List
@@ -37,7 +37,7 @@ The Models API response can be used to determine which models are available for 
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ The Models API response can be used to determine which models are available for 
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

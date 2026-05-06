@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/agents/versions/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 1f8dc5c2287c8f0507a9b5139d175408ce23a7266bfd682b683c0496ce5aad3e
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 74c2f06ba6bc1fb9d07a60befc072c092d4094fd62109ae5a25dc455c619e07d
 ---
 
 ## List
@@ -31,7 +31,7 @@ List Agent Versions
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,8 @@ List Agent Versions
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -180,6 +182,26 @@ List Agent Versions
       - `"standard"`
 
       - `"fast"`
+
+  - `multiagent: Optional[BetaManagedAgentsMultiagent]`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `agents: List[BetaManagedAgentsAgentReference]`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `id: str`
+
+      - `type: Literal["agent"]`
+
+        - `"agent"`
+
+      - `version: int`
+
+    - `type: Literal["coordinator"]`
+
+      - `"coordinator"`
 
   - `name: str`
 

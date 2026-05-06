@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-04-30T03:14:15.920856Z
-sha256: 5af2b7eebbe67ae875a28056843d69562b79c8175fab8298e1dad0386d77a109
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 3463476be2b57aeb635373ade883ec7ef083fbdd28af71780eb9cc837dfc5e10
 ---
 
 # Prompt caching
@@ -3030,7 +3030,7 @@ Prompt caching (both automatic and explicit) is ZDR eligible. Anthropic does not
 
 KV (key-value) cache representations and cryptographic hashes of cached content are held in memory only and are not stored at rest. Cached entries have a minimum lifetime of 5 minutes (standard) or 60 minutes (extended), after which they are promptly, though not immediately, deleted. Cache entries are isolated between organizations.
 
-For ZDR eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).
+For ZDR eligibility across all features, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 
 ---
 ## FAQ

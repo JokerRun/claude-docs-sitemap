@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 29200f128aaa386d33c5e5883bf7d33774be3db6fcc572da7b2a13b798b53cd8
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: fe20304b3102b9237e779353ff86308a36938243a971a85e1fda155f9de7eae8
 ---
 
 ## Retrieve
@@ -69,6 +69,8 @@ Get User Profile
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class BetaUserProfile:`
@@ -84,6 +86,16 @@ Get User Profile
   - `Metadata metadata`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `Relationship relationship`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `EXTERNAL("external")`
+
+    - `RESOLD("resold")`
+
+    - `INTERNAL("internal")`
 
   - `TrustGrants trustGrants`
 
@@ -112,6 +124,10 @@ Get User Profile
   - `Optional<String> externalId`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `Optional<String> name`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Example
 

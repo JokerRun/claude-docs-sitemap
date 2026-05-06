@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: aecad6077abf6e6b134efb8eb5ec9bb4ce93f8f64f2fb5b2e7aece5dc334687b
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 86f5c150f522e45f943862d0708c86cc020fa29b85c9b2266ccff93b42a08c17
 ---
 
 # Environments
@@ -87,6 +87,8 @@ Create a new environment with the specified configuration.
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -283,6 +285,8 @@ List environments with pagination support.
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -482,6 +486,8 @@ Retrieve a specific environment by ID.
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -693,6 +699,8 @@ Update an existing environment's configuration.
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class BetaEnvironment:`
@@ -882,6 +890,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class BetaEnvironmentDeleteResponse:`
@@ -972,6 +982,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

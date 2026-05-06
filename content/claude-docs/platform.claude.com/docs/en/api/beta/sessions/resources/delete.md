@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/delete
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: b0f9980aae8558c29f0caeebc8ff22a15fbb6066c54d187c8d5f74fef7938117
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: ff33857ec89de6d631ef0529b48b0fb6a131e24297dae44c3c45ecfcd9a411f8
 ---
 
 ## Delete
@@ -25,7 +25,7 @@ Delete Session Resource
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Delete Session Resource
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/messages/create
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 2675940680a690252e0261dba34bfc8dbedb6d7c8b406d2fecf2f15bd91bc3cf
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 69a02fc1d50023c23b789637af46d7fbd209951cf78f28a33a0f25234bece20b
 ---
 
 ## Create
@@ -321,15 +321,25 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           - `cited_text: string`
 
+            The full text of the cited block range, concatenated.
+
+            Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
           - `document_index: number`
 
           - `document_title: string`
 
           - `end_block_index: number`
 
+            Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+            Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
           - `file_id: string`
 
           - `start_block_index: number`
+
+            0-based index of the first cited block in the source's `content` array.
 
           - `type: "content_block_location"`
 
@@ -349,13 +359,27 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           - `cited_text: string`
 
+            The full text of the cited block range, concatenated.
+
+            Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
           - `end_block_index: number`
 
+            Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+            Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
           - `search_result_index: number`
+
+            0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+            Counted separately from `document_index`; server-side web search results are not included in this count.
 
           - `source: string`
 
           - `start_block_index: number`
+
+            0-based index of the first cited block in the source's `content` array.
 
           - `title: string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: a6ba167cbe3cd3d5464eaaad762d5b1ef8e17fca55b771fec376f740a7c4ed63
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: c64d8f5abd10454d54499cfb3d1e3b0e5c7873b786daf5ff607f4793e81f897f
 ---
 
 # Agent Skills
@@ -276,7 +276,7 @@ For complete examples of custom Skills, see the [Skills cookbook](https://platfo
 
 Agent Skills is not covered by ZDR arrangements. Skill definitions and execution data are retained according to Anthropic's standard data retention policy.
 
-For ZDR eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).
+For ZDR eligibility across all features, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 
 ## Limitations and constraints
 

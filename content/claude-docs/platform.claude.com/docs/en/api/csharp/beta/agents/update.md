@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/update
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: bdd42dcc244489a3356d5d30229d82685012271968c30fbfa02e69898826b1e4
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 0d6d658dabe994d9f69c7b768e6a4b12934d17b049dca0775c513cd75a810a55
 ---
 
 ## Update
@@ -148,6 +148,10 @@ Update Agent
         - `"standard"Standard`
 
         - `"fast"Fast`
+
+  - `BetaManagedAgentsMultiagentParams? multiagent`
+
+    Body param: A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
   - `string name`
 
@@ -437,6 +441,8 @@ Update Agent
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -520,6 +526,26 @@ Update Agent
       - `"standard"Standard`
 
       - `"fast"Fast`
+
+  - `required BetaManagedAgentsMultiagent? Multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `required IReadOnlyList<BetaManagedAgentsAgentReference> Agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `required string ID`
+
+      - `required Type Type`
+
+        - `"agent"Agent`
+
+      - `required Int Version`
+
+    - `required Type Type`
+
+      - `"coordinator"Coordinator`
 
   - `required string Name`
 

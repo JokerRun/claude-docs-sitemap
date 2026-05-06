@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 71dde946dd7b21e70c683c4e3ecd58011cc6783d98b72f4e39ce66ab44850f06
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 1c6f67df933aab05a7af61285180b467d0274a3e7cbc372818b8c593c8b22a5d
 ---
 
 # User Profiles
@@ -25,13 +25,27 @@ Create User Profile
 
   Free-form key-value data to attach to this user profile. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters. Values must be non-empty strings.
 
+- `name: Optional[str]`
+
+  Display name of the entity this profile represents. Required when relationship is `resold` (the resold-to company's name); optional otherwise. Maximum 255 characters.
+
+- `relationship: Optional[Literal["external", "resold", "internal"]]`
+
+  How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+  - `"external"`
+
+  - `"resold"`
+
+  - `"internal"`
+
 - `betas: Optional[List[AnthropicBetaParam]]`
 
   Optional header to specify the beta version(s) you want to use.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -79,6 +93,8 @@ Create User Profile
 
     - `"advisor-tool-2026-03-01"`
 
+    - `"managed-agents-2026-04-01"`
+
 ### Returns
 
 - `class BetaUserProfile: …`
@@ -94,6 +110,16 @@ Create User Profile
   - `metadata: Dict[str, str]`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `relationship: Literal["external", "resold", "internal"]`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `"external"`
+
+    - `"resold"`
+
+    - `"internal"`
 
   - `trust_grants: Dict[str, BetaUserProfileTrustGrant]`
 
@@ -122,6 +148,10 @@ Create User Profile
   - `external_id: Optional[str]`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `name: Optional[str]`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Example
 
@@ -168,7 +198,7 @@ List User Profiles
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -216,6 +246,8 @@ List User Profiles
 
     - `"advisor-tool-2026-03-01"`
 
+    - `"managed-agents-2026-04-01"`
+
 ### Returns
 
 - `class BetaUserProfile: …`
@@ -231,6 +263,16 @@ List User Profiles
   - `metadata: Dict[str, str]`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `relationship: Literal["external", "resold", "internal"]`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `"external"`
+
+    - `"resold"`
+
+    - `"internal"`
 
   - `trust_grants: Dict[str, BetaUserProfileTrustGrant]`
 
@@ -259,6 +301,10 @@ List User Profiles
   - `external_id: Optional[str]`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `name: Optional[str]`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Example
 
@@ -292,7 +338,7 @@ Get User Profile
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -340,6 +386,8 @@ Get User Profile
 
     - `"advisor-tool-2026-03-01"`
 
+    - `"managed-agents-2026-04-01"`
+
 ### Returns
 
 - `class BetaUserProfile: …`
@@ -355,6 +403,16 @@ Get User Profile
   - `metadata: Dict[str, str]`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `relationship: Literal["external", "resold", "internal"]`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `"external"`
+
+    - `"resold"`
+
+    - `"internal"`
 
   - `trust_grants: Dict[str, BetaUserProfileTrustGrant]`
 
@@ -383,6 +441,10 @@ Get User Profile
   - `external_id: Optional[str]`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `name: Optional[str]`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Example
 
@@ -419,13 +481,27 @@ Update User Profile
 
   Key-value pairs to merge into the stored metadata. Keys provided overwrite existing values. To remove a key, set its value to an empty string. Keys not provided are left unchanged. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters.
 
+- `name: Optional[str]`
+
+  If present, replaces the stored name. Omit to leave unchanged. Maximum 255 characters.
+
+- `relationship: Optional[Literal["external", "resold", "internal"]]`
+
+  How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+  - `"external"`
+
+  - `"resold"`
+
+  - `"internal"`
+
 - `betas: Optional[List[AnthropicBetaParam]]`
 
   Optional header to specify the beta version(s) you want to use.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -473,6 +549,8 @@ Update User Profile
 
     - `"advisor-tool-2026-03-01"`
 
+    - `"managed-agents-2026-04-01"`
+
 ### Returns
 
 - `class BetaUserProfile: …`
@@ -488,6 +566,16 @@ Update User Profile
   - `metadata: Dict[str, str]`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `relationship: Literal["external", "resold", "internal"]`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `"external"`
+
+    - `"resold"`
+
+    - `"internal"`
 
   - `trust_grants: Dict[str, BetaUserProfileTrustGrant]`
 
@@ -516,6 +604,10 @@ Update User Profile
   - `external_id: Optional[str]`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `name: Optional[str]`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Example
 
@@ -550,7 +642,7 @@ Create Enrollment URL
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -597,6 +689,8 @@ Create Enrollment URL
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -649,6 +743,16 @@ print(beta_user_profile_enrollment_url.expires_at)
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
+  - `relationship: Literal["external", "resold", "internal"]`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `"external"`
+
+    - `"resold"`
+
+    - `"internal"`
+
   - `trust_grants: Dict[str, BetaUserProfileTrustGrant]`
 
     Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
@@ -676,6 +780,10 @@ print(beta_user_profile_enrollment_url.expires_at)
   - `external_id: Optional[str]`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `name: Optional[str]`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Beta User Profile Enrollment URL
 

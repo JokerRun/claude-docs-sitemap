@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/create
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 6d17c61315787d4c6946ce94dfe22fb2ab1d2e66aebe5d87f0cee58df7a2becd
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: e87ebb5eb74e3e091dbe8fad4c383fd86f444a27f30fee7fcd89cf032c625d9e
 ---
 
 ## Create
@@ -19,7 +19,7 @@ Create Skill
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66,6 +66,8 @@ Create Skill
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

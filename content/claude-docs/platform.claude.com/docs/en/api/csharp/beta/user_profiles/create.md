@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 6e24efb2e2b4254eccafd13f47e24d7ddefa7bb2fad762fa71841d568c513289
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: f402d6cf6df8bc595e3ba2a53ec83d5a1eb459b716b32ec80ca00132c78c31b1
 ---
 
 ## Create
@@ -24,6 +24,20 @@ Create User Profile
   - `IReadOnlyDictionary<string, string> metadata`
 
     Body param: Free-form key-value data to attach to this user profile. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters. Values must be non-empty strings.
+
+  - `string? name`
+
+    Body param: Display name of the entity this profile represents. Required when relationship is `resold` (the resold-to company's name); optional otherwise. Maximum 255 characters.
+
+  - `Relationship relationship`
+
+    Body param: How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `"external"External`
+
+    - `"resold"Resold`
+
+    - `"internal"Internal`
 
   - `IReadOnlyList<AnthropicBeta> betas`
 
@@ -75,6 +89,8 @@ Create User Profile
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class BetaUserProfile:`
@@ -90,6 +106,16 @@ Create User Profile
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `required Relationship Relationship`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `"external"External`
+
+    - `"resold"Resold`
+
+    - `"internal"Internal`
 
   - `required IReadOnlyDictionary<string, BetaUserProfileTrustGrant> TrustGrants`
 
@@ -118,6 +144,10 @@ Create User Profile
   - `string? ExternalID`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `string? Name`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Example
 

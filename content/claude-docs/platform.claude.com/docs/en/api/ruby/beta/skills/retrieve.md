@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: bb89b8320bfb5896168b9c8e4c48ce79273eac9dc95c3436613fb526fe72525b
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: a0b4a033748b9a573b2ce013e7237f3d34b758f5d13169797eedddd12a2999ff
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ Get Skill
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Get Skill
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 

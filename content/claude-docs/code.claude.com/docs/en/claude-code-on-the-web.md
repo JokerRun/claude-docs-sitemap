@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: b0b84323e66c666fe08fab8810c3ecdb46ebf0f3407560e2635240d988a4f28a
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: c2b160eab3c951c953cf97ad30a9371fcb69f7ec9deaf8a534708f14bd77c415
 ---
 
 > ## Documentation Index
@@ -191,6 +191,8 @@ apt update && apt install -y gh
 ```
 
 If the script exits non-zero, the session fails to start. Append `|| true` to non-critical commands to avoid blocking the session on an intermittent install failure.
+
+Keep the script's total runtime under roughly five minutes so the [environment cache](#environment-caching) can build. Run independent installs in parallel with `&` and `wait`. If a single download won't fit in the five-minute limit, move it to a [SessionStart hook](#setup-scripts-vs-sessionstart-hooks) that launches it in the background.
 
 <Note>
   Setup scripts that install packages need network access to reach registries. The default **Trusted** network access allows connections to [common package registries](#default-allowed-domains) including npm, PyPI, RubyGems, and crates.io. Scripts will fail to install packages if your environment uses **None** network access.

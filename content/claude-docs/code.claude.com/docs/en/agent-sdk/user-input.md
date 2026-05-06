@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/user-input
-fetched_at: 2026-04-23T03:11:35.814149Z
-sha256: 4d57dfc0b83f21d0e94a8e1efa36373d5c7062e1461e422861d23c49de572b5a
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 9696016a059219ef0e927f0734a96e2e37008b991a7baa88952972fd314826f2
 ---
 
 > ## Documentation Index
@@ -60,11 +60,11 @@ The callback fires in two cases:
 
 Once you've passed a `canUseTool` callback in your query options, it fires when Claude wants to use a tool that isn't auto-approved. Your callback receives three arguments:
 
-| Argument                            | Description                                                                                                                                                                                                                                                                                                                             |
-| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `toolName`                          | The name of the tool Claude wants to use (e.g., `"Bash"`, `"Write"`, `"Edit"`)                                                                                                                                                                                                                                                          |
-| `input`                             | The parameters Claude is passing to the tool. Contents vary by tool.                                                                                                                                                                                                                                                                    |
-| `options` (TS) / `context` (Python) | Additional context including optional `suggestions` (proposed `PermissionUpdate` entries to avoid re-prompting) and a cancellation signal. In TypeScript, `signal` is an `AbortSignal`; in Python, the signal field is reserved for future use. See [`ToolPermissionContext`](/en/agent-sdk/python#tool-permission-context) for Python. |
+| Argument                            | Description                                                                                                                                                                                                                                                                                                                           |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `toolName`                          | The name of the tool Claude wants to use (e.g., `"Bash"`, `"Write"`, `"Edit"`)                                                                                                                                                                                                                                                        |
+| `input`                             | The parameters Claude is passing to the tool. Contents vary by tool.                                                                                                                                                                                                                                                                  |
+| `options` (TS) / `context` (Python) | Additional context including optional `suggestions` (proposed `PermissionUpdate` entries to avoid re-prompting) and a cancellation signal. In TypeScript, `signal` is an `AbortSignal`; in Python, the signal field is reserved for future use. See [`ToolPermissionContext`](/en/agent-sdk/python#toolpermissioncontext) for Python. |
 
 The `input` object contains tool-specific parameters. Common examples:
 
@@ -75,7 +75,7 @@ The `input` object contains tool-specific parameters. Common examples:
 | `Edit`  | `file_path`, `old_string`, `new_string` |
 | `Read`  | `file_path`, `offset`, `limit`          |
 
-See the SDK reference for complete input schemas: [Python](/en/agent-sdk/python#tool-input-output-types) | [TypeScript](/en/agent-sdk/typescript#tool-input-types).
+See the SDK reference for complete input schemas: [Python](/en/agent-sdk/python#tool-input%2Foutput-types) | [TypeScript](/en/agent-sdk/typescript#tool-input-types).
 
 You can display this information to the user so they can decide whether to allow or reject the action, then return the appropriate response.
 
@@ -814,4 +814,4 @@ Custom tools give you full control over the interaction, but require more implem
 
 * [Configure permissions](/en/agent-sdk/permissions): set up permission modes and rules
 * [Control execution with hooks](/en/agent-sdk/hooks): run custom code at key points in the agent lifecycle
-* [TypeScript SDK reference](/en/agent-sdk/typescript#can-use-tool): full canUseTool API documentation
+* [TypeScript SDK reference](/en/agent-sdk/typescript#canusetool): full canUseTool API documentation

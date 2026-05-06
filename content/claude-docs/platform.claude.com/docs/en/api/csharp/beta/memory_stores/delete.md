@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/delete
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: eb80b3ecd4e001495fa6ba453c0d1353a1517b5f9c231727ddbb467d17a567ef
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: eb6ea61f76aa8ea09f30756dd9bae698e81b26a821baa86166066045017def20
 ---
 
 ## Delete
@@ -70,6 +70,8 @@ Delete a memory store
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/update
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: b5bd46132debcfb578e5d93c780f1a2d9fea01f9b8dc41096fb5cd4f5671fef1
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 3fc94d00f54d5bc861766e61501fac5e78b05de588b0b67c71520e25fcc05d66
 ---
 
 ## Update
@@ -33,7 +33,7 @@ Update Session Resource
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Update Session Resource
       - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"managed-agents-2026-04-01"`
 
 ### Returns
 

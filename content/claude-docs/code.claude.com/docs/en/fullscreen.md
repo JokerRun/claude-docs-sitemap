@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-05-02T03:12:03.381331Z
-sha256: ca058477a9a25e6e6843ddfcb63b4e54bb943b794b5efb4a36b4100df6768a36
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: cdb1f05abb3d22eeb595041a414ce9da6aacf6fed8b6a1333b26812f68331cb7
 ---
 
 > ## Documentation Index
@@ -129,7 +129,7 @@ Press `Ctrl+L` twice within two seconds to run `/clear` and start a new conversa
 
 ## Use with tmux
 
-Fullscreen rendering works inside tmux, with two caveats.
+Fullscreen rendering works inside tmux, with three caveats.
 
 Mouse wheel scrolling requires tmux's mouse mode. If your `~/.tmux.conf` does not already enable it, add this line and reload your config:
 
@@ -140,6 +140,8 @@ set -g mouse on
 Without mouse mode, wheel events go to tmux instead of Claude Code. Keyboard scrolling with `PgUp` and `PgDn` works either way. Claude Code prints a one-time hint at startup if it detects tmux with mouse mode off.
 
 Fullscreen rendering is incompatible with iTerm2's tmux integration mode, which is the mode you enter with `tmux -CC`. In integration mode, iTerm2 renders each tmux pane as a native split rather than letting tmux draw to the terminal. The alternate screen buffer and mouse tracking do not work correctly there: the mouse wheel does nothing, and double-click can corrupt the terminal state. Don't enable fullscreen rendering in `tmux -CC` sessions. Regular tmux inside iTerm2, without `-CC`, works fine.
+
+tmux does not support synchronized output, so you may see more flicker during redraws than when running Claude Code directly in your terminal. If the flicker is noticeable, especially over SSH, run Claude Code in its own terminal tab outside tmux.
 
 ## Keep native text selection
 

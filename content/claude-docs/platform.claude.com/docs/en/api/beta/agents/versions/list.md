@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 7139c84c85803ac049df141b731512ddccf1b9c191529b4f8aedec5df917f316
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 07eef72b0fa76e24adaa2cdd0444652aac2e557aff99ca773cf3602be11ba0a5
 ---
 
 ## List
@@ -33,7 +33,7 @@ List Agent Versions
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ List Agent Versions
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -172,6 +174,26 @@ List Agent Versions
       - `"standard"`
 
       - `"fast"`
+
+  - `multiagent: BetaManagedAgentsMultiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `agents: array of BetaManagedAgentsAgentReference`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `id: string`
+
+      - `type: "agent"`
+
+        - `"agent"`
+
+      - `version: number`
+
+    - `type: "coordinator"`
+
+      - `"coordinator"`
 
   - `name: string`
 

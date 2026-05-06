@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/models
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 29db18d0c415fb536868c6303218b6e3137a37a328d44531101171cab1824c30
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: b815b2354be05f945db1c4c8eabed0b6177a805cbaf5eb632ab310e1b7372845
 ---
 
 # Models
@@ -39,7 +39,7 @@ The Models API response can be used to determine which models are available for 
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -86,6 +86,8 @@ The Models API response can be used to determine which models are available for 
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -313,7 +315,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -360,6 +362,8 @@ The Models API response can be used to determine information about a specific mo
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 

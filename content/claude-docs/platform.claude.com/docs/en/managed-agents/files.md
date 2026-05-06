@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 5f1ffdd866eeb2f5e05003936a63515850142dd145b48c02dd2ced643eaa69ff
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: f1b5079e4b040693b6d63225098a13046a629a54449d843facb867cb07501ca8
 ---
 
 # Adding files
@@ -86,18 +86,9 @@ IO.println("File ID: " + file.id());
 
   
 ````php
-$ch = curl_init('https://api.anthropic.com/v1/files');
-curl_setopt_array($ch, [
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_POST => true,
-    CURLOPT_HTTPHEADER => [
-        'x-api-key: ' . getenv('ANTHROPIC_API_KEY'),
-        'anthropic-version: 2023-06-01',
-        'anthropic-beta: files-api-2025-04-14',
-    ],
-    CURLOPT_POSTFIELDS => ['file' => new CURLFile($csvPath, 'text/csv', 'data.csv')],
-]);
-$file = json_decode(curl_exec($ch));
+$file = $client->beta->files->upload(
+    FileParam::fromResource(fopen($csvPath, 'r'), filename: 'data.csv', contentType: 'text/csv'),
+);
 echo "File ID: {$file->id}\n";
 ````
 

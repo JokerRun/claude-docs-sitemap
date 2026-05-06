@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: cd9a1ab5368cb707f71621dfb438c845ecf2b6f931309a4e304c9046180ee705
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 0735429c2e0f3daeb83f2a19de2b3617e825d9dd6f461c28f8c4ad86edf57881
 ---
 
 ## List
@@ -83,6 +83,8 @@ List User Profiles
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class UserProfileListPageResponse:`
@@ -102,6 +104,16 @@ List User Profiles
     - `required IReadOnlyDictionary<string, string> Metadata`
 
       Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+    - `required Relationship Relationship`
+
+      How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+      - `"external"External`
+
+      - `"resold"Resold`
+
+      - `"internal"Internal`
 
     - `required IReadOnlyDictionary<string, BetaUserProfileTrustGrant> TrustGrants`
 
@@ -130,6 +142,10 @@ List User Profiles
     - `string? ExternalID`
 
       Platform's own identifier for this user. Not enforced unique.
+
+    - `string? Name`
+
+      Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
   - `required string? NextPage`
 

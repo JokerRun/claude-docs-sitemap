@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/create
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 15f256158dfb0d1440f32de4a238462631c4c0ceda13ec1b6eb5b255f3f38561
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 83d7a29d2d5a74a3b922f9408f5309a872c83cadf90cf1a48b5fb1071389311a
 ---
 
 ## Create
@@ -110,6 +110,10 @@ Create Agent
   - `Metadata param.Field[map[string, string]]`
 
     Body param: Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `Multiagent param.Field[BetaManagedAgentsMultiagentParamsResp]`
+
+    Body param: A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
   - `Skills param.Field[[]BetaManagedAgentsSkillParamsUnionResp]`
 
@@ -399,6 +403,8 @@ Create Agent
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
 ### Returns
 
 - `type BetaManagedAgentsAgent struct{…}`
@@ -490,6 +496,26 @@ Create Agent
       - `const BetaManagedAgentsModelConfigSpeedStandard BetaManagedAgentsModelConfigSpeed = "standard"`
 
       - `const BetaManagedAgentsModelConfigSpeedFast BetaManagedAgentsModelConfigSpeed = "fast"`
+
+  - `Multiagent BetaManagedAgentsMultiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `Agents []BetaManagedAgentsAgentReference`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `ID string`
+
+      - `Type BetaManagedAgentsAgentReferenceType`
+
+        - `const BetaManagedAgentsAgentReferenceTypeAgent BetaManagedAgentsAgentReferenceType = "agent"`
+
+      - `Version int64`
+
+    - `Type BetaManagedAgentsMultiagentType`
+
+      - `const BetaManagedAgentsMultiagentTypeCoordinator BetaManagedAgentsMultiagentType = "coordinator"`
 
   - `Name string`
 

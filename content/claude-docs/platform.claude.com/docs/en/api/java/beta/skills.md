@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: bf4ae8a7d99231260b0412d2cc66ed92dc9304a56dd8f329e4b7b6b861aca1f4
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 82e9de2cbaeecd21069ef98c5af5f50ba4b8cf5a6a9db35b563e38e3fbbba98c
 ---
 
 # Skills
@@ -68,6 +68,8 @@ Create Skill
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `Optional<String> displayTitle`
 
@@ -230,6 +232,8 @@ List Skills
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class SkillListResponse:`
@@ -363,6 +367,8 @@ Get Skill
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 
@@ -498,6 +504,8 @@ Delete Skill
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class SkillDeleteResponse:`
@@ -604,6 +612,8 @@ Create Skill Version
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `Optional<List<String>> files`
 
@@ -758,6 +768,8 @@ List Skill Versions
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class VersionListResponse:`
@@ -900,6 +912,8 @@ Get Skill Version
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 
@@ -1047,6 +1061,8 @@ Delete Skill Version
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

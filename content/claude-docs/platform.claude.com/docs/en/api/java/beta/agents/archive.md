@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/archive
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: c64776a2dc8517170bc6aaa75e860457bc80398a31938be6fbc1758e65f6949b
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 0075b6ab9f29b7f7000c7b950195233f7c69709e02ec051737b6243fa6618489
 ---
 
 ## Archive
@@ -68,6 +68,8 @@ Archive Agent
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 
@@ -152,6 +154,26 @@ Archive Agent
       - `STANDARD("standard")`
 
       - `FAST("fast")`
+
+  - `Optional<BetaManagedAgentsMultiagent> multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `List<BetaManagedAgentsAgentReference> agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `String id`
+
+      - `Type type`
+
+        - `AGENT("agent")`
+
+      - `long version`
+
+    - `Type type`
+
+      - `COORDINATOR("coordinator")`
 
   - `String name`
 

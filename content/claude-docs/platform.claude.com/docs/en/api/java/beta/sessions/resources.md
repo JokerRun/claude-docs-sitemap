@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: e8fafc5caecab3eede98d6e94b8f357c3d24794547f46a799f976d581739808b
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: f4ccb24c8a4097549c1261856ee7ba3a3b7b7538883237fc4e51503bbf8909ba
 ---
 
 # Resources
@@ -70,6 +70,8 @@ Add Session Resource
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `BetaManagedAgentsFileResourceParams betaManagedAgentsFileResourceParams`
 
@@ -197,6 +199,8 @@ List Session Resources
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 
@@ -388,6 +392,8 @@ Get Session Resource
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 
@@ -583,6 +589,8 @@ Update Session Resource
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `String authorizationToken`
 
@@ -783,6 +791,8 @@ Delete Session Resource
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: f24829b9ad128657418780da7eba7540657971a9916c467cbd08bba51f4694b9
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: c6652d1d2ec761557313d34c370b265ced87a4e93b8ec9ea177bf3c5235f10fd
 ---
 
 ## Retrieve
@@ -68,6 +68,8 @@ Get Vault
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

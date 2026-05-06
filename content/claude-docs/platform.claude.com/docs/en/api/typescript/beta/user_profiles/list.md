@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: f6d1e60dd7d7684c7a9dc2eb12a96cc0db9fc0ea068480620ffc1e862aa506be
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: fa22c987a4d1d11088df66558b600fc6ea0f80c23a0b880edae7f7bcad822f36
 ---
 
 ## List
@@ -39,7 +39,7 @@ List User Profiles
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -87,6 +87,8 @@ List User Profiles
 
       - `"advisor-tool-2026-03-01"`
 
+      - `"managed-agents-2026-04-01"`
+
 ### Returns
 
 - `BetaUserProfile`
@@ -102,6 +104,16 @@ List User Profiles
   - `metadata: Record<string, string>`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `relationship: "external" | "resold" | "internal"`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `"external"`
+
+    - `"resold"`
+
+    - `"internal"`
 
   - `trust_grants: Record<string, BetaUserProfileTrustGrant>`
 
@@ -130,6 +142,10 @@ List User Profiles
   - `external_id?: string | null`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `name?: string | null`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Example
 

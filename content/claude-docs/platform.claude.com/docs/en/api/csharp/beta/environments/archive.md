@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/archive
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 208d97719335869b2774cb42a436fa03e530516cdac3dca9497ae7e008bfc99f
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 882ca0bcf770ea2edebc4fd41b98be02c3ba3dbace2788a536cc15a8e854d774
 ---
 
 ## Archive
@@ -68,6 +68,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

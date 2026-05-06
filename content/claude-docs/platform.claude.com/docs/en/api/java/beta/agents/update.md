@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/update
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 1c4b4450d355ab6d42f64331762c22c428f13050cd32ea49f3d7d6d36a6c253c
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 6c9ccc39c00995688e771edebfcdbebe872eccc9ca94be13ad806ed30a47476a
 ---
 
 ## Update
@@ -68,6 +68,8 @@ Update Agent
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `long version`
 
@@ -196,6 +198,10 @@ Update Agent
         - `STANDARD("standard")`
 
         - `FAST("fast")`
+
+  - `Optional<BetaManagedAgentsMultiagentParams> multiagent`
+
+    A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
   - `Optional<String> name`
 
@@ -518,6 +524,26 @@ Update Agent
       - `STANDARD("standard")`
 
       - `FAST("fast")`
+
+  - `Optional<BetaManagedAgentsMultiagent> multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `List<BetaManagedAgentsAgentReference> agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `String id`
+
+      - `Type type`
+
+        - `AGENT("agent")`
+
+      - `long version`
+
+    - `Type type`
+
+      - `COORDINATOR("coordinator")`
 
   - `String name`
 

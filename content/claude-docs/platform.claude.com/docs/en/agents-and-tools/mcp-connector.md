@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 2b3ff19436b5aac36936a2a7b5e517eac1bf9d6a66463618667929831ed184fc
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: e6c8440197166bee5ef696be05bfd3d130985ab81bb7a45056313a630f1bea3c
 ---
 
 # MCP connector
@@ -752,7 +752,7 @@ The conversion functions throw `UnsupportedMCPValueError` if an MCP value isn't 
 
 The MCP Connector is not covered by ZDR arrangements. Data exchanged with MCP servers, including tool definitions and execution results, is retained according to Anthropic's standard data retention policy.
 
-For ZDR eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).
+For ZDR eligibility across all features, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 
 ## Migration guide
 

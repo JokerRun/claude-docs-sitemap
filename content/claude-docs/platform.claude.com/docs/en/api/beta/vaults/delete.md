@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/delete
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 29ae4c6a186d03681b9a6a8d4392a04af8bba972090483f1a7973e50493b9203
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 1a54b82177a87257b185546358e450136243d0cc29a0f789486855f17b31e7a1
 ---
 
 ## Delete
@@ -23,7 +23,7 @@ Delete Vault
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,6 +70,8 @@ Delete Vault
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

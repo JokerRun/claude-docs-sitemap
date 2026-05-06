@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-04-30T03:14:15.920856Z
-sha256: 1ab5e511651501f90271e82e9d6d86b35be91858d820b95fa2bebf39853297b2
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 5214de207c5e0b3ca944e9c4940de1cb2a2f0246d8925a424a6c185422726743
 ---
 
 # Batch processing
@@ -2201,7 +2201,7 @@ Note that the failure of one request in a batch does not affect the processing o
 
 Batch processing stores request and response data for up to 29 days after batch creation. You can delete a message batch at any time after processing using the `DELETE /v1/messages/batches/{batch_id}` endpoint. To delete an in-progress batch, cancel it first. Asynchronous processing requires server-side storage of both inputs and outputs until batch completion and result retrieval.
 
-For ZDR eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).
+For ZDR eligibility across all features, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 
 ## FAQ
 

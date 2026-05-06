@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: d8411cbcca2fbe96fa0267d6445e4de995b876a50d213e22f59a7c40f606566f
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: de0f5903c83d5bbbd30f7078bfdcf1b73b75cc0ebe7e1057641d87f4d2d6405c
 ---
 
 ## Redact
@@ -70,6 +70,8 @@ Redact a memory version
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

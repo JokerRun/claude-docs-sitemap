@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 694fd099c5ea101279dc79987a2af429ba4bc1c983255455755e2842980675ca
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 444a9d698c1c91c0c3c385b0471e4d1b92d67c8985217f8866374375e0a2823c
 ---
 
 ## Retrieve
@@ -23,7 +23,7 @@ Retrieve a memory store
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -70,6 +70,8 @@ Retrieve a memory store
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 

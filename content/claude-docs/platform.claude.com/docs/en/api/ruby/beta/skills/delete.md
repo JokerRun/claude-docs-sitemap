@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/delete
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 21d91baf699cc689117910613251549e1eab1c6b645d46a7c307f63be15c88c6
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: f81506f7e5cd66b5be7554f045375418fa8545d2ee8de0bc5a6ba031152d0bfc
 ---
 
 ## Delete
@@ -27,7 +27,7 @@ Delete Skill
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Delete Skill
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 

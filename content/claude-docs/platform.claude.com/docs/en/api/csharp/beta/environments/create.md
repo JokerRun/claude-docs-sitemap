@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/create
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 3f7877f4144da03612401608373513a2dfc4547f0f37b580ed1a68dc10411a5f
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 0939d88f81c189d77454de86c11e31ab1bc1fc60dd340aa62379bba14e53dc64
 ---
 
 ## Create
@@ -85,6 +85,8 @@ Create a new environment with the specified configuration.
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

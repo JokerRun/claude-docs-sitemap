@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 71d79289cc0d83636be29adfa8d909b476273f8d90671d0ca0b296f207f6d306
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 7d7476609cebae357177357acacdaab02a009aa00750d0329b17e89f325e7cb5
 ---
 
 ## Retrieve
@@ -74,6 +74,8 @@ Get Agent
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -158,6 +160,26 @@ Get Agent
       - `"standard"Standard`
 
       - `"fast"Fast`
+
+  - `required BetaManagedAgentsMultiagent? Multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `required IReadOnlyList<BetaManagedAgentsAgentReference> Agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `required string ID`
+
+      - `required Type Type`
+
+        - `"agent"Agent`
+
+      - `required Int Version`
+
+    - `required Type Type`
+
+      - `"coordinator"Coordinator`
 
   - `required string Name`
 

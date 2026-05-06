@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: fcc1c3ef42c798cee7345a43e434bd254bab73ecce1594465eb2dfb9efea4937
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 6cf1ec1df66ac5dce2feb97672a66f283f4676836c9e8bc8a8e29b84579e9dc5
 ---
 
 # Versions
@@ -84,6 +84,8 @@ Create Skill Version
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -246,6 +248,8 @@ List Skill Versions
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
 ### Returns
 
 - `type BetaSkillVersionListResponse struct{…}`
@@ -403,6 +407,8 @@ Get Skill Version
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
 ### Returns
 
 - `type BetaSkillVersionGetResponse struct{…}`
@@ -559,6 +565,8 @@ Delete Skill Version
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
 ### Returns
 

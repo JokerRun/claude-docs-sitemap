@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/models/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: ff6e23e75867f9a88a26f5b3b3e70ee2af8498aef2f4102c780812abb4b43c5c
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 7bed7b099b0509fc3385800877c94acd2e0cfe98aba9076bd702481d907812b8
 ---
 
 ## List
@@ -82,6 +82,8 @@ The Models API response can be used to determine which models are available for 
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/custom-tools
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: 4c4270e2ca267cb725234302b8495a6685b895f63e6fd7c10825d9e06e726446
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 0019fd32bc704a7b9441c5d5295ef0ab3a8da78930d3df38b59a58dabfe10058
 ---
 
 > ## Documentation Index
@@ -41,7 +41,7 @@ A tool is defined by four parts, passed as arguments to the [`tool()`](/en/agent
   * `content` (required): an array of result blocks, each with a `type` of `"text"`, `"image"`, or `"resource"`. See [Return images and resources](#return-images-and-resources) for non-text blocks.
   * `isError` (optional): set to `true` to signal a tool failure so Claude can react to it. See [Handle errors](#handle-errors).
 
-After defining a tool, wrap it in a server with [`createSdkMcpServer`](/en/agent-sdk/typescript#create-sdk-mcp-server) (TypeScript) or [`create_sdk_mcp_server`](/en/agent-sdk/python#create-sdk-mcp-server) (Python). The server runs in-process inside your application, not as a separate process.
+After defining a tool, wrap it in a server with [`createSdkMcpServer`](/en/agent-sdk/typescript#createsdkmcpserver) (TypeScript) or [`create_sdk_mcp_server`](/en/agent-sdk/python#create_sdk_mcp_server) (Python). The server runs in-process inside your application, not as a separate process.
 
 ### Weather tool example
 
@@ -313,7 +313,7 @@ This example adds `readOnlyHint` to the `get_temperature` tool from the [weather
   ```
 </CodeGroup>
 
-See `ToolAnnotations` in the [TypeScript](/en/agent-sdk/typescript#tool-annotations) or [Python](/en/agent-sdk/python#tool-annotations) reference.
+See `ToolAnnotations` in the [TypeScript](/en/agent-sdk/typescript#toolannotations) or [Python](/en/agent-sdk/python#toolannotations) reference.
 
 ## Control tool access
 

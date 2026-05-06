@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: d6a5a97e2df09e11f88b6fd1bd5f40bd10290d3ee5d279d22e9d51e8d21bb272
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 896f8c305e5de7ff598c7399de9c3fe326759e2b280407b8882b937f27b5e846
 ---
 
 ## Redact
@@ -74,6 +74,8 @@ Redact a memory version
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

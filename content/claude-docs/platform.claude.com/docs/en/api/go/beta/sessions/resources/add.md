@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/add
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 5bad99fae461272d256713fd4de27522a233118a0110a8766c61337894157cd8
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 12f546d4ab12bb9e9fa4e9d5477e37c293aa9dced63ccf8a270c11ef9e273bf5
 ---
 
 ## Add
@@ -76,6 +76,8 @@ Add Session Resource
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
 ### Returns
 

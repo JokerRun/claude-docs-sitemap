@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/versions/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 0b8aee5327d9d5ef8c025ade36e6fd7d2bdd95a5361af09ebe493d4bfe8c436f
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 09555fd1d9f84c99a6986f9f078caeba96766501c8ce5b37b034112cc6eb582a
 ---
 
 ## List
@@ -33,7 +33,7 @@ List Agent Versions
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ List Agent Versions
       - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -168,6 +170,26 @@ List Agent Versions
       - `"standard"`
 
       - `"fast"`
+
+  - `multiagent: BetaManagedAgentsMultiagent | null`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `agents: Array<BetaManagedAgentsAgentReference>`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `id: string`
+
+      - `type: "agent"`
+
+        - `"agent"`
+
+      - `version: number`
+
+    - `type: "coordinator"`
+
+      - `"coordinator"`
 
   - `name: string`
 

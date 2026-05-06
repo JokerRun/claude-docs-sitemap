@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/retrieve_metadata
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 5b3ee82e9e9740f827f425d002b604b554ddf97a4c81751a2cc343828f8553b1
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 1ed2755f3f9376ba63bb4ab0080c8ab5e918d42b8a469e5a7714459b17a03ad7
 ---
 
 ## Retrieve Metadata
@@ -70,6 +70,8 @@ Get File Metadata
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

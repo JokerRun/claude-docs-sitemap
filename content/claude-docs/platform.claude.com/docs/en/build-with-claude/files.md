@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: dacd285bb29c6030bd0016975b707994ad0ee2b3378348594e5e0fafd1d40c50
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: e2435a665ee141e0729a5c13546c306616dd78cd6fe1dc5455baecfb38b9b47e
 ---
 
 # Files API
@@ -118,21 +118,13 @@ FileMetadata file = client.beta().files().upload(
 System.out.println(file.id());
 ````
 
-```php PHP nocheck hidelines={1..4}
-<?php
-
-use Anthropic\Client;
-
-$client = new Client(
-    apiKey: getenv("ANTHROPIC_API_KEY")
-);
-
+````php
 $file = $client->beta->files->upload(
-    file: fopen('/path/to/document.pdf', 'r'),
+    FileParam::fromResource(fopen('/path/to/document.pdf', 'rb'), contentType: 'application/pdf'),
 );
 
 echo $file->id;
-```
+````
 
 ````ruby
 file = client.beta.files.upload(
@@ -880,9 +872,7 @@ System.out.println(metadata);
 ````
 
 ````php
-$file = $client->beta->files->retrieveMetadata(
-    fileID: $fileId,
-);
+$file = $client->beta->files->retrieveMetadata($fileId);
 echo $file;
 ````
 
@@ -939,9 +929,7 @@ client.beta().files().delete(fileId);
 ````
 
 ````php
-$result = $client->beta->files->delete(
-    fileID: $fileId,
-);
+$result = $client->beta->files->delete($fileId);
 ````
 
 ````ruby
@@ -1021,19 +1009,11 @@ try (HttpResponse response = client.beta().files().download(fileId)) {
 }
 ````
 
-```php PHP hidelines={1..4} nocheck
-<?php
-
-use Anthropic\Client;
-
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
-
-$fileContent = $client->beta->files->download(
-    fileID: 'file_011CNha8iCJcU1wXNR6q4V8w',
-);
+````php
+$fileContent = $client->beta->files->download($fileId);
 
 file_put_contents("downloaded_file.txt", $fileContent);
-```
+````
 
 ````ruby
 file_content = client.beta.files.download(file_id)
@@ -1070,7 +1050,7 @@ You can only download files that were created by [skills](/docs/en/build-with-cl
 
 Files uploaded via the Files API are retained until explicitly deleted using the `DELETE /v1/files/{file_id}` endpoint. Files are stored for reuse across multiple API requests.
 
-For ZDR eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).
+For ZDR eligibility across all features, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 
 ## Error handling
 

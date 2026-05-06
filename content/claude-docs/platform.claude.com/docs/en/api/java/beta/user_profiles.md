@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 53341b713a4b5cb993719dcbaa6cb48eee416e75031f816f842d2ff5700228d8
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 319881c2a5a281232bee670a2379fd76c3249ab51182abbdb9e3ef411d809220
 ---
 
 # User Profiles
@@ -69,6 +69,8 @@ Create User Profile
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
   - `Optional<String> externalId`
 
     Platform's own identifier for this user. Not enforced unique. Maximum 255 characters.
@@ -76,6 +78,20 @@ Create User Profile
   - `Optional<Metadata> metadata`
 
     Free-form key-value data to attach to this user profile. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters. Values must be non-empty strings.
+
+  - `Optional<String> name`
+
+    Display name of the entity this profile represents. Required when relationship is `resold` (the resold-to company's name); optional otherwise. Maximum 255 characters.
+
+  - `Optional<Relationship> relationship`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `EXTERNAL("external")`
+
+    - `RESOLD("resold")`
+
+    - `INTERNAL("internal")`
 
 ### Returns
 
@@ -92,6 +108,16 @@ Create User Profile
   - `Metadata metadata`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `Relationship relationship`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `EXTERNAL("external")`
+
+    - `RESOLD("resold")`
+
+    - `INTERNAL("internal")`
 
   - `TrustGrants trustGrants`
 
@@ -120,6 +146,10 @@ Create User Profile
   - `Optional<String> externalId`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `Optional<String> name`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Example
 
@@ -220,6 +250,8 @@ List User Profiles
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class BetaUserProfile:`
@@ -235,6 +267,16 @@ List User Profiles
   - `Metadata metadata`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `Relationship relationship`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `EXTERNAL("external")`
+
+    - `RESOLD("resold")`
+
+    - `INTERNAL("internal")`
 
   - `TrustGrants trustGrants`
 
@@ -263,6 +305,10 @@ List User Profiles
   - `Optional<String> externalId`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `Optional<String> name`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Example
 
@@ -349,6 +395,8 @@ Get User Profile
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class BetaUserProfile:`
@@ -364,6 +412,16 @@ Get User Profile
   - `Metadata metadata`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `Relationship relationship`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `EXTERNAL("external")`
+
+    - `RESOLD("resold")`
+
+    - `INTERNAL("internal")`
 
   - `TrustGrants trustGrants`
 
@@ -392,6 +450,10 @@ Get User Profile
   - `Optional<String> externalId`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `Optional<String> name`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Example
 
@@ -478,6 +540,8 @@ Update User Profile
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
   - `Optional<String> externalId`
 
     If present, replaces the stored external_id. Omit to leave unchanged. Maximum 255 characters.
@@ -485,6 +549,20 @@ Update User Profile
   - `Optional<Metadata> metadata`
 
     Key-value pairs to merge into the stored metadata. Keys provided overwrite existing values. To remove a key, set its value to an empty string. Keys not provided are left unchanged. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters.
+
+  - `Optional<String> name`
+
+    If present, replaces the stored name. Omit to leave unchanged. Maximum 255 characters.
+
+  - `Optional<Relationship> relationship`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `EXTERNAL("external")`
+
+    - `RESOLD("resold")`
+
+    - `INTERNAL("internal")`
 
 ### Returns
 
@@ -501,6 +579,16 @@ Update User Profile
   - `Metadata metadata`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `Relationship relationship`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `EXTERNAL("external")`
+
+    - `RESOLD("resold")`
+
+    - `INTERNAL("internal")`
 
   - `TrustGrants trustGrants`
 
@@ -529,6 +617,10 @@ Update User Profile
   - `Optional<String> externalId`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `Optional<String> name`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Example
 
@@ -615,6 +707,8 @@ Create Enrollment URL
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class BetaUserProfileEnrollmentUrl:`
@@ -672,6 +766,16 @@ public final class Main {
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
+  - `Relationship relationship`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `EXTERNAL("external")`
+
+    - `RESOLD("resold")`
+
+    - `INTERNAL("internal")`
+
   - `TrustGrants trustGrants`
 
     Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
@@ -699,6 +803,10 @@ public final class Main {
   - `Optional<String> externalId`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `Optional<String> name`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Beta User Profile Enrollment URL
 

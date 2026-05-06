@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memory_versions/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: aa2b8aa09958878c68a8dae0aa108b1e2b4ebc7a063e1814e39b576b9d6f5162
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: fae4a920fddac6c4d58319ff367c3c9cf2e0177a26bc5561520df6e675cc9e6d
 ---
 
 ## List
@@ -71,7 +71,7 @@ List memory versions
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -118,6 +118,8 @@ List memory versions
       - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"managed-agents-2026-04-01"`
 
 ### Returns
 

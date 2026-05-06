@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 65f3ac872b95c76c126c17e0373e5b7fa7b4be749b28e29d40daa5b7b49df436
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 6427fc52e647a029e15c84e3ce283b9526e9db5dd033c566c47853fb82d76995
 ---
 
 ## List
@@ -87,6 +87,8 @@ List Agents
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -170,6 +172,26 @@ List Agents
       - `STANDARD("standard")`
 
       - `FAST("fast")`
+
+  - `Optional<BetaManagedAgentsMultiagent> multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `List<BetaManagedAgentsAgentReference> agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `String id`
+
+      - `Type type`
+
+        - `AGENT("agent")`
+
+      - `long version`
+
+    - `Type type`
+
+      - `COORDINATOR("coordinator")`
 
   - `String name`
 

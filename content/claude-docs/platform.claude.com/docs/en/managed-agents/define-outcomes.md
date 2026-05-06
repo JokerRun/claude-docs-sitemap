@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 03fe519bcede880395bfcabce34b55a5be72284da54794f8271be2be806f3e81
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 9d331a4614d7d50ab2d64197f6050ad44fd6d2dbe054a34d4c4a7b577dde0b32
 ---
 
 # Define outcomes
@@ -131,8 +131,10 @@ Pass the rubric as inline text on `user.define_outcome` (shown in the next secti
   IO.println("Uploaded rubric: " + rubric.id());
   ```
   ```php PHP
+  use Anthropic\Core\FileParam;
+
   $rubric = $client->beta->files->upload(
-      file: fopen('/path/to/pr_review_rubric.md', 'r'),
+      file: FileParam::fromResource(fopen('/path/to/pr_review_rubric.md', 'r')),
   );
   echo "Uploaded rubric: {$rubric->id}\n";
   ```

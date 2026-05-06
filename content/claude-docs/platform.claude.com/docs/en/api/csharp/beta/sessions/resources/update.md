@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/update
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 368caa90d801e81d24c9beb2318b9fa1e82af02963b0f25ad3755485001fd4a7
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: fad73f330628517be248708f80e749b9723e7917c69d0f646dc744d94922b161
 ---
 
 ## Update
@@ -78,6 +78,8 @@ Update Session Resource
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

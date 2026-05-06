@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 56b64a6bbcbf731abbe829c488968bdde45130e73135786035b69f2e02d4ac2b
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 5057859a6e1e39e0cb2d128c05437d62baef524ed369fe4e8e0565502885dc5e
 ---
 
 # Files
@@ -68,6 +68,8 @@ Upload File
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `String file`
 
@@ -230,6 +232,8 @@ List Files
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class FileMetadata:`
@@ -369,6 +373,8 @@ Download File
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Example
 
 ```java
@@ -455,6 +461,8 @@ Get File Metadata
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 
@@ -594,6 +602,8 @@ Delete File
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

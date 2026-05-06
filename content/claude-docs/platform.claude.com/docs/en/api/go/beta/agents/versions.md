@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/versions
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: c7d9ce1c9a98bd08808701a01a46ec968238b46321d121dd378e0596dfc8e469
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 937f19783d7dc5186c23d1ba9cd116973e2795ea5706100d74713066506d0f2f
 ---
 
 # Versions
@@ -82,6 +82,8 @@ List Agent Versions
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -174,6 +176,26 @@ List Agent Versions
       - `const BetaManagedAgentsModelConfigSpeedStandard BetaManagedAgentsModelConfigSpeed = "standard"`
 
       - `const BetaManagedAgentsModelConfigSpeedFast BetaManagedAgentsModelConfigSpeed = "fast"`
+
+  - `Multiagent BetaManagedAgentsMultiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `Agents []BetaManagedAgentsAgentReference`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `ID string`
+
+      - `Type BetaManagedAgentsAgentReferenceType`
+
+        - `const BetaManagedAgentsAgentReferenceTypeAgent BetaManagedAgentsAgentReferenceType = "agent"`
+
+      - `Version int64`
+
+    - `Type BetaManagedAgentsMultiagentType`
+
+      - `const BetaManagedAgentsMultiagentTypeCoordinator BetaManagedAgentsMultiagentType = "coordinator"`
 
   - `Name string`
 

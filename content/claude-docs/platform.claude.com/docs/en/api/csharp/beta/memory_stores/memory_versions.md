@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memory_versions
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 10eef032eafa08592c1e50a9386671616bc14cac0da863791e365b043079de10
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: cca68181c8a7cff0ed8b2b3a81955bdc921693f9af10d6ba569f1685f7421ec1
 ---
 
 # Memory Versions
@@ -108,6 +108,8 @@ List memory versions
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -342,6 +344,8 @@ Retrieve a memory version
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class BetaManagedAgentsMemoryVersion:`
@@ -561,6 +565,8 @@ Redact a memory version
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

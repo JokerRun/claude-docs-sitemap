@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: abbe0547e1a4e685f91b6f01c7d438c8626edb1841820e1c0d8c8c0cdb2c049c
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: cde0a64c0ff1ec1d731278015de62194b184ea16ebda8c9a835da4ef50033842
 ---
 
 ## Retrieve
@@ -72,6 +72,8 @@ Retrieve a specific environment by ID.
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
 ### Returns
 

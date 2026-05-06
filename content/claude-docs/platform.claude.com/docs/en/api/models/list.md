@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 2e4b4a32d03f3453a976c95769030db543aace85dee99da0caa555418df2834b
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: db5de7226476bd42a92e41e474d9dcc74a097efa58e9348407f20781997f8da9
 ---
 
 ## List
@@ -37,7 +37,7 @@ The Models API response can be used to determine which models are available for 
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ The Models API response can be used to determine which models are available for 
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

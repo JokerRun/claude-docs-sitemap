@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/events/send
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: c2ed9a7e2274d02570a6f02acd0fb89dcd0f339fc631fbc9356053616032ac2f
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 090316abe686a29dbc31cf4ae05177a9f1abc40f2ff17816cf261fb2cd8045e8
 ---
 
 ## Send
@@ -184,6 +184,10 @@ Send Events
       - `type: "user.interrupt"`
 
         - `"user.interrupt"`
+
+      - `session_thread_id?: string | null`
+
+        If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
 
     - `BetaManagedAgentsUserToolConfirmationEventParams`
 
@@ -371,13 +375,57 @@ Send Events
 
         Whether the tool execution resulted in an error.
 
+    - `BetaManagedAgentsUserDefineOutcomeEventParams`
+
+      Parameters for defining an outcome the agent should work toward. The agent begins work on receipt.
+
+      - `description: string`
+
+        What the agent should produce. This is the task specification.
+
+      - `rubric: BetaManagedAgentsFileRubricParams | BetaManagedAgentsTextRubricParams`
+
+        Rubric for grading the quality of an outcome.
+
+        - `BetaManagedAgentsFileRubricParams`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `file_id: string`
+
+            ID of the rubric file.
+
+          - `type: "file"`
+
+            - `"file"`
+
+        - `BetaManagedAgentsTextRubricParams`
+
+          Rubric content provided inline as text.
+
+          - `content: string`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text. Maximum 262144 characters.
+
+          - `type: "text"`
+
+            - `"text"`
+
+      - `type: "user.define_outcome"`
+
+        - `"user.define_outcome"`
+
+      - `max_iterations?: number | null`
+
+        Eval→revision cycles before giving up. Default 3, max 20.
+
   - `betas?: Array<AnthropicBeta>`
 
     Header param: Optional header to specify the beta version(s) you want to use.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -425,13 +473,15 @@ Send Events
 
       - `"advisor-tool-2026-03-01"`
 
+      - `"managed-agents-2026-04-01"`
+
 ### Returns
 
 - `BetaManagedAgentsSendSessionEvents`
 
   Events that were successfully sent to the session.
 
-  - `data?: Array<BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | BetaManagedAgentsUserCustomToolResultEvent>`
+  - `data?: Array<BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 2 more>`
 
     Sent events
 
@@ -613,6 +663,10 @@ Send Events
 
         A timestamp in RFC 3339 format
 
+      - `session_thread_id?: string | null`
+
+        If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
+
     - `BetaManagedAgentsUserToolConfirmationEvent`
 
       A tool confirmation event that approves or denies a pending tool execution.
@@ -644,6 +698,10 @@ Send Events
       - `processed_at?: string | null`
 
         A timestamp in RFC 3339 format
+
+      - `session_thread_id?: string | null`
+
+        When set, the confirmation routes to this subagent's thread rather than the primary. Echo this from the `session_thread_id` on the `agent.tool_use` or `agent.mcp_tool_use` event that prompted the approval.
 
     - `BetaManagedAgentsUserCustomToolResultEvent`
 
@@ -814,6 +872,66 @@ Send Events
       - `processed_at?: string | null`
 
         A timestamp in RFC 3339 format
+
+      - `session_thread_id?: string | null`
+
+        Routes this result to a subagent thread. Copy from the `agent.custom_tool_use` event's `session_thread_id`.
+
+    - `BetaManagedAgentsUserDefineOutcomeEvent`
+
+      Echo of a `user.define_outcome` input event. Carries the server-generated `outcome_id` that subsequent `span.outcome_evaluation_*` events reference.
+
+      - `id: string`
+
+        Unique identifier for this event.
+
+      - `description: string`
+
+        What the agent should produce. Copied from the input event.
+
+      - `max_iterations: number | null`
+
+        Evaluate-then-revise cycles before giving up. Default 3, max 20.
+
+      - `outcome_id: string`
+
+        Server-generated `outc_` ID for this outcome. Referenced by `span.outcome_evaluation_*` events and the session's `outcome_evaluations` list.
+
+      - `processed_at: string`
+
+        A timestamp in RFC 3339 format
+
+      - `rubric: BetaManagedAgentsFileRubric | BetaManagedAgentsTextRubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `BetaManagedAgentsFileRubric`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `file_id: string`
+
+            ID of the rubric file.
+
+          - `type: "file"`
+
+            - `"file"`
+
+        - `BetaManagedAgentsTextRubric`
+
+          Rubric content provided inline as text.
+
+          - `content: string`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+          - `type: "text"`
+
+            - `"text"`
+
+      - `type: "user.define_outcome"`
+
+        - `"user.define_outcome"`
 
 ### Example
 

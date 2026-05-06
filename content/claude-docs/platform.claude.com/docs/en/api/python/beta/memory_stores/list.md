@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 1dafe208b1acb2ebaad6e1773808c2711f16957035f553b817ee7a4b2975e6c9
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 0832e59b79b74a56784d618dd1778b3e28f55c4cf01083a839ca9dbf0031500d
 ---
 
 ## List
@@ -41,7 +41,7 @@ List memory stores
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +88,8 @@ List memory stores
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

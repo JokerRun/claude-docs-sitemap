@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/create
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: f5edf62ecb23f1291c2d20248564dd216d6b8ca0c955e225000b2ecedfa57d24
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 1ebe15d87064c3f2c54c42438ec0b5c8ca3216e5e163d28939e2a51e48165699
 ---
 
 ## Create
@@ -82,6 +82,8 @@ Create Skill
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
 ### Returns
 

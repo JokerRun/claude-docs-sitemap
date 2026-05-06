@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: ed1bc1580d6a46d914d0ab9a868b0c0b5e4f95084155a08b616eede8b24d8f35
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: b77b837760b9f4ad38aea346180754b55b948563fdbf5b66cb44e6823d2c3afe
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Get Session Resource
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Get Session Resource
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

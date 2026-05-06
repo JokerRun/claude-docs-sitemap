@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 903d8e442113c1d1fb7ee83a3fdf1c1ff8ab1d7e3427c60958d91fc9eeb4a3bc
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 451d5d099d9b8da18307d5652e576f7dd64231d668f2bf45faff9c35e9b7fadc
 ---
 
 ## Retrieve
@@ -23,7 +23,7 @@ Get Vault
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,6 +70,8 @@ Get Vault
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

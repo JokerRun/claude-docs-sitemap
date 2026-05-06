@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/models
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: a34e46e632c6e187f55c8fbab3acc7078f43cfe21a92e64bbe8312c47519757a
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 6c78d00556f152b08726873acd6c25b7a9b88f37814347efb2f8df57c3b537e6
 ---
 
 # Models
@@ -84,6 +84,8 @@ The Models API response can be used to determine which models are available for 
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -368,6 +370,8 @@ The Models API response can be used to determine information about a specific mo
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

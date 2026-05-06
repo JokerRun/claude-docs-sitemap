@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-04-28T03:13:37.243984Z
-sha256: 780b6a33f61f0e6fa672db8bd30f7fb82876ed99fe2873d742546097792a4b77
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 24f1fc26e6f1db6abf79968bbf96d8a178f1d41b9264340dcc976846a5e3421d
 ---
 
 > ## Documentation Index
@@ -64,10 +64,6 @@ export HTTPS_PROXY=http://username:password@proxy.example.com:8080
 
 By default, Claude Code trusts both its bundled Mozilla CA certificates and your operating system's certificate store. Enterprise TLS-inspection proxies such as CrowdStrike Falcon and Zscaler work without additional configuration when their root certificate is installed in the OS trust store.
 
-<Note>
-  System CA store integration requires the native Claude Code binary distribution. When running on the Node.js runtime, the system CA store is not merged automatically. In that case, set `NODE_EXTRA_CA_CERTS=/path/to/ca-cert.pem` to trust an enterprise root CA.
-</Note>
-
 `CLAUDE_CODE_CERT_STORE` accepts a comma-separated list of sources. Recognized values are `bundled` for the Mozilla CA set shipped with Claude Code and `system` for the operating system trust store. The default is `bundled,system`.
 
 To trust only the bundled Mozilla CA set:
@@ -113,14 +109,15 @@ export CLAUDE_CODE_CLIENT_KEY_PASSPHRASE="your-passphrase"
 
 Claude Code requires access to the following URLs. Allowlist these in your proxy configuration and firewall rules, especially in containerized or restricted network environments.
 
-| URL                            | Required for                                                                                      |
-| ------------------------------ | ------------------------------------------------------------------------------------------------- |
-| `api.anthropic.com`            | Claude API requests                                                                               |
-| `claude.ai`                    | claude.ai account authentication                                                                  |
-| `platform.claude.com`          | Anthropic Console account authentication                                                          |
-| `downloads.claude.ai`          | Plugin executable downloads; native installer and native auto-updater                             |
-| `storage.googleapis.com`       | {/* max-version: 2.1.115 */}Native installer and native auto-updater on versions prior to 2.1.116 |
-| `bridge.claudeusercontent.com` | [Claude in Chrome](/en/chrome) extension WebSocket bridge                                         |
+| URL                            | Required for                                                                                                                      |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| `api.anthropic.com`            | Claude API requests                                                                                                               |
+| `claude.ai`                    | claude.ai account authentication                                                                                                  |
+| `platform.claude.com`          | Anthropic Console account authentication                                                                                          |
+| `downloads.claude.ai`          | Plugin executable downloads; native installer and native auto-updater                                                             |
+| `storage.googleapis.com`       | {/* max-version: 2.1.115 */}Native installer and native auto-updater on versions prior to 2.1.116                                 |
+| `bridge.claudeusercontent.com` | [Claude in Chrome](/en/chrome) extension WebSocket bridge                                                                         |
+| `raw.githubusercontent.com`    | Changelog feed for [`/release-notes`](/en/commands) and the release notes shown after updating; plugin marketplace install counts |
 
 If you install Claude Code through npm or manage your own binary distribution, end users may not need access to `downloads.claude.ai` or `storage.googleapis.com`.
 

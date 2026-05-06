@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/download
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 70a989671908e9d6a6373e95768ab43c264739a4a4ec29105995c29ebc2075f2
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 53983eea3c084d4d90627a5f0d9948946fd9f05adb9152b7cc88348596420950
 ---
 
 ## Download
@@ -70,6 +70,8 @@ Download File
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Example
 

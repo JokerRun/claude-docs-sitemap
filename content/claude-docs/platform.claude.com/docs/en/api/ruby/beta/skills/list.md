@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: ccbbd6245dcd28e5e08c8de6433c2da7122caa744be99e1e6da062c123e97fee
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: a0af30e6babe26084cb6957c099c4b80e277bb8821db1ce10289355e00156d98
 ---
 
 ## List
@@ -42,7 +42,7 @@ List Skills
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -89,6 +89,8 @@ List Skills
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 

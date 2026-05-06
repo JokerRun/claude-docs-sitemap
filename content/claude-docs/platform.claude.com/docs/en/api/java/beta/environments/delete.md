@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/delete
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: b74b79a787e5cdf984be773db208ba9bb24e530b926469a3a8ee084b2fb966ca
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: e9bfb2a9cadb1e5cc75c0a7751565e8951b6e1166a08a5fcea4562ade65e84ed
 ---
 
 ## Delete
@@ -68,6 +68,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

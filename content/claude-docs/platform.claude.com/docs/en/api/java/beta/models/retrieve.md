@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/models/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 1a7b14e8630f05c5d1588e5b3118cb036fc2e89acb8c75bb8fd3a5eb8ae5b90c
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 966a6c0183b6ad36823125e9e57533efefac7a752980c6ffc1dc72104cacf8df
 ---
 
 ## Retrieve
@@ -72,6 +72,8 @@ The Models API response can be used to determine information about a specific mo
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

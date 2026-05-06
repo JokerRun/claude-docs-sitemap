@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 1a2d1a7597669eeaad57fafeacb864449a717310a4bf7b1d26a70b8035184af2
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: d0c2a7d43b44a2d380fb8628de460d97e3e29a2336fe9e75ab13efc2613046d5
 ---
 
 # Resources
@@ -86,6 +86,8 @@ Add Session Resource
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -197,6 +199,8 @@ List Session Resources
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -395,6 +399,8 @@ Get Session Resource
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class ResourceRetrieveResponse: A class that can be one of several variants.union`
@@ -587,6 +593,8 @@ Update Session Resource
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Returns
 
 - `class ResourceUpdateResponse: A class that can be one of several variants.union`
@@ -775,6 +783,8 @@ Delete Session Resource
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

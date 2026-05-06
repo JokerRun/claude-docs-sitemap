@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-05-02T03:12:03.381331Z
-sha256: 61a67b0ef19e5ffc42b9c8acb6bf73106cb299d9017584fcdca7d403f921b6c8
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 6f40ff763b90bb118b0aaf397deba40f3a3aa2017641cc987a8842bb70449c5d
 ---
 
 > ## Documentation Index
@@ -137,6 +137,7 @@ Enable vim-style editing via `/config` → Editor mode.
 | Command         | Action                                              |
 | :-------------- | :-------------------------------------------------- |
 | `h`/`j`/`k`/`l` | Move left/down/up/right                             |
+| `Space`         | Move right                                          |
 | `w`             | Next word                                           |
 | `e`             | End of word                                         |
 | `b`             | Previous word                                       |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 4dee2e390a46ee393689dc0af8fca2529794bb9c3664ab0478417dcfddf67c35
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 42f8cc6d3d469ee16379ef7a3f0df7f06f4f320ff5dd27f2d8ead1396167255f
 ---
 
 > ## Documentation Index
@@ -34,7 +34,7 @@ To mitigate risks in agentic systems:
 * **Sandboxed bash tool**: [Sandbox](/en/sandboxing) bash commands with filesystem and network isolation, reducing permission prompts while maintaining security. Enable with `/sandbox` to define boundaries where Claude Code can work autonomously
 * **Write access restriction**: Claude Code can only write to the folder where it was started and its subfolders—it cannot modify files in parent directories without explicit permission. While Claude Code can read files outside the working directory (useful for accessing system libraries and dependencies), write operations are strictly confined to the project scope, creating a clear security boundary
 * **Prompt fatigue mitigation**: Support for allowlisting frequently used safe commands per-user, per-codebase, or per-organization
-* **Accept Edits mode**: Batch accept multiple edits while maintaining permission prompts for commands with side effects
+* **Accept Edits mode**: Auto-approves file edits and a fixed set of filesystem Bash commands like `mkdir`, `touch`, `rm`, `mv`, `cp`, and `sed` for paths in the working directory. Other Bash commands and out-of-scope paths still prompt
 
 ### User responsibility
 

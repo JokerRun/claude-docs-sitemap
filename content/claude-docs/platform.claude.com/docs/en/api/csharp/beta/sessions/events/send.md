@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/events/send
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 78cccb19b82b3af47afbebc6a4d0b860cabd6703105da0b90ba7dcf2c88aeb4a
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 633787116421c2a60512e244bb87b7e8398d41a6f03488dc9e3180dc89a770b9
 ---
 
 ## Send
@@ -186,6 +186,10 @@ Send Events
       - `required Type Type`
 
         - `"user.interrupt"UserInterrupt`
+
+      - `string? SessionThreadID`
+
+        If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
 
     - `class BetaManagedAgentsUserToolConfirmationEventParams:`
 
@@ -373,6 +377,50 @@ Send Events
 
         Whether the tool execution resulted in an error.
 
+    - `class BetaManagedAgentsUserDefineOutcomeEventParams:`
+
+      Parameters for defining an outcome the agent should work toward. The agent begins work on receipt.
+
+      - `required string Description`
+
+        What the agent should produce. This is the task specification.
+
+      - `required Rubric Rubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `class BetaManagedAgentsFileRubricParams:`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `required string FileID`
+
+            ID of the rubric file.
+
+          - `required Type Type`
+
+            - `"file"File`
+
+        - `class BetaManagedAgentsTextRubricParams:`
+
+          Rubric content provided inline as text.
+
+          - `required string Content`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text. Maximum 262144 characters.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+      - `required Type Type`
+
+        - `"user.define_outcome"UserDefineOutcome`
+
+      - `Int? MaxIterations`
+
+        Eval→revision cycles before giving up. Default 3, max 20.
+
   - `IReadOnlyList<AnthropicBeta> betas`
 
     Header param: Optional header to specify the beta version(s) you want to use.
@@ -422,6 +470,8 @@ Send Events
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -611,6 +661,10 @@ Send Events
 
         A timestamp in RFC 3339 format
 
+      - `string? SessionThreadID`
+
+        If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
+
     - `class BetaManagedAgentsUserToolConfirmationEvent:`
 
       A tool confirmation event that approves or denies a pending tool execution.
@@ -642,6 +696,10 @@ Send Events
       - `DateTimeOffset? ProcessedAt`
 
         A timestamp in RFC 3339 format
+
+      - `string? SessionThreadID`
+
+        When set, the confirmation routes to this subagent's thread rather than the primary. Echo this from the `session_thread_id` on the `agent.tool_use` or `agent.mcp_tool_use` event that prompted the approval.
 
     - `class BetaManagedAgentsUserCustomToolResultEvent:`
 
@@ -812,6 +870,66 @@ Send Events
       - `DateTimeOffset? ProcessedAt`
 
         A timestamp in RFC 3339 format
+
+      - `string? SessionThreadID`
+
+        Routes this result to a subagent thread. Copy from the `agent.custom_tool_use` event's `session_thread_id`.
+
+    - `class BetaManagedAgentsUserDefineOutcomeEvent:`
+
+      Echo of a `user.define_outcome` input event. Carries the server-generated `outcome_id` that subsequent `span.outcome_evaluation_*` events reference.
+
+      - `required string ID`
+
+        Unique identifier for this event.
+
+      - `required string Description`
+
+        What the agent should produce. Copied from the input event.
+
+      - `required Int? MaxIterations`
+
+        Evaluate-then-revise cycles before giving up. Default 3, max 20.
+
+      - `required string OutcomeID`
+
+        Server-generated `outc_` ID for this outcome. Referenced by `span.outcome_evaluation_*` events and the session's `outcome_evaluations` list.
+
+      - `required DateTimeOffset ProcessedAt`
+
+        A timestamp in RFC 3339 format
+
+      - `required Rubric Rubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `class BetaManagedAgentsFileRubric:`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `required string FileID`
+
+            ID of the rubric file.
+
+          - `required Type Type`
+
+            - `"file"File`
+
+        - `class BetaManagedAgentsTextRubric:`
+
+          Rubric content provided inline as text.
+
+          - `required string Content`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+      - `required Type Type`
+
+        - `"user.define_outcome"UserDefineOutcome`
 
 ### Example
 

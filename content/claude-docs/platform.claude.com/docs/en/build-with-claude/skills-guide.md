@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 8feadbbf7dbd7119d7ddc5f201955a7f51baab3be7588d4ed2bab7042716a3cf
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: c4929fb434de6d350abda05bb801b157d37ffeddd3f87dd3374134e112606eef
 ---
 
 # Using Agent Skills with the API
@@ -395,8 +395,7 @@ When Skills create documents (Excel, PowerPoint, PDF, Word), they return `file_i
 
 **Example: Creating and downloading an Excel file**
 
-<Tabs>
-<Tab title="cURL">
+<CodeGroup>
 
 ```bash cURL hidelines={1}
 cd "$(mktemp -d)"
@@ -443,9 +442,6 @@ curl "https://api.anthropic.com/v1/files/$FILE_ID/content" \
 echo "Downloaded: $FILENAME"
 ```
 
-</Tab>
-<Tab title="CLI">
-
 ```bash CLI nocheck hidelines={1}
 cd "$(mktemp -d)"
 # Step 1: Use the xlsx Skill to create a file
@@ -483,9 +479,6 @@ ant beta:files download \
 
 printf 'Downloaded: %s\n' "$FILENAME"
 ```
-
-</Tab>
-<Tab title="Python">
 
 ```python Python nocheck hidelines={1..2}
 import anthropic
@@ -532,9 +525,6 @@ for file_id in extract_file_ids(response):
     file_content.write_to_file(file_metadata.filename)
     print(f"Downloaded: {file_metadata.filename}")
 ```
-
-</Tab>
-<Tab title="TypeScript">
 
 ```typescript TypeScript hidelines={1..3}
 import Anthropic from "@anthropic-ai/sdk";
@@ -587,9 +577,6 @@ for (const fileId of extractFileIds(response)) {
   console.log(`Downloaded: ${fileMetadata.filename}`);
 }
 ```
-
-</Tab>
-<Tab title="C#">
 
 ```csharp C# nocheck
 using System;
@@ -685,9 +672,6 @@ class Program
 }
 ```
 
-</Tab>
-<Tab title="Go">
-
 ```go Go hidelines={1..15,68..69}
 package main
 
@@ -774,9 +758,6 @@ func extractFileIDs(response *anthropic.BetaMessage) []string {
 }
 ```
 
-</Tab>
-<Tab title="Java">
-
 ```java Java nocheck hidelines={1..4,8,10..17,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
@@ -843,13 +824,6 @@ public class SkillsFileDownload {
 }
 ```
 
-</Tab>
-<Tab title="PHP">
-
-<Note>
-The PHP SDK doesn't include a file download method. Use `retrieveMetadata()` for file info, then download the file content via the REST API.
-</Note>
-
 ```php PHP nocheck hidelines={1..4}
 <?php
 
@@ -893,37 +867,16 @@ function extractFileIds($response) {
     return $fileIds;
 }
 
-// Step 3: Get metadata and download via REST API
-$apiKey = getenv("ANTHROPIC_API_KEY");
+// Step 3: Download the file using Files API
 foreach (extractFileIds($response) as $fileId) {
-    $fileMetadata = $client->beta->files->retrieveMetadata(
-        fileID: $fileId,
-    );
-
-    // Download file content via REST API
-    $context = stream_context_create([
-        'http' => [
-            'header' => implode("\r\n", [
-                "x-api-key: $apiKey",
-                "anthropic-version: 2023-06-01",
-                "anthropic-beta: files-api-2025-04-14",
-            ]),
-        ],
-    ]);
-    $fileContent = file_get_contents(
-        "https://api.anthropic.com/v1/files/$fileId/content",
-        false,
-        $context
-    );
+    $fileMetadata = $client->beta->files->retrieveMetadata($fileId);
+    $fileContent  = $client->beta->files->download($fileId);
 
     // Step 4: Save to disk
     file_put_contents($fileMetadata->filename, $fileContent);
     echo "Downloaded: {$fileMetadata->filename}\n";
 }
 ```
-
-</Tab>
-<Tab title="Ruby">
 
 ```ruby Ruby nocheck hidelines={1..2}
 require "anthropic"
@@ -975,8 +928,7 @@ extract_file_ids(response).each do |file_id|
 end
 ```
 
-</Tab>
-</Tabs>
+</CodeGroup>
 
 **Additional Files API operations:**
 
@@ -1160,9 +1112,7 @@ $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
 $fileId = "file_abc123";
 
 // Get file metadata
-$fileInfo = $client->beta->files->retrieveMetadata(
-    fileID: $fileId,
-);
+$fileInfo = $client->beta->files->retrieveMetadata($fileId);
 echo "Filename: {$fileInfo->filename}, Size: {$fileInfo->sizeBytes} bytes\n";
 
 // List all files
@@ -1172,9 +1122,7 @@ foreach ($files->data as $file) {
 }
 
 // Delete a file
-$client->beta->files->delete(
-    fileID: $fileId,
-);
+$client->beta->files->delete($fileId);
 ```
 
 ```ruby Ruby nocheck hidelines={1..2}
@@ -5184,7 +5132,7 @@ end
 
 Agent Skills are not covered by ZDR arrangements. Skill definitions and execution data are retained according to Anthropic's standard data retention policy.
 
-For ZDR eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).
+For ZDR eligibility across all features, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 
 ## Next Steps
 

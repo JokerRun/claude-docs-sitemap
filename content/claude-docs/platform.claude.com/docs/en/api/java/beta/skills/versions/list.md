@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 7b8e9eff5ea80615f345e41657681068582d5629b9f8d1bfe5cccec0d31339e1
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 01054eb314a5c7cdeb09041f270dfdc7f361a5a24d9c6eb62f53a403f65a651d
 ---
 
 ## List
@@ -82,6 +82,8 @@ List Skill Versions
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

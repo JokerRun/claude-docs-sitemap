@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/archive
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 04ea42286bea025e985ab2fa365d9092b68b471ea515af6351c3080821d652c3
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: aacb5c47ec84bf5ead230c7feba9c92e9c1604c088e73764898f5a15e2b87e13
 ---
 
 ## Archive
@@ -25,7 +25,7 @@ Archive Agent
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Archive Agent
       - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -160,6 +162,26 @@ Archive Agent
       - `"standard"`
 
       - `"fast"`
+
+  - `multiagent: BetaManagedAgentsMultiagent | null`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `agents: Array<BetaManagedAgentsAgentReference>`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `id: string`
+
+      - `type: "agent"`
+
+        - `"agent"`
+
+      - `version: number`
+
+    - `type: "coordinator"`
+
+      - `"coordinator"`
 
   - `name: string`
 

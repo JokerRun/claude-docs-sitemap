@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/events
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 66bfb3f4699550f53a20bd08f650b32f66f2e6d704de9ad17b4b0a88dbb9d548
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: e8a37ded80575698ec53d2a6a8554afbbf4e6831343d053baeb9149f5f4840e0
 ---
 
 # Events
@@ -21,6 +21,22 @@ List Events
 
 - `params: EventListParams`
 
+  - `"created_at[gt]"?: string`
+
+    Query param: Return events created after this time (exclusive).
+
+  - `"created_at[gte]"?: string`
+
+    Query param: Return events created at or after this time (inclusive).
+
+  - `"created_at[lt]"?: string`
+
+    Query param: Return events created before this time (exclusive).
+
+  - `"created_at[lte]"?: string`
+
+    Query param: Return events created at or before this time (inclusive).
+
   - `limit?: number`
 
     Query param: Query parameter for limit
@@ -37,13 +53,17 @@ List Events
 
     Query param: Opaque pagination cursor from a previous response's next_page.
 
+  - `types?: Array<string>`
+
+    Query param: Filter by event type. Values match the `type` field on returned events (for example, `user.message` or `agent.tool_use`). Omit to return all event types.
+
   - `betas?: Array<AnthropicBeta>`
 
     Header param: Optional header to specify the beta version(s) you want to use.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -91,9 +111,11 @@ List Events
 
       - `"advisor-tool-2026-03-01"`
 
+      - `"managed-agents-2026-04-01"`
+
 ### Returns
 
-- `BetaManagedAgentsSessionEvent = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 17 more`
+- `BetaManagedAgentsSessionEvent = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 28 more`
 
   Union type for all event types in a session.
 
@@ -275,6 +297,10 @@ List Events
 
       A timestamp in RFC 3339 format
 
+    - `session_thread_id?: string | null`
+
+      If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
+
   - `BetaManagedAgentsUserToolConfirmationEvent`
 
     A tool confirmation event that approves or denies a pending tool execution.
@@ -306,6 +332,10 @@ List Events
     - `processed_at?: string | null`
 
       A timestamp in RFC 3339 format
+
+    - `session_thread_id?: string | null`
+
+      When set, the confirmation routes to this subagent's thread rather than the primary. Echo this from the `session_thread_id` on the `agent.tool_use` or `agent.mcp_tool_use` event that prompted the approval.
 
   - `BetaManagedAgentsUserCustomToolResultEvent`
 
@@ -477,6 +507,10 @@ List Events
 
       A timestamp in RFC 3339 format
 
+    - `session_thread_id?: string | null`
+
+      Routes this result to a subagent thread. Copy from the `agent.custom_tool_use` event's `session_thread_id`.
+
   - `BetaManagedAgentsAgentCustomToolUseEvent`
 
     Event emitted when the agent calls a custom tool. The session goes idle until the client sends a `user.custom_tool_result` event with the result.
@@ -500,6 +534,10 @@ List Events
     - `type: "agent.custom_tool_use"`
 
       - `"agent.custom_tool_use"`
+
+    - `session_thread_id?: string | null`
+
+      When set, this event was cross-posted from a subagent's thread to surface its custom tool use on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.custom_tool_result` event to route the result back.
 
   - `BetaManagedAgentsAgentMessageEvent`
 
@@ -582,6 +620,10 @@ List Events
       - `"ask"`
 
       - `"deny"`
+
+    - `session_thread_id?: string | null`
+
+      When set, this event was cross-posted from a subagent's thread to surface its permission request on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.tool_confirmation` event to route the approval back.
 
   - `BetaManagedAgentsAgentMCPToolResultEvent`
 
@@ -787,6 +829,10 @@ List Events
 
       - `"deny"`
 
+    - `session_thread_id?: string | null`
+
+      When set, this event was cross-posted from a subagent's thread to surface its permission request on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.tool_confirmation` event to route the approval back.
+
   - `BetaManagedAgentsAgentToolResultEvent`
 
     Event representing the result of an agent tool execution.
@@ -956,6 +1002,346 @@ List Events
     - `is_error?: boolean | null`
 
       Whether the tool execution resulted in an error.
+
+  - `BetaManagedAgentsAgentThreadMessageReceivedEvent`
+
+    Delivery event written to the target thread's input stream when an agent-to-agent message arrives.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `content: Array<BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock>`
+
+      Message content blocks.
+
+      - `BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: string`
+
+          The text content.
+
+        - `type: "text"`
+
+          - `"text"`
+
+      - `BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: string`
+
+              Base64-encoded image data.
+
+            - `media_type: string`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the image to fetch.
+
+          - `BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "image"`
+
+          - `"image"`
+
+      - `BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: string`
+
+              Base64-encoded document data.
+
+            - `media_type: string`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: string`
+
+              The plain text content.
+
+            - `media_type: "text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `"text/plain"`
+
+            - `type: "text"`
+
+              - `"text"`
+
+          - `BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the document to fetch.
+
+          - `BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "document"`
+
+          - `"document"`
+
+        - `context?: string | null`
+
+          Additional context about the document for the model.
+
+        - `title?: string | null`
+
+          The title of the document.
+
+    - `from_session_thread_id: string`
+
+      Public `sthr_` ID of the thread that sent the message.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `type: "agent.thread_message_received"`
+
+      - `"agent.thread_message_received"`
+
+    - `from_agent_name?: string | null`
+
+      Name of the callable agent this message came from. Absent when received from the primary agent.
+
+  - `BetaManagedAgentsAgentThreadMessageSentEvent`
+
+    Observability event emitted to the sender's output stream when an agent-to-agent message is sent.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `content: Array<BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock>`
+
+      Message content blocks.
+
+      - `BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: string`
+
+          The text content.
+
+        - `type: "text"`
+
+          - `"text"`
+
+      - `BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: string`
+
+              Base64-encoded image data.
+
+            - `media_type: string`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the image to fetch.
+
+          - `BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "image"`
+
+          - `"image"`
+
+      - `BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: string`
+
+              Base64-encoded document data.
+
+            - `media_type: string`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: string`
+
+              The plain text content.
+
+            - `media_type: "text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `"text/plain"`
+
+            - `type: "text"`
+
+              - `"text"`
+
+          - `BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the document to fetch.
+
+          - `BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "document"`
+
+          - `"document"`
+
+        - `context?: string | null`
+
+          Additional context about the document for the model.
+
+        - `title?: string | null`
+
+          The title of the document.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `to_session_thread_id: string`
+
+      Public `sthr_` ID of the thread the message was sent to.
+
+    - `type: "agent.thread_message_sent"`
+
+      - `"agent.thread_message_sent"`
+
+    - `to_agent_name?: string | null`
+
+      Name of the callable agent this message was sent to. Absent when sent to the primary agent.
 
   - `BetaManagedAgentsAgentThreadContextCompactedEvent`
 
@@ -1377,6 +1763,118 @@ List Events
 
       - `"session.status_terminated"`
 
+  - `BetaManagedAgentsSessionThreadCreatedEvent`
+
+    Emitted when a subagent is spawned as a new thread. Written to the parent thread's output stream so clients observing the session see child creation.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the callable agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public `sthr_` ID of the newly created thread.
+
+    - `type: "session.thread_created"`
+
+      - `"session.thread_created"`
+
+  - `BetaManagedAgentsSpanOutcomeEvaluationStartEvent`
+
+    Emitted when an outcome evaluation cycle begins.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `iteration: number`
+
+      0-indexed revision cycle. 0 is the first evaluation; 1 is the re-evaluation after the first revision; etc.
+
+    - `outcome_id: string`
+
+      The `outc_` ID of the outcome being evaluated.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `type: "span.outcome_evaluation_start"`
+
+      - `"span.outcome_evaluation_start"`
+
+  - `BetaManagedAgentsSpanOutcomeEvaluationEndEvent`
+
+    Emitted when an outcome evaluation cycle completes. Carries the verdict and aggregate token usage. A verdict of `needs_revision` means another evaluation cycle follows; `satisfied`, `max_iterations_reached`, `failed`, or `interrupted` are terminal — no further evaluation cycles follow.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `explanation: string`
+
+      Human-readable explanation of the verdict. For `needs_revision`, describes which criteria failed and why.
+
+    - `iteration: number`
+
+      0-indexed revision cycle, matching the corresponding `span.outcome_evaluation_start`.
+
+    - `outcome_evaluation_start_id: string`
+
+      The id of the corresponding `span.outcome_evaluation_start` event.
+
+    - `outcome_id: string`
+
+      The `outc_` ID of the outcome being evaluated.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `result: string`
+
+      Evaluation verdict. 'satisfied': criteria met, session goes idle. 'needs_revision': criteria not met, another revision cycle follows. 'max_iterations_reached': evaluation budget exhausted with criteria still unmet — one final acknowledgment turn follows before the session goes idle, but no further evaluation runs. 'failed': grader determined the rubric does not apply to the deliverables. 'interrupted': user sent an interrupt while evaluation was in progress.
+
+    - `type: "span.outcome_evaluation_end"`
+
+      - `"span.outcome_evaluation_end"`
+
+    - `usage: BetaManagedAgentsSpanModelUsage`
+
+      Token usage for a single model request.
+
+      - `cache_creation_input_tokens: number`
+
+        Tokens used to create prompt cache in this request.
+
+      - `cache_read_input_tokens: number`
+
+        Tokens read from prompt cache in this request.
+
+      - `input_tokens: number`
+
+        Input tokens consumed by this request.
+
+      - `output_tokens: number`
+
+        Output tokens generated by this request.
+
+      - `speed?: "standard" | "fast" | null`
+
+        Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+        - `"standard"`
+
+        - `"fast"`
+
   - `BetaManagedAgentsSpanModelRequestStartEvent`
 
     Emitted when a model request is initiated by the agent.
@@ -1445,6 +1943,86 @@ List Events
 
       - `"span.model_request_end"`
 
+  - `BetaManagedAgentsSpanOutcomeEvaluationOngoingEvent`
+
+    Periodic heartbeat emitted while an outcome evaluation cycle is in progress. Distinguishes 'evaluation is actively running' from 'evaluation is stuck' between the corresponding `span.outcome_evaluation_start` and `span.outcome_evaluation_end` events.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `iteration: number`
+
+      0-indexed revision cycle, matching the corresponding `span.outcome_evaluation_start`.
+
+    - `outcome_id: string`
+
+      The `outc_` ID of the outcome being evaluated.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `type: "span.outcome_evaluation_ongoing"`
+
+      - `"span.outcome_evaluation_ongoing"`
+
+  - `BetaManagedAgentsUserDefineOutcomeEvent`
+
+    Echo of a `user.define_outcome` input event. Carries the server-generated `outcome_id` that subsequent `span.outcome_evaluation_*` events reference.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `description: string`
+
+      What the agent should produce. Copied from the input event.
+
+    - `max_iterations: number | null`
+
+      Evaluate-then-revise cycles before giving up. Default 3, max 20.
+
+    - `outcome_id: string`
+
+      Server-generated `outc_` ID for this outcome. Referenced by `span.outcome_evaluation_*` events and the session's `outcome_evaluations` list.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `rubric: BetaManagedAgentsFileRubric | BetaManagedAgentsTextRubric`
+
+      Rubric for grading the quality of an outcome.
+
+      - `BetaManagedAgentsFileRubric`
+
+        Rubric referenced by a file uploaded via the Files API.
+
+        - `file_id: string`
+
+          ID of the rubric file.
+
+        - `type: "file"`
+
+          - `"file"`
+
+      - `BetaManagedAgentsTextRubric`
+
+        Rubric content provided inline as text.
+
+        - `content: string`
+
+          Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+        - `type: "text"`
+
+          - `"text"`
+
+    - `type: "user.define_outcome"`
+
+      - `"user.define_outcome"`
+
   - `BetaManagedAgentsSessionDeletedEvent`
 
     Emitted when a session has been deleted. Terminates any active event stream — no further events will be emitted for this session.
@@ -1460,6 +2038,134 @@ List Events
     - `type: "session.deleted"`
 
       - `"session.deleted"`
+
+  - `BetaManagedAgentsSessionThreadStatusRunningEvent`
+
+    A session thread has begun executing. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that started running.
+
+    - `type: "session.thread_status_running"`
+
+      - `"session.thread_status_running"`
+
+  - `BetaManagedAgentsSessionThreadStatusIdleEvent`
+
+    A session thread has yielded and is awaiting input. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that went idle.
+
+    - `stop_reason: BetaManagedAgentsSessionEndTurn | BetaManagedAgentsSessionRequiresAction | BetaManagedAgentsSessionRetriesExhausted`
+
+      The agent completed its turn naturally and is ready for the next user message.
+
+      - `BetaManagedAgentsSessionEndTurn`
+
+        The agent completed its turn naturally and is ready for the next user message.
+
+        - `type: "end_turn"`
+
+          - `"end_turn"`
+
+      - `BetaManagedAgentsSessionRequiresAction`
+
+        The agent is idle waiting on one or more blocking user-input events (tool confirmation, custom tool result, etc.). Resolving all of them transitions the session back to running.
+
+        - `event_ids: Array<string>`
+
+          The ids of events the agent is blocked on. Resolving fewer than all re-emits `session.status_idle` with the remainder.
+
+        - `type: "requires_action"`
+
+          - `"requires_action"`
+
+      - `BetaManagedAgentsSessionRetriesExhausted`
+
+        The turn ended because the retry budget was exhausted (`max_iterations` hit or an error escalated to `retry_status: 'exhausted'`).
+
+        - `type: "retries_exhausted"`
+
+          - `"retries_exhausted"`
+
+    - `type: "session.thread_status_idle"`
+
+      - `"session.thread_status_idle"`
+
+  - `BetaManagedAgentsSessionThreadStatusTerminatedEvent`
+
+    A session thread has terminated and will accept no further input. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that terminated.
+
+    - `type: "session.thread_status_terminated"`
+
+      - `"session.thread_status_terminated"`
+
+  - `BetaManagedAgentsSessionThreadStatusRescheduledEvent`
+
+    A session thread hit a transient error and is retrying automatically. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that is retrying.
+
+    - `type: "session.thread_status_rescheduled"`
+
+      - `"session.thread_status_rescheduled"`
 
 ### Example
 
@@ -1658,6 +2364,10 @@ Send Events
 
         - `"user.interrupt"`
 
+      - `session_thread_id?: string | null`
+
+        If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
+
     - `BetaManagedAgentsUserToolConfirmationEventParams`
 
       Parameters for confirming or denying a tool execution request.
@@ -1844,13 +2554,57 @@ Send Events
 
         Whether the tool execution resulted in an error.
 
+    - `BetaManagedAgentsUserDefineOutcomeEventParams`
+
+      Parameters for defining an outcome the agent should work toward. The agent begins work on receipt.
+
+      - `description: string`
+
+        What the agent should produce. This is the task specification.
+
+      - `rubric: BetaManagedAgentsFileRubricParams | BetaManagedAgentsTextRubricParams`
+
+        Rubric for grading the quality of an outcome.
+
+        - `BetaManagedAgentsFileRubricParams`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `file_id: string`
+
+            ID of the rubric file.
+
+          - `type: "file"`
+
+            - `"file"`
+
+        - `BetaManagedAgentsTextRubricParams`
+
+          Rubric content provided inline as text.
+
+          - `content: string`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text. Maximum 262144 characters.
+
+          - `type: "text"`
+
+            - `"text"`
+
+      - `type: "user.define_outcome"`
+
+        - `"user.define_outcome"`
+
+      - `max_iterations?: number | null`
+
+        Eval→revision cycles before giving up. Default 3, max 20.
+
   - `betas?: Array<AnthropicBeta>`
 
     Header param: Optional header to specify the beta version(s) you want to use.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -1898,13 +2652,15 @@ Send Events
 
       - `"advisor-tool-2026-03-01"`
 
+      - `"managed-agents-2026-04-01"`
+
 ### Returns
 
 - `BetaManagedAgentsSendSessionEvents`
 
   Events that were successfully sent to the session.
 
-  - `data?: Array<BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | BetaManagedAgentsUserCustomToolResultEvent>`
+  - `data?: Array<BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 2 more>`
 
     Sent events
 
@@ -2086,6 +2842,10 @@ Send Events
 
         A timestamp in RFC 3339 format
 
+      - `session_thread_id?: string | null`
+
+        If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
+
     - `BetaManagedAgentsUserToolConfirmationEvent`
 
       A tool confirmation event that approves or denies a pending tool execution.
@@ -2117,6 +2877,10 @@ Send Events
       - `processed_at?: string | null`
 
         A timestamp in RFC 3339 format
+
+      - `session_thread_id?: string | null`
+
+        When set, the confirmation routes to this subagent's thread rather than the primary. Echo this from the `session_thread_id` on the `agent.tool_use` or `agent.mcp_tool_use` event that prompted the approval.
 
     - `BetaManagedAgentsUserCustomToolResultEvent`
 
@@ -2288,6 +3052,66 @@ Send Events
 
         A timestamp in RFC 3339 format
 
+      - `session_thread_id?: string | null`
+
+        Routes this result to a subagent thread. Copy from the `agent.custom_tool_use` event's `session_thread_id`.
+
+    - `BetaManagedAgentsUserDefineOutcomeEvent`
+
+      Echo of a `user.define_outcome` input event. Carries the server-generated `outcome_id` that subsequent `span.outcome_evaluation_*` events reference.
+
+      - `id: string`
+
+        Unique identifier for this event.
+
+      - `description: string`
+
+        What the agent should produce. Copied from the input event.
+
+      - `max_iterations: number | null`
+
+        Evaluate-then-revise cycles before giving up. Default 3, max 20.
+
+      - `outcome_id: string`
+
+        Server-generated `outc_` ID for this outcome. Referenced by `span.outcome_evaluation_*` events and the session's `outcome_evaluations` list.
+
+      - `processed_at: string`
+
+        A timestamp in RFC 3339 format
+
+      - `rubric: BetaManagedAgentsFileRubric | BetaManagedAgentsTextRubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `BetaManagedAgentsFileRubric`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `file_id: string`
+
+            ID of the rubric file.
+
+          - `type: "file"`
+
+            - `"file"`
+
+        - `BetaManagedAgentsTextRubric`
+
+          Rubric content provided inline as text.
+
+          - `content: string`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+          - `type: "text"`
+
+            - `"text"`
+
+      - `type: "user.define_outcome"`
+
+        - `"user.define_outcome"`
+
 ### Example
 
 ```typescript
@@ -2329,7 +3153,7 @@ Stream Events
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -2377,9 +3201,11 @@ Stream Events
 
       - `"advisor-tool-2026-03-01"`
 
+      - `"managed-agents-2026-04-01"`
+
 ### Returns
 
-- `BetaManagedAgentsStreamSessionEvents = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 17 more`
+- `BetaManagedAgentsStreamSessionEvents = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 28 more`
 
   Server-sent event in the session stream.
 
@@ -2561,6 +3387,10 @@ Stream Events
 
       A timestamp in RFC 3339 format
 
+    - `session_thread_id?: string | null`
+
+      If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
+
   - `BetaManagedAgentsUserToolConfirmationEvent`
 
     A tool confirmation event that approves or denies a pending tool execution.
@@ -2592,6 +3422,10 @@ Stream Events
     - `processed_at?: string | null`
 
       A timestamp in RFC 3339 format
+
+    - `session_thread_id?: string | null`
+
+      When set, the confirmation routes to this subagent's thread rather than the primary. Echo this from the `session_thread_id` on the `agent.tool_use` or `agent.mcp_tool_use` event that prompted the approval.
 
   - `BetaManagedAgentsUserCustomToolResultEvent`
 
@@ -2763,6 +3597,10 @@ Stream Events
 
       A timestamp in RFC 3339 format
 
+    - `session_thread_id?: string | null`
+
+      Routes this result to a subagent thread. Copy from the `agent.custom_tool_use` event's `session_thread_id`.
+
   - `BetaManagedAgentsAgentCustomToolUseEvent`
 
     Event emitted when the agent calls a custom tool. The session goes idle until the client sends a `user.custom_tool_result` event with the result.
@@ -2786,6 +3624,10 @@ Stream Events
     - `type: "agent.custom_tool_use"`
 
       - `"agent.custom_tool_use"`
+
+    - `session_thread_id?: string | null`
+
+      When set, this event was cross-posted from a subagent's thread to surface its custom tool use on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.custom_tool_result` event to route the result back.
 
   - `BetaManagedAgentsAgentMessageEvent`
 
@@ -2868,6 +3710,10 @@ Stream Events
       - `"ask"`
 
       - `"deny"`
+
+    - `session_thread_id?: string | null`
+
+      When set, this event was cross-posted from a subagent's thread to surface its permission request on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.tool_confirmation` event to route the approval back.
 
   - `BetaManagedAgentsAgentMCPToolResultEvent`
 
@@ -3073,6 +3919,10 @@ Stream Events
 
       - `"deny"`
 
+    - `session_thread_id?: string | null`
+
+      When set, this event was cross-posted from a subagent's thread to surface its permission request on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.tool_confirmation` event to route the approval back.
+
   - `BetaManagedAgentsAgentToolResultEvent`
 
     Event representing the result of an agent tool execution.
@@ -3242,6 +4092,346 @@ Stream Events
     - `is_error?: boolean | null`
 
       Whether the tool execution resulted in an error.
+
+  - `BetaManagedAgentsAgentThreadMessageReceivedEvent`
+
+    Delivery event written to the target thread's input stream when an agent-to-agent message arrives.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `content: Array<BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock>`
+
+      Message content blocks.
+
+      - `BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: string`
+
+          The text content.
+
+        - `type: "text"`
+
+          - `"text"`
+
+      - `BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: string`
+
+              Base64-encoded image data.
+
+            - `media_type: string`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the image to fetch.
+
+          - `BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "image"`
+
+          - `"image"`
+
+      - `BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: string`
+
+              Base64-encoded document data.
+
+            - `media_type: string`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: string`
+
+              The plain text content.
+
+            - `media_type: "text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `"text/plain"`
+
+            - `type: "text"`
+
+              - `"text"`
+
+          - `BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the document to fetch.
+
+          - `BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "document"`
+
+          - `"document"`
+
+        - `context?: string | null`
+
+          Additional context about the document for the model.
+
+        - `title?: string | null`
+
+          The title of the document.
+
+    - `from_session_thread_id: string`
+
+      Public `sthr_` ID of the thread that sent the message.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `type: "agent.thread_message_received"`
+
+      - `"agent.thread_message_received"`
+
+    - `from_agent_name?: string | null`
+
+      Name of the callable agent this message came from. Absent when received from the primary agent.
+
+  - `BetaManagedAgentsAgentThreadMessageSentEvent`
+
+    Observability event emitted to the sender's output stream when an agent-to-agent message is sent.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `content: Array<BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock>`
+
+      Message content blocks.
+
+      - `BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: string`
+
+          The text content.
+
+        - `type: "text"`
+
+          - `"text"`
+
+      - `BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: string`
+
+              Base64-encoded image data.
+
+            - `media_type: string`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the image to fetch.
+
+          - `BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "image"`
+
+          - `"image"`
+
+      - `BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: string`
+
+              Base64-encoded document data.
+
+            - `media_type: string`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: string`
+
+              The plain text content.
+
+            - `media_type: "text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `"text/plain"`
+
+            - `type: "text"`
+
+              - `"text"`
+
+          - `BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the document to fetch.
+
+          - `BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "document"`
+
+          - `"document"`
+
+        - `context?: string | null`
+
+          Additional context about the document for the model.
+
+        - `title?: string | null`
+
+          The title of the document.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `to_session_thread_id: string`
+
+      Public `sthr_` ID of the thread the message was sent to.
+
+    - `type: "agent.thread_message_sent"`
+
+      - `"agent.thread_message_sent"`
+
+    - `to_agent_name?: string | null`
+
+      Name of the callable agent this message was sent to. Absent when sent to the primary agent.
 
   - `BetaManagedAgentsAgentThreadContextCompactedEvent`
 
@@ -3663,6 +4853,118 @@ Stream Events
 
       - `"session.status_terminated"`
 
+  - `BetaManagedAgentsSessionThreadCreatedEvent`
+
+    Emitted when a subagent is spawned as a new thread. Written to the parent thread's output stream so clients observing the session see child creation.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the callable agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public `sthr_` ID of the newly created thread.
+
+    - `type: "session.thread_created"`
+
+      - `"session.thread_created"`
+
+  - `BetaManagedAgentsSpanOutcomeEvaluationStartEvent`
+
+    Emitted when an outcome evaluation cycle begins.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `iteration: number`
+
+      0-indexed revision cycle. 0 is the first evaluation; 1 is the re-evaluation after the first revision; etc.
+
+    - `outcome_id: string`
+
+      The `outc_` ID of the outcome being evaluated.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `type: "span.outcome_evaluation_start"`
+
+      - `"span.outcome_evaluation_start"`
+
+  - `BetaManagedAgentsSpanOutcomeEvaluationEndEvent`
+
+    Emitted when an outcome evaluation cycle completes. Carries the verdict and aggregate token usage. A verdict of `needs_revision` means another evaluation cycle follows; `satisfied`, `max_iterations_reached`, `failed`, or `interrupted` are terminal — no further evaluation cycles follow.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `explanation: string`
+
+      Human-readable explanation of the verdict. For `needs_revision`, describes which criteria failed and why.
+
+    - `iteration: number`
+
+      0-indexed revision cycle, matching the corresponding `span.outcome_evaluation_start`.
+
+    - `outcome_evaluation_start_id: string`
+
+      The id of the corresponding `span.outcome_evaluation_start` event.
+
+    - `outcome_id: string`
+
+      The `outc_` ID of the outcome being evaluated.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `result: string`
+
+      Evaluation verdict. 'satisfied': criteria met, session goes idle. 'needs_revision': criteria not met, another revision cycle follows. 'max_iterations_reached': evaluation budget exhausted with criteria still unmet — one final acknowledgment turn follows before the session goes idle, but no further evaluation runs. 'failed': grader determined the rubric does not apply to the deliverables. 'interrupted': user sent an interrupt while evaluation was in progress.
+
+    - `type: "span.outcome_evaluation_end"`
+
+      - `"span.outcome_evaluation_end"`
+
+    - `usage: BetaManagedAgentsSpanModelUsage`
+
+      Token usage for a single model request.
+
+      - `cache_creation_input_tokens: number`
+
+        Tokens used to create prompt cache in this request.
+
+      - `cache_read_input_tokens: number`
+
+        Tokens read from prompt cache in this request.
+
+      - `input_tokens: number`
+
+        Input tokens consumed by this request.
+
+      - `output_tokens: number`
+
+        Output tokens generated by this request.
+
+      - `speed?: "standard" | "fast" | null`
+
+        Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+        - `"standard"`
+
+        - `"fast"`
+
   - `BetaManagedAgentsSpanModelRequestStartEvent`
 
     Emitted when a model request is initiated by the agent.
@@ -3731,6 +5033,86 @@ Stream Events
 
       - `"span.model_request_end"`
 
+  - `BetaManagedAgentsSpanOutcomeEvaluationOngoingEvent`
+
+    Periodic heartbeat emitted while an outcome evaluation cycle is in progress. Distinguishes 'evaluation is actively running' from 'evaluation is stuck' between the corresponding `span.outcome_evaluation_start` and `span.outcome_evaluation_end` events.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `iteration: number`
+
+      0-indexed revision cycle, matching the corresponding `span.outcome_evaluation_start`.
+
+    - `outcome_id: string`
+
+      The `outc_` ID of the outcome being evaluated.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `type: "span.outcome_evaluation_ongoing"`
+
+      - `"span.outcome_evaluation_ongoing"`
+
+  - `BetaManagedAgentsUserDefineOutcomeEvent`
+
+    Echo of a `user.define_outcome` input event. Carries the server-generated `outcome_id` that subsequent `span.outcome_evaluation_*` events reference.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `description: string`
+
+      What the agent should produce. Copied from the input event.
+
+    - `max_iterations: number | null`
+
+      Evaluate-then-revise cycles before giving up. Default 3, max 20.
+
+    - `outcome_id: string`
+
+      Server-generated `outc_` ID for this outcome. Referenced by `span.outcome_evaluation_*` events and the session's `outcome_evaluations` list.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `rubric: BetaManagedAgentsFileRubric | BetaManagedAgentsTextRubric`
+
+      Rubric for grading the quality of an outcome.
+
+      - `BetaManagedAgentsFileRubric`
+
+        Rubric referenced by a file uploaded via the Files API.
+
+        - `file_id: string`
+
+          ID of the rubric file.
+
+        - `type: "file"`
+
+          - `"file"`
+
+      - `BetaManagedAgentsTextRubric`
+
+        Rubric content provided inline as text.
+
+        - `content: string`
+
+          Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+        - `type: "text"`
+
+          - `"text"`
+
+    - `type: "user.define_outcome"`
+
+      - `"user.define_outcome"`
+
   - `BetaManagedAgentsSessionDeletedEvent`
 
     Emitted when a session has been deleted. Terminates any active event stream — no further events will be emitted for this session.
@@ -3746,6 +5128,134 @@ Stream Events
     - `type: "session.deleted"`
 
       - `"session.deleted"`
+
+  - `BetaManagedAgentsSessionThreadStatusRunningEvent`
+
+    A session thread has begun executing. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that started running.
+
+    - `type: "session.thread_status_running"`
+
+      - `"session.thread_status_running"`
+
+  - `BetaManagedAgentsSessionThreadStatusIdleEvent`
+
+    A session thread has yielded and is awaiting input. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that went idle.
+
+    - `stop_reason: BetaManagedAgentsSessionEndTurn | BetaManagedAgentsSessionRequiresAction | BetaManagedAgentsSessionRetriesExhausted`
+
+      The agent completed its turn naturally and is ready for the next user message.
+
+      - `BetaManagedAgentsSessionEndTurn`
+
+        The agent completed its turn naturally and is ready for the next user message.
+
+        - `type: "end_turn"`
+
+          - `"end_turn"`
+
+      - `BetaManagedAgentsSessionRequiresAction`
+
+        The agent is idle waiting on one or more blocking user-input events (tool confirmation, custom tool result, etc.). Resolving all of them transitions the session back to running.
+
+        - `event_ids: Array<string>`
+
+          The ids of events the agent is blocked on. Resolving fewer than all re-emits `session.status_idle` with the remainder.
+
+        - `type: "requires_action"`
+
+          - `"requires_action"`
+
+      - `BetaManagedAgentsSessionRetriesExhausted`
+
+        The turn ended because the retry budget was exhausted (`max_iterations` hit or an error escalated to `retry_status: 'exhausted'`).
+
+        - `type: "retries_exhausted"`
+
+          - `"retries_exhausted"`
+
+    - `type: "session.thread_status_idle"`
+
+      - `"session.thread_status_idle"`
+
+  - `BetaManagedAgentsSessionThreadStatusTerminatedEvent`
+
+    A session thread has terminated and will accept no further input. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that terminated.
+
+    - `type: "session.thread_status_terminated"`
+
+      - `"session.thread_status_terminated"`
+
+  - `BetaManagedAgentsSessionThreadStatusRescheduledEvent`
+
+    A session thread hit a transient error and is retrying automatically. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that is retrying.
+
+    - `type: "session.thread_status_rescheduled"`
+
+      - `"session.thread_status_rescheduled"`
 
 ### Example
 
@@ -3790,6 +5300,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
   - `type: "agent.custom_tool_use"`
 
     - `"agent.custom_tool_use"`
+
+  - `session_thread_id?: string | null`
+
+    When set, this event was cross-posted from a subagent's thread to surface its custom tool use on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.custom_tool_result` event to route the result back.
 
 ### Beta Managed Agents Agent MCP Tool Result Event
 
@@ -4003,6 +5517,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
     - `"deny"`
 
+  - `session_thread_id?: string | null`
+
+    When set, this event was cross-posted from a subagent's thread to surface its permission request on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.tool_confirmation` event to route the approval back.
+
 ### Beta Managed Agents Agent Message Event
 
 - `BetaManagedAgentsAgentMessageEvent`
@@ -4068,6 +5586,350 @@ console.log(betaManagedAgentsStreamSessionEvents);
   - `type: "agent.thread_context_compacted"`
 
     - `"agent.thread_context_compacted"`
+
+### Beta Managed Agents Agent Thread Message Received Event
+
+- `BetaManagedAgentsAgentThreadMessageReceivedEvent`
+
+  Delivery event written to the target thread's input stream when an agent-to-agent message arrives.
+
+  - `id: string`
+
+    Unique identifier for this event.
+
+  - `content: Array<BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock>`
+
+    Message content blocks.
+
+    - `BetaManagedAgentsTextBlock`
+
+      Regular text content.
+
+      - `text: string`
+
+        The text content.
+
+      - `type: "text"`
+
+        - `"text"`
+
+    - `BetaManagedAgentsImageBlock`
+
+      Image content specified directly as base64 data or as a reference via a URL.
+
+      - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+        Union type for image source variants.
+
+        - `BetaManagedAgentsBase64ImageSource`
+
+          Base64-encoded image data.
+
+          - `data: string`
+
+            Base64-encoded image data.
+
+          - `media_type: string`
+
+            MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+          - `type: "base64"`
+
+            - `"base64"`
+
+        - `BetaManagedAgentsURLImageSource`
+
+          Image referenced by URL.
+
+          - `type: "url"`
+
+            - `"url"`
+
+          - `url: string`
+
+            URL of the image to fetch.
+
+        - `BetaManagedAgentsFileImageSource`
+
+          Image referenced by file ID.
+
+          - `file_id: string`
+
+            ID of a previously uploaded file.
+
+          - `type: "file"`
+
+            - `"file"`
+
+      - `type: "image"`
+
+        - `"image"`
+
+    - `BetaManagedAgentsDocumentBlock`
+
+      Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+      - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+        Union type for document source variants.
+
+        - `BetaManagedAgentsBase64DocumentSource`
+
+          Base64-encoded document data.
+
+          - `data: string`
+
+            Base64-encoded document data.
+
+          - `media_type: string`
+
+            MIME type of the document (e.g., "application/pdf").
+
+          - `type: "base64"`
+
+            - `"base64"`
+
+        - `BetaManagedAgentsPlainTextDocumentSource`
+
+          Plain text document content.
+
+          - `data: string`
+
+            The plain text content.
+
+          - `media_type: "text/plain"`
+
+            MIME type of the text content. Must be "text/plain".
+
+            - `"text/plain"`
+
+          - `type: "text"`
+
+            - `"text"`
+
+        - `BetaManagedAgentsURLDocumentSource`
+
+          Document referenced by URL.
+
+          - `type: "url"`
+
+            - `"url"`
+
+          - `url: string`
+
+            URL of the document to fetch.
+
+        - `BetaManagedAgentsFileDocumentSource`
+
+          Document referenced by file ID.
+
+          - `file_id: string`
+
+            ID of a previously uploaded file.
+
+          - `type: "file"`
+
+            - `"file"`
+
+      - `type: "document"`
+
+        - `"document"`
+
+      - `context?: string | null`
+
+        Additional context about the document for the model.
+
+      - `title?: string | null`
+
+        The title of the document.
+
+  - `from_session_thread_id: string`
+
+    Public `sthr_` ID of the thread that sent the message.
+
+  - `processed_at: string`
+
+    A timestamp in RFC 3339 format
+
+  - `type: "agent.thread_message_received"`
+
+    - `"agent.thread_message_received"`
+
+  - `from_agent_name?: string | null`
+
+    Name of the callable agent this message came from. Absent when received from the primary agent.
+
+### Beta Managed Agents Agent Thread Message Sent Event
+
+- `BetaManagedAgentsAgentThreadMessageSentEvent`
+
+  Observability event emitted to the sender's output stream when an agent-to-agent message is sent.
+
+  - `id: string`
+
+    Unique identifier for this event.
+
+  - `content: Array<BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock>`
+
+    Message content blocks.
+
+    - `BetaManagedAgentsTextBlock`
+
+      Regular text content.
+
+      - `text: string`
+
+        The text content.
+
+      - `type: "text"`
+
+        - `"text"`
+
+    - `BetaManagedAgentsImageBlock`
+
+      Image content specified directly as base64 data or as a reference via a URL.
+
+      - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+        Union type for image source variants.
+
+        - `BetaManagedAgentsBase64ImageSource`
+
+          Base64-encoded image data.
+
+          - `data: string`
+
+            Base64-encoded image data.
+
+          - `media_type: string`
+
+            MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+          - `type: "base64"`
+
+            - `"base64"`
+
+        - `BetaManagedAgentsURLImageSource`
+
+          Image referenced by URL.
+
+          - `type: "url"`
+
+            - `"url"`
+
+          - `url: string`
+
+            URL of the image to fetch.
+
+        - `BetaManagedAgentsFileImageSource`
+
+          Image referenced by file ID.
+
+          - `file_id: string`
+
+            ID of a previously uploaded file.
+
+          - `type: "file"`
+
+            - `"file"`
+
+      - `type: "image"`
+
+        - `"image"`
+
+    - `BetaManagedAgentsDocumentBlock`
+
+      Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+      - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+        Union type for document source variants.
+
+        - `BetaManagedAgentsBase64DocumentSource`
+
+          Base64-encoded document data.
+
+          - `data: string`
+
+            Base64-encoded document data.
+
+          - `media_type: string`
+
+            MIME type of the document (e.g., "application/pdf").
+
+          - `type: "base64"`
+
+            - `"base64"`
+
+        - `BetaManagedAgentsPlainTextDocumentSource`
+
+          Plain text document content.
+
+          - `data: string`
+
+            The plain text content.
+
+          - `media_type: "text/plain"`
+
+            MIME type of the text content. Must be "text/plain".
+
+            - `"text/plain"`
+
+          - `type: "text"`
+
+            - `"text"`
+
+        - `BetaManagedAgentsURLDocumentSource`
+
+          Document referenced by URL.
+
+          - `type: "url"`
+
+            - `"url"`
+
+          - `url: string`
+
+            URL of the document to fetch.
+
+        - `BetaManagedAgentsFileDocumentSource`
+
+          Document referenced by file ID.
+
+          - `file_id: string`
+
+            ID of a previously uploaded file.
+
+          - `type: "file"`
+
+            - `"file"`
+
+      - `type: "document"`
+
+        - `"document"`
+
+      - `context?: string | null`
+
+        Additional context about the document for the model.
+
+      - `title?: string | null`
+
+        The title of the document.
+
+  - `processed_at: string`
+
+    A timestamp in RFC 3339 format
+
+  - `to_session_thread_id: string`
+
+    Public `sthr_` ID of the thread the message was sent to.
+
+  - `type: "agent.thread_message_sent"`
+
+    - `"agent.thread_message_sent"`
+
+  - `to_agent_name?: string | null`
+
+    Name of the callable agent this message was sent to. Absent when sent to the primary agent.
 
 ### Beta Managed Agents Agent Tool Result Event
 
@@ -4277,6 +6139,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
     - `"deny"`
 
+  - `session_thread_id?: string | null`
+
+    When set, this event was cross-posted from a subagent's thread to surface its permission request on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.tool_confirmation` event to route the approval back.
+
 ### Beta Managed Agents Base64 Document Source
 
 - `BetaManagedAgentsBase64DocumentSource`
@@ -4437,7 +6303,7 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
 ### Beta Managed Agents Event Params
 
-- `BetaManagedAgentsEventParams = BetaManagedAgentsUserMessageEventParams | BetaManagedAgentsUserInterruptEventParams | BetaManagedAgentsUserToolConfirmationEventParams | BetaManagedAgentsUserCustomToolResultEventParams`
+- `BetaManagedAgentsEventParams = BetaManagedAgentsUserMessageEventParams | BetaManagedAgentsUserInterruptEventParams | BetaManagedAgentsUserToolConfirmationEventParams | 2 more`
 
   Union type for event parameters that can be sent to a session.
 
@@ -4602,6 +6468,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
     - `type: "user.interrupt"`
 
       - `"user.interrupt"`
+
+    - `session_thread_id?: string | null`
+
+      If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
 
   - `BetaManagedAgentsUserToolConfirmationEventParams`
 
@@ -4789,6 +6659,50 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
       Whether the tool execution resulted in an error.
 
+  - `BetaManagedAgentsUserDefineOutcomeEventParams`
+
+    Parameters for defining an outcome the agent should work toward. The agent begins work on receipt.
+
+    - `description: string`
+
+      What the agent should produce. This is the task specification.
+
+    - `rubric: BetaManagedAgentsFileRubricParams | BetaManagedAgentsTextRubricParams`
+
+      Rubric for grading the quality of an outcome.
+
+      - `BetaManagedAgentsFileRubricParams`
+
+        Rubric referenced by a file uploaded via the Files API.
+
+        - `file_id: string`
+
+          ID of the rubric file.
+
+        - `type: "file"`
+
+          - `"file"`
+
+      - `BetaManagedAgentsTextRubricParams`
+
+        Rubric content provided inline as text.
+
+        - `content: string`
+
+          Rubric content. Plain text or markdown — the grader treats it as freeform text. Maximum 262144 characters.
+
+        - `type: "text"`
+
+          - `"text"`
+
+    - `type: "user.define_outcome"`
+
+      - `"user.define_outcome"`
+
+    - `max_iterations?: number | null`
+
+      Eval→revision cycles before giving up. Default 3, max 20.
+
 ### Beta Managed Agents File Document Source
 
 - `BetaManagedAgentsFileDocumentSource`
@@ -4812,6 +6726,34 @@ console.log(betaManagedAgentsStreamSessionEvents);
   - `file_id: string`
 
     ID of a previously uploaded file.
+
+  - `type: "file"`
+
+    - `"file"`
+
+### Beta Managed Agents File Rubric
+
+- `BetaManagedAgentsFileRubric`
+
+  Rubric referenced by a file uploaded via the Files API.
+
+  - `file_id: string`
+
+    ID of the rubric file.
+
+  - `type: "file"`
+
+    - `"file"`
+
+### Beta Managed Agents File Rubric Params
+
+- `BetaManagedAgentsFileRubricParams`
+
+  Rubric referenced by a file uploaded via the Files API.
+
+  - `file_id: string`
+
+    ID of the rubric file.
 
   - `type: "file"`
 
@@ -5145,7 +7087,7 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
   Events that were successfully sent to the session.
 
-  - `data?: Array<BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | BetaManagedAgentsUserCustomToolResultEvent>`
+  - `data?: Array<BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 2 more>`
 
     Sent events
 
@@ -5327,6 +7269,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
         A timestamp in RFC 3339 format
 
+      - `session_thread_id?: string | null`
+
+        If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
+
     - `BetaManagedAgentsUserToolConfirmationEvent`
 
       A tool confirmation event that approves or denies a pending tool execution.
@@ -5358,6 +7304,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
       - `processed_at?: string | null`
 
         A timestamp in RFC 3339 format
+
+      - `session_thread_id?: string | null`
+
+        When set, the confirmation routes to this subagent's thread rather than the primary. Echo this from the `session_thread_id` on the `agent.tool_use` or `agent.mcp_tool_use` event that prompted the approval.
 
     - `BetaManagedAgentsUserCustomToolResultEvent`
 
@@ -5528,6 +7478,66 @@ console.log(betaManagedAgentsStreamSessionEvents);
       - `processed_at?: string | null`
 
         A timestamp in RFC 3339 format
+
+      - `session_thread_id?: string | null`
+
+        Routes this result to a subagent thread. Copy from the `agent.custom_tool_use` event's `session_thread_id`.
+
+    - `BetaManagedAgentsUserDefineOutcomeEvent`
+
+      Echo of a `user.define_outcome` input event. Carries the server-generated `outcome_id` that subsequent `span.outcome_evaluation_*` events reference.
+
+      - `id: string`
+
+        Unique identifier for this event.
+
+      - `description: string`
+
+        What the agent should produce. Copied from the input event.
+
+      - `max_iterations: number | null`
+
+        Evaluate-then-revise cycles before giving up. Default 3, max 20.
+
+      - `outcome_id: string`
+
+        Server-generated `outc_` ID for this outcome. Referenced by `span.outcome_evaluation_*` events and the session's `outcome_evaluations` list.
+
+      - `processed_at: string`
+
+        A timestamp in RFC 3339 format
+
+      - `rubric: BetaManagedAgentsFileRubric | BetaManagedAgentsTextRubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `BetaManagedAgentsFileRubric`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `file_id: string`
+
+            ID of the rubric file.
+
+          - `type: "file"`
+
+            - `"file"`
+
+        - `BetaManagedAgentsTextRubric`
+
+          Rubric content provided inline as text.
+
+          - `content: string`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+          - `type: "text"`
+
+            - `"text"`
+
+      - `type: "user.define_outcome"`
+
+        - `"user.define_outcome"`
 
 ### Beta Managed Agents Session Deleted Event
 
@@ -5869,7 +7879,7 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
 ### Beta Managed Agents Session Event
 
-- `BetaManagedAgentsSessionEvent = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 17 more`
+- `BetaManagedAgentsSessionEvent = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 28 more`
 
   Union type for all event types in a session.
 
@@ -6051,6 +8061,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
       A timestamp in RFC 3339 format
 
+    - `session_thread_id?: string | null`
+
+      If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
+
   - `BetaManagedAgentsUserToolConfirmationEvent`
 
     A tool confirmation event that approves or denies a pending tool execution.
@@ -6082,6 +8096,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
     - `processed_at?: string | null`
 
       A timestamp in RFC 3339 format
+
+    - `session_thread_id?: string | null`
+
+      When set, the confirmation routes to this subagent's thread rather than the primary. Echo this from the `session_thread_id` on the `agent.tool_use` or `agent.mcp_tool_use` event that prompted the approval.
 
   - `BetaManagedAgentsUserCustomToolResultEvent`
 
@@ -6253,6 +8271,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
       A timestamp in RFC 3339 format
 
+    - `session_thread_id?: string | null`
+
+      Routes this result to a subagent thread. Copy from the `agent.custom_tool_use` event's `session_thread_id`.
+
   - `BetaManagedAgentsAgentCustomToolUseEvent`
 
     Event emitted when the agent calls a custom tool. The session goes idle until the client sends a `user.custom_tool_result` event with the result.
@@ -6276,6 +8298,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
     - `type: "agent.custom_tool_use"`
 
       - `"agent.custom_tool_use"`
+
+    - `session_thread_id?: string | null`
+
+      When set, this event was cross-posted from a subagent's thread to surface its custom tool use on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.custom_tool_result` event to route the result back.
 
   - `BetaManagedAgentsAgentMessageEvent`
 
@@ -6358,6 +8384,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
       - `"ask"`
 
       - `"deny"`
+
+    - `session_thread_id?: string | null`
+
+      When set, this event was cross-posted from a subagent's thread to surface its permission request on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.tool_confirmation` event to route the approval back.
 
   - `BetaManagedAgentsAgentMCPToolResultEvent`
 
@@ -6563,6 +8593,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
       - `"deny"`
 
+    - `session_thread_id?: string | null`
+
+      When set, this event was cross-posted from a subagent's thread to surface its permission request on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.tool_confirmation` event to route the approval back.
+
   - `BetaManagedAgentsAgentToolResultEvent`
 
     Event representing the result of an agent tool execution.
@@ -6732,6 +8766,346 @@ console.log(betaManagedAgentsStreamSessionEvents);
     - `is_error?: boolean | null`
 
       Whether the tool execution resulted in an error.
+
+  - `BetaManagedAgentsAgentThreadMessageReceivedEvent`
+
+    Delivery event written to the target thread's input stream when an agent-to-agent message arrives.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `content: Array<BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock>`
+
+      Message content blocks.
+
+      - `BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: string`
+
+          The text content.
+
+        - `type: "text"`
+
+          - `"text"`
+
+      - `BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: string`
+
+              Base64-encoded image data.
+
+            - `media_type: string`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the image to fetch.
+
+          - `BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "image"`
+
+          - `"image"`
+
+      - `BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: string`
+
+              Base64-encoded document data.
+
+            - `media_type: string`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: string`
+
+              The plain text content.
+
+            - `media_type: "text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `"text/plain"`
+
+            - `type: "text"`
+
+              - `"text"`
+
+          - `BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the document to fetch.
+
+          - `BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "document"`
+
+          - `"document"`
+
+        - `context?: string | null`
+
+          Additional context about the document for the model.
+
+        - `title?: string | null`
+
+          The title of the document.
+
+    - `from_session_thread_id: string`
+
+      Public `sthr_` ID of the thread that sent the message.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `type: "agent.thread_message_received"`
+
+      - `"agent.thread_message_received"`
+
+    - `from_agent_name?: string | null`
+
+      Name of the callable agent this message came from. Absent when received from the primary agent.
+
+  - `BetaManagedAgentsAgentThreadMessageSentEvent`
+
+    Observability event emitted to the sender's output stream when an agent-to-agent message is sent.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `content: Array<BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock>`
+
+      Message content blocks.
+
+      - `BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: string`
+
+          The text content.
+
+        - `type: "text"`
+
+          - `"text"`
+
+      - `BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: string`
+
+              Base64-encoded image data.
+
+            - `media_type: string`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the image to fetch.
+
+          - `BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "image"`
+
+          - `"image"`
+
+      - `BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: string`
+
+              Base64-encoded document data.
+
+            - `media_type: string`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: string`
+
+              The plain text content.
+
+            - `media_type: "text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `"text/plain"`
+
+            - `type: "text"`
+
+              - `"text"`
+
+          - `BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the document to fetch.
+
+          - `BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "document"`
+
+          - `"document"`
+
+        - `context?: string | null`
+
+          Additional context about the document for the model.
+
+        - `title?: string | null`
+
+          The title of the document.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `to_session_thread_id: string`
+
+      Public `sthr_` ID of the thread the message was sent to.
+
+    - `type: "agent.thread_message_sent"`
+
+      - `"agent.thread_message_sent"`
+
+    - `to_agent_name?: string | null`
+
+      Name of the callable agent this message was sent to. Absent when sent to the primary agent.
 
   - `BetaManagedAgentsAgentThreadContextCompactedEvent`
 
@@ -7153,6 +9527,118 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
       - `"session.status_terminated"`
 
+  - `BetaManagedAgentsSessionThreadCreatedEvent`
+
+    Emitted when a subagent is spawned as a new thread. Written to the parent thread's output stream so clients observing the session see child creation.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the callable agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public `sthr_` ID of the newly created thread.
+
+    - `type: "session.thread_created"`
+
+      - `"session.thread_created"`
+
+  - `BetaManagedAgentsSpanOutcomeEvaluationStartEvent`
+
+    Emitted when an outcome evaluation cycle begins.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `iteration: number`
+
+      0-indexed revision cycle. 0 is the first evaluation; 1 is the re-evaluation after the first revision; etc.
+
+    - `outcome_id: string`
+
+      The `outc_` ID of the outcome being evaluated.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `type: "span.outcome_evaluation_start"`
+
+      - `"span.outcome_evaluation_start"`
+
+  - `BetaManagedAgentsSpanOutcomeEvaluationEndEvent`
+
+    Emitted when an outcome evaluation cycle completes. Carries the verdict and aggregate token usage. A verdict of `needs_revision` means another evaluation cycle follows; `satisfied`, `max_iterations_reached`, `failed`, or `interrupted` are terminal — no further evaluation cycles follow.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `explanation: string`
+
+      Human-readable explanation of the verdict. For `needs_revision`, describes which criteria failed and why.
+
+    - `iteration: number`
+
+      0-indexed revision cycle, matching the corresponding `span.outcome_evaluation_start`.
+
+    - `outcome_evaluation_start_id: string`
+
+      The id of the corresponding `span.outcome_evaluation_start` event.
+
+    - `outcome_id: string`
+
+      The `outc_` ID of the outcome being evaluated.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `result: string`
+
+      Evaluation verdict. 'satisfied': criteria met, session goes idle. 'needs_revision': criteria not met, another revision cycle follows. 'max_iterations_reached': evaluation budget exhausted with criteria still unmet — one final acknowledgment turn follows before the session goes idle, but no further evaluation runs. 'failed': grader determined the rubric does not apply to the deliverables. 'interrupted': user sent an interrupt while evaluation was in progress.
+
+    - `type: "span.outcome_evaluation_end"`
+
+      - `"span.outcome_evaluation_end"`
+
+    - `usage: BetaManagedAgentsSpanModelUsage`
+
+      Token usage for a single model request.
+
+      - `cache_creation_input_tokens: number`
+
+        Tokens used to create prompt cache in this request.
+
+      - `cache_read_input_tokens: number`
+
+        Tokens read from prompt cache in this request.
+
+      - `input_tokens: number`
+
+        Input tokens consumed by this request.
+
+      - `output_tokens: number`
+
+        Output tokens generated by this request.
+
+      - `speed?: "standard" | "fast" | null`
+
+        Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+        - `"standard"`
+
+        - `"fast"`
+
   - `BetaManagedAgentsSpanModelRequestStartEvent`
 
     Emitted when a model request is initiated by the agent.
@@ -7221,6 +9707,86 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
       - `"span.model_request_end"`
 
+  - `BetaManagedAgentsSpanOutcomeEvaluationOngoingEvent`
+
+    Periodic heartbeat emitted while an outcome evaluation cycle is in progress. Distinguishes 'evaluation is actively running' from 'evaluation is stuck' between the corresponding `span.outcome_evaluation_start` and `span.outcome_evaluation_end` events.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `iteration: number`
+
+      0-indexed revision cycle, matching the corresponding `span.outcome_evaluation_start`.
+
+    - `outcome_id: string`
+
+      The `outc_` ID of the outcome being evaluated.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `type: "span.outcome_evaluation_ongoing"`
+
+      - `"span.outcome_evaluation_ongoing"`
+
+  - `BetaManagedAgentsUserDefineOutcomeEvent`
+
+    Echo of a `user.define_outcome` input event. Carries the server-generated `outcome_id` that subsequent `span.outcome_evaluation_*` events reference.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `description: string`
+
+      What the agent should produce. Copied from the input event.
+
+    - `max_iterations: number | null`
+
+      Evaluate-then-revise cycles before giving up. Default 3, max 20.
+
+    - `outcome_id: string`
+
+      Server-generated `outc_` ID for this outcome. Referenced by `span.outcome_evaluation_*` events and the session's `outcome_evaluations` list.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `rubric: BetaManagedAgentsFileRubric | BetaManagedAgentsTextRubric`
+
+      Rubric for grading the quality of an outcome.
+
+      - `BetaManagedAgentsFileRubric`
+
+        Rubric referenced by a file uploaded via the Files API.
+
+        - `file_id: string`
+
+          ID of the rubric file.
+
+        - `type: "file"`
+
+          - `"file"`
+
+      - `BetaManagedAgentsTextRubric`
+
+        Rubric content provided inline as text.
+
+        - `content: string`
+
+          Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+        - `type: "text"`
+
+          - `"text"`
+
+    - `type: "user.define_outcome"`
+
+      - `"user.define_outcome"`
+
   - `BetaManagedAgentsSessionDeletedEvent`
 
     Emitted when a session has been deleted. Terminates any active event stream — no further events will be emitted for this session.
@@ -7236,6 +9802,134 @@ console.log(betaManagedAgentsStreamSessionEvents);
     - `type: "session.deleted"`
 
       - `"session.deleted"`
+
+  - `BetaManagedAgentsSessionThreadStatusRunningEvent`
+
+    A session thread has begun executing. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that started running.
+
+    - `type: "session.thread_status_running"`
+
+      - `"session.thread_status_running"`
+
+  - `BetaManagedAgentsSessionThreadStatusIdleEvent`
+
+    A session thread has yielded and is awaiting input. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that went idle.
+
+    - `stop_reason: BetaManagedAgentsSessionEndTurn | BetaManagedAgentsSessionRequiresAction | BetaManagedAgentsSessionRetriesExhausted`
+
+      The agent completed its turn naturally and is ready for the next user message.
+
+      - `BetaManagedAgentsSessionEndTurn`
+
+        The agent completed its turn naturally and is ready for the next user message.
+
+        - `type: "end_turn"`
+
+          - `"end_turn"`
+
+      - `BetaManagedAgentsSessionRequiresAction`
+
+        The agent is idle waiting on one or more blocking user-input events (tool confirmation, custom tool result, etc.). Resolving all of them transitions the session back to running.
+
+        - `event_ids: Array<string>`
+
+          The ids of events the agent is blocked on. Resolving fewer than all re-emits `session.status_idle` with the remainder.
+
+        - `type: "requires_action"`
+
+          - `"requires_action"`
+
+      - `BetaManagedAgentsSessionRetriesExhausted`
+
+        The turn ended because the retry budget was exhausted (`max_iterations` hit or an error escalated to `retry_status: 'exhausted'`).
+
+        - `type: "retries_exhausted"`
+
+          - `"retries_exhausted"`
+
+    - `type: "session.thread_status_idle"`
+
+      - `"session.thread_status_idle"`
+
+  - `BetaManagedAgentsSessionThreadStatusTerminatedEvent`
+
+    A session thread has terminated and will accept no further input. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that terminated.
+
+    - `type: "session.thread_status_terminated"`
+
+      - `"session.thread_status_terminated"`
+
+  - `BetaManagedAgentsSessionThreadStatusRescheduledEvent`
+
+    A session thread hit a transient error and is retrying automatically. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that is retrying.
+
+    - `type: "session.thread_status_rescheduled"`
+
+      - `"session.thread_status_rescheduled"`
 
 ### Beta Managed Agents Session Requires Action
 
@@ -7365,6 +10059,168 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
     - `"session.status_terminated"`
 
+### Beta Managed Agents Session Thread Created Event
+
+- `BetaManagedAgentsSessionThreadCreatedEvent`
+
+  Emitted when a subagent is spawned as a new thread. Written to the parent thread's output stream so clients observing the session see child creation.
+
+  - `id: string`
+
+    Unique identifier for this event.
+
+  - `agent_name: string`
+
+    Name of the callable agent the thread runs.
+
+  - `processed_at: string`
+
+    A timestamp in RFC 3339 format
+
+  - `session_thread_id: string`
+
+    Public `sthr_` ID of the newly created thread.
+
+  - `type: "session.thread_created"`
+
+    - `"session.thread_created"`
+
+### Beta Managed Agents Session Thread Status Idle Event
+
+- `BetaManagedAgentsSessionThreadStatusIdleEvent`
+
+  A session thread has yielded and is awaiting input. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+  - `id: string`
+
+    Unique identifier for this event.
+
+  - `agent_name: string`
+
+    Name of the agent the thread runs.
+
+  - `processed_at: string`
+
+    A timestamp in RFC 3339 format
+
+  - `session_thread_id: string`
+
+    Public sthr_ ID of the thread that went idle.
+
+  - `stop_reason: BetaManagedAgentsSessionEndTurn | BetaManagedAgentsSessionRequiresAction | BetaManagedAgentsSessionRetriesExhausted`
+
+    The agent completed its turn naturally and is ready for the next user message.
+
+    - `BetaManagedAgentsSessionEndTurn`
+
+      The agent completed its turn naturally and is ready for the next user message.
+
+      - `type: "end_turn"`
+
+        - `"end_turn"`
+
+    - `BetaManagedAgentsSessionRequiresAction`
+
+      The agent is idle waiting on one or more blocking user-input events (tool confirmation, custom tool result, etc.). Resolving all of them transitions the session back to running.
+
+      - `event_ids: Array<string>`
+
+        The ids of events the agent is blocked on. Resolving fewer than all re-emits `session.status_idle` with the remainder.
+
+      - `type: "requires_action"`
+
+        - `"requires_action"`
+
+    - `BetaManagedAgentsSessionRetriesExhausted`
+
+      The turn ended because the retry budget was exhausted (`max_iterations` hit or an error escalated to `retry_status: 'exhausted'`).
+
+      - `type: "retries_exhausted"`
+
+        - `"retries_exhausted"`
+
+  - `type: "session.thread_status_idle"`
+
+    - `"session.thread_status_idle"`
+
+### Beta Managed Agents Session Thread Status Rescheduled Event
+
+- `BetaManagedAgentsSessionThreadStatusRescheduledEvent`
+
+  A session thread hit a transient error and is retrying automatically. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+  - `id: string`
+
+    Unique identifier for this event.
+
+  - `agent_name: string`
+
+    Name of the agent the thread runs.
+
+  - `processed_at: string`
+
+    A timestamp in RFC 3339 format
+
+  - `session_thread_id: string`
+
+    Public sthr_ ID of the thread that is retrying.
+
+  - `type: "session.thread_status_rescheduled"`
+
+    - `"session.thread_status_rescheduled"`
+
+### Beta Managed Agents Session Thread Status Running Event
+
+- `BetaManagedAgentsSessionThreadStatusRunningEvent`
+
+  A session thread has begun executing. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+  - `id: string`
+
+    Unique identifier for this event.
+
+  - `agent_name: string`
+
+    Name of the agent the thread runs.
+
+  - `processed_at: string`
+
+    A timestamp in RFC 3339 format
+
+  - `session_thread_id: string`
+
+    Public sthr_ ID of the thread that started running.
+
+  - `type: "session.thread_status_running"`
+
+    - `"session.thread_status_running"`
+
+### Beta Managed Agents Session Thread Status Terminated Event
+
+- `BetaManagedAgentsSessionThreadStatusTerminatedEvent`
+
+  A session thread has terminated and will accept no further input. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+  - `id: string`
+
+    Unique identifier for this event.
+
+  - `agent_name: string`
+
+    Name of the agent the thread runs.
+
+  - `processed_at: string`
+
+    A timestamp in RFC 3339 format
+
+  - `session_thread_id: string`
+
+    Public sthr_ ID of the thread that terminated.
+
+  - `type: "session.thread_status_terminated"`
+
+    - `"session.thread_status_terminated"`
+
 ### Beta Managed Agents Span Model Request End Event
 
 - `BetaManagedAgentsSpanModelRequestEndEvent`
@@ -7467,9 +10323,127 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
     - `"fast"`
 
+### Beta Managed Agents Span Outcome Evaluation End Event
+
+- `BetaManagedAgentsSpanOutcomeEvaluationEndEvent`
+
+  Emitted when an outcome evaluation cycle completes. Carries the verdict and aggregate token usage. A verdict of `needs_revision` means another evaluation cycle follows; `satisfied`, `max_iterations_reached`, `failed`, or `interrupted` are terminal — no further evaluation cycles follow.
+
+  - `id: string`
+
+    Unique identifier for this event.
+
+  - `explanation: string`
+
+    Human-readable explanation of the verdict. For `needs_revision`, describes which criteria failed and why.
+
+  - `iteration: number`
+
+    0-indexed revision cycle, matching the corresponding `span.outcome_evaluation_start`.
+
+  - `outcome_evaluation_start_id: string`
+
+    The id of the corresponding `span.outcome_evaluation_start` event.
+
+  - `outcome_id: string`
+
+    The `outc_` ID of the outcome being evaluated.
+
+  - `processed_at: string`
+
+    A timestamp in RFC 3339 format
+
+  - `result: string`
+
+    Evaluation verdict. 'satisfied': criteria met, session goes idle. 'needs_revision': criteria not met, another revision cycle follows. 'max_iterations_reached': evaluation budget exhausted with criteria still unmet — one final acknowledgment turn follows before the session goes idle, but no further evaluation runs. 'failed': grader determined the rubric does not apply to the deliverables. 'interrupted': user sent an interrupt while evaluation was in progress.
+
+  - `type: "span.outcome_evaluation_end"`
+
+    - `"span.outcome_evaluation_end"`
+
+  - `usage: BetaManagedAgentsSpanModelUsage`
+
+    Token usage for a single model request.
+
+    - `cache_creation_input_tokens: number`
+
+      Tokens used to create prompt cache in this request.
+
+    - `cache_read_input_tokens: number`
+
+      Tokens read from prompt cache in this request.
+
+    - `input_tokens: number`
+
+      Input tokens consumed by this request.
+
+    - `output_tokens: number`
+
+      Output tokens generated by this request.
+
+    - `speed?: "standard" | "fast" | null`
+
+      Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+      - `"standard"`
+
+      - `"fast"`
+
+### Beta Managed Agents Span Outcome Evaluation Ongoing Event
+
+- `BetaManagedAgentsSpanOutcomeEvaluationOngoingEvent`
+
+  Periodic heartbeat emitted while an outcome evaluation cycle is in progress. Distinguishes 'evaluation is actively running' from 'evaluation is stuck' between the corresponding `span.outcome_evaluation_start` and `span.outcome_evaluation_end` events.
+
+  - `id: string`
+
+    Unique identifier for this event.
+
+  - `iteration: number`
+
+    0-indexed revision cycle, matching the corresponding `span.outcome_evaluation_start`.
+
+  - `outcome_id: string`
+
+    The `outc_` ID of the outcome being evaluated.
+
+  - `processed_at: string`
+
+    A timestamp in RFC 3339 format
+
+  - `type: "span.outcome_evaluation_ongoing"`
+
+    - `"span.outcome_evaluation_ongoing"`
+
+### Beta Managed Agents Span Outcome Evaluation Start Event
+
+- `BetaManagedAgentsSpanOutcomeEvaluationStartEvent`
+
+  Emitted when an outcome evaluation cycle begins.
+
+  - `id: string`
+
+    Unique identifier for this event.
+
+  - `iteration: number`
+
+    0-indexed revision cycle. 0 is the first evaluation; 1 is the re-evaluation after the first revision; etc.
+
+  - `outcome_id: string`
+
+    The `outc_` ID of the outcome being evaluated.
+
+  - `processed_at: string`
+
+    A timestamp in RFC 3339 format
+
+  - `type: "span.outcome_evaluation_start"`
+
+    - `"span.outcome_evaluation_start"`
+
 ### Beta Managed Agents Stream Session Events
 
-- `BetaManagedAgentsStreamSessionEvents = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 17 more`
+- `BetaManagedAgentsStreamSessionEvents = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 28 more`
 
   Server-sent event in the session stream.
 
@@ -7651,6 +10625,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
       A timestamp in RFC 3339 format
 
+    - `session_thread_id?: string | null`
+
+      If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
+
   - `BetaManagedAgentsUserToolConfirmationEvent`
 
     A tool confirmation event that approves or denies a pending tool execution.
@@ -7682,6 +10660,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
     - `processed_at?: string | null`
 
       A timestamp in RFC 3339 format
+
+    - `session_thread_id?: string | null`
+
+      When set, the confirmation routes to this subagent's thread rather than the primary. Echo this from the `session_thread_id` on the `agent.tool_use` or `agent.mcp_tool_use` event that prompted the approval.
 
   - `BetaManagedAgentsUserCustomToolResultEvent`
 
@@ -7853,6 +10835,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
       A timestamp in RFC 3339 format
 
+    - `session_thread_id?: string | null`
+
+      Routes this result to a subagent thread. Copy from the `agent.custom_tool_use` event's `session_thread_id`.
+
   - `BetaManagedAgentsAgentCustomToolUseEvent`
 
     Event emitted when the agent calls a custom tool. The session goes idle until the client sends a `user.custom_tool_result` event with the result.
@@ -7876,6 +10862,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
     - `type: "agent.custom_tool_use"`
 
       - `"agent.custom_tool_use"`
+
+    - `session_thread_id?: string | null`
+
+      When set, this event was cross-posted from a subagent's thread to surface its custom tool use on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.custom_tool_result` event to route the result back.
 
   - `BetaManagedAgentsAgentMessageEvent`
 
@@ -7958,6 +10948,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
       - `"ask"`
 
       - `"deny"`
+
+    - `session_thread_id?: string | null`
+
+      When set, this event was cross-posted from a subagent's thread to surface its permission request on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.tool_confirmation` event to route the approval back.
 
   - `BetaManagedAgentsAgentMCPToolResultEvent`
 
@@ -8163,6 +11157,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
       - `"deny"`
 
+    - `session_thread_id?: string | null`
+
+      When set, this event was cross-posted from a subagent's thread to surface its permission request on the primary thread's stream. Empty on the thread's own events. Echo this on a `user.tool_confirmation` event to route the approval back.
+
   - `BetaManagedAgentsAgentToolResultEvent`
 
     Event representing the result of an agent tool execution.
@@ -8332,6 +11330,346 @@ console.log(betaManagedAgentsStreamSessionEvents);
     - `is_error?: boolean | null`
 
       Whether the tool execution resulted in an error.
+
+  - `BetaManagedAgentsAgentThreadMessageReceivedEvent`
+
+    Delivery event written to the target thread's input stream when an agent-to-agent message arrives.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `content: Array<BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock>`
+
+      Message content blocks.
+
+      - `BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: string`
+
+          The text content.
+
+        - `type: "text"`
+
+          - `"text"`
+
+      - `BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: string`
+
+              Base64-encoded image data.
+
+            - `media_type: string`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the image to fetch.
+
+          - `BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "image"`
+
+          - `"image"`
+
+      - `BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: string`
+
+              Base64-encoded document data.
+
+            - `media_type: string`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: string`
+
+              The plain text content.
+
+            - `media_type: "text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `"text/plain"`
+
+            - `type: "text"`
+
+              - `"text"`
+
+          - `BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the document to fetch.
+
+          - `BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "document"`
+
+          - `"document"`
+
+        - `context?: string | null`
+
+          Additional context about the document for the model.
+
+        - `title?: string | null`
+
+          The title of the document.
+
+    - `from_session_thread_id: string`
+
+      Public `sthr_` ID of the thread that sent the message.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `type: "agent.thread_message_received"`
+
+      - `"agent.thread_message_received"`
+
+    - `from_agent_name?: string | null`
+
+      Name of the callable agent this message came from. Absent when received from the primary agent.
+
+  - `BetaManagedAgentsAgentThreadMessageSentEvent`
+
+    Observability event emitted to the sender's output stream when an agent-to-agent message is sent.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `content: Array<BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock>`
+
+      Message content blocks.
+
+      - `BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: string`
+
+          The text content.
+
+        - `type: "text"`
+
+          - `"text"`
+
+      - `BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: string`
+
+              Base64-encoded image data.
+
+            - `media_type: string`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the image to fetch.
+
+          - `BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "image"`
+
+          - `"image"`
+
+      - `BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: string`
+
+              Base64-encoded document data.
+
+            - `media_type: string`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: "base64"`
+
+              - `"base64"`
+
+          - `BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: string`
+
+              The plain text content.
+
+            - `media_type: "text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `"text/plain"`
+
+            - `type: "text"`
+
+              - `"text"`
+
+          - `BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: "url"`
+
+              - `"url"`
+
+            - `url: string`
+
+              URL of the document to fetch.
+
+          - `BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: string`
+
+              ID of a previously uploaded file.
+
+            - `type: "file"`
+
+              - `"file"`
+
+        - `type: "document"`
+
+          - `"document"`
+
+        - `context?: string | null`
+
+          Additional context about the document for the model.
+
+        - `title?: string | null`
+
+          The title of the document.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `to_session_thread_id: string`
+
+      Public `sthr_` ID of the thread the message was sent to.
+
+    - `type: "agent.thread_message_sent"`
+
+      - `"agent.thread_message_sent"`
+
+    - `to_agent_name?: string | null`
+
+      Name of the callable agent this message was sent to. Absent when sent to the primary agent.
 
   - `BetaManagedAgentsAgentThreadContextCompactedEvent`
 
@@ -8753,6 +12091,118 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
       - `"session.status_terminated"`
 
+  - `BetaManagedAgentsSessionThreadCreatedEvent`
+
+    Emitted when a subagent is spawned as a new thread. Written to the parent thread's output stream so clients observing the session see child creation.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the callable agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public `sthr_` ID of the newly created thread.
+
+    - `type: "session.thread_created"`
+
+      - `"session.thread_created"`
+
+  - `BetaManagedAgentsSpanOutcomeEvaluationStartEvent`
+
+    Emitted when an outcome evaluation cycle begins.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `iteration: number`
+
+      0-indexed revision cycle. 0 is the first evaluation; 1 is the re-evaluation after the first revision; etc.
+
+    - `outcome_id: string`
+
+      The `outc_` ID of the outcome being evaluated.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `type: "span.outcome_evaluation_start"`
+
+      - `"span.outcome_evaluation_start"`
+
+  - `BetaManagedAgentsSpanOutcomeEvaluationEndEvent`
+
+    Emitted when an outcome evaluation cycle completes. Carries the verdict and aggregate token usage. A verdict of `needs_revision` means another evaluation cycle follows; `satisfied`, `max_iterations_reached`, `failed`, or `interrupted` are terminal — no further evaluation cycles follow.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `explanation: string`
+
+      Human-readable explanation of the verdict. For `needs_revision`, describes which criteria failed and why.
+
+    - `iteration: number`
+
+      0-indexed revision cycle, matching the corresponding `span.outcome_evaluation_start`.
+
+    - `outcome_evaluation_start_id: string`
+
+      The id of the corresponding `span.outcome_evaluation_start` event.
+
+    - `outcome_id: string`
+
+      The `outc_` ID of the outcome being evaluated.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `result: string`
+
+      Evaluation verdict. 'satisfied': criteria met, session goes idle. 'needs_revision': criteria not met, another revision cycle follows. 'max_iterations_reached': evaluation budget exhausted with criteria still unmet — one final acknowledgment turn follows before the session goes idle, but no further evaluation runs. 'failed': grader determined the rubric does not apply to the deliverables. 'interrupted': user sent an interrupt while evaluation was in progress.
+
+    - `type: "span.outcome_evaluation_end"`
+
+      - `"span.outcome_evaluation_end"`
+
+    - `usage: BetaManagedAgentsSpanModelUsage`
+
+      Token usage for a single model request.
+
+      - `cache_creation_input_tokens: number`
+
+        Tokens used to create prompt cache in this request.
+
+      - `cache_read_input_tokens: number`
+
+        Tokens read from prompt cache in this request.
+
+      - `input_tokens: number`
+
+        Input tokens consumed by this request.
+
+      - `output_tokens: number`
+
+        Output tokens generated by this request.
+
+      - `speed?: "standard" | "fast" | null`
+
+        Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+        - `"standard"`
+
+        - `"fast"`
+
   - `BetaManagedAgentsSpanModelRequestStartEvent`
 
     Emitted when a model request is initiated by the agent.
@@ -8821,6 +12271,86 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
       - `"span.model_request_end"`
 
+  - `BetaManagedAgentsSpanOutcomeEvaluationOngoingEvent`
+
+    Periodic heartbeat emitted while an outcome evaluation cycle is in progress. Distinguishes 'evaluation is actively running' from 'evaluation is stuck' between the corresponding `span.outcome_evaluation_start` and `span.outcome_evaluation_end` events.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `iteration: number`
+
+      0-indexed revision cycle, matching the corresponding `span.outcome_evaluation_start`.
+
+    - `outcome_id: string`
+
+      The `outc_` ID of the outcome being evaluated.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `type: "span.outcome_evaluation_ongoing"`
+
+      - `"span.outcome_evaluation_ongoing"`
+
+  - `BetaManagedAgentsUserDefineOutcomeEvent`
+
+    Echo of a `user.define_outcome` input event. Carries the server-generated `outcome_id` that subsequent `span.outcome_evaluation_*` events reference.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `description: string`
+
+      What the agent should produce. Copied from the input event.
+
+    - `max_iterations: number | null`
+
+      Evaluate-then-revise cycles before giving up. Default 3, max 20.
+
+    - `outcome_id: string`
+
+      Server-generated `outc_` ID for this outcome. Referenced by `span.outcome_evaluation_*` events and the session's `outcome_evaluations` list.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `rubric: BetaManagedAgentsFileRubric | BetaManagedAgentsTextRubric`
+
+      Rubric for grading the quality of an outcome.
+
+      - `BetaManagedAgentsFileRubric`
+
+        Rubric referenced by a file uploaded via the Files API.
+
+        - `file_id: string`
+
+          ID of the rubric file.
+
+        - `type: "file"`
+
+          - `"file"`
+
+      - `BetaManagedAgentsTextRubric`
+
+        Rubric content provided inline as text.
+
+        - `content: string`
+
+          Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+        - `type: "text"`
+
+          - `"text"`
+
+    - `type: "user.define_outcome"`
+
+      - `"user.define_outcome"`
+
   - `BetaManagedAgentsSessionDeletedEvent`
 
     Emitted when a session has been deleted. Terminates any active event stream — no further events will be emitted for this session.
@@ -8837,6 +12367,134 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
       - `"session.deleted"`
 
+  - `BetaManagedAgentsSessionThreadStatusRunningEvent`
+
+    A session thread has begun executing. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that started running.
+
+    - `type: "session.thread_status_running"`
+
+      - `"session.thread_status_running"`
+
+  - `BetaManagedAgentsSessionThreadStatusIdleEvent`
+
+    A session thread has yielded and is awaiting input. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that went idle.
+
+    - `stop_reason: BetaManagedAgentsSessionEndTurn | BetaManagedAgentsSessionRequiresAction | BetaManagedAgentsSessionRetriesExhausted`
+
+      The agent completed its turn naturally and is ready for the next user message.
+
+      - `BetaManagedAgentsSessionEndTurn`
+
+        The agent completed its turn naturally and is ready for the next user message.
+
+        - `type: "end_turn"`
+
+          - `"end_turn"`
+
+      - `BetaManagedAgentsSessionRequiresAction`
+
+        The agent is idle waiting on one or more blocking user-input events (tool confirmation, custom tool result, etc.). Resolving all of them transitions the session back to running.
+
+        - `event_ids: Array<string>`
+
+          The ids of events the agent is blocked on. Resolving fewer than all re-emits `session.status_idle` with the remainder.
+
+        - `type: "requires_action"`
+
+          - `"requires_action"`
+
+      - `BetaManagedAgentsSessionRetriesExhausted`
+
+        The turn ended because the retry budget was exhausted (`max_iterations` hit or an error escalated to `retry_status: 'exhausted'`).
+
+        - `type: "retries_exhausted"`
+
+          - `"retries_exhausted"`
+
+    - `type: "session.thread_status_idle"`
+
+      - `"session.thread_status_idle"`
+
+  - `BetaManagedAgentsSessionThreadStatusTerminatedEvent`
+
+    A session thread has terminated and will accept no further input. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that terminated.
+
+    - `type: "session.thread_status_terminated"`
+
+      - `"session.thread_status_terminated"`
+
+  - `BetaManagedAgentsSessionThreadStatusRescheduledEvent`
+
+    A session thread hit a transient error and is retrying automatically. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `agent_name: string`
+
+      Name of the agent the thread runs.
+
+    - `processed_at: string`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: string`
+
+      Public sthr_ ID of the thread that is retrying.
+
+    - `type: "session.thread_status_rescheduled"`
+
+      - `"session.thread_status_rescheduled"`
+
 ### Beta Managed Agents Text Block
 
 - `BetaManagedAgentsTextBlock`
@@ -8846,6 +12504,34 @@ console.log(betaManagedAgentsStreamSessionEvents);
   - `text: string`
 
     The text content.
+
+  - `type: "text"`
+
+    - `"text"`
+
+### Beta Managed Agents Text Rubric
+
+- `BetaManagedAgentsTextRubric`
+
+  Rubric content provided inline as text.
+
+  - `content: string`
+
+    Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+  - `type: "text"`
+
+    - `"text"`
+
+### Beta Managed Agents Text Rubric Params
+
+- `BetaManagedAgentsTextRubricParams`
+
+  Rubric content provided inline as text.
+
+  - `content: string`
+
+    Rubric content. Plain text or markdown — the grader treats it as freeform text. Maximum 262144 characters.
 
   - `type: "text"`
 
@@ -9093,6 +12779,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
     A timestamp in RFC 3339 format
 
+  - `session_thread_id?: string | null`
+
+    Routes this result to a subagent thread. Copy from the `agent.custom_tool_use` event's `session_thread_id`.
+
 ### Beta Managed Agents User Custom Tool Result Event Params
 
 - `BetaManagedAgentsUserCustomToolResultEventParams`
@@ -9257,6 +12947,110 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
     Whether the tool execution resulted in an error.
 
+### Beta Managed Agents User Define Outcome Event
+
+- `BetaManagedAgentsUserDefineOutcomeEvent`
+
+  Echo of a `user.define_outcome` input event. Carries the server-generated `outcome_id` that subsequent `span.outcome_evaluation_*` events reference.
+
+  - `id: string`
+
+    Unique identifier for this event.
+
+  - `description: string`
+
+    What the agent should produce. Copied from the input event.
+
+  - `max_iterations: number | null`
+
+    Evaluate-then-revise cycles before giving up. Default 3, max 20.
+
+  - `outcome_id: string`
+
+    Server-generated `outc_` ID for this outcome. Referenced by `span.outcome_evaluation_*` events and the session's `outcome_evaluations` list.
+
+  - `processed_at: string`
+
+    A timestamp in RFC 3339 format
+
+  - `rubric: BetaManagedAgentsFileRubric | BetaManagedAgentsTextRubric`
+
+    Rubric for grading the quality of an outcome.
+
+    - `BetaManagedAgentsFileRubric`
+
+      Rubric referenced by a file uploaded via the Files API.
+
+      - `file_id: string`
+
+        ID of the rubric file.
+
+      - `type: "file"`
+
+        - `"file"`
+
+    - `BetaManagedAgentsTextRubric`
+
+      Rubric content provided inline as text.
+
+      - `content: string`
+
+        Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+      - `type: "text"`
+
+        - `"text"`
+
+  - `type: "user.define_outcome"`
+
+    - `"user.define_outcome"`
+
+### Beta Managed Agents User Define Outcome Event Params
+
+- `BetaManagedAgentsUserDefineOutcomeEventParams`
+
+  Parameters for defining an outcome the agent should work toward. The agent begins work on receipt.
+
+  - `description: string`
+
+    What the agent should produce. This is the task specification.
+
+  - `rubric: BetaManagedAgentsFileRubricParams | BetaManagedAgentsTextRubricParams`
+
+    Rubric for grading the quality of an outcome.
+
+    - `BetaManagedAgentsFileRubricParams`
+
+      Rubric referenced by a file uploaded via the Files API.
+
+      - `file_id: string`
+
+        ID of the rubric file.
+
+      - `type: "file"`
+
+        - `"file"`
+
+    - `BetaManagedAgentsTextRubricParams`
+
+      Rubric content provided inline as text.
+
+      - `content: string`
+
+        Rubric content. Plain text or markdown — the grader treats it as freeform text. Maximum 262144 characters.
+
+      - `type: "text"`
+
+        - `"text"`
+
+  - `type: "user.define_outcome"`
+
+    - `"user.define_outcome"`
+
+  - `max_iterations?: number | null`
+
+    Eval→revision cycles before giving up. Default 3, max 20.
+
 ### Beta Managed Agents User Interrupt Event
 
 - `BetaManagedAgentsUserInterruptEvent`
@@ -9275,6 +13069,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
 
     A timestamp in RFC 3339 format
 
+  - `session_thread_id?: string | null`
+
+    If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
+
 ### Beta Managed Agents User Interrupt Event Params
 
 - `BetaManagedAgentsUserInterruptEventParams`
@@ -9284,6 +13082,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
   - `type: "user.interrupt"`
 
     - `"user.interrupt"`
+
+  - `session_thread_id?: string | null`
+
+    If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
 
 ### Beta Managed Agents User Message Event
 
@@ -9638,6 +13440,10 @@ console.log(betaManagedAgentsStreamSessionEvents);
   - `processed_at?: string | null`
 
     A timestamp in RFC 3339 format
+
+  - `session_thread_id?: string | null`
+
+    When set, the confirmation routes to this subagent's thread rather than the primary. Echo this from the `session_thread_id` on the `agent.tool_use` or `agent.mcp_tool_use` event that prompted the approval.
 
 ### Beta Managed Agents User Tool Confirmation Event Params
 

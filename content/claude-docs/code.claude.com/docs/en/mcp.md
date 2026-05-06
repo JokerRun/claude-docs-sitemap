@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 4756d943b03f89770a8a6f4ad0989db9476b1a9fdd94e042f14a33a6eb1e3ee7
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 5bc8e693c44e72dd7103acac40cf1358b8fe8f5ae831814c0eb0c546a222bd3c
 ---
 
 > ## Documentation Index
@@ -333,6 +333,10 @@ claude mcp remove github
 # (within Claude Code) Check server status
 /mcp
 ```
+
+The `/mcp` panel shows the tool count next to each connected server and flags servers that advertise the tools capability but expose no tools.
+
+The server name `workspace` is reserved for internal use. If your configuration defines a server with that name, Claude Code skips it at load time and shows a warning asking you to rename it.
 
 ### Dynamic tool updates
 
@@ -1191,6 +1195,8 @@ The following `.mcp.json` entry exempts one HTTP server while leaving other serv
 ```
 
 The `alwaysLoad` field is available on all server types and requires Claude Code v2.1.121 or later. An MCP server can also mark individual tools as always-loaded by including `"anthropic/alwaysLoad": true` in the tool's `_meta` object, which has the same effect for that tool only.
+
+Setting `alwaysLoad: true` also blocks startup until the server connects, capped at the standard 5-second connect timeout. This applies even when [`MCP_CONNECTION_NONBLOCKING=1`](/en/env-vars) is set, since the tools must be present when the first prompt is built. Other servers still connect in the background when nonblocking is enabled.
 
 ## Use MCP prompts as commands
 

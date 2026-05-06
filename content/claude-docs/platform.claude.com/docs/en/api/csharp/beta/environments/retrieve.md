@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 555bc0c9646e7c2acb1db93ba0b6b23fee6f676cb9d70c01eb701ad935221351
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 753be2f98a44806d25fb76ec2b7c0a09b467535a9a6cac51441ca7ea9767517d
 ---
 
 ## Retrieve
@@ -68,6 +68,8 @@ Retrieve a specific environment by ID.
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

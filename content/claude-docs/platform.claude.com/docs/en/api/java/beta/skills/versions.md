@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: f33dfeeba40f807b951481c3c0a7e414f47c811b976b3e918bfc687ec21549d2
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: cddf27774604db0b3d7075a9707cfb295f86a4eb60623ba0f9d556eb30930e7b
 ---
 
 # Versions
@@ -74,6 +74,8 @@ Create Skill Version
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `Optional<List<String>> files`
 
@@ -228,6 +230,8 @@ List Skill Versions
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class VersionListResponse:`
@@ -370,6 +374,8 @@ Get Skill Version
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 
@@ -517,6 +523,8 @@ Delete Skill Version
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

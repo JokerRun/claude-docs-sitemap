@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 8fc3375e655147a9ecebdad72d36e7c1cd6818719524316533a69df34facaf82
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 710d607b254ebba2139b0f9fcbca2243f53009ade2fd1c5407c8438203f5dc51
 ---
 
 ## Redact
@@ -25,7 +25,7 @@ Redact a memory version
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Redact a memory version
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

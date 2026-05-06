@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/results
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: e38cff591344087bc33df4dcd5677c011bef633faa17b03aa048f049695bdb8a
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 24bff6c1a73be3a876910a29e9399a2588598199e3540e3046562c22fffbd911
 ---
 
 ## Results
@@ -74,6 +74,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -208,15 +210,25 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `required string CitedText`
 
+                  The full text of the cited block range, concatenated.
+
+                  Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                 - `required Long DocumentIndex`
 
                 - `required string? DocumentTitle`
 
                 - `required Long EndBlockIndex`
 
+                  Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                  Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                 - `required string? FileID`
 
                 - `required Long StartBlockIndex`
+
+                  0-based index of the first cited block in the source's `content` array.
 
                 - `JsonElement Type "content_block_location"constant`
 
@@ -236,13 +248,27 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `required string CitedText`
 
+                  The full text of the cited block range, concatenated.
+
+                  Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                 - `required Long EndBlockIndex`
 
+                  Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                  Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                 - `required Long SearchResultIndex`
+
+                  0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+                  Counted separately from `document_index`; server-side web search results are not included in this count.
 
                 - `required string Source`
 
                 - `required Long StartBlockIndex`
+
+                  0-based index of the first cited block in the source's `content` array.
 
                 - `required string? Title`
 
@@ -814,15 +840,25 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `required string CitedText`
 
+                      The full text of the cited block range, concatenated.
+
+                      Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                     - `required Long DocumentIndex`
 
                     - `required string? DocumentTitle`
 
                     - `required Long EndBlockIndex`
 
+                      Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                      Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                     - `required string? FileID`
 
                     - `required Long StartBlockIndex`
+
+                      0-based index of the first cited block in the source's `content` array.
 
                     - `JsonElement Type "content_block_location"constant`
 
@@ -842,13 +878,27 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `required string CitedText`
 
+                      The full text of the cited block range, concatenated.
+
+                      Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                     - `required Long EndBlockIndex`
 
+                      Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                      Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                     - `required Long SearchResultIndex`
+
+                      0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+                      Counted separately from `document_index`; server-side web search results are not included in this count.
 
                     - `required string Source`
 
                     - `required Long StartBlockIndex`
+
+                      0-based index of the first cited block in the source's `content` array.
 
                     - `required string? Title`
 

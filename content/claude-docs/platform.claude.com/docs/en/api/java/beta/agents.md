@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: fc89fbdc536eb7e5a406aa09fb579a58ed8b2774461f5be6ddd065084754339f
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: ba2a18f71c524065c45403dfc9f0c11d9fb9ecb80e02b85b49556915c4a441ce
 ---
 
 # Agents
@@ -68,6 +68,8 @@ Create Agent
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `Model model`
 
@@ -196,6 +198,10 @@ Create Agent
   - `Optional<Metadata> metadata`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `Optional<BetaManagedAgentsMultiagentParams> multiagent`
+
+    A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
   - `Optional<List<BetaManagedAgentsSkillParams>> skills`
 
@@ -515,6 +521,26 @@ Create Agent
 
       - `FAST("fast")`
 
+  - `Optional<BetaManagedAgentsMultiagent> multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `List<BetaManagedAgentsAgentReference> agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `String id`
+
+      - `Type type`
+
+        - `AGENT("agent")`
+
+      - `long version`
+
+    - `Type type`
+
+      - `COORDINATOR("coordinator")`
+
   - `String name`
 
   - `List<Skill> skills`
@@ -833,6 +859,8 @@ List Agents
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -916,6 +944,26 @@ List Agents
       - `STANDARD("standard")`
 
       - `FAST("fast")`
+
+  - `Optional<BetaManagedAgentsMultiagent> multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `List<BetaManagedAgentsAgentReference> agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `String id`
+
+      - `Type type`
+
+        - `AGENT("agent")`
+
+      - `long version`
+
+    - `Type type`
+
+      - `COORDINATOR("coordinator")`
 
   - `String name`
 
@@ -1216,6 +1264,8 @@ Get Agent
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -1299,6 +1349,26 @@ Get Agent
       - `STANDARD("standard")`
 
       - `FAST("fast")`
+
+  - `Optional<BetaManagedAgentsMultiagent> multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `List<BetaManagedAgentsAgentReference> agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `String id`
+
+      - `Type type`
+
+        - `AGENT("agent")`
+
+      - `long version`
+
+    - `Type type`
+
+      - `COORDINATOR("coordinator")`
 
   - `String name`
 
@@ -1595,6 +1665,8 @@ Update Agent
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
   - `long version`
 
     The agent's current version, used to prevent concurrent overwrites. Obtain this value from a create or retrieve response. The request fails if this does not match the server's current version.
@@ -1722,6 +1794,10 @@ Update Agent
         - `STANDARD("standard")`
 
         - `FAST("fast")`
+
+  - `Optional<BetaManagedAgentsMultiagentParams> multiagent`
+
+    A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
   - `Optional<String> name`
 
@@ -2045,6 +2121,26 @@ Update Agent
 
       - `FAST("fast")`
 
+  - `Optional<BetaManagedAgentsMultiagent> multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `List<BetaManagedAgentsAgentReference> agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `String id`
+
+      - `Type type`
+
+        - `AGENT("agent")`
+
+      - `long version`
+
+    - `Type type`
+
+      - `COORDINATOR("coordinator")`
+
   - `String name`
 
   - `List<Skill> skills`
@@ -2344,6 +2440,8 @@ Archive Agent
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -2427,6 +2525,26 @@ Archive Agent
       - `STANDARD("standard")`
 
       - `FAST("fast")`
+
+  - `Optional<BetaManagedAgentsMultiagent> multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `List<BetaManagedAgentsAgentReference> agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `String id`
+
+      - `Type type`
+
+        - `AGENT("agent")`
+
+      - `long version`
+
+    - `Type type`
+
+      - `COORDINATOR("coordinator")`
 
   - `String name`
 
@@ -2745,6 +2863,26 @@ public final class Main {
 
       - `FAST("fast")`
 
+  - `Optional<BetaManagedAgentsMultiagent> multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `List<BetaManagedAgentsAgentReference> agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `String id`
+
+      - `Type type`
+
+        - `AGENT("agent")`
+
+      - `long version`
+
+    - `Type type`
+
+      - `COORDINATOR("coordinator")`
+
   - `String name`
 
   - `List<Skill> skills`
@@ -2954,6 +3092,20 @@ public final class Main {
   - `long version`
 
     The agent's current version. Starts at 1 and increments when the agent is modified.
+
+### Beta Managed Agents Agent Reference
+
+- `class BetaManagedAgentsAgentReference:`
+
+  A resolved agent reference with a concrete version.
+
+  - `String id`
+
+  - `Type type`
+
+    - `AGENT("agent")`
+
+  - `long version`
 
 ### Beta Managed Agents Agent Tool Config
 
@@ -3875,6 +4027,78 @@ public final class Main {
 
     - `FAST("fast")`
 
+### Beta Managed Agents Multiagent Coordinator
+
+- `class BetaManagedAgentsMultiagentCoordinator:`
+
+  Resolved coordinator topology with a concrete agent roster.
+
+  - `List<BetaManagedAgentsAgentReference> agents`
+
+    Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+    - `String id`
+
+    - `Type type`
+
+      - `AGENT("agent")`
+
+    - `long version`
+
+  - `Type type`
+
+    - `COORDINATOR("coordinator")`
+
+### Beta Managed Agents Multiagent Coordinator Params
+
+- `class BetaManagedAgentsMultiagentCoordinatorParams:`
+
+  A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
+
+  - `List<BetaManagedAgentsMultiagentRosterEntryParams> agents`
+
+    Agents the coordinator may spawn as session threads. 1–20 entries. Each entry is an agent ID string, a versioned `{"type":"agent","id","version"}` reference, or `{"type":"self"}` to allow recursive self-invocation. Entries must reference distinct agents (after resolving `self` and string forms); at most one `self`. Referenced agents must exist, must not be archived, and must not themselves have `multiagent` set (depth limit 1).
+
+    - `String`
+
+    - `class BetaManagedAgentsAgentParams:`
+
+      Specification for an Agent. Provide a specific `version` or use the short-form `agent="agent_id"` for the most recent version
+
+      - `String id`
+
+        The `agent` ID.
+
+      - `Type type`
+
+        - `AGENT("agent")`
+
+      - `Optional<Long> version`
+
+        The specific `agent` version to use. Omit to use the latest version. Must be at least 1 if specified.
+
+    - `class BetaManagedAgentsMultiagentSelfParams:`
+
+      Sentinel roster entry meaning "the agent that owns this configuration". Resolved server-side to a concrete agent reference.
+
+      - `Type type`
+
+        - `SELF("self")`
+
+  - `Type type`
+
+    - `COORDINATOR("coordinator")`
+
+### Beta Managed Agents Multiagent Self Params
+
+- `class BetaManagedAgentsMultiagentSelfParams:`
+
+  Sentinel roster entry meaning "the agent that owns this configuration". Resolved server-side to a concrete agent reference.
+
+  - `Type type`
+
+    - `SELF("self")`
+
 ### Beta Managed Agents Skill Params
 
 - `class BetaManagedAgentsSkillParams: A class that can be one of several variants.union`
@@ -4005,6 +4229,8 @@ List Agent Versions
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -4088,6 +4314,26 @@ List Agent Versions
       - `STANDARD("standard")`
 
       - `FAST("fast")`
+
+  - `Optional<BetaManagedAgentsMultiagent> multiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `List<BetaManagedAgentsAgentReference> agents`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `String id`
+
+      - `Type type`
+
+        - `AGENT("agent")`
+
+      - `long version`
+
+    - `Type type`
+
+      - `COORDINATOR("coordinator")`
 
   - `String name`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 2d478078db77d8acda7c4811dc34f24a3e92be3d15f4a748bf5e7fcc3213beec
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 18a89eb2ba2117fc3155c944b58b5ebb668530e61320eaa21f648e79f0612619
 ---
 
 > ## Documentation Index
@@ -240,7 +240,7 @@ Claude automatically invokes the relevant Skill if the description matches your 
   ```
 </CodeGroup>
 
-For more details on `settingSources`/`setting_sources`, see the [TypeScript SDK reference](/en/agent-sdk/typescript#setting-source) or [Python SDK reference](/en/agent-sdk/python#setting-source).
+For more details on `settingSources`/`setting_sources`, see the [TypeScript SDK reference](/en/agent-sdk/typescript#settingsource) or [Python SDK reference](/en/agent-sdk/python#settingsource).
 
 **Check working directory**: The SDK loads Skills relative to the `cwd` option. Ensure it points to a directory containing `.claude/skills/`:
 

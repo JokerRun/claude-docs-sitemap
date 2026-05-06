@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/archive
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 990bea32ca394775e99a0f2bcd6ff5a2d459812410b302c2252b3e7722d02bb8
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 85f09841316909fa373f17c2a25302827659cb9f2f75a2f8af883deac799ac28
 ---
 
 ## Archive
@@ -23,7 +23,7 @@ Archive Agent
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -71,9 +71,11 @@ Archive Agent
 
     - `"advisor-tool-2026-03-01"`
 
+    - `"managed-agents-2026-04-01"`
+
 ### Returns
 
-- `BetaManagedAgentsAgent = object { id, archived_at, created_at, 11 more }`
+- `BetaManagedAgentsAgent = object { id, archived_at, created_at, 12 more }`
 
   A Managed Agents `agent`.
 
@@ -162,6 +164,26 @@ Archive Agent
       - `"standard"`
 
       - `"fast"`
+
+  - `multiagent: BetaManagedAgentsMultiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `agents: array of BetaManagedAgentsAgentReference`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `id: string`
+
+      - `type: "agent"`
+
+        - `"agent"`
+
+      - `version: number`
+
+    - `type: "coordinator"`
+
+      - `"coordinator"`
 
   - `name: string`
 

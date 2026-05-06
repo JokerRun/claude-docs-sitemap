@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 0587d42c01a51bbc7f4cf7fb79753b595ae7fc06de27ecb7f1bae1c10ed3b46f
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 784fb96db81e17bab64d3a3eaeab8b26feb0b0842a72b7503d11bca6748b2286
 ---
 
 ## Retrieve
@@ -78,6 +78,8 @@ Get Skill Version
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 05435fa8e934b5f28b4ddbe85665a05bcb660870ba4a6553a41f997116b9478f
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 30b9cb14a86bb43adfc76eb20b7fea643b4b9bd8363c89e35ea99f65bd062412
 ---
 
 # Memories
@@ -74,6 +74,8 @@ Create a memory
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `Optional<String> content`
 
@@ -251,6 +253,8 @@ List memories
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class BetaManagedAgentsMemoryListItem: A class that can be one of several variants.union`
@@ -404,6 +408,8 @@ Retrieve a memory
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
 ### Returns
 
 - `class BetaManagedAgentsMemory:`
@@ -544,6 +550,8 @@ Update a memory
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `Optional<String> content`
 
@@ -697,6 +705,8 @@ Delete a memory
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

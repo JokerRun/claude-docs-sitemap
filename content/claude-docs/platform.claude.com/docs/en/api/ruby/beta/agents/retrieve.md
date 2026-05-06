@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 0c437ffa472dc734fb6011455266e3e6631c263f22205e471b4b2187a8335394
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 4e09b4924e46e69a6f258e2b45ef67f1ac8eef84e824aa4b4e7a10d9f652ce9d
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ Get Agent
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Get Agent
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 
@@ -166,6 +168,26 @@ Get Agent
       - `:standard`
 
       - `:fast`
+
+  - `multiagent: BetaManagedAgentsMultiagent`
+
+    Resolved coordinator topology with a concrete agent roster.
+
+    - `agents: Array[BetaManagedAgentsAgentReference]`
+
+      Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+      - `id: String`
+
+      - `type: :agent`
+
+        - `:agent`
+
+      - `version: Integer`
+
+    - `type: :coordinator`
+
+      - `:coordinator`
 
   - `name: String`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 886e70f7759a78ffac8b71f3b55d850c13e35a37e125e73f603e74675b3f244b
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 534702785a6ec364ded495670d66ddad57663deaac4e980327676195a3462562
 ---
 
 ## Update
@@ -25,7 +25,7 @@ Update Credential
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Update Credential
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Body Parameters
 

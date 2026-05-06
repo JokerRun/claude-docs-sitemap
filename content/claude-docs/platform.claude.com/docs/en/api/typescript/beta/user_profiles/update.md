@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/update
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 42b6647332edb14b467407f427722b458e80d62a287792e64c39080759a722e4
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 97a914226aae977ba1269d16f7d797bf11d53155775c117fa4e8c7f90367cfed
 ---
 
 ## Update
@@ -27,13 +27,27 @@ Update User Profile
 
     Body param: Key-value pairs to merge into the stored metadata. Keys provided overwrite existing values. To remove a key, set its value to an empty string. Keys not provided are left unchanged. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters.
 
+  - `name?: string | null`
+
+    Body param: If present, replaces the stored name. Omit to leave unchanged. Maximum 255 characters.
+
+  - `relationship?: "external" | "resold" | "internal" | null`
+
+    Body param: How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `"external"`
+
+    - `"resold"`
+
+    - `"internal"`
+
   - `betas?: Array<AnthropicBeta>`
 
     Header param: Optional header to specify the beta version(s) you want to use.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -81,6 +95,8 @@ Update User Profile
 
       - `"advisor-tool-2026-03-01"`
 
+      - `"managed-agents-2026-04-01"`
+
 ### Returns
 
 - `BetaUserProfile`
@@ -96,6 +112,16 @@ Update User Profile
   - `metadata: Record<string, string>`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `relationship: "external" | "resold" | "internal"`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `"external"`
+
+    - `"resold"`
+
+    - `"internal"`
 
   - `trust_grants: Record<string, BetaUserProfileTrustGrant>`
 
@@ -124,6 +150,10 @@ Update User Profile
   - `external_id?: string | null`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `name?: string | null`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Example
 

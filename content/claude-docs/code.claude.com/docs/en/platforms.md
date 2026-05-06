@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/platforms
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: a5830bda36c5e70231ad9446a45bfac0a0ee6d52bf969c05bd7a534f183bb58d
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: f31b7e7501ea6c391655a77d99e5108e6f11b1e8399e177c30515722d809fd22
 ---
 
 > ## Documentation Index
@@ -28,7 +28,7 @@ Choose a platform based on how you like to work and where your project lives.
 | [Web](/en/claude-code-on-the-web) | Long-running tasks that don't need much steering, or work that should continue when you're offline | Anthropic-managed cloud, continues after you disconnect                                                                                                                                   |
 | Mobile                            | Starting and monitoring tasks while away from your computer                                        | Cloud sessions from the Claude app for iOS and Android, [Remote Control](/en/remote-control) for local sessions, [Dispatch](/en/desktop#sessions-from-dispatch) to Desktop on Pro and Max |
 
-The CLI is the most complete surface for terminal-native work: scripting, third-party providers, and the Agent SDK are CLI-only. Desktop and the IDE extensions trade some CLI-only features for visual review and tighter editor integration. The web runs in Anthropic's cloud, so tasks keep going after you disconnect. Mobile is a thin client into those same cloud sessions or into a local session via Remote Control, and can send tasks to Desktop with Dispatch.
+The CLI is the most complete surface for terminal-native work: scripting and the Agent SDK are CLI-only. Third-party providers also work in [VS Code](/en/vs-code#use-third-party-providers). Enterprise [Desktop](/en/desktop) deployments support Vertex AI and gateway providers; for Bedrock or Foundry, use the CLI or VS Code instead of Desktop. Desktop and the IDE extensions trade some CLI-only features for visual review and tighter editor integration. The web runs in Anthropic's cloud, so tasks keep going after you disconnect. Mobile is a thin client into those same cloud sessions or into a local session via Remote Control, and can send tasks to Desktop with Dispatch.
 
 You can mix surfaces on the same project. Configuration, project memory, and MCP servers are shared across the local surfaces.
 

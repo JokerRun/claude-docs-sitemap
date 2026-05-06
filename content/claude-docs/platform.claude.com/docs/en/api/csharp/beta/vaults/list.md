@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: f583dd69893e0cf83164535c6b20aee7aef5ab81917539fa60138aebe9357de7
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 75370ca538dbb96daa4aa933b3816d7aad080b7dba428bdd7f53fd4844a16cb0
 ---
 
 ## List
@@ -78,6 +78,8 @@ List Vaults
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

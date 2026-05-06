@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/create
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 4d483ebbd69c4b91131df178a454b390af05affb8ccd3f51f557c5a21c1d57cd
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: f2faf7ad9d3f4ef7635c4757568e736ba96997c465049e110adb8f30b657edf2
 ---
 
 ## Create
@@ -131,7 +131,7 @@ Create Credential
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -178,6 +178,8 @@ Create Credential
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 

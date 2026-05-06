@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/retrieve
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: bd5e99affb2e8a260191eea035e9de3e7d7b6fc342eaeddacc6302383a18e0cb
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 071b469addf039d4928ecc98f66d62fe28eac2f9f8ebf40139bfccd6ae4dc52d
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Get User Profile
 
 ### Returns
 
-- `beta_user_profile: object { id, created_at, metadata, 4 more }`
+- `beta_user_profile: object { id, created_at, metadata, 6 more }`
 
   - `id: string`
 
@@ -38,6 +38,16 @@ Get User Profile
   - `metadata: map[string]`
 
     Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `relationship: "external" or "resold" or "internal"`
+
+    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+    - `"external"`
+
+    - `"resold"`
+
+    - `"internal"`
 
   - `trust_grants: map[BetaUserProfileTrustGrant]`
 
@@ -66,6 +76,10 @@ Get User Profile
   - `external_id: optional string`
 
     Platform's own identifier for this user. Not enforced unique.
+
+  - `name: optional string`
+
+    Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
 ### Example
 

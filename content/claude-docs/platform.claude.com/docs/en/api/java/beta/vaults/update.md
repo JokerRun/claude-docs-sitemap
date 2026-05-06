@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/update
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 9005c75c4fbe35a63f5fbda58dec59af2b471e53e0ccc60f021bfc4fd85375c1
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 5efb8ef1f9fde2c2fdc5601159dc5eddc911e05efa2929dc1778098eb9bbd849
 ---
 
 ## Update
@@ -68,6 +68,8 @@ Update Vault
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `Optional<String> displayName`
 

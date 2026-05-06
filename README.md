@@ -24,21 +24,21 @@ Automated daily English sitemap collection from Claude documentation sources.
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
 | code | https://code.claude.com/docs/en/admin-setup | 2026-04-28 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-04-16 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-04-23 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-04-23 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/custom-tools | 2026-04-08 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-05-05 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-05-05 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-05-05 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/custom-tools | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/file-check... | 2026-04-08 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-04-29 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/hosting | 2026-04-17 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-05-05 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/hosting | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-04-16 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-04-16 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/modifying-... | 2026-04-16 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/observability | 2026-04-21 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/observability | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/overview | 2026-04-28 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/permissions | 2026-04-16 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/permissions | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/plugins | 2026-04-28 |  |
-| ... | _(~1526 more rows)_ | | |
+| ... | _(~1617 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

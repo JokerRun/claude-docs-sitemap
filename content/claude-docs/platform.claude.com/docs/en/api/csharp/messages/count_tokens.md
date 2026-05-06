@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/count_tokens
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: a7596f297ab098975cc834fe53b8e0ae8df33a3da4e972d8c1dbc13cdb905fd9
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 1d77be0707f2e5c5af4f3ec2470d709f6d98703c233342a471703472ef10824a
 ---
 
 ## Count Tokens
@@ -139,13 +139,23 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `required string CitedText`
 
+                The full text of the cited block range, concatenated.
+
+                Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
               - `required Long DocumentIndex`
 
               - `required string? DocumentTitle`
 
               - `required Long EndBlockIndex`
 
+                Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
               - `required Long StartBlockIndex`
+
+                0-based index of the first cited block in the source's `content` array.
 
               - `JsonElement Type "content_block_location"constant`
 
@@ -165,13 +175,27 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `required string CitedText`
 
+                The full text of the cited block range, concatenated.
+
+                Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
               - `required Long EndBlockIndex`
 
+                Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
               - `required Long SearchResultIndex`
+
+                0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+                Counted separately from `document_index`; server-side web search results are not included in this count.
 
               - `required string Source`
 
               - `required Long StartBlockIndex`
+
+                0-based index of the first cited block in the source's `content` array.
 
               - `required string? Title`
 
@@ -315,13 +339,23 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                         - `required string CitedText`
 
+                          The full text of the cited block range, concatenated.
+
+                          Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                         - `required Long DocumentIndex`
 
                         - `required string? DocumentTitle`
 
                         - `required Long EndBlockIndex`
 
+                          Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                          Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                         - `required Long StartBlockIndex`
+
+                          0-based index of the first cited block in the source's `content` array.
 
                         - `JsonElement Type "content_block_location"constant`
 
@@ -341,13 +375,27 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                         - `required string CitedText`
 
+                          The full text of the cited block range, concatenated.
+
+                          Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                         - `required Long EndBlockIndex`
 
+                          Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                          Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                         - `required Long SearchResultIndex`
+
+                          0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+                          Counted separately from `document_index`; server-side web search results are not included in this count.
 
                         - `required string Source`
 
                         - `required Long StartBlockIndex`
+
+                          0-based index of the first cited block in the source's `content` array.
 
                         - `required string? Title`
 
@@ -504,13 +552,23 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `required string CitedText`
 
+                  The full text of the cited block range, concatenated.
+
+                  Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                 - `required Long DocumentIndex`
 
                 - `required string? DocumentTitle`
 
                 - `required Long EndBlockIndex`
 
+                  Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                  Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                 - `required Long StartBlockIndex`
+
+                  0-based index of the first cited block in the source's `content` array.
 
                 - `JsonElement Type "content_block_location"constant`
 
@@ -530,13 +588,27 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `required string CitedText`
 
+                  The full text of the cited block range, concatenated.
+
+                  Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                 - `required Long EndBlockIndex`
 
+                  Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                  Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                 - `required Long SearchResultIndex`
+
+                  0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+                  Counted separately from `document_index`; server-side web search results are not included in this count.
 
                 - `required string Source`
 
                 - `required Long StartBlockIndex`
+
+                  0-based index of the first cited block in the source's `content` array.
 
                 - `required string? Title`
 
@@ -736,13 +808,23 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                     - `required string CitedText`
 
+                      The full text of the cited block range, concatenated.
+
+                      Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                     - `required Long DocumentIndex`
 
                     - `required string? DocumentTitle`
 
                     - `required Long EndBlockIndex`
 
+                      Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                      Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                     - `required Long StartBlockIndex`
+
+                      0-based index of the first cited block in the source's `content` array.
 
                     - `JsonElement Type "content_block_location"constant`
 
@@ -762,13 +844,27 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                     - `required string CitedText`
 
+                      The full text of the cited block range, concatenated.
+
+                      Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                     - `required Long EndBlockIndex`
 
+                      Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                      Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                     - `required Long SearchResultIndex`
+
+                      0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+                      Counted separately from `document_index`; server-side web search results are not included in this count.
 
                     - `required string Source`
 
                     - `required Long StartBlockIndex`
+
+                      0-based index of the first cited block in the source's `content` array.
 
                     - `required string? Title`
 
@@ -886,13 +982,23 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                       - `required string CitedText`
 
+                        The full text of the cited block range, concatenated.
+
+                        Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                       - `required Long DocumentIndex`
 
                       - `required string? DocumentTitle`
 
                       - `required Long EndBlockIndex`
 
+                        Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                        Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                       - `required Long StartBlockIndex`
+
+                        0-based index of the first cited block in the source's `content` array.
 
                       - `JsonElement Type "content_block_location"constant`
 
@@ -912,13 +1018,27 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                       - `required string CitedText`
 
+                        The full text of the cited block range, concatenated.
+
+                        Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                       - `required Long EndBlockIndex`
 
+                        Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                        Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                       - `required Long SearchResultIndex`
+
+                        0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+                        Counted separately from `document_index`; server-side web search results are not included in this count.
 
                       - `required string Source`
 
                       - `required Long StartBlockIndex`
+
+                        0-based index of the first cited block in the source's `content` array.
 
                       - `required string? Title`
 
@@ -1044,13 +1164,23 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                               - `required string CitedText`
 
+                                The full text of the cited block range, concatenated.
+
+                                Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                               - `required Long DocumentIndex`
 
                               - `required string? DocumentTitle`
 
                               - `required Long EndBlockIndex`
 
+                                Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                                Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                               - `required Long StartBlockIndex`
+
+                                0-based index of the first cited block in the source's `content` array.
 
                               - `JsonElement Type "content_block_location"constant`
 
@@ -1070,13 +1200,27 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                               - `required string CitedText`
 
+                                The full text of the cited block range, concatenated.
+
+                                Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                               - `required Long EndBlockIndex`
 
+                                Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                                Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                               - `required Long SearchResultIndex`
+
+                                0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+                                Counted separately from `document_index`; server-side web search results are not included in this count.
 
                               - `required string Source`
 
                               - `required Long StartBlockIndex`
+
+                                0-based index of the first cited block in the source's `content` array.
 
                               - `required string? Title`
 
@@ -1470,13 +1614,23 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                               - `required string CitedText`
 
+                                The full text of the cited block range, concatenated.
+
+                                Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                               - `required Long DocumentIndex`
 
                               - `required string? DocumentTitle`
 
                               - `required Long EndBlockIndex`
 
+                                Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                                Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                               - `required Long StartBlockIndex`
+
+                                0-based index of the first cited block in the source's `content` array.
 
                               - `JsonElement Type "content_block_location"constant`
 
@@ -1496,13 +1650,27 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                               - `required string CitedText`
 
+                                The full text of the cited block range, concatenated.
+
+                                Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
                               - `required Long EndBlockIndex`
 
+                                Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+                                Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
                               - `required Long SearchResultIndex`
+
+                                0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+                                Counted separately from `document_index`; server-side web search results are not included in this count.
 
                               - `required string Source`
 
                               - `required Long StartBlockIndex`
+
+                                0-based index of the first cited block in the source's `content` array.
 
                               - `required string? Title`
 
@@ -2075,13 +2243,23 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           - `required string CitedText`
 
+            The full text of the cited block range, concatenated.
+
+            Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
           - `required Long DocumentIndex`
 
           - `required string? DocumentTitle`
 
           - `required Long EndBlockIndex`
 
+            Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+            Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
           - `required Long StartBlockIndex`
+
+            0-based index of the first cited block in the source's `content` array.
 
           - `JsonElement Type "content_block_location"constant`
 
@@ -2101,13 +2279,27 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           - `required string CitedText`
 
+            The full text of the cited block range, concatenated.
+
+            Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
           - `required Long EndBlockIndex`
 
+            Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+            Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
           - `required Long SearchResultIndex`
+
+            0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+            Counted separately from `document_index`; server-side web search results are not included in this count.
 
           - `required string Source`
 
           - `required Long StartBlockIndex`
+
+            0-based index of the first cited block in the source's `content` array.
 
           - `required string? Title`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/streaming-output
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 64829275d0b9b78cbf8a8d564cf6344042ed5d2540d83cbe2bb3bf67b4cdb892
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: c7a5c316f33354d7d4a41461dfce8f1fd8cc5ed44084b1b7db5664a49a4e2bd9
 ---
 
 > ## Documentation Index
@@ -100,7 +100,7 @@ Both contain raw Claude API events, not accumulated text. You need to extract an
   ```typescript TypeScript theme={null}
   type SDKPartialAssistantMessage = {
     type: "stream_event";
-    event: RawMessageStreamEvent; // From Anthropic SDK
+    event: BetaRawMessageStreamEvent; // From Anthropic SDK
     parent_tool_use_id: string | null;
     uuid: UUID;
     session_id: string;

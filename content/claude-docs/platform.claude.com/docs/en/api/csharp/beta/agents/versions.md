@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/versions
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: dd71f2bc86d0bdb3eb31f0ca84ad3777ac4c2d54fd8aae8d1be926153ee0f92a
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 8fb16fea134319d3613b875d04a512e89be0cf79ceb32d367f09e9448f3052cf
 ---
 
 # Versions
@@ -80,6 +80,8 @@ List Agent Versions
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -168,6 +170,26 @@ List Agent Versions
         - `"standard"Standard`
 
         - `"fast"Fast`
+
+    - `required BetaManagedAgentsMultiagent? Multiagent`
+
+      Resolved coordinator topology with a concrete agent roster.
+
+      - `required IReadOnlyList<BetaManagedAgentsAgentReference> Agents`
+
+        Agents the coordinator may spawn as session threads, each resolved to a specific version.
+
+        - `required string ID`
+
+        - `required Type Type`
+
+          - `"agent"Agent`
+
+        - `required Int Version`
+
+      - `required Type Type`
+
+        - `"coordinator"Coordinator`
 
     - `required string Name`
 

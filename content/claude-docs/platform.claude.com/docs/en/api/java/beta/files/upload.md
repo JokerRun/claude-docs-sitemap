@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/upload
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 3b40635e8545377d4db9301358c0738559ad419e95349c2ee32eb96ab7b8e78a
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: f1db99c630df14f173f41b8b0b6c2a4582fdf50ae0abca144a02b09b1c721913
 ---
 
 ## Upload
@@ -66,6 +66,8 @@ Upload File
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `String file`
 

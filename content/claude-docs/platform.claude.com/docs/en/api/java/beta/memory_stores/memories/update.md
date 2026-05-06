@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/update
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 563b3c5352746e85c55b3273d5fbf3cf0025c729ec554fa9dafcb80da10c3811
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: fa914ec2eae9a70de2151ee5c32d9ff6ece9393dd77ecbcd635da629670cab61
 ---
 
 ## Update
@@ -74,6 +74,8 @@ Update a memory
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `Optional<String> content`
 

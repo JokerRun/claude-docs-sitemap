@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/archive
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: c09924ada7765acdce00d5177e2db54cd0a2c455b1b0e6bdf2ead6e7bb7ea097
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: dffdaba3b9f9a0640f99eaff3b800e3e972dad11921b9a00bd8427ba210a49c1
 ---
 
 ## Archive
@@ -72,6 +72,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
 ### Returns
 

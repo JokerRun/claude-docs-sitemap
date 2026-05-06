@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: a8fbea450edbfa44df1b5e12212aabf682de204adef2718ea0dcefdcdc629492
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: aab949c98b92eb3fdcc323099e9635d52d5997cd4040f6a7c7c54a15ee697ac8
 ---
 
 ## Retrieve
@@ -74,6 +74,8 @@ Retrieve a memory
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
 ### Returns
 

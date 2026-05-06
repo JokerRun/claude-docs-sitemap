@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/create
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 2aa4b211f05fb998d7abc0a546a5dc46a6d756f587c5823321cb5d2264f300c4
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 883c579e94f4d316d6706cbb99020816e6206499d3ed4e9ca14bf1cfa23d95b0
 ---
 
 ## Create
@@ -82,6 +82,8 @@ Create a memory
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

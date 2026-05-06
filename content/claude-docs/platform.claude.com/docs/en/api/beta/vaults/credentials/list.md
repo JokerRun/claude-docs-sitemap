@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: d7cecbd0028ac1e8121870d0de4ae7615dfe39b877c7dd0d881d5e37291bb794
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 9a671791de755c2a4b535081932b45d8d9195074cfa6abe653662655e1065d2f
 ---
 
 ## List
@@ -37,7 +37,7 @@ List Credentials
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ List Credentials
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

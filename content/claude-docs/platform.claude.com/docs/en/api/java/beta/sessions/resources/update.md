@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/update
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: ee41da6ce46aed7e51271c4843875db581c046fe441b939f81c059147f7ca888
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 40ec54591fcd1aab2037eb83efdfc634d2cd311a32032b938acd9d269cf1426d
 ---
 
 ## Update
@@ -70,6 +70,8 @@ Update Session Resource
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `String authorizationToken`
 

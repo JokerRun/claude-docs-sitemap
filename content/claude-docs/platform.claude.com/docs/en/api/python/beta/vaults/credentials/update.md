@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/update
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: e23c8da36764f84d0df160119ea32f8dc0a6cb351059dc3bb0c29edaa2c080a5
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: a8ae9fe831f4a66d068a1d8042f5313ecdd5fb6b61dee6688a5c2ab4c9845f20
 ---
 
 ## Update
@@ -105,7 +105,7 @@ Update Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -152,6 +152,8 @@ Update Credential
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

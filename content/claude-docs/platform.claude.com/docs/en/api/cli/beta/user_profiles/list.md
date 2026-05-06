@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 03d57cc89066b9561a1ef5bdd2535c860d561f8d85974da970bd254dcb85e1ee
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 9e26fb36b58dfbb8cafa2cd8b4c7a80a0346a4f4d0481635297d86030e188397
 ---
 
 ## List
@@ -51,6 +51,16 @@ List User Profiles
 
       Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
+    - `relationship: "external" or "resold" or "internal"`
+
+      How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
+
+      - `"external"`
+
+      - `"resold"`
+
+      - `"internal"`
+
     - `trust_grants: map[BetaUserProfileTrustGrant]`
 
       Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
@@ -78,6 +88,10 @@ List User Profiles
     - `external_id: optional string`
 
       Platform's own identifier for this user. Not enforced unique.
+
+    - `name: optional string`
+
+      Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
   - `next_page: string`
 

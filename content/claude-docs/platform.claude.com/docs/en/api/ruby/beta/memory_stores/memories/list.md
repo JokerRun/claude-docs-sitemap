@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: fd1ebf6496cc48ba6f0f4429fb769c7bccdb243929b1ae6a812ef0ca603ba1fb
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 215ac31dfd54fcb55c7b6add54d2010167c1218f05cb1a80004d8c49ec327b77
 ---
 
 ## List
@@ -59,7 +59,7 @@ List memories
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -106,6 +106,8 @@ List memories
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 

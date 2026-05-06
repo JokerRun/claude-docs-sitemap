@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/delete
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: e27c519a5cd9f907c8a6dae07716a7f70afd260f508449f0a661671f81a1cc3e
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 297e8fad867418d534df4291dc86eaee541fb945c3c2f80887cbe9f7ebdbf750
 ---
 
 ## Delete
@@ -23,7 +23,7 @@ Delete a memory store
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -70,6 +70,8 @@ Delete a memory store
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 

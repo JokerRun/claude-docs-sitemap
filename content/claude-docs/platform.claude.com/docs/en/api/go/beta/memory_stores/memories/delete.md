@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memories/delete
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 7848be7a213e23e278d6e7966c867c8ab3b5a659fbfba31d66d60fde4e270036
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: b5f722e4b388207fb5add8583dbb435f0bf95f2f70010f2c0c7bbf839855ad1f
 ---
 
 ## Delete
@@ -80,6 +80,8 @@ Delete a memory
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
 ### Returns
 

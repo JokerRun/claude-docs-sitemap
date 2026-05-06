@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/create
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: f84dc209aa7e1ec3cf47ee5654fe176ce17efd1c66315955b02a53027c87f8f2
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 7ed01c4a1334df7773d2755d92d613bc87b132b8332fb89224cda5514f6e47f7
 ---
 
 ## Create
@@ -72,6 +72,8 @@ Create Skill Version
     - `USER_PROFILES_2026_03_24("user-profiles-2026-03-24")`
 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
+
+    - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
   - `Optional<List<String>> files`
 

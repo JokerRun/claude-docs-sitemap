@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 69cafcab3d3493029896974950a39e6bb27e1f695c46acd26504e627d4a28da6
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: e3e1426d3770f33b0b790221d243c9090052d50a8b3e671a4ed68a3a3e74de29
 ---
 
 ## Delete
@@ -23,7 +23,7 @@ Delete a memory store
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 20 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,6 +70,8 @@ Delete a memory store
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

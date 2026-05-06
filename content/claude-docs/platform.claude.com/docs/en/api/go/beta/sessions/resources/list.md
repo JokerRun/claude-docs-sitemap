@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 11b8801778e20b1b37529c13842b4c911305e977c3a162ab8f09e39e32738a4c
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 6e9eb4ad0632679526ef639fba85f9caffc23be90990d025cc39e655a77d2fab
 ---
 
 ## List
@@ -80,6 +80,8 @@ List Session Resources
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
 ### Returns
 

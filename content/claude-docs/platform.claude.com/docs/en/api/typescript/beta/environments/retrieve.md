@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 9ffab9b036bbe45f5ffd2f7e3575b59b02c362929b9f16fad21596f36621390b
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 04d15f836a2616b2165bb6e3774265f63d01dcb0ea5249f66dc432fa08232955
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Retrieve a specific environment by ID.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 20 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Retrieve a specific environment by ID.
       - `"user-profiles-2026-03-24"`
 
       - `"advisor-tool-2026-03-01"`
+
+      - `"managed-agents-2026-04-01"`
 
 ### Returns
 

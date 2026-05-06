@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 6d083e0be498a66e015cc3bdf369e4712c6da86cc906745ad5abee6683b40807
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: d64f88dafe36dcc1d4b4f5d11bf1eb5204a152df2aae1cec9c76a6cdbe8b9bd2
 ---
 
 # Files
@@ -72,6 +72,8 @@ Upload File
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -213,6 +215,8 @@ List Files
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -356,6 +360,8 @@ Download File
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
 ### Example
 
 ```csharp
@@ -431,6 +437,8 @@ Get File Metadata
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 
@@ -555,6 +563,8 @@ Delete File
     - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
 ### Returns
 

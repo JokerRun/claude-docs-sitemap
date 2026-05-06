@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: ba1d5b2b7d1518821755f0612bd5c3ea9124612f8d3a6c3200f8b97d5e561822
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: b8ecb23a3c519d83cf3f7c9aa177260dc608ee2afd120787e1443bc71e3f5588
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Get Session Resource
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 20 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Get Session Resource
     - `"user-profiles-2026-03-24"`
 
     - `"advisor-tool-2026-03-01"`
+
+    - `"managed-agents-2026-04-01"`
 
 ### Returns
 

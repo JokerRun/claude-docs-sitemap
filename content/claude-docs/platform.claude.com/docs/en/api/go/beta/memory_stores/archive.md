@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/archive
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: dde298af81bc1722148845cae60c928eccab906a4889339f205ed770b71091f1
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 914af3bf700ecbaa89ef536d693ef8657e147a6a4180ccd27d642236c9387148
 ---
 
 ## Archive
@@ -72,6 +72,8 @@ Archive a memory store
       - `const AnthropicBetaUserProfiles2026_03_24 AnthropicBeta = "user-profiles-2026-03-24"`
 
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
+
+      - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-05-03T03:13:42.903452Z
-sha256: 6b16dc991825b54dc696a935067adb9512da8b9da66edd0b48f0a21b231f0817
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 4148e94c183da66bca1254269823019543f6883dd97098983f9b9d4e1d3c7e58
 ---
 
 > ## Documentation Index
@@ -175,6 +175,8 @@ Deploy the application:
 ```
 
 Your `SKILL.md` can contain anything, but thinking through how you want the skill invoked (by you, by Claude, or both) and where you want it to run (inline or in a subagent) helps guide what to include. For complex skills, you can also [add supporting files](#add-supporting-files) to keep the main skill focused.
+
+Keep the body itself concise. Once a skill loads, its content [stays in context across turns](#skill-content-lifecycle), so every line is a recurring token cost. State what to do rather than narrating how or why, and apply the same conciseness test you would for [CLAUDE.md content](/en/best-practices#write-an-effective-claude-md).
 
 ### Frontmatter reference
 

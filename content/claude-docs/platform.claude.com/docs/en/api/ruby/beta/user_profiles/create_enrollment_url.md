@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 4e0bb87304e1827c1af7f7e96d411e395d0d029f5ede174789862bdb50a7670d
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: d9b1aa01f3adfe53e516d1b2ef1c847715bf347a74d039fd0e535d7dc5c29e92
 ---
 
 ## Create Enrollment URL
@@ -23,7 +23,7 @@ Create Enrollment URL
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 20 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -70,6 +70,8 @@ Create Enrollment URL
     - `:"user-profiles-2026-03-24"`
 
     - `:"advisor-tool-2026-03-01"`
+
+    - `:"managed-agents-2026-04-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-04-28T03:13:37.243984Z
-sha256: 0ae6f797ee084ea1bbd35cdeed3b58f259d93b5eca088406714f80ba5affed47
+fetched_at: 2026-05-06T03:14:02.071100Z
+sha256: 8f795651e9e49f65fd4478fa3373cbaa54113ad77ccf277b1b44bbfa36073b9d
 ---
 
 # Code execution tool
@@ -618,7 +618,7 @@ public class CodeExecutionWithFiles {
 }
 ```
 
-```php PHP hidelines={1..3,5} nocheck
+```php PHP hidelines={1..3} nocheck
 <?php
 
 use Anthropic\Client;
@@ -1062,8 +1062,8 @@ function extractFileIds(BetaMessage $response): array
 }
 
 foreach (extractFileIds($response) as $fileId) {
-    $fileMetadata = $client->beta->files->retrieveMetadata(fileID: $fileId);
-    $fileContent = $client->beta->files->download(fileID: $fileId);
+    $fileMetadata = $client->beta->files->retrieveMetadata($fileId);
+    $fileContent = $client->beta->files->download($fileId);
 
     file_put_contents($fileMetadata->filename, $fileContent);
     echo "Downloaded: {$fileMetadata->filename}\n";
@@ -1771,7 +1771,7 @@ For running tools inside the code execution container, see [Programmatic tool ca
 
 Code execution runs in server-side sandbox containers. Container data, including execution artifacts, uploaded files, and outputs, is retained for up to 30 days. This retention applies to all data processed within the container environment. Files that code execution creates in the [Files API](/docs/en/build-with-claude/files) (retrievable via `client.beta.files.download()`) persist until explicitly deleted.
 
-For ZDR eligibility across all features, see [API and data retention](/docs/en/build-with-claude/api-and-data-retention).
+For ZDR eligibility across all features, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 
 ## Using code execution with Agent Skills
 
