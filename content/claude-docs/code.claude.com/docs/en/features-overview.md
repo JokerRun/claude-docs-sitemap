@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/features-overview
-fetched_at: 2026-05-05T03:13:00.051351Z
-sha256: 341adc4fc4244a61901d99e7a28be39ef31e4e3b5dd0544c49b4e19f43916915
+fetched_at: 2026-05-07T03:15:02.178755Z
+sha256: 74844abdc0f37e3d606393c6d1739efe3f77327442dc92411bfefa683637e1dd
 ---
 
 > ## Documentation Index
@@ -226,7 +226,7 @@ Each feature has a different loading strategy and context cost:
 | **Subagents**   | When spawned              | Fresh context with specified skills           | Isolated from main session                   |
 | **Hooks**       | On trigger                | Nothing (runs externally)                     | Zero, unless hook returns additional context |
 
-\*By default, skill descriptions load at session start so Claude can decide when to use them. Set `disable-model-invocation: true` in a skill's frontmatter to hide it from Claude entirely until you invoke it manually. This reduces context cost to zero for skills you only trigger yourself.
+\*By default, skill descriptions load at session start so Claude can decide when to use them. Set `disable-model-invocation: true` in a skill's frontmatter to hide it from Claude entirely until you invoke it manually. This reduces context cost to zero for skills you only trigger yourself. For a skill you didn't write, set [`skillOverrides`](/en/skills#override-skill-visibility-from-settings) in settings to do the same without editing its file.
 
 ### Understand how features load
 

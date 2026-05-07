@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway
-fetched_at: 2026-05-02T03:12:03.381331Z
-sha256: 1c8667ff49cc41c50d2ddc833db8d5ebd6fbbd7435c8349373f18efcd27389bb
+fetched_at: 2026-05-07T03:15:02.178755Z
+sha256: 8989e1adbcc6e1f32483337429a56b514c52cafe1a470cd56c36afb68c12e1fa
 ---
 
 > ## Documentation Index
@@ -60,7 +60,7 @@ Claude Code also prepends a short attribution block to the system prompt contain
 
 By default, Claude Code uses standard model names for the selected API format.
 
-When `ANTHROPIC_BASE_URL` points at a gateway that exposes the Anthropic Messages format, Claude Code queries the gateway's `/v1/models` endpoint at startup and adds the returned models to the `/model` picker. Each discovered entry is labeled "From gateway" and uses the `display_name` field from the response when one is provided. This requires Claude Code v2.1.126 or later.
+When `ANTHROPIC_BASE_URL` points at a gateway that exposes the Anthropic Messages format, Claude Code can query the gateway's `/v1/models` endpoint at startup and add the returned models to the `/model` picker. Set `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1` to enable this. Discovery is off by default so that gateways backed by a shared API key do not surface every model the key can access to every user. Each discovered entry is labeled "From gateway" and uses the `display_name` field from the response when one is provided. This requires Claude Code v2.1.129 or later.
 
 Discovery applies only to the Anthropic Messages format. It does not run for Bedrock or Vertex pass-through endpoints, and it does not run when `ANTHROPIC_BASE_URL` is unset or points at `api.anthropic.com`.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 8d375088897ae2d9a4e3209cdd6c5e365c4431d839d0693bc6fcaa1b927b57a1
+fetched_at: 2026-05-07T03:15:02.178755Z
+sha256: c9845d3519c9ba23fca9f0c8c2c8f0d1e401d5df9da757b13870bb931f6915bc
 ---
 
 # Aliran peristiwa sesi
@@ -413,7 +413,7 @@ Streaming peristiwa dari sesi untuk menerima pembaruan real-time saat agen beker
 # Open the stream first, then send the user message
 exec {stream}< <(
   curl -sS -N --fail-with-body \
-    "https://api.anthropic.com/v1/sessions/$SESSION_ID/stream?beta=true" \
+    "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -460,7 +460,7 @@ exec {stream}<&-
   
 ````bash
 # Open the stream first, then send the user message
-exec {stream}< <(ant beta:sessions stream \
+exec {stream}< <(ant beta:sessions:events stream \
   --session-id "$SESSION_ID" \
   --transform '{type,text:content.#(type=="text").text,err:error.message}' \
   --format yaml)
@@ -741,7 +741,7 @@ Untuk terhubung kembali ke sesi yang ada tanpa melewatkan peristiwa, buka aliran
 ````bash
 exec {stream}< <(
   curl -sS -N --fail-with-body \
-    "https://api.anthropic.com/v1/sessions/$SESSION_ID/stream?beta=true" \
+    "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -783,7 +783,7 @@ exec {stream}<&-
 
   
 ````bash
-exec {stream}< <(ant beta:sessions stream \
+exec {stream}< <(ant beta:sessions:events stream \
   --session-id "$SESSION_ID" \
   --transform '{id,type,text:content.#(type=="text").text}' \
   --format yaml)

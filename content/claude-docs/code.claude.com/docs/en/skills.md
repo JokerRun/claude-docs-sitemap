@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 4148e94c183da66bca1254269823019543f6883dd97098983f9b9d4e1d3c7e58
+fetched_at: 2026-05-07T03:15:02.178755Z
+sha256: 15145cbf7369c5532061cfe16254a55305dda0a7516941b944fedc0c19c313e7
 ---
 
 > ## Documentation Index
@@ -508,6 +508,32 @@ Permission syntax: `Skill(name)` for exact match, `Skill(name *)` for prefix mat
   The `user-invocable` field only controls menu visibility, not Skill tool access. Use `disable-model-invocation: true` to block programmatic invocation.
 </Note>
 
+### Override skill visibility from settings
+
+The `skillOverrides` setting controls skill visibility from your [settings](/en/settings) instead of the skill's own frontmatter. Use it for skills whose SKILL.md you don't want to edit, such as ones checked into a shared project repo or provided by an MCP server. The `/skills` menu writes it for you: highlight a skill and press `Space` to cycle states, then `Enter` to save to `.claude/settings.local.json`.
+
+Each key is a skill name and each value is one of four states:
+
+| Value                   | Listed to Claude     | In `/` menu |
+| :---------------------- | :------------------- | :---------- |
+| `"on"`                  | Name and description | Yes         |
+| `"name-only"`           | Name only            | Yes         |
+| `"user-invocable-only"` | Hidden               | Yes         |
+| `"off"`                 | Hidden               | Hidden      |
+
+A skill that is absent from `skillOverrides` is treated as `"on"`. The example below collapses one skill to its name and turns another off entirely:
+
+```json theme={null}
+{
+  "skillOverrides": {
+    "legacy-context": "name-only",
+    "deploy": "off"
+  }
+}
+```
+
+Plugin skills are not affected by `skillOverrides`. Manage those through `/plugin` instead.
+
 ## Share skills
 
 Skills can be distributed at different scopes depending on your audience:
@@ -729,7 +755,7 @@ If Claude uses your skill when you don't want it:
 
 Skill descriptions are loaded into context so Claude knows what's available. All skill names are always included, but if you have many skills, descriptions are shortened to fit the character budget, which can strip the keywords Claude needs to match your request. The budget scales dynamically at 1% of the context window, with a fallback of 8,000 characters.
 
-To raise the limit, set the `SLASH_COMMAND_TOOL_CHAR_BUDGET` environment variable. Or trim the `description` and `when_to_use` text at the source: put the key use case first, since each entry's combined text is capped at 1,536 characters regardless of budget.
+To raise the limit, set the `SLASH_COMMAND_TOOL_CHAR_BUDGET` environment variable. To free budget for other skills, set low-priority entries to `"name-only"` in [`skillOverrides`](#override-skill-visibility-from-settings) so they list without a description. You can also trim the `description` and `when_to_use` text at the source: put the key use case first, since each entry's combined text is capped at 1,536 characters regardless of budget.
 
 ## Related resources
 

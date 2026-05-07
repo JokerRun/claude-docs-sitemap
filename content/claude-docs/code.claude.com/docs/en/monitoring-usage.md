@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 0ec06fd268b58d8fcfdba9f1d841dd445ab71898c09d387bce9fbeb447dd5bc6
+fetched_at: 2026-05-07T03:15:02.178755Z
+sha256: 39977576978a950e3ae6e73735dcce3ab3bbb9277dae7c41e9864133d834e8db
 ---
 
 > ## Documentation Index
@@ -428,7 +428,7 @@ Incremented when code is added or removed.
 
 #### Pull request counter
 
-Incremented when creating pull requests via Claude Code.
+Incremented when Claude Code creates a pull request or merge request through a shell command or an MCP tool.
 
 **Attributes**:
 

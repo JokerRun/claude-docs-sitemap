@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: aac5210916da62751548c32066d701a4b440af3fdc51d6b608ab1856127a4fd7
+fetched_at: 2026-05-07T03:15:02.178755Z
+sha256: b4cb0347b06a0b2123eb18174745eaff79ff16fea19da3a4dbeed18e9fd34bf9
 ---
 
 > ## Documentation Index
@@ -764,6 +764,7 @@ class ClaudeAgentOptions:
     allowed_tools: list[str] = field(default_factory=list)
     system_prompt: str | SystemPromptPreset | None = None
     mcp_servers: dict[str, McpServerConfig] | str | Path = field(default_factory=dict)
+    strict_mcp_config: bool = False
     permission_mode: PermissionMode | None = None
     continue_conversation: bool = False
     resume: str | None = None
@@ -788,6 +789,7 @@ class ClaudeAgentOptions:
     hooks: dict[HookEvent, list[HookMatcher]] | None = None
     user: str | None = None
     include_partial_messages: bool = False
+    include_hook_events: bool = False
     fork_session: bool = False
     agents: dict[str, AgentDefinition] | None = None
     setting_sources: list[SettingSource] | None = None
@@ -795,7 +797,7 @@ class ClaudeAgentOptions:
     plugins: list[SdkPluginConfig] = field(default_factory=list)
     max_thinking_tokens: int | None = None  # Deprecated: use thinking instead
     thinking: ThinkingConfig | None = None
-    effort: Literal["low", "medium", "high", "max"] | None = None
+    effort: Literal["low", "medium", "high", "xhigh", "max"] | None = None
     enable_file_checkpointing: bool = False
     session_store: SessionStore | None = None
     session_store_flush: SessionStoreFlushMode = "batched"
@@ -807,6 +809,7 @@ class ClaudeAgentOptions:
 | `allowed_tools`               | `list[str]`                                                                           | `[]`                               | Tools to auto-approve without prompting. This does not restrict Claude to only these tools; unlisted tools fall through to `permission_mode` and `can_use_tool`. Use `disallowed_tools` to block tools. See [Permissions](/en/agent-sdk/permissions#allow-and-deny-rules) |
 | `system_prompt`               | `str \| SystemPromptPreset \| None`                                                   | `None`                             | System prompt configuration. Pass a string for custom prompt, or use `{"type": "preset", "preset": "claude_code"}` for Claude Code's system prompt. Add `"append"` to extend the preset                                                                                   |
 | `mcp_servers`                 | `dict[str, McpServerConfig] \| str \| Path`                                           | `{}`                               | MCP server configurations or path to config file                                                                                                                                                                                                                          |
+| `strict_mcp_config`           | `bool`                                                                                | `False`                            | When `True`, use only the servers passed in `mcp_servers` and ignore project `.mcp.json`, user settings, and plugin-provided MCP servers. Maps to the CLI `--strict-mcp-config` flag                                                                                      |
 | `permission_mode`             | `PermissionMode \| None`                                                              | `None`                             | Permission mode for tool usage                                                                                                                                                                                                                                            |
 | `continue_conversation`       | `bool`                                                                                | `False`                            | Continue the most recent conversation                                                                                                                                                                                                                                     |
 | `resume`                      | `str \| None`                                                                         | `None`                             | Session ID to resume                                                                                                                                                                                                                                                      |
@@ -832,6 +835,7 @@ class ClaudeAgentOptions:
 | `hooks`                       | `dict[HookEvent, list[HookMatcher]] \| None`                                          | `None`                             | Hook configurations for intercepting events                                                                                                                                                                                                                               |
 | `user`                        | `str \| None`                                                                         | `None`                             | User identifier                                                                                                                                                                                                                                                           |
 | `include_partial_messages`    | `bool`                                                                                | `False`                            | Include partial message streaming events. When enabled, [`StreamEvent`](#streamevent) messages are yielded                                                                                                                                                                |
+| `include_hook_events`         | `bool`                                                                                | `False`                            | Include hook lifecycle events in the message stream as `HookEventMessage` objects                                                                                                                                                                                         |
 | `fork_session`                | `bool`                                                                                | `False`                            | When resuming with `resume`, fork to a new session ID instead of continuing the original session                                                                                                                                                                          |
 | `agents`                      | `dict[str, AgentDefinition] \| None`                                                  | `None`                             | Programmatically defined subagents                                                                                                                                                                                                                                        |
 | `plugins`                     | `list[SdkPluginConfig]`                                                               | `[]`                               | Load custom plugins from local paths. See [Plugins](/en/agent-sdk/plugins) for details                                                                                                                                                                                    |
@@ -839,7 +843,7 @@ class ClaudeAgentOptions:
 | `setting_sources`             | `list[SettingSource] \| None`                                                         | `None` (CLI defaults: all sources) | Control which filesystem settings to load. Pass `[]` to disable user, project, and local settings. Managed policy settings load regardless. See [Use Claude Code features](/en/agent-sdk/claude-code-features#what-settingsources-does-not-control)                       |
 | `max_thinking_tokens`         | `int \| None`                                                                         | `None`                             | *Deprecated* - Maximum tokens for thinking blocks. Use `thinking` instead                                                                                                                                                                                                 |
 | `thinking`                    | [`ThinkingConfig`](#thinkingconfig) ` \| None`                                        | `None`                             | Controls extended thinking behavior. Takes precedence over `max_thinking_tokens`                                                                                                                                                                                          |
-| `effort`                      | `Literal["low", "medium", "high", "max"] \| None`                                     | `None`                             | Effort level for thinking depth                                                                                                                                                                                                                                           |
+| `effort`                      | `Literal["low", "medium", "high", "xhigh", "max"] \| None`                            | `None`                             | Effort level for thinking depth                                                                                                                                                                                                                                           |
 | `session_store`               | [`SessionStore`](/en/agent-sdk/session-storage#the-sessionstore-interface) ` \| None` | `None`                             | Mirror session transcripts to an external backend so any host can resume them. See [Persist sessions to external storage](/en/agent-sdk/session-storage)                                                                                                                  |
 | `session_store_flush`         | `Literal["batched", "eager"]`                                                         | `"batched"`                        | When to flush mirrored transcript entries to `session_store`. `"batched"` flushes once per turn or when the buffer fills; `"eager"` triggers a background flush after every frame. Ignored when `session_store` is `None`                                                 |
 
@@ -1022,7 +1026,7 @@ class AgentDefinition:
     initialPrompt: str | None = None
     maxTurns: int | None = None
     background: bool | None = None
-    effort: Literal["low", "medium", "high", "max"] | int | None = None
+    effort: Literal["low", "medium", "high", "xhigh", "max"] | int | None = None
     permissionMode: PermissionMode | None = None
 ```
 
@@ -1087,12 +1091,22 @@ Context information passed to tool permission callbacks.
 class ToolPermissionContext:
     signal: Any | None = None  # Future: abort signal support
     suggestions: list[PermissionUpdate] = field(default_factory=list)
+    blocked_path: str | None = None
+    decision_reason: str | None = None
+    title: str | None = None
+    display_name: str | None = None
+    description: str | None = None
 ```
 
-| Field         | Type                     | Description                                                                                                                                                                                                                                 |
-| :------------ | :----------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `signal`      | `Any \| None`            | Reserved for future abort signal support                                                                                                                                                                                                    |
-| `suggestions` | `list[PermissionUpdate]` | Permission update suggestions from the CLI. Bash prompts include a suggestion with the `localSettings` destination, so returning it in `updated_permissions` writes the rule to `.claude/settings.local.json` and persists across sessions. |
+| Field             | Type                     | Description                                                                                                                                                                                                                                 |
+| :---------------- | :----------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `signal`          | `Any \| None`            | Reserved for future abort signal support                                                                                                                                                                                                    |
+| `suggestions`     | `list[PermissionUpdate]` | Permission update suggestions from the CLI. Bash prompts include a suggestion with the `localSettings` destination, so returning it in `updated_permissions` writes the rule to `.claude/settings.local.json` and persists across sessions. |
+| `blocked_path`    | `str \| None`            | File path that triggered the permission request, when applicable. For example, when a Bash command tries to access a path outside allowed directories                                                                                       |
+| `decision_reason` | `str \| None`            | Reason this permission request was triggered. Forwarded from a PreToolUse hook's `permissionDecisionReason` when the hook returned `"ask"`                                                                                                  |
+| `title`           | `str \| None`            | Full permission prompt sentence, such as `Claude wants to read foo.txt`. Use as the primary prompt text when present                                                                                                                        |
+| `display_name`    | `str \| None`            | Short noun phrase for the tool action, such as `Read file`, suitable for button labels                                                                                                                                                      |
+| `description`     | `str \| None`            | Human-readable subtitle for the permission UI                                                                                                                                                                                               |
 
 ### `PermissionResult`
 
@@ -1479,6 +1493,7 @@ class ResultMessage:
     stop_reason: str | None = None
     structured_output: Any = None
     model_usage: dict[str, Any] | None = None
+    deferred_tool_use: DeferredToolUse | None = None
 ```
 
 The `usage` dict contains the following keys when present:
@@ -2135,7 +2150,7 @@ A discriminated union of event-specific output types. The `hookEventName` field 
 ```python theme={null}
 class PreToolUseHookSpecificOutput(TypedDict):
     hookEventName: Literal["PreToolUse"]
-    permissionDecision: NotRequired[Literal["allow", "deny", "ask"]]
+    permissionDecision: NotRequired[Literal["allow", "deny", "ask", "defer"]]
     permissionDecisionReason: NotRequired[str]
     updatedInput: NotRequired[dict[str, Any]]
     additionalContext: NotRequired[str]
@@ -2144,6 +2159,7 @@ class PreToolUseHookSpecificOutput(TypedDict):
 class PostToolUseHookSpecificOutput(TypedDict):
     hookEventName: Literal["PostToolUse"]
     additionalContext: NotRequired[str]
+    updatedToolOutput: NotRequired[Any]
     updatedMCPToolOutput: NotRequired[Any]
 
 

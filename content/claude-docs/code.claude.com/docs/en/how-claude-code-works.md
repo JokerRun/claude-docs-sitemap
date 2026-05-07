@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-05-03T03:13:42.903452Z
-sha256: f465a2d5733436dc0ebfff10a4dbf6e7734c289632ba5b7ee7b2ece87b64f9c9
+fetched_at: 2026-05-07T03:15:02.178755Z
+sha256: dd22815dcddc112848b4a8720da11e2f4cb1be86ab850fd3321f99145a282507
 ---
 
 > ## Documentation Index
@@ -141,7 +141,7 @@ Run `/context` to see what's using space. MCP tool definitions are deferred by d
 
 Beyond compaction, you can use other features to control what loads into context.
 
-[Skills](/en/skills) load on demand. Claude sees skill descriptions at session start, but the full content only loads when a skill is used. For skills you invoke manually, set `disable-model-invocation: true` to keep descriptions out of context until you need them.
+[Skills](/en/skills) load on demand. Claude sees skill descriptions at session start, but the full content only loads when a skill is used. For skills you invoke manually, set `disable-model-invocation: true` to keep descriptions out of context until you need them. For skills you didn't write, use [`skillOverrides`](/en/skills#override-skill-visibility-from-settings) to do the same from settings.
 
 [Subagents](/en/sub-agents) get their own fresh context, completely separate from your main conversation. Their work doesn't bloat your context. When done, they return a summary. This isolation is why subagents help with long sessions.
 

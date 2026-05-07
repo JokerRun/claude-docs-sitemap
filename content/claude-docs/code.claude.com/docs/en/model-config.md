@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-05-03T03:13:42.903452Z
-sha256: 442c8a5a4bb1f91ceed32cc62e2cad2df244d2734e49c91c963ea1d5b7891b53
+fetched_at: 2026-05-07T03:15:02.178755Z
+sha256: 7c4a94b767d1f5fd19e15d6e6d8c072943873458b66b87816b8e2a49ca09551a
 ---
 
 > ## Documentation Index
@@ -273,7 +273,7 @@ You can see which model you're currently using in several ways:
 
 ## Add a custom model option
 
-Use `ANTHROPIC_CUSTOM_MODEL_OPTION` to add a single custom entry to the `/model` picker without replacing the built-in aliases. This is useful for testing model IDs that Claude Code does not list by default. For LLM gateway deployments, Claude Code populates the picker automatically from the gateway's `/v1/models` endpoint, so this variable is needed only when discovery does not return the model you want. See [LLM gateway model selection](/en/llm-gateway#model-selection).
+Use `ANTHROPIC_CUSTOM_MODEL_OPTION` to add a single custom entry to the `/model` picker without replacing the built-in aliases. This is useful for testing model IDs that Claude Code does not list by default. For LLM gateway deployments, Claude Code can populate the picker from the gateway's `/v1/models` endpoint when `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1` is set, so this variable is needed only when discovery is disabled or does not return the model you want. See [LLM gateway model selection](/en/llm-gateway#model-selection).
 
 This example sets all three variables to make a gateway-routed Opus deployment selectable:
 

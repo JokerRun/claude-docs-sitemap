@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 301ef3ce98b6745ce22b976df741d97f717c1433ce7004c38821a9cdf5687251
+fetched_at: 2026-05-07T03:15:02.178755Z
+sha256: 12531b2e9dbf4e5ac13a157b7eb1bb4beaced7a97fa8ee122257fb09b7d9b132
 ---
 
 # Autentikasi dengan vault
@@ -167,7 +167,7 @@ credential_id=$(curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$
     "type": "mcp_oauth",
     "mcp_server_url": "https://mcp.slack.com/mcp",
     "access_token": "xoxp-...",
-    "expires_at": "2026-04-15T00:00:00Z",
+    "expires_at": "2099-12-31T23:59:59Z",
     "refresh": {
       "token_endpoint": "https://slack.com/api/oauth.v2.access",
       "client_id": "1234567890.0987654321",
@@ -191,7 +191,7 @@ auth:
   type: mcp_oauth
   mcp_server_url: https://mcp.slack.com/mcp
   access_token: xoxp-...
-  expires_at: "2026-04-15T00:00:00Z"
+  expires_at: "2099-12-31T23:59:59Z"
   refresh:
     token_endpoint: https://slack.com/api/oauth.v2.access
     client_id: "1234567890.0987654321"
@@ -213,7 +213,7 @@ credential = client.beta.vaults.credentials.create(
         "type": "mcp_oauth",
         "mcp_server_url": "https://mcp.slack.com/mcp",
         "access_token": "xoxp-...",
-        "expires_at": "2026-04-15T00:00:00Z",
+        "expires_at": "2099-12-31T23:59:59Z",
         "refresh": {
             "token_endpoint": "https://slack.com/api/oauth.v2.access",
             "client_id": "1234567890.0987654321",
@@ -233,7 +233,7 @@ const credential = await client.beta.vaults.credentials.create(vault.id, {
     type: "mcp_oauth",
     mcp_server_url: "https://mcp.slack.com/mcp",
     access_token: "xoxp-...",
-    expires_at: "2026-04-15T00:00:00Z",
+    expires_at: "2099-12-31T23:59:59Z",
     refresh: {
       token_endpoint: "https://slack.com/api/oauth.v2.access",
       client_id: "1234567890.0987654321",
@@ -258,7 +258,7 @@ var credential = await client.Beta.Vaults.Credentials.Create(vault.ID, new()
         Type = "mcp_oauth",
         McpServerUrl = "https://mcp.slack.com/mcp",
         AccessToken = "xoxp-...",
-        ExpiresAt = DateTimeOffset.Parse("2026-04-15T00:00:00Z"),
+        ExpiresAt = DateTimeOffset.Parse("2099-12-31T23:59:59Z"),
         Refresh = new()
         {
             TokenEndpoint = "https://slack.com/api/oauth.v2.access",
@@ -284,7 +284,7 @@ credential, err := client.Beta.Vaults.Credentials.New(ctx, vault.ID, anthropic.B
 			Type:         anthropic.BetaManagedAgentsMCPOAuthCreateParamsTypeMCPOAuth,
 			MCPServerURL: "https://mcp.slack.com/mcp",
 			AccessToken:  "xoxp-...",
-			ExpiresAt:    anthropic.Time(time.Date(2026, time.April, 15, 0, 0, 0, 0, time.UTC)),
+			ExpiresAt:    anthropic.Time(time.Date(2099, time.December, 31, 23, 59, 59, 0, time.UTC)),
 			Refresh: anthropic.BetaManagedAgentsMCPOAuthRefreshParams{
 				TokenEndpoint: "https://slack.com/api/oauth.v2.access",
 				ClientID:      "1234567890.0987654321",
@@ -314,7 +314,7 @@ var credential = client.beta().vaults().credentials().create(vault.id(),
             .type(BetaManagedAgentsMcpOAuthCreateParams.Type.MCP_OAUTH)
             .mcpServerUrl("https://mcp.slack.com/mcp")
             .accessToken("xoxp-...")
-            .expiresAt(OffsetDateTime.parse("2026-04-15T00:00:00Z"))
+            .expiresAt(OffsetDateTime.parse("2099-12-31T23:59:59Z"))
             .refresh(BetaManagedAgentsMcpOAuthRefreshParams.builder()
                 .tokenEndpoint("https://slack.com/api/oauth.v2.access")
                 .clientId("1234567890.0987654321")
@@ -335,7 +335,7 @@ $credential = $client->beta->vaults->credentials->create(
         'type' => 'mcp_oauth',
         'mcp_server_url' => 'https://mcp.slack.com/mcp',
         'access_token' => 'xoxp-...',
-        'expires_at' => '2026-04-15T00:00:00Z',
+        'expires_at' => '2099-12-31T23:59:59Z',
         'refresh' => [
             'token_endpoint' => 'https://slack.com/api/oauth.v2.access',
             'client_id' => '1234567890.0987654321',
@@ -359,7 +359,7 @@ credential = client.beta.vaults.credentials.create(
     type: "mcp_oauth",
     mcp_server_url: "https://mcp.slack.com/mcp",
     access_token: "xoxp-...",
-    expires_at: "2026-04-15T00:00:00Z",
+    expires_at: "2099-12-31T23:59:59Z",
     refresh: {
       token_endpoint: "https://slack.com/api/oauth.v2.access",
       client_id: "1234567890.0987654321",
@@ -530,7 +530,7 @@ curl --fail-with-body -sS \
   "auth": {
     "type": "mcp_oauth",
     "access_token": "xoxp-new-...",
-    "expires_at": "2026-05-15T00:00:00Z",
+    "expires_at": "2099-12-31T23:59:59Z",
     "refresh": {"refresh_token": "xoxe-1-new-..."}
   }
 }
@@ -545,7 +545,7 @@ ant beta:vaults:credentials update \
 auth:
   type: mcp_oauth
   access_token: xoxp-new-...
-  expires_at: "2026-05-15T00:00:00Z"
+  expires_at: "2099-12-31T23:59:59Z"
   refresh:
     refresh_token: xoxe-1-new-...
 EOF
@@ -559,7 +559,7 @@ client.beta.vaults.credentials.update(
     auth={
         "type": "mcp_oauth",
         "access_token": "xoxp-new-...",
-        "expires_at": "2026-05-15T00:00:00Z",
+        "expires_at": "2099-12-31T23:59:59Z",
         "refresh": {"refresh_token": "xoxe-1-new-..."},
     },
 )
@@ -572,7 +572,7 @@ await client.beta.vaults.credentials.update(credential.id, {
   auth: {
     type: "mcp_oauth",
     access_token: "xoxp-new-...",
-    expires_at: "2026-05-15T00:00:00Z",
+    expires_at: "2099-12-31T23:59:59Z",
     refresh: {
       refresh_token: "xoxe-1-new-...",
     },
@@ -589,7 +589,7 @@ await client.Beta.Vaults.Credentials.Update(credential.ID, new()
     {
         Type = "mcp_oauth",
         AccessToken = "xoxp-new-...",
-        ExpiresAt = DateTimeOffset.Parse("2026-05-15T00:00:00Z"),
+        ExpiresAt = DateTimeOffset.Parse("2099-12-31T23:59:59Z"),
         Refresh = new() { RefreshToken = "xoxe-1-new-..." },
     },
 });
@@ -603,7 +603,7 @@ _, err = client.Beta.Vaults.Credentials.Update(ctx, credential.ID, anthropic.Bet
 		OfMCPOAuth: &anthropic.BetaManagedAgentsMCPOAuthUpdateParams{
 			Type:        anthropic.BetaManagedAgentsMCPOAuthUpdateParamsTypeMCPOAuth,
 			AccessToken: anthropic.String("xoxp-new-..."),
-			ExpiresAt:   anthropic.Time(time.Date(2026, time.May, 15, 0, 0, 0, 0, time.UTC)),
+			ExpiresAt:   anthropic.Time(time.Date(2099, time.December, 31, 23, 59, 59, 0, time.UTC)),
 			Refresh: anthropic.BetaManagedAgentsMCPOAuthRefreshUpdateParams{
 				RefreshToken: anthropic.String("xoxe-1-new-..."),
 			},
@@ -623,7 +623,7 @@ client.beta().vaults().credentials().update(credential.id(),
         .auth(BetaManagedAgentsMcpOAuthUpdateParams.builder()
             .type(BetaManagedAgentsMcpOAuthUpdateParams.Type.MCP_OAUTH)
             .accessToken("xoxp-new-...")
-            .expiresAt(OffsetDateTime.parse("2026-05-15T00:00:00Z"))
+            .expiresAt(OffsetDateTime.parse("2099-12-31T23:59:59Z"))
             .refresh(BetaManagedAgentsMcpOAuthRefreshUpdateParams.builder()
                 .refreshToken("xoxe-1-new-...")
                 .build())
@@ -639,7 +639,7 @@ $client->beta->vaults->credentials->update(
     auth: [
         'type' => 'mcp_oauth',
         'access_token' => 'xoxp-new-...',
-        'expires_at' => '2026-05-15T00:00:00Z',
+        'expires_at' => '2099-12-31T23:59:59Z',
         'refresh' => ['refresh_token' => 'xoxe-1-new-...'],
     ],
 );
@@ -653,7 +653,7 @@ client.beta.vaults.credentials.update(
   auth: {
     type: "mcp_oauth",
     access_token: "xoxp-new-...",
-    expires_at: "2026-05-15T00:00:00Z",
+    expires_at: "2099-12-31T23:59:59Z",
     refresh: {refresh_token: "xoxe-1-new-..."}
   }
 )

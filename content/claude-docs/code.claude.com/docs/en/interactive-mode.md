@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 6f40ff763b90bb118b0aaf397deba40f3a3aa2017641cc987a8842bb70449c5d
+fetched_at: 2026-05-07T03:15:02.178755Z
+sha256: cf0de9bd09807b969f8b784c1fead2857294fb3a2f139495b82089058b2d8b70
 ---
 
 > ## Documentation Index
@@ -228,7 +228,7 @@ Press `Ctrl+R` to interactively search through your command history:
 1. **Start search**: press `Ctrl+R` to activate reverse history search
 2. **Type query**: enter text to search for in previous commands. The search term is highlighted in matching results
 3. **Navigate matches**: press `Ctrl+R` again to cycle through older matches
-4. **Change scope**: press `Ctrl+S` to cycle between this session, this project, and all projects
+4. **Change scope**: search defaults to prompts from all projects. Press `Ctrl+S` to cycle the scope through this session, this project, and all projects
 5. **Accept match**:
    * Press `Tab` or `Esc` to accept the current match and continue editing
    * Press `Enter` to accept and execute the command immediately

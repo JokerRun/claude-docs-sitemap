@@ -46,7 +46,7 @@
   lastmod: '2026-04-28T23:53:30.328Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/python
-  lastmod: '2026-05-05T21:23:39.082Z'
+  lastmod: '2026-05-07T03:01:12.965Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/quickstart
   lastmod: '2026-05-05T15:19:44.963Z'
@@ -112,7 +112,7 @@
   lastmod: '2026-04-28T15:54:10.733Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-05-06T01:45:53.039Z'
+  lastmod: '2026-05-06T23:56:56.876Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-05-05T15:19:52.307Z'
@@ -133,13 +133,13 @@
   lastmod: '2026-05-02T17:56:30.341Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
-  lastmod: '2026-05-05T15:19:52.308Z'
+  lastmod: '2026-05-06T15:20:08.954Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review
   lastmod: '2026-05-02T18:10:10.312Z'
 - source: code
   loc: https://code.claude.com/docs/en/commands
-  lastmod: '2026-05-05T21:12:28.776Z'
+  lastmod: '2026-05-06T15:20:08.968Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
   lastmod: '2026-05-02T17:56:30.373Z'
@@ -181,7 +181,7 @@
   lastmod: '2026-05-04T04:11:57.040Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-05-05T21:29:59.007Z'
+  lastmod: '2026-05-06T15:20:08.977Z'
 - source: code
   loc: https://code.claude.com/docs/en/errors
   lastmod: '2026-05-05T21:29:59.005Z'
@@ -190,7 +190,7 @@
   lastmod: '2026-04-16T15:23:16.878Z'
 - source: code
   loc: https://code.claude.com/docs/en/features-overview
-  lastmod: '2026-05-04T23:27:20.859Z'
+  lastmod: '2026-05-06T15:20:08.952Z'
 - source: code
   loc: https://code.claude.com/docs/en/fullscreen
   lastmod: '2026-05-05T15:19:56.242Z'
@@ -211,7 +211,7 @@
   lastmod: '2026-04-28T04:16:20.203Z'
 - source: code
   loc: https://code.claude.com/docs/en/headless
-  lastmod: '2026-05-05T15:19:56.239Z'
+  lastmod: '2026-05-06T15:20:08.963Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
   lastmod: '2026-05-05T21:11:39.620Z'
@@ -220,10 +220,10 @@
   lastmod: '2026-05-04T21:02:07.326Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
-  lastmod: '2026-05-02T17:56:30.467Z'
+  lastmod: '2026-05-06T15:20:08.959Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
-  lastmod: '2026-05-05T21:24:27.290Z'
+  lastmod: '2026-05-06T15:20:08.953Z'
 - source: code
   loc: https://code.claude.com/docs/en/jetbrains
   lastmod: '2026-04-28T22:05:53.122Z'
@@ -235,7 +235,7 @@
   lastmod: '2026-05-02T18:10:10.290Z'
 - source: code
   loc: https://code.claude.com/docs/en/llm-gateway
-  lastmod: '2026-05-01T03:19:48.001Z'
+  lastmod: '2026-05-06T15:20:08.957Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp
   lastmod: '2026-05-05T15:19:56.240Z'
@@ -247,10 +247,10 @@
   lastmod: '2026-04-24T05:18:33.127Z'
 - source: code
   loc: https://code.claude.com/docs/en/model-config
-  lastmod: '2026-05-02T17:56:30.476Z'
+  lastmod: '2026-05-06T15:20:08.961Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
-  lastmod: '2026-05-05T15:19:56.227Z'
+  lastmod: '2026-05-06T15:20:13.183Z'
 - source: code
   loc: https://code.claude.com/docs/en/network-config
   lastmod: '2026-05-05T21:29:58.999Z'
@@ -277,10 +277,10 @@
   lastmod: '2026-05-05T21:23:39.058Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins
-  lastmod: '2026-04-28T16:58:07.928Z'
+  lastmod: '2026-05-06T15:20:13.180Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins-reference
-  lastmod: '2026-05-05T21:23:41.955Z'
+  lastmod: '2026-05-06T15:20:13.189Z'
 - source: code
   loc: https://code.claude.com/docs/en/quickstart
   lastmod: '2026-04-29T01:24:11.337Z'
@@ -304,13 +304,13 @@
   lastmod: '2026-04-28T05:27:57.259Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-05-05T21:23:41.962Z'
+  lastmod: '2026-05-06T23:56:57.081Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
-  lastmod: '2026-05-01T03:45:54.685Z'
+  lastmod: '2026-05-06T15:48:52.265Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
-  lastmod: '2026-05-05T15:21:30.668Z'
+  lastmod: '2026-05-06T15:20:13.179Z'
 - source: code
   loc: https://code.claude.com/docs/en/slack
   lastmod: '2026-04-08T18:15:55.057Z'
@@ -903,12 +903,6 @@
   loc: https://platform.claude.com/docs/en/api/beta/vaults/update
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/webhooks
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/beta/webhooks/unwrap
-  priority: '0.9'
-- source: platform
   loc: https://platform.claude.com/docs/en/api/cli/beta
   priority: '0.9'
 - source: platform
@@ -1228,12 +1222,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/cli/beta/vaults/update
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/webhooks
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/cli/beta/webhooks/unwrap
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/cli/completions
@@ -1608,12 +1596,6 @@
   loc: https://platform.claude.com/docs/en/api/csharp/beta/vaults/update
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/webhooks
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/csharp/beta/webhooks/unwrap
-  priority: '0.9'
-- source: platform
   loc: https://platform.claude.com/docs/en/api/csharp/completions
   priority: '0.9'
 - source: platform
@@ -1980,12 +1962,6 @@
   loc: https://platform.claude.com/docs/en/api/go/beta/vaults/update
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/webhooks
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/go/beta/webhooks/unwrap
-  priority: '0.9'
-- source: platform
   loc: https://platform.claude.com/docs/en/api/go/completions
   priority: '0.9'
 - source: platform
@@ -2350,12 +2326,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/java/beta/vaults/update
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/webhooks
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/java/beta/webhooks/unwrap
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/java/completions
@@ -2763,12 +2733,6 @@
   loc: https://platform.claude.com/docs/en/api/php/beta/vaults/update
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/webhooks
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/php/beta/webhooks/unwrap
-  priority: '0.9'
-- source: platform
   loc: https://platform.claude.com/docs/en/api/php/completions
   priority: '0.9'
 - source: platform
@@ -3133,12 +3097,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/python/beta/vaults/update
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/webhooks
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/python/beta/webhooks/unwrap
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/python/completions
@@ -3507,12 +3465,6 @@
   loc: https://platform.claude.com/docs/en/api/ruby/beta/vaults/update
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/webhooks
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/ruby/beta/webhooks/unwrap
-  priority: '0.9'
-- source: platform
   loc: https://platform.claude.com/docs/en/api/ruby/completions
   priority: '0.9'
 - source: platform
@@ -3877,12 +3829,6 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/terraform/beta/vaults/update
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/webhooks
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/terraform/beta/webhooks/unwrap
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/terraform/completions
@@ -4251,12 +4197,6 @@
   loc: https://platform.claude.com/docs/en/api/typescript/beta/vaults/update
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/webhooks
-  priority: '0.9'
-- source: platform
-  loc: https://platform.claude.com/docs/en/api/typescript/beta/webhooks/unwrap
-  priority: '0.9'
-- source: platform
   loc: https://platform.claude.com/docs/en/api/typescript/completions
   priority: '0.9'
 - source: platform
@@ -4452,6 +4392,9 @@
   loc: https://platform.claude.com/docs/en/managed-agents/define-outcomes
   priority: '0.8'
 - source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/dreams
+  priority: '0.8'
+- source: platform
   loc: https://platform.claude.com/docs/en/managed-agents/environments
   priority: '0.8'
 - source: platform
@@ -4495,6 +4438,9 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/managed-agents/vaults
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/managed-agents/webhooks
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
