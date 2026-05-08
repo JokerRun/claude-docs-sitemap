@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-05-05T03:13:00.051351Z
-sha256: 78a8427e6fc9116c3e3784ba59aa97c762033cb667e05f5cfbce1da696e8e6ae
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: 512942eca69c7fe569fe475860e7b84594043172f56614590523d3db79f40c34
 ---
 
 > ## Documentation Index
@@ -30,11 +30,11 @@ Pressing Enter submits your message. To add a line break without submitting, pre
 
 In most terminals you can also press Shift+Enter, but support varies by terminal emulator:
 
-| Terminal                                                                            | Shift+Enter for newline                     |
-| :---------------------------------------------------------------------------------- | :------------------------------------------ |
-| Ghostty, Kitty, iTerm2, WezTerm, Warp, Apple Terminal                               | Works without setup                         |
-| VS Code, Cursor, Windsurf, Alacritty, Zed                                           | Run `/terminal-setup` once                  |
-| Windows Terminal, gnome-terminal, JetBrains IDEs such as PyCharm and Android Studio | Not available; use Ctrl+J or `\` then Enter |
+| Terminal                                                                | Shift+Enter for newline                     |
+| :---------------------------------------------------------------------- | :------------------------------------------ |
+| Ghostty, Kitty, iTerm2, WezTerm, Warp, Apple Terminal, Windows Terminal | Works without setup                         |
+| VS Code, Cursor, Windsurf, Alacritty, Zed                               | Run `/terminal-setup` once                  |
+| gnome-terminal, JetBrains IDEs such as PyCharm and Android Studio       | Not available; use Ctrl+J or `\` then Enter |
 
 For VS Code, Cursor, Windsurf, Alacritty, and Zed, `/terminal-setup` writes Shift+Enter and other keybindings into the terminal's configuration file. In VS Code, Cursor, and Windsurf it also sets `terminal.integrated.mouseWheelScrollSensitivity` in the editor settings for smoother scrolling in [fullscreen mode](/en/fullscreen). Existing bindings and settings are left in place; if you see a message such as `VSCode terminal Shift+Enter key binding already configured`, no change was made. Run `/terminal-setup` directly in the host terminal rather than inside tmux or screen, since it needs to write to the host terminal's configuration.
 

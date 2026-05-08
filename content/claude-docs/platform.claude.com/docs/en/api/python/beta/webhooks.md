@@ -1,29 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/webhooks
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 759bc5865709c3d8f2b46d802f855be9a44d1eb1d83e53df16dd37ddd1fec498
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: 142ccfa13bd3a5604dbbe573e0683239ad218e0d4638075548c72351ddafe5df
 ---
 
 # Webhooks
-
-## Unwrap
-
-`beta.webhooks.unwrap()`
-
-**** ``
-
-### Example
-
-```python
-import os
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
-)
-client.beta.webhooks.unwrap()
-```
 
 ## Domain Types
 
@@ -139,7 +121,7 @@ client.beta.webhooks.unwrap()
 
       - `workspace_id: str`
 
-    - `class BetaWebhookSessionStatusScheduledEventData: …`
+    - `class BetaWebhookSessionStatusRescheduledEventData: …`
 
       - `id: str`
 
@@ -147,9 +129,9 @@ client.beta.webhooks.unwrap()
 
       - `organization_id: str`
 
-      - `type: Literal["session.status_scheduled"]`
+      - `type: Literal["session.status_rescheduled"]`
 
-        - `"session.status_scheduled"`
+        - `"session.status_rescheduled"`
 
       - `workspace_id: str`
 
@@ -473,7 +455,7 @@ client.beta.webhooks.unwrap()
 
     - `workspace_id: str`
 
-  - `class BetaWebhookSessionStatusScheduledEventData: …`
+  - `class BetaWebhookSessionStatusRescheduledEventData: …`
 
     - `id: str`
 
@@ -481,9 +463,9 @@ client.beta.webhooks.unwrap()
 
     - `organization_id: str`
 
-    - `type: Literal["session.status_scheduled"]`
+    - `type: Literal["session.status_rescheduled"]`
 
-      - `"session.status_scheduled"`
+      - `"session.status_rescheduled"`
 
     - `workspace_id: str`
 
@@ -843,6 +825,22 @@ client.beta.webhooks.unwrap()
 
   - `workspace_id: str`
 
+### Beta Webhook Session Status Rescheduled Event Data
+
+- `class BetaWebhookSessionStatusRescheduledEventData: …`
+
+  - `id: str`
+
+    ID of the resource that triggered the event.
+
+  - `organization_id: str`
+
+  - `type: Literal["session.status_rescheduled"]`
+
+    - `"session.status_rescheduled"`
+
+  - `workspace_id: str`
+
 ### Beta Webhook Session Status Run Started Event Data
 
 - `class BetaWebhookSessionStatusRunStartedEventData: …`
@@ -856,22 +854,6 @@ client.beta.webhooks.unwrap()
   - `type: Literal["session.status_run_started"]`
 
     - `"session.status_run_started"`
-
-  - `workspace_id: str`
-
-### Beta Webhook Session Status Scheduled Event Data
-
-- `class BetaWebhookSessionStatusScheduledEventData: …`
-
-  - `id: str`
-
-    ID of the resource that triggered the event.
-
-  - `organization_id: str`
-
-  - `type: Literal["session.status_scheduled"]`
-
-    - `"session.status_scheduled"`
 
   - `workspace_id: str`
 
@@ -1179,7 +1161,7 @@ client.beta.webhooks.unwrap()
 
       - `workspace_id: str`
 
-    - `class BetaWebhookSessionStatusScheduledEventData: …`
+    - `class BetaWebhookSessionStatusRescheduledEventData: …`
 
       - `id: str`
 
@@ -1187,9 +1169,9 @@ client.beta.webhooks.unwrap()
 
       - `organization_id: str`
 
-      - `type: Literal["session.status_scheduled"]`
+      - `type: Literal["session.status_rescheduled"]`
 
-        - `"session.status_scheduled"`
+        - `"session.status_rescheduled"`
 
       - `workspace_id: str`
 

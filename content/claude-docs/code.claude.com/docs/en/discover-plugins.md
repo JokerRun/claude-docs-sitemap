@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-05-05T03:13:00.051351Z
-sha256: d86e0481fda52e6a1da0ad5981f0d9d3fd46eebe61383611eb8cadfbc82abf64
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: 854459795d840d8fb5cd995dbb61caac1b9c4562fc7db76c0ada7ed4a45e3c22
 ---
 
 > ## Documentation Index
@@ -204,7 +204,7 @@ For example, `anthropics/claude-code` refers to the `claude-code` repository own
 
 ### Add from other Git hosts
 
-Add any git repository by providing the full URL. This works with any Git host, including GitLab, Bitbucket, and self-hosted servers:
+Add any git repository by providing the full URL. This works with any Git host, including GitLab, Bitbucket, and self-hosted servers. Include the `.git` suffix so Claude Code clones the repository rather than treating the URL as a direct link to a hosted `marketplace.json` file.
 
 Using HTTPS:
 

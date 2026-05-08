@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 5bc8e693c44e72dd7103acac40cf1358b8fe8f5ae831814c0eb0c546a222bd3c
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: 23be4c7ef97c6f90522df1c2821164bd5dfe92d90d8bb014ed4cf2e5463675a3
 ---
 
 > ## Documentation Index
@@ -434,7 +434,7 @@ See the [plugin components reference](/en/plugins-reference#mcp-servers) for det
 
 ## MCP installation scopes
 
-MCP servers can be configured at three scopes. The scope you choose controls which projects the server loads in and whether the configuration is shared with your team.
+MCP servers can be configured at three scopes. The scope you choose controls which projects the server loads in and whether the configuration is shared with your team. Administrators can also deploy servers at the enterprise level via [managed configuration](#managed-mcp-configuration).
 
 | Scope                     | Loads in             | Shared with team         | Stored in                   |
 | ------------------------- | -------------------- | ------------------------ | --------------------------- |
@@ -1365,6 +1365,8 @@ URL patterns support wildcards using `*` to match any sequence of characters. Th
 * `https://mcp.company.com/*` - Allow all paths on a specific domain
 * `https://*.example.com/*` - Allow any subdomain of example.com
 * `http://localhost:*/*` - Allow any port on localhost
+
+Hostname matching is case-insensitive and ignores a trailing FQDN dot, matching DNS semantics. A pattern like `*://Mcp.Example.com/*` matches `https://mcp.example.com/api`, and `https://mcp.example.com.` is treated the same as `https://mcp.example.com`. Paths remain case-sensitive.
 
 **Remote server behavior**:
 

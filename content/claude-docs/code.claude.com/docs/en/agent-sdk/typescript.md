@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 56ea7e1983d3ee6a55c11785be19c85b6b18d52b38592833c3e9febf608c932f
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: 55b34c146a15c10cf6c30043589d9fd827004be2e25df34c8261ca3b17e4e4d6
 ---
 
 > ## Documentation Index
@@ -14,10 +14,6 @@ sha256: 56ea7e1983d3ee6a55c11785be19c85b6b18d52b38592833c3e9febf608c932f
 > Complete API reference for the TypeScript Agent SDK, including all functions, types, and interfaces.
 
 <script src="/components/typescript-sdk-type-links.js" defer />
-
-<Note>
-  **Try the new V2 interface (preview):** A simplified interface with `send()` and `stream()` patterns is now available, making multi-turn conversations easier. [Learn more about the TypeScript V2 preview](/en/agent-sdk/typescript-v2-preview)
-</Note>
 
 ## Installation
 
@@ -342,7 +338,7 @@ Configuration object for the `query()` function.
 | `disallowedTools`                 | `string[]`                                                                                               | `[]`                                        | Tools to always deny. Deny rules are checked first and override `allowedTools` and `permissionMode` (including `bypassPermissions`)                                                                                                                                                                                                                                                                                                                                                 |
 | `effort`                          | `'low' \| 'medium' \| 'high' \| 'xhigh' \| 'max'`                                                        | `'high'`                                    | Controls how much effort Claude puts into its response. Works with adaptive thinking to guide thinking depth                                                                                                                                                                                                                                                                                                                                                                        |
 | `enableFileCheckpointing`         | `boolean`                                                                                                | `false`                                     | Enable file change tracking for rewinding. See [File checkpointing](/en/agent-sdk/file-checkpointing)                                                                                                                                                                                                                                                                                                                                                                               |
-| `env`                             | `Record<string, string \| undefined>`                                                                    | `process.env`                               | Environment variables. See [Environment variables](/en/env-vars) for variables the underlying CLI reads. Set `CLAUDE_AGENT_SDK_CLIENT_APP` to identify your app in the User-Agent header                                                                                                                                                                                                                                                                                            |
+| `env`                             | `Record<string, string \| undefined>`                                                                    | `process.env`                               | Environment variables. See [Environment variables](/en/env-vars) for variables the underlying CLI reads, and [Handle slow or stalled API responses](#handle-slow-or-stalled-api-responses) for timeout-related variables. Set `CLAUDE_AGENT_SDK_CLIENT_APP` to identify your app in the User-Agent header                                                                                                                                                                           |
 | `executable`                      | `'bun' \| 'deno' \| 'node'`                                                                              | Auto-detected                               | JavaScript runtime to use                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | `executableArgs`                  | `string[]`                                                                                               | `[]`                                        | Arguments to pass to the executable                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `extraArgs`                       | `Record<string, string \| null>`                                                                         | `{}`                                        | Additional arguments                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -367,7 +363,9 @@ Configuration object for the `query()` function.
 | `sandbox`                         | [`SandboxSettings`](#sandboxsettings)                                                                    | `undefined`                                 | Configure sandbox behavior programmatically. See [Sandbox settings](#sandboxsettings) for details                                                                                                                                                                                                                                                                                                                                                                                   |
 | `sessionId`                       | `string`                                                                                                 | Auto-generated                              | Use a specific UUID for the session instead of auto-generating one                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `sessionStore`                    | [`SessionStore`](/en/agent-sdk/session-storage#the-sessionstore-interface)                               | `undefined`                                 | Mirror session transcripts to an external backend so any host can resume them. See [Persist sessions to external storage](/en/agent-sdk/session-storage)                                                                                                                                                                                                                                                                                                                            |
+| `settings`                        | `string \| Settings`                                                                                     | `undefined`                                 | Inline [settings](/en/settings) object or path to a settings file. Populates the flag-settings layer in the [precedence order](/en/settings#settings-precedence). Change at runtime with [`applyFlagSettings()`](#applyflagsettings)                                                                                                                                                                                                                                                |
 | `settingSources`                  | [`SettingSource`](#settingsource)`[]`                                                                    | CLI defaults (all sources)                  | Control which filesystem settings to load. Pass `[]` to disable user, project, and local settings. Managed policy settings load regardless. See [Use Claude Code features](/en/agent-sdk/claude-code-features#what-settingsources-does-not-control)                                                                                                                                                                                                                                 |
+| `skills`                          | `string[] \| 'all'`                                                                                      | `undefined`                                 | Skills available to the session. Pass `'all'` to enable every discovered skill, or a list of skill names. When set, the SDK enables the Skill tool automatically without listing it in `allowedTools`. See [Skills](/en/agent-sdk/skills)                                                                                                                                                                                                                                           |
 | `spawnClaudeCodeProcess`          | `(options: SpawnOptions) => SpawnedProcess`                                                              | `undefined`                                 | Custom function to spawn the Claude Code process. Use to run Claude Code in VMs, containers, or remote environments                                                                                                                                                                                                                                                                                                                                                                 |
 | `stderr`                          | `(data: string) => void`                                                                                 | `undefined`                                 | Callback for stderr output                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `strictMcpConfig`                 | `boolean`                                                                                                | `false`                                     | Enforce strict MCP validation                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -375,6 +373,29 @@ Configuration object for the `query()` function.
 | `thinking`                        | [`ThinkingConfig`](#thinkingconfig)                                                                      | `{ type: 'adaptive' }` for supported models | Controls Claude's thinking/reasoning behavior. See [`ThinkingConfig`](#thinkingconfig) for options                                                                                                                                                                                                                                                                                                                                                                                  |
 | `toolConfig`                      | [`ToolConfig`](#toolconfig)                                                                              | `undefined`                                 | Configuration for built-in tool behavior. See [`ToolConfig`](#toolconfig) for details                                                                                                                                                                                                                                                                                                                                                                                               |
 | `tools`                           | `string[] \| { type: 'preset'; preset: 'claude_code' }`                                                  | `undefined`                                 | Tool configuration. Pass an array of tool names or use the preset to get Claude Code's default tools                                                                                                                                                                                                                                                                                                                                                                                |
+
+#### Handle slow or stalled API responses
+
+The CLI subprocess reads several environment variables that control API timeouts and stall detection. Pass them through the `env` option:
+
+```typescript theme={null}
+const result = query({
+  prompt: "Analyze this code",
+  options: {
+    env: {
+      ...process.env,
+      API_TIMEOUT_MS: "120000",
+      CLAUDE_CODE_MAX_RETRIES: "2",
+      CLAUDE_ASYNC_AGENT_STALL_TIMEOUT_MS: "120000",
+    },
+  },
+});
+```
+
+* `API_TIMEOUT_MS`: per-request timeout on the Anthropic client, in milliseconds. Default `600000`. Applies to the main loop and all subagents.
+* `CLAUDE_CODE_MAX_RETRIES`: maximum API retries. Default `10`. Each retry gets its own `API_TIMEOUT_MS` window, so worst-case wall time is roughly `API_TIMEOUT_MS × (CLAUDE_CODE_MAX_RETRIES + 1)` plus backoff.
+* `CLAUDE_ASYNC_AGENT_STALL_TIMEOUT_MS`: stall watchdog for subagents launched with `run_in_background`. Default `600000`. Resets on each stream event; on stall it aborts the subagent, marks the task failed, and surfaces the error to the parent with any partial result. Does not apply to synchronous subagents.
+* `CLAUDE_ENABLE_STREAM_WATCHDOG=1` with `CLAUDE_STREAM_IDLE_TIMEOUT_MS`: aborts the request when headers have arrived but the response body stops streaming. Off by default. `CLAUDE_STREAM_IDLE_TIMEOUT_MS` defaults to `300000` and is clamped to that minimum. The aborted request goes through the normal retry path.
 
 ### `Query` object
 
@@ -390,6 +411,7 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
   setPermissionMode(mode: PermissionMode): Promise<void>;
   setModel(model?: string): Promise<void>;
   setMaxThinkingTokens(maxThinkingTokens: number | null): Promise<void>;
+  applyFlagSettings(settings: { [K in keyof Settings]?: Settings[K] | null }): Promise<void>;
   initializationResult(): Promise<SDKControlInitializeResponse>;
   supportedCommands(): Promise<SlashCommand[]>;
   supportedModels(): Promise<ModelInfo[]>;
@@ -414,6 +436,7 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
 | `setPermissionMode()`                  | Changes the permission mode (only available in streaming input mode)                                                                                                                                          |
 | `setModel()`                           | Changes the model (only available in streaming input mode)                                                                                                                                                    |
 | `setMaxThinkingTokens()`               | *Deprecated:* Use the `thinking` option instead. Changes the maximum thinking tokens                                                                                                                          |
+| `applyFlagSettings(settings)`          | Merges settings into the session's flag settings layer at runtime (only available in streaming input mode). See [`applyFlagSettings()`](#applyflagsettings)                                                   |
 | `initializationResult()`               | Returns the full initialization result including supported commands, models, account info, and output style configuration                                                                                     |
 | `supportedCommands()`                  | Returns available slash commands                                                                                                                                                                              |
 | `supportedModels()`                    | Returns available models with display info                                                                                                                                                                    |
@@ -426,6 +449,32 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
 | `streamInput(stream)`                  | Stream input messages to the query for multi-turn conversations                                                                                                                                               |
 | `stopTask(taskId)`                     | Stop a running background task by ID                                                                                                                                                                          |
 | `close()`                              | Close the query and terminate the underlying process. Forcefully ends the query and cleans up all resources                                                                                                   |
+
+#### `applyFlagSettings()`
+
+Changes any [setting](/en/settings) on a running session without restarting the query. Use it when a setting that has no dedicated setter needs to change mid-session, such as tightening `permissions` after the agent reads untrusted input. `setModel()` and `setPermissionMode()` are dedicated setters for those two keys; `applyFlagSettings()` is the general form that accepts any subset of the settings keys, and passing `model` here behaves the same as `setModel()`.
+
+The values are written to the flag-settings layer, the same layer the inline `settings` option of `query()` populates at startup. Flag settings sit near the top of the [settings precedence order](/en/settings#settings-precedence): they override user, project, and local settings, and only managed policy settings can override them. This is the same tier the [on-page precedence section](#settings-precedence) calls programmatic options.
+
+Successive calls shallow-merge top-level keys. A second call with `{ permissions: {...} }` replaces the entire `permissions` object from the prior call rather than deep-merging into it. To clear a key from the flag layer and fall back to lower-precedence sources, pass `null` for that key. Passing `undefined` has no effect because JSON serialization drops it.
+
+Only available in streaming input mode, the same constraint as `setModel()` and `setPermissionMode()`.
+
+The example below switches the active model mid-session, then clears the override so the model falls back to whatever the user or project settings specify.
+
+```typescript theme={null}
+const q = query({ prompt: messageStream });
+
+// Override the model for the rest of the session
+await q.applyFlagSettings({ model: "claude-opus-4-6" });
+
+// Later: clear the override and fall back to lower-precedence settings
+await q.applyFlagSettings({ model: null });
+```
+
+<Note>
+  `applyFlagSettings()` is TypeScript-only. The Python SDK does not expose an equivalent method.
+</Note>
 
 ### `WarmQuery`
 
@@ -486,22 +535,22 @@ type AgentDefinition = {
 };
 ```
 
-| Field                                 | Required | Description                                                                                                                                                              |
-| :------------------------------------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `description`                         | Yes      | Natural language description of when to use this agent                                                                                                                   |
-| `tools`                               | No       | Array of allowed tool names. If omitted, inherits all tools from parent                                                                                                  |
-| `disallowedTools`                     | No       | Array of tool names to explicitly disallow for this agent                                                                                                                |
-| `prompt`                              | Yes      | The agent's system prompt                                                                                                                                                |
-| `model`                               | No       | Model override for this agent. Accepts an alias such as `'sonnet'`, `'opus'`, `'haiku'`, `'inherit'`, or a full model ID. If omitted or `'inherit'`, uses the main model |
-| `mcpServers`                          | No       | MCP server specifications for this agent                                                                                                                                 |
-| `skills`                              | No       | Array of skill names to preload into the agent context                                                                                                                   |
-| `initialPrompt`                       | No       | Auto-submitted as the first user turn when this agent runs as the main thread agent                                                                                      |
-| `maxTurns`                            | No       | Maximum number of agentic turns (API round-trips) before stopping                                                                                                        |
-| `background`                          | No       | Run this agent as a non-blocking background task when invoked                                                                                                            |
-| `memory`                              | No       | Memory source for this agent: `'user'`, `'project'`, or `'local'`                                                                                                        |
-| `effort`                              | No       | Reasoning effort level for this agent. Accepts a named level or an integer                                                                                               |
-| `permissionMode`                      | No       | Permission mode for tool execution within this agent. See [`PermissionMode`](#permissionmode)                                                                            |
-| `criticalSystemReminder_EXPERIMENTAL` | No       | Experimental: Critical reminder added to the system prompt                                                                                                               |
+| Field                                 | Required | Description                                                                                                                                                                    |
+| :------------------------------------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `description`                         | Yes      | Natural language description of when to use this agent                                                                                                                         |
+| `tools`                               | No       | Array of allowed tool names. If omitted, inherits all tools from parent. To preload Skills into the agent's context, use the `skills` field rather than listing `'Skill'` here |
+| `disallowedTools`                     | No       | Array of tool names to explicitly disallow for this agent                                                                                                                      |
+| `prompt`                              | Yes      | The agent's system prompt                                                                                                                                                      |
+| `model`                               | No       | Model override for this agent. Accepts an alias such as `'sonnet'`, `'opus'`, `'haiku'`, `'inherit'`, or a full model ID. If omitted or `'inherit'`, uses the main model       |
+| `mcpServers`                          | No       | MCP server specifications for this agent                                                                                                                                       |
+| `skills`                              | No       | Array of skill names to preload into the agent context                                                                                                                         |
+| `initialPrompt`                       | No       | Auto-submitted as the first user turn when this agent runs as the main thread agent                                                                                            |
+| `maxTurns`                            | No       | Maximum number of agentic turns (API round-trips) before stopping                                                                                                              |
+| `background`                          | No       | Run this agent as a non-blocking background task when invoked                                                                                                                  |
+| `memory`                              | No       | Memory source for this agent: `'user'`, `'project'`, or `'local'`                                                                                                              |
+| `effort`                              | No       | Reasoning effort level for this agent. Accepts a named level or an integer                                                                                                     |
+| `permissionMode`                      | No       | Permission mode for tool execution within this agent. See [`PermissionMode`](#permissionmode)                                                                                  |
+| `criticalSystemReminder_EXPERIMENTAL` | No       | Experimental: Critical reminder added to the system prompt                                                                                                                     |
 
 ### `AgentMcpServerSpec`
 
@@ -624,7 +673,7 @@ When multiple sources are loaded, settings are merged with this precedence (high
 2. Project settings (`.claude/settings.json`)
 3. User settings (`~/.claude/settings.json`)
 
-Programmatic options such as `agents` and `allowedTools` override user, project, and local filesystem settings. Managed policy settings take precedence over programmatic options.
+Programmatic options such as `agents`, `allowedTools`, and `settings` override user, project, and local filesystem settings. Managed policy settings take precedence over programmatic options.
 
 ### `PermissionMode`
 
@@ -1135,6 +1184,7 @@ type BaseHookInput = {
   transcript_path: string;
   cwd: string;
   permission_mode?: string;
+  effort?: { level: string };
   agent_id?: string;
   agent_type?: string;
 };
@@ -2450,7 +2500,7 @@ type Usage = {
 
 ### `CallToolResult`
 
-MCP tool result type (from `@modelcontextprotocol/sdk/types.js`).
+MCP tool result type (from `@modelcontextprotocol/sdk/types.js`). `structuredContent` is a JSON object that can be returned alongside `content`, including image blocks. See [Return structured data](/en/agent-sdk/custom-tools#return-structured-data).
 
 ```typescript theme={null}
 type CallToolResult = {
@@ -2458,6 +2508,7 @@ type CallToolResult = {
     type: "text" | "image" | "resource";
     // Additional fields vary by type
   }>;
+  structuredContent?: Record<string, unknown>;
   isError?: boolean;
 };
 ```

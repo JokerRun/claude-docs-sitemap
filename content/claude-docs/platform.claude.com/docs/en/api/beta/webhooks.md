@@ -1,15 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/webhooks
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 2f7679575247e981e8ec19ba9550d13cf8511fbdf1f12aa8e68729b527b50346
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: 125323e424d5a0e99604352f4b36cdaac8c4c4dff9354ba7e1abb0ec8794f5a1
 ---
 
 # Webhooks
-
-## Unwrap
-
-**** ``
 
 ## Domain Types
 
@@ -125,7 +121,7 @@ sha256: 2f7679575247e981e8ec19ba9550d13cf8511fbdf1f12aa8e68729b527b50346
 
       - `workspace_id: string`
 
-    - `BetaWebhookSessionStatusScheduledEventData = object { id, organization_id, type, workspace_id }`
+    - `BetaWebhookSessionStatusRescheduledEventData = object { id, organization_id, type, workspace_id }`
 
       - `id: string`
 
@@ -133,9 +129,9 @@ sha256: 2f7679575247e981e8ec19ba9550d13cf8511fbdf1f12aa8e68729b527b50346
 
       - `organization_id: string`
 
-      - `type: "session.status_scheduled"`
+      - `type: "session.status_rescheduled"`
 
-        - `"session.status_scheduled"`
+        - `"session.status_rescheduled"`
 
       - `workspace_id: string`
 
@@ -459,7 +455,7 @@ sha256: 2f7679575247e981e8ec19ba9550d13cf8511fbdf1f12aa8e68729b527b50346
 
     - `workspace_id: string`
 
-  - `BetaWebhookSessionStatusScheduledEventData = object { id, organization_id, type, workspace_id }`
+  - `BetaWebhookSessionStatusRescheduledEventData = object { id, organization_id, type, workspace_id }`
 
     - `id: string`
 
@@ -467,9 +463,9 @@ sha256: 2f7679575247e981e8ec19ba9550d13cf8511fbdf1f12aa8e68729b527b50346
 
     - `organization_id: string`
 
-    - `type: "session.status_scheduled"`
+    - `type: "session.status_rescheduled"`
 
-      - `"session.status_scheduled"`
+      - `"session.status_rescheduled"`
 
     - `workspace_id: string`
 
@@ -829,6 +825,22 @@ sha256: 2f7679575247e981e8ec19ba9550d13cf8511fbdf1f12aa8e68729b527b50346
 
   - `workspace_id: string`
 
+### Beta Webhook Session Status Rescheduled Event Data
+
+- `BetaWebhookSessionStatusRescheduledEventData = object { id, organization_id, type, workspace_id }`
+
+  - `id: string`
+
+    ID of the resource that triggered the event.
+
+  - `organization_id: string`
+
+  - `type: "session.status_rescheduled"`
+
+    - `"session.status_rescheduled"`
+
+  - `workspace_id: string`
+
 ### Beta Webhook Session Status Run Started Event Data
 
 - `BetaWebhookSessionStatusRunStartedEventData = object { id, organization_id, type, workspace_id }`
@@ -842,22 +854,6 @@ sha256: 2f7679575247e981e8ec19ba9550d13cf8511fbdf1f12aa8e68729b527b50346
   - `type: "session.status_run_started"`
 
     - `"session.status_run_started"`
-
-  - `workspace_id: string`
-
-### Beta Webhook Session Status Scheduled Event Data
-
-- `BetaWebhookSessionStatusScheduledEventData = object { id, organization_id, type, workspace_id }`
-
-  - `id: string`
-
-    ID of the resource that triggered the event.
-
-  - `organization_id: string`
-
-  - `type: "session.status_scheduled"`
-
-    - `"session.status_scheduled"`
 
   - `workspace_id: string`
 
@@ -1165,7 +1161,7 @@ sha256: 2f7679575247e981e8ec19ba9550d13cf8511fbdf1f12aa8e68729b527b50346
 
       - `workspace_id: string`
 
-    - `BetaWebhookSessionStatusScheduledEventData = object { id, organization_id, type, workspace_id }`
+    - `BetaWebhookSessionStatusRescheduledEventData = object { id, organization_id, type, workspace_id }`
 
       - `id: string`
 
@@ -1173,9 +1169,9 @@ sha256: 2f7679575247e981e8ec19ba9550d13cf8511fbdf1f12aa8e68729b527b50346
 
       - `organization_id: string`
 
-      - `type: "session.status_scheduled"`
+      - `type: "session.status_rescheduled"`
 
-        - `"session.status_scheduled"`
+        - `"session.status_rescheduled"`
 
       - `workspace_id: string`
 

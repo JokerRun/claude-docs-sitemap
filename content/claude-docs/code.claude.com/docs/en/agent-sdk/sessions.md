@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/sessions
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 8bee61adb21d540bb0b7adc793cc3a10ed7e2cbd9d745dce6e1b05bcb40ad1f8
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: bce933f065cf8669575746101e335d31955e9fb2878cf28b2206b22894399074
 ---
 
 > ## Documentation Index
@@ -139,7 +139,7 @@ for await (const message of query({
 ```
 
 <Note>
-  There's also a [V2 preview](/en/agent-sdk/typescript-v2-preview) of the TypeScript SDK that provides `createSession()` with a `send` / `stream` pattern, closer to Python's `ClaudeSDKClient` in feel. V2 is unstable and its APIs may change; the rest of this documentation uses the stable V1 `query()` function.
+  The experimental [V2 session API](/en/agent-sdk/typescript-v2-preview), which provided `createSession()` with a `send` / `stream` pattern, is deprecated. Use the V1 `query()` function and the session options described on this page instead.
 </Note>
 
 ## Use session options with `query()`

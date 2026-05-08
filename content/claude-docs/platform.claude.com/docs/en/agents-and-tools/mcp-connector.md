@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: e6c8440197166bee5ef696be05bfd3d130985ab81bb7a45056313a630f1bea3c
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: 128166bfc46045a6222d29814ad4a2776fe8e5e2e9ffd6a35cb6570048aa32e2
 ---
 
 # MCP connector
@@ -347,7 +347,7 @@ Each MCP server in the `mcp_servers` array defines the connection details:
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Currently only "url" is supported |
+| `type` | string | Yes | Currently only "url" is supported. |
 | `url` | string | Yes | The URL of the MCP server. Must start with https:// |
 | `name` | string | Yes | A unique identifier for this MCP server. Must be referenced by exactly one MCPToolset in the `tools` array. |
 | `authorization_token` | string | No | OAuth authorization token if required by the MCP server. See [MCP specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). |

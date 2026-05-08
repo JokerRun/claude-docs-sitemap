@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/webhooks
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 877880f4bec41d5f0b8170227c4dbad4987764bf5a13364a8a7b4c385d2c426d
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: 9974904a53f849e0eb1da40f9f01c12ccfb97573db59ce08936a0c244b610b3e
 ---
 
 # Webhooks
@@ -121,7 +121,7 @@ sha256: 877880f4bec41d5f0b8170227c4dbad4987764bf5a13364a8a7b4c385d2c426d
 
       - `String workspaceId`
 
-    - `class BetaWebhookSessionStatusScheduledEventData:`
+    - `class BetaWebhookSessionStatusRescheduledEventData:`
 
       - `String id`
 
@@ -129,9 +129,9 @@ sha256: 877880f4bec41d5f0b8170227c4dbad4987764bf5a13364a8a7b4c385d2c426d
 
       - `String organizationId`
 
-      - `JsonValue; type "session.status_scheduled"constant`
+      - `JsonValue; type "session.status_rescheduled"constant`
 
-        - `SESSION_STATUS_SCHEDULED("session.status_scheduled")`
+        - `SESSION_STATUS_RESCHEDULED("session.status_rescheduled")`
 
       - `String workspaceId`
 
@@ -455,7 +455,7 @@ sha256: 877880f4bec41d5f0b8170227c4dbad4987764bf5a13364a8a7b4c385d2c426d
 
     - `String workspaceId`
 
-  - `class BetaWebhookSessionStatusScheduledEventData:`
+  - `class BetaWebhookSessionStatusRescheduledEventData:`
 
     - `String id`
 
@@ -463,9 +463,9 @@ sha256: 877880f4bec41d5f0b8170227c4dbad4987764bf5a13364a8a7b4c385d2c426d
 
     - `String organizationId`
 
-    - `JsonValue; type "session.status_scheduled"constant`
+    - `JsonValue; type "session.status_rescheduled"constant`
 
-      - `SESSION_STATUS_SCHEDULED("session.status_scheduled")`
+      - `SESSION_STATUS_RESCHEDULED("session.status_rescheduled")`
 
     - `String workspaceId`
 
@@ -825,6 +825,22 @@ sha256: 877880f4bec41d5f0b8170227c4dbad4987764bf5a13364a8a7b4c385d2c426d
 
   - `String workspaceId`
 
+### Beta Webhook Session Status Rescheduled Event Data
+
+- `class BetaWebhookSessionStatusRescheduledEventData:`
+
+  - `String id`
+
+    ID of the resource that triggered the event.
+
+  - `String organizationId`
+
+  - `JsonValue; type "session.status_rescheduled"constant`
+
+    - `SESSION_STATUS_RESCHEDULED("session.status_rescheduled")`
+
+  - `String workspaceId`
+
 ### Beta Webhook Session Status Run Started Event Data
 
 - `class BetaWebhookSessionStatusRunStartedEventData:`
@@ -838,22 +854,6 @@ sha256: 877880f4bec41d5f0b8170227c4dbad4987764bf5a13364a8a7b4c385d2c426d
   - `JsonValue; type "session.status_run_started"constant`
 
     - `SESSION_STATUS_RUN_STARTED("session.status_run_started")`
-
-  - `String workspaceId`
-
-### Beta Webhook Session Status Scheduled Event Data
-
-- `class BetaWebhookSessionStatusScheduledEventData:`
-
-  - `String id`
-
-    ID of the resource that triggered the event.
-
-  - `String organizationId`
-
-  - `JsonValue; type "session.status_scheduled"constant`
-
-    - `SESSION_STATUS_SCHEDULED("session.status_scheduled")`
 
   - `String workspaceId`
 
@@ -1161,7 +1161,7 @@ sha256: 877880f4bec41d5f0b8170227c4dbad4987764bf5a13364a8a7b4c385d2c426d
 
       - `String workspaceId`
 
-    - `class BetaWebhookSessionStatusScheduledEventData:`
+    - `class BetaWebhookSessionStatusRescheduledEventData:`
 
       - `String id`
 
@@ -1169,9 +1169,9 @@ sha256: 877880f4bec41d5f0b8170227c4dbad4987764bf5a13364a8a7b4c385d2c426d
 
       - `String organizationId`
 
-      - `JsonValue; type "session.status_scheduled"constant`
+      - `JsonValue; type "session.status_rescheduled"constant`
 
-        - `SESSION_STATUS_SCHEDULED("session.status_scheduled")`
+        - `SESSION_STATUS_RESCHEDULED("session.status_rescheduled")`
 
       - `String workspaceId`
 

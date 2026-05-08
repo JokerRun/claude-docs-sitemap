@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-05-07T03:15:02.178755Z
-sha256: 7c4a94b767d1f5fd19e15d6e6d8c072943873458b66b87816b8e2a49ca09551a
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: 8af98845b22e38fc69e8387d9d0b6b15b8eb599f347063379fb7ac13917e9a66
 ---
 
 > ## Documentation Index
@@ -23,6 +23,10 @@ For the `model` setting in Claude Code, you can configure either:
   * Bedrock: an inference profile ARN
   * Foundry: a deployment name
   * Vertex: a version name
+
+<Note>
+  `ANTHROPIC_BASE_URL` changes where requests are sent, not which model answers them. To route Claude through an LLM gateway, see [LLM gateway configuration](/en/llm-gateway).
+</Note>
 
 ### Model aliases
 
@@ -229,7 +233,7 @@ Extended thinking is the reasoning Claude emits before responding. On models tha
 
 | Control                        | How to set it                                                                                                                                       |
 | :----------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Toggle for the current session | Press `Option+T` on macOS or `Alt+T` on Windows and Linux. May require [terminal configuration](/en/terminal-config) for Option-key shortcuts       |
+| Toggle for the current session | Press `Option+T` on macOS or `Alt+T` on Windows and Linux                                                                                           |
 | Set the global default         | Run `/config` and toggle thinking mode. Saved as `alwaysThinkingEnabled` in `~/.claude/settings.json`                                               |
 | Disable regardless of effort   | Set [`MAX_THINKING_TOKENS=0`](/en/env-vars). Other values apply only with a [fixed thinking budget](#adaptive-reasoning-and-fixed-thinking-budgets) |
 

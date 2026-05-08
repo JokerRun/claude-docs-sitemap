@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/webhooks
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 40ac9a82e75169c24c8eaa1038d797e8a349b09143217acbd6b9ea8d32ae80d5
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 ---
 
 # Webhooks
@@ -107,7 +107,7 @@ sha256: 40ac9a82e75169c24c8eaa1038d797e8a349b09143217acbd6b9ea8d32ae80d5
 
       - `required string WorkspaceID`
 
-    - `class BetaWebhookSessionStatusScheduledEventData:`
+    - `class BetaWebhookSessionStatusRescheduledEventData:`
 
       - `required string ID`
 
@@ -115,7 +115,7 @@ sha256: 40ac9a82e75169c24c8eaa1038d797e8a349b09143217acbd6b9ea8d32ae80d5
 
       - `required string OrganizationID`
 
-      - `JsonElement Type "session.status_scheduled"constant`
+      - `JsonElement Type "session.status_rescheduled"constant`
 
       - `required string WorkspaceID`
 
@@ -395,7 +395,7 @@ sha256: 40ac9a82e75169c24c8eaa1038d797e8a349b09143217acbd6b9ea8d32ae80d5
 
     - `required string WorkspaceID`
 
-  - `class BetaWebhookSessionStatusScheduledEventData:`
+  - `class BetaWebhookSessionStatusRescheduledEventData:`
 
     - `required string ID`
 
@@ -403,7 +403,7 @@ sha256: 40ac9a82e75169c24c8eaa1038d797e8a349b09143217acbd6b9ea8d32ae80d5
 
     - `required string OrganizationID`
 
-    - `JsonElement Type "session.status_scheduled"constant`
+    - `JsonElement Type "session.status_rescheduled"constant`
 
     - `required string WorkspaceID`
 
@@ -717,6 +717,20 @@ sha256: 40ac9a82e75169c24c8eaa1038d797e8a349b09143217acbd6b9ea8d32ae80d5
 
   - `required string WorkspaceID`
 
+### Beta Webhook Session Status Rescheduled Event Data
+
+- `class BetaWebhookSessionStatusRescheduledEventData:`
+
+  - `required string ID`
+
+    ID of the resource that triggered the event.
+
+  - `required string OrganizationID`
+
+  - `JsonElement Type "session.status_rescheduled"constant`
+
+  - `required string WorkspaceID`
+
 ### Beta Webhook Session Status Run Started Event Data
 
 - `class BetaWebhookSessionStatusRunStartedEventData:`
@@ -728,20 +742,6 @@ sha256: 40ac9a82e75169c24c8eaa1038d797e8a349b09143217acbd6b9ea8d32ae80d5
   - `required string OrganizationID`
 
   - `JsonElement Type "session.status_run_started"constant`
-
-  - `required string WorkspaceID`
-
-### Beta Webhook Session Status Scheduled Event Data
-
-- `class BetaWebhookSessionStatusScheduledEventData:`
-
-  - `required string ID`
-
-    ID of the resource that triggered the event.
-
-  - `required string OrganizationID`
-
-  - `JsonElement Type "session.status_scheduled"constant`
 
   - `required string WorkspaceID`
 
@@ -1013,7 +1013,7 @@ sha256: 40ac9a82e75169c24c8eaa1038d797e8a349b09143217acbd6b9ea8d32ae80d5
 
       - `required string WorkspaceID`
 
-    - `class BetaWebhookSessionStatusScheduledEventData:`
+    - `class BetaWebhookSessionStatusRescheduledEventData:`
 
       - `required string ID`
 
@@ -1021,7 +1021,7 @@ sha256: 40ac9a82e75169c24c8eaa1038d797e8a349b09143217acbd6b9ea8d32ae80d5
 
       - `required string OrganizationID`
 
-      - `JsonElement Type "session.status_scheduled"constant`
+      - `JsonElement Type "session.status_rescheduled"constant`
 
       - `required string WorkspaceID`
 

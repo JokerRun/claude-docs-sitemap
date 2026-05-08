@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/multi-agent
-fetched_at: 2026-05-07T03:15:02.178755Z
-sha256: 3a2d68eff89378a9248d6bf08d708e569f85b9ef23141e09caec926b3e27b29a
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: 5a13c5fbb8158a2349d2bb8d1bb96af524754cdff501f804a27a49e6d004aca1
 ---
 
 # Multiagent sessions
@@ -37,7 +37,7 @@ Patterns that work well:
 
 ## Configure the coordinator
 
-When [defining your agent](/docs/en/managed-agents/agent-setup), set `multiagent` to declare the list of agents the coordinator can delegate to:
+When [defining your agent](/docs/en/managed-agents/agent-setup), set `multiagent` to declare the roster of agents the coordinator can delegate to:
 
 <CodeGroup defaultLanguage="CLI">
   

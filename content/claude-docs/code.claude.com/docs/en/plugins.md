@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-05-07T03:15:02.178755Z
-sha256: 55704c5f80ec94e41e6dbd65455ee446f47f20e0a17118c31173b23bca39ed90
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: d17a94a9924559d1d08977c148f3edb6b407207e5fbb82f00b486e71b3493160
 ---
 
 > ## Documentation Index
@@ -324,8 +324,16 @@ As you make changes to your plugin, run `/reload-plugins` to pick up the updates
 
 To test a plugin that is already packaged as a `.zip` archive and hosted at a URL, such as a CI build artifact, use `--plugin-url` instead. Claude Code fetches the archive at startup and loads it for that session only. If the fetch fails or the archive is invalid, Claude Code reports a plugin load error and starts without it. The same [trust considerations](/en/discover-plugins#security) apply as for any plugin source: only point this flag at archives you control or trust.
 
+To load multiple plugins, repeat the flag for each URL:
+
 ```bash theme={null}
-claude --plugin-url https://example.com/my-plugin.zip
+claude --plugin-url https://example.com/my-plugin.zip --plugin-url https://example.com/other.zip
+```
+
+Or pass space-separated URLs as one quoted argument:
+
+```bash theme={null}
+claude --plugin-url "https://example.com/my-plugin.zip https://example.com/other.zip"
 ```
 
 ### Debug plugin issues

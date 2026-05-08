@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/features-overview
-fetched_at: 2026-05-07T03:15:02.178755Z
-sha256: 74844abdc0f37e3d606393c6d1739efe3f77327442dc92411bfefa683637e1dd
+fetched_at: 2026-05-08T03:11:40.925611Z
+sha256: a0aea90477763c9528f112eecbc06f9b5cdb389514d785a3016123a28d4ad430
 ---
 
 > ## Documentation Index
@@ -256,7 +256,7 @@ Each feature loads at different points in your session. The tabs below explain w
 
     **Context cost:** Low until used. User-only skills have zero cost until invoked.
 
-    **In subagents:** Skills work differently in subagents. Instead of on-demand loading, skills passed to a subagent are fully preloaded into its context at launch. Subagents don't inherit skills from the main session; you must specify them explicitly.
+    **In subagents:** Skills work differently in subagents. Instead of on-demand loading, skills listed in the subagent's `skills` field are fully preloaded into its context at launch. Subagents can still discover and invoke unlisted project, user, and plugin skills through the Skill tool.
 
     <Tip>Use `disable-model-invocation: true` for skills with side effects. This saves context and ensures only you trigger them.</Tip>
   </Tab>
