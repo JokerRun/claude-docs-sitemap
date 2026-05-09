@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 5575b73074adf46f83a3528e71b2a761311be4e8d3d608af41c60c438ae90176
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 6f615521ed6de1adafb0041e67852098f825dc6349b6ec0dd9f3a90ea44db2fd
 ---
 
 # Credentials
@@ -316,6 +316,10 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials \
             "token": "bearer_exampletoken",
             "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
             "type": "static_bearer"
+          },
+          "display_name": "Example credential",
+          "metadata": {
+            "environment": "production"
           }
         }'
 ```
@@ -1008,7 +1012,12 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{}'
+    -d '{
+          "display_name": "Example credential",
+          "metadata": {
+            "environment": "production"
+          }
+        }'
 ```
 
 ## Delete

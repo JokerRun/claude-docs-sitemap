@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: c598bda7557f69de2049bff6565ba47b6d8ddc660c7f4c310d06ff116542f92e
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: f05d9b59b81cd350b51564634e663dd206b27000b8ad99ef80ad8de45e6fd08f
 ---
 
 # Beta
@@ -8074,16 +8074,43 @@ curl https://api.anthropic.com/v1/messages \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     --max-time 600 \
-    -d '{
-          "max_tokens": 1024,
-          "messages": [
+    -d "{
+          \"max_tokens\": 1024,
+          \"messages\": [
             {
-              "content": "Hello, world",
-              "role": "user"
+              \"content\": \"Hello, world\",
+              \"role\": \"user\"
             }
           ],
-          "model": "claude-opus-4-6"
-        }'
+          \"model\": \"claude-opus-4-6\",
+          \"system\": [
+            {
+              \"text\": \"Today's date is 2024-06-01.\",
+              \"type\": \"text\"
+            }
+          ],
+          \"temperature\": 1,
+          \"thinking\": {
+            \"type\": \"adaptive\"
+          },
+          \"tools\": [
+            {
+              \"input_schema\": {
+                \"type\": \"object\",
+                \"properties\": {
+                  \"location\": \"bar\",
+                  \"unit\": \"bar\"
+                },
+                \"required\": [
+                  \"location\"
+                ]
+              },
+              \"name\": \"name\"
+            }
+          ],
+          \"top_k\": 5,
+          \"top_p\": 0.7
+        }"
 ```
 
 ## Count Tokens
@@ -13220,15 +13247,39 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{
-          "messages": [
+    -d "{
+          \"messages\": [
             {
-              "content": "Hello, world",
-              "role": "user"
+              \"content\": \"Hello, world\",
+              \"role\": \"user\"
             }
           ],
-          "model": "claude-opus-4-6"
-        }'
+          \"model\": \"claude-opus-4-6\",
+          \"system\": [
+            {
+              \"text\": \"Today's date is 2024-06-01.\",
+              \"type\": \"text\"
+            }
+          ],
+          \"thinking\": {
+            \"type\": \"adaptive\"
+          },
+          \"tools\": [
+            {
+              \"input_schema\": {
+                \"type\": \"object\",
+                \"properties\": {
+                  \"location\": \"bar\",
+                  \"unit\": \"bar\"
+                },
+                \"required\": [
+                  \"location\"
+                ]
+              },
+              \"name\": \"name\"
+            }
+          ]
+        }"
 ```
 
 ## Domain Types
@@ -52223,19 +52274,20 @@ curl https://api.anthropic.com/v1/agents \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{
-          "model": "claude-sonnet-4-6",
-          "name": "My First Agent",
-          "multiagent": {
-            "agents": [
-              "agent_011CZkYqphY8vELVzwCUpqiQ",
-              {
-                "type": "self"
-              }
-            ],
-            "type": "coordinator"
-          }
-        }'
+    -d "{
+          \"model\": \"claude-sonnet-4-6\",
+          \"name\": \"My First Agent\",
+          \"description\": \"A general-purpose starter agent.\",
+          \"metadata\": {
+            \"foo\": \"bar\"
+          },
+          \"system\": \"You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.\",
+          \"tools\": [
+            {
+              \"type\": \"agent_toolset_20260401\"
+            }
+          ]
+        }"
 ```
 
 ## List
@@ -53884,18 +53936,10 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{
-          "version": 1,
-          "multiagent": {
-            "agents": [
-              "agent_011CZkYqphY8vELVzwCUpqiQ",
-              {
-                "type": "self"
-              }
-            ],
-            "type": "coordinator"
-          }
-        }'
+    -d "{
+          \"version\": 1,
+          \"system\": \"You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.\"
+        }"
 ```
 
 ## Archive
@@ -56436,7 +56480,8 @@ curl https://api.anthropic.com/v1/environments \
                 "numpy"
               ]
             }
-          }
+          },
+          "description": "Python environment with data-analysis packages."
         }'
 ```
 
@@ -57147,22 +57192,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
-          "config": {
-            "type": "cloud",
-            "networking": {
-              "type": "limited",
-              "allow_package_managers": true,
-              "allowed_hosts": [
-                "api.example.com"
-              ]
-            },
-            "packages": {
-              "pip": [
-                "pandas",
-                "numpy"
-              ]
-            }
-          }
+          "description": "Python environment with data-analysis packages."
         }'
 ```
 
@@ -58903,7 +58933,8 @@ curl https://api.anthropic.com/v1/sessions \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "agent": "agent_011CZkYpogX7uDKUyvBTophP",
-          "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW"
+          "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+          "title": "Order #1234 inquiry"
         }'
 ```
 
@@ -61595,7 +61626,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{}'
+    -d '{
+          "title": "Order #1234 inquiry"
+        }'
 ```
 
 ## Delete
@@ -78129,7 +78162,8 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
-          "type": "file"
+          "type": "file",
+          "mount_path": "/uploads/receipt.pdf"
         }'
 ```
 
@@ -87771,7 +87805,10 @@ curl https://api.anthropic.com/v1/vaults \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
-          "display_name": "Example vault"
+          "display_name": "Example vault",
+          "metadata": {
+            "environment": "production"
+          }
         }'
 ```
 
@@ -88131,7 +88168,12 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{}'
+    -d '{
+          "display_name": "Example vault",
+          "metadata": {
+            "environment": "production"
+          }
+        }'
 ```
 
 ## Delete
@@ -88699,6 +88741,10 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials \
             "token": "bearer_exampletoken",
             "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
             "type": "static_bearer"
+          },
+          "display_name": "Example credential",
+          "metadata": {
+            "environment": "production"
           }
         }'
 ```
@@ -89391,7 +89437,12 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{}'
+    -d '{
+          "display_name": "Example credential",
+          "metadata": {
+            "environment": "production"
+          }
+        }'
 ```
 
 ## Delete
@@ -95620,7 +95671,10 @@ curl https://api.anthropic.com/v1/user_profiles \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: user-profiles-2026-03-24' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{}'
+    -d '{
+          "external_id": "user_12345",
+          "metadata": {}
+        }'
 ```
 
 ## List
@@ -96071,7 +96125,9 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: user-profiles-2026-03-24' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{}'
+    -d '{
+          "external_id": "user_12345"
+        }'
 ```
 
 ## Create Enrollment URL

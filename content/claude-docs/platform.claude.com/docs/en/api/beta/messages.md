@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 07e2fed2f3d8d4da911139dfe5c68937747ac5325642d34b7199ddee321a9384
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: b1b338a7fe41ffb97c5c79c6c3ed64d4c2213812034731c8dcff814405aad568
 ---
 
 # Messages
@@ -6694,16 +6694,43 @@ curl https://api.anthropic.com/v1/messages \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     --max-time 600 \
-    -d '{
-          "max_tokens": 1024,
-          "messages": [
+    -d "{
+          \"max_tokens\": 1024,
+          \"messages\": [
             {
-              "content": "Hello, world",
-              "role": "user"
+              \"content\": \"Hello, world\",
+              \"role\": \"user\"
             }
           ],
-          "model": "claude-opus-4-6"
-        }'
+          \"model\": \"claude-opus-4-6\",
+          \"system\": [
+            {
+              \"text\": \"Today's date is 2024-06-01.\",
+              \"type\": \"text\"
+            }
+          ],
+          \"temperature\": 1,
+          \"thinking\": {
+            \"type\": \"adaptive\"
+          },
+          \"tools\": [
+            {
+              \"input_schema\": {
+                \"type\": \"object\",
+                \"properties\": {
+                  \"location\": \"bar\",
+                  \"unit\": \"bar\"
+                },
+                \"required\": [
+                  \"location\"
+                ]
+              },
+              \"name\": \"name\"
+            }
+          ],
+          \"top_k\": 5,
+          \"top_p\": 0.7
+        }"
 ```
 
 ## Count Tokens
@@ -11840,15 +11867,39 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{
-          "messages": [
+    -d "{
+          \"messages\": [
             {
-              "content": "Hello, world",
-              "role": "user"
+              \"content\": \"Hello, world\",
+              \"role\": \"user\"
             }
           ],
-          "model": "claude-opus-4-6"
-        }'
+          \"model\": \"claude-opus-4-6\",
+          \"system\": [
+            {
+              \"text\": \"Today's date is 2024-06-01.\",
+              \"type\": \"text\"
+            }
+          ],
+          \"thinking\": {
+            \"type\": \"adaptive\"
+          },
+          \"tools\": [
+            {
+              \"input_schema\": {
+                \"type\": \"object\",
+                \"properties\": {
+                  \"location\": \"bar\",
+                  \"unit\": \"bar\"
+                },
+                \"required\": [
+                  \"location\"
+                ]
+              },
+              \"name\": \"name\"
+            }
+          ]
+        }"
 ```
 
 ## Domain Types

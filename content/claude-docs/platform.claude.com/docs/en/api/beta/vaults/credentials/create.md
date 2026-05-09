@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 9e8bedd77ae2991bb7ba17b98ea729afdc16fcce8712cac28430f7a81b2926be
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 478879b457a5999cdcc254195a98af7c65704fb6f9715e7fe397fe3bedd880b8
 ---
 
 ## Create
@@ -314,6 +314,10 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials \
             "token": "bearer_exampletoken",
             "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
             "type": "static_bearer"
+          },
+          "display_name": "Example credential",
+          "metadata": {
+            "environment": "production"
           }
         }'
 ```

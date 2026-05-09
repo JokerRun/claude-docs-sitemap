@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/data-residency
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 560a66496c7d91bccbe927043ca7ebcf5651b6e0f5ed2af5c140401b11cb0106
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 57d533a25adf1f920e2bc55985e95c1349a8f6272f3754bf31b00b6e5404fd33
 ---
 
 # Data residency
@@ -135,7 +135,7 @@ Workspace settings also support restricting which inference geos are available:
 - **`allowed_inference_geos`:** Restricts which geos a workspace can use. If a request specifies an `inference_geo` not in this list, the API returns an error.
 - **`default_inference_geo`:** Sets the fallback geo when `inference_geo` is omitted from a request. Individual requests can override this by setting `inference_geo` explicitly.
 
-These settings can be configured through the Console or the [Admin API](/docs/en/manage-claude/overview) under the `data_residency` field.
+These settings can be configured through the Console or the [Admin API](/docs/en/manage-claude/admin-api) under the `data_residency` field.
 
 ## Workspace geo
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 313fcf809813cf3ad5dbc7d86d2045a948031d57d230e844f6c6120eda9957e1
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: f03051ce352d2f2b7d4e92cf0c1176769e3041d0872a62c367d2e0993ecc5414
 ---
 
 ## Create
@@ -122,6 +122,9 @@ curl https://api.anthropic.com/v1/vaults \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
-          "display_name": "Example vault"
+          "display_name": "Example vault",
+          "metadata": {
+            "environment": "production"
+          }
         }'
 ```

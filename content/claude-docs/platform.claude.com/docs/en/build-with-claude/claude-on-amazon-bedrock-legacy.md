@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: d59184ae62842e8e1a13dd714799277ac5ff5382136918570669a65549ea4c31
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 01fa9ad320a3b0387197e0ca16ed8b29df844c1dadd1bee8021ae08a17ed816e
 ---
 
 # Claude on Amazon Bedrock (legacy)
@@ -61,14 +61,14 @@ go get github.com/anthropics/anthropic-sdk-go/bedrock
 <Tab title="Java">
 <CodeGroup>
 ```groovy Gradle
-implementation("com.anthropic:anthropic-java-bedrock:2.27.0")
+implementation("com.anthropic:anthropic-java-bedrock:2.30.0")
 ```
 
 ```xml Maven
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java-bedrock</artifactId>
-    <version>2.27.0</version>
+    <version>2.30.0</version>
 </dependency>
 ```
 
@@ -341,8 +341,8 @@ The following examples show how to generate text from Claude on Bedrock:
       # Temporary credentials can be used with aws_session_token.
       # Read more at https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html.
       aws_session_token="<session_token>",
-      # aws_region changes the aws region to which the request is made. By default, we read AWS_REGION,
-      # and if that's not present, we default to us-east-1. Note that we do not read ~/.aws/config for the region.
+      # aws_region changes the aws region to which the request is made. By default, the SDK reads AWS_REGION,
+      # and if that's not present, defaults to us-east-1. Note that the SDK does not read ~/.aws/config for the region.
       aws_region="us-west-2",
   )
 
@@ -371,9 +371,9 @@ The following examples show how to generate text from Claude on Bedrock:
     awsSessionToken: "<session_token>",
 
     // awsRegion changes the aws region to which the request
-    // is made. By default, we read AWS_REGION, and if that's
-    // not present, we default to us-east-1. Note that we do
-    // not read ~/.aws/config for the region.
+    // is made. By default, the SDK reads AWS_REGION, and if
+    // that's not present, defaults to us-east-1. Note that
+    // the SDK does not read ~/.aws/config for the region.
     awsRegion: "us-west-2"
   });
 

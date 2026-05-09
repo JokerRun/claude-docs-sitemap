@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: e0453f96cdb165ff85b0ed7eda07814f942010a7b2a97274f1341e437f0ee3cd
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 9a7e0e35c4656683a6766e594be7e67f5c640c7d80d55c714ea93bfecfcd2986
 ---
 
 # Completions
@@ -357,7 +357,10 @@ curl https://api.anthropic.com/v1/complete \
     -d '{
           "max_tokens_to_sample": 256,
           "model": "claude-2.1",
-          "prompt": "\\n\\nHuman: Hello, world!\\n\\nAssistant:"
+          "prompt": "\\n\\nHuman: Hello, world!\\n\\nAssistant:",
+          "temperature": 1,
+          "top_k": 5,
+          "top_p": 0.7
         }'
 ```
 

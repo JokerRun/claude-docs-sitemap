@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: f1bf5e376c8cd47b0fd56e5c2132bae454d2fed0367d91f0e3748b44e3d5791e
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 3b5782cc54f484e588a37923ad07779451ca291e6fda07fe1e9b530ebba385a3
 ---
 
 > ## Documentation Index
@@ -1236,9 +1236,9 @@ There is no timeout or retry limit. The session remains on disk until you resume
 
 If the deferred tool is no longer available when you resume, the process exits with `stop_reason: "tool_deferred_unavailable"` and `is_error: true` before the hook fires. This happens when an MCP server that provided the tool is not connected for the resumed session. The `deferred_tool_use` payload is still included so you can identify which tool went missing.
 
-<Warning>
-  `--resume` does not restore the permission mode from the prior session. Pass the same `--permission-mode` flag on resume that was active when the tool was deferred. Claude Code logs a warning if the modes differ.
-</Warning>
+<Note>
+  `--resume` restores the permission mode that was active when the tool was deferred, so you do not need to pass `--permission-mode` again. The exceptions are `plan` and `bypassPermissions`, which are never carried over. Passing `--permission-mode` explicitly on resume overrides the restored value.
+</Note>
 
 ### PermissionRequest
 

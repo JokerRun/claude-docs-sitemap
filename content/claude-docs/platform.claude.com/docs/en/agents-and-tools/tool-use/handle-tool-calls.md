@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 4a48c940003272bce29cc845e3f6a6b86596570d04b81129b2ad49cb1e9e1e31
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: b0e47605c36c4fdfa9dc10dcab3348a979af86a1edca614ebcf1e94d5c3444c3
 ---
 
 # Handle tool calls
@@ -17,7 +17,7 @@ This page covers the tool-call lifecycle: reading `tool_use` blocks from Claude'
 **Simpler with Tool Runner**: The manual tool handling described on this page is automatically managed by [Tool Runner](/docs/en/agents-and-tools/tool-use/tool-runner). Use this page when you need custom control over tool execution.
 </Note>
 
-Claude's response differs based on whether it uses a client or server tool.
+Claude's response differs based on whether it uses a [client or server tool](/docs/en/agents-and-tools/tool-use/overview#how-tool-use-works).
 
 ## Handling results from client tools
 

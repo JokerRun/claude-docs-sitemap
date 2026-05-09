@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 02719c4d10ddcdaf7778c7ef3d6a87f26c78688ba0521ecc54da02877edcc1ef
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 8da8c9822130417df137ad8d9aae78e13e6d7cac71c17e856b486a4a115fdce1
 ---
 
 ## Create
@@ -4986,14 +4986,41 @@ curl https://api.anthropic.com/v1/messages \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     --max-time 600 \
-    -d '{
-          "max_tokens": 1024,
-          "messages": [
+    -d "{
+          \"max_tokens\": 1024,
+          \"messages\": [
             {
-              "content": "Hello, world",
-              "role": "user"
+              \"content\": \"Hello, world\",
+              \"role\": \"user\"
             }
           ],
-          "model": "claude-opus-4-6"
-        }'
+          \"model\": \"claude-opus-4-6\",
+          \"system\": [
+            {
+              \"text\": \"Today's date is 2024-06-01.\",
+              \"type\": \"text\"
+            }
+          ],
+          \"temperature\": 1,
+          \"thinking\": {
+            \"type\": \"adaptive\"
+          },
+          \"tools\": [
+            {
+              \"input_schema\": {
+                \"type\": \"object\",
+                \"properties\": {
+                  \"location\": \"bar\",
+                  \"unit\": \"bar\"
+                },
+                \"required\": [
+                  \"location\"
+                ]
+              },
+              \"name\": \"name\"
+            }
+          ],
+          \"top_k\": 5,
+          \"top_p\": 0.7
+        }"
 ```

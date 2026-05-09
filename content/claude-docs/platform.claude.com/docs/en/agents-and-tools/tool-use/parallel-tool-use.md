@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 93edcb192b2d4fc1f543e33791aa32a6b51df77984ecad3fd8b84475f288c6a8
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: c4b9353c40f33b0d97d6947097179266ed17600887589b376e9e90f162953fb9
 ---
 
 # Parallel tool use
@@ -251,7 +251,7 @@ async function testParallelTools() {
 testParallelTools().catch(console.error);
 ```
 
-```csharp C#
+```csharp C# hidelines={1..12,-2..-1}
 using System;
 using System.Collections.Generic;
 using System.Linq;

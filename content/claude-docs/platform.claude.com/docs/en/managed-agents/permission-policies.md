@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/permission-policies
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 778df123058e6d1a4bc8dffbda253f8ca0f81cb2f48dd158e64ce6a6c1dfef46
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 9e82b9a47ca05a7e74bcc66f7557b3cd7c49ccedc38d715b838ac7d9c6736c80
 ---
 
 # Permission policies
@@ -22,7 +22,7 @@ All Managed Agents API requests require the `managed-agents-2026-04-01` beta hea
 | Policy | Behavior |
 | --- | --- |
 | `always_allow` | The tool executes automatically with no confirmation. |
-| `always_ask` | The session emits a `session.status_idle` event and waits for a `user.tool_confirmation` event before executing. |
+| `always_ask` | The session pauses and waits for your approval before executing. See [Respond to confirmation requests](#respond-to-confirmation-requests) for the event flow. |
 
 ## Set a policy for a toolset
 

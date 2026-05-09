@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 596b4cc2ff5a80db76aacc597bf82a8191c837a174de3724b9ddc422949d76a6
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 0edbbb0ef0e940772a9e40b08adad6751ef554a010f0aecfb3703c1c4690ff2b
 ---
 
 # Resources
@@ -121,7 +121,8 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
-          "type": "file"
+          "type": "file",
+          "mount_path": "/uploads/receipt.pdf"
         }'
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 32071197d25bb8945d8fce1b243df3993e7a57f3409050968dc87727c2a96b65
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 5c3948d77ed17868c01d4542e611cec0f8853afeb06652d01d0190601ac0c06d
 ---
 
 # User Profiles
@@ -161,7 +161,10 @@ curl https://api.anthropic.com/v1/user_profiles \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: user-profiles-2026-03-24' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{}'
+    -d '{
+          "external_id": "user_12345",
+          "metadata": {}
+        }'
 ```
 
 ## List
@@ -612,7 +615,9 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: user-profiles-2026-03-24' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{}'
+    -d '{
+          "external_id": "user_12345"
+        }'
 ```
 
 ## Create Enrollment URL

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: fb2def2d13ed65ee75be6e4186b3b045a1fa566bc3f9cf9ae1937d61382b6bcd
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: ec0a4e7782fc2802dd582d247b09c277f26035eb102cc9e87144fc57aa51743b
 ---
 
 # Define your agent
@@ -203,7 +203,7 @@ The response echoes your configuration and adds `id`, `version`, `created_at`, `
 
 ## Update an agent
 
-Updating an agent generates a new version. Pass the current `version` to ensure you're updating from a known state.
+Updating an agent generates a new version when the configuration changes. Pass the current `version` to ensure you're updating from a known state.
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -318,7 +318,7 @@ puts "New version: #{updated_agent.version}"
 
 - **Omitted fields are preserved.** You only need to include the fields you want to change.
 
-- **Scalar fields** (`model`, `system`, `name`, etc.) are replaced with the new value. `system` and `description` can be cleared by passing `null`. `model` and `name` are mandatory and cannot be cleared.
+- **Scalar fields** (`model`, `system`, `name`, `description`) are replaced with the new value. `system` and `description` can be cleared by passing `null`. `model` and `name` are mandatory and cannot be cleared.
 
 - **Array fields** (`tools`, `mcp_servers`, `skills`) are fully replaced by the new array. To clear an array field entirely, pass `null` or an empty array.
 
@@ -332,7 +332,7 @@ puts "New version: #{updated_agent.version}"
 
 | Operation | Behavior |
 | --- | --- |
-| **Update** | Generates a new agent version. |
+| **Update** | Generates a new agent version when the configuration changes. |
 | **List versions** | Returns the full version history so you can track changes over time. |
 | **Archive** | Makes the agent read-only. New sessions cannot reference it, but existing sessions continue to run. |
 

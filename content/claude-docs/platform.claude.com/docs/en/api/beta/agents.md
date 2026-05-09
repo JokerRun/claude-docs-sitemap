@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 5dcf182022a6e0e3f722a7e985cbd4793eaee42e8450f9b3c9758d528ad2d3ae
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: bf378326cf7a606c7265f34d7408c96e8e7d17b98ddf7a7b65d93307fe7bb65f
 ---
 
 # Agents
@@ -819,19 +819,20 @@ curl https://api.anthropic.com/v1/agents \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{
-          "model": "claude-sonnet-4-6",
-          "name": "My First Agent",
-          "multiagent": {
-            "agents": [
-              "agent_011CZkYqphY8vELVzwCUpqiQ",
-              {
-                "type": "self"
-              }
-            ],
-            "type": "coordinator"
-          }
-        }'
+    -d "{
+          \"model\": \"claude-sonnet-4-6\",
+          \"name\": \"My First Agent\",
+          \"description\": \"A general-purpose starter agent.\",
+          \"metadata\": {
+            \"foo\": \"bar\"
+          },
+          \"system\": \"You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.\",
+          \"tools\": [
+            {
+              \"type\": \"agent_toolset_20260401\"
+            }
+          ]
+        }"
 ```
 
 ## List
@@ -2480,18 +2481,10 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{
-          "version": 1,
-          "multiagent": {
-            "agents": [
-              "agent_011CZkYqphY8vELVzwCUpqiQ",
-              {
-                "type": "self"
-              }
-            ],
-            "type": "coordinator"
-          }
-        }'
+    -d "{
+          \"version\": 1,
+          \"system\": \"You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.\"
+        }"
 ```
 
 ## Archive

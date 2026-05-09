@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/usage-cost-api
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: bc26050606c399b8ed6578d24620951a180f9696dc21ff4925cb8473f8d08dd7
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: a5bad13ed7217e7e4727b8e1093edead0727c6987f8f5b6047caa4b62103802f
 ---
 
 # Usage and Cost API
@@ -28,7 +28,7 @@ This API enables you to better monitor, analyze, and optimize your Claude implem
 <Check>
   **Admin API key required**
 
-  This API is part of the [Admin API](/docs/en/manage-claude/overview). These endpoints require an Admin API key (starting with `sk-ant-admin...`) that differs from standard API keys. Only organization members with the admin role can provision Admin API keys through the [Claude Console](/settings/admin-keys).
+  This API is part of the [Admin API](/docs/en/manage-claude/admin-api). These endpoints require an Admin API key (starting with `sk-ant-admin...`) that differs from standard API keys. Only organization members with the admin role can provision Admin API keys through the [Claude Console](/settings/admin-keys).
 </Check>
 
 ## Partner solutions
@@ -63,7 +63,7 @@ starting_at=2025-01-08T00:00:00Z&\
 ending_at=2025-01-15T00:00:00Z&\
 bucket_width=1d" \
   --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ADMIN_API_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 <Tip>
@@ -99,7 +99,7 @@ ending_at=2025-01-08T00:00:00Z&\
 group_by[]=model&\
 bucket_width=1d" \
   --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ADMIN_API_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 #### Hourly usage with filtering
@@ -113,7 +113,7 @@ service_tiers[]=batch&\
 context_window[]=0-200k&\
 bucket_width=1h" \
   --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ADMIN_API_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 #### Filter usage by API keys and workspaces
@@ -128,7 +128,7 @@ workspace_ids[]=wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ&\
 workspace_ids[]=wrkspc_01XYZ789ABC123DEF456MNO&\
 bucket_width=1d" \
   --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ADMIN_API_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 <Tip>
@@ -149,7 +149,7 @@ group_by[]=inference_geo&\
 group_by[]=model&\
 bucket_width=1d" \
   --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ADMIN_API_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 You can also filter to a specific geo. Valid values are `global`, `us`, and `not_available`:
@@ -162,7 +162,7 @@ inference_geos[]=us&\
 group_by[]=model&\
 bucket_width=1d" \
   --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ADMIN_API_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 <Note>
@@ -182,7 +182,7 @@ group_by[]=model&\
 bucket_width=1d" \
   --header "anthropic-version: 2023-06-01" \
   --header "anthropic-beta: fast-mode-2026-02-01" \
-  --header "x-api-key: $ADMIN_API_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 You can also filter to a specific speed. Valid values are `standard` and `fast`:
@@ -196,7 +196,7 @@ group_by[]=model&\
 bucket_width=1d" \
   --header "anthropic-version: 2023-06-01" \
   --header "anthropic-beta: fast-mode-2026-02-01" \
-  --header "x-api-key: $ADMIN_API_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 <Note>
@@ -237,7 +237,7 @@ ending_at=2025-01-31T00:00:00Z&\
 group_by[]=workspace_id&\
 group_by[]=description" \
   --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ADMIN_API_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 ## Pagination
@@ -255,7 +255,7 @@ starting_at=2025-01-01T00:00:00Z&\
 ending_at=2025-01-31T00:00:00Z&\
 limit=7" \
   --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ADMIN_API_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
 # Response includes: "has_more": true, "next_page": "page_xyz..."
 
@@ -266,7 +266,7 @@ ending_at=2025-01-31T00:00:00Z&\
 limit=7&\
 page=page_xyz..." \
   --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ADMIN_API_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 ## Common use cases
@@ -306,7 +306,7 @@ Use the [Claude Code Analytics API](/docs/en/manage-claude/claude-code-analytics
 ## See also
 The Usage and Cost APIs can be used to help you deliver a better experience for your users, help you manage costs, and preserve your rate limit. Learn more about some of these other features:
 
-- [Admin API overview](/docs/en/manage-claude/overview)
+- [Admin API](/docs/en/manage-claude/admin-api)
 - [Admin API reference](/docs/en/api/admin)
 - [Pricing](/docs/en/about-claude/pricing)
 - [Prompt caching](/docs/en/build-with-claude/prompt-caching) - Optimize costs with caching

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 73b006ba485630b1b3334faa685df2747fcfacaafbc4570c0c3d24f39597589f
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: dbd5c8da0cc8733869d64400f5b7d1cc5555951a74c0781f20145ed632aa5785
 ---
 
 > ## Documentation Index
@@ -16,6 +16,10 @@ sha256: 73b006ba485630b1b3334faa685df2747fcfacaafbc4570c0c3d24f39597589f
 The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/getting-started/intro) is an open standard for connecting AI agents to external tools and data sources. With MCP, your agent can query databases, integrate with APIs like Slack and GitHub, and connect to other services without writing custom tool implementations.
 
 MCP servers can run as local processes, connect over HTTP, or execute directly within your SDK application.
+
+<Note>
+  This page covers MCP configuration for the Agent SDK. To add MCP servers to the Claude Code CLI so they load in every project, see [MCP installation scopes](/en/mcp#mcp-installation-scopes).
+</Note>
 
 ## Quickstart
 

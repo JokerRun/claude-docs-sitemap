@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 1a0a0a3c5e2ad71dfba531af05610860ece726c293fc1be948a9c558e663c662
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 63652e7021682f97176202e2205a72f049343a26fdc97049338be6dcccb3cc08
 ---
 
 ## Update
@@ -163,5 +163,7 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: user-profiles-2026-03-24' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{}'
+    -d '{
+          "external_id": "user_12345"
+        }'
 ```

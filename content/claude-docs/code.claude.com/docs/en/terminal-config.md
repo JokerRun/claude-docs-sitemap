@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: 512942eca69c7fe569fe475860e7b84594043172f56614590523d3db79f40c34
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 3a475013710a2c7f7651977357165b4cbed29541cce956b59ffdff3f7f1be869
 ---
 
 > ## Documentation Index
@@ -114,7 +114,7 @@ set -s extended-keys on
 set -as terminal-features 'xterm*:extkeys'
 ```
 
-The `allow-passthrough` line lets notifications and progress updates reach iTerm2, Ghostty, or Kitty instead of being swallowed by tmux. The `extended-keys` lines let tmux distinguish Shift+Enter from plain Enter so the newline shortcut works.
+The `allow-passthrough` line lets notifications and progress updates reach the outer terminal instead of being swallowed by tmux. The `extended-keys` lines let tmux distinguish Shift+Enter from plain Enter so the newline shortcut works.
 
 ## Match the color theme
 

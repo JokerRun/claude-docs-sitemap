@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 5a8185ee53667e943c29efc1bbe935342a3b6270cb18af6a03fd41a9a4a1ccc2
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 4759b2eb71f814733326158622ca1ee2097c98384f6b401cad46eed55dc84214
 ---
 
 # Sessions
@@ -1003,7 +1003,8 @@ curl https://api.anthropic.com/v1/sessions \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "agent": "agent_011CZkYpogX7uDKUyvBTophP",
-          "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW"
+          "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+          "title": "Order #1234 inquiry"
         }'
 ```
 
@@ -3695,7 +3696,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{}'
+    -d '{
+          "title": "Order #1234 inquiry"
+        }'
 ```
 
 ## Delete
@@ -20229,7 +20232,8 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
-          "type": "file"
+          "type": "file",
+          "mount_path": "/uploads/receipt.pdf"
         }'
 ```
 

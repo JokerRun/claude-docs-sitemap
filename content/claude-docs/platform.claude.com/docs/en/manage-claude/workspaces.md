@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workspaces
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 6f017c9c4cb374b5d20ae4f329dfc3a02dd452e215b0ef6cd00cb528bf7b1407
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 21ca043e38a88415900944acfc4557151ea5595b7d343cea4e0de073fa488542
 ---
 
 # Workspaces
@@ -51,7 +51,7 @@ The Workspace Billing role cannot be manually assigned. It's inherited from havi
 Only organization admins can create workspaces. Organization users and developers must be added to workspaces by an admin.
 </Note>
 
-### Via the Console
+### Using the Console
 
 Create and manage workspaces in the [Claude Console](/settings/workspaces).
 
@@ -120,9 +120,9 @@ To archive a workspace, click the ellipsis menu (**...**) and select **Archive**
 Archiving a workspace immediately revokes all API keys in that workspace. This action cannot be undone.
 </Warning>
 
-### Via the Admin API
+### Using the Admin API
 
-Programmatically manage workspaces using the [Admin API](/docs/en/manage-claude/overview).
+Programmatically manage workspaces using the [Admin API](/docs/en/manage-claude/admin-api).
 
 <Note>
 Admin API endpoints require an Admin API key (starting with `sk-ant-admin...`) that differs from standard API keys. Only organization members with the admin role can provision Admin API keys through the [Claude Console](/settings/admin-keys).
@@ -319,7 +319,7 @@ API keys persist in their current state as they are scoped to the organization a
 
 ## See also
 
-- [Admin API overview](/docs/en/manage-claude/overview)
+- [Admin API](/docs/en/manage-claude/admin-api)
 - [Admin API reference](/docs/en/api/admin)
 - [Rate limits](/docs/en/api/rate-limits)
 - [Usage and Cost API](/docs/en/manage-claude/usage-cost-api)

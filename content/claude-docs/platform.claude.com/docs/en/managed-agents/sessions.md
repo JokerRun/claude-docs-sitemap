@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/sessions
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: ae84d9adc1f55123bd85ad4d66699b9fe933a12f6ddd0ecd5d076ecb53705326
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 336beaa2070740c08963aa8e285a254a6f8627051ea33648add0df796ed82935
 ---
 
 # Start a session
@@ -140,7 +140,7 @@ To pin a session to a specific agent version, pass an object. This lets you cont
   {
       Agent = new BetaManagedAgentsAgentParams
       {
-          Type = "agent",
+          Type = Anthropic.Models.Beta.Sessions.Type.Agent,
           ID = agent.ID,
           Version = 1,
       },
@@ -187,7 +187,7 @@ To pin a session to a specific agent version, pass an object. This lets you cont
 </CodeGroup>
 
 <Tip>
-The agent defines how Claude behaves within the session, including the model, system prompt, tools, and MCP servers. See [Agent setup](/docs/en/managed-agents/agent-setup) for details.
+The agent defines how Claude behaves within the session, including the model, system prompt, tools, and MCP servers. See [Define your agent](/docs/en/managed-agents/agent-setup) for details.
 </Tip>
 
 ## MCP authentication through vaults
@@ -416,9 +416,9 @@ Sessions progress through these statuses:
 | Status | Description |
 |--------|-------------|
 | `idle` | Agent is waiting for input, including user messages or tool confirmations. Sessions start in `idle`. |
-| `running` | Agent is actively executing |
-| `rescheduling` | Transient error occurred, retrying automatically |
-| `terminated` | Session has ended due to an unrecoverable error |
+| `running` | Agent is actively executing. |
+| `rescheduling` | Transient error occurred, retrying automatically. |
+| `terminated` | Session has ended due to an unrecoverable error. |
 
 ## Other session operations
 

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 74f4dddaf7ce6d0220c573b97b3cf643c853c6d12dd99fd287d7c2b7dd2ad490
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 1bac63a579fbdd296998d1e8e175aa3f37f4680fb880254dda3bcca94fd0bcc9
 ---
 
-# Streaming Messages
+# Streaming messages
 
 ---
 
@@ -451,11 +451,11 @@ event: content_block_delta
 data: {"type": "content_block_delta", "index": 0, "delta": {"type": "signature_delta", "signature": "EqQBCgIYAhIM1gbcDa9GJwZA2b3hGgxBdjrkzLoky3dl1pkiMOYds..."}}
 ```
 
-## Full HTTP Stream response
+## Full HTTP stream response
 
 Use the [client SDKs](/docs/en/api/client-sdks) when using streaming mode. However, if you are building a direct API integration, you need to handle these events yourself.
 
-A stream response is comprised of:
+A stream response consists of:
 1. A `message_start` event
 2. Potentially multiple content blocks, each of which contains:
     - A `content_block_start` event
@@ -1138,7 +1138,7 @@ data: {"type":"message_stop"}
 
 ### Streaming request with extended thinking
 
-This request enables extended thinking with streaming to see Claude's step-by-step reasoning.
+This request enables extended thinking with streaming. The `display: "summarized"` setting streams a condensed summary of Claude's reasoning rather than the full chain of thought.
 
 <CodeGroup>
 ```bash cURL

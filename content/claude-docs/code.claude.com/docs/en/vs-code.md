@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: 91a1060cc5c86c997a203abe0f62c6cf4cdb19a1733f3962396ff1d9668a0d48
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 79275e082ef97734a76b1706fde65db6eeb72ddc03ff9f145764a92a14c581e8
 ---
 
 > ## Documentation Index
@@ -327,7 +327,7 @@ The extension has two types of settings:
 | `environmentVariables`            | `[]`      | Set environment variables for the Claude process. Use Claude Code settings instead for shared config.                                                                                                                                                                                                                                                               |
 | `disableLoginPrompt`              | `false`   | Skip authentication prompts (for third-party provider setups)                                                                                                                                                                                                                                                                                                       |
 | `allowDangerouslySkipPermissions` | `false`   | Adds [Auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) and Bypass permissions to the mode selector. Auto mode has [plan, admin, model, and provider requirements](/en/permission-modes#eliminate-prompts-with-auto-mode), so it may remain unavailable even with this toggle on. Use Bypass permissions only in sandboxes with no internet access. |
-| `claudeProcessWrapper`            | -         | Executable path used to launch the Claude process                                                                                                                                                                                                                                                                                                                   |
+| `claudeProcessWrapper`            | -         | Executable used to launch the Claude process. The bundled binary path is passed as an argument when present. Set this to a separately installed `claude` binary if the extension build doesn't include one for your platform.                                                                                                                                       |
 
 ## VS Code extension vs. Claude Code CLI
 

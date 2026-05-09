@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: f3c289f67fddf6d91653d6987350f9dc5d79cbcbdbbe10a144f6f546eaf7a59d
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 618e7bfe19c2cc3dbd2e1f2675dc4645432e1524ba163d35e0d848e79c91f663
 ---
 
 # Environments
@@ -318,7 +318,8 @@ curl https://api.anthropic.com/v1/environments \
                 "numpy"
               ]
             }
-          }
+          },
+          "description": "Python environment with data-analysis packages."
         }'
 ```
 
@@ -1029,22 +1030,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
-          "config": {
-            "type": "cloud",
-            "networking": {
-              "type": "limited",
-              "allow_package_managers": true,
-              "allowed_hosts": [
-                "api.example.com"
-              ]
-            },
-            "packages": {
-              "pip": [
-                "pandas",
-                "numpy"
-              ]
-            }
-          }
+          "description": "Python environment with data-analysis packages."
         }'
 ```
 

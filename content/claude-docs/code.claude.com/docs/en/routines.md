@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: b7acd7128124dc221b49362a1d6a655cc492c89295a75dc37d720f104023ae37
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: bfd650b5d42a24ee4aa9191106f521b0e7bce33f28643f6205f9b93a292c7759
 ---
 
 > ## Documentation Index
@@ -28,6 +28,8 @@ Each routine can have one or more triggers attached to it:
 A single routine can combine triggers. For example, a PR review routine can run nightly, trigger from a deploy script, and also react to every new PR.
 
 Routines are available on Pro, Max, Team, and Enterprise plans with [Claude Code on the web](/en/claude-code-on-the-web) enabled. Create and manage them at [claude.ai/code/routines](https://claude.ai/code/routines), or from the CLI with `/schedule`.
+
+Team and Enterprise admins can disable routines for all members with the Routines toggle at [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code). When disabled, existing routines stop running and members cannot create new ones.
 
 This page covers creating a routine, configuring each trigger type, managing runs, and how usage limits apply.
 

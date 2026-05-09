@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 365524f951f6d82b2b4b01f74ef3c5a65fe952c98a9d2dfa45d1226416bec45d
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 03dfc6638fc49249d1c5be379320146e040e15afab2595e26cdd2a14c2b9099f
 ---
 
 ## Update
@@ -125,5 +125,10 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{}'
+    -d '{
+          "display_name": "Example vault",
+          "metadata": {
+            "environment": "production"
+          }
+        }'
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 3f41c8f9676e3dfc8e1b33f8dad6396b7c5be3de5b72167843ecd11bd2817db3
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: fbbf323cf49535131583d51ea017958fd83c1a56766a9e6c9b57713d152ae421
 ---
 
 # Fine-grained tool streaming
@@ -306,7 +306,7 @@ for await (const event of stream) {
 </CodeGroup>
 
 <Tip>
-The Python and TypeScript SDKs provide higher-level stream helpers (`stream.get_final_message()`, `stream.finalMessage()`) that perform this accumulation for you. Use the manual pattern above only when you need to react to partial input before the block closes, such as rendering a progress indicator or starting a downstream request early.
+The Python and TypeScript SDKs provide higher-level stream helpers (`stream.get_final_message()`, `stream.finalMessage()`) that perform this accumulation for you. Use the preceding manual pattern only when you need to react to partial input before the block closes, such as rendering a progress indicator or starting a downstream request early.
 </Tip>
 
 ## Handling invalid JSON in tool responses

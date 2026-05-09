@@ -31,14 +31,14 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/file-check... | 2026-04-08 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/hosting | 2026-05-05 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-04-16 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-05-08 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/modifying-... | 2026-04-16 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/observability | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/overview | 2026-04-28 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/permissions | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/plugins | 2026-04-28 |  |
-| ... | _(~1609 more rows)_ | | |
+| ... | _(~1657 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

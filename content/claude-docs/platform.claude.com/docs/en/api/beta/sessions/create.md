@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 62222c57446e8cd8ca9e82e4028ab549ff39d73253d82a1e10d6c22909fcebe2
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 955c04186450b6a39648577f0cc3407dae7e0e90008b43e65f612b74da291c81
 ---
 
 ## Create
@@ -1001,6 +1001,7 @@ curl https://api.anthropic.com/v1/sessions \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "agent": "agent_011CZkYpogX7uDKUyvBTophP",
-          "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW"
+          "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+          "title": "Order #1234 inquiry"
         }'
 ```

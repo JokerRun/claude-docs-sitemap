@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 767bec5b328732032902238fa9097e6d6d59de5fd7daa64ee9157f9b3f6fe778
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: f8a9db4990f451a444079f9adf994852c4987e4320dc2c4793d2650f33bd8dd4
 ---
 
 # Handling stop reasons
@@ -219,37 +219,29 @@ if (response.stop_reason === "max_tokens") {
 ```
 
 ```csharp C# nocheck
-using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Anthropic;
 using Anthropic.Models.Messages;
 
-class Program
+AnthropicClient client = new();
+
+var parameters = new MessageCreateParams
 {
-    static async Task Main(string[] args)
+    Model = Model.ClaudeOpus4_7,
+    MaxTokens = 1024,
+    Messages = messages,
+    Tools = tools
+};
+
+var response = await client.Messages.Create(parameters);
+
+if (response.StopReason == "max_tokens")
+{
+    var lastBlock = response.Content.Last();
+    if (lastBlock.Type == "tool_use")
     {
-        AnthropicClient client = new();
-
-        var parameters = new MessageCreateParams
-        {
-            Model = Model.ClaudeOpus4_7,
-            MaxTokens = 1024,
-            Messages = messages,
-            Tools = tools
-        };
-
-        var response = await client.Messages.Create(parameters);
-
-        if (response.StopReason == "max_tokens")
-        {
-            var lastBlock = response.Content.Last();
-            if (lastBlock.Type == "tool_use")
-            {
-                parameters.MaxTokens = 4096;
-                response = await client.Messages.Create(parameters);
-            }
-        }
+        parameters.MaxTokens = 4096;
+        response = await client.Messages.Create(parameters);
     }
 }
 ```
@@ -475,6 +467,7 @@ if response.stop_reason == "pause_turn":
     ]
     continuation = client.messages.create(
         model="claude-opus-4-7",
+        max_tokens=1024,
         messages=messages,
         tools=[{"type": "web_search_20250305", "name": "web_search"}],
     )
@@ -515,7 +508,7 @@ Claude stopped because it reached the model's context window limit. This allows 
 # Request with maximum tokens to get as much as possible
 response = client.messages.create(
     model="claude-opus-4-7",
-    max_tokens=64000,  # Practical non-streaming ceiling (Opus 4.7 supports 128K with streaming)
+    max_tokens=20000,  # Python SDK requires streaming for max_tokens above ~21k (Opus 4.7 supports 128k with streaming)
     messages=[
         {"role": "user", "content": "Large input that uses most of context window..."}
     ],
@@ -598,7 +591,7 @@ def handle_server_tool_conversation(client, user_query, tools, max_continuations
 
     for _ in range(max_continuations):
         response = client.messages.create(
-            model="claude-opus-4-7", messages=messages, tools=tools
+            model="claude-opus-4-7", max_tokens=1024, messages=messages, tools=tools
         )
 
         if response.stop_reason != "pause_turn":
@@ -646,7 +639,7 @@ try:
     if response.stop_reason == "max_tokens":
         print("Response was truncated")
 
-except anthropic.APIError as e:
+except anthropic.APIStatusError as e:
     # Handle actual errors
     if e.status_code == 429:
         print("Rate limit exceeded")

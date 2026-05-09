@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: f7986c151490aea486b1dd88e2f561809088dbcdc8c4b4bd9a7690fed462532a
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: c2f9924ac2143965eec4e40eb3d0f0a6b612154f6cbfe9f142ff0969436361c8
 ---
 
 # Search results
@@ -930,7 +930,7 @@ response = client.messages.create(
     ],
 )
 
-print(response.model_dump_json(indent=2))
+print(response)
 ```
 
 ```typescript TypeScript hidelines={1..2}

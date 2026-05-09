@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 92d2e98216ef678af27fd47dacfc3fbd87d0225349a2cb8730a79c6edc48c53d
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 46f3adc53777e385a32acef79313a222c5e7db1cbc54ec56b745c2a670a90cb6
 ---
 
 ## Update
@@ -304,21 +304,6 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
-          "config": {
-            "type": "cloud",
-            "networking": {
-              "type": "limited",
-              "allow_package_managers": true,
-              "allowed_hosts": [
-                "api.example.com"
-              ]
-            },
-            "packages": {
-              "pip": [
-                "pandas",
-                "numpy"
-              ]
-            }
-          }
+          "description": "Python environment with data-analysis packages."
         }'
 ```

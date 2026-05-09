@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: c86e90bde9cbf9ccf8d2264eefb3bc0b25fd92d61e2349864b24e6d57406b5e9
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: b18d6ba1443afa76b9df5f52cc4d7f414da6571b8168bb44bc8f2baf00c107d5
 ---
 
 ## Create
@@ -316,6 +316,7 @@ curl https://api.anthropic.com/v1/environments \
                 "numpy"
               ]
             }
-          }
+          },
+          "description": "Python environment with data-analysis packages."
         }'
 ```

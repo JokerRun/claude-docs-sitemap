@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 4bf5b1e3e7ef69584a4195ca8d37f8913665db3507695135f23df4b8c0a83794
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 8e345b2a82f2aea4ea4265b6d8989983f67e7ee99c31b0fba8812e4643711372
 ---
 
 # Streaming refusals
@@ -38,7 +38,7 @@ No additional refusal message is included. You must handle the response and prov
 
 ## Reset context after refusal
 
-When you receive **`stop_reason`: `refusal`**, you must reset the conversation context **by removing or updating the turn that was refused** before continuing. Attempting to continue without resetting will result in continued refusals.
+When you receive **`stop_reason`: `refusal`**, you must reset the conversation context before continuing. You can remove or rephrase the turn that triggered the refusal, or clear the conversation history entirely. Attempting to continue without resetting will result in continued refusals.
 
 <Note>
 Usage metrics are still provided in the response for billing purposes, even when the response is refused.

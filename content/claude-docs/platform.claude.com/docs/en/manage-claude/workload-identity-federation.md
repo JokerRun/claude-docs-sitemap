@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workload-identity-federation
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 2c28b73c2c33b8c4f1abe3930a0a034feb51af42b5c81ae0cb1ed52edfbde9d9
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: be47faab8653c26b1716bc8f548527570d463cf4a45d0c57e04197342e34100c
 ---
 
 # Workload Identity Federation
@@ -379,7 +379,7 @@ Each guide covers where the JWT comes from on that platform, what its claims loo
     Self-managed and on-premises clusters using projected service-account tokens.
   </Card>
   <Card title="SPIFFE" icon="fingerprint" href="/docs/en/manage-claude/wif-providers/spiffe">
-    SPIRE-issued workloads using JWT-SVIDs and the OIDC Discovery Provider.
+    Workloads with SPIFFE JWT-SVIDs from SPIRE or another conformant issuer.
   </Card>
   <Card title="Okta" icon="lock" href="/docs/en/manage-claude/wif-providers/okta">
     Okta service applications using client-credentials flow.

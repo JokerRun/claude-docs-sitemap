@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 53f9e32a5de5ebd15d031c58d1461037f5410027ac4aa559fbf989180f1c5b4c
+fetched_at: 2026-05-09T03:13:52.260309Z
+sha256: 377a5a8426c92c6239f38b7f3dd0a175cc77dd0755a2ffe20a5c033b67b8e1dd
 ---
 
 ## Create
@@ -159,5 +159,8 @@ curl https://api.anthropic.com/v1/user_profiles \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: user-profiles-2026-03-24' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -d '{}'
+    -d '{
+          "external_id": "user_12345",
+          "metadata": {}
+        }'
 ```
