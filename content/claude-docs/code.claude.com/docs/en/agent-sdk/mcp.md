@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: dbd5c8da0cc8733869d64400f5b7d1cc5555951a74c0781f20145ed632aa5785
+fetched_at: 2026-05-10T03:14:14.320994Z
+sha256: ae0ee2fcfdd1a0408e095da6c95b377161dc1f227768194235cf7767ea096856
 ---
 
 > ## Documentation Index
@@ -316,7 +316,7 @@ Use HTTP or SSE for cloud-hosted MCP servers and remote APIs:
   </Tab>
 </Tabs>
 
-For HTTP (non-streaming), use `"type": "http"` instead.
+For the streamable HTTP transport, use `"type": "http"` instead. In `.mcp.json` and other JSON config files, `"streamable-http"` is accepted as an alias for `"http"`. The programmatic `mcpServers` option accepts only `"http"`.
 
 ### SDK MCP servers
 

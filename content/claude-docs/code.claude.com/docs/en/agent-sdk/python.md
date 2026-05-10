@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: 296213ae280669c005d61fa5836318b49fbd997817756a8c6c765b25ef1a1c76
+fetched_at: 2026-05-10T03:14:14.320994Z
+sha256: 73151a1d2c31c2e6167da808dda7033a2b254b12847e164e9c128caa32c26197
 ---
 
 > ## Documentation Index
@@ -2341,7 +2341,9 @@ Asks the user clarifying questions during execution. See [Handle approvals and u
             "multiSelect": bool,  # Set to true to allow multiple selections
         }
     ],
-    "answers": dict | None,  # User answers populated by the permission system
+    "answers": dict[str, str | list[str]] | None,
+    # User answers populated by the permission system. Multi-select
+    # answers may be a list of labels or a comma-joined string
 }
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/user-input
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 9696016a059219ef0e927f0734a96e2e37008b991a7baa88952972fd314826f2
+fetched_at: 2026-05-10T03:14:14.320994Z
+sha256: a0d0a52d94421f751c7edf85b3798b62caa9907f548c050e1bcf6709c95ba834
 ---
 
 > ## Documentation Index
@@ -481,7 +481,7 @@ The following steps show how to handle clarifying questions:
     | `question` field (e.g., `"How should I format the output?"`) | Key    |
     | Selected option's `label` field (e.g., `"Summary"`)          | Value  |
 
-    For multi-select questions, join multiple labels with `", "`. If you [support free-text input](#support-free-text-input), use the user's custom text as the value.
+    For multi-select questions, pass an array of labels or join them with `", "`. If you [support free-text input](#support-free-text-input), use the user's custom text as the value.
 
     <CodeGroup>
       ```python Python theme={null}
@@ -490,7 +490,7 @@ The following steps show how to handle clarifying questions:
               "questions": input_data.get("questions", []),
               "answers": {
                   "How should I format the output?": "Summary",
-                  "Which sections should I include?": "Introduction, Conclusion",
+                  "Which sections should I include?": ["Introduction", "Conclusion"],
               },
           }
       )
@@ -591,7 +591,7 @@ Return an `answers` object mapping each question's `question` field to the selec
 | `questions` | Pass through the original questions array (required for tool processing) |
 | `answers`   | Object where keys are question text and values are selected labels       |
 
-For multi-select questions, join multiple labels with `", "`. For free-text input, use the user's custom text directly.
+For multi-select questions, pass an array of labels or join them with `", "`. For free-text input, use the user's custom text directly.
 
 ```json theme={null}
 {
@@ -600,7 +600,7 @@ For multi-select questions, join multiple labels with `", "`. For free-text inpu
   ],
   "answers": {
     "How should I format the output?": "Summary",
-    "Which sections should I include?": "Introduction, Conclusion"
+    "Which sections should I include?": ["Introduction", "Conclusion"]
   }
 }
 ```

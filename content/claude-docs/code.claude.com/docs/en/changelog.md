@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 8bf603aee83ac5ba73e8e5dd0c3c1355904259d81a4efb4b900b4176bef8bbd6
+fetched_at: 2026-05-10T03:14:14.320994Z
+sha256: 816a2934ae5a97fe59c1e1c87fec71748a5dd16db4cb56406b19568ad8d48068
 ---
 
 > ## Documentation Index
@@ -16,6 +16,10 @@ sha256: 8bf603aee83ac5ba73e8e5dd0c3c1355904259d81a4efb4b900b4176bef8bbd6
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.138" description="May 9, 2026">
+  * Internal fixes
+</Update>
 
 <Update label="2.1.137" description="May 9, 2026">
   * \[VSCode] Fixed extension failing to activate on Windows

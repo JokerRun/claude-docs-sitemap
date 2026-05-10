@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 8c7769654a402ca8416a5fad002713f12fb74e568639242f59a22b26dd2675c0
+fetched_at: 2026-05-10T03:14:14.320994Z
+sha256: aad6e7220f31fe7f6a7511d1ff0815615e2ea108a2737a1d309d794b528ac814
 ---
 
 > ## Documentation Index
@@ -216,6 +216,13 @@ Examples:
 * `Read(~/.zshrc)`: reads your home directory's `.zshrc`
 * `Edit(//tmp/scratch.txt)`: edits the absolute path `/tmp/scratch.txt`
 * `Read(src/**)`: reads from `<current-directory>/src/`
+
+A rule only matches files under its anchor, so the anchor determines how far a deny rule reaches. Bare filenames follow gitignore semantics and match at any depth, so `Read(.env)` and `Read(**/.env)` are equivalent:
+
+| Deny rule                       | Blocks                                       | Does not block                                       |
+| ------------------------------- | -------------------------------------------- | ---------------------------------------------------- |
+| `Read(.env)` or `Read(**/.env)` | any `.env` at or under the current directory | `.env` in a parent directory or another project      |
+| `Read(//**/.env)`               | any `.env` anywhere on the filesystem        | nothing; the rule is anchored at the filesystem root |
 
 <Note>
   In gitignore patterns, `*` matches files in a single directory while `**` matches recursively across directories. To allow all file access, use just the tool name without parentheses: `Read`, `Edit`, or `Write`.

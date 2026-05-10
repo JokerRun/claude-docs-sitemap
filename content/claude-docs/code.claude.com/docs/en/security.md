@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 42f8cc6d3d469ee16379ef7a3f0df7f06f4f320ff5dd27f2d8ead1396167255f
+fetched_at: 2026-05-10T03:14:14.320994Z
+sha256: dcec874491cafd8b166513c43bf557924dd23ba15e1ef1575f7acf7821e6449b
 ---
 
 > ## Documentation Index
@@ -66,7 +66,7 @@ For full details, please review our [Commercial Terms of Service](https://www.an
 * **Network request approval**: Tools that make network requests require user approval by default
 * **Isolated context windows**: Web fetch uses a separate context window to avoid injecting potentially malicious prompts
 * **Trust verification**: First-time codebase runs and new MCP servers require trust verification
-  * Note: Trust verification is disabled when running non-interactively with the `-p` flag
+  * Note: Trust verification is disabled when running non-interactively with the `-p` flag. The exception is [`--worktree`](/en/worktrees), which still requires that trust has been accepted for the directory
 * **Command injection detection**: Suspicious bash commands require manual approval even if previously allowlisted
 * **Fail-closed matching**: Unmatched commands default to requiring manual approval
 * **Natural language descriptions**: Complex bash commands include explanations for user understanding

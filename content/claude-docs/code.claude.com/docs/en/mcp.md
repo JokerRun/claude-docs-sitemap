@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: 23be4c7ef97c6f90522df1c2821164bd5dfe92d90d8bb014ed4cf2e5463675a3
+fetched_at: 2026-05-10T03:14:14.320994Z
+sha256: 9edd81ccc1290397b5a4b70bf3cab782a79e52dd244705fdfb0ebdaeae5921d1
 ---
 
 > ## Documentation Index
@@ -271,6 +271,8 @@ claude mcp add --transport http notion https://mcp.notion.com/mcp
 claude mcp add --transport http secure-api https://api.example.com/mcp \
   --header "Authorization: Bearer your-token"
 ```
+
+When configuring MCP servers via JSON in `.mcp.json`, `~/.claude.json`, or `claude mcp add-json`, the `type` field accepts `streamable-http` as an alias for `http`. The MCP specification uses the name `streamable-http` for this transport, so configurations copied from server documentation work without modification.
 
 ### Option 2: Add a remote SSE server
 
