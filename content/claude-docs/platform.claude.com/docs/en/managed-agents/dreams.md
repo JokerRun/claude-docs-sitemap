@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/dreams
-fetched_at: 2026-05-07T03:15:02.178755Z
-sha256: 6b82842a0be49ebfa81b401f7dc853920ad9dd07382bd149628f2a7d02817f7b
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 294c7473078795942463ccd0dc3047c7700a0494187d1b0e1467b834600bba91
 ---
 
 # Dreams
@@ -61,7 +61,7 @@ echo "$dream_id"  # drm_01...
 
   
 ````bash
-dream_id=$(ant beta:dreams create --transform id --format yaml <<YAML
+dream_id=$(ant beta:dreams create --transform id --raw-output <<YAML
 inputs:
   - type: memory_store
     memory_store_id: $store_id

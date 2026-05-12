@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/user-input
-fetched_at: 2026-05-10T03:14:14.320994Z
-sha256: a0d0a52d94421f751c7edf85b3798b62caa9907f548c050e1bcf6709c95ba834
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 8ced37fd71e862af16a2e7816ebbe7691c35e8b1746cd9157893060871ec9ec2
 ---
 
 > ## Documentation Index
@@ -19,7 +19,7 @@ Claude requests user input in two situations: when it needs **permission to use 
 
 For clarifying questions, Claude generates the questions and options. Your role is to present them to users and return their selections. You can't add your own questions to this flow; if you need to ask users something yourself, do that separately in your application logic.
 
-The callback can stay pending indefinitely. Execution remains paused until your callback returns, and the SDK only cancels the wait when the query itself is cancelled. If a user might take longer to respond than your process can reasonably stay running, the TypeScript SDK supports the [`defer` hook decision](/en/hooks#defer-a-tool-call-for-later), which lets the process exit and resume later from the persisted session; this option is not available in the Python SDK.
+The callback can stay pending indefinitely. Execution remains paused until your callback returns, and the SDK only cancels the wait when the query itself is cancelled. If a user might take longer to respond than your process can reasonably stay running, return the [`defer` hook decision](/en/hooks#defer-a-tool-call-for-later), which lets the process exit and resume later from the persisted session.
 
 This guide shows you how to detect each type of request and respond appropriately.
 

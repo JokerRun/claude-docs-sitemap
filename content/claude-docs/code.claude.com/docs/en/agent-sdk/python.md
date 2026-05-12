@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-05-10T03:14:14.320994Z
-sha256: 73151a1d2c31c2e6167da808dda7033a2b254b12847e164e9c128caa32c26197
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 266992616387405770e83e8be10f10af5f37ccbea44e283fdbee14b5d01f007d
 ---
 
 > ## Documentation Index
@@ -2615,10 +2615,12 @@ Runs a background script and delivers each stdout line to Claude as an event so 
 
 ```python theme={null}
 {
-    "response": str,  # AI model's response to the prompt
+    "bytes": int,  # Size of the fetched content in bytes
+    "code": int,  # HTTP response code
+    "codeText": str,  # HTTP response code text
+    "result": str,  # Processed result from applying the prompt to the content
+    "durationMs": int,  # Time to fetch and process the content, in milliseconds
     "url": str,  # URL that was fetched
-    "final_url": str | None,  # Final URL after redirects
-    "status_code": int | None,  # HTTP status code
 }
 ```
 
@@ -2640,9 +2642,9 @@ Runs a background script and delivers each stdout line to Claude as an event so 
 
 ```python theme={null}
 {
-    "results": [{"title": str, "url": str, "snippet": str, "metadata": dict | None}],
-    "total_results": int,
-    "query": str,
+    "query": str,  # The search query
+    "results": list[str | {"tool_use_id": str, "content": list[{"title": str, "url": str}]}],
+    "durationSeconds": float,  # Search duration in seconds
 }
 ```
 

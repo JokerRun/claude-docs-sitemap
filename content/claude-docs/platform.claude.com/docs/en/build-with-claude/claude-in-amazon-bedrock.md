@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: f192838b1deb505e1f9380d1bba3ca0084f96a274f2080e671ca78c2ae37a68b
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 9f0395ee1d22376e39fe28b9f3b3ef295d29bf64448c0a2a733852f60a6a53be
 ---
 
 # Claude in Amazon Bedrock
@@ -14,7 +14,7 @@ Access Claude models through Amazon Bedrock with AWS-native authentication, bill
 This guide walks you through setting up and making API calls to Claude in Amazon Bedrock. Claude in Amazon Bedrock runs on AWS-managed infrastructure with zero operator access (Anthropic personnel have no access to the inference infrastructure), letting you build sensitive applications entirely inside the AWS security boundary while using the same Messages API shape you use with Anthropic's first-party API.
 
 <Note>
-This page covers Claude in Amazon Bedrock, which serves Claude through the Messages API at `/anthropic/v1/messages` on AWS-managed infrastructure. The previous Amazon Bedrock integration (the `InvokeModel` and `Converse` APIs with ARN-versioned model identifiers) remains available and is documented at [Claude on Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy).
+This page covers Claude in Amazon Bedrock, which serves Claude through the Messages API at `/anthropic/v1/messages` on AWS-managed infrastructure. The previous Amazon Bedrock integration (the `InvokeModel` and `Converse` APIs with ARN-versioned model identifiers) remains available and is documented at [Claude on Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy). For an Anthropic-operated alternative on AWS with AWS Marketplace billing and typically same-day feature access, see [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws).
 </Note>
 
 ## Access
@@ -342,13 +342,13 @@ Model IDs in Claude in Amazon Bedrock carry an `anthropic.` provider prefix. Mod
 | Claude Haiku 4.5      | `anthropic.claude-haiku-4-5`      | Open                                                                       |
 | Claude Mythos Preview | `anthropic.claude-mythos-preview` | Invitation only ([Project Glasswing](https://anthropic.com/glasswing))     |
 
-## Feature availability
+## Feature support
 
 Claude in Amazon Bedrock supports features that run inside the model. Features that require Anthropic-operated infrastructure are not available.
 
 **Supported:**
 
-- Messages API (`/v1/messages`)
+- Messages API (`/anthropic/v1/messages`)
 - Prompt caching
 - Extended thinking
 - Tool use (client-defined tools)
@@ -411,7 +411,7 @@ Data handling for this offering is governed by Amazon Bedrock. For details, see 
 
 Zero data retention (ZDR) is available. To enable ZDR for your account, contact AWS support.
 
-## Observability
+## Monitoring and logging
 
 Claude in Amazon Bedrock emits logs to both CloudWatch and CloudTrail. Anthropic recommends retaining activity logs on at least a 30-day rolling basis to understand usage patterns and investigate potential issues.
 

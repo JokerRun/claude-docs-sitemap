@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/tool-search
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 4f082773c04e674bbb2361928e5110fe646b49996b8a8640732cbed1737c2ca5
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: d259dcd4ae369bea088ac5271e49ebd6f3d37c8b324df25e0071e17a42c28797
 ---
 
 > ## Documentation Index
@@ -36,12 +36,12 @@ For details on the underlying API mechanism, see [Tool search in the API](https:
 
 ## Configure tool search
 
-By default, tool search is always on. You can change this with the `ENABLE_TOOL_SEARCH` environment variable:
+Tool search is on by default. It is disabled by default on Vertex AI, which does not accept the tool search beta header, and when `ANTHROPIC_BASE_URL` points to a non-first-party host, since most proxies do not forward `tool_reference` blocks. You can override this with the `ENABLE_TOOL_SEARCH` environment variable:
 
 | Value    | Behavior                                                                                                                                                                                                 |
 | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| (unset)  | Tool search is always on. Tool definitions are never loaded into context. This is the default.                                                                                                           |
-| `true`   | Same as unset.                                                                                                                                                                                           |
+| (unset)  | Tool search is on. Tool definitions are deferred and discovered on demand. Falls back to loading upfront on Vertex AI or a non-first-party `ANTHROPIC_BASE_URL`.                                         |
+| `true`   | Tool search is always on. The SDK sends the beta header even on Vertex AI and through proxies. Requests fail if the backend or proxy does not support `tool_reference` blocks.                           |
 | `auto`   | Checks the combined token count of all tool definitions against the model's context window. If they exceed 10%, tool search activates. If they're under 10%, all tools are loaded into context normally. |
 | `auto:N` | Same as `auto` with a custom percentage. `auto:5` activates when tool definitions exceed 5% of the context window. Lower values activate sooner.                                                         |
 | `false`  | Tool search is off. All tool definitions are loaded into context on every turn.                                                                                                                          |

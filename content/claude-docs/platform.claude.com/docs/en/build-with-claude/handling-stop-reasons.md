@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: f8a9db4990f451a444079f9adf994852c4987e4320dc2c4793d2650f33bd8dd4
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 9dc469fe3d217695846286686971711b6803932625b6be685d93585630d7665a
 ---
 
 # Handling stop reasons
@@ -497,10 +497,6 @@ if response.stop_reason == "refusal":
 If you encounter `refusal` stop reasons frequently while using Claude Sonnet 4.5 or Opus 4.1, you can try updating your API calls to use Haiku 4.5 (`claude-haiku-4-5-20251001`), which has different usage restrictions. Learn more about [understanding Sonnet 4.5's API safety filters](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
 </Tip>
 
-<Note>
-To learn more about refusals triggered by API safety filters for Claude Sonnet 4.5, see [Understanding Sonnet 4.5's API Safety Filters](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
-</Note>
-
 ### model_context_window_exceeded
 Claude stopped because it reached the model's context window limit. This allows you to request the maximum possible tokens without knowing the exact input size.
 
@@ -685,7 +681,7 @@ def complete_tool_workflow(client, user_query, tools):
 
     while True:
         response = client.messages.create(
-            model="claude-opus-4-7", messages=messages, tools=tools
+            model="claude-opus-4-7", max_tokens=1024, messages=messages, tools=tools
         )
 
         if response.stop_reason == "tool_use":
@@ -729,7 +725,7 @@ def get_complete_response(client, prompt, max_attempts=3):
 
 With the `model_context_window_exceeded` stop reason, you can request the maximum possible tokens without calculating input size:
 
-```python nocheck
+```python
 def get_max_possible_tokens(client, prompt):
     """
     Get as many tokens as possible within the model's context window
@@ -738,7 +734,7 @@ def get_max_possible_tokens(client, prompt):
     response = client.messages.create(
         model="claude-opus-4-7",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=64000,  # Practical non-streaming ceiling (Opus 4.7 supports 128K with streaming)
+        max_tokens=20000,  # Python SDK requires streaming for max_tokens above ~21k
     )
 
     if response.stop_reason == "model_context_window_exceeded":

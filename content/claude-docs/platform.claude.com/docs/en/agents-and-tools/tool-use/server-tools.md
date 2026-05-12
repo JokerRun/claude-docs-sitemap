@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: c13eb821bff2b08ae02a0f4cc174a3a9168ae2d8ccb13ef873eca74662a7dc6d
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: f0f7ee29e7419659030e8f64ad538b94695e58aaa20c23146d926b58f8a71ffe
 ---
 
 # Server tools
@@ -415,7 +415,7 @@ When handling `pause_turn`:
 
 ## ZDR and allowed_callers
 
-The basic versions of web search (`web_search_20250305`) and web fetch (`web_fetch_20250910`) are eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/zero-data-retention).
+The basic versions of web search (`web_search_20250305`) and web fetch (`web_fetch_20250910`) are eligible for [Zero Data Retention (ZDR)](/docs/en/manage-claude/api-and-data-retention).
 
 The `_20260209` versions with dynamic filtering are **not** ZDR-eligible by default because dynamic filtering relies on code execution internally.
 
@@ -432,7 +432,7 @@ To use a `_20260209` server tool with ZDR, disable dynamic filtering by setting 
 This restricts the tool to direct invocation only, bypassing the internal code execution step.
 
 <Note>
-While the web fetch tool itself is ZDR-eligible, website publishers may retain any parameters passed to the URL if Claude fetches content from their site.
+Even when web fetch is used in a ZDR-eligible configuration, website publishers may retain any parameters passed to the URL if Claude fetches content from their site.
 </Note>
 
 ## Domain filtering
@@ -456,7 +456,7 @@ When using domain filters:
 Invalid domain formats return an `invalid_tool_input` tool error.
 
 <Note>
-Request-level domain restrictions must be compatible with organization-level domain restrictions configured in the Console. Request-level domains can only further restrict domains, not override or expand beyond the organization-level list. If your request includes domains that conflict with organization settings, the API returns a validation error.
+Request-level domain restrictions must be compatible with organization-level domain restrictions configured in Claude Console. Request-level domains can only further restrict domains, not override or expand beyond the organization-level list. If your request includes domains that conflict with organization settings, the API returns a validation error.
 </Note>
 
 <Warning>

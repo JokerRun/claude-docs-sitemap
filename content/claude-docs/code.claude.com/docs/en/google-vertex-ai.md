@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: 52c878fc6d87de413c8b8af6a8fa8fff5517aa0802d363891a0f1b664bef2876
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: fa78c40024979190a897586c819ea701f7b974d261046ebf5911a10a4ac2ed91
 ---
 
 > ## Documentation Index
@@ -209,7 +209,7 @@ Most model versions have a corresponding `VERTEX_REGION_CLAUDE_*` variable. See 
 
 [Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) is enabled automatically. To disable it, set `DISABLE_PROMPT_CACHING=1`. To request a 1-hour cache TTL instead of the 5-minute default, set `ENABLE_PROMPT_CACHING_1H=1`; cache writes with a 1-hour TTL are billed at a higher rate. For heightened rate limits, contact Google Cloud support. When using Vertex AI, the `/login` and `/logout` commands are disabled since authentication is handled through Google Cloud credentials.
 
-[MCP tool search](/en/mcp#scale-with-mcp-tool-search) is disabled by default on Vertex AI because the endpoint does not accept the required beta header. All MCP tool definitions load upfront instead. To opt in, set `ENABLE_TOOL_SEARCH=true`.
+[MCP tool search](/en/mcp#scale-with-mcp-tool-search) is disabled by default on Vertex AI because the endpoint does not accept the required beta header. All MCP tool definitions load upfront instead. Setting `ENABLE_TOOL_SEARCH=true` forces Claude Code to send the header anyway, which causes Vertex AI to reject requests.
 
 ### 5. Pin model versions
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-05-03T03:13:42.903452Z
-sha256: 83d04f2a5e3caaa59e68065c424d8d0c0ae58b271ec532017026d8002b2db7ea
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: a5d962b7f833c2e7b40cb897ec1d2dbe2d88c48cb8ca737457eed8885cec57f2
 ---
 
 > ## Documentation Index
@@ -181,7 +181,7 @@ Learn more: [Run Claude Code programmatically](/en/headless)
 
 ### Output style
 
-A configuration that modifies Claude's system prompt to change response behavior, tone, or format. Output styles turn off the software-engineering-specific parts of the default system prompt, unlike [CLAUDE.md](#claude-md) which is delivered as a user message following the system prompt. Built-in styles include Default, Explanatory, and Learning.
+A configuration that modifies Claude's system prompt to change response behavior, tone, or format. Output styles turn off the software-engineering-specific parts of the default system prompt, unlike [CLAUDE.md](#claude-md) which is delivered as a user message following the system prompt. Built-in styles include Default, Proactive, Explanatory, and Learning.
 
 Learn more: [Output styles](/en/output-styles)
 
@@ -292,6 +292,12 @@ Learn more: [From web to terminal](/en/claude-code-on-the-web#from-web-to-termin
 An action Claude can take: read a file, edit code, run a shell command, search the web, spawn a subagent. Tools are what make Claude Code agentic. Without them, Claude can only respond with text. Each tool use returns a result that informs Claude's next decision in the [agentic loop](#agentic-loop).
 
 Learn more: [Tools available to Claude](/en/tools-reference)
+
+### Turn
+
+One complete response from Claude within a [session](#session). A turn begins when you send a message and ends when Claude finishes responding, with any number of [tool](#tool) calls in between. [Stop hooks](#hook) fire at the end of each turn. A session consists of many turns, and the [agentic loop](#agentic-loop) describes what happens inside one.
+
+Learn more: [How Claude Code works](/en/how-claude-code-works#the-agentic-loop)
 
 ## W
 

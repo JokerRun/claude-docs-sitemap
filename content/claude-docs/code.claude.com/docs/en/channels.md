@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: fe44078bd684bed6915fa246edaf85ae9d48faa81766cd09aa8f9a3fa61b31d3
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: e586c028ab514a70413eaf4fe1fb654b9b1ccbc22af80a092bbb1161367632c4
 ---
 
 > ## Documentation Index
@@ -273,6 +273,8 @@ To try the fakechat demo, you'll need:
 </Steps>
 
 If Claude hits a permission prompt while you're away from the terminal, the session pauses until you respond. Channel servers that declare the [permission relay capability](/en/channels-reference#relay-permission-prompts) can forward these prompts to you so you can approve or deny remotely. For unattended use, [`--dangerously-skip-permissions`](/en/permission-modes#skip-all-checks-with-bypasspermissions-mode) bypasses prompts entirely, but only use it in environments you trust.
+
+When you run channels in non-interactive mode with `-p`, tools that need terminal input, such as multiple-choice questions and plan mode approval, are disabled so the session never stalls waiting for input.
 
 ## Security
 

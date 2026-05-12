@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-05-07T03:15:02.178755Z
-sha256: e6e8ae62c55041e8b035508bcbdd5ee936605b964937d50b7d3288d8d2a5dff9
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: ad69b395eb602914a0939ba385c2fabe6b88a19925154c0ce0f582b31699c02d
 ---
 
 # Authenticate with vaults
@@ -50,7 +50,7 @@ echo "$vault_id"  # "vlt_01ABC..."
 VAULT_ID=$(ant beta:vaults create \
   --display-name "Alice" \
   --metadata '{external_user_id: usr_abc123}' \
-  --transform id --format yaml)
+  --transform id --raw-output)
 ````
 
   
@@ -186,7 +186,7 @@ EOF
 CREDENTIAL_ID=$(ant beta:vaults:credentials create \
   --vault-id "$VAULT_ID" \
   --display-name "Alice's Slack" \
-  --transform id --format yaml <<'EOF'
+  --transform id --raw-output <<'EOF'
 auth:
   type: mcp_oauth
   mcp_server_url: https://mcp.slack.com/mcp
@@ -553,7 +553,7 @@ SESSION_ID=$(ant beta:sessions create \
   --environment-id "$ENVIRONMENT_ID" \
   --vault-id "$VAULT_ID" \
   --title "Alice's Slack digest" \
-  --transform id --format yaml)
+  --transform id --raw-output)
 ````
 
   

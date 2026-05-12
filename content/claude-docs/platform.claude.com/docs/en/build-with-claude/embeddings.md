@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/embeddings
-fetched_at: 2026-04-22T03:11:35.366211Z
-sha256: bf8288b9004db8bd6da1d1681c39ae9c9f302df2086aebbbc0fee0e522742490
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 922bcf41f17c9c57ce7ad3288ecf9e1de83e637e1c8ff0bb18f2ff7ceba10c4a
 ---
 
 # Embeddings
@@ -202,7 +202,7 @@ retrieved_id = np.argmax(similarities)
 print(documents[retrieved_id])
 ```
 
-Note that `input_type="document"` and `input_type="query"` are used for embedding the document and query, respectively. More specification can be found in the [Voyage Python package section](/docs/en/build-with-claude/embeddings#voyage-python-package).
+Note that `input_type="document"` and `input_type="query"` are used for embedding the document and query, respectively. More specification can be found in [Voyage Python library](/docs/en/build-with-claude/embeddings#voyage-python-library).
 
 The output would be the 5th document, which is indeed the most relevant to the query:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: b9bf4d3de234118018e643c372ff4904a1d63302d61f86edc680f4f7ae5d66f2
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: ce67dd38f41fb9b281ebb28dbfbbc0b154676e0687cb2e4a4bceefa7f86aacd0
 ---
 
 # Vision
@@ -39,7 +39,7 @@ The maximal number of images per message or request is:
 The maximal dimensions per image are 8000x8000 px. If you submit more than 20 images in one API request, this limit is reduced to 2000x2000 px.
 
 <Note>
-While the API supports up to 600 images per request, [request size limits](/docs/en/api/overview#request-size-limits) (32&nbsp;MB for standard endpoints; lower on some third-party platforms) can be reached first. For many images, consider uploading with the [Files API](#files-api-image-example) and referencing by `file_id` to keep request payloads small.
+While the API supports up to 600 images per request, [request size limits](/docs/en/api/overview#request-size-limits) (32&nbsp;MB for standard endpoints; lower on some partner-operated platforms, for example, Amazon Bedrock and Vertex AI) can be reached first. For many images, consider uploading with the [Files API](#files-api-image-example) and referencing by `file_id` to keep request payloads small.
 
 Even when using the Files API, requests with many large images can fail before reaching the 600-image count. Reduce image dimensions or file sizes (for example, by downsampling) before uploading (see [Evaluate image size](#evaluate-image-size)).
 </Note>
@@ -82,7 +82,7 @@ Claude Opus 4.7 is the first Claude model with high-resolution image support. Th
 
 High-resolution support is automatic on Claude Opus 4.7 and requires no beta header or client-side opt-in.
 
-High-resolution images on Claude Opus 4.7 can use up to approximately 3x more image tokens than on prior models (4784 vs 1600 tokens per image). If you don't need the additional fidelity, downsample images before sending to control token costs.
+High-resolution images on Claude Opus 4.7 can use up to approximately 3x more image tokens than on prior models (4784 versus 1568 tokens per image). If you don't need the additional fidelity, downsample images before sending to control token costs.
 
 Here are the same image sizes tokenized for Claude Opus 4.7, based on its per-token price of $5 per million input tokens:
 
@@ -918,7 +918,7 @@ curl -sSo image.jpg \
 # First, upload your image to the Files API
 FILE_ID=$(ant beta:files upload \
   --file ./image.jpg \
-  --transform id --format yaml)
+  --transform id --raw-output)
 
 # Then use the returned file_id in your message
 ant beta:messages create \
@@ -1538,7 +1538,7 @@ Always carefully review and verify Claude's image interpretations, especially fo
     - Messages API: Up to 600 images per request (100 for models with a 200k-token context window)
     - claude.ai: Up to 20 images per turn
 
-    Requests exceeding these limits are rejected and return an error. Requests with many large images may also fail before reaching these limits; see [Basics and limits](#basics-and-limits) for details.
+    Requests exceeding these limits are rejected and return an error. Requests with many large images may also fail before reaching these limits; see [General limits](#general-limits) for details.
 
   
 </section>

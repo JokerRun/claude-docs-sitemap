@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/overview
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 149ffaaa968cf5f8c9d35f7c6080830fe884d566b282371216c547abfba9dfef
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 73f7abdf1a5642d857e4d3a1938733e9a5a8a6015fc11614ddcd767c4c1fad94
 ---
 
 # Claude Managed Agents overview
@@ -19,7 +19,11 @@ Anthropic offers two ways to build with Claude, each suited to different use cas
 | **Best for** | Custom agent loops and fine-grained control | Long-running tasks and asynchronous work |
 | **Learn more** | [Messages API docs](/docs/en/build-with-claude/working-with-messages) | [Claude Managed Agents docs](/docs/en/managed-agents/overview) |
 
-Claude Managed Agents provides the harness and infrastructure for running Claude as an autonomous agent. Instead of building your own agent loop, tool execution, and runtime, you get a fully managed environment where Claude can read files, run commands, browse the web, and execute code securely. The harness supports built in prompt caching, compaction, and other performance optimizations for high quality, efficient agent outputs.
+Claude Managed Agents provides the harness and infrastructure for running Claude as an autonomous agent. Instead of building your own agent loop, tool execution, and runtime, you get a fully managed environment where Claude can read files, run commands, browse the web, and execute code securely. The harness supports built-in prompt caching, compaction, and other performance optimizations for high-quality, efficient agent outputs.
+
+<Note>
+Claude Managed Agents is also available on Claude Platform on AWS, with some differences in feature availability and session behavior. See [Claude Managed Agents](/docs/en/build-with-claude/claude-platform-on-aws#claude-managed-agents) in the Claude Platform on AWS guide.
+</Note>
 
 <CardGroup cols={2}>
   <Card title="Quickstart" icon="play" href="/docs/en/managed-agents/quickstart">

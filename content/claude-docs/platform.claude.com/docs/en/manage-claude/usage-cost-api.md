@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/usage-cost-api
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: a5bad13ed7217e7e4727b8e1093edead0727c6987f8f5b6047caa4b62103802f
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: dcb782c0ef1fcae21abe05c86ec9c216e103979d0afce4fdd5d550b2de68e074
 ---
 
 # Usage and Cost API
@@ -30,6 +30,10 @@ This API enables you to better monitor, analyze, and optimize your Claude implem
 
   This API is part of the [Admin API](/docs/en/manage-claude/admin-api). These endpoints require an Admin API key (starting with `sk-ant-admin...`) that differs from standard API keys. Only organization members with the admin role can provision Admin API keys through the [Claude Console](/settings/admin-keys).
 </Check>
+
+<Note>
+**Claude Platform on AWS:** The programmatic Usage and Cost API endpoints are not currently available. View usage and cost data on the **Usage** and **Cost** pages in the Claude Console instead.
+</Note>
 
 ## Partner solutions
 
@@ -166,7 +170,7 @@ bucket_width=1d" \
 ```
 
 <Note>
-Models released before February 2026 (prior to Claude Opus 4.6) don't support the `inference_geo` request parameter, so their usage reports return `"not_available"` for this dimension. You can use `not_available` as a filter value in `inference_geos[]` to target those models.
+Models released before February 2026 (prior to Claude Opus 4.6 and Claude Sonnet 4.6) don't support the `inference_geo` request parameter, so their usage reports return `"not_available"` for this dimension. You can use `not_available` as a filter value in `inference_geos[]` to target those models.
 </Note>
 
 #### Fast mode (beta: research preview)

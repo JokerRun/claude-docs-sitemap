@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-05-11T03:16:45.322844Z
-sha256: 6507f3a52100ae36531053973b22f7de7ce367c729cef77e5cad89bda5209876
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 73beb88290d77b49f060109d893b0695e16e8e9b5062bb861e73cd66c8cfc160
 ---
 
 > ## Documentation Index
@@ -902,7 +902,7 @@ You see a message like "PreToolUse hook error: ..." in the transcript.
   echo '{"tool_name":"Bash","tool_input":{"command":"ls"}}' | ./my-hook.sh
   echo $?  # Check the exit code
   ```
-* If you see "command not found", use absolute paths or `$CLAUDE_PROJECT_DIR` to reference scripts
+* If you see "command not found", use absolute paths or `${CLAUDE_PROJECT_DIR}` to reference scripts. To avoid shell quoting entirely, add `"args": []` to switch to [exec form](/en/hooks#exec-form-and-shell-form), which spawns the script directly without a shell
 * If you see "jq: command not found", install `jq` or use Python/Node.js for JSON parsing
 * If the script isn't running at all, make it executable: `chmod +x ./my-hook.sh`
 
@@ -933,7 +933,7 @@ fi
 
 Claude Code shows a JSON parsing error even though your hook script outputs valid JSON.
 
-When Claude Code runs a hook, it spawns a shell that sources your profile (`~/.zshrc` or `~/.bashrc`). If your profile contains unconditional `echo` statements, that output gets prepended to your hook's JSON:
+When Claude Code runs a shell-form command hook (one without `args`), it spawns `sh -c` on macOS and Linux or Git Bash on Windows by default. This shell is non-interactive, but Git Bash and some configurations (such as `BASH_ENV` pointing at `~/.bashrc`) still source your profile. If that profile contains unconditional `echo` statements, the output gets prepended to your hook's JSON:
 
 ```text theme={null}
 Shell ready on arm64

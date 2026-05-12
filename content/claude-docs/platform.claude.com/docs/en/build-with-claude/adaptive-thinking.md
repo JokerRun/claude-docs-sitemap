@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking
-fetched_at: 2026-04-28T03:13:37.243984Z
-sha256: cd03e79560546bf36b9229410e687430739d2a7b56de8539196a889a18b6bc62
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 62a943cc49c39175f131b389971b89b346b14e83c0a12edcdd9c7ee000ec954d
 ---
 
 # Adaptive thinking
@@ -346,7 +346,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create \
-  --transform 'content.0.text' --format yaml <<'YAML'
+  --transform 'content.0.text' --raw-output <<'YAML'
 model: claude-opus-4-7
 max_tokens: 16000
 thinking:

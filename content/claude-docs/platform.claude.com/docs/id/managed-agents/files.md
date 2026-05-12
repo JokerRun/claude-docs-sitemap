@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 148acf5384b4410a1ea2593b48b7cd5fb2c2c2bb40da17e490103507678a8566
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 2ba92e442082bd21faec856efba76557d1c5cd218a06ab53d3628b40b08d7e90
 ---
 
 # Menambahkan file
@@ -35,7 +35,7 @@ printf 'File ID: %s\n' "${file_id}"
 ````bash
 FILE_ID=$(ant beta:files upload \
   --file data.csv \
-  --transform id --format yaml)
+  --transform id --raw-output)
 ````
 
   
@@ -136,7 +136,7 @@ session_id=$(jq -er '.id' <<<"${session}")
 SESSION_ID=$(ant beta:sessions create \
   --agent "$AGENT_ID" \
   --environment-id "$ENVIRONMENT_ID" \
-  --transform id --format yaml <<EOF
+  --transform id --raw-output <<EOF
 resources:
   - type: file
     file_id: $FILE_ID
@@ -379,7 +379,7 @@ RESOURCE_ID=$(ant beta:sessions:resources create \
   --session-id "$SESSION_ID" \
   --type file \
   --file-id "$FILE_ID" \
-  --transform id --format yaml)
+  --transform id --raw-output)
 ````
 
   

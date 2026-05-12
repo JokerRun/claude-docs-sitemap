@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 0783884c492c45470357c476785e47df593b7ae2a53c13755b2ce2ea74239d18
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 25b742c4a1f97c5cb0b4ed8cf1b3a8a39a4bb103ebb524eca51345e551e96560
 ---
 
 # Claude Code Analytics API
@@ -15,21 +15,25 @@ Programmatically access your organization's Claude Code usage analytics and prod
 **The Admin API is unavailable for individual accounts.** To collaborate with teammates and add members, set up your organization in **Console → Settings → Organization**.
 </Tip>
 
-The Claude Code Analytics Admin API provides programmatic access to daily aggregated usage metrics for Claude Code users, enabling organizations to analyze developer productivity and build custom dashboards. This API bridges the gap between our basic [Analytics dashboard](/claude-code) and the complex OpenTelemetry integration.
+The Claude Code Analytics Admin API provides programmatic access to daily aggregated usage metrics for Claude Code users, enabling organizations to analyze developer productivity and build custom dashboards. This API bridges the gap between the basic [Analytics dashboard](/claude-code) and the complex OpenTelemetry integration.
 
 This API enables you to better monitor, analyze, and optimize your Claude Code adoption:
 
-* **Developer Productivity Analysis:** Track sessions, lines of code added/removed, commits, and pull requests created using Claude Code
-* **Tool Usage Metrics:** Monitor acceptance and rejection rates for different Claude Code tools (Edit, Write, NotebookEdit)
-* **Cost Analysis:** View estimated costs and token usage broken down by Claude model
-* **Custom Reporting:** Export data to build executive dashboards and reports for management teams
-* **Usage Justification:** Provide metrics to justify and expand Claude Code adoption internally
+* **Developer productivity analysis:** Track sessions, lines of code added/removed, commits, and pull requests created using Claude Code
+* **Tool usage metrics:** Monitor acceptance and rejection rates for different Claude Code tools (Edit, MultiEdit, Write, NotebookEdit)
+* **Cost analysis:** View estimated costs and token usage broken down by Claude model
+* **Custom reporting:** Export data to build executive dashboards and reports for management teams
+* **Usage justification:** Provide metrics to justify and expand Claude Code adoption internally
 
 <Check>
   **Admin API key required**
 
   This API is part of the [Admin API](/docs/en/manage-claude/admin-api). These endpoints require an Admin API key (starting with `sk-ant-admin...`) that differs from standard API keys. Only organization members with the admin role can provision Admin API keys through the [Claude Console](/settings/admin-keys).
 </Check>
+
+<Note>
+**Claude Platform on AWS:** The Claude Code Analytics API is not currently available. View Claude Code usage on the **Usage** page in the Claude Console instead.
+</Note>
 
 ## Quick start
 
@@ -100,7 +104,7 @@ page=page_MjAyNS0wNS0xNFQwMDowMDowMFo=" \
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `starting_at` | string | Yes | UTC date in YYYY-MM-DD format. Returns metrics for this single day only |
+| `starting_at` | string | Yes | UTC date in YYYY-MM-DD format; returns metrics for this single day only |
 | `limit` | integer | No | Number of records per page (default: 20, max: 1000) |
 | `page` | string | No | Opaque cursor token from previous response's `next_page` field |
 
@@ -124,9 +128,10 @@ Each response record contains the following metrics for a single user on a singl
 
 #### Tool action metrics
 Breakdown of tool action acceptance and rejection rates by tool type:
-- **edit_tool.accepted/rejected**: Number of Edit tool proposals that the user accepted/rejected
-- **write_tool.accepted/rejected**: Number of Write tool proposals that the user accepted/rejected
-- **notebook_edit_tool.accepted/rejected**: Number of NotebookEdit tool proposals that the user accepted/rejected
+- **edit_tool.accepted/rejected:** Number of Edit tool proposals that the user accepted/rejected
+- **multi_edit_tool.accepted/rejected:** Number of MultiEdit tool proposals that the user accepted/rejected
+- **write_tool.accepted/rejected:** Number of Write tool proposals that the user accepted/rejected
+- **notebook_edit_tool.accepted/rejected:** Number of NotebookEdit tool proposals that the user accepted/rejected
 
 #### Model breakdown
 For each Claude model used:
@@ -144,7 +149,7 @@ The API returns data in the following format:
 {
   "data": [
     {
-      "date": "2025-09-01T00:00:00Z",
+      "date": "2025-09-08T00:00:00Z",
       "actor": {
         "type": "user_actor",
         "email_address": "developer@company.com"
@@ -230,16 +235,16 @@ No, this API provides daily aggregated metrics only. For real-time monitoring, c
 
 ### How are users identified in the data?
 Users are identified through the `actor` field in two ways:
-- **`user_actor`**: Contains `email_address` for users who authenticate via OAuth (most common)
-- **`api_actor`**: Contains `api_key_name` for users who authenticate via API key
+- **`user_actor`:** Contains `email_address` for users who authenticate through OAuth (most common)
+- **`api_actor`:** Contains `api_key_name` for users who authenticate with an API key
 
-The `customer_type` field indicates whether the usage is from `api` customers (API PAYG) or `subscription` customers (Pro/Team plans).
+The `customer_type` field indicates whether the usage is from `api` customers (pay-as-you-go API) or `subscription` customers (Pro/Team plans).
 
 ### What's the data retention period?
 Historical Claude Code analytics data is retained and accessible through the API. There is no specified deletion period for this data.
 
 ### Which Claude Code deployments are supported?
-This API only tracks Claude Code usage on the Claude API (1st party). Usage on Amazon Bedrock, Google Vertex AI, or other third-party platforms is not included.
+This API only tracks Claude Code usage on the Claude API. Usage through [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), [Claude in Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry), [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), or [Claude on Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai) is not included.
 
 ### What does it cost to use this API?
 The Claude Code Analytics API is free to use for all organizations with access to the Admin API.

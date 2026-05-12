@@ -249,6 +249,10 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws</loc>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry</loc>
 <priority>0.8</priority>
 </url>

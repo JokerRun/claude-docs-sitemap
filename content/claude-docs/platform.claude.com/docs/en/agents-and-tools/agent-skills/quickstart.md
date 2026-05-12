@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 4b66ca78eefeebdc31ac30fae9d4877925a50f08fc27c599fa1b43da89971707
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 760338ec13f5ecc3ec83f88c2807c350fd8eb5459c265a6646b003cd0a5fe296
 ---
 
 # Get started with Agent Skills in the API
@@ -233,7 +233,7 @@ echo "Presentation saved to renewable_energy.pptx"
 FILE_ID=$(ant beta:messages create \
   --beta code-execution-2025-08-25 --beta skills-2025-10-02 \
   --transform 'content.#.content.content.#.file_id|@flatten|0' \
-  --format yaml <<'YAML'
+  --raw-output <<'YAML'
 model: claude-opus-4-7
 max_tokens: 4096
 container:

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 47fd7ffb8f008fd22cae0104208237ba3877a27b2cabee98b2b7e60dacc5d1f8
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 4bc08ec9dfa31c7d3ce9fabc1b5dfb666d87492304e4eafa636d8b4c141a9b40
 ---
 
 > ## Documentation Index
@@ -227,9 +227,9 @@ Output styles are saved configurations that modify Claude's system prompt. They'
 
 Once created, activate output styles via:
 
-* **CLI**: `/output-style [style-name]`
-* **Settings**: `.claude/settings.local.json`
-* **Create new**: `/output-style:new [description]`
+* **CLI**: `/config`, then select Output style
+* **Settings**: set `outputStyle` in `.claude/settings.local.json`
+* **Create new**: add a Markdown file at `~/.claude/output-styles/` or `.claude/output-styles/`; see [Create a custom output style](/en/output-styles#create-a-custom-output-style) for the format
 
 **Note for SDK users:** Output styles are loaded when you include `settingSources: ['user']` or `settingSources: ['project']` (TypeScript) / `setting_sources=["user"]` or `setting_sources=["project"]` (Python) in your options.
 
@@ -469,7 +469,7 @@ You can combine these methods for maximum flexibility:
   ```typescript TypeScript theme={null}
   import { query } from "@anthropic-ai/claude-agent-sdk";
 
-  // Assuming "Code Reviewer" output style is active (via /output-style)
+  // Assuming "Code Reviewer" output style is active (via /config or settings)
   // Add session-specific focus areas
   const messages = [];
 
@@ -495,7 +495,7 @@ You can combine these methods for maximum flexibility:
   ```python Python theme={null}
   from claude_agent_sdk import query, ClaudeAgentOptions
 
-  # Assuming "Code Reviewer" output style is active (via /output-style)
+  # Assuming "Code Reviewer" output style is active (via /config or settings)
   # Add session-specific focus areas
   messages = []
 

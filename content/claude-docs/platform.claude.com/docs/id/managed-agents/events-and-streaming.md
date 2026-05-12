@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-05-07T03:15:02.178755Z
-sha256: c9845d3519c9ba23fca9f0c8c2c8f0d1e401d5df9da757b13870bb931f6915bc
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: c321718da83c007b9afe90636a768cdd87064b62fed25c51a4757b32f7ad3c3a
 ---
 
 # Aliran peristiwa sesi
@@ -795,7 +795,7 @@ while IFS= read -r id; do
   seen_event_ids[$id]=1
 done < <(ant beta:sessions:events list \
   --session-id "$SESSION_ID" \
-  --transform id --format yaml)
+  --transform id --raw-output)
 
 # Tail live events, skipping anything already seen
 id= type= skip=

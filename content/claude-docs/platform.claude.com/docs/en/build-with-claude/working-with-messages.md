@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: f9f4bd33d741afc1c1c12b2302dbb0753ae5683d66dfc57e6ef384c3ee4df16a
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: f46eef403885cc0948e0128fed5d9cefafac0d2680fd7aac7998d807b6e6dbaa
 ---
 
 # Using the Messages API
@@ -247,7 +247,7 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
-await anthropic.messages.create({
+const message = await anthropic.messages.create({
   model: "claude-opus-4-7",
   max_tokens: 1024,
   messages: [
@@ -256,6 +256,7 @@ await anthropic.messages.create({
     { role: "user", content: "Can you describe LLMs to me?" }
   ]
 });
+console.log(message);
 ```
 
 ```csharp C#
@@ -384,6 +385,7 @@ puts message
       "text": "Sure, I'd be happy to provide..."
     }
   ],
+  "model": "claude-opus-4-7",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {

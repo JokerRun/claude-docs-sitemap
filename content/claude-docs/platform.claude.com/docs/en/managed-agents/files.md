@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: f1b5079e4b040693b6d63225098a13046a629a54449d843facb867cb07501ca8
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: ea1819a0cf14dbcac8f567b8e418bf932369fa70e1e1dc7b6bfda5ae67a3d376
 ---
 
 # Adding files
@@ -35,7 +35,7 @@ printf 'File ID: %s\n' "${file_id}"
 ````bash
 FILE_ID=$(ant beta:files upload \
   --file data.csv \
-  --transform id --format yaml)
+  --transform id --raw-output)
 ````
 
   
@@ -136,7 +136,7 @@ session_id=$(jq -er '.id' <<<"${session}")
 SESSION_ID=$(ant beta:sessions create \
   --agent "$AGENT_ID" \
   --environment-id "$ENVIRONMENT_ID" \
-  --transform id --format yaml <<EOF
+  --transform id --raw-output <<EOF
 resources:
   - type: file
     file_id: $FILE_ID
@@ -379,7 +379,7 @@ RESOURCE_ID=$(ant beta:sessions:resources create \
   --session-id "$SESSION_ID" \
   --type file \
   --file-id "$FILE_ID" \
-  --transform id --format yaml)
+  --transform id --raw-output)
 ````
 
   

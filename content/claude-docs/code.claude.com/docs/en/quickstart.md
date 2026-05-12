@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: d9aa7c6872994777efa2dd783e01d4f2dc7c5bd024374d0286c2b0a84d30ae30
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: a8a6a00716aea8ff07d2f9bf0b77f9c02d89b9c8f35c047ed52989827f16a29b
 ---
 
 > ## Documentation Index
@@ -314,10 +314,10 @@ For more, see [best practices](/en/best-practices) and [common workflows](/en/co
   </Accordion>
 
   <Accordion title="Save time with shortcuts">
-    * Press `?` to see all available keyboard shortcuts
+    * Type `/` to see all commands and skills
     * Use Tab for command completion
     * Press ↑ for command history
-    * Type `/` to see all commands and skills
+    * Press `Shift+Tab` to cycle permission modes
   </Accordion>
 </AccordionGroup>
 

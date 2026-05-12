@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-05-02T03:12:03.381331Z
-sha256: f36d36c6d8e35a93e3b6deb8bdc2ae035fb7f4e7629eab6a2b2b436db7ced890
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: b5a9fe7fbf28791d7f72f97da561c9a39adc6fecb725eb1bf73d5e8f3fed41dd
 ---
 
 > ## Documentation Index
@@ -111,7 +111,7 @@ Actions available in the `Chat` context:
 | `chat:cancel`         | Escape                    | Cancel current input                                                                                                                                           |
 | `chat:clearInput`     | Ctrl+L                    | Force a full screen redraw, preserving input. In [fullscreen rendering](/en/fullscreen#clear-the-conversation), press twice within two seconds to run `/clear` |
 | `chat:clearScreen`    | Cmd+K                     | In [fullscreen rendering](/en/fullscreen#clear-the-conversation), press twice within two seconds to run `/clear`                                               |
-| `chat:killAgents`     | Ctrl+X Ctrl+K             | Kill all background agents                                                                                                                                     |
+| `chat:killAgents`     | Ctrl+X Ctrl+K             | Kill all running [background subagents](/en/sub-agents#run-subagents-in-foreground-or-background) in this session                                              |
 | `chat:cycleMode`      | Shift+Tab\*               | Cycle permission modes                                                                                                                                         |
 | `chat:modelPicker`    | Meta+P                    | Open model picker                                                                                                                                              |
 | `chat:fastMode`       | Meta+O                    | Toggle fast mode                                                                                                                                               |

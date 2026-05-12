@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: f5f154fbf2005e54b3a5cfd68242ac1c28ff43760bb712c421b2120a1fa91864
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 7099e6a6b645e3e89e939d354d35115d930f34be6d1506f88f01c5a88b7750f4
 ---
 
 # MCP connector
@@ -12,9 +12,9 @@ sha256: f5f154fbf2005e54b3a5cfd68242ac1c28ff43760bb712c421b2120a1fa91864
 Claude's Model Context Protocol (MCP) connector feature enables you to connect to remote MCP servers directly from the Messages API without a separate MCP client.
 
 <Note>
-  **Current version**: This feature requires the beta header: `"anthropic-beta": "mcp-client-2025-11-20"`
+  **Current version:** This feature requires the beta header: `"anthropic-beta": "mcp-client-2025-11-20"`
 
-  The previous version (`mcp-client-2025-04-04`) is deprecated. See the [deprecated version documentation](#deprecated-version-mcp-client-2025-04-04) below.
+  The previous version (`mcp-client-2025-04-04`) is deprecated. See [Deprecated version: mcp-client-2025-04-04](#deprecated-version-mcp-client-2025-04-04).
 </Note>
 
 <Note>
@@ -34,7 +34,7 @@ This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-
 
 - Of the feature set of the [MCP specification](https://modelcontextprotocol.io/introduction#explore-mcp), only [tool calls](https://modelcontextprotocol.io/docs/concepts/tools) are currently supported.
 - The server must be publicly exposed through HTTP (supports both Streamable HTTP and SSE transports). Local STDIO servers cannot be connected directly.
-- The MCP connector is currently not supported on Amazon Bedrock and Google Vertex.
+- The MCP connector is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). It is not currently available on Amazon Bedrock or Vertex AI.
 
 ## Using the MCP connector in the Messages API
 
@@ -347,7 +347,7 @@ Each MCP server in the `mcp_servers` array defines the connection details:
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
 | `type` | string | Yes | Currently only "url" is supported. |
-| `url` | string | Yes | The URL of the MCP server. Must start with https:// |
+| `url` | string | Yes | The URL of the MCP server. Must start with https://. |
 | `name` | string | Yes | A unique identifier for this MCP server. Must be referenced by exactly one MCPToolset in the `tools` array. |
 | `authorization_token` | string | No | OAuth authorization token if required by the MCP server. See [MCP specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). |
 
@@ -378,11 +378,11 @@ The MCPToolset lives in the `tools` array and configures which tools from the MC
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "mcp_toolset" |
-| `mcp_server_name` | string | Yes | Must match a server name defined in the `mcp_servers` array |
-| `default_config` | object | No | Default configuration applied to all tools in this set. Individual tool configs in `configs` will override these defaults. |
+| `type` | string | Yes | Must be "mcp_toolset". |
+| `mcp_server_name` | string | Yes | Must match a server name defined in the `mcp_servers` array. |
+| `default_config` | object | No | Default configuration applied to all tools in this set. Individual tool configs in `configs` override these defaults. |
 | `configs` | object | No | Per-tool configuration overrides. Keys are tool names, values are configuration objects. |
-| `cache_control` | object | No | Cache breakpoint configuration for this toolset |
+| `cache_control` | object | No | [Prompt caching](/docs/en/build-with-claude/prompt-caching) cache breakpoint configuration for this toolset. |
 
 ### Tool configuration options
 
@@ -390,10 +390,10 @@ Each tool (whether configured in `default_config` or in `configs`) supports the 
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| `enabled` | boolean | `true` | Whether this tool is enabled |
-| `defer_loading` | boolean | `false` | If true, tool description is not sent to the model initially. Used with [Tool Search Tool](/docs/en/agents-and-tools/tool-use/tool-search-tool). |
+| `enabled` | boolean | `true` | Whether this tool is enabled. |
+| `defer_loading` | boolean | `false` | If true, tool description is not sent to the model initially. Used with [Tool search tool](/docs/en/agents-and-tools/tool-use/tool-search-tool). |
 
-For the full directory of Anthropic-provided tools and optional properties like `defer_loading`, see the [Tool reference](/docs/en/agents-and-tools/tool-use/tool-reference). For searching across large tool sets, see [Tool search tool](/docs/en/agents-and-tools/tool-use/tool-search-tool).
+For the full directory of Anthropic-provided tools and optional properties such as `defer_loading`, see the [Tool reference](/docs/en/agents-and-tools/tool-use/tool-reference). For searching across large tool sets, see [Tool search tool](/docs/en/agents-and-tools/tool-use/tool-search-tool).
 
 ### Configuration merging
 
@@ -642,7 +642,7 @@ If you manage your own MCP client connection (for example, with local stdio serv
   These helpers are currently available in the TypeScript SDK only.
 </Note>
 <Note>
-  Use the [`mcp_servers` API parameter](#using-the-mcp-connector-in-the-messages-api) when you have remote servers accessible via URL and only need tool support. Use the client-side helpers when you need local servers, prompts, resources, or more control over the connection with the base SDK.
+  Use the [`mcp_servers` API parameter](#using-the-mcp-connector-in-the-messages-api) when you have remote servers accessible by URL and only need tool support. Use the client-side helpers when you need local servers, prompts, resources, or more control over the connection with the base SDK.
 </Note>
 
 ### Installation
@@ -753,7 +753,7 @@ The conversion functions throw `UnsupportedMCPValueError` if an MCP value isn't 
 
 ## Data retention
 
-The MCP Connector is not covered by ZDR arrangements. Data exchanged with MCP servers, including tool definitions and execution results, is retained according to Anthropic's standard data retention policy.
+The MCP connector is not covered by ZDR arrangements. Data exchanged with MCP servers, including tool definitions and execution results, is retained according to Anthropic's standard data retention policy.
 
 For ZDR eligibility across all features, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 

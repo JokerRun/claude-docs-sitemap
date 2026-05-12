@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: c4b9353c40f33b0d97d6947097179266ed17600887589b376e9e90f162953fb9
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: b056769c65aba1091de9b9ca3f923e0e78a10a13494e4645f12c8f7526f2fb04
 ---
 
 # Parallel tool use
@@ -189,15 +189,17 @@ async function testParallelTools() {
 
   // Check for parallel tool calls
   const toolUses = response.content.filter((block) => block.type === "tool_use");
-  console.log(`\nClaude made ${toolUses.length} tool calls`);
+  console.log(`\n✓ Claude made ${toolUses.length} tool calls`);
 
   if (toolUses.length > 1) {
-    console.log("Parallel tool calls detected!");
+    console.log("✓ Parallel tool calls detected!");
     toolUses.forEach((tool) => {
       if (tool.type === "tool_use") {
         console.log(`  - ${tool.name}: ${JSON.stringify(tool.input)}`);
       }
     });
+  } else {
+    console.log("✗ No parallel tool calls detected");
   }
 
   // Simulate tool execution and format results correctly
@@ -245,7 +247,9 @@ async function testParallelTools() {
 
   // Verify formatting
   console.log("\n--- Verification ---");
-  console.log(`Tool results sent in single user message: ${toolResults.length} results`);
+  console.log(`✓ Tool results sent in single user message: ${toolResults.length} results`);
+  console.log("✓ No text before tool results in content array");
+  console.log("✓ Conversation formatted correctly for future parallel tool use");
 }
 
 testParallelTools().catch(console.error);
@@ -379,7 +383,7 @@ public class Program
 }
 ```
 
-```go Go hidelines={1..15,-11..-1}
+```go Go hidelines={1..15,-1}
 package main
 
 import (
@@ -849,7 +853,7 @@ While Claude 4 models have excellent parallel tool use capabilities by default, 
 
 <section title="System prompts for parallel tool use">
 
-For Claude 4 models (Opus 4 (deprecated), and Sonnet 4 (deprecated)), add this to your system prompt:
+For Claude 4 models, add this to your system prompt:
 ```text
 For maximum efficiency, whenever you need to perform multiple independent operations, invoke all relevant tools simultaneously rather than sequentially.
 ```

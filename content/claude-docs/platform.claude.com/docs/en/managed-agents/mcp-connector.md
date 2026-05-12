@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 212f0c292674904c84ddebfe16d86bf1297090ed82f9d6f495eec50271174521
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 7211a92f1afc3e4c111ed11762db6a846eea1dfb8df847ed85c4a68ce4e3a676
 ---
 
 # MCP connector
@@ -67,7 +67,7 @@ AGENT_ID=$(ant beta:agents create \
   --mcp-server '{type: url, name: github, url: "https://api.githubcopilot.com/mcp/"}' \
   --tool '{type: agent_toolset_20260401}' \
   --tool '{type: mcp_toolset, mcp_server_name: github}' \
-  --transform id --format yaml)
+  --transform id --raw-output)
 ````
 
   
@@ -267,7 +267,7 @@ SESSION_ID=$(ant beta:sessions create \
   --agent "$AGENT_ID" \
   --environment-id "$ENVIRONMENT_ID" \
   --vault-id "$VAULT_ID" \
-  --transform id --format yaml)
+  --transform id --raw-output)
 ````
 
   

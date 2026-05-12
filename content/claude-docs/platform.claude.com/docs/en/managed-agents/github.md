@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: c3d0fb911e586fd7185ffe2fb05bbd92d1bb3856e3dfaca9a3ea3a75033658ad
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 4086247fa4bd0f8b5285b257eccb20f1b2b83c1387ef7776f715ab96432f8a4d
 ---
 
 # Accessing GitHub
@@ -64,7 +64,7 @@ AGENT_ID=$(ant beta:agents create \
   --mcp-server '{type: url, name: github, url: https://api.githubcopilot.com/mcp/}' \
   --tool '{type: agent_toolset_20260401}' \
   --tool '{type: mcp_toolset, mcp_server_name: github}' \
-  --transform id --format yaml)
+  --transform id --raw-output)
 ````
 
   
@@ -275,7 +275,7 @@ JSON
 SESSION_ID=$(ant beta:sessions create \
   --agent "$AGENT_ID" \
   --environment-id "$ENVIRONMENT_ID" \
-  --transform id --format yaml <<'EOF'
+  --transform id --raw-output <<'EOF'
 resources:
   - type: github_repository
     url: https://github.com/org/repo

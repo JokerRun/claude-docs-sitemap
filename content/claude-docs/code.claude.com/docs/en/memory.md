@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: ff712d512cde7c689ad942b8efadbee2ebe807708ca5fe6d07896272d557685a
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: a765a6e0ed9c1b93a6b1848fcc157a7a907ec0e81610d7f77004a013156647f6
 ---
 
 > ## Documentation Index
@@ -33,7 +33,7 @@ Claude Code has two complementary memory systems. Both are loaded at the start o
 | :------------------- | :------------------------------------------------ | :--------------------------------------------------------------- |
 | **Who writes it**    | You                                               | Claude                                                           |
 | **What it contains** | Instructions and rules                            | Learnings and patterns                                           |
-| **Scope**            | Project, user, or org                             | Per working tree                                                 |
+| **Scope**            | Project, user, or org                             | Per repository, shared across worktrees                          |
 | **Loaded into**      | Every session                                     | Every session (first 200 lines or 25KB)                          |
 | **Use for**          | Coding standards, workflows, project architecture | Build commands, debugging insights, preferences Claude discovers |
 
@@ -278,6 +278,22 @@ Organizations can deploy a centrally managed CLAUDE.md that applies to all users
     Use MDM, Group Policy, Ansible, or similar tools to distribute the file across developer machines. See [managed settings](/en/permissions#managed-settings) for other organization-wide configuration options.
   </Step>
 </Steps>
+
+The `claudeMd` key lets you put managed CLAUDE.md content directly inside `managed-settings.json` instead of deploying a separate file.
+
+**Scope**: every Claude Code session on the machine, in every repository. For repository-specific guidance, commit a project CLAUDE.md instead.
+
+**Precedence**: same as a managed CLAUDE.md file. Loads before user and project CLAUDE.md.
+
+**Where it's honored**: managed and policy settings only. Setting `claudeMd` in user, project, or local settings has no effect.
+
+The example below adds behavioral instructions directly in a managed settings file:
+
+```json theme={null}
+{
+  "claudeMd": "Always run `make lint` before committing.\nNever push directly to main."
+}
+```
 
 A managed CLAUDE.md and [managed settings](/en/settings#settings-files) serve different purposes. Use settings for technical enforcement and CLAUDE.md for behavioral guidance:
 

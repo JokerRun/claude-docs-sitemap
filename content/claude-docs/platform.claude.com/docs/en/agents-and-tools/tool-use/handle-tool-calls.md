@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: b0e47605c36c4fdfa9dc10dcab3348a979af86a1edca614ebcf1e94d5c3444c3
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 369a5da11bb28d8dc0dce1a2fae76fe976ad5a3509d3987d5ef320f0dc374c59
 ---
 
 # Handle tool calls
@@ -58,7 +58,7 @@ When you receive a tool use response for a client tool, you should:
 2. Run the actual tool in your codebase corresponding to that tool name, passing in the tool `input`.
 3. Continue the conversation by sending a new message with the `role` of `user`, and a `content` block containing the `tool_result` type and the following information:
    - `tool_use_id`: The `id` of the tool use request this is a result for.
-   - `content`: The result of the tool, as a string (for example, `"content": "15 degrees"`), a list of nested content blocks (for example, `"content": [{"type": "text", "text": "15 degrees"}]`), or a list of document blocks (for example, `"content": [{"type": "document", "source": {"type": "text", "media_type": "text/plain", "data": "15 degrees"}}]`). These content blocks can use the `text`, `image`, or `document` types.
+   - `content` (optional): The result of the tool, as a string (for example, `"content": "15 degrees"`), a list of nested content blocks (for example, `"content": [{"type": "text", "text": "15 degrees"}]`), or a list of document blocks (for example, `"content": [{"type": "document", "source": {"type": "text", "media_type": "text/plain", "data": "15 degrees"}}]`). These content blocks can use the `text`, `image`, or `document` types.
    - `is_error` (optional): Set to `true` if the tool execution resulted in an error.
 
 <Note>

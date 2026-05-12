@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/permission-policies
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 9e82b9a47ca05a7e74bcc66f7557b3cd7c49ccedc38d715b838ac7d9c6736c80
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 79bf91d960e9254b1a67541c9e952463ff2e9a976174b6ba8c44f874aa39caa7
 ---
 
 # Permission policies
@@ -160,7 +160,6 @@ var agent = client.beta().agents().create(
 ```
 
 ```php PHP
-
 $agent = $client->beta->agents->create(
     name: 'Coding Assistant',
     model: 'claude-opus-4-7',
@@ -195,7 +194,7 @@ agent = client.beta.agents.create(
 
 ### MCP toolset permissions
 
-MCP toolsets default to `always_ask`. This ensures that new tools that are added to an MCP server do not execute in your application without approval. To auto-approve tools from a trusted MCP server, set `permission_policy` on the `mcp_toolset` entry.
+MCP toolsets default to `always_ask`. This ensures that new tools that are added to an MCP server do not execute in your application without approval. To auto-approve tools from a trusted MCP server, set `default_config.permission_policy` on the `mcp_toolset` entry.
 
 The `mcp_server_name` must match the `name` referenced in the `mcp_servers` array.
 
@@ -440,7 +439,7 @@ agent = client.beta.agents.create(
 
 Use the `configs` array to override the default for individual tools. This example allows the full agent toolset by default but requires confirmation before any bash command runs:
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
 ```bash curl
 tools='[
   {
@@ -622,13 +621,13 @@ tools = [
 When the agent invokes a tool with an `always_ask` policy:
 
 1. The session emits an `agent.tool_use` or `agent.mcp_tool_use` event.
-2. The session pauses with a `session.status_idle` event containing `stop_reason: requires_action`. The blocking event IDs are in the `stop_reason.requires_action.event_ids` array.
-3. Send a `user.tool_confirmation` event for each, passing the event ID in the `tool_use_id` param. Set `result` to `"allow"` or `"deny"`. Use `deny_message` to explain a denial.
+2. The session pauses with a `session.status_idle` event containing `stop_reason: requires_action`. The blocking event IDs are in the `stop_reason.event_ids` array.
+3. Send a `user.tool_confirmation` event for each, passing the event ID in the `tool_use_id` parameter. Set `result` to `"allow"` or `"deny"`. Use `deny_message` to explain a denial.
 4. Once all blocking events are resolved, the session transitions back to `running`.
 
-Learn more about event handling in the [session event stream](/docs/en/managed-agents/events-and-streaming) guide.
+Learn more about event handling in the [Session event stream](/docs/en/managed-agents/events-and-streaming) guide.
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
 ```bash curl
 # Allow the tool to execute
 curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \

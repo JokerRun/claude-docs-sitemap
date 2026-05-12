@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
-fetched_at: 2026-05-07T03:15:02.178755Z
-sha256: 679a567ac1319ce7efa623efe57e3ca0cc4d9bd5d1551a25098a4d6cba733baa
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 5daa2359c4d99edad05e9fef866c0724e4c55d3613a7758a4e1ffcc91eb0bbaa
 ---
 
 # Define outcomes
@@ -81,7 +81,7 @@ printf 'Uploaded rubric: %s\n' "$rubric_id"
 ````bash
 RUBRIC_ID=$(ant beta:files upload \
   --file /tmp/rubric.md \
-  --transform id --format yaml)
+  --transform id --raw-output)
 ````
 
   
@@ -198,7 +198,7 @@ SESSION_ID=$(ant beta:sessions create \
   --agent "$AGENT_ID" \
   --environment-id "$ENVIRONMENT_ID" \
   --title "Financial analysis on Costco" \
-  --transform id --format yaml)
+  --transform id --raw-output)
 
 # Define the outcome — agent starts working on receipt
 ant beta:sessions:events send \
@@ -604,7 +604,7 @@ ant beta:files list --scope-id "$SESSION_ID"
 
 # Download a file
 FILE_ID=$(ant beta:files list --scope-id "$SESSION_ID" \
-  --transform 'data[0].id' --format yaml)
+  --transform 'data[0].id' --raw-output)
 if [[ -n $FILE_ID ]]; then
   ant beta:files download --file-id "$FILE_ID" --output /tmp/output.txt
 fi

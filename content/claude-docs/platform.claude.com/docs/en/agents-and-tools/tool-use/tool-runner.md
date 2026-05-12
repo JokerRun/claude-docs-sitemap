@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: cb9b981aec65c86c13f690b5fce962d898a5c490d590e4f1ca6435484344ed2e
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: de33526c5f1c8cb10cd6c15fe1386b8a265f17c0e7b751fc64c56cd992e5eff9
 ---
 
 # Tool Runner (SDK)
@@ -885,7 +885,7 @@ const getWeatherTool = betaZodTool({
 
 const runner = client.beta.messages.toolRunner({
   model: "claude-opus-4-7",
-  max_tokens: 1000,
+  max_tokens: 1024,
   messages: [{ role: "user", content: "What is the weather in San Francisco?" }],
   tools: [getWeatherTool],
   stream: true

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 488b4e177b91619b72910345e89cb0bf14a5ec768dc887c31dd0178351f50f89
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: f3d251cbe0f999ff0d212ba29c8cae81385d4ff1873f6eaa717d16895ccacd51
 ---
 
 # Files API
@@ -59,7 +59,7 @@ curl -X POST https://api.anthropic.com/v1/files \
 ````bash
 FILE_ID=$(ant beta:files upload \
   --file /path/to/document.pdf \
-  --transform id --format yaml)
+  --transform id --raw-output)
 ````
 
 ````python

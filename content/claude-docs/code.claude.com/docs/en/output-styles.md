@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/output-styles
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: 91ad1ffc66bee96b564e5e15d4435740efc173c7d7d4c39a3347ac6c21366435
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 8ae32dc665e9f3a638f2338c96c30a6445294c817e46130eb08099c7112e3501
 ---
 
 > ## Documentation Index
@@ -22,8 +22,14 @@ For instructions about your project, conventions, or codebase, use [CLAUDE.md](/
 Claude Code's **Default** output style is the existing system prompt, designed
 to help you complete software engineering tasks efficiently.
 
-There are two additional built-in output styles focused on teaching you the
-codebase and how Claude operates:
+There are three additional built-in output styles:
+
+* **Proactive**: Claude executes immediately, makes reasonable assumptions
+  instead of pausing for routine decisions, and prefers action over planning.
+  This applies the same guidance as
+  [auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) without
+  changing your permission mode, so you still see permission prompts before
+  tools run.
 
 * **Explanatory**: Provides educational "Insights" in between helping you
   complete software engineering tasks. Helps you understand implementation

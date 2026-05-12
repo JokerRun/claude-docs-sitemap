@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/memory
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: e2db00db6b17f203bb47dabdb58f74e704ec5236b4084f6ec1be11cfb1a0f792
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: cc3d91d0d615ee78fdd8d413c164a8eb0ecb85beef4cfaf08ef31ea9433af289
 ---
 
 # Using agent memory
@@ -11,14 +11,15 @@ Give your agents persistent memory that survives across sessions using memory st
 
 ---
 
-Each Managed Agents session starts with a fresh context by default. When a session ends, anything the agent learned is gone. Memory stores let the agent carry information across sessions: user preferences, project conventions, prior mistakes, and domain context.
+Each Managed Agents session starts with a fresh context by default. When a session ends, any state the agent built up is gone. Memory stores let the agent carry information across sessions: user preferences, project conventions, prior mistakes, and domain context.
 
 <Note>
-All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDKs set the beta header automatically.
+All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
 </Note>
 
 ## Overview
-A **memory store** is a workspace-scoped collection of text documents optimized for Claude. When you attach a store to a session, it is mounted as a directory inside the session's container. The agent reads and writes it with the same file tools it uses for the rest of the filesystem, and a note describing each mount is automatically added to the system prompt so the agent knows where to look. The [agent toolset](/docs/en/managed-agents/tools) is required for these interactions; make sure to enable it during [agent creation](/docs/en/managed-agents/agent-setup).
+
+A **memory store** is a workspace-scoped collection of text documents optimized for Claude. When you attach a store to a session, it is mounted as a directory inside the session's container. The agent reads and writes it with the same file tools it uses for the rest of the filesystem, and a note describing each mount is automatically added to the system prompt, telling the agent where to look. The [agent toolset](/docs/en/managed-agents/tools) is required for these interactions; make sure to enable it during [agent creation](/docs/en/managed-agents/agent-setup).
 
 Each **memory** in a store is addressed by a path and can be read and edited directly via the API or Console, allowing for tuning, importing, and exporting.
 
@@ -28,7 +29,7 @@ Every change to a memory creates an immutable **memory version**, giving you an 
 
 Give the store a `name` and a `description`. The description is passed to the agent, telling it what the store contains.
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 store=$(curl -s https://api.anthropic.com/v1/memory_stores \
@@ -46,7 +47,7 @@ echo "$store_id"  # memstore_01Hx...
 store_id=$(ant beta:memory-stores create \
   --name "User Preferences" \
   --description "Per-user preferences and project context." \
-  --transform id --format yaml)
+  --transform id --raw-output)
 ````
 
   
@@ -134,7 +135,7 @@ The memory store `id` (`memstore_...`) is what you pass when attaching the store
 
 Pre-load a store with reference material before any agent runs:
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories" \
@@ -232,9 +233,9 @@ Memory stores are attached in the session's `resources[]` array when the session
 
 Optionally include `instructions` to provide session-specific guidance for how the agent should use this store. It is shown to the agent alongside the store's `name` and `description`, and is capped at 4,096 characters.
 
-You can configure `access` as well. It defaults to `read_write`, but `read_only` is also supported (shown explicitly in the example below).
+You can configure `access` as well. It defaults to `read_write` (shown explicitly in the following example), but `read_only` is also supported.
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 curl -s https://api.anthropic.com/v1/sessions \
@@ -419,7 +420,7 @@ Memory stores can be managed directly via the API. Use this for building review 
 
 List the memories in a store, optionally filtered by `path_prefix` to browse a path like a directory:
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories?path_prefix=/&order_by=path&depth=2" \
@@ -534,9 +535,10 @@ end
 See the [List memories reference](/docs/en/api/beta/memory_stores/memories/list) for full parameters and response schema.
 
 ### Read a memory
+
 Fetching an individual memory returns the full content.
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
@@ -621,7 +623,7 @@ See the [Retrieve a memory reference](/docs/en/api/beta/memory_stores/memories/r
 
 `memories.create` creates a memory at a given `path`. Create does not overwrite; to change an existing memory, use [`memories.update`](#update-a-memory).
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 mem=$(curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories" \
@@ -717,9 +719,9 @@ See the [Create a memory reference](/docs/en/api/beta/memory_stores/memories/cre
 
 ### Update a memory
 
-`memories.update()` modifies an existing memory by ID. You can change `content`, `path` (a rename), or both. The example renames a memory to an archive path:
+`memories.update` modifies an existing memory by ID. You can change `content`, `path` (a rename), or both. The example renames a memory to an archive path:
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
@@ -813,7 +815,7 @@ See the [Update a memory reference](/docs/en/api/beta/memory_stores/memories/upd
 
 To avoid clobbering a concurrent write, pass a `content_sha256` precondition. The update only applies if the stored content hash still matches the one you read; on mismatch, re-read the memory and retry against the fresh state.
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
@@ -929,7 +931,7 @@ client.beta.memory_stores.memories.update(
 
 ### Delete a memory
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 curl -s -X DELETE "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
@@ -1018,7 +1020,7 @@ Past memory versions might be deleted after 30 days. To preserve memory history 
 
 List version history for a store, newest first. The example filters to a single memory's history:
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 versions=$(curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions?memory_id=$mem_id" \
@@ -1146,7 +1148,7 @@ See the [List memory versions reference](/docs/en/api/beta/memory_stores/memory_
 
 Fetching an individual version returns the same fields as the list response plus the full `content` body.
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions/$version_id" \
@@ -1236,7 +1238,7 @@ Redact scrubs content out of a historical version while preserving the audit tra
 
 A version that is the current head of a live memory cannot be redacted. Write a new version first (or delete the memory), then redact the old one.
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions/$version_id/redact" \
@@ -1323,7 +1325,7 @@ In addition to [`create`](/docs/en/api/beta/memory_stores/create), memory stores
 
 List stores in the workspace. Archived stores are excluded by default; pass `include_archived: true` to include them.
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 curl -s "https://api.anthropic.com/v1/memory_stores?include_archived=true" \
@@ -1404,7 +1406,7 @@ See the [List memory stores reference](/docs/en/api/beta/memory_stores/list) for
 
 Archiving makes a store read-only and prevents it from being attached to new sessions. Archiving is one-way; there is no unarchive.
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/archive" \

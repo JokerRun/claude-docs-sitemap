@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 910ea0fc24fdc4796e7cfac4fe2d3ba29fdf74b23047b10d4e6e3d3c176f0b0d
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: ba9cd82c874721f1fd847c606a9d910e2b837eec876f2dafcc564be885783131
 ---
 
 > ## Documentation Index
@@ -81,6 +81,7 @@ Managed settings can lock down tools, sandbox execution, restrict MCP servers an
 | [MCP server control](/en/mcp#managed-mcp-configuration)                                | Restrict which MCP servers users can add or connect to                        | `allowedMcpServers`, `deniedMcpServers`, `allowManagedMcpServersOnly`         |
 | [Plugin marketplace control](/en/plugin-marketplaces#managed-marketplace-restrictions) | Restrict which marketplace sources users can add and install from             | `strictKnownMarketplaces`, `blockedMarketplaces`                              |
 | [Hook restrictions](/en/settings#hook-configuration)                                   | Only managed hooks load; restrict HTTP hook URLs                              | `allowManagedHooksOnly`, `allowedHttpHookUrls`                                |
+| [Disable agent view](/en/agent-view#how-background-sessions-are-hosted)                | Turn off `claude agents`, `--bg`, `/background`, and the on-demand supervisor | `disableAgentView`                                                            |
 | [Version floor](/en/settings)                                                          | Prevent auto-update from installing below an org-wide minimum                 | `minimumVersion`                                                              |
 
 Permission rules and sandboxing cover different layers. Denying WebFetch blocks Claude's fetch tool, but if Bash is allowed, `curl` and `wget` can still reach any URL. Sandboxing closes that gap with a network domain allowlist enforced at the OS level.

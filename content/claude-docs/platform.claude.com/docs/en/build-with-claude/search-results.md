@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: c2f9924ac2143965eec4e40eb3d0f0a6b612154f6cbfe9f142ff0969436361c8
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 4f63b1d60451048500da275ad14409ca20c7819dcfa3a0aa38d1ee3498f32ea7
 ---
 
 # Search results
@@ -553,7 +553,6 @@ public class SearchKnowledgeBaseExample {
             MessageCreateParams finalParams = MessageCreateParams.builder()
                 .model(Model.CLAUDE_OPUS_4_7)
                 .maxTokens(1024L)
-                .addTool(knowledgeBaseTool)
                 .addUserMessage("How do I configure the timeout settings?")
                 .addAssistantMessageOfBlockParams(List.of(
                     ContentBlockParam.ofToolUse(ToolUseBlockParam.builder()

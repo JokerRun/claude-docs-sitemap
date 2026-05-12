@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: e2435a665ee141e0729a5c13546c306616dd78cd6fe1dc5455baecfb38b9b47e
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 9f9648ac9491b9a439b096a29218d4e5db2afe5bc281872c18a3118d27a44458
 ---
 
 # Files API
@@ -23,7 +23,7 @@ This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-
 
 Referencing a `file_id` in a Messages request is supported in all models that support the given file type. For example, [images](/docs/en/build-with-claude/vision) are supported in all Claude 3+ models, [PDFs](/docs/en/build-with-claude/pdf-support) in all Claude 3.5+ models, and [various other file types](/docs/en/agents-and-tools/tool-use/code-execution-tool#supported-file-types) for the code execution tool in Claude Haiku 4.5 plus all Claude 3.7+ models.
 
-The Files API is currently not supported on Amazon Bedrock or Google Vertex AI.
+The Files API is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). It is not currently available on Amazon Bedrock or Vertex AI.
 
 ## How the Files API works
 
@@ -57,7 +57,7 @@ curl -X POST https://api.anthropic.com/v1/files \
 ````bash
 FILE_ID=$(ant beta:files upload \
   --file /path/to/document.pdf \
-  --transform id --format yaml)
+  --transform id --raw-output)
 ````
 
 ````python
@@ -436,7 +436,7 @@ printf 'This is a test document for upload.\n' > document.txt
 ant messages create \
   --model claude-opus-4-7 \
   --max-tokens 1024 \
-  --transform 'content.0.text' --format yaml <<'YAML'
+  --transform 'content.0.text' --raw-output <<'YAML'
 messages:
   - role: user
     content:

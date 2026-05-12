@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 0c85d44b01311aba47692dee26d89d04968b2ec83c1998db93a5397bdaea5130
+fetched_at: 2026-05-12T03:14:46.254373Z
+sha256: 2a1373fd66d8e41742b4d4e7aa291b19c0b0a0ead777d5246ad340b651aa321a
 ---
 
 # Strict tool use
@@ -522,50 +522,39 @@ console.log(response);
 ```
 
 ```csharp C#
-using System;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Anthropic;
 using Anthropic.Models.Messages;
 
-class Program
+AnthropicClient client = new();
+
+var parameters = new MessageCreateParams
 {
-    static async Task Main(string[] args)
-    {
-        AnthropicClient client = new()
+    Model = Model.ClaudeOpus4_7,
+    MaxTokens = 1024,
+    Messages = [new() { Role = Role.User, Content = "Search for flights to Tokyo departing June 1, 2026" }],
+    Tools = [
+        new ToolUnion(new Tool()
         {
-            ApiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")
-        };
-
-        var parameters = new MessageCreateParams
-        {
-            Model = Model.ClaudeOpus4_7,
-            MaxTokens = 1024,
-            Messages = [new() { Role = Role.User, Content = "Search for flights to Tokyo departing June 1, 2026" }],
-            Tools = [
-                new ToolUnion(new Tool()
+            Name = "search_flights",
+            Strict = true,
+            InputSchema = new InputSchema(new Dictionary<string, JsonElement>
+            {
+                ["properties"] = JsonSerializer.SerializeToElement(new Dictionary<string, object>
                 {
-                    Name = "search_flights",
-                    Strict = true,
-                    InputSchema = new InputSchema(new Dictionary<string, JsonElement>
-                    {
-                        ["properties"] = JsonSerializer.SerializeToElement(new Dictionary<string, object>
-                        {
-                            ["destination"] = new { type = "string" },
-                            ["departure_date"] = new { type = "string", format = "date" },
-                            ["passengers"] = new { type = "integer", @enum = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } },
-                        }),
-                        ["required"] = JsonSerializer.SerializeToElement(new[] { "destination", "departure_date" }),
-                        ["additionalProperties"] = JsonSerializer.SerializeToElement(false),
-                    }),
+                    ["destination"] = new { type = "string" },
+                    ["departure_date"] = new { type = "string", format = "date" },
+                    ["passengers"] = new { type = "integer", @enum = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } },
                 }),
-            ]
-        };
+                ["required"] = JsonSerializer.SerializeToElement(new[] { "destination", "departure_date" }),
+                ["additionalProperties"] = JsonSerializer.SerializeToElement(false),
+            }),
+        }),
+    ]
+};
 
-        var message = await client.Messages.Create(parameters);
-        Console.WriteLine(message);
-    }
-}
+var message = await client.Messages.Create(parameters);
+Console.WriteLine(message);
 ```
 
 ```go Go hidelines={1..11,-1}
@@ -703,6 +692,8 @@ $message = $client->messages->create(
         ]
     ],
 );
+
+echo $message;
 ```
 
 ```ruby Ruby hidelines={1..2}
@@ -1112,7 +1103,7 @@ $message = $client->messages->create(
     ],
 );
 
-echo $message->content[0]->text;
+echo $message;
 ```
 
 ```ruby Ruby hidelines={1..2}
