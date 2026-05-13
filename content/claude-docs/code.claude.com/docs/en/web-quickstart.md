@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 7ce62c4e9d5be50c6832bb3ba1cf8123899b40f6c77fc532a44aa8134c63b4dd
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: bd880dae67b68bcf088a0b74bacb3865f8debd55a4a3e88be48d21213bd9a4c5
 ---
 
 > ## Documentation Index
@@ -183,7 +183,7 @@ When Claude finishes, review the changes, leave feedback on specific lines, and 
 
 ### No repositories appear after connecting GitHub
 
-The Claude GitHub App needs explicit access to each repository you want to use. On github.com, open **Settings → Applications → Claude → Configure** and verify your repo is listed under **Repository access**. Private repositories need the same authorization as public ones.
+A cloud session can use any repository the connected GitHub account can see, regardless of which repositories the Claude GitHub App is installed on. If a repository is missing, verify the connected GitHub account has access to it on GitHub. If you also want [Auto-fix](/en/claude-code-on-the-web#auto-fix-pull-requests) for a repository, install the App on it: on github.com, open **Settings → Applications → Claude → Configure** and verify the repository is listed under **Repository access**. Private repositories need the same authorization as public ones.
 
 ### The page only shows a GitHub login button
 

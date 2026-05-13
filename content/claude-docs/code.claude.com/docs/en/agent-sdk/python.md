@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 266992616387405770e83e8be10f10af5f37ccbea44e283fdbee14b5d01f007d
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: 872fef86d86153519eab9d16edda7f1f5a0447490c69fbdbd20c96eb04ff5f1b
 ---
 
 > ## Documentation Index
@@ -896,12 +896,12 @@ class SystemPromptPreset(TypedDict):
     exclude_dynamic_sections: NotRequired[bool]
 ```
 
-| Field                      | Required | Description                                                                                                                                                                                                                                                                                                      |
-| :------------------------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`                     | Yes      | Must be `"preset"` to use a preset system prompt                                                                                                                                                                                                                                                                 |
-| `preset`                   | Yes      | Must be `"claude_code"` to use Claude Code's system prompt                                                                                                                                                                                                                                                       |
-| `append`                   | No       | Additional instructions to append to the preset system prompt                                                                                                                                                                                                                                                    |
-| `exclude_dynamic_sections` | No       | Move per-session context such as working directory, git status, and memory paths from the system prompt into the first user message. Improves prompt-cache reuse across users and machines. See [Modify system prompts](/en/agent-sdk/modifying-system-prompts#improve-prompt-caching-across-users-and-machines) |
+| Field                      | Required | Description                                                                                                                                                                                                                                                                                                                  |
+| :------------------------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                     | Yes      | Must be `"preset"` to use a preset system prompt                                                                                                                                                                                                                                                                             |
+| `preset`                   | Yes      | Must be `"claude_code"` to use Claude Code's system prompt                                                                                                                                                                                                                                                                   |
+| `append`                   | No       | Additional instructions to append to the preset system prompt                                                                                                                                                                                                                                                                |
+| `exclude_dynamic_sections` | No       | Move per-session context such as working directory, the git-repo flag, and auto-memory paths from the system prompt into the first user message. Improves prompt-cache reuse across users and machines. See [Modify system prompts](/en/agent-sdk/modifying-system-prompts#improve-prompt-caching-across-users-and-machines) |
 
 ### `SettingSource`
 
@@ -2652,6 +2652,10 @@ Runs a background script and delivers each stdout line to Claude as an event so 
 
 **Tool name:** `TodoWrite`
 
+<Note>
+  `TodoWrite` is deprecated and will be removed in a future release. Use `TaskCreate`, `TaskGet`, `TaskUpdate`, and `TaskList` instead. Set `CLAUDE_CODE_ENABLE_TASKS=1` to opt in. See [Migrate to Task tools](/en/agent-sdk/todo-tracking#migrate-to-task-tools) for how monitoring code changes.
+</Note>
+
 **Input:**
 
 ```python theme={null}
@@ -2672,6 +2676,114 @@ Runs a background script and delivers each stdout line to Claude as an event so 
 {
     "message": str,  # Success message
     "stats": {"total": int, "pending": int, "in_progress": int, "completed": int},
+}
+```
+
+### TaskCreate
+
+**Tool name:** `TaskCreate`
+
+**Input:**
+
+```python theme={null}
+{
+    "subject": str,  # Short task title
+    "description": str,  # Detailed task body
+    "activeForm": str | None,  # Present-tense label shown while in progress
+    "metadata": dict | None,  # Arbitrary caller metadata
+}
+```
+
+**Output:**
+
+```python theme={null}
+{
+    "task": {"id": str, "subject": str},  # Created task with assigned ID
+}
+```
+
+### TaskUpdate
+
+**Tool name:** `TaskUpdate`
+
+**Input:**
+
+```python theme={null}
+{
+    "taskId": str,  # ID of the task to patch
+    "status": Literal["pending", "in_progress", "completed", "deleted"] | None,
+    "subject": str | None,
+    "description": str | None,
+    "activeForm": str | None,
+    "addBlocks": list[str] | None,  # Task IDs this task now blocks
+    "addBlockedBy": list[str] | None,  # Task IDs that now block this task
+    "owner": str | None,
+    "metadata": dict | None,
+}
+```
+
+**Output:**
+
+```python theme={null}
+{
+    "success": bool,
+    "taskId": str,
+    "updatedFields": list[str],  # Names of fields that changed
+    "error": str | None,
+    "statusChange": {"from": str, "to": str} | None,
+}
+```
+
+### TaskGet
+
+**Tool name:** `TaskGet`
+
+**Input:**
+
+```python theme={null}
+{
+    "taskId": str,  # ID of the task to read
+}
+```
+
+**Output:**
+
+```python theme={null}
+{
+    "task": {
+        "id": str,
+        "subject": str,
+        "description": str,
+        "status": Literal["pending", "in_progress", "completed"],
+        "blocks": list[str],
+        "blockedBy": list[str],
+    } | None,  # None when the ID is not found
+}
+```
+
+### TaskList
+
+**Tool name:** `TaskList`
+
+**Input:**
+
+```python theme={null}
+{}
+```
+
+**Output:**
+
+```python theme={null}
+{
+    "tasks": [
+        {
+            "id": str,
+            "subject": str,
+            "status": Literal["pending", "in_progress", "completed"],
+            "owner": str | None,
+            "blockedBy": list[str],
+        }
+    ],
 }
 ```
 

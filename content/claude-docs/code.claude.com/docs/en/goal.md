@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/goal
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 7972d686be8180461f6f0208714850888c41d5dde332ad2da3f032ed636ae040
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: d7c88aeb161aa3634b4ead0099edca76fffebe0dfa9e5801bc56a518926a24e0
 ---
 
 > ## Documentation Index
@@ -135,7 +135,7 @@ The evaluator runs on whichever provider your session is configured for. It does
 
 ## Requirements
 
-`/goal` runs only in workspaces where you have accepted the trust dialog, because the evaluator is part of the hooks system. If [`disableAllHooks`](/en/hooks#disable-or-remove-hooks) is set in managed policy settings, `/goal` is unavailable. In both cases, the command tells you why instead of silently doing nothing.
+`/goal` runs only in workspaces where you have accepted the trust dialog, because the evaluator is part of the hooks system. `/goal` is also unavailable when [`disableAllHooks`](/en/hooks#disable-or-remove-hooks) is set at any settings level or when [`allowManagedHooksOnly`](/en/settings#hook-configuration) is set in managed settings. In each case, the command tells you why instead of silently doing nothing.
 
 ## See also
 

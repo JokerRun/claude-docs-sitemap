@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: d17a94a9924559d1d08977c148f3edb6b407207e5fbb82f00b486e71b3493160
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: d94e5de66fdc6b5b28eed44b5ba132c05244cbb88b52bd9e467f0c7820b504bc
 ---
 
 > ## Documentation Index
@@ -304,6 +304,12 @@ Use the `--plugin-dir` flag to test plugins during development. This loads your 
 
 ```bash theme={null}
 claude --plugin-dir ./my-plugin
+```
+
+The flag also accepts a `.zip` archive of the plugin directory, which requires Claude Code v2.1.128 or later.
+
+```bash theme={null}
+claude --plugin-dir ./my-plugin.zip
 ```
 
 When a `--plugin-dir` plugin has the same name as an installed marketplace plugin, the local copy takes precedence for that session. This lets you test changes to a plugin you already have installed without uninstalling it first. Marketplace plugins force-enabled by managed settings are the only exception and cannot be overridden.

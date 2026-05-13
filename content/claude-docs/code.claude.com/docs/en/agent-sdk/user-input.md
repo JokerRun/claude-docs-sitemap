@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/user-input
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 8ced37fd71e862af16a2e7816ebbe7691c35e8b1746cd9157893060871ec9ec2
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: 0ccb98956bca7325f1b535c8f97714e663725e56f60878c4029d93bd035e4b9c
 ---
 
 > ## Documentation Index
@@ -239,6 +239,7 @@ Beyond allowing or denying, you can modify the tool's input or provide context t
 
 * **Approve**: let the tool execute as Claude requested
 * **Approve with changes**: modify the input before execution (e.g., sanitize paths, add constraints)
+* **Approve and remember**: echo a suggested permission rule back so matching calls skip the prompt next time
 * **Reject**: block the tool and tell Claude why
 * **Suggest alternative**: block but guide Claude toward what the user wants instead
 * **Redirect entirely**: use [streaming input](/en/agent-sdk/streaming-vs-single-mode) to send Claude a completely new instruction
@@ -299,6 +300,51 @@ Beyond allowing or denying, you can modify the tool's input or provide context t
           return { behavior: "allow", updatedInput: sandboxedInput };
         }
         return { behavior: "allow", updatedInput: input };
+      };
+      ```
+    </CodeGroup>
+  </Tab>
+
+  <Tab title="Approve and remember">
+    The user approves and doesn't want to be asked again for this kind of call. The third callback argument carries `suggestions`, an array of ready-made [`PermissionUpdate`](/en/agent-sdk/typescript#permissionupdate) entries. Echo one back in `updatedPermissions` to apply it. A suggestion with the `localSettings` destination writes the rule to `.claude/settings.local.json` so future sessions skip the prompt for matching calls.
+
+    The Python example requires `claude-agent-sdk` 0.1.80 or later.
+
+    <CodeGroup>
+      ```python Python theme={null}
+      async def can_use_tool(tool_name, input_data, context):
+          choice = await ask_user(f"Allow {tool_name}?", ["once", "always", "no"])
+
+          if choice == "always":
+              persist = [
+                  s for s in context.suggestions if s.destination == "localSettings"
+              ]
+              return PermissionResultAllow(
+                  updated_input=input_data, updated_permissions=persist
+              )
+          if choice == "once":
+              return PermissionResultAllow(updated_input=input_data)
+          return PermissionResultDeny(message="User declined")
+      ```
+
+      ```typescript TypeScript theme={null}
+      canUseTool: async (toolName, input, { suggestions = [] }) => {
+        const choice = await askUser(`Allow ${toolName}?`, ["once", "always", "no"]);
+
+        if (choice === "always") {
+          const persist = suggestions.filter(
+            (s) => s.destination === "localSettings"
+          );
+          return {
+            behavior: "allow",
+            updatedInput: input,
+            updatedPermissions: persist
+          };
+        }
+        if (choice === "once") {
+          return { behavior: "allow", updatedInput: input };
+        }
+        return { behavior: "deny", message: "User declined" };
       };
       ```
     </CodeGroup>

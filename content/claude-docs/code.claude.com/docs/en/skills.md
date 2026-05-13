@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-05-11T03:16:45.322844Z
-sha256: 2a978a793ab2683df3fe3aefdd76748bc16d70b98d94733adc4f38404c54b5a5
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: 0e2de15c2b49351ebc491865c9889d3bbbe4ed196de8f1587d372f583efdc910
 ---
 
 > ## Documentation Index
@@ -104,9 +104,9 @@ When skills share the same name across levels, enterprise overrides personal, an
 
 Claude Code watches skill directories for file changes. Adding, editing, or removing a skill under `~/.claude/skills/`, the project `.claude/skills/`, or a `.claude/skills/` inside an `--add-dir` directory takes effect within the current session without restarting. Creating a top-level skills directory that did not exist when the session started requires restarting Claude Code so the new directory can be watched.
 
-#### Automatic discovery from nested directories
+#### Automatic discovery from parent and nested directories
 
-When you work with files in subdirectories, Claude Code automatically discovers skills from nested `.claude/skills/` directories. For example, if you're editing a file in `packages/frontend/`, Claude Code also looks for skills in `packages/frontend/.claude/skills/`. This supports monorepo setups where packages have their own skills.
+Project skills load from `.claude/skills/` in your starting directory and in every parent directory up to the repository root, so starting Claude in a subdirectory still picks up skills defined at the root. When you work with files in subdirectories below your starting directory, Claude Code also discovers skills from nested `.claude/skills/` directories on demand. For example, if you're editing a file in `packages/frontend/`, Claude Code also looks for skills in `packages/frontend/.claude/skills/`. This supports monorepo setups where packages have their own skills.
 
 Each skill is a directory with `SKILL.md` as the entrypoint:
 

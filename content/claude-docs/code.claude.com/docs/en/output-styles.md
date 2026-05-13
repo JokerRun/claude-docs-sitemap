@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/output-styles
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 8ae32dc665e9f3a638f2338c96c30a6445294c817e46130eb08099c7112e3501
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: 308c93ff7cdbd3f2160ec94c3309c834fcdc1717f10805c219c0db628b2e06b1
 ---
 
 > ## Documentation Index
@@ -123,18 +123,27 @@ Output style files support frontmatter for specifying metadata:
 
 ### Output Styles vs. CLAUDE.md vs. --append-system-prompt
 
-Output styles completely "turn off" the parts of Claude Code's default system
-prompt specific to software engineering. Neither CLAUDE.md nor
-`--append-system-prompt` edit Claude Code's default system prompt. CLAUDE.md
-adds the contents as a user message *following* Claude Code's default system
-prompt. `--append-system-prompt` appends the content to the system prompt.
+Choose based on whether Claude should stop acting as a coding assistant or keep
+its default role and learn more. Output styles replace the software-engineering
+parts of Claude Code's system prompt with your own role and voice, so use one
+when Claude should adopt a different identity, like a writing editor or a
+data-analysis assistant. CLAUDE.md and `--append-system-prompt` both keep
+Claude Code's default identity and add to it, so use them when Claude should
+remain a coding assistant that also follows your project conventions or extra
+instructions.
+
+The mechanisms differ as well. Output styles edit the system prompt directly.
+CLAUDE.md adds its contents as a user message after the system prompt.
+`--append-system-prompt` appends content to the end of the system prompt without
+removing anything.
 
 ### Output Styles vs. [Agents](/en/sub-agents)
 
-Output styles directly affect the main agent loop and only affect the system
-prompt. Agents are invoked to handle specific tasks and can include additional
-settings like the model to use, the tools they have available, and some context
-about when to use the agent.
+Use an output style to change how the main conversation responds in every
+session. Use a [subagent](/en/sub-agents) when you want a separately scoped
+helper that the main conversation delegates to. Output styles affect only the
+system prompt of the main agent loop. Agents handle specific tasks and can carry
+their own model, tools, and context about when to invoke them.
 
 ### Output Styles vs. [Skills](/en/skills)
 

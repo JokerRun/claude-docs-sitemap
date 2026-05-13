@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-04-30T03:14:15.920856Z
-sha256: 5deb69984405bab9f4ee790bc0b783730066fe11ed4572ec1bb1a39cb9a51f75
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: a81ce454be65350325ff0ae303695dbbf7ec444d0ebe1f37332f8641c804190e
 ---
 
 > ## Documentation Index
@@ -97,6 +97,26 @@ On **Linux and WSL2**, install the required packages first:
     ```
   </Tab>
 </Tabs>
+
+On Ubuntu 24.04 and later, the default AppArmor policy prevents bubblewrap from creating the user namespaces it needs for isolation. Add an AppArmor profile that grants `bwrap` this capability:
+
+```bash theme={null}
+sudo tee /etc/apparmor.d/bwrap > /dev/null <<'EOF'
+abi <abi/4.0>,
+include <tunables/global>
+
+profile bwrap /usr/bin/bwrap flags=(unconfined) {
+  userns,
+  include if exists <local/bwrap>
+}
+EOF
+```
+
+The profile applies only to `bwrap` itself, not to the commands it runs inside the sandbox. Reload AppArmor to apply it:
+
+```bash theme={null}
+sudo systemctl reload apparmor
+```
 
 WSL1 does not support sandboxing because it lacks the required Linux namespace primitives. If you see `Sandboxing requires WSL2`, upgrade your distribution to WSL2 or run Claude Code without sandboxing.
 

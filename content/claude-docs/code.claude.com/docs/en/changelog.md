@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 060a7c0ea0d9c0f99ac31f73a181f5ef6881e0abaf2307388b9850c553369613
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: f4c566ff571b1d7e41d046247d11c9717883ddf1c30fc7f9c8311883db000d75
 ---
 
 > ## Documentation Index
@@ -16,6 +16,22 @@ sha256: 060a7c0ea0d9c0f99ac31f73a181f5ef6881e0abaf2307388b9850c553369613
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.140" description="May 12, 2026">
+  * Improved Agent tool `subagent_type` matching to accept case- and separator-insensitive values (e.g. `"Code Reviewer"` resolves to `code-reviewer`)
+  * Updated agent color palette
+  * Fixed `/goal` silently hanging when `disableAllHooks` or `allowManagedHooksOnly` is set — now shows a clear message instead of an indicator that never resolves
+  * Fixed a regression in settings hot-reload where symlinked settings files caused misattributed change events and spurious `ConfigChange` hooks
+  * Fixed `claude --bg` failing with "connection dropped mid-request" when the background service was about to idle-exit
+  * Fixed background service startup failing on machines with enterprise endpoint security by allowing more time
+  * Fixed remote managed settings not retrying on 401 — now retries once with a force-refreshed token
+  * Fixed managed `extraKnownMarketplaces` auto-update policy not being persisted to `known_marketplaces.json`
+  * Fixed `/loop` scheduling redundant wakeups to poll for background tasks that already notify on completion
+  * Fixed a recurring event-loop stall on Windows when a missing executable (e.g. `gh`) triggered synchronous `where.exe` re-spawns on every check
+  * Fixed `Read` tool calls failing validation when `offset` is passed as a whitespace-padded or `+`-prefixed string
+  * Fixed native terminal cursor not staying at the input caret when the terminal loses focus
+  * Plugins now warn when a default component folder (e.g. `commands/`) is silently ignored because `plugin.json` sets the matching key. Shown in `/doctor`, `claude plugin list`, and `/plugin`.
+</Update>
 
 <Update label="2.1.139" description="May 11, 2026">
   * Added agent view (Research Preview): a single list of every Claude Code session — running, blocked on you, or done. Run `claude agents` to get started. See [https://code.claude.com/docs/en/agent-view](https://code.claude.com/docs/en/agent-view)

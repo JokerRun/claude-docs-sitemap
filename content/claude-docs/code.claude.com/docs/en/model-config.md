@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 102484ec86ba64838f0a865c804d6949391eaab4417f482789af2acfd19da95d
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: dea8866d7cb61a9494e2e80d66c3f7d93158df2a5ba69be7d469fdc66dc70096
 ---
 
 > ## Documentation Index
@@ -245,7 +245,7 @@ Thinking output is collapsed by default. Press `Ctrl+O` to toggle verbose mode a
 
 Opus 4.7, Opus 4.6, and Sonnet 4.6 support a [1 million token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#1m-token-context-window) for long sessions with large codebases.
 
-Availability varies by model and plan. On Max, Team, and Enterprise plans, Opus is automatically upgraded to 1M context with no additional configuration. This applies to both Team Standard and Team Premium seats.
+Availability varies by model and plan. On Max, Team, and Enterprise plans, Opus is automatically upgraded to 1M context with no additional configuration. This applies to both Team Standard and Team Premium seats. Sonnet with 1M context is not part of the automatic upgrade and requires [extra usage](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) on every subscription plan, including Max.
 
 | Plan                      | Opus with 1M context                                                                                      | Sonnet with 1M context                                                                                    |
 | ------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |

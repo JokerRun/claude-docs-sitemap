@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: db3fabd89a78d1e6a014b91f1960d2d54534f049aaf02179b5b274534ed0e07c
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: 64313283fd7672a1e4184981cffa5193cd49def5151641cc61b7dcef86e95be9
 ---
 
 # Define your agent
@@ -167,7 +167,7 @@ agent = client.beta.agents.create(
 </CodeGroup>
 
 <Tip>
-To use Claude Opus 4.6 with [fast mode](/docs/en/build-with-claude/fast-mode), pass `model` as an object: `{"id": "claude-opus-4-6", "speed": "fast"}`.
+To use Claude Opus 4.6 or Claude Opus 4.7 with [fast mode](/docs/en/build-with-claude/fast-mode), pass `model` as an object: `{"id": "claude-opus-4-7", "speed": "fast"}`.
 </Tip>
 
 The response echoes your configuration and adds `id`, `type`, `version`, `created_at`, `updated_at`, and `archived_at` fields. The `version` starts at 1 and increments each time an update changes the agent.

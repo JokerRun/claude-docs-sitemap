@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: e08d2396ccfe1f8ac7aaf3d8be32b851a776c37d86bed3c9e580250f0833f078
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: 82ee87742e6c15ad1b53a588e18fa8e143189f8375ef8ef154260985513569fe
 ---
 
 > ## Documentation Index
@@ -263,11 +263,12 @@ These settings are stored in `~/.claude.json` rather than `settings.json`. Addin
   Versions before v2.1.119 also store `autoScrollEnabled`, `editorMode`, `showTurnDuration`, `teammateMode`, and `terminalProgressBarEnabled` here instead of in `settings.json`.
 </Note>
 
-| Key                       | Description                                                                                                                                                                                                                                                                                                                           | Example |
-| :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------ |
-| `autoConnectIde`          | Automatically connect to a running IDE when Claude Code starts from an external terminal. Default: `false`. Appears in `/config` as **Auto-connect to IDE (external terminal)** when running outside a VS Code or JetBrains terminal. The [`CLAUDE_CODE_AUTO_CONNECT_IDE`](/en/env-vars) environment variable overrides this when set | `true`  |
-| `autoInstallIdeExtension` | Automatically install the Claude Code IDE extension when running from a VS Code terminal. Default: `true`. Appears in `/config` as **Auto-install IDE extension** when running inside a VS Code or JetBrains terminal. You can also set the [`CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL`](/en/env-vars) environment variable                  | `false` |
-| `externalEditorContext`   | Prepend Claude's previous response as `#`-commented context when you open the external editor with `Ctrl+G`. Default: `false`. Appears in `/config` as **Show last response in external editor**                                                                                                                                      | `true`  |
+| Key                       | Description                                                                                                                                                                                                                                                                                                                           | Example    |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------- |
+| `autoConnectIde`          | Automatically connect to a running IDE when Claude Code starts from an external terminal. Default: `false`. Appears in `/config` as **Auto-connect to IDE (external terminal)** when running outside a VS Code or JetBrains terminal. The [`CLAUDE_CODE_AUTO_CONNECT_IDE`](/en/env-vars) environment variable overrides this when set | `true`     |
+| `autoInstallIdeExtension` | Automatically install the Claude Code IDE extension when running from a VS Code terminal. Default: `true`. Appears in `/config` as **Auto-install IDE extension** when running inside a VS Code or JetBrains terminal. You can also set the [`CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL`](/en/env-vars) environment variable                  | `false`    |
+| `externalEditorContext`   | Prepend Claude's previous response as `#`-commented context when you open the external editor with `Ctrl+G`. Default: `false`. Appears in `/config` as **Show last response in external editor**                                                                                                                                      | `true`     |
+| `teammateDefaultModel`    | Default model for [agent team](/en/agent-teams) teammates when the spawn prompt doesn't specify one. Set to a model alias such as `"sonnet"`, or `null` to inherit the lead's current `/model` selection. Appears in `/config` as **Default teammate model**                                                                          | `"sonnet"` |
 
 ### Worktree settings
 
@@ -277,7 +278,7 @@ Configure how `--worktree` creates and manages git worktrees.
 | :---------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------ |
 | `worktree.baseRef`            | Which ref new worktrees branch from. `"fresh"` (default) branches from `origin/<default-branch>` for a clean tree matching the remote. `"head"` branches from your current local `HEAD`, so unpushed commits and feature-branch state are present in the worktree. Applies to `--worktree`, the `EnterWorktree` tool, and subagent isolation | `"head"`                              |
 | `worktree.symlinkDirectories` | Directories to symlink from the main repository into each worktree to avoid duplicating large directories on disk. No directories are symlinked by default                                                                                                                                                                                   | `["node_modules", ".cache"]`          |
-| `worktree.sparsePaths`        | Directories to check out in each worktree via git sparse-checkout (cone mode). Only the listed paths are written to disk, which is faster in large monorepos                                                                                                                                                                                 | `["packages/my-app", "shared/utils"]` |
+| `worktree.sparsePaths`        | Directories to check out in each worktree via git sparse-checkout. Only the listed directories plus root-level files are written to disk, which is faster in large monorepos                                                                                                                                                                 | `["packages/my-app", "shared/utils"]` |
 
 To copy gitignored files like `.env` into new worktrees, use a [`.worktreeinclude` file](/en/worktrees#copy-gitignored-files-into-worktrees) in your project root instead of a setting.
 
@@ -519,6 +520,7 @@ Settings apply in order of precedence. From highest to lowest:
    * Policies deployed by IT through server delivery, MDM configuration profiles, registry policies, or managed settings files
    * Cannot be overridden by any other level, including command line arguments
    * Within the managed tier, precedence is: server-managed > MDM/OS-level policies > file-based (`managed-settings.d/*.json` + `managed-settings.json`) > HKCU registry (Windows only). Only one managed source is used; sources do not merge across tiers. Within the file-based tier, drop-in files and the base file are merged together.
+   * Embedding hosts such as Claude Desktop can supply policy via the SDK `managedSettings` option. By default this is ignored when any managed-settings tier is present. Administrators can opt in by setting [`parentSettingsBehavior`](#available-settings) to `"merge"`. The embedder's values are filtered so they can tighten managed policy but not loosen it.
 
 2. **Command line arguments**
    * Temporary overrides for a specific session. JSON passed via `--settings <file-or-json>` merges with file-based settings using the same rules as the other layers: a key set here overrides the same key in local, project, or user settings, and omitting a key leaves the lower-layer value in place
@@ -680,6 +682,8 @@ Defines additional marketplaces that should be made available for the repository
 * `directory`: Local filesystem path (uses `path`, for development only)
 * `hostPattern`: regex pattern to match marketplace hosts (uses `hostPattern`)
 * `settings`: inline marketplace declared directly in settings.json without a separate hosted repository (uses `name` and `plugins`)
+
+Each marketplace entry also accepts an optional `autoUpdate` Boolean. Set `"autoUpdate": true` alongside `source` to make Claude Code refresh that marketplace and update its installed plugins at startup. When omitted, official Anthropic marketplaces default to `true` and all other marketplaces default to `false`. See [Configure auto-updates](/en/discover-plugins#configure-auto-updates).
 
 Use `source: 'settings'` to declare a small set of plugins inline without setting up a hosted marketplace repository. Plugins listed here must reference external sources such as GitHub or npm. You still need to enable each plugin separately in `enabledPlugins`.
 

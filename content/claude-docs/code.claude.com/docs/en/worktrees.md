@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/worktrees
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 5589ef16cab0a306346dc1968a037f52a4ee8d6e440dd3aeb60423f8a94c4a36
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: b6759d03d098f0509133d16b5fb32fbbfd5f2ca4b66fb2f0f0274f3d51e13112
 ---
 
 > ## Documentation Index
@@ -91,8 +91,8 @@ Subagents can run in their own worktrees so parallel edits don't conflict. Ask C
 
 When you exit a worktree session, cleanup depends on whether you made changes:
 
-* **No changes**: the worktree and its branch are removed automatically
-* **Changes or commits exist**: Claude prompts you to keep or remove the worktree. Keeping preserves the directory and branch so you can return later. Removing deletes the worktree directory and its branch, discarding all uncommitted changes and commits
+* **No uncommitted changes, no untracked files, and no new commits**: the worktree and its branch are removed automatically. If the session has a [name](/en/sessions#name-your-sessions), Claude prompts instead so you can keep the worktree for later
+* **Uncommitted changes, untracked files, or new commits exist**: Claude prompts you to keep or remove the worktree. Keeping preserves the directory and branch so you can return later. Removing deletes the worktree directory and its branch, discarding any uncommitted changes, untracked files, and commits
 * **Non-interactive runs**: worktrees created with `--worktree` alongside `-p` are not cleaned up automatically since there is no exit prompt. Remove them with `git worktree remove`
 
 Subagent worktrees orphaned by a crash or interrupted run are removed at startup once they are older than your [`cleanupPeriodDays`](/en/settings#available-settings) setting, provided they have no uncommitted changes, no untracked files, and no unpushed commits. Worktrees you create with `--worktree` are never removed by this sweep.

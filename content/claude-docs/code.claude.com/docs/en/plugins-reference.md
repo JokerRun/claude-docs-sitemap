@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 4e058ddd791beee968844f10a2d48df1c0a5f7b990310bdf8439858cdce2b611
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: 021655c937efe74fdb06602910a834235ea194c90fbc37007dff303938bc9607
 ---
 
 > ## Documentation Index
@@ -525,6 +525,8 @@ Whether a custom path replaces or extends the plugin's default directory depends
 * **Adds to the default**: `skills`. The default `skills/` directory is always scanned, and directories listed in `skills` are loaded alongside it
 * **Own merge rules**: [hooks](#hooks), [MCP servers](#mcp-servers), and [LSP servers](#lsp-servers). See each section for how multiple sources combine
 
+When a plugin has both a default folder and the matching manifest key, Claude Code v2.1.140 and later flags the ignored folder in `/doctor`, `claude plugin list`, and the `/plugin` detail view. The plugin still loads using the manifest paths. No warning is shown when the manifest key points into the default folder, for example `"commands": ["./commands/deploy.md"]`, because the folder is addressed explicitly in that case.
+
 For all path fields:
 
 * All paths must be relative to the plugin root and start with `./`
@@ -787,7 +789,7 @@ claude plugin uninstall <plugin> [options]
 | `-s, --scope <scope>` | Uninstall from scope: `user`, `project`, or `local`                                                      | `user`  |
 | `--keep-data`         | Preserve the plugin's [persistent data directory](#persistent-data-directory)                            |         |
 | `--prune`             | Also remove auto-installed dependencies that no other plugin requires. See [plugin prune](#plugin-prune) |         |
-| `-y, --yes`           | Skip the `--prune` confirmation prompt. Required when stdin is not a TTY                                 |         |
+| `-y, --yes`           | Skip the `--prune` confirmation prompt. Required when stdin or stdout is not a TTY                       |         |
 | `-h, --help`          | Display help for command                                                                                 |         |
 
 **Aliases:** `remove`, `rm`
@@ -804,12 +806,12 @@ claude plugin prune [options]
 
 **Options:**
 
-| Option                | Description                                                    | Default |
-| :-------------------- | :------------------------------------------------------------- | :------ |
-| `-s, --scope <scope>` | Prune at scope: `user`, `project`, or `local`                  | `user`  |
-| `--dry-run`           | List what would be removed without removing anything           |         |
-| `-y, --yes`           | Skip the confirmation prompt. Required when stdin is not a TTY |         |
-| `-h, --help`          | Display help for command                                       |         |
+| Option                | Description                                                              | Default |
+| :-------------------- | :----------------------------------------------------------------------- | :------ |
+| `-s, --scope <scope>` | Prune at scope: `user`, `project`, or `local`                            | `user`  |
+| `--dry-run`           | List what would be removed without removing anything                     |         |
+| `-y, --yes`           | Skip the confirmation prompt. Required when stdin or stdout is not a TTY |         |
+| `-h, --help`          | Display help for command                                                 |         |
 
 **Aliases:** `autoremove`
 

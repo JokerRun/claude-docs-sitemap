@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-05-10T03:14:14.320994Z
-sha256: 643488788c409d25986adcdde4c82a5c3fb2b539e344bcc3a7cd89595d272379
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: 4dad5ea0d5229a2cd574ade6b737ae16021f3f2aaa621c145587393857fb9bbc
 ---
 
 > ## Documentation Index
@@ -177,6 +177,8 @@ To enable this, add the key to your managed settings configuration:
 
 Before enabling this setting, ensure your network policies allow connectivity to `api.anthropic.com`. If that endpoint is unreachable, the CLI exits at startup and users cannot start Claude Code.
 
+As of v2.1.139, the `claude auth` subcommands such as `claude auth login` are exempt from this check, so users can re-authenticate when expired credentials are the reason the settings fetch fails.
+
 ### Security approval dialogs
 
 Certain settings that could pose security risks require explicit user approval before being applied:
@@ -210,13 +212,13 @@ Audit events include the type of action performed, the account and device that p
 
 Server-managed settings provide centralized policy enforcement, but they operate as a client-side control. On unmanaged devices, users with admin or sudo access can modify the Claude Code binary, filesystem, or network configuration.
 
-| Scenario                                                               | Behavior                                                                                                                                                                                                    |
-| :--------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| User edits the cached settings file                                    | Tampered file applies at startup, but correct settings restore on the next server fetch                                                                                                                     |
-| User deletes the cached settings file                                  | First-launch behavior occurs: settings fetch asynchronously with a brief unenforced window                                                                                                                  |
-| API is unavailable                                                     | Cached settings apply if available, otherwise managed settings are not enforced until the next successful fetch. With `forceRemoteSettingsRefresh: true`, the CLI exits instead of continuing               |
-| User authenticates with a different organization                       | Settings are not delivered for accounts outside the managed organization                                                                                                                                    |
-| User configures a [third-party model provider](#platform-availability) | Server-managed settings are bypassed. This includes setting `CLAUDE_CODE_USE_BEDROCK`, `CLAUDE_CODE_USE_MANTLE`, `CLAUDE_CODE_USE_VERTEX`, `CLAUDE_CODE_USE_FOUNDRY`, or a non-default `ANTHROPIC_BASE_URL` |
+| Scenario                                                               | Behavior                                                                                                                                                                                                                                                            |
+| :--------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| User edits the cached settings file                                    | Tampered file applies at startup, but correct settings restore on the next server fetch                                                                                                                                                                             |
+| User deletes the cached settings file                                  | First-launch behavior occurs: settings fetch asynchronously with a brief unenforced window                                                                                                                                                                          |
+| API is unavailable                                                     | Cached settings apply if available, otherwise managed settings are not enforced until the next successful fetch. With `forceRemoteSettingsRefresh: true`, the CLI exits instead of continuing, except for [`claude auth` subcommands](#enforce-fail-closed-startup) |
+| User authenticates with a different organization                       | Settings are not delivered for accounts outside the managed organization                                                                                                                                                                                            |
+| User configures a [third-party model provider](#platform-availability) | Server-managed settings are bypassed. This includes setting `CLAUDE_CODE_USE_BEDROCK`, `CLAUDE_CODE_USE_MANTLE`, `CLAUDE_CODE_USE_VERTEX`, `CLAUDE_CODE_USE_FOUNDRY`, or a non-default `ANTHROPIC_BASE_URL`                                                         |
 
 To detect runtime configuration changes, use [`ConfigChange` hooks](/en/hooks#configchange) to log modifications or block unauthorized changes before they take effect.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security
-fetched_at: 2026-05-10T03:14:14.320994Z
-sha256: dcec874491cafd8b166513c43bf557924dd23ba15e1ef1575f7acf7821e6449b
+fetched_at: 2026-05-13T03:15:22.791986Z
+sha256: 06cbb60c87fdfe16a471aec48417c7029665ad89e5b62e13b4c9902006aac95f
 ---
 
 > ## Documentation Index
@@ -94,7 +94,7 @@ For full details, please review our [Commercial Terms of Service](https://www.an
 
 Claude Code allows users to configure Model Context Protocol (MCP) servers. The list of allowed MCP servers is configured in your source code, as part of Claude Code settings engineers check into source control.
 
-We encourage either writing your own MCP servers or using MCP servers from providers that you trust. You are able to configure Claude Code permissions for MCP servers. Anthropic does not manage or audit any MCP servers.
+We encourage either writing your own MCP servers or using MCP servers from providers that you trust. You are able to configure Claude Code permissions for MCP servers. Anthropic reviews connectors against its [listing criteria](https://claude.com/docs/connectors/building/review-criteria) before adding them to the [Anthropic Directory](https://claude.ai/directory), but does not security-audit or manage any MCP server.
 
 ## IDE security
 
