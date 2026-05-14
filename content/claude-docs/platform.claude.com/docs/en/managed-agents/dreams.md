@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/dreams
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 294c7473078795942463ccd0dc3047c7700a0494187d1b0e1467b834600bba91
+fetched_at: 2026-05-14T03:14:07.437614Z
+sha256: 107c555bb51719de386f07b81dbffecf18f9973c13d633874e7cd23dd6337a60
 ---
 
 # Dreams
@@ -30,7 +30,7 @@ All Managed Agents API requests require the `managed-agents-2026-04-01` beta hea
 A **dream** is an asynchronous job that takes:
 
 - a pre-existing **memory store**: the store Claude verifies, deduplicates, and reorganizes, and
-- optionally, up to 100 **sessions**: past transcripts Claude mines for patterns and insights to fold into the output.
+- 1 to 100 **sessions**: past transcripts Claude mines for patterns and insights to fold into the output.
 
 The dream produces another **output memory store**, separate from the input. The output store ID appears in the dream's `outputs[]` once it starts `running`.
 
@@ -181,7 +181,7 @@ puts dream.id # drm_01...
 
 </CodeGroup>
 
-Dreaming inputs include the pre-existing memory store and an optional array of sessions. The model selected will run the dreaming pipeline; during the research preview `claude-opus-4-7` and `claude-sonnet-4-6` are supported. You can also provide additional guidance on dreaming run execution in `instructions`.
+Dreaming inputs include the pre-existing memory store and an array of sessions. The model selected will run the dreaming pipeline; during the research preview `claude-opus-4-7` and `claude-sonnet-4-6` are supported. You can also provide additional guidance on dreaming run execution in `instructions`.
 
 The response is the full `dream` resource with `status: "pending"`:
 

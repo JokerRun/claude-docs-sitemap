@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 9a12abdea3df3991bf235073912c75ba32a779c95ee6cedac474fdf48b1e8add
+fetched_at: 2026-05-14T03:14:07.437614Z
+sha256: 20352832eb2c9acf3c28eed452f25bfa114d3db719c50fdf9bdcbbda7e0b6860
 ---
 
 # Context windows
@@ -97,8 +97,6 @@ The diagram below illustrates the context window token management when combining
 <Note>
 Claude 4 models support [interleaved thinking](/docs/en/build-with-claude/extended-thinking#interleaved-thinking), which enables Claude to think between tool calls and make more sophisticated reasoning after receiving tool results.
 
-Claude Sonnet 3.7 does not support interleaved thinking, so there is no interleaving of extended thinking and tool calls without a non-`tool_result` user turn in between.
-
 For more information about using tools with extended thinking, see the [extended thinking guide](/docs/en/build-with-claude/extended-thinking#extended-thinking-with-tool-use).
 </Note>
 
@@ -149,11 +147,11 @@ For more specialized needs, [context editing](/docs/en/build-with-claude/context
 - **Tool result clearing** - Clear old tool results in agentic workflows
 - **Thinking block clearing** - Manage thinking blocks with extended thinking
 
-## Context window management with newer Claude models
+## Context window overflow behavior
 
-Newer Claude models (starting with Claude Sonnet 3.7) return a validation error when prompt and output tokens exceed the context window, rather than silently truncating. This change provides more predictable behavior but requires more careful token management.
+On Claude 4.5 models and newer, if input tokens plus `max_tokens` exceeds the context window size, the API accepts the request. If generation then reaches the context window limit, it stops with `stop_reason: "model_context_window_exceeded"`. On earlier models, the API returns a validation error instead; opt in to the `model_context_window_exceeded` behavior with the `model-context-window-exceeded-2025-08-26` beta header. See [Handling stop reasons](/docs/en/build-with-claude/handling-stop-reasons) for details.
 
-Use the [token counting API](/docs/en/build-with-claude/token-counting) to estimate token usage before sending messages to Claude. This helps you plan and stay within context window limits.
+To stay within context window limits, use the [token counting API](/docs/en/build-with-claude/token-counting) to estimate token usage before sending messages to Claude.
 
 See the [model comparison](/docs/en/about-claude/models/overview#latest-models-comparison) table for a list of context window sizes by model.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 0f25a187b2d2007e89b7b09cb5556956a3458e176f3cc5ec16548ad349b7e9ed
+fetched_at: 2026-05-14T03:14:07.437614Z
+sha256: bc209d9d41ca38f5f5e20e755990b46dd80c4e707fee76cac762288bc463042b
 ---
 
 # Alat computer use
@@ -1081,7 +1081,6 @@ Computer use follows the standard [tool use pricing](/docs/en/agents-and-tools/t
 | Model | Input tokens per tool definition |
 | ----- | -------------------------------- |
 | Claude 4.x models | 735 tokens |
-| Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)) | 735 tokens |
 
 **Additional token consumption**:
 - Screenshot images (see [Vision pricing](/docs/en/build-with-claude/vision))

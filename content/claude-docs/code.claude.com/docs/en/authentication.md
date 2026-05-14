@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: ed02a18f7c7045cfbaef318980108bee58129b07ad88343ab3ff7a99819934c0
+fetched_at: 2026-05-14T03:14:07.437614Z
+sha256: 498adf7c8b2dac75efa04070c9ce37e2b7067760fb80335faecbed814ac6334d
 ---
 
 > ## Documentation Index
@@ -149,6 +149,10 @@ If you have an active Claude subscription but also have `ANTHROPIC_API_KEY` set 
 [Claude Code on the Web](/en/claude-code-on-the-web) always uses your subscription credentials. `ANTHROPIC_API_KEY` and `ANTHROPIC_AUTH_TOKEN` in the sandbox environment do not override them.
 
 ### Generate a long-lived token
+
+<Note>
+  Starting June 15, 2026, Agent SDK and `claude -p` usage on subscription plans will draw from a new monthly Agent SDK credit, separate from your interactive usage limits. See [Use the Claude Agent SDK with your Claude plan](https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan) for details.
+</Note>
 
 For CI pipelines, scripts, or other environments where interactive browser login isn't available, generate a one-year OAuth token with `claude setup-token`:
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-05-13T03:15:22.791986Z
-sha256: 82ee87742e6c15ad1b53a588e18fa8e143189f8375ef8ef154260985513569fe
+fetched_at: 2026-05-14T03:14:07.437614Z
+sha256: 07ebdf801be7ff5ae5fec4c420925270c98fc5efe2e680ab6b96c1bcd1ce92ad
 ---
 
 > ## Documentation Index
@@ -56,7 +56,7 @@ Claude Code uses a **scope system** to determine where configurations apply and 
 
 ### How scopes interact
 
-When the same setting is configured in multiple scopes, more specific scopes take precedence:
+When the same setting appears in multiple scopes, Claude Code applies them in priority order:
 
 1. **Managed** (highest) - can't be overridden by anything
 2. **Command line arguments** - temporary session overrides
@@ -64,7 +64,7 @@ When the same setting is configured in multiple scopes, more specific scopes tak
 4. **Project** - overrides user settings
 5. **User** (lowest) - applies when nothing else specifies the setting
 
-For example, if a permission is allowed in user settings but denied in project settings, the project setting takes precedence and the permission is blocked.
+For example, if your user settings set `spinnerTipsEnabled` to `true` and project settings set it to `false`, the project value applies. Permission rules behave differently because they merge across scopes rather than override. See [Settings precedence](#settings-precedence).
 
 ### What uses scopes
 
@@ -536,7 +536,7 @@ Settings apply in order of precedence. From highest to lowest:
 
 This hierarchy ensures that organizational policies are always enforced while still allowing teams and individuals to customize their experience. The same precedence applies whether you run Claude Code from the CLI, the [VS Code extension](/en/vs-code), or a [JetBrains IDE](/en/jetbrains).
 
-For example, if your user settings allow `Bash(npm run *)` but a project's shared settings deny it, the project setting takes precedence and the command is blocked.
+For example, if your user settings set `permissions.defaultMode` to `acceptEdits` and a project's shared settings set it to `default`, the project value applies. The example below covers how array-valued settings such as permission rules combine instead.
 
 <Note>
   **Array settings merge across scopes.** When the same array-valued setting (such as `sandbox.filesystem.allowWrite` or `permissions.allow`) appears in multiple scopes, the arrays are **concatenated and deduplicated**, not replaced. This means lower-priority scopes can add entries without overriding those set by higher-priority scopes, and vice versa. For example, if managed settings set `allowWrite` to `["/opt/company-tools"]` and a user adds `["~/.kube"]`, both paths are included in the final configuration.
@@ -553,7 +553,7 @@ Run `/status` inside Claude Code to see which settings sources are active and wh
 * **Skills**: Custom prompts that can be invoked with `/skill-name` or loaded by Claude automatically
 * **MCP servers**: Extend Claude Code with additional tools and integrations
 * **Precedence**: Higher-level configurations (Managed) override lower-level ones (User/Project)
-* **Inheritance**: Settings are merged, with more specific settings adding to or overriding broader ones
+* **Inheritance**: Settings merge across scopes; scalar values from higher-priority scopes override, and arrays concatenate
 
 ### System prompt
 

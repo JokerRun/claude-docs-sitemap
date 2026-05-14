@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 252bfe1f5bee1eeefaa3e8b3488a4894308078b1e77a814ae6d8e6becb390ce4
+fetched_at: 2026-05-14T03:14:07.437614Z
+sha256: f59c8951be047b22072ecfb8efa81d3e6c734e1623d6d64a05fafa02bb3d9166
 ---
 
 # Text editor tool
@@ -1232,7 +1232,6 @@ In addition to the base tokens, the following additional input tokens are needed
 | Tool | Additional input tokens |
 | ----------------------------------------- | --------------------------------------- |
 | `text_editor_20250429` (Claude 4.x) | 700 tokens |
-| `text_editor_20250124` (Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations))) | 700 tokens |
 
 For more detailed information about tool pricing, see [Tool use pricing](/docs/en/agents-and-tools/tool-use/overview#pricing).
 

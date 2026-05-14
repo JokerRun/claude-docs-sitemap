@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 4f63b1d60451048500da275ad14409ca20c7819dcfa3a0aa38d1ee3498f32ea7
+fetched_at: 2026-05-14T03:14:07.437614Z
+sha256: 260495d14f41243153c98fb7f58d139f58d9bc43774ee7184bc118ef76b03bae
 ---
 
 # Search results
@@ -27,9 +27,8 @@ The search results feature is available on the following models:
 - Claude Opus 4.1 (`claude-opus-4-1-20250805`)
 - Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-opus-4-20250514`)
 - Claude Sonnet 4 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-sonnet-4-20250514`)
-- Claude Sonnet 3.7 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-3-7-sonnet-20250219`)
 - Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
-- Claude Haiku 3.5 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-3-5-haiku-20241022`)
+- Claude Haiku 3.5 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations)) (`claude-3-5-haiku-20241022`)
 
 ## Key benefits
 

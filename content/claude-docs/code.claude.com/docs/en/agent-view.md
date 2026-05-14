@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-view
-fetched_at: 2026-05-13T03:15:22.791986Z
-sha256: 48c147db35d050b220471ad21944513c2155e39ecc22279482ecd13e668a3799
+fetched_at: 2026-05-14T03:14:07.437614Z
+sha256: e7ac0ec004c98b68ffa853f336707cb9cc67b52619d036e6a0d6e1e0ce196707
 ---
 
 > ## Documentation Index
@@ -254,7 +254,7 @@ When agent view is grouped by directory, the highlighted row's directory becomes
 
 Run `/background` or its alias `/bg` to move the current conversation into a background session. Pass a prompt such as `/bg run the test suite and fix any failures` to give one more instruction first.
 
-Backgrounding from an interactive session starts a fresh process that resumes from the saved conversation, so running subagents and background commands do not transfer to it. Claude asks you to confirm before backgrounding when any are running. Once in the background, the session can start new subagents and background commands, and those keep running across later detach and reattach.
+Backgrounding from an interactive session starts a fresh process that resumes from the saved conversation, so running subagents, [monitors](/en/tools-reference#monitor-tool), and background commands do not transfer to it. Claude asks you to confirm before backgrounding when any are running. Once in the background, the session can start new subagents, monitors, and background commands, and those keep running across later detach and reattach.
 
 ### From your shell
 
