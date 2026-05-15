@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-05-13T03:15:22.791986Z
-sha256: 74444633978fba0a557a195f818f23d9e78d640ef96d10a31b2c429f01a8ec08
+fetched_at: 2026-05-15T03:15:49.552363Z
+sha256: a60e9d04b530c8ba74e4ee597e0dcc5d1a4ffbe59782ac70922220a6ffbce521
 ---
 
 > ## Documentation Index
@@ -789,7 +789,7 @@ If a new session fails to start with `Session creation failed` or stalls at prov
 
 ### Remote Control session expired or access denied
 
-`--teleport` connects through the same Remote Control session infrastructure that cloud sessions use, so authentication and session-expiry errors surface with Remote Control wording. You may see `Remote Control session has expired` or `Access denied`. The connection token is short-lived and scoped to your account.
+`--teleport` connects through the same Remote Control session infrastructure that cloud sessions use, so authentication and session-expiry errors surface with Remote Control wording. You may see `Remote Control session expired` or `Access denied`. The connection token is short-lived and scoped to your account.
 
 * Run `/login` locally to refresh your credentials, then reconnect
 * Confirm you are signed in to the same account that owns the session

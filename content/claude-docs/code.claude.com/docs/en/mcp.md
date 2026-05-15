@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-05-13T03:15:22.791986Z
-sha256: a26f1de454d95cf3ad23cfc4cd647ebde6bfaf551973d835d97dabb47d0de66f
+fetched_at: 2026-05-15T03:15:49.552363Z
+sha256: 0c4ba77ed7b633c9c5f758d8baa722fa95d2e893653c52ceac15b05eb32a100b
 ---
 
 > ## Documentation Index
@@ -465,7 +465,7 @@ Find customers who haven't made a purchase in 90 days
 
 Many cloud-based MCP servers require authentication. Claude Code supports OAuth 2.0 for secure connections.
 
-Claude Code marks a remote server as needing authentication when the server responds with `401 Unauthorized` and a `WWW-Authenticate` header pointing to its authorization server. Any custom server that returns that response gets the same `/mcp` authentication flow as any other remote server.
+Claude Code marks a remote server as needing authentication when the server responds with `401 Unauthorized` or `403 Forbidden`. Either status code flags the server in `/mcp` so you can complete the OAuth flow. A custom server that returns a `WWW-Authenticate` header pointing to its authorization server gets the same automatic discovery as any other remote server.
 
 <Steps>
   <Step title="Add the server that requires authentication">

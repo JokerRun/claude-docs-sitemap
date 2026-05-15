@@ -29,7 +29,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/custom-tools | 2026-05-07 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/file-check... | 2026-04-08 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-05-11 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-05-14 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/hosting | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-05-09 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-05-05 |  |
@@ -38,7 +38,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/overview | 2026-05-13 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/permissions | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/plugins | 2026-04-28 |  |
-| ... | _(~1663 more rows)_ | | |
+| ... | _(~1664 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

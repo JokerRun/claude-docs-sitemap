@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/commands
-fetched_at: 2026-05-14T03:14:07.437614Z
-sha256: 6d17bedc79fb189b002324cac0b0b4967989d1c508a7ecdf0271a2a4a805bad2
+fetched_at: 2026-05-15T03:15:49.552363Z
+sha256: 9fbbd053324a38fe22a40a72aff3fe68c95b086fac769f6953a8237115ab55a5
 ---
 
 > ## Documentation Index
@@ -33,7 +33,7 @@ Most commands are useful at a specific point in a session, from setting up a pro
 
 **Between sessions.** `/clear` starts fresh on a new task while keeping project memory. `/resume` and `/branch` let you return to or fork an earlier conversation. `/teleport` pulls a web session into this terminal, and `/remote-control` lets you continue this local session from another device.
 
-**When something is wrong.** `/rewind` rolls code and conversation back to a checkpoint. `/doctor` and `/debug` diagnose install and runtime issues, and `/feedback` reports a bug with session context attached.
+**When something is wrong.** `/rewind` rolls code and conversation back to a checkpoint, or summarizes part of the conversation. `/doctor` and `/debug` diagnose install and runtime issues, and `/feedback` reports a bug with session context attached.
 
 ## All commands
 

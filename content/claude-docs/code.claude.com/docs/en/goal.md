@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/goal
-fetched_at: 2026-05-13T03:15:22.791986Z
-sha256: d7c88aeb161aa3634b4ead0099edca76fffebe0dfa9e5801bc56a518926a24e0
+fetched_at: 2026-05-15T03:15:49.552363Z
+sha256: d1ed30854d47fa94d4b2994c890a5e1dca68878cd7e0a2711ddd733f5da07e51
 ---
 
 > ## Documentation Index
@@ -12,6 +12,10 @@ sha256: d7c88aeb161aa3634b4ead0099edca76fffebe0dfa9e5801bc56a518926a24e0
 # Keep Claude working toward a goal
 
 > Set a completion condition with /goal and Claude keeps working across turns until the condition is met.
+
+<Note>
+  `/goal` requires Claude Code v2.1.139 or later.
+</Note>
 
 The `/goal` command sets a completion condition and Claude keeps working toward it without you prompting each step. After each turn, a small fast model checks whether the condition holds. If not, Claude starts another turn instead of returning control to you. The goal clears automatically once the condition is met.
 
@@ -115,7 +119,7 @@ A goal that was still active when a session ended is restored when you resume th
 
 ### Run non-interactively
 
-`/goal` works in [non-interactive mode](/en/headless) and through [Remote Control](/en/remote-control). Setting a goal with `-p` runs the loop to completion in a single invocation:
+`/goal` works in [non-interactive mode](/en/headless), in the [desktop app](/en/desktop), and through [Remote Control](/en/remote-control). Setting a goal with `-p` runs the loop to completion in a single invocation:
 
 ```bash theme={null}
 claude -p "/goal CHANGELOG.md has an entry for every PR merged this week"

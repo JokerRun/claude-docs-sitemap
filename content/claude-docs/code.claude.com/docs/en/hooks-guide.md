@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-05-14T03:14:07.437614Z
-sha256: 887afccc78aea03455d2b68e6d3ae463737264eda9fee8d1a5ada67b6d753cfa
+fetched_at: 2026-05-15T03:15:49.552363Z
+sha256: f719f499fd9bca78d6fbf83bbeef484b338a5f8d0ba625549bebbe3e3f6f8550
 ---
 
 > ## Documentation Index
@@ -872,7 +872,10 @@ For full configuration options and response handling, see [HTTP hooks](/en/hooks
 ### Limitations
 
 * Command hooks communicate through stdout, stderr, and exit codes only. They cannot trigger `/` commands or tool calls. Text returned via `additionalContext` is injected as a system reminder that Claude reads as plain text. HTTP hooks communicate through the response body instead.
-* Hook timeout is 10 minutes by default, configurable per hook with the `timeout` field (in seconds).
+* Hook timeouts vary by type. Override per hook with the `timeout` field in seconds.
+  * `command`, `http`, `mcp_tool`: 10 minutes. `UserPromptSubmit` lowers these to 30 seconds.
+  * `prompt`: 30 seconds.
+  * `agent`: 60 seconds.
 * `PostToolUse` hooks cannot undo actions since the tool has already executed.
 * `PermissionRequest` hooks do not fire in [non-interactive mode](/en/headless) (`-p`). Use `PreToolUse` hooks for automated permission decisions.
 * `Stop` hooks fire whenever Claude finishes responding, not only at task completion. They do not fire on user interrupts. API errors fire [StopFailure](/en/hooks#stopfailure) instead.
