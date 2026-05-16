@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: b056769c65aba1091de9b9ca3f923e0e78a10a13494e4645f12c8f7526f2fb04
+fetched_at: 2026-05-16T03:13:19.414477Z
+sha256: 4ea180564a4018fae2693fea835ef395e56ca03c16e28083b5cec0ec807ce003
 ---
 
 # Parallel tool use
@@ -15,8 +15,23 @@ This page covers parallel tool calls: when Claude calls multiple tools in one tu
 
 By default, Claude may use multiple tools to answer a user query. You can disable this behavior by:
 
-- Setting `disable_parallel_tool_use=true` when tool_choice type is `auto`, which ensures that Claude uses **at most one** tool
-- Setting `disable_parallel_tool_use=true` when tool_choice type is `any` or `tool`, which ensures that Claude uses **exactly one** tool
+- Setting `disable_parallel_tool_use=true` when `tool_choice` type is `auto`, which ensures that Claude uses **at most one** tool
+- Setting `disable_parallel_tool_use=true` when `tool_choice` type is `any` or `tool`, which ensures that Claude uses **exactly one** tool
+
+## Execution semantics
+
+Tool calls in a single assistant turn are unordered. You can run them concurrently (`Promise.all`, `asyncio.gather`), sequentially, or in any order. Claude doesn't assume one call in the batch has completed before another. Claude issues dependent calls across separate turns.
+
+Claude might occasionally batch calls that turn out to depend on each other (for example, a create followed by an update of the same resource). You don't need to detect this in advance: dispatch all the calls, and if one fails because of a missing prerequisite, return the natural error message in a `tool_result` with `is_error: true`. Claude recognizes the dependency and reissues the call after the prerequisite completes.
+
+```json
+{
+  "type": "tool_result",
+  "tool_use_id": "toolu_02",
+  "is_error": true,
+  "content": "cat: report.md: No such file or directory"
+}
+```
 
 ## Worked example
 
@@ -935,6 +950,10 @@ avg_tools_per_message = (
 print(f"Average tools per message: {avg_tools_per_message}")
 # Should be > 1.0 if parallel calls are working
 ```
+
+**4. Calls in a batch appear to depend on each other**
+
+If a tool call fails because it depends on another call in the same batch, return `is_error: true` with the natural error message (you don't need to explain the dependency). Claude recovers and reissues the call. Don't switch to sequential execution; that adds latency and masks the issue. To reduce occurrences, add this to your system prompt: "Only batch tool calls that are independent of each other."
 
 ## Next steps
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/slash-commands
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: eb3bd10cac95eef681338cb36f02f5bc736abc038be137f4b3d58cf654992deb
+fetched_at: 2026-05-16T03:13:19.414477Z
+sha256: 4112a73ed879a202d529e11af190f4c4d6b006280dd9ac1c350570be08c4e776
 ---
 
 > ## Documentation Index
@@ -63,7 +63,7 @@ Send slash commands by including them in your prompt string, just like regular t
     prompt: "/compact",
     options: { maxTurns: 1 }
   })) {
-    if (message.type === "result") {
+    if (message.type === "result" && message.subtype === "success") {
       console.log("Command executed:", message.result);
     }
   }
@@ -268,7 +268,7 @@ Use in SDK:
     options: { maxTurns: 5 }
   })) {
     // Command will process with $1="123" and $2="high"
-    if (message.type === "result") {
+    if (message.type === "result" && message.subtype === "success") {
       console.log("Issue fixed:", message.result);
     }
   }

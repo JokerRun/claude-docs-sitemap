@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-05-15T03:15:49.552363Z
-sha256: 4252102a91238c311ca9da6e5a49e680e1cd4f4d3be8a14940d8d28aeb100d00
+fetched_at: 2026-05-16T03:13:19.414477Z
+sha256: 620a0d9bdfeb2810dbda31dbbb7c7345abe9fc33108d4d5adb87d29e01c735b5
 ---
 
 > ## Documentation Index
@@ -955,7 +955,7 @@ User input message.
 type SDKUserMessage = {
   type: "user";
   uuid?: UUID;
-  session_id: string;
+  session_id?: string;
   message: MessageParam; // From Anthropic SDK
   parent_tool_use_id: string | null;
   isSynthetic?: boolean;

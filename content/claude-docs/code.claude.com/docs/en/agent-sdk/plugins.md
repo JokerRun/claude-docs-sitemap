@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 132ef7f76d1befa12a082d9b279f302c57f25705b902dc0422ebf08b582bc834
+fetched_at: 2026-05-16T03:13:19.414477Z
+sha256: 222479c949f776d4aded191f4a0d262eedf26c2dd7287b3d16e5560125dcd912
 ---
 
 > ## Documentation Index
@@ -53,18 +53,18 @@ Load plugins by providing their local file system paths in your options configur
 
   ```python Python theme={null}
   import asyncio
-  from claude_agent_sdk import query
+  from claude_agent_sdk import query, ClaudeAgentOptions
 
 
   async def main():
       async for message in query(
           prompt="Hello",
-          options={
-              "plugins": [
+          options=ClaudeAgentOptions(
+              plugins=[
                   {"type": "local", "path": "./my-plugin"},
                   {"type": "local", "path": "/absolute/path/to/another-plugin"},
               ]
-          },
+          ),
       ):
           # Plugin commands, agents, and other features are now available
           pass
@@ -113,14 +113,17 @@ When plugins load successfully, they appear in the system initialization message
 
   ```python Python theme={null}
   import asyncio
-  from claude_agent_sdk import query
+  from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage
 
 
   async def main():
       async for message in query(
-          prompt="Hello", options={"plugins": [{"type": "local", "path": "./my-plugin"}]}
+          prompt="Hello",
+          options=ClaudeAgentOptions(
+              plugins=[{"type": "local", "path": "./my-plugin"}]
+          ),
       ):
-          if message.type == "system" and message.subtype == "init":
+          if isinstance(message, SystemMessage) and message.subtype == "init":
               # Check loaded plugins
               print("Plugins:", message.data.get("plugins"))
               # Example: [{"name": "my-plugin", "path": "./my-plugin"}]
@@ -158,14 +161,16 @@ Skills from plugins are automatically namespaced with the plugin name to avoid c
 
   ```python Python theme={null}
   import asyncio
-  from claude_agent_sdk import query, AssistantMessage, TextBlock
+  from claude_agent_sdk import query, ClaudeAgentOptions, AssistantMessage, TextBlock
 
 
   async def main():
       # Load a plugin with a custom /greet skill
       async for message in query(
           prompt="/demo-plugin:greet",  # Use plugin skill with namespace
-          options={"plugins": [{"type": "local", "path": "./plugins/demo-plugin"}]},
+          options=ClaudeAgentOptions(
+              plugins=[{"type": "local", "path": "./plugins/demo-plugin"}]
+          ),
       ):
           # Claude executes the custom greeting skill from the plugin
           if isinstance(message, AssistantMessage):
@@ -226,6 +231,7 @@ Here's a full example demonstrating plugin loading and usage:
   from claude_agent_sdk import (
       AssistantMessage,
       ClaudeAgentOptions,
+      SystemMessage,
       TextBlock,
       query,
   )
@@ -245,7 +251,7 @@ Here's a full example demonstrating plugin loading and usage:
       async for message in query(
           prompt="What custom commands do you have available?", options=options
       ):
-          if message.type == "system" and message.subtype == "init":
+          if isinstance(message, SystemMessage) and message.subtype == "init":
               print(f"Loaded plugins: {message.data.get('plugins')}")
               print(f"Available commands: {message.data.get('slash_commands')}")
 
