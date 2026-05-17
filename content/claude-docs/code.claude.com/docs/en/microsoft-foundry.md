@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/microsoft-foundry
-fetched_at: 2026-05-16T03:13:19.414477Z
-sha256: a309a54a2e2be46ede40b10df355c636948d17a8b7adb449eb709f38a90a39b1
+fetched_at: 2026-05-17T03:15:10.882880Z
+sha256: 2b9270f40dea16737d9c09d1b6c06fcf8855fa001a88e1a1175040ff1ca13b2b
 ---
 
 > ## Documentation Index
@@ -179,6 +179,16 @@ For current and legacy model IDs, see [Models overview](https://platform.claude.
 ```bash theme={null}
 export ENABLE_PROMPT_CACHING_1H=1
 ```
+
+### 5. Run Claude Code
+
+With the environment variables set, start Claude Code from your project directory:
+
+```bash theme={null}
+claude
+```
+
+Claude Code reads `CLAUDE_CODE_USE_FOUNDRY` and the other Foundry variables from the environment and connects to your Azure resource on the first prompt. Unlike Bedrock and Vertex AI, Foundry has no interactive setup wizard, so the environment variables in steps 3 and 4 are the only configuration path.
 
 ## Azure RBAC configuration
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-05-13T03:15:22.791986Z
-sha256: dea8866d7cb61a9494e2e80d66c3f7d93158df2a5ba69be7d469fdc66dc70096
+fetched_at: 2026-05-17T03:15:10.882880Z
+sha256: 5e7319e820a3039631bc726fcb5e58a8aca0070f33008c8ec4e4559c1446085c
 ---
 
 > ## Documentation Index
@@ -214,7 +214,7 @@ You can change effort through any of the following:
 * **In `/model`**: use left/right arrow keys to adjust the effort slider when selecting a model
 * **`--effort` flag**: pass a level name to set it for a single session when launching Claude Code
 * **Environment variable**: set `CLAUDE_CODE_EFFORT_LEVEL` to a level name or `auto`
-* **Settings**: set `effortLevel` in your settings file
+* **Settings**: set `effortLevel` to `low`, `medium`, `high`, or `xhigh` in your settings file. `max` is [session-only](#adjust-effort-level) and is not accepted here
 * **Skill and subagent frontmatter**: set `effort` in a [skill](/en/skills#frontmatter-reference) or [subagent](/en/sub-agents#supported-frontmatter-fields) markdown file to override the effort level when that skill or subagent runs
 
 The environment variable takes precedence over all other methods, then your configured level, then the model default. Frontmatter effort applies when that skill or subagent is active, overriding the session level but not the environment variable.
