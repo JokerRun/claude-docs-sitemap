@@ -197,6 +197,10 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics</loc>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/build-with-claude/token-counting</loc>
 <priority>0.8</priority>
 </url>

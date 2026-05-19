@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-content-data
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: b33057b6b002a7b6710da6c08980b782f1d61bdd2a8de25064104ce54aa1653f
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: 64790854032dfa50893f5d73cea4d5c1b1c5d7c1d53ff37731514cdeb958348c
 ---
 
 # Retrieve and delete chats, files, and projects
@@ -12,7 +12,13 @@ Access chat content, file attachments, and projects for claude.ai organizations 
 ---
 
 <Note>
-  The Compliance API is available only on the Claude Enterprise plan and must be enabled before use. See [Get access to the Compliance API](/docs/en/manage-claude/compliance-api-access).
+  The Compliance API is enabled on request. Claude Enterprise organizations have access to the full API; Claude Console organizations have access to the [Activity Feed](/docs/en/manage-claude/compliance-activity-feed) only. See [Get access to the Compliance API](/docs/en/manage-claude/compliance-api-access).
+</Note>
+:
+    the chat/file/project endpoints read claude.ai content, so unlike the rest of
+    the Compliance API they really are Claude Enterprise-only. */}
+<Note>
+  The endpoints on this page retrieve and delete claude.ai content, which is available only to organizations on the Claude Enterprise plan. The Compliance API is enabled on request. See [Get access to the Compliance API](/docs/en/manage-claude/compliance-api-access).
 </Note>
 
 <Check>
@@ -56,7 +62,6 @@ curl --fail-with-body -sS -G \
       "deleted_at": null,
       "href": "https://claude.ai/chat/abcdef01-2345-6789-abcd-ef0123456789",
       "model": "claude-opus-4-7",
-      "organization_id": "org_01Wv6QeBcDfGhJkLmNpQrSt8",
       "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
       "project_id": "claude_proj_01KGp4eZNug9ri4kE35RSppq",
       "user": {
@@ -98,7 +103,6 @@ The messages endpoint returns the chat's metadata plus a `chat_messages` array s
   "deleted_at": null,
   "href": "https://claude.ai/chat/abcdef01-2345-6789-abcd-ef0123456789",
   "model": "claude-opus-4-7",
-  "organization_id": "org_01Wv6QeBcDfGhJkLmNpQrSt8",
   "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
   "project_id": "claude_proj_01KGp4eZNug9ri4kE35RSppq",
   "user": {

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: e993ddefc82f2afd3bbed775eb74572aa3b350c0f24aae8019782c0380028904
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: 92fb53fe6dff1bf7a7ceff760d939590d91e7c11a2cdd78fc015b5d26fe6bb93
 ---
 
 > ## Documentation Index
@@ -923,7 +923,11 @@ Each script checks if the cache file is missing or older than 5 seconds before r
 
 ### Windows configuration
 
-On Windows, Claude Code runs status line commands through Git Bash when Git Bash is installed, or through PowerShell when Git Bash is absent. To run a PowerShell script as your status line, invoke it via `powershell`; this works from either shell:
+On Windows, Claude Code runs status line commands through Git Bash when Git Bash is installed, or through PowerShell when Git Bash is absent.
+
+Git Bash treats unquoted backslashes as escape characters, so a Windows-style path such as `C:\Users\username\script.mjs` reaches the script runner with its separators removed and the command fails without a visible error. Write file paths in the `command` string with forward slashes, as shown in the examples below. The `~` shorthand also works and expands to your Windows home directory.
+
+To run a PowerShell script as your status line, invoke it via `powershell`. This works whether Claude Code routes the command through Git Bash or PowerShell:
 
 <CodeGroup>
   ```json settings.json theme={null}
@@ -1006,6 +1010,7 @@ Community projects like [ccstatusline](https://github.com/sirmalloc/ccstatusline
 * Verify your script is executable: `chmod +x ~/.claude/statusline.sh`
 * Check that your script outputs to stdout, not stderr
 * Run your script manually to verify it produces output
+* On Windows with Git Bash installed, backslashes in the `command` path are likely being consumed as escape characters before the script runs. Use forward slashes in the path. See [Windows configuration](#windows-configuration).
 * If `disableAllHooks` is set to `true` in your settings, the status line is also disabled. Remove this setting or set it to `false` to re-enable.
 * Run `claude --debug` to log the exit code and stderr from the first status line invocation in a session
 * Ask Claude to read your settings file and execute the `statusLine` command directly to surface errors

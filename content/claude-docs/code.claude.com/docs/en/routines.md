@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-05-13T03:15:22.791986Z
-sha256: 611433b960065bf07d253aa2a86a6ce2b13dc91ff1b51cd3a3ba17b9fbadff1d
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: 36bebcc0235e18bb032b337c666bf4aadcf4a2c3ee245b65ebe4c894f0ed6f12
 ---
 
 > ## Documentation Index
@@ -367,7 +367,7 @@ See [Network access](/en/claude-code-on-the-web#network-access) for details on a
 
 Routines draw down subscription usage the same way interactive sessions do. In addition to the standard subscription limits, routines have a daily cap on how many runs can start per account. See your current consumption and remaining daily routine runs at [claude.ai/code/routines](https://claude.ai/code/routines) or [claude.ai/settings/usage](https://claude.ai/settings/usage).
 
-When a routine hits the daily cap or your subscription usage limit, organizations with extra usage enabled can keep running routines on metered overage. Without extra usage, additional runs are rejected until the window resets. Enable extra usage from **Settings > Billing** on claude.ai.
+When a routine hits the daily cap or your subscription usage limit, organizations with usage credits turned on can keep running routines on metered overage. Without usage credits, additional runs are rejected until the window resets. Turn on usage credits from **Settings > Billing** on claude.ai.
 
 One-off runs do not count against the daily routine cap. They draw down your regular subscription usage like any other session, but they are exempt from the per-account daily routine run allowance.
 

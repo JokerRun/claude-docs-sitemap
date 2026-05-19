@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-05-16T03:13:19.414477Z
-sha256: ced6b26c4640b47ff713eec2932cbfcc2331e97aeff8473eadb200069b5d059e
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: 987d198ab7e132f58bc27a3fd26884b304383bcc6997a7eb5830083d1f57bc70
 ---
 
 > ## Documentation Index
@@ -149,6 +149,8 @@ claude mcp remove github
 ```
 
 The `/mcp` panel shows the tool count next to each connected server and flags servers that advertise the tools capability but expose no tools.
+
+If your request needs tools from a server that is still connecting in the background, Claude waits for that server before continuing. With [tool search](#scale-with-mcp-tool-search) enabled, which is the default, the wait happens inside the `ToolSearch` call. In configurations without tool search, such as Vertex AI, a custom `ANTHROPIC_BASE_URL`, or `ENABLE_TOOL_SEARCH=false`, Claude uses the `WaitForMcpServers` tool instead.
 
 The server name `workspace` is reserved for internal use. If your configuration defines a server with that name, Claude Code skips it at load time and shows a warning asking you to rename it.
 
@@ -1014,7 +1016,7 @@ The following `.mcp.json` entry exempts one HTTP server while leaving other serv
 
 The `alwaysLoad` field is available on all server types and requires Claude Code v2.1.121 or later. An MCP server can also mark individual tools as always-loaded by including `"anthropic/alwaysLoad": true` in the tool's `_meta` object, which has the same effect for that tool only.
 
-Setting `alwaysLoad: true` also blocks startup until the server connects, capped at the standard 5-second connect timeout. This applies even when [`MCP_CONNECTION_NONBLOCKING=1`](/en/env-vars) is set, since the tools must be present when the first prompt is built. Other servers still connect in the background when nonblocking is enabled.
+Setting `alwaysLoad: true` also blocks startup until the server connects, capped at the standard 5-second connect timeout. This applies even though MCP startup is otherwise [non-blocking by default](/en/env-vars), since the tools must be present when the first prompt is built. Other servers continue to connect in the background.
 
 ## Use MCP prompts as commands
 

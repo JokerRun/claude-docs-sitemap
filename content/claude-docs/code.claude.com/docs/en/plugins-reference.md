@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-05-13T03:15:22.791986Z
-sha256: 021655c937efe74fdb06602910a834235ea194c90fbc37007dff303938bc9607
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: b5d6b98ebaccd7c01d8ec8e16e6296f8944e2b2d84b024c1392d58bdd91330a1
 ---
 
 > ## Documentation Index
@@ -27,7 +27,7 @@ A **plugin** is a self-contained directory of components that extends Claude Cod
 
 Plugins add skills to Claude Code, creating `/name` shortcuts that you or Claude can invoke.
 
-**Location**: `skills/` or `commands/` directory in plugin root
+**Location**: `skills/` or `commands/` directory in plugin root, or a single `SKILL.md` file at the plugin root
 
 **File format**: Skills are directories with `SKILL.md`; commands are simple markdown files
 
@@ -374,6 +374,7 @@ The manifest is optional. If omitted, Claude Code auto-discovers components in [
 ```json theme={null}
 {
   "name": "plugin-name",
+  "displayName": "Plugin Name",
   "version": "1.2.0",
   "description": "Brief plugin description",
   "author": {
@@ -420,6 +421,7 @@ agent `agent-creator` for the plugin with name `plugin-dev` will appear as
 | Field         | Type   | Description                                                                                                                                                                                                                                                                                                                                      | Example                                                           |
 | :------------ | :----- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------- |
 | `$schema`     | string | JSON Schema URL for editor autocomplete and validation. Claude Code ignores this field at load time.                                                                                                                                                                                                                                             | `"https://json.schemastore.org/claude-code-plugin-manifest.json"` |
+| `displayName` | string | {/* min-version: 2.1.143 */}Human-readable name shown in the `/plugin` picker and other UI surfaces. Falls back to `name` when omitted. Unlike `name`, may contain spaces and any casing. Not used for namespacing or lookup. Requires Claude Code v2.1.143 or later.                                                                            | `"Deployment Tools"`                                              |
 | `version`     | string | Optional. Semantic version. Setting this pins the plugin to that version string, so users only receive updates when you bump it. If omitted, Claude Code falls back to the git commit SHA, so every commit is treated as a new version. If also set in the marketplace entry, `plugin.json` wins. See [Version management](#version-management). | `"2.1.0"`                                                         |
 | `description` | string | Brief explanation of plugin purpose                                                                                                                                                                                                                                                                                                              | `"Deployment automation tools"`                                   |
 | `author`      | object | Author information                                                                                                                                                                                                                                                                                                                               | `{"name": "Dev Team", "email": "dev@company.com"}`                |
@@ -533,6 +535,8 @@ For all path fields:
 * Components from custom paths use the same naming and namespacing rules
 * Multiple paths can be specified as arrays
 * When a skill path points to a directory that contains a `SKILL.md` directly, for example `"skills": ["./"]` pointing to the plugin root, the frontmatter `name` field in `SKILL.md` determines the skill's invocation name. This gives a stable name regardless of the install directory. If `name` is not set in the frontmatter, the directory basename is used as a fallback.
+
+A plugin that has a `SKILL.md` at its root, no `skills/` subdirectory, and no `skills` manifest field is automatically loaded as a single-skill plugin in Claude Code v2.1.142 and later. You do not need to set `"skills": ["./"]` in `plugin.json` for this layout. The skill's invocation name follows the same rule as above: the frontmatter `name` field, or the directory basename as a fallback.
 
 **Path examples**:
 
@@ -823,7 +827,7 @@ The command lists orphaned dependencies and asks for confirmation before removin
 
 ### plugin enable
 
-Enable a disabled plugin.
+Enable a disabled plugin. If the plugin declares [dependencies](/en/plugin-dependencies), Claude Code enables them transitively at the same scope, and the command fails when a dependency is not installed.
 
 ```bash theme={null}
 claude plugin enable <plugin> [options]
@@ -842,7 +846,7 @@ claude plugin enable <plugin> [options]
 
 ### plugin disable
 
-Disable a plugin without uninstalling it.
+Disable a plugin without uninstalling it. Fails when another enabled plugin [depends on](/en/plugin-dependencies#enable-or-disable-a-plugin-with-dependencies) the target. The error message includes a chained command that disables every dependent first.
 
 ```bash theme={null}
 claude plugin disable <plugin> [options]
@@ -898,7 +902,7 @@ claude plugin list [options]
 
 ### plugin details
 
-Show a plugin's component inventory and projected token cost. The output lists all components the plugin contributes, grouped as Skills (skills and commands), Agents, Hooks, and MCP servers, along with an estimate of how many tokens it adds to each session.
+Show a plugin's component inventory and projected token cost. The output lists all components the plugin contributes, grouped as Skills, Agents, Hooks, MCP servers, and LSP servers, along with an estimate of how many tokens it adds to each session. The Skills group includes both `skills/` and `commands/` entries.
 
 ```bash theme={null}
 claude plugin details <name>
@@ -931,6 +935,7 @@ Component inventory
   Agents (0)
   Hooks (1)  (harness-only — no model context cost)
   MCP servers (0)
+  LSP servers (0)
 
 Projected token cost
   Always-on:   ~180 tok   added to every session

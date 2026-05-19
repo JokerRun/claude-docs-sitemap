@@ -1,15 +1,15 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: c17fdc43c0c7050e200927620fbe1e130093103f357a4c462f7f3b011f5acd31
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: 0b2b7b3ba8f1a3d7874bf424861200b6a0f7da563b08076889e6c18187424e96
 ---
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# Claude Code overview
+# Overview
 
 > Claude Code is an agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your development tools. Available in your terminal, IDE, desktop app, and browser.
 

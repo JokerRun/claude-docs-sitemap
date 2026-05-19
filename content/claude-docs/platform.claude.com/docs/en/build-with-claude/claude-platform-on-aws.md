@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-05-16T03:13:19.414477Z
-sha256: 3de827b3614b1a9733b89777e4ccf2484804848efb3d79930e2b2024e179d41e
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: 7b8c4fa5f1087a5e5748daf1a8f419ed0b479c7b392ea00d217f57b558775ee5
 ---
 
 # Claude Platform on AWS
@@ -534,7 +534,6 @@ The following capabilities are not currently available on Claude Platform on AWS
 - **OAuth authentication:** Not supported. Use SigV4 or API key authentication.
 - **Fast mode:** Not available on Claude Platform on AWS.
 - **OpenAI-compatible API endpoints:** Not available on Claude Platform on AWS.
-- **Workspace-level inference geography controls:** `allowed_inference_geos` and `default_inference_geo` are not available. Set `inference_geo` on each request instead.
 
 ## Data residency
 
@@ -544,7 +543,7 @@ Claude Platform on AWS supports the following inference geographies:
 - **Global:** Inference can route to any Anthropic-operated data center worldwide. Standard pricing applies.
 
 <Note>
-The AWS region your workspace is bound to controls which gateway endpoint you call and where AWS-side resources (IAM, CloudTrail, billing) are scoped. It does not pin where model inference runs. To pin inference to a specific geography, set `inference_geo` on each request.
+The AWS region your workspace is bound to controls which gateway endpoint you call and where AWS-side resources (IAM, CloudTrail, billing) are scoped. It does not pin where model inference runs. To pin inference to a specific geography, set `inference_geo` on each request or configure a workspace default.
 </Note>
 
 Set the inference geography per request with the `inference_geo` parameter:
@@ -707,9 +706,9 @@ puts message
 ```
 </CodeGroup>
 
-If you omit `inference_geo`, the request defaults to `global`.
+If you omit `inference_geo`, the request uses the workspace's `default_inference_geo` if one is configured, otherwise `global`.
 
-Workspace-level inference geography controls (`allowed_inference_geos` and `default_inference_geo`) are not available on Claude Platform on AWS. Set `inference_geo` on each request instead.
+Workspace-level inference geography controls (`allowed_inference_geos` and `default_inference_geo`) are also available on Claude Platform on AWS. See [Workspace-level restrictions](/docs/en/manage-claude/data-residency#workspace-level-restrictions).
 
 ## Workspaces
 

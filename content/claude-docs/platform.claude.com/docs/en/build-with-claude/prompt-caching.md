@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-05-14T03:14:07.437614Z
-sha256: 5c3d70b599fa9a524bfccefb8cc1cf37953b15c56d8e2b4bc8d691669dfb1f84
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: f566b18e19beb856326ac466563470621af26b4a3226a62ddd064cfbcf25c499
 ---
 
 # Prompt caching
@@ -819,12 +819,17 @@ Tailor your prompt caching strategy to your scenario:
 
 If experiencing unexpected behavior:
 
+<Tip>
+[Cache diagnostics](/docs/en/build-with-claude/cache-diagnostics) (beta) has the API compare consecutive requests and report exactly where the prompt prefix diverged, which automatically handles many of the steps in this list.
+</Tip>
+
 - Ensure cached sections are identical across calls. For explicit breakpoints, verify that `cache_control` markers are in the same locations
 - Check that calls are made within the cache lifetime (5 minutes by default)
 - Verify that `tool_choice` and image usage remain consistent between calls
 - Validate that you are caching at least the minimum number of tokens for your model and platform (see [Cache limitations](#cache-limitations))
 - Confirm your breakpoint is on a block that stays identical across requests. Cache writes happen only at the breakpoint, and if that block changes (timestamps, per-request context, the incoming message), the prefix hash never matches. The lookback does not find stable content behind the breakpoint; it only finds entries that earlier requests wrote at their own breakpoints
 - Verify that the keys in your `tool_use` content blocks have stable ordering as some languages (for example, Swift, Go) randomize key order during JSON conversion, breaking caches
+- Use [cache diagnostics](/docs/en/build-with-claude/cache-diagnostics) to have the API compare consecutive requests and report which part of the prompt diverged
 
 <Note>
 Changes to `tool_choice` or the presence/absence of images anywhere in the prompt will invalidate the cache, requiring a new cache entry to be created. For more details on cache invalidation, see [What invalidates the cache](#what-invalidates-the-cache).

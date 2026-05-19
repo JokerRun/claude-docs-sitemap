@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/data-residency
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: ae5ecb69457063036bea911821f9c44b29f342ded4e4a518f3b3e2b7ed5b2db2
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: 98fce8643bbac8878e6bdbb45e93ded531741f7497aaf843b108b52ef0421515
 ---
 
 # Data residency
@@ -136,10 +136,6 @@ Workspace settings also support restricting which inference geos are available:
 - **`default_inference_geo`:** Sets the fallback geo when `inference_geo` is omitted from a request. Individual requests can override this by setting `inference_geo` explicitly.
 
 These settings can be configured through the Console or the [Admin API](/docs/en/manage-claude/admin-api) under the `data_residency` field.
-
-<Note>
-**Claude Platform on AWS:** Workspace-level inference geography controls (`allowed_inference_geos` and `default_inference_geo`) are not available. Use the per-request `inference_geo` parameter instead.
-</Note>
 
 ## Workspace geo
 

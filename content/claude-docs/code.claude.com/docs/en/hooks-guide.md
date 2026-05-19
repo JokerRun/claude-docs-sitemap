@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-05-15T03:15:49.552363Z
-sha256: f719f499fd9bca78d6fbf83bbeef484b338a5f8d0ba625549bebbe3e3f6f8550
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: a62cb31aeb1996396484f12ec2e8e0342c8b196d317a037e698b4be60e2192a3
 ---
 
 > ## Documentation Index
@@ -917,11 +917,11 @@ You edited a settings file but the hooks don't appear in the menu.
 * Verify your JSON is valid (trailing commas and comments are not allowed)
 * Confirm the settings file is in the correct location: `.claude/settings.json` for project hooks, `~/.claude/settings.json` for global hooks
 
-### Stop hook runs forever
+### Stop hook hits the block cap
 
-Claude keeps working in an infinite loop instead of stopping.
+Claude keeps working instead of stopping, then ends the turn with a warning that the Stop hook blocked too many consecutive times.
 
-Your Stop hook script needs to check whether it already triggered a continuation. Parse the `stop_hook_active` field from the JSON input and exit early if it's `true`:
+Claude Code overrides a Stop hook after it blocks 8 times in a row without progress. Your hook script needs to check whether it already triggered a continuation. Parse the `stop_hook_active` field from the JSON input and exit early if it's `true`:
 
 ```bash theme={null}
 #!/bin/bash
@@ -931,6 +931,8 @@ if [ "$(echo "$INPUT" | jq -r '.stop_hook_active')" = "true" ]; then
 fi
 # ... rest of your hook logic
 ```
+
+If your hook legitimately needs more than eight iterations to converge, raise the cap with [`CLAUDE_CODE_STOP_HOOK_BLOCK_CAP`](/en/env-vars).
 
 ### JSON validation failed
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-05-16T03:13:19.414477Z
-sha256: 68e3f51004f8838c145e031108d4be28c1a566a8c75267745050e811e542895b
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: 312a500acf989b2ab5c42ff09d66e7f834096a2cfbe4472f8cd9893bb10a9527
 ---
 
 > ## Documentation Index
@@ -185,7 +185,7 @@ Claude Code blocks further requests until the reset time shown in the message.
 
 * Wait for the reset time shown in the error
 * Run `/usage` to see your plan limits and when they reset
-* Run `/extra-usage` to buy additional usage on Pro and Max, or to request it from your admin on Team and Enterprise. See [Extra usage for paid plans](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) for how this is billed.
+* Run `/usage-credits` to buy additional usage on Pro and Max, or to request it from your admin on Team and Enterprise. See [usage credits for paid plans](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) for how this is billed.
 * To upgrade your plan for higher base limits, see [claude.com/pricing](https://claude.com/pricing)
 
 To watch your remaining allowance before you hit the limit, add the `rate_limits` fields to a [custom status line](/en/statusline#rate-limit-usage), or in the Desktop app click the [usage ring](/en/desktop#check-usage) next to the model picker.
@@ -210,8 +210,10 @@ This is [retried automatically](#automatic-retries) before being shown.
 You have hit the rate limit configured for your API key, Amazon Bedrock project, or Google Vertex AI project.
 
 ```text theme={null}
-API Error: Request rejected (429) · this may be a temporary capacity issue
+API Error: Request rejected (429) · this may be a temporary capacity issue. If it persists, check status.claude.com.
 ```
+
+The trailing sentence names where to check service health and varies by provider. Bedrock and Vertex AI configurations name that provider's service status instead of the Anthropic status page.
 
 **What to do:**
 

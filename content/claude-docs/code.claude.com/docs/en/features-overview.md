@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/features-overview
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: a0aea90477763c9528f112eecbc06f9b5cdb389514d785a3016123a28d4ad430
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: 4894dbb552d940b0a575b199ffabb0ef9417cfd975f218e88615fab01b9419c4
 ---
 
 > ## Documentation Index
@@ -278,9 +278,9 @@ Each feature loads at different points in your session. The tabs below explain w
 
     **What loads:** Fresh, isolated context containing:
 
-    * The system prompt (shared with parent for cache efficiency)
+    * The agent's own system prompt, not the full Claude Code system prompt
     * Full content of skills listed in the agent's `skills:` field
-    * CLAUDE.md and git status (inherited from parent)
+    * CLAUDE.md and git status, except the built-in Explore and Plan agents [omit both](/en/sub-agents#what-loads-at-startup)
     * Whatever context the lead agent passes in the prompt
 
     **Context cost:** Isolated from main session. Subagents don't inherit your conversation history or invoked skills.

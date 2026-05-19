@@ -24,7 +24,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
 | code | https://code.claude.com/docs/en/admin-setup | 2026-05-13 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-05-11 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-05-18 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-05-12 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/custom-tools | 2026-05-07 |  |
@@ -38,7 +38,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/overview | 2026-05-13 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/permissions | 2026-05-05 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/plugins | 2026-05-15 |  |
-| ... | _(~1664 more rows)_ | | |
+| ... | _(~1665 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-05-13T03:15:22.791986Z
-sha256: 7b73f98be94d8ffe930d3f62530d8e7c98877dcff46afc69358f2f4aada3814a
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: 20c9b9a714140acc758202c7fdff1e0c0bf75876322875a8718c5cf49087bcd5
 ---
 
 > ## Documentation Index
@@ -145,7 +145,9 @@ Anthropic also maintains a [demo plugins marketplace](https://github.com/anthrop
   </Step>
 
   <Step title="Install a plugin">
-    Select a plugin to view its details, then choose an installation scope:
+    Select a plugin to view its details. {/* min-version: 2.1.143 */}On Claude Code v2.1.143 and later, the details pane includes a **Context cost** estimate so you can see how many tokens the plugin will add to your [context window](/en/features-overview#understand-context-costs) every turn before you install it.
+
+    Choose an installation scope:
 
     * **User scope**: install for yourself across all projects
     * **Project scope**: install for all collaborators on this repository

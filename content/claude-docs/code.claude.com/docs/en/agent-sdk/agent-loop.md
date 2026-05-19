@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/agent-loop
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: db83087a013cc908e4c3617f875ab757e4cf4a3dcd51934a6e471822121f7979
+fetched_at: 2026-05-19T03:15:49.705713Z
+sha256: 135f4f779d8464e76f14f02d2a6a10c30a7a59906cb8d5af188c5a87c5ec7886
 ---
 
 > ## Documentation Index
@@ -117,14 +117,14 @@ Tools give your agent the ability to take action. Without tools, Claude can only
 
 The SDK includes the same tools that power Claude Code:
 
-| Category            | Tools                                            | What they do                                                                |
-| :------------------ | :----------------------------------------------- | :-------------------------------------------------------------------------- |
-| **File operations** | `Read`, `Edit`, `Write`                          | Read, modify, and create files                                              |
-| **Search**          | `Glob`, `Grep`                                   | Find files by pattern, search content with regex                            |
-| **Execution**       | `Bash`                                           | Run shell commands, scripts, git operations                                 |
-| **Web**             | `WebSearch`, `WebFetch`                          | Search the web, fetch and parse pages                                       |
-| **Discovery**       | `ToolSearch`                                     | Dynamically find and load tools on-demand instead of preloading all of them |
-| **Orchestration**   | `Agent`, `Skill`, `AskUserQuestion`, `TodoWrite` | Spawn subagents, invoke skills, ask the user, track tasks                   |
+| Category            | Tools                                                           | What they do                                                                |
+| :------------------ | :-------------------------------------------------------------- | :-------------------------------------------------------------------------- |
+| **File operations** | `Read`, `Edit`, `Write`                                         | Read, modify, and create files                                              |
+| **Search**          | `Glob`, `Grep`                                                  | Find files by pattern, search content with regex                            |
+| **Execution**       | `Bash`                                                          | Run shell commands, scripts, git operations                                 |
+| **Web**             | `WebSearch`, `WebFetch`                                         | Search the web, fetch and parse pages                                       |
+| **Discovery**       | `ToolSearch`                                                    | Dynamically find and load tools on-demand instead of preloading all of them |
+| **Orchestration**   | `Agent`, `Skill`, `AskUserQuestion`, `TaskCreate`, `TaskUpdate` | Spawn subagents, invoke skills, ask the user, track tasks                   |
 
 Beyond built-in tools, you can:
 
